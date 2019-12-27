@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
-  <compounddef id="riscv__cmplx__mult__cmplx__f32_8c" kind="file" language="C++">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="riscv__cmplx__mult__cmplx__f32_8c" kind="file">
     <compoundname>riscv_cmplx_mult_cmplx_f32.c</compoundname>
     <includes refid="riscv__math_8h" local="yes">riscv_math.h</includes>
     <includedby refid="ComplexMathFunctions_8c" local="yes">ComplexMathFunctions.c</includedby>
@@ -62,7 +62,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/ComplexMathFunctions/riscv_cmplx_mult_cmplx_f32.c" line="72" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/ComplexMathFunctions/riscv_cmplx_mult_cmplx_f32.c" bodystart="72" bodyend="191"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/DSP/Source/ComplexMathFunctions/riscv_cmplx_mult_cmplx_f32.c" line="72" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/DSP/Source/ComplexMathFunctions/riscv_cmplx_mult_cmplx_f32.c" bodystart="72" bodyend="191"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -110,8 +110,8 @@
 <codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>blkCnt;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>counter<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>float32_t<sp/>a,<sp/>b,<sp/>c,<sp/>d;<sp/><sp/></highlight><highlight class="comment">/*<sp/>Temporary<sp/>variables<sp/>to<sp/>store<sp/>real<sp/>and<sp/>imaginary<sp/>values<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="80"><highlight class="normal"></highlight></codeline>
-<codeline lineno="81"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(RISCV_MATH_NEON)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>float32x4x2_t<sp/>va,<sp/>vb;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(RISCV_MATH_NEON)</highlight></codeline>
+<codeline lineno="82"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>float32x4x2_t<sp/>va,<sp/>vb;</highlight></codeline>
 <codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>float32x4_t<sp/>real,<sp/>imag;</highlight></codeline>
 <codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>float32x4x2_t<sp/>outCplx;</highlight></codeline>
 <codeline lineno="85"><highlight class="normal"></highlight></codeline>
@@ -147,9 +147,9 @@
 <codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Tail<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>blkCnt<sp/>=<sp/>numSamples<sp/>&amp;<sp/>3;</highlight></codeline>
 <codeline lineno="117"><highlight class="normal"></highlight></codeline>
-<codeline lineno="118"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="119"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="119"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)</highlight></codeline>
+<codeline lineno="120"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="121"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>unrolling:<sp/>Compute<sp/>4<sp/>outputs<sp/>at<sp/>a<sp/>time<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="122"><highlight class="normal"><sp/><sp/>blkCnt<sp/>=<sp/>numSamples<sp/>&gt;&gt;<sp/>2U;</highlight></codeline>
 <codeline lineno="123"><highlight class="normal"></highlight></codeline>
@@ -194,14 +194,14 @@
 <codeline lineno="162"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>unrolling:<sp/>Compute<sp/>remaining<sp/>outputs<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="163"><highlight class="normal"><sp/><sp/>blkCnt<sp/>=<sp/>numSamples<sp/>%<sp/>0x4U;</highlight></codeline>
 <codeline lineno="164"><highlight class="normal"></highlight></codeline>
-<codeline lineno="165"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="166"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="166"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="167"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>blkCnt<sp/>with<sp/>number<sp/>of<sp/>samples<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="168"><highlight class="normal"><sp/><sp/>blkCnt<sp/>=<sp/>numSamples;</highlight></codeline>
 <codeline lineno="169"><highlight class="normal"></highlight></codeline>
-<codeline lineno="170"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="171"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined(RISCV_MATH_NEON)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="172"><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="171"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined(RISCV_MATH_NEON)<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="172"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="173"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(blkCnt<sp/>&gt;<sp/>0U)</highlight></codeline>
 <codeline lineno="174"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
 <codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>C[2<sp/>*<sp/>i<sp/><sp/><sp/><sp/>]<sp/>=<sp/>A[2<sp/>*<sp/>i]<sp/>*<sp/>B[2<sp/>*<sp/>i<sp/><sp/><sp/><sp/>]<sp/>-<sp/>A[2<sp/>*<sp/>i<sp/>+<sp/>1]<sp/>*<sp/>B[2<sp/>*<sp/>i<sp/>+<sp/>1].<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
@@ -223,6 +223,6 @@
 <codeline lineno="191"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="192"><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/ComplexMathFunctions/riscv_cmplx_mult_cmplx_f32.c"/>
+    <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/DSP/Source/ComplexMathFunctions/riscv_cmplx_mult_cmplx_f32.c"/>
   </compounddef>
 </doxygen>

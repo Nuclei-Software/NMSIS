@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
-  <compounddef id="riscv__scale__q31_8c" kind="file" language="C++">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="riscv__scale__q31_8c" kind="file">
     <compoundname>riscv_scale_q31.c</compoundname>
     <includes refid="riscv__math_8h" local="yes">riscv_math.h</includes>
     <includedby refid="BasicMathFunctions_8c" local="yes">BasicMathFunctions.c</includedby>
@@ -74,7 +74,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/BasicMathFunctions/riscv_scale_q31.c" line="55" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/BasicMathFunctions/riscv_scale_q31.c" bodystart="55" bodyend="188"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/DSP/Source/BasicMathFunctions/riscv_scale_q31.c" line="55" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/DSP/Source/BasicMathFunctions/riscv_scale_q31.c" bodystart="55" bodyend="188"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -125,8 +125,8 @@
 <codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int8_t<sp/>kShift<sp/>=<sp/>shift<sp/>+<sp/>1;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Shift<sp/>to<sp/>apply<sp/>after<sp/>scaling<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int8_t<sp/>sign<sp/>=<sp/>(kShift<sp/>&amp;<sp/>0x80);</highlight></codeline>
 <codeline lineno="66"><highlight class="normal"></highlight></codeline>
-<codeline lineno="67"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)</highlight></codeline>
+<codeline lineno="68"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="69"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>unrolling:<sp/>Compute<sp/>4<sp/>outputs<sp/>at<sp/>a<sp/>time<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="70"><highlight class="normal"><sp/><sp/>blkCnt<sp/>=<sp/>blockSize<sp/>&gt;&gt;<sp/>2U;</highlight></codeline>
 <codeline lineno="71"><highlight class="normal"></highlight></codeline>
@@ -204,13 +204,13 @@
 <codeline lineno="143"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>unrolling:<sp/>Compute<sp/>remaining<sp/>outputs<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="144"><highlight class="normal"><sp/><sp/>blkCnt<sp/>=<sp/>blockSize<sp/>%<sp/>0x4U;</highlight></codeline>
 <codeline lineno="145"><highlight class="normal"></highlight></codeline>
-<codeline lineno="146"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="147"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="148"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>blkCnt<sp/>with<sp/>number<sp/>of<sp/>samples<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="149"><highlight class="normal"><sp/><sp/>blkCnt<sp/>=<sp/>blockSize;</highlight></codeline>
 <codeline lineno="150"><highlight class="normal"></highlight></codeline>
-<codeline lineno="151"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="152"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="153"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sign<sp/>==<sp/>0U)</highlight></codeline>
 <codeline lineno="154"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
 <codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(blkCnt<sp/>&gt;<sp/>0U)</highlight></codeline>
@@ -249,6 +249,6 @@
 <codeline lineno="188"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="189"><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/BasicMathFunctions/riscv_scale_q31.c"/>
+    <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/DSP/Source/BasicMathFunctions/riscv_scale_q31.c"/>
   </compounddef>
 </doxygen>

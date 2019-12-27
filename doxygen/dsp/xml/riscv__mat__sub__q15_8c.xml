@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
-  <compounddef id="riscv__mat__sub__q15_8c" kind="file" language="C++">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="riscv__mat__sub__q15_8c" kind="file">
     <compoundname>riscv_mat_sub_q15.c</compoundname>
     <includes refid="riscv__math_8h" local="yes">riscv_math.h</includes>
     <includedby refid="MatrixFunctions_8c" local="yes">MatrixFunctions.c</includedby>
@@ -54,7 +54,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/MatrixFunctions/riscv_mat_sub_q15.c" line="55" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/MatrixFunctions/riscv_mat_sub_q15.c" bodystart="55" bodyend="141"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/DSP/Source/MatrixFunctions/riscv_mat_sub_q15.c" line="55" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/DSP/Source/MatrixFunctions/riscv_mat_sub_q15.c" bodystart="55" bodyend="141"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -106,8 +106,8 @@
 <codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32_t<sp/>blkCnt;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>loop<sp/>counters<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>riscv_status<sp/>status;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>status<sp/>of<sp/>matrix<sp/>subtraction<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="67"><highlight class="normal"></highlight></codeline>
-<codeline lineno="68"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>RISCV_MATH_MATRIX_CHECK</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>RISCV_MATH_MATRIX_CHECK</highlight></codeline>
+<codeline lineno="69"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="70"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Check<sp/>for<sp/>matrix<sp/>mismatch<sp/>condition<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="71"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((pSrcA-&gt;<ref refid="structriscv__matrix__instance__q15_1aa9d60ec701f1c4e7e74210a4fd7aba07" kindref="member">numRows</ref><sp/>!=<sp/>pSrcB-&gt;<ref refid="structriscv__matrix__instance__q15_1aa9d60ec701f1c4e7e74210a4fd7aba07" kindref="member">numRows</ref>)<sp/>||</highlight></codeline>
 <codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>(pSrcA-&gt;<ref refid="structriscv__matrix__instance__q15_1aaa87635b52ba230423ef291688efb62e" kindref="member">numCols</ref><sp/>!=<sp/>pSrcB-&gt;<ref refid="structriscv__matrix__instance__q15_1aaa87635b52ba230423ef291688efb62e" kindref="member">numCols</ref>)<sp/>||</highlight></codeline>
@@ -118,8 +118,8 @@
 <codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>=<sp/>RISCV_MATH_SIZE_MISMATCH;</highlight></codeline>
 <codeline lineno="78"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="79"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="80"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#ifdef<sp/>RISCV_MATH_MATRIX_CHECK<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#ifdef<sp/>RISCV_MATH_MATRIX_CHECK<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="81"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="82"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
 <codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Total<sp/>number<sp/>of<sp/>samples<sp/>in<sp/>input<sp/>matrix<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>numSamples<sp/>=<sp/>(uint32_t)<sp/>pSrcA-&gt;<ref refid="structriscv__matrix__instance__q15_1aa9d60ec701f1c4e7e74210a4fd7aba07" kindref="member">numRows</ref><sp/>*<sp/>pSrcA-&gt;<ref refid="structriscv__matrix__instance__q15_1aaa87635b52ba230423ef291688efb62e" kindref="member">numCols</ref>;</highlight></codeline>
@@ -134,16 +134,16 @@
 <codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>C(m,n)<sp/>=<sp/>A(m,n)<sp/>-<sp/>B(m,n)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="94"><highlight class="normal"></highlight></codeline>
 <codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Subtract,<sp/>Saturate<sp/>and<sp/>store<sp/>result<sp/>in<sp/>destination<sp/>buffer.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="96"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_DSP)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>write_q15x2_ia<sp/>(&amp;pOut,<sp/>__QSUB16(read_q15x2_ia<sp/>((q15_t<sp/>**)<sp/>&amp;pInA),<sp/>read_q15x2_ia<sp/>((q15_t<sp/>**)<sp/>&amp;pInB)));</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_DSP)</highlight></codeline>
+<codeline lineno="97"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>write_q15x2_ia<sp/>(&amp;pOut,<sp/>__QSUB16(read_q15x2_ia<sp/>((q15_t<sp/>**)<sp/>&amp;pInA),<sp/>read_q15x2_ia<sp/>((q15_t<sp/>**)<sp/>&amp;pInB)));</highlight></codeline>
 <codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>write_q15x2_ia<sp/>(&amp;pOut,<sp/>__QSUB16(read_q15x2_ia<sp/>((q15_t<sp/>**)<sp/>&amp;pInA),<sp/>read_q15x2_ia<sp/>((q15_t<sp/>**)<sp/>&amp;pInB)));</highlight></codeline>
-<codeline lineno="99"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pOut++<sp/>=<sp/>(q15_t)<sp/>__SSAT(((q31_t)<sp/>*<sp/>pInA++<sp/>-<sp/>*pInB++),<sp/>16);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="100"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pOut++<sp/>=<sp/>(q15_t)<sp/>__SSAT(((q31_t)<sp/>*<sp/>pInA++<sp/>-<sp/>*pInB++),<sp/>16);</highlight></codeline>
 <codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pOut++<sp/>=<sp/>(q15_t)<sp/>__SSAT(((q31_t)<sp/>*<sp/>pInA++<sp/>-<sp/>*pInB++),<sp/>16);</highlight></codeline>
 <codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pOut++<sp/>=<sp/>(q15_t)<sp/>__SSAT(((q31_t)<sp/>*<sp/>pInA++<sp/>-<sp/>*pInB++),<sp/>16);</highlight></codeline>
 <codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pOut++<sp/>=<sp/>(q15_t)<sp/>__SSAT(((q31_t)<sp/>*<sp/>pInA++<sp/>-<sp/>*pInB++),<sp/>16);</highlight></codeline>
-<codeline lineno="104"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="105"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Decrement<sp/>loop<sp/>counter<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>blkCnt--;</highlight></codeline>
 <codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
@@ -151,24 +151,24 @@
 <codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>unrolling:<sp/>Compute<sp/>remaining<sp/>outputs<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>blkCnt<sp/>=<sp/>numSamples<sp/>%<sp/>0x4U;</highlight></codeline>
 <codeline lineno="112"><highlight class="normal"></highlight></codeline>
-<codeline lineno="113"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="114"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>blkCnt<sp/>with<sp/>number<sp/>of<sp/>samples<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>blkCnt<sp/>=<sp/>numSamples;</highlight></codeline>
 <codeline lineno="117"><highlight class="normal"></highlight></codeline>
-<codeline lineno="118"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="119"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(blkCnt<sp/>&gt;<sp/>0U)</highlight></codeline>
 <codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>C(m,n)<sp/>=<sp/>A(m,n)<sp/>-<sp/>B(m,n)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="123"><highlight class="normal"></highlight></codeline>
 <codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Subtract<sp/>and<sp/>store<sp/>result<sp/>in<sp/>destination<sp/>buffer.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="125"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_DSP)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pOut++<sp/>=<sp/>(q15_t)<sp/>__QSUB16(*pInA++,<sp/>*pInB++);</highlight></codeline>
-<codeline lineno="127"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pOut++<sp/>=<sp/>(q15_t)<sp/>__SSAT(((q31_t)<sp/>*<sp/>pInA++<sp/>-<sp/>*pInB++),<sp/>16);</highlight></codeline>
-<codeline lineno="129"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_DSP)</highlight></codeline>
+<codeline lineno="126"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pOut++<sp/>=<sp/>(q15_t)<sp/>__QSUB16(*pInA++,<sp/>*pInB++);</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="128"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pOut++<sp/>=<sp/>(q15_t)<sp/>__SSAT(((q31_t)<sp/>*<sp/>pInA++<sp/>-<sp/>*pInB++),<sp/>16);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="130"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Decrement<sp/>loop<sp/>counter<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>blkCnt--;</highlight></codeline>
 <codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
@@ -182,6 +182,6 @@
 <codeline lineno="141"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="142"><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/MatrixFunctions/riscv_mat_sub_q15.c"/>
+    <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/DSP/Source/MatrixFunctions/riscv_mat_sub_q15.c"/>
   </compounddef>
 </doxygen>

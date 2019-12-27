@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
-  <compounddef id="riscv__correlate__f32_8c" kind="file" language="C++">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="riscv__correlate__f32_8c" kind="file">
     <compoundname>riscv_correlate_f32.c</compoundname>
     <includes refid="riscv__math_8h" local="yes">riscv_math.h</includes>
     <includedby refid="FilteringFunctions_8c" local="yes">FilteringFunctions.c</includedby>
@@ -73,7 +73,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_correlate_f32.c" line="97" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_correlate_f32.c" bodystart="97" bodyend="890"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/DSP/Source/FilteringFunctions/riscv_correlate_f32.c" line="97" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/DSP/Source/FilteringFunctions/riscv_correlate_f32.c" bodystart="97" bodyend="890"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -120,8 +120,8 @@
 <codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32_t<sp/>*<sp/>pDst)</highlight></codeline>
 <codeline lineno="103"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="104"><highlight class="normal"></highlight></codeline>
-<codeline lineno="105"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>(1)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="106"><highlight class="normal"></highlight><highlight class="comment">//#if<sp/>!defined(RISCV_MATH_CM0_FAMILY)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>(1)</highlight></codeline>
+<codeline lineno="106"><highlight class="preprocessor"></highlight><highlight class="comment">//#if<sp/>!defined(RISCV_MATH_CM0_FAMILY)</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="107"><highlight class="normal"><sp/><sp/></highlight></codeline>
 <codeline lineno="108"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>float32_t<sp/>*pIn1;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>InputA<sp/>pointer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="109"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>float32_t<sp/>*pIn2;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>InputB<sp/>pointer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
@@ -135,11 +135,11 @@
 <codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32_t<sp/>outBlockSize;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>counter<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int32_t<sp/>inc<sp/>=<sp/>1;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Destination<sp/>address<sp/>modifier<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="119"><highlight class="normal"></highlight></codeline>
-<codeline lineno="120"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)<sp/>||<sp/>defined<sp/>(RISCV_MATH_NEON)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="121"><highlight class="normal"><sp/><sp/>float32_t<sp/>acc0,<sp/>acc1,<sp/>acc2,<sp/>acc3;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Accumulators<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)<sp/>||<sp/>defined<sp/>(RISCV_MATH_NEON)</highlight></codeline>
+<codeline lineno="121"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/>float32_t<sp/>acc0,<sp/>acc1,<sp/>acc2,<sp/>acc3;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Accumulators<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="122"><highlight class="normal"><sp/><sp/>float32_t<sp/>x0,<sp/>x1,<sp/>x2,<sp/>x3,<sp/>c0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>temporary<sp/>variables<sp/>for<sp/>holding<sp/>input<sp/>and<sp/>coefficient<sp/>values<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="123"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="124"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="125"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>The<sp/>algorithm<sp/>implementation<sp/>is<sp/>based<sp/>on<sp/>the<sp/>lengths<sp/>of<sp/>the<sp/>inputs.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="126"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>srcB<sp/>is<sp/>always<sp/>made<sp/>to<sp/>slide<sp/>across<sp/>srcA.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="127"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>So<sp/>srcBLen<sp/>is<sp/>always<sp/>considered<sp/>as<sp/>shorter<sp/>or<sp/>equal<sp/>to<sp/>srcALen<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
@@ -239,13 +239,13 @@
 <codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Accumulator<sp/>is<sp/>made<sp/>zero<sp/>for<sp/>every<sp/>iteration<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/>sum<sp/>=<sp/>0.0f;</highlight></codeline>
 <codeline lineno="223"><highlight class="normal"></highlight></codeline>
-<codeline lineno="224"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)<sp/>||<sp/>defined(RISCV_MATH_NEON)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="225"><highlight class="normal"></highlight></codeline>
+<codeline lineno="224"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)<sp/>||<sp/>defined(RISCV_MATH_NEON)</highlight></codeline>
+<codeline lineno="225"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>unrolling:<sp/>Compute<sp/>4<sp/>outputs<sp/>at<sp/>a<sp/>time<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/>k<sp/>=<sp/>count<sp/>&gt;&gt;<sp/>2U;</highlight></codeline>
 <codeline lineno="228"><highlight class="normal"></highlight></codeline>
-<codeline lineno="229"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(RISCV_MATH_NEON)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/>float32x4_t<sp/>x,y;</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(RISCV_MATH_NEON)</highlight></codeline>
+<codeline lineno="230"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>float32x4_t<sp/>x,y;</highlight></codeline>
 <codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/>float32x4_t<sp/>res<sp/>=<sp/>vdupq_n_f32(0)<sp/>;</highlight></codeline>
 <codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/>float32x2_t<sp/>accum<sp/>=<sp/>vdup_n_f32(0);</highlight></codeline>
 <codeline lineno="233"><highlight class="normal"></highlight></codeline>
@@ -267,8 +267,8 @@
 <codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/>sum<sp/>+=<sp/>accum[0]<sp/>+<sp/>accum[1];</highlight></codeline>
 <codeline lineno="250"><highlight class="normal"></highlight></codeline>
 <codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/>k<sp/>=<sp/>count<sp/>&amp;<sp/>0x3;</highlight></codeline>
-<codeline lineno="252"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>First<sp/>part<sp/>of<sp/>the<sp/>processing<sp/>with<sp/>loop<sp/>unrolling.<sp/><sp/>Compute<sp/>4<sp/>MACs<sp/>at<sp/>a<sp/>time.</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="253"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>First<sp/>part<sp/>of<sp/>the<sp/>processing<sp/>with<sp/>loop<sp/>unrolling.<sp/><sp/>Compute<sp/>4<sp/>MACs<sp/>at<sp/>a<sp/>time.</highlight></codeline>
 <codeline lineno="254"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>**<sp/>a<sp/>second<sp/>loop<sp/>below<sp/>computes<sp/>MACs<sp/>for<sp/>the<sp/>remaining<sp/>1<sp/>to<sp/>3<sp/>samples.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(k<sp/>&gt;<sp/>0U)</highlight></codeline>
 <codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
@@ -291,14 +291,14 @@
 <codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>unrolling:<sp/>Compute<sp/>remaining<sp/>outputs<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/>k<sp/>=<sp/>count<sp/>%<sp/>0x4U;</highlight></codeline>
 <codeline lineno="275"><highlight class="normal"></highlight></codeline>
-<codeline lineno="276"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined(RISCV_MATH_NEON)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="277"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="278"><highlight class="normal"></highlight></codeline>
+<codeline lineno="276"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined(RISCV_MATH_NEON)<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="277"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="278"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>k<sp/>with<sp/>number<sp/>of<sp/>samples<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/>k<sp/>=<sp/>count;</highlight></codeline>
 <codeline lineno="281"><highlight class="normal"></highlight></codeline>
-<codeline lineno="282"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)<sp/>||<sp/>defined(RISCV_MATH_NEON)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="283"><highlight class="normal"></highlight></codeline>
+<codeline lineno="282"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)<sp/>||<sp/>defined(RISCV_MATH_NEON)<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="283"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(k<sp/>&gt;<sp/>0U)</highlight></codeline>
 <codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Perform<sp/>the<sp/>multiply-accumulate<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
@@ -353,13 +353,13 @@
 <codeline lineno="335"><highlight class="comment"><sp/><sp/><sp/>*<sp/>srcBLen<sp/>should<sp/>be<sp/>greater<sp/>than<sp/>or<sp/>equal<sp/>to<sp/>4<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="336"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(srcBLen<sp/>&gt;=<sp/>4U)</highlight></codeline>
 <codeline lineno="337"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline lineno="338"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)<sp/>||<sp/>defined(RISCV_MATH_NEON)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="339"><highlight class="normal"></highlight></codeline>
+<codeline lineno="338"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)<sp/>||<sp/>defined(RISCV_MATH_NEON)</highlight></codeline>
+<codeline lineno="339"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>unrolling:<sp/>Compute<sp/>4<sp/>outputs<sp/>at<sp/>a<sp/>time<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="341"><highlight class="normal"><sp/><sp/><sp/><sp/>blkCnt<sp/>=<sp/>blockSize2<sp/>&gt;&gt;<sp/>2U;</highlight></codeline>
 <codeline lineno="342"><highlight class="normal"></highlight></codeline>
-<codeline lineno="343"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(RISCV_MATH_NEON)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>float32x4_t<sp/>c;</highlight></codeline>
+<codeline lineno="343"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(RISCV_MATH_NEON)</highlight></codeline>
+<codeline lineno="344"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>float32x4_t<sp/>c;</highlight></codeline>
 <codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>float32x4_t<sp/>x1v;</highlight></codeline>
 <codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>float32x4_t<sp/>x2v;</highlight></codeline>
 <codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>uint32x4_t<sp/>x1v_u;</highlight></codeline>
@@ -367,8 +367,8 @@
 <codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>float32x4_t<sp/>x;</highlight></codeline>
 <codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>uint32x4_t<sp/>x_u;</highlight></codeline>
 <codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>float32x4_t<sp/>res<sp/>=<sp/>vdupq_n_f32(0)<sp/>;</highlight></codeline>
-<codeline lineno="352"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined(RISCV_MATH_NEON)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="353"><highlight class="normal"></highlight></codeline>
+<codeline lineno="352"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined(RISCV_MATH_NEON)<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="353"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(blkCnt<sp/>&gt;<sp/>0U)</highlight></codeline>
 <codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="356"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Set<sp/>all<sp/>accumulators<sp/>to<sp/>zero<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
@@ -377,8 +377,8 @@
 <codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>acc2<sp/>=<sp/>0.0f;</highlight></codeline>
 <codeline lineno="360"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>acc3<sp/>=<sp/>0.0f;</highlight></codeline>
 <codeline lineno="361"><highlight class="normal"></highlight></codeline>
-<codeline lineno="362"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(RISCV_MATH_NEON)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="363"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Compute<sp/>4<sp/>MACs<sp/>simultaneously.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="362"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(RISCV_MATH_NEON)</highlight></codeline>
+<codeline lineno="363"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Compute<sp/>4<sp/>MACs<sp/>simultaneously.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="364"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>k<sp/>=<sp/>srcBLen<sp/>&gt;&gt;<sp/>2U;</highlight></codeline>
 <codeline lineno="365"><highlight class="normal"></highlight></codeline>
 <codeline lineno="366"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>res<sp/>=<sp/>vdupq_n_f32(0)<sp/>;</highlight></codeline>
@@ -441,8 +441,8 @@
 <codeline lineno="423"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>acc1<sp/>=<sp/>res[1];</highlight></codeline>
 <codeline lineno="424"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>acc2<sp/>=<sp/>res[2];</highlight></codeline>
 <codeline lineno="425"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>acc3<sp/>=<sp/>res[3];</highlight></codeline>
-<codeline lineno="426"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="427"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>read<sp/>x[0],<sp/>x[1],<sp/>x[2]<sp/>samples<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="426"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="427"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>read<sp/>x[0],<sp/>x[1],<sp/>x[2]<sp/>samples<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="428"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>x0<sp/>=<sp/>*px++;</highlight></codeline>
 <codeline lineno="429"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>x1<sp/>=<sp/>*px++;</highlight></codeline>
 <codeline lineno="430"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>x2<sp/>=<sp/>*px++;</highlight></codeline>
@@ -546,8 +546,8 @@
 <codeline lineno="528"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>k--;</highlight></codeline>
 <codeline lineno="529"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="530"><highlight class="normal"></highlight></codeline>
-<codeline lineno="531"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined(RISCV_MATH_NEON)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="532"><highlight class="normal"></highlight></codeline>
+<codeline lineno="531"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined(RISCV_MATH_NEON)<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="532"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="533"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Store<sp/>the<sp/>result<sp/>in<sp/>the<sp/>accumulator<sp/>in<sp/>the<sp/>destination<sp/>buffer.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="534"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pOut<sp/>=<sp/>acc0;</highlight></codeline>
 <codeline lineno="535"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Destination<sp/>pointer<sp/>is<sp/>updated<sp/>according<sp/>to<sp/>the<sp/>address<sp/>modifier,<sp/>inc<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
@@ -576,25 +576,25 @@
 <codeline lineno="558"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>unrolling:<sp/>Compute<sp/>remaining<sp/>outputs<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="559"><highlight class="normal"><sp/><sp/><sp/><sp/>blkCnt<sp/>=<sp/>blockSize2<sp/>%<sp/>0x4U;</highlight></codeline>
 <codeline lineno="560"><highlight class="normal"></highlight></codeline>
-<codeline lineno="561"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="562"><highlight class="normal"></highlight></codeline>
+<codeline lineno="561"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="562"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="563"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>blkCnt<sp/>with<sp/>number<sp/>of<sp/>samples<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="564"><highlight class="normal"><sp/><sp/><sp/><sp/>blkCnt<sp/>=<sp/>blockSize2;</highlight></codeline>
 <codeline lineno="565"><highlight class="normal"></highlight></codeline>
-<codeline lineno="566"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)<sp/>||<sp/>defined(RISCV_MATH_NEON)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="567"><highlight class="normal"></highlight></codeline>
+<codeline lineno="566"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)<sp/>||<sp/>defined(RISCV_MATH_NEON)<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="567"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="568"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(blkCnt<sp/>&gt;<sp/>0U)</highlight></codeline>
 <codeline lineno="569"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="570"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Accumulator<sp/>is<sp/>made<sp/>zero<sp/>for<sp/>every<sp/>iteration<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="571"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>sum<sp/>=<sp/>0.0f;</highlight></codeline>
 <codeline lineno="572"><highlight class="normal"></highlight></codeline>
-<codeline lineno="573"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)<sp/>||<sp/>defined(RISCV_MATH_NEON)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="574"><highlight class="normal"></highlight></codeline>
+<codeline lineno="573"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)<sp/>||<sp/>defined(RISCV_MATH_NEON)</highlight></codeline>
+<codeline lineno="574"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="575"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>unrolling:<sp/>Compute<sp/>4<sp/>outputs<sp/>at<sp/>a<sp/>time<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="576"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>k<sp/>=<sp/>srcBLen<sp/>&gt;&gt;<sp/>2U;</highlight></codeline>
 <codeline lineno="577"><highlight class="normal"></highlight></codeline>
-<codeline lineno="578"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(RISCV_MATH_NEON)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="579"><highlight class="normal"><sp/><sp/><sp/><sp/>float32x4_t<sp/>x,y;</highlight></codeline>
+<codeline lineno="578"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(RISCV_MATH_NEON)</highlight></codeline>
+<codeline lineno="579"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>float32x4_t<sp/>x,y;</highlight></codeline>
 <codeline lineno="580"><highlight class="normal"><sp/><sp/><sp/><sp/>float32x4_t<sp/>res<sp/>=<sp/>vdupq_n_f32(0)<sp/>;</highlight></codeline>
 <codeline lineno="581"><highlight class="normal"><sp/><sp/><sp/><sp/>float32x2_t<sp/>accum<sp/>=<sp/>vdup_n_f32(0);</highlight></codeline>
 <codeline lineno="582"><highlight class="normal"></highlight></codeline>
@@ -613,8 +613,8 @@
 <codeline lineno="595"><highlight class="normal"></highlight></codeline>
 <codeline lineno="596"><highlight class="normal"><sp/><sp/><sp/><sp/>accum<sp/>=<sp/>vpadd_f32(vget_low_f32(res),<sp/>vget_high_f32(res));</highlight></codeline>
 <codeline lineno="597"><highlight class="normal"><sp/><sp/><sp/><sp/>sum<sp/>+=<sp/>accum[0]<sp/>+<sp/>accum[1];</highlight></codeline>
-<codeline lineno="598"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="599"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>First<sp/>part<sp/>of<sp/>the<sp/>processing<sp/>with<sp/>loop<sp/>unrolling.<sp/><sp/>Compute<sp/>4<sp/>MACs<sp/>at<sp/>a<sp/>time.</highlight></codeline>
+<codeline lineno="598"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="599"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>First<sp/>part<sp/>of<sp/>the<sp/>processing<sp/>with<sp/>loop<sp/>unrolling.<sp/><sp/>Compute<sp/>4<sp/>MACs<sp/>at<sp/>a<sp/>time.</highlight></codeline>
 <codeline lineno="600"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>**<sp/>a<sp/>second<sp/>loop<sp/>below<sp/>computes<sp/>MACs<sp/>for<sp/>the<sp/>remaining<sp/>1<sp/>to<sp/>3<sp/>samples.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="601"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(k<sp/>&gt;<sp/>0U)</highlight></codeline>
 <codeline lineno="602"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
@@ -627,17 +627,17 @@
 <codeline lineno="609"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Decrement<sp/>loop<sp/>counter<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="610"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>k--;</highlight></codeline>
 <codeline lineno="611"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="612"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined(RISCV_MATH_NEON)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="613"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>If<sp/>the<sp/>srcBLen<sp/>is<sp/>not<sp/>a<sp/>multiple<sp/>of<sp/>4,<sp/>compute<sp/>any<sp/>remaining<sp/>MACs<sp/>here.</highlight></codeline>
+<codeline lineno="612"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined(RISCV_MATH_NEON)<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="613"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>If<sp/>the<sp/>srcBLen<sp/>is<sp/>not<sp/>a<sp/>multiple<sp/>of<sp/>4,<sp/>compute<sp/>any<sp/>remaining<sp/>MACs<sp/>here.</highlight></codeline>
 <codeline lineno="614"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>**<sp/>No<sp/>loop<sp/>unrolling<sp/>is<sp/>used.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="615"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>k<sp/>=<sp/>srcBLen<sp/>%<sp/>0x4U;</highlight></codeline>
-<codeline lineno="616"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="617"><highlight class="normal"></highlight></codeline>
+<codeline lineno="616"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="617"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="618"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>blkCnt<sp/>with<sp/>number<sp/>of<sp/>samples<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="619"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>k<sp/>=<sp/>srcBLen;</highlight></codeline>
 <codeline lineno="620"><highlight class="normal"></highlight></codeline>
-<codeline lineno="621"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)<sp/>||<sp/>defined(RISCV_MATH_NEON)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="622"><highlight class="normal"></highlight></codeline>
+<codeline lineno="621"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)<sp/>||<sp/>defined(RISCV_MATH_NEON)<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="622"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="623"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(k<sp/>&gt;<sp/>0U)</highlight></codeline>
 <codeline lineno="624"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="625"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Perform<sp/>the<sp/>multiply-accumulate<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
@@ -736,13 +736,13 @@
 <codeline lineno="718"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Accumulator<sp/>is<sp/>made<sp/>zero<sp/>for<sp/>every<sp/>iteration<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="719"><highlight class="normal"><sp/><sp/><sp/><sp/>sum<sp/>=<sp/>0.0f;</highlight></codeline>
 <codeline lineno="720"><highlight class="normal"></highlight></codeline>
-<codeline lineno="721"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)<sp/>||<sp/>defined(RISCV_MATH_NEON)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="722"><highlight class="normal"></highlight></codeline>
+<codeline lineno="721"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)<sp/>||<sp/>defined(RISCV_MATH_NEON)</highlight></codeline>
+<codeline lineno="722"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="723"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>unrolling:<sp/>Compute<sp/>4<sp/>outputs<sp/>at<sp/>a<sp/>time<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="724"><highlight class="normal"><sp/><sp/><sp/><sp/>k<sp/>=<sp/>count<sp/>&gt;&gt;<sp/>2U;</highlight></codeline>
 <codeline lineno="725"><highlight class="normal"></highlight></codeline>
-<codeline lineno="726"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(RISCV_MATH_NEON)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="727"><highlight class="normal"><sp/><sp/><sp/><sp/>float32x4_t<sp/>x,y;</highlight></codeline>
+<codeline lineno="726"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(RISCV_MATH_NEON)</highlight></codeline>
+<codeline lineno="727"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>float32x4_t<sp/>x,y;</highlight></codeline>
 <codeline lineno="728"><highlight class="normal"><sp/><sp/><sp/><sp/>float32x4_t<sp/>res<sp/>=<sp/>vdupq_n_f32(0)<sp/>;</highlight></codeline>
 <codeline lineno="729"><highlight class="normal"><sp/><sp/><sp/><sp/>float32x2_t<sp/>accum<sp/>=<sp/>vdup_n_f32(0);</highlight></codeline>
 <codeline lineno="730"><highlight class="normal"></highlight></codeline>
@@ -762,8 +762,8 @@
 <codeline lineno="744"><highlight class="normal"></highlight></codeline>
 <codeline lineno="745"><highlight class="normal"><sp/><sp/><sp/><sp/>accum<sp/>=<sp/>vpadd_f32(vget_low_f32(res),<sp/>vget_high_f32(res));</highlight></codeline>
 <codeline lineno="746"><highlight class="normal"><sp/><sp/><sp/><sp/>sum<sp/>+=<sp/>accum[0]<sp/>+<sp/>accum[1];</highlight></codeline>
-<codeline lineno="747"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="748"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>First<sp/>part<sp/>of<sp/>the<sp/>processing<sp/>with<sp/>loop<sp/>unrolling.<sp/><sp/>Compute<sp/>4<sp/>MACs<sp/>at<sp/>a<sp/>time.</highlight></codeline>
+<codeline lineno="747"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="748"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>First<sp/>part<sp/>of<sp/>the<sp/>processing<sp/>with<sp/>loop<sp/>unrolling.<sp/><sp/>Compute<sp/>4<sp/>MACs<sp/>at<sp/>a<sp/>time.</highlight></codeline>
 <codeline lineno="749"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>**<sp/>a<sp/>second<sp/>loop<sp/>below<sp/>computes<sp/>MACs<sp/>for<sp/>the<sp/>remaining<sp/>1<sp/>to<sp/>3<sp/>samples.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="750"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(k<sp/>&gt;<sp/>0U)</highlight></codeline>
 <codeline lineno="751"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
@@ -784,17 +784,17 @@
 <codeline lineno="766"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>k--;</highlight></codeline>
 <codeline lineno="767"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="768"><highlight class="normal"></highlight></codeline>
-<codeline lineno="769"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined<sp/>(RISCV_MATH_NEON)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="770"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>unrolling:<sp/>Compute<sp/>remaining<sp/>outputs<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="769"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined<sp/>(RISCV_MATH_NEON)<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="770"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>unrolling:<sp/>Compute<sp/>remaining<sp/>outputs<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="771"><highlight class="normal"><sp/><sp/><sp/><sp/>k<sp/>=<sp/>count<sp/>%<sp/>0x4U;</highlight></codeline>
 <codeline lineno="772"><highlight class="normal"></highlight></codeline>
-<codeline lineno="773"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="774"><highlight class="normal"></highlight></codeline>
+<codeline lineno="773"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="774"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="775"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>blkCnt<sp/>with<sp/>number<sp/>of<sp/>samples<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="776"><highlight class="normal"><sp/><sp/><sp/><sp/>k<sp/>=<sp/>count;</highlight></codeline>
 <codeline lineno="777"><highlight class="normal"></highlight></codeline>
-<codeline lineno="778"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)<sp/>||<sp/>defined(RISCV_MATH_NEON)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="779"><highlight class="normal"></highlight></codeline>
+<codeline lineno="778"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)<sp/>||<sp/>defined(RISCV_MATH_NEON)<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="779"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="780"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(k<sp/>&gt;<sp/>0U)</highlight></codeline>
 <codeline lineno="781"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="782"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Perform<sp/>the<sp/>multiply-accumulate<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
@@ -820,8 +820,8 @@
 <codeline lineno="802"><highlight class="normal"><sp/><sp/><sp/><sp/>blockSize3--;</highlight></codeline>
 <codeline lineno="803"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="804"><highlight class="normal"></highlight></codeline>
-<codeline lineno="805"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="806"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>alternate<sp/>version<sp/>for<sp/>CM0_FAMILY<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="805"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="806"><highlight class="preprocessor"></highlight><highlight class="comment">/*<sp/>alternate<sp/>version<sp/>for<sp/>CM0_FAMILY<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="807"><highlight class="normal"></highlight></codeline>
 <codeline lineno="808"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>float32_t<sp/>*pIn1<sp/>=<sp/>pSrcA;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>inputA<sp/>pointer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="809"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>float32_t<sp/>*pIn2<sp/>=<sp/>pSrcB<sp/>+<sp/>(srcBLen<sp/>-<sp/>1U);<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>inputB<sp/>pointer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
@@ -903,11 +903,11 @@
 <codeline lineno="885"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDst++<sp/>=<sp/>sum;</highlight></codeline>
 <codeline lineno="886"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="887"><highlight class="normal"></highlight></codeline>
-<codeline lineno="888"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>!defined(RISCV_MATH_CM0_FAMILY)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="889"><highlight class="normal"></highlight></codeline>
+<codeline lineno="888"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>!defined(RISCV_MATH_CM0_FAMILY)<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="889"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="890"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="891"><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_correlate_f32.c"/>
+    <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/DSP/Source/FilteringFunctions/riscv_correlate_f32.c"/>
   </compounddef>
 </doxygen>

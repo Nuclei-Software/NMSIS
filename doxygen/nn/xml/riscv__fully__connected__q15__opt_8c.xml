@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
-  <compounddef id="riscv__fully__connected__q15__opt_8c" kind="file" language="C++">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="riscv__fully__connected__q15__opt_8c" kind="file">
     <compoundname>riscv_fully_connected_q15_opt.c</compoundname>
     <includes local="yes">riscv_math.h</includes>
     <includes refid="riscv__nnfunctions_8h" local="yes">riscv_nnfunctions.h</includes>
@@ -10,7 +10,7 @@
       </node>
       <node id="53">
         <label>riscv_fully_connected_q15_opt.c</label>
-        <link refid="riscv__fully__connected__q15__opt_8c"/>
+        <link refid="riscv_fully_connected_q15_opt.c"/>
         <childnode refid="54" relation="include">
         </childnode>
       </node>
@@ -128,7 +128,7 @@
 <bold>Buffer size:</bold></para><para>vec_buffer size: 0</para><para>Here we use only one pointer to read 4 rows in the weight matrix. So if the original matrix looks like this:</para><para>| a11 | a12 | a13 |</para><para>| a21 | a22 | a23 |</para><para>| a31 | a32 | a33 |</para><para>| a41 | a42 | a43 |</para><para>| a51 | a52 | a53 |</para><para>| a61 | a62 | a63 |</para><para>We operates on multiple-of-4 rows, so the first four rows becomes</para><para>| a11 | a12 | a21 | a22 | a31 | a32 | a41 | a42 |</para><para>| a13 | a23 | a33 | a43 |</para><para>Remaining rows are kept the same original order.</para><para>So the stored weight matrix looks like this:</para><para>| a11 | a12 | a21 | a22 | a31 | a32 | a41 | a42 |</para><para>| a13 | a23 | a33 | a43 | a51 | a52 | a53 | a61 |</para><para>| a62 | a63 | </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_q15_opt.c" line="98" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_q15_opt.c" bodystart="98" bodyend="332"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_q15_opt.c" line="98" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_q15_opt.c" bodystart="98" bodyend="332"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -182,8 +182,8 @@
 <codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>q15_t<sp/>*<sp/>vec_buffer)</highlight></codeline>
 <codeline lineno="107"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="108"><highlight class="normal"></highlight></codeline>
-<codeline lineno="109"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_DSP)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Run<sp/>the<sp/>following<sp/>code<sp/>for<sp/>RISC-V<sp/>Core<sp/>with<sp/>DSP<sp/>enabled<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_DSP)</highlight></codeline>
+<codeline lineno="110"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Run<sp/>the<sp/>following<sp/>code<sp/>for<sp/>RISC-V<sp/>Core<sp/>with<sp/>DSP<sp/>enabled<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="111"><highlight class="normal"></highlight></codeline>
 <codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q15_t<sp/>*pB<sp/>=<sp/>pM;</highlight></codeline>
 <codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>q15_t<sp/><sp/><sp/><sp/>*pO<sp/>=<sp/>pOut;</highlight></codeline>
@@ -203,8 +203,8 @@
 <codeline lineno="127"><highlight class="normal"></highlight></codeline>
 <codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pA<sp/>=<sp/>pV;</highlight></codeline>
 <codeline lineno="129"><highlight class="normal"></highlight></codeline>
-<codeline lineno="130"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>USE_INTRINSIC</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>USE_INTRINSIC</highlight></codeline>
+<codeline lineno="131"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(colCnt)</highlight></codeline>
 <codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>q31_t<sp/><sp/><sp/><sp/><sp/>inM11,<sp/>inM12,<sp/>inM13,<sp/>inM14;</highlight></codeline>
@@ -222,8 +222,8 @@
 <codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>colCnt--;</highlight></codeline>
 <codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="148"><highlight class="normal"></highlight></codeline>
-<codeline lineno="149"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="150"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
 <codeline lineno="152"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/>register<sp/>needed:</highlight></codeline>
 <codeline lineno="153"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/>loop<sp/>counter:<sp/>colCnt</highlight></codeline>
@@ -248,8 +248,8 @@
 <codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[sum2]<sp/></highlight><highlight class="stringliteral">&quot;+r&quot;</highlight><highlight class="normal">(sum2),[sum3]<sp/></highlight><highlight class="stringliteral">&quot;+r&quot;</highlight><highlight class="normal">(sum3),</highlight></codeline>
 <codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[sum4]<sp/></highlight><highlight class="stringliteral">&quot;+r&quot;</highlight><highlight class="normal">(sum4),[pB]<sp/></highlight><highlight class="stringliteral">&quot;+r&quot;</highlight><highlight class="normal">(pB),[pA]<sp/></highlight><highlight class="stringliteral">&quot;+r&quot;</highlight><highlight class="normal">(pA):[colCnt]<sp/></highlight><highlight class="stringliteral">&quot;r&quot;</highlight><highlight class="normal">(colCnt):</highlight><highlight class="stringliteral">&quot;r0&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;r1&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;r2&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;r3&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;r4&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="174"><highlight class="normal"></highlight></codeline>
-<codeline lineno="175"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>USE_INTRINSIC<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>USE_INTRINSIC<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="176"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>colCnt<sp/>=<sp/>dim_vec<sp/>&amp;<sp/>0x1;</highlight></codeline>
 <codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(colCnt)</highlight></codeline>
 <codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
@@ -319,8 +319,8 @@
 <codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rowCnt--;</highlight></codeline>
 <codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="245"><highlight class="normal"></highlight></codeline>
-<codeline lineno="246"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Run<sp/>the<sp/>following<sp/>code<sp/>as<sp/>reference<sp/>implementation<sp/>for<sp/>RISC-V<sp/>Core<sp/>without<sp/>DSP<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="246"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="247"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Run<sp/>the<sp/>following<sp/>code<sp/>as<sp/>reference<sp/>implementation<sp/>for<sp/>RISC-V<sp/>Core<sp/>without<sp/>DSP<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><sp/>rowCnt<sp/>=<sp/>num_of_rows<sp/>&gt;&gt;<sp/>2;</highlight></codeline>
 <codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q15_t<sp/>*pB<sp/>=<sp/>pM;</highlight></codeline>
 <codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q15_t<sp/>*pA;</highlight></codeline>
@@ -400,14 +400,14 @@
 <codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rowCnt--;</highlight></codeline>
 <codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="326"><highlight class="normal"></highlight></codeline>
-<codeline lineno="327"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>RISCV_MATH_DSP<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="328"><highlight class="normal"></highlight></codeline>
+<codeline lineno="327"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>RISCV_MATH_DSP<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="328"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Return<sp/>to<sp/>RISCV_MATH_SUCCESS<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(RISCV_MATH_SUCCESS);</highlight></codeline>
 <codeline lineno="331"><highlight class="normal"></highlight></codeline>
 <codeline lineno="332"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="333"><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_q15_opt.c"/>
+    <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_q15_opt.c"/>
   </compounddef>
 </doxygen>

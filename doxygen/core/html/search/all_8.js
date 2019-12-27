@@ -41,7 +41,7 @@ var searchData=
   ['eclic_5fvector_5finterrupt',['ECLIC_VECTOR_INTERRUPT',['../group__NMSIS__Core__ECLIC__Registers.html#ga915384ab6567d38315e8cf5a566f4840',1,'core_feature_eclic.h']]],
   ['enabledcache',['EnableDCache',['../group__NMSIS__Core__DCache.html#gaf90783ed69b3589cde6fe7dbabeb17c0',1,'core_feature_cache.h']]],
   ['enableicache',['EnableICache',['../group__NMSIS__Core__ICache.html#ga76dfd7aff65a6a7fa91b53dbe44f9ce5',1,'core_feature_cache.h']]],
-  ['exc_5fhandler',['EXC_HANDLER',['../group__NMSIS__Core__IntExcNMI__Handling.html#gacdea0407312bb8428c98044b5aef3e23',1,'system_Device.c']]],
+  ['exc_5fhandler',['EXC_HANDLER',['../group__NMSIS__Core__IntExcNMI__Handling.html#ga79cee3c2d5cef0aa675c6a2a92de7f61',1,'system_Device.c']]],
   ['exccode',['exccode',['../unionCSR__MCAUSE__Type.html#a1cb072e5e7ddb5d23103e5b7ccd4754b',1,'CSR_MCAUSE_Type']]],
   ['exception_5fget_5fexc',['Exception_Get_EXC',['../group__NMSIS__Core__IntExcNMI__Handling.html#ga84df4676c5284f0ea383eeba33e9aa40',1,'system_Device.c']]],
   ['exception_5finit',['Exception_Init',['../group__NMSIS__Core__IntExcNMI__Handling.html#gab6afbaed495af51eeeb4eb7d1c5da420',1,'system_Device.c']]],

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
-  <compounddef id="riscv__correlate__q15_8c" kind="file" language="C++">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="riscv__correlate__q15_8c" kind="file">
     <compoundname>riscv_correlate_q15.c</compoundname>
     <includes refid="riscv__math_8h" local="yes">riscv_math.h</includes>
     <includedby refid="FilteringFunctions_8c" local="yes">FilteringFunctions.c</includedby>
@@ -71,12 +71,11 @@
 </parameterlist>
 <simplesect kind="return"><para>none</para></simplesect>
 <simplesect kind="par"><title>Scaling and Overflow Behavior</title><para>The function is implemented using a 64-bit internal accumulator. Both inputs are in 1.15 format and multiplications yield a 2.30 result. The 2.30 intermediate results are accumulated in a 64-bit accumulator in 34.30 format. This approach provides 33 guard bits and there is no risk of overflow. The 34.30 result is then truncated to 34.15 format by discarding the low 15 bits and then saturated to 1.15 format.</para></simplesect>
-<simplesect kind="remark"><para>Refer to <ref refid="group__Corr_1ga9990fa4b09c6557e7bba6e27146cda34" kindref="member">riscv_correlate_fast_q15()</ref> for a faster but less precise version of this function. </para></simplesect>
-<simplesect kind="remark"><para>Refer to <ref refid="group__Corr_1ga69033fc00b83b9f6a2096b97c2bbbda8" kindref="member">riscv_correlate_opt_q15()</ref> for a faster implementation of this function using scratch buffers. </para></simplesect>
+<simplesect kind="remark"><para>Refer to <ref refid="group__Corr_1ga9990fa4b09c6557e7bba6e27146cda34" kindref="member">riscv_correlate_fast_q15()</ref> for a faster but less precise version of this function. </para><simplesectsep/><para>Refer to <ref refid="group__Corr_1ga69033fc00b83b9f6a2096b97c2bbbda8" kindref="member">riscv_correlate_opt_q15()</ref> for a faster implementation of this function using scratch buffers. </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_correlate_q15.c" line="63" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_correlate_q15.c" bodystart="63" bodyend="693"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/DSP/Source/FilteringFunctions/riscv_correlate_q15.c" line="63" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/DSP/Source/FilteringFunctions/riscv_correlate_q15.c" bodystart="63" bodyend="693"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -123,8 +122,8 @@
 <codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>q15_t<sp/>*<sp/>pDst)</highlight></codeline>
 <codeline lineno="69"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="70"><highlight class="normal"></highlight></codeline>
-<codeline lineno="71"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_DSP)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_DSP)</highlight></codeline>
+<codeline lineno="72"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="73"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q15_t<sp/>*pIn1;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>InputA<sp/>pointer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="74"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q15_t<sp/>*pIn2;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>InputB<sp/>pointer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>q15_t<sp/>*pOut<sp/>=<sp/>pDst;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Output<sp/>pointer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
@@ -391,12 +390,12 @@
 <codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Read<sp/>y[4]<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>c0<sp/>=<sp/>*py;</highlight></codeline>
-<codeline lineno="339"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/><sp/>RISCV_MATH_BIG_ENDIAN</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>c0<sp/>=<sp/>c0<sp/>&lt;&lt;<sp/>16U;</highlight></codeline>
-<codeline lineno="341"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="342"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>c0<sp/>=<sp/>c0<sp/>&amp;<sp/>0x0000FFFF;</highlight></codeline>
-<codeline lineno="343"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#ifdef<sp/><sp/>RISCV_MATH_BIG_ENDIAN<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="344"><highlight class="normal"></highlight></codeline>
+<codeline lineno="339"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/><sp/>RISCV_MATH_BIG_ENDIAN</highlight></codeline>
+<codeline lineno="340"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>c0<sp/>=<sp/>c0<sp/>&lt;&lt;<sp/>16U;</highlight></codeline>
+<codeline lineno="341"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="342"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>c0<sp/>=<sp/>c0<sp/>&amp;<sp/>0x0000FFFF;</highlight></codeline>
+<codeline lineno="343"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#ifdef<sp/><sp/>RISCV_MATH_BIG_ENDIAN<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="344"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Read<sp/>x[7]<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x3<sp/>=<sp/>read_q15x2<sp/>((q15_t<sp/>*)<sp/>px);</highlight></codeline>
 <codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>px++;</highlight></codeline>
@@ -447,12 +446,12 @@
 <codeline lineno="392"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>c0<sp/>=<sp/>(*py);</highlight></codeline>
 <codeline lineno="393"><highlight class="normal"></highlight></codeline>
 <codeline lineno="394"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Read<sp/>y[6]<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="395"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/><sp/>RISCV_MATH_BIG_ENDIAN</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="396"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>c0<sp/>=<sp/>c0<sp/>&lt;&lt;<sp/>16U;</highlight></codeline>
-<codeline lineno="397"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="398"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>c0<sp/>=<sp/>c0<sp/>&amp;<sp/>0x0000FFFF;</highlight></codeline>
-<codeline lineno="399"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#ifdef<sp/><sp/>RISCV_MATH_BIG_ENDIAN<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="400"><highlight class="normal"></highlight></codeline>
+<codeline lineno="395"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/><sp/>RISCV_MATH_BIG_ENDIAN</highlight></codeline>
+<codeline lineno="396"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>c0<sp/>=<sp/>c0<sp/>&lt;&lt;<sp/>16U;</highlight></codeline>
+<codeline lineno="397"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="398"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>c0<sp/>=<sp/>c0<sp/>&amp;<sp/>0x0000FFFF;</highlight></codeline>
+<codeline lineno="399"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#ifdef<sp/><sp/>RISCV_MATH_BIG_ENDIAN<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="400"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="401"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Read<sp/>x[10]<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="402"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x3<sp/>=<sp/>read_q15x2<sp/>((q15_t<sp/>*)<sp/>px<sp/>+<sp/>2);</highlight></codeline>
 <codeline lineno="403"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>px<sp/>+=<sp/>3U;</highlight></codeline>
@@ -662,8 +661,8 @@
 <codeline lineno="607"><highlight class="normal"><sp/><sp/><sp/><sp/>blockSize3--;</highlight></codeline>
 <codeline lineno="608"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="609"><highlight class="normal"></highlight></codeline>
-<codeline lineno="610"><highlight class="normal"></highlight><highlight class="preprocessor">#else<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined<sp/>(RISCV_MATH_DSP)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="611"><highlight class="normal"></highlight></codeline>
+<codeline lineno="610"><highlight class="normal"></highlight><highlight class="preprocessor">#else<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined<sp/>(RISCV_MATH_DSP)<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="611"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="612"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q15_t<sp/>*pIn1<sp/>=<sp/>pSrcA;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>InputA<sp/>pointer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="613"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q15_t<sp/>*pIn2<sp/>=<sp/>pSrcB<sp/>+<sp/>(srcBLen<sp/>-<sp/>1U);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>InputB<sp/>pointer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="614"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>q63_t<sp/>sum;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Accumulators<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
@@ -743,11 +742,11 @@
 <codeline lineno="688"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDst++<sp/>=<sp/>(q15_t)<sp/>__SSAT((sum<sp/>&gt;&gt;<sp/>15U),<sp/>16U);</highlight></codeline>
 <codeline lineno="689"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="690"><highlight class="normal"></highlight></codeline>
-<codeline lineno="691"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined<sp/>(RISCV_MATH_DSP)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="692"><highlight class="normal"></highlight></codeline>
+<codeline lineno="691"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined<sp/>(RISCV_MATH_DSP)<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="692"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="693"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="694"><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_correlate_q15.c"/>
+    <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/DSP/Source/FilteringFunctions/riscv_correlate_q15.c"/>
   </compounddef>
 </doxygen>

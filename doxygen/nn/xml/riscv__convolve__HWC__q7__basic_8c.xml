@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
-  <compounddef id="riscv__convolve__HWC__q7__basic_8c" kind="file" language="C++">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="riscv__convolve__HWC__q7__basic_8c" kind="file">
     <compoundname>riscv_convolve_HWC_q7_basic.c</compoundname>
     <includes local="yes">riscv_math.h</includes>
     <includes refid="riscv__nnfunctions_8h" local="yes">riscv_nnfunctions.h</includes>
@@ -10,7 +10,7 @@
       </node>
       <node id="18">
         <label>riscv_convolve_HWC_q7_basic.c</label>
-        <link refid="riscv__convolve__HWC__q7__basic_8c"/>
+        <link refid="riscv_convolve_HWC_q7_basic.c"/>
         <childnode refid="19" relation="include">
         </childnode>
       </node>
@@ -194,7 +194,7 @@
 <bold>Buffer size:</bold></para><para>bufferA size: 2*ch_im_in*dim_kernel*dim_kernel</para><para>bufferB size: 0</para><para>This basic version is designed to work for any input tensor and weight dimension. </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/ConvolutionFunctions/riscv_convolve_HWC_q7_basic.c" line="75" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/ConvolutionFunctions/riscv_convolve_HWC_q7_basic.c" bodystart="75" bodyend="227"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/ConvolutionFunctions/riscv_convolve_HWC_q7_basic.c" line="75" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/ConvolutionFunctions/riscv_convolve_HWC_q7_basic.c" bodystart="75" bodyend="227"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -253,8 +253,8 @@
 <codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>q7_t<sp/>*<sp/>bufferB)</highlight></codeline>
 <codeline lineno="90"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="91"><highlight class="normal"></highlight></codeline>
-<codeline lineno="92"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_DSP)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Run<sp/>the<sp/>following<sp/>code<sp/>for<sp/>RISC-V<sp/>Core<sp/>with<sp/>DSP<sp/>enabled<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_DSP)</highlight></codeline>
+<codeline lineno="93"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Run<sp/>the<sp/>following<sp/>code<sp/>for<sp/>RISC-V<sp/>Core<sp/>with<sp/>DSP<sp/>enabled<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="94"><highlight class="normal"></highlight></codeline>
 <codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>int16_t<sp/><sp/><sp/>i_out_y,<sp/>i_out_x,<sp/>i_ker_y,<sp/>i_ker_x;</highlight></codeline>
 <codeline lineno="96"><highlight class="normal"></highlight></codeline>
@@ -346,8 +346,8 @@
 <codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*pOut++<sp/>=<sp/>(q7_t)<sp/>__SSAT((sum<sp/>&gt;&gt;<sp/>out_shift),<sp/>8);</highlight></codeline>
 <codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="185"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Run<sp/>the<sp/>following<sp/>code<sp/>as<sp/>reference<sp/>implementation<sp/>for<sp/>RISC-V<sp/>Core<sp/>without<sp/>DSP<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="186"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Run<sp/>the<sp/>following<sp/>code<sp/>as<sp/>reference<sp/>implementation<sp/>for<sp/>RISC-V<sp/>Core<sp/>without<sp/>DSP<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="187"><highlight class="normal"></highlight></codeline>
 <codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><sp/>i,<sp/>j,<sp/>k,<sp/>l,<sp/>m,<sp/>n;</highlight></codeline>
 <codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>conv_out;</highlight></codeline>
@@ -384,13 +384,13 @@
 <codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="222"><highlight class="normal"></highlight></codeline>
-<codeline lineno="223"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>RISCV_MATH_DSP<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="224"><highlight class="normal"></highlight></codeline>
+<codeline lineno="223"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>RISCV_MATH_DSP<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="224"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Return<sp/>to<sp/>application<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>RISCV_MATH_SUCCESS;</highlight></codeline>
 <codeline lineno="227"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="228"><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/ConvolutionFunctions/riscv_convolve_HWC_q7_basic.c"/>
+    <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/ConvolutionFunctions/riscv_convolve_HWC_q7_basic.c"/>
   </compounddef>
 </doxygen>

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
-  <compounddef id="riscv__mat__mult__f32_8c" kind="file" language="C++">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="riscv__mat__mult__f32_8c" kind="file">
     <compoundname>riscv_mat_mult_f32.c</compoundname>
     <includes refid="riscv__math_8h" local="yes">riscv_math.h</includes>
     <includedby refid="MatrixFunctions_8c" local="yes">MatrixFunctions.c</includedby>
@@ -51,7 +51,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/MatrixFunctions/riscv_mat_mult_f32.c" line="399" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/MatrixFunctions/riscv_mat_mult_f32.c" bodystart="399" bodyend="529"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/DSP/Source/MatrixFunctions/riscv_mat_mult_f32.c" line="399" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/DSP/Source/MatrixFunctions/riscv_mat_mult_f32.c" bodystart="399" bodyend="529"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -90,10 +90,10 @@
 <codeline lineno="29"><highlight class="normal"></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;riscv_math.h&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight></codeline>
-<codeline lineno="66"><highlight class="preprocessor">#if<sp/>defined(RISCV_MATH_NEON)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="67"><highlight class="normal"></highlight></codeline>
-<codeline lineno="68"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GROUPOFROWS<sp/>8</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="preprocessor">#if<sp/>defined(RISCV_MATH_NEON)</highlight></codeline>
+<codeline lineno="67"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GROUPOFROWS<sp/>8</highlight></codeline>
+<codeline lineno="69"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="70"><highlight class="normal">riscv_status<sp/><ref refid="group__MatrixMult_1ga0f1c7b30e1c552617b8bb6a6898e57d4" kindref="member">riscv_mat_mult_f32</ref>(</highlight></codeline>
 <codeline lineno="71"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structriscv__matrix__instance__f32" kindref="compound">riscv_matrix_instance_f32</ref><sp/>*<sp/>pSrcA,</highlight></codeline>
 <codeline lineno="72"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structriscv__matrix__instance__f32" kindref="compound">riscv_matrix_instance_f32</ref><sp/>*<sp/>pSrcB,</highlight></codeline>
@@ -128,8 +128,8 @@
 <codeline lineno="101"><highlight class="normal"><sp/><sp/>float32_t<sp/>*pxB,*pxC,<sp/>*pxD,<sp/>*pxE,<sp/>*pxF,<sp/>*pxG,<sp/>*pxH;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Temporary<sp/>output<sp/>data<sp/>matrix<sp/>pointer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="102"><highlight class="normal"><sp/><sp/>float32_t<sp/>sum0,sum1,<sp/>sum2,sum3,<sp/>sum4,<sp/>sum5<sp/>,<sp/>sum6,<sp/>sum7;</highlight></codeline>
 <codeline lineno="103"><highlight class="normal"></highlight></codeline>
-<codeline lineno="104"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>RISCV_MATH_MATRIX_CHECK</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>RISCV_MATH_MATRIX_CHECK</highlight></codeline>
+<codeline lineno="105"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="106"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Check<sp/>for<sp/>matrix<sp/>mismatch<sp/>condition<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="107"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((pSrcA-&gt;<ref refid="structriscv__matrix__instance__f32_1a5a9ac01d9cc88c3ab41402ec52462b8a" kindref="member">numCols</ref><sp/>!=<sp/>pSrcB-&gt;<ref refid="structriscv__matrix__instance__f32_1ab9e5443bcfad02d44272272d6a28db53" kindref="member">numRows</ref>)<sp/>||</highlight></codeline>
 <codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>(pSrcA-&gt;<ref refid="structriscv__matrix__instance__f32_1ab9e5443bcfad02d44272272d6a28db53" kindref="member">numRows</ref><sp/>!=<sp/>pDst-&gt;<ref refid="structriscv__matrix__instance__f32_1ab9e5443bcfad02d44272272d6a28db53" kindref="member">numRows</ref>)<sp/>||<sp/>(pSrcB-&gt;<ref refid="structriscv__matrix__instance__f32_1a5a9ac01d9cc88c3ab41402ec52462b8a" kindref="member">numCols</ref><sp/>!=<sp/>pDst-&gt;<ref refid="structriscv__matrix__instance__f32_1a5a9ac01d9cc88c3ab41402ec52462b8a" kindref="member">numCols</ref>))</highlight></codeline>
@@ -138,8 +138,8 @@
 <codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>=<sp/>RISCV_MATH_SIZE_MISMATCH;</highlight></codeline>
 <codeline lineno="112"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="113"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="114"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/>#ifdef<sp/>RISCV_MATH_MATRIX_CHECK<sp/><sp/><sp/><sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="115"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/>#ifdef<sp/>RISCV_MATH_MATRIX_CHECK<sp/><sp/><sp/><sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="115"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/>{</highlight></codeline>
 <codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>The<sp/>following<sp/>loop<sp/>performs<sp/>the<sp/>dot-product<sp/>of<sp/>each<sp/>row<sp/>in<sp/>pSrcA<sp/>with<sp/>each<sp/>column<sp/>in<sp/>pSrcB<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Row<sp/>loop<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>rowCnt<sp/>=<sp/>row<sp/>&gt;&gt;<sp/>3;</highlight></codeline>
@@ -422,8 +422,8 @@
 <codeline lineno="395"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Return<sp/>to<sp/>application<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="396"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(status);</highlight></codeline>
 <codeline lineno="397"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="398"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="399"><highlight class="normal">riscv_status<sp/><ref refid="group__MatrixMult_1ga0f1c7b30e1c552617b8bb6a6898e57d4" kindref="member">riscv_mat_mult_f32</ref>(</highlight></codeline>
+<codeline lineno="398"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="399"><highlight class="preprocessor"></highlight><highlight class="normal">riscv_status<sp/><ref refid="group__MatrixMult_1ga0f1c7b30e1c552617b8bb6a6898e57d4" kindref="member">riscv_mat_mult_f32</ref>(</highlight></codeline>
 <codeline lineno="400"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structriscv__matrix__instance__f32" kindref="compound">riscv_matrix_instance_f32</ref><sp/>*<sp/>pSrcA,</highlight></codeline>
 <codeline lineno="401"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structriscv__matrix__instance__f32" kindref="compound">riscv_matrix_instance_f32</ref><sp/>*<sp/>pSrcB,</highlight></codeline>
 <codeline lineno="402"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structriscv__matrix__instance__f32" kindref="compound">riscv_matrix_instance_f32</ref><sp/>*<sp/>pDst)</highlight></codeline>
@@ -441,8 +441,8 @@
 <codeline lineno="414"><highlight class="normal"><sp/><sp/>uint32_t<sp/>col,<sp/>i<sp/>=<sp/>0U,<sp/>row<sp/>=<sp/>numRowsA,<sp/>colCnt;<sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>counters<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="415"><highlight class="normal"><sp/><sp/>riscv_status<sp/>status;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Status<sp/>of<sp/>matrix<sp/>multiplication<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="416"><highlight class="normal"></highlight></codeline>
-<codeline lineno="417"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>RISCV_MATH_MATRIX_CHECK</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="418"><highlight class="normal"></highlight></codeline>
+<codeline lineno="417"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>RISCV_MATH_MATRIX_CHECK</highlight></codeline>
+<codeline lineno="418"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="419"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Check<sp/>for<sp/>matrix<sp/>mismatch<sp/>condition<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="420"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((pSrcA-&gt;<ref refid="structriscv__matrix__instance__f32_1a5a9ac01d9cc88c3ab41402ec52462b8a" kindref="member">numCols</ref><sp/>!=<sp/>pSrcB-&gt;<ref refid="structriscv__matrix__instance__f32_1ab9e5443bcfad02d44272272d6a28db53" kindref="member">numRows</ref>)<sp/>||</highlight></codeline>
 <codeline lineno="421"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>(pSrcA-&gt;<ref refid="structriscv__matrix__instance__f32_1ab9e5443bcfad02d44272272d6a28db53" kindref="member">numRows</ref><sp/>!=<sp/>pDst-&gt;<ref refid="structriscv__matrix__instance__f32_1ab9e5443bcfad02d44272272d6a28db53" kindref="member">numRows</ref>)<sp/><sp/>||</highlight></codeline>
@@ -453,8 +453,8 @@
 <codeline lineno="426"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="427"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="428"><highlight class="normal"></highlight></codeline>
-<codeline lineno="429"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#ifdef<sp/>RISCV_MATH_MATRIX_CHECK<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="430"><highlight class="normal"></highlight></codeline>
+<codeline lineno="429"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#ifdef<sp/>RISCV_MATH_MATRIX_CHECK<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="430"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="431"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
 <codeline lineno="432"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>The<sp/>following<sp/>loop<sp/>performs<sp/>the<sp/>dot-product<sp/>of<sp/>each<sp/>row<sp/>in<sp/>pSrcA<sp/>with<sp/>each<sp/>column<sp/>in<sp/>pSrcB<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="433"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>row<sp/>loop<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
@@ -478,8 +478,8 @@
 <codeline lineno="451"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>pointer<sp/>pIn1<sp/>to<sp/>point<sp/>to<sp/>starting<sp/>address<sp/>of<sp/>column<sp/>being<sp/>processed<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="452"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pIn1<sp/>=<sp/>pInA;</highlight></codeline>
 <codeline lineno="453"><highlight class="normal"></highlight></codeline>
-<codeline lineno="454"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="455"><highlight class="normal"></highlight></codeline>
+<codeline lineno="454"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)</highlight></codeline>
+<codeline lineno="455"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="456"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>unrolling:<sp/>Compute<sp/>4<sp/>MACs<sp/>at<sp/>a<sp/>time.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="457"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>colCnt<sp/>=<sp/>numColsA<sp/>&gt;&gt;<sp/>2U;</highlight></codeline>
 <codeline lineno="458"><highlight class="normal"></highlight></codeline>
@@ -508,13 +508,13 @@
 <codeline lineno="481"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>unrolling:<sp/>Compute<sp/>remaining<sp/>MACs<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="482"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>colCnt<sp/>=<sp/>numColsA<sp/>%<sp/>0x4U;</highlight></codeline>
 <codeline lineno="483"><highlight class="normal"></highlight></codeline>
-<codeline lineno="484"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="485"><highlight class="normal"></highlight></codeline>
+<codeline lineno="484"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="485"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="486"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>cntCnt<sp/>with<sp/>number<sp/>of<sp/>columns<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="487"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>colCnt<sp/>=<sp/>numColsA;</highlight></codeline>
 <codeline lineno="488"><highlight class="normal"></highlight></codeline>
-<codeline lineno="489"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="490"><highlight class="normal"></highlight></codeline>
+<codeline lineno="489"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="490"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="491"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(colCnt<sp/>&gt;<sp/>0U)</highlight></codeline>
 <codeline lineno="492"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="493"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>c(m,n)<sp/>=<sp/>a(1,1)<sp/>*<sp/>b(1,1)<sp/>+<sp/>a(1,2)<sp/>*<sp/>b(2,1)<sp/>+<sp/>....<sp/>+<sp/>a(m,p)<sp/>*<sp/>b(p,n)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
@@ -555,9 +555,9 @@
 <codeline lineno="528"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(status);</highlight></codeline>
 <codeline lineno="529"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="530"><highlight class="normal"></highlight></codeline>
-<codeline lineno="531"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined(RISCV_MATH_NEON)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="532"><highlight class="normal"></highlight></codeline>
+<codeline lineno="531"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined(RISCV_MATH_NEON)<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="532"><highlight class="preprocessor"></highlight></codeline>
     </programlisting>
-    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/MatrixFunctions/riscv_mat_mult_f32.c"/>
+    <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/DSP/Source/MatrixFunctions/riscv_mat_mult_f32.c"/>
   </compounddef>
 </doxygen>

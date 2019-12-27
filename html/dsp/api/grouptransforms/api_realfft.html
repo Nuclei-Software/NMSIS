@@ -334,17 +334,7 @@
 <dt id="_CPPv414riscv_rfft_f32PK23riscv_rfft_instance_f32P9float32_tP9float32_t">
 <span id="_CPPv314riscv_rfft_f32PK23riscv_rfft_instance_f32P9float32_tP9float32_t"></span><span id="_CPPv214riscv_rfft_f32PK23riscv_rfft_instance_f32P9float32_tP9float32_t"></span><span class="target" id="group__RealFFT_1ga15270da93ab349377512694e2704a324"></span>void <code class="sig-name descname">riscv_rfft_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_rfft_instance_f32 *<em>S</em>, float32_t *<em>pSrc</em>, float32_t *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the floating-point RFFT/RIFFT. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the floating-point RFFT/RIFFT structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the input buffer </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the output buffer </p></li>
-</ul>
-</dd>
-</dl>
-</p>
+<p></p>
 </dd></dl>
 
 <dl class="function">
@@ -549,13 +539,8 @@
 <dt id="_CPPv419riscv_rfft_init_f32P23riscv_rfft_instance_f32P30riscv_cfft_radix4_instance_f328uint32_t8uint32_t8uint32_t">
 <span id="_CPPv319riscv_rfft_init_f32P23riscv_rfft_instance_f32P30riscv_cfft_radix4_instance_f328uint32_t8uint32_t8uint32_t"></span><span id="_CPPv219riscv_rfft_init_f32P23riscv_rfft_instance_f32P30riscv_cfft_radix4_instance_f328uint32_t8uint32_t8uint32_t"></span><span class="target" id="group__RealFFT_1ga84650b5ce6836a7cd0f0fc9da41fb3cf"></span>riscv_status <code class="sig-name descname">riscv_rfft_init_f32</code><span class="sig-paren">(</span>riscv_rfft_instance_f32 *<em>S</em>, riscv_cfft_radix4_instance_f32 *<em>S_CFFT</em>, uint32_t <em>fftLenReal</em>, uint32_t <em>ifftFlagR</em>, uint32_t <em>bitReverseFlag</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the floating-point RFFT/RIFFT. </p>
+<p></p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
-<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
-<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code> is not a supported length</p></li>
-</ul>
-</p>
-</dd>
 <dt><strong>Description</strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code>specifies length of RFFT/RIFFT Process. Supported FFT Lengths are 128, 512, 2048. </p>
 </dd>
 <dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">ifftFlagR</span></code> controls whether a forward or inverse transform is computed. Set(=1) ifftFlagR to calculate RIFFT, otherwise RFFT is calculated. </p>
@@ -563,22 +548,6 @@
 <dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">bitReverseFlag</span></code> controls whether output is in normal order or bit reversed order. Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order. </p>
 </dd>
 <dt><strong></strong></dt><dd><p>This function also initializes Twiddle factor table. </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an instance of the floating-point RFFT/RIFFT structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S_CFFT</span></code>: points to an instance of the floating-point CFFT/CIFFT structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">fftLenReal</span></code>: length of the FFT. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ifftFlagR</span></code>: flag that selects transform direction<ul>
-<li><p>value = 0: forward transform</p></li>
-<li><p>value = 1: inverse transform </p></li>
-</ul>
-</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bitReverseFlag</span></code>: flag that enables / disables bit reversal of output<ul>
-<li><p>value = 0: disables bit reversal of output</p></li>
-<li><p>value = 1: enables bit reversal of output </p></li>
-</ul>
-</p></li>
-</ul>
 </dd>
 </dl>
 </p>

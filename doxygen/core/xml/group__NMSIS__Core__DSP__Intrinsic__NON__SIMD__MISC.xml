@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC" kind="group">
     <compoundname>NMSIS_Core_DSP_Intrinsic_NON_SIMD_MISC</compoundname>
     <title>Non-SIMD Miscellaneous Instructions</title>
@@ -27,8 +27,8 @@ Calculate the average of the contents of two general registers.</para><para><bol
 This instruction calculates the average value of two signed integers stored in Rs1 and Rs2, rounds up a half-integer result to the nearest integer, and writes the result to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Sum<sp/>=<sp/>CONCAT(Rs1[MSB],Rs1[MSB:0])<sp/>+<sp/>CONCAT(Rs2[MSB],Rs2[MSB:0])<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">Rd<sp/>=<sp/>Sum[(MSB+1):1];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>MSB=31,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>MSB=63</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>MSB=31,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>MSB=63</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -48,7 +48,7 @@ This instruction calculates the average value of two signed integers stored in R
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="493" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="493" bodyend="498"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="493" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="493" bodyend="498"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1ga5061e392780b3bea521580befe37556f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -72,8 +72,8 @@ This instruction calculates the average value of two signed integers stored in R
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Reverse the bit positions of the source operand within a specified width starting from bit 0. The reversed width is a variable from a GPR.</para><para><bold>Description</bold>:<linebreak/>
 This instruction reverses the bit positions of the content of Rs1. The reversed bit width is calculated as Rs2[4:0]+1 (RV32) or Rs2[5:0]+1 (RV64). The upper bits beyond the reversed width are filled with zeros. After the bit reverse operation, the result is written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">msb<sp/>=<sp/>Rs2[4:0];<sp/>(for<sp/>RV32)</highlight></codeline>
-<codeline><highlight class="normal">msb<sp/>=<sp/>Rs2[5:0];<sp/>(for<sp/>RV64)</highlight></codeline>
+<programlisting><codeline><highlight class="normal">msb<sp/>=<sp/>Rs2[4:0];<sp/>(</highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32)</highlight></codeline>
+<codeline><highlight class="normal">msb<sp/>=<sp/>Rs2[5:0];<sp/>(</highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64)</highlight></codeline>
 <codeline><highlight class="normal">rev[0:msb]<sp/>=<sp/>Rs1[msb:0];</highlight></codeline>
 <codeline><highlight class="normal">Rd<sp/>=<sp/>ZE(rev[msb:0]);</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
@@ -95,7 +95,7 @@ This instruction reverses the bit positions of the content of Rs1. The reversed 
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="534" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="534" bodyend="539"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="534" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="534" bodyend="539"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1ga08cd4064dbe07a8f27e148434f55b3b5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -143,7 +143,7 @@ This instruction reverses the bit positions of the content of Rs1. The reversed 
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="576" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="576" bodyend="581"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="576" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="576" bodyend="581"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1ga0e9da2de29b3f47f38a315ca8f3e5f18" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -172,7 +172,7 @@ This instruction reverses the bit positions of the content of Rs1. The reversed 
 Select from two source operands based on a bit mask in the third operand.</para><para><bold>Description</bold>:<linebreak/>
 This instruction selects individual bits from Rs1 or Rs2, based on the bit mask value in Rc. If a bit in Rc is 1, the corresponding bit is from Rs1; otherwise, the corresponding bit is from Rs2. The selection results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Rd[x]<sp/>=<sp/>Rc[x]?<sp/>Rs1[x]<sp/>:<sp/>Rs2[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32,<sp/>x=31...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32,<sp/>x=31...0</highlight></codeline>
 <codeline><highlight class="normal">for<sp/>RV64,<sp/>x=63...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -200,7 +200,7 @@ This instruction selects individual bits from Rs1 or Rs2, based on the bit mask 
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="616" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="616" bodyend="621"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="616" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="616" bodyend="621"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1ga766a420ef985764c0d0d8bcc2eb66e36" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -258,7 +258,7 @@ This instruction inserts byte 0 of Rs1 into byte <computeroutput>imm[1:0]</compu
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="1278" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="1278" bodyend="1282"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="1278" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="1278" bodyend="1282"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1ga1e5062cc77c31e898d6a85e7768a7b2d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -319,7 +319,7 @@ This instruction multiplies the lower 32-bit content of Rs1 with that of Rs2. It
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="5654" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="5654" bodyend="5658"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="5654" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="5654" bodyend="5658"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1ga8260760ab7c146507ec4507862534332" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -380,7 +380,7 @@ This instruction multiplies the lower 32-bit content of Rs1 with that of Rs2, su
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="5776" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="5776" bodyend="5780"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="5776" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="5776" bodyend="5780"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1gac34824012cfe56f0a6fb9baf2fb1ba33" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -406,18 +406,18 @@ Perform an arithmetic right shift operation with rounding. The shift amount is a
 This instruction right-shifts the content of Rs1 arithmetically. The shifted out bits are filled with the sign-bit and the shift amount is specified by the low-order 5-bits (RV32) or 6-bits (RV64) of the Rs2 register. For the rounding operation, a value of 1 is added to the most significant discarded bit of the data to calculate the final result. And the result is written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">*<sp/>RV32:</highlight></codeline>
 <codeline><highlight class="normal">sa<sp/>=<sp/>Rs2[4:0];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(sa<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sa<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[31:-1]<sp/>=<sp/>SE33(Rs1[31:(sa-1)])<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>res[31:0];</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>Rs1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">*<sp/>RV64:</highlight></codeline>
 <codeline><highlight class="normal">sa<sp/>=<sp/>Rs2[5:0];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(sa<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sa<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[63:-1]<sp/>=<sp/>SE65(Rs1[63:(sa-1)])<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>res[63:0];</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>Rs1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
@@ -439,7 +439,7 @@ This instruction right-shifts the content of Rs1 arithmetically. The shifted out
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="9523" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="9523" bodyend="9528"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="9523" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="9523" bodyend="9528"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1ga19fde10e69ceda8b79f4cba59c073654" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -466,18 +466,18 @@ Perform an arithmetic right shift operation with rounding. The shift amount is a
 This instruction right-shifts the content of Rs1 arithmetically. The shifted out bits are filled with the sign-bit and the shift amount is specified by the imm6u[4:0] (RV32) or imm6u[5:0] (RV64) constant . For the rounding operation, a value of 1 is added to the most significant discarded bit of the data to calculate the final result. And the result is written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">*<sp/>RV32:</highlight></codeline>
 <codeline><highlight class="normal">sa<sp/>=<sp/>imm6u[4:0];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(sa<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sa<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[31:-1]<sp/>=<sp/>SE33(Rs1[31:(sa-1)])<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>res[31:0];</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>Rs1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">*<sp/>RV64:</highlight></codeline>
 <codeline><highlight class="normal">sa<sp/>=<sp/>imm6u[5:0];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(sa<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sa<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[63:-1]<sp/>=<sp/>SE65(Rs1[63:(sa-1)])<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>res[63:0];</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>Rs1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
@@ -499,7 +499,7 @@ This instruction right-shifts the content of Rs1 arithmetically. The shifted out
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="9578" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="9578" bodyend="9583"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="9578" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="9578" bodyend="9583"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1gaaea4771a7ac766be7bfec89c7bf6cda8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -520,8 +520,8 @@ This instruction right-shifts the content of Rs1 arithmetically. The shifted out
 Swap the bytes within each halfword of a register.</para><para><bold>Description</bold>:<linebreak/>
 This instruction swaps the bytes within each halfword of Rs1 and writes the result to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Rd.H[x]<sp/>=<sp/>CONCAT(Rs1.H[x][7:0],Rs1.H[x][15:8]);</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=1...0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=3...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=1...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=3...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -534,7 +534,7 @@ This instruction swaps the bytes within each halfword of Rs1 and writes the resu
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="10921" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="10921" bodyend="10926"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="10921" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="10921" bodyend="10926"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1gadab9655b01398363507f94180fd41ba4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -555,8 +555,8 @@ This instruction swaps the bytes within each halfword of Rs1 and writes the resu
 Swap the 16-bit halfwords within each word of a register.</para><para><bold>Description</bold>:<linebreak/>
 This instruction swaps the 16-bit halfwords within each word of Rs1 and writes the result to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>CONCAT(Rs1.W[x][15:0],Rs1.H[x][31:16]);</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -569,7 +569,7 @@ This instruction swaps the 16-bit halfwords within each word of Rs1 and writes t
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="10958" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="10958" bodyend="10963"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="10958" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="10958" bodyend="10963"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1ga336d44003e6037e4945a513994b5f601" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -595,7 +595,7 @@ Extract a 32-bit word from a 64-bit value stored in an even/odd pair of register
 This instruction extracts a 32-bit word from a 64-bit value of an even/odd pair of registers specified by Rs1(4,1) starting from a specified immediate LSB bit position, #LSBloc. The extracted word is written to Rd. Rs1(4,1), i.e., d, determines the even/odd pair group of the two registers. Specifically, the register pair includes register 2d and 2d+1. The odd <computeroutput>2d+1</computeroutput> register of the pair contains the high 32-bit of the 64-bit value and the even <computeroutput>2d</computeroutput> register of the pair contains the low 32-bit of the 64-bit value.</para><para><bold>RV64 Description</bold>:<linebreak/>
 This instruction extracts a 32-bit word from a 64-bit value in Rs1 starting from a specified immediate LSB bit position, #LSBloc. The extracted word is sign-extended and written to lower 32- bit of Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">*<sp/>RV32:</highlight></codeline>
-<codeline><highlight class="normal">Idx0<sp/>=<sp/>CONCAT(Rs1(4,1),1&apos;b0);<sp/>Idx1<sp/>=<sp/>CONCAT(Rs2(4,1),1&apos;b1);</highlight></codeline>
+<codeline><highlight class="normal">Idx0<sp/>=<sp/>CONCAT(Rs1(4,1),1</highlight><highlight class="stringliteral">&apos;b0);<sp/>Idx1<sp/>=<sp/>CONCAT(Rs2(4,1),1&apos;</highlight><highlight class="normal">b1);</highlight></codeline>
 <codeline><highlight class="normal">src[63:0]<sp/>=<sp/>Concat(R[Idx1],<sp/>R[Idx0]);</highlight></codeline>
 <codeline><highlight class="normal">Rd<sp/>=<sp/>src[31+LSBloc:LSBloc];</highlight></codeline>
 <codeline><highlight class="normal">*<sp/>RV64:</highlight></codeline>
@@ -620,7 +620,7 @@ This instruction extracts a 32-bit word from a 64-bit value in Rs1 starting from
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="13374" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13374" bodyend="13379"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="13374" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13374" bodyend="13379"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1ga92ce02b48c9b1f373c8b7e602c6bcc5f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -645,7 +645,7 @@ This instruction extracts a 32-bit word from a 64-bit value in Rs1 starting from
 Extract a 32-bit word from a 64-bit value stored in an even/odd pair of registers (RV32) or a register (RV64) starting from a specified LSB bit position in a register.</para><para><bold>RV32 Description</bold>:<linebreak/>
 This instruction extracts a 32-bit word from a 64-bit value of an even/odd pair of registers specified by Rs1(4,1) starting from a specified LSB bit position, specified in Rs2[4:0]. The extracted word is written to Rd. Rs1(4,1), i.e., d, determines the even/odd pair group of the two registers. Specifically, the register pair includes register 2d and 2d+1. The odd <computeroutput>2d+1</computeroutput> register of the pair contains the high 32-bit of the 64-bit value and the even <computeroutput>2d</computeroutput> register of the pair contains the low 32-bit of the 64-bit value.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">*<sp/>RV32:</highlight></codeline>
-<codeline><highlight class="normal">Idx0<sp/>=<sp/>CONCAT(Rs1(4,1),1&apos;b0);<sp/>Idx1<sp/>=<sp/>CONCAT(Rs1(4,1),1&apos;b1);</highlight></codeline>
+<codeline><highlight class="normal">Idx0<sp/>=<sp/>CONCAT(Rs1(4,1),1</highlight><highlight class="stringliteral">&apos;b0);<sp/>Idx1<sp/>=<sp/>CONCAT(Rs1(4,1),1&apos;</highlight><highlight class="normal">b1);</highlight></codeline>
 <codeline><highlight class="normal">src[63:0]<sp/>=<sp/>Concat(R[Idx1],<sp/>R[Idx0]);</highlight></codeline>
 <codeline><highlight class="normal">LSBloc<sp/>=<sp/>Rs2[4:0];</highlight></codeline>
 <codeline><highlight class="normal">Rd<sp/>=<sp/>src[31+LSBloc:LSBloc];</highlight></codeline>
@@ -672,7 +672,7 @@ This instruction extracts a 32-bit word from a 64-bit value of an even/odd pair 
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="13424" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13424" bodyend="13429"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="13424" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13424" bodyend="13429"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       </sectiondef>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="group__NMSIS__Core__DSP__Intrinsic__32B__MULT__64B__ADDSUB" kind="group">
     <compoundname>NMSIS_Core_DSP_Intrinsic_32B_MULT_64B_ADDSUB</compoundname>
     <title>32-bit Multiply with 64-bit Add/Subtract Instructions</title>
@@ -31,20 +31,20 @@ Multiply the 32-bit signed elements in two registers and add the 64-bit multipli
 This instruction multiplies the 32-bit signed data of Rs1 with that of Rs2. It adds the 64-bit multiplication result to the 64-bit signed data of an even/odd pair of registers specified by Rd(4,1) with unlimited precision. If the 64-bit addition result is beyond the Q63 number range (-2^63 &lt;= Q63 &lt;= 2^63-1), it is saturated to the range and the OV bit is set to 1. The saturated result is written back to the even/odd pair of registers specified by Rd(4,1). Rx(4,1), i.e., value d, determines the even/odd pair group of two registers. Specifically, the register pair includes register 2d and 2d+1. The odd <computeroutput>2d+1</computeroutput> register of the pair contains the high 32-bit of the result and the even <computeroutput>2d</computeroutput> register of the pair contains the low 32-bit of the result.</para><para><bold>RV64 Description</bold>:<linebreak/>
 This instruction multiplies the 32-bit signed elements of Rs1 with that of Rs2. It adds the 64-bit multiplication results to the 64-bit signed data of Rd with unlimited precision. If the 64-bit addition result is beyond the Q63 number range (-2^63 &lt;= Q63 &lt;= 2^63-1), it is saturated to the range and the OV bit is set to 1. The saturated result is written back to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">RV32:</highlight></codeline>
-<codeline><highlight class="normal">t_L<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b0);<sp/>t_H<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b1);</highlight></codeline>
+<codeline><highlight class="normal">t_L<sp/>=<sp/>CONCAT(Rd(4,1),1</highlight><highlight class="stringliteral">&apos;b0);<sp/>t_H<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;</highlight><highlight class="normal">b1);</highlight></codeline>
 <codeline><highlight class="normal">result<sp/>=<sp/>R[t_H].R[t_L]<sp/>+<sp/>(Rs1<sp/>*<sp/>Rs2);</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(result<sp/>&gt;<sp/>(2^63)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(result<sp/>&gt;<sp/>(2^63)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>result<sp/>=<sp/>(2^63)-1;<sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(result<sp/>&lt;<sp/>-2^63)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(result<sp/>&lt;<sp/>-2^63)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>result<sp/>=<sp/>-2^63;<sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">R[t_H].R[t_L]<sp/>=<sp/>result;</highlight></codeline>
 <codeline><highlight class="normal">RV64:</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>`result`<sp/>has<sp/>unlimited<sp/>precision</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>`result`<sp/>has<sp/>unlimited<sp/>precision</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">result<sp/>=<sp/>Rd<sp/>+<sp/>(Rs1.W[0]<sp/>*<sp/>Rs2.W[0])<sp/>+<sp/>(Rs1.W[1]<sp/>*<sp/>Rs2.W[1]);</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(result<sp/>&gt;<sp/>(2^63)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(result<sp/>&gt;<sp/>(2^63)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>result<sp/>=<sp/>(2^63)-1;<sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(result<sp/>&lt;<sp/>-2^63)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(result<sp/>&lt;<sp/>-2^63)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>result<sp/>=<sp/>-2^63;<sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd<sp/>=<sp/>result;</highlight></codeline>
@@ -74,7 +74,7 @@ This instruction multiplies the 32-bit signed elements of Rs1 with that of Rs2. 
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="3151" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="3151" bodyend="3155"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="3151" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="3151" bodyend="3155"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__32B__MULT__64B__ADDSUB_1gac89788561e034d44bea403fd22047a94" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -104,20 +104,20 @@ Multiply the 32-bit signed elements in two registers and subtract the 64-bit mul
 This instruction multiplies the 32-bit signed data of Rs1 with that of Rs2. It subtracts the 64-bit multiplication result from the 64-bit signed data of an even/odd pair of registers specified by Rd(4,1) with unlimited precision. If the 64-bit subtraction result is beyond the Q63 number range (-2^63 &lt;= Q63 &lt;= 2^63-1), it is saturated to the range and the OV bit is set to 1. The saturated result is written back to the even/odd pair of registers specified by Rd(4,1). Rx(4,1), i.e., d, determines the even/odd pair group of two registers. Specifically, the register pair includes register 2d and 2d+1. The odd <computeroutput>2d+1</computeroutput> register of the pair contains the high 32-bit of the result and the even <computeroutput>2d</computeroutput> register of the pair contains the low 32-bit of the result.</para><para><bold>RV64 Description</bold>:<linebreak/>
 This instruction multiplies the 32-bit signed elements of Rs1 with that of Rs2. It subtracts the 64-bit multiplication results from the 64-bit signed data in Rd with unlimited precision. If the 64-bit subtraction result is beyond the Q63 number range (-2^63 &lt;= Q63 &lt;= 2^63-1), it is saturated to the range and the OV bit is set to 1. The saturated result is written back to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">RV32:</highlight></codeline>
-<codeline><highlight class="normal">t_L<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b0);<sp/>t_H<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b1);</highlight></codeline>
+<codeline><highlight class="normal">t_L<sp/>=<sp/>CONCAT(Rd(4,1),1</highlight><highlight class="stringliteral">&apos;b0);<sp/>t_H<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;</highlight><highlight class="normal">b1);</highlight></codeline>
 <codeline><highlight class="normal">result<sp/>=<sp/>R[t_H].R[t_L]<sp/>-<sp/>(Rs1<sp/>*<sp/>Rs2);</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(result<sp/>&gt;<sp/>(2^63)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(result<sp/>&gt;<sp/>(2^63)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>result<sp/>=<sp/>(2^63)-1;<sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(result<sp/>&lt;<sp/>-2^63)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(result<sp/>&lt;<sp/>-2^63)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>result<sp/>=<sp/>-2^63;<sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">R[t_H].R[t_L]<sp/>=<sp/>result;</highlight></codeline>
 <codeline><highlight class="normal">RV64:</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>`result`<sp/>has<sp/>unlimited<sp/>precision</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>`result`<sp/>has<sp/>unlimited<sp/>precision</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">result<sp/>=<sp/>Rd<sp/>-<sp/>(Rs1.W[0]<sp/>*<sp/>Rs2.W[0])<sp/>-<sp/>(Rs1.W[1]<sp/>*<sp/>Rs2.W[1]);</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(result<sp/>&gt;<sp/>(2^63)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(result<sp/>&gt;<sp/>(2^63)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>result<sp/>=<sp/>(2^63)-1;<sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(result<sp/>&lt;<sp/>-2^63)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(result<sp/>&lt;<sp/>-2^63)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>result<sp/>=<sp/>-2^63;<sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd<sp/>=<sp/>result;</highlight></codeline>
@@ -147,7 +147,7 @@ This instruction multiplies the 32-bit signed elements of Rs1 with that of Rs2. 
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="4431" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="4431" bodyend="4435"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="4431" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="4431" bodyend="4435"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__32B__MULT__64B__ADDSUB_1ga89c1afcd9898226795ae2112d2fbea40" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -177,7 +177,7 @@ Multiply the 32-bit signed elements in two registers and add the 64-bit multipli
 This instruction multiplies the 32-bit signed data of Rs1 with that of Rs2. It adds the 64-bit multiplication result to the 64-bit signed data of an even/odd pair of registers specified by Rd(4,1). The addition result is written back to the even/odd pair of registers specified by Rd(4,1). Rx(4,1), i.e., d, determines the even/odd pair group of two registers. Specifically, the register pair includes register 2d and 2d+1. The odd <computeroutput>2d+1</computeroutput> register of the pair contains the high 32-bit of the result and the even <computeroutput>2d</computeroutput> register of the pair contains the low 32-bit of the result.</para><para><bold>RV64 Description</bold>:<linebreak/>
 This instruction multiplies the 32-bit signed elements of Rs1 with that of Rs2. It adds the 64-bit multiplication results to the 64-bit signed data of Rd. The addition result is written back to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">*<sp/>RV32:</highlight></codeline>
-<codeline><highlight class="normal">t_L<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b0);<sp/>t_H<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b1);</highlight></codeline>
+<codeline><highlight class="normal">t_L<sp/>=<sp/>CONCAT(Rd(4,1),1</highlight><highlight class="stringliteral">&apos;b0);<sp/>t_H<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;</highlight><highlight class="normal">b1);</highlight></codeline>
 <codeline><highlight class="normal">R[t_H].R[t_L]<sp/>=<sp/>R[t_H].R[t_L]<sp/>+<sp/>(Rs1<sp/>*<sp/>Rs2);</highlight></codeline>
 <codeline><highlight class="normal">*<sp/>RV64:</highlight></codeline>
 <codeline><highlight class="normal">Rd<sp/>=<sp/>Rd<sp/>+<sp/>(Rs1.W[0]<sp/>*<sp/>Rs2.W[0])<sp/>+<sp/>(Rs1.W[1]<sp/>*<sp/>Rs2.W[1]);</highlight></codeline>
@@ -207,7 +207,7 @@ This instruction multiplies the 32-bit signed elements of Rs1 with that of Rs2. 
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="8037" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8037" bodyend="8041"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="8037" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8037" bodyend="8041"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__32B__MULT__64B__ADDSUB_1ga97d5fc417db0b47d8ee805ef3eb9d8a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -237,7 +237,7 @@ Multiply the 32-bit signed elements in two registers and subtract the 64-bit mul
 This instruction multiplies the 32-bit signed data of Rs1 with that of Rs2. It subtracts the 64-bit multiplication result from the 64-bit signed data of an even/odd pair of registers specified by Rd(4,1). The subtraction result is written back to the even/odd pair of registers specified by Rd(4,1). Rx(4,1), i.e., d, determines the even/odd pair group of two registers. Specifically, the register pair includes register 2d and 2d+1. The odd <computeroutput>2d+1</computeroutput> register of the pair contains the high 32-bit of the result and the even <computeroutput>2d</computeroutput> register of the pair contains the low 32-bit of the result.</para><para><bold>RV64 Description</bold>:<linebreak/>
 This instruction multiplies the 32-bit signed elements of Rs1 with that of Rs2. It subtracts the 64-bit multiplication results from the 64-bit signed data of Rd. The subtraction result is written back to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">*<sp/>RV32:</highlight></codeline>
-<codeline><highlight class="normal">t_L<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b0);<sp/>t_H<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b1);</highlight></codeline>
+<codeline><highlight class="normal">t_L<sp/>=<sp/>CONCAT(Rd(4,1),1</highlight><highlight class="stringliteral">&apos;b0);<sp/>t_H<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;</highlight><highlight class="normal">b1);</highlight></codeline>
 <codeline><highlight class="normal">R[t_H].R[t_L]<sp/>=<sp/>R[t_H].R[t_L]<sp/>-<sp/>(Rs1<sp/>*<sp/>Rs2);</highlight></codeline>
 <codeline><highlight class="normal">*<sp/>RV64:</highlight></codeline>
 <codeline><highlight class="normal">Rd<sp/>=<sp/>Rd<sp/>-<sp/>(Rs1.W[0]<sp/>*<sp/>Rs2.W[0])<sp/>-<sp/>(Rs1.W[1]<sp/>*<sp/>Rs2.W[1]);</highlight></codeline>
@@ -267,7 +267,7 @@ This instruction multiplies the 32-bit signed elements of Rs1 with that of Rs2. 
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="9134" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="9134" bodyend="9138"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="9134" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="9134" bodyend="9138"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__32B__MULT__64B__ADDSUB_1gac196974cb320c6111c4708989d0e1e49" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -297,16 +297,16 @@ Multiply the 32-bit unsigned elements in two registers and add the 64-bit multip
 This instruction multiplies the 32-bit unsigned data of Rs1 with that of Rs2. It adds the 64-bit multiplication result to the 64-bit unsigned data of an even/odd pair of registers specified by Rd(4,1) with unlimited precision. If the 64-bit addition result is beyond the U64 number range (0 &lt;= U64 &lt;= 2^64-1), it is saturated to the range and the OV bit is set to 1. The saturated result is written back to the even/odd pair of registers specified by Rd(4,1). Rx(4,1), i.e., d, determines the even/odd pair group of two registers. Specifically, the register pair includes register 2d and 2d+1. The odd <computeroutput>2d+1</computeroutput> register of the pair contains the high 32-bit of the result and the even <computeroutput>2d</computeroutput> register of the pair contains the low 32-bit of the result.</para><para><bold>RV64 Description</bold>:<linebreak/>
 This instruction multiplies the 32-bit unsigned elements of Rs1 with that of Rs2. It adds the 64-bit multiplication results to the 64-bit unsigned data in Rd with unlimited precision. If the 64-bit addition result is beyond the U64 number range (0 &lt;= U64 &lt;= 2^64-1), it is saturated to the range and the OV bit is set to 1. The saturated result is written back to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">*<sp/>RV32:</highlight></codeline>
-<codeline><highlight class="normal">t_L<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b0);<sp/>t_H<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b1);</highlight></codeline>
+<codeline><highlight class="normal">t_L<sp/>=<sp/>CONCAT(Rd(4,1),1</highlight><highlight class="stringliteral">&apos;b0);<sp/>t_H<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;</highlight><highlight class="normal">b1);</highlight></codeline>
 <codeline><highlight class="normal">result<sp/>=<sp/>R[t_H].R[t_L]<sp/>+<sp/>(Rs1<sp/>*<sp/>Rs2);</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(result<sp/>&gt;<sp/>(2^64)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(result<sp/>&gt;<sp/>(2^64)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>result<sp/>=<sp/>(2^64)-1;<sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">R[t_H].R[t_L]<sp/>=<sp/>result;</highlight></codeline>
 <codeline><highlight class="normal">*<sp/>RV64:</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>`result`<sp/>has<sp/>unlimited<sp/>precision</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>`result`<sp/>has<sp/>unlimited<sp/>precision</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">result<sp/>=<sp/>Rd<sp/>+<sp/>(Rs1.W[0]<sp/>u*<sp/>Rs2.W[0])<sp/>+<sp/>(Rs1.W[1]<sp/>u*<sp/>Rs2.W[1]);</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(result<sp/>&gt;<sp/>(2^64)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(result<sp/>&gt;<sp/>(2^64)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>result<sp/>=<sp/>(2^64)-1;<sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd<sp/>=<sp/>result;</highlight></codeline>
@@ -336,7 +336,7 @@ This instruction multiplies the 32-bit unsigned elements of Rs1 with that of Rs2
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="11673" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="11673" bodyend="11677"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="11673" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="11673" bodyend="11677"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__32B__MULT__64B__ADDSUB_1ga7feff7a2f338e3730f0af2f054cfdd71" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -366,16 +366,16 @@ Multiply the 32-bit unsigned elements in two registers and subtract the 64-bit m
 This instruction multiplies the 32-bit unsigned data of Rs1 with that of Rs2. It subtracts the 64-bit multiplication result from the 64-bit unsigned data of an even/odd pair of registers specified by Rd(4,1) with unlimited precision. If the 64-bit subtraction result is beyond the U64 number range (0 &lt;= U64 &lt;= 2^64-1), it is saturated to the range and the OV bit is set to 1. The saturated result is written back to the even/odd pair of registers specified by Rd(4,1). Rx(4,1), i.e., d, determines the even/odd pair group of two registers. Specifically, the register pair includes register 2d and 2d+1. The odd <computeroutput>2d+1</computeroutput> register of the pair contains the high 32-bit of the result and the even <computeroutput>2d</computeroutput> register of the pair contains the low 32-bit of the result.</para><para><bold>RV64 Description</bold>:<linebreak/>
 This instruction multiplies the 32-bit unsigned elements of Rs1 with that of Rs2. It subtracts the 64-bit multiplication results from the 64-bit unsigned data of Rd with unlimited precision. If the 64-bit subtraction result is beyond the U64 number range (0 &lt;= U64 &lt;= 2^64-1), it is saturated to the range and the OV bit is set to 1. The saturated result is written back to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">*<sp/>RV32:</highlight></codeline>
-<codeline><highlight class="normal">t_L<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b0);<sp/>t_H<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b1);</highlight></codeline>
+<codeline><highlight class="normal">t_L<sp/>=<sp/>CONCAT(Rd(4,1),1</highlight><highlight class="stringliteral">&apos;b0);<sp/>t_H<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;</highlight><highlight class="normal">b1);</highlight></codeline>
 <codeline><highlight class="normal">result<sp/>=<sp/>R[t_H].R[t_L]<sp/>-<sp/>(Rs1<sp/>u*<sp/>Rs2);</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(result<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(result<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>result<sp/>=<sp/>0;<sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">R[t_H].R[t_L]<sp/>=<sp/>result;</highlight></codeline>
 <codeline><highlight class="normal">*<sp/>RV64:</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>`result`<sp/>has<sp/>unlimited<sp/>precision</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>`result`<sp/>has<sp/>unlimited<sp/>precision</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">result<sp/>=<sp/>Rd<sp/>-<sp/>(Rs1.W[0]<sp/>u*<sp/>Rs2.W[0])<sp/>-<sp/>(Rs1.W[1]<sp/>u*<sp/>Rs2.W[1]);</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(result<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(result<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>result<sp/>=<sp/>0;<sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd<sp/>=<sp/>result;</highlight></codeline>
@@ -405,7 +405,7 @@ This instruction multiplies the 32-bit unsigned elements of Rs1 with that of Rs2
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="11738" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="11738" bodyend="11742"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="11738" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="11738" bodyend="11742"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__32B__MULT__64B__ADDSUB_1gadfcd132e9036eac41fbe56909d8acaa4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -435,7 +435,7 @@ Multiply the 32-bit unsigned elements in two registers and add the 64-bit multip
 This instruction multiplies the 32-bit unsigned data of Rs1 with that of Rs2. It adds the 64-bit multiplication result to the 64-bit unsigned data of an even/odd pair of registers specified by Rd(4,1). The addition result is written back to the even/odd pair of registers specified by Rd(4,1). Rx(4,1), i.e., d, determines the even/odd pair group of two registers. Specifically, the register pair includes register 2d and 2d+1. The odd <computeroutput>2d+1</computeroutput> register of the pair contains the high 32-bit of the result and the even <computeroutput>2d</computeroutput> register of the pair contains the low 32-bit of the result.</para><para><bold>RV64 Description</bold>:<linebreak/>
 This instruction multiplies the 32-bit unsigned elements of Rs1 with that of Rs2. It adds the 64-bit multiplication results to the 64-bit unsigned data of Rd. The addition result is written back to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">*<sp/>RV32:</highlight></codeline>
-<codeline><highlight class="normal">t_L<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b0);<sp/>t_H<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b1);</highlight></codeline>
+<codeline><highlight class="normal">t_L<sp/>=<sp/>CONCAT(Rd(4,1),1</highlight><highlight class="stringliteral">&apos;b0);<sp/>t_H<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;</highlight><highlight class="normal">b1);</highlight></codeline>
 <codeline><highlight class="normal">R[t_H].R[t_L]<sp/>=<sp/>R[t_H].R[t_L]<sp/>+<sp/>(Rs1<sp/>*<sp/>Rs2);</highlight></codeline>
 <codeline><highlight class="normal">*<sp/>RV64:</highlight></codeline>
 <codeline><highlight class="normal">Rd<sp/>=<sp/>Rd<sp/>+<sp/>(Rs1.W[0]<sp/>u*<sp/>Rs2.W[0])<sp/>+<sp/>(Rs1.W[1]<sp/>u*<sp/>Rs2.W[1]);</highlight></codeline>
@@ -465,7 +465,7 @@ This instruction multiplies the 32-bit unsigned elements of Rs1 with that of Rs2
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="12145" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="12145" bodyend="12149"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="12145" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="12145" bodyend="12149"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__32B__MULT__64B__ADDSUB_1ga6011dd7028a2a50e4fac5a3a1da22d54" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -495,7 +495,7 @@ Multiply the 32-bit unsigned elements in two registers and subtract the 64-bit m
 This instruction multiplies the 32-bit unsigned data of Rs1 with that of Rs2. It subtracts the 64-bit multiplication result from the 64-bit unsigned data of an even/odd pair of registers specified by Rd(4,1). The subtraction result is written back to the even/odd pair of registers specified by Rd(4,1). Rx(4,1), i.e., d, determines the even/odd pair group of two registers. Specifically, the register pair includes register 2d and 2d+1. The odd <computeroutput>2d+1</computeroutput> register of the pair contains the high 32-bit of the result and the even <computeroutput>2d</computeroutput> register of the pair contains the low 32-bit of the result.</para><para><bold>RV64 Description</bold>:<linebreak/>
 This instruction multiplies the 32-bit unsigned elements of Rs1 with that of Rs2. It subtracts the 64-bit multiplication results from the 64-bit unsigned data of Rd. The subtraction result is written back to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">*<sp/>RV32:</highlight></codeline>
-<codeline><highlight class="normal">t_L<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b0);<sp/>t_H<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b1);</highlight></codeline>
+<codeline><highlight class="normal">t_L<sp/>=<sp/>CONCAT(Rd(4,1),1</highlight><highlight class="stringliteral">&apos;b0);<sp/>t_H<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;</highlight><highlight class="normal">b1);</highlight></codeline>
 <codeline><highlight class="normal">R[t_H].R[t_L]<sp/>=<sp/>R[t_H].R[t_L]<sp/>-<sp/>(Rs1<sp/>*<sp/>Rs2);</highlight></codeline>
 <codeline><highlight class="normal">*<sp/>RV64:</highlight></codeline>
 <codeline><highlight class="normal">Rd<sp/>=<sp/>Rd<sp/>-<sp/>(Rs1.W[0]<sp/>u*<sp/>Rs2.W[0])<sp/>-<sp/>(Rs1.W[1]<sp/>u*<sp/>Rs2.W[1]);</highlight></codeline>
@@ -525,7 +525,7 @@ This instruction multiplies the 32-bit unsigned elements of Rs1 with that of Rs2
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="12398" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="12398" bodyend="12402"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="12398" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="12398" bodyend="12402"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       </sectiondef>

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
-  <compounddef id="riscv__nntables_8c" kind="file" language="C++">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="riscv__nntables_8c" kind="file">
     <compoundname>riscv_nntables.c</compoundname>
     <includes refid="riscv__nnsupportfunctions_8h" local="yes">riscv_nnsupportfunctions.h</includes>
       <sectiondef kind="var">
@@ -15,7 +15,7 @@
 <para>This file include the declaration of common tables. Most of them are used for activation functions</para><para>Assumption: Unified table: input is 3.x format, i.e, range of [-8, 8) sigmoid(8) = 0.9996646498695336 tanh(8) = 0.9999997749296758 The accuracy here should be good enough</para><para>2-stage HL table:</para><para>The entire input range is divided into two parts:</para><para>Low range table: 0x000x xxxx or 0x111x xxxx table entry will be the binary number excluding the first two digits, i.e., 0x0x xxxx or 0x1x xxxx</para><para>High range table 0x0010 0000 <ndash/> 0x0111 1111 0x1000 0000 <ndash/> 0x1101 1111</para><para>For positive numbers, table entry will be 0x0010 0000 <ndash/> 0x0111 1111 minus 0x0010 0000 i.e., 0x0000 0000 - 0x0101 11111</para><para>same thing for the negative numbers, table entry will be 0x1000 0000 <ndash/> 0x1101 1111 minux 0x0010 0000 i.e., 0x0110 0000 - 0x1011 1111 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" line="68" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" bodystart="68" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" line="68" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" bodystart="68" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="riscv__nntables_8c_1ab4d7b07c387a3537d4efe21da86115b0" prot="public" static="no" mutable="no">
         <type>const q15_t</type>
@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" line="103" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" bodystart="103" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" line="103" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" bodystart="103" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="riscv__nntables_8c_1a69dc528cb377690d5b37accfdfd226b1" prot="public" static="no" mutable="no">
         <type>const q15_t</type>
@@ -41,7 +41,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" line="138" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" bodystart="138" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" line="138" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" bodystart="138" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="riscv__nntables_8c_1a107a16eaa36f4392fa3ed3792ad6c2cb" prot="public" static="no" mutable="no">
         <type>const q15_t</type>
@@ -54,7 +54,7 @@
 <para>2-way table, H table for value larger than 1/4 L table for value smaller than 1/4, H table for remaining We have this only for the q15_t version. It does not make sense to have it for q7_t type </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" line="157" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" bodystart="157" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" line="157" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" bodystart="157" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="riscv__nntables_8c_1a4f854bdf13f630ec21b3ad074491e32f" prot="public" static="no" mutable="no">
         <type>const q7_t</type>
@@ -67,7 +67,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" line="184" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" bodystart="184" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" line="184" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" bodystart="184" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="riscv__nntables_8c_1a6faad2fec173b2702fd0f219a83ca320" prot="public" static="no" mutable="no">
         <type>const q15_t</type>
@@ -80,7 +80,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" line="219" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" bodystart="219" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" line="219" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" bodystart="219" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="riscv__nntables_8c_1a7cb5ad2fff7e241d09024332488a706e" prot="public" static="no" mutable="no">
         <type>const q15_t</type>
@@ -93,7 +93,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" line="254" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" bodystart="254" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" line="254" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" bodystart="254" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="riscv__nntables_8c_1a4d093f7b0dc798d4898ff4fd125b21a6" prot="public" static="no" mutable="no">
         <type>const q15_t</type>
@@ -106,7 +106,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" line="273" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" bodystart="273" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" line="273" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c" bodystart="273" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -379,6 +379,6 @@
 <codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/>0x81b7,<sp/>0x81f1,<sp/>0x8232,<sp/>0x827c,<sp/>0x82d0,<sp/>0x832f,<sp/>0x839a,<sp/>0x8412,</highlight></codeline>
 <codeline lineno="298"><highlight class="normal">};</highlight></codeline>
     </programlisting>
-    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c"/>
+    <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_nntables.c"/>
   </compounddef>
 </doxygen>

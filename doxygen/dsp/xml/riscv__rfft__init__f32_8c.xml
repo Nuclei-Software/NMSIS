@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
-  <compounddef id="riscv__rfft__init__f32_8c" kind="file" language="C++">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="riscv__rfft__init__f32_8c" kind="file">
     <compoundname>riscv_rfft_init_f32.c</compoundname>
     <includes refid="riscv__math_8h" local="yes">riscv_math.h</includes>
     <includes refid="riscv__common__tables_8h" local="yes">riscv_common_tables.h</includes>
@@ -34,7 +34,7 @@
         <briefdescription>
 <para>Initialization function for the floating-point RFFT/RIFFT. </para>        </briefdescription>
         <detaileddescription>
-<para><xrefsect id="deprecated_1_deprecated000015"><xreftitle>Deprecated</xreftitle><xrefdescription><para>Do not use this function. It has been superceded by <ref refid="group__RealFFT_1gaa09af308fb200adedfaebdd7ca4f57cf" kindref="member">riscv_rfft_fast_init_f32</ref> and will be removed in the future. </para></xrefdescription></xrefsect><parameterlist kind="param"><parameteritem>
+<para><xrefsect id="deprecated_1_deprecated000015"><xreftitle>Deprecated</xreftitle><xrefdescription><para>Do not use this function. It has been superceded by <ref refid="group__RealFFT_1gaa09af308fb200adedfaebdd7ca4f57cf" kindref="member">riscv_rfft_fast_init_f32</ref> and will be removed in the future. <parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="inout">S</parametername>
 </parameternamelist>
@@ -77,14 +77,14 @@
 <simplesect kind="return"><para>execution status<itemizedlist>
 <listitem><para>RISCV_MATH_SUCCESS : Operation successful</para></listitem><listitem><para>RISCV_MATH_ARGUMENT_ERROR : <computeroutput>fftLenReal</computeroutput> is not a supported length</para></listitem></itemizedlist>
 </para></simplesect>
-<simplesect kind="par"><title>Description</title><para>The parameter <computeroutput>fftLenReal</computeroutput>specifies length of RFFT/RIFFT Process. Supported FFT Lengths are 128, 512, 2048. </para></simplesect>
+</para></xrefdescription></xrefsect></para><para><simplesect kind="par"><title>Description</title><para>The parameter <computeroutput>fftLenReal</computeroutput>specifies length of RFFT/RIFFT Process. Supported FFT Lengths are 128, 512, 2048. </para></simplesect>
 <simplesect kind="par"><title></title><para>The parameter <computeroutput>ifftFlagR</computeroutput> controls whether a forward or inverse transform is computed. Set(=1) ifftFlagR to calculate RIFFT, otherwise RFFT is calculated. </para></simplesect>
 <simplesect kind="par"><title></title><para>The parameter <computeroutput>bitReverseFlag</computeroutput> controls whether output is in normal order or bit reversed order. Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order. </para></simplesect>
 <simplesect kind="par"><title></title><para>This function also initializes Twiddle factor table. </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_init_f32.c" line="68" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_init_f32.c" bodystart="68" bodyend="136"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_init_f32.c" line="68" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_init_f32.c" bodystart="68" bodyend="136"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -196,6 +196,6 @@
 <codeline lineno="136"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="137"><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_init_f32.c"/>
+    <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_init_f32.c"/>
   </compounddef>
 </doxygen>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC" kind="group">
     <compoundname>NMSIS_Core_DSP_Intrinsic_SIMD_8B_MISC</compoundname>
     <title>SIMD 8-bit Miscellaneous Instructions</title>
@@ -23,15 +23,15 @@ Count the number of redundant sign bits of the 8-bit elements of a general regis
 Starting from the bits next to the sign bits of the 8-bit elements of Rs1, this instruction counts the number of redundant sign bits and writes the result to the corresponding 8-bit elements of Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">snum[x]<sp/>=<sp/>Rs1.B[x];</highlight></codeline>
 <codeline><highlight class="normal">cnt[x]<sp/>=<sp/>0;</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>(i<sp/>=<sp/>6<sp/>to<sp/>0)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(snum[x](i)<sp/>==<sp/>snum[x](7))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i<sp/>=<sp/>6<sp/>to<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(snum[x](i)<sp/>==<sp/>snum[x](7))<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>cnt[x]<sp/>=<sp/>cnt[x]<sp/>+<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>cnt[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0</highlight></codeline>
 <codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -45,7 +45,7 @@ Starting from the bits next to the sign bits of the 8-bit elements of Rs1, this 
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="686" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="686" bodyend="691"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="686" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="686" bodyend="691"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1gaf9e26b273480fb62dd48b315270fb3d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -67,15 +67,15 @@ Count the number of leading one bits of the 8-bit elements of a general register
 Starting from the most significant bits of the 8-bit elements of Rs1, this instruction counts the number of leading one bits and writes the results to the corresponding 8-bit elements of Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">snum[x]<sp/>=<sp/>Rs1.B[x];</highlight></codeline>
 <codeline><highlight class="normal">cnt[x]<sp/>=<sp/>0;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>for<sp/>(i<sp/>=<sp/>7<sp/>to<sp/>0)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(snum[x](i)<sp/>==<sp/>1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i<sp/>=<sp/>7<sp/>to<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(snum[x](i)<sp/>==<sp/>1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>cnt[x]<sp/>=<sp/>cnt[x]<sp/>+<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>cnt[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0</highlight></codeline>
 <codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -89,7 +89,7 @@ Starting from the most significant bits of the 8-bit elements of Rs1, this instr
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="827" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="827" bodyend="832"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="827" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="827" bodyend="832"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1gac034821a27f8ab322a689b24ce1257a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -111,15 +111,15 @@ Count the number of leading zero bits of the 8-bit elements of a general registe
 Starting from the most significant bits of the 8-bit elements of Rs1, this instruction counts the number of leading zero bits and writes the results to the corresponding 8-bit elements of Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">snum[x]<sp/>=<sp/>Rs1.B[x];</highlight></codeline>
 <codeline><highlight class="normal">cnt[x]<sp/>=<sp/>0;</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>(i<sp/>=<sp/>7<sp/>to<sp/>0)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(snum[x](i)<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i<sp/>=<sp/>7<sp/>to<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(snum[x](i)<sp/>==<sp/>0)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>cnt[x]<sp/>=<sp/>cnt[x]<sp/>+<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>cnt[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0</highlight></codeline>
 <codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -133,7 +133,7 @@ Starting from the most significant bits of the 8-bit elements of Rs1, this instr
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="968" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="968" bodyend="973"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="968" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="968" bodyend="973"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1ga0316d69cb7b16fe8571d11d53af50918" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -154,15 +154,15 @@ Starting from the most significant bits of the 8-bit elements of Rs1, this instr
 Get the absolute value of 8-bit signed integer elements simultaneously.</para><para><bold>Description</bold>:<linebreak/>
 This instruction calculates the absolute value of 8-bit signed integer elements stored in Rs1 and writes the element results to Rd. If the input number is 0x80, this instruction generates 0x7f as the output and sets the OV bit to 1.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">src<sp/>=<sp/>Rs1.B[x];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(src<sp/>==<sp/>0x80)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(src<sp/>==<sp/>0x80)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>src<sp/>=<sp/>0x7f;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(src[7]<sp/>==<sp/>1)</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(src[7]<sp/>==<sp/>1)</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>src<sp/>=<sp/>-src;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>src;</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=7...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -175,7 +175,7 @@ This instruction calculates the absolute value of 8-bit signed integer elements 
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="1322" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="1322" bodyend="1327"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="1322" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="1322" bodyend="1327"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1gaa595d7e87e2f435c0ceb0e9d8c20ee97" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -200,16 +200,16 @@ This instruction calculates the absolute value of 8-bit signed integer elements 
 Limit the 8-bit signed integer elements of a register into a signed range simultaneously.</para><para><bold>Description</bold>:<linebreak/>
 This instruction limits the 8-bit signed integer elements stored in Rs1 into a signed integer range between 2^imm3u-1 and -2^imm3u, and writes the limited results to Rd. For example, if imm3u is 3, the 8-bit input values should be saturated between 7 and -8. If saturation is performed, set OV bit to 1.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">src<sp/>=<sp/>Rs1.B[x];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(src<sp/>&gt;<sp/>(2^imm3u)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(src<sp/>&gt;<sp/>(2^imm3u)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>src<sp/>=<sp/>(2^imm3u)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(src<sp/>&lt;<sp/>-2^imm3u)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(src<sp/>&lt;<sp/>-2^imm3u)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>src<sp/>=<sp/>-2^imm3u;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>src</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=7...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -229,7 +229,7 @@ This instruction limits the 8-bit signed integer elements stored in Rs1 into a s
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="6821" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="6821" bodyend="6826"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="6821" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="6821" bodyend="6826"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1gafc3ca4c25f1796c6c129b0a72fdb4ddc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -254,8 +254,8 @@ This instruction limits the 8-bit signed integer elements stored in Rs1 into a s
 Do 8-bit signed integer elements finding maximum operations simultaneously.</para><para><bold>Description</bold>:<linebreak/>
 This instruction compares the 8-bit signed integer elements in Rs1 with the 8-bit signed integer elements in Rs2 and selects the numbers that is greater than the other one. The selected results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>(Rs1.B[x]<sp/>&gt;<sp/>Rs2.B[x])?<sp/>Rs1.B[x]<sp/>:<sp/>Rs2.B[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=7...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -275,7 +275,7 @@ This instruction compares the 8-bit signed integer elements in Rs1 with the 8-bi
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="8164" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8164" bodyend="8169"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="8164" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8164" bodyend="8169"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1ga3b9ace3565fb4cea93a55736046498e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -300,8 +300,8 @@ This instruction compares the 8-bit signed integer elements in Rs1 with the 8-bi
 Do 8-bit signed integer elements finding minimum operations simultaneously.</para><para><bold>Description</bold>:<linebreak/>
 This instruction compares the 8-bit signed integer elements in Rs1 with the 8-bit signed integer elements in Rs2 and selects the numbers that is less than the other one. The selected results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>(Rs1.B[x]<sp/>&lt;<sp/>Rs2.B[x])?<sp/>Rs1.B[x]<sp/>:<sp/>Rs2.B[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=7...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -321,7 +321,7 @@ This instruction compares the 8-bit signed integer elements in Rs1 with the 8-bi
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="8575" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8575" bodyend="8580"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="8575" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8575" bodyend="8580"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1gafed7823f6a501d256c3232bd8a1d85d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -346,16 +346,16 @@ This instruction compares the 8-bit signed integer elements in Rs1 with the 8-bi
 Limit the 8-bit signed elements of a register into an unsigned range simultaneously.</para><para><bold>Description</bold>:<linebreak/>
 This instruction limits the 8-bit signed elements stored in Rs1 into an unsigned integer range between 2^imm3u-1 and 0, and writes the limited results to Rd. For example, if imm3u is 3, the 8- bit input values should be saturated between 7 and 0. If saturation is performed, set OV bit to 1.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">src<sp/>=<sp/>Rs1.H[x];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(src<sp/>&gt;<sp/>(2^imm3u)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(src<sp/>&gt;<sp/>(2^imm3u)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>src<sp/>=<sp/>(2^imm3u)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(src<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(src<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>src<sp/>=<sp/>0;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.H[x]<sp/>=<sp/>src;</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=7...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -375,7 +375,7 @@ This instruction limits the 8-bit signed elements stored in Rs1 into an unsigned
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="11005" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="11005" bodyend="11010"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="11005" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="11005" bodyend="11010"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1ga83c4e6f30012da45ea00703d8aafccbe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -400,8 +400,8 @@ This instruction limits the 8-bit signed elements stored in Rs1 into an unsigned
 Do 8-bit unsigned integer elements finding maximum operations simultaneously.</para><para><bold>Description</bold>:<linebreak/>
 This instruction compares the 8-bit unsigned integer elements in Rs1 with the four 8- bit unsigned integer elements in Rs2 and selects the numbers that is greater than the other one. The two selected results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>(Rs1.B[x]<sp/>&gt;u<sp/>Rs2.B[x])?<sp/>Rs1.B[x]<sp/>:<sp/>Rs2.B[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=7...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -421,7 +421,7 @@ This instruction compares the 8-bit unsigned integer elements in Rs1 with the fo
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="12227" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="12227" bodyend="12232"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="12227" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="12227" bodyend="12232"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1gaea0e139e2e2392c423aaf9f7f18056f2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -446,8 +446,8 @@ This instruction compares the 8-bit unsigned integer elements in Rs1 with the fo
 Do 8-bit unsigned integer elements finding minimum operations simultaneously.</para><para><bold>Description</bold>:<linebreak/>
 This instruction compares the 8-bit unsigned integer elements in Rs1 with the 8-bit unsigned integer elements in Rs2 and selects the numbers that is less than the other one. The selected results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>(Rs1.B[x]<sp/>&lt;u<sp/>Rs2.B[x])?<sp/>Rs1.B[x]<sp/>:<sp/>Rs2.B[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=7...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -467,7 +467,7 @@ This instruction compares the 8-bit unsigned integer elements in Rs1 with the 8-
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="12305" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="12305" bodyend="12310"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="12305" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="12305" bodyend="12310"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       </sectiondef>

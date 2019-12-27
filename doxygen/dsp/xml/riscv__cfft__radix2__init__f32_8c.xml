@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
-  <compounddef id="riscv__cfft__radix2__init__f32_8c" kind="file" language="C++">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="riscv__cfft__radix2__init__f32_8c" kind="file">
     <compoundname>riscv_cfft_radix2_init_f32.c</compoundname>
     <includes refid="riscv__math_8h" local="yes">riscv_math.h</includes>
     <includes refid="riscv__common__tables_8h" local="yes">riscv_common_tables.h</includes>
@@ -30,7 +30,7 @@
         <briefdescription>
 <para>Initialization function for the floating-point CFFT/CIFFT. </para>        </briefdescription>
         <detaileddescription>
-<para><xrefsect id="deprecated_1_deprecated000003"><xreftitle>Deprecated</xreftitle><xrefdescription><para>Do not use this function. It has been superseded by <ref refid="group__ComplexFFT_1ga2e7afb704493463708fb1404c7a5bb5a" kindref="member">riscv_cfft_f32</ref> and will be removed in the future. </para></xrefdescription></xrefsect><parameterlist kind="param"><parameteritem>
+<para><xrefsect id="deprecated_1_deprecated000003"><xreftitle>Deprecated</xreftitle><xrefdescription><para>Do not use this function. It has been superseded by <ref refid="group__ComplexFFT_1ga2e7afb704493463708fb1404c7a5bb5a" kindref="member">riscv_cfft_f32</ref> and will be removed in the future. <parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="inout">S</parametername>
 </parameternamelist>
@@ -66,14 +66,14 @@
 <simplesect kind="return"><para>execution status<itemizedlist>
 <listitem><para>RISCV_MATH_SUCCESS : Operation successful</para></listitem><listitem><para>RISCV_MATH_ARGUMENT_ERROR : <computeroutput>fftLen</computeroutput> is not a supported length</para></listitem></itemizedlist>
 </para></simplesect>
-<simplesect kind="par"><title>Details</title><para>The parameter <computeroutput>ifftFlag</computeroutput> controls whether a forward or inverse transform is computed. Set(=1) ifftFlag for calculation of CIFFT otherwise CFFT is calculated </para></simplesect>
+</para></xrefdescription></xrefsect></para><para><simplesect kind="par"><title>Details</title><para>The parameter <computeroutput>ifftFlag</computeroutput> controls whether a forward or inverse transform is computed. Set(=1) ifftFlag for calculation of CIFFT otherwise CFFT is calculated </para></simplesect>
 <simplesect kind="par"><title></title><para>The parameter <computeroutput>bitReverseFlag</computeroutput> controls whether output is in normal order or bit reversed order. Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order. </para></simplesect>
 <simplesect kind="par"><title></title><para>The parameter <computeroutput>fftLen</computeroutput> Specifies length of CFFT/CIFFT process. Supported FFT Lengths are 16, 64, 256, 1024. </para></simplesect>
 <simplesect kind="par"><title></title><para>This Function also initializes Twiddle factor table pointer and Bit reversal table pointer. </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_cfft_radix2_init_f32.c" line="69" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_cfft_radix2_init_f32.c" bodystart="69" bodyend="194"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/DSP/Source/TransformFunctions/riscv_cfft_radix2_init_f32.c" line="69" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/DSP/Source/TransformFunctions/riscv_cfft_radix2_init_f32.c" bodystart="69" bodyend="194"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -241,6 +241,6 @@
 <codeline lineno="194"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="195"><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_cfft_radix2_init_f32.c"/>
+    <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/DSP/Source/TransformFunctions/riscv_cfft_radix2_init_f32.c"/>
   </compounddef>
 </doxygen>

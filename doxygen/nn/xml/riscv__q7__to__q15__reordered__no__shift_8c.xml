@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
-  <compounddef id="riscv__q7__to__q15__reordered__no__shift_8c" kind="file" language="C++">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="riscv__q7__to__q15__reordered__no__shift_8c" kind="file">
     <compoundname>riscv_q7_to_q15_reordered_no_shift.c</compoundname>
     <includes refid="riscv__nnsupportfunctions_8h" local="yes">riscv_nnsupportfunctions.h</includes>
       <sectiondef kind="func">
@@ -54,7 +54,7 @@ This function does the q7 to q15 expansion with re-ordering</para><para><preform
 </preformatted></para><para>This looks strange but is natural considering how sign-extension is done at assembly level.</para><para>The expansion of other other oprand will follow the same rule so that the end results are the same.</para><para>The tail (i.e., last (N % 4) elements) will still be in original order. </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/NNSupportFunctions/riscv_q7_to_q15_reordered_no_shift.c" line="79" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/NNSupportFunctions/riscv_q7_to_q15_reordered_no_shift.c" bodystart="79" bodyend="142"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_q7_to_q15_reordered_no_shift.c" line="79" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_q7_to_q15_reordered_no_shift.c" bodystart="79" bodyend="142"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -100,8 +100,8 @@ This function does the q7 to q15 expansion with re-ordering</para><para><preform
 <codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q7_t<sp/>*pIn<sp/>=<sp/>pSrc;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Src<sp/>pointer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><sp/>blkCnt;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>loop<sp/>counter<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="83"><highlight class="normal"></highlight></codeline>
-<codeline lineno="84"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>RISCV_MATH_CM0_FAMILY</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>q31_t<sp/><sp/><sp/><sp/><sp/>in;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>RISCV_MATH_CM0_FAMILY</highlight></codeline>
+<codeline lineno="85"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>q31_t<sp/><sp/><sp/><sp/><sp/>in;</highlight></codeline>
 <codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>q31_t<sp/><sp/><sp/><sp/><sp/>in1,<sp/>in2;</highlight></codeline>
 <codeline lineno="87"><highlight class="normal"></highlight></codeline>
 <codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Run<sp/>the<sp/>below<sp/>code<sp/>for<sp/>RISC-V<sp/>Core<sp/>with<sp/>DSP<sp/>enabled<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
@@ -123,14 +123,14 @@ This function does the q7 to q15 expansion with re-ordering</para><para><preform
 <codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>extend<sp/>remainig<sp/>two<sp/>q7_t<sp/>values<sp/>to<sp/>q15_t<sp/>values<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>in2<sp/>=<sp/>__SXTB16(in);</highlight></codeline>
 <codeline lineno="106"><highlight class="normal"></highlight></codeline>
-<codeline lineno="107"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>RISCV_MATH_BIG_ENDIAN</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*__SIMD32(pDst)++<sp/>=<sp/>in2;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>RISCV_MATH_BIG_ENDIAN</highlight></codeline>
+<codeline lineno="108"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*__SIMD32(pDst)++<sp/>=<sp/>in2;</highlight></codeline>
 <codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*__SIMD32(pDst)++<sp/>=<sp/>in1;</highlight></codeline>
-<codeline lineno="110"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*__SIMD32(pDst)++<sp/>=<sp/>in1;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="111"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*__SIMD32(pDst)++<sp/>=<sp/>in1;</highlight></codeline>
 <codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*__SIMD32(pDst)++<sp/>=<sp/>in2;</highlight></codeline>
-<codeline lineno="113"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="114"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Decrement<sp/>the<sp/>loop<sp/>counter<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>blkCnt--;</highlight></codeline>
 <codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
@@ -139,15 +139,15 @@ This function does the q7 to q15 expansion with re-ordering</para><para><preform
 <codeline lineno="120"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>**<sp/>No<sp/>loop<sp/>unrolling<sp/>is<sp/>used.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>blkCnt<sp/>=<sp/>blockSize<sp/>%<sp/>0x4u;</highlight></codeline>
 <codeline lineno="122"><highlight class="normal"></highlight></codeline>
-<codeline lineno="123"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="124"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Run<sp/>the<sp/>below<sp/>code<sp/>for<sp/>RISC-V0<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="126"><highlight class="normal"></highlight></codeline>
 <codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>over<sp/>blockSize<sp/>number<sp/>of<sp/>values<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>blkCnt<sp/>=<sp/>blockSize;</highlight></codeline>
 <codeline lineno="129"><highlight class="normal"></highlight></codeline>
-<codeline lineno="130"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>#ifndef<sp/>RISCV_MATH_CM0_FAMILY<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>#ifndef<sp/>RISCV_MATH_CM0_FAMILY<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="131"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(blkCnt<sp/>&gt;<sp/>0u)</highlight></codeline>
 <codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>C<sp/>=<sp/>(q15_t)<sp/>A<sp/>&lt;&lt;<sp/>8<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
@@ -161,6 +161,6 @@ This function does the q7 to q15 expansion with re-ordering</para><para><preform
 <codeline lineno="142"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="143"><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/NNSupportFunctions/riscv_q7_to_q15_reordered_no_shift.c"/>
+    <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_q7_to_q15_reordered_no_shift.c"/>
   </compounddef>
 </doxygen>

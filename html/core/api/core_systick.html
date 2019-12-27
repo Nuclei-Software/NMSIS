@@ -438,10 +438,9 @@
 <span class="target" id="group__NMSIS__Core__SysTimer_1ga349805c25d9aa753c6fd69b3c0151126"></span><code class="sig-name descname">__STATIC_INLINE uint32_t SysTick_Config(uint64_t ticks)</code></dt>
 <dd><p>System Tick Configuration. </p>
 <p>Initializes the System Timer and its non-vector interrupt, and starts the System Tick Timer.</p>
-<p>In our default implementation, the timer counter will be set to zero, and it will start a timer compare non-vector interrupt when it matchs the ticks user set, during the timer interrupt user should reload the timer counter to zero, so it can produce period timer interrupt. <dl class="simple">
+<p>In our default implementation, the timer counter will be set to zero, and it will start a timer compare non-vector interrupt when it matchs the ticks user set, during the timer interrupt user should reload the timer counter to zero, so it can produce period timer interrupt. <dl>
 <dt><strong>Return</strong></dt><dd><p>0 Function succeeded. </p>
-</dd>
-<dt><strong>Return</strong></dt><dd><p>1 Function failed. </p>
+<p>1 Function failed. </p>
 </dd>
 <dt><strong>Remark</strong></dt><dd><p><ul class="simple">
 <li><p>When the variable __Vendor_SysTickConfig is set to 1, then the function SysTick_Config is not included.</p></li>

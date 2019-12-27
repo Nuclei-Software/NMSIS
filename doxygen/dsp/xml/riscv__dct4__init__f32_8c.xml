@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
-  <compounddef id="riscv__dct4__init__f32_8c" kind="file" language="C++">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="riscv__dct4__init__f32_8c" kind="file">
     <compoundname>riscv_dct4_init_f32.c</compoundname>
     <includes refid="riscv__math_8h" local="yes">riscv_math.h</includes>
     <includes refid="riscv__common__tables_8h" local="yes">riscv_common_tables.h</includes>
@@ -89,7 +89,7 @@
  </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_dct4_init_f32.c" line="62" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_dct4_init_f32.c" bodystart="62" bodyend="128"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/DSP/Source/TransformFunctions/riscv_dct4_init_f32.c" line="62" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/DSP/Source/TransformFunctions/riscv_dct4_init_f32.c" bodystart="62" bodyend="128"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -158,35 +158,35 @@
 <codeline lineno="88"><highlight class="normal"></highlight></codeline>
 <codeline lineno="89"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(N)</highlight></codeline>
 <codeline lineno="90"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline lineno="91"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#if<sp/>!defined(RISCV_DSP_CONFIG_TABLES)<sp/>||<sp/>defined(RISCV_ALL_FFT_TABLES)<sp/>||<sp/>defined(RISCV_TABLE_DCT4_F32_8192)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>the<sp/>table<sp/>modifier<sp/>values<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#if<sp/>!defined(RISCV_DSP_CONFIG_TABLES)<sp/>||<sp/>defined(RISCV_ALL_FFT_TABLES)<sp/>||<sp/>defined(RISCV_TABLE_DCT4_F32_8192)</highlight></codeline>
+<codeline lineno="92"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>the<sp/>table<sp/>modifier<sp/>values<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="93"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>8192U:</highlight></codeline>
 <codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__dct4__instance__f32_1ab4e36fc9d9492aff7ff17ae0e73c827c" kindref="member">pTwiddle</ref><sp/>=<sp/>Weights_8192;</highlight></codeline>
 <codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__dct4__instance__f32_1a37ff6bffa96832db69542770c815df09" kindref="member">pCosFactor</ref><sp/>=<sp/>cos_factors_8192;</highlight></codeline>
 <codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="98"><highlight class="normal"></highlight></codeline>
-<codeline lineno="99"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#if<sp/>!defined(RISCV_DSP_CONFIG_TABLES)<sp/>||<sp/>defined(RISCV_ALL_FFT_TABLES)<sp/>||<sp/>defined(RISCV_TABLE_DCT4_F32_2048)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="100"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>2048U:</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#endif</highlight></codeline>
+<codeline lineno="98"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#if<sp/>!defined(RISCV_DSP_CONFIG_TABLES)<sp/>||<sp/>defined(RISCV_ALL_FFT_TABLES)<sp/>||<sp/>defined(RISCV_TABLE_DCT4_F32_2048)</highlight></codeline>
+<codeline lineno="100"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>2048U:</highlight></codeline>
 <codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__dct4__instance__f32_1ab4e36fc9d9492aff7ff17ae0e73c827c" kindref="member">pTwiddle</ref><sp/>=<sp/><ref refid="group__DCT4__IDCT4__Table_1gac3a2a00b3106dfcb5e0a582f50c65692" kindref="member">Weights_2048</ref>;</highlight></codeline>
 <codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__dct4__instance__f32_1a37ff6bffa96832db69542770c815df09" kindref="member">pCosFactor</ref><sp/>=<sp/><ref refid="group__DCT4__IDCT4__Table_1ga1ba5306e0bc44730b40ab34cced45fd6" kindref="member">cos_factors_2048</ref>;</highlight></codeline>
 <codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="104"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="105"><highlight class="normal"></highlight></codeline>
-<codeline lineno="106"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#if<sp/>!defined(RISCV_DSP_CONFIG_TABLES)<sp/>||<sp/>defined(RISCV_ALL_FFT_TABLES)<sp/>||<sp/>defined(RISCV_TABLE_DCT4_F32_512)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="107"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>512U:</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#endif</highlight></codeline>
+<codeline lineno="105"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#if<sp/>!defined(RISCV_DSP_CONFIG_TABLES)<sp/>||<sp/>defined(RISCV_ALL_FFT_TABLES)<sp/>||<sp/>defined(RISCV_TABLE_DCT4_F32_512)</highlight></codeline>
+<codeline lineno="107"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>512U:</highlight></codeline>
 <codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__dct4__instance__f32_1ab4e36fc9d9492aff7ff17ae0e73c827c" kindref="member">pTwiddle</ref><sp/>=<sp/><ref refid="group__DCT4__IDCT4__Table_1gaeb67b0be5b3c2139d660e02cedeed908" kindref="member">Weights_512</ref>;</highlight></codeline>
 <codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__dct4__instance__f32_1a37ff6bffa96832db69542770c815df09" kindref="member">pCosFactor</ref><sp/>=<sp/><ref refid="group__DCT4__IDCT4__Table_1ga49fd288352ca5bb43f5cec52273b0d80" kindref="member">cos_factors_512</ref>;</highlight></codeline>
 <codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="111"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="112"><highlight class="normal"></highlight></codeline>
-<codeline lineno="113"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#if<sp/>!defined(RISCV_DSP_CONFIG_TABLES)<sp/>||<sp/>defined(RISCV_ALL_FFT_TABLES)<sp/>||<sp/>defined(RISCV_TABLE_DCT4_F32_128)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="114"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>128U:</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#endif</highlight></codeline>
+<codeline lineno="112"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#if<sp/>!defined(RISCV_DSP_CONFIG_TABLES)<sp/>||<sp/>defined(RISCV_ALL_FFT_TABLES)<sp/>||<sp/>defined(RISCV_TABLE_DCT4_F32_128)</highlight></codeline>
+<codeline lineno="114"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>128U:</highlight></codeline>
 <codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__dct4__instance__f32_1ab4e36fc9d9492aff7ff17ae0e73c827c" kindref="member">pTwiddle</ref><sp/>=<sp/><ref refid="group__DCT4__IDCT4__Table_1gad00f29d896d64d6da7afbbb9d3e182a4" kindref="member">Weights_128</ref>;</highlight></codeline>
 <codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__dct4__instance__f32_1a37ff6bffa96832db69542770c815df09" kindref="member">pCosFactor</ref><sp/>=<sp/><ref refid="group__DCT4__IDCT4__Table_1ga16248ed86161ef97538011b49f13e8b7" kindref="member">cos_factors_128</ref>;</highlight></codeline>
 <codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="118"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="119"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#endif</highlight></codeline>
+<codeline lineno="119"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>=<sp/>RISCV_MATH_ARGUMENT_ERROR;</highlight></codeline>
 <codeline lineno="121"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="122"><highlight class="normal"></highlight></codeline>
@@ -198,6 +198,6 @@
 <codeline lineno="128"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="129"><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_dct4_init_f32.c"/>
+    <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/DSP/Source/TransformFunctions/riscv_dct4_init_f32.c"/>
   </compounddef>
 </doxygen>

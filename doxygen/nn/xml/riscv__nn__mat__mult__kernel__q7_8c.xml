@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
-  <compounddef id="riscv__nn__mat__mult__kernel__q7_8c" kind="file" language="C++">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="riscv__nn__mat__mult__kernel__q7_8c" kind="file">
     <compoundname>riscv_nn_mat_mult_kernel_q7.c</compoundname>
     <includes local="yes">riscv_math.h</includes>
     <includes refid="riscv__nnfunctions_8h" local="yes">riscv_nnfunctions.h</includes>
@@ -10,7 +10,7 @@
       </node>
       <node id="75">
         <label>riscv_nn_mat_mult_kernel_q7.c</label>
-        <link refid="riscv__nn__mat__mult__kernel__q7_8c"/>
+        <link refid="riscv_nn_mat_mult_kernel_q7.c"/>
         <childnode refid="76" relation="include">
         </childnode>
       </node>
@@ -117,7 +117,7 @@
 This function does the matrix multiplication with weight matrix and 2 columns from im2col. </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/ConvolutionFunctions/riscv_nn_mat_mult_kernel_q7.c" line="52" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/ConvolutionFunctions/riscv_nn_mat_mult_kernel_q7.c" bodystart="52" bodyend="175"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/ConvolutionFunctions/riscv_nn_mat_mult_kernel_q7.c" line="52" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/ConvolutionFunctions/riscv_nn_mat_mult_kernel_q7.c" bodystart="52" bodyend="175"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -167,8 +167,8 @@ This function does the matrix multiplication with weight matrix and 2 columns fr
 <codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q7_t<sp/>*<sp/>bias,<sp/></highlight></codeline>
 <codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>q7_t<sp/>*<sp/>pOut)</highlight></codeline>
 <codeline lineno="60"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_DSP)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>set<sp/>up<sp/>the<sp/>second<sp/>output<sp/>pointers<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_DSP)</highlight></codeline>
+<codeline lineno="62"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>set<sp/>up<sp/>the<sp/>second<sp/>output<sp/>pointers<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>q7_t<sp/><sp/><sp/><sp/><sp/>*pOut2<sp/>=<sp/>pOut<sp/>+<sp/>ch_im_out;</highlight></codeline>
 <codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q7_t<sp/>*pBias<sp/>=<sp/>bias;</highlight></codeline>
 <codeline lineno="65"><highlight class="normal"></highlight></codeline>
@@ -276,13 +276,13 @@ This function does the matrix multiplication with weight matrix and 2 columns fr
 <codeline lineno="167"><highlight class="normal"></highlight></codeline>
 <codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>return<sp/>the<sp/>new<sp/>output<sp/>pointer<sp/>with<sp/>offset<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>pOut;</highlight></codeline>
-<codeline lineno="170"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>To<sp/>be<sp/>completed<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="171"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>To<sp/>be<sp/>completed<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>NULL;</highlight></codeline>
-<codeline lineno="173"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>RISCV_MATH_DSP<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="174"><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>RISCV_MATH_DSP<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="174"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="175"><highlight class="normal">}</highlight></codeline>
     </programlisting>
-    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/ConvolutionFunctions/riscv_nn_mat_mult_kernel_q7.c"/>
+    <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/ConvolutionFunctions/riscv_nn_mat_mult_kernel_q7.c"/>
   </compounddef>
 </doxygen>

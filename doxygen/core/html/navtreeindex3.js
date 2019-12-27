@@ -1,7 +1,5 @@
 var NAVTREEINDEX3 =
 {
-"group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__MISC.html#ga562f85675e7444c4fb1e5e6c28c3c6c7":[1,10,0,8,7],
-"group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__MISC.html#ga5b8419c5f8c624d1a0e16c43efb798eb":[1,10,0,8,6],
 "group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__MISC.html#ga862e937fdf95c754472d41ab2df392f2":[1,10,0,8,2],
 "group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__MISC.html#ga9fefb44ce69dae8452a1f78462b36ace":[1,10,0,8,5],
 "group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__MISC.html#gaa75623ba7f5f23a440782f47f62f1f6f":[1,10,0,8,8],
@@ -228,12 +226,12 @@ var NAVTREEINDEX3 =
 "group__NMSIS__Core__IntExcNMI__Handling.html#ga10f1bcf88d4be44d559c79485f16dd24":[1,14,0,0],
 "group__NMSIS__Core__IntExcNMI__Handling.html#ga2d2e27f47287f5d28cc26f2cb214337f":[1,14,0,3],
 "group__NMSIS__Core__IntExcNMI__Handling.html#ga52cbc8fa60b210b75ac79baa25ac74bb":[1,14,0,4],
+"group__NMSIS__Core__IntExcNMI__Handling.html#ga79cee3c2d5cef0aa675c6a2a92de7f61":[1,14,0,1],
 "group__NMSIS__Core__IntExcNMI__Handling.html#ga84df4676c5284f0ea383eeba33e9aa40":[1,14,0,5],
 "group__NMSIS__Core__IntExcNMI__Handling.html#ga97971400b10d2cdd33f0d1fb59f9d0c8":[1,14,0,8],
 "group__NMSIS__Core__IntExcNMI__Handling.html#ga9df7d45dd6f418ba31b6cec6c4958490":[1,14,0,7],
 "group__NMSIS__Core__IntExcNMI__Handling.html#gab6afbaed495af51eeeb4eb7d1c5da420":[1,14,0,6],
 "group__NMSIS__Core__IntExcNMI__Handling.html#gac7f5b810aee623f65822bac1efe2006d":[1,14,0,2],
-"group__NMSIS__Core__IntExcNMI__Handling.html#gacdea0407312bb8428c98044b5aef3e23":[1,14,0,1],
 "group__NMSIS__Core__IntExcNMI__Handling.html#gaedd77e0eba0ea9872a4375893480b420":[1,14,0,9],
 "group__NMSIS__Core__PMP__Functions.html":[1,11],
 "group__NMSIS__Core__PMP__Functions.html#ga0fc1168753b68d4105d6fc96b038b1fd":[1,11,0],
@@ -249,5 +247,7 @@ var NAVTREEINDEX3 =
 "group__NMSIS__Core__PeriphAccess.html#ga4cc1649793116d7c2d8afce7a4ffce43":[1,2,1],
 "group__NMSIS__Core__PeriphAccess.html#ga7e25d9380f9ef903923964322e71f2f6":[1,2,4],
 "group__NMSIS__Core__PeriphAccess.html#gab6caba5853a60a17e8e04499b52bf691":[1,2,3],
-"group__NMSIS__Core__PeriphAccess.html#gaec43007d9998a0a0e01faede4133d6be":[1,2,2]
+"group__NMSIS__Core__PeriphAccess.html#gaec43007d9998a0a0e01faede4133d6be":[1,2,2],
+"group__NMSIS__Core__PeriphAccess.html#gaf63697ed9952cc71e1225efe205f6cd3":[1,2,0],
+"group__NMSIS__Core__Registers.html":[1,4]
 };

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT" kind="group">
     <compoundname>NMSIS_Core_DSP_Intrinsic_SIMD_8B_SHIFT</compoundname>
     <title>SIMD 8-bit Shift Instructions</title>
@@ -26,19 +26,19 @@
 Do 8-bit elements logical left shift operations with saturation simultaneously. The shift amount is a variable from a GPR.</para><para><bold>Description</bold>:<linebreak/>
 The 8-bit data elements in Rs1 are left-shifted logically. The shifted out bits are filled with zero and the shift amount is specified by the low-order 3-bits of the value in the Rs2 register. Any shifted value greater than 2^7-1 is saturated to 2^7-1. Any shifted value smaller than -2^7 is saturated to -2^7. And the saturated results are written to Rd. If any saturation is performed, set OV bit to 1.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">sa<sp/>=<sp/>Rs2[2:0];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(sa<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sa<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[(7+sa):0]<sp/>=<sp/>Rs1.B[x]<sp/>&lt;&lt;<sp/>sa;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>if<sp/>(res<sp/>&gt;<sp/>(2^7)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res<sp/>=<sp/>0x7f;<sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>if<sp/>(res<sp/>&lt;<sp/>-2^7)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res<sp/>&lt;<sp/>-2^7)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res<sp/>=<sp/>0x80;<sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd.B[x]<sp/>=<sp/>res[7:0];</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>Rs1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=7...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -58,7 +58,7 @@ The 8-bit data elements in Rs1 are left-shifted logically. The shifted out bits 
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="4578" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="4578" bodyend="4583"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="4578" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="4578" bodyend="4583"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1gaed969114325f5e25f89114b7a26cdfe4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -83,19 +83,19 @@ The 8-bit data elements in Rs1 are left-shifted logically. The shifted out bits 
 Do 8-bit elements logical left shift operations with saturation simultaneously. The shift amount is an immediate value.</para><para><bold>Description</bold>:<linebreak/>
 The 8-bit data elements in Rs1 are left-shifted logically. The shifted out bits are filled with zero and the shift amount is specified by the imm3u constant. Any shifted value greater than 2^7-1 is saturated to 2^7-1. Any shifted value smaller than -2^7 is saturated to -2^7. And the saturated results are written to Rd. If any saturation is performed, set OV bit to 1.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">sa<sp/>=<sp/>imm3u[2:0];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(sa<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sa<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[(7+sa):0]<sp/>=<sp/>Rs1.B[x]<sp/>&lt;&lt;<sp/>sa;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>if<sp/>(res<sp/>&gt;<sp/>(2^7)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res<sp/>=<sp/>0x7f;<sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>if<sp/>(res<sp/>&lt;<sp/>-2^7)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res<sp/>&lt;<sp/>-2^7)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res<sp/>=<sp/>0x80;<sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd.B[x]<sp/>=<sp/>res[7:0];</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>Rs1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=7...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -115,7 +115,7 @@ The 8-bit data elements in Rs1 are left-shifted logically. The shifted out bits 
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="4630" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="4630" bodyend="4635"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="4630" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="4630" bodyend="4635"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga748809588c9a563b78102b3a4e7ae0f5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -140,27 +140,27 @@ The 8-bit data elements in Rs1 are left-shifted logically. The shifted out bits 
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Do 8-bit elements logical left (positive) or arithmetic right (negative) shift operation with Q7 saturation for the left shift. The <computeroutput>.u</computeroutput> form performs additional rounding up operations for the right shift.</para><para><bold>Description</bold>:<linebreak/>
 The 8-bit data elements of Rs1 are left-shifted logically or right-shifted arithmetically based on the value of Rs2[3:0]. Rs2[3:0] is in the signed range of [-2^3, 2^3-1]. A positive Rs2[3:0] means logical left shift and a negative Rs2[3:0] means arithmetic right shift. The shift amount is the absolute value of Rs2[3:0]. However, the behavior of <computeroutput>Rs2[3:0]==-2^3 (0x8)</computeroutput> is defined to be equivalent to the behavior of <computeroutput>Rs2[3:0]==-(2^3-1) (0x9)</computeroutput>. The left-shifted results are saturated to the 8-bit signed integer range of [-2^7, 2^7-1]. For the <computeroutput>.u</computeroutput> form of the instruction, the right-shifted results are added a 1 to the most significant discarded bit position for rounding effect. After the shift, saturation, or rounding, the final results are written to Rd. If any saturation happens, this instruction sets the OV flag. The value of Rs2[31:4] will not affect this instruction.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">if<sp/>(Rs2[3:0]<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<programlisting><codeline><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(Rs2[3:0]<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>sa<sp/>=<sp/>-Rs2[3:0];</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>sa<sp/>=<sp/>(sa<sp/>==<sp/>8)?<sp/>7<sp/>:<sp/>sa;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res[7:-1]<sp/>=<sp/>SE9(Rs1.B[x][7:sa-1])<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.B[x]<sp/>=<sp/>res[7:0];</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.B[x]<sp/>=<sp/>SE8(Rs1.B[x][7:sa]);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>sa<sp/>=<sp/>Rs2[2:0];</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[(7+sa):0]<sp/>=<sp/>Rs1.B[x]<sp/>&lt;&lt;(logic)<sp/>sa;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(res<sp/>&gt;<sp/>(2^7)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res<sp/>&gt;<sp/>(2^7)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res[7:0]<sp/>=<sp/>0x7f;<sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>if<sp/>(res<sp/>&lt;<sp/>-2^7)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res<sp/>&lt;<sp/>-2^7)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res[7:0]<sp/>=<sp/>0x80;<sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd.B[x]<sp/>=<sp/>res[7:0];</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=7...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -180,7 +180,7 @@ The 8-bit data elements of Rs1 are left-shifted logically or right-shifted arith
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="4802" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="4802" bodyend="4807"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="4802" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="4802" bodyend="4807"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga5e46b6bd44f57528f3dd1a4f509fdb12" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -205,27 +205,27 @@ The 8-bit data elements of Rs1 are left-shifted logically or right-shifted arith
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Do 8-bit elements logical left (positive) or arithmetic right (negative) shift operation with Q7 saturation for the left shift. The <computeroutput>.u</computeroutput> form performs additional rounding up operations for the right shift.</para><para><bold>Description</bold>:<linebreak/>
 The 8-bit data elements of Rs1 are left-shifted logically or right-shifted arithmetically based on the value of Rs2[3:0]. Rs2[3:0] is in the signed range of [-2^3, 2^3-1]. A positive Rs2[3:0] means logical left shift and a negative Rs2[3:0] means arithmetic right shift. The shift amount is the absolute value of Rs2[3:0]. However, the behavior of <computeroutput>Rs2[3:0]==-2^3 (0x8)</computeroutput> is defined to be equivalent to the behavior of <computeroutput>Rs2[3:0]==-(2^3-1) (0x9)</computeroutput>. The left-shifted results are saturated to the 8-bit signed integer range of [-2^7, 2^7-1]. For the <computeroutput>.u</computeroutput> form of the instruction, the right-shifted results are added a 1 to the most significant discarded bit position for rounding effect. After the shift, saturation, or rounding, the final results are written to Rd. If any saturation happens, this instruction sets the OV flag. The value of Rs2[31:4] will not affect this instruction.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">if<sp/>(Rs2[3:0]<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<programlisting><codeline><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(Rs2[3:0]<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>sa<sp/>=<sp/>-Rs2[3:0];</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>sa<sp/>=<sp/>(sa<sp/>==<sp/>8)?<sp/>7<sp/>:<sp/>sa;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res[7:-1]<sp/>=<sp/>SE9(Rs1.B[x][7:sa-1])<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.B[x]<sp/>=<sp/>res[7:0];</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.B[x]<sp/>=<sp/>SE8(Rs1.B[x][7:sa]);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>sa<sp/>=<sp/>Rs2[2:0];</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[(7+sa):0]<sp/>=<sp/>Rs1.B[x]<sp/>&lt;&lt;(logic)<sp/>sa;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(res<sp/>&gt;<sp/>(2^7)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res<sp/>&gt;<sp/>(2^7)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res[7:0]<sp/>=<sp/>0x7f;<sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>if<sp/>(res<sp/>&lt;<sp/>-2^7)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res<sp/>&lt;<sp/>-2^7)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res[7:0]<sp/>=<sp/>0x80;<sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd.B[x]<sp/>=<sp/>res[7:0];</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=7...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -245,7 +245,7 @@ The 8-bit data elements of Rs1 are left-shifted logically or right-shifted arith
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="4869" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="4869" bodyend="4874"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="4869" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="4869" bodyend="4874"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga99febdacba921c09aff588332a658fba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -271,8 +271,8 @@ Do 8-bit elements logical left shift operations simultaneously. The shift amount
 The 8-bit elements in Rs1 are left-shifted logically. And the results are written to Rd. The shifted out bits are filled with zero and the shift amount is specified by the low-order 3-bits of the value in the Rs2 register.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">sa<sp/>=<sp/>Rs2[2:0];</highlight></codeline>
 <codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>Rs1.B[x]<sp/>&lt;&lt;<sp/>sa;</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=7...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -292,7 +292,7 @@ The 8-bit elements in Rs1 are left-shifted logically. And the results are writte
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="7116" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="7116" bodyend="7121"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="7116" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="7116" bodyend="7121"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1gac075fd65d3fa097d22a0a576c1fe65bd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -318,8 +318,8 @@ Do 8-bit elements logical left shift operations simultaneously. The shift amount
 The 8-bit elements in Rs1 are left-shifted logically. And the results are written to Rd. The shifted out bits are filled with zero and the shift amount is specified by the imm3u constant.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">sa<sp/>=<sp/>imm3u[2:0];</highlight></codeline>
 <codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>Rs1.B[x]<sp/>&lt;&lt;<sp/>sa;</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=7...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -339,7 +339,7 @@ The 8-bit elements in Rs1 are left-shifted logically. And the results are writte
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="7156" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="7156" bodyend="7161"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="7156" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="7156" bodyend="7161"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga60b24db284bacbf2ab9de45e0881b011" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -365,18 +365,18 @@ The 8-bit elements in Rs1 are left-shifted logically. And the results are writte
 Do 8-bit element arithmetic right shift operations simultaneously. The shift amount is a variable from a GPR. The <computeroutput>.u</computeroutput> form performs additional rounding up operations on the shifted results.</para><para><bold>Description</bold>:<linebreak/>
 The 8-bit data elements in Rs1 are right-shifted arithmetically, that is, the shifted out bits are filled with the sign-bit of the data elements. The shift amount is specified by the low-order 3-bits of the value in the Rs2 register. For the rounding operation of the <computeroutput>.u</computeroutput> form, a value of 1 is added to the most significant discarded bit of each 8-bit data element to calculate the final results. And the results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">sa<sp/>=<sp/>Rs2[2:0];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(sa<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(`.u`<sp/>form)<sp/>{<sp/>//<sp/>SRA8.u</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sa<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(`.u`<sp/>form)<sp/>{<sp/></highlight><highlight class="comment">//<sp/>SRA8.u</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res[7:-1]<sp/>=<sp/>SE9(Rs1.B[x][7:sa-1])<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.B[x]<sp/>=<sp/>res[7:0];</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{<sp/>//<sp/>SRA8</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{<sp/></highlight><highlight class="comment">//<sp/>SRA8</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.B[x]<sp/>=<sp/>SE8(Rd.B[x][7:sa])</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>Rs1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=7...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -396,7 +396,7 @@ The 8-bit data elements in Rs1 are right-shifted arithmetically, that is, the sh
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="9632" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="9632" bodyend="9637"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="9632" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="9632" bodyend="9637"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1gad6421547bda7f5c8b4ab42d0e771daf3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -422,18 +422,18 @@ The 8-bit data elements in Rs1 are right-shifted arithmetically, that is, the sh
 Do 8-bit element arithmetic right shift operations simultaneously. The shift amount is a variable from a GPR. The <computeroutput>.u</computeroutput> form performs additional rounding up operations on the shifted results.</para><para><bold>Description</bold>:<linebreak/>
 The 8-bit data elements in Rs1 are right-shifted arithmetically, that is, the shifted out bits are filled with the sign-bit of the data elements. The shift amount is specified by the low-order 3-bits of the value in the Rs2 register. For the rounding operation of the <computeroutput>.u</computeroutput> form, a value of 1 is added to the most significant discarded bit of each 8-bit data element to calculate the final results. And the results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">sa<sp/>=<sp/>Rs2[2:0];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(sa<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(`.u`<sp/>form)<sp/>{<sp/>//<sp/>SRA8.u</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sa<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(`.u`<sp/>form)<sp/>{<sp/></highlight><highlight class="comment">//<sp/>SRA8.u</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res[7:-1]<sp/>=<sp/>SE9(Rs1.B[x][7:sa-1])<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.B[x]<sp/>=<sp/>res[7:0];</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{<sp/>//<sp/>SRA8</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{<sp/></highlight><highlight class="comment">//<sp/>SRA8</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.B[x]<sp/>=<sp/>SE8(Rd.B[x][7:sa])</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>Rs1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=7...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -453,7 +453,7 @@ The 8-bit data elements in Rs1 are right-shifted arithmetically, that is, the sh
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="9686" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="9686" bodyend="9691"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="9686" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="9686" bodyend="9691"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga06571f245615b47549624828befd354a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -479,18 +479,18 @@ The 8-bit data elements in Rs1 are right-shifted arithmetically, that is, the sh
 Do 8-bit element arithmetic right shift operations simultaneously. The shift amount is an immediate value. The <computeroutput>.u</computeroutput> form performs additional rounding up operations on the shifted results.</para><para><bold>Description</bold>:<linebreak/>
 The 8-bit data elements in Rs1 are right-shifted arithmetically, that is, the shifted out bits are filled with the sign-bit of the data elements. The shift amount is specified by the imm3u constant. For the rounding operation of the <computeroutput>.u</computeroutput> form, a value of 1 is added to the most significant discarded bit of each 8-bit data element to calculate the final results. And the results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">sa<sp/>=<sp/>imm3u[2:0];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(sa<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(`.u`<sp/>form)<sp/>{<sp/>//<sp/>SRA8.u</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sa<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(`.u`<sp/>form)<sp/>{<sp/></highlight><highlight class="comment">//<sp/>SRA8.u</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res[7:-1]<sp/>=<sp/>SE9(Rs1.B[x][7:sa-1])<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.B[x]<sp/>=<sp/>res[7:0];</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{<sp/>//<sp/>SRA8</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{<sp/></highlight><highlight class="comment">//<sp/>SRA8</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.B[x]<sp/>=<sp/>SE8(Rd.B[x][7:sa])</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>Rs1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=7...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -510,7 +510,7 @@ The 8-bit data elements in Rs1 are right-shifted arithmetically, that is, the sh
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="9739" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="9739" bodyend="9744"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="9739" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="9739" bodyend="9744"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1gaeccaed883c7e38bc8a277bdb1c8e899e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -536,18 +536,18 @@ The 8-bit data elements in Rs1 are right-shifted arithmetically, that is, the sh
 Do 8-bit element arithmetic right shift operations simultaneously. The shift amount is an immediate value. The <computeroutput>.u</computeroutput> form performs additional rounding up operations on the shifted results.</para><para><bold>Description</bold>:<linebreak/>
 The 8-bit data elements in Rs1 are right-shifted arithmetically, that is, the shifted out bits are filled with the sign-bit of the data elements. The shift amount is specified by the imm3u constant. For the rounding operation of the <computeroutput>.u</computeroutput> form, a value of 1 is added to the most significant discarded bit of each 8-bit data element to calculate the final results. And the results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">sa<sp/>=<sp/>imm3u[2:0];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(sa<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(`.u`<sp/>form)<sp/>{<sp/>//<sp/>SRA8.u</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sa<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(`.u`<sp/>form)<sp/>{<sp/></highlight><highlight class="comment">//<sp/>SRA8.u</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res[7:-1]<sp/>=<sp/>SE9(Rs1.B[x][7:sa-1])<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.B[x]<sp/>=<sp/>res[7:0];</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{<sp/>//<sp/>SRA8</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{<sp/></highlight><highlight class="comment">//<sp/>SRA8</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.B[x]<sp/>=<sp/>SE8(Rd.B[x][7:sa])</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>Rs1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=7...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -567,7 +567,7 @@ The 8-bit data elements in Rs1 are right-shifted arithmetically, that is, the sh
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="9792" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="9792" bodyend="9797"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="9792" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="9792" bodyend="9797"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga2aae7328ef4464ec4ee58147b4c3be26" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -593,18 +593,18 @@ The 8-bit data elements in Rs1 are right-shifted arithmetically, that is, the sh
 Do 8-bit elements logical right shift operations simultaneously. The shift amount is a variable from a GPR. The <computeroutput>.u</computeroutput> form performs additional rounding up operations on the shifted results.</para><para><bold>Description</bold>:<linebreak/>
 The 8-bit data elements in Rs1 are right-shifted logically, that is, the shifted out bits are filled with zero. The shift amount is specified by the low-order 3-bits of the value in the Rs2 register. For the rounding operation of the <computeroutput>.u</computeroutput> form, a value of 1 is added to the most significant discarded bit of each 8-bit data element to calculate the final results. And the results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">sa<sp/>=<sp/>Rs2[2:0];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(sa<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(`.u`<sp/>form)<sp/>{<sp/>//<sp/>SRL8.u</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sa<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(`.u`<sp/>form)<sp/>{<sp/></highlight><highlight class="comment">//<sp/>SRL8.u</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res[8:0]<sp/>=<sp/>ZE9(Rs1.B[x][7:sa-1])<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.B[x]<sp/>=<sp/>res[8:1];</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{<sp/>//<sp/>SRL8</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{<sp/></highlight><highlight class="comment">//<sp/>SRL8</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.B[x]<sp/>=<sp/>ZE8(Rs1.B[x][7:sa]);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>Rs1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=7...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -624,7 +624,7 @@ The 8-bit data elements in Rs1 are right-shifted logically, that is, the shifted
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="10061" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="10061" bodyend="10066"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="10061" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="10061" bodyend="10066"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga60905852cd03af20f29f226cfe99b87c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -650,18 +650,18 @@ The 8-bit data elements in Rs1 are right-shifted logically, that is, the shifted
 Do 8-bit elements logical right shift operations simultaneously. The shift amount is a variable from a GPR. The <computeroutput>.u</computeroutput> form performs additional rounding up operations on the shifted results.</para><para><bold>Description</bold>:<linebreak/>
 The 8-bit data elements in Rs1 are right-shifted logically, that is, the shifted out bits are filled with zero. The shift amount is specified by the low-order 3-bits of the value in the Rs2 register. For the rounding operation of the <computeroutput>.u</computeroutput> form, a value of 1 is added to the most significant discarded bit of each 8-bit data element to calculate the final results. And the results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">sa<sp/>=<sp/>Rs2[2:0];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(sa<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(`.u`<sp/>form)<sp/>{<sp/>//<sp/>SRL8.u</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sa<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(`.u`<sp/>form)<sp/>{<sp/></highlight><highlight class="comment">//<sp/>SRL8.u</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res[8:0]<sp/>=<sp/>ZE9(Rs1.B[x][7:sa-1])<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.B[x]<sp/>=<sp/>res[8:1];</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{<sp/>//<sp/>SRL8</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{<sp/></highlight><highlight class="comment">//<sp/>SRL8</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.B[x]<sp/>=<sp/>ZE8(Rs1.B[x][7:sa]);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>Rs1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=7...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -681,7 +681,7 @@ The 8-bit data elements in Rs1 are right-shifted logically, that is, the shifted
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="10114" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="10114" bodyend="10119"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="10114" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="10114" bodyend="10119"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1gac7b9034398a191996851f15691fe1e37" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -707,18 +707,18 @@ The 8-bit data elements in Rs1 are right-shifted logically, that is, the shifted
 Do 8-bit elements logical right shift operations simultaneously. The shift amount is an immediate value. The <computeroutput>.u</computeroutput> form performs additional rounding up operations on the shifted results.</para><para><bold>Description</bold>:<linebreak/>
 The 8-bit data elements in Rs1 are right-shifted logically, that is, the shifted out bits are filled with zero. The shift amount is specified by the imm3u constant. For the rounding operation of the <computeroutput>.u</computeroutput> form, a value of 1 is added to the most significant discarded bit of each 8-bit data element to calculate the final results. And the results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">sa<sp/>=<sp/>imm3u[2:0];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(sa<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(`.u`<sp/>form)<sp/>{<sp/>//<sp/>SRLI8.u</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sa<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(`.u`<sp/>form)<sp/>{<sp/></highlight><highlight class="comment">//<sp/>SRLI8.u</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res[8:0]<sp/>=<sp/>ZE9(Rs1.B[x][7:sa-1])<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.B[x]<sp/>=<sp/>res[8:1];</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{<sp/>//<sp/>SRLI8</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{<sp/></highlight><highlight class="comment">//<sp/>SRLI8</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.B[x]<sp/>=<sp/>ZE8(Rs1.B[x][7:sa]);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>Rs1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=7...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -738,7 +738,7 @@ The 8-bit data elements in Rs1 are right-shifted logically, that is, the shifted
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="10166" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="10166" bodyend="10171"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="10166" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="10166" bodyend="10171"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga868802b4622f92104c7d5467560825d7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -764,18 +764,18 @@ The 8-bit data elements in Rs1 are right-shifted logically, that is, the shifted
 Do 8-bit elements logical right shift operations simultaneously. The shift amount is an immediate value. The <computeroutput>.u</computeroutput> form performs additional rounding up operations on the shifted results.</para><para><bold>Description</bold>:<linebreak/>
 The 8-bit data elements in Rs1 are right-shifted logically, that is, the shifted out bits are filled with zero. The shift amount is specified by the imm3u constant. For the rounding operation of the <computeroutput>.u</computeroutput> form, a value of 1 is added to the most significant discarded bit of each 8-bit data element to calculate the final results. And the results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">sa<sp/>=<sp/>imm3u[2:0];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(sa<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(`.u`<sp/>form)<sp/>{<sp/>//<sp/>SRLI8.u</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sa<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(`.u`<sp/>form)<sp/>{<sp/></highlight><highlight class="comment">//<sp/>SRLI8.u</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res[8:0]<sp/>=<sp/>ZE9(Rs1.B[x][7:sa-1])<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.B[x]<sp/>=<sp/>res[8:1];</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{<sp/>//<sp/>SRLI8</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{<sp/></highlight><highlight class="comment">//<sp/>SRLI8</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.B[x]<sp/>=<sp/>ZE8(Rs1.B[x][7:sa]);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>Rs1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=7...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -795,7 +795,7 @@ The 8-bit data elements in Rs1 are right-shifted logically, that is, the shifted
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="10218" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="10218" bodyend="10223"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="10218" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="10218" bodyend="10223"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       </sectiondef>

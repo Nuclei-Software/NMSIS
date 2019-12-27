@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
-  <compounddef id="riscv__convolve__HWC__q15__fast__nonsquare_8c" kind="file" language="C++">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="riscv__convolve__HWC__q15__fast__nonsquare_8c" kind="file">
     <compoundname>riscv_convolve_HWC_q15_fast_nonsquare.c</compoundname>
     <includes local="yes">riscv_math.h</includes>
     <includes refid="riscv__nnfunctions_8h" local="yes">riscv_nnfunctions.h</includes>
@@ -10,7 +10,7 @@
       </node>
       <node id="15">
         <label>riscv_convolve_HWC_q15_fast_nonsquare.c</label>
-        <link refid="riscv__convolve__HWC__q15__fast__nonsquare_8c"/>
+        <link refid="riscv_convolve_HWC_q15_fast_nonsquare.c"/>
         <childnode refid="16" relation="include">
         </childnode>
       </node>
@@ -249,7 +249,7 @@
 <bold>Buffer size:</bold></para><para>bufferA size: 2*ch_im_in*dim_kernel*dim_kernel</para><para>bufferB size: 0</para><para><bold>Input dimension constraints:</bold></para><para>ch_im_in is multiple of 2</para><para>ch_im_out is multipe of 2 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/ConvolutionFunctions/riscv_convolve_HWC_q15_fast_nonsquare.c" line="86" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/ConvolutionFunctions/riscv_convolve_HWC_q15_fast_nonsquare.c" bodystart="86" bodyend="262"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/ConvolutionFunctions/riscv_convolve_HWC_q15_fast_nonsquare.c" line="86" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/ConvolutionFunctions/riscv_convolve_HWC_q15_fast_nonsquare.c" bodystart="86" bodyend="262"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -314,8 +314,8 @@
 <codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>q7_t<sp/>*<sp/>bufferB)</highlight></codeline>
 <codeline lineno="106"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="107"><highlight class="normal"></highlight></codeline>
-<codeline lineno="108"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_DSP)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>int16_t<sp/><sp/><sp/>i_out_y,<sp/>i_out_x,<sp/>i_ker_y,<sp/>i_ker_x;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_DSP)</highlight></codeline>
+<codeline lineno="109"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>int16_t<sp/><sp/><sp/>i_out_y,<sp/>i_out_x,<sp/>i_ker_y,<sp/>i_ker_x;</highlight></codeline>
 <codeline lineno="110"><highlight class="normal"></highlight></codeline>
 <codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>q15_t<sp/><sp/><sp/><sp/>*pBuffer<sp/>=<sp/>bufferA;</highlight></codeline>
 <codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>q15_t<sp/><sp/><sp/><sp/>*im_buffer<sp/>=<sp/>bufferA;</highlight></codeline>
@@ -422,8 +422,8 @@
 <codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="215"><highlight class="normal"></highlight></codeline>
-<codeline lineno="216"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Run<sp/>the<sp/>following<sp/>code<sp/>as<sp/>reference<sp/>implementation<sp/>for<sp/>RISC-V<sp/>Core<sp/>without<sp/>DSP<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="217"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Run<sp/>the<sp/>following<sp/>code<sp/>as<sp/>reference<sp/>implementation<sp/>for<sp/>RISC-V<sp/>Core<sp/>without<sp/>DSP<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><sp/>i,<sp/>j,<sp/>k,<sp/>l,<sp/>m,<sp/>n;</highlight></codeline>
 <codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>conv_out;</highlight></codeline>
 <codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">signed</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>in_row,<sp/>in_col;</highlight></codeline>
@@ -464,13 +464,13 @@
 <codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="257"><highlight class="normal"></highlight></codeline>
-<codeline lineno="258"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>RISCV_MATH_DSP<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="259"><highlight class="normal"></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>RISCV_MATH_DSP<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="259"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Return<sp/>to<sp/>application<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>RISCV_MATH_SUCCESS;</highlight></codeline>
 <codeline lineno="262"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="263"><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/ConvolutionFunctions/riscv_convolve_HWC_q15_fast_nonsquare.c"/>
+    <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/ConvolutionFunctions/riscv_convolve_HWC_q15_fast_nonsquare.c"/>
   </compounddef>
 </doxygen>

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
-  <compounddef id="para__gen_8py" kind="file" language="Python">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="para__gen_8py" kind="file">
     <compoundname>para_gen.py</compoundname>
     <innernamespace refid="namespacepara__gen">para_gen</innernamespace>
     <briefdescription>
@@ -19,7 +19,7 @@
 <codeline lineno="9"><highlight class="normal"></highlight></codeline>
 <codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>numpy<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>np</highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight></codeline>
-<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespacepara__gen_1a2aeb680cc6207c02336be5d942937e84" kindref="member">convert_to_x4_weights</ref>(weights):</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespacepara__gen_1ab7f5de20ae32542da9f83a8e99850722" kindref="member">convert_to_x4_weights</ref>(weights):</highlight></codeline>
 <codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>[r,<sp/>h,<sp/>w,<sp/>c]<sp/>=<sp/>weights.shape</highlight></codeline>
 <codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>weights<sp/>=<sp/>np.reshape(weights,<sp/>(r,<sp/>h*w*c))</highlight></codeline>
 <codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>num_of_rows<sp/>=<sp/>r</highlight></codeline>
@@ -60,7 +60,7 @@
 <codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>counter<sp/>=<sp/>counter<sp/>+<sp/>4</highlight></codeline>
 <codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>new_weights</highlight></codeline>
 <codeline lineno="52"><highlight class="normal"></highlight></codeline>
-<codeline lineno="53"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespacepara__gen_1af0845a2b6a01a98f6ef345b8992a468c" kindref="member">convert_q7_q15_weights</ref>(weights):</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespacepara__gen_1a75db0b43a1b942aa87ff10fd3b73dc8d" kindref="member">convert_q7_q15_weights</ref>(weights):</highlight></codeline>
 <codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>[r,<sp/>h,<sp/>w,<sp/>c]<sp/>=<sp/>weights.shape</highlight></codeline>
 <codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>weights<sp/>=<sp/>np.reshape(weights,<sp/>(r,<sp/>h*w*c))</highlight></codeline>
 <codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>num_of_rows<sp/>=<sp/>r</highlight></codeline>
@@ -128,37 +128,37 @@
 <codeline lineno="118"><highlight class="normal"><sp/><sp/>input_data2[i]<sp/>=<sp/>np.random.randint(2**10)-2**9</highlight></codeline>
 <codeline lineno="119"><highlight class="normal"></highlight></codeline>
 <codeline lineno="120"><highlight class="normal">weight<sp/>=<sp/>np.reshape(update_weight,<sp/>(row_dim,<sp/>vec_dim,<sp/>1,<sp/>1))</highlight></codeline>
-<codeline lineno="121"><highlight class="normal">new_weight<sp/>=<sp/><ref refid="namespacepara__gen_1a2aeb680cc6207c02336be5d942937e84" kindref="member">convert_to_x4_weights</ref>(weight)</highlight></codeline>
+<codeline lineno="121"><highlight class="normal">new_weight<sp/>=<sp/><ref refid="namespacepara__gen_1ab7f5de20ae32542da9f83a8e99850722" kindref="member">convert_to_x4_weights</ref>(weight)</highlight></codeline>
 <codeline lineno="122"><highlight class="normal"></highlight></codeline>
 <codeline lineno="123"><highlight class="normal">outfile.write(</highlight><highlight class="stringliteral">&quot;#define<sp/>UPDATE_GATE_WEIGHT_X2<sp/>{&quot;</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="124"><highlight class="normal">weight.tofile(outfile,sep=</highlight><highlight class="stringliteral">&quot;,&quot;</highlight><highlight class="normal">,format=</highlight><highlight class="stringliteral">&quot;%d&quot;</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="125"><highlight class="normal">outfile.write(</highlight><highlight class="stringliteral">&quot;}\n\n&quot;</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="126"><highlight class="normal"></highlight></codeline>
-<codeline lineno="127"><highlight class="normal">new_weight<sp/>=<sp/><ref refid="namespacepara__gen_1af0845a2b6a01a98f6ef345b8992a468c" kindref="member">convert_q7_q15_weights</ref>(weight)</highlight></codeline>
+<codeline lineno="127"><highlight class="normal">new_weight<sp/>=<sp/><ref refid="namespacepara__gen_1a75db0b43a1b942aa87ff10fd3b73dc8d" kindref="member">convert_q7_q15_weights</ref>(weight)</highlight></codeline>
 <codeline lineno="128"><highlight class="normal">outfile.write(</highlight><highlight class="stringliteral">&quot;#define<sp/>UPDATE_GATE_WEIGHT_X4<sp/>{&quot;</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="129"><highlight class="normal">new_weight.tofile(outfile,sep=</highlight><highlight class="stringliteral">&quot;,&quot;</highlight><highlight class="normal">,format=</highlight><highlight class="stringliteral">&quot;%d&quot;</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="130"><highlight class="normal">outfile.write(</highlight><highlight class="stringliteral">&quot;}\n\n&quot;</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="131"><highlight class="normal"></highlight></codeline>
 <codeline lineno="132"><highlight class="normal">weight<sp/>=<sp/>np.reshape(reset_weight,<sp/>(row_dim,<sp/>vec_dim,<sp/>1,<sp/>1))</highlight></codeline>
-<codeline lineno="133"><highlight class="normal">new_weight<sp/>=<sp/><ref refid="namespacepara__gen_1a2aeb680cc6207c02336be5d942937e84" kindref="member">convert_to_x4_weights</ref>(weight)</highlight></codeline>
+<codeline lineno="133"><highlight class="normal">new_weight<sp/>=<sp/><ref refid="namespacepara__gen_1ab7f5de20ae32542da9f83a8e99850722" kindref="member">convert_to_x4_weights</ref>(weight)</highlight></codeline>
 <codeline lineno="134"><highlight class="normal"></highlight></codeline>
 <codeline lineno="135"><highlight class="normal">outfile.write(</highlight><highlight class="stringliteral">&quot;#define<sp/>RESET_GATE_WEIGHT_X2<sp/>{&quot;</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="136"><highlight class="normal">weight.tofile(outfile,sep=</highlight><highlight class="stringliteral">&quot;,&quot;</highlight><highlight class="normal">,format=</highlight><highlight class="stringliteral">&quot;%d&quot;</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="137"><highlight class="normal">outfile.write(</highlight><highlight class="stringliteral">&quot;}\n\n&quot;</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="138"><highlight class="normal"></highlight></codeline>
-<codeline lineno="139"><highlight class="normal">new_weight<sp/>=<sp/><ref refid="namespacepara__gen_1af0845a2b6a01a98f6ef345b8992a468c" kindref="member">convert_q7_q15_weights</ref>(weight)</highlight></codeline>
+<codeline lineno="139"><highlight class="normal">new_weight<sp/>=<sp/><ref refid="namespacepara__gen_1a75db0b43a1b942aa87ff10fd3b73dc8d" kindref="member">convert_q7_q15_weights</ref>(weight)</highlight></codeline>
 <codeline lineno="140"><highlight class="normal">outfile.write(</highlight><highlight class="stringliteral">&quot;#define<sp/>RESET_GATE_WEIGHT_X4<sp/>{&quot;</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="141"><highlight class="normal">new_weight.tofile(outfile,sep=</highlight><highlight class="stringliteral">&quot;,&quot;</highlight><highlight class="normal">,format=</highlight><highlight class="stringliteral">&quot;%d&quot;</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="142"><highlight class="normal">outfile.write(</highlight><highlight class="stringliteral">&quot;}\n\n&quot;</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="143"><highlight class="normal"></highlight></codeline>
 <codeline lineno="144"><highlight class="normal">weight<sp/>=<sp/>np.reshape(hidden_weight,<sp/>(row_dim,<sp/>vec_dim,<sp/>1,<sp/>1))</highlight></codeline>
-<codeline lineno="145"><highlight class="normal">new_weight<sp/>=<sp/><ref refid="namespacepara__gen_1a2aeb680cc6207c02336be5d942937e84" kindref="member">convert_to_x4_weights</ref>(weight)</highlight></codeline>
+<codeline lineno="145"><highlight class="normal">new_weight<sp/>=<sp/><ref refid="namespacepara__gen_1ab7f5de20ae32542da9f83a8e99850722" kindref="member">convert_to_x4_weights</ref>(weight)</highlight></codeline>
 <codeline lineno="146"><highlight class="normal"></highlight></codeline>
 <codeline lineno="147"><highlight class="normal">outfile.write(</highlight><highlight class="stringliteral">&quot;#define<sp/>HIDDEN_STATE_WEIGHT_X2<sp/>{&quot;</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="148"><highlight class="normal">weight.tofile(outfile,sep=</highlight><highlight class="stringliteral">&quot;,&quot;</highlight><highlight class="normal">,format=</highlight><highlight class="stringliteral">&quot;%d&quot;</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="149"><highlight class="normal">outfile.write(</highlight><highlight class="stringliteral">&quot;}\n\n&quot;</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="150"><highlight class="normal"></highlight></codeline>
-<codeline lineno="151"><highlight class="normal">new_weight<sp/>=<sp/><ref refid="namespacepara__gen_1af0845a2b6a01a98f6ef345b8992a468c" kindref="member">convert_q7_q15_weights</ref>(weight)</highlight></codeline>
+<codeline lineno="151"><highlight class="normal">new_weight<sp/>=<sp/><ref refid="namespacepara__gen_1a75db0b43a1b942aa87ff10fd3b73dc8d" kindref="member">convert_q7_q15_weights</ref>(weight)</highlight></codeline>
 <codeline lineno="152"><highlight class="normal">outfile.write(</highlight><highlight class="stringliteral">&quot;#define<sp/>HIDDEN_STATE_WEIGHT_X4<sp/>{&quot;</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="153"><highlight class="normal">new_weight.tofile(outfile,sep=</highlight><highlight class="stringliteral">&quot;,&quot;</highlight><highlight class="normal">,format=</highlight><highlight class="stringliteral">&quot;%d&quot;</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="154"><highlight class="normal">outfile.write(</highlight><highlight class="stringliteral">&quot;}\n\n&quot;</highlight><highlight class="normal">)</highlight></codeline>
@@ -192,6 +192,6 @@
 <codeline lineno="182"><highlight class="normal"></highlight></codeline>
 <codeline lineno="183"><highlight class="normal">outfile.close()</highlight></codeline>
     </programlisting>
-    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Examples/RISCV/gru/para_gen.py"/>
+    <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/gru/para_gen.py"/>
   </compounddef>
 </doxygen>

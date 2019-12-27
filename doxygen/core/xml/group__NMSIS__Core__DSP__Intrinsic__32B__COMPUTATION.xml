@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION" kind="group">
     <compoundname>NMSIS_Core_DSP_Intrinsic_32B_COMPUTATION</compoundname>
     <title>32-bit Computation Instructions</title>
@@ -25,9 +25,9 @@
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Get the larger value from the 32-bit contents of two general registers.</para><para><bold>Description</bold>:<linebreak/>
 This instruction compares two signed 32-bit integers stored in Rs1 and Rs2, picks the larger value as the result, and writes the result to Rd.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">if<sp/>(Rs1.W[0]<sp/>&gt;=<sp/>Rs2.W[0])<sp/>{</highlight></codeline>
+<programlisting><codeline><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(Rs1.W[0]<sp/>&gt;=<sp/>Rs2.W[0])<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>SE(Rs1.W[0]);</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>SE(Rs2.W[0]);</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
@@ -49,7 +49,7 @@ This instruction compares two signed 32-bit integers stored in Rs1 and Rs2, pick
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="5693" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="5693" bodyend="5698"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="5693" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="5693" bodyend="5698"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1ga60a38a5ee2cab1dd916cf4745c86a77e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -73,7 +73,7 @@ This instruction compares two signed 32-bit integers stored in Rs1 and Rs2, pick
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Get the smaller value from the 32-bit contents of two general registers.</para><para><bold>Description</bold>:<linebreak/>
 This instruction compares two signed 32-bit integers stored in Rs1 and Rs2, picks the smaller value as the result, and writes the result to Rd.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">if<sp/>(Rs1.W[0]<sp/>&gt;=<sp/>Rs2.W[0])<sp/>{<sp/>Rd<sp/>=<sp/>SE(Rs2.W[0]);<sp/>}<sp/>else<sp/>{<sp/>Rd<sp/>=<sp/>SE(Rs1.W[0]);<sp/>}</highlight></codeline>
+<programlisting><codeline><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(Rs1.W[0]<sp/>&gt;=<sp/>Rs2.W[0])<sp/>{<sp/>Rd<sp/>=<sp/>SE(Rs2.W[0]);<sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{<sp/>Rd<sp/>=<sp/>SE(Rs1.W[0]);<sp/>}</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -93,7 +93,7 @@ This instruction compares two signed 32-bit integers stored in Rs1 and Rs2, pick
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="5729" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="5729" bodyend="5734"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="5729" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="5729" bodyend="5734"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1gab76bac5299a9c41ce034594a704a126b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -144,7 +144,7 @@ This instruction multiplies the lower 32-bit content of Rs1 with that of Rs2 and
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="5827" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="5827" bodyend="5832"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="5827" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="5827" bodyend="5832"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1ga70bfdde5df211d5aa20cf406736d2ea1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -195,7 +195,7 @@ This instruction multiplies the lower 32-bit content of Rs1 with the lower 32-bi
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="5879" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="5879" bodyend="5884"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="5879" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="5879" bodyend="5884"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1ga162b41b571bd84dcd8860437417544dd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -247,7 +247,7 @@ This instruction adds the first 32-bit signed integer in Rs1 with the first 32-b
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="6354" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="6354" bodyend="6359"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="6354" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="6354" bodyend="6359"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1gad19388580ce1a2cc1afee60f9d73e60c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -299,7 +299,7 @@ This instruction subtracts the first 32-bit signed integer in Rs2 from the first
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="6773" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="6773" bodyend="6778"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="6773" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="6773" bodyend="6778"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1gad8c7e0a31ab014db941c83a0a704da8d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -351,7 +351,7 @@ This instruction adds the first 32-bit unsigned integer in Rs1 with the first 32
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="12929" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="12929" bodyend="12934"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="12929" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="12929" bodyend="12934"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1gaf80c041da49050e0469a6e945f5df1fd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -403,7 +403,7 @@ This instruction subtracts the first 32-bit signed integer in Rs2 from the first
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="13321" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13321" bodyend="13326"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="13321" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13321" bodyend="13326"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       </sectiondef>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK" kind="group">
     <compoundname>NMSIS_Core_DSP_Intrinsic_SIMD_8B_UNPACK</compoundname>
     <title>SIMD 8-bit Unpacking Instructions</title>
@@ -24,13 +24,13 @@ Unpack byte <emphasis>x and byte y</emphasis> of 32-bit chunks in a register int
 For the <computeroutput>SUNPKD8(x)(*y*)</computeroutput> instruction, it unpacks byte <emphasis>x and byte y</emphasis> of 32-bit chunks in Rs1 into two 16-bit signed halfwords and writes the results to the top part and the bottom part of 32-bit chunks in Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Rd.W[m].H[1]<sp/>=<sp/>SE16(Rs1.W[m].B[x])</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[m].H[0]<sp/>=<sp/>SE16(Rs1.W[m].B[y])</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SUNPKD810,<sp/>x=1,y=0</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SUNPKD820,<sp/>x=2,y=0</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SUNPKD830,<sp/>x=3,y=0</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SUNPKD831,<sp/>x=3,y=1</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SUNPKD832,<sp/>x=3,y=2</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>m=0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>m=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SUNPKD810,<sp/>x=1,y=0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SUNPKD820,<sp/>x=2,y=0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SUNPKD830,<sp/>x=3,y=0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SUNPKD831,<sp/>x=3,y=1</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SUNPKD832,<sp/>x=3,y=2</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>m=0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>m=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -43,7 +43,7 @@ For the <computeroutput>SUNPKD8(x)(*y*)</computeroutput> instruction, it unpacks
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="10700" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="10700" bodyend="10705"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="10700" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="10700" bodyend="10705"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga922f7523e4d512fe391795edd7a81239" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -66,13 +66,13 @@ Unpack byte <emphasis>x and byte y</emphasis> of 32-bit chunks in a register int
 For the <computeroutput>SUNPKD8(x)(*y*)</computeroutput> instruction, it unpacks byte <emphasis>x and byte y</emphasis> of 32-bit chunks in Rs1 into two 16-bit signed halfwords and writes the results to the top part and the bottom part of 32-bit chunks in Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Rd.W[m].H[1]<sp/>=<sp/>SE16(Rs1.W[m].B[x])</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[m].H[0]<sp/>=<sp/>SE16(Rs1.W[m].B[y])</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SUNPKD810,<sp/>x=1,y=0</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SUNPKD820,<sp/>x=2,y=0</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SUNPKD830,<sp/>x=3,y=0</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SUNPKD831,<sp/>x=3,y=1</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SUNPKD832,<sp/>x=3,y=2</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>m=0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>m=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SUNPKD810,<sp/>x=1,y=0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SUNPKD820,<sp/>x=2,y=0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SUNPKD830,<sp/>x=3,y=0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SUNPKD831,<sp/>x=3,y=1</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SUNPKD832,<sp/>x=3,y=2</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>m=0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>m=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -85,7 +85,7 @@ For the <computeroutput>SUNPKD8(x)(*y*)</computeroutput> instruction, it unpacks
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="10746" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="10746" bodyend="10751"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="10746" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="10746" bodyend="10751"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga8d213189a39651f3bcad77da2eb1f530" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -108,13 +108,13 @@ Unpack byte <emphasis>x and byte y</emphasis> of 32-bit chunks in a register int
 For the <computeroutput>SUNPKD8(x)(*y*)</computeroutput> instruction, it unpacks byte <emphasis>x and byte y</emphasis> of 32-bit chunks in Rs1 into two 16-bit signed halfwords and writes the results to the top part and the bottom part of 32-bit chunks in Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Rd.W[m].H[1]<sp/>=<sp/>SE16(Rs1.W[m].B[x])</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[m].H[0]<sp/>=<sp/>SE16(Rs1.W[m].B[y])</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SUNPKD810,<sp/>x=1,y=0</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SUNPKD820,<sp/>x=2,y=0</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SUNPKD830,<sp/>x=3,y=0</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SUNPKD831,<sp/>x=3,y=1</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SUNPKD832,<sp/>x=3,y=2</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>m=0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>m=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SUNPKD810,<sp/>x=1,y=0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SUNPKD820,<sp/>x=2,y=0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SUNPKD830,<sp/>x=3,y=0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SUNPKD831,<sp/>x=3,y=1</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SUNPKD832,<sp/>x=3,y=2</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>m=0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>m=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -127,9 +127,8 @@ For the <computeroutput>SUNPKD8(x)(*y*)</computeroutput> instruction, it unpacks
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="10792" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="10792" bodyend="10797"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="10792" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="10792" bodyend="10797"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
-        <referencedby refid="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__CUSTOM_1ga6d8dce49013b778d0290cd057cf45dd0" compoundref="core__feature__dsp_8h" startline="14306" endline="14311">__RV_EXPD83</referencedby>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1gad3da1a88ec99f6c5733a3035d26b3bbf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
@@ -151,13 +150,13 @@ Unpack byte <emphasis>x and byte y</emphasis> of 32-bit chunks in a register int
 For the <computeroutput>SUNPKD8(x)(*y*)</computeroutput> instruction, it unpacks byte <emphasis>x and byte y</emphasis> of 32-bit chunks in Rs1 into two 16-bit signed halfwords and writes the results to the top part and the bottom part of 32-bit chunks in Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Rd.W[m].H[1]<sp/>=<sp/>SE16(Rs1.W[m].B[x])</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[m].H[0]<sp/>=<sp/>SE16(Rs1.W[m].B[y])</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SUNPKD810,<sp/>x=1,y=0</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SUNPKD820,<sp/>x=2,y=0</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SUNPKD830,<sp/>x=3,y=0</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SUNPKD831,<sp/>x=3,y=1</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SUNPKD832,<sp/>x=3,y=2</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>m=0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>m=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SUNPKD810,<sp/>x=1,y=0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SUNPKD820,<sp/>x=2,y=0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SUNPKD830,<sp/>x=3,y=0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SUNPKD831,<sp/>x=3,y=1</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SUNPKD832,<sp/>x=3,y=2</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>m=0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>m=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -170,7 +169,7 @@ For the <computeroutput>SUNPKD8(x)(*y*)</computeroutput> instruction, it unpacks
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="10838" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="10838" bodyend="10843"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="10838" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="10838" bodyend="10843"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga869283b10c6656ef6b529487d244449c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -193,13 +192,13 @@ Unpack byte <emphasis>x and byte y</emphasis> of 32-bit chunks in a register int
 For the <computeroutput>SUNPKD8(x)(*y*)</computeroutput> instruction, it unpacks byte <emphasis>x and byte y</emphasis> of 32-bit chunks in Rs1 into two 16-bit signed halfwords and writes the results to the top part and the bottom part of 32-bit chunks in Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Rd.W[m].H[1]<sp/>=<sp/>SE16(Rs1.W[m].B[x])</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[m].H[0]<sp/>=<sp/>SE16(Rs1.W[m].B[y])</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SUNPKD810,<sp/>x=1,y=0</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SUNPKD820,<sp/>x=2,y=0</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SUNPKD830,<sp/>x=3,y=0</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SUNPKD831,<sp/>x=3,y=1</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SUNPKD832,<sp/>x=3,y=2</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>m=0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>m=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SUNPKD810,<sp/>x=1,y=0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SUNPKD820,<sp/>x=2,y=0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SUNPKD830,<sp/>x=3,y=0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SUNPKD831,<sp/>x=3,y=1</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SUNPKD832,<sp/>x=3,y=2</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>m=0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>m=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -212,7 +211,7 @@ For the <computeroutput>SUNPKD8(x)(*y*)</computeroutput> instruction, it unpacks
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="10884" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="10884" bodyend="10889"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="10884" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="10884" bodyend="10889"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga0deca77382416530ac829ea0a18d36a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -235,13 +234,13 @@ Unpack byte x and byte y of 32-bit chunks in a register into two 16-bit unsigned
 For the <computeroutput>ZUNPKD8(x)(*y*)</computeroutput> instruction, it unpacks byte <emphasis>x and byte y</emphasis> of 32-bit chunks in Rs1 into two 16-bit unsigned halfwords and writes the results to the top part and the bottom part of 32-bit chunks in Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Rd.W[m].H[1]<sp/>=<sp/>ZE16(Rs1.W[m].B[x])</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[m].H[0]<sp/>=<sp/>ZE16(Rs1.W[m].B[y])</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>ZUNPKD810,<sp/>x=1,y=0</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>ZUNPKD820,<sp/>x=2,y=0</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>ZUNPKD830,<sp/>x=3,y=0</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>ZUNPKD831,<sp/>x=3,y=1</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>ZUNPKD832,<sp/>x=3,y=2</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>m=0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>m=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>ZUNPKD810,<sp/>x=1,y=0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>ZUNPKD820,<sp/>x=2,y=0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>ZUNPKD830,<sp/>x=3,y=0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>ZUNPKD831,<sp/>x=3,y=1</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>ZUNPKD832,<sp/>x=3,y=2</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>m=0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>m=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -254,7 +253,7 @@ For the <computeroutput>ZUNPKD8(x)(*y*)</computeroutput> instruction, it unpacks
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="13470" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13470" bodyend="13475"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="13470" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13470" bodyend="13475"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga0a124400d7a60b3f860c73b2ef10f753" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -277,13 +276,13 @@ Unpack byte x and byte y of 32-bit chunks in a register into two 16-bit unsigned
 For the <computeroutput>ZUNPKD8(x)(*y*)</computeroutput> instruction, it unpacks byte <emphasis>x and byte y</emphasis> of 32-bit chunks in Rs1 into two 16-bit unsigned halfwords and writes the results to the top part and the bottom part of 32-bit chunks in Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Rd.W[m].H[1]<sp/>=<sp/>ZE16(Rs1.W[m].B[x])</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[m].H[0]<sp/>=<sp/>ZE16(Rs1.W[m].B[y])</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>ZUNPKD810,<sp/>x=1,y=0</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>ZUNPKD820,<sp/>x=2,y=0</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>ZUNPKD830,<sp/>x=3,y=0</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>ZUNPKD831,<sp/>x=3,y=1</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>ZUNPKD832,<sp/>x=3,y=2</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>m=0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>m=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>ZUNPKD810,<sp/>x=1,y=0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>ZUNPKD820,<sp/>x=2,y=0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>ZUNPKD830,<sp/>x=3,y=0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>ZUNPKD831,<sp/>x=3,y=1</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>ZUNPKD832,<sp/>x=3,y=2</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>m=0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>m=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -296,7 +295,7 @@ For the <computeroutput>ZUNPKD8(x)(*y*)</computeroutput> instruction, it unpacks
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="13516" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13516" bodyend="13521"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="13516" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13516" bodyend="13521"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga2ffff9289e72fb5163731af36b82bd96" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -319,13 +318,13 @@ Unpack byte x and byte y of 32-bit chunks in a register into two 16-bit unsigned
 For the <computeroutput>ZUNPKD8(x)(*y*)</computeroutput> instruction, it unpacks byte <emphasis>x and byte y</emphasis> of 32-bit chunks in Rs1 into two 16-bit unsigned halfwords and writes the results to the top part and the bottom part of 32-bit chunks in Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Rd.W[m].H[1]<sp/>=<sp/>ZE16(Rs1.W[m].B[x])</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[m].H[0]<sp/>=<sp/>ZE16(Rs1.W[m].B[y])</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>ZUNPKD810,<sp/>x=1,y=0</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>ZUNPKD820,<sp/>x=2,y=0</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>ZUNPKD830,<sp/>x=3,y=0</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>ZUNPKD831,<sp/>x=3,y=1</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>ZUNPKD832,<sp/>x=3,y=2</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>m=0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>m=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>ZUNPKD810,<sp/>x=1,y=0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>ZUNPKD820,<sp/>x=2,y=0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>ZUNPKD830,<sp/>x=3,y=0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>ZUNPKD831,<sp/>x=3,y=1</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>ZUNPKD832,<sp/>x=3,y=2</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>m=0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>m=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -338,7 +337,7 @@ For the <computeroutput>ZUNPKD8(x)(*y*)</computeroutput> instruction, it unpacks
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="13562" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13562" bodyend="13567"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="13562" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13562" bodyend="13567"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga833374dc8db34294d48e728512a2068f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -361,13 +360,13 @@ Unpack byte x and byte y of 32-bit chunks in a register into two 16-bit unsigned
 For the <computeroutput>ZUNPKD8(x)(*y*)</computeroutput> instruction, it unpacks byte <emphasis>x and byte y</emphasis> of 32-bit chunks in Rs1 into two 16-bit unsigned halfwords and writes the results to the top part and the bottom part of 32-bit chunks in Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Rd.W[m].H[1]<sp/>=<sp/>ZE16(Rs1.W[m].B[x])</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[m].H[0]<sp/>=<sp/>ZE16(Rs1.W[m].B[y])</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>ZUNPKD810,<sp/>x=1,y=0</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>ZUNPKD820,<sp/>x=2,y=0</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>ZUNPKD830,<sp/>x=3,y=0</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>ZUNPKD831,<sp/>x=3,y=1</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>ZUNPKD832,<sp/>x=3,y=2</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>m=0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>m=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>ZUNPKD810,<sp/>x=1,y=0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>ZUNPKD820,<sp/>x=2,y=0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>ZUNPKD830,<sp/>x=3,y=0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>ZUNPKD831,<sp/>x=3,y=1</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>ZUNPKD832,<sp/>x=3,y=2</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>m=0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>m=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -380,7 +379,7 @@ For the <computeroutput>ZUNPKD8(x)(*y*)</computeroutput> instruction, it unpacks
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="13608" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13608" bodyend="13613"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="13608" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13608" bodyend="13613"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga7fdf5939f3c0be0a64c2659b930a9faa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -403,13 +402,13 @@ Unpack byte x and byte y of 32-bit chunks in a register into two 16-bit unsigned
 For the <computeroutput>ZUNPKD8(x)(*y*)</computeroutput> instruction, it unpacks byte <emphasis>x and byte y</emphasis> of 32-bit chunks in Rs1 into two 16-bit unsigned halfwords and writes the results to the top part and the bottom part of 32-bit chunks in Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Rd.W[m].H[1]<sp/>=<sp/>ZE16(Rs1.W[m].B[x])</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[m].H[0]<sp/>=<sp/>ZE16(Rs1.W[m].B[y])</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>ZUNPKD810,<sp/>x=1,y=0</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>ZUNPKD820,<sp/>x=2,y=0</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>ZUNPKD830,<sp/>x=3,y=0</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>ZUNPKD831,<sp/>x=3,y=1</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>ZUNPKD832,<sp/>x=3,y=2</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>m=0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>m=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>ZUNPKD810,<sp/>x=1,y=0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>ZUNPKD820,<sp/>x=2,y=0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>ZUNPKD830,<sp/>x=3,y=0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>ZUNPKD831,<sp/>x=3,y=1</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>ZUNPKD832,<sp/>x=3,y=2</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>m=0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>m=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -422,7 +421,7 @@ For the <computeroutput>ZUNPKD8(x)(*y*)</computeroutput> instruction, it unpacks
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="13654" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13654" bodyend="13659"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="13654" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13654" bodyend="13659"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       </sectiondef>

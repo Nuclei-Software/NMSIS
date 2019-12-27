@@ -1,7 +1,5 @@
 var NAVTREEINDEX2 =
 {
-"group__NMSIS__Core__CSR__Registers.html#gafd2f303ac1c97e4b17b4bdb6dae67a9d":[1,3,0,100],
-"group__NMSIS__Core__CSR__Registers.html#gafd99ce5c3b4ced37a6b5033ad6d122dc":[1,3,0,153],
 "group__NMSIS__Core__CSR__Registers.html#gafdc52ae6a2e10e010475ace51f98ccd6":[1,3,0,68],
 "group__NMSIS__Core__CSR__Registers.html#gafe9299d8a7d0f21e963ab621a6a5a5cf":[1,3,0,224],
 "group__NMSIS__Core__CSR__Registers.html#gafee1bc538c2d2f77151d9f44c842246a":[1,3,0,26],
@@ -249,5 +247,7 @@ var NAVTREEINDEX2 =
 "group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__MISC.html#ga00c822eb5d2a5b1ff5bc88790a43103c":[1,10,0,8,0],
 "group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__MISC.html#ga2144ee330b7d084593a38bc98919399c":[1,10,0,8,3],
 "group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__MISC.html#ga368e2f49b0007ec1776f04ba5a850226":[1,10,0,8,1],
-"group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__MISC.html#ga4025d5f632fcaa18a002c764daa577bd":[1,10,0,8,4]
+"group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__MISC.html#ga4025d5f632fcaa18a002c764daa577bd":[1,10,0,8,4],
+"group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__MISC.html#ga562f85675e7444c4fb1e5e6c28c3c6c7":[1,10,0,8,7],
+"group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__MISC.html#ga5b8419c5f8c624d1a0e16c43efb798eb":[1,10,0,8,6]
 };

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__32B__ADDSUB" kind="group">
     <compoundname>NMSIS_Core_DSP_Intrinsic_SIGNED_16B_MULT_32B_ADDSUB</compoundname>
     <title>Signed 16-bit Multiply 32-bit Add/Subtract Instructions</title>
@@ -35,19 +35,19 @@ Multiply the signed 16-bit content of 32-bit elements in a register with the 16-
 For the <computeroutput>KMABB</computeroutput> instruction, it multiplies the bottom 16-bit content of 32-bit elements in Rs1 with the bottom 16-bit content of 32-bit elements in Rs2. For the <computeroutput>KMABT</computeroutput> instruction, it multiplies the bottom 16-bit content of 32-bit elements in Rs1 with the top 16-bit content of 32-bit elements in Rs2. For the <computeroutput>KMATT</computeroutput> instruction, it multiplies the top 16-bit content of 32-bit elements in Rs1 with the top 16-bit content of 32-bit elements in Rs2. The multiplication result is added to the content of 32-bit elements in Rd. If the addition result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV bit is set to<orderedlist>
 <listitem><para>The results after saturation are written to Rd. The 16-bit contents of Rs1 and Rs2 are treated as signed integers.</para></listitem></orderedlist>
 </para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[0]);<sp/>//<sp/>KMABB</highlight></codeline>
-<codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[1]);<sp/>//<sp/>KMABT</highlight></codeline>
-<codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>(Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[1]);<sp/>//<sp/>KMATT</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
+<programlisting><codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[0]);<sp/></highlight><highlight class="comment">//<sp/>KMABB</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[1]);<sp/></highlight><highlight class="comment">//<sp/>KMABT</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>(Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[1]);<sp/></highlight><highlight class="comment">//<sp/>KMATT</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>(2^31)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>-2^31;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>res[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">t</parametername>
@@ -74,7 +74,7 @@ For the <computeroutput>KMABB</computeroutput> instruction, it multiplies the bo
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="2613" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="2613" bodyend="2617"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="2613" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="2613" bodyend="2617"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__32B__ADDSUB_1ga3fe17f8a2e70a69f1751a1c0093c3158" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -108,19 +108,19 @@ Multiply the signed 16-bit content of 32-bit elements in a register with the 16-
 For the <computeroutput>KMABB</computeroutput> instruction, it multiplies the bottom 16-bit content of 32-bit elements in Rs1 with the bottom 16-bit content of 32-bit elements in Rs2. For the <computeroutput>KMABT</computeroutput> instruction, it multiplies the bottom 16-bit content of 32-bit elements in Rs1 with the top 16-bit content of 32-bit elements in Rs2. For the <computeroutput>KMATT</computeroutput> instruction, it multiplies the top 16-bit content of 32-bit elements in Rs1 with the top 16-bit content of 32-bit elements in Rs2. The multiplication result is added to the content of 32-bit elements in Rd. If the addition result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV bit is set to<orderedlist>
 <listitem><para>The results after saturation are written to Rd. The 16-bit contents of Rs1 and Rs2 are treated as signed integers.</para></listitem></orderedlist>
 </para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[0]);<sp/>//<sp/>KMABB</highlight></codeline>
-<codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[1]);<sp/>//<sp/>KMABT</highlight></codeline>
-<codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>(Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[1]);<sp/>//<sp/>KMATT</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
+<programlisting><codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[0]);<sp/></highlight><highlight class="comment">//<sp/>KMABB</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[1]);<sp/></highlight><highlight class="comment">//<sp/>KMABT</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>(Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[1]);<sp/></highlight><highlight class="comment">//<sp/>KMATT</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>(2^31)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>-2^31;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>res[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">t</parametername>
@@ -147,7 +147,7 @@ For the <computeroutput>KMABB</computeroutput> instruction, it multiplies the bo
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="2676" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="2676" bodyend="2680"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="2676" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="2676" bodyend="2680"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__32B__ADDSUB_1gad6267dd09022516bcd77ce742b8b40ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -181,19 +181,19 @@ Multiply the signed 16-bit content of 32-bit elements in a register with the 16-
 For the <computeroutput>KMABB</computeroutput> instruction, it multiplies the bottom 16-bit content of 32-bit elements in Rs1 with the bottom 16-bit content of 32-bit elements in Rs2. For the <computeroutput>KMABT</computeroutput> instruction, it multiplies the bottom 16-bit content of 32-bit elements in Rs1 with the top 16-bit content of 32-bit elements in Rs2. For the <computeroutput>KMATT</computeroutput> instruction, it multiplies the top 16-bit content of 32-bit elements in Rs1 with the top 16-bit content of 32-bit elements in Rs2. The multiplication result is added to the content of 32-bit elements in Rd. If the addition result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV bit is set to<orderedlist>
 <listitem><para>The results after saturation are written to Rd. The 16-bit contents of Rs1 and Rs2 are treated as signed integers.</para></listitem></orderedlist>
 </para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[0]);<sp/>//<sp/>KMABB</highlight></codeline>
-<codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[1]);<sp/>//<sp/>KMABT</highlight></codeline>
-<codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>(Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[1]);<sp/>//<sp/>KMATT</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
+<programlisting><codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[0]);<sp/></highlight><highlight class="comment">//<sp/>KMABB</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[1]);<sp/></highlight><highlight class="comment">//<sp/>KMABT</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>(Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[1]);<sp/></highlight><highlight class="comment">//<sp/>KMATT</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>(2^31)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>-2^31;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>res[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">t</parametername>
@@ -220,7 +220,7 @@ For the <computeroutput>KMABB</computeroutput> instruction, it multiplies the bo
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="2739" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="2739" bodyend="2743"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="2739" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="2739" bodyend="2743"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__32B__ADDSUB_1ga84ab72987eeee69e2392965d8d8944f4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -251,20 +251,20 @@ Do two signed 16-bit multiplications from 32-bit elements in two registers; and 
 <listitem><para>KMADA: rd.W[x] + top*top + bottom*bottom (per 32-bit element)</para></listitem><listitem><para>KMAXDA: rd.W[x] + top*bottom + bottom*top (per 32-bit element)</para></listitem></itemizedlist>
 </para><para><bold>Description</bold>:<linebreak/>
 For the `KMADA instruction, it multiplies the bottom 16-bit content of 32-bit elements in Rs1 with the bottom 16-bit content of 32-bit elements in Rs2 and then adds the result to the result of multiplying the top 16-bit content of 32-bit elements in Rs1 with the top 16-bit content of 32-bit elements in Rs2. For the <computeroutput>KMAXDA</computeroutput> instruction, it multiplies the top 16-bit content of 32-bit elements in Rs1 with the bottom 16-bit content of 32-bit elements in Rs2 and then adds the result to the result of multiplying the bottom 16-bit content of 32-bit elements in Rs1 with the top 16-bit content of 32-bit elements in Rs2. The result is added to the content of 32-bit elements in Rd. If the addition result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV bit is set to 1. The 32-bit results after saturation are written to Rd. The 16-bit contents of Rs1 and Rs2 are treated as signed integers.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">//<sp/>KMADA</highlight></codeline>
+<programlisting><codeline><highlight class="comment">//<sp/>KMADA</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>(Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[1])<sp/>+<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[0]);</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>KMAXDA</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>KMAXDA</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>(Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[0])<sp/>+<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[1]);</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>(2^31)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>-2^31;</highlight></codeline>
 <codeline><highlight class="normal">OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>res[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">t</parametername>
@@ -291,9 +291,8 @@ For the `KMADA instruction, it multiplies the bottom 16-bit content of 32-bit el
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="2803" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="2803" bodyend="2807"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="2803" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="2803" bodyend="2807"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
-        <referencedby refid="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__CUSTOM_1ga6d8dce49013b778d0290cd057cf45dd0" compoundref="core__feature__dsp_8h" startline="14306" endline="14311">__RV_EXPD83</referencedby>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__32B__ADDSUB_1ga1cab84ebee0378b9c1069e17efdbfd69" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> long</type>
@@ -323,20 +322,20 @@ Do two signed 16-bit multiplications from 32-bit elements in two registers; and 
 <listitem><para>KMADA: rd.W[x] + top*top + bottom*bottom (per 32-bit element)</para></listitem><listitem><para>KMAXDA: rd.W[x] + top*bottom + bottom*top (per 32-bit element)</para></listitem></itemizedlist>
 </para><para><bold>Description</bold>:<linebreak/>
 For the `KMADA instruction, it multiplies the bottom 16-bit content of 32-bit elements in Rs1 with the bottom 16-bit content of 32-bit elements in Rs2 and then adds the result to the result of multiplying the top 16-bit content of 32-bit elements in Rs1 with the top 16-bit content of 32-bit elements in Rs2. For the <computeroutput>KMAXDA</computeroutput> instruction, it multiplies the top 16-bit content of 32-bit elements in Rs1 with the bottom 16-bit content of 32-bit elements in Rs2 and then adds the result to the result of multiplying the bottom 16-bit content of 32-bit elements in Rs1 with the top 16-bit content of 32-bit elements in Rs2. The result is added to the content of 32-bit elements in Rd. If the addition result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV bit is set to 1. The 32-bit results after saturation are written to Rd. The 16-bit contents of Rs1 and Rs2 are treated as signed integers.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">//<sp/>KMADA</highlight></codeline>
+<programlisting><codeline><highlight class="comment">//<sp/>KMADA</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>(Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[1])<sp/>+<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[0]);</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>KMAXDA</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>KMAXDA</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>(Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[0])<sp/>+<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[1]);</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>(2^31)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>-2^31;</highlight></codeline>
 <codeline><highlight class="normal">OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>res[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">t</parametername>
@@ -363,9 +362,8 @@ For the `KMADA instruction, it multiplies the bottom 16-bit content of 32-bit el
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="2867" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="2867" bodyend="2871"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="2867" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="2867" bodyend="2871"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
-        <referencedby refid="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__CUSTOM_1ga6d8dce49013b778d0290cd057cf45dd0" compoundref="core__feature__dsp_8h" startline="14306" endline="14311">__RV_EXPD83</referencedby>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__32B__ADDSUB_1ga6b9f5141c87a343051b03494705eeac8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> long</type>
@@ -396,22 +394,22 @@ Do two signed 16-bit multiplications from 32-bit elements in two registers; and 
 <listitem><para>KMADS: rd.W[x] + (top*top - bottom*bottom) (per 32-bit element)</para></listitem><listitem><para>KMADRS: rd.W[x] + (bottom*bottom - top*top) (per 32-bit element)</para></listitem><listitem><para>KMAXDS: rd.W[x] + (top*bottom - bottom*top) (per 32-bit element)</para></listitem></itemizedlist>
 </para><para><bold>Description</bold>:<linebreak/>
 For the <computeroutput>KMADS</computeroutput> instruction, it multiplies the bottom 16-bit content of 32-bit elements in Rs1 with the bottom 16-bit content of 32-bit elements in Rs2 and then subtracts the result from the result of multiplying the top 16-bit content of 32-bit elements in Rs1 with the top 16-bit content of 32-bit elements in Rs2. For the <computeroutput>KMADRS</computeroutput> instruction, it multiplies the top 16-bit content of 32-bit elements in Rs1 with the top 16-bit content of 32-bit elements in Rs2 and then subtracts the result from the result of multiplying the bottom 16-bit content of 32-bit elements in Rs1 with the bottom 16-bit content of 32- bit elements in Rs2. For the <computeroutput>KMAXDS</computeroutput> instruction, it multiplies the bottom 16-bit content of 32-bit elements in Rs1 with the top 16-bit content of 32-bit elements in Rs2 and then subtracts the result from the result of multiplying the top 16-bit content of 32-bit elements in Rs1 with the bottom 16-bit content of 32-bit elements in Rs2. The subtraction result is then added to the content of the corresponding 32-bit elements in Rd. If the addition result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV bit is set to 1. The 32-bit results after saturation are written to Rd. The 16-bit contents of Rs1 and Rs2 are treated as signed integers.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">//<sp/>KMADS</highlight></codeline>
+<programlisting><codeline><highlight class="comment">//<sp/>KMADS</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>(Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[1])<sp/>-<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[0]);</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>KMADRS</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>KMADRS</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[0])<sp/>-<sp/>(Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[1]);</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>KMAXDS</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>KMAXDS</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>(Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[0])<sp/>-<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[1]);</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>(2^31)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>-2^31;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>res[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">t</parametername>
@@ -438,7 +436,7 @@ For the <computeroutput>KMADS</computeroutput> instruction, it multiplies the bo
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="2939" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="2939" bodyend="2943"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="2939" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="2939" bodyend="2943"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__32B__ADDSUB_1ga13576aa03f836be838f491fe7cc483d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -470,22 +468,22 @@ Do two signed 16-bit multiplications from 32-bit elements in two registers; and 
 <listitem><para>KMADS: rd.W[x] + (top*top - bottom*bottom) (per 32-bit element)</para></listitem><listitem><para>KMADRS: rd.W[x] + (bottom*bottom - top*top) (per 32-bit element)</para></listitem><listitem><para>KMAXDS: rd.W[x] + (top*bottom - bottom*top) (per 32-bit element)</para></listitem></itemizedlist>
 </para><para><bold>Description</bold>:<linebreak/>
 For the <computeroutput>KMADS</computeroutput> instruction, it multiplies the bottom 16-bit content of 32-bit elements in Rs1 with the bottom 16-bit content of 32-bit elements in Rs2 and then subtracts the result from the result of multiplying the top 16-bit content of 32-bit elements in Rs1 with the top 16-bit content of 32-bit elements in Rs2. For the <computeroutput>KMADRS</computeroutput> instruction, it multiplies the top 16-bit content of 32-bit elements in Rs1 with the top 16-bit content of 32-bit elements in Rs2 and then subtracts the result from the result of multiplying the bottom 16-bit content of 32-bit elements in Rs1 with the bottom 16-bit content of 32- bit elements in Rs2. For the <computeroutput>KMAXDS</computeroutput> instruction, it multiplies the bottom 16-bit content of 32-bit elements in Rs1 with the top 16-bit content of 32-bit elements in Rs2 and then subtracts the result from the result of multiplying the top 16-bit content of 32-bit elements in Rs1 with the bottom 16-bit content of 32-bit elements in Rs2. The subtraction result is then added to the content of the corresponding 32-bit elements in Rd. If the addition result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV bit is set to 1. The 32-bit results after saturation are written to Rd. The 16-bit contents of Rs1 and Rs2 are treated as signed integers.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">//<sp/>KMADS</highlight></codeline>
+<programlisting><codeline><highlight class="comment">//<sp/>KMADS</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>(Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[1])<sp/>-<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[0]);</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>KMADRS</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>KMADRS</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[0])<sp/>-<sp/>(Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[1]);</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>KMAXDS</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>KMAXDS</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>(Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[0])<sp/>-<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[1]);</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>(2^31)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>-2^31;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>res[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">t</parametername>
@@ -512,7 +510,7 @@ For the <computeroutput>KMADS</computeroutput> instruction, it multiplies the bo
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="3011" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="3011" bodyend="3015"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="3011" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="3011" bodyend="3015"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__32B__ADDSUB_1ga4649629156d0af6a2e64c30ae5bee381" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -544,22 +542,22 @@ Do two signed 16-bit multiplications from 32-bit elements in two registers; and 
 <listitem><para>KMADS: rd.W[x] + (top*top - bottom*bottom) (per 32-bit element)</para></listitem><listitem><para>KMADRS: rd.W[x] + (bottom*bottom - top*top) (per 32-bit element)</para></listitem><listitem><para>KMAXDS: rd.W[x] + (top*bottom - bottom*top) (per 32-bit element)</para></listitem></itemizedlist>
 </para><para><bold>Description</bold>:<linebreak/>
 For the <computeroutput>KMADS</computeroutput> instruction, it multiplies the bottom 16-bit content of 32-bit elements in Rs1 with the bottom 16-bit content of 32-bit elements in Rs2 and then subtracts the result from the result of multiplying the top 16-bit content of 32-bit elements in Rs1 with the top 16-bit content of 32-bit elements in Rs2. For the <computeroutput>KMADRS</computeroutput> instruction, it multiplies the top 16-bit content of 32-bit elements in Rs1 with the top 16-bit content of 32-bit elements in Rs2 and then subtracts the result from the result of multiplying the bottom 16-bit content of 32-bit elements in Rs1 with the bottom 16-bit content of 32- bit elements in Rs2. For the <computeroutput>KMAXDS</computeroutput> instruction, it multiplies the bottom 16-bit content of 32-bit elements in Rs1 with the top 16-bit content of 32-bit elements in Rs2 and then subtracts the result from the result of multiplying the top 16-bit content of 32-bit elements in Rs1 with the bottom 16-bit content of 32-bit elements in Rs2. The subtraction result is then added to the content of the corresponding 32-bit elements in Rd. If the addition result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV bit is set to 1. The 32-bit results after saturation are written to Rd. The 16-bit contents of Rs1 and Rs2 are treated as signed integers.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">//<sp/>KMADS</highlight></codeline>
+<programlisting><codeline><highlight class="comment">//<sp/>KMADS</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>(Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[1])<sp/>-<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[0]);</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>KMADRS</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>KMADRS</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[0])<sp/>-<sp/>(Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[1]);</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>KMAXDS</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>KMAXDS</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>(Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[0])<sp/>-<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[1]);</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>(2^31)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>-2^31;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>res[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">t</parametername>
@@ -586,7 +584,7 @@ For the <computeroutput>KMADS</computeroutput> instruction, it multiplies the bo
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="3083" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="3083" bodyend="3087"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="3083" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="3083" bodyend="3087"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__32B__ADDSUB_1ga2de43c62af85225d40c1ac4210640925" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -613,9 +611,9 @@ Do two signed 16-bit multiplications from the 32-bit elements of two registers; 
 <listitem><para>KMDA: top*top + bottom*bottom (per 32-bit element)</para></listitem><listitem><para>KMXDA: top*bottom + bottom*top (per 32-bit element)</para></listitem></itemizedlist>
 </para><para><bold>Description</bold>:<linebreak/>
 For the <computeroutput>KMDA</computeroutput> instruction, it multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2 and then adds the result to the result of multiplying the top 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32- bit elements of Rs2. For the <computeroutput>KMXDA</computeroutput> instruction, it multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2 and then adds the result to the result of multiplying the top 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2. The addition result is checked for saturation. If saturation happens, the result is saturated to 2^31-1. The final results are written to Rd. The 16-bit contents are treated as signed integers.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">if<sp/><sp/>Rs1.W[x]<sp/><sp/>!=<sp/><sp/>0x80008000)<sp/><sp/>or<sp/><sp/>(Rs2.W[x]<sp/><sp/>!=<sp/><sp/>0x80008000<sp/><sp/>{<sp/><sp/>//<sp/><sp/>KMDA<sp/><sp/>Rd.W[x]<sp/><sp/>=<sp/><sp/>Rs1.W[x].H[1]<sp/><sp/>*</highlight></codeline>
-<codeline><highlight class="normal">Rs2.W[x].H[1])<sp/>+<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[0];<sp/>//<sp/>KMXDA<sp/>Rd.W[x]<sp/>=<sp/>Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[0])</highlight></codeline>
-<codeline><highlight class="normal">+<sp/><sp/>(Rs1.W[x].H[0]<sp/><sp/>*<sp/><sp/>Rs2.W[x].H[1];<sp/><sp/>}<sp/><sp/>else<sp/><sp/>{<sp/><sp/>Rd.W[x]<sp/><sp/>=<sp/><sp/>0x7fffffff;<sp/><sp/>OV<sp/><sp/>=<sp/><sp/>1;<sp/><sp/>}<sp/><sp/>for<sp/><sp/>RV32:<sp/><sp/>x=0<sp/><sp/>for<sp/><sp/>RV64:</highlight></codeline>
+<programlisting><codeline><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/><sp/>Rs1.W[x]<sp/><sp/>!=<sp/><sp/>0x80008000)<sp/><sp/>or<sp/><sp/>(Rs2.W[x]<sp/><sp/>!=<sp/><sp/>0x80008000<sp/><sp/>{<sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>KMDA<sp/><sp/>Rd.W[x]<sp/><sp/>=<sp/><sp/>Rs1.W[x].H[1]<sp/><sp/>*</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Rs2.W[x].H[1])<sp/>+<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[0];<sp/></highlight><highlight class="comment">//<sp/>KMXDA<sp/>Rd.W[x]<sp/>=<sp/>Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[0])</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">+<sp/><sp/>(Rs1.W[x].H[0]<sp/><sp/>*<sp/><sp/>Rs2.W[x].H[1];<sp/><sp/>}<sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/><sp/>{<sp/><sp/>Rd.W[x]<sp/><sp/>=<sp/><sp/>0x7fffffff;<sp/><sp/>OV<sp/><sp/>=<sp/><sp/>1;<sp/><sp/>}<sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/><sp/>RV32:<sp/><sp/>x=0<sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/><sp/>RV64:</highlight></codeline>
 <codeline><highlight class="normal">x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -636,9 +634,8 @@ For the <computeroutput>KMDA</computeroutput> instruction, it multiplies the bot
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="3201" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="3201" bodyend="3206"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="3201" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="3201" bodyend="3206"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
-        <referencedby refid="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__CUSTOM_1ga6d8dce49013b778d0290cd057cf45dd0" compoundref="core__feature__dsp_8h" startline="14306" endline="14311">__RV_EXPD83</referencedby>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__32B__ADDSUB_1ga37c752d6151fb29b43b01b2dd8af55d6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> long</type>
@@ -664,9 +661,9 @@ Do two signed 16-bit multiplications from the 32-bit elements of two registers; 
 <listitem><para>KMDA: top*top + bottom*bottom (per 32-bit element)</para></listitem><listitem><para>KMXDA: top*bottom + bottom*top (per 32-bit element)</para></listitem></itemizedlist>
 </para><para><bold>Description</bold>:<linebreak/>
 For the <computeroutput>KMDA</computeroutput> instruction, it multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2 and then adds the result to the result of multiplying the top 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32- bit elements of Rs2. For the <computeroutput>KMXDA</computeroutput> instruction, it multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2 and then adds the result to the result of multiplying the top 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2. The addition result is checked for saturation. If saturation happens, the result is saturated to 2^31-1. The final results are written to Rd. The 16-bit contents are treated as signed integers.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">if<sp/><sp/>Rs1.W[x]<sp/><sp/>!=<sp/><sp/>0x80008000)<sp/><sp/>or<sp/><sp/>(Rs2.W[x]<sp/><sp/>!=<sp/><sp/>0x80008000<sp/><sp/>{<sp/><sp/>//<sp/><sp/>KMDA<sp/><sp/>Rd.W[x]<sp/><sp/>=<sp/><sp/>Rs1.W[x].H[1]<sp/><sp/>*</highlight></codeline>
-<codeline><highlight class="normal">Rs2.W[x].H[1])<sp/>+<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[0];<sp/>//<sp/>KMXDA<sp/>Rd.W[x]<sp/>=<sp/>Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[0])</highlight></codeline>
-<codeline><highlight class="normal">+<sp/><sp/>(Rs1.W[x].H[0]<sp/><sp/>*<sp/><sp/>Rs2.W[x].H[1];<sp/><sp/>}<sp/><sp/>else<sp/><sp/>{<sp/><sp/>Rd.W[x]<sp/><sp/>=<sp/><sp/>0x7fffffff;<sp/><sp/>OV<sp/><sp/>=<sp/><sp/>1;<sp/><sp/>}<sp/><sp/>for<sp/><sp/>RV32:<sp/><sp/>x=0<sp/><sp/>for<sp/><sp/>RV64:</highlight></codeline>
+<programlisting><codeline><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/><sp/>Rs1.W[x]<sp/><sp/>!=<sp/><sp/>0x80008000)<sp/><sp/>or<sp/><sp/>(Rs2.W[x]<sp/><sp/>!=<sp/><sp/>0x80008000<sp/><sp/>{<sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>KMDA<sp/><sp/>Rd.W[x]<sp/><sp/>=<sp/><sp/>Rs1.W[x].H[1]<sp/><sp/>*</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Rs2.W[x].H[1])<sp/>+<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[0];<sp/></highlight><highlight class="comment">//<sp/>KMXDA<sp/>Rd.W[x]<sp/>=<sp/>Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[0])</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">+<sp/><sp/>(Rs1.W[x].H[0]<sp/><sp/>*<sp/><sp/>Rs2.W[x].H[1];<sp/><sp/>}<sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/><sp/>{<sp/><sp/>Rd.W[x]<sp/><sp/>=<sp/><sp/>0x7fffffff;<sp/><sp/>OV<sp/><sp/>=<sp/><sp/>1;<sp/><sp/>}<sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/><sp/>RV32:<sp/><sp/>x=0<sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/><sp/>RV64:</highlight></codeline>
 <codeline><highlight class="normal">x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -687,9 +684,8 @@ For the <computeroutput>KMDA</computeroutput> instruction, it multiplies the bot
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="3252" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="3252" bodyend="3257"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="3252" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="3252" bodyend="3257"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
-        <referencedby refid="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__CUSTOM_1ga6d8dce49013b778d0290cd057cf45dd0" compoundref="core__feature__dsp_8h" startline="14306" endline="14311">__RV_EXPD83</referencedby>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__32B__ADDSUB_1ga3922fe2b6d47974c6bd85cba3f826b4b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> long</type>
@@ -719,20 +715,20 @@ Do two signed 16-bit multiplications from the 32-bit elements of two registers; 
 <listitem><para>KMSDA: rd.W[x] - top*top - bottom*bottom (per 32-bit element)</para></listitem><listitem><para>KMSXDA: rd.W[x] - top*bottom - bottom*top (per 32-bit element)</para></listitem></itemizedlist>
 </para><para><bold>Description</bold>:<linebreak/>
 For the <computeroutput>KMSDA</computeroutput> instruction, it multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2 and multiplies the top 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2. For the <computeroutput>KMSXDA</computeroutput> instruction, it multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2 and multiplies the top 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2. The two 32-bit multiplication results are then subtracted from the content of the corresponding 32- bit elements of Rd. If the subtraction result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV bit is set to 1. The results after saturation are written to Rd. The 16-bit contents are treated as signed integers.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">//<sp/>KMSDA</highlight></codeline>
+<programlisting><codeline><highlight class="comment">//<sp/>KMSDA</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>-<sp/>(Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[1])<sp/>-<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[0]);</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>KMSXDA</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>KMSXDA</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>-<sp/>(Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[0])<sp/>-<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[1]);</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>(2^31)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>-2^31;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>res[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">t</parametername>
@@ -759,7 +755,7 @@ For the <computeroutput>KMSDA</computeroutput> instruction, it multiplies the bo
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="4301" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="4301" bodyend="4305"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="4301" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="4301" bodyend="4305"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__32B__ADDSUB_1gaacebc28be147f66ab73162b37cc35ce0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -790,20 +786,20 @@ Do two signed 16-bit multiplications from the 32-bit elements of two registers; 
 <listitem><para>KMSDA: rd.W[x] - top*top - bottom*bottom (per 32-bit element)</para></listitem><listitem><para>KMSXDA: rd.W[x] - top*bottom - bottom*top (per 32-bit element)</para></listitem></itemizedlist>
 </para><para><bold>Description</bold>:<linebreak/>
 For the <computeroutput>KMSDA</computeroutput> instruction, it multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2 and multiplies the top 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2. For the <computeroutput>KMSXDA</computeroutput> instruction, it multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2 and multiplies the top 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2. The two 32-bit multiplication results are then subtracted from the content of the corresponding 32- bit elements of Rd. If the subtraction result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV bit is set to 1. The results after saturation are written to Rd. The 16-bit contents are treated as signed integers.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">//<sp/>KMSDA</highlight></codeline>
+<programlisting><codeline><highlight class="comment">//<sp/>KMSDA</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>-<sp/>(Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[1])<sp/>-<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[0]);</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>KMSXDA</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>KMSXDA</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>-<sp/>(Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[0])<sp/>-<sp/>(Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[1]);</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>(2^31)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>-2^31;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>res[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">t</parametername>
@@ -830,7 +826,7 @@ For the <computeroutput>KMSDA</computeroutput> instruction, it multiplies the bo
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="4363" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="4363" bodyend="4367"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="4363" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="4363" bodyend="4367"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__32B__ADDSUB_1ga6078c3498de77bbaeabbf7017fa023ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -858,11 +854,11 @@ Multiply the signed 16-bit content of the 32-bit elements of a register with the
 <listitem><para>SMBB16: W[x].bottom*W[x].bottom</para></listitem><listitem><para>SMBT16: W[x].bottom *W[x].top</para></listitem><listitem><para>SMTT16: W[x].top * W[x].top</para></listitem></itemizedlist>
 </para><para><bold>Description</bold>:<linebreak/>
 For the <computeroutput>SMBB16</computeroutput> instruction, it multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2. For the <computeroutput>SMBT16</computeroutput> instruction, it multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2. For the <computeroutput>SMTT16</computeroutput> instruction, it multiplies the top 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2. The multiplication results are written to Rd. The 16-bit contents of Rs1 and Rs2 are treated as signed integers.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[0];<sp/>//<sp/>SMBB16</highlight></codeline>
-<codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[1];<sp/>//<sp/>SMBT16</highlight></codeline>
-<codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[1];<sp/>//<sp/>SMTT16</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<programlisting><codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[0];<sp/></highlight><highlight class="comment">//<sp/>SMBB16</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[1];<sp/></highlight><highlight class="comment">//<sp/>SMBT16</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[1];<sp/></highlight><highlight class="comment">//<sp/>SMTT16</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -882,7 +878,7 @@ For the <computeroutput>SMBB16</computeroutput> instruction, it multiplies the b
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="8255" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8255" bodyend="8260"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="8255" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8255" bodyend="8260"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__32B__ADDSUB_1ga2f8364cbb057b9952017ad1bd3230a5e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -910,11 +906,11 @@ Multiply the signed 16-bit content of the 32-bit elements of a register with the
 <listitem><para>SMBB16: W[x].bottom*W[x].bottom</para></listitem><listitem><para>SMBT16: W[x].bottom *W[x].top</para></listitem><listitem><para>SMTT16: W[x].top * W[x].top</para></listitem></itemizedlist>
 </para><para><bold>Description</bold>:<linebreak/>
 For the <computeroutput>SMBB16</computeroutput> instruction, it multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2. For the <computeroutput>SMBT16</computeroutput> instruction, it multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2. For the <computeroutput>SMTT16</computeroutput> instruction, it multiplies the top 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2. The multiplication results are written to Rd. The 16-bit contents of Rs1 and Rs2 are treated as signed integers.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[0];<sp/>//<sp/>SMBB16</highlight></codeline>
-<codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[1];<sp/>//<sp/>SMBT16</highlight></codeline>
-<codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[1];<sp/>//<sp/>SMTT16</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<programlisting><codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[0];<sp/></highlight><highlight class="comment">//<sp/>SMBB16</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[1];<sp/></highlight><highlight class="comment">//<sp/>SMBT16</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[1];<sp/></highlight><highlight class="comment">//<sp/>SMTT16</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -934,7 +930,7 @@ For the <computeroutput>SMBB16</computeroutput> instruction, it multiplies the b
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="8307" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8307" bodyend="8312"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="8307" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8307" bodyend="8312"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__32B__ADDSUB_1gab253cabd0fb5ac51b6b897cd3e8d6e0f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -962,11 +958,11 @@ Multiply the signed 16-bit content of the 32-bit elements of a register with the
 <listitem><para>SMBB16: W[x].bottom*W[x].bottom</para></listitem><listitem><para>SMBT16: W[x].bottom *W[x].top</para></listitem><listitem><para>SMTT16: W[x].top * W[x].top</para></listitem></itemizedlist>
 </para><para><bold>Description</bold>:<linebreak/>
 For the <computeroutput>SMBB16</computeroutput> instruction, it multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2. For the <computeroutput>SMBT16</computeroutput> instruction, it multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2. For the <computeroutput>SMTT16</computeroutput> instruction, it multiplies the top 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2. The multiplication results are written to Rd. The 16-bit contents of Rs1 and Rs2 are treated as signed integers.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[0];<sp/>//<sp/>SMBB16</highlight></codeline>
-<codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[1];<sp/>//<sp/>SMBT16</highlight></codeline>
-<codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[1];<sp/>//<sp/>SMTT16</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<programlisting><codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[0];<sp/></highlight><highlight class="comment">//<sp/>SMBB16</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>Rs1.W[x].H[0]<sp/>*<sp/>Rs2.W[x].H[1];<sp/></highlight><highlight class="comment">//<sp/>SMBT16</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>Rs1.W[x].H[1]<sp/>*<sp/>Rs2.W[x].H[1];<sp/></highlight><highlight class="comment">//<sp/>SMTT16</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -986,7 +982,7 @@ For the <computeroutput>SMBB16</computeroutput> instruction, it multiplies the b
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="8359" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8359" bodyend="8364"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="8359" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8359" bodyend="8364"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__32B__ADDSUB_1ga056df0d47cc4dcef5739bb15f2a324ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -1039,7 +1035,7 @@ For the <computeroutput>SMDS</computeroutput> instruction, it multiplies the bot
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="8418" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8418" bodyend="8423"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="8418" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8418" bodyend="8423"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__32B__ADDSUB_1gafab251aa9c5e64dc004c9dc3b8c7c0dd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -1092,9 +1088,8 @@ For the <computeroutput>SMDS</computeroutput> instruction, it multiplies the bot
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="8477" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8477" bodyend="8482"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="8477" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8477" bodyend="8482"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
-        <referencedby refid="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__CUSTOM_1ga6d8dce49013b778d0290cd057cf45dd0" compoundref="core__feature__dsp_8h" startline="14306" endline="14311">__RV_EXPD83</referencedby>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__32B__ADDSUB_1ga45c60f7cb5ae0e2ddaeca68e0a76283b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> long</type>
@@ -1146,9 +1141,8 @@ For the <computeroutput>SMDS</computeroutput> instruction, it multiplies the bot
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="8536" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8536" bodyend="8541"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="8536" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8536" bodyend="8541"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
-        <referencedby refid="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__CUSTOM_1ga6d8dce49013b778d0290cd057cf45dd0" compoundref="core__feature__dsp_8h" startline="14306" endline="14311">__RV_EXPD83</referencedby>
       </memberdef>
       </sectiondef>
     <briefdescription>

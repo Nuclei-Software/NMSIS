@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__CUSTOM" kind="group">
     <compoundname>NMSIS_Core_DSP_Intrinsic_NUCLEI_CUSTOM</compoundname>
     <title>Nuclei Customized DSP Instructions</title>
@@ -22,22 +22,22 @@
         <detaileddescription>
 <para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">DKHM8<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
-<codeline><highlight class="normal">#<sp/>Rd,<sp/>Rs1,<sp/>Rs2<sp/>are<sp/>all<sp/>even/odd<sp/>pair<sp/>of<sp/>registers</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>Rd,<sp/>Rs1,<sp/>Rs2<sp/>are<sp/>all<sp/>even/odd<sp/>pair<sp/>of<sp/>registers</highlight></codeline>
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Do Q7xQ7 element multiplications simultaneously. The Q14 results are then reduced to Q7 numbers again.</para><para><bold>Description</bold>:<linebreak/>
 For the <computeroutput>DKHM8</computeroutput> instruction, multiply the top 8-bit Q7 content of 16-bit chunks in Rs1 with the top 8-bit Q7 content of 16-bit chunks in Rs2. At the same time, multiply the bottom 8-bit Q7 content of 16-bit chunks in Rs1 with the bottom 8-bit Q7 content of 16-bit chunks in Rs2.</para><para>The Q14 results are then right-shifted 7-bits and saturated into Q7 values. The Q7 results are then written into Rd. When both the two Q7 inputs of a multiplication are 0x80, saturation will happen. The result will be saturated to 0x7F and the overflow flag OV will be set.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">op1t<sp/>=<sp/>Rs1.B[x+1];<sp/>op2t<sp/>=<sp/>Rs2.B[x+1];<sp/>//<sp/>top</highlight></codeline>
-<codeline><highlight class="normal">op1b<sp/>=<sp/>Rs1.B[x];<sp/>op2b<sp/>=<sp/>Rs2.B[x];<sp/>//<sp/>bottom</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>((aop,bop,res)<sp/>in<sp/>[(op1t,op2t,rest),<sp/>(op1b,op2b,resb)])<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(0x80<sp/>!=<sp/>aop<sp/>|<sp/>0x80<sp/>!=<sp/>bop)<sp/>{</highlight></codeline>
+<programlisting><codeline><highlight class="normal">op1t<sp/>=<sp/>Rs1.B[x+1];<sp/>op2t<sp/>=<sp/>Rs2.B[x+1];<sp/></highlight><highlight class="comment">//<sp/>top</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">op1b<sp/>=<sp/>Rs1.B[x];<sp/>op2b<sp/>=<sp/>Rs2.B[x];<sp/></highlight><highlight class="comment">//<sp/>bottom</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>((aop,bop,res)<sp/>in<sp/>[(op1t,op2t,rest),<sp/>(op1b,op2b,resb)])<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(0x80<sp/>!=<sp/>aop<sp/>|<sp/>0x80<sp/>!=<sp/>bop)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res<sp/>=<sp/>(aop<sp/>s*<sp/>bop)<sp/>&gt;&gt;<sp/>7;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res=<sp/>0x7F;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.H[x/2]<sp/>=<sp/>concat(rest,<sp/>resb);</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32,<sp/>x=0,2,4,6</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32,<sp/>x=0,2,4,6</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -57,7 +57,7 @@ For the <computeroutput>DKHM8</computeroutput> instruction, multiply the top 8-b
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="13715" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13715" bodyend="13720"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="13715" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13715" bodyend="13720"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__CUSTOM_1gae39257eb12a014d3059394217135b9fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -78,22 +78,22 @@ For the <computeroutput>DKHM8</computeroutput> instruction, multiply the top 8-b
         <detaileddescription>
 <para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">DKHM16<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
-<codeline><highlight class="normal">#<sp/>Rd,<sp/>Rs1,<sp/>Rs2<sp/>are<sp/>all<sp/>even/odd<sp/>pair<sp/>of<sp/>registers</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>Rd,<sp/>Rs1,<sp/>Rs2<sp/>are<sp/>all<sp/>even/odd<sp/>pair<sp/>of<sp/>registers</highlight></codeline>
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Do Q15xQ15 element multiplications simultaneously. The Q30 results are then reduced to Q15 numbers again.</para><para><bold>Description</bold>:<linebreak/>
 For the <computeroutput>DKHM16</computeroutput> instruction, multiply the top 16-bit Q15 content of 32-bit chunks in Rs1 with the top 16-bit Q15 content of 32-bit chunks in Rs2. At the same time, multiply the bottom 16-bit Q15 content of 32-bit chunks in Rs1 with the bottom 16-bit Q15 content of 32-bit chunks in Rs2.</para><para>The Q30 results are then right-shifted 15-bits and saturated into Q15 values. The Q15 results are then written into Rd. When both the two Q15 inputs of a multiplication are 0x8000, saturation will happen. The result will be saturated to 0x7FFF and the overflow flag OV will be set.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">op1t<sp/>=<sp/>Rs1.H[x+1];<sp/>op2t<sp/>=<sp/>Rs2.H[x+1];<sp/>//<sp/>top</highlight></codeline>
-<codeline><highlight class="normal">op1b<sp/>=<sp/>Rs1.H[x];<sp/>op2b<sp/>=<sp/>Rs2.H[x];<sp/>//<sp/>bottom</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>((aop,bop,res)<sp/>in<sp/>[(op1t,op2t,rest),<sp/>(op1b,op2b,resb)])<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(0x8000<sp/>!=<sp/>aop<sp/>|<sp/>0x8000<sp/>!=<sp/>bop)<sp/>{</highlight></codeline>
+<programlisting><codeline><highlight class="normal">op1t<sp/>=<sp/>Rs1.H[x+1];<sp/>op2t<sp/>=<sp/>Rs2.H[x+1];<sp/></highlight><highlight class="comment">//<sp/>top</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">op1b<sp/>=<sp/>Rs1.H[x];<sp/>op2b<sp/>=<sp/>Rs2.H[x];<sp/></highlight><highlight class="comment">//<sp/>bottom</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>((aop,bop,res)<sp/>in<sp/>[(op1t,op2t,rest),<sp/>(op1b,op2b,resb)])<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(0x8000<sp/>!=<sp/>aop<sp/>|<sp/>0x8000<sp/>!=<sp/>bop)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res<sp/>=<sp/>(aop<sp/>s*<sp/>bop)<sp/>&gt;&gt;<sp/>15;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res=<sp/>0x7FFF;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[x/2]<sp/>=<sp/>concat(rest,<sp/>resb);</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0,<sp/>2</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0,<sp/>2</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -113,7 +113,7 @@ For the <computeroutput>DKHM16</computeroutput> instruction, multiply the top 16
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="13770" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13770" bodyend="13775"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="13770" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13770" bodyend="13775"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__CUSTOM_1ga7279c1730c173384063a9bef9c986010" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -130,19 +130,19 @@ For the <computeroutput>DKHM16</computeroutput> instruction, multiply the top 16
         <detaileddescription>
 <para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">DKABS8<sp/>Rd,<sp/>Rs1</highlight></codeline>
-<codeline><highlight class="normal">#<sp/>Rd,<sp/>Rs1<sp/>are<sp/>all<sp/>even/odd<sp/>pair<sp/>of<sp/>registers</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>Rd,<sp/>Rs1<sp/>are<sp/>all<sp/>even/odd<sp/>pair<sp/>of<sp/>registers</highlight></codeline>
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Get the absolute value of 8-bit signed integer elements simultaneously.</para><para><bold>Description</bold>:<linebreak/>
 This instruction calculates the absolute value of 8-bit signed integer elements stored in Rs1 and writes the element results to Rd. If the input number is 0x80, this instruction generates 0x7f as the output and sets the OV bit to 1.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">src<sp/>=<sp/>Rs1.B[x];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(src<sp/>==<sp/>0x80)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(src<sp/>==<sp/>0x80)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>src<sp/>=<sp/>0x7f;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(src[7]<sp/>==<sp/>1)</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(src[7]<sp/>==<sp/>1)</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>src<sp/>=<sp/>-src;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>src;</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=7...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=7...0,</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -155,7 +155,7 @@ This instruction calculates the absolute value of 8-bit signed integer elements 
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="13815" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13815" bodyend="13820"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="13815" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13815" bodyend="13820"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__CUSTOM_1ga7d5691b06128c42939278415561c2dc4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -172,19 +172,19 @@ This instruction calculates the absolute value of 8-bit signed integer elements 
         <detaileddescription>
 <para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">DKABS16<sp/>Rd,<sp/>Rs1</highlight></codeline>
-<codeline><highlight class="normal">#<sp/>Rd,<sp/>Rs1<sp/>are<sp/>all<sp/>even/odd<sp/>pair<sp/>of<sp/>registers</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>Rd,<sp/>Rs1<sp/>are<sp/>all<sp/>even/odd<sp/>pair<sp/>of<sp/>registers</highlight></codeline>
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Get the absolute value of 16-bit signed integer elements simultaneously.</para><para><bold>Description</bold>:<linebreak/>
 This instruction calculates the absolute value of 16-bit signed integer elements stored in Rs1 and writes the element results to Rd. If the input number is 0x8000, this instruction generates 0x7fff as the output and sets the OV bit to 1.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">src<sp/>=<sp/>Rs1.H[x];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(src<sp/>==<sp/>0x8000)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(src<sp/>==<sp/>0x8000)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>src<sp/>=<sp/>0x7fff;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(src[15]<sp/>==<sp/>1)</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(src[15]<sp/>==<sp/>1)</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>src<sp/>=<sp/>-src;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.H[x]<sp/>=<sp/>src;</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -197,7 +197,7 @@ This instruction calculates the absolute value of 16-bit signed integer elements
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="13860" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13860" bodyend="13865"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="13860" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13860" bodyend="13865"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__CUSTOM_1ga0f7b1184bde378bc5ae6e23f155ecb89" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -218,25 +218,25 @@ This instruction calculates the absolute value of 16-bit signed integer elements
         <detaileddescription>
 <para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">DKSLRA8<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
-<codeline><highlight class="normal">#<sp/>Rd,<sp/>Rs1<sp/>are<sp/>all<sp/>even/odd<sp/>pair<sp/>of<sp/>registers</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>Rd,<sp/>Rs1<sp/>are<sp/>all<sp/>even/odd<sp/>pair<sp/>of<sp/>registers</highlight></codeline>
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Do 8-bit elements logical left (positive) or arithmetic right (negative) shift operation with Q7 saturation for the left shift.</para><para><bold>Description</bold>:<linebreak/>
 The 8-bit data elements of Rs1 are left-shifted logically or right-shifted arithmetically based on the value of Rs2[3:0]. Rs2[3:0] is in the signed range of [-2^3, 2^3-1]. A positive Rs2[3:0] means logical left shift and a negative Rs2[3:0] means arithmetic right shift. The shift amount is the absolute value of Rs2[3:0]. However, the behavior of <computeroutput>Rs2[3:0]==-2^3 (0x8)</computeroutput> is defined to be equivalent to the behavior of <computeroutput>Rs2[3:0]==-(2^3-1) (0x9)</computeroutput>. The left-shifted results are saturated to the 8-bit signed integer range of [-2^7, 2^7-1]. If any saturation happens, this instruction sets the OV flag. The value of Rs2[31:4] will not affect this instruction.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">if<sp/>(Rs2[3:0]<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<programlisting><codeline><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(Rs2[3:0]<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>sa<sp/>=<sp/>-Rs2[3:0];</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>sa<sp/>=<sp/>(sa<sp/>==<sp/>8)?<sp/>7<sp/>:<sp/>sa;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd.B[x]<sp/>=<sp/>SE8(Rs1.B[x][7:sa]);</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>sa<sp/>=<sp/>Rs2[2:0];</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[(7+sa):0]<sp/>=<sp/>Rs1.B[x]<sp/>&lt;&lt;(logic)<sp/>sa;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(res<sp/>&gt;<sp/>(2^7)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res<sp/>&gt;<sp/>(2^7)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res[7:0]<sp/>=<sp/>0x7f;<sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>if<sp/>(res<sp/>&lt;<sp/>-2^7)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res<sp/>&lt;<sp/>-2^7)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res[7:0]<sp/>=<sp/>0x80;<sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd.B[x]<sp/>=<sp/>res[7:0];</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=7...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=7...0,</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -256,7 +256,7 @@ The 8-bit data elements of Rs1 are left-shifted logically or right-shifted arith
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="13918" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13918" bodyend="13923"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="13918" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13918" bodyend="13923"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__CUSTOM_1ga1b02a9f2e52abd456bfdadc1dac9e188" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -277,25 +277,25 @@ The 8-bit data elements of Rs1 are left-shifted logically or right-shifted arith
         <detaileddescription>
 <para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">DKSLRA16<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
-<codeline><highlight class="normal">#<sp/>Rd,<sp/>Rs1<sp/>are<sp/>all<sp/>even/odd<sp/>pair<sp/>of<sp/>registers</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>Rd,<sp/>Rs1<sp/>are<sp/>all<sp/>even/odd<sp/>pair<sp/>of<sp/>registers</highlight></codeline>
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Do 16-bit elements logical left (positive) or arithmetic right (negative) shift operation with Q15 saturation for the left shift.</para><para><bold>Description</bold>:<linebreak/>
 The 16-bit data elements of Rs1 are left-shifted logically or right-shifted arithmetically based on the value of Rs2[4:0]. Rs2[4:0] is in the signed range of [-2^4, 2^4-1]. A positive Rs2[4:0] means logical left shift and a negative Rs2[4:0] means arithmetic right shift. The shift amount is the absolute value of Rs2[4:0]. However, the behavior of <computeroutput>Rs2[4:0]==-2^4 (0x10)</computeroutput> is defined to be equivalent to the behavior of <computeroutput>Rs2[4:0]==-(2^4-1) (0x11)</computeroutput>. The left-shifted results are saturated to the 16-bit signed integer range of [-2^15, 2^15-1]. After the shift, saturation, or rounding, the final results are written to Rd. If any saturation happens, this instruction sets the OV flag. The value of Rs2[31:5] will not affect this instruction.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">if<sp/>(Rs2[4:0]<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<programlisting><codeline><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(Rs2[4:0]<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>sa<sp/>=<sp/>-Rs2[4:0];</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>sa<sp/>=<sp/>(sa<sp/>==<sp/>16)?<sp/>15<sp/>:<sp/>sa;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd.H[x]<sp/>=<sp/>SE16(Rs1.H[x][15:sa]);</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>sa<sp/>=<sp/>Rs2[3:0];</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[(15+sa):0]<sp/>=<sp/>Rs1.H[x]<sp/>&lt;&lt;(logic)<sp/>sa;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(res<sp/>&gt;<sp/>(2^15)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res<sp/>&gt;<sp/>(2^15)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res[15:0]<sp/>=<sp/>0x7fff;<sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>if<sp/>(res<sp/>&lt;<sp/>-2^15)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res<sp/>&lt;<sp/>-2^15)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res[15:0]<sp/>=<sp/>0x8000;<sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>d.H[x]<sp/>=<sp/>res[15:0];</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -315,7 +315,7 @@ The 16-bit data elements of Rs1 are left-shifted logically or right-shifted arit
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="13977" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13977" bodyend="13982"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="13977" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13977" bodyend="13982"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__CUSTOM_1ga7f2598c19678a959960b6c6d3379e465" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -336,20 +336,20 @@ The 16-bit data elements of Rs1 are left-shifted logically or right-shifted arit
         <detaileddescription>
 <para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">DKADD8<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
-<codeline><highlight class="normal">#<sp/>Rd,<sp/>Rs1,<sp/>Rs2<sp/>are<sp/>all<sp/>even/odd<sp/>pair<sp/>of<sp/>registers</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>Rd,<sp/>Rs1,<sp/>Rs2<sp/>are<sp/>all<sp/>even/odd<sp/>pair<sp/>of<sp/>registers</highlight></codeline>
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Do 8-bit signed integer element saturating additions simultaneously.</para><para><bold>Description</bold>:<linebreak/>
 This instruction adds the 8-bit signed integer elements in Rs1 with the 8-bit signed integer elements in Rs2. If any of the results are beyond the Q7 number range (-2^7 &lt;= Q7 &lt;= 2^7-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">res[x]<sp/>=<sp/>Rs1.B[x]<sp/>+<sp/>Rs2.B[x];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(res[x]<sp/>&gt;<sp/>127)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&gt;<sp/>127)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>127;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(res[x]<sp/>&lt;<sp/>-128)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&lt;<sp/>-128)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>-128;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>res[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=7...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=7...0,</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -369,7 +369,7 @@ This instruction adds the 8-bit signed integer elements in Rs1 with the 8-bit si
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="14024" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="14024" bodyend="14029"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="14024" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="14024" bodyend="14029"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__CUSTOM_1gaeb50cbc43674d8dd32e7455b6c25b394" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -390,20 +390,20 @@ This instruction adds the 8-bit signed integer elements in Rs1 with the 8-bit si
         <detaileddescription>
 <para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">DKADD16<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
-<codeline><highlight class="normal">#<sp/>Rd,<sp/>Rs1,<sp/>Rs2<sp/>are<sp/>all<sp/>even/odd<sp/>pair<sp/>of<sp/>registers</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>Rd,<sp/>Rs1,<sp/>Rs2<sp/>are<sp/>all<sp/>even/odd<sp/>pair<sp/>of<sp/>registers</highlight></codeline>
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Do 16-bit signed integer element saturating additions simultaneously.</para><para><bold>Description</bold>:<linebreak/>
 This instruction adds the 16-bit signed integer elements in Rs1 with the 16-bit signed integer elements in Rs2. If any of the results are beyond the Q15 number range (-2^15 &lt;= Q15 &lt;= 2^15-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">res[x]<sp/>=<sp/>Rs1.H[x]<sp/>+<sp/>Rs2.H[x];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(res[x]<sp/>&gt;<sp/>32767)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&gt;<sp/>32767)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>32767;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(res[x]<sp/>&lt;<sp/>-32768)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&lt;<sp/>-32768)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>-32768;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.H[x]<sp/>=<sp/>res[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -423,7 +423,7 @@ This instruction adds the 16-bit signed integer elements in Rs1 with the 16-bit 
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="14071" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="14071" bodyend="14076"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="14071" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="14071" bodyend="14076"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__CUSTOM_1ga5dbe06f7b351ff1477851894d6d0c927" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -444,20 +444,20 @@ This instruction adds the 16-bit signed integer elements in Rs1 with the 16-bit 
         <detaileddescription>
 <para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">DKSUB8<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
-<codeline><highlight class="normal">#<sp/>Rd,<sp/>Rs1,<sp/>Rs2<sp/>are<sp/>all<sp/>even/odd<sp/>pair<sp/>of<sp/>registers</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>Rd,<sp/>Rs1,<sp/>Rs2<sp/>are<sp/>all<sp/>even/odd<sp/>pair<sp/>of<sp/>registers</highlight></codeline>
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Do 8-bit signed elements saturating subtractions simultaneously.</para><para><bold>Description</bold>:<linebreak/>
 This instruction subtracts the 8-bit signed integer elements in Rs2 from the 8-bit signed integer elements in Rs1. If any of the results are beyond the Q7 number range (-2^7 &lt;= Q7 &lt;= 2^7-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">res[x]<sp/>=<sp/>Rs1.B[x]<sp/>-<sp/>Rs2.B[x];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(res[x]<sp/>&gt;<sp/>(2^7)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&gt;<sp/>(2^7)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>(2^7)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(res[x]<sp/>&lt;<sp/>-2^7)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&lt;<sp/>-2^7)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>-2^7;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>res[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=7...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=7...0,</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -477,7 +477,7 @@ This instruction subtracts the 8-bit signed integer elements in Rs2 from the 8-b
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="14118" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="14118" bodyend="14123"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="14118" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="14118" bodyend="14123"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__CUSTOM_1gaa5dfb634a380181e51e0636cb216fbb1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -498,20 +498,20 @@ This instruction subtracts the 8-bit signed integer elements in Rs2 from the 8-b
         <detaileddescription>
 <para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">DKSUB16<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
-<codeline><highlight class="normal">#<sp/>Rd,<sp/>Rs1,<sp/>Rs2<sp/>are<sp/>all<sp/>even/odd<sp/>pair<sp/>of<sp/>registers</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>Rd,<sp/>Rs1,<sp/>Rs2<sp/>are<sp/>all<sp/>even/odd<sp/>pair<sp/>of<sp/>registers</highlight></codeline>
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Do 16-bit signed integer elements saturating subtractions simultaneously.</para><para><bold>Description</bold>:<linebreak/>
 This instruction subtracts the 16-bit signed integer elements in Rs2 from the 16-bit signed integer elements in Rs1. If any of the results are beyond the Q15 number range (-2^15 &lt;= Q15 &lt;= 2^15-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">res[x]<sp/>=<sp/>Rs1.H[x]<sp/>-<sp/>Rs2.H[x];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(res[x]<sp/>&gt;<sp/>(2^15)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&gt;<sp/>(2^15)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>(2^15)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(res[x]<sp/>&lt;<sp/>-2^15)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&lt;<sp/>-2^15)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>-2^15;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.H[x]<sp/>=<sp/>res[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -531,7 +531,7 @@ This instruction subtracts the 16-bit signed integer elements in Rs2 from the 16
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="14166" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="14166" bodyend="14171"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="14166" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="14166" bodyend="14171"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__CUSTOM_1ga1bdbaa4714d2052c162a076e676f4ea4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -552,7 +552,7 @@ This instruction subtracts the 16-bit signed integer elements in Rs2 from the 16
 Copy 8-bit data from 32-bit chunks into 4 bytes in a register.</para><para><bold>Description</bold>:<linebreak/>
 Moves Rs1.B[0][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Rd.W[x][31:0]<sp/>=<sp/>CONCAT(Rs1.B[0][7:0],<sp/>Rs1.B[0][7:0],<sp/>Rs1.B[0][7:0],<sp/>Rs1.B[0][7:0]);</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -565,7 +565,7 @@ Moves Rs1.B[0][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]</para>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="14201" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="14201" bodyend="14206"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="14201" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="14201" bodyend="14206"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__CUSTOM_1gad690c697580b52820282c03d6a6567c5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -586,7 +586,7 @@ Moves Rs1.B[0][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]</para>
 Copy 8-bit data from 32-bit chunks into 4 bytes in a register.</para><para><bold>Description</bold>:<linebreak/>
 Moves Rs1.B[1][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Rd.W[x][31:0]<sp/>=<sp/>CONCAT(Rs1.B[1][7:0],<sp/>Rs1.B[1][7:0],<sp/>Rs1.B[1][7:0],<sp/>Rs1.B[1][7:0]);</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -599,7 +599,7 @@ Moves Rs1.B[1][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]</para>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="14236" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="14236" bodyend="14241"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="14236" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="14236" bodyend="14241"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__CUSTOM_1gafc4a523cfa64150d691bdc5d7d038810" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -620,7 +620,7 @@ Moves Rs1.B[1][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]</para>
 Copy 8-bit data from 32-bit chunks into 4 bytes in a register.</para><para><bold>Description</bold>:<linebreak/>
 Moves Rs1.B[2][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Rd.W[x][31:0]<sp/>=<sp/>CONCAT(Rs1.B[2][7:0],<sp/>Rs1.B[2][7:0],<sp/>Rs1.B[2][7:0],<sp/>Rs1.B[2][7:0]);</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -633,7 +633,7 @@ Moves Rs1.B[2][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]</para>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="14271" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="14271" bodyend="14276"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="14271" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="14271" bodyend="14276"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__CUSTOM_1ga6d8dce49013b778d0290cd057cf45dd0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -654,7 +654,7 @@ Moves Rs1.B[2][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]</para>
 Copy 8-bit data from 32-bit chunks into 4 bytes in a register.</para><para><bold>Description</bold>:<linebreak/>
 Moves Rs1.B[3][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Rd.W[x][31:0]<sp/>=<sp/>CONCAT(Rs1.B[3][7:0],<sp/>Rs1.B[3][7:0],<sp/>Rs1.B[3][7:0],<sp/>Rs1.B[3][7:0]);</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -667,20 +667,8 @@ Moves Rs1.B[3][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]</para>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="14306" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="14306" bodyend="14311"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="14306" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="14306" bodyend="14311"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
-        <references refid="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__ADDSUB_1gacacca4e304ad42fc68a96c785f2a0b69" compoundref="core__feature__dsp_8h" startline="401" endline="406">__RV_ADD16</references>
-        <references refid="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__32B__ADDSUB_1ga84ab72987eeee69e2392965d8d8944f4" compoundref="core__feature__dsp_8h" startline="2803" endline="2807">__RV_KMADA</references>
-        <references refid="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__32B__ADDSUB_1ga1cab84ebee0378b9c1069e17efdbfd69" compoundref="core__feature__dsp_8h" startline="2867" endline="2871">__RV_KMAXDA</references>
-        <references refid="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__32B__ADDSUB_1ga2de43c62af85225d40c1ac4210640925" compoundref="core__feature__dsp_8h" startline="3201" endline="3206">__RV_KMDA</references>
-        <references refid="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__32B__ADDSUB_1ga37c752d6151fb29b43b01b2dd8af55d6" compoundref="core__feature__dsp_8h" startline="3252" endline="3257">__RV_KMXDA</references>
-        <references refid="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB_1ga8320e2679cb96ee46fcaf761925b8708" compoundref="core__feature__dsp_8h" startline="7628" endline="7632">__RV_SMALDA</references>
-        <references refid="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB_1ga18e89f90f0b3e3d8c34ceb33b671a61b" compoundref="core__feature__dsp_8h" startline="7712" endline="7716">__RV_SMALXDA</references>
-        <references refid="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__32B__ADDSUB_1gafab251aa9c5e64dc004c9dc3b8c7c0dd" compoundref="core__feature__dsp_8h" startline="8477" endline="8482">__RV_SMDRS</references>
-        <references refid="group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X32__MAC_1ga17b1cc8cce90ea3852050e9ec0b28795" compoundref="core__feature__dsp_8h" startline="8665" endline="8670">__RV_SMMUL</references>
-        <references refid="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__32B__ADDSUB_1ga45c60f7cb5ae0e2ddaeca68e0a76283b" compoundref="core__feature__dsp_8h" startline="8536" endline="8541">__RV_SMXDS</references>
-        <references refid="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga8d213189a39651f3bcad77da2eb1f530" compoundref="core__feature__dsp_8h" startline="10792" endline="10797">__RV_SUNPKD830</references>
-        <references refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" compoundref="nmsis__gcc_8h" startline="74">__STATIC_FORCEINLINE</references>
       </memberdef>
       </sectiondef>
     <briefdescription>

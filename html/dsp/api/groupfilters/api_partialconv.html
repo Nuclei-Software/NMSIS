@@ -435,7 +435,7 @@
 <dt id="_CPPv422riscv_conv_partial_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t8uint32_t8uint32_t">
 <span id="_CPPv322riscv_conv_partial_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t8uint32_t8uint32_t"></span><span id="_CPPv222riscv_conv_partial_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t8uint32_t8uint32_t"></span><span class="target" id="group__PartialConv_1ga12699a743519d30a39af236c42d680af"></span>riscv_status <code class="sig-name descname">riscv_conv_partial_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q15_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q15_t *<em>pDst</em>, uint32_t <em>firstIndex</em>, uint32_t <em>numPoints</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Partial convolution of Q15 sequences. </p>
-<p><dl class="simple">
+<p><dl>
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_ARGUMENT_ERROR : requested subset is not in the range [0 srcALen+srcBLen-2]</p></li>
@@ -443,8 +443,7 @@
 </p>
 </dd>
 <dt><strong>Remark</strong></dt><dd><p>Refer to riscv_conv_partial_fast_q15() for a faster but less precise version of this function. </p>
-</dd>
-<dt><strong>Remark</strong></dt><dd><p>Refer to riscv_conv_partial_opt_q15() for a faster implementation of this function using scratch buffers. </p>
+<p>Refer to riscv_conv_partial_opt_q15() for a faster implementation of this function using scratch buffers. </p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcA</span></code>: points to the first input sequence </p></li>

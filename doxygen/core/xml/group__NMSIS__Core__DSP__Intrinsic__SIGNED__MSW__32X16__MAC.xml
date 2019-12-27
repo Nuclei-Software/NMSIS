@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X16__MAC" kind="group">
     <compoundname>NMSIS_Core_DSP_Intrinsic_SIGNED_MSW_32X16_MAC</compoundname>
     <title>Signed MSW 32x16 Multiply and Add Instructions</title>
@@ -31,22 +31,22 @@
 Multiply the signed 32-bit integer elements of one register and the bottom 16-bit of the corresponding 32-bit elements of another register and add the most significant 32-bit results with the corresponding signed 32-bit elements of a third register. The addition result is written to the corresponding 32-bit elements of the third register. The <computeroutput>.u</computeroutput> form rounds up the multiplication results from the most significant discarded bit before the addition operations.</para><para><bold>Description</bold>:<linebreak/>
 This instruction multiplies the signed 32-bit elements of Rs1 with the signed bottom 16-bit content of the corresponding 32-bit elements of Rs2 and adds the most significant 32-bit multiplication results with the corresponding signed 32-bit elements of Rd. If the addition result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV bit is set to 1. The results after saturation are written to the corresponding 32-bit elements of Rd. The <computeroutput>.u</computeroutput> form of the instruction rounds up the most significant 32-bit of the 48-bit multiplication results by adding a 1 to bit 15 of the result before the addition operations.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Mres[x][47:0]<sp/>=<sp/>Rs1.W[x]<sp/>*<sp/>Rs2.W[x].H[0];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Round[x][32:0]<sp/>=<sp/>Mres[x][47:15]<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>Round[x][32:1];</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>Mres[x][47:16];</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>(2^31)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>-2^31;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>res[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">t</parametername>
@@ -73,7 +73,7 @@ This instruction multiplies the signed 32-bit elements of Rs1 with the signed bo
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="3437" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="3437" bodyend="3441"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="3437" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="3437" bodyend="3441"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X16__MAC_1ga6385e945e25b69987eb34e8e9e862bcf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -103,22 +103,22 @@ This instruction multiplies the signed 32-bit elements of Rs1 with the signed bo
 Multiply the signed 32-bit integer elements of one register and the bottom 16-bit of the corresponding 32-bit elements of another register and add the most significant 32-bit results with the corresponding signed 32-bit elements of a third register. The addition result is written to the corresponding 32-bit elements of the third register. The <computeroutput>.u</computeroutput> form rounds up the multiplication results from the most significant discarded bit before the addition operations.</para><para><bold>Description</bold>:<linebreak/>
 This instruction multiplies the signed 32-bit elements of Rs1 with the signed bottom 16-bit content of the corresponding 32-bit elements of Rs2 and adds the most significant 32-bit multiplication results with the corresponding signed 32-bit elements of Rd. If the addition result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV bit is set to 1. The results after saturation are written to the corresponding 32-bit elements of Rd. The <computeroutput>.u</computeroutput> form of the instruction rounds up the most significant 32-bit of the 48-bit multiplication results by adding a 1 to bit 15 of the result before the addition operations.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Mres[x][47:0]<sp/>=<sp/>Rs1.W[x]<sp/>*<sp/>Rs2.W[x].H[0];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Round[x][32:0]<sp/>=<sp/>Mres[x][47:15]<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>Round[x][32:1];</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>Mres[x][47:16];</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>(2^31)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>-2^31;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>res[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">t</parametername>
@@ -145,7 +145,7 @@ This instruction multiplies the signed 32-bit elements of Rs1 with the signed bo
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="3499" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="3499" bodyend="3503"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="3499" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="3499" bodyend="3503"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X16__MAC_1ga19bd50c2b77b1749c9c63c64c1f5bb44" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -174,27 +174,27 @@ This instruction multiplies the signed 32-bit elements of Rs1 with the signed bo
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Multiply the signed 32-bit elements of one register and the bottom 16-bit of the corresponding 32-bit elements of another register, double the multiplication results and add the saturated most significant 32-bit results with the corresponding signed 32-bit elements of a third register. The saturated addition result is written to the corresponding 32-bit elements of the third register. The <computeroutput>.u</computeroutput> form rounds up the multiplication results from the most significant discarded bit before the addition operations.</para><para><bold>Description</bold>:<linebreak/>
 This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signed bottom 16-bit Q15 content of the corresponding 32-bit elements of Rs2, doubles the Q46 results to Q47 numbers and adds the saturated most significant 32-bit Q31 multiplication results with the corresponding signed 32-bit elements of Rd. If the addition result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV bit is set to 1. The results after saturation are written to the corresponding 32-bit elements of Rd. The <computeroutput>.u</computeroutput> form of the instruction rounds up the most significant 32-bit of the 48-bit Q47 multiplication results by adding a 1 to bit 15 (i.e., bit 14 before doubling) of the result before the addition operations.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">if<sp/>((Rs1.W[x]<sp/>==<sp/>0x80000000)<sp/>&amp;<sp/>(Rs2.W[x].H[0]<sp/>==<sp/>0x8000))<sp/>{</highlight></codeline>
+<programlisting><codeline><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((Rs1.W[x]<sp/>==<sp/>0x80000000)<sp/>&amp;<sp/>(Rs2.W[x].H[0]<sp/>==<sp/>0x8000))<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>addop.W[x]<sp/>=<sp/>0x7fffffff;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Mres[x][47:0]<sp/>=<sp/>Rs1.W[x]<sp/>s*<sp/>Rs2.W[x].H[0];</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Mres[x][47:14]<sp/>=<sp/>Mres[x][47:14]<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>addop.W[x]<sp/>=<sp/>Mres[x][46:15];<sp/>//<sp/>doubling</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>addop.W[x]<sp/>=<sp/>Mres[x][46:15];<sp/></highlight><highlight class="comment">//<sp/>doubling</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>addop.W[x];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>(2^31)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>-2^31;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>res[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">t</parametername>
@@ -221,7 +221,7 @@ This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signe
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="3567" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="3567" bodyend="3571"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="3567" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="3567" bodyend="3571"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X16__MAC_1gac281461b8f0907d2d0c1a922ca5e65b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -250,27 +250,27 @@ This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signe
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Multiply the signed 32-bit elements of one register and the bottom 16-bit of the corresponding 32-bit elements of another register, double the multiplication results and add the saturated most significant 32-bit results with the corresponding signed 32-bit elements of a third register. The saturated addition result is written to the corresponding 32-bit elements of the third register. The <computeroutput>.u</computeroutput> form rounds up the multiplication results from the most significant discarded bit before the addition operations.</para><para><bold>Description</bold>:<linebreak/>
 This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signed bottom 16-bit Q15 content of the corresponding 32-bit elements of Rs2, doubles the Q46 results to Q47 numbers and adds the saturated most significant 32-bit Q31 multiplication results with the corresponding signed 32-bit elements of Rd. If the addition result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV bit is set to 1. The results after saturation are written to the corresponding 32-bit elements of Rd. The <computeroutput>.u</computeroutput> form of the instruction rounds up the most significant 32-bit of the 48-bit Q47 multiplication results by adding a 1 to bit 15 (i.e., bit 14 before doubling) of the result before the addition operations.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">if<sp/>((Rs1.W[x]<sp/>==<sp/>0x80000000)<sp/>&amp;<sp/>(Rs2.W[x].H[0]<sp/>==<sp/>0x8000))<sp/>{</highlight></codeline>
+<programlisting><codeline><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((Rs1.W[x]<sp/>==<sp/>0x80000000)<sp/>&amp;<sp/>(Rs2.W[x].H[0]<sp/>==<sp/>0x8000))<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>addop.W[x]<sp/>=<sp/>0x7fffffff;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Mres[x][47:0]<sp/>=<sp/>Rs1.W[x]<sp/>s*<sp/>Rs2.W[x].H[0];</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Mres[x][47:14]<sp/>=<sp/>Mres[x][47:14]<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>addop.W[x]<sp/>=<sp/>Mres[x][46:15];<sp/>//<sp/>doubling</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>addop.W[x]<sp/>=<sp/>Mres[x][46:15];<sp/></highlight><highlight class="comment">//<sp/>doubling</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>addop.W[x];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>(2^31)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>-2^31;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>res[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">t</parametername>
@@ -297,7 +297,7 @@ This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signe
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="3635" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="3635" bodyend="3639"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="3635" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="3635" bodyend="3639"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X16__MAC_1ga447a6dd6e573595ce930f8ba1ab135ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -327,22 +327,22 @@ This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signe
 Multiply the signed 32-bit integer elements of one register and the signed top 16-bit of the corresponding 32-bit elements of another register and add the most significant 32-bit results with the corresponding signed 32-bit elements of a third register. The addition results are written to the corresponding 32-bit elements of the third register. The <computeroutput>.u</computeroutput> form rounds up the multiplication results from the most significant discarded bit before the addition operations.</para><para><bold>Description</bold>:<linebreak/>
 This instruction multiplies the signed 32-bit elements of Rs1 with the signed top 16-bit of the corresponding 32-bit elements of Rs2 and adds the most significant 32-bit multiplication results with the corresponding signed 32-bit elements of Rd. If the addition result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV bit is set to 1. The results after saturation are written to the corresponding 32-bit elements of Rd. The <computeroutput>.u</computeroutput> form of the instruction rounds up the most significant 32-bit of the 48-bit multiplication results by adding a 1 to bit 15 of the result before the addition operations.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Mres[x][47:0]<sp/>=<sp/>Rs1.W[x]<sp/>*<sp/>Rs2.W[x].H[1];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Round[x][32:0]<sp/>=<sp/>Mres[x][47:15]<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>Round[x][32:1];</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>Mres[x][47:16];</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>(2^31)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>-2^31;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>res[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">t</parametername>
@@ -369,7 +369,7 @@ This instruction multiplies the signed 32-bit elements of Rs1 with the signed to
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="3697" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="3697" bodyend="3701"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="3697" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="3697" bodyend="3701"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X16__MAC_1ga480bf71de56eefe132ae06a9bdeaf203" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -399,22 +399,22 @@ This instruction multiplies the signed 32-bit elements of Rs1 with the signed to
 Multiply the signed 32-bit integer elements of one register and the signed top 16-bit of the corresponding 32-bit elements of another register and add the most significant 32-bit results with the corresponding signed 32-bit elements of a third register. The addition results are written to the corresponding 32-bit elements of the third register. The <computeroutput>.u</computeroutput> form rounds up the multiplication results from the most significant discarded bit before the addition operations.</para><para><bold>Description</bold>:<linebreak/>
 This instruction multiplies the signed 32-bit elements of Rs1 with the signed top 16-bit of the corresponding 32-bit elements of Rs2 and adds the most significant 32-bit multiplication results with the corresponding signed 32-bit elements of Rd. If the addition result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV bit is set to 1. The results after saturation are written to the corresponding 32-bit elements of Rd. The <computeroutput>.u</computeroutput> form of the instruction rounds up the most significant 32-bit of the 48-bit multiplication results by adding a 1 to bit 15 of the result before the addition operations.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Mres[x][47:0]<sp/>=<sp/>Rs1.W[x]<sp/>*<sp/>Rs2.W[x].H[1];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Round[x][32:0]<sp/>=<sp/>Mres[x][47:15]<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>Round[x][32:1];</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>Mres[x][47:16];</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>(2^31)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>-2^31;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>res[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">t</parametername>
@@ -441,7 +441,7 @@ This instruction multiplies the signed 32-bit elements of Rs1 with the signed to
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="3759" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="3759" bodyend="3763"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="3759" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="3759" bodyend="3763"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X16__MAC_1ga60e15a6243014fd5b76b7cffa7275eb4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -470,27 +470,27 @@ This instruction multiplies the signed 32-bit elements of Rs1 with the signed to
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Multiply the signed 32-bit elements of one register and the top 16-bit of the corresponding 32-bit elements of another register, double the multiplication results and add the saturated most significant 32-bit results with the corresponding signed 32-bit elements of a third register. The saturated addition result is written to the corresponding 32-bit elements of the third register. The <computeroutput>.u</computeroutput> form rounds up the multiplication results from the most significant discarded bit before the addition operations.</para><para><bold>Description</bold>:<linebreak/>
 This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signed top 16-bit Q15 content of the corresponding 32-bit elements of Rs2, doubles the Q46 results to Q47 numbers and adds the saturated most significant 32-bit Q31 multiplication results with the corresponding signed 32-bit elements of Rd. If the addition result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV bit is set to 1. The results after saturation are written to the corresponding 32-bit elements of Rd. The <computeroutput>.u</computeroutput> form of the instruction rounds up the most significant 32-bit of the 48-bit Q47 multiplication results by adding a 1 to bit 15 (i.e., bit 14 before doubling) of the result before the addition operations.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">if<sp/>((Rs1.W[x]<sp/>==<sp/>0x80000000)<sp/>&amp;<sp/>(Rs2.W[x].H[1]<sp/>==<sp/>0x8000))<sp/>{</highlight></codeline>
+<programlisting><codeline><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((Rs1.W[x]<sp/>==<sp/>0x80000000)<sp/>&amp;<sp/>(Rs2.W[x].H[1]<sp/>==<sp/>0x8000))<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>addop.W[x]<sp/>=<sp/>0x7fffffff;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Mres[x][47:0]<sp/>=<sp/>Rs1.W[x]<sp/>s*<sp/>Rs2.W[x].H[1];</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Mres[x][47:14]<sp/>=<sp/>Mres[x][47:14]<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>addop.W[x]<sp/>=<sp/>Mres[x][46:15];<sp/>//<sp/>doubling</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>addop.W[x]<sp/>=<sp/>Mres[x][46:15];<sp/></highlight><highlight class="comment">//<sp/>doubling</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>addop.W[x];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>(2^31)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>-2^31;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>res[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">t</parametername>
@@ -517,7 +517,7 @@ This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signe
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="3827" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="3827" bodyend="3831"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="3827" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="3827" bodyend="3831"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X16__MAC_1ga30aa2050f5f50a26aedc28dfce398db8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -546,27 +546,27 @@ This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signe
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Multiply the signed 32-bit elements of one register and the top 16-bit of the corresponding 32-bit elements of another register, double the multiplication results and add the saturated most significant 32-bit results with the corresponding signed 32-bit elements of a third register. The saturated addition result is written to the corresponding 32-bit elements of the third register. The <computeroutput>.u</computeroutput> form rounds up the multiplication results from the most significant discarded bit before the addition operations.</para><para><bold>Description</bold>:<linebreak/>
 This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signed top 16-bit Q15 content of the corresponding 32-bit elements of Rs2, doubles the Q46 results to Q47 numbers and adds the saturated most significant 32-bit Q31 multiplication results with the corresponding signed 32-bit elements of Rd. If the addition result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV bit is set to 1. The results after saturation are written to the corresponding 32-bit elements of Rd. The <computeroutput>.u</computeroutput> form of the instruction rounds up the most significant 32-bit of the 48-bit Q47 multiplication results by adding a 1 to bit 15 (i.e., bit 14 before doubling) of the result before the addition operations.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">if<sp/>((Rs1.W[x]<sp/>==<sp/>0x80000000)<sp/>&amp;<sp/>(Rs2.W[x].H[1]<sp/>==<sp/>0x8000))<sp/>{</highlight></codeline>
+<programlisting><codeline><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((Rs1.W[x]<sp/>==<sp/>0x80000000)<sp/>&amp;<sp/>(Rs2.W[x].H[1]<sp/>==<sp/>0x8000))<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>addop.W[x]<sp/>=<sp/>0x7fffffff;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Mres[x][47:0]<sp/>=<sp/>Rs1.W[x]<sp/>s*<sp/>Rs2.W[x].H[1];</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Mres[x][47:14]<sp/>=<sp/>Mres[x][47:14]<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>addop.W[x]<sp/>=<sp/>Mres[x][46:15];<sp/>//<sp/>doubling</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>addop.W[x]<sp/>=<sp/>Mres[x][46:15];<sp/></highlight><highlight class="comment">//<sp/>doubling</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>addop.W[x];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>(2^31)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>-2^31;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>res[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">t</parametername>
@@ -593,7 +593,7 @@ This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signe
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="3895" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="3895" bodyend="3899"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="3895" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="3895" bodyend="3899"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X16__MAC_1gaaec865ab687a1764eb5b1e1f5603611d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -618,20 +618,20 @@ This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signe
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Multiply the signed 32-bit integer elements of one register and the bottom 16-bit of the corresponding 32-bit elements of another register, double the multiplication results and write the saturated most significant 32-bit results to the corresponding 32-bit elements of a register. The <computeroutput>.u</computeroutput> form rounds up the results from the most significant discarded bit.</para><para><bold>Description</bold>:<linebreak/>
 This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signed bottom 16-bit Q15 content of the corresponding 32-bit elements of Rs2, doubles the Q46 results to Q47 numbers and writes the saturated most significant 32-bit Q31 multiplication results to the corresponding 32-bit elements of Rd. The <computeroutput>.u</computeroutput> form of the instruction rounds up the most significant 32-bit of the 48-bit Q47 multiplication results by adding a 1 to bit 15 (i.e., bit 14 before doubling) of the results.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">if<sp/>((Rs1.W[x]<sp/>==<sp/>0x80000000)<sp/>&amp;<sp/>(Rs2.W[x].H[0]<sp/>==<sp/>0x8000))<sp/>{</highlight></codeline>
+<programlisting><codeline><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((Rs1.W[x]<sp/>==<sp/>0x80000000)<sp/>&amp;<sp/>(Rs2.W[x].H[0]<sp/>==<sp/>0x8000))<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd.W[x]<sp/>=<sp/>0x7fffffff;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Mres[x][47:0]<sp/>=<sp/>Rs1.W[x]<sp/>s*<sp/>Rs2.W[x].H[0];</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Round[x][32:0]<sp/>=<sp/>Mres[x][46:14]<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.W[x]<sp/>=<sp/>Round[x][32:1];</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.W[x]<sp/>=<sp/>Mres[x][46:15];</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -651,7 +651,7 @@ This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signe
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="4070" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="4070" bodyend="4075"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="4070" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="4070" bodyend="4075"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X16__MAC_1ga9f55b328152b5b5b840931b5415b2865" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -676,20 +676,20 @@ This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signe
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Multiply the signed 32-bit integer elements of one register and the bottom 16-bit of the corresponding 32-bit elements of another register, double the multiplication results and write the saturated most significant 32-bit results to the corresponding 32-bit elements of a register. The <computeroutput>.u</computeroutput> form rounds up the results from the most significant discarded bit.</para><para><bold>Description</bold>:<linebreak/>
 This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signed bottom 16-bit Q15 content of the corresponding 32-bit elements of Rs2, doubles the Q46 results to Q47 numbers and writes the saturated most significant 32-bit Q31 multiplication results to the corresponding 32-bit elements of Rd. The <computeroutput>.u</computeroutput> form of the instruction rounds up the most significant 32-bit of the 48-bit Q47 multiplication results by adding a 1 to bit 15 (i.e., bit 14 before doubling) of the results.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">if<sp/>((Rs1.W[x]<sp/>==<sp/>0x80000000)<sp/>&amp;<sp/>(Rs2.W[x].H[0]<sp/>==<sp/>0x8000))<sp/>{</highlight></codeline>
+<programlisting><codeline><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((Rs1.W[x]<sp/>==<sp/>0x80000000)<sp/>&amp;<sp/>(Rs2.W[x].H[0]<sp/>==<sp/>0x8000))<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd.W[x]<sp/>=<sp/>0x7fffffff;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Mres[x][47:0]<sp/>=<sp/>Rs1.W[x]<sp/>s*<sp/>Rs2.W[x].H[0];</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Round[x][32:0]<sp/>=<sp/>Mres[x][46:14]<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.W[x]<sp/>=<sp/>Round[x][32:1];</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.W[x]<sp/>=<sp/>Mres[x][46:15];</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -709,7 +709,7 @@ This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signe
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="4126" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="4126" bodyend="4131"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="4126" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="4126" bodyend="4131"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X16__MAC_1gaa83e41e92fe13e28b2509a0bf92224bf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -734,20 +734,20 @@ This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signe
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Multiply the signed 32-bit integer elements of one register and the top 16-bit of the corresponding 32-bit elements of another register, double the multiplication results and write the saturated most significant 32-bit results to the corresponding 32-bit elements of a register. The <computeroutput>.u</computeroutput> form rounds up the results from the most significant discarded bit.</para><para><bold>Description</bold>:<linebreak/>
 This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signed top 16-bit Q15 content of the corresponding 32-bit elements of Rs2, doubles the Q46 results to Q47 numbers and writes the saturated most significant 32-bit Q31 multiplication results to the corresponding 32-bit elements of Rd. The <computeroutput>.u</computeroutput> form of the instruction rounds up the most significant 32-bit of the 48-bit Q47 multiplication results by adding a 1 to bit 15 (i.e., bit 14 before doubling) of the results.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">if<sp/>((Rs1.W[x]<sp/>==<sp/>0x80000000)<sp/>&amp;<sp/>(Rs2.W[x].H[1]<sp/>==<sp/>0x8000))<sp/>{</highlight></codeline>
+<programlisting><codeline><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((Rs1.W[x]<sp/>==<sp/>0x80000000)<sp/>&amp;<sp/>(Rs2.W[x].H[1]<sp/>==<sp/>0x8000))<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd.W[x]<sp/>=<sp/>0x7fffffff;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Mres[x][47:0]<sp/>=<sp/>Rs1.W[x]<sp/>s*<sp/>Rs2.W[x].H[1];</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Round[x][32:0]<sp/>=<sp/>Mres[x][46:14]<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.W[x]<sp/>=<sp/>Round[x][32:1];</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.W[x]<sp/>=<sp/>Mres[x][46:15];</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -767,7 +767,7 @@ This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signe
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="4182" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="4182" bodyend="4187"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="4182" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="4182" bodyend="4187"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X16__MAC_1ga1d59336d9cabde5ac5a646abcc0b25c9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -792,20 +792,20 @@ This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signe
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Multiply the signed 32-bit integer elements of one register and the top 16-bit of the corresponding 32-bit elements of another register, double the multiplication results and write the saturated most significant 32-bit results to the corresponding 32-bit elements of a register. The <computeroutput>.u</computeroutput> form rounds up the results from the most significant discarded bit.</para><para><bold>Description</bold>:<linebreak/>
 This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signed top 16-bit Q15 content of the corresponding 32-bit elements of Rs2, doubles the Q46 results to Q47 numbers and writes the saturated most significant 32-bit Q31 multiplication results to the corresponding 32-bit elements of Rd. The <computeroutput>.u</computeroutput> form of the instruction rounds up the most significant 32-bit of the 48-bit Q47 multiplication results by adding a 1 to bit 15 (i.e., bit 14 before doubling) of the results.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">if<sp/>((Rs1.W[x]<sp/>==<sp/>0x80000000)<sp/>&amp;<sp/>(Rs2.W[x].H[1]<sp/>==<sp/>0x8000))<sp/>{</highlight></codeline>
+<programlisting><codeline><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((Rs1.W[x]<sp/>==<sp/>0x80000000)<sp/>&amp;<sp/>(Rs2.W[x].H[1]<sp/>==<sp/>0x8000))<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd.W[x]<sp/>=<sp/>0x7fffffff;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Mres[x][47:0]<sp/>=<sp/>Rs1.W[x]<sp/>s*<sp/>Rs2.W[x].H[1];</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Round[x][32:0]<sp/>=<sp/>Mres[x][46:14]<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.W[x]<sp/>=<sp/>Round[x][32:1];</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.W[x]<sp/>=<sp/>Mres[x][46:15];</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -825,7 +825,7 @@ This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signe
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="4238" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="4238" bodyend="4243"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="4238" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="4238" bodyend="4243"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X16__MAC_1ga9842af8b6adf990ea70a5261e546a26c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -851,14 +851,14 @@ This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signe
 Multiply the signed 32-bit integer elements of one register and the bottom 16-bit of the corresponding 32-bit elements of another register, and write the most significant 32-bit results to the corresponding 32-bit elements of a register. The <computeroutput>.u</computeroutput> form rounds up the results from the most significant discarded bit.</para><para><bold>Description</bold>:<linebreak/>
 This instruction multiplies the signed 32-bit elements of Rs1 with the signed bottom 16-bit content of the corresponding 32-bit elements of Rs2 and writes the most significant 32-bit multiplication results to the corresponding 32-bit elements of Rd. The <computeroutput>.u</computeroutput> form of the instruction rounds up the most significant 32-bit of the 48-bit multiplication results by adding a 1 to bit 15 of the results.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Mres[x][47:0]<sp/>=<sp/>Rs1.W[x]<sp/>*<sp/>Rs2.W[x].H[0];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Round[x][32:0]<sp/>=<sp/>Mres[x][47:15]<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd.W[x]<sp/>=<sp/>Round[x][32:1];</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd.W[x]<sp/>=<sp/>Mres[x][47:16];</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -878,7 +878,7 @@ This instruction multiplies the signed 32-bit elements of Rs1 with the signed bo
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="8766" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8766" bodyend="8771"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="8766" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8766" bodyend="8771"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X16__MAC_1ga4b7617e39d73f38ac27a24644008aacd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -904,14 +904,14 @@ This instruction multiplies the signed 32-bit elements of Rs1 with the signed bo
 Multiply the signed 32-bit integer elements of one register and the bottom 16-bit of the corresponding 32-bit elements of another register, and write the most significant 32-bit results to the corresponding 32-bit elements of a register. The <computeroutput>.u</computeroutput> form rounds up the results from the most significant discarded bit.</para><para><bold>Description</bold>:<linebreak/>
 This instruction multiplies the signed 32-bit elements of Rs1 with the signed bottom 16-bit content of the corresponding 32-bit elements of Rs2 and writes the most significant 32-bit multiplication results to the corresponding 32-bit elements of Rd. The <computeroutput>.u</computeroutput> form of the instruction rounds up the most significant 32-bit of the 48-bit multiplication results by adding a 1 to bit 15 of the results.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Mres[x][47:0]<sp/>=<sp/>Rs1.W[x]<sp/>*<sp/>Rs2.W[x].H[0];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Round[x][32:0]<sp/>=<sp/>Mres[x][47:15]<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd.W[x]<sp/>=<sp/>Round[x][32:1];</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd.W[x]<sp/>=<sp/>Mres[x][47:16];</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -931,7 +931,7 @@ This instruction multiplies the signed 32-bit elements of Rs1 with the signed bo
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="8816" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8816" bodyend="8821"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="8816" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8816" bodyend="8821"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X16__MAC_1ga92298c74bc685e608de8c743f4348940" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -957,14 +957,14 @@ This instruction multiplies the signed 32-bit elements of Rs1 with the signed bo
 Multiply the signed 32-bit integer elements of one register and the top 16-bit of the corresponding 32-bit elements of another register, and write the most significant 32-bit results to the corresponding 32-bit elements of a register. The <computeroutput>.u</computeroutput> form rounds up the results from the most significant discarded bit.</para><para><bold>Description</bold>:<linebreak/>
 This instruction multiplies the signed 32-bit elements of Rs1 with the top signed 16-bit content of the corresponding 32-bit elements of Rs2 and writes the most significant 32-bit multiplication results to the corresponding 32-bit elements of Rd. The <computeroutput>.u</computeroutput> form of the instruction rounds up the most significant 32-bit of the 48-bit multiplication results by adding a 1 to bit 15 of the results.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Mres[x][47:0]<sp/>=<sp/>Rs1.W[x]<sp/>*<sp/>Rs2.W[x].H[1];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Round[x][32:0]<sp/>=<sp/>Mres[x][47:15]<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd.W[x]<sp/>=<sp/>Round[x][32:1];</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd.W[x]<sp/>=<sp/>Mres[x][47:16];</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -984,7 +984,7 @@ This instruction multiplies the signed 32-bit elements of Rs1 with the top signe
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="8866" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8866" bodyend="8871"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="8866" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8866" bodyend="8871"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X16__MAC_1ga75f579bae285694b96c319bd0c0daffa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -1010,14 +1010,14 @@ This instruction multiplies the signed 32-bit elements of Rs1 with the top signe
 Multiply the signed 32-bit integer elements of one register and the top 16-bit of the corresponding 32-bit elements of another register, and write the most significant 32-bit results to the corresponding 32-bit elements of a register. The <computeroutput>.u</computeroutput> form rounds up the results from the most significant discarded bit.</para><para><bold>Description</bold>:<linebreak/>
 This instruction multiplies the signed 32-bit elements of Rs1 with the top signed 16-bit content of the corresponding 32-bit elements of Rs2 and writes the most significant 32-bit multiplication results to the corresponding 32-bit elements of Rd. The <computeroutput>.u</computeroutput> form of the instruction rounds up the most significant 32-bit of the 48-bit multiplication results by adding a 1 to bit 15 of the results.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Mres[x][47:0]<sp/>=<sp/>Rs1.W[x]<sp/>*<sp/>Rs2.W[x].H[1];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Round[x][32:0]<sp/>=<sp/>Mres[x][47:15]<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd.W[x]<sp/>=<sp/>Round[x][32:1];</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Rd.W[x]<sp/>=<sp/>Mres[x][47:16];</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -1037,7 +1037,7 @@ This instruction multiplies the signed 32-bit elements of Rs1 with the top signe
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="8916" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8916" bodyend="8921"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="8916" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8916" bodyend="8921"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       </sectiondef>

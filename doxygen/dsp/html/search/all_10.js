@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['run_20dsp_20examples_20in_20spike',['Run DSP Examples in Spike',['../md__home_xl_ci_gitlab-runner_builds_f5c994c2_0_software_library_cmsis-5-riscv_CMSIS_nmsis_releas1c6a72a6fac5d99fa516858e553730ca.html',1,'']]],
+  ['run_20dsp_20examples_20in_20spike',['Run DSP Examples in Spike',['../md__home_travis_build_Nuclei-Software_NMSIS_NMSIS_DSP_Examples_RISCV_README.html',1,'']]],
   ['realcoefa',['realCoefA',['../group__RealFFT__Table.html#ga8b1ad947c470596674fa3364e16045c6',1,'realCoefA():&#160;riscv_realcoef_tables.c'],['../group__RealFFT__Table.html#ga8b1ad947c470596674fa3364e16045c6',1,'realCoefA():&#160;riscv_realcoef_tables.c']]],
   ['realcoefaq31',['realCoefAQ31',['../group__RealFFT__Table.html#gaf1592a6cf0504675205074a43c3728a2',1,'realCoefAQ31():&#160;riscv_realcoef_tables.c'],['../group__RealFFT__Table.html#gaf1592a6cf0504675205074a43c3728a2',1,'realCoefAQ31():&#160;riscv_realcoef_tables.c']]],
   ['realcoefb',['realCoefB',['../group__RealFFT__Table.html#gac52f98b52a1f03bfac8b57a67ba07397',1,'realCoefB():&#160;riscv_realcoef_tables.c'],['../group__RealFFT__Table.html#gac52f98b52a1f03bfac8b57a67ba07397',1,'realCoefB():&#160;riscv_realcoef_tables.c']]],

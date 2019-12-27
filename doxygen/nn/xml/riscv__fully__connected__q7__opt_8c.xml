@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
-  <compounddef id="riscv__fully__connected__q7__opt_8c" kind="file" language="C++">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="riscv__fully__connected__q7__opt_8c" kind="file">
     <compoundname>riscv_fully_connected_q7_opt.c</compoundname>
     <includes local="yes">riscv_math.h</includes>
     <includes refid="riscv__nnfunctions_8h" local="yes">riscv_nnfunctions.h</includes>
@@ -10,7 +10,7 @@
       </node>
       <node id="59">
         <label>riscv_fully_connected_q7_opt.c</label>
-        <link refid="riscv__fully__connected__q7__opt_8c"/>
+        <link refid="riscv_fully_connected_q7_opt.c"/>
         <childnode refid="60" relation="include">
         </childnode>
       </node>
@@ -128,7 +128,7 @@
 <bold>Buffer size:</bold></para><para>vec_buffer size: dim_vec</para><para>This opt function is designed to work with interleaved weight matrix. The vector input is assumed in q7_t format, we call riscv_q7_to_q15_no_shift_shuffle function to expand into q15_t format with certain weight re-ordering, refer to the function comments for more details. Here we use only one pointer to read 4 rows in the weight matrix. So if the original q7_t matrix looks like this:</para><para>| a11 | a12 | a13 | a14 | a15 | a16 | a17 |</para><para>| a21 | a22 | a23 | a24 | a25 | a26 | a27 |</para><para>| a31 | a32 | a33 | a34 | a35 | a36 | a37 |</para><para>| a41 | a42 | a43 | a44 | a45 | a46 | a47 |</para><para>| a51 | a52 | a53 | a54 | a55 | a56 | a57 |</para><para>| a61 | a62 | a63 | a64 | a65 | a66 | a67 |</para><para>We operates on multiple-of-4 rows, so the first four rows becomes</para><para>| a11 | a21 | a13 | a23 | a31 | a41 | a33 | a43 |</para><para>| a12 | a22 | a14 | a24 | a32 | a42 | a34 | a44 |</para><para>| a15 | a25 | a35 | a45 | a16 | a26 | a36 | a46 |</para><para>So within the kernel, we first read the re-ordered vector in as:</para><para>| b1 | b3 | and | b2 | b4 |</para><para>the four q31_t weights will look like</para><para>| a11 | a13 |, | a21 | a23 |, | a31 | a33 |, | a41 | a43 |</para><para>| a12 | a14 |, | a22 | a24 |, | a32 | a34 |, | a42 | a44 |</para><para>The column left over will be in-order. which is:</para><para>| a17 | a27 | a37 | a47 |</para><para>For the left-over rows, we do 1x1 computation, so the data remains as its original order.</para><para>So the stored weight matrix looks like this:</para><para>| a11 | a21 | a13 | a23 | a31 | a41 |</para><para>| a33 | a43 | a12 | a22 | a14 | a24 |</para><para>| a32 | a42 | a34 | a44 | a15 | a25 |</para><para>| a35 | a45 | a16 | a26 | a36 | a46 |</para><para>| a17 | a27 | a37 | a47 | a51 | a52 |</para><para>| a53 | a54 | a55 | a56 | a57 | a61 |</para><para>| a62 | a63 | a64 | a65 | a66 | a67 | </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_q7_opt.c" line="130" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_q7_opt.c" bodystart="130" bodyend="361"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_q7_opt.c" line="130" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_q7_opt.c" bodystart="130" bodyend="361"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -182,8 +182,8 @@
 <codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>q15_t<sp/>*<sp/>vec_buffer)</highlight></codeline>
 <codeline lineno="139"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="140"><highlight class="normal"></highlight></codeline>
-<codeline lineno="141"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_DSP)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Run<sp/>the<sp/>following<sp/>code<sp/>for<sp/>RISC-V<sp/>Core<sp/>with<sp/>DSP<sp/>enabled<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_DSP)</highlight></codeline>
+<codeline lineno="142"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Run<sp/>the<sp/>following<sp/>code<sp/>for<sp/>RISC-V<sp/>Core<sp/>with<sp/>DSP<sp/>enabled<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="143"><highlight class="normal"></highlight></codeline>
 <codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q7_t<sp/>*pB<sp/>=<sp/>pM;</highlight></codeline>
 <codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>q7_t<sp/><sp/><sp/><sp/><sp/>*pO<sp/>=<sp/>pOut;</highlight></codeline>
@@ -294,8 +294,8 @@
 <codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rowCnt--;</highlight></codeline>
 <codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="252"><highlight class="normal"></highlight></codeline>
-<codeline lineno="253"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Run<sp/>the<sp/>following<sp/>code<sp/>as<sp/>reference<sp/>implementation<sp/>for<sp/>RISC-V<sp/>Core<sp/>without<sp/>DSP<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="253"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="254"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Run<sp/>the<sp/>following<sp/>code<sp/>as<sp/>reference<sp/>implementation<sp/>for<sp/>RISC-V<sp/>Core<sp/>without<sp/>DSP<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><sp/>rowCnt<sp/>=<sp/>num_of_rows<sp/>&gt;&gt;<sp/>2;</highlight></codeline>
 <codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q7_t<sp/>*pB<sp/>=<sp/>pM;</highlight></codeline>
 <codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q7_t<sp/>*pA;</highlight></codeline>
@@ -397,14 +397,14 @@
 <codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rowCnt--;</highlight></codeline>
 <codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="355"><highlight class="normal"></highlight></codeline>
-<codeline lineno="356"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>RISCV_MATH_DSP<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="357"><highlight class="normal"></highlight></codeline>
+<codeline lineno="356"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>RISCV_MATH_DSP<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="357"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Return<sp/>to<sp/>RISCV_MATH_SUCCESS<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(RISCV_MATH_SUCCESS);</highlight></codeline>
 <codeline lineno="360"><highlight class="normal"></highlight></codeline>
 <codeline lineno="361"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="362"><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_q7_opt.c"/>
+    <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_q7_opt.c"/>
   </compounddef>
 </doxygen>

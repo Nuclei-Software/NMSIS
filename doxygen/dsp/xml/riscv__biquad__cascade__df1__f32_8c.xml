@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
-  <compounddef id="riscv__biquad__cascade__df1__f32_8c" kind="file" language="C++">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="riscv__biquad__cascade__df1__f32_8c" kind="file">
     <compoundname>riscv_biquad_cascade_df1_f32.c</compoundname>
     <includes refid="riscv__math_8h" local="yes">riscv_math.h</includes>
     <includedby refid="FilteringFunctions_8c" local="yes">FilteringFunctions.c</includedby>
@@ -62,7 +62,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_biquad_cascade_df1_f32.c" line="320" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_biquad_cascade_df1_f32.c" bodystart="320" bodyend="491"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/DSP/Source/FilteringFunctions/riscv_biquad_cascade_df1_f32.c" line="320" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/DSP/Source/FilteringFunctions/riscv_biquad_cascade_df1_f32.c" bodystart="320" bodyend="491"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -101,8 +101,8 @@
 <codeline lineno="29"><highlight class="normal"></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;riscv_math.h&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight></codeline>
-<codeline lineno="166"><highlight class="preprocessor">#if<sp/>defined(RISCV_MATH_NEON)<sp/></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="167"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__BiquadCascadeDF1_1gac9bd447ab6475b0bbe7aaf14b0a4c6ee" kindref="member">riscv_biquad_cascade_df1_f32</ref>(</highlight></codeline>
+<codeline lineno="166"><highlight class="preprocessor">#if<sp/>defined(RISCV_MATH_NEON)<sp/></highlight></codeline>
+<codeline lineno="167"><highlight class="preprocessor"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__BiquadCascadeDF1_1gac9bd447ab6475b0bbe7aaf14b0a4c6ee" kindref="member">riscv_biquad_cascade_df1_f32</ref>(</highlight></codeline>
 <codeline lineno="168"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structriscv__biquad__casd__df1__inst__f32" kindref="compound">riscv_biquad_casd_df1_inst_f32</ref><sp/>*<sp/>S,</highlight></codeline>
 <codeline lineno="169"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>float32_t<sp/>*<sp/>pSrc,</highlight></codeline>
 <codeline lineno="170"><highlight class="normal"><sp/><sp/>float32_t<sp/>*<sp/>pDst,</highlight></codeline>
@@ -254,8 +254,8 @@
 <codeline lineno="316"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="317"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="318"><highlight class="normal"></highlight></codeline>
-<codeline lineno="319"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="320"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__BiquadCascadeDF1_1gac9bd447ab6475b0bbe7aaf14b0a4c6ee" kindref="member">riscv_biquad_cascade_df1_f32</ref>(</highlight></codeline>
+<codeline lineno="319"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="320"><highlight class="preprocessor"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__BiquadCascadeDF1_1gac9bd447ab6475b0bbe7aaf14b0a4c6ee" kindref="member">riscv_biquad_cascade_df1_f32</ref>(</highlight></codeline>
 <codeline lineno="321"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structriscv__biquad__casd__df1__inst__f32" kindref="compound">riscv_biquad_casd_df1_inst_f32</ref><sp/>*<sp/>S,</highlight></codeline>
 <codeline lineno="322"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>float32_t<sp/>*<sp/>pSrc,</highlight></codeline>
 <codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32_t<sp/>*<sp/>pDst,</highlight></codeline>
@@ -286,8 +286,8 @@
 <codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/>Yn1<sp/>=<sp/>pState[2];</highlight></codeline>
 <codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/>Yn2<sp/>=<sp/>pState[3];</highlight></codeline>
 <codeline lineno="350"><highlight class="normal"></highlight></codeline>
-<codeline lineno="351"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="352"><highlight class="normal"></highlight></codeline>
+<codeline lineno="351"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)</highlight></codeline>
+<codeline lineno="352"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Apply<sp/>loop<sp/>unrolling<sp/>and<sp/>compute<sp/>4<sp/>output<sp/>values<sp/>simultaneously.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Variable<sp/>acc<sp/>hold<sp/>output<sp/>values<sp/>that<sp/>are<sp/>being<sp/>computed:</highlight></codeline>
 <codeline lineno="355"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
@@ -375,13 +375,13 @@
 <codeline lineno="437"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>unrolling:<sp/>Compute<sp/>remaining<sp/>outputs<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="438"><highlight class="normal"><sp/><sp/><sp/><sp/>sample<sp/>=<sp/>blockSize<sp/>&amp;<sp/>0x3U;</highlight></codeline>
 <codeline lineno="439"><highlight class="normal"></highlight></codeline>
-<codeline lineno="440"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="441"><highlight class="normal"></highlight></codeline>
+<codeline lineno="440"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="441"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="442"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>blkCnt<sp/>with<sp/>number<sp/>of<sp/>samples<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="443"><highlight class="normal"><sp/><sp/><sp/><sp/>sample<sp/>=<sp/>blockSize;</highlight></codeline>
 <codeline lineno="444"><highlight class="normal"></highlight></codeline>
-<codeline lineno="445"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="446"><highlight class="normal"></highlight></codeline>
+<codeline lineno="445"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="446"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="447"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(sample<sp/>&gt;<sp/>0U)</highlight></codeline>
 <codeline lineno="448"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="449"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Read<sp/>the<sp/>input<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
@@ -428,9 +428,9 @@
 <codeline lineno="490"><highlight class="normal"></highlight></codeline>
 <codeline lineno="491"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="492"><highlight class="normal"></highlight></codeline>
-<codeline lineno="493"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined(RISCV_MATH_NEON)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="494"><highlight class="normal"></highlight></codeline>
+<codeline lineno="493"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined(RISCV_MATH_NEON)<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="494"><highlight class="preprocessor"></highlight></codeline>
     </programlisting>
-    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_biquad_cascade_df1_f32.c"/>
+    <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/DSP/Source/FilteringFunctions/riscv_biquad_cascade_df1_f32.c"/>
   </compounddef>
 </doxygen>

@@ -1,30 +1,30 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
-  <compounddef id="nmsis__compiler_8h" kind="file" language="C++">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="nmsis__compiler_8h" kind="file">
     <compoundname>nmsis_compiler.h</compoundname>
     <includes local="no">stdint.h</includes>
     <includedby refid="nmsis__core_8h" local="yes">nmsis_core.h</includedby>
     <incdepgraph>
-      <node id="28">
-        <label>stdint.h</label>
-      </node>
       <node id="27">
         <label>nmsis_compiler.h</label>
-        <link refid="nmsis__compiler_8h"/>
+        <link refid="nmsis_compiler.h"/>
         <childnode refid="28" relation="include">
         </childnode>
       </node>
+      <node id="28">
+        <label>stdint.h</label>
+      </node>
     </incdepgraph>
     <invincdepgraph>
+      <node id="29">
+        <label>nmsis_compiler.h</label>
+        <link refid="nmsis_compiler.h"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
       <node id="30">
         <label>nmsis_core.h</label>
         <link refid="nmsis__core_8h_source"/>
-      </node>
-      <node id="29">
-        <label>nmsis_compiler.h</label>
-        <link refid="nmsis__compiler_8h"/>
-        <childnode refid="30" relation="include">
-        </childnode>
       </node>
     </invincdepgraph>
     <briefdescription>
@@ -50,22 +50,22 @@
 <codeline lineno="16"><highlight class="comment"><sp/>*<sp/>limitations<sp/>under<sp/>the<sp/>License.</highlight></codeline>
 <codeline lineno="17"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="18"><highlight class="normal"></highlight></codeline>
-<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>__NMSIS_COMPILER_H</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__NMSIS_COMPILER_H</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>__NMSIS_COMPILER_H</highlight></codeline>
+<codeline lineno="20"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/>__NMSIS_COMPILER_H</highlight></codeline>
+<codeline lineno="21"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight></codeline>
-<codeline lineno="28"><highlight class="preprocessor">#if<sp/>defined<sp/>(<sp/>__GNUC__<sp/>)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="preprocessor">#if<sp/>defined<sp/>(<sp/>__GNUC__<sp/>)</highlight></codeline>
+<codeline lineno="29"><highlight class="preprocessor"></highlight></codeline>
 <codeline lineno="30"><highlight class="preprocessor"><sp/><sp/>#include<sp/>&quot;nmsis_gcc.h&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#error<sp/>Unknown<sp/>compiler.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="32"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/>#error<sp/>Unknown<sp/>compiler.</highlight></codeline>
+<codeline lineno="33"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="34"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="35"><highlight class="normal"></highlight></codeline>
-<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>__NMSIS_COMPILER_H<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>__NMSIS_COMPILER_H<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="37"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/nmsis_compiler.h"/>
+    <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/nmsis_compiler.h"/>
   </compounddef>
 </doxygen>

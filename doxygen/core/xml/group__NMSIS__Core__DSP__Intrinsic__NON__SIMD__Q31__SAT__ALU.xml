@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU" kind="group">
     <compoundname>NMSIS_Core_DSP_Intrinsic_NON_SIMD_Q31_SAT_ALU</compoundname>
     <title>Non-SIMD Q31 saturation ALU Instructions</title>
@@ -21,13 +21,13 @@
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Get the absolute value of a signed 32-bit integer in a general register.</para><para><bold>Description</bold>:<linebreak/>
 This instruction calculates the absolute value of a signed 32-bit integer stored in Rs1. The result is sign-extended (for RV64) and written to Rd. This instruction with the minimum negative integer input of 0x80000000 will produce a saturated output of maximum positive integer of 0x7fffffff and the OV flag will be set to 1.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">if<sp/>(Rs1.W[0]<sp/>&gt;=<sp/>0)<sp/>{</highlight></codeline>
+<programlisting><codeline><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(Rs1.W[0]<sp/>&gt;=<sp/>0)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res<sp/>=<sp/>Rs1.W[0];</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>If<sp/>(Rs1.W[0]<sp/>==<sp/>0x80000000)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res<sp/>=<sp/>0x7fffffff;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res<sp/>=<sp/>-Rs1.W[0];</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
@@ -44,7 +44,7 @@ This instruction calculates the absolute value of a signed 32-bit integer stored
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="1414" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="1414" bodyend="1419"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="1414" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="1414" bodyend="1419"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga9faead3db3c1ffb6a8566719b1f46ffa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -69,17 +69,17 @@ This instruction calculates the absolute value of a signed 32-bit integer stored
 Add the lower 32-bit signed content of two registers with Q31 saturation.</para><para><bold>Description</bold>:<linebreak/>
 The lower 32-bit signed content of Rs1 is added with the lower 32-bit signed content of Rs2. And the result is saturated to the 32-bit signed integer range of [-2^31, 2^31-1] and then sign- extended and written to Rd. If saturation happens, this instruction sets the OV flag.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">tmp<sp/>=<sp/>Rs1.W[0]<sp/>+<sp/>Rs2.W[0];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(tmp<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(tmp<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res<sp/>=<sp/>(2^31)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(tmp<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(tmp<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res<sp/>=<sp/>-2^31;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res<sp/>=<sp/>tmp;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">Rd<sp/>=<sp/>res[31:0];<sp/>//<sp/>RV32</highlight></codeline>
-<codeline><highlight class="normal">Rd<sp/>=<sp/>SE(res[31:0])<sp/>//<sp/>RV64</highlight></codeline>
+<codeline><highlight class="normal">Rd<sp/>=<sp/>res[31:0];<sp/></highlight><highlight class="comment">//<sp/>RV32</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Rd<sp/>=<sp/>SE(res[31:0])<sp/></highlight><highlight class="comment">//<sp/>RV64</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -99,7 +99,7 @@ The lower 32-bit signed content of Rs1 is added with the lower 32-bit signed con
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="1669" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="1669" bodyend="1674"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="1669" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="1669" bodyend="1674"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga7e18b0f1cd5e9110bbb38a058eb01d97" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -123,18 +123,18 @@ The lower 32-bit signed content of Rs1 is added with the lower 32-bit signed con
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the lower 32-bit chunk in registers and then double and saturate the Q31 result. The result is written into the destination register for RV32 or sign-extended to 64-bits and written into the destination register for RV64. If saturation happens, an overflow flag OV will be set.</para><para><bold>Description</bold>:<linebreak/>
 Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1 with the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs2. The Q30 result is then doubled and saturated into a Q31 value. The Q31 value is then written into Rd (sign-extended in RV64). When both the two Q15 inputs are 0x8000, saturation will happen. The result will be saturated to 0x7FFFFFFF and the overflow flag OV will be set.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[0];<sp/>bop<sp/>=<sp/>Rs2.H[0];<sp/>//<sp/>KDMBB</highlight></codeline>
-<codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[0];<sp/>bop<sp/>=<sp/>Rs2.H[1];<sp/>//<sp/>KDMBT</highlight></codeline>
-<codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[1];<sp/>bop<sp/>=<sp/>Rs2.H[1];<sp/>//<sp/>KDMTT</highlight></codeline>
+<programlisting><codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[0];<sp/>bop<sp/>=<sp/>Rs2.H[0];<sp/></highlight><highlight class="comment">//<sp/>KDMBB</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[0];<sp/>bop<sp/>=<sp/>Rs2.H[1];<sp/></highlight><highlight class="comment">//<sp/>KDMBT</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[1];<sp/>bop<sp/>=<sp/>Rs2.H[1];<sp/></highlight><highlight class="comment">//<sp/>KDMTT</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">If<sp/>(0x8000<sp/>!=<sp/>aop<sp/>|<sp/>0x8000<sp/>!=<sp/>bop)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Mresult<sp/>=<sp/>aop<sp/>*<sp/>bop;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>resQ31<sp/>=<sp/>Mresult<sp/>&lt;&lt;<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>resQ31;<sp/>//<sp/>RV32</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>SE(resQ31);<sp/>//<sp/>RV64</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>resQ31;<sp/></highlight><highlight class="comment">//<sp/>RV32</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>SE(resQ31);<sp/></highlight><highlight class="comment">//<sp/>RV64</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>resQ31<sp/>=<sp/>0x7FFFFFFF;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>resQ31;<sp/>//<sp/>RV32</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>SE(resQ31);<sp/>//<sp/>RV64</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>resQ31;<sp/></highlight><highlight class="comment">//<sp/>RV32</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>SE(resQ31);<sp/></highlight><highlight class="comment">//<sp/>RV64</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
@@ -156,7 +156,7 @@ Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="1838" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="1838" bodyend="1843"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="1838" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="1838" bodyend="1843"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga067179bedfe1e3e48bbd8df87bed48dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -180,18 +180,18 @@ Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the lower 32-bit chunk in registers and then double and saturate the Q31 result. The result is written into the destination register for RV32 or sign-extended to 64-bits and written into the destination register for RV64. If saturation happens, an overflow flag OV will be set.</para><para><bold>Description</bold>:<linebreak/>
 Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1 with the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs2. The Q30 result is then doubled and saturated into a Q31 value. The Q31 value is then written into Rd (sign-extended in RV64). When both the two Q15 inputs are 0x8000, saturation will happen. The result will be saturated to 0x7FFFFFFF and the overflow flag OV will be set.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[0];<sp/>bop<sp/>=<sp/>Rs2.H[0];<sp/>//<sp/>KDMBB</highlight></codeline>
-<codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[0];<sp/>bop<sp/>=<sp/>Rs2.H[1];<sp/>//<sp/>KDMBT</highlight></codeline>
-<codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[1];<sp/>bop<sp/>=<sp/>Rs2.H[1];<sp/>//<sp/>KDMTT</highlight></codeline>
+<programlisting><codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[0];<sp/>bop<sp/>=<sp/>Rs2.H[0];<sp/></highlight><highlight class="comment">//<sp/>KDMBB</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[0];<sp/>bop<sp/>=<sp/>Rs2.H[1];<sp/></highlight><highlight class="comment">//<sp/>KDMBT</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[1];<sp/>bop<sp/>=<sp/>Rs2.H[1];<sp/></highlight><highlight class="comment">//<sp/>KDMTT</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">If<sp/>(0x8000<sp/>!=<sp/>aop<sp/>|<sp/>0x8000<sp/>!=<sp/>bop)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Mresult<sp/>=<sp/>aop<sp/>*<sp/>bop;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>resQ31<sp/>=<sp/>Mresult<sp/>&lt;&lt;<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>resQ31;<sp/>//<sp/>RV32</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>SE(resQ31);<sp/>//<sp/>RV64</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>resQ31;<sp/></highlight><highlight class="comment">//<sp/>RV32</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>SE(resQ31);<sp/></highlight><highlight class="comment">//<sp/>RV64</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>resQ31<sp/>=<sp/>0x7FFFFFFF;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>resQ31;<sp/>//<sp/>RV32</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>SE(resQ31);<sp/>//<sp/>RV64</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>resQ31;<sp/></highlight><highlight class="comment">//<sp/>RV32</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>SE(resQ31);<sp/></highlight><highlight class="comment">//<sp/>RV64</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
@@ -213,7 +213,7 @@ Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="1893" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="1893" bodyend="1898"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="1893" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="1893" bodyend="1898"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1gaeac5ef72f33c8014a3f045587046c5de" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -237,18 +237,18 @@ Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the lower 32-bit chunk in registers and then double and saturate the Q31 result. The result is written into the destination register for RV32 or sign-extended to 64-bits and written into the destination register for RV64. If saturation happens, an overflow flag OV will be set.</para><para><bold>Description</bold>:<linebreak/>
 Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1 with the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs2. The Q30 result is then doubled and saturated into a Q31 value. The Q31 value is then written into Rd (sign-extended in RV64). When both the two Q15 inputs are 0x8000, saturation will happen. The result will be saturated to 0x7FFFFFFF and the overflow flag OV will be set.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[0];<sp/>bop<sp/>=<sp/>Rs2.H[0];<sp/>//<sp/>KDMBB</highlight></codeline>
-<codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[0];<sp/>bop<sp/>=<sp/>Rs2.H[1];<sp/>//<sp/>KDMBT</highlight></codeline>
-<codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[1];<sp/>bop<sp/>=<sp/>Rs2.H[1];<sp/>//<sp/>KDMTT</highlight></codeline>
+<programlisting><codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[0];<sp/>bop<sp/>=<sp/>Rs2.H[0];<sp/></highlight><highlight class="comment">//<sp/>KDMBB</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[0];<sp/>bop<sp/>=<sp/>Rs2.H[1];<sp/></highlight><highlight class="comment">//<sp/>KDMBT</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[1];<sp/>bop<sp/>=<sp/>Rs2.H[1];<sp/></highlight><highlight class="comment">//<sp/>KDMTT</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">If<sp/>(0x8000<sp/>!=<sp/>aop<sp/>|<sp/>0x8000<sp/>!=<sp/>bop)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Mresult<sp/>=<sp/>aop<sp/>*<sp/>bop;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>resQ31<sp/>=<sp/>Mresult<sp/>&lt;&lt;<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>resQ31;<sp/>//<sp/>RV32</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>SE(resQ31);<sp/>//<sp/>RV64</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>resQ31;<sp/></highlight><highlight class="comment">//<sp/>RV32</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>SE(resQ31);<sp/></highlight><highlight class="comment">//<sp/>RV64</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>resQ31<sp/>=<sp/>0x7FFFFFFF;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>resQ31;<sp/>//<sp/>RV32</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>SE(resQ31);<sp/>//<sp/>RV64</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>resQ31;<sp/></highlight><highlight class="comment">//<sp/>RV32</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Rd<sp/>=<sp/>SE(resQ31);<sp/></highlight><highlight class="comment">//<sp/>RV64</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
@@ -270,7 +270,7 @@ Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="1948" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="1948" bodyend="1953"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="1948" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="1948" bodyend="1953"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga1dfb3b7d81e19adc86e14e98971f3e42" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -298,27 +298,27 @@ Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the lower 32-bit chunk in registers and then double and saturate the Q31 result, add the result with the sign-extended lower 32-bit chunk destination register and write the saturated addition result into the destination register. If saturation happens, an overflow flag OV will be set.</para><para><bold>Description</bold>:<linebreak/>
 Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1 with the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs2. The Q30 result is then doubled and saturated into a Q31 value. The Q31 value is then added with the content of Rd. If the addition result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV flag is set to 1. The result after saturation is written to Rd. When both the two Q15 inputs are 0x8000, saturation will happen and the overflow flag OV will be set.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[0];<sp/>bop<sp/>=<sp/>Rs2.H[0];<sp/>//<sp/>KDMABB</highlight></codeline>
-<codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[0];<sp/>bop<sp/>=<sp/>Rs2.H[1];<sp/>//<sp/>KDMABT</highlight></codeline>
-<codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[1];<sp/>bop<sp/>=<sp/>Rs2.H[1];<sp/>//<sp/>KDMATT</highlight></codeline>
+<programlisting><codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[0];<sp/>bop<sp/>=<sp/>Rs2.H[0];<sp/></highlight><highlight class="comment">//<sp/>KDMABB</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[0];<sp/>bop<sp/>=<sp/>Rs2.H[1];<sp/></highlight><highlight class="comment">//<sp/>KDMABT</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[1];<sp/>bop<sp/>=<sp/>Rs2.H[1];<sp/></highlight><highlight class="comment">//<sp/>KDMATT</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">If<sp/>(0x8000<sp/>!=<sp/>aop<sp/>|<sp/>0x8000<sp/>!=<sp/>bop)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Mresult<sp/>=<sp/>aop<sp/>*<sp/>bop;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>resQ31<sp/>=<sp/>Mresult<sp/>&lt;&lt;<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>resQ31<sp/>=<sp/>0x7FFFFFFF;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">resadd<sp/>=<sp/>Rd<sp/>+<sp/>resQ31;<sp/>//<sp/>RV32</highlight></codeline>
-<codeline><highlight class="normal">resadd<sp/>=<sp/>Rd.W[0]<sp/>+<sp/>resQ31;<sp/>//<sp/>RV64</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(resadd<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">resadd<sp/>=<sp/>Rd<sp/>+<sp/>resQ31;<sp/></highlight><highlight class="comment">//<sp/>RV32</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">resadd<sp/>=<sp/>Rd.W[0]<sp/>+<sp/>resQ31;<sp/></highlight><highlight class="comment">//<sp/>RV64</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(resadd<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>resadd<sp/>=<sp/>(2^31)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(resadd<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(resadd<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>resadd<sp/>=<sp/>-2^31;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">Rd<sp/>=<sp/>resadd;<sp/>//<sp/>RV32</highlight></codeline>
-<codeline><highlight class="normal">Rd<sp/>=<sp/>SE(resadd);<sp/>//<sp/>RV64</highlight></codeline>
+<codeline><highlight class="normal">Rd<sp/>=<sp/>resadd;<sp/></highlight><highlight class="comment">//<sp/>RV32</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Rd<sp/>=<sp/>SE(resadd);<sp/></highlight><highlight class="comment">//<sp/>RV64</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">t</parametername>
@@ -345,7 +345,7 @@ Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="2013" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="2013" bodyend="2017"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="2013" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="2013" bodyend="2017"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga15d10fbf27043451ffe312f61a7356d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -373,27 +373,27 @@ Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the lower 32-bit chunk in registers and then double and saturate the Q31 result, add the result with the sign-extended lower 32-bit chunk destination register and write the saturated addition result into the destination register. If saturation happens, an overflow flag OV will be set.</para><para><bold>Description</bold>:<linebreak/>
 Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1 with the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs2. The Q30 result is then doubled and saturated into a Q31 value. The Q31 value is then added with the content of Rd. If the addition result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV flag is set to 1. The result after saturation is written to Rd. When both the two Q15 inputs are 0x8000, saturation will happen and the overflow flag OV will be set.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[0];<sp/>bop<sp/>=<sp/>Rs2.H[0];<sp/>//<sp/>KDMABB</highlight></codeline>
-<codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[0];<sp/>bop<sp/>=<sp/>Rs2.H[1];<sp/>//<sp/>KDMABT</highlight></codeline>
-<codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[1];<sp/>bop<sp/>=<sp/>Rs2.H[1];<sp/>//<sp/>KDMATT</highlight></codeline>
+<programlisting><codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[0];<sp/>bop<sp/>=<sp/>Rs2.H[0];<sp/></highlight><highlight class="comment">//<sp/>KDMABB</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[0];<sp/>bop<sp/>=<sp/>Rs2.H[1];<sp/></highlight><highlight class="comment">//<sp/>KDMABT</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[1];<sp/>bop<sp/>=<sp/>Rs2.H[1];<sp/></highlight><highlight class="comment">//<sp/>KDMATT</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">If<sp/>(0x8000<sp/>!=<sp/>aop<sp/>|<sp/>0x8000<sp/>!=<sp/>bop)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Mresult<sp/>=<sp/>aop<sp/>*<sp/>bop;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>resQ31<sp/>=<sp/>Mresult<sp/>&lt;&lt;<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>resQ31<sp/>=<sp/>0x7FFFFFFF;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">resadd<sp/>=<sp/>Rd<sp/>+<sp/>resQ31;<sp/>//<sp/>RV32</highlight></codeline>
-<codeline><highlight class="normal">resadd<sp/>=<sp/>Rd.W[0]<sp/>+<sp/>resQ31;<sp/>//<sp/>RV64</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(resadd<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">resadd<sp/>=<sp/>Rd<sp/>+<sp/>resQ31;<sp/></highlight><highlight class="comment">//<sp/>RV32</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">resadd<sp/>=<sp/>Rd.W[0]<sp/>+<sp/>resQ31;<sp/></highlight><highlight class="comment">//<sp/>RV64</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(resadd<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>resadd<sp/>=<sp/>(2^31)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(resadd<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(resadd<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>resadd<sp/>=<sp/>-2^31;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">Rd<sp/>=<sp/>resadd;<sp/>//<sp/>RV32</highlight></codeline>
-<codeline><highlight class="normal">Rd<sp/>=<sp/>SE(resadd);<sp/>//<sp/>RV64</highlight></codeline>
+<codeline><highlight class="normal">Rd<sp/>=<sp/>resadd;<sp/></highlight><highlight class="comment">//<sp/>RV32</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Rd<sp/>=<sp/>SE(resadd);<sp/></highlight><highlight class="comment">//<sp/>RV64</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">t</parametername>
@@ -420,7 +420,7 @@ Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="2077" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="2077" bodyend="2081"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="2077" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="2077" bodyend="2081"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga64a75e6b0aecedf02afd2df4458a6ee1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -448,27 +448,27 @@ Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the lower 32-bit chunk in registers and then double and saturate the Q31 result, add the result with the sign-extended lower 32-bit chunk destination register and write the saturated addition result into the destination register. If saturation happens, an overflow flag OV will be set.</para><para><bold>Description</bold>:<linebreak/>
 Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1 with the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs2. The Q30 result is then doubled and saturated into a Q31 value. The Q31 value is then added with the content of Rd. If the addition result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV flag is set to 1. The result after saturation is written to Rd. When both the two Q15 inputs are 0x8000, saturation will happen and the overflow flag OV will be set.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[0];<sp/>bop<sp/>=<sp/>Rs2.H[0];<sp/>//<sp/>KDMABB</highlight></codeline>
-<codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[0];<sp/>bop<sp/>=<sp/>Rs2.H[1];<sp/>//<sp/>KDMABT</highlight></codeline>
-<codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[1];<sp/>bop<sp/>=<sp/>Rs2.H[1];<sp/>//<sp/>KDMATT</highlight></codeline>
+<programlisting><codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[0];<sp/>bop<sp/>=<sp/>Rs2.H[0];<sp/></highlight><highlight class="comment">//<sp/>KDMABB</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[0];<sp/>bop<sp/>=<sp/>Rs2.H[1];<sp/></highlight><highlight class="comment">//<sp/>KDMABT</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">aop<sp/>=<sp/>Rs1.H[1];<sp/>bop<sp/>=<sp/>Rs2.H[1];<sp/></highlight><highlight class="comment">//<sp/>KDMATT</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">If<sp/>(0x8000<sp/>!=<sp/>aop<sp/>|<sp/>0x8000<sp/>!=<sp/>bop)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>Mresult<sp/>=<sp/>aop<sp/>*<sp/>bop;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>resQ31<sp/>=<sp/>Mresult<sp/>&lt;&lt;<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>resQ31<sp/>=<sp/>0x7FFFFFFF;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">resadd<sp/>=<sp/>Rd<sp/>+<sp/>resQ31;<sp/>//<sp/>RV32</highlight></codeline>
-<codeline><highlight class="normal">resadd<sp/>=<sp/>Rd.W[0]<sp/>+<sp/>resQ31;<sp/>//<sp/>RV64</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(resadd<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">resadd<sp/>=<sp/>Rd<sp/>+<sp/>resQ31;<sp/></highlight><highlight class="comment">//<sp/>RV32</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">resadd<sp/>=<sp/>Rd.W[0]<sp/>+<sp/>resQ31;<sp/></highlight><highlight class="comment">//<sp/>RV64</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(resadd<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>resadd<sp/>=<sp/>(2^31)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(resadd<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(resadd<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>resadd<sp/>=<sp/>-2^31;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">Rd<sp/>=<sp/>resadd;<sp/>//<sp/>RV32</highlight></codeline>
-<codeline><highlight class="normal">Rd<sp/>=<sp/>SE(resadd);<sp/>//<sp/>RV64</highlight></codeline>
+<codeline><highlight class="normal">Rd<sp/>=<sp/>resadd;<sp/></highlight><highlight class="comment">//<sp/>RV32</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Rd<sp/>=<sp/>SE(resadd);<sp/></highlight><highlight class="comment">//<sp/>RV64</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">t</parametername>
@@ -495,7 +495,7 @@ Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="2141" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="2141" bodyend="2145"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="2141" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="2141" bodyend="2145"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1gab5dc82aa8b7514f882979a71d88fb154" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -523,11 +523,11 @@ The first word data in Rs1 is left-shifted logically. The shifted out bits are f
 <codeline><highlight class="normal">res[(31+sa):0]<sp/>=<sp/>Rs1.W[0]<sp/>&lt;&lt;<sp/>sa;</highlight></codeline>
 <codeline><highlight class="normal">if<sp/>(res<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res<sp/>=<sp/>0x7fffffff;<sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(res<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res<sp/>=<sp/>0x80000000;<sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">Rd[31:0]<sp/>=<sp/>res[31:0];<sp/>//<sp/>RV32</highlight></codeline>
-<codeline><highlight class="normal">Rd[63:0]<sp/>=<sp/>SE(res[31:0]);<sp/>//<sp/>RV64</highlight></codeline>
+<codeline><highlight class="normal">Rd[31:0]<sp/>=<sp/>res[31:0];<sp/></highlight><highlight class="comment">//<sp/>RV32</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Rd[63:0]<sp/>=<sp/>SE(res[31:0]);<sp/></highlight><highlight class="comment">//<sp/>RV64</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -547,7 +547,7 @@ The first word data in Rs1 is left-shifted logically. The shifted out bits are f
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="4478" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="4478" bodyend="4483"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="4478" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="4478" bodyend="4483"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1gada4cef0c427d339f01f153c5d750dac3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -575,11 +575,11 @@ The first word data in Rs1 is left-shifted logically. The shifted out bits are f
 <codeline><highlight class="normal">res[(31+sa):0]<sp/>=<sp/>Rs1.W[0]<sp/>&lt;&lt;<sp/>sa;</highlight></codeline>
 <codeline><highlight class="normal">if<sp/>(res<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res<sp/>=<sp/>0x7fffffff;<sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(res<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(res<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res<sp/>=<sp/>0x80000000;<sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">Rd[31:0]<sp/>=<sp/>res[31:0];<sp/>//<sp/>RV32</highlight></codeline>
-<codeline><highlight class="normal">Rd[63:0]<sp/>=<sp/>SE(res[31:0]);<sp/>//<sp/>RV64</highlight></codeline>
+<codeline><highlight class="normal">Rd[31:0]<sp/>=<sp/>res[31:0];<sp/></highlight><highlight class="comment">//<sp/>RV32</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Rd[63:0]<sp/>=<sp/>SE(res[31:0]);<sp/></highlight><highlight class="comment">//<sp/>RV64</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -599,7 +599,7 @@ The first word data in Rs1 is left-shifted logically. The shifted out bits are f
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="4525" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="4525" bodyend="4530"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="4525" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="4525" bodyend="4530"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga3a01ea385d7d505ab86f7db697567e5b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -623,25 +623,25 @@ The first word data in Rs1 is left-shifted logically. The shifted out bits are f
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Perform a logical left (positive) or arithmetic right (negative) shift operation with Q31 saturation for the left shift on a 32-bit data.</para><para><bold>Description</bold>:<linebreak/>
 The lower 32-bit content of Rs1 is left-shifted logically or right-shifted arithmetically based on the value of Rs2[5:0]. Rs2[5:0] is in the signed range of [-25, 25-1]. A positive Rs2[5:0] means logical left shift and a negative Rs2[5:0] means arithmetic right shift. The shift amount is the absolute value of Rs2[5:0] clamped to the actual shift range of [0, 31]. The left-shifted result is saturated to the 32-bit signed integer range of [-2^31, 2^31-1]. After the shift operation, the final result is bit-31 sign-extended and written to Rd. If any saturation happens, this instruction sets the OV flag. The value of Rs2[31:6] will not affected the operation of this instruction.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">if<sp/>(Rs2[5:0]<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<programlisting><codeline><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(Rs2[5:0]<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>sa<sp/>=<sp/>-Rs2[5:0];</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>sa<sp/>=<sp/>(sa<sp/>==<sp/>32)?<sp/>31<sp/>:<sp/>sa;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[31:0]<sp/>=<sp/>Rs1.W[0]<sp/>&gt;&gt;(arith)<sp/>sa;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>sa<sp/>=<sp/>Rs2[5:0];</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>tmp<sp/>=<sp/>Rs1.W[0]<sp/>&lt;&lt;(logic)<sp/>sa;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(tmp<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(tmp<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res[31:0]<sp/>=<sp/>(2^31)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>if<sp/>(tmp<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(tmp<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res[31:0]<sp/>=<sp/>-2^31;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>OV<sp/>=<sp/>1</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res[31:0]<sp/>=<sp/>tmp[31:0];</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">Rd<sp/>=<sp/>res[31:0];<sp/>//<sp/>RV32</highlight></codeline>
-<codeline><highlight class="normal">Rd<sp/>=<sp/>SE64(res[31:0]);<sp/>//<sp/>RV64</highlight></codeline>
+<codeline><highlight class="normal">Rd<sp/>=<sp/>res[31:0];<sp/></highlight><highlight class="comment">//<sp/>RV32</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Rd<sp/>=<sp/>SE64(res[31:0]);<sp/></highlight><highlight class="comment">//<sp/>RV64</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -661,7 +661,7 @@ The lower 32-bit content of Rs1 is left-shifted logically or right-shifted arith
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="5063" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="5063" bodyend="5068"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="5063" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="5063" bodyend="5068"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga9f23cd90864721f831fefd87acd4182e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -685,26 +685,26 @@ The lower 32-bit content of Rs1 is left-shifted logically or right-shifted arith
 </programlisting></para><para><bold>Purpose</bold>:<linebreak/>
 Perform a logical left (positive) or arithmetic right (negative) shift operation with Q31 saturation for the left shift and a rounding up operation for the right shift on a 32-bit data.</para><para><bold>Description</bold>:<linebreak/>
 The lower 32-bit content of Rs1 is left-shifted logically or right-shifted arithmetically based on the value of Rs2[5:0]. Rs2[5:0] is in the signed range of [-25, 25-1]. A positive Rs2[5:0] means logical left shift and a negative Rs2[5:0] means arithmetic right shift. The shift amount is the absolute value of Rs2[5:0] clamped to the actual shift range of [0, 31]. The left-shifted result is saturated to the 32-bit signed integer range of [-2^31, 2^31-1]. The right-shifted result is added a 1 to the most significant discarded bit position for rounding effect. After the shift, saturation, or rounding, the final result is bit-31 sign-extended and written to Rd. If any saturation happens, this instruction sets the OV flag. The value of Rs2[31:6] will not affect the operation of this instruction.</para><para><bold>Operations</bold>:<linebreak/>
-<programlisting><codeline><highlight class="normal">if<sp/>(Rs2[5:0]<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<programlisting><codeline><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(Rs2[5:0]<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>sa<sp/>=<sp/>-Rs2[5:0];</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>sa<sp/>=<sp/>(sa<sp/>==<sp/>32)?<sp/>31<sp/>:<sp/>sa;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res[31:-1]<sp/>=<sp/>SE33(Rs1[31:(sa-1)])<sp/>+<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>rst[31:0]<sp/>=<sp/>res[31:0];</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>sa<sp/>=<sp/>Rs2[5:0];</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>tmp<sp/>=<sp/>Rs1.W[0]<sp/>&lt;&lt;(logic)<sp/>sa;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(tmp<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(tmp<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rst[31:0]<sp/>=<sp/>(2^31)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>if<sp/>(tmp<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(tmp<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rst[31:0]<sp/>=<sp/>-2^31;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>OV<sp/>=<sp/>1</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rst[31:0]<sp/>=<sp/>tmp[31:0];</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">Rd<sp/>=<sp/>rst[31:0];<sp/>//<sp/>RV32</highlight></codeline>
-<codeline><highlight class="normal">Rd<sp/>=<sp/>SE64(rst[31:0]);<sp/>//<sp/>RV64</highlight></codeline>
+<codeline><highlight class="normal">Rd<sp/>=<sp/>rst[31:0];<sp/></highlight><highlight class="comment">//<sp/>RV32</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Rd<sp/>=<sp/>SE64(rst[31:0]);<sp/></highlight><highlight class="comment">//<sp/>RV64</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -724,7 +724,7 @@ The lower 32-bit content of Rs1 is left-shifted logically or right-shifted arith
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="5126" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="5126" bodyend="5131"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="5126" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="5126" bodyend="5131"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga2a28907bd6cda3a2caa1e2200eafaec3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -749,17 +749,17 @@ The lower 32-bit content of Rs1 is left-shifted logically or right-shifted arith
 Subtract the signed lower 32-bit content of two registers with Q31 saturation.</para><para><bold>Description</bold>:<linebreak/>
 The signed lower 32-bit content of Rs2 is subtracted from the signed lower 32-bit content of Rs1. And the result is saturated to the 32-bit signed integer range of [-2^31, 2^31-1] and then sign-extened and written to Rd. If saturation happens, this instruction sets the OV flag.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">tmp<sp/>=<sp/>Rs1.W[0]<sp/>-<sp/>Rs2.W[0];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(tmp<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(tmp<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res<sp/>=<sp/>(2^31)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(tmp<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(tmp<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal">res<sp/>=<sp/>-2^31;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>res<sp/>=<sp/>tmp;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">Rd<sp/>=<sp/>res[31:0];<sp/>//<sp/>RV32</highlight></codeline>
-<codeline><highlight class="normal">Rd<sp/>=<sp/>SE(res[31:0]);<sp/>//<sp/>RV64</highlight></codeline>
+<codeline><highlight class="normal">Rd<sp/>=<sp/>res[31:0];<sp/></highlight><highlight class="comment">//<sp/>RV32</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Rd<sp/>=<sp/>SE(res[31:0]);<sp/></highlight><highlight class="comment">//<sp/>RV64</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -779,7 +779,7 @@ The signed lower 32-bit content of Rs2 is subtracted from the signed lower 32-bi
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="5496" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="5496" bodyend="5501"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="5496" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="5496" bodyend="5501"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga836b1f78407443c88b5958a7cfb3361f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -804,12 +804,12 @@ The signed lower 32-bit content of Rs2 is subtracted from the signed lower 32-bi
 Add the unsigned lower 32-bit content of two registers with U32 saturation.</para><para><bold>Description</bold>:<linebreak/>
 The unsigned lower 32-bit content of Rs1 is added with the unsigned lower 32-bit content of Rs2. And the result is saturated to the 32-bit unsigned integer range of [0, 2^32-1] and then sign-extended and written to Rd. If saturation happens, this instruction sets the OV flag.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">tmp<sp/>=<sp/>Rs1.W[0]<sp/>+<sp/>Rs2.W[0];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(tmp<sp/>&gt;<sp/>(2^32)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(tmp<sp/>&gt;<sp/>(2^32)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>tmp[31:0]<sp/>=<sp/>(2^32)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">Rd<sp/>=<sp/>tmp[31:0];<sp/>//<sp/>RV32</highlight></codeline>
-<codeline><highlight class="normal">Rd<sp/>=<sp/>SE(tmp[31:0]);<sp/>//<sp/>RV64</highlight></codeline>
+<codeline><highlight class="normal">Rd<sp/>=<sp/>tmp[31:0];<sp/></highlight><highlight class="comment">//<sp/>RV32</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Rd<sp/>=<sp/>SE(tmp[31:0]);<sp/></highlight><highlight class="comment">//<sp/>RV64</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -829,7 +829,7 @@ The unsigned lower 32-bit content of Rs1 is added with the unsigned lower 32-bit
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="11497" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="11497" bodyend="11502"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="11497" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="11497" bodyend="11502"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1gae102902e2e1e3a606807064ab3ea763f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -854,12 +854,12 @@ The unsigned lower 32-bit content of Rs1 is added with the unsigned lower 32-bit
 Subtract the unsigned lower 32-bit content of two registers with unsigned 32-bit saturation.</para><para><bold>Description</bold>:<linebreak/>
 The unsigned lower 32-bit content of Rs2 is subtracted from the unsigned lower 32-bit content of Rs1. And the result is saturated to the 32-bit unsigned integer range of [0, 2^32-1] and then sign-extended and written to Rd. If saturation happens, this instruction sets the OV flag.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">tmp<sp/>=<sp/>Rs1.W[0]<sp/>-<sp/>Rs2.W[0];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(tmp<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(tmp<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>tmp[31:0]<sp/>=<sp/>0;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal">Rd<sp/>=<sp/>tmp[31:0];<sp/>//<sp/>RV32</highlight></codeline>
-<codeline><highlight class="normal">Rd<sp/>=<sp/>SE(tmp[31:0]);<sp/>//<sp/>RV64</highlight></codeline>
+<codeline><highlight class="normal">Rd<sp/>=<sp/>tmp[31:0];<sp/></highlight><highlight class="comment">//<sp/>RV32</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Rd<sp/>=<sp/>SE(tmp[31:0]);<sp/></highlight><highlight class="comment">//<sp/>RV64</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -879,7 +879,7 @@ The unsigned lower 32-bit content of Rs2 is subtracted from the unsigned lower 3
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="12091" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="12091" bodyend="12096"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="12091" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="12091" bodyend="12096"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       </sectiondef>

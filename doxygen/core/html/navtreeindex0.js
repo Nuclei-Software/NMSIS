@@ -3,8 +3,6 @@ var NAVTREEINDEX0 =
 "annotated.html":[2,0],
 "functions.html":[2,1,0],
 "functions_vars.html":[2,1,1],
-"globals.html":[3,0],
-"globals_defs.html":[3,1],
 "group__NMSIS__Core__ARMCompatiable__Functions.html":[1,13],
 "group__NMSIS__Core__ARMCompatiable__Functions.html#ga067d257a2b34565410acefb5afef2203":[1,13,2],
 "group__NMSIS__Core__ARMCompatiable__Functions.html#ga0ffdc7f8b90076408f400768a7f5e372":[1,13,7],
@@ -249,5 +247,7 @@ var NAVTREEINDEX0 =
 "group__NMSIS__Core__CSR__Encoding.html#gaf8f4ab4175c2a4a8904a974c6ff64c8b":[1,3,61],
 "group__NMSIS__Core__CSR__Encoding.html#gaf95f0e6f382a6cd93ba925c62d64fe97":[1,3,173],
 "group__NMSIS__Core__CSR__Encoding.html#gafa6069fc693f6fa6353611c8211c155a":[1,3,147],
-"group__NMSIS__Core__CSR__Encoding.html#gafa733f6d7aadab5b3c0318d005745a98":[1,3,133]
+"group__NMSIS__Core__CSR__Encoding.html#gafa733f6d7aadab5b3c0318d005745a98":[1,3,133],
+"group__NMSIS__Core__CSR__Encoding.html#gafd67f3e374a7f912ec48d02a40730a1d":[1,3,90],
+"group__NMSIS__Core__CSR__Encoding.html#gafee966c8a48cb4075680eb0cc08ab32e":[1,3,154]
 };

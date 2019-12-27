@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="group__NMSIS__Core__DSP__Intrinsic__PART__SIMD__MISC" kind="group">
     <compoundname>NMSIS_Core_DSP_Intrinsic_PART_SIMD_MISC</compoundname>
     <title>Partial-SIMD Miscellaneous Instructions</title>
@@ -23,16 +23,16 @@ Count the number of redundant sign bits of the 32-bit elements of a general regi
 Starting from the bits next to the sign bits of the 32-bit elements of Rs1, this instruction counts the number of redundant sign bits and writes the result to the corresponding 32- bit elements of Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">snum[x]<sp/>=<sp/>Rs1.W[x];</highlight></codeline>
 <codeline><highlight class="normal">cnt[x]<sp/>=<sp/>0;</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>(i<sp/>=<sp/>30<sp/>to<sp/>0)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(snum[x](i)<sp/>==<sp/>snum[x](31))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i<sp/>=<sp/>30<sp/>to<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(snum[x](i)<sp/>==<sp/>snum[x](31))<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>cnt[x]<sp/>=<sp/>cnt[x]<sp/>+<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>cnt[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -45,7 +45,7 @@ Starting from the bits next to the sign bits of the 32-bit elements of Rs1, this
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="780" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="780" bodyend="785"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="780" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="780" bodyend="785"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__PART__SIMD__MISC_1ga9a3bb8538cb1c67d747dbcf77d50b1f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -67,16 +67,16 @@ Count the number of leading one bits of the 32-bit elements of a general registe
 Starting from the most significant bits of the 32-bit elements of Rs1, this instruction counts the number of leading one bits and writes the results to the corresponding 32-bit elements of Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">snum[x]<sp/>=<sp/>Rs1.W[x];</highlight></codeline>
 <codeline><highlight class="normal">cnt[x]<sp/>=<sp/>0;</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>(i<sp/>=<sp/>31<sp/>to<sp/>0)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(snum[x](i)<sp/>==<sp/>1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i<sp/>=<sp/>31<sp/>to<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(snum[x](i)<sp/>==<sp/>1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>cnt[x]<sp/>=<sp/>cnt[x]<sp/>+<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>cnt[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -89,7 +89,7 @@ Starting from the most significant bits of the 32-bit elements of Rs1, this inst
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="921" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="921" bodyend="926"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="921" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="921" bodyend="926"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__PART__SIMD__MISC_1ga5250b89ea0959cf4f02534c5cd30b79c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -111,16 +111,16 @@ Count the number of leading zero bits of the 32-bit elements of a general regist
 Starting from the most significant bits of the 32-bit elements of Rs1, this instruction counts the number of leading zero bits and writes the results to the corresponding 32-bit elements of Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">snum[x]<sp/>=<sp/>Rs1.W[x];</highlight></codeline>
 <codeline><highlight class="normal">cnt[x]<sp/>=<sp/>0;</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>(i<sp/>=<sp/>31<sp/>to<sp/>0)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>if<sp/>(snum[x](i)<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i<sp/>=<sp/>31<sp/>to<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(snum[x](i)<sp/>==<sp/>0)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>cnt[x]<sp/>=<sp/>cnt[x]<sp/>+<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>cnt[x];</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -133,7 +133,7 @@ Starting from the most significant bits of the 32-bit elements of Rs1, this inst
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="1062" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="1062" bodyend="1067"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="1062" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="1062" bodyend="1067"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__PART__SIMD__MISC_1ga4d0a417bfde5846e13d2ae5a2da2dbb3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -159,8 +159,8 @@ Calculate the sum of absolute difference of unsigned 8-bit data elements.</para>
 This instruction subtracts the un-signed 8-bit elements of Rs2 from those of Rs1. Then it adds the absolute value of each difference together and writes the result to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">absdiff[x]<sp/>=<sp/>ABS(Rs1.B[x]<sp/>-<sp/>Rs2.B[x]);</highlight></codeline>
 <codeline><highlight class="normal">Rd<sp/>=<sp/>SUM(absdiff[x]);</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=7...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -180,7 +180,7 @@ This instruction subtracts the un-signed 8-bit elements of Rs2 from those of Rs1
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="5918" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="5918" bodyend="5923"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="5918" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="5918" bodyend="5923"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__PART__SIMD__MISC_1gab29c8817a341834901b676f1be7e6279" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -210,8 +210,8 @@ Calculate the sum of absolute difference of four unsigned 8-bit data elements an
 This instruction subtracts the un-signed 8-bit elements of Rs2 from those of Rs1. It then adds the absolute value of each difference together along with the content of Rd and writes the accumulated result back to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">absdiff[x]<sp/>=<sp/>ABS(Rs1.B[x]<sp/>-<sp/>Rs2.B[x]);</highlight></codeline>
 <codeline><highlight class="normal">Rd<sp/>=<sp/>Rd<sp/>+<sp/>SUM(absdiff[x]);</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=7...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">t</parametername>
@@ -238,7 +238,7 @@ This instruction subtracts the un-signed 8-bit elements of Rs2 from those of Rs1
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="5960" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="5960" bodyend="5964"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="5960" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="5960" bodyend="5964"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__PART__SIMD__MISC_1ga13e5f03af091994e769d38e5f5f3d7c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -263,16 +263,16 @@ This instruction subtracts the un-signed 8-bit elements of Rs2 from those of Rs1
 Limit the 32-bit signed integer elements of a register into a signed range simultaneously.</para><para><bold>Description</bold>:<linebreak/>
 This instruction limits the 32-bit signed integer elements stored in Rs1 into a signed integer range between 2imm5u-1 and -2imm5u, and writes the limited results to Rd. For example, if imm5u is 3, the 32-bit input values should be saturated between 7 and -8. If saturation is performed, set OV bit to 1.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">src<sp/>=<sp/>Rs1.W[x];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(src<sp/>&gt;<sp/>(2^imm5u)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(src<sp/>&gt;<sp/>(2^imm5u)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>src<sp/>=<sp/>(2^imm5u)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(src<sp/>&lt;<sp/>-2^imm5u)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(src<sp/>&lt;<sp/>-2^imm5u)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>src<sp/>=<sp/>-2^imm5u;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>src</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -292,7 +292,7 @@ This instruction limits the 32-bit signed integer elements stored in Rs1 into a 
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="6917" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="6917" bodyend="6922"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="6917" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="6917" bodyend="6922"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__PART__SIMD__MISC_1ga714c7ecdec825caa36c722bc8edbb2d8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -317,16 +317,16 @@ This instruction limits the 32-bit signed integer elements stored in Rs1 into a 
 Limit the 32-bit signed integer elements of a register into an unsigned range simultaneously.</para><para><bold>Description</bold>:<linebreak/>
 This instruction limits the 32-bit signed integer elements stored in Rs1 into an unsigned integer range between 2imm5u-1 and 0, and writes the limited results to Rd. For example, if imm5u is 3, the 32-bit input values should be saturated between 7 and 0. If saturation is performed, set OV bit to 1.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">src<sp/>=<sp/>Rs1.W[x];</highlight></codeline>
-<codeline><highlight class="normal">if<sp/>(src<sp/>&gt;<sp/>(2^imm5u)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(src<sp/>&gt;<sp/>(2^imm5u)-1)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>src<sp/>=<sp/>(2^imm5u)-1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(src<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(src<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>src<sp/>=<sp/>0;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>src</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=1...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -346,7 +346,7 @@ This instruction limits the 32-bit signed integer elements stored in Rs1 into an
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="11102" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="11102" bodyend="11107"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="11102" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="11102" bodyend="11107"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       </sectiondef>

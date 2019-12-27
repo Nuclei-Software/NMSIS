@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="group__FC" kind="group">
     <compoundname>FC</compoundname>
     <title>Fully-connected Layer Functions</title>
@@ -116,7 +116,7 @@
 <bold>Buffer size:</bold></para><para>vec_buffer size: 0</para><para>Q7_Q15 version of the fully connected layer</para><para>Weights are in q7_t and Activations are in q15_t </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_mat_q7_vec_q15.c" line="70" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_mat_q7_vec_q15.c" bodystart="70" bodyend="200"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_mat_q7_vec_q15.c" line="70" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_mat_q7_vec_q15.c" bodystart="70" bodyend="200"/>
       </memberdef>
       <memberdef kind="function" id="group__FC_1ga73d8955ae16c57e5fe30de697459daed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>riscv_status</type>
@@ -230,7 +230,7 @@
 <bold>Buffer size:</bold></para><para>vec_buffer size: 0</para><para>Q7_Q15 version of the fully connected layer</para><para>Weights are in q7_t and Activations are in q15_t</para><para>Limitation: x4 version requires weight reordering to work</para><para>Here we use only one pointer to read 4 rows in the weight matrix. So if the original q7_t matrix looks like this:</para><para>| a11 | a12 | a13 | a14 | a15 | a16 | a17 |</para><para>| a21 | a22 | a23 | a24 | a25 | a26 | a27 |</para><para>| a31 | a32 | a33 | a34 | a35 | a36 | a37 |</para><para>| a41 | a42 | a43 | a44 | a45 | a46 | a47 |</para><para>| a51 | a52 | a53 | a54 | a55 | a56 | a57 |</para><para>| a61 | a62 | a63 | a64 | a65 | a66 | a67 |</para><para>We operates on multiple-of-4 rows, so the first four rows becomes</para><para>| a11 | a21 | a12 | a22 | a31 | a41 | a32 | a42 |</para><para>| a13 | a23 | a14 | a24 | a33 | a43 | a34 | a44 |</para><para>| a15 | a25 | a16 | a26 | a35 | a45 | a36 | a46 |</para><para>The column left over will be in-order. which is: | a17 | a27 | a37 | a47 |</para><para>For the left-over rows, we do 1x1 computation, so the data remains as its original order.</para><para>So the stored weight matrix looks like this:</para><para>| a11 | a21 | a12 | a22 | a31 | a41 |</para><para>| a32 | a42 | a13 | a23 | a14 | a24 |</para><para>| a33 | a43 | a34 | a44 | a15 | a25 |</para><para>| a16 | a26 | a35 | a45 | a36 | a46 |</para><para>| a17 | a27 | a37 | a47 | a51 | a52 |</para><para>| a53 | a54 | a55 | a56 | a57 | a61 |</para><para>| a62 | a63 | a64 | a65 | a66 | a67 | </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_mat_q7_vec_q15_opt.c" line="118" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_mat_q7_vec_q15_opt.c" bodystart="118" bodyend="406"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_mat_q7_vec_q15_opt.c" line="118" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_mat_q7_vec_q15_opt.c" bodystart="118" bodyend="406"/>
       </memberdef>
       <memberdef kind="function" id="group__FC_1gab7871cb369396fba31f5e7037b163b89" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>riscv_status</type>
@@ -344,7 +344,7 @@
 <bold>Buffer size:</bold></para><para>vec_buffer size: 0 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_q15.c" line="67" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_q15.c" bodystart="67" bodyend="199"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_q15.c" line="67" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_q15.c" bodystart="67" bodyend="199"/>
       </memberdef>
       <memberdef kind="function" id="group__FC_1ga7aac789b484f40bcea3ca6511f2969d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>riscv_status</type>
@@ -458,7 +458,7 @@
 <bold>Buffer size:</bold></para><para>vec_buffer size: 0</para><para>Here we use only one pointer to read 4 rows in the weight matrix. So if the original matrix looks like this:</para><para>| a11 | a12 | a13 |</para><para>| a21 | a22 | a23 |</para><para>| a31 | a32 | a33 |</para><para>| a41 | a42 | a43 |</para><para>| a51 | a52 | a53 |</para><para>| a61 | a62 | a63 |</para><para>We operates on multiple-of-4 rows, so the first four rows becomes</para><para>| a11 | a12 | a21 | a22 | a31 | a32 | a41 | a42 |</para><para>| a13 | a23 | a33 | a43 |</para><para>Remaining rows are kept the same original order.</para><para>So the stored weight matrix looks like this:</para><para>| a11 | a12 | a21 | a22 | a31 | a32 | a41 | a42 |</para><para>| a13 | a23 | a33 | a43 | a51 | a52 | a53 | a61 |</para><para>| a62 | a63 | </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_q15_opt.c" line="98" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_q15_opt.c" bodystart="98" bodyend="332"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_q15_opt.c" line="98" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_q15_opt.c" bodystart="98" bodyend="332"/>
       </memberdef>
       <memberdef kind="function" id="group__FC_1gaabd0ddb08f10926a0cb16c780f1f1092" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>riscv_status</type>
@@ -572,7 +572,7 @@
 <bold>Buffer size:</bold></para><para>vec_buffer size: dim_vec</para><para>This basic function is designed to work with regular weight matrix without interleaving. </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_q7.c" line="69" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_q7.c" bodystart="69" bodyend="210"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_q7.c" line="69" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_q7.c" bodystart="69" bodyend="210"/>
       </memberdef>
       <memberdef kind="function" id="group__FC_1ga7941d995077149ea20950bb2e44f4bba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>riscv_status</type>
@@ -686,7 +686,7 @@
 <bold>Buffer size:</bold></para><para>vec_buffer size: dim_vec</para><para>This opt function is designed to work with interleaved weight matrix. The vector input is assumed in q7_t format, we call riscv_q7_to_q15_no_shift_shuffle function to expand into q15_t format with certain weight re-ordering, refer to the function comments for more details. Here we use only one pointer to read 4 rows in the weight matrix. So if the original q7_t matrix looks like this:</para><para>| a11 | a12 | a13 | a14 | a15 | a16 | a17 |</para><para>| a21 | a22 | a23 | a24 | a25 | a26 | a27 |</para><para>| a31 | a32 | a33 | a34 | a35 | a36 | a37 |</para><para>| a41 | a42 | a43 | a44 | a45 | a46 | a47 |</para><para>| a51 | a52 | a53 | a54 | a55 | a56 | a57 |</para><para>| a61 | a62 | a63 | a64 | a65 | a66 | a67 |</para><para>We operates on multiple-of-4 rows, so the first four rows becomes</para><para>| a11 | a21 | a13 | a23 | a31 | a41 | a33 | a43 |</para><para>| a12 | a22 | a14 | a24 | a32 | a42 | a34 | a44 |</para><para>| a15 | a25 | a35 | a45 | a16 | a26 | a36 | a46 |</para><para>So within the kernel, we first read the re-ordered vector in as:</para><para>| b1 | b3 | and | b2 | b4 |</para><para>the four q31_t weights will look like</para><para>| a11 | a13 |, | a21 | a23 |, | a31 | a33 |, | a41 | a43 |</para><para>| a12 | a14 |, | a22 | a24 |, | a32 | a34 |, | a42 | a44 |</para><para>The column left over will be in-order. which is:</para><para>| a17 | a27 | a37 | a47 |</para><para>For the left-over rows, we do 1x1 computation, so the data remains as its original order.</para><para>So the stored weight matrix looks like this:</para><para>| a11 | a21 | a13 | a23 | a31 | a41 |</para><para>| a33 | a43 | a12 | a22 | a14 | a24 |</para><para>| a32 | a42 | a34 | a44 | a15 | a25 |</para><para>| a35 | a45 | a16 | a26 | a36 | a46 |</para><para>| a17 | a27 | a37 | a47 | a51 | a52 |</para><para>| a53 | a54 | a55 | a56 | a57 | a61 |</para><para>| a62 | a63 | a64 | a65 | a66 | a67 | </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_q7_opt.c" line="130" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_q7_opt.c" bodystart="130" bodyend="361"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_q7_opt.c" line="130" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_q7_opt.c" bodystart="130" bodyend="361"/>
       </memberdef>
       <memberdef kind="function" id="group__FC_1gac1a460a0f6067be15cb30855f94933ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>riscv_status</type>
@@ -866,7 +866,7 @@
 <bold>Buffer size:</bold></para><para>vec_buffer size: col_dim of word16.</para><para>This basic function is designed to work with regular pWeight matrix without interleaving. </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_s8.c" line="77" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_s8.c" bodystart="77" bodyend="298"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_s8.c" line="77" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_s8.c" bodystart="77" bodyend="298"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

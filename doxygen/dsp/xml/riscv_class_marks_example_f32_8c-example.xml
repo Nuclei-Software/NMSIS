@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="riscv_class_marks_example_f32_8c-example" kind="example">
     <compoundname>riscv_class_marks_example_f32.c</compoundname>
     <detaileddescription>
@@ -49,14 +49,14 @@
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>USE_STATIC_INIT</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>USE_STATIC_INIT</highlight></codeline>
+<codeline><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/></highlight><highlight class="comment">/*<sp/>----------------------------------------------------------------------</highlight></codeline>
 <codeline><highlight class="comment">**<sp/>Global<sp/>defines</highlight></codeline>
 <codeline><highlight class="comment">**<sp/>-------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TEST_LENGTH_SAMPLES<sp/><sp/><sp/>(20*4)</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TEST_LENGTH_SAMPLES<sp/><sp/><sp/>(20*4)</highlight></codeline>
+<codeline><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>----------------------------------------------------------------------</highlight></codeline>
 <codeline><highlight class="comment">**<sp/>List<sp/>of<sp/>Marks<sp/>scored<sp/>by<sp/>20<sp/>students<sp/>for<sp/>4<sp/>subjects</highlight></codeline>
 <codeline><highlight class="comment">**<sp/>-------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
@@ -103,9 +103,9 @@
 <codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>------------------------------------------------------------------</highlight></codeline>
 <codeline><highlight class="comment">*<sp/>Global<sp/>defines</highlight></codeline>
 <codeline><highlight class="comment">*-------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/>NUMSTUDENTS<sp/><sp/>20</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>NUMSUBJECTS<sp/><sp/>4</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/>NUMSTUDENTS<sp/><sp/>20</highlight></codeline>
+<codeline><highlight class="preprocessor"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>NUMSUBJECTS<sp/><sp/>4</highlight></codeline>
+<codeline><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>------------------------------------------------------------------</highlight></codeline>
 <codeline><highlight class="comment">*<sp/>Global<sp/>variables</highlight></codeline>
 <codeline><highlight class="comment">*-------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
@@ -122,8 +122,8 @@
 <codeline><highlight class="normal">int32_t<sp/>main()</highlight></codeline>
 <codeline><highlight class="normal">{</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/><sp/>USE_STATIC_INIT</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/><sp/>USE_STATIC_INIT</highlight></codeline>
+<codeline><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><ref refid="structriscv__matrix__instance__f32" kindref="compound">riscv_matrix_instance_f32</ref><sp/>srcA;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><ref refid="structriscv__matrix__instance__f32" kindref="compound">riscv_matrix_instance_f32</ref><sp/>srcB;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><ref refid="structriscv__matrix__instance__f32" kindref="compound">riscv_matrix_instance_f32</ref><sp/>dstC;</highlight></codeline>
@@ -133,15 +133,15 @@
 <codeline><highlight class="normal"><sp/><sp/><ref refid="group__MatrixInit_1gadd1996f7da2fd9f19a6e2f3e691b681f" kindref="member">riscv_mat_init_f32</ref>(&amp;srcB,<sp/>numSubjects,<sp/>1,<sp/>(float32_t<sp/>*)testUnity_f32);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><ref refid="group__MatrixInit_1gadd1996f7da2fd9f19a6e2f3e691b681f" kindref="member">riscv_mat_init_f32</ref>(&amp;dstC,<sp/>numStudents,<sp/>1,<sp/>testOutput);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Static<sp/>Initializations<sp/>of<sp/>Input<sp/>and<sp/>output<sp/>matrix<sp/>sizes<sp/>and<sp/>array<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><ref refid="structriscv__matrix__instance__f32" kindref="compound">riscv_matrix_instance_f32</ref><sp/>srcA<sp/>=<sp/>{NUMSTUDENTS,<sp/>NUMSUBJECTS,<sp/>(float32_t<sp/>*)testMarks_f32};</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><ref refid="structriscv__matrix__instance__f32" kindref="compound">riscv_matrix_instance_f32</ref><sp/>srcB<sp/>=<sp/>{NUMSUBJECTS,<sp/>1,<sp/>(float32_t<sp/>*)testUnity_f32};</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><ref refid="structriscv__matrix__instance__f32" kindref="compound">riscv_matrix_instance_f32</ref><sp/>dstC<sp/>=<sp/>{NUMSTUDENTS,<sp/>1,<sp/>testOutput};</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>----------------------------------------------------------------------</highlight></codeline>
 <codeline><highlight class="comment"><sp/><sp/>*Call<sp/>the<sp/>Matrix<sp/>multiplication<sp/>process<sp/>function</highlight></codeline>

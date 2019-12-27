@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__CMP" kind="group">
     <compoundname>NMSIS_Core_DSP_Intrinsic_SIMD_8B_CMP</compoundname>
     <title>SIMD 8-bit Compare Instructions</title>
@@ -27,8 +27,8 @@ Do 8-bit integer elements equal comparisons simultaneously.</para><para><bold>De
 This instruction compares the 8-bit integer elements in Rs1 with the 8-bit integer elements in Rs2 to see if they are equal. If they are equal, the result is 0xFF; otherwise, the result is 0x0. The 8-bit element comparison results are written to Rd.</para><para><bold>Note</bold>:<linebreak/>
 This instruction can be used for either signed or unsigned numbers.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>(Rs1.B[x]<sp/>==<sp/>Rs2.B[x])?<sp/>0xff<sp/>:<sp/>0x0;</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=7...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -48,7 +48,7 @@ This instruction can be used for either signed or unsigned numbers.</para><para>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="1104" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="1104" bodyend="1109"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="1104" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="1104" bodyend="1109"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__CMP_1ga0b086037e48ff8891523b74b07154810" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -73,8 +73,8 @@ This instruction can be used for either signed or unsigned numbers.</para><para>
 Do 8-bit signed integer elements less than &amp; equal comparisons simultaneously.</para><para><bold>Description</bold>:<linebreak/>
 This instruction compares the 8-bit signed integer elements in Rs1 with the 8-bit signed integer elements in Rs2 to see if the one in Rs1 is less than or equal to the one in Rs2. If it is true, the result is 0xFF; otherwise, the result is 0x0. The element comparison results are written to Rd</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>(Rs1.B[x]<sp/>{le}<sp/>Rs2.B[x])?<sp/>0xff<sp/>:<sp/>0x0;</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=7...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -94,7 +94,7 @@ This instruction compares the 8-bit signed integer elements in Rs1 with the 8-bi
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="6957" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="6957" bodyend="6962"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="6957" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="6957" bodyend="6962"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__CMP_1ga7a01ed10478504e9703dafdccc415ab6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -119,8 +119,8 @@ This instruction compares the 8-bit signed integer elements in Rs1 with the 8-bi
 Do 8-bit signed integer elements less than comparisons simultaneously.</para><para><bold>Description</bold>:<linebreak/>
 This instruction compares the 8-bit signed integer elements in Rs1 with the 8-bit signed integer elements in Rs2 to see if the one in Rs1 is less than the one in Rs2. If it is true, the result is 0xFF; otherwise, the result is 0x0. The element comparison results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>(Rs1.B[x]<sp/>&lt;<sp/>Rs2.B[x])?<sp/>0xff<sp/>:<sp/>0x0;</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=7...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -140,7 +140,7 @@ This instruction compares the 8-bit signed integer elements in Rs1 with the 8-bi
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="7036" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="7036" bodyend="7041"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="7036" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="7036" bodyend="7041"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__CMP_1ga7bb0f1ec7077c679107517472935145d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -165,8 +165,8 @@ This instruction compares the 8-bit signed integer elements in Rs1 with the 8-bi
 Do 8-bit unsigned integer elements less than &amp; equal comparisons simultaneously.</para><para><bold>Description</bold>:<linebreak/>
 This instruction compares the 8-bit unsigned integer elements in Rs1 with the 8-bit unsigned integer elements in Rs2 to see if the one in Rs1 is less than or equal to the one in Rs2. If it is true, the result is 0xFF; otherwise, the result is 0x0. The four comparison results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>(Rs1.B[x]<sp/>&lt;=u<sp/>Rs2.B[x])?<sp/>0xff<sp/>:<sp/>0x0;</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=7...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -186,7 +186,7 @@ This instruction compares the 8-bit unsigned integer elements in Rs1 with the 8-
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="11142" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="11142" bodyend="11147"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="11142" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="11142" bodyend="11147"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__CMP_1ga6d69bc358f1d79a21f67027a3fcf2320" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -211,8 +211,8 @@ This instruction compares the 8-bit unsigned integer elements in Rs1 with the 8-
 Do 8-bit unsigned integer elements less than comparisons simultaneously.</para><para><bold>Description</bold>:<linebreak/>
 This instruction compares the 8-bit unsigned integer elements in Rs1 with the 8-bit unsigned integer elements in Rs2 to see if the one in Rs1 is less than the one in Rs2. If it is true, the result is 0xFF; otherwise, the result is 0x0. The element comparison results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>(Rs1.B[x]<sp/>&lt;u<sp/>Rs2.B[x])?<sp/>0xff<sp/>:<sp/>0x0;</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
-<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>RV64:<sp/>x=7...0</highlight></codeline>
 </programlisting></para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">a</parametername>
@@ -232,7 +232,7 @@ This instruction compares the 8-bit unsigned integer elements in Rs1 with the 8-
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="11221" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="11221" bodyend="11226"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="11221" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="11221" bodyend="11226"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       </sectiondef>

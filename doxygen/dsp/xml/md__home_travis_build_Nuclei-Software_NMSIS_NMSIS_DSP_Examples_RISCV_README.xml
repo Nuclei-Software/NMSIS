@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="md__home_travis_build_Nuclei-Software_NMSIS_NMSIS_DSP_Examples_RISCV_README" kind="page">
+    <compoundname>md__home_travis_build_Nuclei-Software_NMSIS_NMSIS_DSP_Examples_RISCV_README</compoundname>
+    <title>Run DSP Examples in Spike</title>
+    <detaileddescription>
+<para>Here we will describe how to run the nmsis dsp examples in Nuclei Spike.</para><para><heading level="2">Preparation</heading>
+</para><para><itemizedlist>
+<listitem><para>Nuclei Modified Spike</para></listitem><listitem><para>Nuclei Modified PK</para></listitem><listitem><para>Nuclei RISCV GNU Toolchain</para></listitem></itemizedlist>
+</para><para><heading level="2">Tool Setup</heading>
+</para><para><orderedlist>
+<listitem><para>Export <bold>PATH</bold> correctly for <computeroutput>spike</computeroutput> and <computeroutput>riscv-nuclei-elf-gcc</computeroutput> <programlisting><codeline><highlight class="normal">export<sp/>PATH=/path/to/spike/bin:/path/to/riscv-nuclei-elf-gcc/bin/:$PATH</highlight></codeline>
+</programlisting></para></listitem><listitem><para>Export <bold>PK</bold> correctly for <computeroutput>spike</computeroutput> commond. <programlisting><codeline><highlight class="normal">export<sp/>PK=/path/to/spike/riscv32-unknown-elf/bin/pk</highlight></codeline>
+</programlisting></para></listitem></orderedlist>
+</para><para><heading level="2">Build NMSIS DSP Library</heading>
+</para><para>Follow the NMSIS DSP documentation to build and install DSP library.</para><para><heading level="2">How to run</heading>
+</para><para><orderedlist>
+<listitem><para>Let us take <computeroutput>./riscv_class_marks_example/</computeroutput> for example</para></listitem><listitem><para><computeroutput>cd ./riscv_class_marks_example/</computeroutput></para></listitem><listitem><para>Run with RISCV DSP enabled NMSIS-DSP library <programlisting><codeline><highlight class="normal">make<sp/>DSP_ENABLE=ON<sp/>-B<sp/>run</highlight></codeline>
+</programlisting></para></listitem><listitem><para>Run with RISCV DSP disabled NMSIS-DSP library <programlisting><codeline><highlight class="normal">make<sp/>DSP_ENABLE=OFF<sp/>-B<sp/>run</highlight></codeline>
+</programlisting> </para></listitem></orderedlist>
+</para>    </detaileddescription>
+  </compounddef>
+</doxygen>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB" kind="group">
     <compoundname>NMSIS_Core_DSP_Intrinsic_SIGNED_16B_MULT_64B_ADDSUB</compoundname>
     <title>Signed 16-bit Multiply 64-bit Add/Subtract Instructions</title>
@@ -28,8 +28,8 @@ This instruction multiplies the bottom 16-bit content of the lower 32-bit of Rs2
 This instruction multiplies the bottom 16-bit content of the 32-bit elements of Rs2 with the top 16-bit content of the same 32-bit elements of Rs2 and adds the results with the 64-bit value of Rs1. The 64- bit addition result is written back to Rd. The 16-bit values of Rs2, and the 64-bit value of Rs1 are treated as signed integers.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">RV32:</highlight></codeline>
 <codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>Rs2.H[1]<sp/>*<sp/>Rs2.H[0];</highlight></codeline>
-<codeline><highlight class="normal">Idx0<sp/>=<sp/>CONCAT(Rs1(4,1),1&apos;b0);<sp/>Idx1<sp/>=<sp/>CONCAT(Rs1(4,1),1&apos;b1);<sp/>+</highlight></codeline>
-<codeline><highlight class="normal">Idx2<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b0);<sp/>Idx3<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b1);</highlight></codeline>
+<codeline><highlight class="normal">Idx0<sp/>=<sp/>CONCAT(Rs1(4,1),1</highlight><highlight class="stringliteral">&apos;b0);<sp/>Idx1<sp/>=<sp/>CONCAT(Rs1(4,1),1&apos;</highlight><highlight class="normal">b1);<sp/>+</highlight></codeline>
+<codeline><highlight class="normal">Idx2<sp/>=<sp/>CONCAT(Rd(4,1),1</highlight><highlight class="stringliteral">&apos;b0);<sp/>Idx3<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;</highlight><highlight class="normal">b1);</highlight></codeline>
 <codeline><highlight class="normal">R[Idx3].R[Idx2]<sp/>=<sp/>R[Idx1].R[Idx0]<sp/>+<sp/>SE64(Mres[31:0]);</highlight></codeline>
 <codeline><highlight class="normal">RV64:</highlight></codeline>
 <codeline><highlight class="normal">Mres[0][31:0]<sp/>=<sp/>Rs2.W[0].H[1]<sp/>*<sp/>Rs2.W[0].H[0];</highlight></codeline>
@@ -54,7 +54,7 @@ This instruction multiplies the bottom 16-bit content of the 32-bit elements of 
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="7297" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="7297" bodyend="7302"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="7297" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="7297" bodyend="7302"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB_1gaceb791bc1a33f08f2abc7c5ec16c1a8f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -88,19 +88,19 @@ Multiply the signed 16-bit content of the 32-bit elements of a register with the
 For the <computeroutput>SMALBB</computeroutput> instruction, it multiplies the bottom 16-bit content of Rs1 with the bottom 16-bit content of Rs2. For the <computeroutput>SMALBT</computeroutput> instruction, it multiplies the bottom 16-bit content of Rs1 with the top 16-bit content of Rs2. For the <computeroutput>SMALTT</computeroutput> instruction, it multiplies the top 16-bit content of Rs1 with the top 16-bit content of Rs2. The multiplication result is added with the 64-bit value of an even/odd pair of registers specified by Rd(4,1). The 64-bit addition result is written back to the register-pair. The 16-bit values of Rs1 and Rs2, and the 64-bit value of the register-pair are treated as signed integers. Rd(4,1), i.e., d, determines the even/odd pair group of the two registers. Specifically, the register pair includes register 2d and 2d+1. The odd <computeroutput>2d+1</computeroutput> register of the pair contains the high 32-bit of the operand and the even <computeroutput>2d</computeroutput> register of the pair contains the low 32-bit of the operand.</para><para><bold>RV64 Description</bold>:<linebreak/>
 For the <computeroutput>SMALBB</computeroutput> instruction, it multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2. For the <computeroutput>SMALBT</computeroutput> instruction, it multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2. For the <computeroutput>SMALTT</computeroutput> instruction, it multiplies the top 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2. The multiplication results are added with the 64-bit value of Rd. The 64-bit addition result is written back to Rd. The 16-bit values of Rs1 and Rs2, and the 64-bit value of Rd are treated as signed integers.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">RV32:</highlight></codeline>
-<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>Rs1.H[0]<sp/>*<sp/>Rs2.H[0];<sp/>//<sp/>SMALBB</highlight></codeline>
-<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>Rs1.H[0]<sp/>*<sp/>Rs2.H[1];<sp/>//<sp/>SMALBT</highlight></codeline>
-<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>Rs1.H[1]<sp/>*<sp/>Rs2.H[1];<sp/>//<sp/>SMALTT</highlight></codeline>
-<codeline><highlight class="normal">Idx0<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b0);<sp/>Idx1<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b1);</highlight></codeline>
+<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>Rs1.H[0]<sp/>*<sp/>Rs2.H[0];<sp/></highlight><highlight class="comment">//<sp/>SMALBB</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>Rs1.H[0]<sp/>*<sp/>Rs2.H[1];<sp/></highlight><highlight class="comment">//<sp/>SMALBT</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>Rs1.H[1]<sp/>*<sp/>Rs2.H[1];<sp/></highlight><highlight class="comment">//<sp/>SMALTT</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Idx0<sp/>=<sp/>CONCAT(Rd(4,1),1</highlight><highlight class="stringliteral">&apos;b0);<sp/>Idx1<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;</highlight><highlight class="normal">b1);</highlight></codeline>
 <codeline><highlight class="normal">R[Idx1].R[Idx0]<sp/>=<sp/>R[Idx1].R[Idx0]<sp/>+<sp/>SE64(Mres[31:0]);</highlight></codeline>
 <codeline><highlight class="normal">RV64:</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMALBB</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMALBB</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres[0][31:0]<sp/>=<sp/>Rs1.W[0].H[0]<sp/>*<sp/>Rs2.W[0].H[0];</highlight></codeline>
 <codeline><highlight class="normal">Mres[1][31:0]<sp/>=<sp/>Rs1.W[1].H[0]<sp/>*<sp/>Rs2.W[1].H[0];</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMALBT</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMALBT</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres[0][31:0]<sp/>=<sp/>Rs1.W[0].H[0]<sp/>*<sp/>Rs2.W[0].H[1];</highlight></codeline>
 <codeline><highlight class="normal">Mres[1][31:0]<sp/>=<sp/>Rs1.W[1].H[0]<sp/>*<sp/>Rs2.W[1].H[1];</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMALTT</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMALTT</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres[0][31:0]<sp/>=<sp/>Rs1.W[0].H[1]<sp/>*<sp/>Rs2.W[0].H[1];</highlight></codeline>
 <codeline><highlight class="normal">Mres[1][31:0]<sp/>=<sp/>Rs1.W[1].H[1]<sp/>*<sp/>Rs2.W[1].H[1];</highlight></codeline>
 <codeline><highlight class="normal">Rd<sp/>=<sp/>Rd<sp/>+<sp/>SE64(Mres[0][31:0])<sp/>+<sp/>SE64(Mres[1][31:0]);</highlight></codeline>
@@ -130,7 +130,7 @@ For the <computeroutput>SMALBB</computeroutput> instruction, it multiplies the b
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="7380" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="7380" bodyend="7384"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="7380" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="7380" bodyend="7384"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB_1ga74fe212140384150726143f2f43c900f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -164,19 +164,19 @@ Multiply the signed 16-bit content of the 32-bit elements of a register with the
 For the <computeroutput>SMALBB</computeroutput> instruction, it multiplies the bottom 16-bit content of Rs1 with the bottom 16-bit content of Rs2. For the <computeroutput>SMALBT</computeroutput> instruction, it multiplies the bottom 16-bit content of Rs1 with the top 16-bit content of Rs2. For the <computeroutput>SMALTT</computeroutput> instruction, it multiplies the top 16-bit content of Rs1 with the top 16-bit content of Rs2. The multiplication result is added with the 64-bit value of an even/odd pair of registers specified by Rd(4,1). The 64-bit addition result is written back to the register-pair. The 16-bit values of Rs1 and Rs2, and the 64-bit value of the register-pair are treated as signed integers. Rd(4,1), i.e., d, determines the even/odd pair group of the two registers. Specifically, the register pair includes register 2d and 2d+1. The odd <computeroutput>2d+1</computeroutput> register of the pair contains the high 32-bit of the operand and the even <computeroutput>2d</computeroutput> register of the pair contains the low 32-bit of the operand.</para><para><bold>RV64 Description</bold>:<linebreak/>
 For the <computeroutput>SMALBB</computeroutput> instruction, it multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2. For the <computeroutput>SMALBT</computeroutput> instruction, it multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2. For the <computeroutput>SMALTT</computeroutput> instruction, it multiplies the top 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2. The multiplication results are added with the 64-bit value of Rd. The 64-bit addition result is written back to Rd. The 16-bit values of Rs1 and Rs2, and the 64-bit value of Rd are treated as signed integers.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">RV32:</highlight></codeline>
-<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>Rs1.H[0]<sp/>*<sp/>Rs2.H[0];<sp/>//<sp/>SMALBB</highlight></codeline>
-<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>Rs1.H[0]<sp/>*<sp/>Rs2.H[1];<sp/>//<sp/>SMALBT</highlight></codeline>
-<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>Rs1.H[1]<sp/>*<sp/>Rs2.H[1];<sp/>//<sp/>SMALTT</highlight></codeline>
-<codeline><highlight class="normal">Idx0<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b0);<sp/>Idx1<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b1);</highlight></codeline>
+<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>Rs1.H[0]<sp/>*<sp/>Rs2.H[0];<sp/></highlight><highlight class="comment">//<sp/>SMALBB</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>Rs1.H[0]<sp/>*<sp/>Rs2.H[1];<sp/></highlight><highlight class="comment">//<sp/>SMALBT</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>Rs1.H[1]<sp/>*<sp/>Rs2.H[1];<sp/></highlight><highlight class="comment">//<sp/>SMALTT</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Idx0<sp/>=<sp/>CONCAT(Rd(4,1),1</highlight><highlight class="stringliteral">&apos;b0);<sp/>Idx1<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;</highlight><highlight class="normal">b1);</highlight></codeline>
 <codeline><highlight class="normal">R[Idx1].R[Idx0]<sp/>=<sp/>R[Idx1].R[Idx0]<sp/>+<sp/>SE64(Mres[31:0]);</highlight></codeline>
 <codeline><highlight class="normal">RV64:</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMALBB</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMALBB</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres[0][31:0]<sp/>=<sp/>Rs1.W[0].H[0]<sp/>*<sp/>Rs2.W[0].H[0];</highlight></codeline>
 <codeline><highlight class="normal">Mres[1][31:0]<sp/>=<sp/>Rs1.W[1].H[0]<sp/>*<sp/>Rs2.W[1].H[0];</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMALBT</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMALBT</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres[0][31:0]<sp/>=<sp/>Rs1.W[0].H[0]<sp/>*<sp/>Rs2.W[0].H[1];</highlight></codeline>
 <codeline><highlight class="normal">Mres[1][31:0]<sp/>=<sp/>Rs1.W[1].H[0]<sp/>*<sp/>Rs2.W[1].H[1];</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMALTT</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMALTT</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres[0][31:0]<sp/>=<sp/>Rs1.W[0].H[1]<sp/>*<sp/>Rs2.W[0].H[1];</highlight></codeline>
 <codeline><highlight class="normal">Mres[1][31:0]<sp/>=<sp/>Rs1.W[1].H[1]<sp/>*<sp/>Rs2.W[1].H[1];</highlight></codeline>
 <codeline><highlight class="normal">Rd<sp/>=<sp/>Rd<sp/>+<sp/>SE64(Mres[0][31:0])<sp/>+<sp/>SE64(Mres[1][31:0]);</highlight></codeline>
@@ -206,7 +206,7 @@ For the <computeroutput>SMALBB</computeroutput> instruction, it multiplies the b
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="7462" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="7462" bodyend="7466"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="7462" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="7462" bodyend="7466"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB_1ga39331e38421eb5f882a615941cf00444" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -240,19 +240,19 @@ Multiply the signed 16-bit content of the 32-bit elements of a register with the
 For the <computeroutput>SMALBB</computeroutput> instruction, it multiplies the bottom 16-bit content of Rs1 with the bottom 16-bit content of Rs2. For the <computeroutput>SMALBT</computeroutput> instruction, it multiplies the bottom 16-bit content of Rs1 with the top 16-bit content of Rs2. For the <computeroutput>SMALTT</computeroutput> instruction, it multiplies the top 16-bit content of Rs1 with the top 16-bit content of Rs2. The multiplication result is added with the 64-bit value of an even/odd pair of registers specified by Rd(4,1). The 64-bit addition result is written back to the register-pair. The 16-bit values of Rs1 and Rs2, and the 64-bit value of the register-pair are treated as signed integers. Rd(4,1), i.e., d, determines the even/odd pair group of the two registers. Specifically, the register pair includes register 2d and 2d+1. The odd <computeroutput>2d+1</computeroutput> register of the pair contains the high 32-bit of the operand and the even <computeroutput>2d</computeroutput> register of the pair contains the low 32-bit of the operand.</para><para><bold>RV64 Description</bold>:<linebreak/>
 For the <computeroutput>SMALBB</computeroutput> instruction, it multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2. For the <computeroutput>SMALBT</computeroutput> instruction, it multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2. For the <computeroutput>SMALTT</computeroutput> instruction, it multiplies the top 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2. The multiplication results are added with the 64-bit value of Rd. The 64-bit addition result is written back to Rd. The 16-bit values of Rs1 and Rs2, and the 64-bit value of Rd are treated as signed integers.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">RV32:</highlight></codeline>
-<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>Rs1.H[0]<sp/>*<sp/>Rs2.H[0];<sp/>//<sp/>SMALBB</highlight></codeline>
-<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>Rs1.H[0]<sp/>*<sp/>Rs2.H[1];<sp/>//<sp/>SMALBT</highlight></codeline>
-<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>Rs1.H[1]<sp/>*<sp/>Rs2.H[1];<sp/>//<sp/>SMALTT</highlight></codeline>
-<codeline><highlight class="normal">Idx0<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b0);<sp/>Idx1<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b1);</highlight></codeline>
+<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>Rs1.H[0]<sp/>*<sp/>Rs2.H[0];<sp/></highlight><highlight class="comment">//<sp/>SMALBB</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>Rs1.H[0]<sp/>*<sp/>Rs2.H[1];<sp/></highlight><highlight class="comment">//<sp/>SMALBT</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>Rs1.H[1]<sp/>*<sp/>Rs2.H[1];<sp/></highlight><highlight class="comment">//<sp/>SMALTT</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Idx0<sp/>=<sp/>CONCAT(Rd(4,1),1</highlight><highlight class="stringliteral">&apos;b0);<sp/>Idx1<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;</highlight><highlight class="normal">b1);</highlight></codeline>
 <codeline><highlight class="normal">R[Idx1].R[Idx0]<sp/>=<sp/>R[Idx1].R[Idx0]<sp/>+<sp/>SE64(Mres[31:0]);</highlight></codeline>
 <codeline><highlight class="normal">RV64:</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMALBB</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMALBB</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres[0][31:0]<sp/>=<sp/>Rs1.W[0].H[0]<sp/>*<sp/>Rs2.W[0].H[0];</highlight></codeline>
 <codeline><highlight class="normal">Mres[1][31:0]<sp/>=<sp/>Rs1.W[1].H[0]<sp/>*<sp/>Rs2.W[1].H[0];</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMALBT</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMALBT</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres[0][31:0]<sp/>=<sp/>Rs1.W[0].H[0]<sp/>*<sp/>Rs2.W[0].H[1];</highlight></codeline>
 <codeline><highlight class="normal">Mres[1][31:0]<sp/>=<sp/>Rs1.W[1].H[0]<sp/>*<sp/>Rs2.W[1].H[1];</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMALTT</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMALTT</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres[0][31:0]<sp/>=<sp/>Rs1.W[0].H[1]<sp/>*<sp/>Rs2.W[0].H[1];</highlight></codeline>
 <codeline><highlight class="normal">Mres[1][31:0]<sp/>=<sp/>Rs1.W[1].H[1]<sp/>*<sp/>Rs2.W[1].H[1];</highlight></codeline>
 <codeline><highlight class="normal">Rd<sp/>=<sp/>Rd<sp/>+<sp/>SE64(Mres[0][31:0])<sp/>+<sp/>SE64(Mres[1][31:0]);</highlight></codeline>
@@ -282,7 +282,7 @@ For the <computeroutput>SMALBB</computeroutput> instruction, it multiplies the b
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="7544" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="7544" bodyend="7548"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="7544" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="7544" bodyend="7548"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB_1ga8320e2679cb96ee46fcaf761925b8708" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -315,21 +315,21 @@ Do two signed 16-bit multiplications from the 32-bit elements of two registers; 
 For the <computeroutput>SMALDA</computeroutput> instruction, it multiplies the bottom 16-bit content of Rs1 with the bottom 16-bit content of Rs2 and then adds the result to the result of multiplying the top 16-bit content of Rs1 with the top 16-bit content of Rs2 with unlimited precision. For the <computeroutput>SMALXDA</computeroutput> instruction, it multiplies the top 16-bit content of Rs1 with the bottom 16-bit content of Rs2 and then adds the result to the result of multiplying the bottom 16-bit content of Rs1 with the top 16-bit content of Rs2 with unlimited precision. The result is added to the 64-bit value of an even/odd pair of registers specified by Rd(4,1). The 64- bit addition result is written back to the register-pair. The 16-bit values of Rs1 and Rs2, and the 64- bit value of the register-pair are treated as signed integers. Rd(4,1), i.e., d, determines the even/odd pair group of the two registers. Specifically, the register pair includes register 2d and 2d+1. The odd <computeroutput>2d+1</computeroutput> register of the pair contains the high 32-bit of the operand and the even <computeroutput>2d</computeroutput> register of the pair contains the low 32-bit of the operand.</para><para><bold>RV64 Description</bold>:<linebreak/>
 For the <computeroutput>SMALDA</computeroutput> instruction, it multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2 and then adds the result to the result of multiplying the top 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32- bit elements of Rs2 with unlimited precision. For the <computeroutput>SMALXDA</computeroutput> instruction, it multiplies the top 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2 and then adds the result to the result of multiplying the bottom 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2 with unlimited precision. The results are added to the 64-bit value of Rd. The 64-bit addition result is written back to Rd. The 16-bit values of Rs1 and Rs2, and the 64-bit value of Rd are treated as signed integers.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">RV32:</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMALDA</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMALDA</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres0[31:0]<sp/>=<sp/>(Rs1.H[0]<sp/>*<sp/>Rs2.H[0]);</highlight></codeline>
 <codeline><highlight class="normal">Mres1[31:0]<sp/>=<sp/>(Rs1.H[1]<sp/>*<sp/>Rs2.H[1]);</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMALXDA</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMALXDA</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres0[31:0]<sp/>=<sp/>(Rs1.H[0]<sp/>*<sp/>Rs2.H[1]);</highlight></codeline>
 <codeline><highlight class="normal">Mres1[31:0]<sp/>=<sp/>(Rs1.H[1]<sp/>*<sp/>Rs2.H[0]);</highlight></codeline>
-<codeline><highlight class="normal">Idx0<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b0);<sp/>Idx1<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b1);</highlight></codeline>
+<codeline><highlight class="normal">Idx0<sp/>=<sp/>CONCAT(Rd(4,1),1</highlight><highlight class="stringliteral">&apos;b0);<sp/>Idx1<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;</highlight><highlight class="normal">b1);</highlight></codeline>
 <codeline><highlight class="normal">R[Idx1].R[Idx0]<sp/>=<sp/>R[Idx1].R[Idx0]<sp/>+<sp/>SE64(Mres0[31:0])<sp/>+<sp/>SE64(Mres1[31:0]);</highlight></codeline>
 <codeline><highlight class="normal">RV64:</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMALDA</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMALDA</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres0[0][31:0]<sp/>=<sp/>(Rs1.W[0].H[0]<sp/>*<sp/>Rs2.W[0].H[0]);</highlight></codeline>
 <codeline><highlight class="normal">Mres1[0][31:0]<sp/>=<sp/>(Rs1.W[0].H[1]<sp/>*<sp/>Rs2.W[0].H[1]);</highlight></codeline>
 <codeline><highlight class="normal">Mres0[1][31:0]<sp/>=<sp/>(Rs1.W[1].H[0]<sp/>*<sp/>Rs2.W[1].H[0]);</highlight></codeline>
 <codeline><highlight class="normal">Mres1[1][31:0]<sp/>=<sp/>(Rs1.W[1].H[1]<sp/>*<sp/>Rs2.W[1].H[1]);</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMALXDA</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMALXDA</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres0[0][31:0]<sp/>=<sp/>(Rs1.W[0].H[0]<sp/>*<sp/>Rs2.W[0].H[1]);</highlight></codeline>
 <codeline><highlight class="normal">Mres1[0][31:0]<sp/>=<sp/>(Rs1.W[0].H[1]<sp/>*<sp/>Rs2.W[0].H[0]);</highlight></codeline>
 <codeline><highlight class="normal">Mres0[1][31:0]<sp/>=<sp/>(Rs1.W[1].H[0]<sp/>*<sp/>Rs2.W[1].H[1]);</highlight></codeline>
@@ -362,9 +362,8 @@ For the <computeroutput>SMALDA</computeroutput> instruction, it multiplies the b
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="7628" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="7628" bodyend="7632"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="7628" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="7628" bodyend="7632"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
-        <referencedby refid="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__CUSTOM_1ga6d8dce49013b778d0290cd057cf45dd0" compoundref="core__feature__dsp_8h" startline="14306" endline="14311">__RV_EXPD83</referencedby>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB_1ga18e89f90f0b3e3d8c34ceb33b671a61b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> long long</type>
@@ -396,21 +395,21 @@ Do two signed 16-bit multiplications from the 32-bit elements of two registers; 
 For the <computeroutput>SMALDA</computeroutput> instruction, it multiplies the bottom 16-bit content of Rs1 with the bottom 16-bit content of Rs2 and then adds the result to the result of multiplying the top 16-bit content of Rs1 with the top 16-bit content of Rs2 with unlimited precision. For the <computeroutput>SMALXDA</computeroutput> instruction, it multiplies the top 16-bit content of Rs1 with the bottom 16-bit content of Rs2 and then adds the result to the result of multiplying the bottom 16-bit content of Rs1 with the top 16-bit content of Rs2 with unlimited precision. The result is added to the 64-bit value of an even/odd pair of registers specified by Rd(4,1). The 64- bit addition result is written back to the register-pair. The 16-bit values of Rs1 and Rs2, and the 64- bit value of the register-pair are treated as signed integers. Rd(4,1), i.e., d, determines the even/odd pair group of the two registers. Specifically, the register pair includes register 2d and 2d+1. The odd <computeroutput>2d+1</computeroutput> register of the pair contains the high 32-bit of the operand and the even <computeroutput>2d</computeroutput> register of the pair contains the low 32-bit of the operand.</para><para><bold>RV64 Description</bold>:<linebreak/>
 For the <computeroutput>SMALDA</computeroutput> instruction, it multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2 and then adds the result to the result of multiplying the top 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32- bit elements of Rs2 with unlimited precision. For the <computeroutput>SMALXDA</computeroutput> instruction, it multiplies the top 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2 and then adds the result to the result of multiplying the bottom 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2 with unlimited precision. The results are added to the 64-bit value of Rd. The 64-bit addition result is written back to Rd. The 16-bit values of Rs1 and Rs2, and the 64-bit value of Rd are treated as signed integers.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">RV32:</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMALDA</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMALDA</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres0[31:0]<sp/>=<sp/>(Rs1.H[0]<sp/>*<sp/>Rs2.H[0]);</highlight></codeline>
 <codeline><highlight class="normal">Mres1[31:0]<sp/>=<sp/>(Rs1.H[1]<sp/>*<sp/>Rs2.H[1]);</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMALXDA</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMALXDA</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres0[31:0]<sp/>=<sp/>(Rs1.H[0]<sp/>*<sp/>Rs2.H[1]);</highlight></codeline>
 <codeline><highlight class="normal">Mres1[31:0]<sp/>=<sp/>(Rs1.H[1]<sp/>*<sp/>Rs2.H[0]);</highlight></codeline>
-<codeline><highlight class="normal">Idx0<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b0);<sp/>Idx1<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b1);</highlight></codeline>
+<codeline><highlight class="normal">Idx0<sp/>=<sp/>CONCAT(Rd(4,1),1</highlight><highlight class="stringliteral">&apos;b0);<sp/>Idx1<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;</highlight><highlight class="normal">b1);</highlight></codeline>
 <codeline><highlight class="normal">R[Idx1].R[Idx0]<sp/>=<sp/>R[Idx1].R[Idx0]<sp/>+<sp/>SE64(Mres0[31:0])<sp/>+<sp/>SE64(Mres1[31:0]);</highlight></codeline>
 <codeline><highlight class="normal">RV64:</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMALDA</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMALDA</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres0[0][31:0]<sp/>=<sp/>(Rs1.W[0].H[0]<sp/>*<sp/>Rs2.W[0].H[0]);</highlight></codeline>
 <codeline><highlight class="normal">Mres1[0][31:0]<sp/>=<sp/>(Rs1.W[0].H[1]<sp/>*<sp/>Rs2.W[0].H[1]);</highlight></codeline>
 <codeline><highlight class="normal">Mres0[1][31:0]<sp/>=<sp/>(Rs1.W[1].H[0]<sp/>*<sp/>Rs2.W[1].H[0]);</highlight></codeline>
 <codeline><highlight class="normal">Mres1[1][31:0]<sp/>=<sp/>(Rs1.W[1].H[1]<sp/>*<sp/>Rs2.W[1].H[1]);</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMALXDA</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMALXDA</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres0[0][31:0]<sp/>=<sp/>(Rs1.W[0].H[0]<sp/>*<sp/>Rs2.W[0].H[1]);</highlight></codeline>
 <codeline><highlight class="normal">Mres1[0][31:0]<sp/>=<sp/>(Rs1.W[0].H[1]<sp/>*<sp/>Rs2.W[0].H[0]);</highlight></codeline>
 <codeline><highlight class="normal">Mres0[1][31:0]<sp/>=<sp/>(Rs1.W[1].H[0]<sp/>*<sp/>Rs2.W[1].H[1]);</highlight></codeline>
@@ -443,9 +442,8 @@ For the <computeroutput>SMALDA</computeroutput> instruction, it multiplies the b
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="7712" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="7712" bodyend="7716"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="7712" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="7712" bodyend="7716"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
-        <referencedby refid="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__CUSTOM_1ga6d8dce49013b778d0290cd057cf45dd0" compoundref="core__feature__dsp_8h" startline="14306" endline="14311">__RV_EXPD83</referencedby>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB_1ga68b7e1927e142a46a1e3132a7e04b777" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> long long</type>
@@ -478,19 +476,19 @@ Do two signed 16-bit multiplications from the 32-bit elements of two registers; 
 For the <computeroutput>SMALDS</computeroutput> instruction, it multiplies the bottom 16-bit content of Rs1 with the bottom 16-bit content of Rs2 and then subtracts the result from the result of multiplying the top 16-bit content of Rs1 with the top 16-bit content of Rs2. For the <computeroutput>SMALDRS</computeroutput> instruction, it multiplies the top 16-bit content of Rs1 with the top 16-bit content of Rs2 and then subtracts the result from the result of multiplying the bottom 16-bit content of Rs1 with the bottom 16-bit content of Rs2. For the <computeroutput>SMALXDS</computeroutput> instruction, it multiplies the bottom 16-bit content of Rs1 with the top 16-bit content of Rs2 and then subtracts the result from the result of multiplying the top 16-bit content of Rs1 with the bottom 16-bit content of Rs2. The subtraction result is then added to the 64-bit value of an even/odd pair of registers specified by Rd(4,1). The 64-bit addition result is written back to the register-pair. The 16-bit values of Rs1 and Rs2, and the 64-bit value of the register-pair are treated as signed integers. Rd(4,1), i.e., d, determines the even/odd pair group of the two registers. Specifically, the register pair includes register 2d and 2d+1. The odd <computeroutput>2d+1</computeroutput> register of the pair contains the high 32-bit of the operand and the even <computeroutput>2d</computeroutput> register of the pair contains the low 32-bit of the operand.</para><para><bold>RV64 Description</bold>:<linebreak/>
 For the <computeroutput>SMALDS</computeroutput> instruction, it multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2 and then subtracts the result from the result of multiplying the top 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2. For the <computeroutput>SMALDRS</computeroutput> instruction, it multiplies the top 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2 and then subtracts the result from the result of multiplying the bottom 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2. For the <computeroutput>SMALXDS</computeroutput> instruction, it multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2 and then subtracts the result from the result of multiplying the top 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2. The subtraction results are then added to the 64-bit value of Rd. The 64-bit addition result is written back to Rd. The 16-bit values of Rs1 and Rs2, and the 64-bit value of Rd are treated as signed integers.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">*<sp/>RV32:</highlight></codeline>
-<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>(Rs1.H[1]<sp/>*<sp/>Rs2.H[1])<sp/>-<sp/>(Rs1.H[0]<sp/>*<sp/>Rs2.H[0]);<sp/>//<sp/>SMALDS</highlight></codeline>
-<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>(Rs1.H[0]<sp/>*<sp/>Rs2.H[0])<sp/>-<sp/>(Rs1.H[1]<sp/>*<sp/>Rs2.H[1]);<sp/>//<sp/>SMALDRS</highlight></codeline>
-<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>(Rs1.H[1]<sp/>*<sp/>Rs2.H[0])<sp/>-<sp/>(Rs1.H[0]<sp/>*<sp/>Rs2.H[1]);<sp/>//<sp/>SMALXDS</highlight></codeline>
-<codeline><highlight class="normal">Idx0<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b0);<sp/>Idx1<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b1);</highlight></codeline>
+<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>(Rs1.H[1]<sp/>*<sp/>Rs2.H[1])<sp/>-<sp/>(Rs1.H[0]<sp/>*<sp/>Rs2.H[0]);<sp/></highlight><highlight class="comment">//<sp/>SMALDS</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>(Rs1.H[0]<sp/>*<sp/>Rs2.H[0])<sp/>-<sp/>(Rs1.H[1]<sp/>*<sp/>Rs2.H[1]);<sp/></highlight><highlight class="comment">//<sp/>SMALDRS</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>(Rs1.H[1]<sp/>*<sp/>Rs2.H[0])<sp/>-<sp/>(Rs1.H[0]<sp/>*<sp/>Rs2.H[1]);<sp/></highlight><highlight class="comment">//<sp/>SMALXDS</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Idx0<sp/>=<sp/>CONCAT(Rd(4,1),1</highlight><highlight class="stringliteral">&apos;b0);<sp/>Idx1<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;</highlight><highlight class="normal">b1);</highlight></codeline>
 <codeline><highlight class="normal">R[Idx1].R[Idx0]<sp/>=<sp/>R[Idx1].R[Idx0]<sp/>+<sp/>SE64(Mres[31:0]);</highlight></codeline>
 <codeline><highlight class="normal">*<sp/>RV64:</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMALDS</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMALDS</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres[0][31:0]<sp/>=<sp/>(Rs1.W[0].H[1]<sp/>*<sp/>Rs2.W[0].H[1])<sp/>-<sp/>(Rs1.W[0].H[0]<sp/>*<sp/>Rs2.W[0].H[0]);</highlight></codeline>
 <codeline><highlight class="normal">Mres[1][31:0]<sp/>=<sp/>(Rs1.W[1].H[1]<sp/>*<sp/>Rs2.W[0].H[1])<sp/>-<sp/>(Rs1.W[1].H[0]<sp/>*<sp/>Rs2.W[1].H[0]);</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMALDRS</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMALDRS</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres[0][31:0]<sp/>=<sp/>(Rs1.W[0].H[0]<sp/>*<sp/>Rs2.W[0].H[0])<sp/>-<sp/>(Rs1.W[0].H[1]<sp/>*<sp/>Rs2.W[0].H[1]);</highlight></codeline>
 <codeline><highlight class="normal">Mres[1][31:0]<sp/>=<sp/>(Rs1.W[1].H[0]<sp/>*<sp/>Rs2.W[0].H[0])<sp/>-<sp/>(Rs1.W[1].H[1]<sp/>*<sp/>Rs2.W[1].H[1]);</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMALXDS</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMALXDS</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres[0][31:0]<sp/>=<sp/>(Rs1.W[0].H[1]<sp/>*<sp/>Rs2.W[0].H[0])<sp/>-<sp/>(Rs1.W[0].H[0]<sp/>*<sp/>Rs2.W[0].H[1]);</highlight></codeline>
 <codeline><highlight class="normal">Mres[1][31:0]<sp/>=<sp/>(Rs1.W[1].H[1]<sp/>*<sp/>Rs2.W[0].H[0])<sp/>-<sp/>(Rs1.W[1].H[0]<sp/>*<sp/>Rs2.W[1].H[1]);</highlight></codeline>
 <codeline><highlight class="normal">Rd<sp/>=<sp/>Rd<sp/>+<sp/>SE64(Mres[0][31:0])<sp/>+<sp/>SE64(Mres[1][31:0]);</highlight></codeline>
@@ -520,7 +518,7 @@ For the <computeroutput>SMALDS</computeroutput> instruction, it multiplies the b
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="7803" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="7803" bodyend="7807"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="7803" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="7803" bodyend="7807"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB_1ga9e334955371767a38c1e7069a42025c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -554,19 +552,19 @@ Do two signed 16-bit multiplications from the 32-bit elements of two registers; 
 For the <computeroutput>SMALDS</computeroutput> instruction, it multiplies the bottom 16-bit content of Rs1 with the bottom 16-bit content of Rs2 and then subtracts the result from the result of multiplying the top 16-bit content of Rs1 with the top 16-bit content of Rs2. For the <computeroutput>SMALDRS</computeroutput> instruction, it multiplies the top 16-bit content of Rs1 with the top 16-bit content of Rs2 and then subtracts the result from the result of multiplying the bottom 16-bit content of Rs1 with the bottom 16-bit content of Rs2. For the <computeroutput>SMALXDS</computeroutput> instruction, it multiplies the bottom 16-bit content of Rs1 with the top 16-bit content of Rs2 and then subtracts the result from the result of multiplying the top 16-bit content of Rs1 with the bottom 16-bit content of Rs2. The subtraction result is then added to the 64-bit value of an even/odd pair of registers specified by Rd(4,1). The 64-bit addition result is written back to the register-pair. The 16-bit values of Rs1 and Rs2, and the 64-bit value of the register-pair are treated as signed integers. Rd(4,1), i.e., d, determines the even/odd pair group of the two registers. Specifically, the register pair includes register 2d and 2d+1. The odd <computeroutput>2d+1</computeroutput> register of the pair contains the high 32-bit of the operand and the even <computeroutput>2d</computeroutput> register of the pair contains the low 32-bit of the operand.</para><para><bold>RV64 Description</bold>:<linebreak/>
 For the <computeroutput>SMALDS</computeroutput> instruction, it multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2 and then subtracts the result from the result of multiplying the top 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2. For the <computeroutput>SMALDRS</computeroutput> instruction, it multiplies the top 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2 and then subtracts the result from the result of multiplying the bottom 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2. For the <computeroutput>SMALXDS</computeroutput> instruction, it multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2 and then subtracts the result from the result of multiplying the top 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2. The subtraction results are then added to the 64-bit value of Rd. The 64-bit addition result is written back to Rd. The 16-bit values of Rs1 and Rs2, and the 64-bit value of Rd are treated as signed integers.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">*<sp/>RV32:</highlight></codeline>
-<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>(Rs1.H[1]<sp/>*<sp/>Rs2.H[1])<sp/>-<sp/>(Rs1.H[0]<sp/>*<sp/>Rs2.H[0]);<sp/>//<sp/>SMALDS</highlight></codeline>
-<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>(Rs1.H[0]<sp/>*<sp/>Rs2.H[0])<sp/>-<sp/>(Rs1.H[1]<sp/>*<sp/>Rs2.H[1]);<sp/>//<sp/>SMALDRS</highlight></codeline>
-<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>(Rs1.H[1]<sp/>*<sp/>Rs2.H[0])<sp/>-<sp/>(Rs1.H[0]<sp/>*<sp/>Rs2.H[1]);<sp/>//<sp/>SMALXDS</highlight></codeline>
-<codeline><highlight class="normal">Idx0<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b0);<sp/>Idx1<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b1);</highlight></codeline>
+<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>(Rs1.H[1]<sp/>*<sp/>Rs2.H[1])<sp/>-<sp/>(Rs1.H[0]<sp/>*<sp/>Rs2.H[0]);<sp/></highlight><highlight class="comment">//<sp/>SMALDS</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>(Rs1.H[0]<sp/>*<sp/>Rs2.H[0])<sp/>-<sp/>(Rs1.H[1]<sp/>*<sp/>Rs2.H[1]);<sp/></highlight><highlight class="comment">//<sp/>SMALDRS</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>(Rs1.H[1]<sp/>*<sp/>Rs2.H[0])<sp/>-<sp/>(Rs1.H[0]<sp/>*<sp/>Rs2.H[1]);<sp/></highlight><highlight class="comment">//<sp/>SMALXDS</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Idx0<sp/>=<sp/>CONCAT(Rd(4,1),1</highlight><highlight class="stringliteral">&apos;b0);<sp/>Idx1<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;</highlight><highlight class="normal">b1);</highlight></codeline>
 <codeline><highlight class="normal">R[Idx1].R[Idx0]<sp/>=<sp/>R[Idx1].R[Idx0]<sp/>+<sp/>SE64(Mres[31:0]);</highlight></codeline>
 <codeline><highlight class="normal">*<sp/>RV64:</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMALDS</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMALDS</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres[0][31:0]<sp/>=<sp/>(Rs1.W[0].H[1]<sp/>*<sp/>Rs2.W[0].H[1])<sp/>-<sp/>(Rs1.W[0].H[0]<sp/>*<sp/>Rs2.W[0].H[0]);</highlight></codeline>
 <codeline><highlight class="normal">Mres[1][31:0]<sp/>=<sp/>(Rs1.W[1].H[1]<sp/>*<sp/>Rs2.W[0].H[1])<sp/>-<sp/>(Rs1.W[1].H[0]<sp/>*<sp/>Rs2.W[1].H[0]);</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMALDRS</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMALDRS</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres[0][31:0]<sp/>=<sp/>(Rs1.W[0].H[0]<sp/>*<sp/>Rs2.W[0].H[0])<sp/>-<sp/>(Rs1.W[0].H[1]<sp/>*<sp/>Rs2.W[0].H[1]);</highlight></codeline>
 <codeline><highlight class="normal">Mres[1][31:0]<sp/>=<sp/>(Rs1.W[1].H[0]<sp/>*<sp/>Rs2.W[0].H[0])<sp/>-<sp/>(Rs1.W[1].H[1]<sp/>*<sp/>Rs2.W[1].H[1]);</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMALXDS</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMALXDS</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres[0][31:0]<sp/>=<sp/>(Rs1.W[0].H[1]<sp/>*<sp/>Rs2.W[0].H[0])<sp/>-<sp/>(Rs1.W[0].H[0]<sp/>*<sp/>Rs2.W[0].H[1]);</highlight></codeline>
 <codeline><highlight class="normal">Mres[1][31:0]<sp/>=<sp/>(Rs1.W[1].H[1]<sp/>*<sp/>Rs2.W[0].H[0])<sp/>-<sp/>(Rs1.W[1].H[0]<sp/>*<sp/>Rs2.W[1].H[1]);</highlight></codeline>
 <codeline><highlight class="normal">Rd<sp/>=<sp/>Rd<sp/>+<sp/>SE64(Mres[0][31:0])<sp/>+<sp/>SE64(Mres[1][31:0]);</highlight></codeline>
@@ -596,7 +594,7 @@ For the <computeroutput>SMALDS</computeroutput> instruction, it multiplies the b
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="7894" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="7894" bodyend="7898"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="7894" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="7894" bodyend="7898"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB_1gaf31ec8bdff7f1f55254aaeb13979c70c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -630,19 +628,19 @@ Do two signed 16-bit multiplications from the 32-bit elements of two registers; 
 For the <computeroutput>SMALDS</computeroutput> instruction, it multiplies the bottom 16-bit content of Rs1 with the bottom 16-bit content of Rs2 and then subtracts the result from the result of multiplying the top 16-bit content of Rs1 with the top 16-bit content of Rs2. For the <computeroutput>SMALDRS</computeroutput> instruction, it multiplies the top 16-bit content of Rs1 with the top 16-bit content of Rs2 and then subtracts the result from the result of multiplying the bottom 16-bit content of Rs1 with the bottom 16-bit content of Rs2. For the <computeroutput>SMALXDS</computeroutput> instruction, it multiplies the bottom 16-bit content of Rs1 with the top 16-bit content of Rs2 and then subtracts the result from the result of multiplying the top 16-bit content of Rs1 with the bottom 16-bit content of Rs2. The subtraction result is then added to the 64-bit value of an even/odd pair of registers specified by Rd(4,1). The 64-bit addition result is written back to the register-pair. The 16-bit values of Rs1 and Rs2, and the 64-bit value of the register-pair are treated as signed integers. Rd(4,1), i.e., d, determines the even/odd pair group of the two registers. Specifically, the register pair includes register 2d and 2d+1. The odd <computeroutput>2d+1</computeroutput> register of the pair contains the high 32-bit of the operand and the even <computeroutput>2d</computeroutput> register of the pair contains the low 32-bit of the operand.</para><para><bold>RV64 Description</bold>:<linebreak/>
 For the <computeroutput>SMALDS</computeroutput> instruction, it multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2 and then subtracts the result from the result of multiplying the top 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2. For the <computeroutput>SMALDRS</computeroutput> instruction, it multiplies the top 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2 and then subtracts the result from the result of multiplying the bottom 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2. For the <computeroutput>SMALXDS</computeroutput> instruction, it multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2 and then subtracts the result from the result of multiplying the top 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2. The subtraction results are then added to the 64-bit value of Rd. The 64-bit addition result is written back to Rd. The 16-bit values of Rs1 and Rs2, and the 64-bit value of Rd are treated as signed integers.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">*<sp/>RV32:</highlight></codeline>
-<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>(Rs1.H[1]<sp/>*<sp/>Rs2.H[1])<sp/>-<sp/>(Rs1.H[0]<sp/>*<sp/>Rs2.H[0]);<sp/>//<sp/>SMALDS</highlight></codeline>
-<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>(Rs1.H[0]<sp/>*<sp/>Rs2.H[0])<sp/>-<sp/>(Rs1.H[1]<sp/>*<sp/>Rs2.H[1]);<sp/>//<sp/>SMALDRS</highlight></codeline>
-<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>(Rs1.H[1]<sp/>*<sp/>Rs2.H[0])<sp/>-<sp/>(Rs1.H[0]<sp/>*<sp/>Rs2.H[1]);<sp/>//<sp/>SMALXDS</highlight></codeline>
-<codeline><highlight class="normal">Idx0<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b0);<sp/>Idx1<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b1);</highlight></codeline>
+<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>(Rs1.H[1]<sp/>*<sp/>Rs2.H[1])<sp/>-<sp/>(Rs1.H[0]<sp/>*<sp/>Rs2.H[0]);<sp/></highlight><highlight class="comment">//<sp/>SMALDS</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>(Rs1.H[0]<sp/>*<sp/>Rs2.H[0])<sp/>-<sp/>(Rs1.H[1]<sp/>*<sp/>Rs2.H[1]);<sp/></highlight><highlight class="comment">//<sp/>SMALDRS</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Mres[31:0]<sp/>=<sp/>(Rs1.H[1]<sp/>*<sp/>Rs2.H[0])<sp/>-<sp/>(Rs1.H[0]<sp/>*<sp/>Rs2.H[1]);<sp/></highlight><highlight class="comment">//<sp/>SMALXDS</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Idx0<sp/>=<sp/>CONCAT(Rd(4,1),1</highlight><highlight class="stringliteral">&apos;b0);<sp/>Idx1<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;</highlight><highlight class="normal">b1);</highlight></codeline>
 <codeline><highlight class="normal">R[Idx1].R[Idx0]<sp/>=<sp/>R[Idx1].R[Idx0]<sp/>+<sp/>SE64(Mres[31:0]);</highlight></codeline>
 <codeline><highlight class="normal">*<sp/>RV64:</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMALDS</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMALDS</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres[0][31:0]<sp/>=<sp/>(Rs1.W[0].H[1]<sp/>*<sp/>Rs2.W[0].H[1])<sp/>-<sp/>(Rs1.W[0].H[0]<sp/>*<sp/>Rs2.W[0].H[0]);</highlight></codeline>
 <codeline><highlight class="normal">Mres[1][31:0]<sp/>=<sp/>(Rs1.W[1].H[1]<sp/>*<sp/>Rs2.W[0].H[1])<sp/>-<sp/>(Rs1.W[1].H[0]<sp/>*<sp/>Rs2.W[1].H[0]);</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMALDRS</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMALDRS</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres[0][31:0]<sp/>=<sp/>(Rs1.W[0].H[0]<sp/>*<sp/>Rs2.W[0].H[0])<sp/>-<sp/>(Rs1.W[0].H[1]<sp/>*<sp/>Rs2.W[0].H[1]);</highlight></codeline>
 <codeline><highlight class="normal">Mres[1][31:0]<sp/>=<sp/>(Rs1.W[1].H[0]<sp/>*<sp/>Rs2.W[0].H[0])<sp/>-<sp/>(Rs1.W[1].H[1]<sp/>*<sp/>Rs2.W[1].H[1]);</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMALXDS</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMALXDS</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres[0][31:0]<sp/>=<sp/>(Rs1.W[0].H[1]<sp/>*<sp/>Rs2.W[0].H[0])<sp/>-<sp/>(Rs1.W[0].H[0]<sp/>*<sp/>Rs2.W[0].H[1]);</highlight></codeline>
 <codeline><highlight class="normal">Mres[1][31:0]<sp/>=<sp/>(Rs1.W[1].H[1]<sp/>*<sp/>Rs2.W[0].H[0])<sp/>-<sp/>(Rs1.W[1].H[0]<sp/>*<sp/>Rs2.W[1].H[1]);</highlight></codeline>
 <codeline><highlight class="normal">Rd<sp/>=<sp/>Rd<sp/>+<sp/>SE64(Mres[0][31:0])<sp/>+<sp/>SE64(Mres[1][31:0]);</highlight></codeline>
@@ -672,7 +670,7 @@ For the <computeroutput>SMALDS</computeroutput> instruction, it multiplies the b
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="7985" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="7985" bodyend="7989"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="7985" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="7985" bodyend="7989"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB_1gac49482a84d29e662acb7438c5821cc8b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -705,21 +703,21 @@ Do two signed 16-bit multiplications from the 32-bit elements of two registers; 
 For the <computeroutput>SMSLDA</computeroutput> instruction, it multiplies the bottom 16-bit content of Rs1 with the bottom 16-bit content Rs2 and multiplies the top 16-bit content of Rs1 with the top 16-bit content of Rs2. For the <computeroutput>SMSLXDA</computeroutput> instruction, it multiplies the top 16-bit content of Rs1 with the bottom 16-bit content of Rs2 and multiplies the bottom 16-bit content of Rs1 with the top 16-bit content of Rs2. The two multiplication results are subtracted from the 64-bit value of an even/odd pair of registers specified by Rd(4,1). The 64-bit subtraction result is written back to the register-pair. The 16-bit values of Rs1 and Rs2, and the 64-bit value of the register-pair are treated as signed integers. Rd(4,1), i.e., d, determines the even/odd pair group of the two registers. Specifically, the register pair includes register 2d and 2d+1. The odd <computeroutput>2d+1</computeroutput> register of the pair contains the high 32-bit of the result and the even <computeroutput>2d</computeroutput> register of the pair contains the low 32-bit of the result.</para><para><bold>RV64 Description</bold>:<linebreak/>
 For the <computeroutput>SMSLDA</computeroutput> instruction, it multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2 and multiplies the top 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2. For the <computeroutput>SMSLXDA</computeroutput> instruction, it multiplies the top 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2 and multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2. The four multiplication results are subtracted from the 64-bit value of Rd. The 64-bit subtraction result is written back to Rd. The 16-bit values of Rs1 and Rs2, and the 64-bit value of Rd are treated as signed integers.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">*<sp/>RV32:</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMSLDA</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMSLDA</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres0[31:0]<sp/>=<sp/>(Rs1.H[0]<sp/>*<sp/>Rs2.H[0]);</highlight></codeline>
 <codeline><highlight class="normal">Mres1[31:0]<sp/>=<sp/>(Rs1.H[1]<sp/>*<sp/>Rs2.H[1]);</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMSLXDA</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMSLXDA</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres0[31:0]<sp/>=<sp/>(Rs1.H[0]<sp/>*<sp/>Rs2.H[1]);</highlight></codeline>
 <codeline><highlight class="normal">Mres1[31:0]<sp/>=<sp/>(Rs1.H[1]<sp/>*<sp/>Rs2.H[0]);</highlight></codeline>
-<codeline><highlight class="normal">Idx0<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b0);<sp/>Idx1<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b1);</highlight></codeline>
+<codeline><highlight class="normal">Idx0<sp/>=<sp/>CONCAT(Rd(4,1),1</highlight><highlight class="stringliteral">&apos;b0);<sp/>Idx1<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;</highlight><highlight class="normal">b1);</highlight></codeline>
 <codeline><highlight class="normal">R[Idx1].R[Idx0]<sp/>=<sp/>R[Idx1].R[Idx0]<sp/>-<sp/>SE64(Mres0[31:0])<sp/>-<sp/>SE64(Mres1[31:0]);</highlight></codeline>
 <codeline><highlight class="normal">*<sp/>RV64:</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMSLDA</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMSLDA</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres0[0][31:0]<sp/>=<sp/>(Rs1.W[0].H[0]<sp/>*<sp/>Rs2.W[0].H[0]);</highlight></codeline>
 <codeline><highlight class="normal">Mres1[0][31:0]<sp/>=<sp/>(Rs1.W[0].H[1]<sp/>*<sp/>Rs2.W[0].H[1]);</highlight></codeline>
 <codeline><highlight class="normal">Mres0[1][31:0]<sp/>=<sp/>(Rs1.W[1].H[0]<sp/>*<sp/>Rs2.W[1].H[0]);</highlight></codeline>
 <codeline><highlight class="normal">Mres1[1][31:0]<sp/>=<sp/>(Rs1.W[1].H[1]<sp/>*<sp/>Rs2.W[1].H[1]);</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMSLXDA</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMSLXDA</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres0[0][31:0]<sp/>=<sp/>(Rs1.W[0].H[0]<sp/>*<sp/>Rs2.W[0].H[1]);</highlight></codeline>
 <codeline><highlight class="normal">Mres1[0][31:0]<sp/>=<sp/>(Rs1.W[0].H[1]<sp/>*<sp/>Rs2.W[0].H[0]);</highlight></codeline>
 <codeline><highlight class="normal">Mres0[1][31:0]<sp/>=<sp/>(Rs1.W[1].H[0]<sp/>*<sp/>Rs2.W[1].H[1]);</highlight></codeline>
@@ -752,7 +750,7 @@ For the <computeroutput>SMSLDA</computeroutput> instruction, it multiplies the b
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="8999" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8999" bodyend="9003"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="8999" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8999" bodyend="9003"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB_1gad6cb1fab36698a107205e10b5ae71436" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -785,21 +783,21 @@ Do two signed 16-bit multiplications from the 32-bit elements of two registers; 
 For the <computeroutput>SMSLDA</computeroutput> instruction, it multiplies the bottom 16-bit content of Rs1 with the bottom 16-bit content Rs2 and multiplies the top 16-bit content of Rs1 with the top 16-bit content of Rs2. For the <computeroutput>SMSLXDA</computeroutput> instruction, it multiplies the top 16-bit content of Rs1 with the bottom 16-bit content of Rs2 and multiplies the bottom 16-bit content of Rs1 with the top 16-bit content of Rs2. The two multiplication results are subtracted from the 64-bit value of an even/odd pair of registers specified by Rd(4,1). The 64-bit subtraction result is written back to the register-pair. The 16-bit values of Rs1 and Rs2, and the 64-bit value of the register-pair are treated as signed integers. Rd(4,1), i.e., d, determines the even/odd pair group of the two registers. Specifically, the register pair includes register 2d and 2d+1. The odd <computeroutput>2d+1</computeroutput> register of the pair contains the high 32-bit of the result and the even <computeroutput>2d</computeroutput> register of the pair contains the low 32-bit of the result.</para><para><bold>RV64 Description</bold>:<linebreak/>
 For the <computeroutput>SMSLDA</computeroutput> instruction, it multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2 and multiplies the top 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2. For the <computeroutput>SMSLXDA</computeroutput> instruction, it multiplies the top 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2 and multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2. The four multiplication results are subtracted from the 64-bit value of Rd. The 64-bit subtraction result is written back to Rd. The 16-bit values of Rs1 and Rs2, and the 64-bit value of Rd are treated as signed integers.</para><para><bold>Operations</bold>:<linebreak/>
 <programlisting><codeline><highlight class="normal">*<sp/>RV32:</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMSLDA</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMSLDA</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres0[31:0]<sp/>=<sp/>(Rs1.H[0]<sp/>*<sp/>Rs2.H[0]);</highlight></codeline>
 <codeline><highlight class="normal">Mres1[31:0]<sp/>=<sp/>(Rs1.H[1]<sp/>*<sp/>Rs2.H[1]);</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMSLXDA</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMSLXDA</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres0[31:0]<sp/>=<sp/>(Rs1.H[0]<sp/>*<sp/>Rs2.H[1]);</highlight></codeline>
 <codeline><highlight class="normal">Mres1[31:0]<sp/>=<sp/>(Rs1.H[1]<sp/>*<sp/>Rs2.H[0]);</highlight></codeline>
-<codeline><highlight class="normal">Idx0<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b0);<sp/>Idx1<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;b1);</highlight></codeline>
+<codeline><highlight class="normal">Idx0<sp/>=<sp/>CONCAT(Rd(4,1),1</highlight><highlight class="stringliteral">&apos;b0);<sp/>Idx1<sp/>=<sp/>CONCAT(Rd(4,1),1&apos;</highlight><highlight class="normal">b1);</highlight></codeline>
 <codeline><highlight class="normal">R[Idx1].R[Idx0]<sp/>=<sp/>R[Idx1].R[Idx0]<sp/>-<sp/>SE64(Mres0[31:0])<sp/>-<sp/>SE64(Mres1[31:0]);</highlight></codeline>
 <codeline><highlight class="normal">*<sp/>RV64:</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMSLDA</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMSLDA</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres0[0][31:0]<sp/>=<sp/>(Rs1.W[0].H[0]<sp/>*<sp/>Rs2.W[0].H[0]);</highlight></codeline>
 <codeline><highlight class="normal">Mres1[0][31:0]<sp/>=<sp/>(Rs1.W[0].H[1]<sp/>*<sp/>Rs2.W[0].H[1]);</highlight></codeline>
 <codeline><highlight class="normal">Mres0[1][31:0]<sp/>=<sp/>(Rs1.W[1].H[0]<sp/>*<sp/>Rs2.W[1].H[0]);</highlight></codeline>
 <codeline><highlight class="normal">Mres1[1][31:0]<sp/>=<sp/>(Rs1.W[1].H[1]<sp/>*<sp/>Rs2.W[1].H[1]);</highlight></codeline>
-<codeline><highlight class="normal">//<sp/>SMSLXDA</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>SMSLXDA</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Mres0[0][31:0]<sp/>=<sp/>(Rs1.W[0].H[0]<sp/>*<sp/>Rs2.W[0].H[1]);</highlight></codeline>
 <codeline><highlight class="normal">Mres1[0][31:0]<sp/>=<sp/>(Rs1.W[0].H[1]<sp/>*<sp/>Rs2.W[0].H[0]);</highlight></codeline>
 <codeline><highlight class="normal">Mres0[1][31:0]<sp/>=<sp/>(Rs1.W[1].H[0]<sp/>*<sp/>Rs2.W[1].H[1]);</highlight></codeline>
@@ -832,7 +830,7 @@ For the <computeroutput>SMSLDA</computeroutput> instruction, it multiplies the b
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="9081" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="9081" bodyend="9085"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" line="9081" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_dsp.h" bodystart="9081" bodyend="9085"/>
         <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
       </memberdef>
       </sectiondef>
