@@ -37,7 +37,7 @@ NMSIS NN
 .. _nmsis_design:
 
 NMSIS Design
-~~~~~~~~~~~~
+------------
 
 **NMSIS** is designed to help the |nuclei_core| processors in
 standardization. It enables consistent software layers and device
@@ -74,10 +74,18 @@ We can achieve the following benefits of **NMSIS**:
 -  It enhances program debugging with peripheral information for
    debuggers.
 
+.. _nmsis_how_to_access:
+
+How to Access
+-------------
+
+If you want to access the code of **NMSIS**, you can visit our opensource
+`NMSIS Github Repository`_.
+
 .. _nmsis_coding_rules:
 
 Coding Rules
-~~~~~~~~~~~~
+------------
 
 The **NMSIS** uses the following essential coding rules and conventions:
 
@@ -115,7 +123,7 @@ The **NMSIS** is documented within the source files with:
 .. _nmsis_validation:
 
 Validation
-~~~~~~~~~~
+----------
 
 Nuclei uses RISC-V GCC Compiler in the various tests of **NMSIS**, and
 if more compiler is added, it could be easily supported by following the
@@ -133,7 +141,7 @@ test suites.
 .. _nmsis_licence:
 
 License
-~~~~~~~
+-------
 
 This **NMSIS** is modified based on open-source project **CMSIS** to match Nuclei requirements.
 
@@ -142,3 +150,4 @@ This **NMSIS** is provided free of charge by Nuclei under the `Apache 2.0 Licens
 
 .. _RISC-V ELF psABI specification: https://github.com/riscv/riscv-elf-psabi-doc/blob/master/riscv-elf.md
 .. _Apache 2.0 License: http://www.apache.org/licenses/LICENSE-2.0
+.. _NMSIS Github Repository: https://github.com/Nuclei-Software/NMSIS

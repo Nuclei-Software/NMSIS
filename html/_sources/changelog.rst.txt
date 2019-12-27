@@ -17,4 +17,7 @@ In this release, we have release three main compoments:
 * **NMSIS-NN**: Efficient neural network 
   library developed to maximize the performance and minimize the memory footprint Nuclei Processors which has RISC-V SIMD instruction set.
 
-We also released totally new **Nuclei-SDK** which is an SDK implementation based on the **NMSIS-Core** for Nuclei N/NX evaluation cores running on HummingBird Evaluation Kit.
+We also released totally new `Nuclei-SDK`_ which is an SDK implementation based on the **NMSIS-Core** for Nuclei N/NX evaluation cores running on HummingBird Evaluation Kit.
+
+
+.. _Nuclei-SDK: https://github.com/Nuclei-Software/nuclei-sdk
