@@ -34,6 +34,10 @@ curve for micro-controller developers, and reducing the time to market for new d
 | Device/_Template_Vendor    | Vendor device template files                              |
 | Device/Nuclei              | Nuclei N and Nuclei NX Class based device examples        |
 
+## Documentation
+
+If you want to learn more about this project, please visit this [NMSIS documentation](https://nuclei-software.github.io/NMSIS).
+
 ## License
 
 This NMSIS is modified based on open-source project CMSIS to match Nuclei requirements.
