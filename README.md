@@ -1,5 +1,7 @@
 # About NMSIS
 
+[![Build Status](https://travis-ci.com/Nuclei-Software/NMSIS.svg?branch=master)](https://travis-ci.com/Nuclei-Software/NMSIS)
+
 The **Nuclei Microcontroller Software Interface Standard(NMSIS)** is a vendor-independent hardware abstraction layer for micro-controllers that are based on Nuclei processors.
 
 The **NMSIS** defines generic tool interfaces and enables consistent device support.
