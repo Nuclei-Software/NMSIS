@@ -1,4 +1,4 @@
-# About NMSIS
+# Nuclei Microcontroller Software Interface Standard
 
 [![Build Status](https://travis-ci.com/Nuclei-Software/NMSIS.svg?branch=master)](https://travis-ci.com/Nuclei-Software/NMSIS)
 
