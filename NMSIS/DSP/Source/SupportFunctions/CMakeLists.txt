@@ -1,0 +1,28 @@
+cmake_minimum_required(VERSION 3.5)
+
+project(riscv_support)
+
+INCLUDE_DIRECTORIES(${DSP}/Include)
+
+add_library(riscv_support STATIC)
+
+target_sources(riscv_support PRIVATE riscv_copy_f32.c)
+target_sources(riscv_support PRIVATE riscv_copy_q15.c)
+target_sources(riscv_support PRIVATE riscv_copy_q31.c)
+target_sources(riscv_support PRIVATE riscv_copy_q7.c)
+target_sources(riscv_support PRIVATE riscv_fill_f32.c)
+target_sources(riscv_support PRIVATE riscv_fill_q15.c)
+target_sources(riscv_support PRIVATE riscv_fill_q31.c)
+target_sources(riscv_support PRIVATE riscv_fill_q7.c)
+target_sources(riscv_support PRIVATE riscv_float_to_q15.c)
+target_sources(riscv_support PRIVATE riscv_float_to_q31.c)
+target_sources(riscv_support PRIVATE riscv_float_to_q7.c)
+target_sources(riscv_support PRIVATE riscv_q15_to_float.c)
+target_sources(riscv_support PRIVATE riscv_q15_to_q31.c)
+target_sources(riscv_support PRIVATE riscv_q15_to_q7.c)
+target_sources(riscv_support PRIVATE riscv_q31_to_float.c)
+target_sources(riscv_support PRIVATE riscv_q31_to_q15.c)
+target_sources(riscv_support PRIVATE riscv_q31_to_q7.c)
+target_sources(riscv_support PRIVATE riscv_q7_to_float.c)
+target_sources(riscv_support PRIVATE riscv_q7_to_q15.c)
+target_sources(riscv_support PRIVATE riscv_q7_to_q31.c)
