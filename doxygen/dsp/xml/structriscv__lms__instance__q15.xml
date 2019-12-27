@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="structriscv__lms__instance__q15" kind="struct" language="C++" prot="public">
+    <compoundname>riscv_lms_instance_q15</compoundname>
+    <includes local="no">riscv_math.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structriscv__lms__instance__q15_1a4122891ed7fb6831d85e8780d2679210" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t riscv_lms_instance_q15::numTaps</definition>
+        <argsstring></argsstring>
+        <name>numTaps</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>number of coefficients in the filter. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" line="4131" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" bodystart="4131" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structriscv__lms__instance__q15_1a6c131dd371f0eb4983dcabb40ed3b425" prot="public" static="no" mutable="no">
+        <type>q15_t *</type>
+        <definition>q15_t* riscv_lms_instance_q15::pState</definition>
+        <argsstring></argsstring>
+        <name>pState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>points to the state variable array. The array is of length numTaps+blockSize-1. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" line="4132" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" bodystart="4132" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structriscv__lms__instance__q15_1af4924fdc1cea707547b8e77d6e123131" prot="public" static="no" mutable="no">
+        <type>q15_t *</type>
+        <definition>q15_t* riscv_lms_instance_q15::pCoeffs</definition>
+        <argsstring></argsstring>
+        <name>pCoeffs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>points to the coefficient array. The array is of length numTaps. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" line="4133" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" bodystart="4133" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structriscv__lms__instance__q15_1ad83890b50c848fc3029813d5d185bc63" prot="public" static="no" mutable="no">
+        <type>q15_t</type>
+        <definition>q15_t riscv_lms_instance_q15::mu</definition>
+        <argsstring></argsstring>
+        <name>mu</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>step size that controls filter coefficient updates. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" line="4134" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" bodystart="4134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structriscv__lms__instance__q15_1ab5a6c59c23cb64f7192b9a2fd62a0f1a" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t riscv_lms_instance_q15::postShift</definition>
+        <argsstring></argsstring>
+        <name>postShift</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>bit shift applied to coefficients. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" line="4135" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" bodystart="4135" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Instance structure for the Q15 LMS filter. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" line="4130" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" bodystart="4129" bodyend="4136"/>
+    <listofallmembers>
+      <member refid="structriscv__lms__instance__q15_1ad83890b50c848fc3029813d5d185bc63" prot="public" virt="non-virtual"><scope>riscv_lms_instance_q15</scope><name>mu</name></member>
+      <member refid="structriscv__lms__instance__q15_1a4122891ed7fb6831d85e8780d2679210" prot="public" virt="non-virtual"><scope>riscv_lms_instance_q15</scope><name>numTaps</name></member>
+      <member refid="structriscv__lms__instance__q15_1af4924fdc1cea707547b8e77d6e123131" prot="public" virt="non-virtual"><scope>riscv_lms_instance_q15</scope><name>pCoeffs</name></member>
+      <member refid="structriscv__lms__instance__q15_1ab5a6c59c23cb64f7192b9a2fd62a0f1a" prot="public" virt="non-virtual"><scope>riscv_lms_instance_q15</scope><name>postShift</name></member>
+      <member refid="structriscv__lms__instance__q15_1a6c131dd371f0eb4983dcabb40ed3b425" prot="public" virt="non-virtual"><scope>riscv_lms_instance_q15</scope><name>pState</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

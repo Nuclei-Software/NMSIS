@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="riscv__sin__cos__q31_8c" kind="file" language="C++">
+    <compoundname>riscv_sin_cos_q31.c</compoundname>
+    <includes refid="riscv__math_8h" local="yes">riscv_math.h</includes>
+    <includes refid="riscv__common__tables_8h" local="yes">riscv_common_tables.h</includes>
+    <includedby refid="ControllerFunctions_8c" local="yes">ControllerFunctions.c</includedby>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__SinCos_1gaba44a82036931215a98b726da8fc28f8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_sin_cos_q31</definition>
+        <argsstring>(q31_t theta, q31_t *pSinVal, q31_t *pCosVal)</argsstring>
+        <name>riscv_sin_cos_q31</name>
+        <param>
+          <type>q31_t</type>
+          <declname>theta</declname>
+        </param>
+        <param>
+          <type>q31_t *</type>
+          <declname>pSinVal</declname>
+        </param>
+        <param>
+          <type>q31_t *</type>
+          <declname>pCosVal</declname>
+        </param>
+        <briefdescription>
+<para>Q31 sin_cos function. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">theta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>scaled input value in degrees </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pSinVal</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to processed sine output </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pCosVal</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to processed cosine output </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+The Q31 input value is in the range [-1 0.999999] and is mapped to a degree value in the range [-180 179]. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/ControllerFunctions/riscv_sin_cos_q31.c" line="52" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/ControllerFunctions/riscv_sin_cos_q31.c" bodystart="52" bodyend="107"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/>----------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>Project:<sp/><sp/><sp/><sp/><sp/><sp/>NMSIS<sp/>DSP<sp/>Library</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>Title:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>riscv_sin_cos_q31.c</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Description:<sp/><sp/>Cosine<sp/>&amp;<sp/>Sine<sp/>calculation<sp/>for<sp/>Q31<sp/>values</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>$Date:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>18.<sp/>March<sp/>2019</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>$Revision:<sp/><sp/><sp/><sp/>V1.6.0</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>Target<sp/>Processor:<sp/>RISC-V<sp/>cores</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>--------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(C)<sp/>2010-2019<sp/>ARM<sp/>Limited<sp/>or<sp/>its<sp/>affiliates.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2019<sp/>Nuclei<sp/>Limited.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/>SPDX-License-Identifier:<sp/>Apache-2.0</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/>Licensed<sp/>under<sp/>the<sp/>Apache<sp/>License,<sp/>Version<sp/>2.0<sp/>(the<sp/>License);<sp/>you<sp/>may</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/>not<sp/>use<sp/>this<sp/>file<sp/>except<sp/>in<sp/>compliance<sp/>with<sp/>the<sp/>License.</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/>You<sp/>may<sp/>obtain<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>License<sp/>at</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/>www.apache.org/licenses/LICENSE-2.0</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*<sp/>Unless<sp/>required<sp/>by<sp/>applicable<sp/>law<sp/>or<sp/>agreed<sp/>to<sp/>in<sp/>writing,<sp/>software</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*<sp/>distributed<sp/>under<sp/>the<sp/>License<sp/>is<sp/>distributed<sp/>on<sp/>an<sp/>AS<sp/>IS<sp/>BASIS,<sp/>WITHOUT</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*<sp/>WARRANTIES<sp/>OR<sp/>CONDITIONS<sp/>OF<sp/>ANY<sp/>KIND,<sp/>either<sp/>express<sp/>or<sp/>implied.</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*<sp/>See<sp/>the<sp/>License<sp/>for<sp/>the<sp/>specific<sp/>language<sp/>governing<sp/>permissions<sp/>and</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*<sp/>limitations<sp/>under<sp/>the<sp/>License.</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;riscv_math.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;riscv_common_tables.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__SinCos_1gaba44a82036931215a98b726da8fc28f8" kindref="member">riscv_sin_cos_q31</ref>(</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/>q31_t<sp/>theta,</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/>q31_t<sp/>*<sp/>pSinVal,</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/>q31_t<sp/>*<sp/>pCosVal)</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/>q31_t<sp/>fract;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Temporary<sp/>input,<sp/>output<sp/>variables<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/>uint16_t<sp/>indexS,<sp/>indexC;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Index<sp/>variable<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/>q31_t<sp/>f1,<sp/>f2,<sp/>d1,<sp/>d2;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Two<sp/>nearest<sp/>output<sp/>values<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/>q31_t<sp/>Dn,<sp/>Df;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/>q63_t<sp/>temp;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Calculate<sp/>the<sp/>nearest<sp/>index<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/>indexS<sp/>=<sp/>(uint32_t)theta<sp/>&gt;&gt;<sp/>CONTROLLER_Q31_SHIFT;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/>indexC<sp/>=<sp/>(indexS<sp/>+<sp/>128)<sp/>&amp;<sp/>0x1ff;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Calculation<sp/>of<sp/>fractional<sp/>value<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/>fract<sp/>=<sp/>(theta<sp/>-<sp/>(indexS<sp/>&lt;&lt;<sp/>CONTROLLER_Q31_SHIFT))<sp/>&lt;&lt;<sp/>8;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Read<sp/>two<sp/>nearest<sp/>values<sp/>of<sp/>input<sp/>value<sp/>from<sp/>the<sp/>cos<sp/>&amp;<sp/>sin<sp/>tables<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/>f1<sp/>=<sp/><sp/><ref refid="group__CFFT__CIFFT_1ga8bfccee9e1c0042cf4a765f4b19d097d" kindref="member">sinTable_q31</ref>[indexC<sp/><sp/>];</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/>f2<sp/>=<sp/><sp/><ref refid="group__CFFT__CIFFT_1ga8bfccee9e1c0042cf4a765f4b19d097d" kindref="member">sinTable_q31</ref>[indexC+1];</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/>d1<sp/>=<sp/>-<ref refid="group__CFFT__CIFFT_1ga8bfccee9e1c0042cf4a765f4b19d097d" kindref="member">sinTable_q31</ref>[indexS<sp/><sp/>];</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/>d2<sp/>=<sp/>-<ref refid="group__CFFT__CIFFT_1ga8bfccee9e1c0042cf4a765f4b19d097d" kindref="member">sinTable_q31</ref>[indexS+1];</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/>Dn<sp/>=<sp/>0x1921FB5;<sp/></highlight><highlight class="comment">/*<sp/>delta<sp/>between<sp/>the<sp/>two<sp/>points<sp/>(fixed),<sp/>in<sp/>this<sp/>case<sp/>2*pi/FAST_MATH_TABLE_SIZE<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/>Df<sp/>=<sp/>f2<sp/>-<sp/>f1;<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>delta<sp/>between<sp/>the<sp/>values<sp/>of<sp/>the<sp/>functions<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/>temp<sp/>=<sp/>Dn<sp/>*<sp/>((q63_t)d1<sp/>+<sp/>d2);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/>temp<sp/>=<sp/>temp<sp/>-<sp/>((q63_t)Df<sp/>&lt;&lt;<sp/>32);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/>temp<sp/>=<sp/>(q63_t)fract<sp/>*<sp/>(temp<sp/>&gt;&gt;<sp/>31);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/>temp<sp/>=<sp/>temp<sp/>+<sp/>((3<sp/>*<sp/>(q63_t)Df<sp/>&lt;&lt;<sp/>31)<sp/>-<sp/>(d2<sp/>+<sp/>((q63_t)d1<sp/>&lt;&lt;<sp/>1))<sp/>*<sp/>Dn);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/>temp<sp/>=<sp/>(q63_t)fract<sp/>*<sp/>(temp<sp/>&gt;&gt;<sp/>31);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/>temp<sp/>=<sp/>temp<sp/>+<sp/>(q63_t)d1<sp/>*<sp/>Dn;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/>temp<sp/>=<sp/>(q63_t)fract<sp/>*<sp/>(temp<sp/>&gt;&gt;<sp/>31);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Calculation<sp/>of<sp/>cosine<sp/>value<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/>*pCosVal<sp/>=<sp/>clip_q63_to_q31((temp<sp/>&gt;&gt;<sp/>31)<sp/>+<sp/>(q63_t)f1);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Read<sp/>two<sp/>nearest<sp/>values<sp/>of<sp/>input<sp/>value<sp/>from<sp/>the<sp/>cos<sp/>&amp;<sp/>sin<sp/>tables<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/>f1<sp/>=<sp/><ref refid="group__CFFT__CIFFT_1ga8bfccee9e1c0042cf4a765f4b19d097d" kindref="member">sinTable_q31</ref>[indexS<sp/>];</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/>f2<sp/>=<sp/><ref refid="group__CFFT__CIFFT_1ga8bfccee9e1c0042cf4a765f4b19d097d" kindref="member">sinTable_q31</ref>[indexS+1];</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/>d1<sp/>=<sp/><ref refid="group__CFFT__CIFFT_1ga8bfccee9e1c0042cf4a765f4b19d097d" kindref="member">sinTable_q31</ref>[indexC<sp/>];</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/>d2<sp/>=<sp/><ref refid="group__CFFT__CIFFT_1ga8bfccee9e1c0042cf4a765f4b19d097d" kindref="member">sinTable_q31</ref>[indexC+1];</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/>Df<sp/>=<sp/>f2<sp/>-<sp/>f1;<sp/></highlight><highlight class="comment">//<sp/>delta<sp/>between<sp/>the<sp/>values<sp/>of<sp/>the<sp/>functions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/>temp<sp/>=<sp/>Dn<sp/>*<sp/>((q63_t)d1<sp/>+<sp/>d2);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/>temp<sp/>=<sp/>temp<sp/>-<sp/>((q63_t)Df<sp/>&lt;&lt;<sp/>32);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/>temp<sp/>=<sp/>(q63_t)fract<sp/>*<sp/>(temp<sp/>&gt;&gt;<sp/>31);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/>temp<sp/>=<sp/>temp<sp/>+<sp/>((3<sp/>*<sp/>(q63_t)Df<sp/>&lt;&lt;<sp/>31)<sp/>-<sp/>(d2<sp/>+<sp/>((q63_t)d1<sp/>&lt;&lt;<sp/>1))<sp/>*<sp/>Dn);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/>temp<sp/>=<sp/>(q63_t)fract<sp/>*<sp/>(temp<sp/>&gt;&gt;<sp/>31);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/>temp<sp/>=<sp/>temp<sp/>+<sp/>(q63_t)d1<sp/>*<sp/>Dn;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/>temp<sp/>=<sp/>(q63_t)fract<sp/>*<sp/>(temp<sp/>&gt;&gt;<sp/>31);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Calculation<sp/>of<sp/>sine<sp/>value<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/>*pSinVal<sp/>=<sp/>clip_q63_to_q31((temp<sp/>&gt;&gt;<sp/>31)<sp/>+<sp/>(q63_t)f1);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/ControllerFunctions/riscv_sin_cos_q31.c"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,515 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB" kind="group">
+    <compoundname>NMSIS_Core_DSP_Intrinsic_SIMD_8B_ADDSUB</compoundname>
+    <title>SIMD 8-bit Addition &amp; Subtraction Instructions</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB_1ga502647bb2462e3bb724ba292a16e62ef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_ADD8</definition>
+        <argsstring>(unsigned long a, unsigned long b)</argsstring>
+        <name>__RV_ADD8</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>ADD8 (SIMD 8-bit Addition) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">ADD8<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Do 8-bit integer element additions simultaneously.</para><para><bold>Description</bold>:<linebreak/>
+This instruction adds the 8-bit integer elements in Rs1 with the 8-bit integer elements in Rs2, and then writes the 8-bit element results to Rd.</para><para><bold>Note</bold>:<linebreak/>
+This instruction can be used for either signed or unsigned addition.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>Rs1.B[x]<sp/>+<sp/>Rs2.B[x];</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="360" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="360" bodyend="365"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB_1ga64622c4cea6b25708edcf53511ac2846" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_KADD8</definition>
+        <argsstring>(unsigned long a, unsigned long b)</argsstring>
+        <name>__RV_KADD8</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>KADD8 (SIMD 8-bit Signed Saturating Addition) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">KADD8<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Do 8-bit signed integer element saturating additions simultaneously.</para><para><bold>Description</bold>:<linebreak/>
+This instruction adds the 8-bit signed integer elements in Rs1 with the 8-bit signed integer elements in Rs2. If any of the results are beyond the Q7 number range (-2^7 &lt;= Q7 &lt;= 2^7-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">res[x]<sp/>=<sp/>Rs1.B[x]<sp/>+<sp/>Rs2.B[x];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(res[x]<sp/>&gt;<sp/>127)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>127;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(res[x]<sp/>&lt;<sp/>-128)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>-128;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>res[x];</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="1461" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="1461" bodyend="1466"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB_1ga872cc2823228c92d1004bd859af27147" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_KSUB8</definition>
+        <argsstring>(unsigned long a, unsigned long b)</argsstring>
+        <name>__RV_KSUB8</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>KSUB8 (SIMD 8-bit Signed Saturating Subtraction) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">KSUB8<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Do 8-bit signed elements saturating subtractions simultaneously.</para><para><bold>Description</bold>:<linebreak/>
+This instruction subtracts the 8-bit signed integer elements in Rs2 from the 8-bit signed integer elements in Rs1. If any of the results are beyond the Q7 number range (-2^7 &lt;= Q7 &lt;= 27 -1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">res[x]<sp/>=<sp/>Rs1.B[x]<sp/>-<sp/>Rs2.B[x];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(res[x]<sp/>&gt;<sp/>(2^7)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>(2^7)-1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(res[x]<sp/>&lt;<sp/>-2^7)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>-2^7;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>res[x];</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="5287" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="5287" bodyend="5292"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB_1ga270f185315a2f3d5da8d14e9a89e716b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_RADD8</definition>
+        <argsstring>(unsigned long a, unsigned long b)</argsstring>
+        <name>__RV_RADD8</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>RADD8 (SIMD 8-bit Signed Halving Addition) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">RADD8<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Do 8-bit signed integer element additions simultaneously. The element results are halved to avoid overflow or saturation.</para><para><bold>Description</bold>:<linebreak/>
+This instruction adds the 8-bit signed integer elements in Rs1 with the 8-bit signed integer elements in Rs2. The results are first arithmetically right-shifted by 1 bit and then written to Rd.</para><para><bold>Examples</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">*<sp/>Rs1<sp/>=<sp/>0x7F,<sp/>Rs2<sp/>=<sp/>0x7F,<sp/>Rd<sp/>=<sp/>0x7F</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Rs1<sp/>=<sp/>0x80,<sp/>Rs2<sp/>=<sp/>0x80,<sp/>Rd<sp/>=<sp/>0x80</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Rs1<sp/>=<sp/>0x40,<sp/>Rs2<sp/>=<sp/>0x80,<sp/>Rd<sp/>=<sp/>0xE0</highlight></codeline>
+</programlisting></para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>(Rs1.B[x]<sp/>+<sp/>Rs2.B[x])<sp/>s&gt;&gt;<sp/>1;<sp/>for<sp/>RV32:<sp/>x=3...0,<sp/>for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="6208" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="6208" bodyend="6213"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB_1gae3a2b016b3af39c178ef275c7e939bb3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_RSUB8</definition>
+        <argsstring>(unsigned long a, unsigned long b)</argsstring>
+        <name>__RV_RSUB8</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>RSUB8 (SIMD 8-bit Signed Halving Subtraction) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">RSUB8<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Do 8-bit signed integer element subtractions simultaneously. The results are halved to avoid overflow or saturation.</para><para><bold>Description</bold>:<linebreak/>
+This instruction subtracts the 8-bit signed integer elements in Rs2 from the 8-bit signed integer elements in Rs1. The results are first arithmetically right-shifted by 1 bit and then written to Rd.</para><para><bold>Examples</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">*<sp/>Rs1<sp/>=<sp/>0x7F,<sp/>Rs2<sp/>=<sp/>0x80,<sp/>Rd<sp/>=<sp/>0x7F</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Rs1<sp/>=<sp/>0x80,<sp/>Rs2<sp/>=<sp/>0x7F,<sp/>Rd<sp/>=<sp/>0x80</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Rs1=<sp/>0x80,<sp/>Rs2<sp/>=<sp/>0x40,<sp/>Rd<sp/>=<sp/>0xA0</highlight></codeline>
+</programlisting></para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>(Rs1.B[x]<sp/>-<sp/>Rs2.B[x])<sp/>s&gt;&gt;<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="6624" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="6624" bodyend="6629"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB_1ga9c75e931e8703babf9e8d29f6dfcf280" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_SUB8</definition>
+        <argsstring>(unsigned long a, unsigned long b)</argsstring>
+        <name>__RV_SUB8</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>SUB8 (SIMD 8-bit Subtraction) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">SUB8<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Do 8-bit integer element subtractions simultaneously.</para><para><bold>Description</bold>:<linebreak/>
+This instruction subtracts the 8-bit integer elements in Rs2 from the 8-bit integer elements in Rs1, and then writes the result to Rd.</para><para><bold>Note</bold>:<linebreak/>
+This instruction can be used for either signed or unsigned subtraction.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>Rs1.B[x]<sp/>-<sp/>Rs2.B[x];</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="10559" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="10559" bodyend="10564"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB_1ga4b8d09eb6958b8eabea15a82ab8edef7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_UKADD8</definition>
+        <argsstring>(unsigned long a, unsigned long b)</argsstring>
+        <name>__RV_UKADD8</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>UKADD8 (SIMD 8-bit Unsigned Saturating Addition) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">UKADD8<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Do 8-bit unsigned integer element saturating additions simultaneously.</para><para><bold>Description</bold>:<linebreak/>
+This instruction adds the 8-bit unsigned integer elements in Rs1 with the 8-bit unsigned integer elements in Rs2. If any of the results are beyond the 8-bit unsigned number range (0 &lt;= RES &lt;= 28-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">res[x]<sp/>=<sp/>Rs1.B[x]<sp/>+<sp/>Rs2.B[x];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(res[x]<sp/>&gt;<sp/>(2^8)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>(2^8)-1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>res[x];</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="11305" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="11305" bodyend="11310"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB_1ga28d53441b9c0106fb6caed6dc77f89ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_UKSUB8</definition>
+        <argsstring>(unsigned long a, unsigned long b)</argsstring>
+        <name>__RV_UKSUB8</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>UKSUB8 (SIMD 8-bit Unsigned Saturating Subtraction) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">UKSUB8<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Do 8-bit unsigned integer elements saturating subtractions simultaneously.</para><para><bold>Description</bold>:<linebreak/>
+This instruction subtracts the 8-bit unsigned integer elements in Rs2 from the 8-bit unsigned integer elements in Rs1. If any of the results are beyond the 8-bit unsigned number range (0 &lt;= RES &lt;= 28-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">res[x]<sp/>=<sp/>Rs1.B[x]<sp/>-<sp/>Rs2.B[x];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(res[x]<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>res[x];</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="11893" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="11893" bodyend="11898"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB_1ga3024b858bfff004934d319dfa6b73102" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_URADD8</definition>
+        <argsstring>(unsigned long a, unsigned long b)</argsstring>
+        <name>__RV_URADD8</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>URADD8 (SIMD 8-bit Unsigned Halving Addition) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">URADD8<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Do 8-bit unsigned integer element additions simultaneously. The results are halved to avoid overflow or saturation.</para><para><bold>Description</bold>:<linebreak/>
+This instruction adds the 8-bit unsigned integer elements in Rs1 with the 8-bit unsigned integer elements in Rs2. The results are first logically right-shifted by 1 bit and then written to Rd.</para><para><bold>Examples</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">*<sp/>Ra<sp/>=<sp/>0x7F,<sp/>Rb<sp/>=<sp/>0x7F,<sp/>Rt<sp/>=<sp/>0x7F</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Ra<sp/>=<sp/>0x80,<sp/>Rb<sp/>=<sp/>0x80,<sp/>Rt<sp/>=<sp/>0x80</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Ra<sp/>=<sp/>0x40,<sp/>Rb<sp/>=<sp/>0x80,<sp/>Rt<sp/>=<sp/>0x60</highlight></codeline>
+</programlisting></para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>(Rs1.B[x]<sp/>+<sp/>Rs2.B[x])<sp/>u&gt;&gt;<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="12782" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="12782" bodyend="12787"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB_1gae016aa9f76f26a0e5ce7d3a0120e8afd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_URSUB8</definition>
+        <argsstring>(unsigned long a, unsigned long b)</argsstring>
+        <name>__RV_URSUB8</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>URSUB8 (SIMD 8-bit Unsigned Halving Subtraction) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">URSUB8<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Do 8-bit unsigned integer element subtractions simultaneously. The results are halved to avoid overflow or saturation.</para><para><bold>Description</bold>:<linebreak/>
+This instruction subtracts the 8-bit unsigned integer elements in Rs2 from the 8-bit unsigned integer elements in Rs1. The results are first logically right-shifted by 1 bit and then written to Rd.</para><para><bold>Examples</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">*<sp/>Ra<sp/>=<sp/>0x7F,<sp/>Rb<sp/>=<sp/>0x80<sp/>Rt<sp/>=<sp/>0xFF</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Ra<sp/>=<sp/>0x80,<sp/>Rb<sp/>=<sp/>0x7F<sp/>Rt<sp/>=<sp/>0x00</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Ra<sp/>=<sp/>0x80,<sp/>Rb<sp/>=<sp/>0x40<sp/>Rt<sp/>=<sp/>0x20</highlight></codeline>
+</programlisting></para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>(Rs1.B[x]<sp/>-<sp/>Rs2.B[x])<sp/>u&gt;&gt;<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="13172" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13172" bodyend="13177"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>SIMD 8-bit Addition &amp; Subtraction Instructions. </para>    </briefdescription>
+    <detaileddescription>
+<para>Based on the types of the four 8-bit arithmetic operations, the SIMD 8-bit add/subtract instructions can be classified into 2 main categories: Addition (four 8-bit addition), and Subtraction (four 8-bit subtraction). Based on the way of how an overflow condition is handled for singed or unsigned operation, the SIMD 8-bit add/subtract instructions can be classified into 5 groups: Wrap-around (dropping overflow), Signed Halving (keeping overflow by dropping 1 LSB bit), Unsigned Halving, Signed Saturation (clipping overflow), and Unsigned Saturation. Together, there are 10 SIMD 8-bit add/subtract instructions. </para>    </detaileddescription>
+  </compounddef>
+</doxygen>

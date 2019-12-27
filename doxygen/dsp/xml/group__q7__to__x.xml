@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="group__q7__to__x" kind="group">
+    <compoundname>q7_to_x</compoundname>
+    <title>Convert 8-bit Integer value</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__q7__to__x_1ga47122fb81b50e2fbca24c08984d6f4f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_q7_to_float</definition>
+        <argsstring>(const q7_t *pSrc, float32_t *pDst, uint32_t blockSize)</argsstring>
+        <name>riscv_q7_to_float</name>
+        <param>
+          <type>const q7_t *</type>
+          <declname>pSrc</declname>
+        </param>
+        <param>
+          <type>float32_t *</type>
+          <declname>pDst</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Converts the elements of the Q7 vector to floating-point vector. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the Q7 input vector </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the floating-point output vector </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples in each vector </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Details</title><para>The equation used for the conversion process is: <preformatted>
+     pDst[n] = (float32_t) pSrc[n] / 128;   0 &lt;= n &lt; blockSize.
+ </preformatted> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/SupportFunctions/riscv_q7_to_float.c" line="127" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/SupportFunctions/riscv_q7_to_float.c" bodystart="127" bodyend="175"/>
+      </memberdef>
+      <memberdef kind="function" id="group__q7__to__x_1gafadda37edcebe4d34507cf54a03b2e46" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_q7_to_q15</definition>
+        <argsstring>(const q7_t *pSrc, q15_t *pDst, uint32_t blockSize)</argsstring>
+        <name>riscv_q7_to_q15</name>
+        <param>
+          <type>const q7_t *</type>
+          <declname>pSrc</declname>
+        </param>
+        <param>
+          <type>q15_t *</type>
+          <declname>pDst</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Converts the elements of the Q7 vector to Q15 vector. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the Q7 input vector </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the Q15 output vector </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples in each vector </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Details</title><para>The equation used for the conversion process is: <preformatted>
+    pDst[n] = (q15_t) pSrc[n] &lt;&lt; 8;   0 &lt;= n &lt; blockSize.
+</preformatted> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/SupportFunctions/riscv_q7_to_q15.c" line="55" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/SupportFunctions/riscv_q7_to_q15.c" bodystart="55" bodyend="140"/>
+      </memberdef>
+      <memberdef kind="function" id="group__q7__to__x_1gaf2af4056316b2e14d4fadf5c7150d5d7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_q7_to_q31</definition>
+        <argsstring>(const q7_t *pSrc, q31_t *pDst, uint32_t blockSize)</argsstring>
+        <name>riscv_q7_to_q31</name>
+        <param>
+          <type>const q7_t *</type>
+          <declname>pSrc</declname>
+        </param>
+        <param>
+          <type>q31_t *</type>
+          <declname>pDst</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Converts the elements of the Q7 vector to Q31 vector. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the Q7 input vector </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the Q31 output vector </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples in each vector </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Details</title><para>The equation used for the conversion process is: <preformatted>
+    pDst[n] = (q31_t) pSrc[n] &lt;&lt; 24;   0 &lt;= n &lt; blockSize.
+</preformatted> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/SupportFunctions/riscv_q7_to_q31.c" line="55" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/SupportFunctions/riscv_q7_to_q31.c" bodystart="55" bodyend="118"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

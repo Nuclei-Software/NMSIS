@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="structriscv__fir__sparse__instance__q7" kind="struct" language="C++" prot="public">
+    <compoundname>riscv_fir_sparse_instance_q7</compoundname>
+    <includes local="no">riscv_math.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structriscv__fir__sparse__instance__q7_1aa8a7b72e949d6ad4bad7f550654ee404" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t riscv_fir_sparse_instance_q7::numTaps</definition>
+        <argsstring></argsstring>
+        <name>numTaps</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>number of coefficients in the filter. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" line="4582" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" bodystart="4582" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structriscv__fir__sparse__instance__q7_1ab2ceed8123505950499e5e0fbecf5f4d" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t riscv_fir_sparse_instance_q7::stateIndex</definition>
+        <argsstring></argsstring>
+        <name>stateIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>state buffer index. Points to the oldest sample in the state buffer. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" line="4583" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" bodystart="4583" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structriscv__fir__sparse__instance__q7_1ac0eedd911f13eaa76d9d1503c28987d6" prot="public" static="no" mutable="no">
+        <type>q7_t *</type>
+        <definition>q7_t* riscv_fir_sparse_instance_q7::pState</definition>
+        <argsstring></argsstring>
+        <name>pState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>points to the state buffer array. The array is of length maxDelay+blockSize-1. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" line="4584" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" bodystart="4584" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structriscv__fir__sparse__instance__q7_1acf63774a24a01e381666fcda35fc05a7" prot="public" static="no" mutable="no">
+        <type>const q7_t *</type>
+        <definition>const q7_t* riscv_fir_sparse_instance_q7::pCoeffs</definition>
+        <argsstring></argsstring>
+        <name>pCoeffs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>points to the coefficient array. The array is of length numTaps. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" line="4585" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" bodystart="4585" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structriscv__fir__sparse__instance__q7_1adb28104eefce53a41e4389beb6f2e2fb" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t riscv_fir_sparse_instance_q7::maxDelay</definition>
+        <argsstring></argsstring>
+        <name>maxDelay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>maximum offset specified by the pTapDelay array. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" line="4586" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" bodystart="4586" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structriscv__fir__sparse__instance__q7_1ae3eb0785b77db51415e06c7fafbbf203" prot="public" static="no" mutable="no">
+        <type>int32_t *</type>
+        <definition>int32_t* riscv_fir_sparse_instance_q7::pTapDelay</definition>
+        <argsstring></argsstring>
+        <name>pTapDelay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>points to the array of delay values. The array is of length numTaps. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" line="4587" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" bodystart="4587" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Instance structure for the Q7 sparse FIR filter. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" line="4581" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" bodystart="4580" bodyend="4588"/>
+    <listofallmembers>
+      <member refid="structriscv__fir__sparse__instance__q7_1adb28104eefce53a41e4389beb6f2e2fb" prot="public" virt="non-virtual"><scope>riscv_fir_sparse_instance_q7</scope><name>maxDelay</name></member>
+      <member refid="structriscv__fir__sparse__instance__q7_1aa8a7b72e949d6ad4bad7f550654ee404" prot="public" virt="non-virtual"><scope>riscv_fir_sparse_instance_q7</scope><name>numTaps</name></member>
+      <member refid="structriscv__fir__sparse__instance__q7_1acf63774a24a01e381666fcda35fc05a7" prot="public" virt="non-virtual"><scope>riscv_fir_sparse_instance_q7</scope><name>pCoeffs</name></member>
+      <member refid="structriscv__fir__sparse__instance__q7_1ac0eedd911f13eaa76d9d1503c28987d6" prot="public" virt="non-virtual"><scope>riscv_fir_sparse_instance_q7</scope><name>pState</name></member>
+      <member refid="structriscv__fir__sparse__instance__q7_1ae3eb0785b77db51415e06c7fafbbf203" prot="public" virt="non-virtual"><scope>riscv_fir_sparse_instance_q7</scope><name>pTapDelay</name></member>
+      <member refid="structriscv__fir__sparse__instance__q7_1ab2ceed8123505950499e5e0fbecf5f4d" prot="public" virt="non-virtual"><scope>riscv_fir_sparse_instance_q7</scope><name>stateIndex</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

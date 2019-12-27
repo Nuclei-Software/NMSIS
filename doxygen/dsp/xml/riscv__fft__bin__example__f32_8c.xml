@@ -1,0 +1,263 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="riscv__fft__bin__example__f32_8c" kind="file" language="C++">
+    <compoundname>riscv_fft_bin_example_f32.c</compoundname>
+    <includes refid="riscv__math_8h" local="yes">riscv_math.h</includes>
+    <includes refid="riscv__const__structs_8h" local="yes">riscv_const_structs.h</includes>
+    <includes local="no">stdio.h</includes>
+    <incdepgraph>
+      <node id="282">
+        <label>riscv_fft_bin_example_f32.c</label>
+        <link refid="riscv__fft__bin__example__f32_8c"/>
+        <childnode refid="283" relation="include">
+        </childnode>
+      </node>
+      <node id="283">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="riscv__fft__bin__example__f32_8c_1abc004a7fade488e72310fd96c0a101dc" prot="public" static="no">
+        <name>TEST_LENGTH_SAMPLES</name>
+        <initializer>2048</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fft_bin_example/riscv_fft_bin_example_f32.c" line="102" column="9" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fft_bin_example/riscv_fft_bin_example_f32.c" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="riscv__fft__bin__example__f32_8c_1a3d8ecb82590486ceebccc76263963b16" prot="public" static="no" mutable="no">
+        <type>float32_t</type>
+        <definition>float32_t testInput_f32_10khz[TEST_LENGTH_SAMPLES]</definition>
+        <argsstring>[TEST_LENGTH_SAMPLES]</argsstring>
+        <name>testInput_f32_10khz</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fft_bin_example/riscv_fft_bin_example_f32.c" line="107" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fft_bin_example/riscv_fft_bin_data.c" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="riscv__fft__bin__example__f32_8c_1aaaf907bde12051bc8bb5d48b7d315a35" prot="public" static="yes" mutable="no">
+        <type>float32_t</type>
+        <definition>float32_t testOutput[TEST_LENGTH_SAMPLES/2]</definition>
+        <argsstring>[TEST_LENGTH_SAMPLES/2]</argsstring>
+        <name>testOutput</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fft_bin_example/riscv_fft_bin_example_f32.c" line="108" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fft_bin_example/riscv_fft_bin_example_f32.c" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="riscv__fft__bin__example__f32_8c_1a9b500899c581f6df3ffc0a9f3a9ef6aa" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t fftSize</definition>
+        <argsstring></argsstring>
+        <name>fftSize</name>
+        <initializer>= 1024</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fft_bin_example/riscv_fft_bin_example_f32.c" line="113" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fft_bin_example/riscv_fft_bin_example_f32.c" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="riscv__fft__bin__example__f32_8c_1a379ccb99013d369a41b49619083c16ef" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t ifftFlag</definition>
+        <argsstring></argsstring>
+        <name>ifftFlag</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fft_bin_example/riscv_fft_bin_example_f32.c" line="114" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fft_bin_example/riscv_fft_bin_example_f32.c" bodystart="114" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="riscv__fft__bin__example__f32_8c_1a4d2e31c38e8172505e0a369a6898657d" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t doBitReverse</definition>
+        <argsstring></argsstring>
+        <name>doBitReverse</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fft_bin_example/riscv_fft_bin_example_f32.c" line="115" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fft_bin_example/riscv_fft_bin_example_f32.c" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="riscv__fft__bin__example__f32_8c_1aec50b0f697fd9e7e7e244487a4bd57e4" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t refIndex</definition>
+        <argsstring></argsstring>
+        <name>refIndex</name>
+        <initializer>= 213</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fft_bin_example/riscv_fft_bin_example_f32.c" line="118" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fft_bin_example/riscv_fft_bin_example_f32.c" bodystart="118" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="riscv__fft__bin__example__f32_8c_1a4a391651dbb95db35ccba70fc4f9e049" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t testIndex</definition>
+        <argsstring></argsstring>
+        <name>testIndex</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fft_bin_example/riscv_fft_bin_example_f32.c" line="118" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fft_bin_example/riscv_fft_bin_example_f32.c" bodystart="118" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="riscv__fft__bin__example__f32_8c_1a52d2cba30e6946c95578be946ac12a65" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int32_t</type>
+        <definition>int32_t main</definition>
+        <argsstring>(void)</argsstring>
+        <name>main</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fft_bin_example/riscv_fft_bin_example_f32.c" line="124" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fft_bin_example/riscv_fft_bin_example_f32.c" bodystart="124" bodyend="161"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/>----------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="2"><highlight class="comment">*<sp/>Copyright<sp/>(C)<sp/>2010-2012<sp/>ARM<sp/>Limited.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2019<sp/>Nuclei<sp/>Limited.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment">*<sp/>$Date:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>17.<sp/>January<sp/>2013</highlight></codeline>
+<codeline lineno="6"><highlight class="comment">*<sp/>$Revision:<sp/><sp/><sp/><sp/><sp/>V1.4.0</highlight></codeline>
+<codeline lineno="7"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="8"><highlight class="comment">*<sp/>Project:<sp/><sp/><sp/><sp/><sp/><sp/><sp/>NMSIS<sp/>DSP<sp/>Library</highlight></codeline>
+<codeline lineno="9"><highlight class="comment">*<sp/>Title:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>riscv_fft_bin_example_f32.c</highlight></codeline>
+<codeline lineno="10"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="11"><highlight class="comment">*<sp/>Description:<sp/><sp/><sp/>Example<sp/>code<sp/>demonstrating<sp/>calculation<sp/>of<sp/>Max<sp/>energy<sp/>bin<sp/>of</highlight></codeline>
+<codeline lineno="12"><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frequency<sp/>domain<sp/>of<sp/>input<sp/>signal.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="14"><highlight class="comment">*<sp/>Target<sp/>Processor:<sp/>RISC-V<sp/>Cores</highlight></codeline>
+<codeline lineno="15"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="16"><highlight class="comment">*<sp/>Redistribution<sp/>and<sp/>use<sp/>in<sp/>source<sp/>and<sp/>binary<sp/>forms,<sp/>with<sp/>or<sp/>without</highlight></codeline>
+<codeline lineno="17"><highlight class="comment">*<sp/>modification,<sp/>are<sp/>permitted<sp/>provided<sp/>that<sp/>the<sp/>following<sp/>conditions</highlight></codeline>
+<codeline lineno="18"><highlight class="comment">*<sp/>are<sp/>met:</highlight></codeline>
+<codeline lineno="19"><highlight class="comment">*<sp/><sp/><sp/>-<sp/>Redistributions<sp/>of<sp/>source<sp/>code<sp/>must<sp/>retain<sp/>the<sp/>above<sp/>copyright</highlight></codeline>
+<codeline lineno="20"><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer.</highlight></codeline>
+<codeline lineno="21"><highlight class="comment">*<sp/><sp/><sp/>-<sp/>Redistributions<sp/>in<sp/>binary<sp/>form<sp/>must<sp/>reproduce<sp/>the<sp/>above<sp/>copyright</highlight></codeline>
+<codeline lineno="22"><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer<sp/>in</highlight></codeline>
+<codeline lineno="23"><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/>the<sp/>documentation<sp/>and/or<sp/>other<sp/>materials<sp/>provided<sp/>with<sp/>the</highlight></codeline>
+<codeline lineno="24"><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/>distribution.</highlight></codeline>
+<codeline lineno="25"><highlight class="comment">*<sp/><sp/><sp/>-<sp/>Neither<sp/>the<sp/>name<sp/>of<sp/>ARM<sp/>LIMITED<sp/>nor<sp/>the<sp/>names<sp/>of<sp/>its<sp/>contributors</highlight></codeline>
+<codeline lineno="26"><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/>may<sp/>be<sp/>used<sp/>to<sp/>endorse<sp/>or<sp/>promote<sp/>products<sp/>derived<sp/>from<sp/>this</highlight></codeline>
+<codeline lineno="27"><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/>software<sp/>without<sp/>specific<sp/>prior<sp/>written<sp/>permission.</highlight></codeline>
+<codeline lineno="28"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="29"><highlight class="comment">*<sp/>THIS<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>BY<sp/>THE<sp/>COPYRIGHT<sp/>HOLDERS<sp/>AND<sp/>CONTRIBUTORS</highlight></codeline>
+<codeline lineno="30"><highlight class="comment">*<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>ANY<sp/>EXPRESS<sp/>OR<sp/>IMPLIED<sp/>WARRANTIES,<sp/>INCLUDING,<sp/>BUT<sp/>NOT</highlight></codeline>
+<codeline lineno="31"><highlight class="comment">*<sp/>LIMITED<sp/>TO,<sp/>THE<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF<sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS</highlight></codeline>
+<codeline lineno="32"><highlight class="comment">*<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE<sp/>ARE<sp/>DISCLAIMED.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE</highlight></codeline>
+<codeline lineno="33"><highlight class="comment">*<sp/>COPYRIGHT<sp/>OWNER<sp/>OR<sp/>CONTRIBUTORS<sp/>BE<sp/>LIABLE<sp/>FOR<sp/>ANY<sp/>DIRECT,<sp/>INDIRECT,</highlight></codeline>
+<codeline lineno="34"><highlight class="comment">*<sp/>INCIDENTAL,<sp/>SPECIAL,<sp/>EXEMPLARY,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>(INCLUDING,</highlight></codeline>
+<codeline lineno="35"><highlight class="comment">*<sp/>BUT<sp/>NOT<sp/>LIMITED<sp/>TO,<sp/>PROCUREMENT<sp/>OF<sp/>SUBSTITUTE<sp/>GOODS<sp/>OR<sp/>SERVICES;</highlight></codeline>
+<codeline lineno="36"><highlight class="comment">*<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA,<sp/>OR<sp/>PROFITS;<sp/>OR<sp/>BUSINESS<sp/>INTERRUPTION)<sp/>HOWEVER</highlight></codeline>
+<codeline lineno="37"><highlight class="comment">*<sp/>CAUSED<sp/>AND<sp/>ON<sp/>ANY<sp/>THEORY<sp/>OF<sp/>LIABILITY,<sp/>WHETHER<sp/>IN<sp/>CONTRACT,<sp/>STRICT</highlight></codeline>
+<codeline lineno="38"><highlight class="comment">*<sp/>LIABILITY,<sp/>OR<sp/>TORT<sp/>(INCLUDING<sp/>NEGLIGENCE<sp/>OR<sp/>OTHERWISE)<sp/>ARISING<sp/>IN</highlight></codeline>
+<codeline lineno="39"><highlight class="comment">*<sp/>ANY<sp/>WAY<sp/>OUT<sp/>OF<sp/>THE<sp/>USE<sp/>OF<sp/>THIS<sp/>SOFTWARE,<sp/>EVEN<sp/>IF<sp/>ADVISED<sp/>OF<sp/>THE</highlight></codeline>
+<codeline lineno="40"><highlight class="comment">*<sp/>POSSIBILITY<sp/>OF<sp/>SUCH<sp/>DAMAGE.</highlight></codeline>
+<codeline lineno="41"><highlight class="comment"><sp/>*<sp/>--------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="preprocessor">#include<sp/>&quot;riscv_math.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;riscv_const_structs.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TEST_LENGTH_SAMPLES<sp/>2048</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>-------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="105"><highlight class="comment">*<sp/>External<sp/>Input<sp/>and<sp/>Output<sp/>buffer<sp/>Declarations<sp/>for<sp/>FFT<sp/>Bin<sp/>Example</highlight></codeline>
+<codeline lineno="106"><highlight class="comment">*<sp/>-------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>float32_t<sp/>testInput_f32_10khz[TEST_LENGTH_SAMPLES];</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>float32_t<sp/>testOutput[TEST_LENGTH_SAMPLES/2];</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="111"><highlight class="comment">*<sp/>Global<sp/>variables<sp/>for<sp/>FFT<sp/>Bin<sp/>Example</highlight></codeline>
+<codeline lineno="112"><highlight class="comment">*<sp/>-------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal">uint32_t<sp/>fftSize<sp/>=<sp/>1024;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal">uint32_t<sp/>ifftFlag<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal">uint32_t<sp/>doBitReverse<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Reference<sp/>index<sp/>at<sp/>which<sp/>max<sp/>energy<sp/>of<sp/>bin<sp/>ocuurs<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal">uint32_t<sp/>refIndex<sp/>=<sp/>213,<sp/>testIndex<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>----------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="121"><highlight class="comment">*<sp/>Max<sp/>magnitude<sp/>FFT<sp/>Bin<sp/>test</highlight></codeline>
+<codeline lineno="122"><highlight class="comment">*<sp/>-------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal">int32_t<sp/>main(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="125"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/>riscv_status<sp/>status;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/>float32_t<sp/>maxValue;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/>status<sp/>=<sp/>RISCV_MATH_SUCCESS;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Process<sp/>the<sp/>data<sp/>through<sp/>the<sp/>CFFT/CIFFT<sp/>module<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><ref refid="group__ComplexFFT_1ga2e7afb704493463708fb1404c7a5bb5a" kindref="member">riscv_cfft_f32</ref>(&amp;riscv_cfft_sR_f32_len1024,<sp/>testInput_f32_10khz,<sp/>ifftFlag,<sp/>doBitReverse);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Process<sp/>the<sp/>data<sp/>through<sp/>the<sp/>Complex<sp/>Magnitude<sp/>Module<sp/>for</highlight></codeline>
+<codeline lineno="136"><highlight class="comment"><sp/><sp/>calculating<sp/>the<sp/>magnitude<sp/>at<sp/>each<sp/>bin<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><ref refid="group__cmplx__mag_1gaced344ae0cd2f40f7afa5241b72c62a1" kindref="member">riscv_cmplx_mag_f32</ref>(testInput_f32_10khz,<sp/>testOutput,<sp/>fftSize);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Calculates<sp/>maxValue<sp/>and<sp/>returns<sp/>corresponding<sp/>BIN<sp/>value<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><ref refid="group__Max_1gadfcdcdaa22ab2e21c1d74230d6462591" kindref="member">riscv_max_f32</ref>(testOutput,<sp/>fftSize,<sp/>&amp;maxValue,<sp/>&amp;testIndex);</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(testIndex<sp/>!=<sp/><sp/>refIndex)</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>=<sp/>RISCV_MATH_TEST_FAILURE;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>----------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="148"><highlight class="comment"><sp/><sp/>**<sp/>Loop<sp/>here<sp/>if<sp/>the<sp/>signals<sp/>fail<sp/>the<sp/>PASS<sp/>check.</highlight></codeline>
+<codeline lineno="149"><highlight class="comment"><sp/><sp/>**<sp/>This<sp/>denotes<sp/>a<sp/>test<sp/>failure</highlight></codeline>
+<codeline lineno="150"><highlight class="comment"><sp/><sp/>**<sp/>-------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>status<sp/>!=<sp/>RISCV_MATH_SUCCESS)</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;failed\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;passed\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="161"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fft_bin_example/riscv_fft_bin_example_f32.c"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,27 @@
+var group__CFFT__CIFFT =
+[
+    [ "DCT Type IV Tables", "group__DCT4__IDCT4__Table.html", "group__DCT4__IDCT4__Table" ],
+    [ "riscvBitRevIndexTable1024", "group__CFFT__CIFFT.html#ga4a07a6e3e1c76306042af0d6146e463e", null ],
+    [ "riscvBitRevIndexTable128", "group__CFFT__CIFFT.html#gac9f0a716430d98521e57a4567a34f222", null ],
+    [ "riscvBitRevIndexTable16", "group__CFFT__CIFFT.html#ga77b129ca9006bcbab1840464ff94951d", null ],
+    [ "riscvBitRevIndexTable2048", "group__CFFT__CIFFT.html#gad795a4bba12da93f3a8f6e12732d5e0d", null ],
+    [ "riscvBitRevIndexTable256", "group__CFFT__CIFFT.html#ga94fabe2ed6b2d15db8bd1c657d7d8a28", null ],
+    [ "riscvBitRevIndexTable32", "group__CFFT__CIFFT.html#ga081d6318a078a62fdf4a6809d86eac3e", null ],
+    [ "riscvBitRevIndexTable4096", "group__CFFT__CIFFT.html#gaf8799441dfb34e548218da781e5cbd75", null ],
+    [ "riscvBitRevIndexTable512", "group__CFFT__CIFFT.html#gace5ddf0823fd9358e0cbf23f1cf0e90b", null ],
+    [ "riscvBitRevIndexTable64", "group__CFFT__CIFFT.html#ga28271e513dac6ce40458b1fa366596c6", null ],
+    [ "riscvBitRevIndexTable_fixed_1024", "group__CFFT__CIFFT.html#gabac02e0b8013288ad062ab3306298d5e", null ],
+    [ "riscvBitRevIndexTable_fixed_128", "group__CFFT__CIFFT.html#ga957ea6a30726b728b43cc106c190eab5", null ],
+    [ "riscvBitRevIndexTable_fixed_16", "group__CFFT__CIFFT.html#gabbe18cfc20ee22df36ca00d8d5265c92", null ],
+    [ "riscvBitRevIndexTable_fixed_2048", "group__CFFT__CIFFT.html#gaba0302218d6d63d430080e2015bed3ad", null ],
+    [ "riscvBitRevIndexTable_fixed_256", "group__CFFT__CIFFT.html#gae619afe070a39839d3fe12619d36fc02", null ],
+    [ "riscvBitRevIndexTable_fixed_32", "group__CFFT__CIFFT.html#ga022b261e9a6aea2c75477c860267c625", null ],
+    [ "riscvBitRevIndexTable_fixed_4096", "group__CFFT__CIFFT.html#gacd6a5f14060f01f9a114d1560c3f623b", null ],
+    [ "riscvBitRevIndexTable_fixed_512", "group__CFFT__CIFFT.html#gaf0738ebe711e8bc44d5d99d9ce7dd98e", null ],
+    [ "riscvBitRevIndexTable_fixed_64", "group__CFFT__CIFFT.html#ga77ada52b10008506a42ab22072912eb7", null ],
+    [ "riscvBitRevTable", "group__CFFT__CIFFT.html#ga642762d611cf45f7fd6d172019558122", null ],
+    [ "riscvRecipTableQ31", "group__CFFT__CIFFT.html#gafa262d04df32de95217be37e8c29b89f", null ],
+    [ "sinTable_f32", "group__CFFT__CIFFT.html#ga1dec82d596780f1a66ef4f76f137c1d9", null ],
+    [ "sinTable_q15", "group__CFFT__CIFFT.html#ga9cbcfe313f61add745ebfeddb4fecd55", null ],
+    [ "sinTable_q31", "group__CFFT__CIFFT.html#ga8bfccee9e1c0042cf4a765f4b19d097d", null ]
+];

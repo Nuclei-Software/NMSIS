@@ -1,0 +1,244 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__CMP" kind="group">
+    <compoundname>NMSIS_Core_DSP_Intrinsic_SIMD_16B_CMP</compoundname>
+    <title>SIMD 16-bit Compare Instructions</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__CMP_1ga751703d59ea5e8737f21ba152f348293" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_CMPEQ16</definition>
+        <argsstring>(unsigned long a, unsigned long b)</argsstring>
+        <name>__RV_CMPEQ16</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>CMPEQ16 (SIMD 16-bit Integer Compare Equal) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">CMPEQ16<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Do 16-bit integer elements equal comparisons simultaneously.</para><para><bold>Description</bold>:<linebreak/>
+This instruction compares the 16-bit integer elements in Rs1 with the 16-bit integer elements in Rs2 to see if they are equal. If they are equal, the result is 0xFFFF; otherwise, the result is 0x0. The 16-bit element comparison results are written to Rt.</para><para><bold>Note</bold>:<linebreak/>
+This instruction can be used for either signed or unsigned numbers.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">Rd.H[x]<sp/>=<sp/>(Rs1.H[x]<sp/>==<sp/>Rs2.H[x])?<sp/>0xffff<sp/>:<sp/>0x0;</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=1...0,</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=3...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="1146" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="1146" bodyend="1151"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__CMP_1gad86adb4c738c71d2b9c07e44fb02113c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_SCMPLE16</definition>
+        <argsstring>(unsigned long a, unsigned long b)</argsstring>
+        <name>__RV_SCMPLE16</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>SCMPLE16 (SIMD 16-bit Signed Compare Less Than &amp; Equal) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">SCMPLE16<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Do 16-bit signed integer elements less than &amp; equal comparisons simultaneously.</para><para><bold>Description</bold>:<linebreak/>
+This instruction compares the 16-bit signed integer elements in Rs1 with the 16-bit signed integer elements in Rs2 to see if the one in Rs1 is less than or equal to the one in Rs2. If it is true, the result is 0xFFFF; otherwise, the result is 0x0. The element comparison results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">Rd.H[x]<sp/>=<sp/>(Rs1.H[x]<sp/>{le}<sp/>Rs2.H[x])?<sp/>0xffff<sp/>:<sp/>0x0;</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=1...0,</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=3...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="6997" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="6997" bodyend="7002"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__CMP_1ga18887b352c5dbe9535424bee83bf7d42" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_SCMPLT16</definition>
+        <argsstring>(unsigned long a, unsigned long b)</argsstring>
+        <name>__RV_SCMPLT16</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>SCMPLT16 (SIMD 16-bit Signed Compare Less Than) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">SCMPLT16<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Do 16-bit signed integer elements less than comparisons simultaneously.</para><para><bold>Description</bold>:<linebreak/>
+This instruction compares the 16-bit signed integer elements in Rs1 with the two 16- bit signed integer elements in Rs2 to see if the one in Rs1 is less than the one in Rs2. If it is true, the result is 0xFFFF; otherwise, the result is 0x0. The element comparison results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">Rd.H[x]<sp/>=<sp/>(Rs1.H[x]<sp/>&lt;<sp/>Rs2.H[x])?<sp/>0xffff<sp/>:<sp/>0x0;</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=1...0,</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=3...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="7075" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="7075" bodyend="7080"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__CMP_1ga1c90d69f90f54607d8b137b8efafdc88" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_UCMPLE16</definition>
+        <argsstring>(unsigned long a, unsigned long b)</argsstring>
+        <name>__RV_UCMPLE16</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>UCMPLE16 (SIMD 16-bit Unsigned Compare Less Than &amp; Equal) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">UCMPLE16<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Do 16-bit unsigned integer elements less than &amp; equal comparisons simultaneously.</para><para><bold>Description</bold>:<linebreak/>
+This instruction compares the 16-bit unsigned integer elements in Rs1 with the 16-bit unsigned integer elements in Rs2 to see if the one in Rs1 is less than or equal to the one in Rs2. If it is true, the result is 0xFFFF; otherwise, the result is 0x0. The element comparison results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">Rd.H[x]<sp/>=<sp/>(Rs1.H[x]<sp/>&lt;=u<sp/>Rs2.H[x])?<sp/>0xffff<sp/>:<sp/>0x0;</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=1...0,</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=3...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="11182" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="11182" bodyend="11187"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__CMP_1ga566fff4ed2e21cc7e247ecb8b2258bd2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_UCMPLT16</definition>
+        <argsstring>(unsigned long a, unsigned long b)</argsstring>
+        <name>__RV_UCMPLT16</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>UCMPLT16 (SIMD 16-bit Unsigned Compare Less Than) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">UCMPLT16<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Do 16-bit unsigned integer elements less than comparisons simultaneously.</para><para><bold>Description</bold>:<linebreak/>
+This instruction compares the 16-bit unsigned integer elements in Rs1 with the 16-bit unsigned integer elements in Rs2 to see if the one in Rs1 is less than the one in Rs2. If it is true, the result is 0xFFFF; otherwise, the result is 0x0. The element comparison results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">Rd.H[x]<sp/>=<sp/>(Rs1.H[x]<sp/>&lt;u<sp/>Rs2.H[x])?<sp/>0xffff<sp/>:<sp/>0x0;</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=1...0,</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=3...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="11260" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="11260" bodyend="11265"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>SIMD 16-bit Compare Instructions. </para>    </briefdescription>
+    <detaileddescription>
+<para>there are 5 SIMD 16-bit Compare instructions. </para>    </detaileddescription>
+  </compounddef>
+</doxygen>

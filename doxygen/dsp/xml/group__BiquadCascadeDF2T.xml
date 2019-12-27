@@ -1,0 +1,412 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="group__BiquadCascadeDF2T" kind="group">
+    <compoundname>BiquadCascadeDF2T</compoundname>
+    <title>Biquad Cascade IIR Filters Using a Direct Form II Transposed Structure</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__BiquadCascadeDF2T_1ga6d3b20d95a90c0356db77883cbf50748" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LOW_OPTIMIZATION_ENTER void</type>
+        <definition>LOW_OPTIMIZATION_ENTER void riscv_biquad_cascade_df2T_f32</definition>
+        <argsstring>(const riscv_biquad_cascade_df2T_instance_f32 *S, const float32_t *pSrc, float32_t *pDst, uint32_t blockSize)</argsstring>
+        <name>riscv_biquad_cascade_df2T_f32</name>
+        <param>
+          <type>const <ref refid="structriscv__biquad__cascade__df2T__instance__f32" kindref="compound">riscv_biquad_cascade_df2T_instance_f32</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>const float32_t *</type>
+          <declname>pSrc</declname>
+        </param>
+        <param>
+          <type>float32_t *</type>
+          <declname>pDst</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Processing function for the floating-point transposed direct form II Biquad cascade filter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the filter data structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of input data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of output data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples to process </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_biquad_cascade_df2T_f32.c" line="220" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_biquad_cascade_df2T_f32.c" bodystart="220" bodyend="518"/>
+      </memberdef>
+      <memberdef kind="function" id="group__BiquadCascadeDF2T_1ga921f6e70d38c613025d187ec1419138c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LOW_OPTIMIZATION_ENTER void</type>
+        <definition>LOW_OPTIMIZATION_ENTER void riscv_biquad_cascade_df2T_f64</definition>
+        <argsstring>(const riscv_biquad_cascade_df2T_instance_f64 *S, float64_t *pSrc, float64_t *pDst, uint32_t blockSize)</argsstring>
+        <name>riscv_biquad_cascade_df2T_f64</name>
+        <param>
+          <type>const <ref refid="structriscv__biquad__cascade__df2T__instance__f64" kindref="compound">riscv_biquad_cascade_df2T_instance_f64</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>float64_t *</type>
+          <declname>pSrc</declname>
+        </param>
+        <param>
+          <type>float64_t *</type>
+          <declname>pDst</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Processing function for the floating-point transposed direct form II Biquad cascade filter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the filter data structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of input data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of output data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples to process </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_biquad_cascade_df2T_f64.c" line="138" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_biquad_cascade_df2T_f64.c" bodystart="138" bodyend="439"/>
+      </memberdef>
+      <memberdef kind="function" id="group__BiquadCascadeDF2T_1ga64bded2f72748bde1621e6b27739cfbe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_biquad_cascade_df2T_init_f32</definition>
+        <argsstring>(riscv_biquad_cascade_df2T_instance_f32 *S, uint8_t numStages, const float32_t *pCoeffs, float32_t *pState)</argsstring>
+        <name>riscv_biquad_cascade_df2T_init_f32</name>
+        <param>
+          <type><ref refid="structriscv__biquad__cascade__df2T__instance__f32" kindref="compound">riscv_biquad_cascade_df2T_instance_f32</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>numStages</declname>
+        </param>
+        <param>
+          <type>const float32_t *</type>
+          <declname>pCoeffs</declname>
+        </param>
+        <param>
+          <type>float32_t *</type>
+          <declname>pState</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the floating-point transposed direct form II Biquad cascade filter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the filter data structure. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">numStages</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of 2nd order stages in the filter. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pCoeffs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the filter coefficients. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pState</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the state buffer. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Coefficient and State Ordering</title><para>The coefficients are stored in the array <computeroutput>pCoeffs</computeroutput> in the following order in the not Neon version. <preformatted>
+    {b10, b11, b12, a11, a12, b20, b21, b22, a21, a22, ...}
+</preformatted></para></simplesect>
+<simplesect kind="par"><title></title><para>where <computeroutput>b1x</computeroutput> and <computeroutput>a1x</computeroutput> are the coefficients for the first stage, <computeroutput>b2x</computeroutput> and <computeroutput>a2x</computeroutput> are the coefficients for the second stage, and so on. The <computeroutput>pCoeffs</computeroutput> array contains a total of <computeroutput>5*numStages</computeroutput> values.</para></simplesect>
+For Neon version, this array is bigger. If numstages = 4x + y, then the array has size: 32*x + 5*y and it must be initialized using the function riscv_biquad_cascade_df2T_compute_coefs_f32 which is taking the standard array coefficient as parameters.</para><para>But, an array of 8*numstages is a good approximation.</para><para>Then, the initialization can be done with: <preformatted>
+                 riscv_biquad_cascade_df2T_init_f32(&amp;SNeon, nbCascade, neonCoefs, stateNeon);
+                 riscv_biquad_cascade_df2T_compute_coefs_f32(&amp;SNeon,nbCascade,coefs);
+</preformatted></para><para><simplesect kind="par"><title>In this example, neonCoefs is a bigger array of size 8 * numStages.</title><para>coefs is the standard array:</para></simplesect>
+<preformatted>
+    {b10, b11, b12, a11, a12, b20, b21, b22, a21, a22, ...}
+</preformatted></para><para><simplesect kind="par"><title></title><para>The <computeroutput>pState</computeroutput> is a pointer to state array. Each Biquad stage has 2 state variables <computeroutput>d1,</computeroutput> and <computeroutput>d2</computeroutput>. The 2 state variables for stage 1 are first, then the 2 state variables for stage 2, and so on. The state array has a total length of <computeroutput>2*numStages</computeroutput> values. The state variables are updated after each block of data is processed; the coefficients are untouched. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_biquad_cascade_df2T_init_f32.c" line="191" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_biquad_cascade_df2T_init_f32.c" bodystart="191" bodyend="208"/>
+      </memberdef>
+      <memberdef kind="function" id="group__BiquadCascadeDF2T_1gabe93776356e0ca410f09b3da01e96566" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_biquad_cascade_df2T_init_f64</definition>
+        <argsstring>(riscv_biquad_cascade_df2T_instance_f64 *S, uint8_t numStages, float64_t *pCoeffs, float64_t *pState)</argsstring>
+        <name>riscv_biquad_cascade_df2T_init_f64</name>
+        <param>
+          <type><ref refid="structriscv__biquad__cascade__df2T__instance__f64" kindref="compound">riscv_biquad_cascade_df2T_instance_f64</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>numStages</declname>
+        </param>
+        <param>
+          <type>float64_t *</type>
+          <declname>pCoeffs</declname>
+        </param>
+        <param>
+          <type>float64_t *</type>
+          <declname>pState</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the floating-point transposed direct form II Biquad cascade filter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the filter data structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">numStages</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of 2nd order stages in the filter </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pCoeffs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the filter coefficients </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pState</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the state buffer </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Coefficient and State Ordering</title><para>The coefficients are stored in the array <computeroutput>pCoeffs</computeroutput> in the following order: <preformatted>
+    {b10, b11, b12, a11, a12, b20, b21, b22, a21, a22, ...}
+</preformatted> </para></simplesect>
+<simplesect kind="par"><title></title><para>where <computeroutput>b1x</computeroutput> and <computeroutput>a1x</computeroutput> are the coefficients for the first stage, <computeroutput>b2x</computeroutput> and <computeroutput>a2x</computeroutput> are the coefficients for the second stage, and so on. The <computeroutput>pCoeffs</computeroutput> array contains a total of <computeroutput>5*numStages</computeroutput> values. </para></simplesect>
+<simplesect kind="par"><title></title><para>The <computeroutput>pState</computeroutput> is a pointer to state array. Each Biquad stage has 2 state variables <computeroutput>d1,</computeroutput> and <computeroutput>d2</computeroutput>. The 2 state variables for stage 1 are first, then the 2 state variables for stage 2, and so on. The state array has a total length of <computeroutput>2*numStages</computeroutput> values. The state variables are updated after each block of data is processed; the coefficients are untouched. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_biquad_cascade_df2T_init_f64.c" line="66" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_biquad_cascade_df2T_init_f64.c" bodystart="66" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="group__BiquadCascadeDF2T_1ga675ebfa94a2e109efb85ee35f37e88b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LOW_OPTIMIZATION_ENTER void</type>
+        <definition>LOW_OPTIMIZATION_ENTER void riscv_biquad_cascade_stereo_df2T_f32</definition>
+        <argsstring>(const riscv_biquad_cascade_stereo_df2T_instance_f32 *S, const float32_t *pSrc, float32_t *pDst, uint32_t blockSize)</argsstring>
+        <name>riscv_biquad_cascade_stereo_df2T_f32</name>
+        <param>
+          <type>const <ref refid="structriscv__biquad__cascade__stereo__df2T__instance__f32" kindref="compound">riscv_biquad_cascade_stereo_df2T_instance_f32</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>const float32_t *</type>
+          <declname>pSrc</declname>
+        </param>
+        <param>
+          <type>float32_t *</type>
+          <declname>pDst</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Processing function for the floating-point transposed direct form II Biquad cascade filter. </para>        </briefdescription>
+        <detaileddescription>
+<para>Processing function for the floating-point transposed direct form II Biquad cascade filter. 2 channels.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the filter data structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of input data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of output data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples to process </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_biquad_cascade_stereo_df2T_f32.c" line="51" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_biquad_cascade_stereo_df2T_f32.c" bodystart="51" bodyend="282"/>
+      </memberdef>
+      <memberdef kind="function" id="group__BiquadCascadeDF2T_1ga6cf2c21b7a0772f81ecaa9f91a99f59d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_biquad_cascade_stereo_df2T_init_f32</definition>
+        <argsstring>(riscv_biquad_cascade_stereo_df2T_instance_f32 *S, uint8_t numStages, const float32_t *pCoeffs, float32_t *pState)</argsstring>
+        <name>riscv_biquad_cascade_stereo_df2T_init_f32</name>
+        <param>
+          <type><ref refid="structriscv__biquad__cascade__stereo__df2T__instance__f32" kindref="compound">riscv_biquad_cascade_stereo_df2T_instance_f32</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>numStages</declname>
+        </param>
+        <param>
+          <type>const float32_t *</type>
+          <declname>pCoeffs</declname>
+        </param>
+        <param>
+          <type>float32_t *</type>
+          <declname>pState</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the floating-point transposed direct form II Biquad cascade filter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the filter data structure. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">numStages</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of 2nd order stages in the filter. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pCoeffs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the filter coefficients. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pState</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the state buffer. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Coefficient and State Ordering</title><para>The coefficients are stored in the array <computeroutput>pCoeffs</computeroutput> in the following order: <preformatted>
+    {b10, b11, b12, a11, a12, b20, b21, b22, a21, a22, ...}
+</preformatted> </para></simplesect>
+<simplesect kind="par"><title></title><para>where <computeroutput>b1x</computeroutput> and <computeroutput>a1x</computeroutput> are the coefficients for the first stage, <computeroutput>b2x</computeroutput> and <computeroutput>a2x</computeroutput> are the coefficients for the second stage, and so on. The <computeroutput>pCoeffs</computeroutput> array contains a total of <computeroutput>5*numStages</computeroutput> values. </para></simplesect>
+<simplesect kind="par"><title></title><para>The <computeroutput>pState</computeroutput> is a pointer to state array. Each Biquad stage has 2 state variables <computeroutput>d1,</computeroutput> and <computeroutput>d2</computeroutput> for each channel. The 2 state variables for stage 1 are first, then the 2 state variables for stage 2, and so on. The state array has a total length of <computeroutput>2*numStages</computeroutput> values. The state variables are updated after each block of data is processed; the coefficients are untouched. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_biquad_cascade_stereo_df2T_init_f32.c" line="66" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_biquad_cascade_stereo_df2T_init_f32.c" bodystart="66" bodyend="83"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>This set of functions implements arbitrary order recursive (IIR) filters using a transposed direct form II structure. The filters are implemented as a cascade of second order Biquad sections. These functions provide a slight memory savings as compared to the direct form I Biquad filter functions. Only floating-point data is supported.</para><para>This function operate on blocks of input and output data and each call to the function processes <computeroutput>blockSize</computeroutput> samples through the filter. <computeroutput>pSrc</computeroutput> points to the array of input data and <computeroutput>pDst</computeroutput> points to the array of output data. Both arrays contain <computeroutput>blockSize</computeroutput> values.</para><para><simplesect kind="par"><title>Algorithm</title><para>Each Biquad stage implements a second order filter using the difference equation: <preformatted>
+   y[n] = b0 * x[n] + d1
+   d1 = b1 * x[n] + a1 * y[n] + d2
+   d2 = b2 * x[n] + a2 * y[n]
+</preformatted> where d1 and d2 represent the two state values. </para></simplesect>
+<simplesect kind="par"><title></title><para>A Biquad filter using a transposed Direct Form II structure is shown below. <image type="html" name="BiquadDF2Transposed.png">Single transposed Direct Form II Biquad</image>
+ Coefficients <computeroutput>b0, b1, and b2 </computeroutput> multiply the input signal <computeroutput>x[n]</computeroutput> and are referred to as the feedforward coefficients. Coefficients <computeroutput>a1</computeroutput> and <computeroutput>a2</computeroutput> multiply the output signal <computeroutput>y[n]</computeroutput> and are referred to as the feedback coefficients. Pay careful attention to the sign of the feedback coefficients. Some design tools flip the sign of the feedback coefficients: <preformatted>
+   y[n] = b0 * x[n] + d1;
+   d1 = b1 * x[n] - a1 * y[n] + d2;
+   d2 = b2 * x[n] - a2 * y[n];
+</preformatted> In this case the feedback coefficients <computeroutput>a1</computeroutput> and <computeroutput>a2</computeroutput> must be negated when used with the NMSIS DSP Library. </para></simplesect>
+<simplesect kind="par"><title></title><para>Higher order filters are realized as a cascade of second order sections. <computeroutput>numStages</computeroutput> refers to the number of second order stages used. For example, an 8th order filter would be realized with <computeroutput>numStages=4</computeroutput> second order stages. A 9th order filter would be realized with <computeroutput>numStages=5</computeroutput> second order stages with the coefficients for one of the stages configured as a first order filter (<computeroutput>b2=0</computeroutput> and <computeroutput>a2=0</computeroutput>). </para></simplesect>
+<simplesect kind="par"><title></title><para><computeroutput>pState</computeroutput> points to the state variable array. Each Biquad stage has 2 state variables <computeroutput>d1</computeroutput> and <computeroutput>d2</computeroutput>. The state variables are arranged in the <computeroutput>pState</computeroutput> array as: <preformatted>
+    {d11, d12, d21, d22, ...}
+</preformatted> where <computeroutput>d1x</computeroutput> refers to the state variables for the first Biquad and <computeroutput>d2x</computeroutput> refers to the state variables for the second Biquad. The state array has a total length of <computeroutput>2*numStages</computeroutput> values. The state variables are updated after each block of data is processed; the coefficients are untouched. </para></simplesect>
+<simplesect kind="par"><title></title><para>The NMSIS library contains Biquad filters in both Direct Form I and transposed Direct Form II. The advantage of the Direct Form I structure is that it is numerically more robust for fixed-point data types. That is why the Direct Form I structure supports Q15 and Q31 data types. The transposed Direct Form II structure, on the other hand, requires a wide dynamic range for the state variables <computeroutput>d1</computeroutput> and <computeroutput>d2</computeroutput>. Because of this, the NMSIS library only has a floating-point version of the Direct Form II Biquad. The advantage of the Direct Form II Biquad is that it requires half the number of state variables, 2 rather than 4, per Biquad stage.</para></simplesect>
+<simplesect kind="par"><title>Instance Structure</title><para>The coefficients and state variables for a filter are stored together in an instance data structure. A separate instance structure must be defined for each filter. Coefficient arrays may be shared among several instances while state variable arrays cannot be shared.</para></simplesect>
+<simplesect kind="par"><title>Init Functions</title><para>There is also an associated initialization function. The initialization function performs following operations:<itemizedlist>
+<listitem><para>Sets the values of the internal structure fields.</para></listitem><listitem><para>Zeros out the values in the state buffer. To do this manually without calling the init function, assign the follow subfields of the instance structure: numStages, pCoeffs, pState. Also set all of the values in pState to zero. </para></listitem></itemizedlist>
+</para></simplesect>
+<simplesect kind="par"><title></title><para>Use of the initialization function is optional. However, if the initialization function is used, then the instance structure cannot be placed into a const data section. To place an instance structure into a const data section, the instance structure must be manually initialized. Set the values in the state buffer to zeros before static initialization. For example, to statically initialize the instance structure use <preformatted>
+    <ref refid="structriscv__biquad__cascade__df2T__instance__f64" kindref="compound">riscv_biquad_cascade_df2T_instance_f64</ref> S1 = {numStages, pState, pCoeffs};
+    <ref refid="structriscv__biquad__cascade__df2T__instance__f32" kindref="compound">riscv_biquad_cascade_df2T_instance_f32</ref> S1 = {numStages, pState, pCoeffs};
+</preformatted> where <computeroutput>numStages</computeroutput> is the number of Biquad stages in the filter; <computeroutput>pState</computeroutput> is the address of the state buffer. <computeroutput>pCoeffs</computeroutput> is the address of the coefficient buffer; </para></simplesect>
+</para>    </detaileddescription>
+  </compounddef>
+</doxygen>

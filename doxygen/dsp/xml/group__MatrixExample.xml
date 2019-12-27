@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="group__MatrixExample" kind="group">
+    <compoundname>MatrixExample</compoundname>
+    <title>Matrix Example</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="par"><title>Description:</title><para></para></simplesect>
+<simplesect kind="par"><title></title><para>Demonstrates the use of Matrix Transpose, Matrix Muliplication, and Matrix Inverse functions to apply least squares fitting to input data. Least squares fitting is the procedure for finding the best-fitting curve that minimizes the sum of the squares of the offsets (least square error) from a given set of data.</para></simplesect>
+<simplesect kind="par"><title>Algorithm:</title><para></para></simplesect>
+<simplesect kind="par"><title></title><para>The linear combination of parameters considered is as follows: </para></simplesect>
+<simplesect kind="par"><title></title><para><computeroutput>A * X = B</computeroutput>, where <computeroutput>X</computeroutput> is the unknown value and can be estimated from <computeroutput>A</computeroutput> &amp; <computeroutput>B</computeroutput>. </para></simplesect>
+<simplesect kind="par"><title></title><para>The least squares estimate <computeroutput>X</computeroutput> is given by the following equation: </para></simplesect>
+<simplesect kind="par"><title></title><para><computeroutput>X = Inverse(A<superscript>T</superscript> * A) * A<superscript>T</superscript> * B</computeroutput></para></simplesect>
+<simplesect kind="par"><title>Block Diagram:</title><para></para></simplesect>
+<simplesect kind="par"><title></title><para><image type="html" name="MatrixExample.png"></image>
+</para></simplesect>
+<simplesect kind="par"><title>Variables Description:</title><para></para></simplesect>
+<simplesect kind="par"><title></title><para><itemizedlist>
+<listitem><para><computeroutput>A_f32</computeroutput> input matrix in the linear combination equation </para></listitem>
+<listitem><para><computeroutput>B_f32</computeroutput> output matrix in the linear combination equation </para></listitem>
+<listitem><para><computeroutput>X_f32</computeroutput> unknown matrix estimated using <computeroutput>A_f32</computeroutput> &amp; <computeroutput>B_f32</computeroutput> matrices</para></listitem>
+</itemizedlist>
+</para></simplesect>
+<simplesect kind="par"><title>NMSIS DSP Software Library Functions Used:</title><para></para></simplesect>
+<simplesect kind="par"><title></title><para><itemizedlist>
+<listitem><para><ref refid="group__MatrixInit_1gadd1996f7da2fd9f19a6e2f3e691b681f" kindref="member">riscv_mat_init_f32()</ref></para></listitem><listitem><para><ref refid="group__MatrixTrans_1gae9c3388323897b322f6bd136d52f0a64" kindref="member">riscv_mat_trans_f32()</ref></para></listitem><listitem><para><ref refid="group__MatrixMult_1ga0f1c7b30e1c552617b8bb6a6898e57d4" kindref="member">riscv_mat_mult_f32()</ref></para></listitem><listitem><para><ref refid="group__MatrixInv_1gafe1cdc037cf164c23ae8f5d0e4e5582b" kindref="member">riscv_mat_inverse_f32()</ref></para></listitem></itemizedlist>
+</para></simplesect>
+<bold> Refer </bold> <ref refid="riscv_matrix_example_f32_8c-example" kindref="compound">riscv_matrix_example_f32.c</ref> </para>    </detaileddescription>
+  </compounddef>
+</doxygen>

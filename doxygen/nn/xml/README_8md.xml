@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="README_8md" kind="file" language="Markdown">
+    <compoundname>README.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>Run<sp/>NN<sp/>Examples<sp/>in<sp/>Spike</highlight></codeline>
+<codeline><highlight class="normal">Here<sp/>we<sp/>will<sp/>describe<sp/>how<sp/>to<sp/>run<sp/>the<sp/>nmsis<sp/>nn<sp/>examples<sp/>in<sp/>Nuclei<sp/>Spike.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Preparation</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Nuclei<sp/>Modified<sp/>Spike</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Nuclei<sp/>Modified<sp/>PK</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Nuclei<sp/>RISCV<sp/>GNU<sp/>Toolchain</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Tool<sp/>Setup</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">1.<sp/>Export<sp/>**PATH**<sp/>correctly<sp/>for<sp/>`spike`<sp/>and<sp/>`riscv-nuclei-elf-gcc`</highlight></codeline>
+<codeline><highlight class="normal">~~~</highlight></codeline>
+<codeline><highlight class="normal">export<sp/>PATH=/path/to/spike/bin:/path/to/riscv-nuclei-elf-gcc/bin/:$PATH</highlight></codeline>
+<codeline><highlight class="normal">~~~</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.<sp/>Export<sp/>**PK**<sp/>correctly<sp/>for<sp/>`spike`<sp/>commond.</highlight></codeline>
+<codeline><highlight class="normal">~~~</highlight></codeline>
+<codeline><highlight class="normal">export<sp/>PK=/path/to/spike/riscv32-unknown-elf/bin/pk</highlight></codeline>
+<codeline><highlight class="normal">~~~</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Build<sp/>NMSIS<sp/>NN<sp/>Library</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Follow<sp/>the<sp/>NMSIS<sp/>NN<sp/>documentation<sp/>to<sp/>build<sp/>and<sp/>install<sp/>NN<sp/>library.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>How<sp/>to<sp/>run</highlight></codeline>
+<codeline><highlight class="normal">1.<sp/>Let<sp/>us<sp/>take<sp/>`./cifar10/`<sp/>for<sp/>example</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.<sp/>`cd<sp/>./cifar10/`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">3.<sp/>Run<sp/>with<sp/>RISCV<sp/>DSP<sp/>enabled<sp/>NMSIS-NN<sp/>library</highlight></codeline>
+<codeline><highlight class="normal">~~~</highlight></codeline>
+<codeline><highlight class="normal">make<sp/>DSP_ENABLE=ON<sp/>-B<sp/>run</highlight></codeline>
+<codeline><highlight class="normal">~~~</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Here<sp/>is<sp/>sample<sp/>output<sp/>for<sp/>above<sp/>command:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">~~~</highlight></codeline>
+<codeline><highlight class="normal">Makefile:36:<sp/>&quot;enable<sp/>dsp&quot;</highlight></codeline>
+<codeline><highlight class="normal">riscv-nuclei-elf-gcc<sp/>-march=rv32imafdc<sp/>-mabi=ilp32d<sp/>-O2<sp/>-g<sp/>-D__RISCV_FEATURE_DSP=1<sp/>-D__RISCV_FEATURE_DSP=1<sp/>-DTEST_IMAGE=cat1<sp/><sp/>riscv_nnexamples_cifar10.c<sp/>-L../../../../Library/DSP/GCC<sp/>-L../../../../Library/NN/GCC<sp/>-lnmsis_nn_rv32imafdcp<sp/>-lnmsis_dsp_rv32imafdcp<sp/>-lm<sp/>-I.<sp/>-I../../../../Core/Include<sp/>-I../../../../DSP/Include<sp/>-I../../../../NN/Include<sp/>-o<sp/>run.elf</highlight></codeline>
+<codeline><highlight class="normal">riscv-nuclei-elf-objcopy<sp/>-O<sp/>binary<sp/>run.elf<sp/>run.bin</highlight></codeline>
+<codeline><highlight class="normal">spike<sp/>--isa=rv32gct<sp/>/home/share/tools/riscv/32/riscv32-unknown-elf/bin/pk<sp/>run.elf</highlight></codeline>
+<codeline><highlight class="normal">bbl<sp/>loader</highlight></codeline>
+<codeline><highlight class="normal">start<sp/>execution<sp/>cnn<sp/>to<sp/>classify<sp/>image<sp/>cat1</highlight></codeline>
+<codeline><highlight class="normal">CSV,<sp/>BENCH<sp/>START,<sp/>404308</highlight></codeline>
+<codeline><highlight class="normal">CSV,<sp/>extra_cost,<sp/>7</highlight></codeline>
+<codeline><highlight class="normal">CSV,<sp/>preprocess,<sp/>21519</highlight></codeline>
+<codeline><highlight class="normal">CSV,<sp/>riscv_convolve_HWC_q7_RGB,<sp/>3961749</highlight></codeline>
+<codeline><highlight class="normal">CSV,<sp/>riscv_relu_q7,<sp/>40981</highlight></codeline>
+<codeline><highlight class="normal">CSV,<sp/>riscv_maxpool_q7_HWC,<sp/>153919</highlight></codeline>
+<codeline><highlight class="normal">CSV,<sp/>riscv_convolve_HWC_q7_fast,<sp/>3067538</highlight></codeline>
+<codeline><highlight class="normal">CSV,<sp/>riscv_relu_q7,<sp/>5141</highlight></codeline>
+<codeline><highlight class="normal">CSV,<sp/>riscv_maxpool_q7_HWC,<sp/>24151</highlight></codeline>
+<codeline><highlight class="normal">CSV,<sp/>riscv_convolve_HWC_q7_fast,<sp/>768131</highlight></codeline>
+<codeline><highlight class="normal">CSV,<sp/>riscv_relu_q7,<sp/>2582</highlight></codeline>
+<codeline><highlight class="normal">CSV,<sp/>riscv_maxpool_q7_HWC,<sp/>9331</highlight></codeline>
+<codeline><highlight class="normal">CSV,<sp/>riscv_fully_connected_q7_opt,<sp/>12163</highlight></codeline>
+<codeline><highlight class="normal">CSV,<sp/>riscv_softmax_q7,<sp/>390</highlight></codeline>
+<codeline><highlight class="normal">label<sp/>0:<sp/>0,<sp/>Plane,<sp/>0.00%</highlight></codeline>
+<codeline><highlight class="normal">label<sp/>1:<sp/>0,<sp/>Car,<sp/>0.00%</highlight></codeline>
+<codeline><highlight class="normal">label<sp/>2:<sp/>1,<sp/>Bird,<sp/>0.79%</highlight></codeline>
+<codeline><highlight class="normal">label<sp/>3:<sp/>33,<sp/>Cat,<sp/>25.98%</highlight></codeline>
+<codeline><highlight class="normal">label<sp/>4:<sp/>16,<sp/>Deer,<sp/>12.60%</highlight></codeline>
+<codeline><highlight class="normal">label<sp/>5:<sp/>67,<sp/>Dog,<sp/>52.76%</highlight></codeline>
+<codeline><highlight class="normal">label<sp/>6:<sp/>0,<sp/>Frog,<sp/>0.00%</highlight></codeline>
+<codeline><highlight class="normal">label<sp/>7:<sp/>8,<sp/>Horse,<sp/>6.30%</highlight></codeline>
+<codeline><highlight class="normal">label<sp/>8:<sp/>0,<sp/>Ship,<sp/>0.00%</highlight></codeline>
+<codeline><highlight class="normal">label<sp/>9:<sp/>0,<sp/>Truck,<sp/>0.00%</highlight></codeline>
+<codeline><highlight class="normal">CSV,<sp/>BENCH<sp/>END,<sp/>8518029</highlight></codeline>
+<codeline><highlight class="normal">~~~</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">4.<sp/>Run<sp/>with<sp/>RISCV<sp/>DSP<sp/>disabled<sp/>NMSIS-NN<sp/>library</highlight></codeline>
+<codeline><highlight class="normal">~~~</highlight></codeline>
+<codeline><highlight class="normal">make<sp/>DSP_ENABLE=OFF<sp/>-B<sp/>run</highlight></codeline>
+<codeline><highlight class="normal">~~~</highlight></codeline>
+    </programlisting>
+    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/NN/Examples/RISCV/README.md"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,203 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="riscv__dct4__init__f32_8c" kind="file" language="C++">
+    <compoundname>riscv_dct4_init_f32.c</compoundname>
+    <includes refid="riscv__math_8h" local="yes">riscv_math.h</includes>
+    <includes refid="riscv__common__tables_8h" local="yes">riscv_common_tables.h</includes>
+    <includedby refid="TransformFunctions_8c" local="yes">TransformFunctions.c</includedby>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__DCT4__IDCT4_1gac8e0136f9dec411d05bf7c684dfc0395" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>riscv_status</type>
+        <definition>riscv_status riscv_dct4_init_f32</definition>
+        <argsstring>(riscv_dct4_instance_f32 *S, riscv_rfft_instance_f32 *S_RFFT, riscv_cfft_radix4_instance_f32 *S_CFFT, uint16_t N, uint16_t Nby2, float32_t normalize)</argsstring>
+        <name>riscv_dct4_init_f32</name>
+        <param>
+          <type><ref refid="structriscv__dct4__instance__f32" kindref="compound">riscv_dct4_instance_f32</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type><ref refid="structriscv__rfft__instance__f32" kindref="compound">riscv_rfft_instance_f32</ref> *</type>
+          <declname>S_RFFT</declname>
+        </param>
+        <param>
+          <type><ref refid="structriscv__cfft__radix4__instance__f32" kindref="compound">riscv_cfft_radix4_instance_f32</ref> *</type>
+          <declname>S_CFFT</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>Nby2</declname>
+        </param>
+        <param>
+          <type>float32_t</type>
+          <declname>normalize</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the floating-point DCT4/IDCT4. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of floating-point DCT4/IDCT4 structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">S_RFFT</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of floating-point RFFT/RIFFT structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">S_CFFT</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of floating-point CFFT/CIFFT structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of the DCT4 </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">Nby2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>half of the length of the DCT4 </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">normalize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>normalizing factor. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>execution status<itemizedlist>
+<listitem><para>RISCV_MATH_SUCCESS : Operation successful</para></listitem><listitem><para>RISCV_MATH_ARGUMENT_ERROR : <computeroutput>N</computeroutput> is not a supported transform length</para></listitem></itemizedlist>
+</para></simplesect>
+<simplesect kind="par"><title>Normalizing factor</title><para>The normalizing factor is <computeroutput>sqrt(2/N)</computeroutput>, which depends on the size of transform <computeroutput>N</computeroutput>. Floating-point normalizing factors are mentioned in the table below for different DCT sizes:</para></simplesect>
+<image type="html" name="dct4NormalizingF32Table.png"></image>
+ </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_dct4_init_f32.c" line="62" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_dct4_init_f32.c" bodystart="62" bodyend="128"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/>----------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>Project:<sp/><sp/><sp/><sp/><sp/><sp/>NMSIS<sp/>DSP<sp/>Library</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>Title:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>riscv_dct4_init_f32.c</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Description:<sp/><sp/>Initialization<sp/>function<sp/>of<sp/>DCT-4<sp/>&amp;<sp/>IDCT4<sp/>F32</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>$Date:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>18.<sp/>March<sp/>2019</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>$Revision:<sp/><sp/><sp/><sp/>V1.6.0</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>Target<sp/>Processor:<sp/>RISC-V<sp/>cores</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>--------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(C)<sp/>2010-2019<sp/>ARM<sp/>Limited<sp/>or<sp/>its<sp/>affiliates.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2019<sp/>Nuclei<sp/>Limited.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/>SPDX-License-Identifier:<sp/>Apache-2.0</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/>Licensed<sp/>under<sp/>the<sp/>Apache<sp/>License,<sp/>Version<sp/>2.0<sp/>(the<sp/>License);<sp/>you<sp/>may</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/>not<sp/>use<sp/>this<sp/>file<sp/>except<sp/>in<sp/>compliance<sp/>with<sp/>the<sp/>License.</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/>You<sp/>may<sp/>obtain<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>License<sp/>at</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/>www.apache.org/licenses/LICENSE-2.0</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*<sp/>Unless<sp/>required<sp/>by<sp/>applicable<sp/>law<sp/>or<sp/>agreed<sp/>to<sp/>in<sp/>writing,<sp/>software</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*<sp/>distributed<sp/>under<sp/>the<sp/>License<sp/>is<sp/>distributed<sp/>on<sp/>an<sp/>AS<sp/>IS<sp/>BASIS,<sp/>WITHOUT</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*<sp/>WARRANTIES<sp/>OR<sp/>CONDITIONS<sp/>OF<sp/>ANY<sp/>KIND,<sp/>either<sp/>express<sp/>or<sp/>implied.</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*<sp/>See<sp/>the<sp/>License<sp/>for<sp/>the<sp/>specific<sp/>language<sp/>governing<sp/>permissions<sp/>and</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*<sp/>limitations<sp/>under<sp/>the<sp/>License.</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;riscv_math.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;riscv_common_tables.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal">riscv_status<sp/><ref refid="group__DCT4__IDCT4_1gac8e0136f9dec411d05bf7c684dfc0395" kindref="member">riscv_dct4_init_f32</ref>(</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><ref refid="structriscv__dct4__instance__f32" kindref="compound">riscv_dct4_instance_f32</ref><sp/>*<sp/>S,</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><ref refid="structriscv__rfft__instance__f32" kindref="compound">riscv_rfft_instance_f32</ref><sp/>*<sp/>S_RFFT,</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><ref refid="structriscv__cfft__radix4__instance__f32" kindref="compound">riscv_cfft_radix4_instance_f32</ref><sp/>*<sp/>S_CFFT,</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/>uint16_t<sp/>N,</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/>uint16_t<sp/>Nby2,</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/>float32_t<sp/>normalize)</highlight></codeline>
+<codeline lineno="69"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>the<sp/>default<sp/>riscv<sp/>status<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/>riscv_status<sp/>status<sp/>=<sp/>RISCV_MATH_SUCCESS;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>the<sp/>DCT4<sp/>length<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/>S-&gt;<ref refid="structriscv__dct4__instance__f32_1a3be8648bde663cb86f80c816e3d80097" kindref="member">N</ref><sp/>=<sp/>N;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>the<sp/>half<sp/>of<sp/>DCT4<sp/>length<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/>S-&gt;<ref refid="structriscv__dct4__instance__f32_1a9c35dd2902d160917dd7ed9ffc6d812c" kindref="member">Nby2</ref><sp/>=<sp/>Nby2;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>the<sp/>DCT4<sp/>Normalizing<sp/>factor<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/>S-&gt;<ref refid="structriscv__dct4__instance__f32_1aa8065a00dfde3573ac35740ecace19c7" kindref="member">normalize</ref><sp/>=<sp/>normalize;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>Real<sp/>FFT<sp/>Instance<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/>S-&gt;<ref refid="structriscv__dct4__instance__f32_1a773e4e78b34ad12b2c7a1c6261980bf6" kindref="member">pRfft</ref><sp/>=<sp/>S_RFFT;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>Complex<sp/>FFT<sp/>Instance<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/>S-&gt;<ref refid="structriscv__dct4__instance__f32_1ab31d1fdcf6e6de3013df70eb6ef38ae6" kindref="member">pCfft</ref><sp/>=<sp/>S_CFFT;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(N)</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#if<sp/>!defined(RISCV_DSP_CONFIG_TABLES)<sp/>||<sp/>defined(RISCV_ALL_FFT_TABLES)<sp/>||<sp/>defined(RISCV_TABLE_DCT4_F32_8192)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>the<sp/>table<sp/>modifier<sp/>values<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>8192U:</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__dct4__instance__f32_1ab4e36fc9d9492aff7ff17ae0e73c827c" kindref="member">pTwiddle</ref><sp/>=<sp/>Weights_8192;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__dct4__instance__f32_1a37ff6bffa96832db69542770c815df09" kindref="member">pCosFactor</ref><sp/>=<sp/>cos_factors_8192;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#if<sp/>!defined(RISCV_DSP_CONFIG_TABLES)<sp/>||<sp/>defined(RISCV_ALL_FFT_TABLES)<sp/>||<sp/>defined(RISCV_TABLE_DCT4_F32_2048)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>2048U:</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__dct4__instance__f32_1ab4e36fc9d9492aff7ff17ae0e73c827c" kindref="member">pTwiddle</ref><sp/>=<sp/><ref refid="group__DCT4__IDCT4__Table_1gac3a2a00b3106dfcb5e0a582f50c65692" kindref="member">Weights_2048</ref>;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__dct4__instance__f32_1a37ff6bffa96832db69542770c815df09" kindref="member">pCosFactor</ref><sp/>=<sp/><ref refid="group__DCT4__IDCT4__Table_1ga1ba5306e0bc44730b40ab34cced45fd6" kindref="member">cos_factors_2048</ref>;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#if<sp/>!defined(RISCV_DSP_CONFIG_TABLES)<sp/>||<sp/>defined(RISCV_ALL_FFT_TABLES)<sp/>||<sp/>defined(RISCV_TABLE_DCT4_F32_512)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>512U:</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__dct4__instance__f32_1ab4e36fc9d9492aff7ff17ae0e73c827c" kindref="member">pTwiddle</ref><sp/>=<sp/><ref refid="group__DCT4__IDCT4__Table_1gaeb67b0be5b3c2139d660e02cedeed908" kindref="member">Weights_512</ref>;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__dct4__instance__f32_1a37ff6bffa96832db69542770c815df09" kindref="member">pCosFactor</ref><sp/>=<sp/><ref refid="group__DCT4__IDCT4__Table_1ga49fd288352ca5bb43f5cec52273b0d80" kindref="member">cos_factors_512</ref>;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#if<sp/>!defined(RISCV_DSP_CONFIG_TABLES)<sp/>||<sp/>defined(RISCV_ALL_FFT_TABLES)<sp/>||<sp/>defined(RISCV_TABLE_DCT4_F32_128)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>128U:</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__dct4__instance__f32_1ab4e36fc9d9492aff7ff17ae0e73c827c" kindref="member">pTwiddle</ref><sp/>=<sp/><ref refid="group__DCT4__IDCT4__Table_1gad00f29d896d64d6da7afbbb9d3e182a4" kindref="member">Weights_128</ref>;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__dct4__instance__f32_1a37ff6bffa96832db69542770c815df09" kindref="member">pCosFactor</ref><sp/>=<sp/><ref refid="group__DCT4__IDCT4__Table_1ga16248ed86161ef97538011b49f13e8b7" kindref="member">cos_factors_128</ref>;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>=<sp/>RISCV_MATH_ARGUMENT_ERROR;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>the<sp/>RFFT/RIFFT<sp/>Function<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><ref refid="group__RealFFT_1ga84650b5ce6836a7cd0f0fc9da41fb3cf" kindref="member">riscv_rfft_init_f32</ref>(S-&gt;<ref refid="structriscv__dct4__instance__f32_1a773e4e78b34ad12b2c7a1c6261980bf6" kindref="member">pRfft</ref>,<sp/>S-&gt;<ref refid="structriscv__dct4__instance__f32_1ab31d1fdcf6e6de3013df70eb6ef38ae6" kindref="member">pCfft</ref>,<sp/>S-&gt;<ref refid="structriscv__dct4__instance__f32_1a3be8648bde663cb86f80c816e3d80097" kindref="member">N</ref>,<sp/>0U,<sp/>1U);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>return<sp/>the<sp/>status<sp/>of<sp/>DCT4<sp/>Init<sp/>function<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(status);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_dct4_init_f32.c"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,599 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="group__FIR__decimate" kind="group">
+    <compoundname>FIR_decimate</compoundname>
+    <title>Finite Impulse Response (FIR) Decimator</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__FIR__decimate_1gaac61160b5f8e8f0073baea776b6b5bcc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_fir_decimate_f32</definition>
+        <argsstring>(const riscv_fir_decimate_instance_f32 *S, const float32_t *pSrc, float32_t *pDst, uint32_t blockSize)</argsstring>
+        <name>riscv_fir_decimate_f32</name>
+        <param>
+          <type>const <ref refid="structriscv__fir__decimate__instance__f32" kindref="compound">riscv_fir_decimate_instance_f32</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>const float32_t *</type>
+          <declname>pSrc</declname>
+        </param>
+        <param>
+          <type>float32_t *</type>
+          <declname>pDst</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Processing function for floating-point FIR decimator. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the floating-point FIR decimator structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of input data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of output data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples to process </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_decimate_f32.c" line="375" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_decimate_f32.c" bodystart="375" bodyend="699"/>
+      </memberdef>
+      <memberdef kind="function" id="group__FIR__decimate_1gad331172604a59db5d2039f5af4bbb04f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_fir_decimate_fast_q15</definition>
+        <argsstring>(const riscv_fir_decimate_instance_q15 *S, const q15_t *pSrc, q15_t *pDst, uint32_t blockSize)</argsstring>
+        <name>riscv_fir_decimate_fast_q15</name>
+        <param>
+          <type>const <ref refid="structriscv__fir__decimate__instance__q15" kindref="compound">riscv_fir_decimate_instance_q15</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>const q15_t *</type>
+          <declname>pSrc</declname>
+        </param>
+        <param>
+          <type>q15_t *</type>
+          <declname>pDst</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Processing function for the Q15 FIR decimator (fast variant). </para>        </briefdescription>
+        <detaileddescription>
+<para>Processing function for the Q15 FIR decimator (fast variant) for RISC-V3 and RISC-V4.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the Q15 FIR decimator structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of input data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of output data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of input samples to process per call </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Scaling and Overflow Behavior</title><para>This fast version uses a 32-bit accumulator with 2.30 format. The accumulator maintains full precision of the intermediate multiplication results but provides only a single guard bit. Thus, if the accumulator result overflows it wraps around and distorts the result. In order to avoid overflows completely the input signal must be scaled down by log2(numTaps) bits (log2 is read as log to the base 2). The 2.30 accumulator is then truncated to 2.15 format and saturated to yield the 1.15 result. </para></simplesect>
+<simplesect kind="remark"><para>Refer to <ref refid="group__FIR__decimate_1ga3709b4b84a0ff9ab322c5a57a854fd43" kindref="member">riscv_fir_decimate_q15()</ref> for a slower implementation of this function which uses 64-bit accumulation to avoid wrap around distortion. Both the slow and the fast versions use the same instance structure. Use function <ref refid="group__FIR__decimate_1ga5b5acaad9aa70b15151ab009065702e8" kindref="member">riscv_fir_decimate_init_q15()</ref> to initialize the filter structure. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_decimate_fast_q15.c" line="309" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_decimate_fast_q15.c" bodystart="309" bodyend="590"/>
+      </memberdef>
+      <memberdef kind="function" id="group__FIR__decimate_1ga0730ba173fa51e549f090f41a195ddbb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_fir_decimate_fast_q31</definition>
+        <argsstring>(const riscv_fir_decimate_instance_q31 *S, const q31_t *pSrc, q31_t *pDst, uint32_t blockSize)</argsstring>
+        <name>riscv_fir_decimate_fast_q31</name>
+        <param>
+          <type>const <ref refid="structriscv__fir__decimate__instance__q31" kindref="compound">riscv_fir_decimate_instance_q31</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>const q31_t *</type>
+          <declname>pSrc</declname>
+        </param>
+        <param>
+          <type>q31_t *</type>
+          <declname>pDst</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Processing function for the Q31 FIR decimator (fast variant). </para>        </briefdescription>
+        <detaileddescription>
+<para>Processing function for the Q31 FIR decimator (fast variant) for RISC-V3 and RISC-V4.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the Q31 FIR decimator structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of input data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of output data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples to process </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Scaling and Overflow Behavior</title><para>This function is optimized for speed at the expense of fixed-point precision and overflow protection. The result of each 1.31 x 1.31 multiplication is truncated to 2.30 format. These intermediate results are added to a 2.30 accumulator. Finally, the accumulator is saturated and converted to a 1.31 result. The fast version has the same overflow behavior as the standard version and provides less precision since it discards the low 32 bits of each multiplication result. In order to avoid overflows completely the input signal must be scaled down by log2(numTaps) bits (where log2 is read as log to the base 2).</para></simplesect>
+<simplesect kind="remark"><para>Refer to <ref refid="group__FIR__decimate_1ga6ab85c0ce039addff95d8b8e5634740b" kindref="member">riscv_fir_decimate_q31()</ref> for a slower implementation of this function which uses a 64-bit accumulator to provide higher precision. Both the slow and the fast versions use the same instance structure. Use function <ref refid="group__FIR__decimate_1ga2774269fef95061532bd039708a5bae6" kindref="member">riscv_fir_decimate_init_q31()</ref> to initialize the filter structure. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_decimate_fast_q31.c" line="63" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_decimate_fast_q31.c" bodystart="63" bodyend="387"/>
+      </memberdef>
+      <memberdef kind="function" id="group__FIR__decimate_1ga387bc4decac5cee2ba073d1ec98d0a8c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>riscv_status</type>
+        <definition>riscv_status riscv_fir_decimate_init_f32</definition>
+        <argsstring>(riscv_fir_decimate_instance_f32 *S, uint16_t numTaps, uint8_t M, const float32_t *pCoeffs, float32_t *pState, uint32_t blockSize)</argsstring>
+        <name>riscv_fir_decimate_init_f32</name>
+        <param>
+          <type><ref refid="structriscv__fir__decimate__instance__f32" kindref="compound">riscv_fir_decimate_instance_f32</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>numTaps</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>M</declname>
+        </param>
+        <param>
+          <type>const float32_t *</type>
+          <declname>pCoeffs</declname>
+        </param>
+        <param>
+          <type>float32_t *</type>
+          <declname>pState</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the floating-point FIR decimator. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the floating-point FIR decimator structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">numTaps</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of coefficients in the filter </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">M</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>decimation factor </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pCoeffs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the filter coefficients </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pState</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the state buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of input samples to process per call </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>execution status<itemizedlist>
+<listitem><para>RISCV_MATH_SUCCESS : Operation successful</para></listitem><listitem><para>RISCV_MATH_LENGTH_ERROR : <computeroutput>blockSize</computeroutput> is not a multiple of <computeroutput>M</computeroutput></para></listitem></itemizedlist>
+</para></simplesect>
+<simplesect kind="par"><title>Details</title><para><computeroutput>pCoeffs</computeroutput> points to the array of filter coefficients stored in time reversed order: <preformatted>
+    {b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}
+</preformatted> </para></simplesect>
+<simplesect kind="par"><title></title><para><computeroutput>pState</computeroutput> points to the array of state variables. <computeroutput>pState</computeroutput> is of length <computeroutput>numTaps+blockSize-1</computeroutput> words where <computeroutput>blockSize</computeroutput> is the number of input samples passed to <computeroutput><ref refid="group__FIR__decimate_1gaac61160b5f8e8f0073baea776b6b5bcc" kindref="member">riscv_fir_decimate_f32()</ref></computeroutput>. <computeroutput>M</computeroutput> is the decimation factor. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_decimate_init_f32.c" line="64" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_decimate_init_f32.c" bodystart="64" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="group__FIR__decimate_1ga5b5acaad9aa70b15151ab009065702e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>riscv_status</type>
+        <definition>riscv_status riscv_fir_decimate_init_q15</definition>
+        <argsstring>(riscv_fir_decimate_instance_q15 *S, uint16_t numTaps, uint8_t M, const q15_t *pCoeffs, q15_t *pState, uint32_t blockSize)</argsstring>
+        <name>riscv_fir_decimate_init_q15</name>
+        <param>
+          <type><ref refid="structriscv__fir__decimate__instance__q15" kindref="compound">riscv_fir_decimate_instance_q15</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>numTaps</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>M</declname>
+        </param>
+        <param>
+          <type>const q15_t *</type>
+          <declname>pCoeffs</declname>
+        </param>
+        <param>
+          <type>q15_t *</type>
+          <declname>pState</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the Q15 FIR decimator. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the Q15 FIR decimator structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">numTaps</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of coefficients in the filter </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">M</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>decimation factor </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pCoeffs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the filter coefficients </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pState</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the state buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of input samples to process </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>execution status<itemizedlist>
+<listitem><para>RISCV_MATH_SUCCESS : Operation successful</para></listitem><listitem><para>RISCV_MATH_LENGTH_ERROR : <computeroutput>blockSize</computeroutput> is not a multiple of <computeroutput>M</computeroutput></para></listitem></itemizedlist>
+</para></simplesect>
+<simplesect kind="par"><title>Details</title><para><computeroutput>pCoeffs</computeroutput> points to the array of filter coefficients stored in time reversed order: <preformatted>
+    {b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}
+</preformatted> </para></simplesect>
+<simplesect kind="par"><title></title><para><computeroutput>pState</computeroutput> points to the array of state variables. <computeroutput>pState</computeroutput> is of length <computeroutput>numTaps+blockSize-1</computeroutput> words where <computeroutput>blockSize</computeroutput> is the number of input samples to the call <computeroutput><ref refid="group__FIR__decimate_1ga3709b4b84a0ff9ab322c5a57a854fd43" kindref="member">riscv_fir_decimate_q15()</ref></computeroutput>. <computeroutput>M</computeroutput> is the decimation factor. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_decimate_init_q15.c" line="65" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_decimate_init_q15.c" bodystart="65" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="group__FIR__decimate_1ga2774269fef95061532bd039708a5bae6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>riscv_status</type>
+        <definition>riscv_status riscv_fir_decimate_init_q31</definition>
+        <argsstring>(riscv_fir_decimate_instance_q31 *S, uint16_t numTaps, uint8_t M, const q31_t *pCoeffs, q31_t *pState, uint32_t blockSize)</argsstring>
+        <name>riscv_fir_decimate_init_q31</name>
+        <param>
+          <type><ref refid="structriscv__fir__decimate__instance__q31" kindref="compound">riscv_fir_decimate_instance_q31</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>numTaps</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>M</declname>
+        </param>
+        <param>
+          <type>const q31_t *</type>
+          <declname>pCoeffs</declname>
+        </param>
+        <param>
+          <type>q31_t *</type>
+          <declname>pState</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the Q31 FIR decimator. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the Q31 FIR decimator structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">numTaps</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of coefficients in the filter </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">M</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>decimation factor </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pCoeffs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the filter coefficients </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pState</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the state buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of input samples to process </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>execution status<itemizedlist>
+<listitem><para>RISCV_MATH_SUCCESS : Operation successful</para></listitem><listitem><para>RISCV_MATH_LENGTH_ERROR : <computeroutput>blockSize</computeroutput> is not a multiple of <computeroutput>M</computeroutput></para></listitem></itemizedlist>
+</para></simplesect>
+<simplesect kind="par"><title>Details</title><para><computeroutput>pCoeffs</computeroutput> points to the array of filter coefficients stored in time reversed order: <preformatted>
+    {b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}
+</preformatted> </para></simplesect>
+<simplesect kind="par"><title></title><para><computeroutput>pState</computeroutput> points to the array of state variables. <computeroutput>pState</computeroutput> is of length <computeroutput>numTaps+blockSize-1</computeroutput> words where <computeroutput>blockSize</computeroutput> is the number of input samples passed to <computeroutput><ref refid="group__FIR__decimate_1ga6ab85c0ce039addff95d8b8e5634740b" kindref="member">riscv_fir_decimate_q31()</ref></computeroutput>. <computeroutput>M</computeroutput> is the decimation factor. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_decimate_init_q31.c" line="64" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_decimate_init_q31.c" bodystart="64" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="group__FIR__decimate_1ga3709b4b84a0ff9ab322c5a57a854fd43" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_fir_decimate_q15</definition>
+        <argsstring>(const riscv_fir_decimate_instance_q15 *S, const q15_t *pSrc, q15_t *pDst, uint32_t blockSize)</argsstring>
+        <name>riscv_fir_decimate_q15</name>
+        <param>
+          <type>const <ref refid="structriscv__fir__decimate__instance__q15" kindref="compound">riscv_fir_decimate_instance_q15</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>const q15_t *</type>
+          <declname>pSrc</declname>
+        </param>
+        <param>
+          <type>q15_t *</type>
+          <declname>pDst</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Processing function for the Q15 FIR decimator. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the Q15 FIR decimator structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of input data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of output data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of input samples to process per call </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Scaling and Overflow Behavior</title><para>The function is implemented using a 64-bit internal accumulator. Both coefficients and state variables are represented in 1.15 format and multiplications yield a 2.30 result. The 2.30 intermediate results are accumulated in a 64-bit accumulator in 34.30 format. There is no risk of internal overflow with this approach and the full precision of intermediate multiplications is preserved. After all additions have been performed, the accumulator is truncated to 34.15 format by discarding low 15 bits. Lastly, the accumulator is saturated to yield a result in 1.15 format.</para></simplesect>
+<simplesect kind="remark"><para>Refer to <ref refid="group__FIR__decimate_1gad331172604a59db5d2039f5af4bbb04f" kindref="member">riscv_fir_decimate_fast_q15()</ref> for a faster but less precise implementation of this function. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_decimate_q15.c" line="309" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_decimate_q15.c" bodystart="309" bodyend="590"/>
+      </memberdef>
+      <memberdef kind="function" id="group__FIR__decimate_1ga6ab85c0ce039addff95d8b8e5634740b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_fir_decimate_q31</definition>
+        <argsstring>(const riscv_fir_decimate_instance_q31 *S, const q31_t *pSrc, q31_t *pDst, uint32_t blockSize)</argsstring>
+        <name>riscv_fir_decimate_q31</name>
+        <param>
+          <type>const <ref refid="structriscv__fir__decimate__instance__q31" kindref="compound">riscv_fir_decimate_instance_q31</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>const q31_t *</type>
+          <declname>pSrc</declname>
+        </param>
+        <param>
+          <type>q31_t *</type>
+          <declname>pDst</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Processing function for the Q31 FIR decimator. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the Q31 FIR decimator structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of input data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of output data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples to process </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Scaling and Overflow Behavior</title><para>The function is implemented using an internal 64-bit accumulator. The accumulator has a 2.62 format and maintains full precision of the intermediate multiplication results but provides only a single guard bit. Thus, if the accumulator result overflows it wraps around rather than clip. In order to avoid overflows completely the input signal must be scaled down by log2(numTaps) bits (where log2 is read as log to the base 2). After all multiply-accumulates are performed, the 2.62 accumulator is truncated to 1.32 format and then saturated to 1.31 format.</para></simplesect>
+<simplesect kind="remark"><para>Refer to <ref refid="group__FIR__decimate_1ga0730ba173fa51e549f090f41a195ddbb" kindref="member">riscv_fir_decimate_fast_q31()</ref> for a faster but less precise implementation of this function. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_decimate_q31.c" line="60" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_decimate_q31.c" bodystart="60" bodyend="384"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>These functions combine an FIR filter together with a decimator. They are used in multirate systems for reducing the sample rate of a signal without introducing aliasing distortion. Conceptually, the functions are equivalent to the block diagram below: <image type="html" name="FIRDecimator.png">Components included in the FIR Decimator functions</image>
+ When decimating by a factor of <computeroutput>M</computeroutput>, the signal should be prefiltered by a lowpass filter with a normalized cutoff frequency of <computeroutput>1/M</computeroutput> in order to prevent aliasing distortion. The user of the function is responsible for providing the filter coefficients.</para><para>The FIR decimator functions provided in the NMSIS DSP Library combine the FIR filter and the decimator in an efficient manner. Instead of calculating all of the FIR filter outputs and discarding <computeroutput>M-1</computeroutput> out of every <computeroutput>M</computeroutput>, only the samples output by the decimator are computed. The functions operate on blocks of input and output data. <computeroutput>pSrc</computeroutput> points to an array of <computeroutput>blockSize</computeroutput> input values and <computeroutput>pDst</computeroutput> points to an array of <computeroutput>blockSize/M</computeroutput> output values. In order to have an integer number of output samples <computeroutput>blockSize</computeroutput> must always be a multiple of the decimation factor <computeroutput>M</computeroutput>.</para><para>The library provides separate functions for Q15, Q31 and floating-point data types.</para><para><simplesect kind="par"><title>Algorithm:</title><para>The FIR portion of the algorithm uses the standard form filter: <preformatted>
+     y[n] = b[0] * x[n] + b[1] * x[n-1] + b[2] * x[n-2] + ...+ b[numTaps-1] * x[n-numTaps+1]
+ </preformatted> where, <computeroutput>b[n]</computeroutput> are the filter coefficients. </para></simplesect>
+<simplesect kind="par"><title></title><para>The <computeroutput>pCoeffs</computeroutput> points to a coefficient array of size <computeroutput>numTaps</computeroutput>. Coefficients are stored in time reversed order. </para></simplesect>
+<simplesect kind="par"><title></title><para><preformatted>
+     {b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}
+ </preformatted> </para></simplesect>
+<simplesect kind="par"><title></title><para><computeroutput>pState</computeroutput> points to a state array of size <computeroutput>numTaps + blockSize - 1</computeroutput>. Samples in the state buffer are stored in the order: </para></simplesect>
+<simplesect kind="par"><title></title><para><preformatted>
+     {x[n-numTaps+1], x[n-numTaps], x[n-numTaps-1], x[n-numTaps-2]....x[0], x[1], ..., x[blockSize-1]}
+ </preformatted> The state variables are updated after each block of data is processed, the coefficients are untouched.</para></simplesect>
+<simplesect kind="par"><title>Instance Structure</title><para>The coefficients and state variables for a filter are stored together in an instance data structure. A separate instance structure must be defined for each filter. Coefficient arrays may be shared among several instances while state variable array should be allocated separately. There are separate instance structure declarations for each of the 3 supported data types.</para></simplesect>
+<simplesect kind="par"><title>Initialization Functions</title><para>There is also an associated initialization function for each data type. The initialization function performs the following operations:<itemizedlist>
+<listitem><para>Sets the values of the internal structure fields.</para></listitem><listitem><para>Zeros out the values in the state buffer.</para></listitem><listitem><para>Checks to make sure that the size of the input is a multiple of the decimation factor. To do this manually without calling the init function, assign the follow subfields of the instance structure: numTaps, pCoeffs, M (decimation factor), pState. Also set all of the values in pState to zero. </para></listitem></itemizedlist>
+</para></simplesect>
+<simplesect kind="par"><title></title><para>Use of the initialization function is optional. However, if the initialization function is used, then the instance structure cannot be placed into a const data section. To place an instance structure into a const data section, the instance structure must be manually initialized. The code below statically initializes each of the 3 different data type filter instance structures <preformatted>
+     <ref refid="structriscv__fir__decimate__instance__f32" kindref="compound">riscv_fir_decimate_instance_f32</ref> S = {M, numTaps, pCoeffs, pState};
+     <ref refid="structriscv__fir__decimate__instance__q31" kindref="compound">riscv_fir_decimate_instance_q31</ref> S = {M, numTaps, pCoeffs, pState};
+     <ref refid="structriscv__fir__decimate__instance__q15" kindref="compound">riscv_fir_decimate_instance_q15</ref> S = {M, numTaps, pCoeffs, pState};
+ </preformatted> where <computeroutput>M</computeroutput> is the decimation factor; <computeroutput>numTaps</computeroutput> is the number of filter coefficients in the filter; <computeroutput>pCoeffs</computeroutput> is the address of the coefficient buffer; <computeroutput>pState</computeroutput> is the address of the state buffer. Be sure to set the values in the state buffer to zeros when doing static initialization.</para></simplesect>
+<simplesect kind="par"><title>Fixed-Point Behavior</title><para>Care must be taken when using the fixed-point versions of the FIR decimate filter functions. In particular, the overflow and saturation behavior of the accumulator used in each function must be considered. Refer to the function specific documentation below for usage guidelines. </para></simplesect>
+</para>    </detaileddescription>
+  </compounddef>
+</doxygen>

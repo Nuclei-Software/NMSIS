@@ -1,0 +1,246 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="group__DCT4__IDCT4__Table" kind="group">
+    <compoundname>DCT4_IDCT4_Table</compoundname>
+    <title>DCT Type IV Tables</title>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="group__DCT4__IDCT4__Table_1gad00f29d896d64d6da7afbbb9d3e182a4" prot="public" static="no" mutable="no">
+        <type>const float32_t</type>
+        <definition>const float32_t Weights_128[256]</definition>
+        <argsstring>[256]</argsstring>
+        <name>Weights_128</name>
+        <briefdescription>
+<para>Weights Table. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="par"><title></title><para>Weights tables are generated using the formula : <preformatted>weights[n] = e^(-j*n*pi/(2*N))</preformatted> </para></simplesect>
+<simplesect kind="par"><title></title><para>C command to generate the table <preformatted>
+for(i = 0; i&lt; N; i++)
+{
+  weights[(2*i)]   =  cos (i*c);
+  weights[(2*i)+1] = -sin (i*c);
+} </preformatted> </para></simplesect>
+<simplesect kind="par"><title></title><para>where <computeroutput>N</computeroutput> is the Number of weights to be calculated and <computeroutput>c</computeroutput> is <computeroutput>pi/(2*N)</computeroutput> </para></simplesect>
+<simplesect kind="par"><title></title><para>In the tables below the real and imaginary values are placed alternatively, hence the array length is <computeroutput>2*N</computeroutput>. </para></simplesect>
+<simplesect kind="par"><title></title><para>cosFactor tables are generated using the formula : <preformatted>cos_factors[n] = 2 * cos((2n+1)*pi/(4*N))</preformatted> </para></simplesect>
+<simplesect kind="par"><title></title><para>C command to generate the table </para></simplesect>
+<simplesect kind="par"><title></title><para><preformatted> for(i = 0; i&lt; N; i++)
+{
+   cos_factors[i]= 2 * cos((2*i+1)*c/2);
+} </preformatted> </para></simplesect>
+<simplesect kind="par"><title></title><para>where <computeroutput>N</computeroutput> is the number of factors to generate and <computeroutput>c</computeroutput> is <computeroutput>pi/(2*N)</computeroutput> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="1914" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="1914" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__DCT4__IDCT4__Table_1ga16248ed86161ef97538011b49f13e8b7" prot="public" static="no" mutable="no">
+        <type>const float32_t</type>
+        <definition>const float32_t cos_factors_128[128]</definition>
+        <argsstring>[128]</argsstring>
+        <name>cos_factors_128</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="1981" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="1981" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__DCT4__IDCT4__Table_1gaeb67b0be5b3c2139d660e02cedeed908" prot="public" static="no" mutable="no">
+        <type>const float32_t</type>
+        <definition>const float32_t Weights_512[1024]</definition>
+        <argsstring>[1024]</argsstring>
+        <name>Weights_512</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="2051" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="2051" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__DCT4__IDCT4__Table_1ga49fd288352ca5bb43f5cec52273b0d80" prot="public" static="no" mutable="no">
+        <type>const float32_t</type>
+        <definition>const float32_t cos_factors_512[512]</definition>
+        <argsstring>[512]</argsstring>
+        <name>cos_factors_512</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="2310" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="2310" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__DCT4__IDCT4__Table_1gac3a2a00b3106dfcb5e0a582f50c65692" prot="public" static="no" mutable="no">
+        <type>const float32_t</type>
+        <definition>const float32_t Weights_2048[4096]</definition>
+        <argsstring>[4096]</argsstring>
+        <name>Weights_2048</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="2571" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="2571" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__DCT4__IDCT4__Table_1ga1ba5306e0bc44730b40ab34cced45fd6" prot="public" static="no" mutable="no">
+        <type>const float32_t</type>
+        <definition>const float32_t cos_factors_2048[2048]</definition>
+        <argsstring>[2048]</argsstring>
+        <name>cos_factors_2048</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="4451" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="4451" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__DCT4__IDCT4__Table_1ga02d7024538a87214296b01d83ba36b02" prot="public" static="no" mutable="no">
+        <type>const q31_t</type>
+        <definition>const q31_t WeightsQ31_128[256]</definition>
+        <argsstring>[256]</argsstring>
+        <name>WeightsQ31_128</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="par"><title></title><para>Weights tables are generated using the formula : <preformatted>weights[n] = e^(-j*n*pi/(2*N))</preformatted> </para></simplesect>
+<simplesect kind="par"><title></title><para>C command to generate the table <preformatted>
+for (i = 0; i&lt; N; i++)
+{
+  weights[(2*i)]   =  cos(i*c);
+  weights[(2*i)+1] = -sin(i*c);
+} </preformatted> </para></simplesect>
+<simplesect kind="par"><title></title><para>where <computeroutput>N</computeroutput> is the Number of weights to be calculated and <computeroutput>c</computeroutput> is <computeroutput>pi/(2*N)</computeroutput> </para></simplesect>
+<simplesect kind="par"><title></title><para>Convert the output to q31 format by multiplying with 2^31 and saturated if required. </para></simplesect>
+<simplesect kind="par"><title></title><para>In the tables below the real and imaginary values are placed alternatively, hence the array length is <computeroutput>2*N</computeroutput>. </para></simplesect>
+<simplesect kind="par"><title></title><para>cosFactor tables are generated using the formula : <preformatted>cos_factors[n] = 2 * cos((2n+1)*pi/(4*N))</preformatted> </para></simplesect>
+<simplesect kind="par"><title></title><para>C command to generate the table <preformatted>
+for (i = 0; i&lt; N; i++)
+{
+  cos_factors[i] = 2 * cos((2*i+1)*c/2);
+} </preformatted> </para></simplesect>
+<simplesect kind="par"><title></title><para>where <computeroutput>N</computeroutput> is the number of factors to generate and <computeroutput>c</computeroutput> is <computeroutput>pi/(2*N)</computeroutput> </para></simplesect>
+<simplesect kind="par"><title></title><para>Then converted to q31 format by multiplying with 2^31 and saturated if required. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="6591" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="6591" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__DCT4__IDCT4__Table_1gabb8ee2004a3520fd08388db637d43875" prot="public" static="no" mutable="no">
+        <type>const q31_t</type>
+        <definition>const q31_t cos_factorsQ31_128[128]</definition>
+        <argsstring>[128]</argsstring>
+        <name>cos_factorsQ31_128</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="6625" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="6625" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__DCT4__IDCT4__Table_1ga31a8217a96f7d3171921e98398f31596" prot="public" static="no" mutable="no">
+        <type>const q31_t</type>
+        <definition>const q31_t WeightsQ31_512[1024]</definition>
+        <argsstring>[1024]</argsstring>
+        <name>WeightsQ31_512</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="6662" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="6662" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__DCT4__IDCT4__Table_1ga3559569e603cb918911074be88523d0e" prot="public" static="no" mutable="no">
+        <type>const q31_t</type>
+        <definition>const q31_t cos_factorsQ31_512[512]</definition>
+        <argsstring>[512]</argsstring>
+        <name>cos_factorsQ31_512</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="6792" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="6792" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__DCT4__IDCT4__Table_1ga725b65c25a02b3cad329e18bb832f65e" prot="public" static="no" mutable="no">
+        <type>const q31_t</type>
+        <definition>const q31_t WeightsQ31_2048[4096]</definition>
+        <argsstring>[4096]</argsstring>
+        <name>WeightsQ31_2048</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="6925" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="6925" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__DCT4__IDCT4__Table_1gaa15fc3fb058482defda371113cd12e74" prot="public" static="no" mutable="no">
+        <type>const q31_t</type>
+        <definition>const q31_t cos_factorsQ31_2048[2048]</definition>
+        <argsstring>[2048]</argsstring>
+        <name>cos_factorsQ31_2048</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="7439" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="7439" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__DCT4__IDCT4__Table_1ga70c20a29dce002df289426d5b4f67fa8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const q15_t</type>
+        <definition>const q15_t __ALIGNED</definition>
+        <argsstring>(4)</argsstring>
+        <name>__ALIGNED</name>
+        <param>
+          <type>4</type>
+        </param>
+        <briefdescription>
+<para>Weights Table. </para>        </briefdescription>
+        <detaileddescription>
+<para>Q15 table for reciprocal.</para><para><simplesect kind="par"><title></title><para>Weights tables are generated using the formula : <preformatted>weights[n] = e^(-j*n*pi/(2*N))</preformatted> </para></simplesect>
+<simplesect kind="par"><title></title><para>C command to generate the table <preformatted>
+for(i = 0; i&lt; N; i++)
+{ 
+  weights[(2*i)]   =  cos(i*c);
+  weights[(2*i)+1] = -sin(i*c);
+} </preformatted> </para></simplesect>
+<simplesect kind="par"><title></title><para>where <computeroutput>N</computeroutput> is the Number of weights to be calculated and <computeroutput>c</computeroutput> is <computeroutput>pi/(2*N)</computeroutput> </para></simplesect>
+<simplesect kind="par"><title></title><para>Converted the output to q15 format by multiplying with 2^31 and saturated if required. </para></simplesect>
+<simplesect kind="par"><title></title><para>In the tables below the real and imaginary values are placed alternatively, hence the array length is <computeroutput>2*N</computeroutput>. </para></simplesect>
+<simplesect kind="par"><title></title><para>cosFactor tables are generated using the formula : <preformatted> cos_factors[n] = 2 * cos((2n+1)*pi/(4*N)) </preformatted> </para></simplesect>
+<simplesect kind="par"><title></title><para>C command to generate the table <preformatted>
+for (i = 0; i&lt; N; i++)
+{
+  cos_factors[i] = 2 * cos((2*i+1)*c/2);
+} </preformatted> </para></simplesect>
+<simplesect kind="par"><title></title><para>where <computeroutput>N</computeroutput> is the number of factors to generate and <computeroutput>c</computeroutput> is <computeroutput>pi/(2*N)</computeroutput> </para></simplesect>
+<simplesect kind="par"><title></title><para>Then converted to q15 format by multiplying with 2^31 and saturated if required.</para></simplesect>
+end of DCT4_IDCT4_Table group</para><para><simplesect kind="par"><title></title><para>Generation of real_CoefB array: </para></simplesect>
+<simplesect kind="par"><title></title><para>n = 4096 <preformatted>for (i = 0; i &lt; n; i++)
+{
+   pBTable[2 * i]     = 0.5 * (1.0 + sin (2 * PI / (double) (2 * n) * (double) i));
+   pBTable[2 * i + 1] = 0.5 * (1.0 * cos (2 * PI / (double) (2 * n) * (double) i));
+}</preformatted> </para></simplesect>
+<simplesect kind="par"><title></title><para>Convert to fixed point Q15 format round(pBTable[i] * pow(2, 15)) </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="5522" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="5522" bodyend="5555"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

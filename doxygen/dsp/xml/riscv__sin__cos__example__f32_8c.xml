@@ -1,0 +1,309 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="riscv__sin__cos__example__f32_8c" kind="file" language="C++">
+    <compoundname>riscv_sin_cos_example_f32.c</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">math.h</includes>
+    <includes refid="riscv__math_8h" local="yes">riscv_math.h</includes>
+    <incdepgraph>
+      <node id="617">
+        <label>math.h</label>
+      </node>
+      <node id="615">
+        <label>riscv_sin_cos_example_f32.c</label>
+        <link refid="riscv__sin__cos__example__f32_8c"/>
+        <childnode refid="616" relation="include">
+        </childnode>
+        <childnode refid="617" relation="include">
+        </childnode>
+      </node>
+      <node id="616">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="riscv__sin__cos__example__f32_8c_1af8a1d2ed31f7c9a00fec46a798edb61b" prot="public" static="no">
+        <name>MAX_BLOCKSIZE</name>
+        <initializer>32</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_sin_cos_example/riscv_sin_cos_example_f32.c" line="92" column="9" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_sin_cos_example/riscv_sin_cos_example_f32.c" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="riscv__sin__cos__example__f32_8c_1a3fd2b1bcd7ddcf506237987ad780f495" prot="public" static="no">
+        <name>DELTA</name>
+        <initializer>(0.0001f)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_sin_cos_example/riscv_sin_cos_example_f32.c" line="93" column="9" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_sin_cos_example/riscv_sin_cos_example_f32.c" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="riscv__sin__cos__example__f32_8c_1a8b3b7113988efd5bf11a247d07ae39a1" prot="public" static="no" mutable="no">
+        <type>const float32_t</type>
+        <definition>const float32_t testInput_f32[MAX_BLOCKSIZE]</definition>
+        <argsstring>[MAX_BLOCKSIZE]</argsstring>
+        <name>testInput_f32</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_sin_cos_example/riscv_sin_cos_example_f32.c" line="101" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_sin_cos_example/riscv_sin_cos_example_f32.c" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="riscv__sin__cos__example__f32_8c_1a8bcb5c1f75ed5f1737e435f0de1850a3" prot="public" static="no" mutable="no">
+        <type>const float32_t</type>
+        <definition>const float32_t testRefOutput_f32</definition>
+        <argsstring></argsstring>
+        <name>testRefOutput_f32</name>
+        <initializer>= 1.000000000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_sin_cos_example/riscv_sin_cos_example_f32.c" line="111" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_sin_cos_example/riscv_sin_cos_example_f32.c" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="riscv__sin__cos__example__f32_8c_1ab6558f40a619c2502fbc24c880fd4fb0" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t blockSize</definition>
+        <argsstring></argsstring>
+        <name>blockSize</name>
+        <initializer>= 32</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_sin_cos_example/riscv_sin_cos_example_f32.c" line="116" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_sin_cos_example/riscv_sin_cos_example_f32.c" bodystart="116" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="riscv__sin__cos__example__f32_8c_1a324833b61eae796082e07d078a67c34f" prot="public" static="no" mutable="no">
+        <type>float32_t</type>
+        <definition>float32_t testOutput</definition>
+        <argsstring></argsstring>
+        <name>testOutput</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_sin_cos_example/riscv_sin_cos_example_f32.c" line="117" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_sin_cos_example/riscv_sin_cos_example_f32.c" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="riscv__sin__cos__example__f32_8c_1a85b1050fcef4347d69f35a9aee798f8a" prot="public" static="no" mutable="no">
+        <type>float32_t</type>
+        <definition>float32_t cosOutput</definition>
+        <argsstring></argsstring>
+        <name>cosOutput</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_sin_cos_example/riscv_sin_cos_example_f32.c" line="118" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_sin_cos_example/riscv_sin_cos_example_f32.c" bodystart="118" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="riscv__sin__cos__example__f32_8c_1a1e232694019f6b61710fbff5ee27126c" prot="public" static="no" mutable="no">
+        <type>float32_t</type>
+        <definition>float32_t sinOutput</definition>
+        <argsstring></argsstring>
+        <name>sinOutput</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_sin_cos_example/riscv_sin_cos_example_f32.c" line="119" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_sin_cos_example/riscv_sin_cos_example_f32.c" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="riscv__sin__cos__example__f32_8c_1a2cb185794dcb587d158f346ab049cc4e" prot="public" static="no" mutable="no">
+        <type>float32_t</type>
+        <definition>float32_t cosSquareOutput</definition>
+        <argsstring></argsstring>
+        <name>cosSquareOutput</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_sin_cos_example/riscv_sin_cos_example_f32.c" line="120" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_sin_cos_example/riscv_sin_cos_example_f32.c" bodystart="120" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="riscv__sin__cos__example__f32_8c_1aa5a66e866ebb91eb971f2805209e9d36" prot="public" static="no" mutable="no">
+        <type>float32_t</type>
+        <definition>float32_t sinSquareOutput</definition>
+        <argsstring></argsstring>
+        <name>sinSquareOutput</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_sin_cos_example/riscv_sin_cos_example_f32.c" line="121" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_sin_cos_example/riscv_sin_cos_example_f32.c" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="riscv__sin__cos__example__f32_8c_1adef8898fc00544647c0397b647c32420" prot="public" static="no" mutable="no">
+        <type>riscv_status</type>
+        <definition>riscv_status status</definition>
+        <argsstring></argsstring>
+        <name>status</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_sin_cos_example/riscv_sin_cos_example_f32.c" line="127" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_sin_cos_example/riscv_sin_cos_example_f32.c" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="riscv__sin__cos__example__f32_8c_1a52d2cba30e6946c95578be946ac12a65" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int32_t</type>
+        <definition>int32_t main</definition>
+        <argsstring>(void)</argsstring>
+        <name>main</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_sin_cos_example/riscv_sin_cos_example_f32.c" line="129" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_sin_cos_example/riscv_sin_cos_example_f32.c" bodystart="129" bodyend="156"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/>----------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="2"><highlight class="comment">*<sp/>Copyright<sp/>(C)<sp/>2010-2012<sp/>ARM<sp/>Limited.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2019<sp/>Nuclei<sp/>Limited.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment">*<sp/>$Date:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>12.<sp/>March<sp/>2014</highlight></codeline>
+<codeline lineno="6"><highlight class="comment">*<sp/>$Revision:<sp/><sp/><sp/><sp/><sp/>V1.4.3</highlight></codeline>
+<codeline lineno="7"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="8"><highlight class="comment">*<sp/>Project:<sp/><sp/><sp/><sp/><sp/><sp/><sp/>NMSIS<sp/>DSP<sp/>Library</highlight></codeline>
+<codeline lineno="9"><highlight class="comment">*<sp/>Title:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>riscv_sin_cos_example_f32.c</highlight></codeline>
+<codeline lineno="10"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="11"><highlight class="comment">*<sp/>Description:<sp/><sp/><sp/>Example<sp/>code<sp/>demonstrating<sp/>sin<sp/>and<sp/>cos<sp/>calculation<sp/>of<sp/>input<sp/>signal.</highlight></codeline>
+<codeline lineno="12"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="13"><highlight class="comment">*<sp/>Target<sp/>Processor:<sp/>RISC-V<sp/>Cores</highlight></codeline>
+<codeline lineno="14"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="15"><highlight class="comment">*<sp/>Redistribution<sp/>and<sp/>use<sp/>in<sp/>source<sp/>and<sp/>binary<sp/>forms,<sp/>with<sp/>or<sp/>without</highlight></codeline>
+<codeline lineno="16"><highlight class="comment">*<sp/>modification,<sp/>are<sp/>permitted<sp/>provided<sp/>that<sp/>the<sp/>following<sp/>conditions</highlight></codeline>
+<codeline lineno="17"><highlight class="comment">*<sp/>are<sp/>met:</highlight></codeline>
+<codeline lineno="18"><highlight class="comment">*<sp/><sp/><sp/>-<sp/>Redistributions<sp/>of<sp/>source<sp/>code<sp/>must<sp/>retain<sp/>the<sp/>above<sp/>copyright</highlight></codeline>
+<codeline lineno="19"><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer.</highlight></codeline>
+<codeline lineno="20"><highlight class="comment">*<sp/><sp/><sp/>-<sp/>Redistributions<sp/>in<sp/>binary<sp/>form<sp/>must<sp/>reproduce<sp/>the<sp/>above<sp/>copyright</highlight></codeline>
+<codeline lineno="21"><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer<sp/>in</highlight></codeline>
+<codeline lineno="22"><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/>the<sp/>documentation<sp/>and/or<sp/>other<sp/>materials<sp/>provided<sp/>with<sp/>the</highlight></codeline>
+<codeline lineno="23"><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/>distribution.</highlight></codeline>
+<codeline lineno="24"><highlight class="comment">*<sp/><sp/><sp/>-<sp/>Neither<sp/>the<sp/>name<sp/>of<sp/>ARM<sp/>LIMITED<sp/>nor<sp/>the<sp/>names<sp/>of<sp/>its<sp/>contributors</highlight></codeline>
+<codeline lineno="25"><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/>may<sp/>be<sp/>used<sp/>to<sp/>endorse<sp/>or<sp/>promote<sp/>products<sp/>derived<sp/>from<sp/>this</highlight></codeline>
+<codeline lineno="26"><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/>software<sp/>without<sp/>specific<sp/>prior<sp/>written<sp/>permission.</highlight></codeline>
+<codeline lineno="27"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="28"><highlight class="comment">*<sp/>THIS<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>BY<sp/>THE<sp/>COPYRIGHT<sp/>HOLDERS<sp/>AND<sp/>CONTRIBUTORS</highlight></codeline>
+<codeline lineno="29"><highlight class="comment">*<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>ANY<sp/>EXPRESS<sp/>OR<sp/>IMPLIED<sp/>WARRANTIES,<sp/>INCLUDING,<sp/>BUT<sp/>NOT</highlight></codeline>
+<codeline lineno="30"><highlight class="comment">*<sp/>LIMITED<sp/>TO,<sp/>THE<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF<sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS</highlight></codeline>
+<codeline lineno="31"><highlight class="comment">*<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE<sp/>ARE<sp/>DISCLAIMED.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE</highlight></codeline>
+<codeline lineno="32"><highlight class="comment">*<sp/>COPYRIGHT<sp/>OWNER<sp/>OR<sp/>CONTRIBUTORS<sp/>BE<sp/>LIABLE<sp/>FOR<sp/>ANY<sp/>DIRECT,<sp/>INDIRECT,</highlight></codeline>
+<codeline lineno="33"><highlight class="comment">*<sp/>INCIDENTAL,<sp/>SPECIAL,<sp/>EXEMPLARY,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>(INCLUDING,</highlight></codeline>
+<codeline lineno="34"><highlight class="comment">*<sp/>BUT<sp/>NOT<sp/>LIMITED<sp/>TO,<sp/>PROCUREMENT<sp/>OF<sp/>SUBSTITUTE<sp/>GOODS<sp/>OR<sp/>SERVICES;</highlight></codeline>
+<codeline lineno="35"><highlight class="comment">*<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA,<sp/>OR<sp/>PROFITS;<sp/>OR<sp/>BUSINESS<sp/>INTERRUPTION)<sp/>HOWEVER</highlight></codeline>
+<codeline lineno="36"><highlight class="comment">*<sp/>CAUSED<sp/>AND<sp/>ON<sp/>ANY<sp/>THEORY<sp/>OF<sp/>LIABILITY,<sp/>WHETHER<sp/>IN<sp/>CONTRACT,<sp/>STRICT</highlight></codeline>
+<codeline lineno="37"><highlight class="comment">*<sp/>LIABILITY,<sp/>OR<sp/>TORT<sp/>(INCLUDING<sp/>NEGLIGENCE<sp/>OR<sp/>OTHERWISE)<sp/>ARISING<sp/>IN</highlight></codeline>
+<codeline lineno="38"><highlight class="comment">*<sp/>ANY<sp/>WAY<sp/>OUT<sp/>OF<sp/>THE<sp/>USE<sp/>OF<sp/>THIS<sp/>SOFTWARE,<sp/>EVEN<sp/>IF<sp/>ADVISED<sp/>OF<sp/>THE</highlight></codeline>
+<codeline lineno="39"><highlight class="comment">*<sp/>POSSIBILITY<sp/>OF<sp/>SUCH<sp/>DAMAGE.</highlight></codeline>
+<codeline lineno="40"><highlight class="comment">*<sp/>--------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;riscv_math.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>----------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="90"><highlight class="comment">*<sp/>Defines<sp/>each<sp/>of<sp/>the<sp/>tests<sp/>performed</highlight></codeline>
+<codeline lineno="91"><highlight class="comment">*<sp/>-------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_BLOCKSIZE<sp/><sp/><sp/>32</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DELTA<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(0.0001f)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>----------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="97"><highlight class="comment">*<sp/>Test<sp/>input<sp/>data<sp/>for<sp/>Floating<sp/>point<sp/>sin_cos<sp/>example<sp/>for<sp/>32-blockSize</highlight></codeline>
+<codeline lineno="98"><highlight class="comment">*<sp/>Generated<sp/>by<sp/>the<sp/>MATLAB<sp/>randn()<sp/>function</highlight></codeline>
+<codeline lineno="99"><highlight class="comment">*<sp/>-------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>float32_t<sp/>testInput_f32[MAX_BLOCKSIZE]<sp/>=</highlight></codeline>
+<codeline lineno="102"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/>-1.244916875853235400,<sp/><sp/>-4.793533929171324800,<sp/><sp/><sp/>0.360705030233248850,<sp/><sp/><sp/>0.827929644170887320,<sp/><sp/>-3.299532218312426900,<sp/><sp/><sp/>3.427441903227623800,<sp/><sp/><sp/>3.422401784294607700,<sp/><sp/>-0.108308165334010680,</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/>0.941943896490312180,<sp/><sp/><sp/>0.502609575000365850,<sp/><sp/>-0.537345278736373500,<sp/><sp/><sp/>2.088817392965764500,<sp/><sp/>-1.693168684143455700,<sp/><sp/><sp/>6.283185307179590700,<sp/><sp/>-0.392545884746175080,<sp/><sp/><sp/>0.327893095115825040,</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/>3.070147440456292300,<sp/><sp/><sp/>0.170611405884662230,<sp/><sp/>-0.275275082396073010,<sp/><sp/>-2.395492805446796300,<sp/><sp/><sp/>0.847311163536506600,<sp/><sp/>-3.845517018083148800,<sp/><sp/><sp/>2.055818378415868300,<sp/><sp/><sp/>4.672594161978930800,</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/>-1.990923030266425800,<sp/><sp/><sp/>2.469305197656249500,<sp/><sp/><sp/>3.609002606064021000,<sp/><sp/>-4.586736582331667500,<sp/><sp/>-4.147080139136136300,<sp/><sp/><sp/>1.643756718868359500,<sp/><sp/>-1.150866392366494800,<sp/><sp/><sp/>1.985805026477433800</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>float32_t<sp/>testRefOutput_f32<sp/>=<sp/>1.000000000;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>----------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="114"><highlight class="comment">*<sp/>Declare<sp/>Global<sp/>variables</highlight></codeline>
+<codeline lineno="115"><highlight class="comment">*<sp/>-------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal">uint32_t<sp/>blockSize<sp/>=<sp/>32;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal">float32_t<sp/><sp/>testOutput;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal">float32_t<sp/><sp/>cosOutput;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal">float32_t<sp/><sp/>sinOutput;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal">float32_t<sp/><sp/>cosSquareOutput;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal">float32_t<sp/><sp/>sinSquareOutput;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>----------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="124"><highlight class="comment">*<sp/>Max<sp/>magnitude<sp/>FFT<sp/>Bin<sp/>test</highlight></codeline>
+<codeline lineno="125"><highlight class="comment">*<sp/>-------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal">riscv_status<sp/>status;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal">int32_t<sp/>main(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="130"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/>float32_t<sp/>diff;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/>uint32_t<sp/>i;</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=0;<sp/>i&lt;<sp/>blockSize;<sp/>i++)</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>cosOutput<sp/>=<sp/><ref refid="group__cos_1gaf64b27f7eb9658ef96b44a5f0fcf959e" kindref="member">riscv_cos_f32</ref>(testInput_f32[i]);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>sinOutput<sp/>=<sp/><ref refid="group__sin_1ga11d805fff25da36b07ff5d2ebfb69dca" kindref="member">riscv_sin_f32</ref>(testInput_f32[i]);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__BasicMult_1gae63353652b163647d48e82dae770d751" kindref="member">riscv_mult_f32</ref>(&amp;cosOutput,<sp/>&amp;cosOutput,<sp/>&amp;cosSquareOutput,<sp/>1);</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__BasicMult_1gae63353652b163647d48e82dae770d751" kindref="member">riscv_mult_f32</ref>(&amp;sinOutput,<sp/>&amp;sinOutput,<sp/>&amp;sinSquareOutput,<sp/>1);</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__BasicAdd_1ga11b757065b1c8aa1cef4a59594e4ecf0" kindref="member">riscv_add_f32</ref>(&amp;cosSquareOutput,<sp/>&amp;sinSquareOutput,<sp/>&amp;testOutput,<sp/>1);</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>absolute<sp/>value<sp/>of<sp/>difference<sp/>between<sp/>ref<sp/>and<sp/>test<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>diff<sp/>=<sp/>fabsf(testRefOutput_f32<sp/>-<sp/>testOutput);</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Comparison<sp/>of<sp/>sin_cos<sp/>value<sp/>with<sp/>reference<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(diff<sp/>&gt;<sp/>DELTA)</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;test<sp/>failed\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;test<sp/>passed\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="156"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_sin_cos_example/riscv_sin_cos_example_f32.c"/>
+  </compounddef>
+</doxygen>

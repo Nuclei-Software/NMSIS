@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="group__ConvolutionExample" kind="group">
+    <compoundname>ConvolutionExample</compoundname>
+    <title>Convolution Example</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="par"><title>Description:</title><para></para></simplesect>
+<simplesect kind="par"><title></title><para>Demonstrates the convolution theorem with the use of the Complex FFT, Complex-by-Complex Multiplication, and Support Functions.</para></simplesect>
+<simplesect kind="par"><title>Algorithm:</title><para></para></simplesect>
+<simplesect kind="par"><title></title><para>The convolution theorem states that convolution in the time domain corresponds to multiplication in the frequency domain. Therefore, the Fourier transform of the convoution of two signals is equal to the product of their individual Fourier transforms. The Fourier transform of a signal can be evaluated efficiently using the Fast Fourier Transform (FFT). </para></simplesect>
+<simplesect kind="par"><title></title><para>Two input signals, <computeroutput>a[n]</computeroutput> and <computeroutput>b[n]</computeroutput>, with lengths <computeroutput>n1</computeroutput> and <computeroutput>n2</computeroutput> respectively, are zero padded so that their lengths become <computeroutput>N</computeroutput>, which is greater than or equal to <computeroutput>(n1+n2-1)</computeroutput> and is a power of 4 as FFT implementation is radix-4. The convolution of <computeroutput>a[n]</computeroutput> and <computeroutput>b[n]</computeroutput> is obtained by taking the FFT of the input signals, multiplying the Fourier transforms of the two signals, and taking the inverse FFT of the multiplied result. </para></simplesect>
+<simplesect kind="par"><title></title><para>This is denoted by the following equations: <preformatted> A[k] = FFT(a[n],N)
+B[k] = FFT(b[n],N)
+conv(a[n], b[n]) = IFFT(A[k] * B[k], N)</preformatted> where <computeroutput>A[k]</computeroutput> and <computeroutput>B[k]</computeroutput> are the N-point FFTs of the signals <computeroutput>a[n]</computeroutput> and <computeroutput>b[n]</computeroutput> respectively. The length of the convolved signal is <computeroutput>(n1+n2-1)</computeroutput>.</para></simplesect>
+<simplesect kind="par"><title>Block Diagram:</title><para></para></simplesect>
+<simplesect kind="par"><title></title><para><image type="html" name="Convolution.png"></image>
+</para></simplesect>
+<simplesect kind="par"><title>Variables Description:</title><para></para></simplesect>
+<simplesect kind="par"><title></title><para><itemizedlist>
+<listitem><para><computeroutput>testInputA_f32</computeroutput> points to the first input sequence </para></listitem>
+<listitem><para><computeroutput>srcALen</computeroutput> length of the first input sequence </para></listitem>
+<listitem><para><computeroutput>testInputB_f32</computeroutput> points to the second input sequence </para></listitem>
+<listitem><para><computeroutput>srcBLen</computeroutput> length of the second input sequence </para></listitem>
+<listitem><para><computeroutput>outLen</computeroutput> length of convolution output sequence, <computeroutput>(srcALen + srcBLen - 1)</computeroutput> </para></listitem>
+<listitem><para><computeroutput>AxB</computeroutput> points to the output array where the product of individual FFTs of inputs is stored.</para></listitem>
+</itemizedlist>
+</para></simplesect>
+<simplesect kind="par"><title>NMSIS DSP Software Library Functions Used:</title><para></para></simplesect>
+<simplesect kind="par"><title></title><para><itemizedlist>
+<listitem><para><ref refid="group__Fill_1ga30d123e67c9f6d27f74dae20a4630241" kindref="member">riscv_fill_f32()</ref></para></listitem><listitem><para><ref refid="group__copy_1ga2f4fb0541b4d514df044e543c6abfeb3" kindref="member">riscv_copy_f32()</ref></para></listitem><listitem><para><ref refid="group__ComplexFFT_1ga3b1ebc22002732736620feb0b725e9fb" kindref="member">riscv_cfft_radix4_init_f32()</ref></para></listitem><listitem><para><ref refid="group__ComplexFFT_1ga07d1cb586d6c9553c7e9e4aa05fe9320" kindref="member">riscv_cfft_radix4_f32()</ref></para></listitem><listitem><para><ref refid="group__CmplxByCmplxMult_1gac191f744cfce681d42b2faf86f98331b" kindref="member">riscv_cmplx_mult_cmplx_f32()</ref></para></listitem></itemizedlist>
+</para></simplesect>
+<bold> Refer </bold> <ref refid="riscv_convolution_example_f32_8c-example" kindref="compound">riscv_convolution_example_f32.c</ref> </para>    </detaileddescription>
+  </compounddef>
+</doxygen>

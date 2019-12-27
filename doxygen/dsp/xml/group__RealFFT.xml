@@ -1,0 +1,737 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="group__RealFFT" kind="group">
+    <compoundname>RealFFT</compoundname>
+    <title>Real FFT Functions</title>
+    <innergroup refid="group__RealFFT__Table">Real FFT Tables</innergroup>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__RealFFT_1ga15270da93ab349377512694e2704a324" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_rfft_f32</definition>
+        <argsstring>(const riscv_rfft_instance_f32 *S, float32_t *pSrc, float32_t *pDst)</argsstring>
+        <name>riscv_rfft_f32</name>
+        <param>
+          <type>const <ref refid="structriscv__rfft__instance__f32" kindref="compound">riscv_rfft_instance_f32</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>float32_t *</type>
+          <declname>pSrc</declname>
+        </param>
+        <param>
+          <type>float32_t *</type>
+          <declname>pDst</declname>
+        </param>
+        <briefdescription>
+<para>Processing function for the floating-point RFFT/RIFFT. </para>        </briefdescription>
+        <detaileddescription>
+<para><xrefsect id="deprecated_1_deprecated000014"><xreftitle>Deprecated</xreftitle><xrefdescription><para>Do not use this function. It has been superceded by <ref refid="group__RealFFT_1ga7826c95c1a0f791c1b6e348b48d94658" kindref="member">riscv_rfft_fast_f32</ref> and will be removed in the future. </para></xrefdescription></xrefsect><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the floating-point RFFT/RIFFT structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the input buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the output buffer </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_f32.c" line="89" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_f32.c" bodystart="89" bodyend="129"/>
+      </memberdef>
+      <memberdef kind="function" id="group__RealFFT_1ga7826c95c1a0f791c1b6e348b48d94658" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_rfft_fast_f32</definition>
+        <argsstring>(riscv_rfft_fast_instance_f32 *S, float32_t *p, float32_t *pOut, uint8_t ifftFlag)</argsstring>
+        <name>riscv_rfft_fast_f32</name>
+        <param>
+          <type><ref refid="structriscv__rfft__fast__instance__f32" kindref="compound">riscv_rfft_fast_instance_f32</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>float32_t *</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>float32_t *</type>
+          <declname>pOut</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>ifftFlag</declname>
+        </param>
+        <briefdescription>
+<para>Processing function for the floating-point real FFT. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an <ref refid="structriscv__rfft__fast__instance__f32" kindref="compound">riscv_rfft_fast_instance_f32</ref> structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to input buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pOut</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to output buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">ifftFlag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><itemizedlist>
+<listitem><para>value = 0: RFFT</para></listitem><listitem><para>value = 1: RIFFT </para></listitem></itemizedlist>
+</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_fast_f32.c" line="291" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_fast_f32.c" bodystart="291" bodyend="317"/>
+      </memberdef>
+      <memberdef kind="function" id="group__RealFFT_1gafb139a61734e7cc86971714fa26a547c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>riscv_status</type>
+        <definition>riscv_status riscv_rfft_32_fast_init_f32</definition>
+        <argsstring>(riscv_rfft_fast_instance_f32 *S)</argsstring>
+        <name>riscv_rfft_32_fast_init_f32</name>
+        <param>
+          <type><ref refid="structriscv__rfft__fast__instance__f32" kindref="compound">riscv_rfft_fast_instance_f32</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the 32pt floating-point real FFT. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an <ref refid="structriscv__rfft__fast__instance__f32" kindref="compound">riscv_rfft_fast_instance_f32</ref> structure </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>execution status<itemizedlist>
+<listitem><para>RISCV_MATH_SUCCESS : Operation successful</para></listitem><listitem><para>RISCV_MATH_ARGUMENT_ERROR : an error is detected </para></listitem></itemizedlist>
+</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_fast_init_f32.c" line="52" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_fast_init_f32.c" bodystart="52" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="group__RealFFT_1gad58e01e3ab5a0aa7fbb5947e267202f5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>riscv_status</type>
+        <definition>riscv_status riscv_rfft_64_fast_init_f32</definition>
+        <argsstring>(riscv_rfft_fast_instance_f32 *S)</argsstring>
+        <name>riscv_rfft_64_fast_init_f32</name>
+        <param>
+          <type><ref refid="structriscv__rfft__fast__instance__f32" kindref="compound">riscv_rfft_fast_instance_f32</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the 64pt floating-point real FFT. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an <ref refid="structriscv__rfft__fast__instance__f32" kindref="compound">riscv_rfft_fast_instance_f32</ref> structure </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>execution status<itemizedlist>
+<listitem><para>RISCV_MATH_SUCCESS : Operation successful</para></listitem><listitem><para>RISCV_MATH_ARGUMENT_ERROR : an error is detected </para></listitem></itemizedlist>
+</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_fast_init_f32.c" line="81" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_fast_init_f32.c" bodystart="81" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="group__RealFFT_1ga0c8d9759ed529cd4224aba76c683e0f2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>riscv_status</type>
+        <definition>riscv_status riscv_rfft_128_fast_init_f32</definition>
+        <argsstring>(riscv_rfft_fast_instance_f32 *S)</argsstring>
+        <name>riscv_rfft_128_fast_init_f32</name>
+        <param>
+          <type><ref refid="structriscv__rfft__fast__instance__f32" kindref="compound">riscv_rfft_fast_instance_f32</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the 128pt floating-point real FFT. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an <ref refid="structriscv__rfft__fast__instance__f32" kindref="compound">riscv_rfft_fast_instance_f32</ref> structure </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>execution status<itemizedlist>
+<listitem><para>RISCV_MATH_SUCCESS : Operation successful</para></listitem><listitem><para>RISCV_MATH_ARGUMENT_ERROR : an error is detected </para></listitem></itemizedlist>
+</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_fast_init_f32.c" line="110" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_fast_init_f32.c" bodystart="110" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="group__RealFFT_1ga49b1cb13f35ce303843f300933784357" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>riscv_status</type>
+        <definition>riscv_status riscv_rfft_256_fast_init_f32</definition>
+        <argsstring>(riscv_rfft_fast_instance_f32 *S)</argsstring>
+        <name>riscv_rfft_256_fast_init_f32</name>
+        <param>
+          <type><ref refid="structriscv__rfft__fast__instance__f32" kindref="compound">riscv_rfft_fast_instance_f32</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the 256pt floating-point real FFT. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an <ref refid="structriscv__rfft__fast__instance__f32" kindref="compound">riscv_rfft_fast_instance_f32</ref> structure </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>execution status<itemizedlist>
+<listitem><para>RISCV_MATH_SUCCESS : Operation successful</para></listitem><listitem><para>RISCV_MATH_ARGUMENT_ERROR : an error is detected </para></listitem></itemizedlist>
+</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_fast_init_f32.c" line="139" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_fast_init_f32.c" bodystart="139" bodyend="155"/>
+      </memberdef>
+      <memberdef kind="function" id="group__RealFFT_1ga4568a1375a971e1f2f7797478e60925f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>riscv_status</type>
+        <definition>riscv_status riscv_rfft_512_fast_init_f32</definition>
+        <argsstring>(riscv_rfft_fast_instance_f32 *S)</argsstring>
+        <name>riscv_rfft_512_fast_init_f32</name>
+        <param>
+          <type><ref refid="structriscv__rfft__fast__instance__f32" kindref="compound">riscv_rfft_fast_instance_f32</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the 512pt floating-point real FFT. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an <ref refid="structriscv__rfft__fast__instance__f32" kindref="compound">riscv_rfft_fast_instance_f32</ref> structure </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>execution status<itemizedlist>
+<listitem><para>RISCV_MATH_SUCCESS : Operation successful</para></listitem><listitem><para>RISCV_MATH_ARGUMENT_ERROR : an error is detected </para></listitem></itemizedlist>
+</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_fast_init_f32.c" line="168" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_fast_init_f32.c" bodystart="168" bodyend="184"/>
+      </memberdef>
+      <memberdef kind="function" id="group__RealFFT_1ga081703eafa8b29aba22399ced5080605" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>riscv_status</type>
+        <definition>riscv_status riscv_rfft_1024_fast_init_f32</definition>
+        <argsstring>(riscv_rfft_fast_instance_f32 *S)</argsstring>
+        <name>riscv_rfft_1024_fast_init_f32</name>
+        <param>
+          <type><ref refid="structriscv__rfft__fast__instance__f32" kindref="compound">riscv_rfft_fast_instance_f32</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the 1024pt floating-point real FFT. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an <ref refid="structriscv__rfft__fast__instance__f32" kindref="compound">riscv_rfft_fast_instance_f32</ref> structure </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>execution status<itemizedlist>
+<listitem><para>RISCV_MATH_SUCCESS : Operation successful</para></listitem><listitem><para>RISCV_MATH_ARGUMENT_ERROR : an error is detected </para></listitem></itemizedlist>
+</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_fast_init_f32.c" line="196" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_fast_init_f32.c" bodystart="196" bodyend="212"/>
+      </memberdef>
+      <memberdef kind="function" id="group__RealFFT_1gac0d553058b5061e85fd4ef4c4ad6060e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>riscv_status</type>
+        <definition>riscv_status riscv_rfft_2048_fast_init_f32</definition>
+        <argsstring>(riscv_rfft_fast_instance_f32 *S)</argsstring>
+        <name>riscv_rfft_2048_fast_init_f32</name>
+        <param>
+          <type><ref refid="structriscv__rfft__fast__instance__f32" kindref="compound">riscv_rfft_fast_instance_f32</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the 2048pt floating-point real FFT. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an <ref refid="structriscv__rfft__fast__instance__f32" kindref="compound">riscv_rfft_fast_instance_f32</ref> structure </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>execution status<itemizedlist>
+<listitem><para>RISCV_MATH_SUCCESS : Operation successful</para></listitem><listitem><para>RISCV_MATH_ARGUMENT_ERROR : an error is detected </para></listitem></itemizedlist>
+</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_fast_init_f32.c" line="223" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_fast_init_f32.c" bodystart="223" bodyend="239"/>
+      </memberdef>
+      <memberdef kind="function" id="group__RealFFT_1ga58ccd3e5aacb1136b8539e81195cbea3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>riscv_status</type>
+        <definition>riscv_status riscv_rfft_4096_fast_init_f32</definition>
+        <argsstring>(riscv_rfft_fast_instance_f32 *S)</argsstring>
+        <name>riscv_rfft_4096_fast_init_f32</name>
+        <param>
+          <type><ref refid="structriscv__rfft__fast__instance__f32" kindref="compound">riscv_rfft_fast_instance_f32</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the 4096pt floating-point real FFT. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an <ref refid="structriscv__rfft__fast__instance__f32" kindref="compound">riscv_rfft_fast_instance_f32</ref> structure </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>execution status<itemizedlist>
+<listitem><para>RISCV_MATH_SUCCESS : Operation successful</para></listitem><listitem><para>RISCV_MATH_ARGUMENT_ERROR : an error is detected </para></listitem></itemizedlist>
+</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_fast_init_f32.c" line="251" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_fast_init_f32.c" bodystart="251" bodyend="267"/>
+      </memberdef>
+      <memberdef kind="function" id="group__RealFFT_1gaa09af308fb200adedfaebdd7ca4f57cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>riscv_status</type>
+        <definition>riscv_status riscv_rfft_fast_init_f32</definition>
+        <argsstring>(riscv_rfft_fast_instance_f32 *S, uint16_t fftLen)</argsstring>
+        <name>riscv_rfft_fast_init_f32</name>
+        <param>
+          <type><ref refid="structriscv__rfft__fast__instance__f32" kindref="compound">riscv_rfft_fast_instance_f32</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>fftLen</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the floating-point real FFT. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an <ref refid="structriscv__rfft__fast__instance__f32" kindref="compound">riscv_rfft_fast_instance_f32</ref> structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">fftLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of the Real Sequence </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>execution status<itemizedlist>
+<listitem><para>RISCV_MATH_SUCCESS : Operation successful</para></listitem><listitem><para>RISCV_MATH_ARGUMENT_ERROR : <computeroutput>fftLen</computeroutput> is not a supported length</para></listitem></itemizedlist>
+</para></simplesect>
+<simplesect kind="par"><title>Description</title><para>The parameter <computeroutput>fftLen</computeroutput> specifies the length of RFFT/CIFFT process. Supported FFT Lengths are 32, 64, 128, 256, 512, 1024, 2048, 4096. </para></simplesect>
+<simplesect kind="par"><title></title><para>This Function also initializes Twiddle factor table pointer and Bit reversal table pointer. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_fast_init_f32.c" line="285" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_fast_init_f32.c" bodystart="285" bodyend="341"/>
+      </memberdef>
+      <memberdef kind="function" id="group__RealFFT_1ga84650b5ce6836a7cd0f0fc9da41fb3cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>riscv_status</type>
+        <definition>riscv_status riscv_rfft_init_f32</definition>
+        <argsstring>(riscv_rfft_instance_f32 *S, riscv_cfft_radix4_instance_f32 *S_CFFT, uint32_t fftLenReal, uint32_t ifftFlagR, uint32_t bitReverseFlag)</argsstring>
+        <name>riscv_rfft_init_f32</name>
+        <param>
+          <type><ref refid="structriscv__rfft__instance__f32" kindref="compound">riscv_rfft_instance_f32</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type><ref refid="structriscv__cfft__radix4__instance__f32" kindref="compound">riscv_cfft_radix4_instance_f32</ref> *</type>
+          <declname>S_CFFT</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>fftLenReal</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>ifftFlagR</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>bitReverseFlag</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the floating-point RFFT/RIFFT. </para>        </briefdescription>
+        <detaileddescription>
+<para><xrefsect id="deprecated_1_deprecated000015"><xreftitle>Deprecated</xreftitle><xrefdescription><para>Do not use this function. It has been superceded by <ref refid="group__RealFFT_1gaa09af308fb200adedfaebdd7ca4f57cf" kindref="member">riscv_rfft_fast_init_f32</ref> and will be removed in the future. </para></xrefdescription></xrefsect><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the floating-point RFFT/RIFFT structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="inout">S_CFFT</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the floating-point CFFT/CIFFT structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">fftLenReal</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of the FFT. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">ifftFlagR</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>flag that selects transform direction<itemizedlist>
+<listitem><para>value = 0: forward transform</para></listitem><listitem><para>value = 1: inverse transform </para></listitem></itemizedlist>
+</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">bitReverseFlag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>flag that enables / disables bit reversal of output<itemizedlist>
+<listitem><para>value = 0: disables bit reversal of output</para></listitem><listitem><para>value = 1: enables bit reversal of output </para></listitem></itemizedlist>
+</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>execution status<itemizedlist>
+<listitem><para>RISCV_MATH_SUCCESS : Operation successful</para></listitem><listitem><para>RISCV_MATH_ARGUMENT_ERROR : <computeroutput>fftLenReal</computeroutput> is not a supported length</para></listitem></itemizedlist>
+</para></simplesect>
+<simplesect kind="par"><title>Description</title><para>The parameter <computeroutput>fftLenReal</computeroutput>specifies length of RFFT/RIFFT Process. Supported FFT Lengths are 128, 512, 2048. </para></simplesect>
+<simplesect kind="par"><title></title><para>The parameter <computeroutput>ifftFlagR</computeroutput> controls whether a forward or inverse transform is computed. Set(=1) ifftFlagR to calculate RIFFT, otherwise RFFT is calculated. </para></simplesect>
+<simplesect kind="par"><title></title><para>The parameter <computeroutput>bitReverseFlag</computeroutput> controls whether output is in normal order or bit reversed order. Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order. </para></simplesect>
+<simplesect kind="par"><title></title><para>This function also initializes Twiddle factor table. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_init_f32.c" line="68" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_init_f32.c" bodystart="68" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="group__RealFFT_1gad750a06797c4caf68f66d260eb0e2c89" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>riscv_status</type>
+        <definition>riscv_status riscv_rfft_init_q15</definition>
+        <argsstring>(riscv_rfft_instance_q15 *S, uint32_t fftLenReal, uint32_t ifftFlagR, uint32_t bitReverseFlag)</argsstring>
+        <name>riscv_rfft_init_q15</name>
+        <param>
+          <type><ref refid="structriscv__rfft__instance__q15" kindref="compound">riscv_rfft_instance_q15</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>fftLenReal</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>ifftFlagR</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>bitReverseFlag</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the Q15 RFFT/RIFFT. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the Q15 RFFT/RIFFT structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">fftLenReal</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of the FFT </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">ifftFlagR</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>flag that selects transform direction<itemizedlist>
+<listitem><para>value = 0: forward transform</para></listitem><listitem><para>value = 1: inverse transform </para></listitem></itemizedlist>
+</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">bitReverseFlag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>flag that enables / disables bit reversal of output<itemizedlist>
+<listitem><para>value = 0: disables bit reversal of output</para></listitem><listitem><para>value = 1: enables bit reversal of output </para></listitem></itemizedlist>
+</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>execution status<itemizedlist>
+<listitem><para>RISCV_MATH_SUCCESS : Operation successful</para></listitem><listitem><para>RISCV_MATH_ARGUMENT_ERROR : <computeroutput>fftLenReal</computeroutput> is not a supported length</para></listitem></itemizedlist>
+</para></simplesect>
+<simplesect kind="par"><title>Details</title><para>The parameter <computeroutput>fftLenReal</computeroutput> specifies length of RFFT/RIFFT Process. Supported FFT Lengths are 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192. </para></simplesect>
+<simplesect kind="par"><title></title><para>The parameter <computeroutput>ifftFlagR</computeroutput> controls whether a forward or inverse transform is computed. Set(=1) ifftFlagR to calculate RIFFT, otherwise RFFT is calculated. </para></simplesect>
+<simplesect kind="par"><title></title><para>The parameter <computeroutput>bitReverseFlag</computeroutput> controls whether output is in normal order or bit reversed order. Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order. </para></simplesect>
+<simplesect kind="par"><title></title><para>This function also initializes Twiddle factor table. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_init_q15.c" line="66" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_init_q15.c" bodystart="66" bodyend="155"/>
+      </memberdef>
+      <memberdef kind="function" id="group__RealFFT_1ga9580b4195023f20ddbad0ac8d7719154" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>riscv_status</type>
+        <definition>riscv_status riscv_rfft_init_q31</definition>
+        <argsstring>(riscv_rfft_instance_q31 *S, uint32_t fftLenReal, uint32_t ifftFlagR, uint32_t bitReverseFlag)</argsstring>
+        <name>riscv_rfft_init_q31</name>
+        <param>
+          <type><ref refid="structriscv__rfft__instance__q31" kindref="compound">riscv_rfft_instance_q31</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>fftLenReal</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>ifftFlagR</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>bitReverseFlag</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the Q31 RFFT/RIFFT. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the Q31 RFFT/RIFFT structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">fftLenReal</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of the FFT </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">ifftFlagR</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>flag that selects transform direction<itemizedlist>
+<listitem><para>value = 0: forward transform</para></listitem><listitem><para>value = 1: inverse transform </para></listitem></itemizedlist>
+</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">bitReverseFlag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>flag that enables / disables bit reversal of output<itemizedlist>
+<listitem><para>value = 0: disables bit reversal of output</para></listitem><listitem><para>value = 1: enables bit reversal of output </para></listitem></itemizedlist>
+</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>execution status<itemizedlist>
+<listitem><para>RISCV_MATH_SUCCESS : Operation successful</para></listitem><listitem><para>RISCV_MATH_ARGUMENT_ERROR : <computeroutput>fftLenReal</computeroutput> is not a supported length</para></listitem></itemizedlist>
+</para></simplesect>
+<simplesect kind="par"><title>Details</title><para>The parameter <computeroutput>fftLenReal</computeroutput> specifies length of RFFT/RIFFT Process. Supported FFT Lengths are 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192. </para></simplesect>
+<simplesect kind="par"><title></title><para>The parameter <computeroutput>ifftFlagR</computeroutput> controls whether a forward or inverse transform is computed. Set(=1) ifftFlagR to calculate RIFFT, otherwise RFFT is calculated. </para></simplesect>
+<simplesect kind="par"><title></title><para>The parameter <computeroutput>bitReverseFlag</computeroutput> controls whether output is in normal order or bit reversed order. Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order. </para></simplesect>
+<simplesect kind="par"><title></title><para>This function also initializes Twiddle factor table. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_init_q31.c" line="68" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_init_q31.c" bodystart="68" bodyend="157"/>
+      </memberdef>
+      <memberdef kind="function" id="group__RealFFT_1gac6c836bb35dcbdd2a96d38ae9bfadd7f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_rfft_q15</definition>
+        <argsstring>(const riscv_rfft_instance_q15 *S, q15_t *pSrc, q15_t *pDst)</argsstring>
+        <name>riscv_rfft_q15</name>
+        <param>
+          <type>const <ref refid="structriscv__rfft__instance__q15" kindref="compound">riscv_rfft_instance_q15</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>q15_t *</type>
+          <declname>pSrc</declname>
+        </param>
+        <param>
+          <type>q15_t *</type>
+          <declname>pDst</declname>
+        </param>
+        <briefdescription>
+<para>Processing function for the Q15 RFFT/RIFFT. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the Q15 RFFT/RIFFT structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to input buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to output buffer </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Input an output formats</title><para>Internally input is downscaled by 2 for every stage to avoid saturations inside CFFT/CIFFT process. Hence the output format is different for different RFFT sizes. The input and output formats for different RFFT sizes and number of bits to upscale are mentioned in the tables below for RFFT and RIFFT: </para></simplesect>
+<simplesect kind="par"><title></title><para><image type="html" name="RFFTQ15.png">Input and Output Formats for Q15 RFFT</image>
+</para></simplesect>
+<simplesect kind="par"><title></title><para><image type="html" name="RIFFTQ15.png">Input and Output Formats for Q15 RIFFT</image>
+</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_q15.c" line="74" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_q15.c" bodystart="74" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="group__RealFFT_1ga1128bf1b0b16f271b593a1d94bb9c4ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_rfft_q31</definition>
+        <argsstring>(const riscv_rfft_instance_q31 *S, q31_t *pSrc, q31_t *pDst)</argsstring>
+        <name>riscv_rfft_q31</name>
+        <param>
+          <type>const <ref refid="structriscv__rfft__instance__q31" kindref="compound">riscv_rfft_instance_q31</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>q31_t *</type>
+          <declname>pSrc</declname>
+        </param>
+        <param>
+          <type>q31_t *</type>
+          <declname>pDst</declname>
+        </param>
+        <briefdescription>
+<para>Processing function for the Q31 RFFT/RIFFT. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the Q31 RFFT/RIFFT structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to input buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to output buffer </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Input an output formats</title><para>Internally input is downscaled by 2 for every stage to avoid saturations inside CFFT/CIFFT process. Hence the output format is different for different RFFT sizes. The input and output formats for different RFFT sizes and number of bits to upscale are mentioned in the tables below for RFFT and RIFFT: </para></simplesect>
+<simplesect kind="par"><title></title><para><image type="html" name="RFFTQ31.png">Input and Output Formats for Q31 RFFT</image>
+</para></simplesect>
+<simplesect kind="par"><title></title><para><image type="html" name="RIFFTQ31.png">Input and Output Formats for Q31 RIFFT</image>
+</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_q31.c" line="74" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_q31.c" bodystart="74" bodyend="108"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="par"><title></title><para>The NMSIS DSP library includes specialized algorithms for computing the FFT of real data sequences. The FFT is defined over complex data but in many applications the input is real. Real FFT algorithms take advantage of the symmetry properties of the FFT and have a speed advantage over complex algorithms of the same length. </para></simplesect>
+<simplesect kind="par"><title></title><para>The Fast RFFT algorith relays on the mixed radix CFFT that save processor usage. </para></simplesect>
+<simplesect kind="par"><title></title><para>The real length N forward FFT of a sequence is computed using the steps shown below. </para></simplesect>
+<simplesect kind="par"><title></title><para><image type="html" name="RFFT.png">Real Fast Fourier Transform</image>
+</para></simplesect>
+<simplesect kind="par"><title></title><para>The real sequence is initially treated as if it were complex to perform a CFFT. Later, a processing stage reshapes the data to obtain half of the frequency spectrum in complex format. Except the first complex number that contains the two real numbers X[0] and X[N/2] all the data is complex. In other words, the first complex sample contains two real values packed. </para></simplesect>
+<simplesect kind="par"><title></title><para>The input for the inverse RFFT should keep the same format as the output of the forward RFFT. A first processing stage pre-process the data to later perform an inverse CFFT. </para></simplesect>
+<simplesect kind="par"><title></title><para><image type="html" name="RIFFT.png">Real Inverse Fast Fourier Transform</image>
+</para></simplesect>
+<simplesect kind="par"><title></title><para>The algorithms for floating-point, Q15, and Q31 data are slightly different and we describe each algorithm in turn. </para></simplesect>
+<simplesect kind="par"><title>Floating-point</title><para>The main functions are <ref refid="group__RealFFT_1ga7826c95c1a0f791c1b6e348b48d94658" kindref="member">riscv_rfft_fast_f32()</ref> and <ref refid="group__RealFFT_1gaa09af308fb200adedfaebdd7ca4f57cf" kindref="member">riscv_rfft_fast_init_f32()</ref>. The older functions <ref refid="group__RealFFT_1ga15270da93ab349377512694e2704a324" kindref="member">riscv_rfft_f32()</ref> and <ref refid="group__RealFFT_1ga84650b5ce6836a7cd0f0fc9da41fb3cf" kindref="member">riscv_rfft_init_f32()</ref> have been deprecated but are still documented. </para></simplesect>
+<simplesect kind="par"><title></title><para>The FFT of a real N-point sequence has even symmetry in the frequency domain. The second half of the data equals the conjugate of the first half flipped in frequency. Looking at the data, we see that we can uniquely represent the FFT using only N/2 complex numbers. These are packed into the output array in alternating real and imaginary components: </para></simplesect>
+<simplesect kind="par"><title></title><para>X = { real[0], imag[0], real[1], imag[1], real[2], imag[2] ... real[(N/2)-1], imag[(N/2)-1 } </para></simplesect>
+<simplesect kind="par"><title></title><para>It happens that the first complex number (real[0], imag[0]) is actually all real. real[0] represents the DC offset, and imag[0] should be 0. (real[1], imag[1]) is the fundamental frequency, (real[2], imag[2]) is the first harmonic and so on. </para></simplesect>
+<simplesect kind="par"><title></title><para>The real FFT functions pack the frequency domain data in this fashion. The forward transform outputs the data in this form and the inverse transform expects input data in this form. The function always performs the needed bitreversal so that the input and output data is always in normal order. The functions support lengths of [32, 64, 128, ..., 4096] samples. </para></simplesect>
+<simplesect kind="par"><title>Q15 and Q31</title><para>The real algorithms are defined in a similar manner and utilize N/2 complex transforms behind the scenes. </para></simplesect>
+<simplesect kind="par"><title></title><para>The complex transforms used internally include scaling to prevent fixed-point overflows. The overall scaling equals 1/(fftLen/2). </para></simplesect>
+<simplesect kind="par"><title></title><para>A separate instance structure must be defined for each transform used but twiddle factor and bit reversal tables can be reused. </para></simplesect>
+<simplesect kind="par"><title></title><para>There is also an associated initialization function for each data type. The initialization function performs the following operations:<itemizedlist>
+<listitem><para>Sets the values of the internal structure fields.</para></listitem><listitem><para>Initializes twiddle factor table and bit reversal table pointers.</para></listitem><listitem><para>Initializes the internal complex FFT data structure. </para></listitem></itemizedlist>
+</para></simplesect>
+<simplesect kind="par"><title></title><para>Use of the initialization function is optional. However, if the initialization function is used, then the instance structure cannot be placed into a const data section. To place an instance structure into a const data section, the instance structure should be manually initialized as follows: <preformatted>
+    <ref refid="structriscv__rfft__instance__q31" kindref="compound">riscv_rfft_instance_q31</ref> S = {fftLenReal, fftLenBy2, ifftFlagR, bitReverseFlagR, twidCoefRModifier, pTwiddleAReal, pTwiddleBReal, pCfft};
+    <ref refid="structriscv__rfft__instance__q15" kindref="compound">riscv_rfft_instance_q15</ref> S = {fftLenReal, fftLenBy2, ifftFlagR, bitReverseFlagR, twidCoefRModifier, pTwiddleAReal, pTwiddleBReal, pCfft};
+</preformatted> where <computeroutput>fftLenReal</computeroutput> is the length of the real transform; <computeroutput>fftLenBy2</computeroutput> length of the internal complex transform. <computeroutput>ifftFlagR</computeroutput> Selects forward (=0) or inverse (=1) transform. <computeroutput>bitReverseFlagR</computeroutput> Selects bit reversed output (=0) or normal order output (=1). <computeroutput>twidCoefRModifier</computeroutput> stride modifier for the twiddle factor table. The value is based on the FFT length; <computeroutput>pTwiddleAReal</computeroutput>points to the A array of twiddle coefficients; <computeroutput>pTwiddleBReal</computeroutput>points to the B array of twiddle coefficients; <computeroutput>pCfft</computeroutput> points to the CFFT Instance structure. The CFFT structure must also be initialized. Refer to <ref refid="group__ComplexFFT_1ga07d1cb586d6c9553c7e9e4aa05fe9320" kindref="member">riscv_cfft_radix4_f32()</ref> for details regarding static initialization of the complex FFT instance structure. </para></simplesect>
+</para>    </detaileddescription>
+  </compounddef>
+</doxygen>

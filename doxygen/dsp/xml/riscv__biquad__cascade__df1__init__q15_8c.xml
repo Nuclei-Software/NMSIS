@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="riscv__biquad__cascade__df1__init__q15_8c" kind="file" language="C++">
+    <compoundname>riscv_biquad_cascade_df1_init_q15.c</compoundname>
+    <includes refid="riscv__math_8h" local="yes">riscv_math.h</includes>
+    <includedby refid="FilteringFunctions_8c" local="yes">FilteringFunctions.c</includedby>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__BiquadCascadeDF1_1gad0f11309749f0135467c1b476d5a05b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_biquad_cascade_df1_init_q15</definition>
+        <argsstring>(riscv_biquad_casd_df1_inst_q15 *S, uint8_t numStages, const q15_t *pCoeffs, q15_t *pState, int8_t postShift)</argsstring>
+        <name>riscv_biquad_cascade_df1_init_q15</name>
+        <param>
+          <type><ref refid="structriscv__biquad__casd__df1__inst__q15" kindref="compound">riscv_biquad_casd_df1_inst_q15</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>numStages</declname>
+        </param>
+        <param>
+          <type>const q15_t *</type>
+          <declname>pCoeffs</declname>
+        </param>
+        <param>
+          <type>q15_t *</type>
+          <declname>pState</declname>
+        </param>
+        <param>
+          <type>int8_t</type>
+          <declname>postShift</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the Q15 Biquad cascade filter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the Q15 Biquad cascade structure. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">numStages</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of 2nd order stages in the filter. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pCoeffs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the filter coefficients. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pState</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the state buffer. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">postShift</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Shift to be applied to the accumulator result. Varies according to the coefficients format </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Coefficient and State Ordering</title><para>The coefficients are stored in the array <computeroutput>pCoeffs</computeroutput> in the following order: <preformatted>
+    {b10, 0, b11, b12, a11, a12, b20, 0, b21, b22, a21, a22, ...}
+</preformatted> </para></simplesect>
+<simplesect kind="par"><title></title><para>where <computeroutput>b1x</computeroutput> and <computeroutput>a1x</computeroutput> are the coefficients for the first stage, <computeroutput>b2x</computeroutput> and <computeroutput>a2x</computeroutput> are the coefficients for the second stage, and so on. The <computeroutput>pCoeffs</computeroutput> array contains a total of <computeroutput>6*numStages</computeroutput> values. The zero coefficient between <computeroutput>b1</computeroutput> and <computeroutput>b2</computeroutput> facilities use of 16-bit SIMD instructions on the RISC-V4. </para></simplesect>
+<simplesect kind="par"><title></title><para>The state variables are stored in the array <computeroutput>pState</computeroutput>. Each Biquad stage has 4 state variables <computeroutput>x[n-1], x[n-2], y[n-1],</computeroutput> and <computeroutput>y[n-2]</computeroutput>. The state variables are arranged in the <computeroutput>pState</computeroutput> array as: <preformatted>
+    {x[n-1], x[n-2], y[n-1], y[n-2]}
+</preformatted> The 4 state variables for stage 1 are first, then the 4 state variables for stage 2, and so on. The state array has a total length of <computeroutput>4*numStages</computeroutput> values. The state variables are updated after each block of data is processed; the coefficients are untouched. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_biquad_cascade_df1_init_q15.c" line="72" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_biquad_cascade_df1_init_q15.c" bodystart="72" bodyend="93"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/>----------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>Project:<sp/><sp/><sp/><sp/><sp/><sp/>NMSIS<sp/>DSP<sp/>Library</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>Title:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>riscv_biquad_cascade_df1_init_q15.c</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Description:<sp/><sp/>Q15<sp/>Biquad<sp/>cascade<sp/>DirectFormI(DF1)<sp/>filter<sp/>initialization<sp/>function</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>$Date:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>18.<sp/>March<sp/>2019</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>$Revision:<sp/><sp/><sp/><sp/>V1.6.0</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>Target<sp/>Processor:<sp/>RISC-V<sp/>cores</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>--------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(C)<sp/>2010-2019<sp/>ARM<sp/>Limited<sp/>or<sp/>its<sp/>affiliates.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2019<sp/>Nuclei<sp/>Limited.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/>SPDX-License-Identifier:<sp/>Apache-2.0</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/>Licensed<sp/>under<sp/>the<sp/>Apache<sp/>License,<sp/>Version<sp/>2.0<sp/>(the<sp/>License);<sp/>you<sp/>may</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/>not<sp/>use<sp/>this<sp/>file<sp/>except<sp/>in<sp/>compliance<sp/>with<sp/>the<sp/>License.</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/>You<sp/>may<sp/>obtain<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>License<sp/>at</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/>www.apache.org/licenses/LICENSE-2.0</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*<sp/>Unless<sp/>required<sp/>by<sp/>applicable<sp/>law<sp/>or<sp/>agreed<sp/>to<sp/>in<sp/>writing,<sp/>software</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*<sp/>distributed<sp/>under<sp/>the<sp/>License<sp/>is<sp/>distributed<sp/>on<sp/>an<sp/>AS<sp/>IS<sp/>BASIS,<sp/>WITHOUT</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*<sp/>WARRANTIES<sp/>OR<sp/>CONDITIONS<sp/>OF<sp/>ANY<sp/>KIND,<sp/>either<sp/>express<sp/>or<sp/>implied.</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*<sp/>See<sp/>the<sp/>License<sp/>for<sp/>the<sp/>specific<sp/>language<sp/>governing<sp/>permissions<sp/>and</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*<sp/>limitations<sp/>under<sp/>the<sp/>License.</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;riscv_math.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__BiquadCascadeDF1_1gad0f11309749f0135467c1b476d5a05b8" kindref="member">riscv_biquad_cascade_df1_init_q15</ref>(</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structriscv__biquad__casd__df1__inst__q15" kindref="compound">riscv_biquad_casd_df1_inst_q15</ref><sp/>*<sp/>S,</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/>numStages,</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q15_t<sp/>*<sp/>pCoeffs,</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>q15_t<sp/>*<sp/>pState,</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int8_t<sp/>postShift)</highlight></codeline>
+<codeline lineno="78"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Assign<sp/>filter<sp/>stages<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/>S-&gt;<ref refid="structriscv__biquad__casd__df1__inst__q15_1ab95346899e96e36f59554dac7a0833a1" kindref="member">numStages</ref><sp/>=<sp/>numStages;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Assign<sp/>postShift<sp/>to<sp/>be<sp/>applied<sp/>to<sp/>the<sp/>output<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/>S-&gt;<ref refid="structriscv__biquad__casd__df1__inst__q15_1a4ec4f51370eef13c0a3d42de2463d939" kindref="member">postShift</ref><sp/>=<sp/>postShift;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Assign<sp/>coefficient<sp/>pointer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/>S-&gt;<ref refid="structriscv__biquad__casd__df1__inst__q15_1a756475d0e33b5f7d0fb5c68ab9031964" kindref="member">pCoeffs</ref><sp/>=<sp/>pCoeffs;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Clear<sp/>state<sp/>buffer<sp/>and<sp/>size<sp/>is<sp/>always<sp/>4<sp/>*<sp/>numStages<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/>memset(pState,<sp/>0,<sp/>(4U<sp/>*<sp/>(uint32_t)<sp/>numStages)<sp/>*<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(q15_t));</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Assign<sp/>state<sp/>pointer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/>S-&gt;<ref refid="structriscv__biquad__casd__df1__inst__q15_1aa752e4afde82c09fab1844c22416fa6c" kindref="member">pState</ref><sp/>=<sp/>pState;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_biquad_cascade_df1_init_q15.c"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,426 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="riscv__dct4__q15_8c" kind="file" language="C++">
+    <compoundname>riscv_dct4_q15.c</compoundname>
+    <includes refid="riscv__math_8h" local="yes">riscv_math.h</includes>
+    <includedby refid="TransformFunctions_8c" local="yes">TransformFunctions.c</includedby>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__DCT4__IDCT4_1gad26cd42b92834f519f43eca88ed88f50" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_dct4_q15</definition>
+        <argsstring>(const riscv_dct4_instance_q15 *S, q15_t *pState, q15_t *pInlineBuffer)</argsstring>
+        <name>riscv_dct4_q15</name>
+        <param>
+          <type>const <ref refid="structriscv__dct4__instance__q15" kindref="compound">riscv_dct4_instance_q15</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>q15_t *</type>
+          <declname>pState</declname>
+        </param>
+        <param>
+          <type>q15_t *</type>
+          <declname>pInlineBuffer</declname>
+        </param>
+        <briefdescription>
+<para>Processing function for the Q15 DCT4/IDCT4. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the Q15 DCT4 structure. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pState</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to state buffer. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="inout">pInlineBuffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the in-place input and output buffer. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Input an output formats</title><para>Internally inputs are downscaled in the RFFT process function to avoid overflows. Number of bits downscaled, depends on the size of the transform. The input and output formats for different DCT sizes and number of bits to upscale are mentioned in the table below:</para></simplesect>
+<image type="html" name="dct4FormatsQ15Table.png"></image>
+ </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_dct4_q15.c" line="52" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_dct4_q15.c" bodystart="52" bodyend="378"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/>----------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>Project:<sp/><sp/><sp/><sp/><sp/><sp/>NMSIS<sp/>DSP<sp/>Library</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>Title:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>riscv_dct4_q15.c</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Description:<sp/><sp/>Processing<sp/>function<sp/>of<sp/>DCT4<sp/>&amp;<sp/>IDCT4<sp/>Q15</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>$Date:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>18.<sp/>March<sp/>2019</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>$Revision:<sp/><sp/><sp/><sp/>V1.6.0</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>Target<sp/>Processor:<sp/>RISC-V<sp/>cores</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>--------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(C)<sp/>2010-2019<sp/>ARM<sp/>Limited<sp/>or<sp/>its<sp/>affiliates.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2019<sp/>Nuclei<sp/>Limited.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/>SPDX-License-Identifier:<sp/>Apache-2.0</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/>Licensed<sp/>under<sp/>the<sp/>Apache<sp/>License,<sp/>Version<sp/>2.0<sp/>(the<sp/>License);<sp/>you<sp/>may</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/>not<sp/>use<sp/>this<sp/>file<sp/>except<sp/>in<sp/>compliance<sp/>with<sp/>the<sp/>License.</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/>You<sp/>may<sp/>obtain<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>License<sp/>at</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/>www.apache.org/licenses/LICENSE-2.0</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*<sp/>Unless<sp/>required<sp/>by<sp/>applicable<sp/>law<sp/>or<sp/>agreed<sp/>to<sp/>in<sp/>writing,<sp/>software</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*<sp/>distributed<sp/>under<sp/>the<sp/>License<sp/>is<sp/>distributed<sp/>on<sp/>an<sp/>AS<sp/>IS<sp/>BASIS,<sp/>WITHOUT</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*<sp/>WARRANTIES<sp/>OR<sp/>CONDITIONS<sp/>OF<sp/>ANY<sp/>KIND,<sp/>either<sp/>express<sp/>or<sp/>implied.</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*<sp/>See<sp/>the<sp/>License<sp/>for<sp/>the<sp/>specific<sp/>language<sp/>governing<sp/>permissions<sp/>and</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*<sp/>limitations<sp/>under<sp/>the<sp/>License.</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;riscv_math.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__DCT4__IDCT4_1gad26cd42b92834f519f43eca88ed88f50" kindref="member">riscv_dct4_q15</ref>(</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structriscv__dct4__instance__q15" kindref="compound">riscv_dct4_instance_q15</ref><sp/>*<sp/>S,</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>q15_t<sp/>*<sp/>pState,</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>q15_t<sp/>*<sp/>pInlineBuffer)</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q15_t<sp/>*weights<sp/>=<sp/>S-&gt;<ref refid="structriscv__dct4__instance__q15_1a35c22c7c553fb3eab80eecb28fecd0bb" kindref="member">pTwiddle</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Pointer<sp/>to<sp/>the<sp/>Weights<sp/>table<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q15_t<sp/>*cosFact<sp/>=<sp/>S-&gt;<ref refid="structriscv__dct4__instance__q15_1a7d077f2ce0d5945a1f2030d63df71fec" kindref="member">pCosFactor</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Pointer<sp/>to<sp/>the<sp/>cos<sp/>factors<sp/>table<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>q15_t<sp/>*pS1,<sp/>*pS2,<sp/>*pbuff;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Temporary<sp/>pointers<sp/>for<sp/>input<sp/>buffer<sp/>and<sp/>pState<sp/>buffer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>q15_t<sp/>in;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Temporary<sp/>variable<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32_t<sp/>i;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>counter<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>DCT4<sp/>computation<sp/>involves<sp/>DCT2<sp/>(which<sp/>is<sp/>calculated<sp/>using<sp/>RFFT)</highlight></codeline>
+<codeline lineno="65"><highlight class="comment"><sp/><sp/><sp/>*<sp/>along<sp/>with<sp/>some<sp/>pre-processing<sp/>and<sp/>post-processing.</highlight></codeline>
+<codeline lineno="66"><highlight class="comment"><sp/><sp/><sp/>*<sp/>Computational<sp/>procedure<sp/>is<sp/>explained<sp/>as<sp/>follows:</highlight></codeline>
+<codeline lineno="67"><highlight class="comment"><sp/><sp/><sp/>*<sp/>(a)<sp/>Pre-processing<sp/>involves<sp/>multiplying<sp/>input<sp/>with<sp/>cos<sp/>factor,</highlight></codeline>
+<codeline lineno="68"><highlight class="comment"><sp/><sp/><sp/>*<sp/><sp/><sp/><sp/><sp/>r(n)<sp/>=<sp/>2<sp/>*<sp/>u(n)<sp/>*<sp/>cos(pi*(2*n+1)/(4*n))</highlight></codeline>
+<codeline lineno="69"><highlight class="comment"><sp/><sp/><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>where,</highlight></codeline>
+<codeline lineno="70"><highlight class="comment"><sp/><sp/><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r(n)<sp/>--<sp/>output<sp/>of<sp/>preprocessing</highlight></codeline>
+<codeline lineno="71"><highlight class="comment"><sp/><sp/><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>u(n)<sp/>--<sp/>input<sp/>to<sp/>preprocessing(actual<sp/>Source<sp/>buffer)</highlight></codeline>
+<codeline lineno="72"><highlight class="comment"><sp/><sp/><sp/>*<sp/>(b)<sp/>Calculation<sp/>of<sp/>DCT2<sp/>using<sp/>FFT<sp/>is<sp/>divided<sp/>into<sp/>three<sp/>steps:</highlight></codeline>
+<codeline lineno="73"><highlight class="comment"><sp/><sp/><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Step1:<sp/>Re-ordering<sp/>of<sp/>even<sp/>and<sp/>odd<sp/>elements<sp/>of<sp/>input.</highlight></codeline>
+<codeline lineno="74"><highlight class="comment"><sp/><sp/><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Step2:<sp/>Calculating<sp/>FFT<sp/>of<sp/>the<sp/>re-ordered<sp/>input.</highlight></codeline>
+<codeline lineno="75"><highlight class="comment"><sp/><sp/><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Step3:<sp/>Taking<sp/>the<sp/>real<sp/>part<sp/>of<sp/>the<sp/>product<sp/>of<sp/>FFT<sp/>output<sp/>and<sp/>weights.</highlight></codeline>
+<codeline lineno="76"><highlight class="comment"><sp/><sp/><sp/>*<sp/>(c)<sp/>Post-processing<sp/>-<sp/>DCT4<sp/>can<sp/>be<sp/>obtained<sp/>from<sp/>DCT2<sp/>output<sp/>using<sp/>the<sp/>following<sp/>equation:</highlight></codeline>
+<codeline lineno="77"><highlight class="comment"><sp/><sp/><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Y4(k)<sp/>=<sp/>Y2(k)<sp/>-<sp/>Y4(k-1)<sp/>and<sp/>Y4(-1)<sp/>=<sp/>Y4(0)</highlight></codeline>
+<codeline lineno="78"><highlight class="comment"><sp/><sp/><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>where,</highlight></codeline>
+<codeline lineno="79"><highlight class="comment"><sp/><sp/><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Y4<sp/>--<sp/>DCT4<sp/>output,<sp/><sp/><sp/>Y2<sp/>--<sp/>DCT2<sp/>output</highlight></codeline>
+<codeline lineno="80"><highlight class="comment"><sp/><sp/><sp/>*<sp/>(d)<sp/>Multiplying<sp/>the<sp/>output<sp/>with<sp/>the<sp/>normalizing<sp/>factor<sp/>sqrt(2/N).</highlight></codeline>
+<codeline lineno="81"><highlight class="comment"><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*--------<sp/>Pre-processing<sp/>------------*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Multiplying<sp/>input<sp/>with<sp/>cos<sp/>factor<sp/>i.e.<sp/>r(n)<sp/>=<sp/>2<sp/>*<sp/>x(n)<sp/>*<sp/>cos(pi*(2*n+1)/(4*n))<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><ref refid="group__BasicMult_1gacb33f56ed33bd4f1b09042defa89cef6" kindref="member">riscv_mult_q15</ref><sp/>(pInlineBuffer,<sp/>cosFact,<sp/>pInlineBuffer,<sp/>S-&gt;<ref refid="structriscv__dct4__instance__q15_1a05319413bea2ecb5baa709892c4fb247" kindref="member">N</ref>);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><ref refid="group__BasicShift_1ga56c338a145652565944ab76e56f12355" kindref="member">riscv_shift_q15</ref><sp/>(pInlineBuffer,<sp/>1,<sp/>pInlineBuffer,<sp/>S-&gt;<ref refid="structriscv__dct4__instance__q15_1a05319413bea2ecb5baa709892c4fb247" kindref="member">N</ref>);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>----------------------------------------------------------------</highlight></codeline>
+<codeline lineno="89"><highlight class="comment"><sp/><sp/><sp/>*<sp/>Step1:<sp/>Re-ordering<sp/>of<sp/>even<sp/>and<sp/>odd<sp/>elements<sp/>as</highlight></codeline>
+<codeline lineno="90"><highlight class="comment"><sp/><sp/><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pState[i]<sp/>=<sp/><sp/>pInlineBuffer[2*i]<sp/>and</highlight></codeline>
+<codeline lineno="91"><highlight class="comment"><sp/><sp/><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pState[N-i-1]<sp/>=<sp/>pInlineBuffer[2*i+1]<sp/>where<sp/>i<sp/>=<sp/>0<sp/>to<sp/>N/2</highlight></codeline>
+<codeline lineno="92"><highlight class="comment"><sp/><sp/><sp/>---------------------------------------------------------------------*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>pS1<sp/>initialized<sp/>to<sp/>pState<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/>pS1<sp/>=<sp/>pState;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>pS2<sp/>initialized<sp/>to<sp/>pState+N-1,<sp/>so<sp/>that<sp/>it<sp/>points<sp/>to<sp/>the<sp/>end<sp/>of<sp/>the<sp/>state<sp/>buffer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/>pS2<sp/>=<sp/>pState<sp/>+<sp/>(S-&gt;<ref refid="structriscv__dct4__instance__q15_1a05319413bea2ecb5baa709892c4fb247" kindref="member">N</ref><sp/>-<sp/>1U);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>pbuff<sp/>initialized<sp/>to<sp/>input<sp/>buffer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/>pbuff<sp/>=<sp/>pInlineBuffer;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initializing<sp/>the<sp/>loop<sp/>counter<sp/>to<sp/>N/2<sp/>&gt;&gt;<sp/>2<sp/>for<sp/>loop<sp/>unrolling<sp/>by<sp/>4<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/>i<sp/>=<sp/>S-&gt;<ref refid="structriscv__dct4__instance__q15_1ac2eb10147748bdd1bc339a42dd258783" kindref="member">Nby2</ref><sp/>&gt;&gt;<sp/>2U;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>First<sp/>part<sp/>of<sp/>the<sp/>processing<sp/>with<sp/>loop<sp/>unrolling.<sp/><sp/>Compute<sp/>4<sp/>outputs<sp/>at<sp/>a<sp/>time.</highlight></codeline>
+<codeline lineno="110"><highlight class="comment"><sp/><sp/><sp/>**<sp/>a<sp/>second<sp/>loop<sp/>below<sp/>computes<sp/>the<sp/>remaining<sp/>1<sp/>to<sp/>3<sp/>samples.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Re-ordering<sp/>of<sp/>even<sp/>and<sp/>odd<sp/>elements<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>pState[i]<sp/>=<sp/><sp/>pInlineBuffer[2*i]<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>*pS1++<sp/>=<sp/>*pbuff++;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>pState[N-i-1]<sp/>=<sp/>pInlineBuffer[2*i+1]<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>*pS2--<sp/>=<sp/>*pbuff++;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>*pS1++<sp/>=<sp/>*pbuff++;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>*pS2--<sp/>=<sp/>*pbuff++;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>*pS1++<sp/>=<sp/>*pbuff++;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>*pS2--<sp/>=<sp/>*pbuff++;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>*pS1++<sp/>=<sp/>*pbuff++;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>*pS2--<sp/>=<sp/>*pbuff++;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Decrement<sp/>loop<sp/>counter<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>i--;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(i<sp/>&gt;<sp/>0U);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>pbuff<sp/>initialized<sp/>to<sp/>input<sp/>buffer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/>pbuff<sp/>=<sp/>pInlineBuffer;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>pS1<sp/>initialized<sp/>to<sp/>pState<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/>pS1<sp/>=<sp/>pState;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initializing<sp/>the<sp/>loop<sp/>counter<sp/>to<sp/>N/4<sp/>instead<sp/>of<sp/>N<sp/>for<sp/>loop<sp/>unrolling<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/>i<sp/>=<sp/>S-&gt;<ref refid="structriscv__dct4__instance__q15_1a05319413bea2ecb5baa709892c4fb247" kindref="member">N</ref><sp/>&gt;&gt;<sp/>2U;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Processing<sp/>with<sp/>loop<sp/>unrolling<sp/>4<sp/>times<sp/>as<sp/>N<sp/>is<sp/>always<sp/>multiple<sp/>of<sp/>4.</highlight></codeline>
+<codeline lineno="142"><highlight class="comment"><sp/><sp/><sp/>*<sp/>Compute<sp/>4<sp/>outputs<sp/>at<sp/>a<sp/>time<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Writing<sp/>the<sp/>re-ordered<sp/>output<sp/>back<sp/>to<sp/>inplace<sp/>input<sp/>buffer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>*pbuff++<sp/>=<sp/>*pS1++;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>*pbuff++<sp/>=<sp/>*pS1++;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>*pbuff++<sp/>=<sp/>*pS1++;</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>*pbuff++<sp/>=<sp/>*pS1++;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Decrement<sp/>the<sp/>loop<sp/>counter<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>i--;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(i<sp/>&gt;<sp/>0U);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>---------------------------------------------------------</highlight></codeline>
+<codeline lineno="157"><highlight class="comment"><sp/><sp/><sp/>*<sp/><sp/><sp/><sp/><sp/>Step2:<sp/>Calculate<sp/>RFFT<sp/>for<sp/>N-point<sp/>input</highlight></codeline>
+<codeline lineno="158"><highlight class="comment"><sp/><sp/><sp/>*<sp/>----------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>pInlineBuffer<sp/>is<sp/>real<sp/>input<sp/>of<sp/>length<sp/>N<sp/>,<sp/>pState<sp/>is<sp/>the<sp/>complex<sp/>output<sp/>of<sp/>length<sp/>2N<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><ref refid="group__RealFFT_1gac6c836bb35dcbdd2a96d38ae9bfadd7f" kindref="member">riscv_rfft_q15</ref><sp/>(S-&gt;<ref refid="structriscv__dct4__instance__q15_1ad6a8d65351dc6e6c188c4289a7bb3569" kindref="member">pRfft</ref>,<sp/>pInlineBuffer,<sp/>pState);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*----------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="163"><highlight class="comment"><sp/><sp/><sp/>*<sp/><sp/>Step3:<sp/>Multiply<sp/>the<sp/>FFT<sp/>output<sp/>with<sp/>the<sp/>weights.</highlight></codeline>
+<codeline lineno="164"><highlight class="comment"><sp/><sp/><sp/>*----------------------------------------------------------------------*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><ref refid="group__CmplxByCmplxMult_1gaac5cbc0202fce9f91a7707bf209714fe" kindref="member">riscv_cmplx_mult_cmplx_q15</ref><sp/>(pState,<sp/>weights,<sp/>pState,<sp/>S-&gt;<ref refid="structriscv__dct4__instance__q15_1a05319413bea2ecb5baa709892c4fb247" kindref="member">N</ref>);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>The<sp/>output<sp/>of<sp/>complex<sp/>multiplication<sp/>is<sp/>in<sp/>3.13<sp/>format.</highlight></codeline>
+<codeline lineno="168"><highlight class="comment"><sp/><sp/><sp/>*<sp/>Hence<sp/>changing<sp/>the<sp/>format<sp/>of<sp/>N<sp/>(i.e.<sp/>2*N<sp/>elements)<sp/>complex<sp/>numbers<sp/>to<sp/>1.15<sp/>format<sp/>by<sp/>shifting<sp/>left<sp/>by<sp/>2<sp/>bits.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><ref refid="group__BasicShift_1ga56c338a145652565944ab76e56f12355" kindref="member">riscv_shift_q15</ref><sp/>(pState,<sp/>2,<sp/>pState,<sp/>S-&gt;<ref refid="structriscv__dct4__instance__q15_1a05319413bea2ecb5baa709892c4fb247" kindref="member">N</ref><sp/>*<sp/>2);</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>-----------<sp/>Post-processing<sp/>----------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>DCT-IV<sp/>can<sp/>be<sp/>obtained<sp/>from<sp/>DCT-II<sp/>by<sp/>the<sp/>equation,</highlight></codeline>
+<codeline lineno="173"><highlight class="comment"><sp/><sp/><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/>Y4(k)<sp/>=<sp/>Y2(k)<sp/>-<sp/>Y4(k-1)<sp/>and<sp/>Y4(-1)<sp/>=<sp/>Y4(0)</highlight></codeline>
+<codeline lineno="174"><highlight class="comment"><sp/><sp/><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/>Hence,<sp/>Y4(0)<sp/>=<sp/>Y2(0)/2<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Getting<sp/>only<sp/>real<sp/>part<sp/>from<sp/>the<sp/>output<sp/>and<sp/>Converting<sp/>to<sp/>DCT-IV<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initializing<sp/>the<sp/>loop<sp/>counter<sp/>to<sp/>N<sp/>&gt;&gt;<sp/>2<sp/>for<sp/>loop<sp/>unrolling<sp/>by<sp/>4<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/>i<sp/>=<sp/>(S-&gt;<ref refid="structriscv__dct4__instance__q15_1a05319413bea2ecb5baa709892c4fb247" kindref="member">N</ref><sp/>-<sp/>1U)<sp/>&gt;&gt;<sp/>2U;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>pbuff<sp/>initialized<sp/>to<sp/>input<sp/>buffer.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/>pbuff<sp/>=<sp/>pInlineBuffer;</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>pS1<sp/>initialized<sp/>to<sp/>pState<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/>pS1<sp/>=<sp/>pState;</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Calculating<sp/>Y4(0)<sp/>from<sp/>Y2(0)<sp/>using<sp/>Y4(0)<sp/>=<sp/>Y2(0)/2<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/>in<sp/>=<sp/>*pS1++<sp/>&gt;&gt;<sp/>1U;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>input<sp/>buffer<sp/>acts<sp/>as<sp/>inplace,<sp/>so<sp/>output<sp/>values<sp/>are<sp/>stored<sp/>in<sp/>the<sp/>input<sp/>itself.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/>*pbuff++<sp/>=<sp/>in;</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>pState<sp/>pointer<sp/>is<sp/>incremented<sp/>twice<sp/>as<sp/>the<sp/>real<sp/>values<sp/>are<sp/>located<sp/>alternatively<sp/>in<sp/>the<sp/>array<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/>pS1++;</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>First<sp/>part<sp/>of<sp/>the<sp/>processing<sp/>with<sp/>loop<sp/>unrolling.<sp/><sp/>Compute<sp/>4<sp/>outputs<sp/>at<sp/>a<sp/>time.</highlight></codeline>
+<codeline lineno="195"><highlight class="comment"><sp/><sp/><sp/>**<sp/>a<sp/>second<sp/>loop<sp/>below<sp/>computes<sp/>the<sp/>remaining<sp/>1<sp/>to<sp/>3<sp/>samples.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Calculating<sp/>Y4(1)<sp/>to<sp/>Y4(N-1)<sp/>from<sp/>Y2<sp/>using<sp/>equation<sp/>Y4(k)<sp/>=<sp/>Y2(k)<sp/>-<sp/>Y4(k-1)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>pState<sp/>pointer<sp/>(pS1)<sp/>is<sp/>incremented<sp/>twice<sp/>as<sp/>the<sp/>real<sp/>values<sp/>are<sp/>located<sp/>alternatively<sp/>in<sp/>the<sp/>array<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/>in<sp/>=<sp/>*pS1++<sp/>-<sp/>in;</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/>*pbuff++<sp/>=<sp/>in;</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>points<sp/>to<sp/>the<sp/>next<sp/>real<sp/>value<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/>pS1++;</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/>in<sp/>=<sp/>*pS1++<sp/>-<sp/>in;</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/>*pbuff++<sp/>=<sp/>in;</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/>pS1++;</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"></highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/>in<sp/>=<sp/>*pS1++<sp/>-<sp/>in;</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/>*pbuff++<sp/>=<sp/>in;</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/>pS1++;</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"></highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/>in<sp/>=<sp/>*pS1++<sp/>-<sp/>in;</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/>*pbuff++<sp/>=<sp/>in;</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/>pS1++;</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Decrement<sp/>the<sp/>loop<sp/>counter<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/>i--;</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(i<sp/>&gt;<sp/>0U);</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"></highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>If<sp/>the<sp/>blockSize<sp/>is<sp/>not<sp/>a<sp/>multiple<sp/>of<sp/>4,<sp/>compute<sp/>any<sp/>remaining<sp/>output<sp/>samples<sp/>here.</highlight></codeline>
+<codeline lineno="222"><highlight class="comment"><sp/><sp/><sp/>**<sp/>No<sp/>loop<sp/>unrolling<sp/>is<sp/>used.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/>i<sp/>=<sp/>(S-&gt;<ref refid="structriscv__dct4__instance__q15_1a05319413bea2ecb5baa709892c4fb247" kindref="member">N</ref><sp/>-<sp/>1U)<sp/>%<sp/>0x4U;</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"></highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(i<sp/>&gt;<sp/>0U)</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Calculating<sp/>Y4(1)<sp/>to<sp/>Y4(N-1)<sp/>from<sp/>Y2<sp/>using<sp/>equation<sp/>Y4(k)<sp/>=<sp/>Y2(k)<sp/>-<sp/>Y4(k-1)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>pState<sp/>pointer<sp/>(pS1)<sp/>is<sp/>incremented<sp/>twice<sp/>as<sp/>the<sp/>real<sp/>values<sp/>are<sp/>located<sp/>alternatively<sp/>in<sp/>the<sp/>array<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/>in<sp/>=<sp/>*pS1++<sp/>-<sp/>in;</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/>*pbuff++<sp/>=<sp/>in;</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"></highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>points<sp/>to<sp/>the<sp/>next<sp/>real<sp/>value<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/>pS1++;</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"></highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Decrement<sp/>loop<sp/>counter<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/>i--;</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"></highlight></codeline>
+<codeline lineno="239"><highlight class="normal"></highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*------------<sp/>Normalizing<sp/>the<sp/>output<sp/>by<sp/>multiplying<sp/>with<sp/>the<sp/>normalizing<sp/>factor<sp/>----------*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="241"><highlight class="normal"></highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initializing<sp/>the<sp/>loop<sp/>counter<sp/>to<sp/>N/4<sp/>instead<sp/>of<sp/>N<sp/>for<sp/>loop<sp/>unrolling<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/>i<sp/>=<sp/>S-&gt;<ref refid="structriscv__dct4__instance__q15_1a05319413bea2ecb5baa709892c4fb247" kindref="member">N</ref><sp/>&gt;&gt;<sp/>2U;</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"></highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>pbuff<sp/>initialized<sp/>to<sp/>the<sp/>pInlineBuffer(now<sp/>contains<sp/>the<sp/>output<sp/>values)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/>pbuff<sp/>=<sp/>pInlineBuffer;</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"></highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Processing<sp/>with<sp/>loop<sp/>unrolling<sp/>4<sp/>times<sp/>as<sp/>N<sp/>is<sp/>always<sp/>multiple<sp/>of<sp/>4.<sp/><sp/>Compute<sp/>4<sp/>outputs<sp/>at<sp/>a<sp/>time<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Multiplying<sp/>pInlineBuffer<sp/>with<sp/>the<sp/>normalizing<sp/>factor<sp/>sqrt(2/N)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/>in<sp/>=<sp/>*pbuff;</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/>*pbuff++<sp/>=<sp/>((q15_t)<sp/>(((q31_t)<sp/>in<sp/>*<sp/>S-&gt;<ref refid="structriscv__dct4__instance__q15_1a94397ce0b67a1ea3156b5d3da7e3fe21" kindref="member">normalize</ref>)<sp/>&gt;&gt;<sp/>15));</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"></highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/>in<sp/>=<sp/>*pbuff;</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/>*pbuff++<sp/>=<sp/>((q15_t)<sp/>(((q31_t)<sp/>in<sp/>*<sp/>S-&gt;<ref refid="structriscv__dct4__instance__q15_1a94397ce0b67a1ea3156b5d3da7e3fe21" kindref="member">normalize</ref>)<sp/>&gt;&gt;<sp/>15));</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/>in<sp/>=<sp/>*pbuff;</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/>*pbuff++<sp/>=<sp/>((q15_t)<sp/>(((q31_t)<sp/>in<sp/>*<sp/>S-&gt;<ref refid="structriscv__dct4__instance__q15_1a94397ce0b67a1ea3156b5d3da7e3fe21" kindref="member">normalize</ref>)<sp/>&gt;&gt;<sp/>15));</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"></highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/>in<sp/>=<sp/>*pbuff;</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/>*pbuff++<sp/>=<sp/>((q15_t)<sp/>(((q31_t)<sp/>in<sp/>*<sp/>S-&gt;<ref refid="structriscv__dct4__instance__q15_1a94397ce0b67a1ea3156b5d3da7e3fe21" kindref="member">normalize</ref>)<sp/>&gt;&gt;<sp/>15));</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"></highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Decrement<sp/>loop<sp/>counter<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/>i--;</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(i<sp/>&gt;<sp/>0U);</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"></highlight></codeline>
+<codeline lineno="268"><highlight class="normal"></highlight></codeline>
+<codeline lineno="269"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="270"><highlight class="normal"></highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initializing<sp/>the<sp/>loop<sp/>counter<sp/>to<sp/>N/2<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/>i<sp/>=<sp/>S-&gt;<ref refid="structriscv__dct4__instance__q15_1ac2eb10147748bdd1bc339a42dd258783" kindref="member">Nby2</ref>;</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"></highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Re-ordering<sp/>of<sp/>even<sp/>and<sp/>odd<sp/>elements<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>pState[i]<sp/>=<sp/><sp/>pInlineBuffer[2*i]<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/>*pS1++<sp/>=<sp/>*pbuff++;</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>pState[N-i-1]<sp/>=<sp/>pInlineBuffer[2*i+1]<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/>*pS2--<sp/>=<sp/>*pbuff++;</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"></highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Decrement<sp/>the<sp/>loop<sp/>counter<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/>i--;</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(i<sp/>&gt;<sp/>0U);</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"></highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>pbuff<sp/>initialized<sp/>to<sp/>input<sp/>buffer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/>pbuff<sp/>=<sp/>pInlineBuffer;</highlight></codeline>
+<codeline lineno="288"><highlight class="normal"></highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>pS1<sp/>initialized<sp/>to<sp/>pState<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/>pS1<sp/>=<sp/>pState;</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"></highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initializing<sp/>the<sp/>loop<sp/>counter<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/>i<sp/>=<sp/>S-&gt;<ref refid="structriscv__dct4__instance__q15_1a05319413bea2ecb5baa709892c4fb247" kindref="member">N</ref>;</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"></highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Writing<sp/>the<sp/>re-ordered<sp/>output<sp/>back<sp/>to<sp/>inplace<sp/>input<sp/>buffer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/>*pbuff++<sp/>=<sp/>*pS1++;</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"></highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Decrement<sp/>the<sp/>loop<sp/>counter<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/>i--;</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(i<sp/>&gt;<sp/>0U);</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"></highlight></codeline>
+<codeline lineno="304"><highlight class="normal"></highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>---------------------------------------------------------</highlight></codeline>
+<codeline lineno="306"><highlight class="comment"><sp/><sp/><sp/>*<sp/><sp/><sp/><sp/><sp/>Step2:<sp/>Calculate<sp/>RFFT<sp/>for<sp/>N-point<sp/>input</highlight></codeline>
+<codeline lineno="307"><highlight class="comment"><sp/><sp/><sp/>*<sp/>----------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>pInlineBuffer<sp/>is<sp/>real<sp/>input<sp/>of<sp/>length<sp/>N<sp/>,<sp/>pState<sp/>is<sp/>the<sp/>complex<sp/>output<sp/>of<sp/>length<sp/>2N<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><ref refid="group__RealFFT_1gac6c836bb35dcbdd2a96d38ae9bfadd7f" kindref="member">riscv_rfft_q15</ref><sp/>(S-&gt;<ref refid="structriscv__dct4__instance__q15_1ad6a8d65351dc6e6c188c4289a7bb3569" kindref="member">pRfft</ref>,<sp/>pInlineBuffer,<sp/>pState);</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"></highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*----------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="312"><highlight class="comment"><sp/><sp/><sp/>*<sp/><sp/>Step3:<sp/>Multiply<sp/>the<sp/>FFT<sp/>output<sp/>with<sp/>the<sp/>weights.</highlight></codeline>
+<codeline lineno="313"><highlight class="comment"><sp/><sp/><sp/>*----------------------------------------------------------------------*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><ref refid="group__CmplxByCmplxMult_1gaac5cbc0202fce9f91a7707bf209714fe" kindref="member">riscv_cmplx_mult_cmplx_q15</ref><sp/>(pState,<sp/>weights,<sp/>pState,<sp/>S-&gt;<ref refid="structriscv__dct4__instance__q15_1a05319413bea2ecb5baa709892c4fb247" kindref="member">N</ref>);</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"></highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>The<sp/>output<sp/>of<sp/>complex<sp/>multiplication<sp/>is<sp/>in<sp/>3.13<sp/>format.</highlight></codeline>
+<codeline lineno="317"><highlight class="comment"><sp/><sp/><sp/>*<sp/>Hence<sp/>changing<sp/>the<sp/>format<sp/>of<sp/>N<sp/>(i.e.<sp/>2*N<sp/>elements)<sp/>complex<sp/>numbers<sp/>to<sp/>1.15<sp/>format<sp/>by<sp/>shifting<sp/>left<sp/>by<sp/>2<sp/>bits.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><ref refid="group__BasicShift_1ga56c338a145652565944ab76e56f12355" kindref="member">riscv_shift_q15</ref><sp/>(pState,<sp/>2,<sp/>pState,<sp/>S-&gt;<ref refid="structriscv__dct4__instance__q15_1a05319413bea2ecb5baa709892c4fb247" kindref="member">N</ref><sp/>*<sp/>2);</highlight></codeline>
+<codeline lineno="319"><highlight class="normal"></highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>-----------<sp/>Post-processing<sp/>----------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>DCT-IV<sp/>can<sp/>be<sp/>obtained<sp/>from<sp/>DCT-II<sp/>by<sp/>the<sp/>equation,</highlight></codeline>
+<codeline lineno="322"><highlight class="comment"><sp/><sp/><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/>Y4(k)<sp/>=<sp/>Y2(k)<sp/>-<sp/>Y4(k-1)<sp/>and<sp/>Y4(-1)<sp/>=<sp/>Y4(0)</highlight></codeline>
+<codeline lineno="323"><highlight class="comment"><sp/><sp/><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/>Hence,<sp/>Y4(0)<sp/>=<sp/>Y2(0)/2<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Getting<sp/>only<sp/>real<sp/>part<sp/>from<sp/>the<sp/>output<sp/>and<sp/>Converting<sp/>to<sp/>DCT-IV<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="325"><highlight class="normal"></highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>pbuff<sp/>initialized<sp/>to<sp/>input<sp/>buffer.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/>pbuff<sp/>=<sp/>pInlineBuffer;</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"></highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>pS1<sp/>initialized<sp/>to<sp/>pState<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/>pS1<sp/>=<sp/>pState;</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"></highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Calculating<sp/>Y4(0)<sp/>from<sp/>Y2(0)<sp/>using<sp/>Y4(0)<sp/>=<sp/>Y2(0)/2<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/>in<sp/>=<sp/>*pS1++<sp/>&gt;&gt;<sp/>1U;</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>input<sp/>buffer<sp/>acts<sp/>as<sp/>inplace,<sp/>so<sp/>output<sp/>values<sp/>are<sp/>stored<sp/>in<sp/>the<sp/>input<sp/>itself.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="335"><highlight class="normal"><sp/><sp/>*pbuff++<sp/>=<sp/>in;</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"></highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>pState<sp/>pointer<sp/>is<sp/>incremented<sp/>twice<sp/>as<sp/>the<sp/>real<sp/>values<sp/>are<sp/>located<sp/>alternatively<sp/>in<sp/>the<sp/>array<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/>pS1++;</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"></highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initializing<sp/>the<sp/>loop<sp/>counter<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="341"><highlight class="normal"><sp/><sp/>i<sp/>=<sp/>(S-&gt;<ref refid="structriscv__dct4__instance__q15_1a05319413bea2ecb5baa709892c4fb247" kindref="member">N</ref><sp/>-<sp/>1U);</highlight></codeline>
+<codeline lineno="342"><highlight class="normal"></highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Calculating<sp/>Y4(1)<sp/>to<sp/>Y4(N-1)<sp/>from<sp/>Y2<sp/>using<sp/>equation<sp/>Y4(k)<sp/>=<sp/>Y2(k)<sp/>-<sp/>Y4(k-1)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>pState<sp/>pointer<sp/>(pS1)<sp/>is<sp/>incremented<sp/>twice<sp/>as<sp/>the<sp/>real<sp/>values<sp/>are<sp/>located<sp/>alternatively<sp/>in<sp/>the<sp/>array<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/>in<sp/>=<sp/>*pS1++<sp/>-<sp/>in;</highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/>*pbuff++<sp/>=<sp/>in;</highlight></codeline>
+<codeline lineno="349"><highlight class="normal"></highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>points<sp/>to<sp/>the<sp/>next<sp/>real<sp/>value<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/>pS1++;</highlight></codeline>
+<codeline lineno="352"><highlight class="normal"></highlight></codeline>
+<codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Decrement<sp/>loop<sp/>counter<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/>i--;</highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(i<sp/>&gt;<sp/>0U);</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"></highlight></codeline>
+<codeline lineno="357"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*------------<sp/>Normalizing<sp/>the<sp/>output<sp/>by<sp/>multiplying<sp/>with<sp/>the<sp/>normalizing<sp/>factor<sp/>----------*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="358"><highlight class="normal"></highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initializing<sp/>loop<sp/>counter<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="360"><highlight class="normal"><sp/><sp/>i<sp/>=<sp/>S-&gt;<ref refid="structriscv__dct4__instance__q15_1a05319413bea2ecb5baa709892c4fb247" kindref="member">N</ref>;</highlight></codeline>
+<codeline lineno="361"><highlight class="normal"></highlight></codeline>
+<codeline lineno="362"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>pbuff<sp/>initialized<sp/>to<sp/>the<sp/>pInlineBuffer<sp/>(now<sp/>contains<sp/>the<sp/>output<sp/>values)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="363"><highlight class="normal"><sp/><sp/>pbuff<sp/>=<sp/>pInlineBuffer;</highlight></codeline>
+<codeline lineno="364"><highlight class="normal"></highlight></codeline>
+<codeline lineno="365"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="366"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="367"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Multiplying<sp/>pInlineBuffer<sp/>with<sp/>the<sp/>normalizing<sp/>factor<sp/>sqrt(2/N)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="368"><highlight class="normal"><sp/><sp/><sp/><sp/>in<sp/>=<sp/>*pbuff;</highlight></codeline>
+<codeline lineno="369"><highlight class="normal"><sp/><sp/><sp/><sp/>*pbuff++<sp/>=<sp/>((q15_t)<sp/>(((q31_t)<sp/>in<sp/>*<sp/>S-&gt;<ref refid="structriscv__dct4__instance__q15_1a94397ce0b67a1ea3156b5d3da7e3fe21" kindref="member">normalize</ref>)<sp/>&gt;&gt;<sp/>15));</highlight></codeline>
+<codeline lineno="370"><highlight class="normal"></highlight></codeline>
+<codeline lineno="371"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Decrement<sp/>loop<sp/>counter<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="372"><highlight class="normal"><sp/><sp/><sp/><sp/>i--;</highlight></codeline>
+<codeline lineno="373"><highlight class="normal"></highlight></codeline>
+<codeline lineno="374"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(i<sp/>&gt;<sp/>0U);</highlight></codeline>
+<codeline lineno="375"><highlight class="normal"></highlight></codeline>
+<codeline lineno="376"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>#if<sp/>defined<sp/>(RISCV_MATH_LOOPUNROLL)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="377"><highlight class="normal"></highlight></codeline>
+<codeline lineno="378"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="379"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_dct4_q15.c"/>
+  </compounddef>
+</doxygen>

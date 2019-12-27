@@ -1,0 +1,739 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Neural Network Convolution Functions &mdash; NMSIS 1.0.0-alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Fully-connected Layer Functions" href="api_fc.html" />
+    <link rel="prev" title="Neural Network Activation Functions" href="api_acti.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">NMSIS NN</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-NN</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS NN API</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../api_groupnn.html">Neural Network Functions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api_acti.html">Neural Network Activation Functions</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Neural Network Convolution Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_fc.html">Fully-connected Layer Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_pooling.html">Neural Network Pooling Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_softmax.html">Softmax Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nndata_convert.html">Neural Network Data Conversion Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nnbasicmath.html">Basic Math Functions for Neural Network Computation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_cnnexample.html">Convolutional Neural Network Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_gruexample.html">Gated Recurrent Unit Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">NMSIS NN</a> &raquo;</li>
+        
+          <li><a href="../index.html">NMSIS NN API</a> &raquo;</li>
+        
+          <li><a href="../api_groupnn.html">Neural Network Functions</a> &raquo;</li>
+        
+      <li>Neural Network Convolution Functions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/nn/api/groupnn/api_nnconv.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="neural-network-convolution-functions">
+<span id="nmsis-nn-api-neural-network-convolution-functions"></span><h1>Neural Network Convolution Functions<a class="headerlink" href="#neural-network-convolution-functions" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="_CPPv440riscv_convolve_1x1_HWC_q7_fast_nonsquarePK4q7_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tK8uint16_tP5q15_tP4q7_t">
+<span id="_CPPv340riscv_convolve_1x1_HWC_q7_fast_nonsquarePK4q7_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tK8uint16_tP5q15_tP4q7_t"></span><span id="_CPPv240riscv_convolve_1x1_HWC_q7_fast_nonsquarePK4q7_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tK8uint16_tP5q15_tP4q7_t"></span><span id="riscv_convolve_1x1_HWC_q7_fast_nonsquare__q7_tCP.uint16_tC.uint16_tC.uint16_tC.q7_tCP.uint16_tC.uint16_tC.uint16_tC.uint16_tC.uint16_tC.uint16_tC.uint16_tC.q7_tCP.uint16_tC.uint16_tC.q7_tP.uint16_tC.uint16_tC.q15_tP.q7_tP"></span><span class="target" id="group__NNConv_1ga6c935af4ca6a80b7b747ff90e1e5c91a"></span>riscv_status <code class="sig-name descname">riscv_convolve_1x1_HWC_q7_fast_nonsquare</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>Im_in</em>, <em class="property">const</em> uint16_t <em>dim_im_in_x</em>, <em class="property">const</em> uint16_t <em>dim_im_in_y</em>, <em class="property">const</em> uint16_t <em>ch_im_in</em>, <em class="property">const</em> q7_t *<em>wt</em>, <em class="property">const</em> uint16_t <em>ch_im_out</em>, <em class="property">const</em> uint16_t <em>dim_kernel_x</em>, <em class="property">const</em> uint16_t <em>dim_kernel_y</em>, <em class="property">const</em> uint16_t <em>padding_x</em>, <em class="property">const</em> uint16_t <em>padding_y</em>, <em class="property">const</em> uint16_t <em>stride_x</em>, <em class="property">const</em> uint16_t <em>stride_y</em>, <em class="property">const</em> q7_t *<em>bias</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, q7_t *<em>Im_out</em>, <em class="property">const</em> uint16_t <em>dim_im_out_x</em>, <em class="property">const</em> uint16_t <em>dim_im_out_y</em>, q15_t *<em>bufferA</em>, q7_t *<em>bufferB</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv440riscv_convolve_1x1_HWC_q7_fast_nonsquarePK4q7_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tK8uint16_tP5q15_tP4q7_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv428riscv_convolve_HWC_q15_basicPK5q15_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tP5q15_tK8uint16_tP5q15_tP4q7_t">
+<span id="_CPPv328riscv_convolve_HWC_q15_basicPK5q15_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tP5q15_tK8uint16_tP5q15_tP4q7_t"></span><span id="_CPPv228riscv_convolve_HWC_q15_basicPK5q15_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tP5q15_tK8uint16_tP5q15_tP4q7_t"></span><span id="riscv_convolve_HWC_q15_basic__q15_tCP.uint16_tC.uint16_tC.q15_tCP.uint16_tC.uint16_tC.uint16_tC.uint16_tC.q15_tCP.uint16_tC.uint16_tC.q15_tP.uint16_tC.q15_tP.q7_tP"></span><span class="target" id="group__NNConv_1ga24b8f2757e31020336b4e4d663f9f116"></span>riscv_status <code class="sig-name descname">riscv_convolve_HWC_q15_basic</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>Im_in</em>, <em class="property">const</em> uint16_t <em>dim_im_in</em>, <em class="property">const</em> uint16_t <em>ch_im_in</em>, <em class="property">const</em> q15_t *<em>wt</em>, <em class="property">const</em> uint16_t <em>ch_im_out</em>, <em class="property">const</em> uint16_t <em>dim_kernel</em>, <em class="property">const</em> uint16_t <em>padding</em>, <em class="property">const</em> uint16_t <em>stride</em>, <em class="property">const</em> q15_t *<em>bias</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, q15_t *<em>Im_out</em>, <em class="property">const</em> uint16_t <em>dim_im_out</em>, q15_t *<em>bufferA</em>, q7_t *<em>bufferB</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428riscv_convolve_HWC_q15_basicPK5q15_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tP5q15_tK8uint16_tP5q15_tP4q7_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv427riscv_convolve_HWC_q15_fastPK5q15_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tP5q15_tK8uint16_tP5q15_tP4q7_t">
+<span id="_CPPv327riscv_convolve_HWC_q15_fastPK5q15_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tP5q15_tK8uint16_tP5q15_tP4q7_t"></span><span id="_CPPv227riscv_convolve_HWC_q15_fastPK5q15_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tP5q15_tK8uint16_tP5q15_tP4q7_t"></span><span id="riscv_convolve_HWC_q15_fast__q15_tCP.uint16_tC.uint16_tC.q15_tCP.uint16_tC.uint16_tC.uint16_tC.uint16_tC.q15_tCP.uint16_tC.uint16_tC.q15_tP.uint16_tC.q15_tP.q7_tP"></span><span class="target" id="group__NNConv_1ga9685fbf9f838fcc9306b3962bb6d04df"></span>riscv_status <code class="sig-name descname">riscv_convolve_HWC_q15_fast</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>Im_in</em>, <em class="property">const</em> uint16_t <em>dim_im_in</em>, <em class="property">const</em> uint16_t <em>ch_im_in</em>, <em class="property">const</em> q15_t *<em>wt</em>, <em class="property">const</em> uint16_t <em>ch_im_out</em>, <em class="property">const</em> uint16_t <em>dim_kernel</em>, <em class="property">const</em> uint16_t <em>padding</em>, <em class="property">const</em> uint16_t <em>stride</em>, <em class="property">const</em> q15_t *<em>bias</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, q15_t *<em>Im_out</em>, <em class="property">const</em> uint16_t <em>dim_im_out</em>, q15_t *<em>bufferA</em>, q7_t *<em>bufferB</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427riscv_convolve_HWC_q15_fastPK5q15_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tP5q15_tK8uint16_tP5q15_tP4q7_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv437riscv_convolve_HWC_q15_fast_nonsquarePK5q15_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tP5q15_tK8uint16_tK8uint16_tP5q15_tP4q7_t">
+<span id="_CPPv337riscv_convolve_HWC_q15_fast_nonsquarePK5q15_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tP5q15_tK8uint16_tK8uint16_tP5q15_tP4q7_t"></span><span id="_CPPv237riscv_convolve_HWC_q15_fast_nonsquarePK5q15_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tP5q15_tK8uint16_tK8uint16_tP5q15_tP4q7_t"></span><span id="riscv_convolve_HWC_q15_fast_nonsquare__q15_tCP.uint16_tC.uint16_tC.uint16_tC.q15_tCP.uint16_tC.uint16_tC.uint16_tC.uint16_tC.uint16_tC.uint16_tC.uint16_tC.q15_tCP.uint16_tC.uint16_tC.q15_tP.uint16_tC.uint16_tC.q15_tP.q7_tP"></span><span class="target" id="group__NNConv_1ga205837a93b5bd574a95c97b7d843551c"></span>riscv_status <code class="sig-name descname">riscv_convolve_HWC_q15_fast_nonsquare</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>Im_in</em>, <em class="property">const</em> uint16_t <em>dim_im_in_x</em>, <em class="property">const</em> uint16_t <em>dim_im_in_y</em>, <em class="property">const</em> uint16_t <em>ch_im_in</em>, <em class="property">const</em> q15_t *<em>wt</em>, <em class="property">const</em> uint16_t <em>ch_im_out</em>, <em class="property">const</em> uint16_t <em>dim_kernel_x</em>, <em class="property">const</em> uint16_t <em>dim_kernel_y</em>, <em class="property">const</em> uint16_t <em>padding_x</em>, <em class="property">const</em> uint16_t <em>padding_y</em>, <em class="property">const</em> uint16_t <em>stride_x</em>, <em class="property">const</em> uint16_t <em>stride_y</em>, <em class="property">const</em> q15_t *<em>bias</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, q15_t *<em>Im_out</em>, <em class="property">const</em> uint16_t <em>dim_im_out_x</em>, <em class="property">const</em> uint16_t <em>dim_im_out_y</em>, q15_t *<em>bufferA</em>, q7_t *<em>bufferB</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv437riscv_convolve_HWC_q15_fast_nonsquarePK5q15_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tP5q15_tK8uint16_tK8uint16_tP5q15_tP4q7_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv427riscv_convolve_HWC_q7_basicPK4q7_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tP5q15_tP4q7_t">
+<span id="_CPPv327riscv_convolve_HWC_q7_basicPK4q7_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tP5q15_tP4q7_t"></span><span id="_CPPv227riscv_convolve_HWC_q7_basicPK4q7_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tP5q15_tP4q7_t"></span><span id="riscv_convolve_HWC_q7_basic__q7_tCP.uint16_tC.uint16_tC.q7_tCP.uint16_tC.uint16_tC.uint16_tC.uint16_tC.q7_tCP.uint16_tC.uint16_tC.q7_tP.uint16_tC.q15_tP.q7_tP"></span><span class="target" id="group__NNConv_1ga053353a7bdfca7d1aa9461210048d74a"></span>riscv_status <code class="sig-name descname">riscv_convolve_HWC_q7_basic</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>Im_in</em>, <em class="property">const</em> uint16_t <em>dim_im_in</em>, <em class="property">const</em> uint16_t <em>ch_im_in</em>, <em class="property">const</em> q7_t *<em>wt</em>, <em class="property">const</em> uint16_t <em>ch_im_out</em>, <em class="property">const</em> uint16_t <em>dim_kernel</em>, <em class="property">const</em> uint16_t <em>padding</em>, <em class="property">const</em> uint16_t <em>stride</em>, <em class="property">const</em> q7_t *<em>bias</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, q7_t *<em>Im_out</em>, <em class="property">const</em> uint16_t <em>dim_im_out</em>, q15_t *<em>bufferA</em>, q7_t *<em>bufferB</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427riscv_convolve_HWC_q7_basicPK4q7_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tP5q15_tP4q7_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv437riscv_convolve_HWC_q7_basic_nonsquarePK4q7_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tK8uint16_tP5q15_tP4q7_t">
+<span id="_CPPv337riscv_convolve_HWC_q7_basic_nonsquarePK4q7_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tK8uint16_tP5q15_tP4q7_t"></span><span id="_CPPv237riscv_convolve_HWC_q7_basic_nonsquarePK4q7_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tK8uint16_tP5q15_tP4q7_t"></span><span id="riscv_convolve_HWC_q7_basic_nonsquare__q7_tCP.uint16_tC.uint16_tC.uint16_tC.q7_tCP.uint16_tC.uint16_tC.uint16_tC.uint16_tC.uint16_tC.uint16_tC.uint16_tC.q7_tCP.uint16_tC.uint16_tC.q7_tP.uint16_tC.uint16_tC.q15_tP.q7_tP"></span><span class="target" id="group__NNConv_1ga2434b44e25c1c62c6c9da25382bd3e08"></span>riscv_status <code class="sig-name descname">riscv_convolve_HWC_q7_basic_nonsquare</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>Im_in</em>, <em class="property">const</em> uint16_t <em>dim_im_in_x</em>, <em class="property">const</em> uint16_t <em>dim_im_in_y</em>, <em class="property">const</em> uint16_t <em>ch_im_in</em>, <em class="property">const</em> q7_t *<em>wt</em>, <em class="property">const</em> uint16_t <em>ch_im_out</em>, <em class="property">const</em> uint16_t <em>dim_kernel_x</em>, <em class="property">const</em> uint16_t <em>dim_kernel_y</em>, <em class="property">const</em> uint16_t <em>padding_x</em>, <em class="property">const</em> uint16_t <em>padding_y</em>, <em class="property">const</em> uint16_t <em>stride_x</em>, <em class="property">const</em> uint16_t <em>stride_y</em>, <em class="property">const</em> q7_t *<em>bias</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, q7_t *<em>Im_out</em>, <em class="property">const</em> uint16_t <em>dim_im_out_x</em>, <em class="property">const</em> uint16_t <em>dim_im_out_y</em>, q15_t *<em>bufferA</em>, q7_t *<em>bufferB</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv437riscv_convolve_HWC_q7_basic_nonsquarePK4q7_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tK8uint16_tP5q15_tP4q7_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv426riscv_convolve_HWC_q7_fastPK4q7_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tP5q15_tP4q7_t">
+<span id="_CPPv326riscv_convolve_HWC_q7_fastPK4q7_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tP5q15_tP4q7_t"></span><span id="_CPPv226riscv_convolve_HWC_q7_fastPK4q7_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tP5q15_tP4q7_t"></span><span id="riscv_convolve_HWC_q7_fast__q7_tCP.uint16_tC.uint16_tC.q7_tCP.uint16_tC.uint16_tC.uint16_tC.uint16_tC.q7_tCP.uint16_tC.uint16_tC.q7_tP.uint16_tC.q15_tP.q7_tP"></span><span class="target" id="group__NNConv_1gaad778ec0d290ffa07f58c5b32cb8a80b"></span>riscv_status <code class="sig-name descname">riscv_convolve_HWC_q7_fast</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>Im_in</em>, <em class="property">const</em> uint16_t <em>dim_im_in</em>, <em class="property">const</em> uint16_t <em>ch_im_in</em>, <em class="property">const</em> q7_t *<em>wt</em>, <em class="property">const</em> uint16_t <em>ch_im_out</em>, <em class="property">const</em> uint16_t <em>dim_kernel</em>, <em class="property">const</em> uint16_t <em>padding</em>, <em class="property">const</em> uint16_t <em>stride</em>, <em class="property">const</em> q7_t *<em>bias</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, q7_t *<em>Im_out</em>, <em class="property">const</em> uint16_t <em>dim_im_out</em>, q15_t *<em>bufferA</em>, q7_t *<em>bufferB</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426riscv_convolve_HWC_q7_fastPK4q7_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tP5q15_tP4q7_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv436riscv_convolve_HWC_q7_fast_nonsquarePK4q7_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tK8uint16_tP5q15_tP4q7_t">
+<span id="_CPPv336riscv_convolve_HWC_q7_fast_nonsquarePK4q7_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tK8uint16_tP5q15_tP4q7_t"></span><span id="_CPPv236riscv_convolve_HWC_q7_fast_nonsquarePK4q7_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tK8uint16_tP5q15_tP4q7_t"></span><span id="riscv_convolve_HWC_q7_fast_nonsquare__q7_tCP.uint16_tC.uint16_tC.uint16_tC.q7_tCP.uint16_tC.uint16_tC.uint16_tC.uint16_tC.uint16_tC.uint16_tC.uint16_tC.q7_tCP.uint16_tC.uint16_tC.q7_tP.uint16_tC.uint16_tC.q15_tP.q7_tP"></span><span class="target" id="group__NNConv_1gaea6b13bcf602586c83033ce6310b1ca5"></span>riscv_status <code class="sig-name descname">riscv_convolve_HWC_q7_fast_nonsquare</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>Im_in</em>, <em class="property">const</em> uint16_t <em>dim_im_in_x</em>, <em class="property">const</em> uint16_t <em>dim_im_in_y</em>, <em class="property">const</em> uint16_t <em>ch_im_in</em>, <em class="property">const</em> q7_t *<em>wt</em>, <em class="property">const</em> uint16_t <em>ch_im_out</em>, <em class="property">const</em> uint16_t <em>dim_kernel_x</em>, <em class="property">const</em> uint16_t <em>dim_kernel_y</em>, <em class="property">const</em> uint16_t <em>padding_x</em>, <em class="property">const</em> uint16_t <em>padding_y</em>, <em class="property">const</em> uint16_t <em>stride_x</em>, <em class="property">const</em> uint16_t <em>stride_y</em>, <em class="property">const</em> q7_t *<em>bias</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, q7_t *<em>Im_out</em>, <em class="property">const</em> uint16_t <em>dim_im_out_x</em>, <em class="property">const</em> uint16_t <em>dim_im_out_y</em>, q15_t *<em>bufferA</em>, q7_t *<em>bufferB</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv436riscv_convolve_HWC_q7_fast_nonsquarePK4q7_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tK8uint16_tP5q15_tP4q7_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv425riscv_convolve_HWC_q7_RGBPK4q7_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tP5q15_tP4q7_t">
+<span id="_CPPv325riscv_convolve_HWC_q7_RGBPK4q7_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tP5q15_tP4q7_t"></span><span id="_CPPv225riscv_convolve_HWC_q7_RGBPK4q7_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tP5q15_tP4q7_t"></span><span id="riscv_convolve_HWC_q7_RGB__q7_tCP.uint16_tC.uint16_tC.q7_tCP.uint16_tC.uint16_tC.uint16_tC.uint16_tC.q7_tCP.uint16_tC.uint16_tC.q7_tP.uint16_tC.q15_tP.q7_tP"></span><span class="target" id="group__NNConv_1ga0a64a6e39851c858266bcb1227a431d4"></span>riscv_status <code class="sig-name descname">riscv_convolve_HWC_q7_RGB</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>Im_in</em>, <em class="property">const</em> uint16_t <em>dim_im_in</em>, <em class="property">const</em> uint16_t <em>ch_im_in</em>, <em class="property">const</em> q7_t *<em>wt</em>, <em class="property">const</em> uint16_t <em>ch_im_out</em>, <em class="property">const</em> uint16_t <em>dim_kernel</em>, <em class="property">const</em> uint16_t <em>padding</em>, <em class="property">const</em> uint16_t <em>stride</em>, <em class="property">const</em> q7_t *<em>bias</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, q7_t *<em>Im_out</em>, <em class="property">const</em> uint16_t <em>dim_im_out</em>, q15_t *<em>bufferA</em>, q7_t *<em>bufferB</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425riscv_convolve_HWC_q7_RGBPK4q7_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tP5q15_tP4q7_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv434riscv_depthwise_conv_u8_basic_ver1PK7uint8_tK8uint16_tK8uint16_tK8uint16_tPK7uint8_tK8uint16_tK8uint16_tK7int16_tK7int16_tK7int16_tK7int16_tK7int16_tK7int16_tK7int16_tPK7int32_tK7int32_tK7int32_tK7int32_tP7uint8_tK8uint16_tK8uint16_tK7int32_tK7int32_tK7int32_tK7int32_t">
+<span id="_CPPv334riscv_depthwise_conv_u8_basic_ver1PK7uint8_tK8uint16_tK8uint16_tK8uint16_tPK7uint8_tK8uint16_tK8uint16_tK7int16_tK7int16_tK7int16_tK7int16_tK7int16_tK7int16_tK7int16_tPK7int32_tK7int32_tK7int32_tK7int32_tP7uint8_tK8uint16_tK8uint16_tK7int32_tK7int32_tK7int32_tK7int32_t"></span><span id="_CPPv234riscv_depthwise_conv_u8_basic_ver1PK7uint8_tK8uint16_tK8uint16_tK8uint16_tPK7uint8_tK8uint16_tK8uint16_tK7int16_tK7int16_tK7int16_tK7int16_tK7int16_tK7int16_tK7int16_tPK7int32_tK7int32_tK7int32_tK7int32_tP7uint8_tK8uint16_tK8uint16_tK7int32_tK7int32_tK7int32_tK7int32_t"></span><span id="riscv_depthwise_conv_u8_basic_ver1__uint8_tCP.uint16_tC.uint16_tC.uint16_tC.uint8_tCP.uint16_tC.uint16_tC.int16_tC.int16_tC.int16_tC.int16_tC.int16_tC.int16_tC.int16_tC.int32_tCP.int32_tC.int32_tC.int32_tC.uint8_tP.uint16_tC.uint16_tC.int32_tC.int32_tC.int32_tC.int32_tC"></span><span class="target" id="group__NNConv_1ga25c24026b0cc0d52852ca840d49774b8"></span>riscv_status <code class="sig-name descname">riscv_depthwise_conv_u8_basic_ver1</code><span class="sig-paren">(</span><em class="property">const</em> uint8_t *<em>input</em>, <em class="property">const</em> uint16_t <em>input_x</em>, <em class="property">const</em> uint16_t <em>input_y</em>, <em class="property">const</em> uint16_t <em>input_ch</em>, <em class="property">const</em> uint8_t *<em>kernel</em>, <em class="property">const</em> uint16_t <em>kernel_x</em>, <em class="property">const</em> uint16_t <em>kernel_y</em>, <em class="property">const</em> int16_t <em>ch_mult</em>, <em class="property">const</em> int16_t <em>pad_x</em>, <em class="property">const</em> int16_t <em>pad_y</em>, <em class="property">const</em> int16_t <em>stride_x</em>, <em class="property">const</em> int16_t <em>stride_y</em>, <em class="property">const</em> int16_t <em>dilation_x</em>, <em class="property">const</em> int16_t <em>dilation_y</em>, <em class="property">const</em> int32_t *<em>bias</em>, <em class="property">const</em> int32_t <em>input_offset</em>, <em class="property">const</em> int32_t <em>filter_offset</em>, <em class="property">const</em> int32_t <em>output_offset</em>, uint8_t *<em>output</em>, <em class="property">const</em> uint16_t <em>output_x</em>, <em class="property">const</em> uint16_t <em>output_y</em>, <em class="property">const</em> int32_t <em>output_activation_min</em>, <em class="property">const</em> int32_t <em>output_activation_max</em>, <em class="property">const</em> int32_t <em>out_shift</em>, <em class="property">const</em> int32_t <em>out_mult</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv434riscv_depthwise_conv_u8_basic_ver1PK7uint8_tK8uint16_tK8uint16_tK8uint16_tPK7uint8_tK8uint16_tK8uint16_tK7int16_tK7int16_tK7int16_tK7int16_tK7int16_tK7int16_tK7int16_tPK7int32_tK7int32_tK7int32_tK7int32_tP7uint8_tK8uint16_tK8uint16_tK7int32_tK7int32_tK7int32_tK7int32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv437riscv_depthwise_separable_conv_HWC_q7PK4q7_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tP5q15_tP4q7_t">
+<span id="_CPPv337riscv_depthwise_separable_conv_HWC_q7PK4q7_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tP5q15_tP4q7_t"></span><span id="_CPPv237riscv_depthwise_separable_conv_HWC_q7PK4q7_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tP5q15_tP4q7_t"></span><span id="riscv_depthwise_separable_conv_HWC_q7__q7_tCP.uint16_tC.uint16_tC.q7_tCP.uint16_tC.uint16_tC.uint16_tC.uint16_tC.q7_tCP.uint16_tC.uint16_tC.q7_tP.uint16_tC.q15_tP.q7_tP"></span><span class="target" id="group__NNConv_1ga73a880af4ffcae5ba0229a20890b05d4"></span>riscv_status <code class="sig-name descname">riscv_depthwise_separable_conv_HWC_q7</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>Im_in</em>, <em class="property">const</em> uint16_t <em>dim_im_in</em>, <em class="property">const</em> uint16_t <em>ch_im_in</em>, <em class="property">const</em> q7_t *<em>wt</em>, <em class="property">const</em> uint16_t <em>ch_im_out</em>, <em class="property">const</em> uint16_t <em>dim_kernel</em>, <em class="property">const</em> uint16_t <em>padding</em>, <em class="property">const</em> uint16_t <em>stride</em>, <em class="property">const</em> q7_t *<em>bias</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, q7_t *<em>Im_out</em>, <em class="property">const</em> uint16_t <em>dim_im_out</em>, q15_t *<em>bufferA</em>, q7_t *<em>bufferB</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv437riscv_depthwise_separable_conv_HWC_q7PK4q7_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tP5q15_tP4q7_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv447riscv_depthwise_separable_conv_HWC_q7_nonsquarePK4q7_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tK8uint16_tP5q15_tP4q7_t">
+<span id="_CPPv347riscv_depthwise_separable_conv_HWC_q7_nonsquarePK4q7_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tK8uint16_tP5q15_tP4q7_t"></span><span id="_CPPv247riscv_depthwise_separable_conv_HWC_q7_nonsquarePK4q7_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tK8uint16_tP5q15_tP4q7_t"></span><span id="riscv_depthwise_separable_conv_HWC_q7_nonsquare__q7_tCP.uint16_tC.uint16_tC.uint16_tC.q7_tCP.uint16_tC.uint16_tC.uint16_tC.uint16_tC.uint16_tC.uint16_tC.uint16_tC.q7_tCP.uint16_tC.uint16_tC.q7_tP.uint16_tC.uint16_tC.q15_tP.q7_tP"></span><span class="target" id="group__NNConv_1gaec2d2b8c1536a08db1811d8971f20f66"></span>riscv_status <code class="sig-name descname">riscv_depthwise_separable_conv_HWC_q7_nonsquare</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>Im_in</em>, <em class="property">const</em> uint16_t <em>dim_im_in_x</em>, <em class="property">const</em> uint16_t <em>dim_im_in_y</em>, <em class="property">const</em> uint16_t <em>ch_im_in</em>, <em class="property">const</em> q7_t *<em>wt</em>, <em class="property">const</em> uint16_t <em>ch_im_out</em>, <em class="property">const</em> uint16_t <em>dim_kernel_x</em>, <em class="property">const</em> uint16_t <em>dim_kernel_y</em>, <em class="property">const</em> uint16_t <em>padding_x</em>, <em class="property">const</em> uint16_t <em>padding_y</em>, <em class="property">const</em> uint16_t <em>stride_x</em>, <em class="property">const</em> uint16_t <em>stride_y</em>, <em class="property">const</em> q7_t *<em>bias</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, q7_t *<em>Im_out</em>, <em class="property">const</em> uint16_t <em>dim_im_out_x</em>, <em class="property">const</em> uint16_t <em>dim_im_out_y</em>, q15_t *<em>bufferA</em>, q7_t *<em>bufferB</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv447riscv_depthwise_separable_conv_HWC_q7_nonsquarePK4q7_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tK8uint16_tP5q15_tP4q7_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="group">
+<dt>
+<span class="target" id="group__NNConv"></span><em>group</em> <code class="sig-name descname">NNConv</code></dt>
+<dd><p>Perform convolution layer</p>
+<p>The convolution is implemented in 2 steps: im2col and GEMM</p>
+<p>im2col is a process of converting each patch of image data into a column. After im2col, the convolution is computed as matrix-matrix multiplication.</p>
+<p>To reduce the memory footprint, the im2col is performed partially. Each iteration, only a few column (i.e., patches) are generated and computed with GEMM kernels similar to NMSIS-DSP riscv_mat_mult functions. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="function">
+<dt id="_CPPv440riscv_convolve_1x1_HWC_q7_fast_nonsquarePK4q7_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tK8uint16_tP5q15_tP4q7_t">
+<span id="_CPPv340riscv_convolve_1x1_HWC_q7_fast_nonsquarePK4q7_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tK8uint16_tP5q15_tP4q7_t"></span><span id="_CPPv240riscv_convolve_1x1_HWC_q7_fast_nonsquarePK4q7_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tK8uint16_tP5q15_tP4q7_t"></span><span class="target" id="group__NNConv_1ga6c935af4ca6a80b7b747ff90e1e5c91a"></span>riscv_status <code class="sig-name descname">riscv_convolve_1x1_HWC_q7_fast_nonsquare</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>Im_in</em>, <em class="property">const</em> uint16_t <em>dim_im_in_x</em>, <em class="property">const</em> uint16_t <em>dim_im_in_y</em>, <em class="property">const</em> uint16_t <em>ch_im_in</em>, <em class="property">const</em> q7_t *<em>wt</em>, <em class="property">const</em> uint16_t <em>ch_im_out</em>, <em class="property">const</em> uint16_t <em>dim_kernel_x</em>, <em class="property">const</em> uint16_t <em>dim_kernel_y</em>, <em class="property">const</em> uint16_t <em>padding_x</em>, <em class="property">const</em> uint16_t <em>padding_y</em>, <em class="property">const</em> uint16_t <em>stride_x</em>, <em class="property">const</em> uint16_t <em>stride_y</em>, <em class="property">const</em> q7_t *<em>bias</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, q7_t *<em>Im_out</em>, <em class="property">const</em> uint16_t <em>dim_im_out_x</em>, <em class="property">const</em> uint16_t <em>dim_im_out_y</em>, q15_t *<em>bufferA</em>, q7_t *<em>bufferB</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Fast Q7 version of 1x1 convolution (non-sqaure shape) </p>
+<p><p>This function is optimized for convolution with 1x1 kernel size (i.e., dim_kernel_x=1 and dim_kernel_y=1). It can be used for the second half of MobileNets [1] after depthwise separable convolution.</p>
+<dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The function returns either <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SIZE_MISMATCH</span></code> or <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code> based on the outcome of size checking.</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">Im_in</span></code>: pointer to input tensor </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_in_x</span></code>: input tensor dimention x </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_in_y</span></code>: input tensor dimention y </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ch_im_in</span></code>: number of input tensor channels </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">wt</span></code>: pointer to kernel weights </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ch_im_out</span></code>: number of filters, i.e., output tensor channels </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_kernel_x</span></code>: filter kernel size x </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_kernel_y</span></code>: filter kernel size y </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">padding_x</span></code>: padding size x </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">padding_y</span></code>: padding size y </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">stride_x</span></code>: convolution stride x </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">stride_y</span></code>: convolution stride y </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias</span></code>: pointer to bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias_shift</span></code>: amount of left-shift for bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">out_shift</span></code>: amount of right-shift for output </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">Im_out</span></code>: pointer to output tensor </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_out_x</span></code>: output tensor dimension x </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_out_y</span></code>: output tensor dimension y </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">bufferA</span></code>: pointer to buffer space for input </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">bufferB</span></code>: pointer to buffer space for output </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>This function is the version with full list of optimization tricks, but with some contraints: ch_im_in is multiple of 4 ch_im_out is multiple of 2</p>
+<p>[1] MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications <a class="reference external" href="https://arxiv.org/abs/1704.04861">https://arxiv.org/abs/1704.04861</a> </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv428riscv_convolve_HWC_q15_basicPK5q15_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tP5q15_tK8uint16_tP5q15_tP4q7_t">
+<span id="_CPPv328riscv_convolve_HWC_q15_basicPK5q15_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tP5q15_tK8uint16_tP5q15_tP4q7_t"></span><span id="_CPPv228riscv_convolve_HWC_q15_basicPK5q15_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tP5q15_tK8uint16_tP5q15_tP4q7_t"></span><span class="target" id="group__NNConv_1ga24b8f2757e31020336b4e4d663f9f116"></span>riscv_status <code class="sig-name descname">riscv_convolve_HWC_q15_basic</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>Im_in</em>, <em class="property">const</em> uint16_t <em>dim_im_in</em>, <em class="property">const</em> uint16_t <em>ch_im_in</em>, <em class="property">const</em> q15_t *<em>wt</em>, <em class="property">const</em> uint16_t <em>ch_im_out</em>, <em class="property">const</em> uint16_t <em>dim_kernel</em>, <em class="property">const</em> uint16_t <em>padding</em>, <em class="property">const</em> uint16_t <em>stride</em>, <em class="property">const</em> q15_t *<em>bias</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, q15_t *<em>Im_out</em>, <em class="property">const</em> uint16_t <em>dim_im_out</em>, q15_t *<em>bufferA</em>, q7_t *<em>bufferB</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Basic Q15 convolution function. </p>
+<p><strong>Buffer size:</strong><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code></p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">Im_in</span></code>: pointer to input tensor </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_in</span></code>: input tensor dimention </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ch_im_in</span></code>: number of input tensor channels </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">wt</span></code>: pointer to kernel weights </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ch_im_out</span></code>: number of filters, i.e., output tensor channels </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_kernel</span></code>: filter kernel size </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">padding</span></code>: padding sizes </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">stride</span></code>: convolution stride </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias</span></code>: pointer to bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias_shift</span></code>: amount of left-shift for bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">out_shift</span></code>: amount of right-shift for output </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">Im_out</span></code>: pointer to output tensor </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_out</span></code>: output tensor dimension </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">bufferA</span></code>: pointer to buffer space for input </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">bufferB</span></code>: pointer to buffer space for output </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>bufferA size: ch_im_in*dim_kernel*dim_kernel</p>
+<p>bufferB size: 0</p>
+<p>This basic version is designed to work for any input tensor and weight dimension. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv427riscv_convolve_HWC_q15_fastPK5q15_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tP5q15_tK8uint16_tP5q15_tP4q7_t">
+<span id="_CPPv327riscv_convolve_HWC_q15_fastPK5q15_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tP5q15_tK8uint16_tP5q15_tP4q7_t"></span><span id="_CPPv227riscv_convolve_HWC_q15_fastPK5q15_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tP5q15_tK8uint16_tP5q15_tP4q7_t"></span><span class="target" id="group__NNConv_1ga9685fbf9f838fcc9306b3962bb6d04df"></span>riscv_status <code class="sig-name descname">riscv_convolve_HWC_q15_fast</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>Im_in</em>, <em class="property">const</em> uint16_t <em>dim_im_in</em>, <em class="property">const</em> uint16_t <em>ch_im_in</em>, <em class="property">const</em> q15_t *<em>wt</em>, <em class="property">const</em> uint16_t <em>ch_im_out</em>, <em class="property">const</em> uint16_t <em>dim_kernel</em>, <em class="property">const</em> uint16_t <em>padding</em>, <em class="property">const</em> uint16_t <em>stride</em>, <em class="property">const</em> q15_t *<em>bias</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, q15_t *<em>Im_out</em>, <em class="property">const</em> uint16_t <em>dim_im_out</em>, q15_t *<em>bufferA</em>, q7_t *<em>bufferB</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Fast Q15 convolution function. </p>
+<p><strong>Buffer size:</strong><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The function returns either <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SIZE_MISMATCH</span></code> or <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code> based on the outcome of size checking.</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">Im_in</span></code>: pointer to input tensor </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_in</span></code>: input tensor dimention </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ch_im_in</span></code>: number of input tensor channels </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">wt</span></code>: pointer to kernel weights </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ch_im_out</span></code>: number of filters, i.e., output tensor channels </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_kernel</span></code>: filter kernel size </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">padding</span></code>: padding sizes </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">stride</span></code>: convolution stride </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias</span></code>: pointer to bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias_shift</span></code>: amount of left-shift for bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">out_shift</span></code>: amount of right-shift for output </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">Im_out</span></code>: pointer to output tensor </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_out</span></code>: output tensor dimension </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">bufferA</span></code>: pointer to buffer space for input </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">bufferB</span></code>: pointer to buffer space for output </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>bufferA size: 2*ch_im_in*dim_kernel*dim_kernel</p>
+<p>bufferB size: 0</p>
+<p><strong>Input dimension constraints:</strong></p>
+<p>ch_im_in is multiple of 2</p>
+<p>ch_im_out is multipe of 2 </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv437riscv_convolve_HWC_q15_fast_nonsquarePK5q15_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tP5q15_tK8uint16_tK8uint16_tP5q15_tP4q7_t">
+<span id="_CPPv337riscv_convolve_HWC_q15_fast_nonsquarePK5q15_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tP5q15_tK8uint16_tK8uint16_tP5q15_tP4q7_t"></span><span id="_CPPv237riscv_convolve_HWC_q15_fast_nonsquarePK5q15_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tK8uint16_tK8uint16_tP5q15_tK8uint16_tK8uint16_tP5q15_tP4q7_t"></span><span class="target" id="group__NNConv_1ga205837a93b5bd574a95c97b7d843551c"></span>riscv_status <code class="sig-name descname">riscv_convolve_HWC_q15_fast_nonsquare</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>Im_in</em>, <em class="property">const</em> uint16_t <em>dim_im_in_x</em>, <em class="property">const</em> uint16_t <em>dim_im_in_y</em>, <em class="property">const</em> uint16_t <em>ch_im_in</em>, <em class="property">const</em> q15_t *<em>wt</em>, <em class="property">const</em> uint16_t <em>ch_im_out</em>, <em class="property">const</em> uint16_t <em>dim_kernel_x</em>, <em class="property">const</em> uint16_t <em>dim_kernel_y</em>, <em class="property">const</em> uint16_t <em>padding_x</em>, <em class="property">const</em> uint16_t <em>padding_y</em>, <em class="property">const</em> uint16_t <em>stride_x</em>, <em class="property">const</em> uint16_t <em>stride_y</em>, <em class="property">const</em> q15_t *<em>bias</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, q15_t *<em>Im_out</em>, <em class="property">const</em> uint16_t <em>dim_im_out_x</em>, <em class="property">const</em> uint16_t <em>dim_im_out_y</em>, q15_t *<em>bufferA</em>, q7_t *<em>bufferB</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Fast Q15 convolution function (non-sqaure shape) </p>
+<p><strong>Buffer size:</strong><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The function returns either <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SIZE_MISMATCH</span></code> or <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code> based on the outcome of size checking.</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">Im_in</span></code>: pointer to input tensor </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_in_x</span></code>: input tensor dimention x </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_in_y</span></code>: input tensor dimention y </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ch_im_in</span></code>: number of input tensor channels </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">wt</span></code>: pointer to kernel weights </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ch_im_out</span></code>: number of filters, i.e., output tensor channels </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_kernel_x</span></code>: filter kernel size x </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_kernel_y</span></code>: filter kernel size y </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">padding_x</span></code>: padding size x </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">padding_y</span></code>: padding size y </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">stride_x</span></code>: convolution stride x </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">stride_y</span></code>: convolution stride y </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias</span></code>: pointer to bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias_shift</span></code>: amount of left-shift for bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">out_shift</span></code>: amount of right-shift for output </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">Im_out</span></code>: pointer to output tensor </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_out_x</span></code>: output tensor dimension x </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_out_y</span></code>: output tensor dimension y </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">bufferA</span></code>: pointer to buffer space for input </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">bufferB</span></code>: pointer to buffer space for output </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>bufferA size: 2*ch_im_in*dim_kernel*dim_kernel</p>
+<p>bufferB size: 0</p>
+<p><strong>Input dimension constraints:</strong></p>
+<p>ch_im_in is multiple of 2</p>
+<p>ch_im_out is multipe of 2 </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv427riscv_convolve_HWC_q7_basicPK4q7_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tP5q15_tP4q7_t">
+<span id="_CPPv327riscv_convolve_HWC_q7_basicPK4q7_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tP5q15_tP4q7_t"></span><span id="_CPPv227riscv_convolve_HWC_q7_basicPK4q7_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tP5q15_tP4q7_t"></span><span class="target" id="group__NNConv_1ga053353a7bdfca7d1aa9461210048d74a"></span>riscv_status <code class="sig-name descname">riscv_convolve_HWC_q7_basic</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>Im_in</em>, <em class="property">const</em> uint16_t <em>dim_im_in</em>, <em class="property">const</em> uint16_t <em>ch_im_in</em>, <em class="property">const</em> q7_t *<em>wt</em>, <em class="property">const</em> uint16_t <em>ch_im_out</em>, <em class="property">const</em> uint16_t <em>dim_kernel</em>, <em class="property">const</em> uint16_t <em>padding</em>, <em class="property">const</em> uint16_t <em>stride</em>, <em class="property">const</em> q7_t *<em>bias</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, q7_t *<em>Im_out</em>, <em class="property">const</em> uint16_t <em>dim_im_out</em>, q15_t *<em>bufferA</em>, q7_t *<em>bufferB</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Basic Q7 convolution function. </p>
+<p><strong>Buffer size:</strong><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code></p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">Im_in</span></code>: pointer to input tensor </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_in</span></code>: input tensor dimention </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ch_im_in</span></code>: number of input tensor channels </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">wt</span></code>: pointer to kernel weights </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ch_im_out</span></code>: number of filters, i.e., output tensor channels </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_kernel</span></code>: filter kernel size </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">padding</span></code>: padding sizes </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">stride</span></code>: convolution stride </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias</span></code>: pointer to bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias_shift</span></code>: amount of left-shift for bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">out_shift</span></code>: amount of right-shift for output </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">Im_out</span></code>: pointer to output tensor </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_out</span></code>: output tensor dimension </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">bufferA</span></code>: pointer to buffer space for input </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">bufferB</span></code>: pointer to buffer space for output </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>bufferA size: 2*ch_im_in*dim_kernel*dim_kernel</p>
+<p>bufferB size: 0</p>
+<p>This basic version is designed to work for any input tensor and weight dimension. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv437riscv_convolve_HWC_q7_basic_nonsquarePK4q7_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tK8uint16_tP5q15_tP4q7_t">
+<span id="_CPPv337riscv_convolve_HWC_q7_basic_nonsquarePK4q7_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tK8uint16_tP5q15_tP4q7_t"></span><span id="_CPPv237riscv_convolve_HWC_q7_basic_nonsquarePK4q7_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tK8uint16_tP5q15_tP4q7_t"></span><span class="target" id="group__NNConv_1ga2434b44e25c1c62c6c9da25382bd3e08"></span>riscv_status <code class="sig-name descname">riscv_convolve_HWC_q7_basic_nonsquare</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>Im_in</em>, <em class="property">const</em> uint16_t <em>dim_im_in_x</em>, <em class="property">const</em> uint16_t <em>dim_im_in_y</em>, <em class="property">const</em> uint16_t <em>ch_im_in</em>, <em class="property">const</em> q7_t *<em>wt</em>, <em class="property">const</em> uint16_t <em>ch_im_out</em>, <em class="property">const</em> uint16_t <em>dim_kernel_x</em>, <em class="property">const</em> uint16_t <em>dim_kernel_y</em>, <em class="property">const</em> uint16_t <em>padding_x</em>, <em class="property">const</em> uint16_t <em>padding_y</em>, <em class="property">const</em> uint16_t <em>stride_x</em>, <em class="property">const</em> uint16_t <em>stride_y</em>, <em class="property">const</em> q7_t *<em>bias</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, q7_t *<em>Im_out</em>, <em class="property">const</em> uint16_t <em>dim_im_out_x</em>, <em class="property">const</em> uint16_t <em>dim_im_out_y</em>, q15_t *<em>bufferA</em>, q7_t *<em>bufferB</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Basic Q7 convolution function (non-sqaure shape) </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">Im_in</span></code>: pointer to input tensor </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_in_x</span></code>: input tensor dimention x </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_in_y</span></code>: input tensor dimention y </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ch_im_in</span></code>: number of input tensor channels </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">wt</span></code>: pointer to kernel weights </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ch_im_out</span></code>: number of filters, i.e., output tensor channels </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_kernel_x</span></code>: filter kernel size x </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_kernel_y</span></code>: filter kernel size y </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">padding_x</span></code>: padding size x </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">padding_y</span></code>: padding size y </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">stride_x</span></code>: convolution stride x </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">stride_y</span></code>: convolution stride y </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias</span></code>: pointer to bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias_shift</span></code>: amount of left-shift for bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">out_shift</span></code>: amount of right-shift for output </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">Im_out</span></code>: pointer to output tensor </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_out_x</span></code>: output tensor dimension x </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_out_y</span></code>: output tensor dimension y </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">bufferA</span></code>: pointer to buffer space for input </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">bufferB</span></code>: pointer to buffer space for output </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv426riscv_convolve_HWC_q7_fastPK4q7_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tP5q15_tP4q7_t">
+<span id="_CPPv326riscv_convolve_HWC_q7_fastPK4q7_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tP5q15_tP4q7_t"></span><span id="_CPPv226riscv_convolve_HWC_q7_fastPK4q7_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tP5q15_tP4q7_t"></span><span class="target" id="group__NNConv_1gaad778ec0d290ffa07f58c5b32cb8a80b"></span>riscv_status <code class="sig-name descname">riscv_convolve_HWC_q7_fast</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>Im_in</em>, <em class="property">const</em> uint16_t <em>dim_im_in</em>, <em class="property">const</em> uint16_t <em>ch_im_in</em>, <em class="property">const</em> q7_t *<em>wt</em>, <em class="property">const</em> uint16_t <em>ch_im_out</em>, <em class="property">const</em> uint16_t <em>dim_kernel</em>, <em class="property">const</em> uint16_t <em>padding</em>, <em class="property">const</em> uint16_t <em>stride</em>, <em class="property">const</em> q7_t *<em>bias</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, q7_t *<em>Im_out</em>, <em class="property">const</em> uint16_t <em>dim_im_out</em>, q15_t *<em>bufferA</em>, q7_t *<em>bufferB</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Fast Q7 convolution function. </p>
+<p><strong>Buffer size:</strong><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The function returns either <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SIZE_MISMATCH</span></code> or <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code> based on the outcome of size checking.</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">Im_in</span></code>: pointer to input tensor </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_in</span></code>: input tensor dimention </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ch_im_in</span></code>: number of input tensor channels </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">wt</span></code>: pointer to kernel weights </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ch_im_out</span></code>: number of filters, i.e., output tensor channels </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_kernel</span></code>: filter kernel size </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">padding</span></code>: padding sizes </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">stride</span></code>: convolution stride </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias</span></code>: pointer to bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias_shift</span></code>: amount of left-shift for bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">out_shift</span></code>: amount of right-shift for output </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">Im_out</span></code>: pointer to output tensor </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_out</span></code>: output tensor dimension </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">bufferA</span></code>: pointer to buffer space for input </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">bufferB</span></code>: pointer to buffer space for output </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>bufferA size: 2*ch_im_in*dim_kernel*dim_kernel</p>
+<p>bufferB size: 0</p>
+<p><strong>Input dimension constraints:</strong></p>
+<p>ch_im_in is multiple of 4 ( because of the SIMD32 read and swap )</p>
+<p>ch_im_out is multipe of 2 ( bacause 2x2 mat_mult kernel )</p>
+<p>The im2col converts the Q7 tensor input into Q15 column, which is stored in bufferA. There is reordering happenning during this im2col process with riscv_q7_to_q15_reordered_no_shift. For every four elements, the second and third elements are swapped.</p>
+<p>The computation kernel riscv_nn_mat_mult_kernel_q7_q15_reordered does the GEMM computation with the reordered columns.</p>
+<p>To speed-up the determination of the padding condition, we split the computation into 3x3 parts, i.e., {top, mid, bottom} X {left, mid, right}. This reduces the total number of boundary condition checks and improves the data copying performance. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv436riscv_convolve_HWC_q7_fast_nonsquarePK4q7_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tK8uint16_tP5q15_tP4q7_t">
+<span id="_CPPv336riscv_convolve_HWC_q7_fast_nonsquarePK4q7_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tK8uint16_tP5q15_tP4q7_t"></span><span id="_CPPv236riscv_convolve_HWC_q7_fast_nonsquarePK4q7_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tK8uint16_tP5q15_tP4q7_t"></span><span class="target" id="group__NNConv_1gaea6b13bcf602586c83033ce6310b1ca5"></span>riscv_status <code class="sig-name descname">riscv_convolve_HWC_q7_fast_nonsquare</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>Im_in</em>, <em class="property">const</em> uint16_t <em>dim_im_in_x</em>, <em class="property">const</em> uint16_t <em>dim_im_in_y</em>, <em class="property">const</em> uint16_t <em>ch_im_in</em>, <em class="property">const</em> q7_t *<em>wt</em>, <em class="property">const</em> uint16_t <em>ch_im_out</em>, <em class="property">const</em> uint16_t <em>dim_kernel_x</em>, <em class="property">const</em> uint16_t <em>dim_kernel_y</em>, <em class="property">const</em> uint16_t <em>padding_x</em>, <em class="property">const</em> uint16_t <em>padding_y</em>, <em class="property">const</em> uint16_t <em>stride_x</em>, <em class="property">const</em> uint16_t <em>stride_y</em>, <em class="property">const</em> q7_t *<em>bias</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, q7_t *<em>Im_out</em>, <em class="property">const</em> uint16_t <em>dim_im_out_x</em>, <em class="property">const</em> uint16_t <em>dim_im_out_y</em>, q15_t *<em>bufferA</em>, q7_t *<em>bufferB</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Fast Q7 convolution function (non-sqaure shape) </p>
+<p><p>This function is the version with full list of optimization tricks, but with some contraints: ch_im_in is multiple of 4 ch_im_out is multiple of 2 </p>
+<dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The function returns either <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SIZE_MISMATCH</span></code> or <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code> based on the outcome of size checking.</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">Im_in</span></code>: pointer to input tensor </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_in_x</span></code>: input tensor dimention x </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_in_y</span></code>: input tensor dimention y </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ch_im_in</span></code>: number of input tensor channels </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">wt</span></code>: pointer to kernel weights </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ch_im_out</span></code>: number of filters, i.e., output tensor channels </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_kernel_x</span></code>: filter kernel size x </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_kernel_y</span></code>: filter kernel size y </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">padding_x</span></code>: padding size x </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">padding_y</span></code>: padding size y </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">stride_x</span></code>: convolution stride x </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">stride_y</span></code>: convolution stride y </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias</span></code>: pointer to bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias_shift</span></code>: amount of left-shift for bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">out_shift</span></code>: amount of right-shift for output </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">Im_out</span></code>: pointer to output tensor </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_out_x</span></code>: output tensor dimension x </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_out_y</span></code>: output tensor dimension y </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">bufferA</span></code>: pointer to buffer space for input </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">bufferB</span></code>: pointer to buffer space for output </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv425riscv_convolve_HWC_q7_RGBPK4q7_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tP5q15_tP4q7_t">
+<span id="_CPPv325riscv_convolve_HWC_q7_RGBPK4q7_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tP5q15_tP4q7_t"></span><span id="_CPPv225riscv_convolve_HWC_q7_RGBPK4q7_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tP5q15_tP4q7_t"></span><span class="target" id="group__NNConv_1ga0a64a6e39851c858266bcb1227a431d4"></span>riscv_status <code class="sig-name descname">riscv_convolve_HWC_q7_RGB</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>Im_in</em>, <em class="property">const</em> uint16_t <em>dim_im_in</em>, <em class="property">const</em> uint16_t <em>ch_im_in</em>, <em class="property">const</em> q7_t *<em>wt</em>, <em class="property">const</em> uint16_t <em>ch_im_out</em>, <em class="property">const</em> uint16_t <em>dim_kernel</em>, <em class="property">const</em> uint16_t <em>padding</em>, <em class="property">const</em> uint16_t <em>stride</em>, <em class="property">const</em> q7_t *<em>bias</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, q7_t *<em>Im_out</em>, <em class="property">const</em> uint16_t <em>dim_im_out</em>, q15_t *<em>bufferA</em>, q7_t *<em>bufferB</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Q7 convolution function for RGB image. </p>
+<p>Q7 version of convolution for RGB image.</p>
+<p><strong>Buffer size:</strong><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The function returns either <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SIZE_MISMATCH</span></code> or <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code> based on the outcome of size checking.</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">Im_in</span></code>: pointer to input tensor </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_in</span></code>: input tensor dimention </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ch_im_in</span></code>: number of input tensor channels </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">wt</span></code>: pointer to kernel weights </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ch_im_out</span></code>: number of filters, i.e., output tensor channels </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_kernel</span></code>: filter kernel size </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">padding</span></code>: padding sizes </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">stride</span></code>: convolution stride </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias</span></code>: pointer to bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias_shift</span></code>: amount of left-shift for bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">out_shift</span></code>: amount of right-shift for output </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">Im_out</span></code>: pointer to output tensor </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_out</span></code>: output tensor dimension </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">bufferA</span></code>: pointer to buffer space for input </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">bufferB</span></code>: pointer to buffer space for output </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>bufferA size: 2*ch_im_in*dim_kernel*dim_kernel</p>
+<p>bufferB size: 0</p>
+<p><strong>Input dimension constraints:</strong></p>
+<p>ch_im_in equals 3</p>
+<p>This kernel is written exclusively for convolution with ch_im_in equals 3. This applies on the first layer of CNNs which has input image with RGB format. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv434riscv_depthwise_conv_u8_basic_ver1PK7uint8_tK8uint16_tK8uint16_tK8uint16_tPK7uint8_tK8uint16_tK8uint16_tK7int16_tK7int16_tK7int16_tK7int16_tK7int16_tK7int16_tK7int16_tPK7int32_tK7int32_tK7int32_tK7int32_tP7uint8_tK8uint16_tK8uint16_tK7int32_tK7int32_tK7int32_tK7int32_t">
+<span id="_CPPv334riscv_depthwise_conv_u8_basic_ver1PK7uint8_tK8uint16_tK8uint16_tK8uint16_tPK7uint8_tK8uint16_tK8uint16_tK7int16_tK7int16_tK7int16_tK7int16_tK7int16_tK7int16_tK7int16_tPK7int32_tK7int32_tK7int32_tK7int32_tP7uint8_tK8uint16_tK8uint16_tK7int32_tK7int32_tK7int32_tK7int32_t"></span><span id="_CPPv234riscv_depthwise_conv_u8_basic_ver1PK7uint8_tK8uint16_tK8uint16_tK8uint16_tPK7uint8_tK8uint16_tK8uint16_tK7int16_tK7int16_tK7int16_tK7int16_tK7int16_tK7int16_tK7int16_tPK7int32_tK7int32_tK7int32_tK7int32_tP7uint8_tK8uint16_tK8uint16_tK7int32_tK7int32_tK7int32_tK7int32_t"></span><span class="target" id="group__NNConv_1ga25c24026b0cc0d52852ca840d49774b8"></span>riscv_status <code class="sig-name descname">riscv_depthwise_conv_u8_basic_ver1</code><span class="sig-paren">(</span><em class="property">const</em> uint8_t *<em>input</em>, <em class="property">const</em> uint16_t <em>input_x</em>, <em class="property">const</em> uint16_t <em>input_y</em>, <em class="property">const</em> uint16_t <em>input_ch</em>, <em class="property">const</em> uint8_t *<em>kernel</em>, <em class="property">const</em> uint16_t <em>kernel_x</em>, <em class="property">const</em> uint16_t <em>kernel_y</em>, <em class="property">const</em> int16_t <em>ch_mult</em>, <em class="property">const</em> int16_t <em>pad_x</em>, <em class="property">const</em> int16_t <em>pad_y</em>, <em class="property">const</em> int16_t <em>stride_x</em>, <em class="property">const</em> int16_t <em>stride_y</em>, <em class="property">const</em> int16_t <em>dilation_x</em>, <em class="property">const</em> int16_t <em>dilation_y</em>, <em class="property">const</em> int32_t *<em>bias</em>, <em class="property">const</em> int32_t <em>input_offset</em>, <em class="property">const</em> int32_t <em>filter_offset</em>, <em class="property">const</em> int32_t <em>output_offset</em>, uint8_t *<em>output</em>, <em class="property">const</em> uint16_t <em>output_x</em>, <em class="property">const</em> uint16_t <em>output_y</em>, <em class="property">const</em> int32_t <em>output_activation_min</em>, <em class="property">const</em> int32_t <em>output_activation_max</em>, <em class="property">const</em> int32_t <em>out_shift</em>, <em class="property">const</em> int32_t <em>out_mult</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>uint8 depthwise convolution function with asymmetric quantization for even number of channel multiplier and input channels. Unless specified otherwise, arguments are mandatory. Both square and non-square inputs are accepted. </p>
+<p>uint8 depthwise convolution function with asymmetric quantization for even number of channel multiplier and input channels. Unless specified otherwise, arguments are mandatory.</p>
+<p><strong> Input constraints</strong> ch_mult is multiple of 2 kernel_x is multiple of 2 <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The function returns one of the following <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SIZE_MISMATCH</span></code> - Not supported dimension of tensors <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code> - Successful operation <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_ARGUMENT_ERROR</span></code> - Implementation not available</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">input</span></code>: Pointer to input tensor </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">input_x</span></code>: Width of input tensor </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">input_y</span></code>: Height of input tensor </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">input_ch</span></code>: Channels in input tensor </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">kernel</span></code>: Pointer to kernel weights </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">kernel_x</span></code>: Width of kernel </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">kernel_y</span></code>: Height of kernel </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ch_mult</span></code>: Number of channel multiplier </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pad_x</span></code>: Padding sizes x </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pad_y</span></code>: Padding sizes y </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">stride_x</span></code>: Convolution stride along the width </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">stride_y</span></code>: Convolution stride along the height </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dilation_x</span></code>: Dilation along width. Not used and intended for future enhancement. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dilation_y</span></code>: Dilation along height. Not used and intended for future enhancement. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias</span></code>: Pointer to optional bias values. If no bias is availble, NULL is expected </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">input_offset</span></code>: Input tensor zero offset </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">filter_offset</span></code>: Kernel tensor zero offset </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">output_offset</span></code>: Output tensor zero offset </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">output</span></code>: Pointer to output tensor </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">output_x</span></code>: Width of output tensor </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">output_y</span></code>: Height of output tensor </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">output_activation_min</span></code>: Minimum value to clamp the output to. Range : {0, 255} </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">output_activation_max</span></code>: Minimum value to clamp the output to. Range : {0, 255} </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">out_shift</span></code>: Amount of right-shift for output </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">out_mult</span></code>: Output multiplier for requantization </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv437riscv_depthwise_separable_conv_HWC_q7PK4q7_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tP5q15_tP4q7_t">
+<span id="_CPPv337riscv_depthwise_separable_conv_HWC_q7PK4q7_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tP5q15_tP4q7_t"></span><span id="_CPPv237riscv_depthwise_separable_conv_HWC_q7PK4q7_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tP5q15_tP4q7_t"></span><span class="target" id="group__NNConv_1ga73a880af4ffcae5ba0229a20890b05d4"></span>riscv_status <code class="sig-name descname">riscv_depthwise_separable_conv_HWC_q7</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>Im_in</em>, <em class="property">const</em> uint16_t <em>dim_im_in</em>, <em class="property">const</em> uint16_t <em>ch_im_in</em>, <em class="property">const</em> q7_t *<em>wt</em>, <em class="property">const</em> uint16_t <em>ch_im_out</em>, <em class="property">const</em> uint16_t <em>dim_kernel</em>, <em class="property">const</em> uint16_t <em>padding</em>, <em class="property">const</em> uint16_t <em>stride</em>, <em class="property">const</em> q7_t *<em>bias</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, q7_t *<em>Im_out</em>, <em class="property">const</em> uint16_t <em>dim_im_out</em>, q15_t *<em>bufferA</em>, q7_t *<em>bufferB</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Q7 depthwise separable convolution function. </p>
+<p><strong>Buffer size:</strong><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The function returns either <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SIZE_MISMATCH</span></code> or <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code> based on the outcome of size checking.</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">Im_in</span></code>: pointer to input tensor </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_in</span></code>: input tensor dimention </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ch_im_in</span></code>: number of input tensor channels </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">wt</span></code>: pointer to kernel weights </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ch_im_out</span></code>: number of filters, i.e., output tensor channels </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_kernel</span></code>: filter kernel size </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">padding</span></code>: padding sizes </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">stride</span></code>: convolution stride </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias</span></code>: pointer to bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias_shift</span></code>: amount of left-shift for bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">out_shift</span></code>: amount of right-shift for output </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">Im_out</span></code>: pointer to output tensor </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_out</span></code>: output tensor dimension </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">bufferA</span></code>: pointer to buffer space for input </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">bufferB</span></code>: pointer to buffer space for output </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>bufferA size: 2*ch_im_in*dim_kernel*dim_kernel</p>
+<p>bufferB size: 0</p>
+<p><strong>Input dimension constraints:</strong></p>
+<p>ch_im_in equals ch_im_out</p>
+<p>Implementation: There are 3 nested loop here: Inner loop: calculate each output value with MAC instruction over an accumulator Mid loop: loop over different output channel Outer loop: loop over different output (x, y) </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv447riscv_depthwise_separable_conv_HWC_q7_nonsquarePK4q7_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tK8uint16_tP5q15_tP4q7_t">
+<span id="_CPPv347riscv_depthwise_separable_conv_HWC_q7_nonsquarePK4q7_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tK8uint16_tP5q15_tP4q7_t"></span><span id="_CPPv247riscv_depthwise_separable_conv_HWC_q7_nonsquarePK4q7_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tK8uint16_tK8uint16_tP4q7_tK8uint16_tK8uint16_tP5q15_tP4q7_t"></span><span class="target" id="group__NNConv_1gaec2d2b8c1536a08db1811d8971f20f66"></span>riscv_status <code class="sig-name descname">riscv_depthwise_separable_conv_HWC_q7_nonsquare</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>Im_in</em>, <em class="property">const</em> uint16_t <em>dim_im_in_x</em>, <em class="property">const</em> uint16_t <em>dim_im_in_y</em>, <em class="property">const</em> uint16_t <em>ch_im_in</em>, <em class="property">const</em> q7_t *<em>wt</em>, <em class="property">const</em> uint16_t <em>ch_im_out</em>, <em class="property">const</em> uint16_t <em>dim_kernel_x</em>, <em class="property">const</em> uint16_t <em>dim_kernel_y</em>, <em class="property">const</em> uint16_t <em>padding_x</em>, <em class="property">const</em> uint16_t <em>padding_y</em>, <em class="property">const</em> uint16_t <em>stride_x</em>, <em class="property">const</em> uint16_t <em>stride_y</em>, <em class="property">const</em> q7_t *<em>bias</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, q7_t *<em>Im_out</em>, <em class="property">const</em> uint16_t <em>dim_im_out_x</em>, <em class="property">const</em> uint16_t <em>dim_im_out_y</em>, q15_t *<em>bufferA</em>, q7_t *<em>bufferB</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Q7 depthwise separable convolution function (non-square shape) </p>
+<p><p>This function is the version with full list of optimization tricks, but with some contraints: ch_im_in is multiple of 2 ch_im_out is multiple of 2 </p>
+<dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The function returns either <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SIZE_MISMATCH</span></code> or <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code> based on the outcome of size checking.</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">Im_in</span></code>: pointer to input tensor </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_in_x</span></code>: input tensor dimention x </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_in_y</span></code>: input tensor dimention y </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ch_im_in</span></code>: number of input tensor channels </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">wt</span></code>: pointer to kernel weights </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ch_im_out</span></code>: number of filters, i.e., output tensor channels </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_kernel_x</span></code>: filter kernel size x </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_kernel_y</span></code>: filter kernel size y </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">padding_x</span></code>: padding sizes x </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">padding_y</span></code>: padding sizes y </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">stride_x</span></code>: convolution stride x </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">stride_y</span></code>: convolution stride y </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias</span></code>: pointer to bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias_shift</span></code>: amount of left-shift for bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">out_shift</span></code>: amount of right-shift for output </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">Im_out</span></code>: pointer to output tensor </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_out_x</span></code>: output tensor dimension x </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_out_y</span></code>: output tensor dimension y </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">bufferA</span></code>: pointer to buffer space for input </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">bufferB</span></code>: pointer to buffer space for output </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api_fc.html" class="btn btn-neutral float-right" title="Fully-connected Layer Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api_acti.html" class="btn btn-neutral float-left" title="Neural Network Activation Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Nuclei
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

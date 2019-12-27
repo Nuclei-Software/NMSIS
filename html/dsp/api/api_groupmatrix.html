@@ -1,0 +1,278 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Matrix Functions &mdash; NMSIS 1.0.0-alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Matrix Addition" href="groupmatrix/api_matrixadd.html" />
+    <link rel="prev" title="Finite Impulse Response (FIR) Interpolator" href="groupfilters/api_fir_interpolate.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">NMSIS DSP</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started.html">Using NMSIS-DSP</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="api_groupmath.html">Basic Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupfastmath.html">Fast Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupcmplxmath.html">Complex Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupfilters.html">Filtering Functions</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Matrix Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="groupmatrix/api_matrixadd.html">Matrix Addition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="groupmatrix/api_cmplxmatrixmult.html">Complex Matrix Multiplication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="groupmatrix/api_matrixinit.html">Matrix Initialization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="groupmatrix/api_matrixinv.html">Matrix Inverse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="groupmatrix/api_matrixmult.html">Matrix Multiplication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="groupmatrix/api_matrixscale.html">Matrix Scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="groupmatrix/api_matrixsub.html">Matrix Subtraction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="groupmatrix/api_matrixtrans.html">Matrix Transpose</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api_grouptransforms.html">Transform Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupcontroller.html">Controller Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupstats.html">Statistics Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupsupport.html">Support Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupinterpolation.html">Interpolation Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupexamples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">NMSIS DSP</a> &raquo;</li>
+        
+          <li><a href="index.html">NMSIS DSP API</a> &raquo;</li>
+        
+      <li>Matrix Functions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/dsp/api/api_groupmatrix.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="matrix-functions">
+<span id="nmsis-dsp-api-matrix-functions"></span><h1>Matrix Functions<a class="headerlink" href="#matrix-functions" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="groupmatrix/api_matrixadd.html">Matrix Addition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="groupmatrix/api_cmplxmatrixmult.html">Complex Matrix Multiplication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="groupmatrix/api_matrixinit.html">Matrix Initialization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="groupmatrix/api_matrixinv.html">Matrix Inverse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="groupmatrix/api_matrixmult.html">Matrix Multiplication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="groupmatrix/api_matrixscale.html">Matrix Scale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="groupmatrix/api_matrixsub.html">Matrix Subtraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="groupmatrix/api_matrixtrans.html">Matrix Transpose</a></li>
+</ul>
+</div>
+<dl class="group">
+<dt>
+<span class="target" id="group__groupMatrix"></span><em>group</em> <code class="sig-name descname">groupMatrix</code></dt>
+<dd><p>This set of functions provides basic matrix math operations. The functions operate on matrix data structures. For example, the type definition for the floating-point matrix structure is shown below:  There are similar definitions for Q15 and Q31 data types.</p>
+<p>The structure specifies the size of the matrix and then points to an array of data. The array is of size <code class="docutils literal notranslate"><span class="pre">numRows</span> <span class="pre">X</span> <span class="pre">numCols</span></code> and the values are arranged in row order. That is, the matrix element (i, j) is stored at: </p>
+<p><dl class="simple">
+<dt><strong>Init Functions</strong></dt><dd><p>There is an associated initialization function for each type of matrix data structure. The initialization function sets the values of the internal structure fields. Refer to riscv_mat_init_f32(), riscv_mat_init_q31() and riscv_mat_init_q15() for floating-point, Q31 and Q15 types, respectively.</p>
+</dd>
+<dt><strong></strong></dt><dd><p>Use of the initialization function is optional. However, if initialization function is used then the instance structure cannot be placed into a const data section. To place the instance structure in a const data section, manually initialize the data structure. For example:  where <code class="docutils literal notranslate"><span class="pre">nRows</span></code> specifies the number of rows, <code class="docutils literal notranslate"><span class="pre">nColumns</span></code> specifies the number of columns, and <code class="docutils literal notranslate"><span class="pre">pData</span></code> points to the data array.</p>
+</dd>
+<dt><strong>Size Checking</strong></dt><dd><p>By default all of the matrix functions perform size checking on the input and output matrices. For example, the matrix addition function verifies that the two input matrices and the output matrix all have the same number of rows and columns. If the size check fails the functions return:  Otherwise the functions return  There is some overhead associated with this matrix size checking. The matrix size checking is enabled via the #define  within the library project settings. By default this macro is defined and size checking is enabled. By changing the project settings and undefining this macro size checking is eliminated and the functions run a bit faster. With size checking disabled the functions always return <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code>. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="groupmatrix/api_matrixadd.html" class="btn btn-neutral float-right" title="Matrix Addition" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="groupfilters/api_fir_interpolate.html" class="btn btn-neutral float-left" title="Finite Impulse Response (FIR) Interpolator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Nuclei
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

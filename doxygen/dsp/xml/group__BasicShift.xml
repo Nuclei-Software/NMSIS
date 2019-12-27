@@ -1,0 +1,196 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="group__BasicShift" kind="group">
+    <compoundname>BasicShift</compoundname>
+    <title>Vector Shift</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__BasicShift_1ga56c338a145652565944ab76e56f12355" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_shift_q15</definition>
+        <argsstring>(const q15_t *pSrc, int8_t shiftBits, q15_t *pDst, uint32_t blockSize)</argsstring>
+        <name>riscv_shift_q15</name>
+        <param>
+          <type>const q15_t *</type>
+          <declname>pSrc</declname>
+        </param>
+        <param>
+          <type>int8_t</type>
+          <declname>shiftBits</declname>
+        </param>
+        <param>
+          <type>q15_t *</type>
+          <declname>pDst</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Shifts the elements of a Q15 vector a specified number of bits. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the input vector </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">shiftBits</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of bits to shift. A positive value shifts left; a negative value shifts right. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the output vector </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples in each vector </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Scaling and Overflow Behavior</title><para>The function uses saturating arithmetic. Results outside of the allowable Q15 range [0x8000 0x7FFF] are saturated. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/BasicMathFunctions/riscv_shift_q15.c" line="54" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/BasicMathFunctions/riscv_shift_q15.c" bodystart="54" bodyend="202"/>
+      </memberdef>
+      <memberdef kind="function" id="group__BasicShift_1ga685be7695f2fef9bca1fec96f3ca8c80" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_shift_q31</definition>
+        <argsstring>(const q31_t *pSrc, int8_t shiftBits, q31_t *pDst, uint32_t blockSize)</argsstring>
+        <name>riscv_shift_q31</name>
+        <param>
+          <type>const q31_t *</type>
+          <declname>pSrc</declname>
+        </param>
+        <param>
+          <type>int8_t</type>
+          <declname>shiftBits</declname>
+        </param>
+        <param>
+          <type>q31_t *</type>
+          <declname>pDst</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Shifts the elements of a Q31 vector a specified number of bits. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the input vector </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">shiftBits</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of bits to shift. A positive value shifts left; a negative value shifts right. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the output vector </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples in the vector </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Scaling and Overflow Behavior</title><para>The function uses saturating arithmetic. Results outside of the allowable Q31 range [0x80000000 0x7FFFFFFF] are saturated. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/BasicMathFunctions/riscv_shift_q31.c" line="71" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/BasicMathFunctions/riscv_shift_q31.c" bodystart="71" bodyend="178"/>
+      </memberdef>
+      <memberdef kind="function" id="group__BasicShift_1gacb31cecc3cb6800f583a03898ad4f9f1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_shift_q7</definition>
+        <argsstring>(const q7_t *pSrc, int8_t shiftBits, q7_t *pDst, uint32_t blockSize)</argsstring>
+        <name>riscv_shift_q7</name>
+        <param>
+          <type>const q7_t *</type>
+          <declname>pSrc</declname>
+        </param>
+        <param>
+          <type>int8_t</type>
+          <declname>shiftBits</declname>
+        </param>
+        <param>
+          <type>q7_t *</type>
+          <declname>pDst</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Shifts the elements of a Q7 vector a specified number of bits. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the input vector </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">shiftBits</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of bits to shift. A positive value shifts left; a negative value shifts right. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the output vector </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples in each vector </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>onditions for optimum performance</title><para>Input and output buffers should be aligned by 32-bit </para></simplesect>
+<simplesect kind="par"><title>Scaling and Overflow Behavior</title><para>The function uses saturating arithmetic. Results outside of the allowable Q7 range [0x80 0x7F] are saturated. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/BasicMathFunctions/riscv_shift_q7.c" line="56" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/BasicMathFunctions/riscv_shift_q7.c" bodystart="56" bodyend="192"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Shifts the elements of a fixed-point vector by a specified number of bits. There are separate functions for Q7, Q15, and Q31 data types. The underlying algorithm used is:</para><para><preformatted>
+    pDst[n] = pSrc[n] &lt;&lt; shift,   0 &lt;= n &lt; blockSize.
+</preformatted></para><para>If <computeroutput>shift</computeroutput> is positive then the elements of the vector are shifted to the left. If <computeroutput>shift</computeroutput> is negative then the elements of the vector are shifted to the right.</para><para>The functions support in-place computation allowing the source and destination pointers to reference the same memory buffer. </para>    </detaileddescription>
+  </compounddef>
+</doxygen>

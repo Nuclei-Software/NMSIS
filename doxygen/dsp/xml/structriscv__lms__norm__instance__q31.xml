@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="structriscv__lms__norm__instance__q31" kind="struct" language="C++" prot="public">
+    <compoundname>riscv_lms_norm_instance_q31</compoundname>
+    <includes local="no">riscv_math.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structriscv__lms__norm__instance__q31_1aa6509e11669c09393ddb43a032fd53a4" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t riscv_lms_norm_instance_q31::numTaps</definition>
+        <argsstring></argsstring>
+        <name>numTaps</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>number of coefficients in the filter. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" line="4283" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" bodystart="4283" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structriscv__lms__norm__instance__q31_1a7ea77d9eaf49db8064cbbeddc750ff29" prot="public" static="no" mutable="no">
+        <type>q31_t *</type>
+        <definition>q31_t* riscv_lms_norm_instance_q31::pState</definition>
+        <argsstring></argsstring>
+        <name>pState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>points to the state variable array. The array is of length numTaps+blockSize-1. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" line="4284" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" bodystart="4284" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structriscv__lms__norm__instance__q31_1a524e14dd7d980dc90257ed18257910f0" prot="public" static="no" mutable="no">
+        <type>q31_t *</type>
+        <definition>q31_t* riscv_lms_norm_instance_q31::pCoeffs</definition>
+        <argsstring></argsstring>
+        <name>pCoeffs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>points to the coefficient array. The array is of length numTaps. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" line="4285" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" bodystart="4285" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structriscv__lms__norm__instance__q31_1a0a675dfe35217348b087ec22e9f4180f" prot="public" static="no" mutable="no">
+        <type>q31_t</type>
+        <definition>q31_t riscv_lms_norm_instance_q31::mu</definition>
+        <argsstring></argsstring>
+        <name>mu</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>step size that controls filter coefficient updates. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" line="4286" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" bodystart="4286" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structriscv__lms__norm__instance__q31_1a4c2040229bd0b7de46baab37631011e5" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t riscv_lms_norm_instance_q31::postShift</definition>
+        <argsstring></argsstring>
+        <name>postShift</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>bit shift applied to coefficients. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" line="4287" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" bodystart="4287" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structriscv__lms__norm__instance__q31_1a5abeb3a64102e8f5b99ebb23094722fd" prot="public" static="no" mutable="no">
+        <type>const q31_t *</type>
+        <definition>const q31_t* riscv_lms_norm_instance_q31::recipTable</definition>
+        <argsstring></argsstring>
+        <name>recipTable</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>points to the reciprocal initial value table. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" line="4288" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" bodystart="4288" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structriscv__lms__norm__instance__q31_1ada6559b6e6f9823af920a592ede7ab55" prot="public" static="no" mutable="no">
+        <type>q31_t</type>
+        <definition>q31_t riscv_lms_norm_instance_q31::energy</definition>
+        <argsstring></argsstring>
+        <name>energy</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>saves previous frame energy. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" line="4289" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" bodystart="4289" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structriscv__lms__norm__instance__q31_1a9ac7cbc99606e189266c345e106ebe25" prot="public" static="no" mutable="no">
+        <type>q31_t</type>
+        <definition>q31_t riscv_lms_norm_instance_q31::x0</definition>
+        <argsstring></argsstring>
+        <name>x0</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>saves previous input sample. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" line="4290" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" bodystart="4290" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Instance structure for the Q31 normalized LMS filter. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" line="4282" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" bodystart="4281" bodyend="4291"/>
+    <listofallmembers>
+      <member refid="structriscv__lms__norm__instance__q31_1ada6559b6e6f9823af920a592ede7ab55" prot="public" virt="non-virtual"><scope>riscv_lms_norm_instance_q31</scope><name>energy</name></member>
+      <member refid="structriscv__lms__norm__instance__q31_1a0a675dfe35217348b087ec22e9f4180f" prot="public" virt="non-virtual"><scope>riscv_lms_norm_instance_q31</scope><name>mu</name></member>
+      <member refid="structriscv__lms__norm__instance__q31_1aa6509e11669c09393ddb43a032fd53a4" prot="public" virt="non-virtual"><scope>riscv_lms_norm_instance_q31</scope><name>numTaps</name></member>
+      <member refid="structriscv__lms__norm__instance__q31_1a524e14dd7d980dc90257ed18257910f0" prot="public" virt="non-virtual"><scope>riscv_lms_norm_instance_q31</scope><name>pCoeffs</name></member>
+      <member refid="structriscv__lms__norm__instance__q31_1a4c2040229bd0b7de46baab37631011e5" prot="public" virt="non-virtual"><scope>riscv_lms_norm_instance_q31</scope><name>postShift</name></member>
+      <member refid="structriscv__lms__norm__instance__q31_1a7ea77d9eaf49db8064cbbeddc750ff29" prot="public" virt="non-virtual"><scope>riscv_lms_norm_instance_q31</scope><name>pState</name></member>
+      <member refid="structriscv__lms__norm__instance__q31_1a5abeb3a64102e8f5b99ebb23094722fd" prot="public" virt="non-virtual"><scope>riscv_lms_norm_instance_q31</scope><name>recipTable</name></member>
+      <member refid="structriscv__lms__norm__instance__q31_1a9ac7cbc99606e189266c345e106ebe25" prot="public" virt="non-virtual"><scope>riscv_lms_norm_instance_q31</scope><name>x0</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

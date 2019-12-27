@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="group__NMSIS__Core__SystemConfig" kind="group">
+    <compoundname>NMSIS_Core_SystemConfig</compoundname>
+    <title>System Device Configuration</title>
+    <innergroup refid="group__NMSIS__Core__IntExcNMI__Handling">Interrupt and Exception and NMI Handling</innergroup>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="group__NMSIS__Core__SystemConfig_1gaa3cd3e43291e81e795d642b79b6088e6" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t SystemCoreClock</definition>
+        <argsstring></argsstring>
+        <name>SystemCoreClock</name>
+        <initializer>= SYSTEM_CLOCK</initializer>
+        <briefdescription>
+<para>Variable to hold the system core clock value. </para>        </briefdescription>
+        <detaileddescription>
+<para>Holds the system core clock, which is the system clock frequency supplied to the SysTick timer and the processor core clock. This variable can be used by debuggers to query the frequency of the debug timer or to configure the trace clock speed.</para><para><simplesect kind="attention"><para>Compilers must be configured to avoid removing this variable in case the application program is not using it. Debugging systems require the variable to be physically present in memory so that it can be examined to configure the debugger. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" line="89" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__NMSIS__Core__SystemConfig_1gae0c36a9591fe6e9c45ecb21a794f0f0f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SystemCoreClockUpdate</definition>
+        <argsstring>(void)</argsstring>
+        <name>SystemCoreClockUpdate</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Function to update the variable <ref refid="group__NMSIS__Core__SystemConfig_1gaa3cd3e43291e81e795d642b79b6088e6" kindref="member">SystemCoreClock</ref>. </para>        </briefdescription>
+        <detaileddescription>
+<para>Updates the variable <ref refid="group__NMSIS__Core__SystemConfig_1gaa3cd3e43291e81e795d642b79b6088e6" kindref="member">SystemCoreClock</ref> and must be called whenever the core clock is changed during program execution. The function evaluates the clock register settings and calculates the current core clock. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" line="103" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" bodystart="103" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__SystemConfig_1ga93f514700ccf00d08dbdcff7f1224eb2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SystemInit</definition>
+        <argsstring>(void)</argsstring>
+        <name>SystemInit</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Function to Initialize the system. </para>        </briefdescription>
+        <detaileddescription>
+<para>Initializes the microcontroller system. Typically, this function configures the oscillator (PLL) that is part of the microcontroller device. For systems with a variable clock speed, it updates the variable <ref refid="group__NMSIS__Core__SystemConfig_1gaa3cd3e43291e81e795d642b79b6088e6" kindref="member">SystemCoreClock</ref>. SystemInit is called from the file <bold>startup<emphasis>_device</emphasis></bold>. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" line="121" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" bodystart="121" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__SystemConfig_1gad1cbc4315ef293463e6057dfb24c8115" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _init</definition>
+        <argsstring>(void)</argsstring>
+        <name>_init</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>_init function called in __libc_init_array() </para>        </briefdescription>
+        <detaileddescription>
+<para>This <computeroutput>__libc_init_array()</computeroutput> function is called during startup code, user need to implement this function, otherwise when link it will error init.c:(.text.__libc_init_array+0x26): undefined reference to `_init&apos; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" line="316" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" bodystart="316" bodyend="327"/>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__SystemConfig_1ga173a20f19acf36985bbac6786a02b544" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _fini</definition>
+        <argsstring>(void)</argsstring>
+        <name>_fini</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>_fini function called in __libc_fini_array() </para>        </briefdescription>
+        <detaileddescription>
+<para>This <computeroutput>__libc_fini_array()</computeroutput> function is called when exit main. user need to implement this function, otherwise when link it will error fini.c:(.text.__libc_fini_array+0x28): undefined reference to `_fini&apos; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" line="336" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" bodystart="336" bodyend="340"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Functions for system init, clock setup and interrupt/exception/nmi functions available in system_&lt;device&gt;.c. </para>    </briefdescription>
+    <detaileddescription>
+<para>Nuclei provides a template file <bold><ref refid="system__Device_8c_source" kindref="compound">system_Device.c</ref></bold> that must be adapted by the silicon vendor to match their actual device. As a <bold>minimum requirement</bold>, this file must provide:<itemizedlist>
+<listitem><para>A device-specific system configuration function, <ref refid="group__NMSIS__Core__SystemConfig_1ga93f514700ccf00d08dbdcff7f1224eb2" kindref="member">SystemInit</ref>.</para></listitem><listitem><para>A global variable that contains the system frequency, <ref refid="group__NMSIS__Core__SystemConfig_1gaa3cd3e43291e81e795d642b79b6088e6" kindref="member">SystemCoreClock</ref>.</para></listitem><listitem><para>A global eclic configuration initialization, <ref refid="group__NMSIS__Core__IntExcNMI__Handling_1ga2d2e27f47287f5d28cc26f2cb214337f" kindref="member">ECLIC_Init</ref>.</para></listitem><listitem><para>Global c library <ref refid="group__NMSIS__Core__SystemConfig_1gad1cbc4315ef293463e6057dfb24c8115" kindref="member">_init</ref> and <ref refid="group__NMSIS__Core__SystemConfig_1ga173a20f19acf36985bbac6786a02b544" kindref="member">_fini</ref> functions called right before calling main function.</para></listitem><listitem><para>Vendor customized interrupt, exception and nmi handling code, see <ref refid="group__NMSIS__Core__IntExcNMI__Handling" kindref="compound">Interrupt and Exception and NMI Handling</ref></para></listitem></itemizedlist>
+</para><para>The file configures the device and, typically, initializes the oscillator (PLL) that is part of the microcontroller device. This file might export other functions or variables that provide a more flexible configuration of the microcontroller system.</para><para>And this file also provided common interrupt, exception and NMI exception handling framework template, Silicon vendor can customize these template code as they want.</para><para><simplesect kind="note"><para>Please pay special attention to the static variable <computeroutput>SystemCoreClock</computeroutput>. This variable might be used throughout the whole system initialization and runtime to calculate frequency/time related values. Thus one must assure that the variable always reflects the actual system clock speed.</para></simplesect>
+<simplesect kind="attention"><para>Be aware that a value stored to <computeroutput>SystemCoreClock</computeroutput> during low level initializaton (i.e. <computeroutput><ref refid="group__NMSIS__Core__SystemConfig_1ga93f514700ccf00d08dbdcff7f1224eb2" kindref="member">SystemInit()</ref></computeroutput>) might get overwritten by C libray startup code and/or .bss section initialization. Thus its highly recommended to call <ref refid="group__NMSIS__Core__SystemConfig_1gae0c36a9591fe6e9c45ecb21a794f0f0f" kindref="member">SystemCoreClockUpdate</ref> at the beginning of the user <computeroutput>main()</computeroutput> routine. </para></simplesect>
+</para>    </detaileddescription>
+  </compounddef>
+</doxygen>

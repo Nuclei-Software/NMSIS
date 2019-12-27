@@ -1,0 +1,335 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Using NMSIS-NN &mdash; NMSIS 1.0.0-alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="NMSIS NN API" href="api/index.html" />
+    <link rel="prev" title="Overview" href="overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">NMSIS NN</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Using NMSIS-NN</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#preparation">Preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tool-setup">Tool Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#build-nmsis-nn-library">Build NMSIS NN Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-run">How to run</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html">NMSIS NN API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">NMSIS NN</a> &raquo;</li>
+        
+      <li>Using NMSIS-NN</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/nn/get_started.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="using-nmsis-nn">
+<span id="nn-get-started"></span><h1>Using NMSIS-NN<a class="headerlink" href="#using-nmsis-nn" title="Permalink to this headline">¶</a></h1>
+<p>Here we will describe how to run the nmsis nn examples in Nuclei Spike.</p>
+<div class="section" id="preparation">
+<h2>Preparation<a class="headerlink" href="#preparation" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Nuclei Modified Spike</p></li>
+<li><p>Nuclei Modified PK</p></li>
+<li><p>Nuclei RISCV GNU Toolchain</p></li>
+<li><p>Ubuntu 18.04</p></li>
+</ul>
+</div>
+<div class="section" id="tool-setup">
+<h2>Tool Setup<a class="headerlink" href="#tool-setup" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Export <strong>PATH</strong> correctly for <cite>spike</cite> and <cite>riscv-nuclei-elf-gcc</cite></p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export PATH=/path/to/spike/bin:/path/to/riscv-nuclei-elf-gcc/bin/:$PATH
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Export <strong>PK</strong> correctly for <cite>spike</cite> commond.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">PK</span><span class="o">=/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">spike</span><span class="o">/</span><span class="n">riscv32</span><span class="o">-</span><span class="n">unknown</span><span class="o">-</span><span class="n">elf</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">pk</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="build-nmsis-nn-library">
+<h2>Build NMSIS NN Library<a class="headerlink" href="#build-nmsis-nn-library" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Download or clone NMSIS source code into <strong>NMSIS</strong> directory.</p></li>
+<li><p>cd to <cite>NMSIS/NMSIS/</cite> directory</p></li>
+<li><p>Build NMSIS NN library using <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">gen_nn_lib</span></code></p></li>
+<li><p>The nn library will be generated into <code class="docutils literal notranslate"><span class="pre">./Library/NN/GCC</span></code> folder</p></li>
+<li><p>The nn libraries will be look like this:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ll Library/NN/GCC/
+total 8632
+-rw-r--r-- 1 hqfang nucleisys 1175294 Dec 26 10:30 libnmsis_nn_rv32imac.a
+-rw-r--r-- 1 hqfang nucleisys 1766258 Dec 26 10:30 libnmsis_nn_rv32imacp.a
+-rw-r--r-- 1 hqfang nucleisys 1175530 Dec 26 10:30 libnmsis_nn_rv32imafc.a
+-rw-r--r-- 1 hqfang nucleisys 1768718 Dec 26 10:30 libnmsis_nn_rv32imafcp.a
+-rw-r--r-- 1 hqfang nucleisys 1175870 Dec 26 10:30 libnmsis_nn_rv32imafdc.a
+-rw-r--r-- 1 hqfang nucleisys 1769062 Dec 26 10:30 libnmsis_nn_rv32imafdcp.a
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>library name with extra <code class="docutils literal notranslate"><span class="pre">p</span></code> is build with RISCV DSP enabled.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">libnmsis_nn_rv32imac.a</span></code>: Build for <strong>RISCV_ARCH=rv32imac</strong> without DSP enabled.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libnmsis_nn_rv32imacp.a</span></code>: Build for <strong>RISCV_ARCH=rv32imac</strong> with DSP enabled.</p></li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="how-to-run">
+<h2>How to run<a class="headerlink" href="#how-to-run" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Let us take <cite>./cifar10/</cite> for example</p></li>
+<li><p><cite>cd ./cifar10/</cite></p></li>
+<li><p>Run with RISCV DSP enabled NMSIS-NN library</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">DSP_ENABLE</span><span class="o">=</span><span class="n">ON</span> <span class="o">-</span><span class="n">B</span> <span class="n">run</span>
+</pre></div>
+</div>
+<p>Here is sample output for above command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Makefile</span><span class="p">:</span><span class="mi">36</span><span class="p">:</span> <span class="s2">&quot;enable dsp&quot;</span>
+<span class="n">riscv</span><span class="o">-</span><span class="n">nuclei</span><span class="o">-</span><span class="n">elf</span><span class="o">-</span><span class="n">gcc</span> <span class="o">-</span><span class="n">march</span><span class="o">=</span><span class="n">rv32imafdc</span> <span class="o">-</span><span class="n">mabi</span><span class="o">=</span><span class="n">ilp32d</span> <span class="o">-</span><span class="n">O2</span> <span class="o">-</span><span class="n">g</span> <span class="o">-</span><span class="n">D__RISCV_FEATURE_DSP</span><span class="o">=</span><span class="mi">1</span> <span class="o">-</span><span class="n">D__RISCV_FEATURE_DSP</span><span class="o">=</span><span class="mi">1</span> <span class="o">-</span><span class="n">DTEST_IMAGE</span><span class="o">=</span><span class="n">cat1</span>  <span class="n">riscv_nnexamples_cifar10</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">L</span><span class="o">../../../../</span><span class="n">Library</span><span class="o">/</span><span class="n">DSP</span><span class="o">/</span><span class="n">GCC</span> <span class="o">-</span><span class="n">L</span><span class="o">../../../../</span><span class="n">Library</span><span class="o">/</span><span class="n">NN</span><span class="o">/</span><span class="n">GCC</span> <span class="o">-</span><span class="n">lnmsis_nn_rv32imafdcp</span> <span class="o">-</span><span class="n">lnmsis_dsp_rv32imafdcp</span> <span class="o">-</span><span class="n">lm</span> <span class="o">-</span><span class="n">I</span><span class="o">.</span> <span class="o">-</span><span class="n">I</span><span class="o">../../../../</span><span class="n">Core</span><span class="o">/</span><span class="n">Include</span> <span class="o">-</span><span class="n">I</span><span class="o">../../../../</span><span class="n">DSP</span><span class="o">/</span><span class="n">Include</span> <span class="o">-</span><span class="n">I</span><span class="o">../../../../</span><span class="n">NN</span><span class="o">/</span><span class="n">Include</span> <span class="o">-</span><span class="n">o</span> <span class="n">run</span><span class="o">.</span><span class="n">elf</span>
+<span class="n">riscv</span><span class="o">-</span><span class="n">nuclei</span><span class="o">-</span><span class="n">elf</span><span class="o">-</span><span class="n">objcopy</span> <span class="o">-</span><span class="n">O</span> <span class="n">binary</span> <span class="n">run</span><span class="o">.</span><span class="n">elf</span> <span class="n">run</span><span class="o">.</span><span class="n">bin</span>
+<span class="n">spike</span> <span class="o">--</span><span class="n">isa</span><span class="o">=</span><span class="n">rv32gct</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">tools</span><span class="o">/</span><span class="n">riscv</span><span class="o">/</span><span class="mi">32</span><span class="o">/</span><span class="n">riscv32</span><span class="o">-</span><span class="n">unknown</span><span class="o">-</span><span class="n">elf</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">pk</span> <span class="n">run</span><span class="o">.</span><span class="n">elf</span>
+<span class="n">bbl</span> <span class="n">loader</span>
+<span class="n">start</span> <span class="n">execution</span> <span class="n">cnn</span> <span class="n">to</span> <span class="n">classify</span> <span class="n">image</span> <span class="n">cat1</span>
+<span class="n">CSV</span><span class="p">,</span> <span class="n">BENCH</span> <span class="n">START</span><span class="p">,</span> <span class="mi">404308</span>
+<span class="n">CSV</span><span class="p">,</span> <span class="n">extra_cost</span><span class="p">,</span> <span class="mi">7</span>
+<span class="n">CSV</span><span class="p">,</span> <span class="n">preprocess</span><span class="p">,</span> <span class="mi">21519</span>
+<span class="n">CSV</span><span class="p">,</span> <span class="n">riscv_convolve_HWC_q7_RGB</span><span class="p">,</span> <span class="mi">3961749</span>
+<span class="n">CSV</span><span class="p">,</span> <span class="n">riscv_relu_q7</span><span class="p">,</span> <span class="mi">40981</span>
+<span class="n">CSV</span><span class="p">,</span> <span class="n">riscv_maxpool_q7_HWC</span><span class="p">,</span> <span class="mi">153919</span>
+<span class="n">CSV</span><span class="p">,</span> <span class="n">riscv_convolve_HWC_q7_fast</span><span class="p">,</span> <span class="mi">3067538</span>
+<span class="n">CSV</span><span class="p">,</span> <span class="n">riscv_relu_q7</span><span class="p">,</span> <span class="mi">5141</span>
+<span class="n">CSV</span><span class="p">,</span> <span class="n">riscv_maxpool_q7_HWC</span><span class="p">,</span> <span class="mi">24151</span>
+<span class="n">CSV</span><span class="p">,</span> <span class="n">riscv_convolve_HWC_q7_fast</span><span class="p">,</span> <span class="mi">768131</span>
+<span class="n">CSV</span><span class="p">,</span> <span class="n">riscv_relu_q7</span><span class="p">,</span> <span class="mi">2582</span>
+<span class="n">CSV</span><span class="p">,</span> <span class="n">riscv_maxpool_q7_HWC</span><span class="p">,</span> <span class="mi">9331</span>
+<span class="n">CSV</span><span class="p">,</span> <span class="n">riscv_fully_connected_q7_opt</span><span class="p">,</span> <span class="mi">12163</span>
+<span class="n">CSV</span><span class="p">,</span> <span class="n">riscv_softmax_q7</span><span class="p">,</span> <span class="mi">390</span>
+<span class="n">label</span> <span class="mi">0</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Plane</span><span class="p">,</span> <span class="mf">0.00</span><span class="o">%</span>
+<span class="n">label</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Car</span><span class="p">,</span> <span class="mf">0.00</span><span class="o">%</span>
+<span class="n">label</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">Bird</span><span class="p">,</span> <span class="mf">0.79</span><span class="o">%</span>
+<span class="n">label</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">33</span><span class="p">,</span> <span class="n">Cat</span><span class="p">,</span> <span class="mf">25.98</span><span class="o">%</span>
+<span class="n">label</span> <span class="mi">4</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span> <span class="n">Deer</span><span class="p">,</span> <span class="mf">12.60</span><span class="o">%</span>
+<span class="n">label</span> <span class="mi">5</span><span class="p">:</span> <span class="mi">67</span><span class="p">,</span> <span class="n">Dog</span><span class="p">,</span> <span class="mf">52.76</span><span class="o">%</span>
+<span class="n">label</span> <span class="mi">6</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Frog</span><span class="p">,</span> <span class="mf">0.00</span><span class="o">%</span>
+<span class="n">label</span> <span class="mi">7</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="n">Horse</span><span class="p">,</span> <span class="mf">6.30</span><span class="o">%</span>
+<span class="n">label</span> <span class="mi">8</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Ship</span><span class="p">,</span> <span class="mf">0.00</span><span class="o">%</span>
+<span class="n">label</span> <span class="mi">9</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Truck</span><span class="p">,</span> <span class="mf">0.00</span><span class="o">%</span>
+<span class="n">CSV</span><span class="p">,</span> <span class="n">BENCH</span> <span class="n">END</span><span class="p">,</span> <span class="mi">8518029</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Run with RISCV DSP disabled NMSIS-NN library</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">DSP_ENABLE</span><span class="o">=</span><span class="n">OFF</span> <span class="o">-</span><span class="n">B</span> <span class="n">run</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api/index.html" class="btn btn-neutral float-right" title="NMSIS NN API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="overview.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Nuclei
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

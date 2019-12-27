@@ -1,0 +1,354 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="group__NMSIS__Core__ARMCompatiable__Functions" kind="group">
+    <compoundname>NMSIS_Core_ARMCompatiable_Functions</compoundname>
+    <title>ARM Compatiable Functions</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga372c0535573dde3e37f0f08c774a3487" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> int32_t</type>
+        <definition>__STATIC_FORCEINLINE int32_t __SSAT</definition>
+        <argsstring>(int32_t val, uint32_t sat)</argsstring>
+        <name>__SSAT</name>
+        <param>
+          <type>int32_t</type>
+          <declname>val</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>sat</declname>
+        </param>
+        <briefdescription>
+<para>Signed Saturate. </para>        </briefdescription>
+        <detaileddescription>
+<para>Saturates a signed value. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value to be saturated </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">sat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Bit position to saturate to (1..32) </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Saturated value </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" line="70" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" bodystart="70" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga6562dbd8182d1571e22dbca7ebdfa9bc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> uint32_t</type>
+        <definition>__STATIC_FORCEINLINE uint32_t __USAT</definition>
+        <argsstring>(int32_t val, uint32_t sat)</argsstring>
+        <name>__USAT</name>
+        <param>
+          <type>int32_t</type>
+          <declname>val</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>sat</declname>
+        </param>
+        <briefdescription>
+<para>Unsigned Saturate. </para>        </briefdescription>
+        <detaileddescription>
+<para>Saturates an unsigned value. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value to be saturated </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">sat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Bit position to saturate to (0..31) </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Saturated value </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" line="91" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" bodystart="91" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__ARMCompatiable__Functions_1gadb92679719950635fba8b1b954072695" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> uint32_t</type>
+        <definition>__STATIC_FORCEINLINE uint32_t __REV</definition>
+        <argsstring>(uint32_t value)</argsstring>
+        <name>__REV</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Reverse byte order (32 bit) </para>        </briefdescription>
+        <detaileddescription>
+<para>Reverses the byte order in unsigned integer value. For example, 0x12345678 becomes 0x78563412. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value to reverse </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Reversed value </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" line="112" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" bodystart="112" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__ARMCompatiable__Functions_1gaa12aedd096506c9639c1581acd5c6a78" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> uint32_t</type>
+        <definition>__STATIC_FORCEINLINE uint32_t __REV16</definition>
+        <argsstring>(uint32_t value)</argsstring>
+        <name>__REV16</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Reverse byte order (16 bit) </para>        </briefdescription>
+        <detaileddescription>
+<para>Reverses the byte order within each halfword of a word. For example, 0x12345678 becomes 0x34127856. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value to reverse </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Reversed value </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" line="130" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" bodystart="130" bodyend="139"/>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__ARMCompatiable__Functions_1gacb695341318226a5f69ed508166622ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> int16_t</type>
+        <definition>__STATIC_FORCEINLINE int16_t __REVSH</definition>
+        <argsstring>(int16_t value)</argsstring>
+        <name>__REVSH</name>
+        <param>
+          <type>int16_t</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Reverse byte order (16 bit) </para>        </briefdescription>
+        <detaileddescription>
+<para>Reverses the byte order in a 16-bit value and returns the signed 16-bit result. For example, 0x0080 becomes 0x8000. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value to reverse </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Reversed value </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" line="149" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" bodystart="149" bodyend="154"/>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__ARMCompatiable__Functions_1gab16acb6456176f1e87a4f2724c2b6028" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> uint32_t</type>
+        <definition>__STATIC_FORCEINLINE uint32_t __ROR</definition>
+        <argsstring>(uint32_t op1, uint32_t op2)</argsstring>
+        <name>__ROR</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>op1</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>op2</declname>
+        </param>
+        <briefdescription>
+<para>Rotate Right in unsigned value (32 bit) </para>        </briefdescription>
+        <detaileddescription>
+<para>Rotate Right (immediate) provides the value of the contents of a register rotated by a variable number of bits. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">op1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value to rotate </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">op2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of Bits to rotate(0-31) </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Rotated value </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" line="164" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" bodystart="164" bodyend="171"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="group__NMSIS__Core__ARMCompatiable__Functions_1gaad233022e850a009fc6f7602be1182f6" prot="public" static="no">
+        <name>__ISB</name>
+        <param></param>
+        <initializer><ref refid="group__NMSIS__Core__CPU__Intrinsic_1ga683c246c3fdba09511675365a2fa8bd3" kindref="member">__RWMB</ref>()</initializer>
+        <briefdescription>
+<para>Instruction Synchronization Barrier, compatiable with ARM. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" line="40" column="9" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga067d257a2b34565410acefb5afef2203" prot="public" static="no">
+        <name>__DSB</name>
+        <param></param>
+        <initializer><ref refid="group__NMSIS__Core__CPU__Intrinsic_1ga683c246c3fdba09511675365a2fa8bd3" kindref="member">__RWMB</ref>()</initializer>
+        <briefdescription>
+<para>Data Synchronization Barrier, compatiable with ARM. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" line="43" column="9" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga671101179b5943990785f36f8c1e2269" prot="public" static="no">
+        <name>__DMB</name>
+        <param></param>
+        <initializer><ref refid="group__NMSIS__Core__CPU__Intrinsic_1ga683c246c3fdba09511675365a2fa8bd3" kindref="member">__RWMB</ref>()</initializer>
+        <briefdescription>
+<para>Data Memory Barrier, compatiable with ARM. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" line="46" column="9" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__NMSIS__Core__ARMCompatiable__Functions_1gacf0a70f77355b4e92cbcf33294a2b834" prot="public" static="no">
+        <name>__LDRBT</name>
+        <param><defname>ptr</defname></param>
+        <initializer><ref refid="group__NMSIS__Core__CPU__Intrinsic_1ga7f225699061594cd9a4d905a39cb9ae8" kindref="member">__LB</ref>((ptr))</initializer>
+        <briefdescription>
+<para>LDRT Unprivileged (8 bit), ARM Compatiable. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" line="49" column="9" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__NMSIS__Core__ARMCompatiable__Functions_1gaa16005628f00d6fadfc10a51b47df494" prot="public" static="no">
+        <name>__LDRHT</name>
+        <param><defname>ptr</defname></param>
+        <initializer><ref refid="group__NMSIS__Core__CPU__Intrinsic_1ga08a0019225f8ecc2e0a5bdcefa77ec6f" kindref="member">__LH</ref>((ptr))</initializer>
+        <briefdescription>
+<para>LDRT Unprivileged (16 bit), ARM Compatiable. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" line="51" column="9" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga40e9941f772bbbe5b0d7aa39dbdbd256" prot="public" static="no">
+        <name>__LDRT</name>
+        <param><defname>ptr</defname></param>
+        <initializer><ref refid="group__NMSIS__Core__CPU__Intrinsic_1gaf898279e3db81302391a698214744865" kindref="member">__LW</ref>((ptr))</initializer>
+        <briefdescription>
+<para>LDRT Unprivileged (32 bit), ARM Compatiable. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" line="53" column="9" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__NMSIS__Core__ARMCompatiable__Functions_1gaa026f093007b11dccdb1f9fa5050bebe" prot="public" static="no">
+        <name>__STRBT</name>
+        <param><defname>ptr</defname></param>
+        <initializer><ref refid="group__NMSIS__Core__CPU__Intrinsic_1ga85ee6d049f3b807b7c5f37513f6b95bd" kindref="member">__SB</ref>((ptr))</initializer>
+        <briefdescription>
+<para>STRT Unprivileged (8 bit), ARM Compatiable. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" line="56" column="9" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga76ff41fa89fcab157544ee69e3e9fe5f" prot="public" static="no">
+        <name>__STRHT</name>
+        <param><defname>ptr</defname></param>
+        <initializer><ref refid="group__NMSIS__Core__CPU__Intrinsic_1ga10e81b063600f3abb562f7a6efa3aaca" kindref="member">__SH</ref>((ptr))</initializer>
+        <briefdescription>
+<para>STRT Unprivileged (16 bit), ARM Compatiable. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" line="58" column="9" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__NMSIS__Core__ARMCompatiable__Functions_1gaede0b652148a370f75b23ce96ec92057" prot="public" static="no">
+        <name>__STRT</name>
+        <param><defname>ptr</defname></param>
+        <initializer><ref refid="group__NMSIS__Core__CPU__Intrinsic_1ga9df58a7326fee34b546cae7d7d6e6de3" kindref="member">__SW</ref>((ptr))</initializer>
+        <briefdescription>
+<para>STRT Unprivileged (32 bit), ARM Compatiable. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" line="60" column="9" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga0ffdc7f8b90076408f400768a7f5e372" prot="public" static="no">
+        <name>__RBIT</name>
+        <param><defname>value</defname></param>
+        <initializer><ref refid="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1ga5061e392780b3bea521580befe37556f" kindref="member">__RV_BITREV</ref>((value), 31)</initializer>
+        <briefdescription>
+<para>Reverse bit order of value. </para>        </briefdescription>
+        <detaileddescription>
+<para>Reverses the bit order of the given value. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value to reverse </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Reversed value </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" line="180" column="9" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" bodystart="180" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__NMSIS__Core__ARMCompatiable__Functions_1gacac866989a2f4d87628d02fd33fdc61d" prot="public" static="no">
+        <name>__CLZ</name>
+        <param><defname>data</defname></param>
+        <initializer><ref refid="group__NMSIS__Core__DSP__Intrinsic__PART__SIMD__MISC_1ga5250b89ea0959cf4f02534c5cd30b79c" kindref="member">__RV_CLZ32</ref>(data)</initializer>
+        <briefdescription>
+<para>Count leading zeros. </para>        </briefdescription>
+        <detaileddescription>
+<para>Counts the number of leading zeros of a data value. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value to count the leading zeros </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>number of leading zeros in value </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" line="205" column="9" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_compatiable.h" bodystart="205" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A few functions that compatiable with ARM CMSIS-Core. </para>    </briefdescription>
+    <detaileddescription>
+<para>Here we provided a few functions that compatiable with ARM CMSIS-Core, mostly used in the DSP and NN library. </para>    </detaileddescription>
+  </compounddef>
+</doxygen>

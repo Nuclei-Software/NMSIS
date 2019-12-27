@@ -1,0 +1,287 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="group__NMSIS__Core__IntExcNMI__Handling" kind="group">
+    <compoundname>NMSIS_Core_IntExcNMI_Handling</compoundname>
+    <title>Interrupt and Exception and NMI Handling</title>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="group__NMSIS__Core__IntExcNMI__Handling_1gacdea0407312bb8428c98044b5aef3e23" prot="public" static="no">
+        <type>void(*</type>
+        <definition>typedef void(* EXC_HANDLER) (unsigned long mcause, unsigned long sp)</definition>
+        <argsstring>)(unsigned long mcause, unsigned long sp)</argsstring>
+        <name>EXC_HANDLER</name>
+        <briefdescription>
+<para>Exception Handler Function Typedef. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This typedef is only used internal in this system_&lt;Device&gt;.c file. It is used to do type conversion for registered exception handler before calling it. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" line="158" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" bodystart="158" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="group__NMSIS__Core__IntExcNMI__Handling_1gaedd77e0eba0ea9872a4375893480b420" prot="public" static="yes" mutable="no">
+        <type>unsigned long</type>
+        <definition>unsigned long SystemExceptionHandlers[MAX_SYSTEM_EXCEPTION_NUM+1]</definition>
+        <argsstring>[MAX_SYSTEM_EXCEPTION_NUM+1]</argsstring>
+        <name>SystemExceptionHandlers</name>
+        <briefdescription>
+<para>Store the exception handlers for each exception ID. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para><itemizedlist>
+<listitem><para>This SystemExceptionHandlers are used to store all the handlers for all the exception codes Nuclei N/NX core provided.</para></listitem><listitem><para>Exception code 0 - 11, totally 12 exceptions are mapped to SystemExceptionHandlers[0:11]</para></listitem><listitem><para>Exception for NMI is also re-routed to exception handling(exception code 0xFFF) in startup code configuration, the handler itself is mapped to SystemExceptionHandlers[MAX_SYSTEM_EXCEPTION_NUM] </para></listitem></itemizedlist>
+</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" line="150" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__NMSIS__Core__IntExcNMI__Handling_1ga97971400b10d2cdd33f0d1fb59f9d0c8" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void system_default_exception_handler</definition>
+        <argsstring>(unsigned long mcause, unsigned long sp)</argsstring>
+        <name>system_default_exception_handler</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>mcause</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>sp</declname>
+        </param>
+        <briefdescription>
+<para>System Default Exception Handler. </para>        </briefdescription>
+        <detaileddescription>
+<para>This function provided a default exception and NMI handling code for all exception ids. By default, It will just print some information for debug, Vendor can customize it according to its requirements. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" line="166" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" bodystart="166" bodyend="174"/>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__IntExcNMI__Handling_1gab6afbaed495af51eeeb4eb7d1c5da420" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Exception_Init</definition>
+        <argsstring>(void)</argsstring>
+        <name>Exception_Init</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Initialize all the default core exception handlers. </para>        </briefdescription>
+        <detaileddescription>
+<para>The core exception handler for each exception id will be initialized to <ref refid="group__NMSIS__Core__IntExcNMI__Handling_1ga97971400b10d2cdd33f0d1fb59f9d0c8" kindref="member">system_default_exception_handler</ref>. <simplesect kind="note"><para>Called in <ref refid="group__NMSIS__Core__SystemConfig_1gad1cbc4315ef293463e6057dfb24c8115" kindref="member">_init</ref> function, used to initialize default exception handlers for all exception IDs </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" line="183" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" bodystart="183" bodyend="188"/>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__IntExcNMI__Handling_1ga9df7d45dd6f418ba31b6cec6c4958490" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Exception_Register_EXC</definition>
+        <argsstring>(uint32_t EXCn, unsigned long exc_handler)</argsstring>
+        <name>Exception_Register_EXC</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>EXCn</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>exc_handler</declname>
+        </param>
+        <briefdescription>
+<para>Register an exception handler for exception code EXCn. </para>        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>For EXCn &lt; <ref refid="group__NMSIS__Core__IntExcNMI__Handling_1ga10f1bcf88d4be44d559c79485f16dd24" kindref="member">MAX_SYSTEM_EXCEPTION_NUM</ref>, it will be registered into SystemExceptionHandlers[EXCn-1].</para></listitem><listitem><para>For EXCn == NMI_EXCn, it will be registered into SystemExceptionHandlers[MAX_SYSTEM_EXCEPTION_NUM]. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>EXCn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>See EXCn_Type </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>exc_handler</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The exception handler for this exception code EXCn </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para></listitem></itemizedlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" line="198" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" bodystart="198" bodyend="205"/>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__IntExcNMI__Handling_1ga84df4676c5284f0ea383eeba33e9aa40" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned long</type>
+        <definition>unsigned long Exception_Get_EXC</definition>
+        <argsstring>(uint32_t EXCn)</argsstring>
+        <name>Exception_Get_EXC</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>EXCn</declname>
+        </param>
+        <briefdescription>
+<para>Get current exception handler for exception code EXCn. </para>        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>For EXCn &lt; <ref refid="group__NMSIS__Core__IntExcNMI__Handling_1ga10f1bcf88d4be44d559c79485f16dd24" kindref="member">MAX_SYSTEM_EXCEPTION_NUM</ref>, it will return SystemExceptionHandlers[EXCn-1].</para></listitem><listitem><para>For EXCn == NMI_EXCn, it will return SystemExceptionHandlers[MAX_SYSTEM_EXCEPTION_NUM]. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>EXCn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>See EXCn_Type </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Current exception handler for exception code EXCn, if not found, return 0. </para></simplesect>
+</para></listitem></itemizedlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" line="215" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" bodystart="215" bodyend="224"/>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__IntExcNMI__Handling_1gac7f5b810aee623f65822bac1efe2006d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t core_exception_handler</definition>
+        <argsstring>(unsigned long mcause, unsigned long sp)</argsstring>
+        <name>core_exception_handler</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>mcause</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>sp</declname>
+        </param>
+        <briefdescription>
+<para>Common NMI and Exception handler entry. </para>        </briefdescription>
+        <detaileddescription>
+<para>This function provided a command entry for NMI and exception. Silicon Vendor could modify this template implementation according to requirement. <simplesect kind="remark"><para><itemizedlist>
+<listitem><para>RISCV provided common entry for all types of exception. This is proposed code template for exception entry function, Silicon Vendor could modify the implementation.</para></listitem><listitem><para>For the core_exception_handler template, we provided exception register function Exception_Register_EXCn which can help developer to register your exception handler for specific exception number. </para></listitem></itemizedlist>
+</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" line="237" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" bodystart="237" bodyend="253"/>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__IntExcNMI__Handling_1ga2d2e27f47287f5d28cc26f2cb214337f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ECLIC_Init</definition>
+        <argsstring>(void)</argsstring>
+        <name>ECLIC_Init</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Initialize Global ECLIC Config. </para>        </briefdescription>
+        <detaileddescription>
+<para>ECLIC needs be initialized after boot up, Vendor could also change the initialization configuration. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" line="262" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" bodystart="262" bodyend="269"/>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__IntExcNMI__Handling_1ga52cbc8fa60b210b75ac79baa25ac74bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int32_t</type>
+        <definition>int32_t ECLIC_Register_IRQ</definition>
+        <argsstring>(IRQn_Type IRQn, uint8_t shv, ECLIC_TRIGGER_Type trig_mode, uint8_t lvl, uint8_t priority, void *handler)</argsstring>
+        <name>ECLIC_Register_IRQ</name>
+        <param>
+          <type><ref refid="group__NMSIS__Core__IntExc_1ga7e1129cd8a196f4284d41db3e82ad5c8" kindref="member">IRQn_Type</ref></type>
+          <declname>IRQn</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>shv</declname>
+        </param>
+        <param>
+          <type><ref refid="group__NMSIS__Core__ECLIC__Registers_1ga35f79c25d5118ccfde82872bc5946ecf" kindref="member">ECLIC_TRIGGER_Type</ref></type>
+          <declname>trig_mode</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>lvl</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>priority</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>handler</declname>
+        </param>
+        <briefdescription>
+<para>Initialize a specific IRQ and register the handler. </para>        </briefdescription>
+        <detaileddescription>
+<para>This function set vector mode, trigger mode and polarity, interrupt level and priority, assign handler for specific IRQn. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">IRQn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>NMI interrupt handler address </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">shv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="group__NMSIS__Core__ECLIC__Registers_1ga6a01697e0ba89c691f98fee801f4a25c" kindref="member">ECLIC_NON_VECTOR_INTERRUPT</ref> means non-vector mode, and <ref refid="group__NMSIS__Core__ECLIC__Registers_1ga915384ab6567d38315e8cf5a566f4840" kindref="member">ECLIC_VECTOR_INTERRUPT</ref> is vector mode </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">trig_mode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>see <ref refid="group__NMSIS__Core__ECLIC__Registers_1ga35f79c25d5118ccfde82872bc5946ecf" kindref="member">ECLIC_TRIGGER_Type</ref> </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">lvl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>interupt level </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">priority</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>interrupt priority </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">handler</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>interrupt handler return -1 means invalid input parameter. 0 means successful. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="remark"><para><itemizedlist>
+<listitem><para>This function use to configure specific eclic interrupt and register its interrupt handler and enable its interrupt. </para></listitem></itemizedlist>
+</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" line="286" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" bodystart="286" bodyend="306"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="group__NMSIS__Core__IntExcNMI__Handling_1ga10f1bcf88d4be44d559c79485f16dd24" prot="public" static="no">
+        <name>MAX_SYSTEM_EXCEPTION_NUM</name>
+        <initializer>12</initializer>
+        <briefdescription>
+<para>Max exception handler number, don&apos;t include the NMI(0xFFF) one. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" line="141" column="9" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Functions for interrupt, exception and nmi handle available in system_&lt;device&gt;.c. </para>    </briefdescription>
+    <detaileddescription>
+<para>Nuclei provide a template for interrupt, exception and NMI handling. Silicon Vendor could adapat according to their requirement. Silicon vendor could implement interface for different exception code and replace current implementation. </para>    </detaileddescription>
+  </compounddef>
+</doxygen>

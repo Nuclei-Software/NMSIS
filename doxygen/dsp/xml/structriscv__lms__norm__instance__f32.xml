@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="structriscv__lms__norm__instance__f32" kind="struct" language="C++" prot="public">
+    <compoundname>riscv_lms_norm_instance_f32</compoundname>
+    <includes local="no">riscv_math.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structriscv__lms__norm__instance__f32_1ab6d88a0f79cd8b4fc5957c35aea8793d" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t riscv_lms_norm_instance_f32::numTaps</definition>
+        <argsstring></argsstring>
+        <name>numTaps</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>number of coefficients in the filter. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" line="4233" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" bodystart="4233" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structriscv__lms__norm__instance__f32_1af7805bf0d80d97a9af770ffdbc5065d0" prot="public" static="no" mutable="no">
+        <type>float32_t *</type>
+        <definition>float32_t* riscv_lms_norm_instance_f32::pState</definition>
+        <argsstring></argsstring>
+        <name>pState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>points to the state variable array. The array is of length numTaps+blockSize-1. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" line="4234" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" bodystart="4234" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structriscv__lms__norm__instance__f32_1a85bb3a210525ef34dcedc915dd169399" prot="public" static="no" mutable="no">
+        <type>float32_t *</type>
+        <definition>float32_t* riscv_lms_norm_instance_f32::pCoeffs</definition>
+        <argsstring></argsstring>
+        <name>pCoeffs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>points to the coefficient array. The array is of length numTaps. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" line="4235" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" bodystart="4235" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structriscv__lms__norm__instance__f32_1a58e76c7bcf3319f6c0aa25b77b8c6933" prot="public" static="no" mutable="no">
+        <type>float32_t</type>
+        <definition>float32_t riscv_lms_norm_instance_f32::mu</definition>
+        <argsstring></argsstring>
+        <name>mu</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>step size that control filter coefficient updates. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" line="4236" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" bodystart="4236" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structriscv__lms__norm__instance__f32_1a5d2518e5d3d4f67d971876b52ecf7128" prot="public" static="no" mutable="no">
+        <type>float32_t</type>
+        <definition>float32_t riscv_lms_norm_instance_f32::energy</definition>
+        <argsstring></argsstring>
+        <name>energy</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>saves previous frame energy. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" line="4237" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" bodystart="4237" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structriscv__lms__norm__instance__f32_1a71ab28b5ad26544728f8c219e0d1eaeb" prot="public" static="no" mutable="no">
+        <type>float32_t</type>
+        <definition>float32_t riscv_lms_norm_instance_f32::x0</definition>
+        <argsstring></argsstring>
+        <name>x0</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>saves previous input sample. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" line="4238" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" bodystart="4238" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Instance structure for the floating-point normalized LMS filter. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" line="4232" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" bodystart="4231" bodyend="4239"/>
+    <listofallmembers>
+      <member refid="structriscv__lms__norm__instance__f32_1a5d2518e5d3d4f67d971876b52ecf7128" prot="public" virt="non-virtual"><scope>riscv_lms_norm_instance_f32</scope><name>energy</name></member>
+      <member refid="structriscv__lms__norm__instance__f32_1a58e76c7bcf3319f6c0aa25b77b8c6933" prot="public" virt="non-virtual"><scope>riscv_lms_norm_instance_f32</scope><name>mu</name></member>
+      <member refid="structriscv__lms__norm__instance__f32_1ab6d88a0f79cd8b4fc5957c35aea8793d" prot="public" virt="non-virtual"><scope>riscv_lms_norm_instance_f32</scope><name>numTaps</name></member>
+      <member refid="structriscv__lms__norm__instance__f32_1a85bb3a210525ef34dcedc915dd169399" prot="public" virt="non-virtual"><scope>riscv_lms_norm_instance_f32</scope><name>pCoeffs</name></member>
+      <member refid="structriscv__lms__norm__instance__f32_1af7805bf0d80d97a9af770ffdbc5065d0" prot="public" virt="non-virtual"><scope>riscv_lms_norm_instance_f32</scope><name>pState</name></member>
+      <member refid="structriscv__lms__norm__instance__f32_1a71ab28b5ad26544728f8c219e0d1eaeb" prot="public" virt="non-virtual"><scope>riscv_lms_norm_instance_f32</scope><name>x0</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

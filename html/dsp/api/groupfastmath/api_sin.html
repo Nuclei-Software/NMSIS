@@ -1,0 +1,325 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Sine &mdash; NMSIS 1.0.0-alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Complex Math Functions" href="../api_groupcmplxmath.html" />
+    <link rel="prev" title="Cosine" href="api_cos.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">NMSIS DSP</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api_groupfastmath.html">Fast Math Functions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api_sqrt.html">Square Root</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_cos.html">Cosine</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Sine</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupfilters.html">Filtering Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupmatrix.html">Matrix Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupcontroller.html">Controller Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupstats.html">Statistics Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupsupport.html">Support Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupinterpolation.html">Interpolation Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
+        
+          <li><a href="../index.html">NMSIS DSP API</a> &raquo;</li>
+        
+          <li><a href="../api_groupfastmath.html">Fast Math Functions</a> &raquo;</li>
+        
+      <li>Sine</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/dsp/api/groupfastmath/api_sin.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="sine">
+<span id="nmsis-dsp-api-sine"></span><h1>Sine<a class="headerlink" href="#sine" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="_CPPv413riscv_sin_f329float32_t">
+<span id="_CPPv313riscv_sin_f329float32_t"></span><span id="_CPPv213riscv_sin_f329float32_t"></span><span id="riscv_sin_f32__float32_t"></span><span class="target" id="group__sin_1ga11d805fff25da36b07ff5d2ebfb69dca"></span>float32_t <code class="sig-name descname">riscv_sin_f32</code><span class="sig-paren">(</span>float32_t <em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413riscv_sin_f329float32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv413riscv_sin_q155q15_t">
+<span id="_CPPv313riscv_sin_q155q15_t"></span><span id="_CPPv213riscv_sin_q155q15_t"></span><span id="riscv_sin_q15__q15_t"></span><span class="target" id="group__sin_1ga414e49b515ee5a150aa855fc8e49252b"></span>q15_t <code class="sig-name descname">riscv_sin_q15</code><span class="sig-paren">(</span>q15_t <em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413riscv_sin_q155q15_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv413riscv_sin_q315q31_t">
+<span id="_CPPv313riscv_sin_q315q31_t"></span><span id="_CPPv213riscv_sin_q315q31_t"></span><span id="riscv_sin_q31__q31_t"></span><span class="target" id="group__sin_1gaacaf1c59cfded5990998fc2979ba2a0e"></span>q31_t <code class="sig-name descname">riscv_sin_q31</code><span class="sig-paren">(</span>q31_t <em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413riscv_sin_q315q31_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="group">
+<dt>
+<span class="target" id="group__sin"></span><em>group</em> <code class="sig-name descname">sin</code></dt>
+<dd><p>Computes the trigonometric sine function using a combination of table lookup and linear interpolation. There are separate functions for Q15, Q31, and floating-point data types. The input to the floating-point version is in radians while the fixed-point Q15 and Q31 have a scaled input with the range [0 +0.9999] mapping to [0 2*pi). The fixed-point range is chosen so that a value of 2*pi wraps around to 0.</p>
+<p>The implementation is based on table lookup using 256 values together with linear interpolation. The steps used are:<ol class="arabic simple">
+<li><p>Calculation of the nearest integer table index</p></li>
+<li><p>Compute the fractional portion (fract) of the table index.</p></li>
+<li><p>The final result equals <code class="docutils literal notranslate"><span class="pre">(1.0f-fract)*a</span> <span class="pre">+</span> <span class="pre">fract*b;</span></code></p></li>
+</ol>
+</p>
+<p>where  </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="function">
+<dt id="_CPPv413riscv_sin_f329float32_t">
+<span id="_CPPv313riscv_sin_f329float32_t"></span><span id="_CPPv213riscv_sin_f329float32_t"></span><span class="target" id="group__sin_1ga11d805fff25da36b07ff5d2ebfb69dca"></span>float32_t <code class="sig-name descname">riscv_sin_f32</code><span class="sig-paren">(</span>float32_t <em>x</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Fast approximation to the trigonometric sine function for floating-point data. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>sin(x) </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">x</span></code>: input value in radians. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv413riscv_sin_q155q15_t">
+<span id="_CPPv313riscv_sin_q155q15_t"></span><span id="_CPPv213riscv_sin_q155q15_t"></span><span class="target" id="group__sin_1ga414e49b515ee5a150aa855fc8e49252b"></span>q15_t <code class="sig-name descname">riscv_sin_q15</code><span class="sig-paren">(</span>q15_t <em>x</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Fast approximation to the trigonometric sine function for Q15 data. </p>
+<p><p>The Q15 input value is in the range [0 +0.9999] and is mapped to a radian value in the range [0 2*PI). </p>
+<dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>sin(x)</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">x</span></code>: Scaled input value in radians </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv413riscv_sin_q315q31_t">
+<span id="_CPPv313riscv_sin_q315q31_t"></span><span id="_CPPv213riscv_sin_q315q31_t"></span><span class="target" id="group__sin_1gaacaf1c59cfded5990998fc2979ba2a0e"></span>q31_t <code class="sig-name descname">riscv_sin_q31</code><span class="sig-paren">(</span>q31_t <em>x</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Fast approximation to the trigonometric sine function for Q31 data. </p>
+<p><p>The Q31 input value is in the range [0 +0.9999] and is mapped to a radian value in the range [0 2*PI). </p>
+<dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>sin(x)</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">x</span></code>: Scaled input value in radians </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../api_groupcmplxmath.html" class="btn btn-neutral float-right" title="Complex Math Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api_cos.html" class="btn btn-neutral float-left" title="Cosine" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Nuclei
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

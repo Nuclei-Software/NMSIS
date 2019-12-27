@@ -1,0 +1,505 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Finite Impulse Response (FIR) Sparse Filters &mdash; NMSIS 1.0.0-alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Infinite Impulse Response (IIR) Lattice Filters" href="api_iir_lattice.html" />
+    <link rel="prev" title="Finite Impulse Response (FIR) Lattice Filters" href="api_fir_lattice.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">NMSIS DSP</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupfastmath.html">Fast Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api_groupfilters.html">Filtering Functions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api_biquadcascadedf1_32x64.html">High Precision Q31 Biquad Cascade Filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_biquadcascadedf1.html">Biquad Cascade IIR Filters Using Direct Form I Structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_biquadcascadedf2t.html">Biquad Cascade IIR Filters Using a Direct Form II Transposed Structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_conv.html">Convolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_partialconv.html">Partial Convolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_corr.html">Correlation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_fir_decimate.html">Finite Impulse Response (FIR) Decimator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_fir.html">Finite Impulse Response (FIR) Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_fir_lattice.html">Finite Impulse Response (FIR) Lattice Filters</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Finite Impulse Response (FIR) Sparse Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_iir_lattice.html">Infinite Impulse Response (IIR) Lattice Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_lms.html">Least Mean Square (LMS) Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_lms_norm.html">Normalized LMS Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_fir_interpolate.html">Finite Impulse Response (FIR) Interpolator</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupmatrix.html">Matrix Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupcontroller.html">Controller Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupstats.html">Statistics Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupsupport.html">Support Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupinterpolation.html">Interpolation Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
+        
+          <li><a href="../index.html">NMSIS DSP API</a> &raquo;</li>
+        
+          <li><a href="../api_groupfilters.html">Filtering Functions</a> &raquo;</li>
+        
+      <li>Finite Impulse Response (FIR) Sparse Filters</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/dsp/api/groupfilters/api_fir_sparse.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="finite-impulse-response-fir-sparse-filters">
+<span id="nmsis-dsp-api-finite-impulse-response-fir-sparse-filters"></span><h1>Finite Impulse Response (FIR) Sparse Filters<a class="headerlink" href="#finite-impulse-response-fir-sparse-filters" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="_CPPv420riscv_fir_sparse_f32P29riscv_fir_sparse_instance_f32PK9float32_tP9float32_tP9float32_t8uint32_t">
+<span id="_CPPv320riscv_fir_sparse_f32P29riscv_fir_sparse_instance_f32PK9float32_tP9float32_tP9float32_t8uint32_t"></span><span id="_CPPv220riscv_fir_sparse_f32P29riscv_fir_sparse_instance_f32PK9float32_tP9float32_tP9float32_t8uint32_t"></span><span id="riscv_fir_sparse_f32__riscv_fir_sparse_instance_f32P.float32_tCP.float32_tP.float32_tP.uint32_t"></span><span class="target" id="group__FIR__Sparse_1ga9d163e84a2e324e7c085b1b72a61986e"></span>void <code class="sig-name descname">riscv_fir_sparse_f32</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_f32 *<em>S</em>, <em class="property">const</em> float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, float32_t *<em>pScratchIn</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420riscv_fir_sparse_f32P29riscv_fir_sparse_instance_f32PK9float32_tP9float32_tP9float32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv425riscv_fir_sparse_init_f32P29riscv_fir_sparse_instance_f328uint16_tPK9float32_tP9float32_tP7int32_t8uint16_t8uint32_t">
+<span id="_CPPv325riscv_fir_sparse_init_f32P29riscv_fir_sparse_instance_f328uint16_tPK9float32_tP9float32_tP7int32_t8uint16_t8uint32_t"></span><span id="_CPPv225riscv_fir_sparse_init_f32P29riscv_fir_sparse_instance_f328uint16_tPK9float32_tP9float32_tP7int32_t8uint16_t8uint32_t"></span><span id="riscv_fir_sparse_init_f32__riscv_fir_sparse_instance_f32P.uint16_t.float32_tCP.float32_tP.int32_tP.uint16_t.uint32_t"></span><span class="target" id="group__FIR__Sparse_1gac71f6aa7bb818120207635afe90f3d7a"></span>void <code class="sig-name descname">riscv_fir_sparse_init_f32</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_f32 *<em>S</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> float32_t *<em>pCoeffs</em>, float32_t *<em>pState</em>, int32_t *<em>pTapDelay</em>, uint16_t <em>maxDelay</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425riscv_fir_sparse_init_f32P29riscv_fir_sparse_instance_f328uint16_tPK9float32_tP9float32_tP7int32_t8uint16_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv425riscv_fir_sparse_init_q15P29riscv_fir_sparse_instance_q158uint16_tPK5q15_tP5q15_tP7int32_t8uint16_t8uint32_t">
+<span id="_CPPv325riscv_fir_sparse_init_q15P29riscv_fir_sparse_instance_q158uint16_tPK5q15_tP5q15_tP7int32_t8uint16_t8uint32_t"></span><span id="_CPPv225riscv_fir_sparse_init_q15P29riscv_fir_sparse_instance_q158uint16_tPK5q15_tP5q15_tP7int32_t8uint16_t8uint32_t"></span><span id="riscv_fir_sparse_init_q15__riscv_fir_sparse_instance_q15P.uint16_t.q15_tCP.q15_tP.int32_tP.uint16_t.uint32_t"></span><span class="target" id="group__FIR__Sparse_1gadee655d8508fa59823215e746ef467ad"></span>void <code class="sig-name descname">riscv_fir_sparse_init_q15</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_q15 *<em>S</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> q15_t *<em>pCoeffs</em>, q15_t *<em>pState</em>, int32_t *<em>pTapDelay</em>, uint16_t <em>maxDelay</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425riscv_fir_sparse_init_q15P29riscv_fir_sparse_instance_q158uint16_tPK5q15_tP5q15_tP7int32_t8uint16_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv425riscv_fir_sparse_init_q31P29riscv_fir_sparse_instance_q318uint16_tPK5q31_tP5q31_tP7int32_t8uint16_t8uint32_t">
+<span id="_CPPv325riscv_fir_sparse_init_q31P29riscv_fir_sparse_instance_q318uint16_tPK5q31_tP5q31_tP7int32_t8uint16_t8uint32_t"></span><span id="_CPPv225riscv_fir_sparse_init_q31P29riscv_fir_sparse_instance_q318uint16_tPK5q31_tP5q31_tP7int32_t8uint16_t8uint32_t"></span><span id="riscv_fir_sparse_init_q31__riscv_fir_sparse_instance_q31P.uint16_t.q31_tCP.q31_tP.int32_tP.uint16_t.uint32_t"></span><span class="target" id="group__FIR__Sparse_1ga23c217312f6473b3c6a765dd1bc27d5c"></span>void <code class="sig-name descname">riscv_fir_sparse_init_q31</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_q31 *<em>S</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> q31_t *<em>pCoeffs</em>, q31_t *<em>pState</em>, int32_t *<em>pTapDelay</em>, uint16_t <em>maxDelay</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425riscv_fir_sparse_init_q31P29riscv_fir_sparse_instance_q318uint16_tPK5q31_tP5q31_tP7int32_t8uint16_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv424riscv_fir_sparse_init_q7P28riscv_fir_sparse_instance_q78uint16_tPK4q7_tP4q7_tP7int32_t8uint16_t8uint32_t">
+<span id="_CPPv324riscv_fir_sparse_init_q7P28riscv_fir_sparse_instance_q78uint16_tPK4q7_tP4q7_tP7int32_t8uint16_t8uint32_t"></span><span id="_CPPv224riscv_fir_sparse_init_q7P28riscv_fir_sparse_instance_q78uint16_tPK4q7_tP4q7_tP7int32_t8uint16_t8uint32_t"></span><span id="riscv_fir_sparse_init_q7__riscv_fir_sparse_instance_q7P.uint16_t.q7_tCP.q7_tP.int32_tP.uint16_t.uint32_t"></span><span class="target" id="group__FIR__Sparse_1ga5256db6ef38c820c1a12d2ba3603e073"></span>void <code class="sig-name descname">riscv_fir_sparse_init_q7</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_q7 *<em>S</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> q7_t *<em>pCoeffs</em>, q7_t *<em>pState</em>, int32_t *<em>pTapDelay</em>, uint16_t <em>maxDelay</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424riscv_fir_sparse_init_q7P28riscv_fir_sparse_instance_q78uint16_tPK4q7_tP4q7_tP7int32_t8uint16_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv420riscv_fir_sparse_q15P29riscv_fir_sparse_instance_q15PK5q15_tP5q15_tP5q15_tP5q31_t8uint32_t">
+<span id="_CPPv320riscv_fir_sparse_q15P29riscv_fir_sparse_instance_q15PK5q15_tP5q15_tP5q15_tP5q31_t8uint32_t"></span><span id="_CPPv220riscv_fir_sparse_q15P29riscv_fir_sparse_instance_q15PK5q15_tP5q15_tP5q15_tP5q31_t8uint32_t"></span><span id="riscv_fir_sparse_q15__riscv_fir_sparse_instance_q15P.q15_tCP.q15_tP.q15_tP.q31_tP.uint32_t"></span><span class="target" id="group__FIR__Sparse_1gad748c3c718c09152822c40c5c486668a"></span>void <code class="sig-name descname">riscv_fir_sparse_q15</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_q15 *<em>S</em>, <em class="property">const</em> q15_t *<em>pSrc</em>, q15_t *<em>pDst</em>, q15_t *<em>pScratchIn</em>, q31_t *<em>pScratchOut</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420riscv_fir_sparse_q15P29riscv_fir_sparse_instance_q15PK5q15_tP5q15_tP5q15_tP5q31_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv420riscv_fir_sparse_q31P29riscv_fir_sparse_instance_q31PK5q31_tP5q31_tP5q31_t8uint32_t">
+<span id="_CPPv320riscv_fir_sparse_q31P29riscv_fir_sparse_instance_q31PK5q31_tP5q31_tP5q31_t8uint32_t"></span><span id="_CPPv220riscv_fir_sparse_q31P29riscv_fir_sparse_instance_q31PK5q31_tP5q31_tP5q31_t8uint32_t"></span><span id="riscv_fir_sparse_q31__riscv_fir_sparse_instance_q31P.q31_tCP.q31_tP.q31_tP.uint32_t"></span><span class="target" id="group__FIR__Sparse_1gae092c99cb8f32e649a02948cc4a7de3a"></span>void <code class="sig-name descname">riscv_fir_sparse_q31</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_q31 *<em>S</em>, <em class="property">const</em> q31_t *<em>pSrc</em>, q31_t *<em>pDst</em>, q31_t *<em>pScratchIn</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420riscv_fir_sparse_q31P29riscv_fir_sparse_instance_q31PK5q31_tP5q31_tP5q31_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv419riscv_fir_sparse_q7P28riscv_fir_sparse_instance_q7PK4q7_tP4q7_tP4q7_tP5q31_t8uint32_t">
+<span id="_CPPv319riscv_fir_sparse_q7P28riscv_fir_sparse_instance_q7PK4q7_tP4q7_tP4q7_tP5q31_t8uint32_t"></span><span id="_CPPv219riscv_fir_sparse_q7P28riscv_fir_sparse_instance_q7PK4q7_tP4q7_tP4q7_tP5q31_t8uint32_t"></span><span id="riscv_fir_sparse_q7__riscv_fir_sparse_instance_q7P.q7_tCP.q7_tP.q7_tP.q31_tP.uint32_t"></span><span class="target" id="group__FIR__Sparse_1ga93670e55f4a3d6c0a16ee726084a6a14"></span>void <code class="sig-name descname">riscv_fir_sparse_q7</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_q7 *<em>S</em>, <em class="property">const</em> q7_t *<em>pSrc</em>, q7_t *<em>pDst</em>, q7_t *<em>pScratchIn</em>, q31_t *<em>pScratchOut</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_fir_sparse_q7P28riscv_fir_sparse_instance_q7PK4q7_tP4q7_tP4q7_tP5q31_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="group">
+<dt>
+<span class="target" id="group__FIR__Sparse"></span><em>group</em> <code class="sig-name descname">FIR_Sparse</code></dt>
+<dd><p>This group of functions implements sparse FIR filters. Sparse FIR filters are equivalent to standard FIR filters except that most of the coefficients are equal to zero. Sparse filters are used for simulating reflections in communications and audio applications.</p>
+<p>There are separate functions for Q7, Q15, Q31, and floating-point data types. The functions operate on blocks of input and output data and each call to the function processes <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> samples through the filter. <code class="docutils literal notranslate"><span class="pre">pSrc</span></code> and <code class="docutils literal notranslate"><span class="pre">pDst</span></code> points to input and output arrays respectively containing <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> values.</p>
+<p><dl class="simple">
+<dt><strong>Algorithm</strong></dt><dd><p>The sparse filter instant structure contains an array of tap indices <code class="docutils literal notranslate"><span class="pre">pTapDelay</span></code> which specifies the locations of the non-zero coefficients. This is in addition to the coefficient array <code class="docutils literal notranslate"><span class="pre">b</span></code>. The implementation essentially skips the multiplications by zero and leads to an efficient realization.  </p>
+</dd>
+<dt><strong></strong></dt><dd><p><img alt="../../../_images/FIRSparse.png" src="../../../_images/FIRSparse.png" /></p>
+</dd>
+<dt><strong></strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> points to a coefficient array of size <code class="docutils literal notranslate"><span class="pre">numTaps</span></code>; <code class="docutils literal notranslate"><span class="pre">pTapDelay</span></code> points to an array of nonzero indices and is also of size <code class="docutils literal notranslate"><span class="pre">numTaps</span></code>; <code class="docutils literal notranslate"><span class="pre">pState</span></code> points to a state array of size <code class="docutils literal notranslate"><span class="pre">maxDelay</span> <span class="pre">+</span> <span class="pre">blockSize</span></code>, where <code class="docutils literal notranslate"><span class="pre">maxDelay</span></code> is the largest offset value that is ever used in the <code class="docutils literal notranslate"><span class="pre">pTapDelay</span></code> array. Some of the processing functions also require temporary working buffers.</p>
+</dd>
+<dt><strong>Instance Structure</strong></dt><dd><p>The coefficients and state variables for a filter are stored together in an instance data structure. A separate instance structure must be defined for each filter. Coefficient and offset arrays may be shared among several instances while state variable arrays cannot be shared. There are separate instance structure declarations for each of the 4 supported data types.</p>
+</dd>
+<dt><strong>Initialization Functions</strong></dt><dd><p>There is also an associated initialization function for each data type. The initialization function performs the following operations:<ul class="simple">
+<li><p>Sets the values of the internal structure fields.</p></li>
+<li><p>Zeros out the values in the state buffer. To do this manually without calling the init function, assign the follow subfields of the instance structure: numTaps, pCoeffs, pTapDelay, maxDelay, stateIndex, pState. Also set all of the values in pState to zero. </p></li>
+</ul>
+</p>
+</dd>
+<dt><strong></strong></dt><dd><p>Use of the initialization function is optional. However, if the initialization function is used, then the instance structure cannot be placed into a const data section. To place an instance structure into a const data section, the instance structure must be manually initialized. Set the values in the state buffer to zeros before static initialization. The code below statically initializes each of the 4 different data type filter instance structures </p>
+</dd>
+<dt><strong>Fixed-Point Behavior</strong></dt><dd><p>Care must be taken when using the fixed-point versions of the sparse FIR filter functions. In particular, the overflow and saturation behavior of the accumulator used in each function must be considered. Refer to the function specific documentation below for usage guidelines. </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="function">
+<dt id="_CPPv420riscv_fir_sparse_f32P29riscv_fir_sparse_instance_f32PK9float32_tP9float32_tP9float32_t8uint32_t">
+<span id="_CPPv320riscv_fir_sparse_f32P29riscv_fir_sparse_instance_f32PK9float32_tP9float32_tP9float32_t8uint32_t"></span><span id="_CPPv220riscv_fir_sparse_f32P29riscv_fir_sparse_instance_f32PK9float32_tP9float32_tP9float32_t8uint32_t"></span><span class="target" id="group__FIR__Sparse_1ga9d163e84a2e324e7c085b1b72a61986e"></span>void <code class="sig-name descname">riscv_fir_sparse_f32</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_f32 *<em>S</em>, <em class="property">const</em> float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, float32_t *<em>pScratchIn</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Processing function for the floating-point sparse FIR filter. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the floating-point sparse FIR structure </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the block of output data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pScratchIn</span></code>: points to a temporary buffer of size blockSize </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of input samples to process </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv425riscv_fir_sparse_init_f32P29riscv_fir_sparse_instance_f328uint16_tPK9float32_tP9float32_tP7int32_t8uint16_t8uint32_t">
+<span id="_CPPv325riscv_fir_sparse_init_f32P29riscv_fir_sparse_instance_f328uint16_tPK9float32_tP9float32_tP7int32_t8uint16_t8uint32_t"></span><span id="_CPPv225riscv_fir_sparse_init_f32P29riscv_fir_sparse_instance_f328uint16_tPK9float32_tP9float32_tP7int32_t8uint16_t8uint32_t"></span><span class="target" id="group__FIR__Sparse_1gac71f6aa7bb818120207635afe90f3d7a"></span>void <code class="sig-name descname">riscv_fir_sparse_init_f32</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_f32 *<em>S</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> float32_t *<em>pCoeffs</em>, float32_t *<em>pState</em>, int32_t *<em>pTapDelay</em>, uint16_t <em>maxDelay</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization function for the floating-point sparse FIR filter. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none</p>
+</dd>
+<dt><strong>Details</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> holds the filter coefficients and has length <code class="docutils literal notranslate"><span class="pre">numTaps</span></code>. <code class="docutils literal notranslate"><span class="pre">pState</span></code> holds the filter’s state variables and must be of length <code class="docutils literal notranslate"><span class="pre">maxDelay</span> <span class="pre">+</span> <span class="pre">blockSize</span></code>, where <code class="docutils literal notranslate"><span class="pre">maxDelay</span></code> is the maximum number of delay line values. <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> is the number of samples processed by the <code class="docutils literal notranslate"><span class="pre">riscv_fir_sparse_f32()</span></code> function. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an instance of the floating-point sparse FIR structure </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numTaps</span></code>: number of nonzero coefficients in the filter </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pCoeffs</span></code>: points to the array of filter coefficients </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pState</span></code>: points to the state buffer </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pTapDelay</span></code>: points to the array of offset times </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">maxDelay</span></code>: maximum offset time supported </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples that will be processed per block </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv425riscv_fir_sparse_init_q15P29riscv_fir_sparse_instance_q158uint16_tPK5q15_tP5q15_tP7int32_t8uint16_t8uint32_t">
+<span id="_CPPv325riscv_fir_sparse_init_q15P29riscv_fir_sparse_instance_q158uint16_tPK5q15_tP5q15_tP7int32_t8uint16_t8uint32_t"></span><span id="_CPPv225riscv_fir_sparse_init_q15P29riscv_fir_sparse_instance_q158uint16_tPK5q15_tP5q15_tP7int32_t8uint16_t8uint32_t"></span><span class="target" id="group__FIR__Sparse_1gadee655d8508fa59823215e746ef467ad"></span>void <code class="sig-name descname">riscv_fir_sparse_init_q15</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_q15 *<em>S</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> q15_t *<em>pCoeffs</em>, q15_t *<em>pState</em>, int32_t *<em>pTapDelay</em>, uint16_t <em>maxDelay</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization function for the Q15 sparse FIR filter. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none</p>
+</dd>
+<dt><strong>Details</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> holds the filter coefficients and has length <code class="docutils literal notranslate"><span class="pre">numTaps</span></code>. <code class="docutils literal notranslate"><span class="pre">pState</span></code> holds the filter’s state variables and must be of length <code class="docutils literal notranslate"><span class="pre">maxDelay</span> <span class="pre">+</span> <span class="pre">blockSize</span></code>, where <code class="docutils literal notranslate"><span class="pre">maxDelay</span></code> is the maximum number of delay line values. <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> is the number of words processed by <code class="docutils literal notranslate"><span class="pre">riscv_fir_sparse_q15()</span></code> function. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an instance of the Q15 sparse FIR structure </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numTaps</span></code>: number of nonzero coefficients in the filter </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pCoeffs</span></code>: points to the array of filter coefficients </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pState</span></code>: points to the state buffer </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pTapDelay</span></code>: points to the array of offset times </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">maxDelay</span></code>: maximum offset time supported </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples that will be processed per block </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv425riscv_fir_sparse_init_q31P29riscv_fir_sparse_instance_q318uint16_tPK5q31_tP5q31_tP7int32_t8uint16_t8uint32_t">
+<span id="_CPPv325riscv_fir_sparse_init_q31P29riscv_fir_sparse_instance_q318uint16_tPK5q31_tP5q31_tP7int32_t8uint16_t8uint32_t"></span><span id="_CPPv225riscv_fir_sparse_init_q31P29riscv_fir_sparse_instance_q318uint16_tPK5q31_tP5q31_tP7int32_t8uint16_t8uint32_t"></span><span class="target" id="group__FIR__Sparse_1ga23c217312f6473b3c6a765dd1bc27d5c"></span>void <code class="sig-name descname">riscv_fir_sparse_init_q31</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_q31 *<em>S</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> q31_t *<em>pCoeffs</em>, q31_t *<em>pState</em>, int32_t *<em>pTapDelay</em>, uint16_t <em>maxDelay</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization function for the Q31 sparse FIR filter. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none</p>
+</dd>
+<dt><strong>Details</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> holds the filter coefficients and has length <code class="docutils literal notranslate"><span class="pre">numTaps</span></code>. <code class="docutils literal notranslate"><span class="pre">pState</span></code> holds the filter’s state variables and must be of length <code class="docutils literal notranslate"><span class="pre">maxDelay</span> <span class="pre">+</span> <span class="pre">blockSize</span></code>, where <code class="docutils literal notranslate"><span class="pre">maxDelay</span></code> is the maximum number of delay line values. <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> is the number of words processed by <code class="docutils literal notranslate"><span class="pre">riscv_fir_sparse_q31()</span></code> function. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an instance of the Q31 sparse FIR structure </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numTaps</span></code>: number of nonzero coefficients in the filter </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pCoeffs</span></code>: points to the array of filter coefficients </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pState</span></code>: points to the state buffer </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pTapDelay</span></code>: points to the array of offset times </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">maxDelay</span></code>: maximum offset time supported </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples that will be processed per block </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv424riscv_fir_sparse_init_q7P28riscv_fir_sparse_instance_q78uint16_tPK4q7_tP4q7_tP7int32_t8uint16_t8uint32_t">
+<span id="_CPPv324riscv_fir_sparse_init_q7P28riscv_fir_sparse_instance_q78uint16_tPK4q7_tP4q7_tP7int32_t8uint16_t8uint32_t"></span><span id="_CPPv224riscv_fir_sparse_init_q7P28riscv_fir_sparse_instance_q78uint16_tPK4q7_tP4q7_tP7int32_t8uint16_t8uint32_t"></span><span class="target" id="group__FIR__Sparse_1ga5256db6ef38c820c1a12d2ba3603e073"></span>void <code class="sig-name descname">riscv_fir_sparse_init_q7</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_q7 *<em>S</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> q7_t *<em>pCoeffs</em>, q7_t *<em>pState</em>, int32_t *<em>pTapDelay</em>, uint16_t <em>maxDelay</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization function for the Q7 sparse FIR filter. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none</p>
+</dd>
+<dt><strong>Details</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> holds the filter coefficients and has length <code class="docutils literal notranslate"><span class="pre">numTaps</span></code>. <code class="docutils literal notranslate"><span class="pre">pState</span></code> holds the filter’s state variables and must be of length <code class="docutils literal notranslate"><span class="pre">maxDelay</span> <span class="pre">+</span> <span class="pre">blockSize</span></code>, where <code class="docutils literal notranslate"><span class="pre">maxDelay</span></code> is the maximum number of delay line values. <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> is the number of samples processed by the <code class="docutils literal notranslate"><span class="pre">riscv_fir_sparse_q7()</span></code> function. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an instance of the Q7 sparse FIR structure </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numTaps</span></code>: number of nonzero coefficients in the filter </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pCoeffs</span></code>: points to the array of filter coefficients </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pState</span></code>: points to the state buffer </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pTapDelay</span></code>: points to the array of offset times </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">maxDelay</span></code>: maximum offset time supported </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples that will be processed per block </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv420riscv_fir_sparse_q15P29riscv_fir_sparse_instance_q15PK5q15_tP5q15_tP5q15_tP5q31_t8uint32_t">
+<span id="_CPPv320riscv_fir_sparse_q15P29riscv_fir_sparse_instance_q15PK5q15_tP5q15_tP5q15_tP5q31_t8uint32_t"></span><span id="_CPPv220riscv_fir_sparse_q15P29riscv_fir_sparse_instance_q15PK5q15_tP5q15_tP5q15_tP5q31_t8uint32_t"></span><span class="target" id="group__FIR__Sparse_1gad748c3c718c09152822c40c5c486668a"></span>void <code class="sig-name descname">riscv_fir_sparse_q15</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_q15 *<em>S</em>, <em class="property">const</em> q15_t *<em>pSrc</em>, q15_t *<em>pDst</em>, q15_t *<em>pScratchIn</em>, q31_t *<em>pScratchOut</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Processing function for the Q15 sparse FIR filter. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none</p>
+</dd>
+<dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The function is implemented using an internal 32-bit accumulator. The 1.15 x 1.15 multiplications yield a 2.30 result and these are added to a 2.30 accumulator. Thus the full precision of the multiplications is maintained but there is only a single guard bit in the accumulator. If the accumulator result overflows it will wrap around rather than saturate. After all multiply-accumulates are performed, the 2.30 accumulator is truncated to 2.15 format and then saturated to 1.15 format. In order to avoid overflows the input signal or coefficients must be scaled down by log2(numTaps) bits. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the Q15 sparse FIR structure </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the block of output data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pScratchIn</span></code>: points to a temporary buffer of size blockSize </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pScratchOut</span></code>: points to a temporary buffer of size blockSize </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of input samples to process per call </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv420riscv_fir_sparse_q31P29riscv_fir_sparse_instance_q31PK5q31_tP5q31_tP5q31_t8uint32_t">
+<span id="_CPPv320riscv_fir_sparse_q31P29riscv_fir_sparse_instance_q31PK5q31_tP5q31_tP5q31_t8uint32_t"></span><span id="_CPPv220riscv_fir_sparse_q31P29riscv_fir_sparse_instance_q31PK5q31_tP5q31_tP5q31_t8uint32_t"></span><span class="target" id="group__FIR__Sparse_1gae092c99cb8f32e649a02948cc4a7de3a"></span>void <code class="sig-name descname">riscv_fir_sparse_q31</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_q31 *<em>S</em>, <em class="property">const</em> q31_t *<em>pSrc</em>, q31_t *<em>pDst</em>, q31_t *<em>pScratchIn</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Processing function for the Q31 sparse FIR filter. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none</p>
+</dd>
+<dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The function is implemented using an internal 32-bit accumulator. The 1.31 x 1.31 multiplications are truncated to 2.30 format. This leads to loss of precision on the intermediate multiplications and provides only a single guard bit. If the accumulator result overflows, it wraps around rather than saturate. In order to avoid overflows the input signal or coefficients must be scaled down by log2(numTaps) bits. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the Q31 sparse FIR structure </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the block of output data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pScratchIn</span></code>: points to a temporary buffer of size blockSize </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of input samples to process </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv419riscv_fir_sparse_q7P28riscv_fir_sparse_instance_q7PK4q7_tP4q7_tP4q7_tP5q31_t8uint32_t">
+<span id="_CPPv319riscv_fir_sparse_q7P28riscv_fir_sparse_instance_q7PK4q7_tP4q7_tP4q7_tP5q31_t8uint32_t"></span><span id="_CPPv219riscv_fir_sparse_q7P28riscv_fir_sparse_instance_q7PK4q7_tP4q7_tP4q7_tP5q31_t8uint32_t"></span><span class="target" id="group__FIR__Sparse_1ga93670e55f4a3d6c0a16ee726084a6a14"></span>void <code class="sig-name descname">riscv_fir_sparse_q7</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_q7 *<em>S</em>, <em class="property">const</em> q7_t *<em>pSrc</em>, q7_t *<em>pDst</em>, q7_t *<em>pScratchIn</em>, q31_t *<em>pScratchOut</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Processing function for the Q7 sparse FIR filter. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none</p>
+</dd>
+<dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The function is implemented using a 32-bit internal accumulator. Both coefficients and state variables are represented in 1.7 format and multiplications yield a 2.14 result. The 2.14 intermediate results are accumulated in a 32-bit accumulator in 18.14 format. There is no risk of internal overflow with this approach and the full precision of intermediate multiplications is preserved. The accumulator is then converted to 18.7 format by discarding the low 7 bits. Finally, the result is truncated to 1.7 format. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the Q7 sparse FIR structure </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the block of output data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pScratchIn</span></code>: points to a temporary buffer of size blockSize </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pScratchOut</span></code>: points to a temporary buffer of size blockSize </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of input samples to process </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api_iir_lattice.html" class="btn btn-neutral float-right" title="Infinite Impulse Response (IIR) Lattice Filters" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api_fir_lattice.html" class="btn btn-neutral float-left" title="Finite Impulse Response (FIR) Lattice Filters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Nuclei
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

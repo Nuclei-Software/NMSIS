@@ -1,0 +1,237 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="riscv__biquad__cascade__df2T__init__f32_8c" kind="file" language="C++">
+    <compoundname>riscv_biquad_cascade_df2T_init_f32.c</compoundname>
+    <includes refid="riscv__math_8h" local="yes">riscv_math.h</includes>
+    <includedby refid="FilteringFunctions_8c" local="yes">FilteringFunctions.c</includedby>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__BiquadCascadeDF2T_1ga64bded2f72748bde1621e6b27739cfbe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_biquad_cascade_df2T_init_f32</definition>
+        <argsstring>(riscv_biquad_cascade_df2T_instance_f32 *S, uint8_t numStages, const float32_t *pCoeffs, float32_t *pState)</argsstring>
+        <name>riscv_biquad_cascade_df2T_init_f32</name>
+        <param>
+          <type><ref refid="structriscv__biquad__cascade__df2T__instance__f32" kindref="compound">riscv_biquad_cascade_df2T_instance_f32</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>numStages</declname>
+        </param>
+        <param>
+          <type>const float32_t *</type>
+          <declname>pCoeffs</declname>
+        </param>
+        <param>
+          <type>float32_t *</type>
+          <declname>pState</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the floating-point transposed direct form II Biquad cascade filter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the filter data structure. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">numStages</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of 2nd order stages in the filter. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pCoeffs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the filter coefficients. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pState</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the state buffer. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Coefficient and State Ordering</title><para>The coefficients are stored in the array <computeroutput>pCoeffs</computeroutput> in the following order in the not Neon version. <preformatted>
+    {b10, b11, b12, a11, a12, b20, b21, b22, a21, a22, ...}
+</preformatted></para></simplesect>
+<simplesect kind="par"><title></title><para>where <computeroutput>b1x</computeroutput> and <computeroutput>a1x</computeroutput> are the coefficients for the first stage, <computeroutput>b2x</computeroutput> and <computeroutput>a2x</computeroutput> are the coefficients for the second stage, and so on. The <computeroutput>pCoeffs</computeroutput> array contains a total of <computeroutput>5*numStages</computeroutput> values.</para></simplesect>
+For Neon version, this array is bigger. If numstages = 4x + y, then the array has size: 32*x + 5*y and it must be initialized using the function riscv_biquad_cascade_df2T_compute_coefs_f32 which is taking the standard array coefficient as parameters.</para><para>But, an array of 8*numstages is a good approximation.</para><para>Then, the initialization can be done with: <preformatted>
+                 riscv_biquad_cascade_df2T_init_f32(&amp;SNeon, nbCascade, neonCoefs, stateNeon);
+                 riscv_biquad_cascade_df2T_compute_coefs_f32(&amp;SNeon,nbCascade,coefs);
+</preformatted></para><para><simplesect kind="par"><title>In this example, neonCoefs is a bigger array of size 8 * numStages.</title><para>coefs is the standard array:</para></simplesect>
+<preformatted>
+    {b10, b11, b12, a11, a12, b20, b21, b22, a21, a22, ...}
+</preformatted></para><para><simplesect kind="par"><title></title><para>The <computeroutput>pState</computeroutput> is a pointer to state array. Each Biquad stage has 2 state variables <computeroutput>d1,</computeroutput> and <computeroutput>d2</computeroutput>. The 2 state variables for stage 1 are first, then the 2 state variables for stage 2, and so on. The state array has a total length of <computeroutput>2*numStages</computeroutput> values. The state variables are updated after each block of data is processed; the coefficients are untouched. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_biquad_cascade_df2T_init_f32.c" line="191" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_biquad_cascade_df2T_init_f32.c" bodystart="191" bodyend="208"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/>----------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>Project:<sp/><sp/><sp/><sp/><sp/><sp/>NMSIS<sp/>DSP<sp/>Library</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>Title:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>riscv_biquad_cascade_df2T_init_f32.c</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Description:<sp/><sp/>Initialization<sp/>function<sp/>for<sp/>floating-point<sp/>transposed<sp/>direct<sp/>form<sp/>II<sp/>Biquad<sp/>cascade<sp/>filter</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>$Date:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>18.<sp/>March<sp/>2019</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>$Revision:<sp/><sp/><sp/><sp/>V1.6.0</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>Target<sp/>Processor:<sp/>RISC-V<sp/>cores</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>--------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(C)<sp/>2010-2019<sp/>ARM<sp/>Limited<sp/>or<sp/>its<sp/>affiliates.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2019<sp/>Nuclei<sp/>Limited.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/>SPDX-License-Identifier:<sp/>Apache-2.0</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/>Licensed<sp/>under<sp/>the<sp/>Apache<sp/>License,<sp/>Version<sp/>2.0<sp/>(the<sp/>License);<sp/>you<sp/>may</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/>not<sp/>use<sp/>this<sp/>file<sp/>except<sp/>in<sp/>compliance<sp/>with<sp/>the<sp/>License.</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/>You<sp/>may<sp/>obtain<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>License<sp/>at</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/>www.apache.org/licenses/LICENSE-2.0</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*<sp/>Unless<sp/>required<sp/>by<sp/>applicable<sp/>law<sp/>or<sp/>agreed<sp/>to<sp/>in<sp/>writing,<sp/>software</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*<sp/>distributed<sp/>under<sp/>the<sp/>License<sp/>is<sp/>distributed<sp/>on<sp/>an<sp/>AS<sp/>IS<sp/>BASIS,<sp/>WITHOUT</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*<sp/>WARRANTIES<sp/>OR<sp/>CONDITIONS<sp/>OF<sp/>ANY<sp/>KIND,<sp/>either<sp/>express<sp/>or<sp/>implied.</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*<sp/>See<sp/>the<sp/>License<sp/>for<sp/>the<sp/>specific<sp/>language<sp/>governing<sp/>permissions<sp/>and</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*<sp/>limitations<sp/>under<sp/>the<sp/>License.</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;riscv_math.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="preprocessor">#if<sp/>defined(RISCV_MATH_NEON)<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="93"><highlight class="comment"></highlight></codeline>
+<codeline lineno="94"><highlight class="comment">Must<sp/>be<sp/>called<sp/>after<sp/>initializing<sp/>the<sp/>biquad<sp/>instance.</highlight></codeline>
+<codeline lineno="95"><highlight class="comment">pCoeffs<sp/>has<sp/>size<sp/>5<sp/>*<sp/>nbCascade</highlight></codeline>
+<codeline lineno="96"><highlight class="comment">Whereas<sp/>the<sp/>pCoeffs<sp/>for<sp/>the<sp/>init<sp/>has<sp/>size<sp/>(4*4<sp/>+<sp/>4*4)*<sp/>nbCascade<sp/></highlight></codeline>
+<codeline lineno="97"><highlight class="comment"></highlight></codeline>
+<codeline lineno="98"><highlight class="comment">So<sp/>this<sp/>pCoeffs<sp/>is<sp/>the<sp/>one<sp/>which<sp/>would<sp/>be<sp/>used<sp/>for<sp/>the<sp/>not<sp/>Neon<sp/>version.</highlight></codeline>
+<codeline lineno="99"><highlight class="comment">The<sp/>pCoeffs<sp/>passed<sp/>in<sp/>init<sp/>is<sp/>bigger<sp/>than<sp/>the<sp/>one<sp/>for<sp/>the<sp/>not<sp/>Neon<sp/>version.</highlight></codeline>
+<codeline lineno="100"><highlight class="comment"></highlight></codeline>
+<codeline lineno="101"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>riscv_biquad_cascade_df2T_compute_coefs_f32(</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><ref refid="structriscv__biquad__cascade__df2T__instance__f32" kindref="compound">riscv_biquad_cascade_df2T_instance_f32</ref><sp/>*<sp/>S,</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/>uint8_t<sp/>numStages,</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/>float32_t<sp/>*<sp/>pCoeffs)</highlight></codeline>
+<codeline lineno="106"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/>uint8_t<sp/>cnt;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/>float32_t<sp/>*pDstCoeffs;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/>float32_t<sp/>b0[4],b1[4],b2[4],a1[4],a2[4];</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/>pDstCoeffs<sp/>=<sp/>S-&gt;<ref refid="structriscv__biquad__cascade__df2T__instance__f32_1a8e5292a3ff2cab88c65d9daaebd290a6" kindref="member">pCoeffs</ref>;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/>cnt<sp/>=<sp/>numStages<sp/>&gt;&gt;<sp/>2;<sp/></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(cnt<sp/>&gt;<sp/>0)</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i=0;i&lt;4;i++)</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>b0[i]<sp/>=<sp/>pCoeffs[0];</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>b1[i]<sp/>=<sp/>pCoeffs[1];</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>b2[i]<sp/>=<sp/>pCoeffs[2];</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>a1[i]<sp/>=<sp/>pCoeffs[3];</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>a2[i]<sp/>=<sp/>pCoeffs[4];</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pCoeffs<sp/>+=<sp/>5;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Vec<sp/>1<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>b0[1];</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>b0[2];</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>b0[3];</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Vec<sp/>2<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>b0[1]<sp/>*<sp/>b0[2];</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>b0[2]<sp/>*<sp/>b0[3];</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Vec<sp/>3<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>b0[1]<sp/>*<sp/>b0[2]<sp/>*<sp/>b0[3];</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Vec<sp/>4<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>b0[0];</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>b0[0]<sp/>*<sp/>b0[1];</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>b0[0]<sp/>*<sp/>b0[1]<sp/>*<sp/>b0[2];</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>b0[0]<sp/>*<sp/>b0[1]<sp/>*<sp/>b0[2]<sp/>*<sp/>b0[3];</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Vec<sp/>5<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>b1[0];</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>b1[1];</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>b1[2];</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>b1[3];</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Vec<sp/>6<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>b2[0];</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>b2[1];</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>b2[2];</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>b2[3];</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Vec<sp/>7<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>a1[0];</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>a1[1];</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>a1[2];</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>a1[3];</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Vec<sp/>8<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>a2[0];</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>a2[1];</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>a2[2];</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>a2[3];</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cnt--;</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/>cnt<sp/>=<sp/>numStages<sp/>&amp;<sp/>0x3;</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(cnt<sp/>&gt;<sp/>0)</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>*pCoeffs++;</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>*pCoeffs++;</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>*pCoeffs++;</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>*pCoeffs++;</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pDstCoeffs++<sp/>=<sp/>*pCoeffs++;</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cnt--;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__BiquadCascadeDF2T_1ga64bded2f72748bde1621e6b27739cfbe" kindref="member">riscv_biquad_cascade_df2T_init_f32</ref>(</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structriscv__biquad__cascade__df2T__instance__f32" kindref="compound">riscv_biquad_cascade_df2T_instance_f32</ref><sp/>*<sp/>S,</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/>numStages,</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>float32_t<sp/>*<sp/>pCoeffs,</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32_t<sp/>*<sp/>pState)</highlight></codeline>
+<codeline lineno="196"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Assign<sp/>filter<sp/>stages<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/>S-&gt;<ref refid="structriscv__biquad__cascade__df2T__instance__f32_1abe1cf0b71251552f4d3cf241c0735e83" kindref="member">numStages</ref><sp/>=<sp/>numStages;</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Assign<sp/>coefficient<sp/>pointer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/>S-&gt;<ref refid="structriscv__biquad__cascade__df2T__instance__f32_1a8e5292a3ff2cab88c65d9daaebd290a6" kindref="member">pCoeffs</ref><sp/>=<sp/>pCoeffs;</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Clear<sp/>state<sp/>buffer<sp/>and<sp/>size<sp/>is<sp/>always<sp/>2<sp/>*<sp/>numStages<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/>memset(pState,<sp/>0,<sp/>(2U<sp/>*<sp/>(uint32_t)<sp/>numStages)<sp/>*<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(float32_t));</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Assign<sp/>state<sp/>pointer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/>S-&gt;<ref refid="structriscv__biquad__cascade__df2T__instance__f32_1aa93dcc76ba959687b1abdc87e16b7416" kindref="member">pState</ref><sp/>=<sp/>pState;</highlight></codeline>
+<codeline lineno="208"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_biquad_cascade_df2T_init_f32.c"/>
+  </compounddef>
+</doxygen>

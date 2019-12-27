@@ -1,0 +1,707 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="group__FIR__Sparse" kind="group">
+    <compoundname>FIR_Sparse</compoundname>
+    <title>Finite Impulse Response (FIR) Sparse Filters</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__FIR__Sparse_1ga9d163e84a2e324e7c085b1b72a61986e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_fir_sparse_f32</definition>
+        <argsstring>(riscv_fir_sparse_instance_f32 *S, const float32_t *pSrc, float32_t *pDst, float32_t *pScratchIn, uint32_t blockSize)</argsstring>
+        <name>riscv_fir_sparse_f32</name>
+        <param>
+          <type><ref refid="structriscv__fir__sparse__instance__f32" kindref="compound">riscv_fir_sparse_instance_f32</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>const float32_t *</type>
+          <declname>pSrc</declname>
+        </param>
+        <param>
+          <type>float32_t *</type>
+          <declname>pDst</declname>
+        </param>
+        <param>
+          <type>float32_t *</type>
+          <declname>pScratchIn</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Processing function for the floating-point sparse FIR filter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the floating-point sparse FIR structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of input data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of output data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pScratchIn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to a temporary buffer of size blockSize </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of input samples to process </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_sparse_f32.c" line="111" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_sparse_f32.c" bodystart="111" bodyend="338"/>
+      </memberdef>
+      <memberdef kind="function" id="group__FIR__Sparse_1gac71f6aa7bb818120207635afe90f3d7a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_fir_sparse_init_f32</definition>
+        <argsstring>(riscv_fir_sparse_instance_f32 *S, uint16_t numTaps, const float32_t *pCoeffs, float32_t *pState, int32_t *pTapDelay, uint16_t maxDelay, uint32_t blockSize)</argsstring>
+        <name>riscv_fir_sparse_init_f32</name>
+        <param>
+          <type><ref refid="structriscv__fir__sparse__instance__f32" kindref="compound">riscv_fir_sparse_instance_f32</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>numTaps</declname>
+        </param>
+        <param>
+          <type>const float32_t *</type>
+          <declname>pCoeffs</declname>
+        </param>
+        <param>
+          <type>float32_t *</type>
+          <declname>pState</declname>
+        </param>
+        <param>
+          <type>int32_t *</type>
+          <declname>pTapDelay</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>maxDelay</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the floating-point sparse FIR filter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the floating-point sparse FIR structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">numTaps</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of nonzero coefficients in the filter </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pCoeffs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the array of filter coefficients </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pState</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the state buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pTapDelay</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the array of offset times </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">maxDelay</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>maximum offset time supported </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples that will be processed per block </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Details</title><para><computeroutput>pCoeffs</computeroutput> holds the filter coefficients and has length <computeroutput>numTaps</computeroutput>. <computeroutput>pState</computeroutput> holds the filter&apos;s state variables and must be of length <computeroutput>maxDelay + blockSize</computeroutput>, where <computeroutput>maxDelay</computeroutput> is the maximum number of delay line values. <computeroutput>blockSize</computeroutput> is the number of samples processed by the <computeroutput><ref refid="group__FIR__Sparse_1ga9d163e84a2e324e7c085b1b72a61986e" kindref="member">riscv_fir_sparse_f32()</ref></computeroutput> function. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_sparse_init_f32.c" line="61" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_sparse_init_f32.c" bodystart="61" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="group__FIR__Sparse_1gadee655d8508fa59823215e746ef467ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_fir_sparse_init_q15</definition>
+        <argsstring>(riscv_fir_sparse_instance_q15 *S, uint16_t numTaps, const q15_t *pCoeffs, q15_t *pState, int32_t *pTapDelay, uint16_t maxDelay, uint32_t blockSize)</argsstring>
+        <name>riscv_fir_sparse_init_q15</name>
+        <param>
+          <type><ref refid="structriscv__fir__sparse__instance__q15" kindref="compound">riscv_fir_sparse_instance_q15</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>numTaps</declname>
+        </param>
+        <param>
+          <type>const q15_t *</type>
+          <declname>pCoeffs</declname>
+        </param>
+        <param>
+          <type>q15_t *</type>
+          <declname>pState</declname>
+        </param>
+        <param>
+          <type>int32_t *</type>
+          <declname>pTapDelay</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>maxDelay</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the Q15 sparse FIR filter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the Q15 sparse FIR structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">numTaps</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of nonzero coefficients in the filter </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pCoeffs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the array of filter coefficients </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pState</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the state buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pTapDelay</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the array of offset times </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">maxDelay</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>maximum offset time supported </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples that will be processed per block </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Details</title><para><computeroutput>pCoeffs</computeroutput> holds the filter coefficients and has length <computeroutput>numTaps</computeroutput>. <computeroutput>pState</computeroutput> holds the filter&apos;s state variables and must be of length <computeroutput>maxDelay + blockSize</computeroutput>, where <computeroutput>maxDelay</computeroutput> is the maximum number of delay line values. <computeroutput>blockSize</computeroutput> is the number of words processed by <computeroutput><ref refid="group__FIR__Sparse_1gad748c3c718c09152822c40c5c486668a" kindref="member">riscv_fir_sparse_q15()</ref></computeroutput> function. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_sparse_init_q15.c" line="61" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_sparse_init_q15.c" bodystart="61" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="group__FIR__Sparse_1ga23c217312f6473b3c6a765dd1bc27d5c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_fir_sparse_init_q31</definition>
+        <argsstring>(riscv_fir_sparse_instance_q31 *S, uint16_t numTaps, const q31_t *pCoeffs, q31_t *pState, int32_t *pTapDelay, uint16_t maxDelay, uint32_t blockSize)</argsstring>
+        <name>riscv_fir_sparse_init_q31</name>
+        <param>
+          <type><ref refid="structriscv__fir__sparse__instance__q31" kindref="compound">riscv_fir_sparse_instance_q31</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>numTaps</declname>
+        </param>
+        <param>
+          <type>const q31_t *</type>
+          <declname>pCoeffs</declname>
+        </param>
+        <param>
+          <type>q31_t *</type>
+          <declname>pState</declname>
+        </param>
+        <param>
+          <type>int32_t *</type>
+          <declname>pTapDelay</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>maxDelay</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the Q31 sparse FIR filter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the Q31 sparse FIR structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">numTaps</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of nonzero coefficients in the filter </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pCoeffs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the array of filter coefficients </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pState</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the state buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pTapDelay</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the array of offset times </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">maxDelay</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>maximum offset time supported </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples that will be processed per block </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Details</title><para><computeroutput>pCoeffs</computeroutput> holds the filter coefficients and has length <computeroutput>numTaps</computeroutput>. <computeroutput>pState</computeroutput> holds the filter&apos;s state variables and must be of length <computeroutput>maxDelay + blockSize</computeroutput>, where <computeroutput>maxDelay</computeroutput> is the maximum number of delay line values. <computeroutput>blockSize</computeroutput> is the number of words processed by <computeroutput><ref refid="group__FIR__Sparse_1gae092c99cb8f32e649a02948cc4a7de3a" kindref="member">riscv_fir_sparse_q31()</ref></computeroutput> function. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_sparse_init_q31.c" line="60" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_sparse_init_q31.c" bodystart="60" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="group__FIR__Sparse_1ga5256db6ef38c820c1a12d2ba3603e073" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_fir_sparse_init_q7</definition>
+        <argsstring>(riscv_fir_sparse_instance_q7 *S, uint16_t numTaps, const q7_t *pCoeffs, q7_t *pState, int32_t *pTapDelay, uint16_t maxDelay, uint32_t blockSize)</argsstring>
+        <name>riscv_fir_sparse_init_q7</name>
+        <param>
+          <type><ref refid="structriscv__fir__sparse__instance__q7" kindref="compound">riscv_fir_sparse_instance_q7</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>numTaps</declname>
+        </param>
+        <param>
+          <type>const q7_t *</type>
+          <declname>pCoeffs</declname>
+        </param>
+        <param>
+          <type>q7_t *</type>
+          <declname>pState</declname>
+        </param>
+        <param>
+          <type>int32_t *</type>
+          <declname>pTapDelay</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>maxDelay</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the Q7 sparse FIR filter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the Q7 sparse FIR structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">numTaps</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of nonzero coefficients in the filter </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pCoeffs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the array of filter coefficients </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pState</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the state buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pTapDelay</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the array of offset times </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">maxDelay</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>maximum offset time supported </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples that will be processed per block </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Details</title><para><computeroutput>pCoeffs</computeroutput> holds the filter coefficients and has length <computeroutput>numTaps</computeroutput>. <computeroutput>pState</computeroutput> holds the filter&apos;s state variables and must be of length <computeroutput>maxDelay + blockSize</computeroutput>, where <computeroutput>maxDelay</computeroutput> is the maximum number of delay line values. <computeroutput>blockSize</computeroutput> is the number of samples processed by the <computeroutput><ref refid="group__FIR__Sparse_1ga93670e55f4a3d6c0a16ee726084a6a14" kindref="member">riscv_fir_sparse_q7()</ref></computeroutput> function. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_sparse_init_q7.c" line="61" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_sparse_init_q7.c" bodystart="61" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="group__FIR__Sparse_1gad748c3c718c09152822c40c5c486668a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_fir_sparse_q15</definition>
+        <argsstring>(riscv_fir_sparse_instance_q15 *S, const q15_t *pSrc, q15_t *pDst, q15_t *pScratchIn, q31_t *pScratchOut, uint32_t blockSize)</argsstring>
+        <name>riscv_fir_sparse_q15</name>
+        <param>
+          <type><ref refid="structriscv__fir__sparse__instance__q15" kindref="compound">riscv_fir_sparse_instance_q15</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>const q15_t *</type>
+          <declname>pSrc</declname>
+        </param>
+        <param>
+          <type>q15_t *</type>
+          <declname>pDst</declname>
+        </param>
+        <param>
+          <type>q15_t *</type>
+          <declname>pScratchIn</declname>
+        </param>
+        <param>
+          <type>q31_t *</type>
+          <declname>pScratchOut</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Processing function for the Q15 sparse FIR filter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the Q15 sparse FIR structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of input data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of output data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pScratchIn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to a temporary buffer of size blockSize </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pScratchOut</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to a temporary buffer of size blockSize </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of input samples to process per call </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Scaling and Overflow Behavior</title><para>The function is implemented using an internal 32-bit accumulator. The 1.15 x 1.15 multiplications yield a 2.30 result and these are added to a 2.30 accumulator. Thus the full precision of the multiplications is maintained but there is only a single guard bit in the accumulator. If the accumulator result overflows it will wrap around rather than saturate. After all multiply-accumulates are performed, the 2.30 accumulator is truncated to 2.15 format and then saturated to 1.15 format. In order to avoid overflows the input signal or coefficients must be scaled down by log2(numTaps) bits. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_sparse_q15.c" line="60" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_sparse_q15.c" bodystart="60" bodyend="338"/>
+      </memberdef>
+      <memberdef kind="function" id="group__FIR__Sparse_1gae092c99cb8f32e649a02948cc4a7de3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_fir_sparse_q31</definition>
+        <argsstring>(riscv_fir_sparse_instance_q31 *S, const q31_t *pSrc, q31_t *pDst, q31_t *pScratchIn, uint32_t blockSize)</argsstring>
+        <name>riscv_fir_sparse_q31</name>
+        <param>
+          <type><ref refid="structriscv__fir__sparse__instance__q31" kindref="compound">riscv_fir_sparse_instance_q31</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>const q31_t *</type>
+          <declname>pSrc</declname>
+        </param>
+        <param>
+          <type>q31_t *</type>
+          <declname>pDst</declname>
+        </param>
+        <param>
+          <type>q31_t *</type>
+          <declname>pScratchIn</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Processing function for the Q31 sparse FIR filter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the Q31 sparse FIR structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of input data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of output data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pScratchIn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to a temporary buffer of size blockSize </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of input samples to process </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Scaling and Overflow Behavior</title><para>The function is implemented using an internal 32-bit accumulator. The 1.31 x 1.31 multiplications are truncated to 2.30 format. This leads to loss of precision on the intermediate multiplications and provides only a single guard bit. If the accumulator result overflows, it wraps around rather than saturate. In order to avoid overflows the input signal or coefficients must be scaled down by log2(numTaps) bits. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_sparse_q31.c" line="58" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_sparse_q31.c" bodystart="58" bodyend="354"/>
+      </memberdef>
+      <memberdef kind="function" id="group__FIR__Sparse_1ga93670e55f4a3d6c0a16ee726084a6a14" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_fir_sparse_q7</definition>
+        <argsstring>(riscv_fir_sparse_instance_q7 *S, const q7_t *pSrc, q7_t *pDst, q7_t *pScratchIn, q31_t *pScratchOut, uint32_t blockSize)</argsstring>
+        <name>riscv_fir_sparse_q7</name>
+        <param>
+          <type><ref refid="structriscv__fir__sparse__instance__q7" kindref="compound">riscv_fir_sparse_instance_q7</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>const q7_t *</type>
+          <declname>pSrc</declname>
+        </param>
+        <param>
+          <type>q7_t *</type>
+          <declname>pDst</declname>
+        </param>
+        <param>
+          <type>q7_t *</type>
+          <declname>pScratchIn</declname>
+        </param>
+        <param>
+          <type>q31_t *</type>
+          <declname>pScratchOut</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Processing function for the Q7 sparse FIR filter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the Q7 sparse FIR structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of input data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of output data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pScratchIn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to a temporary buffer of size blockSize </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pScratchOut</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to a temporary buffer of size blockSize </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of input samples to process </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Scaling and Overflow Behavior</title><para>The function is implemented using a 32-bit internal accumulator. Both coefficients and state variables are represented in 1.7 format and multiplications yield a 2.14 result. The 2.14 intermediate results are accumulated in a 32-bit accumulator in 18.14 format. There is no risk of internal overflow with this approach and the full precision of intermediate multiplications is preserved. The accumulator is then converted to 18.7 format by discarding the low 7 bits. Finally, the result is truncated to 1.7 format. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_sparse_q7.c" line="60" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_sparse_q7.c" bodystart="60" bodyend="338"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>This group of functions implements sparse FIR filters. Sparse FIR filters are equivalent to standard FIR filters except that most of the coefficients are equal to zero. Sparse filters are used for simulating reflections in communications and audio applications.</para><para>There are separate functions for Q7, Q15, Q31, and floating-point data types. The functions operate on blocks of input and output data and each call to the function processes <computeroutput>blockSize</computeroutput> samples through the filter. <computeroutput>pSrc</computeroutput> and <computeroutput>pDst</computeroutput> points to input and output arrays respectively containing <computeroutput>blockSize</computeroutput> values.</para><para><simplesect kind="par"><title>Algorithm</title><para>The sparse filter instant structure contains an array of tap indices <computeroutput>pTapDelay</computeroutput> which specifies the locations of the non-zero coefficients. This is in addition to the coefficient array <computeroutput>b</computeroutput>. The implementation essentially skips the multiplications by zero and leads to an efficient realization. <preformatted>
+    y[n] = b[0] * x[n-pTapDelay[0]] + b[1] * x[n-pTapDelay[1]] + b[2] * x[n-pTapDelay[2]] + ...+ b[numTaps-1] * x[n-pTapDelay[numTaps-1]]
+</preformatted> </para></simplesect>
+<simplesect kind="par"><title></title><para><image type="html" name="FIRSparse.png">Sparse FIR filter. b[n] represents the filter coefficients</image>
+</para></simplesect>
+<simplesect kind="par"><title></title><para><computeroutput>pCoeffs</computeroutput> points to a coefficient array of size <computeroutput>numTaps</computeroutput>; <computeroutput>pTapDelay</computeroutput> points to an array of nonzero indices and is also of size <computeroutput>numTaps</computeroutput>; <computeroutput>pState</computeroutput> points to a state array of size <computeroutput>maxDelay + blockSize</computeroutput>, where <computeroutput>maxDelay</computeroutput> is the largest offset value that is ever used in the <computeroutput>pTapDelay</computeroutput> array. Some of the processing functions also require temporary working buffers.</para></simplesect>
+<simplesect kind="par"><title>Instance Structure</title><para>The coefficients and state variables for a filter are stored together in an instance data structure. A separate instance structure must be defined for each filter. Coefficient and offset arrays may be shared among several instances while state variable arrays cannot be shared. There are separate instance structure declarations for each of the 4 supported data types.</para></simplesect>
+<simplesect kind="par"><title>Initialization Functions</title><para>There is also an associated initialization function for each data type. The initialization function performs the following operations:<itemizedlist>
+<listitem><para>Sets the values of the internal structure fields.</para></listitem><listitem><para>Zeros out the values in the state buffer. To do this manually without calling the init function, assign the follow subfields of the instance structure: numTaps, pCoeffs, pTapDelay, maxDelay, stateIndex, pState. Also set all of the values in pState to zero. </para></listitem></itemizedlist>
+</para></simplesect>
+<simplesect kind="par"><title></title><para>Use of the initialization function is optional. However, if the initialization function is used, then the instance structure cannot be placed into a const data section. To place an instance structure into a const data section, the instance structure must be manually initialized. Set the values in the state buffer to zeros before static initialization. The code below statically initializes each of the 4 different data type filter instance structures <preformatted>
+    <ref refid="structriscv__fir__sparse__instance__f32" kindref="compound">riscv_fir_sparse_instance_f32</ref> S = {numTaps, 0, pState, pCoeffs, maxDelay, pTapDelay};
+    <ref refid="structriscv__fir__sparse__instance__q31" kindref="compound">riscv_fir_sparse_instance_q31</ref> S = {numTaps, 0, pState, pCoeffs, maxDelay, pTapDelay};
+    <ref refid="structriscv__fir__sparse__instance__q15" kindref="compound">riscv_fir_sparse_instance_q15</ref> S = {numTaps, 0, pState, pCoeffs, maxDelay, pTapDelay};
+    <ref refid="structriscv__fir__sparse__instance__q7" kindref="compound">riscv_fir_sparse_instance_q7</ref> S =  {numTaps, 0, pState, pCoeffs, maxDelay, pTapDelay};
+</preformatted></para></simplesect>
+<simplesect kind="par"><title>Fixed-Point Behavior</title><para>Care must be taken when using the fixed-point versions of the sparse FIR filter functions. In particular, the overflow and saturation behavior of the accumulator used in each function must be considered. Refer to the function specific documentation below for usage guidelines. </para></simplesect>
+</para>    </detaileddescription>
+  </compounddef>
+</doxygen>

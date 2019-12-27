@@ -1,0 +1,544 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="core__feature__timer_8h" kind="file" language="C++">
+    <compoundname>core_feature_timer.h</compoundname>
+    <includedby refid="nmsis__core_8h" local="yes">nmsis_core.h</includedby>
+    <invincdepgraph>
+      <node id="26">
+        <label>nmsis_core.h</label>
+        <link refid="nmsis__core_8h_source"/>
+      </node>
+      <node id="25">
+        <label>core_feature_timer.h</label>
+        <link refid="core__feature__timer_8h"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structSysTimer__Type" prot="public">SysTimer_Type</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="group__NMSIS__Core__SysTimer__Registers_1gac8e1c84a58c74328b272790727f0be54" prot="public" static="no">
+        <name>SysTimer_TIMER_MSTOP_Pos</name>
+        <initializer>0U</initializer>
+        <briefdescription>
+<para>SysTick TIMER STOP: MSTOP Position. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" line="57" column="9" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__NMSIS__Core__SysTimer__Registers_1ga7b90dedab1d63b9bf890775ab049dd35" prot="public" static="no">
+        <name>SysTimer_TIMER_MSTOP_Msk</name>
+        <initializer>(1UL &lt;&lt; SysTimer_TIMER_MSTOP_Pos)</initializer>
+        <briefdescription>
+<para>SysTick TIMER STOP: MSTOP Mask. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" line="58" column="9" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" bodystart="58" bodyend="-1"/>
+        <referencedby refid="group__NMSIS__Core__SysTimer_1gaefb4407e361cee4eb7b88533139211cf" compoundref="core__feature__timer_8h" startline="161" endline="164">SysTimer_GetMstopValue</referencedby>
+        <referencedby refid="group__NMSIS__Core__SysTimer_1gafbb922deb659bbd92d894046db0e49a8" compoundref="core__feature__timer_8h" startline="148" endline="151">SysTimer_SetMstopValue</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="group__NMSIS__Core__SysTimer__Registers_1gab9d1663777854e642af6aa3057aa1ea8" prot="public" static="no">
+        <name>SysTimer_TIMER_MSIP_Pos</name>
+        <initializer>0U</initializer>
+        <briefdescription>
+<para>SysTick TIMER MSIP: MSIP Position. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" line="60" column="9" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__NMSIS__Core__SysTimer__Registers_1ga3ba5a1fee8efbd89eca4e1d0f1f764db" prot="public" static="no">
+        <name>SysTimer_TIMER_MSIP_Msk</name>
+        <initializer>(1UL &lt;&lt; SysTimer_TIMER_MSIP_Pos)</initializer>
+        <briefdescription>
+<para>SysTick TIMER MSIP: MSIP Mask. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" line="61" column="9" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" bodystart="61" bodyend="-1"/>
+        <referencedby refid="group__NMSIS__Core__SysTimer_1ga1d6872b364b566c6c275e3e66086a95e" compoundref="core__feature__timer_8h" startline="187" endline="190">SysTimer_ClearSWIRQ</referencedby>
+        <referencedby refid="group__NMSIS__Core__SysTimer_1gac71f565a339896bec3712530d8c683fe" compoundref="core__feature__timer_8h" startline="202" endline="205">SysTimer_GetMsipValue</referencedby>
+        <referencedby refid="group__NMSIS__Core__SysTimer_1ga2b02f4075e3ecb245559fee19bebacf4" compoundref="core__feature__timer_8h" startline="174" endline="177">SysTimer_SetSWIRQ</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="group__NMSIS__Core__SysTimer__Registers_1gaf56843a0e21d2287348410b30811b0bc" prot="public" static="no">
+        <name>SysTimer_VALUE_Msk</name>
+        <initializer>0xFFFFFFFFFFFFFFFFULL</initializer>
+        <briefdescription>
+<para>SysTick Timer Value Mask. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" line="62" column="9" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__NMSIS__Core__SysTimer__Registers_1ga23259b9a0920d10554888fc09f5017b8" prot="public" static="no">
+        <name>SysTimer_TIMER_MSFRST_KEY</name>
+        <initializer>(0x80000A5F)</initializer>
+        <briefdescription>
+<para>SysTick TIMER Software Reset Request Key. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" line="64" column="9" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" bodystart="64" bodyend="-1"/>
+        <referencedby refid="group__NMSIS__Core__SysTimer_1gae9b7cf533c958b702dae2b5654672a78" compoundref="core__feature__timer_8h" startline="217" endline="221">SysTimer_SoftwareReset</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="group__NMSIS__Core__SysTimer__Registers_1ga2107a0ae6d9deefff31edf506a6e1e91" prot="public" static="no">
+        <name>SysTimer_BASE</name>
+        <initializer>__SYSTIMER_BASEADDR</initializer>
+        <briefdescription>
+<para>SysTick Base Address. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" line="71" column="9" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99" prot="public" static="no">
+        <name>SysTimer</name>
+        <initializer>((<ref refid="structSysTimer__Type" kindref="compound">SysTimer_Type</ref> *) <ref refid="group__NMSIS__Core__SysTimer__Registers_1ga2107a0ae6d9deefff31edf506a6e1e91" kindref="member">SysTimer_BASE</ref>)</initializer>
+        <briefdescription>
+<para>SysTick configuration struct. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" line="72" column="9" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" bodystart="72" bodyend="-1"/>
+        <referencedby refid="group__NMSIS__Core__SysTimer_1ga1d6872b364b566c6c275e3e66086a95e" compoundref="core__feature__timer_8h" startline="187" endline="190">SysTimer_ClearSWIRQ</referencedby>
+        <referencedby refid="group__NMSIS__Core__SysTimer_1gadded449522bea6f5ecdbb7d5c4554f43" compoundref="core__feature__timer_8h" startline="134" endline="137">SysTimer_GetCompareValue</referencedby>
+        <referencedby refid="group__NMSIS__Core__SysTimer_1ga8672ac25251ede92992effc9d40d2706" compoundref="core__feature__timer_8h" startline="104" endline="107">SysTimer_GetLoadValue</referencedby>
+        <referencedby refid="group__NMSIS__Core__SysTimer_1gac71f565a339896bec3712530d8c683fe" compoundref="core__feature__timer_8h" startline="202" endline="205">SysTimer_GetMsipValue</referencedby>
+        <referencedby refid="group__NMSIS__Core__SysTimer_1gaefb4407e361cee4eb7b88533139211cf" compoundref="core__feature__timer_8h" startline="161" endline="164">SysTimer_GetMstopValue</referencedby>
+        <referencedby refid="group__NMSIS__Core__SysTimer_1gaec492fdd4dd0a8c72e4958a3b86d60bb" compoundref="core__feature__timer_8h" startline="120" endline="123">SysTimer_SetCompareValue</referencedby>
+        <referencedby refid="group__NMSIS__Core__SysTimer_1ga40fa66eae9a7df053bb7501866073aea" compoundref="core__feature__timer_8h" startline="90" endline="93">SysTimer_SetLoadValue</referencedby>
+        <referencedby refid="group__NMSIS__Core__SysTimer_1gafbb922deb659bbd92d894046db0e49a8" compoundref="core__feature__timer_8h" startline="148" endline="151">SysTimer_SetMstopValue</referencedby>
+        <referencedby refid="group__NMSIS__Core__SysTimer_1ga2b02f4075e3ecb245559fee19bebacf4" compoundref="core__feature__timer_8h" startline="174" endline="177">SysTimer_SetSWIRQ</referencedby>
+        <referencedby refid="group__NMSIS__Core__SysTimer_1gae9b7cf533c958b702dae2b5654672a78" compoundref="core__feature__timer_8h" startline="217" endline="221">SysTimer_SoftwareReset</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__NMSIS__Core__SysTimer_1ga40fa66eae9a7df053bb7501866073aea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gaba87361bfad2ae52cfe2f40c1a1dbf9c" kindref="member">__STATIC_INLINE</ref> void</type>
+        <definition>__STATIC_INLINE void SysTimer_SetLoadValue</definition>
+        <argsstring>(uint64_t value)</argsstring>
+        <name>SysTimer_SetLoadValue</name>
+        <param>
+          <type>uint64_t</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Set system Timer load value. </para>        </briefdescription>
+        <detaileddescription>
+<para>This function set the system Timer load value. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>init value for system timer. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="remark"><para><itemizedlist>
+<listitem><para>Load value is 64bits wide.</para></listitem><listitem><para><ref refid="group__NMSIS__Core__SysTimer_1ga8672ac25251ede92992effc9d40d2706" kindref="member">SysTimer_GetLoadValue</ref> </para></listitem></itemizedlist>
+</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" line="90" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" bodystart="90" bodyend="93"/>
+        <references refid="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99" compoundref="core__feature__timer_8h" startline="72">SysTimer</references>
+        <referencedby refid="group__NMSIS__Core__SysTimer_1ga349805c25d9aa753c6fd69b3c0151126" compoundref="core__feature__timer_8h" startline="245" endline="253">SysTick_Config</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__SysTimer_1ga8672ac25251ede92992effc9d40d2706" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gaba87361bfad2ae52cfe2f40c1a1dbf9c" kindref="member">__STATIC_INLINE</ref> uint64_t</type>
+        <definition>__STATIC_INLINE uint64_t SysTimer_GetLoadValue</definition>
+        <argsstring>(void)</argsstring>
+        <name>SysTimer_GetLoadValue</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Get system Timer load value. </para>        </briefdescription>
+        <detaileddescription>
+<para>This function get the system Timer current value. <simplesect kind="return"><para>current value for system timer. </para></simplesect>
+<simplesect kind="remark"><para><itemizedlist>
+<listitem><para>Load value is 64bits wide.</para></listitem><listitem><para><ref refid="group__NMSIS__Core__SysTimer_1ga40fa66eae9a7df053bb7501866073aea" kindref="member">SysTimer_SetLoadValue</ref> </para></listitem></itemizedlist>
+</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" line="104" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" bodystart="104" bodyend="107"/>
+        <references refid="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99" compoundref="core__feature__timer_8h" startline="72">SysTimer</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__SysTimer_1gaec492fdd4dd0a8c72e4958a3b86d60bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gaba87361bfad2ae52cfe2f40c1a1dbf9c" kindref="member">__STATIC_INLINE</ref> void</type>
+        <definition>__STATIC_INLINE void SysTimer_SetCompareValue</definition>
+        <argsstring>(uint64_t value)</argsstring>
+        <name>SysTimer_SetCompareValue</name>
+        <param>
+          <type>uint64_t</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Set system Timer compare value. </para>        </briefdescription>
+        <detaileddescription>
+<para>This function set the system Timer compare value. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>compare value for system timer. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="remark"><para><itemizedlist>
+<listitem><para>Compare value is 64bits wide.</para></listitem><listitem><para>If compare value is larger than current value Timer interrupt generate.</para></listitem><listitem><para>Modify the load value or compare value less to clear the interrupt.</para></listitem><listitem><para><ref refid="group__NMSIS__Core__SysTimer_1gadded449522bea6f5ecdbb7d5c4554f43" kindref="member">SysTimer_GetCompareValue</ref> </para></listitem></itemizedlist>
+</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" line="120" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" bodystart="120" bodyend="123"/>
+        <references refid="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99" compoundref="core__feature__timer_8h" startline="72">SysTimer</references>
+        <referencedby refid="group__NMSIS__Core__SysTimer_1ga349805c25d9aa753c6fd69b3c0151126" compoundref="core__feature__timer_8h" startline="245" endline="253">SysTick_Config</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__SysTimer_1gadded449522bea6f5ecdbb7d5c4554f43" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gaba87361bfad2ae52cfe2f40c1a1dbf9c" kindref="member">__STATIC_INLINE</ref> uint64_t</type>
+        <definition>__STATIC_INLINE uint64_t SysTimer_GetCompareValue</definition>
+        <argsstring>(void)</argsstring>
+        <name>SysTimer_GetCompareValue</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Get system Timer compare value. </para>        </briefdescription>
+        <detaileddescription>
+<para>This function get the system Timer compare value. <simplesect kind="return"><para>compare value for system timer. </para></simplesect>
+<simplesect kind="remark"><para><itemizedlist>
+<listitem><para>Compare value is 64bits wide.</para></listitem><listitem><para><ref refid="group__NMSIS__Core__SysTimer_1gaec492fdd4dd0a8c72e4958a3b86d60bb" kindref="member">SysTimer_SetCompareValue</ref> </para></listitem></itemizedlist>
+</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" line="134" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" bodystart="134" bodyend="137"/>
+        <references refid="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99" compoundref="core__feature__timer_8h" startline="72">SysTimer</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__SysTimer_1gafbb922deb659bbd92d894046db0e49a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gaba87361bfad2ae52cfe2f40c1a1dbf9c" kindref="member">__STATIC_INLINE</ref> void</type>
+        <definition>__STATIC_INLINE void SysTimer_SetMstopValue</definition>
+        <argsstring>(uint32_t mstop)</argsstring>
+        <name>SysTimer_SetMstopValue</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>mstop</declname>
+        </param>
+        <briefdescription>
+<para>Set system Timer MSTOP. </para>        </briefdescription>
+        <detaileddescription>
+<para>This function set the system Timer MSTOP bit. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">mstop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>0 stop timer and 1 start timer. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="remark"><para><itemizedlist>
+<listitem><para>Bit0 is used to start and stop. Set bit0 timer start. Clear Bit0 Timer stop.</para></listitem><listitem><para><ref refid="group__NMSIS__Core__SysTimer_1gafbb922deb659bbd92d894046db0e49a8" kindref="member">SysTimer_SetMstopValue</ref> </para></listitem></itemizedlist>
+</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" line="148" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" bodystart="148" bodyend="151"/>
+        <references refid="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99" compoundref="core__feature__timer_8h" startline="72">SysTimer</references>
+        <references refid="group__NMSIS__Core__SysTimer__Registers_1ga7b90dedab1d63b9bf890775ab049dd35" compoundref="core__feature__timer_8h" startline="58">SysTimer_TIMER_MSTOP_Msk</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__SysTimer_1gaefb4407e361cee4eb7b88533139211cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gaba87361bfad2ae52cfe2f40c1a1dbf9c" kindref="member">__STATIC_INLINE</ref> uint32_t</type>
+        <definition>__STATIC_INLINE uint32_t SysTimer_GetMstopValue</definition>
+        <argsstring>(void)</argsstring>
+        <name>SysTimer_GetMstopValue</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Set system Timer MSTOP. </para>        </briefdescription>
+        <detaileddescription>
+<para>This function set the system Timer MSTOP bit. <simplesect kind="return"><para>0 timer stop and 1 timer is running. </para></simplesect>
+<simplesect kind="remark"><para><itemizedlist>
+<listitem><para><ref refid="group__NMSIS__Core__SysTimer_1gafbb922deb659bbd92d894046db0e49a8" kindref="member">SysTimer_SetMstopValue</ref> </para></listitem></itemizedlist>
+</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" line="161" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" bodystart="161" bodyend="164"/>
+        <references refid="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99" compoundref="core__feature__timer_8h" startline="72">SysTimer</references>
+        <references refid="group__NMSIS__Core__SysTimer__Registers_1ga7b90dedab1d63b9bf890775ab049dd35" compoundref="core__feature__timer_8h" startline="58">SysTimer_TIMER_MSTOP_Msk</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__SysTimer_1ga2b02f4075e3ecb245559fee19bebacf4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gaba87361bfad2ae52cfe2f40c1a1dbf9c" kindref="member">__STATIC_INLINE</ref> void</type>
+        <definition>__STATIC_INLINE void SysTimer_SetSWIRQ</definition>
+        <argsstring>(void)</argsstring>
+        <name>SysTimer_SetSWIRQ</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Set system Timer MSIP to trigger SW interrupt. </para>        </briefdescription>
+        <detaileddescription>
+<para>This function set the system Timer MSIP bit. <simplesect kind="remark"><para><itemizedlist>
+<listitem><para>Set system timer MSIP bit and generate a SW interrupt.</para></listitem><listitem><para><ref refid="group__NMSIS__Core__SysTimer_1ga1d6872b364b566c6c275e3e66086a95e" kindref="member">SysTimer_ClearSWIRQ</ref>;SysTimer_GetMsipValue; </para></listitem></itemizedlist>
+</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" line="174" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" bodystart="174" bodyend="177"/>
+        <references refid="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99" compoundref="core__feature__timer_8h" startline="72">SysTimer</references>
+        <references refid="group__NMSIS__Core__SysTimer__Registers_1ga3ba5a1fee8efbd89eca4e1d0f1f764db" compoundref="core__feature__timer_8h" startline="61">SysTimer_TIMER_MSIP_Msk</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__SysTimer_1ga1d6872b364b566c6c275e3e66086a95e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gaba87361bfad2ae52cfe2f40c1a1dbf9c" kindref="member">__STATIC_INLINE</ref> void</type>
+        <definition>__STATIC_INLINE void SysTimer_ClearSWIRQ</definition>
+        <argsstring>(void)</argsstring>
+        <name>SysTimer_ClearSWIRQ</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Clear system Timer MSIP to clear SW interrupt. </para>        </briefdescription>
+        <detaileddescription>
+<para>This function set the system Timer MSIP bit. <simplesect kind="remark"><para><itemizedlist>
+<listitem><para>Clear system timer MSIP bit and Clear the SW interrupt.</para></listitem><listitem><para><ref refid="group__NMSIS__Core__SysTimer_1ga2b02f4075e3ecb245559fee19bebacf4" kindref="member">SysTimer_SetSWIRQ</ref>;SysTimer_GetMsipValue; </para></listitem></itemizedlist>
+</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" line="187" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" bodystart="187" bodyend="190"/>
+        <references refid="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99" compoundref="core__feature__timer_8h" startline="72">SysTimer</references>
+        <references refid="group__NMSIS__Core__SysTimer__Registers_1ga3ba5a1fee8efbd89eca4e1d0f1f764db" compoundref="core__feature__timer_8h" startline="61">SysTimer_TIMER_MSIP_Msk</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__SysTimer_1gac71f565a339896bec3712530d8c683fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gaba87361bfad2ae52cfe2f40c1a1dbf9c" kindref="member">__STATIC_INLINE</ref> uint32_t</type>
+        <definition>__STATIC_INLINE uint32_t SysTimer_GetMsipValue</definition>
+        <argsstring>(void)</argsstring>
+        <name>SysTimer_GetMsipValue</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Get system Timer MSIP. </para>        </briefdescription>
+        <detaileddescription>
+<para>This function get the system Timer MSIP bit. <simplesect kind="return"><para>0 SW interrupt set and 1 SW interrupt clear. </para></simplesect>
+<simplesect kind="remark"><para><itemizedlist>
+<listitem><para>Bit0 is SW interrupt flag. Bit0 is 1 then SW interrupt set. Bit0 is 0 then SW interrupt clear.</para></listitem><listitem><para><ref refid="group__NMSIS__Core__SysTimer_1ga2b02f4075e3ecb245559fee19bebacf4" kindref="member">SysTimer_SetSWIRQ</ref>; SysTimer_ClearSWIRQ;</para></listitem><listitem><para>Set_MTVEC </para></listitem></itemizedlist>
+</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" line="202" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" bodystart="202" bodyend="205"/>
+        <references refid="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99" compoundref="core__feature__timer_8h" startline="72">SysTimer</references>
+        <references refid="group__NMSIS__Core__SysTimer__Registers_1ga3ba5a1fee8efbd89eca4e1d0f1f764db" compoundref="core__feature__timer_8h" startline="61">SysTimer_TIMER_MSIP_Msk</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__SysTimer_1gae9b7cf533c958b702dae2b5654672a78" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gaba87361bfad2ae52cfe2f40c1a1dbf9c" kindref="member">__STATIC_INLINE</ref> void</type>
+        <definition>__STATIC_INLINE void SysTimer_SoftwareReset</definition>
+        <argsstring>(void)</argsstring>
+        <name>SysTimer_SoftwareReset</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Do software reset request. </para>        </briefdescription>
+        <detaileddescription>
+<para>This function will do software reset request through TIMER/<itemizedlist>
+<listitem><para>Software need to write <ref refid="group__NMSIS__Core__SysTimer__Registers_1ga23259b9a0920d10554888fc09f5017b8" kindref="member">SysTimer_TIMER_MSFRST_KEY</ref> to generate software reset request</para></listitem><listitem><para>The software request flag can be cleared by reset operation to clear <simplesect kind="remark"><para></para></simplesect>
+</para></listitem><listitem><para>The software reset is sent to SoC, SoC need to generate reset signal and send back to Core</para></listitem><listitem><para>This function will not return, it will do while(1) to wait the Core reset happened </para></listitem></itemizedlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" line="217" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" bodystart="217" bodyend="221"/>
+        <references refid="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99" compoundref="core__feature__timer_8h" startline="72">SysTimer</references>
+        <references refid="group__NMSIS__Core__SysTimer__Registers_1ga23259b9a0920d10554888fc09f5017b8" compoundref="core__feature__timer_8h" startline="64">SysTimer_TIMER_MSFRST_KEY</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__SysTimer_1ga349805c25d9aa753c6fd69b3c0151126" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gaba87361bfad2ae52cfe2f40c1a1dbf9c" kindref="member">__STATIC_INLINE</ref> uint32_t</type>
+        <definition>__STATIC_INLINE uint32_t SysTick_Config</definition>
+        <argsstring>(uint64_t ticks)</argsstring>
+        <name>SysTick_Config</name>
+        <param>
+          <type>uint64_t</type>
+          <declname>ticks</declname>
+        </param>
+        <briefdescription>
+<para>System Tick Configuration. </para>        </briefdescription>
+        <detaileddescription>
+<para>Initializes the System Timer and its non-vector interrupt, and starts the System Tick Timer.</para><para>In our default implementation, the timer counter will be set to zero, and it will start a timer compare non-vector interrupt when it matchs the ticks user set, during the timer interrupt user should reload the timer counter to zero, so it can produce period timer interrupt. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">ticks</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of ticks between two interrupts. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 Function succeeded. </para></simplesect>
+<simplesect kind="return"><para>1 Function failed. </para></simplesect>
+<simplesect kind="remark"><para><itemizedlist>
+<listitem><para>When the variable __Vendor_SysTickConfig is set to 1, then the function <ref refid="group__NMSIS__Core__SysTimer_1ga349805c25d9aa753c6fd69b3c0151126" kindref="member">SysTick_Config</ref> is not included.</para></listitem><listitem><para>In this case, the file **&lt;Device&gt;.h** must contain a vendor-specific implementation of this function.</para></listitem><listitem><para>If user need this function to start a period timer interrupt, then in timer interrupt handler routine code, user should call <ref refid="group__NMSIS__Core__SysTimer_1ga40fa66eae9a7df053bb7501866073aea" kindref="member">SysTimer_SetLoadValue</ref> to set counter as 0 to reload the timer.</para></listitem><listitem><para>This function only available when __SYSTIMER_PRESENT == 1 and __ECLIC_PRESENT == 1 and __Vendor_SysTickConfig == 0 </para></listitem></itemizedlist>
+</para></simplesect>
+<simplesect kind="see"><para><itemizedlist>
+<listitem><para><ref refid="group__NMSIS__Core__SysTimer_1gaec492fdd4dd0a8c72e4958a3b86d60bb" kindref="member">SysTimer_SetCompareValue</ref>; <ref refid="group__NMSIS__Core__SysTimer_1ga40fa66eae9a7df053bb7501866073aea" kindref="member">SysTimer_SetLoadValue</ref> </para></listitem></itemizedlist>
+</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" line="245" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h" bodystart="245" bodyend="253"/>
+        <references refid="group__NMSIS__Core__IntExc_1gaef478ada8e8906c9fe8d4dc2311a39e1" compoundref="core__feature__eclic_8h" startline="218">ECLIC_EnableIRQ</references>
+        <references refid="group__NMSIS__Core__ECLIC__Registers_1ga6a01697e0ba89c691f98fee801f4a25c" compoundref="core__feature__eclic_8h" startline="122">ECLIC_NON_VECTOR_INTERRUPT</references>
+        <references refid="group__NMSIS__Core__IntExc_1gad6f35a2f69908b97b083c5e31c1c5aad" compoundref="core__feature__eclic_8h" startline="230">ECLIC_SetLevelIRQ</references>
+        <references refid="group__NMSIS__Core__IntExc_1ga0bd2875fbd02a00bec78735940704c13" compoundref="core__feature__eclic_8h" startline="226">ECLIC_SetShvIRQ</references>
+        <references refid="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a1c65f7884cf42cfc70b0016245780dc9" compoundref="core__feature__eclic_8h" startline="182">SysTimer_IRQn</references>
+        <references refid="group__NMSIS__Core__SysTimer_1gaec492fdd4dd0a8c72e4958a3b86d60bb" compoundref="core__feature__timer_8h" startline="120" endline="123">SysTimer_SetCompareValue</references>
+        <references refid="group__NMSIS__Core__SysTimer_1ga40fa66eae9a7df053bb7501866073aea" compoundref="core__feature__timer_8h" startline="90" endline="93">SysTimer_SetLoadValue</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>System Timer feature API header file for Nuclei N/NX Core. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2019<sp/>Nuclei<sp/>Limited.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>SPDX-License-Identifier:<sp/>Apache-2.0</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>Licensed<sp/>under<sp/>the<sp/>Apache<sp/>License,<sp/>Version<sp/>2.0<sp/>(the<sp/>License);<sp/>you<sp/>may</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>not<sp/>use<sp/>this<sp/>file<sp/>except<sp/>in<sp/>compliance<sp/>with<sp/>the<sp/>License.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>You<sp/>may<sp/>obtain<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>License<sp/>at</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>www.apache.org/licenses/LICENSE-2.0</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/>Unless<sp/>required<sp/>by<sp/>applicable<sp/>law<sp/>or<sp/>agreed<sp/>to<sp/>in<sp/>writing,<sp/>software</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/>distributed<sp/>under<sp/>the<sp/>License<sp/>is<sp/>distributed<sp/>on<sp/>an<sp/>AS<sp/>IS<sp/>BASIS,<sp/>WITHOUT</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/>WARRANTIES<sp/>OR<sp/>CONDITIONS<sp/>OF<sp/>ANY<sp/>KIND,<sp/>either<sp/>express<sp/>or<sp/>implied.</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/>See<sp/>the<sp/>License<sp/>for<sp/>the<sp/>specific<sp/>language<sp/>governing<sp/>permissions<sp/>and</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/>limitations<sp/>under<sp/>the<sp/>License.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>__CORE_FEATURE_TIMER_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__CORE_FEATURE_TIMER_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*<sp/>System<sp/>Timer<sp/>Feature<sp/>Configuration<sp/>Macro:</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*<sp/>1.<sp/>__SYSTIMER_PRESENT:<sp/><sp/>Define<sp/>whether<sp/>Private<sp/>System<sp/>Timer<sp/>is<sp/>present<sp/>or<sp/>not.</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*<sp/><sp/><sp/>*<sp/>0:<sp/>Not<sp/>present</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*<sp/><sp/><sp/>*<sp/>1:<sp/>Present</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*<sp/>2.<sp/>__SYSTIMER_BASEADDR:<sp/><sp/>Define<sp/>the<sp/>base<sp/>address<sp/>of<sp/>the<sp/>System<sp/>Timer.</highlight></codeline>
+<codeline lineno="30"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(__SYSTIMER_PRESENT)<sp/>&amp;&amp;<sp/>(__SYSTIMER_PRESENT<sp/>==<sp/>1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46" refid="structSysTimer__Type" refkind="compound"><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="47" refid="structSysTimer__Type_1a37a77647021a3ac0325d9337aa063cc7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__NMSIS__Core__PeriphAccess_1gab6caba5853a60a17e8e04499b52bf691" kindref="member">__IOM</ref><sp/>uint64_t<sp/><ref refid="structSysTimer__Type_1a37a77647021a3ac0325d9337aa063cc7" kindref="member">MTIMER</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="48" refid="structSysTimer__Type_1a6dee6a8430c65e88e458d9fb90d4d8c7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__NMSIS__Core__PeriphAccess_1gab6caba5853a60a17e8e04499b52bf691" kindref="member">__IOM</ref><sp/>uint64_t<sp/><ref refid="structSysTimer__Type_1a6dee6a8430c65e88e458d9fb90d4d8c7" kindref="member">MTIMERCMP</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="49" refid="structSysTimer__Type_1aedb1895f0e0be768277f230b4a461a24" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__NMSIS__Core__PeriphAccess_1gab6caba5853a60a17e8e04499b52bf691" kindref="member">__IOM</ref><sp/>uint32_t<sp/>RESERVED0[0x3F8];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="50" refid="structSysTimer__Type_1a4bc27f5c3a0fefa7063ffbcf2b148f78" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__NMSIS__Core__PeriphAccess_1gab6caba5853a60a17e8e04499b52bf691" kindref="member">__IOM</ref><sp/>uint32_t<sp/><ref refid="structSysTimer__Type_1a4bc27f5c3a0fefa7063ffbcf2b148f78" kindref="member">MSFTRST</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="51" refid="structSysTimer__Type_1a1cec32637a87c4fdd59bf526325755cb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__NMSIS__Core__PeriphAccess_1gab6caba5853a60a17e8e04499b52bf691" kindref="member">__IOM</ref><sp/>uint32_t<sp/><ref refid="structSysTimer__Type_1a1cec32637a87c4fdd59bf526325755cb" kindref="member">RESERVED1</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="52" refid="structSysTimer__Type_1acbd62ffdcf918cbbbe06d99168f71dfa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__NMSIS__Core__PeriphAccess_1gab6caba5853a60a17e8e04499b52bf691" kindref="member">__IOM</ref><sp/>uint32_t<sp/><ref refid="structSysTimer__Type_1acbd62ffdcf918cbbbe06d99168f71dfa" kindref="member">MSTOP</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="53" refid="structSysTimer__Type_1a5e43fade844d5c21f68c9bace205ef47" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__NMSIS__Core__PeriphAccess_1gab6caba5853a60a17e8e04499b52bf691" kindref="member">__IOM</ref><sp/>uint32_t<sp/><ref refid="structSysTimer__Type_1a5e43fade844d5c21f68c9bace205ef47" kindref="member">MSIP</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="54"><highlight class="normal">}<sp/><ref refid="structSysTimer__Type" kindref="compound">SysTimer_Type</ref>;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Timer<sp/>Control<sp/>/<sp/>Status<sp/>Register<sp/>Definitions<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="group__NMSIS__Core__SysTimer__Registers_1gac8e1c84a58c74328b272790727f0be54" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SysTimer_TIMER_MSTOP_Pos<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0U<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="58" refid="group__NMSIS__Core__SysTimer__Registers_1ga7b90dedab1d63b9bf890775ab049dd35" refkind="member"><highlight class="preprocessor">#define<sp/>SysTimer_TIMER_MSTOP_Msk<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(1UL<sp/>&lt;&lt;<sp/>SysTimer_TIMER_MSTOP_Pos)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="60" refid="group__NMSIS__Core__SysTimer__Registers_1gab9d1663777854e642af6aa3057aa1ea8" refkind="member"><highlight class="preprocessor">#define<sp/>SysTimer_TIMER_MSIP_Pos<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0U<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="61" refid="group__NMSIS__Core__SysTimer__Registers_1ga3ba5a1fee8efbd89eca4e1d0f1f764db" refkind="member"><highlight class="preprocessor">#define<sp/>SysTimer_TIMER_MSIP_Msk<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(1UL<sp/>&lt;&lt;<sp/>SysTimer_TIMER_MSIP_Pos)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="62" refid="group__NMSIS__Core__SysTimer__Registers_1gaf56843a0e21d2287348410b30811b0bc" refkind="member"><highlight class="preprocessor">#define<sp/>SysTimer_VALUE_Msk<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0xFFFFFFFFFFFFFFFFULL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="64" refid="group__NMSIS__Core__SysTimer__Registers_1ga23259b9a0920d10554888fc09f5017b8" refkind="member"><highlight class="preprocessor">#define<sp/>SysTimer_TIMER_MSFRST_KEY<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(0x80000A5F)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="66"><highlight class="preprocessor">#ifndef<sp/>__SYSTIMER_BASEADDR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Base<sp/>address<sp/>of<sp/>SYSTIMER(__SYSTIMER_BASEADDR)<sp/>should<sp/>be<sp/>defined<sp/>in<sp/>&lt;Device.h&gt;<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="preprocessor">#error<sp/>&quot;__SYSTIMER_BASEADDR<sp/>is<sp/>not<sp/>defined,<sp/>please<sp/>check!&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>System<sp/>Timer<sp/>Memory<sp/>mapping<sp/>of<sp/>Device<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="group__NMSIS__Core__SysTimer__Registers_1ga2107a0ae6d9deefff31edf506a6e1e91" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SysTimer_BASE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__SYSTIMER_BASEADDR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="72" refid="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99" refkind="member"><highlight class="preprocessor">#define<sp/>SysTimer<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((SysTimer_Type<sp/>*)<sp/>SysTimer_BASE)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>end<sp/>of<sp/>group<sp/>NMSIS_Core_SysTimer_Registers<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>##################################<sp/><sp/><sp/><sp/>SysTimer<sp/>function<sp/><sp/>############################################<sp/>*/</highlight></codeline>
+<codeline lineno="90" refid="group__NMSIS__Core__SysTimer_1ga40fa66eae9a7df053bb7501866073aea" refkind="member"><highlight class="normal"><ref refid="group__NMSIS__Core__CompilerControl_1gaba87361bfad2ae52cfe2f40c1a1dbf9c" kindref="member">__STATIC_INLINE</ref><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__NMSIS__Core__SysTimer_1ga40fa66eae9a7df053bb7501866073aea" kindref="member">SysTimer_SetLoadValue</ref>(uint64_t<sp/>value)</highlight></codeline>
+<codeline lineno="91"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99" kindref="member">SysTimer</ref>-&gt;MTIMER<sp/>=<sp/>value;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104" refid="group__NMSIS__Core__SysTimer_1ga8672ac25251ede92992effc9d40d2706" refkind="member"><highlight class="normal"><ref refid="group__NMSIS__Core__CompilerControl_1gaba87361bfad2ae52cfe2f40c1a1dbf9c" kindref="member">__STATIC_INLINE</ref><sp/>uint64_t<sp/><ref refid="group__NMSIS__Core__SysTimer_1ga8672ac25251ede92992effc9d40d2706" kindref="member">SysTimer_GetLoadValue</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="105"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99" kindref="member">SysTimer</ref>-&gt;MTIMER;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120" refid="group__NMSIS__Core__SysTimer_1gaec492fdd4dd0a8c72e4958a3b86d60bb" refkind="member"><highlight class="normal"><ref refid="group__NMSIS__Core__CompilerControl_1gaba87361bfad2ae52cfe2f40c1a1dbf9c" kindref="member">__STATIC_INLINE</ref><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__NMSIS__Core__SysTimer_1gaec492fdd4dd0a8c72e4958a3b86d60bb" kindref="member">SysTimer_SetCompareValue</ref>(uint64_t<sp/>value)</highlight></codeline>
+<codeline lineno="121"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99" kindref="member">SysTimer</ref>-&gt;MTIMERCMP<sp/>=<sp/>value;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134" refid="group__NMSIS__Core__SysTimer_1gadded449522bea6f5ecdbb7d5c4554f43" refkind="member"><highlight class="normal"><ref refid="group__NMSIS__Core__CompilerControl_1gaba87361bfad2ae52cfe2f40c1a1dbf9c" kindref="member">__STATIC_INLINE</ref><sp/>uint64_t<sp/><ref refid="group__NMSIS__Core__SysTimer_1gadded449522bea6f5ecdbb7d5c4554f43" kindref="member">SysTimer_GetCompareValue</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="135"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99" kindref="member">SysTimer</ref>-&gt;MTIMERCMP;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148" refid="group__NMSIS__Core__SysTimer_1gafbb922deb659bbd92d894046db0e49a8" refkind="member"><highlight class="normal"><ref refid="group__NMSIS__Core__CompilerControl_1gaba87361bfad2ae52cfe2f40c1a1dbf9c" kindref="member">__STATIC_INLINE</ref><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__NMSIS__Core__SysTimer_1gafbb922deb659bbd92d894046db0e49a8" kindref="member">SysTimer_SetMstopValue</ref>(uint32_t<sp/>mstop)</highlight></codeline>
+<codeline lineno="149"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99" kindref="member">SysTimer</ref>-&gt;MSTOP<sp/>=<sp/>(mstop<sp/>&amp;<sp/><ref refid="group__NMSIS__Core__SysTimer__Registers_1ga7b90dedab1d63b9bf890775ab049dd35" kindref="member">SysTimer_TIMER_MSTOP_Msk</ref>);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161" refid="group__NMSIS__Core__SysTimer_1gaefb4407e361cee4eb7b88533139211cf" refkind="member"><highlight class="normal"><ref refid="group__NMSIS__Core__CompilerControl_1gaba87361bfad2ae52cfe2f40c1a1dbf9c" kindref="member">__STATIC_INLINE</ref><sp/>uint32_t<sp/><ref refid="group__NMSIS__Core__SysTimer_1gaefb4407e361cee4eb7b88533139211cf" kindref="member">SysTimer_GetMstopValue</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="162"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(<ref refid="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99" kindref="member">SysTimer</ref>-&gt;MSTOP<sp/>&amp;<sp/><ref refid="group__NMSIS__Core__SysTimer__Registers_1ga7b90dedab1d63b9bf890775ab049dd35" kindref="member">SysTimer_TIMER_MSTOP_Msk</ref>);</highlight></codeline>
+<codeline lineno="164"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight></codeline>
+<codeline lineno="174" refid="group__NMSIS__Core__SysTimer_1ga2b02f4075e3ecb245559fee19bebacf4" refkind="member"><highlight class="normal"><ref refid="group__NMSIS__Core__CompilerControl_1gaba87361bfad2ae52cfe2f40c1a1dbf9c" kindref="member">__STATIC_INLINE</ref><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__NMSIS__Core__SysTimer_1ga2b02f4075e3ecb245559fee19bebacf4" kindref="member">SysTimer_SetSWIRQ</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="175"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99" kindref="member">SysTimer</ref>-&gt;MSIP<sp/>|=<sp/><ref refid="group__NMSIS__Core__SysTimer__Registers_1ga3ba5a1fee8efbd89eca4e1d0f1f764db" kindref="member">SysTimer_TIMER_MSIP_Msk</ref>;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="187" refid="group__NMSIS__Core__SysTimer_1ga1d6872b364b566c6c275e3e66086a95e" refkind="member"><highlight class="normal"><ref refid="group__NMSIS__Core__CompilerControl_1gaba87361bfad2ae52cfe2f40c1a1dbf9c" kindref="member">__STATIC_INLINE</ref><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__NMSIS__Core__SysTimer_1ga1d6872b364b566c6c275e3e66086a95e" kindref="member">SysTimer_ClearSWIRQ</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="188"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99" kindref="member">SysTimer</ref>-&gt;MSIP<sp/>&amp;=<sp/>~<ref refid="group__NMSIS__Core__SysTimer__Registers_1ga3ba5a1fee8efbd89eca4e1d0f1f764db" kindref="member">SysTimer_TIMER_MSIP_Msk</ref>;</highlight></codeline>
+<codeline lineno="190"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight></codeline>
+<codeline lineno="202" refid="group__NMSIS__Core__SysTimer_1gac71f565a339896bec3712530d8c683fe" refkind="member"><highlight class="normal"><ref refid="group__NMSIS__Core__CompilerControl_1gaba87361bfad2ae52cfe2f40c1a1dbf9c" kindref="member">__STATIC_INLINE</ref><sp/>uint32_t<sp/><ref refid="group__NMSIS__Core__SysTimer_1gac71f565a339896bec3712530d8c683fe" kindref="member">SysTimer_GetMsipValue</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="203"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(uint32_t)(<ref refid="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99" kindref="member">SysTimer</ref>-&gt;MSIP<sp/>&amp;<sp/><ref refid="group__NMSIS__Core__SysTimer__Registers_1ga3ba5a1fee8efbd89eca4e1d0f1f764db" kindref="member">SysTimer_TIMER_MSIP_Msk</ref>);</highlight></codeline>
+<codeline lineno="205"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"></highlight></codeline>
+<codeline lineno="217" refid="group__NMSIS__Core__SysTimer_1gae9b7cf533c958b702dae2b5654672a78" refkind="member"><highlight class="normal"><ref refid="group__NMSIS__Core__CompilerControl_1gaba87361bfad2ae52cfe2f40c1a1dbf9c" kindref="member">__STATIC_INLINE</ref><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__NMSIS__Core__SysTimer_1gae9b7cf533c958b702dae2b5654672a78" kindref="member">SysTimer_SoftwareReset</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="218"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99" kindref="member">SysTimer</ref>-&gt;MSFTRST<sp/>=<sp/><ref refid="group__NMSIS__Core__SysTimer__Registers_1ga23259b9a0920d10554888fc09f5017b8" kindref="member">SysTimer_TIMER_MSFRST_KEY</ref>;</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(1);</highlight></codeline>
+<codeline lineno="221"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"></highlight></codeline>
+<codeline lineno="223"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined<sp/>(__Vendor_SysTickConfig)<sp/>&amp;&amp;<sp/>(__Vendor_SysTickConfig<sp/>==<sp/>0U)<sp/>&amp;&amp;<sp/>defined(__ECLIC_PRESENT)<sp/>&amp;&amp;<sp/>(__ECLIC_PRESENT<sp/>==<sp/>1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="224"><highlight class="normal"></highlight></codeline>
+<codeline lineno="245" refid="group__NMSIS__Core__SysTimer_1ga349805c25d9aa753c6fd69b3c0151126" refkind="member"><highlight class="normal"><ref refid="group__NMSIS__Core__CompilerControl_1gaba87361bfad2ae52cfe2f40c1a1dbf9c" kindref="member">__STATIC_INLINE</ref><sp/>uint32_t<sp/><ref refid="group__NMSIS__Core__SysTimer_1ga349805c25d9aa753c6fd69b3c0151126" kindref="member">SysTick_Config</ref>(uint64_t<sp/>ticks)</highlight></codeline>
+<codeline lineno="246"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__NMSIS__Core__SysTimer_1ga40fa66eae9a7df053bb7501866073aea" kindref="member">SysTimer_SetLoadValue</ref>(0);</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__NMSIS__Core__SysTimer_1gaec492fdd4dd0a8c72e4958a3b86d60bb" kindref="member">SysTimer_SetCompareValue</ref>(ticks);</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__NMSIS__Core__IntExc_1ga0bd2875fbd02a00bec78735940704c13" kindref="member">ECLIC_SetShvIRQ</ref>(<ref refid="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a1c65f7884cf42cfc70b0016245780dc9" kindref="member">SysTimer_IRQn</ref>,<sp/><ref refid="group__NMSIS__Core__ECLIC__Registers_1ga6a01697e0ba89c691f98fee801f4a25c" kindref="member">ECLIC_NON_VECTOR_INTERRUPT</ref>);</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__NMSIS__Core__IntExc_1gad6f35a2f69908b97b083c5e31c1c5aad" kindref="member">ECLIC_SetLevelIRQ</ref>(<ref refid="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a1c65f7884cf42cfc70b0016245780dc9" kindref="member">SysTimer_IRQn</ref>,<sp/>1);</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__NMSIS__Core__IntExc_1gaef478ada8e8906c9fe8d4dc2311a39e1" kindref="member">ECLIC_EnableIRQ</ref>(<ref refid="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a1c65f7884cf42cfc70b0016245780dc9" kindref="member">SysTimer_IRQn</ref>);</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(0UL);</highlight></codeline>
+<codeline lineno="253"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>defined(__Vendor_SysTickConfig)<sp/>&amp;&amp;<sp/>(__Vendor_SysTickConfig<sp/>==<sp/>0U)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/></highlight><highlight class="comment">/*<sp/>End<sp/>of<sp/>Doxygen<sp/>Group<sp/>NMSIS_Core_SysTimer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="256"><highlight class="normal"></highlight></codeline>
+<codeline lineno="257"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>defined(__SYSTIMER_PRESENT)<sp/>&amp;&amp;<sp/>(__SYSTIMER_PRESENT<sp/>==<sp/>1)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"></highlight></codeline>
+<codeline lineno="259"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="260"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="262"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_timer.h"/>
+  </compounddef>
+</doxygen>

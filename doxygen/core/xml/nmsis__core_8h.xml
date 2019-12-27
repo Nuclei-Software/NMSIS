@@ -1,0 +1,208 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="nmsis__core_8h" kind="file" language="C++">
+    <compoundname>nmsis_core.h</compoundname>
+    <includes local="no">stdint.h</includes>
+    <includes refid="nmsis__version_8h" local="yes">nmsis_version.h</includes>
+    <includes refid="nmsis__compiler_8h" local="yes">nmsis_compiler.h</includes>
+    <includes refid="core__feature__base_8h" local="yes">core_feature_base.h</includes>
+    <includes refid="core__feature__eclic_8h" local="yes">core_feature_eclic.h</includes>
+    <includes refid="core__feature__timer_8h" local="yes">core_feature_timer.h</includes>
+    <includes refid="core__feature__fpu_8h" local="yes">core_feature_fpu.h</includes>
+    <includes refid="core__feature__dsp_8h" local="yes">core_feature_dsp.h</includes>
+    <includes refid="core__feature__pmp_8h" local="yes">core_feature_pmp.h</includes>
+    <includes refid="core__feature__cache_8h" local="yes">core_feature_cache.h</includes>
+    <includes refid="core__compatiable_8h" local="yes">core_compatiable.h</includes>
+    <incdepgraph>
+      <node id="36">
+        <label>riscv_encoding.h</label>
+        <link refid="riscv__encoding_8h_source"/>
+        <childnode refid="37" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>nmsis_core.h</label>
+        <link refid="nmsis__core_8h"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>stdint.h</label>
+      </node>
+      <node id="43">
+        <label>core_feature_cache.h</label>
+        <link refid="core__feature__cache_8h_source"/>
+      </node>
+      <node id="38">
+        <label>core_feature_eclic.h</label>
+        <link refid="core__feature__eclic_8h_source"/>
+      </node>
+      <node id="35">
+        <label>core_feature_base.h</label>
+        <link refid="core__feature__base_8h_source"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>riscv_bits.h</label>
+        <link refid="riscv__bits_8h_source"/>
+      </node>
+      <node id="40">
+        <label>core_feature_fpu.h</label>
+        <link refid="core__feature__fpu_8h_source"/>
+      </node>
+      <node id="44">
+        <label>core_compatiable.h</label>
+        <link refid="core__compatiable_8h_source"/>
+      </node>
+      <node id="33">
+        <label>nmsis_version.h</label>
+        <link refid="nmsis__version_8h"/>
+      </node>
+      <node id="41">
+        <label>core_feature_dsp.h</label>
+        <link refid="core__feature__dsp_8h_source"/>
+      </node>
+      <node id="42">
+        <label>core_feature_pmp.h</label>
+        <link refid="core__feature__pmp_8h_source"/>
+      </node>
+      <node id="39">
+        <label>core_feature_timer.h</label>
+        <link refid="core__feature__timer_8h_source"/>
+      </node>
+      <node id="34">
+        <label>nmsis_compiler.h</label>
+        <link refid="nmsis__compiler_8h_source"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="user-defined">
+      <memberdef kind="define" id="group__NMSIS__Core__VersionControl_1ga1b769df3cb99a779a9abaeb6e00d46f5" prot="public" static="no">
+        <name>__NUCLEI_N_REV</name>
+        <initializer>(0x0000)</initializer>
+        <briefdescription>
+<para>Nuclei N class core revision number. </para>        </briefdescription>
+        <detaileddescription>
+<para>Reversion number format: [15:8] revision number, [7:0] patch number <simplesect kind="attention"><para>This define is exclusive with <ref refid="group__NMSIS__Core__VersionControl_1gabbb55762c8f33bff41889171e1e81fed" kindref="member">__NUCLEI_NX_REV</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/nmsis_core.h" line="47" column="9" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/nmsis_core.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__NMSIS__Core__VersionControl_1gabbb55762c8f33bff41889171e1e81fed" prot="public" static="no">
+        <name>__NUCLEI_NX_REV</name>
+        <initializer>(0x0000)</initializer>
+        <briefdescription>
+<para>Nuclei NX class core revision number. </para>        </briefdescription>
+        <detaileddescription>
+<para>Reversion number format: [15:8] revision number, [7:0] patch number <simplesect kind="attention"><para>This define is exclusive with <ref refid="group__NMSIS__Core__VersionControl_1ga1b769df3cb99a779a9abaeb6e00d46f5" kindref="member">__NUCLEI_N_REV</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/nmsis_core.h" line="55" column="9" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/nmsis_core.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2009-2019<sp/>Arm<sp/>Limited.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>--<sp/>Adaptable<sp/>modifications<sp/>made<sp/>for<sp/>Nuclei<sp/>Processors.<sp/>--</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2019<sp/>Nuclei<sp/>Limited.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>SPDX-License-Identifier:<sp/>Apache-2.0</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>Licensed<sp/>under<sp/>the<sp/>Apache<sp/>License,<sp/>Version<sp/>2.0<sp/>(the<sp/>License);<sp/>you<sp/>may</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>not<sp/>use<sp/>this<sp/>file<sp/>except<sp/>in<sp/>compliance<sp/>with<sp/>the<sp/>License.</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>You<sp/>may<sp/>obtain<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>License<sp/>at</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/>www.apache.org/licenses/LICENSE-2.0</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/>Unless<sp/>required<sp/>by<sp/>applicable<sp/>law<sp/>or<sp/>agreed<sp/>to<sp/>in<sp/>writing,<sp/>software</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/>distributed<sp/>under<sp/>the<sp/>License<sp/>is<sp/>distributed<sp/>on<sp/>an<sp/>AS<sp/>IS<sp/>BASIS,<sp/>WITHOUT</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/>WARRANTIES<sp/>OR<sp/>CONDITIONS<sp/>OF<sp/>ANY<sp/>KIND,<sp/>either<sp/>express<sp/>or<sp/>implied.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/>See<sp/>the<sp/>License<sp/>for<sp/>the<sp/>specific<sp/>language<sp/>governing<sp/>permissions<sp/>and</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/>limitations<sp/>under<sp/>the<sp/>License.</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>__NMSIS_CORE_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__NMSIS_CORE_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="nmsis__version_8h" kindref="compound">nmsis_version.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="comment">/*<sp/>The<sp/>following<sp/>enum<sp/>__NUCLEI_N_REV/__NUCLEI_NX_REV<sp/>definition<sp/>in<sp/>this<sp/>file</highlight></codeline>
+<codeline lineno="36"><highlight class="comment"><sp/>*<sp/>is<sp/>only<sp/>used<sp/>for<sp/>doxygen<sp/>documentation<sp/>generation,</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*<sp/>The<sp/>&lt;device&gt;.h<sp/>is<sp/>the<sp/>real<sp/>file<sp/>to<sp/>define<sp/>it<sp/>by<sp/>vendor</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(__ONLY_FOR_DOXYGEN_DOCUMENT_GENERATION__)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="group__NMSIS__Core__VersionControl_1ga1b769df3cb99a779a9abaeb6e00d46f5" refkind="member"><highlight class="preprocessor">#define<sp/>__NUCLEI_N_REV<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(0x0000)<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="group__NMSIS__Core__VersionControl_1gabbb55762c8f33bff41889171e1e81fed" refkind="member"><highlight class="preprocessor">#define<sp/>__NUCLEI_NX_REV<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(0x0000)<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>__ONLY_FOR_DOXYGEN_DOCUMENT_GENERATION__<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/></highlight><highlight class="comment">/*<sp/>End<sp/>of<sp/>Group<sp/>NMSIS_Core_VersionControl<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;nmsis_compiler.h&quot;</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>NMSIS<sp/>compiler<sp/>specific<sp/>defines<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>===<sp/>Include<sp/>Nuclei<sp/>Core<sp/>Related<sp/>Headers<sp/>===<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Include<sp/>core<sp/>base<sp/>feature<sp/>header<sp/>file<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;core_feature_base.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>__NMSIS_GENERIC</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Include<sp/>core<sp/>eclic<sp/>feature<sp/>header<sp/>file<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;core_feature_eclic.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Include<sp/>core<sp/>systimer<sp/>feature<sp/>header<sp/>file<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;core_feature_timer.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Include<sp/>core<sp/>fpu<sp/>feature<sp/>header<sp/>file<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;core_feature_fpu.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Include<sp/>core<sp/>dsp<sp/>feature<sp/>header<sp/>file<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;core_feature_dsp.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Include<sp/>core<sp/>pmp<sp/>feature<sp/>header<sp/>file<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;core_feature_pmp.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Include<sp/>core<sp/>cache<sp/>feature<sp/>header<sp/>file<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;core_feature_cache.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Include<sp/>compatiable<sp/>functions<sp/>header<sp/>file<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;core_compatiable.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>__NMSIS_CORE_H__<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/nmsis_core.h"/>
+  </compounddef>
+</doxygen>

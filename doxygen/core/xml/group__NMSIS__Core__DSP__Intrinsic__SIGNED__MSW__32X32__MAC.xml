@@ -1,0 +1,528 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X32__MAC" kind="group">
+    <compoundname>NMSIS_Core_DSP_Intrinsic_SIGNED_MSW_32X32_MAC</compoundname>
+    <title>Signed MSW 32x32 Multiply and Add Instructions</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X32__MAC_1gab418c1a557ddfedc1803594cb18fa293" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> long</type>
+        <definition>__STATIC_FORCEINLINE long __RV_KMMAC</definition>
+        <argsstring>(long t, long a, long b)</argsstring>
+        <name>__RV_KMMAC</name>
+        <param>
+          <type>long</type>
+          <declname>t</declname>
+        </param>
+        <param>
+          <type>long</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>long</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>KMMAC (SIMD Saturating MSW Signed Multiply Word and Add) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">KMMAC<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+<codeline><highlight class="normal">KMMAC.u<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Multiply the signed 32-bit integer elements of two registers and add the most significant 32-bit results with the signed 32-bit integer elements of a third register. The addition results are saturated first and then written back to the third register. The <computeroutput>.u</computeroutput> form performs an additional rounding up operation on the multiplication results before adding the most significant 32-bit part of the results.</para><para><bold>Description</bold>:<linebreak/>
+This instruction multiplies the signed 32-bit elements of Rs1 with the signed 32-bit elements of Rs2 and adds the most significant 32-bit multiplication results with the signed 32-bit elements of Rd. If the addition result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV bit is set to 1. The results after saturation are written to Rd. The <computeroutput>.u</computeroutput> form of the instruction additionally rounds up the most significant 32-bit of the 64-bit multiplication results by adding a 1 to bit 31 of the results.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">Mres[x][63:0]<sp/>=<sp/>Rs1.W[x]<sp/>*<sp/>Rs2.W[x];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Round[x][32:0]<sp/>=<sp/>Mres[x][63:31]<sp/>+<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>Round[x][32:1];</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>Mres[x][63:32];</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>(2^31)-1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>-2^31;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>res[x];</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="3314" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="3314" bodyend="3318"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X32__MAC_1ga7d7e1eb9ab21e7f41722684804590f18" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> long</type>
+        <definition>__STATIC_FORCEINLINE long __RV_KMMAC_U</definition>
+        <argsstring>(long t, long a, long b)</argsstring>
+        <name>__RV_KMMAC_U</name>
+        <param>
+          <type>long</type>
+          <declname>t</declname>
+        </param>
+        <param>
+          <type>long</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>long</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>KMMAC.u (SIMD Saturating MSW Signed Multiply Word and Add with Rounding) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">KMMAC<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+<codeline><highlight class="normal">KMMAC.u<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Multiply the signed 32-bit integer elements of two registers and add the most significant 32-bit results with the signed 32-bit integer elements of a third register. The addition results are saturated first and then written back to the third register. The <computeroutput>.u</computeroutput> form performs an additional rounding up operation on the multiplication results before adding the most significant 32-bit part of the results.</para><para><bold>Description</bold>:<linebreak/>
+This instruction multiplies the signed 32-bit elements of Rs1 with the signed 32-bit elements of Rs2 and adds the most significant 32-bit multiplication results with the signed 32-bit elements of Rd. If the addition result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV bit is set to 1. The results after saturation are written to Rd. The <computeroutput>.u</computeroutput> form of the instruction additionally rounds up the most significant 32-bit of the 64-bit multiplication results by adding a 1 to bit 31 of the results.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">Mres[x][63:0]<sp/>=<sp/>Rs1.W[x]<sp/>*<sp/>Rs2.W[x];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Round[x][32:0]<sp/>=<sp/>Mres[x][63:31]<sp/>+<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>Round[x][32:1];</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>Rd.W[x]<sp/>+<sp/>Mres[x][63:32];</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>(2^31)-1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>-2^31;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>res[x];</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="3375" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="3375" bodyend="3379"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X32__MAC_1ga0e7c48c050ad2b2343ad2a8cf2e38ec3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> long</type>
+        <definition>__STATIC_FORCEINLINE long __RV_KMMSB</definition>
+        <argsstring>(long t, long a, long b)</argsstring>
+        <name>__RV_KMMSB</name>
+        <param>
+          <type>long</type>
+          <declname>t</declname>
+        </param>
+        <param>
+          <type>long</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>long</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>KMMSB (SIMD Saturating MSW Signed Multiply Word and Subtract) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">KMMSB<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+<codeline><highlight class="normal">KMMSB.u<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Multiply the signed 32-bit integer elements of two registers and subtract the most significant 32-bit results from the signed 32-bit elements of a third register. The subtraction results are written to the third register. The <computeroutput>.u</computeroutput> form performs an additional rounding up operation on the multiplication results before subtracting the most significant 32-bit part of the results.</para><para><bold>Description</bold>:<linebreak/>
+This instruction multiplies the signed 32-bit elements of Rs1 with the signed 32-bit elements of Rs2 and subtracts the most significant 32-bit multiplication results from the signed 32-bit elements of Rd. If the subtraction result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV bit is set to 1. The results after saturation are written to Rd. The <computeroutput>.u</computeroutput> form of the instruction additionally rounds up the most significant 32-bit of the 64-bit multiplication results by adding a 1 to bit 31 of the results.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">Mres[x][63:0]<sp/>=<sp/>Rs1.W[x]<sp/>*<sp/>Rs2.W[x];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Round[x][32:0]<sp/>=<sp/>Mres[x][63:31]<sp/>+<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>Rd.W[x]<sp/>-<sp/>Round[x][32:1];</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>Rd.W[x]<sp/>-<sp/>Mres[x][63:32];</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>(2^31)-1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>-2^31;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>res[x];</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="3955" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="3955" bodyend="3959"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X32__MAC_1gae1c27f8ba264508b78a0de566dd18a9b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> long</type>
+        <definition>__STATIC_FORCEINLINE long __RV_KMMSB_U</definition>
+        <argsstring>(long t, long a, long b)</argsstring>
+        <name>__RV_KMMSB_U</name>
+        <param>
+          <type>long</type>
+          <declname>t</declname>
+        </param>
+        <param>
+          <type>long</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>long</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>KMMSB.u (SIMD Saturating MSW Signed Multiply Word and Subtraction with Rounding) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">KMMSB<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+<codeline><highlight class="normal">KMMSB.u<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Multiply the signed 32-bit integer elements of two registers and subtract the most significant 32-bit results from the signed 32-bit elements of a third register. The subtraction results are written to the third register. The <computeroutput>.u</computeroutput> form performs an additional rounding up operation on the multiplication results before subtracting the most significant 32-bit part of the results.</para><para><bold>Description</bold>:<linebreak/>
+This instruction multiplies the signed 32-bit elements of Rs1 with the signed 32-bit elements of Rs2 and subtracts the most significant 32-bit multiplication results from the signed 32-bit elements of Rd. If the subtraction result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV bit is set to 1. The results after saturation are written to Rd. The <computeroutput>.u</computeroutput> form of the instruction additionally rounds up the most significant 32-bit of the 64-bit multiplication results by adding a 1 to bit 31 of the results.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">Mres[x][63:0]<sp/>=<sp/>Rs1.W[x]<sp/>*<sp/>Rs2.W[x];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Round[x][32:0]<sp/>=<sp/>Mres[x][63:31]<sp/>+<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>Rd.W[x]<sp/>-<sp/>Round[x][32:1];</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>Rd.W[x]<sp/>-<sp/>Mres[x][63:32];</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(res[x]<sp/>&gt;<sp/>(2^31)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>(2^31)-1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(res[x]<sp/>&lt;<sp/>-2^31)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>res[x]<sp/>=<sp/>-2^31;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">Rd.W[x]<sp/>=<sp/>res[x];</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="4015" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="4015" bodyend="4019"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X32__MAC_1ga37ef876bfb8f2a063dd2d6554086efe4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> long</type>
+        <definition>__STATIC_FORCEINLINE long __RV_KWMMUL</definition>
+        <argsstring>(long a, long b)</argsstring>
+        <name>__RV_KWMMUL</name>
+        <param>
+          <type>long</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>long</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>KWMMUL (SIMD Saturating MSW Signed Multiply Word &amp; Double) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">KWMMUL<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+<codeline><highlight class="normal">KWMMUL.u<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Multiply the signed 32-bit integer elements of two registers, shift the results left 1-bit, saturate, and write the most significant 32-bit results to a register. The <computeroutput>.u</computeroutput> form additionally rounds up the multiplication results from the most signification discarded bit.</para><para><bold>Description</bold>:<linebreak/>
+This instruction multiplies the 32-bit elements of Rs1 with the 32-bit elements of Rs2. It then shifts the multiplication results one bit to the left and takes the most significant 32-bit results. If the shifted result is greater than 2^31-1, it is saturated to 2^31-1 and the OV flag is set to 1. The final element result is written to Rd. The 32-bit elements of Rs1 and Rs2 are treated as signed integers. The <computeroutput>.u</computeroutput> form of the instruction additionally rounds up the 64-bit multiplication results by adding a 1 to bit 30 before the shift and saturation operations.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">if<sp/>((0x80000000<sp/>!=<sp/>Rs1.W[x])<sp/>|<sp/>(0x80000000<sp/>!=<sp/>Rs2.W[x]))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Mres[x][63:0]<sp/>=<sp/>Rs1.W[x]<sp/>*<sp/>Rs2.W[x];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>if<sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Round[x][33:0]<sp/>=<sp/>Mres[x][63:30]<sp/>+<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.W[x]<sp/>=<sp/>Round[x][32:1];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.W[x]<sp/>=<sp/>Mres[x][62:31];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Rd.W[x]<sp/>=<sp/>0x7fffffff;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="5552" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="5552" bodyend="5557"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X32__MAC_1ga5fc98cdba6f2dda6fc65d4c3a836c20f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> long</type>
+        <definition>__STATIC_FORCEINLINE long __RV_KWMMUL_U</definition>
+        <argsstring>(long a, long b)</argsstring>
+        <name>__RV_KWMMUL_U</name>
+        <param>
+          <type>long</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>long</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>KWMMUL.u (SIMD Saturating MSW Signed Multiply Word &amp; Double with Rounding) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">KWMMUL<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+<codeline><highlight class="normal">KWMMUL.u<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Multiply the signed 32-bit integer elements of two registers, shift the results left 1-bit, saturate, and write the most significant 32-bit results to a register. The <computeroutput>.u</computeroutput> form additionally rounds up the multiplication results from the most signification discarded bit.</para><para><bold>Description</bold>:<linebreak/>
+This instruction multiplies the 32-bit elements of Rs1 with the 32-bit elements of Rs2. It then shifts the multiplication results one bit to the left and takes the most significant 32-bit results. If the shifted result is greater than 2^31-1, it is saturated to 2^31-1 and the OV flag is set to 1. The final element result is written to Rd. The 32-bit elements of Rs1 and Rs2 are treated as signed integers. The <computeroutput>.u</computeroutput> form of the instruction additionally rounds up the 64-bit multiplication results by adding a 1 to bit 30 before the shift and saturation operations.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">if<sp/>((0x80000000<sp/>!=<sp/>Rs1.W[x])<sp/>|<sp/>(0x80000000<sp/>!=<sp/>Rs2.W[x]))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Mres[x][63:0]<sp/>=<sp/>Rs1.W[x]<sp/>*<sp/>Rs2.W[x];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>if<sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Round[x][33:0]<sp/>=<sp/>Mres[x][63:30]<sp/>+<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.W[x]<sp/>=<sp/>Round[x][32:1];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Rd.W[x]<sp/>=<sp/>Mres[x][62:31];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Rd.W[x]<sp/>=<sp/>0x7fffffff;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="5608" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="5608" bodyend="5613"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X32__MAC_1ga17b1cc8cce90ea3852050e9ec0b28795" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> long</type>
+        <definition>__STATIC_FORCEINLINE long __RV_SMMUL</definition>
+        <argsstring>(long a, long b)</argsstring>
+        <name>__RV_SMMUL</name>
+        <param>
+          <type>long</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>long</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>SMMUL (SIMD MSW Signed Multiply Word) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">SMMUL<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+<codeline><highlight class="normal">SMMUL.u<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Multiply the 32-bit signed integer elements of two registers and write the most significant 32-bit results to the corresponding 32-bit elements of a register. The <computeroutput>.u</computeroutput> form performs an additional rounding up operation on the multiplication results before taking the most significant 32-bit part of the results.</para><para><bold>Description</bold>:<linebreak/>
+This instruction multiplies the 32-bit elements of Rs1 with the 32-bit elements of Rs2 and writes the most significant 32-bit multiplication results to the corresponding 32-bit elements of Rd. The 32-bit elements of Rs1 and Rs2 are treated as signed integers. The <computeroutput>.u</computeroutput> form of the instruction rounds up the most significant 32-bit of the 64-bit multiplication results by adding a 1 to bit 31 of the results.<itemizedlist>
+<listitem><para>For <computeroutput>smmul/RV32</computeroutput> instruction, it is an alias to <computeroutput>mulh/RV32</computeroutput> instruction.</para></listitem></itemizedlist>
+</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">Mres[x][63:0]<sp/>=<sp/>Rs1.W[x]<sp/>*<sp/>Rs2.W[x];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Round[x][32:0]<sp/>=<sp/>Mres[x][63:31]<sp/>+<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Rd.W[x]<sp/>=<sp/>Round[x][32:1];</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Rd.W[x]<sp/>=<sp/>Mres[x][63:32];</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="8665" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8665" bodyend="8670"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+        <referencedby refid="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__CUSTOM_1ga6d8dce49013b778d0290cd057cf45dd0" compoundref="core__feature__dsp_8h" startline="14306" endline="14311">__RV_EXPD83</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X32__MAC_1ga18c56b42dfb546e0a39ee1a0554e6e0b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> long</type>
+        <definition>__STATIC_FORCEINLINE long __RV_SMMUL_U</definition>
+        <argsstring>(long a, long b)</argsstring>
+        <name>__RV_SMMUL_U</name>
+        <param>
+          <type>long</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>long</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>SMMUL.u (SIMD MSW Signed Multiply Word with Rounding) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">SMMUL<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+<codeline><highlight class="normal">SMMUL.u<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Multiply the 32-bit signed integer elements of two registers and write the most significant 32-bit results to the corresponding 32-bit elements of a register. The <computeroutput>.u</computeroutput> form performs an additional rounding up operation on the multiplication results before taking the most significant 32-bit part of the results.</para><para><bold>Description</bold>:<linebreak/>
+This instruction multiplies the 32-bit elements of Rs1 with the 32-bit elements of Rs2 and writes the most significant 32-bit multiplication results to the corresponding 32-bit elements of Rd. The 32-bit elements of Rs1 and Rs2 are treated as signed integers. The <computeroutput>.u</computeroutput> form of the instruction rounds up the most significant 32-bit of the 64-bit multiplication results by adding a 1 to bit 31 of the results.<itemizedlist>
+<listitem><para>For <computeroutput>smmul/RV32</computeroutput> instruction, it is an alias to <computeroutput>mulh/RV32</computeroutput> instruction.</para></listitem></itemizedlist>
+</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">Mres[x][63:0]<sp/>=<sp/>Rs1.W[x]<sp/>*<sp/>Rs2.W[x];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(`.u`<sp/>form)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Round[x][32:0]<sp/>=<sp/>Mres[x][63:31]<sp/>+<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Rd.W[x]<sp/>=<sp/>Round[x][32:1];</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Rd.W[x]<sp/>=<sp/>Mres[x][63:32];</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=0</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=1...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="8716" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8716" bodyend="8721"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Signed MSW 32x32 Multiply and Add Instructions. </para>    </briefdescription>
+    <detaileddescription>
+<para>there are 8 Signed MSW 32x32 Multiply and Add Instructions </para>    </detaileddescription>
+  </compounddef>
+</doxygen>

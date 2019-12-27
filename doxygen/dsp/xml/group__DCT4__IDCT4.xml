@@ -1,0 +1,436 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="group__DCT4__IDCT4" kind="group">
+    <compoundname>DCT4_IDCT4</compoundname>
+    <title>DCT Type IV Functions</title>
+    <innergroup refid="group__DCT4__IDCT4__Table">DCT Type IV Tables</innergroup>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__DCT4__IDCT4_1ga50ce68671108e95984121f7eb9e57c06" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_dct4_f32</definition>
+        <argsstring>(const riscv_dct4_instance_f32 *S, float32_t *pState, float32_t *pInlineBuffer)</argsstring>
+        <name>riscv_dct4_f32</name>
+        <param>
+          <type>const <ref refid="structriscv__dct4__instance__f32" kindref="compound">riscv_dct4_instance_f32</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>float32_t *</type>
+          <declname>pState</declname>
+        </param>
+        <param>
+          <type>float32_t *</type>
+          <declname>pInlineBuffer</declname>
+        </param>
+        <briefdescription>
+<para>Processing function for the floating-point DCT4/IDCT4. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the floating-point DCT4/IDCT4 structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pState</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to state buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="inout">pInlineBuffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the in-place input and output buffer </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_dct4_f32.c" line="128" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_dct4_f32.c" bodystart="128" bodyend="445"/>
+      </memberdef>
+      <memberdef kind="function" id="group__DCT4__IDCT4_1gac8e0136f9dec411d05bf7c684dfc0395" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>riscv_status</type>
+        <definition>riscv_status riscv_dct4_init_f32</definition>
+        <argsstring>(riscv_dct4_instance_f32 *S, riscv_rfft_instance_f32 *S_RFFT, riscv_cfft_radix4_instance_f32 *S_CFFT, uint16_t N, uint16_t Nby2, float32_t normalize)</argsstring>
+        <name>riscv_dct4_init_f32</name>
+        <param>
+          <type><ref refid="structriscv__dct4__instance__f32" kindref="compound">riscv_dct4_instance_f32</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type><ref refid="structriscv__rfft__instance__f32" kindref="compound">riscv_rfft_instance_f32</ref> *</type>
+          <declname>S_RFFT</declname>
+        </param>
+        <param>
+          <type><ref refid="structriscv__cfft__radix4__instance__f32" kindref="compound">riscv_cfft_radix4_instance_f32</ref> *</type>
+          <declname>S_CFFT</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>Nby2</declname>
+        </param>
+        <param>
+          <type>float32_t</type>
+          <declname>normalize</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the floating-point DCT4/IDCT4. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of floating-point DCT4/IDCT4 structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">S_RFFT</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of floating-point RFFT/RIFFT structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">S_CFFT</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of floating-point CFFT/CIFFT structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of the DCT4 </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">Nby2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>half of the length of the DCT4 </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">normalize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>normalizing factor. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>execution status<itemizedlist>
+<listitem><para>RISCV_MATH_SUCCESS : Operation successful</para></listitem><listitem><para>RISCV_MATH_ARGUMENT_ERROR : <computeroutput>N</computeroutput> is not a supported transform length</para></listitem></itemizedlist>
+</para></simplesect>
+<simplesect kind="par"><title>Normalizing factor</title><para>The normalizing factor is <computeroutput>sqrt(2/N)</computeroutput>, which depends on the size of transform <computeroutput>N</computeroutput>. Floating-point normalizing factors are mentioned in the table below for different DCT sizes:</para></simplesect>
+<image type="html" name="dct4NormalizingF32Table.png"></image>
+ </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_dct4_init_f32.c" line="62" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_dct4_init_f32.c" bodystart="62" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="group__DCT4__IDCT4_1gadb08ffdc26604e45aca6b713728bf167" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>riscv_status</type>
+        <definition>riscv_status riscv_dct4_init_q15</definition>
+        <argsstring>(riscv_dct4_instance_q15 *S, riscv_rfft_instance_q15 *S_RFFT, riscv_cfft_radix4_instance_q15 *S_CFFT, uint16_t N, uint16_t Nby2, q15_t normalize)</argsstring>
+        <name>riscv_dct4_init_q15</name>
+        <param>
+          <type><ref refid="structriscv__dct4__instance__q15" kindref="compound">riscv_dct4_instance_q15</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type><ref refid="structriscv__rfft__instance__q15" kindref="compound">riscv_rfft_instance_q15</ref> *</type>
+          <declname>S_RFFT</declname>
+        </param>
+        <param>
+          <type><ref refid="structriscv__cfft__radix4__instance__q15" kindref="compound">riscv_cfft_radix4_instance_q15</ref> *</type>
+          <declname>S_CFFT</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>Nby2</declname>
+        </param>
+        <param>
+          <type>q15_t</type>
+          <declname>normalize</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the Q15 DCT4/IDCT4. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of Q15 DCT4/IDCT4 structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">S_RFFT</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of Q15 RFFT/RIFFT structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">S_CFFT</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of Q15 CFFT/CIFFT structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of the DCT4 </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">Nby2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>half of the length of the DCT4 </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">normalize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>normalizing factor </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>execution status<itemizedlist>
+<listitem><para>RISCV_MATH_SUCCESS : Operation successful</para></listitem><listitem><para>RISCV_MATH_ARGUMENT_ERROR : <computeroutput>N</computeroutput> is not a supported transform length</para></listitem></itemizedlist>
+</para></simplesect>
+<simplesect kind="par"><title>Normalizing factor</title><para>The normalizing factor is <computeroutput>sqrt(2/N)</computeroutput>, which depends on the size of transform <computeroutput>N</computeroutput>. Normalizing factors in 1.15 format are mentioned in the table below for different DCT sizes:</para></simplesect>
+<image type="html" name="dct4NormalizingQ15Table.png"></image>
+ </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_dct4_init_q15.c" line="61" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_dct4_init_q15.c" bodystart="61" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="function" id="group__DCT4__IDCT4_1ga5561b5f47987be3c7e4837c4c3292500" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>riscv_status</type>
+        <definition>riscv_status riscv_dct4_init_q31</definition>
+        <argsstring>(riscv_dct4_instance_q31 *S, riscv_rfft_instance_q31 *S_RFFT, riscv_cfft_radix4_instance_q31 *S_CFFT, uint16_t N, uint16_t Nby2, q31_t normalize)</argsstring>
+        <name>riscv_dct4_init_q31</name>
+        <param>
+          <type><ref refid="structriscv__dct4__instance__q31" kindref="compound">riscv_dct4_instance_q31</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type><ref refid="structriscv__rfft__instance__q31" kindref="compound">riscv_rfft_instance_q31</ref> *</type>
+          <declname>S_RFFT</declname>
+        </param>
+        <param>
+          <type><ref refid="structriscv__cfft__radix4__instance__q31" kindref="compound">riscv_cfft_radix4_instance_q31</ref> *</type>
+          <declname>S_CFFT</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>Nby2</declname>
+        </param>
+        <param>
+          <type>q31_t</type>
+          <declname>normalize</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the Q31 DCT4/IDCT4. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of Q31 DCT4/IDCT4 structure. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">S_RFFT</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of Q31 RFFT/RIFFT structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">S_CFFT</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of Q31 CFFT/CIFFT structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of the DCT4. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">Nby2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>half of the length of the DCT4. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">normalize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>normalizing factor. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>execution status<itemizedlist>
+<listitem><para>RISCV_MATH_SUCCESS : Operation successful</para></listitem><listitem><para>RISCV_MATH_ARGUMENT_ERROR : <computeroutput>N</computeroutput> is not a supported transform length</para></listitem></itemizedlist>
+</para></simplesect>
+<simplesect kind="par"><title>Normalizing factor:</title><para>The normalizing factor is <computeroutput>sqrt(2/N)</computeroutput>, which depends on the size of transform <computeroutput>N</computeroutput>. Normalizing factors in 1.31 format are mentioned in the table below for different DCT sizes:</para></simplesect>
+<image type="html" name="dct4NormalizingQ31Table.png"></image>
+ </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_dct4_init_q31.c" line="62" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_dct4_init_q31.c" bodystart="62" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="function" id="group__DCT4__IDCT4_1gad26cd42b92834f519f43eca88ed88f50" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_dct4_q15</definition>
+        <argsstring>(const riscv_dct4_instance_q15 *S, q15_t *pState, q15_t *pInlineBuffer)</argsstring>
+        <name>riscv_dct4_q15</name>
+        <param>
+          <type>const <ref refid="structriscv__dct4__instance__q15" kindref="compound">riscv_dct4_instance_q15</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>q15_t *</type>
+          <declname>pState</declname>
+        </param>
+        <param>
+          <type>q15_t *</type>
+          <declname>pInlineBuffer</declname>
+        </param>
+        <briefdescription>
+<para>Processing function for the Q15 DCT4/IDCT4. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the Q15 DCT4 structure. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pState</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to state buffer. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="inout">pInlineBuffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the in-place input and output buffer. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Input an output formats</title><para>Internally inputs are downscaled in the RFFT process function to avoid overflows. Number of bits downscaled, depends on the size of the transform. The input and output formats for different DCT sizes and number of bits to upscale are mentioned in the table below:</para></simplesect>
+<image type="html" name="dct4FormatsQ15Table.png"></image>
+ </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_dct4_q15.c" line="52" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_dct4_q15.c" bodystart="52" bodyend="378"/>
+      </memberdef>
+      <memberdef kind="function" id="group__DCT4__IDCT4_1ga7e8a6565ae2b938959d5d844610afe82" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_dct4_q31</definition>
+        <argsstring>(const riscv_dct4_instance_q31 *S, q31_t *pState, q31_t *pInlineBuffer)</argsstring>
+        <name>riscv_dct4_q31</name>
+        <param>
+          <type>const <ref refid="structriscv__dct4__instance__q31" kindref="compound">riscv_dct4_instance_q31</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>q31_t *</type>
+          <declname>pState</declname>
+        </param>
+        <param>
+          <type>q31_t *</type>
+          <declname>pInlineBuffer</declname>
+        </param>
+        <briefdescription>
+<para>Processing function for the Q31 DCT4/IDCT4. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the Q31 DCT4 structure. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pState</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to state buffer. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="inout">pInlineBuffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the in-place input and output buffer. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Input an output formats</title><para>Input samples need to be downscaled by 1 bit to avoid saturations in the Q31 DCT process, as the conversion from DCT2 to DCT4 involves one subtraction. Internally inputs are downscaled in the RFFT process function to avoid overflows. Number of bits downscaled, depends on the size of the transform. The input and output formats for different DCT sizes and number of bits to upscale are mentioned in the table below:</para></simplesect>
+<image type="html" name="dct4FormatsQ31Table.png"></image>
+ </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_dct4_q31.c" line="55" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_dct4_q31.c" bodystart="55" bodyend="380"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Representation of signals by minimum number of values is important for storage and transmission. The possibility of large discontinuity between the beginning and end of a period of a signal in DFT can be avoided by extending the signal so that it is even-symmetric. Discrete Cosine Transform (DCT) is constructed such that its energy is heavily concentrated in the lower part of the spectrum and is very widely used in signal and image coding applications. The family of DCTs (DCT type- 1,2,3,4) is the outcome of different combinations of homogeneous boundary conditions. DCT has an excellent energy-packing capability, hence has many applications and in data compression in particular.</para><para>DCT is essentially the Discrete Fourier Transform(DFT) of an even-extended real signal. Reordering of the input data makes the computation of DCT just a problem of computing the DFT of a real signal with a few additional operations. This approach provides regular, simple, and very efficient DCT algorithms for practical hardware and software implementations.</para><para>DCT type-II can be implemented using Fast fourier transform (FFT) internally, as the transform is applied on real values, Real FFT can be used. DCT4 is implemented using DCT2 as their implementations are similar except with some added pre-processing and post-processing. DCT2 implementation can be described in the following steps:<itemizedlist>
+<listitem><para>Re-ordering input</para></listitem><listitem><para>Calculating Real FFT</para></listitem><listitem><para>Multiplication of weights and Real FFT output and getting real part from the product.</para></listitem></itemizedlist>
+</para><para>This process is explained by the block diagram below: <image type="html" name="DCT4.png">Discrete Cosine Transform - type-IV</image>
+ <simplesect kind="par"><title>Algorithm</title><para>The N-point type-IV DCT is defined as a real, linear transformation by the formula: <image type="html" name="DCT4Equation.png"></image>
+ where <computeroutput>k = 0, 1, 2, ..., N-1</computeroutput> </para></simplesect>
+<simplesect kind="par"><title></title><para>Its inverse is defined as follows: <image type="html" name="IDCT4Equation.png"></image>
+ where <computeroutput>n = 0, 1, 2, ..., N-1</computeroutput> </para></simplesect>
+<simplesect kind="par"><title></title><para>The DCT4 matrices become involutory (i.e. they are self-inverse) by multiplying with an overall scale factor of sqrt(2/N). The symmetry of the transform matrix indicates that the fast algorithms for the forward and inverse transform computation are identical. Note that the implementation of Inverse DCT4 and DCT4 is same, hence same process function can be used for both.</para></simplesect>
+<simplesect kind="par"><title>Lengths supported by the transform:</title><para>As DCT4 internally uses Real FFT, it supports all the lengths 128, 512, 2048 and 8192. The library provides separate functions for Q15, Q31, and floating-point data types.</para></simplesect>
+<simplesect kind="par"><title>Instance Structure</title><para>The instances for Real FFT and FFT, cosine values table and twiddle factor table are stored in an instance data structure. A separate instance structure must be defined for each transform. There are separate instance structure declarations for each of the 3 supported data types.</para></simplesect>
+<simplesect kind="par"><title>Initialization Functions</title><para>There is also an associated initialization function for each data type. The initialization function performs the following operations:<itemizedlist>
+<listitem><para>Sets the values of the internal structure fields.</para></listitem><listitem><para>Initializes Real FFT as its process function is used internally in DCT4, by calling <ref refid="group__RealFFT_1ga84650b5ce6836a7cd0f0fc9da41fb3cf" kindref="member">riscv_rfft_init_f32()</ref>. </para></listitem></itemizedlist>
+</para></simplesect>
+<simplesect kind="par"><title></title><para>Use of the initialization function is optional. However, if the initialization function is used, then the instance structure cannot be placed into a const data section. To place an instance structure into a const data section, the instance structure must be manually initialized. Manually initialize the instance structure as follows: <preformatted>
+    <ref refid="structriscv__dct4__instance__f32" kindref="compound">riscv_dct4_instance_f32</ref> S = {N, Nby2, normalize, pTwiddle, pCosFactor, pRfft, pCfft};
+    <ref refid="structriscv__dct4__instance__q31" kindref="compound">riscv_dct4_instance_q31</ref> S = {N, Nby2, normalize, pTwiddle, pCosFactor, pRfft, pCfft};
+    <ref refid="structriscv__dct4__instance__q15" kindref="compound">riscv_dct4_instance_q15</ref> S = {N, Nby2, normalize, pTwiddle, pCosFactor, pRfft, pCfft};
+</preformatted> where <computeroutput>N</computeroutput> is the length of the DCT4; <computeroutput>Nby2</computeroutput> is half of the length of the DCT4; <computeroutput>normalize</computeroutput> is normalizing factor used and is equal to <computeroutput>sqrt(2/N)</computeroutput>; <computeroutput>pTwiddle</computeroutput> points to the twiddle factor table; <computeroutput>pCosFactor</computeroutput> points to the cosFactor table; <computeroutput>pRfft</computeroutput> points to the real FFT instance; <computeroutput>pCfft</computeroutput> points to the complex FFT instance; The CFFT and RFFT structures also needs to be initialized, refer to <ref refid="group__ComplexFFT_1ga07d1cb586d6c9553c7e9e4aa05fe9320" kindref="member">riscv_cfft_radix4_f32()</ref> and <ref refid="group__RealFFT_1ga15270da93ab349377512694e2704a324" kindref="member">riscv_rfft_f32()</ref> respectively for details regarding static initialization.</para></simplesect>
+<simplesect kind="par"><title>Fixed-Point Behavior</title><para>Care must be taken when using the fixed-point versions of the DCT4 transform functions. In particular, the overflow and saturation behavior of the accumulator used in each function must be considered. Refer to the function specific documentation below for usage guidelines. </para></simplesect>
+</para>    </detaileddescription>
+  </compounddef>
+</doxygen>

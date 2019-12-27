@@ -1,0 +1,352 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="group__CFFT__CIFFT" kind="group">
+    <compoundname>CFFT_CIFFT</compoundname>
+    <title>Complex FFT Tables</title>
+    <innergroup refid="group__DCT4__IDCT4__Table">DCT Type IV Tables</innergroup>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="group__CFFT__CIFFT_1ga642762d611cf45f7fd6d172019558122" prot="public" static="no" mutable="no">
+        <type>const uint16_t</type>
+        <definition>const uint16_t riscvBitRevTable[1024]</definition>
+        <argsstring>[1024]</argsstring>
+        <name>riscvBitRevTable</name>
+        <briefdescription>
+<para>Table for bit reversal process. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="par"><title></title><para>Pseudo code for Generation of Bit reversal Table is </para></simplesect>
+<simplesect kind="par"><title></title><para><preformatted>for (l = 1; l &lt;= N/4; l++)
+{
+  for (i = 0; i&lt; logN2; i++)
+  {
+    a[i] = l &amp; (1 &lt;&lt; i);
+  }
+  for (j = 0; j &lt; logN2; j++)
+  {
+    if (a[j] != 0)
+    y[l] += (1 &lt;&lt; ((logN2 - 1) - j));
+  }
+  y[l] = y[l] &gt;&gt; 1;
+ } </preformatted> </para></simplesect>
+<simplesect kind="par"><title></title><para>where N = 4096, logN2 = 12 </para></simplesect>
+<simplesect kind="par"><title></title><para>N is the maximum FFT Size supported </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="71" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__CFFT__CIFFT_1ga77b129ca9006bcbab1840464ff94951d" prot="public" static="no" mutable="no">
+        <type>const uint16_t</type>
+        <definition>const uint16_t riscvBitRevIndexTable16[RISCVBITREVINDEXTABLE_16_TABLE_LENGTH]</definition>
+        <argsstring>[RISCVBITREVINDEXTABLE_16_TABLE_LENGTH]</argsstring>
+        <name>riscvBitRevIndexTable16</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="180" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="180" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__CFFT__CIFFT_1ga081d6318a078a62fdf4a6809d86eac3e" prot="public" static="no" mutable="no">
+        <type>const uint16_t</type>
+        <definition>const uint16_t riscvBitRevIndexTable32[RISCVBITREVINDEXTABLE_32_TABLE_LENGTH]</definition>
+        <argsstring>[RISCVBITREVINDEXTABLE_32_TABLE_LENGTH]</argsstring>
+        <name>riscvBitRevIndexTable32</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="190" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="190" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__CFFT__CIFFT_1ga28271e513dac6ce40458b1fa366596c6" prot="public" static="no" mutable="no">
+        <type>const uint16_t</type>
+        <definition>const uint16_t riscvBitRevIndexTable64[RISCVBITREVINDEXTABLE_64_TABLE_LENGTH]</definition>
+        <argsstring>[RISCVBITREVINDEXTABLE_64_TABLE_LENGTH]</argsstring>
+        <name>riscvBitRevIndexTable64</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="202" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="202" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__CFFT__CIFFT_1gac9f0a716430d98521e57a4567a34f222" prot="public" static="no" mutable="no">
+        <type>const uint16_t</type>
+        <definition>const uint16_t riscvBitRevIndexTable128[RISCVBITREVINDEXTABLE_128_TABLE_LENGTH]</definition>
+        <argsstring>[RISCVBITREVINDEXTABLE_128_TABLE_LENGTH]</argsstring>
+        <name>riscvBitRevIndexTable128</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="215" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="215" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__CFFT__CIFFT_1ga94fabe2ed6b2d15db8bd1c657d7d8a28" prot="public" static="no" mutable="no">
+        <type>const uint16_t</type>
+        <definition>const uint16_t riscvBitRevIndexTable256[RISCVBITREVINDEXTABLE_256_TABLE_LENGTH]</definition>
+        <argsstring>[RISCVBITREVINDEXTABLE_256_TABLE_LENGTH]</argsstring>
+        <name>riscvBitRevIndexTable256</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="237" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="237" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__CFFT__CIFFT_1gace5ddf0823fd9358e0cbf23f1cf0e90b" prot="public" static="no" mutable="no">
+        <type>const uint16_t</type>
+        <definition>const uint16_t riscvBitRevIndexTable512[RISCVBITREVINDEXTABLE_512_TABLE_LENGTH]</definition>
+        <argsstring>[RISCVBITREVINDEXTABLE_512_TABLE_LENGTH]</argsstring>
+        <name>riscvBitRevIndexTable512</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="279" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="279" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__CFFT__CIFFT_1ga4a07a6e3e1c76306042af0d6146e463e" prot="public" static="no" mutable="no">
+        <type>const uint16_t</type>
+        <definition>const uint16_t riscvBitRevIndexTable1024[RISCVBITREVINDEXTABLE_1024_TABLE_LENGTH]</definition>
+        <argsstring>[RISCVBITREVINDEXTABLE_1024_TABLE_LENGTH]</argsstring>
+        <name>riscvBitRevIndexTable1024</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="323" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="323" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__CFFT__CIFFT_1gad795a4bba12da93f3a8f6e12732d5e0d" prot="public" static="no" mutable="no">
+        <type>const uint16_t</type>
+        <definition>const uint16_t riscvBitRevIndexTable2048[RISCVBITREVINDEXTABLE_2048_TABLE_LENGTH]</definition>
+        <argsstring>[RISCVBITREVINDEXTABLE_2048_TABLE_LENGTH]</argsstring>
+        <name>riscvBitRevIndexTable2048</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="479" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="479" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__CFFT__CIFFT_1gaf8799441dfb34e548218da781e5cbd75" prot="public" static="no" mutable="no">
+        <type>const uint16_t</type>
+        <definition>const uint16_t riscvBitRevIndexTable4096[RISCVBITREVINDEXTABLE_4096_TABLE_LENGTH]</definition>
+        <argsstring>[RISCVBITREVINDEXTABLE_4096_TABLE_LENGTH]</argsstring>
+        <name>riscvBitRevIndexTable4096</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="824" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="824" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__CFFT__CIFFT_1gabbe18cfc20ee22df36ca00d8d5265c92" prot="public" static="no" mutable="no">
+        <type>const uint16_t</type>
+        <definition>const uint16_t riscvBitRevIndexTable_fixed_16[RISCVBITREVINDEXTABLE_FIXED_16_TABLE_LENGTH]</definition>
+        <argsstring>[RISCVBITREVINDEXTABLE_FIXED_16_TABLE_LENGTH]</argsstring>
+        <name>riscvBitRevIndexTable_fixed_16</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="1198" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="1198" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__CFFT__CIFFT_1ga022b261e9a6aea2c75477c860267c625" prot="public" static="no" mutable="no">
+        <type>const uint16_t</type>
+        <definition>const uint16_t riscvBitRevIndexTable_fixed_32[RISCVBITREVINDEXTABLE_FIXED_32_TABLE_LENGTH]</definition>
+        <argsstring>[RISCVBITREVINDEXTABLE_FIXED_32_TABLE_LENGTH]</argsstring>
+        <name>riscvBitRevIndexTable_fixed_32</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="1206" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="1206" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__CFFT__CIFFT_1ga77ada52b10008506a42ab22072912eb7" prot="public" static="no" mutable="no">
+        <type>const uint16_t</type>
+        <definition>const uint16_t riscvBitRevIndexTable_fixed_64[RISCVBITREVINDEXTABLE_FIXED_64_TABLE_LENGTH]</definition>
+        <argsstring>[RISCVBITREVINDEXTABLE_FIXED_64_TABLE_LENGTH]</argsstring>
+        <name>riscvBitRevIndexTable_fixed_64</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="1215" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="1215" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__CFFT__CIFFT_1ga957ea6a30726b728b43cc106c190eab5" prot="public" static="no" mutable="no">
+        <type>const uint16_t</type>
+        <definition>const uint16_t riscvBitRevIndexTable_fixed_128[RISCVBITREVINDEXTABLE_FIXED_128_TABLE_LENGTH]</definition>
+        <argsstring>[RISCVBITREVINDEXTABLE_FIXED_128_TABLE_LENGTH]</argsstring>
+        <name>riscvBitRevIndexTable_fixed_128</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="1225" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="1225" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__CFFT__CIFFT_1gae619afe070a39839d3fe12619d36fc02" prot="public" static="no" mutable="no">
+        <type>const uint16_t</type>
+        <definition>const uint16_t riscvBitRevIndexTable_fixed_256[RISCVBITREVINDEXTABLE_FIXED_256_TABLE_LENGTH]</definition>
+        <argsstring>[RISCVBITREVINDEXTABLE_FIXED_256_TABLE_LENGTH]</argsstring>
+        <name>riscvBitRevIndexTable_fixed_256</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="1238" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="1238" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__CFFT__CIFFT_1gaf0738ebe711e8bc44d5d99d9ce7dd98e" prot="public" static="no" mutable="no">
+        <type>const uint16_t</type>
+        <definition>const uint16_t riscvBitRevIndexTable_fixed_512[RISCVBITREVINDEXTABLE_FIXED_512_TABLE_LENGTH]</definition>
+        <argsstring>[RISCVBITREVINDEXTABLE_FIXED_512_TABLE_LENGTH]</argsstring>
+        <name>riscvBitRevIndexTable_fixed_512</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="1259" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="1259" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__CFFT__CIFFT_1gabac02e0b8013288ad062ab3306298d5e" prot="public" static="no" mutable="no">
+        <type>const uint16_t</type>
+        <definition>const uint16_t riscvBitRevIndexTable_fixed_1024[RISCVBITREVINDEXTABLE_FIXED_1024_TABLE_LENGTH]</definition>
+        <argsstring>[RISCVBITREVINDEXTABLE_FIXED_1024_TABLE_LENGTH]</argsstring>
+        <name>riscvBitRevIndexTable_fixed_1024</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="1295" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="1295" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__CFFT__CIFFT_1gaba0302218d6d63d430080e2015bed3ad" prot="public" static="no" mutable="no">
+        <type>const uint16_t</type>
+        <definition>const uint16_t riscvBitRevIndexTable_fixed_2048[RISCVBITREVINDEXTABLE_FIXED_2048_TABLE_LENGTH]</definition>
+        <argsstring>[RISCVBITREVINDEXTABLE_FIXED_2048_TABLE_LENGTH]</argsstring>
+        <name>riscvBitRevIndexTable_fixed_2048</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="1371" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="1371" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__CFFT__CIFFT_1gacd6a5f14060f01f9a114d1560c3f623b" prot="public" static="no" mutable="no">
+        <type>const uint16_t</type>
+        <definition>const uint16_t riscvBitRevIndexTable_fixed_4096[RISCVBITREVINDEXTABLE_FIXED_4096_TABLE_LENGTH]</definition>
+        <argsstring>[RISCVBITREVINDEXTABLE_FIXED_4096_TABLE_LENGTH]</argsstring>
+        <name>riscvBitRevIndexTable_fixed_4096</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="1529" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="1529" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__CFFT__CIFFT_1gafa262d04df32de95217be37e8c29b89f" prot="public" static="no" mutable="no">
+        <type>const q31_t</type>
+        <definition>const q31_t riscvRecipTableQ31[64]</definition>
+        <argsstring>[64]</argsstring>
+        <name>riscvRecipTableQ31</name>
+        <briefdescription>
+<para>Q31 table for reciprocal. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="7988" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="7988" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__CFFT__CIFFT_1ga1dec82d596780f1a66ef4f76f137c1d9" prot="public" static="no" mutable="no">
+        <type>const float32_t</type>
+        <definition>const float32_t sinTable_f32[FAST_MATH_TABLE_SIZE+1]</definition>
+        <argsstring>[FAST_MATH_TABLE_SIZE+1]</argsstring>
+        <name>sinTable_f32</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="par"><title></title><para>Example code for the generation of the floating-point sine table: <preformatted>
+ tableSize = 512;
+ for (n = 0; n &lt; (tableSize + 1); n++)
+ {
+        sinTable[n] = sin(2*PI*n/tableSize);
+ }</preformatted> </para></simplesect>
+<simplesect kind="par"><title></title><para>where PI value is 3.14159265358979 </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="8017" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="8017" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__CFFT__CIFFT_1ga8bfccee9e1c0042cf4a765f4b19d097d" prot="public" static="no" mutable="no">
+        <type>const q31_t</type>
+        <definition>const q31_t sinTable_q31[FAST_MATH_TABLE_SIZE+1]</definition>
+        <argsstring>[FAST_MATH_TABLE_SIZE+1]</argsstring>
+        <name>sinTable_q31</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="par"><title></title><para>Table values are in Q31 (1.31 fixed-point format) and generation is done in three steps. First, generate sin values in floating point: <preformatted>
+ tableSize = 512;
+ for (n = 0; n &lt; (tableSize + 1); n++)
+ {
+        sinTable[n] = sin(2*PI*n/tableSize);
+ } </preformatted> where PI value is 3.14159265358979 </para></simplesect>
+<simplesect kind="par"><title></title><para>Second, convert floating-point to Q31 (Fixed point): (sinTable[i] * pow(2, 31)) </para></simplesect>
+<simplesect kind="par"><title></title><para>Finally, round to the nearest integer value: sinTable[i] += (sinTable[i] &gt; 0 ? 0.5 : -0.5); </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="8134" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="8134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__CFFT__CIFFT_1ga9cbcfe313f61add745ebfeddb4fecd55" prot="public" static="no" mutable="no">
+        <type>const q15_t</type>
+        <definition>const q15_t sinTable_q15[FAST_MATH_TABLE_SIZE+1]</definition>
+        <argsstring>[FAST_MATH_TABLE_SIZE+1]</argsstring>
+        <name>sinTable_q15</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="par"><title></title><para>Table values are in Q15 (1.15 fixed-point format) and generation is done in three steps. First, generate sin values in floating point: <preformatted>
+ tableSize = 512;
+ for (n = 0; n &lt; (tableSize + 1); n++)
+ {
+        sinTable[n] = sin(2*PI*n/tableSize);
+ } </preformatted> where PI value is 3.14159265358979 </para></simplesect>
+<simplesect kind="par"><title></title><para>Second, convert floating-point to Q15 (Fixed point): (sinTable[i] * pow(2, 15)) </para></simplesect>
+<simplesect kind="par"><title></title><para>Finally, round to the nearest integer value: sinTable[i] += (sinTable[i] &gt; 0 ? 0.5 :-0.5); </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" line="8249" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/CommonTables/riscv_common_tables.c" bodystart="8249" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,698 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Systick Timer(SysTimer) &mdash; NMSIS 1.0.0-alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Interrupts and Exceptions" href="core_interrupt_exception.html" />
+    <link rel="prev" title="Peripheral Access" href="core_periph_access.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">NMSIS Core</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started.html">Using NMSIS in Embedded Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../core_templates.html">NMSIS-Core Device Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../register_mapping.html">Register Mapping</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">NMSIS Core API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="core_version_control.html">Version Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_compiler_control.html">Compiler Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_csr_access.html">Core CSR Register Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_csr_encoding.html">Core CSR Encoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_register_type.html">Register Define and Type Definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_intrinsics.html">CPU Intrinsic Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_periph_access.html">Peripheral Access</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Systick Timer(SysTimer)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#systimer-api">SysTimer API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#systick-code-example">SysTick Code Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#systimer-interrupt-code-example">SysTimer Interrupt Code Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="core_interrupt_exception.html">Interrupts and Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_fpu.html">FPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_pmp.html">PMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_cache.html">Cache Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_system_device.html">System Device Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_arm_compatiable.html">ARM Compatiable Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">NMSIS Core</a> &raquo;</li>
+        
+          <li><a href="index.html">NMSIS Core API</a> &raquo;</li>
+        
+      <li>Systick Timer(SysTimer)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/core/api/core_systick.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="systick-timer-systimer">
+<span id="core-api-systick"></span><h1>Systick Timer(SysTimer)<a class="headerlink" href="#systick-timer-systimer" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="systimer-api">
+<h2>SysTimer API<a class="headerlink" href="#systimer-api" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1ga40fa66eae9a7df053bb7501866073aea"></span><code class="sig-name descname">__STATIC_INLINE void SysTimer_SetLoadValue(uint64_t value)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1ga8672ac25251ede92992effc9d40d2706"></span><code class="sig-name descname">__STATIC_INLINE uint64_t SysTimer_GetLoadValue(void)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1gaec492fdd4dd0a8c72e4958a3b86d60bb"></span><code class="sig-name descname">__STATIC_INLINE void SysTimer_SetCompareValue(uint64_t value)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1gadded449522bea6f5ecdbb7d5c4554f43"></span><code class="sig-name descname">__STATIC_INLINE uint64_t SysTimer_GetCompareValue(void)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1gafbb922deb659bbd92d894046db0e49a8"></span><code class="sig-name descname">__STATIC_INLINE void SysTimer_SetMstopValue(uint32_t mstop)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1gaefb4407e361cee4eb7b88533139211cf"></span><code class="sig-name descname">__STATIC_INLINE uint32_t SysTimer_GetMstopValue(void)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1ga2b02f4075e3ecb245559fee19bebacf4"></span><code class="sig-name descname">__STATIC_INLINE void SysTimer_SetSWIRQ(void)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1ga1d6872b364b566c6c275e3e66086a95e"></span><code class="sig-name descname">__STATIC_INLINE void SysTimer_ClearSWIRQ(void)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1gac71f565a339896bec3712530d8c683fe"></span><code class="sig-name descname">__STATIC_INLINE uint32_t SysTimer_GetMsipValue(void)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1gae9b7cf533c958b702dae2b5654672a78"></span><code class="sig-name descname">__STATIC_INLINE void SysTimer_SoftwareReset(void)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1ga349805c25d9aa753c6fd69b3c0151126"></span><code class="sig-name descname">__STATIC_INLINE uint32_t SysTick_Config(uint64_t ticks)</code></dt>
+<dd></dd></dl>
+
+<dl class="group">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer"></span><em>group</em> <code class="sig-name descname">NMSIS_Core_SysTimer</code></dt>
+<dd><p>Functions that configure the System Timer. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1ga40fa66eae9a7df053bb7501866073aea"></span><code class="sig-name descname">__STATIC_INLINE void SysTimer_SetLoadValue(uint64_t value)</code></dt>
+<dd><p>Set system Timer load value. </p>
+<p>This function set the system Timer load value. <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p><ul class="simple">
+<li><p>Load value is 64bits wide.</p></li>
+<li><p>SysTimer_GetLoadValue </p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">value</span></code>: init value for system timer. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1ga8672ac25251ede92992effc9d40d2706"></span><code class="sig-name descname">__STATIC_INLINE uint64_t SysTimer_GetLoadValue(void)</code></dt>
+<dd><p>Get system Timer load value. </p>
+<p>This function get the system Timer current value. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>current value for system timer. </p>
+</dd>
+<dt><strong>Remark</strong></dt><dd><p><ul class="simple">
+<li><p>Load value is 64bits wide.</p></li>
+<li><p>SysTimer_SetLoadValue </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1gaec492fdd4dd0a8c72e4958a3b86d60bb"></span><code class="sig-name descname">__STATIC_INLINE void SysTimer_SetCompareValue(uint64_t value)</code></dt>
+<dd><p>Set system Timer compare value. </p>
+<p>This function set the system Timer compare value. <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p><ul class="simple">
+<li><p>Compare value is 64bits wide.</p></li>
+<li><p>If compare value is larger than current value Timer interrupt generate.</p></li>
+<li><p>Modify the load value or compare value less to clear the interrupt.</p></li>
+<li><p>SysTimer_GetCompareValue </p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">value</span></code>: compare value for system timer. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1gadded449522bea6f5ecdbb7d5c4554f43"></span><code class="sig-name descname">__STATIC_INLINE uint64_t SysTimer_GetCompareValue(void)</code></dt>
+<dd><p>Get system Timer compare value. </p>
+<p>This function get the system Timer compare value. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>compare value for system timer. </p>
+</dd>
+<dt><strong>Remark</strong></dt><dd><p><ul class="simple">
+<li><p>Compare value is 64bits wide.</p></li>
+<li><p>SysTimer_SetCompareValue </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1gafbb922deb659bbd92d894046db0e49a8"></span><code class="sig-name descname">__STATIC_INLINE void SysTimer_SetMstopValue(uint32_t mstop)</code></dt>
+<dd><p>Set system Timer MSTOP. </p>
+<p>This function set the system Timer MSTOP bit. <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p><ul class="simple">
+<li><p>Bit0 is used to start and stop. Set bit0 timer start. Clear Bit0 Timer stop.</p></li>
+<li><p>SysTimer_SetMstopValue </p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">mstop</span></code>: 0 stop timer and 1 start timer. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1gaefb4407e361cee4eb7b88533139211cf"></span><code class="sig-name descname">__STATIC_INLINE uint32_t SysTimer_GetMstopValue(void)</code></dt>
+<dd><p>Set system Timer MSTOP. </p>
+<p>This function set the system Timer MSTOP bit. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>0 timer stop and 1 timer is running. </p>
+</dd>
+<dt><strong>Remark</strong></dt><dd><p><ul class="simple">
+<li><p>SysTimer_SetMstopValue </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1ga2b02f4075e3ecb245559fee19bebacf4"></span><code class="sig-name descname">__STATIC_INLINE void SysTimer_SetSWIRQ(void)</code></dt>
+<dd><p>Set system Timer MSIP to trigger SW interrupt. </p>
+<p>This function set the system Timer MSIP bit. <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p><ul class="simple">
+<li><p>Set system timer MSIP bit and generate a SW interrupt.</p></li>
+<li><p>SysTimer_ClearSWIRQ;SysTimer_GetMsipValue; </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1ga1d6872b364b566c6c275e3e66086a95e"></span><code class="sig-name descname">__STATIC_INLINE void SysTimer_ClearSWIRQ(void)</code></dt>
+<dd><p>Clear system Timer MSIP to clear SW interrupt. </p>
+<p>This function set the system Timer MSIP bit. <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p><ul class="simple">
+<li><p>Clear system timer MSIP bit and Clear the SW interrupt.</p></li>
+<li><p>SysTimer_SetSWIRQ;SysTimer_GetMsipValue; </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1gac71f565a339896bec3712530d8c683fe"></span><code class="sig-name descname">__STATIC_INLINE uint32_t SysTimer_GetMsipValue(void)</code></dt>
+<dd><p>Get system Timer MSIP. </p>
+<p>This function get the system Timer MSIP bit. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>0 SW interrupt set and 1 SW interrupt clear. </p>
+</dd>
+<dt><strong>Remark</strong></dt><dd><p><ul class="simple">
+<li><p>Bit0 is SW interrupt flag. Bit0 is 1 then SW interrupt set. Bit0 is 0 then SW interrupt clear.</p></li>
+<li><p>SysTimer_SetSWIRQ; SysTimer_ClearSWIRQ;</p></li>
+<li><p>Set_MTVEC </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1gae9b7cf533c958b702dae2b5654672a78"></span><code class="sig-name descname">__STATIC_INLINE void SysTimer_SoftwareReset(void)</code></dt>
+<dd><p>Do software reset request. </p>
+<p>This function will do software reset request through TIMER/<ul class="simple">
+<li><p>Software need to write <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__SysTimer__Registers_1ga23259b9a0920d10554888fc09f5017b8"><span class="std std-ref">SysTimer_TIMER_MSFRST_KEY</span></a> to generate software reset request</p></li>
+<li><p>The software request flag can be cleared by reset operation to clear <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p></p>
+</dd>
+</dl>
+</p></li>
+<li><p>The software reset is sent to SoC, SoC need to generate reset signal and send back to Core</p></li>
+<li><p>This function will not return, it will do while(1) to wait the Core reset happened </p></li>
+</ul>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1ga349805c25d9aa753c6fd69b3c0151126"></span><code class="sig-name descname">__STATIC_INLINE uint32_t SysTick_Config(uint64_t ticks)</code></dt>
+<dd><p>System Tick Configuration. </p>
+<p>Initializes the System Timer and its non-vector interrupt, and starts the System Tick Timer.</p>
+<p>In our default implementation, the timer counter will be set to zero, and it will start a timer compare non-vector interrupt when it matchs the ticks user set, during the timer interrupt user should reload the timer counter to zero, so it can produce period timer interrupt. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>0 Function succeeded. </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>1 Function failed. </p>
+</dd>
+<dt><strong>Remark</strong></dt><dd><p><ul class="simple">
+<li><p>When the variable __Vendor_SysTickConfig is set to 1, then the function SysTick_Config is not included.</p></li>
+<li><p>In this case, the file **&lt;Device&gt;.h** must contain a vendor-specific implementation of this function.</p></li>
+<li><p>If user need this function to start a period timer interrupt, then in timer interrupt handler routine code, user should call SysTimer_SetLoadValue to set counter as 0 to reload the timer.</p></li>
+<li><p>This function only available when __SYSTIMER_PRESENT == 1 and __ECLIC_PRESENT == 1 and __Vendor_SysTickConfig == 0 </p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><ul class="simple">
+<li><p>SysTimer_SetCompareValue; SysTimer_SetLoadValue </p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ticks</span></code>: Number of ticks between two interrupts. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="systick-code-example">
+<span id="core-systick-code-example"></span><h2>SysTick Code Example<a class="headerlink" href="#systick-code-example" title="Permalink to this headline">¶</a></h2>
+<p>The code below shows the usage of the function <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">SysTick_Config()</span></code> with an GD32VF103.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">gd32vf103_systick_example.c</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;gd32vf103.h&quot;</span><span class="cp"></span>
+
+<span class="k">volatile</span> <span class="kt">uint32_t</span> <span class="n">msTicks</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>                              <span class="cm">/* Variable to store millisecond ticks */</span>
+
+<span class="kt">void</span> <span class="nf">SysTick_Handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>                                <span class="cm">/* SysTick interrupt Handler. */</span>
+  <span class="n">SysTimer_SetLoadValue</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>                                 <span class="cm">/* Set 0 to Timer counter to reload timer. */</span>
+  <span class="n">msTicks</span><span class="o">++</span><span class="p">;</span>                                                <span class="cm">/* See startup file startup_GD32VF103.s for SysTick vector */</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">uint32_t</span> <span class="n">returnCode</span><span class="p">;</span>
+
+  <span class="n">returnCode</span> <span class="o">=</span> <span class="n">SysTick_Config</span><span class="p">(</span><span class="n">SystemCoreClock</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">);</span>      <span class="cm">/* Configure SysTick to generate an interrupt every millisecond */</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">returnCode</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>                                    <span class="cm">/* Check return code for errors */</span>
+    <span class="c1">// Error Handling</span>
+  <span class="p">}</span>
+
+  <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="systimer-interrupt-code-example">
+<span id="core-systimer-interrupt-code-example"></span><h2>SysTimer Interrupt Code Example<a class="headerlink" href="#systimer-interrupt-code-example" title="Permalink to this headline">¶</a></h2>
+<p>The code below shows the usage of various NMSIS Timer Interrupt functions with an GD32VF103 device.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">gd32vf103_timer_example1.c</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;gd32vf103.h&quot;</span><span class="cp"></span>
+
+<span class="kt">void</span> <span class="nf">eclic_mtip_handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">uint64_t</span> <span class="n">now</span> <span class="o">=</span>  <span class="n">SysTimer_GetLoadValue</span><span class="p">();</span>
+    <span class="n">SysTimer_SetCompareValue</span><span class="p">(</span><span class="n">now</span> <span class="o">+</span> <span class="n">TIMER_FREQ</span><span class="o">/</span><span class="mi">100</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">uint32_t</span> <span class="n">int_cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">eclic_msip_handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">SysTimer_ClearSWIRQ</span><span class="p">();</span>
+    <span class="n">int_cnt</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">eclic_global_initialize</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">ECLIC_SetMth</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="n">ECLIC_SetCfgNlbits</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">eclic_register_interrupt</span><span class="p">(</span><span class="n">IRQn_Type</span> <span class="n">IRQn</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">shv</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">trig_mode</span><span class="p">,</span> <span class="n">uint32</span> <span class="n">lvl</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">priority</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span> <span class="n">handler</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">ECLIC_SetShvIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="n">shv</span><span class="p">);</span>
+    <span class="n">ECLIC_SetTrigIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="n">trig_mode</span><span class="p">);</span>
+    <span class="n">ECLIC_SetLevelIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="n">lvl</span><span class="p">);</span>
+    <span class="n">ECLIC_SetPriorityIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="n">priority</span><span class="p">);</span>
+    <span class="n">ECLIC_SetVector</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="p">(</span><span class="n">rv_csr_t</span><span class="p">)(</span><span class="n">handler</span><span class="p">));</span>
+    <span class="n">ECLIC_EnableIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">setup_timer</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">SysTimer_SetLoadValue</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="n">SysTimer_SetCompareValue</span><span class="p">(</span><span class="n">TIMER_FREQ</span><span class="o">/</span><span class="mi">100</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">uint32_t</span> <span class="n">returnCode</span><span class="p">;</span>
+
+    <span class="n">eclic_global_initialize</span><span class="p">();</span>                                <span class="cm">/* initialize ECLIC */</span>
+
+    <span class="n">setup_timer</span><span class="p">();</span>                                            <span class="cm">/* initialize timer */</span>
+
+    <span class="n">returnCode</span> <span class="o">=</span> <span class="n">eclic_register_interrupt</span><span class="p">(</span><span class="n">SysTimer_IRQn</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">eclic_mtip_handler</span><span class="p">);</span>  <span class="cm">/* register system timer interrupt */</span>
+
+    <span class="n">returnCode</span> <span class="o">=</span> <span class="n">eclic_register_interrupt</span><span class="p">(</span><span class="n">SysTimerSW_IRQn</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">eclic_msip_handler</span><span class="p">);</span>  <span class="cm">/* register system timer SW interrupt */</span>
+
+    <span class="n">__enable_irq</span><span class="p">();</span>                                           <span class="cm">/* enable global interrupt */</span>
+
+    <span class="n">SysTimer_SetSWIRQ</span><span class="p">();</span>                                      <span class="cm">/* trigger timer SW interrupt */</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">returnCode</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>                                    <span class="cm">/* Check return code for errors */</span>
+      <span class="c1">// Error Handling</span>
+    <span class="p">}</span>
+
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="core_interrupt_exception.html" class="btn btn-neutral float-right" title="Interrupts and Exceptions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="core_periph_access.html" class="btn btn-neutral float-left" title="Peripheral Access" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Nuclei
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

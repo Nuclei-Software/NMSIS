@@ -1,0 +1,197 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="group__CmplxByRealMult" kind="group">
+    <compoundname>CmplxByRealMult</compoundname>
+    <title>Complex-by-Real Multiplication</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__CmplxByRealMult_1ga9d2e6ac8df7cf46d9f0a3058b0a00d53" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_cmplx_mult_real_f32</definition>
+        <argsstring>(const float32_t *pSrcCmplx, const float32_t *pSrcReal, float32_t *pCmplxDst, uint32_t numSamples)</argsstring>
+        <name>riscv_cmplx_mult_real_f32</name>
+        <param>
+          <type>const float32_t *</type>
+          <declname>pSrcCmplx</declname>
+        </param>
+        <param>
+          <type>const float32_t *</type>
+          <declname>pSrcReal</declname>
+        </param>
+        <param>
+          <type>float32_t *</type>
+          <declname>pCmplxDst</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>numSamples</declname>
+        </param>
+        <briefdescription>
+<para>Floating-point complex-by-real multiplication. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrcCmplx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to complex input vector </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrcReal</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to real input vector </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pCmplxDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to complex output vector </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">numSamples</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples in each vector </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/ComplexMathFunctions/riscv_cmplx_mult_real_f32.c" line="73" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/ComplexMathFunctions/riscv_cmplx_mult_real_f32.c" bodystart="73" bodyend="166"/>
+      </memberdef>
+      <memberdef kind="function" id="group__CmplxByRealMult_1gac512da6affe85400151447042e702c88" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_cmplx_mult_real_q15</definition>
+        <argsstring>(const q15_t *pSrcCmplx, const q15_t *pSrcReal, q15_t *pCmplxDst, uint32_t numSamples)</argsstring>
+        <name>riscv_cmplx_mult_real_q15</name>
+        <param>
+          <type>const q15_t *</type>
+          <declname>pSrcCmplx</declname>
+        </param>
+        <param>
+          <type>const q15_t *</type>
+          <declname>pSrcReal</declname>
+        </param>
+        <param>
+          <type>q15_t *</type>
+          <declname>pCmplxDst</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>numSamples</declname>
+        </param>
+        <briefdescription>
+<para>Q15 complex-by-real multiplication. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrcCmplx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to complex input vector </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrcReal</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to real input vector </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pCmplxDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to complex output vector </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">numSamples</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples in each vector </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Scaling and Overflow Behavior</title><para>The function uses saturating arithmetic. Results outside of the allowable Q15 range [0x8000 0x7FFF] are saturated. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/ComplexMathFunctions/riscv_cmplx_mult_real_q15.c" line="54" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/ComplexMathFunctions/riscv_cmplx_mult_real_q15.c" bodystart="54" bodyend="176"/>
+      </memberdef>
+      <memberdef kind="function" id="group__CmplxByRealMult_1gac0e1ac76bf236098a272afab43f2b869" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_cmplx_mult_real_q31</definition>
+        <argsstring>(const q31_t *pSrcCmplx, const q31_t *pSrcReal, q31_t *pCmplxDst, uint32_t numSamples)</argsstring>
+        <name>riscv_cmplx_mult_real_q31</name>
+        <param>
+          <type>const q31_t *</type>
+          <declname>pSrcCmplx</declname>
+        </param>
+        <param>
+          <type>const q31_t *</type>
+          <declname>pSrcReal</declname>
+        </param>
+        <param>
+          <type>q31_t *</type>
+          <declname>pCmplxDst</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>numSamples</declname>
+        </param>
+        <briefdescription>
+<para>Q31 complex-by-real multiplication. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrcCmplx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to complex input vector </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrcReal</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to real input vector </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pCmplxDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to complex output vector </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">numSamples</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples in each vector </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Scaling and Overflow Behavior</title><para>The function uses saturating arithmetic. Results outside of the allowable Q31 range[0x80000000 0x7FFFFFFF] are saturated. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/ComplexMathFunctions/riscv_cmplx_mult_real_q31.c" line="54" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/ComplexMathFunctions/riscv_cmplx_mult_real_q31.c" bodystart="54" bodyend="155"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Multiplies a complex vector by a real vector and generates a complex result. The data in the complex arrays is stored in an interleaved fashion (real, imag, real, imag, ...). The parameter <computeroutput>numSamples</computeroutput> represents the number of complex samples processed. The complex arrays have a total of <computeroutput>2*numSamples</computeroutput> real values while the real array has a total of <computeroutput>numSamples</computeroutput> real values.</para><para>The underlying algorithm is used:</para><para><preformatted>
+for (n = 0; n &lt; numSamples; n++) {
+    pCmplxDst[(2*n)+0] = pSrcCmplx[(2*n)+0] * pSrcReal[n];
+    pCmplxDst[(2*n)+1] = pSrcCmplx[(2*n)+1] * pSrcReal[n];
+}
+</preformatted></para><para>There are separate functions for floating-point, Q15, and Q31 data types. </para>    </detaileddescription>
+  </compounddef>
+</doxygen>

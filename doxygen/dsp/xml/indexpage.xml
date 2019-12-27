@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="indexpage" kind="page">
+    <compoundname>index</compoundname>
+    <title>NMSIS DSP Software Library</title>
+    <detaileddescription>
+<para><heading level="2">Introduction </heading>
+</para><para>This user manual describes the NMSIS DSP software library, a suite of common signal processing functions for use on Nuclei N/NX processor based devices.</para><para>The library is divided into a number of functions each covering a specific category:<itemizedlist>
+<listitem><para>Basic math functions</para></listitem><listitem><para>Fast math functions</para></listitem><listitem><para>Complex math functions</para></listitem><listitem><para>Filters</para></listitem><listitem><para>Matrix functions</para></listitem><listitem><para>Transform functions</para></listitem><listitem><para>Motor control functions</para></listitem><listitem><para>Statistical functions</para></listitem><listitem><para>Support functions</para></listitem><listitem><para>Interpolation functions</para></listitem></itemizedlist>
+</para><para>The library has separate functions for operating on 8-bit integers, 16-bit integers, 32-bit integer and 32-bit floating-point values.</para><para>The library functions are declared in the public file <computeroutput>riscv_math.h</computeroutput> which is placed in the <computeroutput>Include</computeroutput> folder. Simply include this file and link the appropriate library in the application and begin calling the library functions. The Library supports single public header file <computeroutput>riscv_math.h</computeroutput> for Nuclei N cores with little endian. Same header file will be used for floating point unit(FPU) variants.</para><para><simplesect kind="note"><para>Please refer to <ulink url="../../../html/dsp/index.html">NMSIS-DSP</ulink></para></simplesect>
+<heading level="2">Examples </heading>
+</para><para>The library ships with a number of examples which demonstrate how to use the library functions.</para><para><heading level="2">Toolchain Support </heading>
+</para><para>The library has been developed and tested with nuclei riscv gcc toolchain.</para><para><heading level="2">Building the Library </heading>
+</para><para>In NMSIS repo, it contains a Makefile to rebuild libraries on nuclei riscv gcc toolchain in the <computeroutput>NMSIS/</computeroutput> folder.<itemizedlist>
+<listitem><para>In <emphasis>NMSIS</emphasis> folder, you can run <computeroutput>make gen_dsp_lib</computeroutput> to build and install DSP library into <bold>NMSIS/Library/DSP/GCC</bold> folder.</para></listitem></itemizedlist>
+</para><para><heading level="2">Preprocessor Macros </heading>
+</para><para>Each library project have different preprocessor macros.</para><para><itemizedlist>
+<listitem><para>RISCV_MATH_MATRIX_CHECK:</para></listitem></itemizedlist>
+</para><para>Define macro RISCV_MATH_MATRIX_CHECK for checking on the input and output sizes of matrices</para><para><itemizedlist>
+<listitem><para>RISCV_MATH_ROUNDING:</para></listitem></itemizedlist>
+</para><para>Define macro RISCV_MATH_ROUNDING for rounding on support functions</para><para><itemizedlist>
+<listitem><para>RISCV_MATH_LOOPUNROLL:</para></listitem></itemizedlist>
+</para><para>Define macro RISCV_MATH_LOOPUNROLL to enable manual loop unrolling in DSP functions </para>    </detaileddescription>
+  </compounddef>
+</doxygen>

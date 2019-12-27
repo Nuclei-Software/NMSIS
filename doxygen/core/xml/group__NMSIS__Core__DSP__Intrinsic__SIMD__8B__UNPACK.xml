@@ -1,0 +1,434 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK" kind="group">
+    <compoundname>NMSIS_Core_DSP_Intrinsic_SIMD_8B_UNPACK</compoundname>
+    <title>SIMD 8-bit Unpacking Instructions</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1gaecdd51db17293a1d12d85a6bb0cd4abe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_SUNPKD810</definition>
+        <argsstring>(unsigned long a)</argsstring>
+        <name>__RV_SUNPKD810</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+<para>SUNPKD810 (Signed Unpacking Bytes 1 &amp; 0) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: DSP</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">SUNPKD8xy<sp/>Rd,<sp/>Rs1</highlight></codeline>
+<codeline><highlight class="normal">xy<sp/>=<sp/>{10,<sp/>20,<sp/>30,<sp/>31,<sp/>32}</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Unpack byte <emphasis>x and byte y</emphasis> of 32-bit chunks in a register into two 16-bit signed halfwords of 32-bit chunks in a register.</para><para><bold>Description</bold>:<linebreak/>
+For the <computeroutput>SUNPKD8(x)(*y*)</computeroutput> instruction, it unpacks byte <emphasis>x and byte y</emphasis> of 32-bit chunks in Rs1 into two 16-bit signed halfwords and writes the results to the top part and the bottom part of 32-bit chunks in Rd.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">Rd.W[m].H[1]<sp/>=<sp/>SE16(Rs1.W[m].B[x])</highlight></codeline>
+<codeline><highlight class="normal">Rd.W[m].H[0]<sp/>=<sp/>SE16(Rs1.W[m].B[y])</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>SUNPKD810,<sp/>x=1,y=0</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>SUNPKD820,<sp/>x=2,y=0</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>SUNPKD830,<sp/>x=3,y=0</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>SUNPKD831,<sp/>x=3,y=1</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>SUNPKD832,<sp/>x=3,y=2</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>m=0,</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>m=1...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="10700" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="10700" bodyend="10705"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga922f7523e4d512fe391795edd7a81239" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_SUNPKD820</definition>
+        <argsstring>(unsigned long a)</argsstring>
+        <name>__RV_SUNPKD820</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+<para>SUNPKD820 (Signed Unpacking Bytes 2 &amp; 0) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: DSP</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">SUNPKD8xy<sp/>Rd,<sp/>Rs1</highlight></codeline>
+<codeline><highlight class="normal">xy<sp/>=<sp/>{10,<sp/>20,<sp/>30,<sp/>31,<sp/>32}</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Unpack byte <emphasis>x and byte y</emphasis> of 32-bit chunks in a register into two 16-bit signed halfwords of 32-bit chunks in a register.</para><para><bold>Description</bold>:<linebreak/>
+For the <computeroutput>SUNPKD8(x)(*y*)</computeroutput> instruction, it unpacks byte <emphasis>x and byte y</emphasis> of 32-bit chunks in Rs1 into two 16-bit signed halfwords and writes the results to the top part and the bottom part of 32-bit chunks in Rd.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">Rd.W[m].H[1]<sp/>=<sp/>SE16(Rs1.W[m].B[x])</highlight></codeline>
+<codeline><highlight class="normal">Rd.W[m].H[0]<sp/>=<sp/>SE16(Rs1.W[m].B[y])</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>SUNPKD810,<sp/>x=1,y=0</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>SUNPKD820,<sp/>x=2,y=0</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>SUNPKD830,<sp/>x=3,y=0</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>SUNPKD831,<sp/>x=3,y=1</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>SUNPKD832,<sp/>x=3,y=2</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>m=0,</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>m=1...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="10746" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="10746" bodyend="10751"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga8d213189a39651f3bcad77da2eb1f530" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_SUNPKD830</definition>
+        <argsstring>(unsigned long a)</argsstring>
+        <name>__RV_SUNPKD830</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+<para>SUNPKD830 (Signed Unpacking Bytes 3 &amp; 0) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: DSP</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">SUNPKD8xy<sp/>Rd,<sp/>Rs1</highlight></codeline>
+<codeline><highlight class="normal">xy<sp/>=<sp/>{10,<sp/>20,<sp/>30,<sp/>31,<sp/>32}</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Unpack byte <emphasis>x and byte y</emphasis> of 32-bit chunks in a register into two 16-bit signed halfwords of 32-bit chunks in a register.</para><para><bold>Description</bold>:<linebreak/>
+For the <computeroutput>SUNPKD8(x)(*y*)</computeroutput> instruction, it unpacks byte <emphasis>x and byte y</emphasis> of 32-bit chunks in Rs1 into two 16-bit signed halfwords and writes the results to the top part and the bottom part of 32-bit chunks in Rd.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">Rd.W[m].H[1]<sp/>=<sp/>SE16(Rs1.W[m].B[x])</highlight></codeline>
+<codeline><highlight class="normal">Rd.W[m].H[0]<sp/>=<sp/>SE16(Rs1.W[m].B[y])</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>SUNPKD810,<sp/>x=1,y=0</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>SUNPKD820,<sp/>x=2,y=0</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>SUNPKD830,<sp/>x=3,y=0</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>SUNPKD831,<sp/>x=3,y=1</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>SUNPKD832,<sp/>x=3,y=2</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>m=0,</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>m=1...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="10792" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="10792" bodyend="10797"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+        <referencedby refid="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__CUSTOM_1ga6d8dce49013b778d0290cd057cf45dd0" compoundref="core__feature__dsp_8h" startline="14306" endline="14311">__RV_EXPD83</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1gad3da1a88ec99f6c5733a3035d26b3bbf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_SUNPKD831</definition>
+        <argsstring>(unsigned long a)</argsstring>
+        <name>__RV_SUNPKD831</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+<para>SUNPKD831 (Signed Unpacking Bytes 3 &amp; 1) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: DSP</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">SUNPKD8xy<sp/>Rd,<sp/>Rs1</highlight></codeline>
+<codeline><highlight class="normal">xy<sp/>=<sp/>{10,<sp/>20,<sp/>30,<sp/>31,<sp/>32}</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Unpack byte <emphasis>x and byte y</emphasis> of 32-bit chunks in a register into two 16-bit signed halfwords of 32-bit chunks in a register.</para><para><bold>Description</bold>:<linebreak/>
+For the <computeroutput>SUNPKD8(x)(*y*)</computeroutput> instruction, it unpacks byte <emphasis>x and byte y</emphasis> of 32-bit chunks in Rs1 into two 16-bit signed halfwords and writes the results to the top part and the bottom part of 32-bit chunks in Rd.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">Rd.W[m].H[1]<sp/>=<sp/>SE16(Rs1.W[m].B[x])</highlight></codeline>
+<codeline><highlight class="normal">Rd.W[m].H[0]<sp/>=<sp/>SE16(Rs1.W[m].B[y])</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>SUNPKD810,<sp/>x=1,y=0</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>SUNPKD820,<sp/>x=2,y=0</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>SUNPKD830,<sp/>x=3,y=0</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>SUNPKD831,<sp/>x=3,y=1</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>SUNPKD832,<sp/>x=3,y=2</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>m=0,</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>m=1...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="10838" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="10838" bodyend="10843"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga869283b10c6656ef6b529487d244449c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_SUNPKD832</definition>
+        <argsstring>(unsigned long a)</argsstring>
+        <name>__RV_SUNPKD832</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+<para>SUNPKD832 (Signed Unpacking Bytes 3 &amp; 2) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: DSP</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">SUNPKD8xy<sp/>Rd,<sp/>Rs1</highlight></codeline>
+<codeline><highlight class="normal">xy<sp/>=<sp/>{10,<sp/>20,<sp/>30,<sp/>31,<sp/>32}</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Unpack byte <emphasis>x and byte y</emphasis> of 32-bit chunks in a register into two 16-bit signed halfwords of 32-bit chunks in a register.</para><para><bold>Description</bold>:<linebreak/>
+For the <computeroutput>SUNPKD8(x)(*y*)</computeroutput> instruction, it unpacks byte <emphasis>x and byte y</emphasis> of 32-bit chunks in Rs1 into two 16-bit signed halfwords and writes the results to the top part and the bottom part of 32-bit chunks in Rd.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">Rd.W[m].H[1]<sp/>=<sp/>SE16(Rs1.W[m].B[x])</highlight></codeline>
+<codeline><highlight class="normal">Rd.W[m].H[0]<sp/>=<sp/>SE16(Rs1.W[m].B[y])</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>SUNPKD810,<sp/>x=1,y=0</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>SUNPKD820,<sp/>x=2,y=0</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>SUNPKD830,<sp/>x=3,y=0</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>SUNPKD831,<sp/>x=3,y=1</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>SUNPKD832,<sp/>x=3,y=2</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>m=0,</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>m=1...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="10884" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="10884" bodyend="10889"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga0deca77382416530ac829ea0a18d36a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_ZUNPKD810</definition>
+        <argsstring>(unsigned long a)</argsstring>
+        <name>__RV_ZUNPKD810</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+<para>ZUNPKD810 (Unsigned Unpacking Bytes 1 &amp; 0) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: DSP</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">ZUNPKD8xy<sp/>Rd,<sp/>Rs1</highlight></codeline>
+<codeline><highlight class="normal">xy<sp/>=<sp/>{10,<sp/>20,<sp/>30,<sp/>31,<sp/>32}</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Unpack byte x and byte y of 32-bit chunks in a register into two 16-bit unsigned halfwords of 32-bit chunks in a register.</para><para><bold>Description</bold>:<linebreak/>
+For the <computeroutput>ZUNPKD8(x)(*y*)</computeroutput> instruction, it unpacks byte <emphasis>x and byte y</emphasis> of 32-bit chunks in Rs1 into two 16-bit unsigned halfwords and writes the results to the top part and the bottom part of 32-bit chunks in Rd.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">Rd.W[m].H[1]<sp/>=<sp/>ZE16(Rs1.W[m].B[x])</highlight></codeline>
+<codeline><highlight class="normal">Rd.W[m].H[0]<sp/>=<sp/>ZE16(Rs1.W[m].B[y])</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>ZUNPKD810,<sp/>x=1,y=0</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>ZUNPKD820,<sp/>x=2,y=0</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>ZUNPKD830,<sp/>x=3,y=0</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>ZUNPKD831,<sp/>x=3,y=1</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>ZUNPKD832,<sp/>x=3,y=2</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>m=0,</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>m=1...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="13470" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13470" bodyend="13475"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga0a124400d7a60b3f860c73b2ef10f753" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_ZUNPKD820</definition>
+        <argsstring>(unsigned long a)</argsstring>
+        <name>__RV_ZUNPKD820</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+<para>ZUNPKD820 (Unsigned Unpacking Bytes 2 &amp; 0) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: DSP</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">ZUNPKD8xy<sp/>Rd,<sp/>Rs1</highlight></codeline>
+<codeline><highlight class="normal">xy<sp/>=<sp/>{10,<sp/>20,<sp/>30,<sp/>31,<sp/>32}</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Unpack byte x and byte y of 32-bit chunks in a register into two 16-bit unsigned halfwords of 32-bit chunks in a register.</para><para><bold>Description</bold>:<linebreak/>
+For the <computeroutput>ZUNPKD8(x)(*y*)</computeroutput> instruction, it unpacks byte <emphasis>x and byte y</emphasis> of 32-bit chunks in Rs1 into two 16-bit unsigned halfwords and writes the results to the top part and the bottom part of 32-bit chunks in Rd.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">Rd.W[m].H[1]<sp/>=<sp/>ZE16(Rs1.W[m].B[x])</highlight></codeline>
+<codeline><highlight class="normal">Rd.W[m].H[0]<sp/>=<sp/>ZE16(Rs1.W[m].B[y])</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>ZUNPKD810,<sp/>x=1,y=0</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>ZUNPKD820,<sp/>x=2,y=0</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>ZUNPKD830,<sp/>x=3,y=0</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>ZUNPKD831,<sp/>x=3,y=1</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>ZUNPKD832,<sp/>x=3,y=2</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>m=0,</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>m=1...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="13516" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13516" bodyend="13521"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga2ffff9289e72fb5163731af36b82bd96" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_ZUNPKD830</definition>
+        <argsstring>(unsigned long a)</argsstring>
+        <name>__RV_ZUNPKD830</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+<para>ZUNPKD830 (Unsigned Unpacking Bytes 3 &amp; 0) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: DSP</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">ZUNPKD8xy<sp/>Rd,<sp/>Rs1</highlight></codeline>
+<codeline><highlight class="normal">xy<sp/>=<sp/>{10,<sp/>20,<sp/>30,<sp/>31,<sp/>32}</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Unpack byte x and byte y of 32-bit chunks in a register into two 16-bit unsigned halfwords of 32-bit chunks in a register.</para><para><bold>Description</bold>:<linebreak/>
+For the <computeroutput>ZUNPKD8(x)(*y*)</computeroutput> instruction, it unpacks byte <emphasis>x and byte y</emphasis> of 32-bit chunks in Rs1 into two 16-bit unsigned halfwords and writes the results to the top part and the bottom part of 32-bit chunks in Rd.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">Rd.W[m].H[1]<sp/>=<sp/>ZE16(Rs1.W[m].B[x])</highlight></codeline>
+<codeline><highlight class="normal">Rd.W[m].H[0]<sp/>=<sp/>ZE16(Rs1.W[m].B[y])</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>ZUNPKD810,<sp/>x=1,y=0</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>ZUNPKD820,<sp/>x=2,y=0</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>ZUNPKD830,<sp/>x=3,y=0</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>ZUNPKD831,<sp/>x=3,y=1</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>ZUNPKD832,<sp/>x=3,y=2</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>m=0,</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>m=1...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="13562" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13562" bodyend="13567"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga833374dc8db34294d48e728512a2068f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_ZUNPKD831</definition>
+        <argsstring>(unsigned long a)</argsstring>
+        <name>__RV_ZUNPKD831</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+<para>ZUNPKD831 (Unsigned Unpacking Bytes 3 &amp; 1) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: DSP</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">ZUNPKD8xy<sp/>Rd,<sp/>Rs1</highlight></codeline>
+<codeline><highlight class="normal">xy<sp/>=<sp/>{10,<sp/>20,<sp/>30,<sp/>31,<sp/>32}</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Unpack byte x and byte y of 32-bit chunks in a register into two 16-bit unsigned halfwords of 32-bit chunks in a register.</para><para><bold>Description</bold>:<linebreak/>
+For the <computeroutput>ZUNPKD8(x)(*y*)</computeroutput> instruction, it unpacks byte <emphasis>x and byte y</emphasis> of 32-bit chunks in Rs1 into two 16-bit unsigned halfwords and writes the results to the top part and the bottom part of 32-bit chunks in Rd.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">Rd.W[m].H[1]<sp/>=<sp/>ZE16(Rs1.W[m].B[x])</highlight></codeline>
+<codeline><highlight class="normal">Rd.W[m].H[0]<sp/>=<sp/>ZE16(Rs1.W[m].B[y])</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>ZUNPKD810,<sp/>x=1,y=0</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>ZUNPKD820,<sp/>x=2,y=0</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>ZUNPKD830,<sp/>x=3,y=0</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>ZUNPKD831,<sp/>x=3,y=1</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>ZUNPKD832,<sp/>x=3,y=2</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>m=0,</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>m=1...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="13608" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13608" bodyend="13613"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga7fdf5939f3c0be0a64c2659b930a9faa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_ZUNPKD832</definition>
+        <argsstring>(unsigned long a)</argsstring>
+        <name>__RV_ZUNPKD832</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+<para>ZUNPKD832 (Unsigned Unpacking Bytes 3 &amp; 2) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: DSP</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">ZUNPKD8xy<sp/>Rd,<sp/>Rs1</highlight></codeline>
+<codeline><highlight class="normal">xy<sp/>=<sp/>{10,<sp/>20,<sp/>30,<sp/>31,<sp/>32}</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Unpack byte x and byte y of 32-bit chunks in a register into two 16-bit unsigned halfwords of 32-bit chunks in a register.</para><para><bold>Description</bold>:<linebreak/>
+For the <computeroutput>ZUNPKD8(x)(*y*)</computeroutput> instruction, it unpacks byte <emphasis>x and byte y</emphasis> of 32-bit chunks in Rs1 into two 16-bit unsigned halfwords and writes the results to the top part and the bottom part of 32-bit chunks in Rd.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">Rd.W[m].H[1]<sp/>=<sp/>ZE16(Rs1.W[m].B[x])</highlight></codeline>
+<codeline><highlight class="normal">Rd.W[m].H[0]<sp/>=<sp/>ZE16(Rs1.W[m].B[y])</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>ZUNPKD810,<sp/>x=1,y=0</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>ZUNPKD820,<sp/>x=2,y=0</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>ZUNPKD830,<sp/>x=3,y=0</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>ZUNPKD831,<sp/>x=3,y=1</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>ZUNPKD832,<sp/>x=3,y=2</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>m=0,</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>m=1...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="13654" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="13654" bodyend="13659"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>SIMD 8-bit Unpacking Instructions. </para>    </briefdescription>
+    <detaileddescription>
+<para>there are 8 SIMD 8-bit Unpacking instructions. </para>    </detaileddescription>
+  </compounddef>
+</doxygen>

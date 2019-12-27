@@ -1,0 +1,532 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Complex FFT Tables &mdash; NMSIS 1.0.0-alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="DCT Type IV Functions" href="../api_dct4_idct4.html" />
+    <link rel="prev" title="Complex FFT Functions" href="../api_complexfft.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">NMSIS DSP</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../get_started.html">Using NMSIS-DSP</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupmath.html">Basic Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupfastmath.html">Fast Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupcmplxmath.html">Complex Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupfilters.html">Filtering Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupmatrix.html">Matrix Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../api_grouptransforms.html">Transform Functions</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../api_complexfft.html">Complex FFT Functions</a><ul class="current">
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Complex FFT Tables</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../api_dct4_idct4.html">DCT Type IV Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_realfft.html">Real FFT Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupcontroller.html">Controller Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupstats.html">Statistics Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupsupport.html">Support Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupinterpolation.html">Interpolation Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupexamples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">NMSIS DSP</a> &raquo;</li>
+        
+          <li><a href="../../index.html">NMSIS DSP API</a> &raquo;</li>
+        
+          <li><a href="../../api_grouptransforms.html">Transform Functions</a> &raquo;</li>
+        
+          <li><a href="../api_complexfft.html">Complex FFT Functions</a> &raquo;</li>
+        
+      <li>Complex FFT Tables</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../_sources/dsp/api/grouptransforms/complexfft/api_cfft_cifft.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="complex-fft-tables">
+<span id="nmsis-dsp-api-complex-fft-tables"></span><h1>Complex FFT Tables<a class="headerlink" href="#complex-fft-tables" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<dl class="member">
+<dt id="_CPPv416riscvBitRevTable">
+<span id="_CPPv316riscvBitRevTable"></span><span id="_CPPv216riscvBitRevTable"></span><span id="riscvBitRevTable__uint16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga642762d611cf45f7fd6d172019558122"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevTable</code>[1024]<a class="headerlink" href="#_CPPv416riscvBitRevTable" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv423riscvBitRevIndexTable16">
+<span id="_CPPv323riscvBitRevIndexTable16"></span><span id="_CPPv223riscvBitRevIndexTable16"></span><span id="riscvBitRevIndexTable16__uint16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga77b129ca9006bcbab1840464ff94951d"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable16</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_16_TABLE_LENGTH</code>]<a class="headerlink" href="#_CPPv423riscvBitRevIndexTable16" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv423riscvBitRevIndexTable32">
+<span id="_CPPv323riscvBitRevIndexTable32"></span><span id="_CPPv223riscvBitRevIndexTable32"></span><span id="riscvBitRevIndexTable32__uint16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga081d6318a078a62fdf4a6809d86eac3e"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable32</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_32_TABLE_LENGTH</code>]<a class="headerlink" href="#_CPPv423riscvBitRevIndexTable32" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv423riscvBitRevIndexTable64">
+<span id="_CPPv323riscvBitRevIndexTable64"></span><span id="_CPPv223riscvBitRevIndexTable64"></span><span id="riscvBitRevIndexTable64__uint16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga28271e513dac6ce40458b1fa366596c6"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable64</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_64_TABLE_LENGTH</code>]<a class="headerlink" href="#_CPPv423riscvBitRevIndexTable64" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv424riscvBitRevIndexTable128">
+<span id="_CPPv324riscvBitRevIndexTable128"></span><span id="_CPPv224riscvBitRevIndexTable128"></span><span id="riscvBitRevIndexTable128__uint16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gac9f0a716430d98521e57a4567a34f222"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable128</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_128_TABLE_LENGTH</code>]<a class="headerlink" href="#_CPPv424riscvBitRevIndexTable128" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv424riscvBitRevIndexTable256">
+<span id="_CPPv324riscvBitRevIndexTable256"></span><span id="_CPPv224riscvBitRevIndexTable256"></span><span id="riscvBitRevIndexTable256__uint16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga94fabe2ed6b2d15db8bd1c657d7d8a28"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable256</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_256_TABLE_LENGTH</code>]<a class="headerlink" href="#_CPPv424riscvBitRevIndexTable256" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv424riscvBitRevIndexTable512">
+<span id="_CPPv324riscvBitRevIndexTable512"></span><span id="_CPPv224riscvBitRevIndexTable512"></span><span id="riscvBitRevIndexTable512__uint16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gace5ddf0823fd9358e0cbf23f1cf0e90b"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable512</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_512_TABLE_LENGTH</code>]<a class="headerlink" href="#_CPPv424riscvBitRevIndexTable512" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv425riscvBitRevIndexTable1024">
+<span id="_CPPv325riscvBitRevIndexTable1024"></span><span id="_CPPv225riscvBitRevIndexTable1024"></span><span id="riscvBitRevIndexTable1024__uint16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga4a07a6e3e1c76306042af0d6146e463e"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable1024</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_1024_TABLE_LENGTH</code>]<a class="headerlink" href="#_CPPv425riscvBitRevIndexTable1024" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv425riscvBitRevIndexTable2048">
+<span id="_CPPv325riscvBitRevIndexTable2048"></span><span id="_CPPv225riscvBitRevIndexTable2048"></span><span id="riscvBitRevIndexTable2048__uint16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gad795a4bba12da93f3a8f6e12732d5e0d"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable2048</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_2048_TABLE_LENGTH</code>]<a class="headerlink" href="#_CPPv425riscvBitRevIndexTable2048" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv425riscvBitRevIndexTable4096">
+<span id="_CPPv325riscvBitRevIndexTable4096"></span><span id="_CPPv225riscvBitRevIndexTable4096"></span><span id="riscvBitRevIndexTable4096__uint16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gaf8799441dfb34e548218da781e5cbd75"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable4096</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_4096_TABLE_LENGTH</code>]<a class="headerlink" href="#_CPPv425riscvBitRevIndexTable4096" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv430riscvBitRevIndexTable_fixed_16">
+<span id="_CPPv330riscvBitRevIndexTable_fixed_16"></span><span id="_CPPv230riscvBitRevIndexTable_fixed_16"></span><span id="riscvBitRevIndexTable_fixed_16__uint16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gabbe18cfc20ee22df36ca00d8d5265c92"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable_fixed_16</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_FIXED_16_TABLE_LENGTH</code>]<a class="headerlink" href="#_CPPv430riscvBitRevIndexTable_fixed_16" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv430riscvBitRevIndexTable_fixed_32">
+<span id="_CPPv330riscvBitRevIndexTable_fixed_32"></span><span id="_CPPv230riscvBitRevIndexTable_fixed_32"></span><span id="riscvBitRevIndexTable_fixed_32__uint16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga022b261e9a6aea2c75477c860267c625"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable_fixed_32</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_FIXED_32_TABLE_LENGTH</code>]<a class="headerlink" href="#_CPPv430riscvBitRevIndexTable_fixed_32" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv430riscvBitRevIndexTable_fixed_64">
+<span id="_CPPv330riscvBitRevIndexTable_fixed_64"></span><span id="_CPPv230riscvBitRevIndexTable_fixed_64"></span><span id="riscvBitRevIndexTable_fixed_64__uint16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga77ada52b10008506a42ab22072912eb7"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable_fixed_64</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_FIXED_64_TABLE_LENGTH</code>]<a class="headerlink" href="#_CPPv430riscvBitRevIndexTable_fixed_64" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv431riscvBitRevIndexTable_fixed_128">
+<span id="_CPPv331riscvBitRevIndexTable_fixed_128"></span><span id="_CPPv231riscvBitRevIndexTable_fixed_128"></span><span id="riscvBitRevIndexTable_fixed_128__uint16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga957ea6a30726b728b43cc106c190eab5"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable_fixed_128</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_FIXED_128_TABLE_LENGTH</code>]<a class="headerlink" href="#_CPPv431riscvBitRevIndexTable_fixed_128" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv431riscvBitRevIndexTable_fixed_256">
+<span id="_CPPv331riscvBitRevIndexTable_fixed_256"></span><span id="_CPPv231riscvBitRevIndexTable_fixed_256"></span><span id="riscvBitRevIndexTable_fixed_256__uint16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gae619afe070a39839d3fe12619d36fc02"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable_fixed_256</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_FIXED_256_TABLE_LENGTH</code>]<a class="headerlink" href="#_CPPv431riscvBitRevIndexTable_fixed_256" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv431riscvBitRevIndexTable_fixed_512">
+<span id="_CPPv331riscvBitRevIndexTable_fixed_512"></span><span id="_CPPv231riscvBitRevIndexTable_fixed_512"></span><span id="riscvBitRevIndexTable_fixed_512__uint16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gaf0738ebe711e8bc44d5d99d9ce7dd98e"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable_fixed_512</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_FIXED_512_TABLE_LENGTH</code>]<a class="headerlink" href="#_CPPv431riscvBitRevIndexTable_fixed_512" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv432riscvBitRevIndexTable_fixed_1024">
+<span id="_CPPv332riscvBitRevIndexTable_fixed_1024"></span><span id="_CPPv232riscvBitRevIndexTable_fixed_1024"></span><span id="riscvBitRevIndexTable_fixed_1024__uint16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gabac02e0b8013288ad062ab3306298d5e"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable_fixed_1024</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_FIXED_1024_TABLE_LENGTH</code>]<a class="headerlink" href="#_CPPv432riscvBitRevIndexTable_fixed_1024" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv432riscvBitRevIndexTable_fixed_2048">
+<span id="_CPPv332riscvBitRevIndexTable_fixed_2048"></span><span id="_CPPv232riscvBitRevIndexTable_fixed_2048"></span><span id="riscvBitRevIndexTable_fixed_2048__uint16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gaba0302218d6d63d430080e2015bed3ad"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable_fixed_2048</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_FIXED_2048_TABLE_LENGTH</code>]<a class="headerlink" href="#_CPPv432riscvBitRevIndexTable_fixed_2048" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv432riscvBitRevIndexTable_fixed_4096">
+<span id="_CPPv332riscvBitRevIndexTable_fixed_4096"></span><span id="_CPPv232riscvBitRevIndexTable_fixed_4096"></span><span id="riscvBitRevIndexTable_fixed_4096__uint16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gacd6a5f14060f01f9a114d1560c3f623b"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable_fixed_4096</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_FIXED_4096_TABLE_LENGTH</code>]<a class="headerlink" href="#_CPPv432riscvBitRevIndexTable_fixed_4096" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv418riscvRecipTableQ31">
+<span id="_CPPv318riscvRecipTableQ31"></span><span id="_CPPv218riscvRecipTableQ31"></span><span id="riscvRecipTableQ31__q31_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gafa262d04df32de95217be37e8c29b89f"></span><em class="property">const</em> q31_t <code class="sig-name descname">riscvRecipTableQ31</code>[64]<a class="headerlink" href="#_CPPv418riscvRecipTableQ31" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv412sinTable_f32">
+<span id="_CPPv312sinTable_f32"></span><span id="_CPPv212sinTable_f32"></span><span id="sinTable_f32__float32_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga1dec82d596780f1a66ef4f76f137c1d9"></span><em class="property">const</em> float32_t <code class="sig-name descname">sinTable_f32</code>[<code class="sig-name descname">FAST_MATH_TABLE_SIZE</code> + 1]<a class="headerlink" href="#_CPPv412sinTable_f32" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv412sinTable_q31">
+<span id="_CPPv312sinTable_q31"></span><span id="_CPPv212sinTable_q31"></span><span id="sinTable_q31__q31_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga8bfccee9e1c0042cf4a765f4b19d097d"></span><em class="property">const</em> q31_t <code class="sig-name descname">sinTable_q31</code>[<code class="sig-name descname">FAST_MATH_TABLE_SIZE</code> + 1]<a class="headerlink" href="#_CPPv412sinTable_q31" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv412sinTable_q15">
+<span id="_CPPv312sinTable_q15"></span><span id="_CPPv212sinTable_q15"></span><span id="sinTable_q15__q15_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga9cbcfe313f61add745ebfeddb4fecd55"></span><em class="property">const</em> q15_t <code class="sig-name descname">sinTable_q15</code>[<code class="sig-name descname">FAST_MATH_TABLE_SIZE</code> + 1]<a class="headerlink" href="#_CPPv412sinTable_q15" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="group">
+<dt>
+<span class="target" id="group__CFFT__CIFFT"></span><em>group</em> <code class="sig-name descname">CFFT_CIFFT</code></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Variables</p>
+<dl class="member">
+<dt id="_CPPv416riscvBitRevTable">
+<span id="_CPPv316riscvBitRevTable"></span><span id="_CPPv216riscvBitRevTable"></span><span class="target" id="group__CFFT__CIFFT_1ga642762d611cf45f7fd6d172019558122"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevTable</code>[1024]<br /></dt>
+<dd><p>Table for bit reversal process. </p>
+<p><dl class="simple">
+<dt><strong></strong></dt><dd><p>Pseudo code for Generation of Bit reversal Table is </p>
+</dd>
+<dt><strong></strong></dt><dd><p> </p>
+</dd>
+<dt><strong></strong></dt><dd><p>where N = 4096, logN2 = 12 </p>
+</dd>
+<dt><strong></strong></dt><dd><p>N is the maximum FFT Size supported </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv423riscvBitRevIndexTable16">
+<span id="_CPPv323riscvBitRevIndexTable16"></span><span id="_CPPv223riscvBitRevIndexTable16"></span><span class="target" id="group__CFFT__CIFFT_1ga77b129ca9006bcbab1840464ff94951d"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable16</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_16_TABLE_LENGTH</code>]<br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv423riscvBitRevIndexTable32">
+<span id="_CPPv323riscvBitRevIndexTable32"></span><span id="_CPPv223riscvBitRevIndexTable32"></span><span class="target" id="group__CFFT__CIFFT_1ga081d6318a078a62fdf4a6809d86eac3e"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable32</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_32_TABLE_LENGTH</code>]<br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv423riscvBitRevIndexTable64">
+<span id="_CPPv323riscvBitRevIndexTable64"></span><span id="_CPPv223riscvBitRevIndexTable64"></span><span class="target" id="group__CFFT__CIFFT_1ga28271e513dac6ce40458b1fa366596c6"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable64</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_64_TABLE_LENGTH</code>]<br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv424riscvBitRevIndexTable128">
+<span id="_CPPv324riscvBitRevIndexTable128"></span><span id="_CPPv224riscvBitRevIndexTable128"></span><span class="target" id="group__CFFT__CIFFT_1gac9f0a716430d98521e57a4567a34f222"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable128</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_128_TABLE_LENGTH</code>]<br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv424riscvBitRevIndexTable256">
+<span id="_CPPv324riscvBitRevIndexTable256"></span><span id="_CPPv224riscvBitRevIndexTable256"></span><span class="target" id="group__CFFT__CIFFT_1ga94fabe2ed6b2d15db8bd1c657d7d8a28"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable256</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_256_TABLE_LENGTH</code>]<br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv424riscvBitRevIndexTable512">
+<span id="_CPPv324riscvBitRevIndexTable512"></span><span id="_CPPv224riscvBitRevIndexTable512"></span><span class="target" id="group__CFFT__CIFFT_1gace5ddf0823fd9358e0cbf23f1cf0e90b"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable512</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_512_TABLE_LENGTH</code>]<br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv425riscvBitRevIndexTable1024">
+<span id="_CPPv325riscvBitRevIndexTable1024"></span><span id="_CPPv225riscvBitRevIndexTable1024"></span><span class="target" id="group__CFFT__CIFFT_1ga4a07a6e3e1c76306042af0d6146e463e"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable1024</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_1024_TABLE_LENGTH</code>]<br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv425riscvBitRevIndexTable2048">
+<span id="_CPPv325riscvBitRevIndexTable2048"></span><span id="_CPPv225riscvBitRevIndexTable2048"></span><span class="target" id="group__CFFT__CIFFT_1gad795a4bba12da93f3a8f6e12732d5e0d"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable2048</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_2048_TABLE_LENGTH</code>]<br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv425riscvBitRevIndexTable4096">
+<span id="_CPPv325riscvBitRevIndexTable4096"></span><span id="_CPPv225riscvBitRevIndexTable4096"></span><span class="target" id="group__CFFT__CIFFT_1gaf8799441dfb34e548218da781e5cbd75"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable4096</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_4096_TABLE_LENGTH</code>]<br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv430riscvBitRevIndexTable_fixed_16">
+<span id="_CPPv330riscvBitRevIndexTable_fixed_16"></span><span id="_CPPv230riscvBitRevIndexTable_fixed_16"></span><span class="target" id="group__CFFT__CIFFT_1gabbe18cfc20ee22df36ca00d8d5265c92"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable_fixed_16</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_FIXED_16_TABLE_LENGTH</code>]<br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv430riscvBitRevIndexTable_fixed_32">
+<span id="_CPPv330riscvBitRevIndexTable_fixed_32"></span><span id="_CPPv230riscvBitRevIndexTable_fixed_32"></span><span class="target" id="group__CFFT__CIFFT_1ga022b261e9a6aea2c75477c860267c625"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable_fixed_32</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_FIXED_32_TABLE_LENGTH</code>]<br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv430riscvBitRevIndexTable_fixed_64">
+<span id="_CPPv330riscvBitRevIndexTable_fixed_64"></span><span id="_CPPv230riscvBitRevIndexTable_fixed_64"></span><span class="target" id="group__CFFT__CIFFT_1ga77ada52b10008506a42ab22072912eb7"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable_fixed_64</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_FIXED_64_TABLE_LENGTH</code>]<br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv431riscvBitRevIndexTable_fixed_128">
+<span id="_CPPv331riscvBitRevIndexTable_fixed_128"></span><span id="_CPPv231riscvBitRevIndexTable_fixed_128"></span><span class="target" id="group__CFFT__CIFFT_1ga957ea6a30726b728b43cc106c190eab5"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable_fixed_128</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_FIXED_128_TABLE_LENGTH</code>]<br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv431riscvBitRevIndexTable_fixed_256">
+<span id="_CPPv331riscvBitRevIndexTable_fixed_256"></span><span id="_CPPv231riscvBitRevIndexTable_fixed_256"></span><span class="target" id="group__CFFT__CIFFT_1gae619afe070a39839d3fe12619d36fc02"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable_fixed_256</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_FIXED_256_TABLE_LENGTH</code>]<br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv431riscvBitRevIndexTable_fixed_512">
+<span id="_CPPv331riscvBitRevIndexTable_fixed_512"></span><span id="_CPPv231riscvBitRevIndexTable_fixed_512"></span><span class="target" id="group__CFFT__CIFFT_1gaf0738ebe711e8bc44d5d99d9ce7dd98e"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable_fixed_512</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_FIXED_512_TABLE_LENGTH</code>]<br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv432riscvBitRevIndexTable_fixed_1024">
+<span id="_CPPv332riscvBitRevIndexTable_fixed_1024"></span><span id="_CPPv232riscvBitRevIndexTable_fixed_1024"></span><span class="target" id="group__CFFT__CIFFT_1gabac02e0b8013288ad062ab3306298d5e"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable_fixed_1024</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_FIXED_1024_TABLE_LENGTH</code>]<br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv432riscvBitRevIndexTable_fixed_2048">
+<span id="_CPPv332riscvBitRevIndexTable_fixed_2048"></span><span id="_CPPv232riscvBitRevIndexTable_fixed_2048"></span><span class="target" id="group__CFFT__CIFFT_1gaba0302218d6d63d430080e2015bed3ad"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable_fixed_2048</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_FIXED_2048_TABLE_LENGTH</code>]<br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv432riscvBitRevIndexTable_fixed_4096">
+<span id="_CPPv332riscvBitRevIndexTable_fixed_4096"></span><span id="_CPPv232riscvBitRevIndexTable_fixed_4096"></span><span class="target" id="group__CFFT__CIFFT_1gacd6a5f14060f01f9a114d1560c3f623b"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevIndexTable_fixed_4096</code>[<code class="sig-name descname">RISCVBITREVINDEXTABLE_FIXED_4096_TABLE_LENGTH</code>]<br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv418riscvRecipTableQ31">
+<span id="_CPPv318riscvRecipTableQ31"></span><span id="_CPPv218riscvRecipTableQ31"></span><span class="target" id="group__CFFT__CIFFT_1gafa262d04df32de95217be37e8c29b89f"></span><em class="property">const</em> q31_t <code class="sig-name descname">riscvRecipTableQ31</code>[64]<br /></dt>
+<dd><p>Q31 table for reciprocal. </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv412sinTable_f32">
+<span id="_CPPv312sinTable_f32"></span><span id="_CPPv212sinTable_f32"></span><span class="target" id="group__CFFT__CIFFT_1ga1dec82d596780f1a66ef4f76f137c1d9"></span><em class="property">const</em> float32_t <code class="sig-name descname">sinTable_f32</code>[<code class="sig-name descname">FAST_MATH_TABLE_SIZE</code> + 1]<br /></dt>
+<dd><p><dl class="simple">
+<dt><strong></strong></dt><dd><p>Example code for the generation of the floating-point sine table:  </p>
+</dd>
+<dt><strong></strong></dt><dd><p>where PI value is 3.14159265358979 </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv412sinTable_q31">
+<span id="_CPPv312sinTable_q31"></span><span id="_CPPv212sinTable_q31"></span><span class="target" id="group__CFFT__CIFFT_1ga8bfccee9e1c0042cf4a765f4b19d097d"></span><em class="property">const</em> q31_t <code class="sig-name descname">sinTable_q31</code>[<code class="sig-name descname">FAST_MATH_TABLE_SIZE</code> + 1]<br /></dt>
+<dd><p><dl class="simple">
+<dt><strong></strong></dt><dd><p>Table values are in Q31 (1.31 fixed-point format) and generation is done in three steps. First, generate sin values in floating point:  where PI value is 3.14159265358979 </p>
+</dd>
+<dt><strong></strong></dt><dd><p>Second, convert floating-point to Q31 (Fixed point): (sinTable[i] * pow(2, 31)) </p>
+</dd>
+<dt><strong></strong></dt><dd><p>Finally, round to the nearest integer value: sinTable[i] += (sinTable[i] &gt; 0 ? 0.5 : -0.5); </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv412sinTable_q15">
+<span id="_CPPv312sinTable_q15"></span><span id="_CPPv212sinTable_q15"></span><span class="target" id="group__CFFT__CIFFT_1ga9cbcfe313f61add745ebfeddb4fecd55"></span><em class="property">const</em> q15_t <code class="sig-name descname">sinTable_q15</code>[<code class="sig-name descname">FAST_MATH_TABLE_SIZE</code> + 1]<br /></dt>
+<dd><p><dl class="simple">
+<dt><strong></strong></dt><dd><p>Table values are in Q15 (1.15 fixed-point format) and generation is done in three steps. First, generate sin values in floating point:  where PI value is 3.14159265358979 </p>
+</dd>
+<dt><strong></strong></dt><dd><p>Second, convert floating-point to Q15 (Fixed point): (sinTable[i] * pow(2, 15)) </p>
+</dd>
+<dt><strong></strong></dt><dd><p>Finally, round to the nearest integer value: sinTable[i] += (sinTable[i] &gt; 0 ? 0.5 :-0.5); </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../api_dct4_idct4.html" class="btn btn-neutral float-right" title="DCT Type IV Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../api_complexfft.html" class="btn btn-neutral float-left" title="Complex FFT Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Nuclei
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

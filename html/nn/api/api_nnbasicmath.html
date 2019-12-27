@@ -1,0 +1,324 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Basic Math Functions for Neural Network Computation &mdash; NMSIS 1.0.0-alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Convolutional Neural Network Example" href="api_cnnexample.html" />
+    <link rel="prev" title="Neural Network Data Conversion Functions" href="api_nndata_convert.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">NMSIS NN</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started.html">Using NMSIS-NN</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">NMSIS NN API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="api_groupnn.html">Neural Network Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_nndata_convert.html">Neural Network Data Conversion Functions</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Basic Math Functions for Neural Network Computation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_cnnexample.html">Convolutional Neural Network Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_gruexample.html">Gated Recurrent Unit Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">NMSIS NN</a> &raquo;</li>
+        
+          <li><a href="index.html">NMSIS NN API</a> &raquo;</li>
+        
+      <li>Basic Math Functions for Neural Network Computation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/nn/api/api_nnbasicmath.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="basic-math-functions-for-neural-network-computation">
+<span id="nmsis-nn-api-basic-math-functions-for-neural-network-computation"></span><h1>Basic Math Functions for Neural Network Computation<a class="headerlink" href="#basic-math-functions-for-neural-network-computation" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="_CPPv415riscv_nn_add_q7PK4q7_tP5q31_t8uint32_t">
+<span id="_CPPv315riscv_nn_add_q7PK4q7_tP5q31_t8uint32_t"></span><span id="_CPPv215riscv_nn_add_q7PK4q7_tP5q31_t8uint32_t"></span><span id="riscv_nn_add_q7__q7_tCP.q31_tP.uint32_t"></span><span class="target" id="group__NNBasicMath_1gae72ab1e8045b992f1bf49b0bbafee3b1"></span>void <code class="sig-name descname">riscv_nn_add_q7</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>input</em>, q31_t *<em>output</em>, uint32_t <em>block_size</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415riscv_nn_add_q7PK4q7_tP5q31_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv417riscv_nn_mult_q15P5q15_tP5q15_tP5q15_tK8uint16_t8uint32_t">
+<span id="_CPPv317riscv_nn_mult_q15P5q15_tP5q15_tP5q15_tK8uint16_t8uint32_t"></span><span id="_CPPv217riscv_nn_mult_q15P5q15_tP5q15_tP5q15_tK8uint16_t8uint32_t"></span><span id="riscv_nn_mult_q15__q15_tP.q15_tP.q15_tP.uint16_tC.uint32_t"></span><span class="target" id="group__NNBasicMath_1gae785703e6b6be36f6c643de582e1bdbf"></span>void <code class="sig-name descname">riscv_nn_mult_q15</code><span class="sig-paren">(</span>q15_t *<em>pSrcA</em>, q15_t *<em>pSrcB</em>, q15_t *<em>pDst</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417riscv_nn_mult_q15P5q15_tP5q15_tP5q15_tK8uint16_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv416riscv_nn_mult_q7P4q7_tP4q7_tP4q7_tK8uint16_t8uint32_t">
+<span id="_CPPv316riscv_nn_mult_q7P4q7_tP4q7_tP4q7_tK8uint16_t8uint32_t"></span><span id="_CPPv216riscv_nn_mult_q7P4q7_tP4q7_tP4q7_tK8uint16_t8uint32_t"></span><span id="riscv_nn_mult_q7__q7_tP.q7_tP.q7_tP.uint16_tC.uint32_t"></span><span class="target" id="group__NNBasicMath_1ga53b69e8309dbc2e6c3f6f5bc42ea3d88"></span>void <code class="sig-name descname">riscv_nn_mult_q7</code><span class="sig-paren">(</span>q7_t *<em>pSrcA</em>, q7_t *<em>pSrcB</em>, q7_t *<em>pDst</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416riscv_nn_mult_q7P4q7_tP4q7_tP4q7_tK8uint16_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="group">
+<dt>
+<span class="target" id="group__NNBasicMath"></span><em>group</em> <code class="sig-name descname">NNBasicMath</code></dt>
+<dd><p>Basic Math Functions for Neural Network Computation </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="function">
+<dt id="_CPPv415riscv_nn_add_q7PK4q7_tP5q31_t8uint32_t">
+<span id="_CPPv315riscv_nn_add_q7PK4q7_tP5q31_t8uint32_t"></span><span id="_CPPv215riscv_nn_add_q7PK4q7_tP5q31_t8uint32_t"></span><span class="target" id="group__NNBasicMath_1gae72ab1e8045b992f1bf49b0bbafee3b1"></span>void <code class="sig-name descname">riscv_nn_add_q7</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>input</em>, q31_t *<em>output</em>, uint32_t <em>block_size</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Non-saturating addition of elements of a q7 vector. </p>
+<p><p>2^24 samples can be added without saturating the result.</p>
+<dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none. </p>
+</dd>
+<dt><strong>Description:</strong></dt><dd><p></p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">*input</span></code>: Pointer to the q7 input vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">*output</span></code>: Pointer to the q31 output variable. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">block_size</span></code>: length of the input vector </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The equation used for the conversion process is:</p>
+<p> </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv417riscv_nn_mult_q15P5q15_tP5q15_tP5q15_tK8uint16_t8uint32_t">
+<span id="_CPPv317riscv_nn_mult_q15P5q15_tP5q15_tP5q15_tK8uint16_t8uint32_t"></span><span id="_CPPv217riscv_nn_mult_q15P5q15_tP5q15_tP5q15_tK8uint16_t8uint32_t"></span><span class="target" id="group__NNBasicMath_1gae785703e6b6be36f6c643de582e1bdbf"></span>void <code class="sig-name descname">riscv_nn_mult_q15</code><span class="sig-paren">(</span>q15_t *<em>pSrcA</em>, q15_t *<em>pSrcB</em>, q15_t *<em>pDst</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Q7 vector multiplication with variable output shifts. </p>
+<p>q7 vector multiplication with variable output shifts</p>
+<p><strong>Scaling and Overflow Behavior:</strong> <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none.</p>
+</dd>
+<dt><strong></strong></dt><dd><p>The function uses saturating arithmetic. Results outside of the allowable Q15 range [0x8000 0x7FFF] will be saturated. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">*pSrcA</span></code>: pointer to the first input vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">*pSrcB</span></code>: pointer to the second input vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">*pDst</span></code>: pointer to the output vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">out_shift</span></code>: amount of right-shift for output </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples in each vector </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv416riscv_nn_mult_q7P4q7_tP4q7_tP4q7_tK8uint16_t8uint32_t">
+<span id="_CPPv316riscv_nn_mult_q7P4q7_tP4q7_tP4q7_tK8uint16_t8uint32_t"></span><span id="_CPPv216riscv_nn_mult_q7P4q7_tP4q7_tP4q7_tK8uint16_t8uint32_t"></span><span class="target" id="group__NNBasicMath_1ga53b69e8309dbc2e6c3f6f5bc42ea3d88"></span>void <code class="sig-name descname">riscv_nn_mult_q7</code><span class="sig-paren">(</span>q7_t *<em>pSrcA</em>, q7_t *<em>pSrcB</em>, q7_t *<em>pDst</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Q7 vector multiplication with variable output shifts. </p>
+<p>q7 vector multiplication with variable output shifts</p>
+<p><strong>Scaling and Overflow Behavior:</strong> <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none.</p>
+</dd>
+<dt><strong></strong></dt><dd><p>The function uses saturating arithmetic. Results outside of the allowable Q7 range [0x80 0x7F] will be saturated. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">*pSrcA</span></code>: pointer to the first input vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">*pSrcB</span></code>: pointer to the second input vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">*pDst</span></code>: pointer to the output vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">out_shift</span></code>: amount of right-shift for output </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples in each vector </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api_cnnexample.html" class="btn btn-neutral float-right" title="Convolutional Neural Network Example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api_nndata_convert.html" class="btn btn-neutral float-left" title="Neural Network Data Conversion Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Nuclei
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

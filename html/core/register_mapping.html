@@ -1,0 +1,288 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Register Mapping &mdash; NMSIS 1.0.0-alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="NMSIS Core API" href="api/index.html" />
+    <link rel="prev" title="Device Header File &lt;device.h&gt;" href="core_template_device_header.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">NMSIS Core</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started.html">Using NMSIS in Embedded Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_templates.html">NMSIS-Core Device Templates</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Register Mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html">NMSIS Core API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">NMSIS Core</a> &raquo;</li>
+        
+      <li>Register Mapping</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/core/register_mapping.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="register-mapping">
+<span id="core-register-mapping"></span><h1>Register Mapping<a class="headerlink" href="#register-mapping" title="Permalink to this headline">¶</a></h1>
+<p>The table below associates some common register names used in NMSIS to the register names used in Technical Reference Manuals.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 30%" />
+<col style="width: 46%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>NMSIS Register Name</strong></p></td>
+<td><p><strong>N200, N300, N600, NX600</strong></p></td>
+<td><p><strong>Register Description</strong></p></td>
+</tr>
+<tr class="row-even"><td colspan="3"><p><strong>Enhanced Core Local Interrupt Controller(ECLIC)</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>ECLIC-&gt;CFG</p></td>
+<td><p>cliccfg</p></td>
+<td><p>ECLIC Global Configuration Register</p></td>
+</tr>
+<tr class="row-even"><td><p>ECLIC-&gt;INFO</p></td>
+<td><p>clicinfo</p></td>
+<td><p>ECLIC Global Information Register</p></td>
+</tr>
+<tr class="row-odd"><td><p>ECLIC-&gt;MTH</p></td>
+<td><p>mth</p></td>
+<td><p>ECLIC Global Machine Mode Threshold Register</p></td>
+</tr>
+<tr class="row-even"><td><p>ECLIC-&gt;CTRL[i].INTIP</p></td>
+<td><p>clicintip[i]</p></td>
+<td><p>ECLIC Interrupt Pending Register</p></td>
+</tr>
+<tr class="row-odd"><td><p>ECLIC-&gt;CTRL[i].INTIE</p></td>
+<td><p>clicintie[i]</p></td>
+<td><p>ECLIC Interrupt Enable Register</p></td>
+</tr>
+<tr class="row-even"><td><p>ECLIC-&gt;CTRL[i].INTATTR</p></td>
+<td><p>clicintattr[i]</p></td>
+<td><p>ECLIC Interrupt Attribute Register</p></td>
+</tr>
+<tr class="row-odd"><td><p>ECLIC-&gt;CTRL[i].INTCTRL</p></td>
+<td><p>clicintctl[i]</p></td>
+<td><p>ECLIC Interrupt Input Control Register</p></td>
+</tr>
+<tr class="row-even"><td colspan="3"><p><strong>System Timer Unit(SysTimer)</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>SysTimer-&gt;MTIMER</p></td>
+<td><p>mtime_hi&lt;&lt;32 + mtime_lo</p></td>
+<td><p>System Timer current value 64bits Register</p></td>
+</tr>
+<tr class="row-even"><td><p>SysTimer-&gt;MTIMERCMP</p></td>
+<td><p>mtimecmp_hi&lt;&lt;32 + mtimecmp_lo</p></td>
+<td><p>System Timer compare value 64bits Register</p></td>
+</tr>
+<tr class="row-odd"><td><p>SysTimer-&gt;MSTOP</p></td>
+<td><p>mstop</p></td>
+<td><p>System Timer Stop Register</p></td>
+</tr>
+<tr class="row-even"><td><p>SysTimer-&gt;MSIP</p></td>
+<td><p>msip</p></td>
+<td><p>System Timer SW interrupt Register</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api/index.html" class="btn btn-neutral float-right" title="NMSIS Core API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="core_template_device_header.html" class="btn btn-neutral float-left" title="Device Header File &lt;device.h&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Nuclei
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

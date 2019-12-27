@@ -1,0 +1,705 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="group__FIR" kind="group">
+    <compoundname>FIR</compoundname>
+    <title>Finite Impulse Response (FIR) Filters</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__FIR_1ga9609646d34fdf7b619a1dd845058e495" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_fir_f32</definition>
+        <argsstring>(const riscv_fir_instance_f32 *S, const float32_t *pSrc, float32_t *pDst, uint32_t blockSize)</argsstring>
+        <name>riscv_fir_f32</name>
+        <param>
+          <type>const <ref refid="structriscv__fir__instance__f32" kindref="compound">riscv_fir_instance_f32</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>const float32_t *</type>
+          <declname>pSrc</declname>
+        </param>
+        <param>
+          <type>float32_t *</type>
+          <declname>pDst</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Processing function for floating-point FIR filter. </para>        </briefdescription>
+        <detaileddescription>
+<para>Processing function for the floating-point FIR filter.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the floating-point FIR filter structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of input data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of output data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples to process </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_f32.c" line="342" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_f32.c" bodystart="342" bodyend="711"/>
+      </memberdef>
+      <memberdef kind="function" id="group__FIR_1ga1797bd3279a9f58d181bc51ad66f06dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_fir_fast_q15</definition>
+        <argsstring>(const riscv_fir_instance_q15 *S, const q15_t *pSrc, q15_t *pDst, uint32_t blockSize)</argsstring>
+        <name>riscv_fir_fast_q15</name>
+        <param>
+          <type>const <ref refid="structriscv__fir__instance__q15" kindref="compound">riscv_fir_instance_q15</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>const q15_t *</type>
+          <declname>pSrc</declname>
+        </param>
+        <param>
+          <type>q15_t *</type>
+          <declname>pDst</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Processing function for the Q15 FIR filter (fast version). </para>        </briefdescription>
+        <detaileddescription>
+<para>Processing function for the fast Q15 FIR filter (fast version).</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the Q15 FIR filter structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of input data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of output data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples to process </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Scaling and Overflow Behavior</title><para>This fast version uses a 32-bit accumulator with 2.30 format. The accumulator maintains full precision of the intermediate multiplication results but provides only a single guard bit. Thus, if the accumulator result overflows it wraps around and distorts the result. In order to avoid overflows completely the input signal must be scaled down by log2(numTaps) bits. The 2.30 accumulator is then truncated to 2.15 format and saturated to yield the 1.15 result.</para></simplesect>
+<simplesect kind="remark"><para>Refer to <ref refid="group__FIR_1ga8df4a826bbe755b7b0efa9615bf4df49" kindref="member">riscv_fir_q15()</ref> for a slower implementation of this function which uses 64-bit accumulation to avoid wrap around distortion. Both the slow and the fast versions use the same instance structure. Use function <ref refid="group__FIR_1ga4ff373438cd370b20a26ab7d3f8a5206" kindref="member">riscv_fir_init_q15()</ref> to initialize the filter structure. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_fast_q15.c" line="61" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_fast_q15.c" bodystart="61" bodyend="329"/>
+      </memberdef>
+      <memberdef kind="function" id="group__FIR_1gaf3afcaa386694efed94fd250f07a54ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>IAR_ONLY_LOW_OPTIMIZATION_ENTER void</type>
+        <definition>IAR_ONLY_LOW_OPTIMIZATION_ENTER void riscv_fir_fast_q31</definition>
+        <argsstring>(const riscv_fir_instance_q31 *S, const q31_t *pSrc, q31_t *pDst, uint32_t blockSize)</argsstring>
+        <name>riscv_fir_fast_q31</name>
+        <param>
+          <type>const <ref refid="structriscv__fir__instance__q31" kindref="compound">riscv_fir_instance_q31</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>const q31_t *</type>
+          <declname>pSrc</declname>
+        </param>
+        <param>
+          <type>q31_t *</type>
+          <declname>pDst</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Processing function for the Q31 FIR filter (fast version). </para>        </briefdescription>
+        <detaileddescription>
+<para>Processing function for the fast Q31 FIR filter (fast version).</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the Q31 structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of input data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of output data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples to process </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Scaling and Overflow Behavior</title><para>This function is optimized for speed at the expense of fixed-point precision and overflow protection. The result of each 1.31 x 1.31 multiplication is truncated to 2.30 format. These intermediate results are added to a 2.30 accumulator. Finally, the accumulator is saturated and converted to a 1.31 result. The fast version has the same overflow behavior as the standard version and provides less precision since it discards the low 32 bits of each multiplication result. In order to avoid overflows completely the input signal must be scaled down by log2(numTaps) bits.</para></simplesect>
+<simplesect kind="remark"><para>Refer to <ref refid="group__FIR_1ga5ab3142de031afd37695e2ac09c880d1" kindref="member">riscv_fir_q31()</ref> for a slower implementation of this function which uses a 64-bit accumulator to provide higher precision. Both the slow and the fast versions use the same instance structure. Use function <ref refid="group__FIR_1ga20b9154a895a31aabdf745c7a98b16ea" kindref="member">riscv_fir_init_q31()</ref> to initialize the filter structure. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_fast_q31.c" line="63" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_fast_q31.c" bodystart="63" bodyend="321"/>
+      </memberdef>
+      <memberdef kind="function" id="group__FIR_1gabc32b5613cbace1478d28da3654fd357" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_fir_init_f32</definition>
+        <argsstring>(riscv_fir_instance_f32 *S, uint16_t numTaps, const float32_t *pCoeffs, float32_t *pState, uint32_t blockSize)</argsstring>
+        <name>riscv_fir_init_f32</name>
+        <param>
+          <type><ref refid="structriscv__fir__instance__f32" kindref="compound">riscv_fir_instance_f32</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>numTaps</declname>
+        </param>
+        <param>
+          <type>const float32_t *</type>
+          <declname>pCoeffs</declname>
+        </param>
+        <param>
+          <type>float32_t *</type>
+          <declname>pState</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the floating-point FIR filter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the floating-point FIR filter structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">numTaps</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of filter coefficients in the filter </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pCoeffs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the filter coefficients buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pState</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the state buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples processed per call </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Details</title><para><computeroutput>pCoeffs</computeroutput> points to the array of filter coefficients stored in time reversed order: <preformatted>
+    {b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}
+</preformatted> </para></simplesect>
+<simplesect kind="par"><title></title><para><computeroutput>pState</computeroutput> points to the array of state variables. <computeroutput>pState</computeroutput> is of length <computeroutput>numTaps+blockSize-1</computeroutput> samples, where <computeroutput>blockSize</computeroutput> is the number of input samples processed by each call to <computeroutput><ref refid="group__FIR_1ga9609646d34fdf7b619a1dd845058e495" kindref="member">riscv_fir_f32()</ref></computeroutput>. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_init_f32.c" line="60" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_init_f32.c" bodystart="60" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="group__FIR_1ga4ff373438cd370b20a26ab7d3f8a5206" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>riscv_status</type>
+        <definition>riscv_status riscv_fir_init_q15</definition>
+        <argsstring>(riscv_fir_instance_q15 *S, uint16_t numTaps, const q15_t *pCoeffs, q15_t *pState, uint32_t blockSize)</argsstring>
+        <name>riscv_fir_init_q15</name>
+        <param>
+          <type><ref refid="structriscv__fir__instance__q15" kindref="compound">riscv_fir_instance_q15</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>numTaps</declname>
+        </param>
+        <param>
+          <type>const q15_t *</type>
+          <declname>pCoeffs</declname>
+        </param>
+        <param>
+          <type>q15_t *</type>
+          <declname>pState</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the Q15 FIR filter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the Q15 FIR filter structure. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">numTaps</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of filter coefficients in the filter. Must be even and greater than or equal to 4. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pCoeffs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the filter coefficients buffer. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pState</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the state buffer. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples processed per call. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>execution status<itemizedlist>
+<listitem><para>RISCV_MATH_SUCCESS : Operation successful</para></listitem><listitem><para>RISCV_MATH_ARGUMENT_ERROR : <computeroutput>numTaps</computeroutput> is not greater than or equal to 4 and even</para></listitem></itemizedlist>
+</para></simplesect>
+<simplesect kind="par"><title>Details</title><para><computeroutput>pCoeffs</computeroutput> points to the array of filter coefficients stored in time reversed order: <preformatted>
+    {b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}
+</preformatted> Note that <computeroutput>numTaps</computeroutput> must be even and greater than or equal to 4. To implement an odd length filter simply increase <computeroutput>numTaps</computeroutput> by 1 and set the last coefficient to zero. For example, to implement a filter with <computeroutput>numTaps=3</computeroutput> and coefficients <preformatted>
+    {0.3, -0.8, 0.3}
+</preformatted> set <computeroutput>numTaps=4</computeroutput> and use the coefficients: <preformatted>
+    {0.3, -0.8, 0.3, 0}.
+</preformatted> Similarly, to implement a two point filter <preformatted>
+    {0.3, -0.3}
+</preformatted> set <computeroutput>numTaps=4</computeroutput> and use the coefficients: <preformatted>
+    {0.3, -0.3, 0, 0}.
+</preformatted> <computeroutput>pState</computeroutput> points to the array of state variables. <computeroutput>pState</computeroutput> is of length <computeroutput>numTaps+blockSize</computeroutput>, when running on RISC-V Core with DSP enabled and is of length <computeroutput>numTaps+blockSize-1</computeroutput>, when running on RISC-V0 where <computeroutput>blockSize</computeroutput> is the number of input samples processed by each call to <computeroutput><ref refid="group__FIR_1ga8df4a826bbe755b7b0efa9615bf4df49" kindref="member">riscv_fir_q15()</ref></computeroutput>. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_init_q15.c" line="79" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_init_q15.c" bodystart="79" bodyend="134"/>
+      </memberdef>
+      <memberdef kind="function" id="group__FIR_1ga20b9154a895a31aabdf745c7a98b16ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_fir_init_q31</definition>
+        <argsstring>(riscv_fir_instance_q31 *S, uint16_t numTaps, const q31_t *pCoeffs, q31_t *pState, uint32_t blockSize)</argsstring>
+        <name>riscv_fir_init_q31</name>
+        <param>
+          <type><ref refid="structriscv__fir__instance__q31" kindref="compound">riscv_fir_instance_q31</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>numTaps</declname>
+        </param>
+        <param>
+          <type>const q31_t *</type>
+          <declname>pCoeffs</declname>
+        </param>
+        <param>
+          <type>q31_t *</type>
+          <declname>pState</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the Q31 FIR filter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the Q31 FIR filter structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">numTaps</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of filter coefficients in the filter </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pCoeffs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the filter coefficients buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pState</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the state buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples processed </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Details</title><para><computeroutput>pCoeffs</computeroutput> points to the array of filter coefficients stored in time reversed order: <preformatted>
+    {b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}
+</preformatted> <computeroutput>pState</computeroutput> points to the array of state variables. <computeroutput>pState</computeroutput> is of length <computeroutput>numTaps+blockSize-1</computeroutput> samples, where <computeroutput>blockSize</computeroutput> is the number of input samples processed by each call to <computeroutput><ref refid="group__FIR_1ga5ab3142de031afd37695e2ac09c880d1" kindref="member">riscv_fir_q31()</ref></computeroutput>. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_init_q31.c" line="59" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_init_q31.c" bodystart="59" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="group__FIR_1gae23d333a0ce67c25a40f56b14e6b4c65" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_fir_init_q7</definition>
+        <argsstring>(riscv_fir_instance_q7 *S, uint16_t numTaps, const q7_t *pCoeffs, q7_t *pState, uint32_t blockSize)</argsstring>
+        <name>riscv_fir_init_q7</name>
+        <param>
+          <type><ref refid="structriscv__fir__instance__q7" kindref="compound">riscv_fir_instance_q7</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>numTaps</declname>
+        </param>
+        <param>
+          <type>const q7_t *</type>
+          <declname>pCoeffs</declname>
+        </param>
+        <param>
+          <type>q7_t *</type>
+          <declname>pState</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the Q7 FIR filter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the Q7 FIR filter structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">numTaps</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of filter coefficients in the filter </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pCoeffs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the filter coefficients buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pState</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the state buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples processed </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Details</title><para><computeroutput>pCoeffs</computeroutput> points to the array of filter coefficients stored in time reversed order: <preformatted>
+    {b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}
+</preformatted> </para></simplesect>
+<simplesect kind="par"><title></title><para><computeroutput>pState</computeroutput> points to the array of state variables. <computeroutput>pState</computeroutput> is of length <computeroutput>numTaps+blockSize-1</computeroutput> samples, where <computeroutput>blockSize</computeroutput> is the number of input samples processed by each call to <computeroutput><ref refid="group__FIR_1gaaff318c4988ee737e847feee8afab3d5" kindref="member">riscv_fir_q7()</ref></computeroutput>. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_init_q7.c" line="60" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_init_q7.c" bodystart="60" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="group__FIR_1ga8df4a826bbe755b7b0efa9615bf4df49" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_fir_q15</definition>
+        <argsstring>(const riscv_fir_instance_q15 *S, const q15_t *pSrc, q15_t *pDst, uint32_t blockSize)</argsstring>
+        <name>riscv_fir_q15</name>
+        <param>
+          <type>const <ref refid="structriscv__fir__instance__q15" kindref="compound">riscv_fir_instance_q15</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>const q15_t *</type>
+          <declname>pSrc</declname>
+        </param>
+        <param>
+          <type>q15_t *</type>
+          <declname>pDst</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Processing function for the Q15 FIR filter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the Q15 FIR filter structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of input data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of output data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples to process </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Scaling and Overflow Behavior</title><para>The function is implemented using a 64-bit internal accumulator. Both coefficients and state variables are represented in 1.15 format and multiplications yield a 2.30 result. The 2.30 intermediate results are accumulated in a 64-bit accumulator in 34.30 format. There is no risk of internal overflow with this approach and the full precision of intermediate multiplications is preserved. After all additions have been performed, the accumulator is truncated to 34.15 format by discarding low 15 bits. Lastly, the accumulator is saturated to yield a result in 1.15 format.</para></simplesect>
+<simplesect kind="remark"><para>Refer to <ref refid="group__FIR_1ga1797bd3279a9f58d181bc51ad66f06dc" kindref="member">riscv_fir_fast_q15()</ref> for a faster but less precise implementation of this function. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_q15.c" line="61" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_q15.c" bodystart="61" bodyend="329"/>
+      </memberdef>
+      <memberdef kind="function" id="group__FIR_1ga5ab3142de031afd37695e2ac09c880d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_fir_q31</definition>
+        <argsstring>(const riscv_fir_instance_q31 *S, const q31_t *pSrc, q31_t *pDst, uint32_t blockSize)</argsstring>
+        <name>riscv_fir_q31</name>
+        <param>
+          <type>const <ref refid="structriscv__fir__instance__q31" kindref="compound">riscv_fir_instance_q31</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>const q31_t *</type>
+          <declname>pSrc</declname>
+        </param>
+        <param>
+          <type>q31_t *</type>
+          <declname>pDst</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Processing function for Q31 FIR filter. </para>        </briefdescription>
+        <detaileddescription>
+<para>Processing function for the Q31 FIR filter.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the Q31 FIR filter structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of input data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of output data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples to process </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Scaling and Overflow Behavior</title><para>The function is implemented using an internal 64-bit accumulator. The accumulator has a 2.62 format and maintains full precision of the intermediate multiplication results but provides only a single guard bit. Thus, if the accumulator result overflows it wraps around rather than clip. In order to avoid overflows completely the input signal must be scaled down by log2(numTaps) bits. After all multiply-accumulates are performed, the 2.62 accumulator is right shifted by 31 bits and saturated to 1.31 format to yield the final result.</para></simplesect>
+<simplesect kind="remark"><para>Refer to <ref refid="group__FIR_1gaf3afcaa386694efed94fd250f07a54ad" kindref="member">riscv_fir_fast_q31()</ref> for a faster but less precise implementation of this filter. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_q31.c" line="60" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_q31.c" bodystart="60" bodyend="285"/>
+      </memberdef>
+      <memberdef kind="function" id="group__FIR_1gaaff318c4988ee737e847feee8afab3d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_fir_q7</definition>
+        <argsstring>(const riscv_fir_instance_q7 *S, const q7_t *pSrc, q7_t *pDst, uint32_t blockSize)</argsstring>
+        <name>riscv_fir_q7</name>
+        <param>
+          <type>const <ref refid="structriscv__fir__instance__q7" kindref="compound">riscv_fir_instance_q7</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>const q7_t *</type>
+          <declname>pSrc</declname>
+        </param>
+        <param>
+          <type>q7_t *</type>
+          <declname>pDst</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Processing function for Q7 FIR filter. </para>        </briefdescription>
+        <detaileddescription>
+<para>Processing function for the Q7 FIR filter.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the Q7 FIR filter structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of input data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of output data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples to process </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Scaling and Overflow Behavior</title><para>The function is implemented using a 32-bit internal accumulator. Both coefficients and state variables are represented in 1.7 format and multiplications yield a 2.14 result. The 2.14 intermediate results are accumulated in a 32-bit accumulator in 18.14 format. There is no risk of internal overflow with this approach and the full precision of intermediate multiplications is preserved. The accumulator is converted to 18.7 format by discarding the low 7 bits. Finally, the result is truncated to 1.7 format. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_q7.c" line="58" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_fir_q7.c" bodystart="58" bodyend="320"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>This set of functions implements Finite Impulse Response (FIR) filters for Q7, Q15, Q31, and floating-point data types. Fast versions of Q15 and Q31 are also provided. The functions operate on blocks of input and output data and each call to the function processes <computeroutput>blockSize</computeroutput> samples through the filter. <computeroutput>pSrc</computeroutput> and <computeroutput>pDst</computeroutput> points to input and output arrays containing <computeroutput>blockSize</computeroutput> values.</para><para><simplesect kind="par"><title>Algorithm</title><para>The FIR filter algorithm is based upon a sequence of multiply-accumulate (MAC) operations. Each filter coefficient <computeroutput>b[n]</computeroutput> is multiplied by a state variable which equals a previous input sample <computeroutput>x[n]</computeroutput>. <preformatted>
+    y[n] = b[0] * x[n] + b[1] * x[n-1] + b[2] * x[n-2] + ...+ b[numTaps-1] * x[n-numTaps+1]
+</preformatted> </para></simplesect>
+<simplesect kind="par"><title></title><para><image type="html" name="FIR.png">Finite Impulse Response filter</image>
+</para></simplesect>
+<simplesect kind="par"><title></title><para><computeroutput>pCoeffs</computeroutput> points to a coefficient array of size <computeroutput>numTaps</computeroutput>. Coefficients are stored in time reversed order. </para></simplesect>
+<simplesect kind="par"><title></title><para><preformatted>
+    {b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}
+</preformatted> </para></simplesect>
+<simplesect kind="par"><title></title><para><computeroutput>pState</computeroutput> points to a state array of size <computeroutput>numTaps + blockSize - 1</computeroutput>. Samples in the state buffer are stored in the following order. </para></simplesect>
+<simplesect kind="par"><title></title><para><preformatted>
+    {x[n-numTaps+1], x[n-numTaps], x[n-numTaps-1], x[n-numTaps-2]....x[0], x[1], ..., x[blockSize-1]}
+</preformatted> </para></simplesect>
+<simplesect kind="par"><title></title><para>Note that the length of the state buffer exceeds the length of the coefficient array by <computeroutput>blockSize-1</computeroutput>. The increased state buffer length allows circular addressing, which is traditionally used in the FIR filters, to be avoided and yields a significant speed improvement. The state variables are updated after each block of data is processed; the coefficients are untouched.</para></simplesect>
+<simplesect kind="par"><title>Instance Structure</title><para>The coefficients and state variables for a filter are stored together in an instance data structure. A separate instance structure must be defined for each filter. Coefficient arrays may be shared among several instances while state variable arrays cannot be shared. There are separate instance structure declarations for each of the 4 supported data types.</para></simplesect>
+<simplesect kind="par"><title>Initialization Functions</title><para>There is also an associated initialization function for each data type. The initialization function performs the following operations:<itemizedlist>
+<listitem><para>Sets the values of the internal structure fields.</para></listitem><listitem><para>Zeros out the values in the state buffer. To do this manually without calling the init function, assign the follow subfields of the instance structure: numTaps, pCoeffs, pState. Also set all of the values in pState to zero. </para></listitem></itemizedlist>
+</para></simplesect>
+<simplesect kind="par"><title></title><para>Use of the initialization function is optional. However, if the initialization function is used, then the instance structure cannot be placed into a const data section. To place an instance structure into a const data section, the instance structure must be manually initialized. Set the values in the state buffer to zeros before static initialization. The code below statically initializes each of the 4 different data type filter instance structures <preformatted>
+    <ref refid="structriscv__fir__instance__f32" kindref="compound">riscv_fir_instance_f32</ref> S = {numTaps, pState, pCoeffs};
+    <ref refid="structriscv__fir__instance__q31" kindref="compound">riscv_fir_instance_q31</ref> S = {numTaps, pState, pCoeffs};
+    <ref refid="structriscv__fir__instance__q15" kindref="compound">riscv_fir_instance_q15</ref> S = {numTaps, pState, pCoeffs};
+    <ref refid="structriscv__fir__instance__q7" kindref="compound">riscv_fir_instance_q7</ref> S =  {numTaps, pState, pCoeffs};
+</preformatted> where <computeroutput>numTaps</computeroutput> is the number of filter coefficients in the filter; <computeroutput>pState</computeroutput> is the address of the state buffer; <computeroutput>pCoeffs</computeroutput> is the address of the coefficient buffer.</para></simplesect>
+<simplesect kind="par"><title>Fixed-Point Behavior</title><para>Care must be taken when using the fixed-point versions of the FIR filter functions. In particular, the overflow and saturation behavior of the accumulator used in each function must be considered. Refer to the function specific documentation below for usage guidelines. </para></simplesect>
+</para>    </detaileddescription>
+  </compounddef>
+</doxygen>

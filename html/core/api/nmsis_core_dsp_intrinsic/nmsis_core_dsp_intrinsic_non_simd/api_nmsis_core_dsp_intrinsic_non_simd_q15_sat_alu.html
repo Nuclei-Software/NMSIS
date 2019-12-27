@@ -1,0 +1,577 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Non-SIMD Q15 saturation ALU Instructions &mdash; NMSIS 1.0.0-alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Non-SIMD Q31 saturation ALU Instructions" href="api_nmsis_core_dsp_intrinsic_non_simd_q31_sat_alu.html" />
+    <link rel="prev" title="Non-SIMD Instructions" href="../api_nmsis_core_dsp_intrinsic_non_simd.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">NMSIS Core</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../get_started.html">Using NMSIS in Embedded Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../core_templates.html">NMSIS-Core Device Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../register_mapping.html">Register Mapping</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">NMSIS Core API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../core_version_control.html">Version Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_compiler_control.html">Compiler Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_csr_access.html">Core CSR Register Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_csr_encoding.html">Core CSR Encoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_register_type.html">Register Define and Type Definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_intrinsics.html">CPU Intrinsic Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_simd_data_process.html">SIMD Data Processing Instructions</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_non_simd.html">Non-SIMD Instructions</a><ul class="current">
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Non-SIMD Q15 saturation ALU Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_non_simd_q31_sat_alu.html">Non-SIMD Q31 saturation ALU Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_32b_computation.html">32-bit Computation Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_ov_flag_sc.html">OV (Overflow) flag Set/Clear Instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_part_simd_data_process.html">Partial-SIMD Data Processing Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_64b_profile.html">64-bit Profile Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_nuclei_custom.html">Nuclei Customized DSP Instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_periph_access.html">Peripheral Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_systick.html">Systick Timer(SysTimer)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_interrupt_exception.html">Interrupts and Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_fpu.html">FPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_pmp.html">PMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_cache.html">Cache Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_system_device.html">System Device Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_arm_compatiable.html">ARM Compatiable Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">NMSIS Core</a> &raquo;</li>
+        
+          <li><a href="../../index.html">NMSIS Core API</a> &raquo;</li>
+        
+          <li><a href="../../api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a> &raquo;</li>
+        
+          <li><a href="../api_nmsis_core_dsp_intrinsic_non_simd.html">Non-SIMD Instructions</a> &raquo;</li>
+        
+      <li>Non-SIMD Q15 saturation ALU Instructions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../_sources/core/api/nmsis_core_dsp_intrinsic/nmsis_core_dsp_intrinsic_non_simd/api_nmsis_core_dsp_intrinsic_non_simd_q15_sat_alu.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="non-simd-q15-saturation-alu-instructions">
+<span id="nmsis-core-api-non-simd-q15-saturation-alu-instructions"></span><h1>Non-SIMD Q15 saturation ALU Instructions<a class="headerlink" href="#non-simd-q15-saturation-alu-instructions" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q15__SAT__ALU_1ga3d272c3c6988c3c1c76ed6f5896c008e"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KADDH(int a, int b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q15__SAT__ALU_1ga26af5537e6aca0133b66832596728a8e"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KHMBB(unsigned int a, unsigned int b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q15__SAT__ALU_1ga96e244df43ec32a722a3562a0a59a6a6"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KHMBT(unsigned int a, unsigned int b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q15__SAT__ALU_1ga06a6deed6954a496ac381758e067e850"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KHMTT(unsigned int a, unsigned int b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q15__SAT__ALU_1gae30012cd8914b62f2fb84236b138f54f"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KSUBH(int a, int b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q15__SAT__ALU_1gaf5a82ca7a98ea1c06cd7a468d035abcd"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UKADDH(unsigned int a, unsigned int b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q15__SAT__ALU_1ga8f7265e350aad977038169d60af14e55"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UKSUBH(unsigned int a, unsigned int b)</code></dt>
+<dd></dd></dl>
+
+<dl class="group">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q15__SAT__ALU"></span><em>group</em> <code class="sig-name descname">NMSIS_Core_DSP_Intrinsic_NON_SIMD_Q15_SAT_ALU</code></dt>
+<dd><p>Non-SIMD Q15 saturation ALU Instructions. </p>
+<p>there are 7 Non-SIMD Q15 saturation ALU Instructions </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q15__SAT__ALU_1ga3d272c3c6988c3c1c76ed6f5896c008e"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KADDH(int a, int b)</code></dt>
+<dd><p>KADDH (Signed Addition with Q15 Saturation) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KADDH</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Add the signed lower 32-bit content of two registers with Q15 saturation.</p>
+</p>
+<p><strong>Description</strong>:<p>The signed lower 32-bit content of Rs1 is added with the signed lower 32-bit content of Rs2. And the result is saturated to the 16-bit signed integer range of [-2^15, 2^15-1] and then sign- extended and written to Rd. If saturation happens, this instruction sets the OV flag.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">tmp</span> <span class="o">&gt;</span> <span class="mi">32767</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">res</span> <span class="o">=</span> <span class="mi">32767</span><span class="p">;</span>
+  <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">tmp</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">32768</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">res</span> <span class="o">=</span> <span class="o">-</span><span class="mi">32768</span><span class="p">;</span>
+  <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="n">res</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="n">SE</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="mi">15</span><span class="p">:</span><span class="mi">0</span><span class="p">]);</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p></p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q15__SAT__ALU_1ga26af5537e6aca0133b66832596728a8e"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KHMBB(unsigned int a, unsigned int b)</code></dt>
+<dd><p>KHMBB (Signed Saturating Half Multiply B16 x B16) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KHMxy</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span> <span class="p">(</span><span class="n">xy</span> <span class="o">=</span> <span class="n">BB</span><span class="p">,</span> <span class="n">BT</span><span class="p">,</span> <span class="n">TT</span><span class="p">)</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Multiply the signed Q15 number contents of two 16-bit data in the corresponding portion of the lower 32-bit chunk in registers and then right-shift 15 bits to turn the Q30 result into a Q15 number again and saturate the Q15 result into the destination register. If saturation happens, an overflow flag OV will be set.</p>
+</p>
+<p><strong>Description</strong>:<p>Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1 with the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs2. The Q30 result is then right- shifted 15-bits and saturated into a Q15 value. The Q15 value is then sing-extended and written into Rd. When both the two Q15 inputs are 0x8000, saturation will happen. The result will be saturated to 0x7FFF and the overflow flag OV will be set.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aop</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="n">bop</span> <span class="o">=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="o">//</span> <span class="n">KHMBB</span>
+<span class="n">aop</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="n">bop</span> <span class="o">=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="o">//</span> <span class="n">KHMBT</span>
+<span class="n">aop</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="n">bop</span> <span class="o">=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="o">//</span> <span class="n">KHMTT</span>
+<span class="n">If</span> <span class="p">(</span><span class="mh">0x8000</span> <span class="o">!=</span> <span class="n">aop</span> <span class="o">|</span> <span class="mh">0x8000</span> <span class="o">!=</span> <span class="n">bop</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Mresult</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">aop</span> <span class="o">*</span> <span class="n">bop</span><span class="p">;</span>
+  <span class="n">res</span><span class="p">[</span><span class="mi">15</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Mresult</span><span class="p">[</span><span class="mi">30</span><span class="p">:</span><span class="mi">15</span><span class="p">];</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="n">res</span><span class="p">[</span><span class="mi">15</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x7FFF</span><span class="p">;</span>
+  <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="n">SE32</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">15</span><span class="p">:</span><span class="mi">0</span><span class="p">]);</span> <span class="o">//</span> <span class="n">Rv32</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="n">SE64</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">15</span><span class="p">:</span><span class="mi">0</span><span class="p">]);</span> <span class="o">//</span> <span class="n">RV64</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p></p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q15__SAT__ALU_1ga96e244df43ec32a722a3562a0a59a6a6"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KHMBT(unsigned int a, unsigned int b)</code></dt>
+<dd><p>KHMBT (Signed Saturating Half Multiply B16 x T16) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KHMxy</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span> <span class="p">(</span><span class="n">xy</span> <span class="o">=</span> <span class="n">BB</span><span class="p">,</span> <span class="n">BT</span><span class="p">,</span> <span class="n">TT</span><span class="p">)</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Multiply the signed Q15 number contents of two 16-bit data in the corresponding portion of the lower 32-bit chunk in registers and then right-shift 15 bits to turn the Q30 result into a Q15 number again and saturate the Q15 result into the destination register. If saturation happens, an overflow flag OV will be set.</p>
+</p>
+<p><strong>Description</strong>:<p>Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1 with the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs2. The Q30 result is then right- shifted 15-bits and saturated into a Q15 value. The Q15 value is then sing-extended and written into Rd. When both the two Q15 inputs are 0x8000, saturation will happen. The result will be saturated to 0x7FFF and the overflow flag OV will be set.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aop</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="n">bop</span> <span class="o">=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="o">//</span> <span class="n">KHMBB</span>
+<span class="n">aop</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="n">bop</span> <span class="o">=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="o">//</span> <span class="n">KHMBT</span>
+<span class="n">aop</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="n">bop</span> <span class="o">=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="o">//</span> <span class="n">KHMTT</span>
+<span class="n">If</span> <span class="p">(</span><span class="mh">0x8000</span> <span class="o">!=</span> <span class="n">aop</span> <span class="o">|</span> <span class="mh">0x8000</span> <span class="o">!=</span> <span class="n">bop</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Mresult</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">aop</span> <span class="o">*</span> <span class="n">bop</span><span class="p">;</span>
+  <span class="n">res</span><span class="p">[</span><span class="mi">15</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Mresult</span><span class="p">[</span><span class="mi">30</span><span class="p">:</span><span class="mi">15</span><span class="p">];</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="n">res</span><span class="p">[</span><span class="mi">15</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x7FFF</span><span class="p">;</span>
+  <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="n">SE32</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">15</span><span class="p">:</span><span class="mi">0</span><span class="p">]);</span> <span class="o">//</span> <span class="n">Rv32</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="n">SE64</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">15</span><span class="p">:</span><span class="mi">0</span><span class="p">]);</span> <span class="o">//</span> <span class="n">RV64</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p></p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q15__SAT__ALU_1ga06a6deed6954a496ac381758e067e850"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KHMTT(unsigned int a, unsigned int b)</code></dt>
+<dd><p>KHMTT (Signed Saturating Half Multiply T16 x T16) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KHMxy</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span> <span class="p">(</span><span class="n">xy</span> <span class="o">=</span> <span class="n">BB</span><span class="p">,</span> <span class="n">BT</span><span class="p">,</span> <span class="n">TT</span><span class="p">)</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Multiply the signed Q15 number contents of two 16-bit data in the corresponding portion of the lower 32-bit chunk in registers and then right-shift 15 bits to turn the Q30 result into a Q15 number again and saturate the Q15 result into the destination register. If saturation happens, an overflow flag OV will be set.</p>
+</p>
+<p><strong>Description</strong>:<p>Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1 with the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs2. The Q30 result is then right- shifted 15-bits and saturated into a Q15 value. The Q15 value is then sing-extended and written into Rd. When both the two Q15 inputs are 0x8000, saturation will happen. The result will be saturated to 0x7FFF and the overflow flag OV will be set.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aop</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="n">bop</span> <span class="o">=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="o">//</span> <span class="n">KHMBB</span>
+<span class="n">aop</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="n">bop</span> <span class="o">=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="o">//</span> <span class="n">KHMBT</span>
+<span class="n">aop</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="n">bop</span> <span class="o">=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="o">//</span> <span class="n">KHMTT</span>
+<span class="n">If</span> <span class="p">(</span><span class="mh">0x8000</span> <span class="o">!=</span> <span class="n">aop</span> <span class="o">|</span> <span class="mh">0x8000</span> <span class="o">!=</span> <span class="n">bop</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Mresult</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">aop</span> <span class="o">*</span> <span class="n">bop</span><span class="p">;</span>
+  <span class="n">res</span><span class="p">[</span><span class="mi">15</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Mresult</span><span class="p">[</span><span class="mi">30</span><span class="p">:</span><span class="mi">15</span><span class="p">];</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="n">res</span><span class="p">[</span><span class="mi">15</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x7FFF</span><span class="p">;</span>
+  <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="n">SE32</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">15</span><span class="p">:</span><span class="mi">0</span><span class="p">]);</span> <span class="o">//</span> <span class="n">Rv32</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="n">SE64</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">15</span><span class="p">:</span><span class="mi">0</span><span class="p">]);</span> <span class="o">//</span> <span class="n">RV64</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p></p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q15__SAT__ALU_1gae30012cd8914b62f2fb84236b138f54f"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KSUBH(int a, int b)</code></dt>
+<dd><p>KSUBH (Signed Subtraction with Q15 Saturation) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KSUBH</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Subtract the signed lower 32-bit content of two registers with Q15 saturation.</p>
+</p>
+<p><strong>Description</strong>:<p>The signed lower 32-bit content of Rs2 is subtracted from the signed lower 32-bit content of Rs1. And the result is saturated to the 16-bit signed integer range of [-2^15, 2^15-1] and then sign-extended and written to Rd. If saturation happens, this instruction sets the OV flag.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">tmp</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">15</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">res</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">15</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">tmp</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">2</span><span class="o">^</span><span class="mi">15</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">res</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="o">^</span><span class="mi">15</span><span class="p">;</span>
+  <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="n">res</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="n">SE</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">15</span><span class="p">:</span><span class="mi">0</span><span class="p">]);</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p></p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q15__SAT__ALU_1gaf5a82ca7a98ea1c06cd7a468d035abcd"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UKADDH(unsigned int a, unsigned int b)</code></dt>
+<dd><p>UKADDH (Unsigned Addition with U16 Saturation) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UKADDH</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Add the unsigned lower 32-bit content of two registers with U16 saturation.</p>
+</p>
+<p><strong>Description</strong>:<p>The unsigned lower 32-bit content of Rs1 is added with the unsigned lower 32-bit content of Rs2. And the result is saturated to the 16-bit unsigned integer range of [0, 2^16-1] and then sign-extended and written to Rd. If saturation happens, this instruction sets the OV flag.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">tmp</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">16</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">16</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="n">SE</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="mi">15</span><span class="p">:</span><span class="mi">0</span><span class="p">]);</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p></p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q15__SAT__ALU_1ga8f7265e350aad977038169d60af14e55"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UKSUBH(unsigned int a, unsigned int b)</code></dt>
+<dd><p>UKSUBH (Unsigned Subtraction with U16 Saturation) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UKSUBH</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Subtract the unsigned lower 32-bit content of two registers with U16 saturation.</p>
+</p>
+<p><strong>Description</strong>:<p>The unsigned lower 32-bit content of Rs2 is subtracted from the unsigned lower 32-bit content of Rs1. And the result is saturated to the 16-bit unsigned integer range of [0, 2^16-1] and then sign-extended and written to Rd. If saturation happens, this instruction sets the OV flag.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">tmp</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">16</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">16</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">tmp</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">tmp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="n">SE</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="mi">15</span><span class="p">:</span><span class="mi">0</span><span class="p">]);</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p></p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api_nmsis_core_dsp_intrinsic_non_simd_q31_sat_alu.html" class="btn btn-neutral float-right" title="Non-SIMD Q31 saturation ALU Instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../api_nmsis_core_dsp_intrinsic_non_simd.html" class="btn btn-neutral float-left" title="Non-SIMD Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Nuclei
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

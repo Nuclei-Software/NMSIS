@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="group__MatrixSub" kind="group">
+    <compoundname>MatrixSub</compoundname>
+    <title>Matrix Subtraction</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__MatrixSub_1gab035be0f902e03f857e7161d603cc130" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>riscv_status</type>
+        <definition>riscv_status riscv_mat_sub_f32</definition>
+        <argsstring>(const riscv_matrix_instance_f32 *pSrcA, const riscv_matrix_instance_f32 *pSrcB, riscv_matrix_instance_f32 *pDst)</argsstring>
+        <name>riscv_mat_sub_f32</name>
+        <param>
+          <type>const <ref refid="structriscv__matrix__instance__f32" kindref="compound">riscv_matrix_instance_f32</ref> *</type>
+          <declname>pSrcA</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structriscv__matrix__instance__f32" kindref="compound">riscv_matrix_instance_f32</ref> *</type>
+          <declname>pSrcB</declname>
+        </param>
+        <param>
+          <type><ref refid="structriscv__matrix__instance__f32" kindref="compound">riscv_matrix_instance_f32</ref> *</type>
+          <declname>pDst</declname>
+        </param>
+        <briefdescription>
+<para>Floating-point matrix subtraction. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrcA</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the first input matrix structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrcB</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the second input matrix structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to output matrix structure </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>execution status<itemizedlist>
+<listitem><para>RISCV_MATH_SUCCESS : Operation successful</para></listitem><listitem><para>RISCV_MATH_SIZE_MISMATCH : Matrix size check failed </para></listitem></itemizedlist>
+</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/MatrixFunctions/riscv_mat_sub_f32.c" line="145" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/MatrixFunctions/riscv_mat_sub_f32.c" bodystart="145" bodyend="223"/>
+      </memberdef>
+      <memberdef kind="function" id="group__MatrixSub_1ga2d0e8484cb1c8b3252307abffd4c5664" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>riscv_status</type>
+        <definition>riscv_status riscv_mat_sub_q15</definition>
+        <argsstring>(const riscv_matrix_instance_q15 *pSrcA, const riscv_matrix_instance_q15 *pSrcB, riscv_matrix_instance_q15 *pDst)</argsstring>
+        <name>riscv_mat_sub_q15</name>
+        <param>
+          <type>const <ref refid="structriscv__matrix__instance__q15" kindref="compound">riscv_matrix_instance_q15</ref> *</type>
+          <declname>pSrcA</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structriscv__matrix__instance__q15" kindref="compound">riscv_matrix_instance_q15</ref> *</type>
+          <declname>pSrcB</declname>
+        </param>
+        <param>
+          <type><ref refid="structriscv__matrix__instance__q15" kindref="compound">riscv_matrix_instance_q15</ref> *</type>
+          <declname>pDst</declname>
+        </param>
+        <briefdescription>
+<para>Q15 matrix subtraction. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrcA</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the first input matrix structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrcB</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the second input matrix structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to output matrix structure </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>execution status<itemizedlist>
+<listitem><para>RISCV_MATH_SUCCESS : Operation successful</para></listitem><listitem><para>RISCV_MATH_SIZE_MISMATCH : Matrix size check failed</para></listitem></itemizedlist>
+</para></simplesect>
+<simplesect kind="par"><title>Scaling and Overflow Behavior</title><para>The function uses saturating arithmetic. Results outside of the allowable Q15 range [0x8000 0x7FFF] are saturated. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/MatrixFunctions/riscv_mat_sub_q15.c" line="55" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/MatrixFunctions/riscv_mat_sub_q15.c" bodystart="55" bodyend="141"/>
+      </memberdef>
+      <memberdef kind="function" id="group__MatrixSub_1ga09b9e40794c869340710b03966a95710" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>riscv_status</type>
+        <definition>riscv_status riscv_mat_sub_q31</definition>
+        <argsstring>(const riscv_matrix_instance_q31 *pSrcA, const riscv_matrix_instance_q31 *pSrcB, riscv_matrix_instance_q31 *pDst)</argsstring>
+        <name>riscv_mat_sub_q31</name>
+        <param>
+          <type>const <ref refid="structriscv__matrix__instance__q31" kindref="compound">riscv_matrix_instance_q31</ref> *</type>
+          <declname>pSrcA</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structriscv__matrix__instance__q31" kindref="compound">riscv_matrix_instance_q31</ref> *</type>
+          <declname>pSrcB</declname>
+        </param>
+        <param>
+          <type><ref refid="structriscv__matrix__instance__q31" kindref="compound">riscv_matrix_instance_q31</ref> *</type>
+          <declname>pDst</declname>
+        </param>
+        <briefdescription>
+<para>Q31 matrix subtraction. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrcA</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the first input matrix structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrcB</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the second input matrix structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to output matrix structure </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>execution status<itemizedlist>
+<listitem><para>RISCV_MATH_SUCCESS : Operation successful</para></listitem><listitem><para>RISCV_MATH_SIZE_MISMATCH : Matrix size check failed</para></listitem></itemizedlist>
+</para></simplesect>
+<simplesect kind="par"><title>Scaling and Overflow Behavior</title><para>The function uses saturating arithmetic. Results outside of the allowable Q31 range [0x80000000 0x7FFFFFFF] are saturated. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/MatrixFunctions/riscv_mat_sub_q31.c" line="55" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/MatrixFunctions/riscv_mat_sub_q31.c" bodystart="55" bodyend="136"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Subtract two matrices. <image type="html" name="MatrixSubtraction.png">Subraction of two 3 x 3 matrices</image>
+ The functions check to make sure that <computeroutput>pSrcA</computeroutput>, <computeroutput>pSrcB</computeroutput>, and <computeroutput>pDst</computeroutput> have the same number of rows and columns. </para>    </detaileddescription>
+  </compounddef>
+</doxygen>

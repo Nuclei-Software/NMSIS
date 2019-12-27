@@ -1,0 +1,698 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>SIMD 8-bit Unpacking Instructions &mdash; NMSIS 1.0.0-alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Non-SIMD Instructions" href="../api_nmsis_core_dsp_intrinsic_non_simd.html" />
+    <link rel="prev" title="SIMD 8-bit Miscellaneous Instructions" href="api_nmsis_core_dsp_intrinsic_simd_8b_misc.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">NMSIS Core</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../get_started.html">Using NMSIS in Embedded Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../core_templates.html">NMSIS-Core Device Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../register_mapping.html">Register Mapping</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">NMSIS Core API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../core_version_control.html">Version Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_compiler_control.html">Compiler Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_csr_access.html">Core CSR Register Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_csr_encoding.html">Core CSR Encoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_register_type.html">Register Define and Type Definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_intrinsics.html">CPU Intrinsic Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_simd_data_process.html">SIMD Data Processing Instructions</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_simd_16b_addsub.html">SIMD 16-bit Add/Subtract Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_simd_16b_shift.html">SIMD 16-bit Shift Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_simd_8b_shift.html">SIMD 8-bit Shift Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_simd_16b_cmp.html">SIMD 16-bit Compare Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_simd_8b_cmp.html">SIMD 8-bit Compare Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_simd_16b_multiply.html">SIMD 16-bit Multiply Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_simd_8b_multiply.html">SIMD 8-bit Multiply Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_simd_16b_misc.html">SIMD 16-bit Miscellaneous Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_simd_8b_misc.html">SIMD 8-bit Miscellaneous Instructions</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">SIMD 8-bit Unpacking Instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_non_simd.html">Non-SIMD Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_part_simd_data_process.html">Partial-SIMD Data Processing Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_64b_profile.html">64-bit Profile Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_nuclei_custom.html">Nuclei Customized DSP Instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_periph_access.html">Peripheral Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_systick.html">Systick Timer(SysTimer)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_interrupt_exception.html">Interrupts and Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_fpu.html">FPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_pmp.html">PMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_cache.html">Cache Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_system_device.html">System Device Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_arm_compatiable.html">ARM Compatiable Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">NMSIS Core</a> &raquo;</li>
+        
+          <li><a href="../../index.html">NMSIS Core API</a> &raquo;</li>
+        
+          <li><a href="../../api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a> &raquo;</li>
+        
+          <li><a href="../api_nmsis_core_dsp_intrinsic_simd_data_process.html">SIMD Data Processing Instructions</a> &raquo;</li>
+        
+      <li>SIMD 8-bit Unpacking Instructions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../_sources/core/api/nmsis_core_dsp_intrinsic/nmsis_core_dsp_intrinsic_simd_data_process/api_nmsis_core_dsp_intrinsic_simd_8b_unpack.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="simd-8-bit-unpacking-instructions">
+<span id="nmsis-core-api-simd-8-bit-unpacking-instructions"></span><h1>SIMD 8-bit Unpacking Instructions<a class="headerlink" href="#simd-8-bit-unpacking-instructions" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1gaecdd51db17293a1d12d85a6bb0cd4abe"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SUNPKD810(unsigned long a)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga922f7523e4d512fe391795edd7a81239"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SUNPKD820(unsigned long a)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga8d213189a39651f3bcad77da2eb1f530"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SUNPKD830(unsigned long a)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1gad3da1a88ec99f6c5733a3035d26b3bbf"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SUNPKD831(unsigned long a)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga869283b10c6656ef6b529487d244449c"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SUNPKD832(unsigned long a)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga0deca77382416530ac829ea0a18d36a5"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_ZUNPKD810(unsigned long a)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga0a124400d7a60b3f860c73b2ef10f753"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_ZUNPKD820(unsigned long a)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga2ffff9289e72fb5163731af36b82bd96"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_ZUNPKD830(unsigned long a)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga833374dc8db34294d48e728512a2068f"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_ZUNPKD831(unsigned long a)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga7fdf5939f3c0be0a64c2659b930a9faa"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_ZUNPKD832(unsigned long a)</code></dt>
+<dd></dd></dl>
+
+<dl class="group">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK"></span><em>group</em> <code class="sig-name descname">NMSIS_Core_DSP_Intrinsic_SIMD_8B_UNPACK</code></dt>
+<dd><p>SIMD 8-bit Unpacking Instructions. </p>
+<p>there are 8 SIMD 8-bit Unpacking instructions. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1gaecdd51db17293a1d12d85a6bb0cd4abe"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SUNPKD810(unsigned long a)</code></dt>
+<dd><p>SUNPKD810 (Signed Unpacking Bytes 1 &amp; 0) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SUNPKD8xy</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span>
+<span class="n">xy</span> <span class="o">=</span> <span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">32</span><span class="p">}</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Unpack byte </p>
+<em>x and byte y</em> of 32-bit chunks in a register into two 16-bit signed halfwords of 32-bit chunks in a register.</p>
+<p><strong>Description</strong>:<p>For the </p>
+<code class="docutils literal notranslate"><span class="pre">SUNPKD8(x)(*y*)</span></code> instruction, it unpacks byte <em>x and byte y</em> of 32-bit chunks in Rs1 into two 16-bit signed halfwords and writes the results to the top part and the bottom part of 32-bit chunks in Rd.</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">SE16</span><span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+<span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">SE16</span><span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
+<span class="o">//</span> <span class="n">SUNPKD810</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">//</span> <span class="n">SUNPKD820</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">//</span> <span class="n">SUNPKD830</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">//</span> <span class="n">SUNPKD831</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">1</span>
+<span class="o">//</span> <span class="n">SUNPKD832</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">2</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">m</span><span class="o">=</span><span class="mf">1.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p></p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga922f7523e4d512fe391795edd7a81239"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SUNPKD820(unsigned long a)</code></dt>
+<dd><p>SUNPKD820 (Signed Unpacking Bytes 2 &amp; 0) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SUNPKD8xy</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span>
+<span class="n">xy</span> <span class="o">=</span> <span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">32</span><span class="p">}</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Unpack byte </p>
+<em>x and byte y</em> of 32-bit chunks in a register into two 16-bit signed halfwords of 32-bit chunks in a register.</p>
+<p><strong>Description</strong>:<p>For the </p>
+<code class="docutils literal notranslate"><span class="pre">SUNPKD8(x)(*y*)</span></code> instruction, it unpacks byte <em>x and byte y</em> of 32-bit chunks in Rs1 into two 16-bit signed halfwords and writes the results to the top part and the bottom part of 32-bit chunks in Rd.</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">SE16</span><span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+<span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">SE16</span><span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
+<span class="o">//</span> <span class="n">SUNPKD810</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">//</span> <span class="n">SUNPKD820</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">//</span> <span class="n">SUNPKD830</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">//</span> <span class="n">SUNPKD831</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">1</span>
+<span class="o">//</span> <span class="n">SUNPKD832</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">2</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">m</span><span class="o">=</span><span class="mf">1.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p></p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga8d213189a39651f3bcad77da2eb1f530"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SUNPKD830(unsigned long a)</code></dt>
+<dd><p>SUNPKD830 (Signed Unpacking Bytes 3 &amp; 0) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SUNPKD8xy</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span>
+<span class="n">xy</span> <span class="o">=</span> <span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">32</span><span class="p">}</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Unpack byte </p>
+<em>x and byte y</em> of 32-bit chunks in a register into two 16-bit signed halfwords of 32-bit chunks in a register.</p>
+<p><strong>Description</strong>:<p>For the </p>
+<code class="docutils literal notranslate"><span class="pre">SUNPKD8(x)(*y*)</span></code> instruction, it unpacks byte <em>x and byte y</em> of 32-bit chunks in Rs1 into two 16-bit signed halfwords and writes the results to the top part and the bottom part of 32-bit chunks in Rd.</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">SE16</span><span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+<span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">SE16</span><span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
+<span class="o">//</span> <span class="n">SUNPKD810</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">//</span> <span class="n">SUNPKD820</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">//</span> <span class="n">SUNPKD830</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">//</span> <span class="n">SUNPKD831</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">1</span>
+<span class="o">//</span> <span class="n">SUNPKD832</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">2</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">m</span><span class="o">=</span><span class="mf">1.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p></p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1gad3da1a88ec99f6c5733a3035d26b3bbf"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SUNPKD831(unsigned long a)</code></dt>
+<dd><p>SUNPKD831 (Signed Unpacking Bytes 3 &amp; 1) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SUNPKD8xy</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span>
+<span class="n">xy</span> <span class="o">=</span> <span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">32</span><span class="p">}</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Unpack byte </p>
+<em>x and byte y</em> of 32-bit chunks in a register into two 16-bit signed halfwords of 32-bit chunks in a register.</p>
+<p><strong>Description</strong>:<p>For the </p>
+<code class="docutils literal notranslate"><span class="pre">SUNPKD8(x)(*y*)</span></code> instruction, it unpacks byte <em>x and byte y</em> of 32-bit chunks in Rs1 into two 16-bit signed halfwords and writes the results to the top part and the bottom part of 32-bit chunks in Rd.</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">SE16</span><span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+<span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">SE16</span><span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
+<span class="o">//</span> <span class="n">SUNPKD810</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">//</span> <span class="n">SUNPKD820</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">//</span> <span class="n">SUNPKD830</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">//</span> <span class="n">SUNPKD831</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">1</span>
+<span class="o">//</span> <span class="n">SUNPKD832</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">2</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">m</span><span class="o">=</span><span class="mf">1.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p></p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga869283b10c6656ef6b529487d244449c"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SUNPKD832(unsigned long a)</code></dt>
+<dd><p>SUNPKD832 (Signed Unpacking Bytes 3 &amp; 2) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SUNPKD8xy</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span>
+<span class="n">xy</span> <span class="o">=</span> <span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">32</span><span class="p">}</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Unpack byte </p>
+<em>x and byte y</em> of 32-bit chunks in a register into two 16-bit signed halfwords of 32-bit chunks in a register.</p>
+<p><strong>Description</strong>:<p>For the </p>
+<code class="docutils literal notranslate"><span class="pre">SUNPKD8(x)(*y*)</span></code> instruction, it unpacks byte <em>x and byte y</em> of 32-bit chunks in Rs1 into two 16-bit signed halfwords and writes the results to the top part and the bottom part of 32-bit chunks in Rd.</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">SE16</span><span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+<span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">SE16</span><span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
+<span class="o">//</span> <span class="n">SUNPKD810</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">//</span> <span class="n">SUNPKD820</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">//</span> <span class="n">SUNPKD830</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">//</span> <span class="n">SUNPKD831</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">1</span>
+<span class="o">//</span> <span class="n">SUNPKD832</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">2</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">m</span><span class="o">=</span><span class="mf">1.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p></p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga0deca77382416530ac829ea0a18d36a5"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_ZUNPKD810(unsigned long a)</code></dt>
+<dd><p>ZUNPKD810 (Unsigned Unpacking Bytes 1 &amp; 0) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ZUNPKD8xy</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span>
+<span class="n">xy</span> <span class="o">=</span> <span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">32</span><span class="p">}</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Unpack byte x and byte y of 32-bit chunks in a register into two 16-bit unsigned halfwords of 32-bit chunks in a register.</p>
+</p>
+<p><strong>Description</strong>:<p>For the </p>
+<code class="docutils literal notranslate"><span class="pre">ZUNPKD8(x)(*y*)</span></code> instruction, it unpacks byte <em>x and byte y</em> of 32-bit chunks in Rs1 into two 16-bit unsigned halfwords and writes the results to the top part and the bottom part of 32-bit chunks in Rd.</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ZE16</span><span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+<span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">ZE16</span><span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
+<span class="o">//</span> <span class="n">ZUNPKD810</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">//</span> <span class="n">ZUNPKD820</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">//</span> <span class="n">ZUNPKD830</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">//</span> <span class="n">ZUNPKD831</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">1</span>
+<span class="o">//</span> <span class="n">ZUNPKD832</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">2</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">m</span><span class="o">=</span><span class="mf">1.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p></p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga0a124400d7a60b3f860c73b2ef10f753"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_ZUNPKD820(unsigned long a)</code></dt>
+<dd><p>ZUNPKD820 (Unsigned Unpacking Bytes 2 &amp; 0) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ZUNPKD8xy</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span>
+<span class="n">xy</span> <span class="o">=</span> <span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">32</span><span class="p">}</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Unpack byte x and byte y of 32-bit chunks in a register into two 16-bit unsigned halfwords of 32-bit chunks in a register.</p>
+</p>
+<p><strong>Description</strong>:<p>For the </p>
+<code class="docutils literal notranslate"><span class="pre">ZUNPKD8(x)(*y*)</span></code> instruction, it unpacks byte <em>x and byte y</em> of 32-bit chunks in Rs1 into two 16-bit unsigned halfwords and writes the results to the top part and the bottom part of 32-bit chunks in Rd.</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ZE16</span><span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+<span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">ZE16</span><span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
+<span class="o">//</span> <span class="n">ZUNPKD810</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">//</span> <span class="n">ZUNPKD820</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">//</span> <span class="n">ZUNPKD830</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">//</span> <span class="n">ZUNPKD831</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">1</span>
+<span class="o">//</span> <span class="n">ZUNPKD832</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">2</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">m</span><span class="o">=</span><span class="mf">1.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p></p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga2ffff9289e72fb5163731af36b82bd96"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_ZUNPKD830(unsigned long a)</code></dt>
+<dd><p>ZUNPKD830 (Unsigned Unpacking Bytes 3 &amp; 0) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ZUNPKD8xy</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span>
+<span class="n">xy</span> <span class="o">=</span> <span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">32</span><span class="p">}</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Unpack byte x and byte y of 32-bit chunks in a register into two 16-bit unsigned halfwords of 32-bit chunks in a register.</p>
+</p>
+<p><strong>Description</strong>:<p>For the </p>
+<code class="docutils literal notranslate"><span class="pre">ZUNPKD8(x)(*y*)</span></code> instruction, it unpacks byte <em>x and byte y</em> of 32-bit chunks in Rs1 into two 16-bit unsigned halfwords and writes the results to the top part and the bottom part of 32-bit chunks in Rd.</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ZE16</span><span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+<span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">ZE16</span><span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
+<span class="o">//</span> <span class="n">ZUNPKD810</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">//</span> <span class="n">ZUNPKD820</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">//</span> <span class="n">ZUNPKD830</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">//</span> <span class="n">ZUNPKD831</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">1</span>
+<span class="o">//</span> <span class="n">ZUNPKD832</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">2</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">m</span><span class="o">=</span><span class="mf">1.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p></p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga833374dc8db34294d48e728512a2068f"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_ZUNPKD831(unsigned long a)</code></dt>
+<dd><p>ZUNPKD831 (Unsigned Unpacking Bytes 3 &amp; 1) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ZUNPKD8xy</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span>
+<span class="n">xy</span> <span class="o">=</span> <span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">32</span><span class="p">}</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Unpack byte x and byte y of 32-bit chunks in a register into two 16-bit unsigned halfwords of 32-bit chunks in a register.</p>
+</p>
+<p><strong>Description</strong>:<p>For the </p>
+<code class="docutils literal notranslate"><span class="pre">ZUNPKD8(x)(*y*)</span></code> instruction, it unpacks byte <em>x and byte y</em> of 32-bit chunks in Rs1 into two 16-bit unsigned halfwords and writes the results to the top part and the bottom part of 32-bit chunks in Rd.</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ZE16</span><span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+<span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">ZE16</span><span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
+<span class="o">//</span> <span class="n">ZUNPKD810</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">//</span> <span class="n">ZUNPKD820</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">//</span> <span class="n">ZUNPKD830</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">//</span> <span class="n">ZUNPKD831</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">1</span>
+<span class="o">//</span> <span class="n">ZUNPKD832</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">2</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">m</span><span class="o">=</span><span class="mf">1.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p></p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK_1ga7fdf5939f3c0be0a64c2659b930a9faa"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_ZUNPKD832(unsigned long a)</code></dt>
+<dd><p>ZUNPKD832 (Unsigned Unpacking Bytes 3 &amp; 2) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ZUNPKD8xy</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span>
+<span class="n">xy</span> <span class="o">=</span> <span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">32</span><span class="p">}</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Unpack byte x and byte y of 32-bit chunks in a register into two 16-bit unsigned halfwords of 32-bit chunks in a register.</p>
+</p>
+<p><strong>Description</strong>:<p>For the </p>
+<code class="docutils literal notranslate"><span class="pre">ZUNPKD8(x)(*y*)</span></code> instruction, it unpacks byte <em>x and byte y</em> of 32-bit chunks in Rs1 into two 16-bit unsigned halfwords and writes the results to the top part and the bottom part of 32-bit chunks in Rd.</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ZE16</span><span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+<span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">ZE16</span><span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
+<span class="o">//</span> <span class="n">ZUNPKD810</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">//</span> <span class="n">ZUNPKD820</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">//</span> <span class="n">ZUNPKD830</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">//</span> <span class="n">ZUNPKD831</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">1</span>
+<span class="o">//</span> <span class="n">ZUNPKD832</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">2</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">m</span><span class="o">=</span><span class="mf">1.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p></p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../api_nmsis_core_dsp_intrinsic_non_simd.html" class="btn btn-neutral float-right" title="Non-SIMD Instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api_nmsis_core_dsp_intrinsic_simd_8b_misc.html" class="btn btn-neutral float-left" title="SIMD 8-bit Miscellaneous Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Nuclei
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

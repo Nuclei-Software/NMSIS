@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="group__SinCos" kind="group">
+    <compoundname>SinCos</compoundname>
+    <title>Sine Cosine</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__SinCos_1ga6742f15b5a6fc25f9406b8288c499ca9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_sin_cos_f32</definition>
+        <argsstring>(float32_t theta, float32_t *pSinVal, float32_t *pCosVal)</argsstring>
+        <name>riscv_sin_cos_f32</name>
+        <param>
+          <type>float32_t</type>
+          <declname>theta</declname>
+        </param>
+        <param>
+          <type>float32_t *</type>
+          <declname>pSinVal</declname>
+        </param>
+        <param>
+          <type>float32_t *</type>
+          <declname>pCosVal</declname>
+        </param>
+        <briefdescription>
+<para>Floating-point sin_cos function. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">theta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>input value in degrees </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pSinVal</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to processed sine output </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pCosVal</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to processed cosine output </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/ControllerFunctions/riscv_sin_cos_f32.c" line="75" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/ControllerFunctions/riscv_sin_cos_f32.c" bodystart="75" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SinCos_1gaba44a82036931215a98b726da8fc28f8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_sin_cos_q31</definition>
+        <argsstring>(q31_t theta, q31_t *pSinVal, q31_t *pCosVal)</argsstring>
+        <name>riscv_sin_cos_q31</name>
+        <param>
+          <type>q31_t</type>
+          <declname>theta</declname>
+        </param>
+        <param>
+          <type>q31_t *</type>
+          <declname>pSinVal</declname>
+        </param>
+        <param>
+          <type>q31_t *</type>
+          <declname>pCosVal</declname>
+        </param>
+        <briefdescription>
+<para>Q31 sin_cos function. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">theta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>scaled input value in degrees </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pSinVal</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to processed sine output </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pCosVal</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to processed cosine output </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+The Q31 input value is in the range [-1 0.999999] and is mapped to a degree value in the range [-180 179]. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/ControllerFunctions/riscv_sin_cos_q31.c" line="52" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/ControllerFunctions/riscv_sin_cos_q31.c" bodystart="52" bodyend="107"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Computes the trigonometric sine and cosine values using a combination of table lookup and linear interpolation. There are separate functions for Q31 and floating-point data types. The input to the floating-point version is in degrees while the fixed-point Q31 have a scaled input with the range [-1 0.9999] mapping to [-180 +180] degrees.</para><para>The floating point function also allows values that are out of the usual range. When this happens, the function will take extra time to adjust the input value to the range of [-180 180].</para><para>The result is accurate to 5 digits after the decimal point.</para><para>The implementation is based on table lookup using 360 values together with linear interpolation. The steps used are:<orderedlist>
+<listitem><para>Calculation of the nearest integer table index.</para></listitem><listitem><para>Compute the fractional portion (fract) of the input.</para></listitem><listitem><para>Fetch the value corresponding to <computeroutput>index</computeroutput> from sine table to <computeroutput>y0</computeroutput> and also value from <computeroutput>index+1</computeroutput> to <computeroutput>y1</computeroutput>.</para></listitem><listitem><para>Sine value is computed as <computeroutput> *psinVal = y0 + (fract * (y1 - y0))</computeroutput>.</para></listitem><listitem><para>Fetch the value corresponding to <computeroutput>index</computeroutput> from cosine table to <computeroutput>y0</computeroutput> and also value from <computeroutput>index+1</computeroutput> to <computeroutput>y1</computeroutput>.</para></listitem><listitem><para>Cosine value is computed as <computeroutput> *pcosVal = y0 + (fract * (y1 - y0))</computeroutput>. </para></listitem></orderedlist>
+</para>    </detaileddescription>
+  </compounddef>
+</doxygen>

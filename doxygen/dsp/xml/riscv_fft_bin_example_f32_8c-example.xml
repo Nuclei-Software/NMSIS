@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="riscv_fft_bin_example_f32_8c-example" kind="example">
+    <compoundname>riscv_fft_bin_example_f32.c</compoundname>
+    <detaileddescription>
+<para><programlisting><codeline><highlight class="comment">/*<sp/>----------------------------------------------------------------------</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>Copyright<sp/>(C)<sp/>2010-2012<sp/>ARM<sp/>Limited.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2019<sp/>Nuclei<sp/>Limited.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline><highlight class="comment">*</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>$Date:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>17.<sp/>January<sp/>2013</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>$Revision:<sp/><sp/><sp/><sp/><sp/>V1.4.0</highlight></codeline>
+<codeline><highlight class="comment">*</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>Project:<sp/><sp/><sp/><sp/><sp/><sp/><sp/>NMSIS<sp/>DSP<sp/>Library</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>Title:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>riscv_fft_bin_example_f32.c</highlight></codeline>
+<codeline><highlight class="comment">*</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>Description:<sp/><sp/><sp/>Example<sp/>code<sp/>demonstrating<sp/>calculation<sp/>of<sp/>Max<sp/>energy<sp/>bin<sp/>of</highlight></codeline>
+<codeline><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frequency<sp/>domain<sp/>of<sp/>input<sp/>signal.</highlight></codeline>
+<codeline><highlight class="comment">*</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>Target<sp/>Processor:<sp/>RISC-V<sp/>Cores</highlight></codeline>
+<codeline><highlight class="comment">*</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>Redistribution<sp/>and<sp/>use<sp/>in<sp/>source<sp/>and<sp/>binary<sp/>forms,<sp/>with<sp/>or<sp/>without</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>modification,<sp/>are<sp/>permitted<sp/>provided<sp/>that<sp/>the<sp/>following<sp/>conditions</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>are<sp/>met:</highlight></codeline>
+<codeline><highlight class="comment">*<sp/><sp/><sp/>-<sp/>Redistributions<sp/>of<sp/>source<sp/>code<sp/>must<sp/>retain<sp/>the<sp/>above<sp/>copyright</highlight></codeline>
+<codeline><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer.</highlight></codeline>
+<codeline><highlight class="comment">*<sp/><sp/><sp/>-<sp/>Redistributions<sp/>in<sp/>binary<sp/>form<sp/>must<sp/>reproduce<sp/>the<sp/>above<sp/>copyright</highlight></codeline>
+<codeline><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer<sp/>in</highlight></codeline>
+<codeline><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/>the<sp/>documentation<sp/>and/or<sp/>other<sp/>materials<sp/>provided<sp/>with<sp/>the</highlight></codeline>
+<codeline><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/>distribution.</highlight></codeline>
+<codeline><highlight class="comment">*<sp/><sp/><sp/>-<sp/>Neither<sp/>the<sp/>name<sp/>of<sp/>ARM<sp/>LIMITED<sp/>nor<sp/>the<sp/>names<sp/>of<sp/>its<sp/>contributors</highlight></codeline>
+<codeline><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/>may<sp/>be<sp/>used<sp/>to<sp/>endorse<sp/>or<sp/>promote<sp/>products<sp/>derived<sp/>from<sp/>this</highlight></codeline>
+<codeline><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/>software<sp/>without<sp/>specific<sp/>prior<sp/>written<sp/>permission.</highlight></codeline>
+<codeline><highlight class="comment">*</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>THIS<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>BY<sp/>THE<sp/>COPYRIGHT<sp/>HOLDERS<sp/>AND<sp/>CONTRIBUTORS</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>ANY<sp/>EXPRESS<sp/>OR<sp/>IMPLIED<sp/>WARRANTIES,<sp/>INCLUDING,<sp/>BUT<sp/>NOT</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>LIMITED<sp/>TO,<sp/>THE<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF<sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE<sp/>ARE<sp/>DISCLAIMED.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>COPYRIGHT<sp/>OWNER<sp/>OR<sp/>CONTRIBUTORS<sp/>BE<sp/>LIABLE<sp/>FOR<sp/>ANY<sp/>DIRECT,<sp/>INDIRECT,</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>INCIDENTAL,<sp/>SPECIAL,<sp/>EXEMPLARY,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>(INCLUDING,</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>BUT<sp/>NOT<sp/>LIMITED<sp/>TO,<sp/>PROCUREMENT<sp/>OF<sp/>SUBSTITUTE<sp/>GOODS<sp/>OR<sp/>SERVICES;</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA,<sp/>OR<sp/>PROFITS;<sp/>OR<sp/>BUSINESS<sp/>INTERRUPTION)<sp/>HOWEVER</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>CAUSED<sp/>AND<sp/>ON<sp/>ANY<sp/>THEORY<sp/>OF<sp/>LIABILITY,<sp/>WHETHER<sp/>IN<sp/>CONTRACT,<sp/>STRICT</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>LIABILITY,<sp/>OR<sp/>TORT<sp/>(INCLUDING<sp/>NEGLIGENCE<sp/>OR<sp/>OTHERWISE)<sp/>ARISING<sp/>IN</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>ANY<sp/>WAY<sp/>OUT<sp/>OF<sp/>THE<sp/>USE<sp/>OF<sp/>THIS<sp/>SOFTWARE,<sp/>EVEN<sp/>IF<sp/>ADVISED<sp/>OF<sp/>THE</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>POSSIBILITY<sp/>OF<sp/>SUCH<sp/>DAMAGE.</highlight></codeline>
+<codeline><highlight class="comment"><sp/>*<sp/>--------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="preprocessor">#include<sp/>&quot;riscv_math.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;riscv_const_structs.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TEST_LENGTH_SAMPLES<sp/>2048</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>-------------------------------------------------------------------</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>External<sp/>Input<sp/>and<sp/>Output<sp/>buffer<sp/>Declarations<sp/>for<sp/>FFT<sp/>Bin<sp/>Example</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>-------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>float32_t<sp/>testInput_f32_10khz[TEST_LENGTH_SAMPLES];</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>float32_t<sp/>testOutput[TEST_LENGTH_SAMPLES/2];</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>------------------------------------------------------------------</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>Global<sp/>variables<sp/>for<sp/>FFT<sp/>Bin<sp/>Example</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>-------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">uint32_t<sp/>fftSize<sp/>=<sp/>1024;</highlight></codeline>
+<codeline><highlight class="normal">uint32_t<sp/>ifftFlag<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">uint32_t<sp/>doBitReverse<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Reference<sp/>index<sp/>at<sp/>which<sp/>max<sp/>energy<sp/>of<sp/>bin<sp/>ocuurs<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">uint32_t<sp/>refIndex<sp/>=<sp/>213,<sp/>testIndex<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>----------------------------------------------------------------------</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>Max<sp/>magnitude<sp/>FFT<sp/>Bin<sp/>test</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>-------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">int32_t<sp/>main(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>riscv_status<sp/>status;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>float32_t<sp/>maxValue;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>status<sp/>=<sp/>RISCV_MATH_SUCCESS;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Process<sp/>the<sp/>data<sp/>through<sp/>the<sp/>CFFT/CIFFT<sp/>module<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="group__ComplexFFT_1ga2e7afb704493463708fb1404c7a5bb5a" kindref="member">riscv_cfft_f32</ref>(&amp;riscv_cfft_sR_f32_len1024,<sp/>testInput_f32_10khz,<sp/>ifftFlag,<sp/>doBitReverse);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Process<sp/>the<sp/>data<sp/>through<sp/>the<sp/>Complex<sp/>Magnitude<sp/>Module<sp/>for</highlight></codeline>
+<codeline><highlight class="comment"><sp/><sp/>calculating<sp/>the<sp/>magnitude<sp/>at<sp/>each<sp/>bin<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="group__cmplx__mag_1gaced344ae0cd2f40f7afa5241b72c62a1" kindref="member">riscv_cmplx_mag_f32</ref>(testInput_f32_10khz,<sp/>testOutput,<sp/>fftSize);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Calculates<sp/>maxValue<sp/>and<sp/>returns<sp/>corresponding<sp/>BIN<sp/>value<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="group__Max_1gadfcdcdaa22ab2e21c1d74230d6462591" kindref="member">riscv_max_f32</ref>(testOutput,<sp/>fftSize,<sp/>&amp;maxValue,<sp/>&amp;testIndex);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(testIndex<sp/>!=<sp/><sp/>refIndex)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>=<sp/>RISCV_MATH_TEST_FAILURE;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>----------------------------------------------------------------------</highlight></codeline>
+<codeline><highlight class="comment"><sp/><sp/>**<sp/>Loop<sp/>here<sp/>if<sp/>the<sp/>signals<sp/>fail<sp/>the<sp/>PASS<sp/>check.</highlight></codeline>
+<codeline><highlight class="comment"><sp/><sp/>**<sp/>This<sp/>denotes<sp/>a<sp/>test<sp/>failure</highlight></codeline>
+<codeline><highlight class="comment"><sp/><sp/>**<sp/>-------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>status<sp/>!=<sp/>RISCV_MATH_SUCCESS)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;failed\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;passed\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+</programlisting> </para>    </detaileddescription>
+  </compounddef>
+</doxygen>

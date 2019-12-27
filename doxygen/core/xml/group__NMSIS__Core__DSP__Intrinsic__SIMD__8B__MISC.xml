@@ -1,0 +1,479 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC" kind="group">
+    <compoundname>NMSIS_Core_DSP_Intrinsic_SIMD_8B_MISC</compoundname>
+    <title>SIMD 8-bit Miscellaneous Instructions</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1ga439f0189dfb52d89887cd8905d4f5695" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_CLRS8</definition>
+        <argsstring>(unsigned long a)</argsstring>
+        <name>__RV_CLRS8</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+<para>CLRS8 (SIMD 8-bit Count Leading Redundant Sign) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">CLRS8<sp/>Rd,<sp/>Rs1</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Count the number of redundant sign bits of the 8-bit elements of a general register.</para><para><bold>Description</bold>:<linebreak/>
+Starting from the bits next to the sign bits of the 8-bit elements of Rs1, this instruction counts the number of redundant sign bits and writes the result to the corresponding 8-bit elements of Rd.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">snum[x]<sp/>=<sp/>Rs1.B[x];</highlight></codeline>
+<codeline><highlight class="normal">cnt[x]<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>(i<sp/>=<sp/>6<sp/>to<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>if<sp/>(snum[x](i)<sp/>==<sp/>snum[x](7))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>cnt[x]<sp/>=<sp/>cnt[x]<sp/>+<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>cnt[x];</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="686" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="686" bodyend="691"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1gaf9e26b273480fb62dd48b315270fb3d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_CLO8</definition>
+        <argsstring>(unsigned long a)</argsstring>
+        <name>__RV_CLO8</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+<para>CLO8 (SIMD 8-bit Count Leading One) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">CLO8<sp/>Rd,<sp/>Rs1</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Count the number of leading one bits of the 8-bit elements of a general register.</para><para><bold>Description</bold>:<linebreak/>
+Starting from the most significant bits of the 8-bit elements of Rs1, this instruction counts the number of leading one bits and writes the results to the corresponding 8-bit elements of Rd.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">snum[x]<sp/>=<sp/>Rs1.B[x];</highlight></codeline>
+<codeline><highlight class="normal">cnt[x]<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>for<sp/>(i<sp/>=<sp/>7<sp/>to<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>if<sp/>(snum[x](i)<sp/>==<sp/>1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>cnt[x]<sp/>=<sp/>cnt[x]<sp/>+<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>cnt[x];</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="827" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="827" bodyend="832"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1gac034821a27f8ab322a689b24ce1257a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_CLZ8</definition>
+        <argsstring>(unsigned long a)</argsstring>
+        <name>__RV_CLZ8</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+<para>CLZ8 (SIMD 8-bit Count Leading Zero) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">CLZ8<sp/>Rd,<sp/>Rs1</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Count the number of leading zero bits of the 8-bit elements of a general register.</para><para><bold>Description</bold>:<linebreak/>
+Starting from the most significant bits of the 8-bit elements of Rs1, this instruction counts the number of leading zero bits and writes the results to the corresponding 8-bit elements of Rd.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">snum[x]<sp/>=<sp/>Rs1.B[x];</highlight></codeline>
+<codeline><highlight class="normal">cnt[x]<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>(i<sp/>=<sp/>7<sp/>to<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>if<sp/>(snum[x](i)<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>cnt[x]<sp/>=<sp/>cnt[x]<sp/>+<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>cnt[x];</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="968" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="968" bodyend="973"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1ga0316d69cb7b16fe8571d11d53af50918" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_KABS8</definition>
+        <argsstring>(unsigned long a)</argsstring>
+        <name>__RV_KABS8</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+<para>KABS8 (SIMD 8-bit Saturating Absolute) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">KABS8<sp/>Rd,<sp/>Rs1</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Get the absolute value of 8-bit signed integer elements simultaneously.</para><para><bold>Description</bold>:<linebreak/>
+This instruction calculates the absolute value of 8-bit signed integer elements stored in Rs1 and writes the element results to Rd. If the input number is 0x80, this instruction generates 0x7f as the output and sets the OV bit to 1.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">src<sp/>=<sp/>Rs1.B[x];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(src<sp/>==<sp/>0x80)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>src<sp/>=<sp/>0x7f;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(src[7]<sp/>==<sp/>1)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>src<sp/>=<sp/>-src;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>src;</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="1322" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="1322" bodyend="1327"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1gaa595d7e87e2f435c0ceb0e9d8c20ee97" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_SCLIP8</definition>
+        <argsstring>(unsigned long a, unsigned int b)</argsstring>
+        <name>__RV_SCLIP8</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>SCLIP8 (SIMD 8-bit Signed Clip Value) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">SCLIP8<sp/>Rd,<sp/>Rs1,<sp/>imm3u[2:0]</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Limit the 8-bit signed integer elements of a register into a signed range simultaneously.</para><para><bold>Description</bold>:<linebreak/>
+This instruction limits the 8-bit signed integer elements stored in Rs1 into a signed integer range between 2^imm3u-1 and -2^imm3u, and writes the limited results to Rd. For example, if imm3u is 3, the 8-bit input values should be saturated between 7 and -8. If saturation is performed, set OV bit to 1.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">src<sp/>=<sp/>Rs1.B[x];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(src<sp/>&gt;<sp/>(2^imm3u)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>src<sp/>=<sp/>(2^imm3u)-1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(src<sp/>&lt;<sp/>-2^imm3u)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>src<sp/>=<sp/>-2^imm3u;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>src</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="6821" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="6821" bodyend="6826"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1gafc3ca4c25f1796c6c129b0a72fdb4ddc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_SMAX8</definition>
+        <argsstring>(unsigned long a, unsigned long b)</argsstring>
+        <name>__RV_SMAX8</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>SMAX8 (SIMD 8-bit Signed Maximum) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">SMAX8<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Do 8-bit signed integer elements finding maximum operations simultaneously.</para><para><bold>Description</bold>:<linebreak/>
+This instruction compares the 8-bit signed integer elements in Rs1 with the 8-bit signed integer elements in Rs2 and selects the numbers that is greater than the other one. The selected results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>(Rs1.B[x]<sp/>&gt;<sp/>Rs2.B[x])?<sp/>Rs1.B[x]<sp/>:<sp/>Rs2.B[x];</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="8164" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8164" bodyend="8169"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1ga3b9ace3565fb4cea93a55736046498e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_SMIN8</definition>
+        <argsstring>(unsigned long a, unsigned long b)</argsstring>
+        <name>__RV_SMIN8</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>SMIN8 (SIMD 8-bit Signed Minimum) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">SMIN8<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Do 8-bit signed integer elements finding minimum operations simultaneously.</para><para><bold>Description</bold>:<linebreak/>
+This instruction compares the 8-bit signed integer elements in Rs1 with the 8-bit signed integer elements in Rs2 and selects the numbers that is less than the other one. The selected results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>(Rs1.B[x]<sp/>&lt;<sp/>Rs2.B[x])?<sp/>Rs1.B[x]<sp/>:<sp/>Rs2.B[x];</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="8575" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="8575" bodyend="8580"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1gafed7823f6a501d256c3232bd8a1d85d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_UCLIP8</definition>
+        <argsstring>(unsigned long a, unsigned int b)</argsstring>
+        <name>__RV_UCLIP8</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>UCLIP8 (SIMD 8-bit Unsigned Clip Value) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">UCLIP8<sp/>Rt,<sp/>Ra,<sp/>imm3u</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Limit the 8-bit signed elements of a register into an unsigned range simultaneously.</para><para><bold>Description</bold>:<linebreak/>
+This instruction limits the 8-bit signed elements stored in Rs1 into an unsigned integer range between 2^imm3u-1 and 0, and writes the limited results to Rd. For example, if imm3u is 3, the 8- bit input values should be saturated between 7 and 0. If saturation is performed, set OV bit to 1.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">src<sp/>=<sp/>Rs1.H[x];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(src<sp/>&gt;<sp/>(2^imm3u)-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>src<sp/>=<sp/>(2^imm3u)-1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(src<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>src<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>OV<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">Rd.H[x]<sp/>=<sp/>src;</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="11005" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="11005" bodyend="11010"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1ga83c4e6f30012da45ea00703d8aafccbe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_UMAX8</definition>
+        <argsstring>(unsigned long a, unsigned long b)</argsstring>
+        <name>__RV_UMAX8</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>UMAX8 (SIMD 8-bit Unsigned Maximum) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">UMAX8<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Do 8-bit unsigned integer elements finding maximum operations simultaneously.</para><para><bold>Description</bold>:<linebreak/>
+This instruction compares the 8-bit unsigned integer elements in Rs1 with the four 8- bit unsigned integer elements in Rs2 and selects the numbers that is greater than the other one. The two selected results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>(Rs1.B[x]<sp/>&gt;u<sp/>Rs2.B[x])?<sp/>Rs1.B[x]<sp/>:<sp/>Rs2.B[x];</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="12227" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="12227" bodyend="12232"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1gaea0e139e2e2392c423aaf9f7f18056f2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_UMIN8</definition>
+        <argsstring>(unsigned long a, unsigned long b)</argsstring>
+        <name>__RV_UMIN8</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>UMIN8 (SIMD 8-bit Unsigned Minimum) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: SIMD</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">UMIN8<sp/>Rd,<sp/>Rs1,<sp/>Rs2</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+Do 8-bit unsigned integer elements finding minimum operations simultaneously.</para><para><bold>Description</bold>:<linebreak/>
+This instruction compares the 8-bit unsigned integer elements in Rs1 with the 8-bit unsigned integer elements in Rs2 and selects the numbers that is less than the other one. The selected results are written to Rd.</para><para><bold>Operations</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">Rd.B[x]<sp/>=<sp/>(Rs1.B[x]<sp/>&lt;u<sp/>Rs2.B[x])?<sp/>Rs1.B[x]<sp/>:<sp/>Rs2.B[x];</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV32:<sp/>x=3...0,</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>RV64:<sp/>x=7...0</highlight></codeline>
+</programlisting></para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="12305" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="12305" bodyend="12310"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>SIMD 8-bit Miscellaneous Instructions. </para>    </briefdescription>
+    <detaileddescription>
+<para>there are 10 SIMD 8-bit Miscellaneous instructions. </para>    </detaileddescription>
+  </compounddef>
+</doxygen>

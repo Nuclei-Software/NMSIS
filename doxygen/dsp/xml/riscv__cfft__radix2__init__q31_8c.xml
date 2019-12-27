@@ -1,0 +1,228 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="riscv__cfft__radix2__init__q31_8c" kind="file" language="C++">
+    <compoundname>riscv_cfft_radix2_init_q31.c</compoundname>
+    <includes refid="riscv__math_8h" local="yes">riscv_math.h</includes>
+    <includes refid="riscv__common__tables_8h" local="yes">riscv_common_tables.h</includes>
+    <includedby refid="TransformFunctions_8c" local="yes">TransformFunctions.c</includedby>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__ComplexFFT_1gaf86c4dc08d643e0aa7a9b056287c0857" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>riscv_status</type>
+        <definition>riscv_status riscv_cfft_radix2_init_q31</definition>
+        <argsstring>(riscv_cfft_radix2_instance_q31 *S, uint16_t fftLen, uint8_t ifftFlag, uint8_t bitReverseFlag)</argsstring>
+        <name>riscv_cfft_radix2_init_q31</name>
+        <param>
+          <type><ref refid="structriscv__cfft__radix2__instance__q31" kindref="compound">riscv_cfft_radix2_instance_q31</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>fftLen</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>ifftFlag</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>bitReverseFlag</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the Q31 CFFT/CIFFT. </para>        </briefdescription>
+        <detaileddescription>
+<para><xrefsect id="deprecated_1_deprecated000005"><xreftitle>Deprecated</xreftitle><xrefdescription><para>Do not use this function. It has been superseded by <ref refid="group__ComplexFFT_1ga5ff7e02a685c0cf6b0a93642488b4000" kindref="member">riscv_cfft_q31</ref> and will be removed in the future. </para></xrefdescription></xrefsect><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the Q31 CFFT/CIFFT structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">fftLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of the FFT </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">ifftFlag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>flag that selects transform direction<itemizedlist>
+<listitem><para>value = 0: forward transform</para></listitem><listitem><para>value = 1: inverse transform </para></listitem></itemizedlist>
+</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">bitReverseFlag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>flag that enables / disables bit reversal of output<itemizedlist>
+<listitem><para>value = 0: disables bit reversal of output</para></listitem><listitem><para>value = 1: enables bit reversal of output </para></listitem></itemizedlist>
+</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>execution status<itemizedlist>
+<listitem><para>RISCV_MATH_SUCCESS : Operation successful</para></listitem><listitem><para>RISCV_MATH_ARGUMENT_ERROR : <computeroutput>fftLen</computeroutput> is not a supported length</para></listitem></itemizedlist>
+</para></simplesect>
+<simplesect kind="par"><title>Details</title><para>The parameter <computeroutput>ifftFlag</computeroutput> controls whether a forward or inverse transform is computed. Set(=1) ifftFlag for calculation of CIFFT otherwise CFFT is calculated </para></simplesect>
+<simplesect kind="par"><title></title><para>The parameter <computeroutput>bitReverseFlag</computeroutput> controls whether output is in normal order or bit reversed order. Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order. </para></simplesect>
+<simplesect kind="par"><title></title><para>The parameter <computeroutput>fftLen</computeroutput> Specifies length of CFFT/CIFFT process. Supported FFT Lengths are 16, 64, 256, 1024. </para></simplesect>
+<simplesect kind="par"><title></title><para>This Function also initializes Twiddle factor table pointer and Bit reversal table pointer. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_cfft_radix2_init_q31.c" line="69" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_cfft_radix2_init_q31.c" bodystart="69" bodyend="176"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/>----------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>Project:<sp/><sp/><sp/><sp/><sp/><sp/>NMSIS<sp/>DSP<sp/>Library</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>Title:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>riscv_cfft_radix2_init_q31.c</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Description:<sp/><sp/>Radix-2<sp/>Decimation<sp/>in<sp/>Frequency<sp/>Fixed-point<sp/>CFFT<sp/>&amp;<sp/>CIFFT<sp/>Initialization<sp/>function</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>$Date:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>18.<sp/>March<sp/>2019</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>$Revision:<sp/><sp/><sp/><sp/>V1.6.0</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>Target<sp/>Processor:<sp/>RISC-V<sp/>cores</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>--------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(C)<sp/>2010-2019<sp/>ARM<sp/>Limited<sp/>or<sp/>its<sp/>affiliates.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2019<sp/>Nuclei<sp/>Limited.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/>SPDX-License-Identifier:<sp/>Apache-2.0</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/>Licensed<sp/>under<sp/>the<sp/>Apache<sp/>License,<sp/>Version<sp/>2.0<sp/>(the<sp/>License);<sp/>you<sp/>may</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/>not<sp/>use<sp/>this<sp/>file<sp/>except<sp/>in<sp/>compliance<sp/>with<sp/>the<sp/>License.</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/>You<sp/>may<sp/>obtain<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>License<sp/>at</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/>www.apache.org/licenses/LICENSE-2.0</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*<sp/>Unless<sp/>required<sp/>by<sp/>applicable<sp/>law<sp/>or<sp/>agreed<sp/>to<sp/>in<sp/>writing,<sp/>software</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*<sp/>distributed<sp/>under<sp/>the<sp/>License<sp/>is<sp/>distributed<sp/>on<sp/>an<sp/>AS<sp/>IS<sp/>BASIS,<sp/>WITHOUT</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*<sp/>WARRANTIES<sp/>OR<sp/>CONDITIONS<sp/>OF<sp/>ANY<sp/>KIND,<sp/>either<sp/>express<sp/>or<sp/>implied.</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*<sp/>See<sp/>the<sp/>License<sp/>for<sp/>the<sp/>specific<sp/>language<sp/>governing<sp/>permissions<sp/>and</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*<sp/>limitations<sp/>under<sp/>the<sp/>License.</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;riscv_math.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;riscv_common_tables.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal">riscv_status<sp/><ref refid="group__ComplexFFT_1gaf86c4dc08d643e0aa7a9b056287c0857" kindref="member">riscv_cfft_radix2_init_q31</ref>(</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><ref refid="structriscv__cfft__radix2__instance__q31" kindref="compound">riscv_cfft_radix2_instance_q31</ref><sp/>*<sp/>S,</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/>uint16_t<sp/>fftLen,</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/>uint8_t<sp/>ifftFlag,</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/>uint8_t<sp/>bitReverseFlag)</highlight></codeline>
+<codeline lineno="74"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Initialise<sp/>the<sp/>default<sp/>riscv<sp/>status<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/>riscv_status<sp/>status<sp/>=<sp/>RISCV_MATH_SUCCESS;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Initialise<sp/>the<sp/>FFT<sp/>length<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/>S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1a8c4c125ec3407a97a07342f0e767655d" kindref="member">fftLen</ref><sp/>=<sp/>fftLen;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Initialise<sp/>the<sp/>Twiddle<sp/>coefficient<sp/>pointer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/>S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1aa9391a844503838af986c203742c1e75" kindref="member">pTwiddle</ref><sp/>=<sp/>(q31_t<sp/>*)<sp/>twiddleCoef_4096_q31;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Initialise<sp/>the<sp/>Flag<sp/>for<sp/>selection<sp/>of<sp/>CFFT<sp/>or<sp/>CIFFT<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/>S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1a6f6ea103067fb2374082df1cf6ae7825" kindref="member">ifftFlag</ref><sp/>=<sp/>ifftFlag;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Initialise<sp/>the<sp/>Flag<sp/>for<sp/>calculation<sp/>Bit<sp/>reversal<sp/>or<sp/>not<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/>S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1ae0438ab59cdf3dbcd1edb1797c678a2a" kindref="member">bitReverseFlag</ref><sp/>=<sp/>bitReverseFlag;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Initializations<sp/>of<sp/>Instance<sp/>structure<sp/>depending<sp/>on<sp/>the<sp/>FFT<sp/>length<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1a8c4c125ec3407a97a07342f0e767655d" kindref="member">fftLen</ref>)</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Initializations<sp/>of<sp/>structure<sp/>parameters<sp/>for<sp/>4096<sp/>point<sp/>FFT<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>4096U:</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Initialise<sp/>the<sp/>twiddle<sp/>coef<sp/>modifier<sp/>value<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1a350d30b8680cde3a5e700b23495b5e58" kindref="member">twidCoefModifier</ref><sp/>=<sp/>1U;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Initialise<sp/>the<sp/>bit<sp/>reversal<sp/>table<sp/>modifier<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1ab8389b1c887eafab41132a6328e60f0e" kindref="member">bitRevFactor</ref><sp/>=<sp/>1U;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Initialise<sp/>the<sp/>bit<sp/>reversal<sp/>table<sp/>pointer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1a98c72e3722da16beb55fabf45a53fdf9" kindref="member">pBitRevTable</ref><sp/>=<sp/>(uint16_t<sp/>*)<sp/><ref refid="group__CFFT__CIFFT_1ga642762d611cf45f7fd6d172019558122" kindref="member">riscvBitRevTable</ref>;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Initializations<sp/>of<sp/>structure<sp/>parameters<sp/>for<sp/>2048<sp/>point<sp/>FFT<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>2048U:</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Initialise<sp/>the<sp/>twiddle<sp/>coef<sp/>modifier<sp/>value<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1a350d30b8680cde3a5e700b23495b5e58" kindref="member">twidCoefModifier</ref><sp/>=<sp/>2U;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Initialise<sp/>the<sp/>bit<sp/>reversal<sp/>table<sp/>modifier<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1ab8389b1c887eafab41132a6328e60f0e" kindref="member">bitRevFactor</ref><sp/>=<sp/>2U;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Initialise<sp/>the<sp/>bit<sp/>reversal<sp/>table<sp/>pointer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1a98c72e3722da16beb55fabf45a53fdf9" kindref="member">pBitRevTable</ref><sp/>=<sp/>(uint16_t<sp/>*)<sp/>&amp;<sp/><ref refid="group__CFFT__CIFFT_1ga642762d611cf45f7fd6d172019558122" kindref="member">riscvBitRevTable</ref>[1];</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Initializations<sp/>of<sp/>structure<sp/>parameters<sp/>for<sp/>1024<sp/>point<sp/>FFT<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>1024U:</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Initialise<sp/>the<sp/>twiddle<sp/>coef<sp/>modifier<sp/>value<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1a350d30b8680cde3a5e700b23495b5e58" kindref="member">twidCoefModifier</ref><sp/>=<sp/>4U;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Initialise<sp/>the<sp/>bit<sp/>reversal<sp/>table<sp/>modifier<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1ab8389b1c887eafab41132a6328e60f0e" kindref="member">bitRevFactor</ref><sp/>=<sp/>4U;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Initialise<sp/>the<sp/>bit<sp/>reversal<sp/>table<sp/>pointer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1a98c72e3722da16beb55fabf45a53fdf9" kindref="member">pBitRevTable</ref><sp/>=<sp/>(uint16_t<sp/>*)<sp/>&amp;<sp/><ref refid="group__CFFT__CIFFT_1ga642762d611cf45f7fd6d172019558122" kindref="member">riscvBitRevTable</ref>[3];</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Initializations<sp/>of<sp/>structure<sp/>parameters<sp/>for<sp/>512<sp/>point<sp/>FFT<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>512U:</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Initialise<sp/>the<sp/>twiddle<sp/>coef<sp/>modifier<sp/>value<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1a350d30b8680cde3a5e700b23495b5e58" kindref="member">twidCoefModifier</ref><sp/>=<sp/>8U;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Initialise<sp/>the<sp/>bit<sp/>reversal<sp/>table<sp/>modifier<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1ab8389b1c887eafab41132a6328e60f0e" kindref="member">bitRevFactor</ref><sp/>=<sp/>8U;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Initialise<sp/>the<sp/>bit<sp/>reversal<sp/>table<sp/>pointer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1a98c72e3722da16beb55fabf45a53fdf9" kindref="member">pBitRevTable</ref><sp/>=<sp/>(uint16_t<sp/>*)<sp/>&amp;<sp/><ref refid="group__CFFT__CIFFT_1ga642762d611cf45f7fd6d172019558122" kindref="member">riscvBitRevTable</ref>[7];</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>256U:</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Initializations<sp/>of<sp/>structure<sp/>parameters<sp/>for<sp/>256<sp/>point<sp/>FFT<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1a350d30b8680cde3a5e700b23495b5e58" kindref="member">twidCoefModifier</ref><sp/>=<sp/>16U;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1ab8389b1c887eafab41132a6328e60f0e" kindref="member">bitRevFactor</ref><sp/>=<sp/>16U;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1a98c72e3722da16beb55fabf45a53fdf9" kindref="member">pBitRevTable</ref><sp/>=<sp/>(uint16_t<sp/>*)<sp/>&amp;<sp/><ref refid="group__CFFT__CIFFT_1ga642762d611cf45f7fd6d172019558122" kindref="member">riscvBitRevTable</ref>[15];</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>128U:</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Initializations<sp/>of<sp/>structure<sp/>parameters<sp/>for<sp/>128<sp/>point<sp/>FFT<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1a350d30b8680cde3a5e700b23495b5e58" kindref="member">twidCoefModifier</ref><sp/>=<sp/>32U;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1ab8389b1c887eafab41132a6328e60f0e" kindref="member">bitRevFactor</ref><sp/>=<sp/>32U;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1a98c72e3722da16beb55fabf45a53fdf9" kindref="member">pBitRevTable</ref><sp/>=<sp/>(uint16_t<sp/>*)<sp/>&amp;<sp/><ref refid="group__CFFT__CIFFT_1ga642762d611cf45f7fd6d172019558122" kindref="member">riscvBitRevTable</ref>[31];</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>64U:</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Initializations<sp/>of<sp/>structure<sp/>parameters<sp/>for<sp/>64<sp/>point<sp/>FFT<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1a350d30b8680cde3a5e700b23495b5e58" kindref="member">twidCoefModifier</ref><sp/>=<sp/>64U;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1ab8389b1c887eafab41132a6328e60f0e" kindref="member">bitRevFactor</ref><sp/>=<sp/>64U;</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1a98c72e3722da16beb55fabf45a53fdf9" kindref="member">pBitRevTable</ref><sp/>=<sp/>(uint16_t<sp/>*)<sp/>&amp;<sp/><ref refid="group__CFFT__CIFFT_1ga642762d611cf45f7fd6d172019558122" kindref="member">riscvBitRevTable</ref>[63];</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>32U:</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Initializations<sp/>of<sp/>structure<sp/>parameters<sp/>for<sp/>32<sp/>point<sp/>FFT<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1a350d30b8680cde3a5e700b23495b5e58" kindref="member">twidCoefModifier</ref><sp/>=<sp/>128U;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1ab8389b1c887eafab41132a6328e60f0e" kindref="member">bitRevFactor</ref><sp/>=<sp/>128U;</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1a98c72e3722da16beb55fabf45a53fdf9" kindref="member">pBitRevTable</ref><sp/>=<sp/>(uint16_t<sp/>*)<sp/>&amp;<sp/><ref refid="group__CFFT__CIFFT_1ga642762d611cf45f7fd6d172019558122" kindref="member">riscvBitRevTable</ref>[127];</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>16U:</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Initializations<sp/>of<sp/>structure<sp/>parameters<sp/>for<sp/>16<sp/>point<sp/>FFT<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1a350d30b8680cde3a5e700b23495b5e58" kindref="member">twidCoefModifier</ref><sp/>=<sp/>256U;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1ab8389b1c887eafab41132a6328e60f0e" kindref="member">bitRevFactor</ref><sp/>=<sp/>256U;</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>S-&gt;<ref refid="structriscv__cfft__radix2__instance__q31_1a98c72e3722da16beb55fabf45a53fdf9" kindref="member">pBitRevTable</ref><sp/>=<sp/>(uint16_t<sp/>*)<sp/>&amp;<sp/><ref refid="group__CFFT__CIFFT_1ga642762d611cf45f7fd6d172019558122" kindref="member">riscvBitRevTable</ref>[255];</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Reporting<sp/>argument<sp/>error<sp/>if<sp/>fftSize<sp/>is<sp/>not<sp/>valid<sp/>value<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>=<sp/>RISCV_MATH_ARGUMENT_ERROR;</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(status);</highlight></codeline>
+<codeline lineno="176"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_cfft_radix2_init_q31.c"/>
+  </compounddef>
+</doxygen>

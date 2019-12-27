@@ -1,0 +1,333 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="riscv__rfft__fast__f32_8c" kind="file" language="C++">
+    <compoundname>riscv_rfft_fast_f32.c</compoundname>
+    <includes refid="riscv__math_8h" local="yes">riscv_math.h</includes>
+    <includedby refid="TransformFunctions_8c" local="yes">TransformFunctions.c</includedby>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="riscv__rfft__fast__f32_8c_1a13e8c92e4e1acee35eef76b338cfac97" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void stage_rfft_f32</definition>
+        <argsstring>(const riscv_rfft_fast_instance_f32 *S, float32_t *p, float32_t *pOut)</argsstring>
+        <name>stage_rfft_f32</name>
+        <param>
+          <type>const <ref refid="structriscv__rfft__fast__instance__f32" kindref="compound">riscv_rfft_fast_instance_f32</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>float32_t *</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>float32_t *</type>
+          <declname>pOut</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_fast_f32.c" line="32" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_fast_f32.c" bodystart="32" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="riscv__rfft__fast__f32_8c_1a48550af9bdf8fa40d53e9d89ee55f2dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void merge_rfft_f32</definition>
+        <argsstring>(const riscv_rfft_fast_instance_f32 *S, float32_t *p, float32_t *pOut)</argsstring>
+        <name>merge_rfft_f32</name>
+        <param>
+          <type>const <ref refid="structriscv__rfft__fast__instance__f32" kindref="compound">riscv_rfft_fast_instance_f32</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>float32_t *</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>float32_t *</type>
+          <declname>pOut</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_fast_f32.c" line="119" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_fast_f32.c" bodystart="119" bodyend="176"/>
+      </memberdef>
+      <memberdef kind="function" id="group__RealFFT_1ga7826c95c1a0f791c1b6e348b48d94658" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_rfft_fast_f32</definition>
+        <argsstring>(riscv_rfft_fast_instance_f32 *S, float32_t *p, float32_t *pOut, uint8_t ifftFlag)</argsstring>
+        <name>riscv_rfft_fast_f32</name>
+        <param>
+          <type><ref refid="structriscv__rfft__fast__instance__f32" kindref="compound">riscv_rfft_fast_instance_f32</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>float32_t *</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>float32_t *</type>
+          <declname>pOut</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>ifftFlag</declname>
+        </param>
+        <briefdescription>
+<para>Processing function for the floating-point real FFT. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an <ref refid="structriscv__rfft__fast__instance__f32" kindref="compound">riscv_rfft_fast_instance_f32</ref> structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to input buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pOut</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to output buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">ifftFlag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><itemizedlist>
+<listitem><para>value = 0: RFFT</para></listitem><listitem><para>value = 1: RIFFT </para></listitem></itemizedlist>
+</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_fast_f32.c" line="291" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_fast_f32.c" bodystart="291" bodyend="317"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/>----------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>Project:<sp/><sp/><sp/><sp/><sp/><sp/>NMSIS<sp/>DSP<sp/>Library</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>Title:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>riscv_rfft_f32.c</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Description:<sp/><sp/>RFFT<sp/>&amp;<sp/>RIFFT<sp/>Floating<sp/>point<sp/>process<sp/>function</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>$Date:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>18.<sp/>March<sp/>2019</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>$Revision:<sp/><sp/><sp/><sp/>V1.6.0</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>Target<sp/>Processor:<sp/>RISC-V<sp/>cores</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>--------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(C)<sp/>2010-2019<sp/>ARM<sp/>Limited<sp/>or<sp/>its<sp/>affiliates.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2019<sp/>Nuclei<sp/>Limited.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/>SPDX-License-Identifier:<sp/>Apache-2.0</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/>Licensed<sp/>under<sp/>the<sp/>Apache<sp/>License,<sp/>Version<sp/>2.0<sp/>(the<sp/>License);<sp/>you<sp/>may</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/>not<sp/>use<sp/>this<sp/>file<sp/>except<sp/>in<sp/>compliance<sp/>with<sp/>the<sp/>License.</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/>You<sp/>may<sp/>obtain<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>License<sp/>at</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/>www.apache.org/licenses/LICENSE-2.0</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*<sp/>Unless<sp/>required<sp/>by<sp/>applicable<sp/>law<sp/>or<sp/>agreed<sp/>to<sp/>in<sp/>writing,<sp/>software</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*<sp/>distributed<sp/>under<sp/>the<sp/>License<sp/>is<sp/>distributed<sp/>on<sp/>an<sp/>AS<sp/>IS<sp/>BASIS,<sp/>WITHOUT</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*<sp/>WARRANTIES<sp/>OR<sp/>CONDITIONS<sp/>OF<sp/>ANY<sp/>KIND,<sp/>either<sp/>express<sp/>or<sp/>implied.</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*<sp/>See<sp/>the<sp/>License<sp/>for<sp/>the<sp/>specific<sp/>language<sp/>governing<sp/>permissions<sp/>and</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*<sp/>limitations<sp/>under<sp/>the<sp/>License.</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;riscv_math.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>stage_rfft_f32(</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structriscv__rfft__fast__instance__f32" kindref="compound">riscv_rfft_fast_instance_f32</ref><sp/>*<sp/>S,</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32_t<sp/>*<sp/>p,</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32_t<sp/>*<sp/>pOut)</highlight></codeline>
+<codeline lineno="36"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32_t<sp/><sp/>k;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>Counter<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32_t<sp/>twR,<sp/>twI;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>RFFT<sp/>Twiddle<sp/>coefficients<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>float32_t<sp/>*<sp/>pCoeff<sp/>=<sp/>S-&gt;<ref refid="structriscv__rfft__fast__instance__f32_1a6e1d381fda067403acc2a3df3a89a1ea" kindref="member">pTwiddleRFFT</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Points<sp/>to<sp/>RFFT<sp/>Twiddle<sp/>factors<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32_t<sp/>*pA<sp/>=<sp/>p;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>increasing<sp/>pointer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32_t<sp/>*pB<sp/>=<sp/>p;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>decreasing<sp/>pointer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32_t<sp/>xAR,<sp/>xAI,<sp/>xBR,<sp/>xBI;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>temporary<sp/>variables<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32_t<sp/>t1a,<sp/>t1b;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>temporary<sp/>variables<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32_t<sp/>p0,<sp/>p1,<sp/>p2,<sp/>p3;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>temporary<sp/>variables<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/>k<sp/>=<sp/>(S-&gt;<ref refid="structriscv__rfft__fast__instance__f32_1a835fbf8afd7fc4a1b19cc9bc35e9ef38" kindref="member">Sint</ref>).fftLen<sp/>-<sp/>1;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Pack<sp/>first<sp/>and<sp/>last<sp/>sample<sp/>of<sp/>the<sp/>frequency<sp/>domain<sp/>together<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/>xBR<sp/>=<sp/>pB[0];</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/>xBI<sp/>=<sp/>pB[1];</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/>xAR<sp/>=<sp/>pA[0];</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/>xAI<sp/>=<sp/>pA[1];</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/>twR<sp/>=<sp/>*pCoeff++<sp/>;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/>twI<sp/>=<sp/>*pCoeff++<sp/>;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>U1<sp/>=<sp/>XA(1)<sp/>+<sp/>XB(1);<sp/>%<sp/>It<sp/>is<sp/>real</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/>t1a<sp/>=<sp/>xBR<sp/>+<sp/>xAR<sp/><sp/>;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>U2<sp/>=<sp/>XB(1)<sp/>-<sp/>XA(1);<sp/>%<sp/>It<sp/>is<sp/>imaginary</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/>t1b<sp/>=<sp/>xBI<sp/>+<sp/>xAI<sp/><sp/>;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>real(tw<sp/>*<sp/>(xB<sp/>-<sp/>xA))<sp/>=<sp/>twR<sp/>*<sp/>(xBR<sp/>-<sp/>xAR)<sp/>-<sp/>twI<sp/>*<sp/>(xBI<sp/>-<sp/>xAI);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>imag(tw<sp/>*<sp/>(xB<sp/>-<sp/>xA))<sp/>=<sp/>twI<sp/>*<sp/>(xBR<sp/>-<sp/>xAR)<sp/>+<sp/>twR<sp/>*<sp/>(xBI<sp/>-<sp/>xAI);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/>*pOut++<sp/>=<sp/>0.5f<sp/>*<sp/>(<sp/>t1a<sp/>+<sp/>t1b<sp/>);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/>*pOut++<sp/>=<sp/>0.5f<sp/>*<sp/>(<sp/>t1a<sp/>-<sp/>t1b<sp/>);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>XA(1)<sp/>=<sp/>1/2*(<sp/>U1<sp/>-<sp/>imag(U2)<sp/>+<sp/><sp/>i*(<sp/>U1<sp/>+imag(U2)<sp/>));</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/>pB<sp/><sp/>=<sp/>p<sp/>+<sp/>2*k;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/>pA<sp/>+=<sp/>2;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="77"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>function<sp/>X<sp/>=<sp/>my_split_rfft(X,<sp/>ifftFlag)</highlight></codeline>
+<codeline lineno="78"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>%<sp/>X<sp/>is<sp/>a<sp/>series<sp/>of<sp/>real<sp/>numbers</highlight></codeline>
+<codeline lineno="79"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>L<sp/><sp/>=<sp/>length(X);</highlight></codeline>
+<codeline lineno="80"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>XC<sp/>=<sp/>X(1:2:end)<sp/>+i*X(2:2:end);</highlight></codeline>
+<codeline lineno="81"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>XA<sp/>=<sp/>fft(XC);</highlight></codeline>
+<codeline lineno="82"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>XB<sp/>=<sp/>conj(XA([1<sp/>end:-1:2]));</highlight></codeline>
+<codeline lineno="83"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TW<sp/>=<sp/>i*exp(-2*pi*i*[0:L/2-1]/L).&apos;;</highlight></codeline>
+<codeline lineno="84"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for<sp/>l<sp/>=<sp/>2:L/2</highlight></codeline>
+<codeline lineno="85"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>XA(l)<sp/>=<sp/>1/2<sp/>*<sp/>(XA(l)<sp/>+<sp/>XB(l)<sp/>+<sp/>TW(l)<sp/>*<sp/>(XB(l)<sp/>-<sp/>XA(l)));</highlight></codeline>
+<codeline lineno="86"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>end</highlight></codeline>
+<codeline lineno="87"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>XA(1)<sp/>=<sp/>1/2*<sp/>(XA(1)<sp/>+<sp/>XB(1)<sp/>+<sp/>TW(1)<sp/>*<sp/>(XB(1)<sp/>-<sp/>XA(1)))<sp/>+<sp/>i*(<sp/>1/2*(<sp/>XA(1)<sp/>+<sp/>XB(1)<sp/>+<sp/>i*(<sp/>XA(1)<sp/>-<sp/>XB(1))));</highlight></codeline>
+<codeline lineno="88"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>X<sp/>=<sp/>XA;</highlight></codeline>
+<codeline lineno="89"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>xBI<sp/>=<sp/>pB[1];</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>xBR<sp/>=<sp/>pB[0];</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>xAR<sp/>=<sp/>pA[0];</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>xAI<sp/>=<sp/>pA[1];</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>twR<sp/>=<sp/>*pCoeff++;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>twI<sp/>=<sp/>*pCoeff++;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>t1a<sp/>=<sp/>xBR<sp/>-<sp/>xAR<sp/>;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>t1b<sp/>=<sp/>xBI<sp/>+<sp/>xAI<sp/>;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>real(tw<sp/>*<sp/>(xB<sp/>-<sp/>xA))<sp/>=<sp/>twR<sp/>*<sp/>(xBR<sp/>-<sp/>xAR)<sp/>-<sp/>twI<sp/>*<sp/>(xBI<sp/>-<sp/>xAI);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>imag(tw<sp/>*<sp/>(xB<sp/>-<sp/>xA))<sp/>=<sp/>twI<sp/>*<sp/>(xBR<sp/>-<sp/>xAR)<sp/>+<sp/>twR<sp/>*<sp/>(xBI<sp/>-<sp/>xAI);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>p0<sp/>=<sp/>twR<sp/>*<sp/>t1a;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>p1<sp/>=<sp/>twI<sp/>*<sp/>t1a;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>p2<sp/>=<sp/>twR<sp/>*<sp/>t1b;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>p3<sp/>=<sp/>twI<sp/>*<sp/>t1b;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pOut++<sp/>=<sp/>0.5f<sp/>*<sp/>(xAR<sp/>+<sp/>xBR<sp/>+<sp/>p0<sp/>+<sp/>p3<sp/>);<sp/></highlight><highlight class="comment">//xAR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pOut++<sp/>=<sp/>0.5f<sp/>*<sp/>(xAI<sp/>-<sp/>xBI<sp/>+<sp/>p1<sp/>-<sp/>p2<sp/>);<sp/></highlight><highlight class="comment">//xAI</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>pA<sp/>+=<sp/>2;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>pB<sp/>-=<sp/>2;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>k--;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(k<sp/>&gt;<sp/>0U);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Prepares<sp/>data<sp/>for<sp/>inverse<sp/>cfft<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>merge_rfft_f32(</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structriscv__rfft__fast__instance__f32" kindref="compound">riscv_rfft_fast_instance_f32</ref><sp/>*<sp/>S,</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32_t<sp/>*<sp/>p,</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32_t<sp/>*<sp/>pOut)</highlight></codeline>
+<codeline lineno="123"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32_t<sp/><sp/>k;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>Counter<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32_t<sp/>twR,<sp/>twI;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>RFFT<sp/>Twiddle<sp/>coefficients<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>float32_t<sp/>*pCoeff<sp/>=<sp/>S-&gt;<ref refid="structriscv__rfft__fast__instance__f32_1a6e1d381fda067403acc2a3df3a89a1ea" kindref="member">pTwiddleRFFT</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Points<sp/>to<sp/>RFFT<sp/>Twiddle<sp/>factors<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32_t<sp/>*pA<sp/>=<sp/>p;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>increasing<sp/>pointer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32_t<sp/>*pB<sp/>=<sp/>p;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>decreasing<sp/>pointer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32_t<sp/>xAR,<sp/>xAI,<sp/>xBR,<sp/>xBI;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>temporary<sp/>variables<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float32_t<sp/>t1a,<sp/>t1b,<sp/>r,<sp/>s,<sp/>t,<sp/>u;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>temporary<sp/>variables<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/>k<sp/>=<sp/>(S-&gt;<ref refid="structriscv__rfft__fast__instance__f32_1a835fbf8afd7fc4a1b19cc9bc35e9ef38" kindref="member">Sint</ref>).fftLen<sp/>-<sp/>1;</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/>xAR<sp/>=<sp/>pA[0];</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/>xAI<sp/>=<sp/>pA[1];</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/>pCoeff<sp/>+=<sp/>2<sp/>;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/>*pOut++<sp/>=<sp/>0.5f<sp/>*<sp/>(<sp/>xAR<sp/>+<sp/>xAI<sp/>);</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/>*pOut++<sp/>=<sp/>0.5f<sp/>*<sp/>(<sp/>xAR<sp/>-<sp/>xAI<sp/>);</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/>pB<sp/><sp/>=<sp/><sp/>p<sp/>+<sp/>2*k<sp/>;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/>pA<sp/>+=<sp/><sp/>2<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(k<sp/>&gt;<sp/>0U)</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>G<sp/>is<sp/>half<sp/>of<sp/>the<sp/>frequency<sp/>complex<sp/>spectrum<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//for<sp/>k<sp/>=<sp/>2:N</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>Xk(k)<sp/>=<sp/>1/2<sp/>*<sp/>(G(k)<sp/>+<sp/>conj(G(N-k+2))<sp/>+<sp/>Tw(k)*(<sp/>G(k)<sp/>-<sp/>conj(G(N-k+2))));</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>xBI<sp/>=<sp/><sp/><sp/>pB[1]<sp/><sp/><sp/><sp/>;</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>xBR<sp/>=<sp/><sp/><sp/>pB[0]<sp/><sp/><sp/><sp/>;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>xAR<sp/>=<sp/><sp/>pA[0];</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>xAI<sp/>=<sp/><sp/>pA[1];</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>twR<sp/>=<sp/>*pCoeff++;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>twI<sp/>=<sp/>*pCoeff++;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>t1a<sp/>=<sp/>xAR<sp/>-<sp/>xBR<sp/>;</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>t1b<sp/>=<sp/>xAI<sp/>+<sp/>xBI<sp/>;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>r<sp/>=<sp/>twR<sp/>*<sp/>t1a;</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>=<sp/>twI<sp/>*<sp/>t1b;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>t<sp/>=<sp/>twI<sp/>*<sp/>t1a;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>u<sp/>=<sp/>twR<sp/>*<sp/>t1b;</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>real(tw<sp/>*<sp/>(xA<sp/>-<sp/>xB))<sp/>=<sp/>twR<sp/>*<sp/>(xAR<sp/>-<sp/>xBR)<sp/>-<sp/>twI<sp/>*<sp/>(xAI<sp/>-<sp/>xBI);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>imag(tw<sp/>*<sp/>(xA<sp/>-<sp/>xB))<sp/>=<sp/>twI<sp/>*<sp/>(xAR<sp/>-<sp/>xBR)<sp/>+<sp/>twR<sp/>*<sp/>(xAI<sp/>-<sp/>xBI);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pOut++<sp/>=<sp/>0.5f<sp/>*<sp/>(xAR<sp/>+<sp/>xBR<sp/>-<sp/>r<sp/>-<sp/>s<sp/>);<sp/></highlight><highlight class="comment">//xAR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*pOut++<sp/>=<sp/>0.5f<sp/>*<sp/>(xAI<sp/>-<sp/>xBI<sp/>+<sp/>t<sp/>-<sp/>u<sp/>);<sp/></highlight><highlight class="comment">//xAI</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>pA<sp/>+=<sp/>2;</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>pB<sp/>-=<sp/>2;</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>k--;</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight></codeline>
+<codeline lineno="291"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__RealFFT_1ga7826c95c1a0f791c1b6e348b48d94658" kindref="member">riscv_rfft_fast_f32</ref>(</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><ref refid="structriscv__rfft__fast__instance__f32" kindref="compound">riscv_rfft_fast_instance_f32</ref><sp/>*<sp/>S,</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/>float32_t<sp/>*<sp/>p,</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/>float32_t<sp/>*<sp/>pOut,</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/>uint8_t<sp/>ifftFlag)</highlight></codeline>
+<codeline lineno="296"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><ref refid="structriscv__cfft__instance__f32" kindref="compound">riscv_cfft_instance_f32</ref><sp/>*<sp/>Sint<sp/>=<sp/>&amp;(S-&gt;<ref refid="structriscv__rfft__fast__instance__f32_1a835fbf8afd7fc4a1b19cc9bc35e9ef38" kindref="member">Sint</ref>);</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/>Sint-&gt;<ref refid="structriscv__cfft__instance__f32_1a76ca174826b1b075b634a70576620317" kindref="member">fftLen</ref><sp/>=<sp/>S-&gt;<ref refid="structriscv__rfft__fast__instance__f32_1ac4f87ddb2d73486b6372d740bcee4a6c" kindref="member">fftLenRFFT</ref><sp/>/<sp/>2;</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"></highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Calculation<sp/>of<sp/>Real<sp/>FFT<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ifftFlag)</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Real<sp/>FFT<sp/>compression<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>merge_rfft_f32(S,<sp/>p,<sp/>pOut);</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"></highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Complex<sp/>radix-4<sp/>IFFT<sp/>process<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="group__ComplexFFT_1ga2e7afb704493463708fb1404c7a5bb5a" kindref="member">riscv_cfft_f32</ref>(<sp/>Sint,<sp/>pOut,<sp/>ifftFlag,<sp/>1);</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Calculation<sp/>of<sp/>RFFT<sp/>of<sp/>input<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="group__ComplexFFT_1ga2e7afb704493463708fb1404c7a5bb5a" kindref="member">riscv_cfft_f32</ref>(<sp/>Sint,<sp/>p,<sp/>ifftFlag,<sp/>1);</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"></highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Real<sp/>FFT<sp/>extraction<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>stage_rfft_f32(S,<sp/>p,<sp/>pOut);</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="317"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="318"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/TransformFunctions/riscv_rfft_fast_f32.c"/>
+  </compounddef>
+</doxygen>

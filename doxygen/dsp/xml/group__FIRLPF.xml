@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="group__FIRLPF" kind="group">
+    <compoundname>FIRLPF</compoundname>
+    <title>FIR Lowpass Filter Example</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="par"><title>Description:</title><para></para></simplesect>
+<simplesect kind="par"><title></title><para>Removes high frequency signal components from the input using an FIR lowpass filter. The example demonstrates how to configure an FIR filter and then pass data through it in a block-by-block fashion. <image type="html" name="FIRLPF_signalflow.png"></image>
+</para></simplesect>
+<simplesect kind="par"><title>Algorithm:</title><para></para></simplesect>
+<simplesect kind="par"><title></title><para>The input signal is a sum of two sine waves: 1 kHz and 15 kHz. This is processed by an FIR lowpass filter with cutoff frequency 6 kHz. The lowpass filter eliminates the 15 kHz signal leaving only the 1 kHz sine wave at the output. </para></simplesect>
+<simplesect kind="par"><title></title><para>The lowpass filter was designed using MATLAB with a sample rate of 48 kHz and a length of 29 points. The MATLAB code to generate the filter coefficients is shown below: <preformatted>
+    h = fir1(28, 6/24);
+</preformatted> The first argument is the &quot;order&quot; of the filter and is always one less than the desired length. The second argument is the normalized cutoff frequency. This is in the range 0 (DC) to 1.0 (Nyquist). A 6 kHz cutoff with a Nyquist frequency of 24 kHz lies at a normalized frequency of 6/24 = 0.25. The NMSIS FIR filter function requires the coefficients to be in time reversed order. <preformatted>
+    fliplr(h)
+</preformatted> The resulting filter coefficients and are shown below. Note that the filter is symmetric (a property of linear phase FIR filters) and the point of symmetry is sample 14. Thus the filter will have a delay of 14 samples for all frequencies. </para></simplesect>
+<simplesect kind="par"><title></title><para><image type="html" name="FIRLPF_coeffs.png"></image>
+ </para></simplesect>
+<simplesect kind="par"><title></title><para>The frequency response of the filter is shown next. The passband gain of the filter is 1.0 and it reaches 0.5 at the cutoff frequency 6 kHz. </para></simplesect>
+<simplesect kind="par"><title></title><para><image type="html" name="FIRLPF_response.png"></image>
+ </para></simplesect>
+<simplesect kind="par"><title></title><para>The input signal is shown below. The left hand side shows the signal in the time domain while the right hand side is a frequency domain representation. The two sine wave components can be clearly seen. </para></simplesect>
+<simplesect kind="par"><title></title><para><image type="html" name="FIRLPF_input.png"></image>
+ </para></simplesect>
+<simplesect kind="par"><title></title><para>The output of the filter is shown below. The 15 kHz component has been eliminated. </para></simplesect>
+<simplesect kind="par"><title></title><para><image type="html" name="FIRLPF_output.png"></image>
+</para></simplesect>
+<simplesect kind="par"><title>Variables Description:</title><para></para></simplesect>
+<simplesect kind="par"><title></title><para><itemizedlist>
+<listitem><para><computeroutput>testInput_f32_1kHz_15kHz</computeroutput> points to the input data </para></listitem>
+<listitem><para><computeroutput>refOutput</computeroutput> points to the reference output data </para></listitem>
+<listitem><para><computeroutput>testOutput</computeroutput> points to the test output data </para></listitem>
+<listitem><para><computeroutput>firStateF32</computeroutput> points to state buffer </para></listitem>
+<listitem><para><computeroutput>firCoeffs32</computeroutput> points to coefficient buffer </para></listitem>
+<listitem><para><computeroutput>blockSize</computeroutput> number of samples processed at a time </para></listitem>
+<listitem><para><computeroutput>numBlocks</computeroutput> number of frames</para></listitem>
+</itemizedlist>
+</para></simplesect>
+<simplesect kind="par"><title>NMSIS DSP Software Library Functions Used:</title><para></para></simplesect>
+<simplesect kind="par"><title></title><para><itemizedlist>
+<listitem><para><ref refid="group__FIR_1gabc32b5613cbace1478d28da3654fd357" kindref="member">riscv_fir_init_f32()</ref></para></listitem><listitem><para><ref refid="group__FIR_1ga9609646d34fdf7b619a1dd845058e495" kindref="member">riscv_fir_f32()</ref></para></listitem></itemizedlist>
+</para></simplesect>
+<bold> Refer </bold> <ref refid="riscv_fir_example_f32_8c-example" kindref="compound">riscv_fir_example_f32.c</ref> </para>    </detaileddescription>
+  </compounddef>
+</doxygen>

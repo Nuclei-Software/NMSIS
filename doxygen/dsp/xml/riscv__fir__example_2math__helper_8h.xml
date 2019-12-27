@@ -1,0 +1,700 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="riscv__fir__example_2math__helper_8h" kind="file" language="C++">
+    <compoundname>riscv_fir_example/math_helper.h</compoundname>
+    <includes refid="riscv__math_8h" local="yes">riscv_math.h</includes>
+    <includedby refid="riscv__fir__example_2math__helper_8c" local="yes">math_helper.c</includedby>
+    <includedby refid="riscv__fir__example__f32_8c" local="yes">riscv_fir_example_f32.c</includedby>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="riscv__fir__example_2math__helper_8h_1a4602a606c6d250442323eedd7e1bfb52" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float riscv_snr_f32</definition>
+        <argsstring>(float *pRef, float *pTest, uint32_t buffSize)</argsstring>
+        <name>riscv_snr_f32</name>
+        <param>
+          <type>float *</type>
+          <declname>pRef</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>pTest</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>buffSize</declname>
+        </param>
+        <briefdescription>
+<para>Caluclation of SNR. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">pRef</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the reference buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pTest</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the test buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">buffSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>total number of samples </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>SNR The function Caluclates signal to noise ratio for the reference output and test output </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fir_example/math_helper.h" line="49" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_convolution_example/math_helper.c" bodystart="63" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="riscv__fir__example_2math__helper_8h_1ac6097a48b1f2e86ded772fb1d2b6465c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_float_to_q12_20</definition>
+        <argsstring>(float *pIn, q31_t *pOut, uint32_t numSamples)</argsstring>
+        <name>riscv_float_to_q12_20</name>
+        <param>
+          <type>float *</type>
+          <declname>pIn</declname>
+        </param>
+        <param>
+          <type>q31_t *</type>
+          <declname>pOut</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>numSamples</declname>
+        </param>
+        <briefdescription>
+<para>Converts float to fixed in q12.20 format. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">pIn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to input buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pOut</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to outputbuffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">numSamples</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples in the input buffer </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none The function converts floating point values to fixed point(q12.20) values </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fir_example/math_helper.h" line="50" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_convolution_example/math_helper.c" bodystart="141" bodyend="157"/>
+      </memberdef>
+      <memberdef kind="function" id="riscv__fir__example_2math__helper_8h_1af706a2b19b633aa275c17a12c7746445" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_provide_guard_bits_q15</definition>
+        <argsstring>(q15_t *input_buf, uint32_t blockSize, uint32_t guard_bits)</argsstring>
+        <name>riscv_provide_guard_bits_q15</name>
+        <param>
+          <type>q15_t *</type>
+          <declname>input_buf</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>guard_bits</declname>
+        </param>
+        <briefdescription>
+<para>Provide guard bits for Input buffer. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">input_buf</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to input buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>block Size </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">guard_bits</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>guard bits </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none The function Provides the guard bits for the buffer to avoid overflow </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fir_example/math_helper.h" line="51" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_convolution_example/math_helper.c" bodystart="121" bodyend="130"/>
+      </memberdef>
+      <memberdef kind="function" id="riscv__fir__example_2math__helper_8h_1a14e55014b9134798919d690a779a5b2e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_provide_guard_bits_q31</definition>
+        <argsstring>(q31_t *input_buf, uint32_t blockSize, uint32_t guard_bits)</argsstring>
+        <name>riscv_provide_guard_bits_q31</name>
+        <param>
+          <type>q31_t *</type>
+          <declname>input_buf</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>guard_bits</declname>
+        </param>
+        <briefdescription>
+<para>Provide guard bits for Input buffer. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">input_buf</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to input buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>block Size </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">guard_bits</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>guard bits </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none The function Provides the guard bits for the buffer to avoid overflow </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fir_example/math_helper.h" line="52" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_convolution_example/math_helper.c" bodystart="225" bodyend="235"/>
+      </memberdef>
+      <memberdef kind="function" id="riscv__fir__example_2math__helper_8h_1a06a150b44f13910325e95abfe87a7fc0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_float_to_q14</definition>
+        <argsstring>(float *pIn, q15_t *pOut, uint32_t numSamples)</argsstring>
+        <name>riscv_float_to_q14</name>
+        <param>
+          <type>float *</type>
+          <declname>pIn</declname>
+        </param>
+        <param>
+          <type>q15_t *</type>
+          <declname>pOut</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>numSamples</declname>
+        </param>
+        <briefdescription>
+<para>Converts float to fixed q14. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">pIn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to input buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pOut</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to output buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">numSamples</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples in the buffer </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none The function converts floating point values to fixed point values </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fir_example/math_helper.h" line="53" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_convolution_example/math_helper.c" bodystart="336" bodyend="354"/>
+      </memberdef>
+      <memberdef kind="function" id="riscv__fir__example_2math__helper_8h_1a258fe25daf7673af320204eecd7b8413" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_float_to_q29</definition>
+        <argsstring>(float *pIn, q31_t *pOut, uint32_t numSamples)</argsstring>
+        <name>riscv_float_to_q29</name>
+        <param>
+          <type>float *</type>
+          <declname>pIn</declname>
+        </param>
+        <param>
+          <type>q31_t *</type>
+          <declname>pOut</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>numSamples</declname>
+        </param>
+        <briefdescription>
+<para>Converts float to fixed q30 format. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">pIn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to input buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pOut</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to output buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">numSamples</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples in the buffer </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none The function converts floating point values to fixed point values </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fir_example/math_helper.h" line="54" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_convolution_example/math_helper.c" bodystart="393" bodyend="409"/>
+      </memberdef>
+      <memberdef kind="function" id="riscv__fir__example_2math__helper_8h_1ab3c86917a63a04abc1eff38d26704500" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_float_to_q28</definition>
+        <argsstring>(float *pIn, q31_t *pOut, uint32_t numSamples)</argsstring>
+        <name>riscv_float_to_q28</name>
+        <param>
+          <type>float *</type>
+          <declname>pIn</declname>
+        </param>
+        <param>
+          <type>q31_t *</type>
+          <declname>pOut</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>numSamples</declname>
+        </param>
+        <briefdescription>
+<para>Converts float to fixed q28 format. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">pIn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to input buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pOut</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to output buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">numSamples</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples in the buffer </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none The function converts floating point values to fixed point values </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fir_example/math_helper.h" line="55" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_convolution_example/math_helper.c" bodystart="421" bodyend="437"/>
+      </memberdef>
+      <memberdef kind="function" id="riscv__fir__example_2math__helper_8h_1a0bfefea4ac87485ec86879373a346285" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_float_to_q30</definition>
+        <argsstring>(float *pIn, q31_t *pOut, uint32_t numSamples)</argsstring>
+        <name>riscv_float_to_q30</name>
+        <param>
+          <type>float *</type>
+          <declname>pIn</declname>
+        </param>
+        <param>
+          <type>q31_t *</type>
+          <declname>pOut</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>numSamples</declname>
+        </param>
+        <briefdescription>
+<para>Converts float to fixed q30 format. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">pIn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to input buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pOut</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to output buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">numSamples</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples in the buffer </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none The function converts floating point values to fixed point values </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fir_example/math_helper.h" line="56" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_convolution_example/math_helper.c" bodystart="366" bodyend="382"/>
+      </memberdef>
+      <memberdef kind="function" id="riscv__fir__example_2math__helper_8h_1abc8e0727193908efd09d35a8bbcdf88f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_clip_f32</definition>
+        <argsstring>(float *pIn, uint32_t numSamples)</argsstring>
+        <name>riscv_clip_f32</name>
+        <param>
+          <type>float *</type>
+          <declname>pIn</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>numSamples</declname>
+        </param>
+        <briefdescription>
+<para>Clip the float values to +/- 1. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">pIn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>input buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">numSamples</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples in the buffer </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none The function converts floating point values to fixed point values </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fir_example/math_helper.h" line="57" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_convolution_example/math_helper.c" bodystart="447" bodyend="463"/>
+      </memberdef>
+      <memberdef kind="function" id="riscv__fir__example_2math__helper_8h_1a5cb5a752ce9bff4dc3a3fc136496c1b4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t riscv_calc_guard_bits</definition>
+        <argsstring>(uint32_t num_adds)</argsstring>
+        <name>riscv_calc_guard_bits</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>num_adds</declname>
+        </param>
+        <briefdescription>
+<para>Caluclates number of guard bits. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">num_adds</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of additions </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>guard bits The function Caluclates the number of guard bits depending on the numtaps </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fir_example/math_helper.h" line="58" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_convolution_example/math_helper.c" bodystart="269" bodyend="285"/>
+      </memberdef>
+      <memberdef kind="function" id="riscv__fir__example_2math__helper_8h_1abd730e128721e82c5f988f3a73d11036" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_apply_guard_bits</definition>
+        <argsstring>(float32_t *pIn, uint32_t numSamples, uint32_t guard_bits)</argsstring>
+        <name>riscv_apply_guard_bits</name>
+        <param>
+          <type>float32_t *</type>
+          <declname>pIn</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>numSamples</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>guard_bits</declname>
+        </param>
+        <briefdescription>
+<para>Apply guard bits to buffer. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">pIn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to input buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">numSamples</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples in the input buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">guard_bits</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>guard bits </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fir_example/math_helper.h" line="59" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_convolution_example/math_helper.c" bodystart="295" bodyend="305"/>
+      </memberdef>
+      <memberdef kind="function" id="riscv__fir__example_2math__helper_8h_1a647601d87b17bae0e16284da859ad7e9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t riscv_compare_fixed_q15</definition>
+        <argsstring>(q15_t *pIn, q15_t *pOut, uint32_t numSamples)</argsstring>
+        <name>riscv_compare_fixed_q15</name>
+        <param>
+          <type>q15_t *</type>
+          <declname>pIn</declname>
+        </param>
+        <param>
+          <type>q15_t *</type>
+          <declname>pOut</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>numSamples</declname>
+        </param>
+        <briefdescription>
+<para>Compare MATLAB Reference Output and RISCV Test output. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">pIn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to Ref buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pOut</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to Test buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">numSamples</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples in the buffer </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>maximum difference </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fir_example/math_helper.h" line="60" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_convolution_example/math_helper.c" bodystart="167" bodyend="185"/>
+      </memberdef>
+      <memberdef kind="function" id="riscv__fir__example_2math__helper_8h_1a34785aa60a9a5a36827d1431e7e88d8b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t riscv_compare_fixed_q31</definition>
+        <argsstring>(q31_t *pIn, q31_t *pOut, uint32_t numSamples)</argsstring>
+        <name>riscv_compare_fixed_q31</name>
+        <param>
+          <type>q31_t *</type>
+          <declname>pIn</declname>
+        </param>
+        <param>
+          <type>q31_t *</type>
+          <declname>pOut</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>numSamples</declname>
+        </param>
+        <briefdescription>
+<para>Compare MATLAB Reference Output and RISCV Test output. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">pIn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to Ref buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pOut</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to Test buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">numSamples</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples in the buffer </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>maximum difference </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fir_example/math_helper.h" line="61" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_convolution_example/math_helper.c" bodystart="195" bodyend="213"/>
+      </memberdef>
+      <memberdef kind="function" id="riscv__fir__example_2math__helper_8h_1aa4b1900c512dfcd877aed9d79dbee4c2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t riscv_calc_2pow</definition>
+        <argsstring>(uint32_t guard_bits)</argsstring>
+        <name>riscv_calc_2pow</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>guard_bits</declname>
+          <defname>numShifts</defname>
+        </param>
+        <briefdescription>
+<para>Calculates pow(2, numShifts) </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">numShifts</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of shifts </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>pow(2, numShifts) </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fir_example/math_helper.h" line="62" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_convolution_example/math_helper.c" bodystart="312" bodyend="323"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/>----------------------------------------------------------------------<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="2"><highlight class="comment">*<sp/>Copyright<sp/>(C)<sp/>2010-2013<sp/>ARM<sp/>Limited.<sp/>All<sp/>rights<sp/>reserved.<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2019<sp/>Nuclei<sp/>Limited.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment">*<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="5"><highlight class="comment">*<sp/>$Date:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>17.<sp/>January<sp/>2013<sp/><sp/></highlight></codeline>
+<codeline lineno="6"><highlight class="comment">*<sp/>$Revision:<sp/><sp/><sp/><sp/>V1.4.0<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="7"><highlight class="comment">*<sp/><sp/></highlight></codeline>
+<codeline lineno="8"><highlight class="comment">*<sp/>Project:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NMSIS<sp/>DSP<sp/>Library<sp/></highlight></codeline>
+<codeline lineno="9"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="10"><highlight class="comment">*<sp/>Title:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>math_helper.h</highlight></codeline>
+<codeline lineno="11"><highlight class="comment">*<sp/></highlight></codeline>
+<codeline lineno="12"><highlight class="comment">*<sp/>Description:<sp/><sp/>Prototypes<sp/>of<sp/>all<sp/>helper<sp/>functions<sp/>required.<sp/><sp/></highlight></codeline>
+<codeline lineno="13"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="14"><highlight class="comment">*<sp/>Target<sp/>Processor:<sp/>RISC-V<sp/>Cores</highlight></codeline>
+<codeline lineno="15"><highlight class="comment">*<sp/><sp/></highlight></codeline>
+<codeline lineno="16"><highlight class="comment">*<sp/>Redistribution<sp/>and<sp/>use<sp/>in<sp/>source<sp/>and<sp/>binary<sp/>forms,<sp/>with<sp/>or<sp/>without<sp/></highlight></codeline>
+<codeline lineno="17"><highlight class="comment">*<sp/>modification,<sp/>are<sp/>permitted<sp/>provided<sp/>that<sp/>the<sp/>following<sp/>conditions</highlight></codeline>
+<codeline lineno="18"><highlight class="comment">*<sp/>are<sp/>met:</highlight></codeline>
+<codeline lineno="19"><highlight class="comment">*<sp/><sp/><sp/>-<sp/>Redistributions<sp/>of<sp/>source<sp/>code<sp/>must<sp/>retain<sp/>the<sp/>above<sp/>copyright</highlight></codeline>
+<codeline lineno="20"><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer.</highlight></codeline>
+<codeline lineno="21"><highlight class="comment">*<sp/><sp/><sp/>-<sp/>Redistributions<sp/>in<sp/>binary<sp/>form<sp/>must<sp/>reproduce<sp/>the<sp/>above<sp/>copyright</highlight></codeline>
+<codeline lineno="22"><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer<sp/>in</highlight></codeline>
+<codeline lineno="23"><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/>the<sp/>documentation<sp/>and/or<sp/>other<sp/>materials<sp/>provided<sp/>with<sp/>the<sp/></highlight></codeline>
+<codeline lineno="24"><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/>distribution.</highlight></codeline>
+<codeline lineno="25"><highlight class="comment">*<sp/><sp/><sp/>-<sp/>Neither<sp/>the<sp/>name<sp/>of<sp/>ARM<sp/>LIMITED<sp/>nor<sp/>the<sp/>names<sp/>of<sp/>its<sp/>contributors</highlight></codeline>
+<codeline lineno="26"><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/>may<sp/>be<sp/>used<sp/>to<sp/>endorse<sp/>or<sp/>promote<sp/>products<sp/>derived<sp/>from<sp/>this</highlight></codeline>
+<codeline lineno="27"><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/>software<sp/>without<sp/>specific<sp/>prior<sp/>written<sp/>permission.</highlight></codeline>
+<codeline lineno="28"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="29"><highlight class="comment">*<sp/>THIS<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>BY<sp/>THE<sp/>COPYRIGHT<sp/>HOLDERS<sp/>AND<sp/>CONTRIBUTORS</highlight></codeline>
+<codeline lineno="30"><highlight class="comment">*<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>ANY<sp/>EXPRESS<sp/>OR<sp/>IMPLIED<sp/>WARRANTIES,<sp/>INCLUDING,<sp/>BUT<sp/>NOT</highlight></codeline>
+<codeline lineno="31"><highlight class="comment">*<sp/>LIMITED<sp/>TO,<sp/>THE<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF<sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS</highlight></codeline>
+<codeline lineno="32"><highlight class="comment">*<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE<sp/>ARE<sp/>DISCLAIMED.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/></highlight></codeline>
+<codeline lineno="33"><highlight class="comment">*<sp/>COPYRIGHT<sp/>OWNER<sp/>OR<sp/>CONTRIBUTORS<sp/>BE<sp/>LIABLE<sp/>FOR<sp/>ANY<sp/>DIRECT,<sp/>INDIRECT,</highlight></codeline>
+<codeline lineno="34"><highlight class="comment">*<sp/>INCIDENTAL,<sp/>SPECIAL,<sp/>EXEMPLARY,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>(INCLUDING,</highlight></codeline>
+<codeline lineno="35"><highlight class="comment">*<sp/>BUT<sp/>NOT<sp/>LIMITED<sp/>TO,<sp/>PROCUREMENT<sp/>OF<sp/>SUBSTITUTE<sp/>GOODS<sp/>OR<sp/>SERVICES;</highlight></codeline>
+<codeline lineno="36"><highlight class="comment">*<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA,<sp/>OR<sp/>PROFITS;<sp/>OR<sp/>BUSINESS<sp/>INTERRUPTION)<sp/>HOWEVER</highlight></codeline>
+<codeline lineno="37"><highlight class="comment">*<sp/>CAUSED<sp/>AND<sp/>ON<sp/>ANY<sp/>THEORY<sp/>OF<sp/>LIABILITY,<sp/>WHETHER<sp/>IN<sp/>CONTRACT,<sp/>STRICT</highlight></codeline>
+<codeline lineno="38"><highlight class="comment">*<sp/>LIABILITY,<sp/>OR<sp/>TORT<sp/>(INCLUDING<sp/>NEGLIGENCE<sp/>OR<sp/>OTHERWISE)<sp/>ARISING<sp/>IN</highlight></codeline>
+<codeline lineno="39"><highlight class="comment">*<sp/>ANY<sp/>WAY<sp/>OUT<sp/>OF<sp/>THE<sp/>USE<sp/>OF<sp/>THIS<sp/>SOFTWARE,<sp/>EVEN<sp/>IF<sp/>ADVISED<sp/>OF<sp/>THE</highlight></codeline>
+<codeline lineno="40"><highlight class="comment">*<sp/>POSSIBILITY<sp/>OF<sp/>SUCH<sp/>DAMAGE.<sp/><sp/></highlight></codeline>
+<codeline lineno="41"><highlight class="comment">*<sp/>--------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;riscv_math.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>MATH_HELPER_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MATH_HELPER_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>riscv_snr_f32(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>*pRef,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>*pTest,<sp/><sp/>uint32_t<sp/>buffSize);<sp/><sp/></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>riscv_float_to_q12_20(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>*pIn,<sp/>q31_t<sp/>*<sp/>pOut,<sp/>uint32_t<sp/>numSamples);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>riscv_provide_guard_bits_q15(q15_t<sp/>*input_buf,<sp/>uint32_t<sp/>blockSize,<sp/>uint32_t<sp/>guard_bits);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>riscv_provide_guard_bits_q31(q31_t<sp/>*input_buf,<sp/>uint32_t<sp/>blockSize,<sp/>uint32_t<sp/>guard_bits);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>riscv_float_to_q14(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>*pIn,<sp/>q15_t<sp/>*pOut,<sp/>uint32_t<sp/>numSamples);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>riscv_float_to_q29(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>*pIn,<sp/>q31_t<sp/>*pOut,<sp/>uint32_t<sp/>numSamples);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>riscv_float_to_q28(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>*pIn,<sp/>q31_t<sp/>*pOut,<sp/>uint32_t<sp/>numSamples);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>riscv_float_to_q30(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>*pIn,<sp/>q31_t<sp/>*pOut,<sp/>uint32_t<sp/>numSamples);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>riscv_clip_f32(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>*pIn,<sp/>uint32_t<sp/>numSamples);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal">uint32_t<sp/>riscv_calc_guard_bits(uint32_t<sp/>num_adds);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>riscv_apply_guard_bits<sp/>(float32_t<sp/>*<sp/>pIn,<sp/>uint32_t<sp/>numSamples,<sp/>uint32_t<sp/>guard_bits);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal">uint32_t<sp/>riscv_compare_fixed_q15(q15_t<sp/>*pIn,<sp/>q15_t<sp/>*<sp/>pOut,<sp/>uint32_t<sp/>numSamples);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal">uint32_t<sp/>riscv_compare_fixed_q31(q31_t<sp/>*pIn,<sp/>q31_t<sp/>*pOut,<sp/>uint32_t<sp/>numSamples);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal">uint32_t<sp/>riscv_calc_2pow(uint32_t<sp/>guard_bits);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Examples/RISCV/riscv_fir_example/math_helper.h"/>
+  </compounddef>
+</doxygen>

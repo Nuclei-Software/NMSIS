@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="group__NMSIS__Core__DSP__Intrinsic__OV__FLAG__SC" kind="group">
+    <compoundname>NMSIS_Core_DSP_Intrinsic_OV_FLAG_SC</compoundname>
+    <title>OV (Overflow) flag Set/Clear Instructions</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__OV__FLAG__SC_1ga0198a8fa03f62716f0b4d0cec311dfd2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> void</type>
+        <definition>__STATIC_FORCEINLINE void __RV_CLROV</definition>
+        <argsstring>(void)</argsstring>
+        <name>__RV_CLROV</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>CLROV (Clear OV flag) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: DSP</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">CLROV<sp/>#<sp/>pseudo<sp/>mnemonic</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+This pseudo instruction is an alias to <computeroutput>CSRRCI x0, ucode, 1</computeroutput> instruction. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="641" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="641" bodyend="644"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      <memberdef kind="function" id="group__NMSIS__Core__DSP__Intrinsic__OV__FLAG__SC_1gaff8e2c883c492aff917d183ae7097535" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> unsigned long</type>
+        <definition>__STATIC_FORCEINLINE unsigned long __RV_RDOV</definition>
+        <argsstring>(void)</argsstring>
+        <name>__RV_RDOV</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>RDOV (Read OV flag) </para>        </briefdescription>
+        <detaileddescription>
+<para><bold>Type</bold>: DSP</para><para><bold>Syntax</bold>:<linebreak/>
+<programlisting><codeline><highlight class="normal">RDOV<sp/>Rd<sp/><sp/>#<sp/>pseudo<sp/>mnemonic</highlight></codeline>
+</programlisting></para><para><bold>Purpose</bold>:<linebreak/>
+This pseudo instruction is an alias to <computeroutput>CSRR Rd, ucode</computeroutput> instruction which maps to the real instruction of <computeroutput>CSRRS Rd, ucode, x0</computeroutput>.</para><para><simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" line="6479" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/Core/Include/core_feature_dsp.h" bodystart="6479" bodyend="6484"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd" compoundref="nmsis__gcc_8h" startline="59">__ASM</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>OV (Overflow) flag Set/Clear Instructions. </para>    </briefdescription>
+    <detaileddescription>
+<para>The following table lists the user instructions related to Overflow (OV) flag manipulation. there are 2 OV (Overflow) flag Set/Clear Instructions </para>    </detaileddescription>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="group__CNNExample" kind="group">
+    <compoundname>CNNExample</compoundname>
+    <title>Convolutional Neural Network Example</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="par"><title>Description:</title><para></para></simplesect>
+<simplesect kind="par"><title></title><para>Demonstrates a convolutional neural network (CNN) example with the use of convolution, ReLU activation, pooling and fully-connected functions.</para></simplesect>
+<simplesect kind="par"><title>Model definition:</title><para></para></simplesect>
+<simplesect kind="par"><title></title><para>The CNN used in this example is based on CIFAR-10 example from Caffe [1]. The neural network consists of 3 convolution layers interspersed by ReLU activation and max pooling layers, followed by a fully-connected layer at the end. The input to the network is a 32x32 pixel color image, which will be classified into one of the 10 output classes. This example model implementation needs 32.3 KB to store weights, 40 KB for activations and 3.1 KB for storing the <computeroutput>im2col</computeroutput> data.</para></simplesect>
+<image type="html" name="CIFAR10_CNN.png">Neural Network model definition</image>
+ <simplesect kind="par"><title>Variables Description:</title><para></para></simplesect>
+<simplesect kind="par"><title></title><para><itemizedlist>
+<listitem><para><computeroutput>conv1_wt</computeroutput>, <computeroutput>conv2_wt</computeroutput>, <computeroutput>conv3_wt</computeroutput> are convolution layer weight matrices </para></listitem>
+<listitem><para><computeroutput>conv1_bias</computeroutput>, <computeroutput>conv2_bias</computeroutput>, <computeroutput>conv3_bias</computeroutput> are convolution layer bias arrays </para></listitem>
+<listitem><para><computeroutput>ip1_wt</computeroutput>, ip1_bias point to fully-connected layer weights and biases </para></listitem>
+<listitem><para><computeroutput>input_data</computeroutput> points to the input image data </para></listitem>
+<listitem><para><computeroutput>output_data</computeroutput> points to the classification output </para></listitem>
+<listitem><para><computeroutput>col_buffer</computeroutput> is a buffer to store the <computeroutput>im2col</computeroutput> output </para></listitem>
+<listitem><para><computeroutput>scratch_buffer</computeroutput> is used to store the activation data (intermediate layer outputs)</para></listitem>
+</itemizedlist>
+</para></simplesect>
+<simplesect kind="par"><title>NMSIS DSP Software Library Functions Used:</title><para></para></simplesect>
+<simplesect kind="par"><title></title><para><itemizedlist>
+<listitem><para><ref refid="group__NNConv_1ga0a64a6e39851c858266bcb1227a431d4" kindref="member">riscv_convolve_HWC_q7_RGB()</ref></para></listitem><listitem><para><ref refid="group__NNConv_1gaad778ec0d290ffa07f58c5b32cb8a80b" kindref="member">riscv_convolve_HWC_q7_fast()</ref></para></listitem><listitem><para><ref refid="group__Acti_1gadfa641ea64baa82d43247a787fbf9396" kindref="member">riscv_relu_q7()</ref></para></listitem><listitem><para><ref refid="group__Pooling_1gad7cc16cadfeb14ccfe21a43f0a0a98ee" kindref="member">riscv_maxpool_q7_HWC()</ref></para></listitem><listitem><para><ref refid="group__Pooling_1ga667c1b6d57466cb5ce7e4c41cb79f7d7" kindref="member">riscv_avepool_q7_HWC()</ref></para></listitem><listitem><para><ref refid="group__FC_1ga7941d995077149ea20950bb2e44f4bba" kindref="member">riscv_fully_connected_q7_opt()</ref></para></listitem><listitem><para><ref refid="group__FC_1gaabd0ddb08f10926a0cb16c780f1f1092" kindref="member">riscv_fully_connected_q7()</ref></para></listitem></itemizedlist>
+</para></simplesect>
+<bold> Refer </bold> <ref refid="" kindref="compound">riscv_nnexamples_cifar10.cpp</ref></para><para><simplesect kind="par"><title>[1] https://github.com/BVLC/caffe</title><para></para></simplesect>
+</para>    </detaileddescription>
+  </compounddef>
+</doxygen>

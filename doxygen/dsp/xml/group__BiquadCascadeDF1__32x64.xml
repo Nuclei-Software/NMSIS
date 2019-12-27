@@ -1,0 +1,182 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="group__BiquadCascadeDF1__32x64" kind="group">
+    <compoundname>BiquadCascadeDF1_32x64</compoundname>
+    <title>High Precision Q31 Biquad Cascade Filter</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__BiquadCascadeDF1__32x64_1ga072fc75723bc392c567554410e99bdb2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_biquad_cas_df1_32x64_init_q31</definition>
+        <argsstring>(riscv_biquad_cas_df1_32x64_ins_q31 *S, uint8_t numStages, const q31_t *pCoeffs, q63_t *pState, uint8_t postShift)</argsstring>
+        <name>riscv_biquad_cas_df1_32x64_init_q31</name>
+        <param>
+          <type><ref refid="structriscv__biquad__cas__df1__32x64__ins__q31" kindref="compound">riscv_biquad_cas_df1_32x64_ins_q31</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>numStages</declname>
+        </param>
+        <param>
+          <type>const q31_t *</type>
+          <declname>pCoeffs</declname>
+        </param>
+        <param>
+          <type>q63_t *</type>
+          <declname>pState</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>postShift</declname>
+        </param>
+        <briefdescription>
+<para>Initialization function for the Q31 Biquad cascade 32x64 filter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the high precision Q31 Biquad cascade filter structure </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">numStages</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of 2nd order stages in the filter </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pCoeffs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the filter coefficients </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pState</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the state buffer </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">postShift</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Shift to be applied after the accumulator. Varies according to the coefficients format </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Coefficient and State Ordering</title><para>The coefficients are stored in the array <computeroutput>pCoeffs</computeroutput> in the following order: <preformatted>
+    {b10, b11, b12, a11, a12, b20, b21, b22, a21, a22, ...}
+</preformatted> where <computeroutput>b1x</computeroutput> and <computeroutput>a1x</computeroutput> are the coefficients for the first stage, <computeroutput>b2x</computeroutput> and <computeroutput>a2x</computeroutput> are the coefficients for the second stage, and so on. The <computeroutput>pCoeffs</computeroutput> array contains a total of <computeroutput>5*numStages</computeroutput> values. </para></simplesect>
+<simplesect kind="par"><title></title><para>The <computeroutput>pState</computeroutput> points to state variables array and size of each state variable is 1.63 format. Each Biquad stage has 4 state variables <computeroutput>x[n-1], x[n-2], y[n-1],</computeroutput> and <computeroutput>y[n-2]</computeroutput>. The state variables are arranged in the state array as: <preformatted>
+    {x[n-1], x[n-2], y[n-1], y[n-2]}
+</preformatted> The 4 state variables for stage 1 are first, then the 4 state variables for stage 2, and so on. The state array has a total length of <computeroutput>4*numStages</computeroutput> values. The state variables are updated after each block of data is processed; the coefficients are untouched. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_biquad_cascade_df1_32x64_init_q31.c" line="70" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_biquad_cascade_df1_32x64_init_q31.c" bodystart="70" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="group__BiquadCascadeDF1__32x64_1gacdf7b9d2877e249a4bc4bf40a7dc0b06" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void riscv_biquad_cas_df1_32x64_q31</definition>
+        <argsstring>(const riscv_biquad_cas_df1_32x64_ins_q31 *S, q31_t *pSrc, q31_t *pDst, uint32_t blockSize)</argsstring>
+        <name>riscv_biquad_cas_df1_32x64_q31</name>
+        <param>
+          <type>const <ref refid="structriscv__biquad__cas__df1__32x64__ins__q31" kindref="compound">riscv_biquad_cas_df1_32x64_ins_q31</ref> *</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type>q31_t *</type>
+          <declname>pSrc</declname>
+        </param>
+        <param>
+          <type>q31_t *</type>
+          <declname>pDst</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>blockSize</declname>
+        </param>
+        <briefdescription>
+<para>Processing function for the Q31 Biquad cascade 32x64 filter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to an instance of the high precision Q31 Biquad cascade filter </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pSrc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of input data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pDst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to the block of output data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">blockSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples to process </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Details</title><para>The function is implemented using an internal 64-bit accumulator. The accumulator has a 2.62 format and maintains full precision of the intermediate multiplication results but provides only a single guard bit. Thus, if the accumulator result overflows it wraps around rather than clip. In order to avoid overflows completely the input signal must be scaled down by 2 bits and lie in the range [-0.25 +0.25). After all 5 multiply-accumulates are performed, the 2.62 accumulator is shifted by <computeroutput>postShift</computeroutput> bits and the result truncated to 1.31 format by discarding the low 32 bits. </para></simplesect>
+<simplesect kind="par"><title></title><para>Two related functions are provided in the NMSIS DSP library.<itemizedlist>
+<listitem><para><ref refid="group__BiquadCascadeDF1_1ga9db8b6490e760bcbb86366385ffd7a5b" kindref="member">riscv_biquad_cascade_df1_q31()</ref> implements a Biquad cascade with 32-bit coefficients and state variables with a Q63 accumulator.</para></listitem><listitem><para><ref refid="group__BiquadCascadeDF1_1gaed838e1892c406620fbb0e131e273d8d" kindref="member">riscv_biquad_cascade_df1_fast_q31()</ref> implements a Biquad cascade with 32-bit coefficients and state variables with a Q31 accumulator. </para></listitem></itemizedlist>
+</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_biquad_cascade_df1_32x64_q31.c" line="176" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Source/FilteringFunctions/riscv_biquad_cascade_df1_32x64_q31.c" bodystart="176" bodyend="455"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>This function implements a high precision Biquad cascade filter which operates on Q31 data values. The filter coefficients are in 1.31 format and the state variables are in 1.63 format. The double precision state variables reduce quantization noise in the filter and provide a cleaner output. These filters are particularly useful when implementing filters in which the singularities are close to the unit circle. This is common for low pass or high pass filters with very low cutoff frequencies.</para><para>The function operates on blocks of input and output data and each call to the function processes <computeroutput>blockSize</computeroutput> samples through the filter. <computeroutput>pSrc</computeroutput> and <computeroutput>pDst</computeroutput> points to input and output arrays containing <computeroutput>blockSize</computeroutput> Q31 values.</para><para><simplesect kind="par"><title>Algorithm</title><para>Each Biquad stage implements a second order filter using the difference equation: <preformatted>
+    y[n] = b0 * x[n] + b1 * x[n-1] + b2 * x[n-2] + a1 * y[n-1] + a2 * y[n-2]
+</preformatted> A Direct Form I algorithm is used with 5 coefficients and 4 state variables per stage. <image type="html" name="Biquad.png">Single Biquad filter stage</image>
+ Coefficients <computeroutput>b0, b1 and b2 </computeroutput> multiply the input signal <computeroutput>x[n]</computeroutput> and are referred to as the feedforward coefficients. Coefficients <computeroutput>a1</computeroutput> and <computeroutput>a2</computeroutput> multiply the output signal <computeroutput>y[n]</computeroutput> and are referred to as the feedback coefficients. Pay careful attention to the sign of the feedback coefficients. Some design tools use the difference equation <preformatted>
+    y[n] = b0 * x[n] + b1 * x[n-1] + b2 * x[n-2] - a1 * y[n-1] - a2 * y[n-2]
+</preformatted> In this case the feedback coefficients <computeroutput>a1</computeroutput> and <computeroutput>a2</computeroutput> must be negated when used with the NMSIS DSP Library. </para></simplesect>
+<simplesect kind="par"><title></title><para>Higher order filters are realized as a cascade of second order sections. <computeroutput>numStages</computeroutput> refers to the number of second order stages used. For example, an 8th order filter would be realized with <computeroutput>numStages=4</computeroutput> second order stages. <image type="html" name="BiquadCascade.png">8th order filter using a cascade of Biquad stages</image>
+ A 9th order filter would be realized with <computeroutput>numStages=5</computeroutput> second order stages with the coefficients for one of the stages configured as a first order filter (<computeroutput>b2=0</computeroutput> and <computeroutput>a2=0</computeroutput>). </para></simplesect>
+<simplesect kind="par"><title></title><para>The <computeroutput>pState</computeroutput> points to state variables array. Each Biquad stage has 4 state variables <computeroutput>x[n-1], x[n-2], y[n-1],</computeroutput> and <computeroutput>y[n-2]</computeroutput> and each state variable in 1.63 format to improve precision. The state variables are arranged in the array as: <preformatted>
+    {x[n-1], x[n-2], y[n-1], y[n-2]}
+</preformatted> </para></simplesect>
+<simplesect kind="par"><title></title><para>The 4 state variables for stage 1 are first, then the 4 state variables for stage 2, and so on. The state array has a total length of <computeroutput>4*numStages</computeroutput> values of data in 1.63 format. The state variables are updated after each block of data is processed, the coefficients are untouched.</para></simplesect>
+<simplesect kind="par"><title>Instance Structure</title><para>The coefficients and state variables for a filter are stored together in an instance data structure. A separate instance structure must be defined for each filter. Coefficient arrays may be shared among several instances while state variable arrays cannot be shared.</para></simplesect>
+<simplesect kind="par"><title>Init Function</title><para>There is also an associated initialization function which performs the following operations:<itemizedlist>
+<listitem><para>Sets the values of the internal structure fields.</para></listitem><listitem><para>Zeros out the values in the state buffer. To do this manually without calling the init function, assign the follow subfields of the instance structure: numStages, pCoeffs, postShift, pState. Also set all of the values in pState to zero.</para></listitem></itemizedlist>
+</para></simplesect>
+<simplesect kind="par"><title></title><para>Use of the initialization function is optional. However, if the initialization function is used, then the instance structure cannot be placed into a const data section. To place an instance structure into a const data section, the instance structure must be manually initialized. Set the values in the state buffer to zeros before static initialization. For example, to statically initialize the filter instance structure use <preformatted>
+    <ref refid="structriscv__biquad__cas__df1__32x64__ins__q31" kindref="compound">riscv_biquad_cas_df1_32x64_ins_q31</ref> S1 = {numStages, pState, pCoeffs, postShift};
+</preformatted> where <computeroutput>numStages</computeroutput> is the number of Biquad stages in the filter; <computeroutput>pState</computeroutput> is the address of the state buffer; <computeroutput>pCoeffs</computeroutput> is the address of the coefficient buffer; <computeroutput>postShift</computeroutput> shift to be applied which is described in detail below. </para></simplesect>
+<simplesect kind="par"><title>Fixed-Point Behavior</title><para>Care must be taken while using Biquad Cascade 32x64 filter function. Following issues must be considered:<itemizedlist>
+<listitem><para>Scaling of coefficients</para></listitem><listitem><para>Filter gain</para></listitem><listitem><para>Overflow and saturation</para></listitem></itemizedlist>
+</para></simplesect>
+<simplesect kind="par"><title></title><para>Filter coefficients are represented as fractional values and restricted to lie in the range <computeroutput>[-1 +1)</computeroutput>. The processing function has an additional scaling parameter <computeroutput>postShift</computeroutput> which allows the filter coefficients to exceed the range <computeroutput>[+1 -1)</computeroutput>. At the output of the filter&apos;s accumulator is a shift register which shifts the result by <computeroutput>postShift</computeroutput> bits. <image type="html" name="BiquadPostshift.png">Fixed-point Biquad with shift by postShift bits after accumulator</image>
+ This essentially scales the filter coefficients by <computeroutput>2^postShift</computeroutput>. For example, to realize the coefficients <preformatted>
+   {1.5, -0.8, 1.2, 1.6, -0.9}
+</preformatted> set the Coefficient array to: <preformatted>
+   {0.75, -0.4, 0.6, 0.8, -0.45}
+</preformatted> and set <computeroutput>postShift=1</computeroutput> </para></simplesect>
+<simplesect kind="par"><title></title><para>The second thing to keep in mind is the gain through the filter. The frequency response of a Biquad filter is a function of its coefficients. It is possible for the gain through the filter to exceed 1.0 meaning that the filter increases the amplitude of certain frequencies. This means that an input signal with amplitude &lt; 1.0 may result in an output &gt; 1.0 and these are saturated or overflowed based on the implementation of the filter. To avoid this behavior the filter needs to be scaled down such that its peak gain &lt; 1.0 or the input signal must be scaled down so that the combination of input and filter are never overflowed. </para></simplesect>
+<simplesect kind="par"><title></title><para>The third item to consider is the overflow and saturation behavior of the fixed-point Q31 version. This is described in the function specific documentation below. </para></simplesect>
+</para>    </detaileddescription>
+  </compounddef>
+</doxygen>

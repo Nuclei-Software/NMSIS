@@ -1,0 +1,969 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Startup File startup_&lt;device&gt;.S &mdash; NMSIS 1.0.0-alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Interrupt and Exception Handling File: intexc_&lt;device&gt;.S" href="core_template_intexc.html" />
+    <link rel="prev" title="NMSIS-Core Device Templates" href="core_templates.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">NMSIS Core</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started.html">Using NMSIS in Embedded Applications</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="core_templates.html">NMSIS-Core Device Templates</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="core_templates.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_templates.html#nmsis-core-processor-files">NMSIS-Core Processor Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_templates.html#device-examples">Device Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_templates.html#template-files">Template Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_templates.html#adapt-template-files-to-a-device">Adapt Template Files to a Device</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="core_templates.html#device-templates-explaination">Device Templates Explaination</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Startup File startup_&lt;device&gt;.S</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#startup-device-s-template-file">startup_Device.S Template File</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="core_template_intexc.html">Interrupt and Exception Handling File: intexc_&lt;device&gt;.S</a></li>
+<li class="toctree-l4"><a class="reference internal" href="core_template_linker_device.html">Device Linker Script: gcc_&lt;device&gt;.ld</a></li>
+<li class="toctree-l4"><a class="reference internal" href="core_template_system_device.html">System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h</a></li>
+<li class="toctree-l4"><a class="reference internal" href="core_template_device_header.html">Device Header File &lt;device.h&gt;</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="register_mapping.html">Register Mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html">NMSIS Core API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">NMSIS Core</a> &raquo;</li>
+        
+          <li><a href="core_templates.html">NMSIS-Core Device Templates</a> &raquo;</li>
+        
+      <li>Startup File startup_&lt;device&gt;.S</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/core/core_template_startup_device.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="startup-file-startup-device-s">
+<span id="core-template-startup-device-asm"></span><h1>Startup File startup_&lt;device&gt;.S<a class="headerlink" href="#startup-file-startup-device-s" title="Permalink to this headline">¶</a></h1>
+<dl class="simple">
+<dt>The <strong>Startup File startup_&lt;device&gt;.S</strong> contains:</dt><dd><ul class="simple">
+<li><p>The reset handler which is executed after CPU reset and typically calls the <a class="reference internal" href="api/core_system_device.html#_CPPv410SystemInitv" title="SystemInit"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">SystemInit()</span></code></a> function.</p></li>
+<li><p>The setup values for the stack pointer SP.</p></li>
+<li><p>Exception vectors of the Nuclei Processor with weak functions that implement default routines.</p></li>
+<li><p>Interrupt vectors that are device specific with weak functions that implement default routines.</p></li>
+</ul>
+</dd>
+</dl>
+<p>The processer level start flow is implemented in the <em>startup_&lt;device&gt;.S</em>. Detail description as below picture:</p>
+<a class="reference internal image-reference" href="../_images/NMSIS_startup.png"><img alt="NMSIS-Startup User Files" src="../_images/NMSIS_startup.png" style="width: 658.4000000000001px; height: 622.4000000000001px;" /></a>
+<dl class="simple">
+<dt>Stage1: Interrupt and Exception initialization</dt><dd><ul class="simple">
+<li><p>Disable Interrupt</p></li>
+<li><p>Initialize GP, stack</p></li>
+<li><p>Initialize NMI entry and set default NMI handler</p></li>
+<li><p>Initialize Exception entry and set default exception handler</p></li>
+<li><p>Initialize vector table entry and set default interrupt handler</p></li>
+<li><p>Initialize Interrupt mode as ECLIC mode. (ECLIC mode is proposed. Default mode is CLINT mode)</p></li>
+</ul>
+</dd>
+<dt>Stage2: Hardware initialization</dt><dd><ul class="simple">
+<li><p>Enable FPU if necessary</p></li>
+<li><p>Call user defined <a class="reference internal" href="api/core_system_device.html#_CPPv410SystemInitv" title="SystemInit"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">SystemInit()</span></code></a> for system clock initialization.</p></li>
+</ul>
+</dd>
+<dt>Stage3: Section initialization</dt><dd><ul class="simple">
+<li><p>Copy section, e.g. data section, text section if necessary.</p></li>
+<li><p>Clear Block Started by Symbol (BSS) section</p></li>
+<li><p>Call __libc_fini_array and __libc_init_array functions to do c library initialization</p></li>
+<li><p>Jump Main</p></li>
+</ul>
+</dd>
+</dl>
+<p>The file exists for each supported toolchain and is the only toolchain specific NMSIS file.</p>
+<p>To adapt the file to a new device only the interrupt vector table needs to be extended with
+the device-specific interrupt handlers.</p>
+<p>The naming convention for the interrupt handler names are <code class="docutils literal notranslate"><span class="pre">eclic_&lt;interrupt_name&gt;_handler</span></code>.</p>
+<p>This table needs to be consistent with <code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">IRQn_Type</span></code> that defines all the IRQ numbers for each interrupt.</p>
+<p>The following example shows the extension of the interrupt vector table for the GD32VF103 device family.</p>
+<div class="highlight-asm notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre></div></td><td class="code"><div class="highlight"><pre><span></span>    .section .vtable
+
+    .weak  eclic_msip_handler
+    .weak  eclic_mtip_handler
+    .weak  eclic_pmaf_handler
+    /* Adjusted for GD32VF103 interrupt handlers */
+    .weak  eclic_wwdgt_handler
+    .weak  eclic_lvd_handler
+    .weak  eclic_tamper_handler
+        :    :
+        :    :
+    .weak  eclic_can1_ewmc_handler
+    .weak  eclic_usbfs_handler
+
+    .globl vector_base
+vector_base:
+    /* Run in FlashXIP download mode */
+    j _start                                                /* 0: Reserved, Jump to _start when reset for ILM/FlashXIP mode.*/
+    .align LOG_REGBYTES                                     /*    Need to align 4 byte for RV32, 8 Byte for RV64 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 1: Reserved */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 2: Reserved */
+    DECLARE_INT_HANDLER     eclic_msip_handler              /* 3: Machine software interrupt */
+                    :          :
+                    :          :
+    /* Adjusted for Vendor Defined External Interrupts */
+    DECLARE_INT_HANDLER     eclic_wwdgt_handler             /* 19: Window watchDog timer interrupt */
+
+    DECLARE_INT_HANDLER     eclic_lvd_handler               /* 20: LVD through EXTI line detect interrupt */
+    DECLARE_INT_HANDLER     eclic_tamper_handler            /* 21: tamper through EXTI line detect */
+                    :          :
+                    :          :
+    DECLARE_INT_HANDLER     eclic_can1_ewmc_handler         /* 85: CAN1 EWMC interrupt */
+    DECLARE_INT_HANDLER     eclic_usbfs_handler             /* 86: USBFS global interrupt */
+</pre></div>
+</td></tr></table></div>
+<div class="section" id="startup-device-s-template-file">
+<h2>startup_Device.S Template File<a class="headerlink" href="#startup-device-s-template-file" title="Permalink to this headline">¶</a></h2>
+<p>Here provided a riscv-gcc template startup assemble code template file as below.
+The files for other compilers can slightly differ from this version.</p>
+<div class="highlight-asm notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305</pre></div></td><td class="code"><div class="highlight"><pre><span></span>/*
+ * Copyright (c) 2019 Nuclei Limited. All rights reserved.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * Licensed under the Apache License, Version 2.0 (the License); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/******************************************************************************
+ * \file     startup_&lt;Device&gt;.S
+ * \brief    NMSIS Nuclei N/NX Class Core based Core Device Startup File for
+ *           Device &lt;Device&gt;
+ * \version  V1.00
+ * \date     17. Dec 2019
+ *
+ ******************************************************************************/
+
+#include &quot;riscv_encoding.h&quot;
+
+.macro DECLARE_INT_HANDLER  INT_HDL_NAME
+#if defined(__riscv_xlen) &amp;&amp; (__riscv_xlen == 32)
+    .word \INT_HDL_NAME
+#else
+    .dword \INT_HDL_NAME
+#endif
+.endm
+
+/*
+ * === Different Download and Running Mode ===
+ * flashxip: Program will to be download into flash and run directly in Flash
+ * flash: Program will be download into flash, when running, program will be copied to ilm/ram and run in ilm/ram
+ * ilm: Program will be download into ilm/ram and run directly in ilm/ram, program lost when poweroff
+ */
+
+/*** Vector Table Code Section ***/
+    /*
+     * TODO: Put the interrupt vectors in this section according to the run mode:
+     * This template startup code by default is for FlashXIP mode:
+     * FlashXIP: .vtable
+     * ILM: .vtable
+     * Flash: .vtable_ilm
+     */
+    .section .vtable
+
+    .weak  eclic_msip_handler
+    .weak  eclic_mtip_handler
+    /* TODO: Adjust vendor interrupt handlers */
+    .weak  eclic_irq19_handler
+    .weak  eclic_irq20_handler
+    .weak  eclic_irq21_handler
+    .weak  eclic_irq22_handler
+    .weak  eclic_irq23_handler
+    .weak  eclic_irq24_handler
+    .weak  eclic_irq25_handler
+    .weak  eclic_irq26_handler
+    .weak  eclic_irq27_handler
+    .weak  eclic_irq28_handler
+    .weak  eclic_irq29_handler
+    .weak  eclic_irq30_handler
+    .weak  eclic_irq31_handler
+    .weak  eclic_irq32_handler
+    .weak  eclic_irq33_handler
+    .weak  eclic_irq34_handler
+    .weak  eclic_irq35_handler
+    .weak  eclic_irq36_handler
+    .weak  eclic_irq37_handler
+    .weak  eclic_irq38_handler
+    .weak  eclic_irq39_handler
+    .weak  eclic_irq40_handler
+    .weak  eclic_irq41_handler
+    .weak  eclic_irq42_handler
+    .weak  eclic_irq43_handler
+    .weak  eclic_irq44_handler
+    .weak  eclic_irq45_handler
+    .weak  eclic_irq46_handler
+    .weak  eclic_irq47_handler
+    .weak  eclic_irq48_handler
+    .weak  eclic_irq49_handler
+    .weak  eclic_irq50_handler
+
+    .globl vector_base
+vector_base:
+    /* TODO: For ILM and FlashXIP download mode, please place the following two lines */
+    j _start                                                /* 0: Reserved, Jump to _start when reset for ILM/FlashXIP mode.*/
+    .align LOG_REGBYTES                                     /*    Need to align 4 byte for RV32, 8 Byte for RV64 */
+
+    /* TODO: For Flash download mode, please comment the above two lines, and uncomment the following 1 line code */
+    //DECLARE_INT_HANDLER     default_intexc_handler        /* 0: Reserved, default handler for Flash download mode */
+
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 1: Reserved */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 2: Reserved */
+    DECLARE_INT_HANDLER     eclic_msip_handler              /* 3: Machine software interrupt */
+
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 4: Reserved */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 5: Reserved */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 6: Reserved */
+    DECLARE_INT_HANDLER     eclic_mtip_handler              /* 7: Machine timer interrupt */
+
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 8: Reserved */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 9: Reserved */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 10: Reserved */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 11: Reserved */
+
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 12: Reserved */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 13: Reserved */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 14: Reserved */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 15: Reserved */
+
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 16: Reserved */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 17: Reserved */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 18: Reserved */
+    /* TODO: Adjust Vendor Defined External Interrupts */
+    DECLARE_INT_HANDLER     eclic_irq19_handler             /* 19: Interrupt 19 */
+
+    DECLARE_INT_HANDLER     eclic_irq20_handler             /* 20: Interrupt 20 */
+    DECLARE_INT_HANDLER     eclic_irq21_handler             /* 21: Interrupt 21 */
+    DECLARE_INT_HANDLER     eclic_irq22_handler             /* 22: Interrupt 22 */
+    DECLARE_INT_HANDLER     eclic_irq23_handler             /* 23: Interrupt 23 */
+
+    DECLARE_INT_HANDLER     eclic_irq24_handler             /* 24: Interrupt 24 */
+    DECLARE_INT_HANDLER     eclic_irq25_handler             /* 25: Interrupt 25 */
+    DECLARE_INT_HANDLER     eclic_irq26_handler             /* 26: Interrupt 26 */
+    DECLARE_INT_HANDLER     eclic_irq27_handler             /* 27: Interrupt 27 */
+
+    DECLARE_INT_HANDLER     eclic_irq28_handler             /* 28: Interrupt 28 */
+    DECLARE_INT_HANDLER     eclic_irq29_handler             /* 29: Interrupt 29 */
+    DECLARE_INT_HANDLER     eclic_irq30_handler             /* 30: Interrupt 30 */
+    DECLARE_INT_HANDLER     eclic_irq31_handler             /* 31: Interrupt 31 */
+
+    DECLARE_INT_HANDLER     eclic_irq32_handler             /* 32: Interrupt 32 */
+    DECLARE_INT_HANDLER     eclic_irq33_handler             /* 33: Interrupt 33 */
+    DECLARE_INT_HANDLER     eclic_irq34_handler             /* 34: Interrupt 34 */
+    DECLARE_INT_HANDLER     eclic_irq35_handler             /* 35: Interrupt 35 */
+
+    DECLARE_INT_HANDLER     eclic_irq36_handler             /* 36: Interrupt 36 */
+    DECLARE_INT_HANDLER     eclic_irq37_handler             /* 37: Interrupt 37 */
+    DECLARE_INT_HANDLER     eclic_irq38_handler             /* 38: Interrupt 38 */
+    DECLARE_INT_HANDLER     eclic_irq39_handler             /* 39: Interrupt 39 */
+
+    DECLARE_INT_HANDLER     eclic_irq40_handler             /* 40: Interrupt 40 */
+    DECLARE_INT_HANDLER     eclic_irq41_handler             /* 41: Interrupt 41 */
+    DECLARE_INT_HANDLER     eclic_irq42_handler             /* 42: Interrupt 42 */
+    DECLARE_INT_HANDLER     eclic_irq43_handler             /* 43: Interrupt 43 */
+
+    DECLARE_INT_HANDLER     eclic_irq44_handler             /* 44: Interrupt 44 */
+    DECLARE_INT_HANDLER     eclic_irq45_handler             /* 45: Interrupt 45 */
+    DECLARE_INT_HANDLER     eclic_irq46_handler             /* 46: Interrupt 46 */
+    DECLARE_INT_HANDLER     eclic_irq47_handler             /* 47: Interrupt 47 */
+
+    DECLARE_INT_HANDLER     eclic_irq48_handler             /* 48: Interrupt 48 */
+    DECLARE_INT_HANDLER     eclic_irq49_handler             /* 49: Interrupt 49 */
+    DECLARE_INT_HANDLER     eclic_irq50_handler             /* 50: Interrupt 50 */
+    /* Please adjust the above part of interrupt definition code
+     * according to your device interrupt number and its configuration */
+
+
+/*** Startup Code Section ***/
+    .section .init
+
+    .globl _start
+    .type _start,@function
+
+/**
+ * Reset Handler called on controller reset
+ */
+_start:
+    /* ===== Startup Stage 1 ===== */
+    /* Disable Global Interrupt */
+    csrc CSR_MSTATUS, MSTATUS_MIE
+
+    /* Initialize GP and Stack Pointer SP */
+    .option push
+    .option norelax
+    la gp, __global_pointer$
+
+    .option pop
+    la sp, _sp
+
+    /*
+     * Set the the NMI base mnvec to share
+     * with mtvec by setting CSR_MMISC_CTL
+     * bit 9 NMI_CAUSE_FFF to 1
+     */
+    li t0, MMISC_CTL_NMI_CAUSE_FFF
+    csrs CSR_MMISC_CTL, t0
+
+    /*
+     * Intialize ECLIC vector interrupt
+     * base address mtvt to vector_base
+     */
+    la t0, vector_base
+    csrw CSR_MTVT, t0
+
+    /*
+     * Set ECLIC non-vector entry to be controlled
+     * by mtvt2 CSR register.
+     * Intialize ECLIC non-vector interrupt
+     * base address mtvt2 to irq_entry.
+     */
+    la t0, irq_entry
+    csrw CSR_MTVT2, t0
+    csrs CSR_MTVT2, 0x1
+
+    /*
+     * Set Exception Entry MTVEC to exc_entry
+     * Due to settings above, Exception and NMI
+     * will share common entry.
+     */
+    la t0, exc_entry
+    csrw CSR_MTVEC, t0
+
+    /* Set the interrupt processing mode to ECLIC mode */
+    la t0, 0x3f
+    csrc CSR_MTVEC, t0
+    csrs CSR_MTVEC, 0x3
+
+    /* ===== Startup Stage 2 ===== */
+
+#ifdef __riscv_flen
+    /* Enable FPU */
+    li t0, MSTATUS_FS
+    csrs mstatus, t0
+    csrw fcsr, x0
+#endif
+
+    /* Enable mcycle and minstret counter */
+    csrci CSR_MCOUNTINHIBIT, 0x5
+
+    /*
+     * Call vendor defined SystemInit to
+     * initialize the micro-controller system.
+     * TODO: You need to comment this code when run in Flash download mode.
+     * then you need to put this line of code
+     * after data/bss section initialization and before main
+     */
+    call SystemInit
+
+    /* ===== Startup Stage 3 ===== */
+    /*
+     * Load code section frm FLASH to ILM
+     * when code LMA is different with VMA
+     */
+    la a0, _ilm_lma
+    la a1, _ilm
+    /* If the ILM phy-address same as the logic-address, then quit */
+    beq a0, a1, 2f
+    la a2, _eilm
+    bgeu a1, a2, 2f
+
+1:
+    /* Load code section if necessary */
+    lw t0, (a0)
+    sw t0, (a1)
+    addi a0, a0, 4
+    addi a1, a1, 4
+    bltu a1, a2, 1b
+2:
+    /* Load data section */
+    la a0, _data_lma
+    la a1, _data
+    la a2, _edata
+    bgeu a1, a2, 2f
+1:
+    lw t0, (a0)
+    sw t0, (a1)
+    addi a0, a0, 4
+    addi a1, a1, 4
+    bltu a1, a2, 1b
+2:
+    /* Clear bss section */
+    la a0, __bss_start
+    la a1, _end
+    bgeu a0, a1, 2f
+1:
+    sw zero, (a0)
+    addi a0, a0, 4
+    bltu a0, a1, 1b
+2:
+    /* TODO: Uncomment this code, if you run in Flash download mode */
+    // call SystemInit
+
+    /* Call global constructors */
+    la a0, __libc_fini_array
+    call atexit
+    /* Call C/C++ constructor start up code */
+    call __libc_init_array
+
+
+    /* ===== Call Main Function  ===== */
+    /* argc = argv = 0 */
+    li a0, 0
+    li a1, 0
+    call main
+
+1:
+    j 1b
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="core_template_intexc.html" class="btn btn-neutral float-right" title="Interrupt and Exception Handling File: intexc_&lt;device&gt;.S" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="core_templates.html" class="btn btn-neutral float-left" title="NMSIS-Core Device Templates" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Nuclei
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

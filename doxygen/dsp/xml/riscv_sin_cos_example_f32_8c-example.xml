@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="riscv_sin_cos_example_f32_8c-example" kind="example">
+    <compoundname>riscv_sin_cos_example_f32.c</compoundname>
+    <detaileddescription>
+<para><programlisting><codeline><highlight class="comment">/*<sp/>----------------------------------------------------------------------</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>Copyright<sp/>(C)<sp/>2010-2012<sp/>ARM<sp/>Limited.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2019<sp/>Nuclei<sp/>Limited.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline><highlight class="comment">*</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>$Date:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>12.<sp/>March<sp/>2014</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>$Revision:<sp/><sp/><sp/><sp/><sp/>V1.4.3</highlight></codeline>
+<codeline><highlight class="comment">*</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>Project:<sp/><sp/><sp/><sp/><sp/><sp/><sp/>NMSIS<sp/>DSP<sp/>Library</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>Title:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>riscv_sin_cos_example_f32.c</highlight></codeline>
+<codeline><highlight class="comment">*</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>Description:<sp/><sp/><sp/>Example<sp/>code<sp/>demonstrating<sp/>sin<sp/>and<sp/>cos<sp/>calculation<sp/>of<sp/>input<sp/>signal.</highlight></codeline>
+<codeline><highlight class="comment">*</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>Target<sp/>Processor:<sp/>RISC-V<sp/>Cores</highlight></codeline>
+<codeline><highlight class="comment">*</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>Redistribution<sp/>and<sp/>use<sp/>in<sp/>source<sp/>and<sp/>binary<sp/>forms,<sp/>with<sp/>or<sp/>without</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>modification,<sp/>are<sp/>permitted<sp/>provided<sp/>that<sp/>the<sp/>following<sp/>conditions</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>are<sp/>met:</highlight></codeline>
+<codeline><highlight class="comment">*<sp/><sp/><sp/>-<sp/>Redistributions<sp/>of<sp/>source<sp/>code<sp/>must<sp/>retain<sp/>the<sp/>above<sp/>copyright</highlight></codeline>
+<codeline><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer.</highlight></codeline>
+<codeline><highlight class="comment">*<sp/><sp/><sp/>-<sp/>Redistributions<sp/>in<sp/>binary<sp/>form<sp/>must<sp/>reproduce<sp/>the<sp/>above<sp/>copyright</highlight></codeline>
+<codeline><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer<sp/>in</highlight></codeline>
+<codeline><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/>the<sp/>documentation<sp/>and/or<sp/>other<sp/>materials<sp/>provided<sp/>with<sp/>the</highlight></codeline>
+<codeline><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/>distribution.</highlight></codeline>
+<codeline><highlight class="comment">*<sp/><sp/><sp/>-<sp/>Neither<sp/>the<sp/>name<sp/>of<sp/>ARM<sp/>LIMITED<sp/>nor<sp/>the<sp/>names<sp/>of<sp/>its<sp/>contributors</highlight></codeline>
+<codeline><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/>may<sp/>be<sp/>used<sp/>to<sp/>endorse<sp/>or<sp/>promote<sp/>products<sp/>derived<sp/>from<sp/>this</highlight></codeline>
+<codeline><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/>software<sp/>without<sp/>specific<sp/>prior<sp/>written<sp/>permission.</highlight></codeline>
+<codeline><highlight class="comment">*</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>THIS<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>BY<sp/>THE<sp/>COPYRIGHT<sp/>HOLDERS<sp/>AND<sp/>CONTRIBUTORS</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>ANY<sp/>EXPRESS<sp/>OR<sp/>IMPLIED<sp/>WARRANTIES,<sp/>INCLUDING,<sp/>BUT<sp/>NOT</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>LIMITED<sp/>TO,<sp/>THE<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF<sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE<sp/>ARE<sp/>DISCLAIMED.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>COPYRIGHT<sp/>OWNER<sp/>OR<sp/>CONTRIBUTORS<sp/>BE<sp/>LIABLE<sp/>FOR<sp/>ANY<sp/>DIRECT,<sp/>INDIRECT,</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>INCIDENTAL,<sp/>SPECIAL,<sp/>EXEMPLARY,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>(INCLUDING,</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>BUT<sp/>NOT<sp/>LIMITED<sp/>TO,<sp/>PROCUREMENT<sp/>OF<sp/>SUBSTITUTE<sp/>GOODS<sp/>OR<sp/>SERVICES;</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA,<sp/>OR<sp/>PROFITS;<sp/>OR<sp/>BUSINESS<sp/>INTERRUPTION)<sp/>HOWEVER</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>CAUSED<sp/>AND<sp/>ON<sp/>ANY<sp/>THEORY<sp/>OF<sp/>LIABILITY,<sp/>WHETHER<sp/>IN<sp/>CONTRACT,<sp/>STRICT</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>LIABILITY,<sp/>OR<sp/>TORT<sp/>(INCLUDING<sp/>NEGLIGENCE<sp/>OR<sp/>OTHERWISE)<sp/>ARISING<sp/>IN</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>ANY<sp/>WAY<sp/>OUT<sp/>OF<sp/>THE<sp/>USE<sp/>OF<sp/>THIS<sp/>SOFTWARE,<sp/>EVEN<sp/>IF<sp/>ADVISED<sp/>OF<sp/>THE</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>POSSIBILITY<sp/>OF<sp/>SUCH<sp/>DAMAGE.</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>--------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;riscv_math.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>----------------------------------------------------------------------</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>Defines<sp/>each<sp/>of<sp/>the<sp/>tests<sp/>performed</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>-------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_BLOCKSIZE<sp/><sp/><sp/>32</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DELTA<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(0.0001f)</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>----------------------------------------------------------------------</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>Test<sp/>input<sp/>data<sp/>for<sp/>Floating<sp/>point<sp/>sin_cos<sp/>example<sp/>for<sp/>32-blockSize</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>Generated<sp/>by<sp/>the<sp/>MATLAB<sp/>randn()<sp/>function</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>-------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>float32_t<sp/>testInput_f32[MAX_BLOCKSIZE]<sp/>=</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-1.244916875853235400,<sp/><sp/>-4.793533929171324800,<sp/><sp/><sp/>0.360705030233248850,<sp/><sp/><sp/>0.827929644170887320,<sp/><sp/>-3.299532218312426900,<sp/><sp/><sp/>3.427441903227623800,<sp/><sp/><sp/>3.422401784294607700,<sp/><sp/>-0.108308165334010680,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>0.941943896490312180,<sp/><sp/><sp/>0.502609575000365850,<sp/><sp/>-0.537345278736373500,<sp/><sp/><sp/>2.088817392965764500,<sp/><sp/>-1.693168684143455700,<sp/><sp/><sp/>6.283185307179590700,<sp/><sp/>-0.392545884746175080,<sp/><sp/><sp/>0.327893095115825040,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>3.070147440456292300,<sp/><sp/><sp/>0.170611405884662230,<sp/><sp/>-0.275275082396073010,<sp/><sp/>-2.395492805446796300,<sp/><sp/><sp/>0.847311163536506600,<sp/><sp/>-3.845517018083148800,<sp/><sp/><sp/>2.055818378415868300,<sp/><sp/><sp/>4.672594161978930800,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-1.990923030266425800,<sp/><sp/><sp/>2.469305197656249500,<sp/><sp/><sp/>3.609002606064021000,<sp/><sp/>-4.586736582331667500,<sp/><sp/>-4.147080139136136300,<sp/><sp/><sp/>1.643756718868359500,<sp/><sp/>-1.150866392366494800,<sp/><sp/><sp/>1.985805026477433800</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>float32_t<sp/>testRefOutput_f32<sp/>=<sp/>1.000000000;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>----------------------------------------------------------------------</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>Declare<sp/>Global<sp/>variables</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>-------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">uint32_t<sp/>blockSize<sp/>=<sp/>32;</highlight></codeline>
+<codeline><highlight class="normal">float32_t<sp/><sp/>testOutput;</highlight></codeline>
+<codeline><highlight class="normal">float32_t<sp/><sp/>cosOutput;</highlight></codeline>
+<codeline><highlight class="normal">float32_t<sp/><sp/>sinOutput;</highlight></codeline>
+<codeline><highlight class="normal">float32_t<sp/><sp/>cosSquareOutput;</highlight></codeline>
+<codeline><highlight class="normal">float32_t<sp/><sp/>sinSquareOutput;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>----------------------------------------------------------------------</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>Max<sp/>magnitude<sp/>FFT<sp/>Bin<sp/>test</highlight></codeline>
+<codeline><highlight class="comment">*<sp/>-------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">riscv_status<sp/>status;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">int32_t<sp/>main(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>float32_t<sp/>diff;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>uint32_t<sp/>i;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=0;<sp/>i&lt;<sp/>blockSize;<sp/>i++)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>cosOutput<sp/>=<sp/><ref refid="group__cos_1gaf64b27f7eb9658ef96b44a5f0fcf959e" kindref="member">riscv_cos_f32</ref>(testInput_f32[i]);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sinOutput<sp/>=<sp/><ref refid="group__sin_1ga11d805fff25da36b07ff5d2ebfb69dca" kindref="member">riscv_sin_f32</ref>(testInput_f32[i]);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__BasicMult_1gae63353652b163647d48e82dae770d751" kindref="member">riscv_mult_f32</ref>(&amp;cosOutput,<sp/>&amp;cosOutput,<sp/>&amp;cosSquareOutput,<sp/>1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__BasicMult_1gae63353652b163647d48e82dae770d751" kindref="member">riscv_mult_f32</ref>(&amp;sinOutput,<sp/>&amp;sinOutput,<sp/>&amp;sinSquareOutput,<sp/>1);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__BasicAdd_1ga11b757065b1c8aa1cef4a59594e4ecf0" kindref="member">riscv_add_f32</ref>(&amp;cosSquareOutput,<sp/>&amp;sinSquareOutput,<sp/>&amp;testOutput,<sp/>1);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>absolute<sp/>value<sp/>of<sp/>difference<sp/>between<sp/>ref<sp/>and<sp/>test<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>diff<sp/>=<sp/>fabsf(testRefOutput_f32<sp/>-<sp/>testOutput);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Comparison<sp/>of<sp/>sin_cos<sp/>value<sp/>with<sp/>reference<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(diff<sp/>&gt;<sp/>DELTA)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;test<sp/>failed\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;test<sp/>passed\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+</programlisting> </para>    </detaileddescription>
+  </compounddef>
+</doxygen>

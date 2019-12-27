@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="group__groupMatrix" kind="group">
+    <compoundname>groupMatrix</compoundname>
+    <title>Matrix Functions</title>
+    <innergroup refid="group__MatrixAdd">Matrix Addition</innergroup>
+    <innergroup refid="group__CmplxMatrixMult">Complex Matrix Multiplication</innergroup>
+    <innergroup refid="group__MatrixInit">Matrix Initialization</innergroup>
+    <innergroup refid="group__MatrixInv">Matrix Inverse</innergroup>
+    <innergroup refid="group__MatrixMult">Matrix Multiplication</innergroup>
+    <innergroup refid="group__MatrixScale">Matrix Scale</innergroup>
+    <innergroup refid="group__MatrixSub">Matrix Subtraction</innergroup>
+    <innergroup refid="group__MatrixTrans">Matrix Transpose</innergroup>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>This set of functions provides basic matrix math operations. The functions operate on matrix data structures. For example, the type definition for the floating-point matrix structure is shown below: <preformatted>
+    typedef struct
+    {
+      uint16_t numRows;     // number of rows of the matrix.
+      uint16_t numCols;     // number of columns of the matrix.
+      float32_t *pData;     // points to the data of the matrix.
+    } <ref refid="structriscv__matrix__instance__f32" kindref="compound">riscv_matrix_instance_f32</ref>;
+</preformatted> There are similar definitions for Q15 and Q31 data types.</para><para>The structure specifies the size of the matrix and then points to an array of data. The array is of size <computeroutput>numRows X numCols</computeroutput> and the values are arranged in row order. That is, the matrix element (i, j) is stored at: <preformatted>
+    pData[i*numCols + j]
+</preformatted></para><para><simplesect kind="par"><title>Init Functions</title><para>There is an associated initialization function for each type of matrix data structure. The initialization function sets the values of the internal structure fields. Refer to <ref refid="group__MatrixInit_1gadd1996f7da2fd9f19a6e2f3e691b681f" kindref="member">riscv_mat_init_f32()</ref>, <ref refid="group__MatrixInit_1gaa331509280e01b0d5a291a3edc3445a8" kindref="member">riscv_mat_init_q31()</ref> and <ref refid="group__MatrixInit_1ga898e2982d889ba9c78de91066e72bd52" kindref="member">riscv_mat_init_q15()</ref> for floating-point, Q31 and Q15 types, respectively.</para></simplesect>
+<simplesect kind="par"><title></title><para>Use of the initialization function is optional. However, if initialization function is used then the instance structure cannot be placed into a const data section. To place the instance structure in a const data section, manually initialize the data structure. For example: <preformatted>
+<computeroutput><ref refid="structriscv__matrix__instance__f32" kindref="compound">riscv_matrix_instance_f32</ref> S = {nRows, nColumns, pData};</computeroutput>
+<computeroutput><ref refid="structriscv__matrix__instance__q31" kindref="compound">riscv_matrix_instance_q31</ref> S = {nRows, nColumns, pData};</computeroutput>
+<computeroutput><ref refid="structriscv__matrix__instance__q15" kindref="compound">riscv_matrix_instance_q15</ref> S = {nRows, nColumns, pData};</computeroutput>
+</preformatted> where <computeroutput>nRows</computeroutput> specifies the number of rows, <computeroutput>nColumns</computeroutput> specifies the number of columns, and <computeroutput>pData</computeroutput> points to the data array.</para></simplesect>
+<simplesect kind="par"><title>Size Checking</title><para>By default all of the matrix functions perform size checking on the input and output matrices. For example, the matrix addition function verifies that the two input matrices and the output matrix all have the same number of rows and columns. If the size check fails the functions return: <preformatted>
+    RISCV_MATH_SIZE_MISMATCH
+</preformatted> Otherwise the functions return <preformatted>
+    RISCV_MATH_SUCCESS
+</preformatted> There is some overhead associated with this matrix size checking. The matrix size checking is enabled via the #define <preformatted>
+    RISCV_MATH_MATRIX_CHECK
+</preformatted> within the library project settings. By default this macro is defined and size checking is enabled. By changing the project settings and undefining this macro size checking is eliminated and the functions run a bit faster. With size checking disabled the functions always return <computeroutput>RISCV_MATH_SUCCESS</computeroutput>. </para></simplesect>
+</para>    </detaileddescription>
+  </compounddef>
+</doxygen>

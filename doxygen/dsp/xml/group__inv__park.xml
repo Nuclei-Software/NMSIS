@@ -1,0 +1,179 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="group__inv__park" kind="group">
+    <compoundname>inv_park</compoundname>
+    <title>Vector Inverse Park transform</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__inv__park_1ga551373c715baaa03726ac4a008f6fff7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>__STATIC_FORCEINLINE void</type>
+        <definition>__STATIC_FORCEINLINE void riscv_inv_park_f32</definition>
+        <argsstring>(float32_t Id, float32_t Iq, float32_t *pIalpha, float32_t *pIbeta, float32_t sinVal, float32_t cosVal)</argsstring>
+        <name>riscv_inv_park_f32</name>
+        <param>
+          <type>float32_t</type>
+          <declname>Id</declname>
+        </param>
+        <param>
+          <type>float32_t</type>
+          <declname>Iq</declname>
+        </param>
+        <param>
+          <type>float32_t *</type>
+          <declname>pIalpha</declname>
+        </param>
+        <param>
+          <type>float32_t *</type>
+          <declname>pIbeta</declname>
+        </param>
+        <param>
+          <type>float32_t</type>
+          <declname>sinVal</declname>
+        </param>
+        <param>
+          <type>float32_t</type>
+          <declname>cosVal</declname>
+        </param>
+        <briefdescription>
+<para>Floating-point Inverse Park transform. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">Id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>input coordinate of rotor reference frame d </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">Iq</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>input coordinate of rotor reference frame q </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pIalpha</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to output two-phase orthogonal vector axis alpha </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pIbeta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to output two-phase orthogonal vector axis beta </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">sinVal</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>sine value of rotation angle theta </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">cosVal</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>cosine value of rotation angle theta </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" line="5384" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" bodystart="5384" bodyend="5397"/>
+      </memberdef>
+      <memberdef kind="function" id="group__inv__park_1ga295798b52c3a62efeaf00091e001ee20" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>__STATIC_FORCEINLINE void</type>
+        <definition>__STATIC_FORCEINLINE void riscv_inv_park_q31</definition>
+        <argsstring>(q31_t Id, q31_t Iq, q31_t *pIalpha, q31_t *pIbeta, q31_t sinVal, q31_t cosVal)</argsstring>
+        <name>riscv_inv_park_q31</name>
+        <param>
+          <type>q31_t</type>
+          <declname>Id</declname>
+        </param>
+        <param>
+          <type>q31_t</type>
+          <declname>Iq</declname>
+        </param>
+        <param>
+          <type>q31_t *</type>
+          <declname>pIalpha</declname>
+        </param>
+        <param>
+          <type>q31_t *</type>
+          <declname>pIbeta</declname>
+        </param>
+        <param>
+          <type>q31_t</type>
+          <declname>sinVal</declname>
+        </param>
+        <param>
+          <type>q31_t</type>
+          <declname>cosVal</declname>
+        </param>
+        <briefdescription>
+<para>Inverse Park transform for Q31 version. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">Id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>input coordinate of rotor reference frame d </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">Iq</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>input coordinate of rotor reference frame q </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pIalpha</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to output two-phase orthogonal vector axis alpha </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pIbeta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to output two-phase orthogonal vector axis beta </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">sinVal</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>sine value of rotation angle theta </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">cosVal</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>cosine value of rotation angle theta </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>none</para></simplesect>
+<simplesect kind="par"><title>Scaling and Overflow Behavior</title><para>The function is implemented using an internal 32-bit accumulator. The accumulator maintains 1.31 format by truncating lower 31 bits of the intermediate multiplication in 2.62 format. There is saturation on the addition, hence there is no risk of overflow. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" line="5415" column="1" bodyfile="/home/xl_ci/gitlab-runner/builds/f5c994c2/0/software/library/cmsis-5-riscv/CMSIS/nmsis_release/NMSIS/DSP/Include/riscv_math.h" bodystart="5415" bodyend="5444"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>end of park group</para><para>Inverse Park transform converts the input flux and torque components to two-coordinate vector.</para><para>The function operates on a single sample of data and each call to the function returns the processed output. The library provides separate functions for Q31 and floating-point data types. <simplesect kind="par"><title>Algorithm</title><para><image type="html" name="parkInvFormula.png"></image>
+ where <computeroutput>pIalpha</computeroutput> and <computeroutput>pIbeta</computeroutput> are the stator vector components, <computeroutput>Id</computeroutput> and <computeroutput>Iq</computeroutput> are rotor vector components and <computeroutput>cosVal</computeroutput> and <computeroutput>sinVal</computeroutput> are the cosine and sine values of theta (rotor flux position). </para></simplesect>
+<simplesect kind="par"><title>Fixed-Point Behavior</title><para>Care must be taken when using the Q31 version of the Park transform. In particular, the overflow and saturation behavior of the accumulator used must be considered. Refer to the function specific documentation below for usage guidelines. </para></simplesect>
+</para>    </detaileddescription>
+  </compounddef>
+</doxygen>
