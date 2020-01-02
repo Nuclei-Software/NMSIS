@@ -115,6 +115,7 @@ The **NMSIS** is documented within the source files with:
 -  Comments that use the C or C++ style.
 
 -  Doxygen compliant comments, which provide:
+
    -  brief function, variable, macro overview.
    -  detailed description of the function, variable, macro.
    -  detailed parameter explanation.
