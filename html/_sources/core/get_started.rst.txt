@@ -65,7 +65,7 @@ following features:
 -  :ref:`core_api_core_intrinsic` allow to access special instructions,
    for example for activating sleep mode or the NOP instruction.
 
--  :ref:`core_api_core_dsp_intrinsic` provide access to the DSP-oriented instructions.
+-  :ref:`nmsis_core_api_intrinsic_functions_for_simd_instructions` provide access to the DSP-oriented instructions.
 
 -  :ref:`core_api_systick` function to configure and start a periodic timer interrupt.
 
@@ -240,7 +240,7 @@ library for |nmsis_support_cores|.
 One of these defines needs to be provided on the compiler command line.
 
 By using this header file, the source code can access the functions for :ref:`core_api_csr_access`,
-:ref:`core_api_core_intrinsic` and :ref:`core_api_core_dsp_intrinsic`.
+:ref:`core_api_core_intrinsic` and :ref:`nmsis_core_api_intrinsic_functions_for_simd_instructions`.
 
 
 .. code-block:: c
