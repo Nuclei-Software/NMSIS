@@ -2436,7 +2436,7 @@ Processing function for the fast Q15 FIR filter (fast version).</para><para><par
     {0.3, -0.3}
 </preformatted> set <computeroutput>numTaps=4</computeroutput> and use the coefficients: <preformatted>
     {0.3, -0.3, 0, 0}.
-</preformatted> <computeroutput>pState</computeroutput> points to the array of state variables. <computeroutput>pState</computeroutput> is of length <computeroutput>numTaps+blockSize</computeroutput>, when running on RISC-V Core with DSP enabled and is of length <computeroutput>numTaps+blockSize-1</computeroutput>, when running on RISC-V0 where <computeroutput>blockSize</computeroutput> is the number of input samples processed by each call to <computeroutput><ref refid="group__FIR_1ga8df4a826bbe755b7b0efa9615bf4df49" kindref="member">riscv_fir_q15()</ref></computeroutput>. </para></simplesect>
+</preformatted> <computeroutput>pState</computeroutput> points to the array of state variables. <computeroutput>pState</computeroutput> is of length <computeroutput>numTaps+blockSize</computeroutput>, when running on RISC-V Core with DSP enabled and is of length <computeroutput>numTaps+blockSize-1</computeroutput>, when running on RISC-V Core without DSP where <computeroutput>blockSize</computeroutput> is the number of input samples processed by each call to <computeroutput><ref refid="group__FIR_1ga8df4a826bbe755b7b0efa9615bf4df49" kindref="member">riscv_fir_q15()</ref></computeroutput>. </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
@@ -3119,7 +3119,7 @@ Processing function for the floating-point FIR filter.</para><para><parameterlis
 <simplesect kind="par"><title>Coefficient and State Ordering</title><para>The coefficients are stored in the array <computeroutput>pCoeffs</computeroutput> in the following order: <preformatted>
     {b10, 0, b11, b12, a11, a12, b20, 0, b21, b22, a21, a22, ...}
 </preformatted> </para></simplesect>
-<simplesect kind="par"><title></title><para>where <computeroutput>b1x</computeroutput> and <computeroutput>a1x</computeroutput> are the coefficients for the first stage, <computeroutput>b2x</computeroutput> and <computeroutput>a2x</computeroutput> are the coefficients for the second stage, and so on. The <computeroutput>pCoeffs</computeroutput> array contains a total of <computeroutput>6*numStages</computeroutput> values. The zero coefficient between <computeroutput>b1</computeroutput> and <computeroutput>b2</computeroutput> facilities use of 16-bit SIMD instructions on the RISC-V4. </para></simplesect>
+<simplesect kind="par"><title></title><para>where <computeroutput>b1x</computeroutput> and <computeroutput>a1x</computeroutput> are the coefficients for the first stage, <computeroutput>b2x</computeroutput> and <computeroutput>a2x</computeroutput> are the coefficients for the second stage, and so on. The <computeroutput>pCoeffs</computeroutput> array contains a total of <computeroutput>6*numStages</computeroutput> values. The zero coefficient between <computeroutput>b1</computeroutput> and <computeroutput>b2</computeroutput> facilities use of 16-bit SIMD instructions on the RISC-V Core with DSP. </para></simplesect>
 <simplesect kind="par"><title></title><para>The state variables are stored in the array <computeroutput>pState</computeroutput>. Each Biquad stage has 4 state variables <computeroutput>x[n-1], x[n-2], y[n-1],</computeroutput> and <computeroutput>y[n-2]</computeroutput>. The state variables are arranged in the <computeroutput>pState</computeroutput> array as: <preformatted>
     {x[n-1], x[n-2], y[n-1], y[n-2]}
 </preformatted> The 4 state variables for stage 1 are first, then the 4 state variables for stage 2, and so on. The state array has a total length of <computeroutput>4*numStages</computeroutput> values. The state variables are updated after each block of data is processed; the coefficients are untouched. </para></simplesect>
@@ -3150,7 +3150,7 @@ Processing function for the floating-point FIR filter.</para><para><parameterlis
           <declname>blockSize</declname>
         </param>
         <briefdescription>
-<para>Fast but less precise processing function for the Q15 Biquad cascade filter for RISC-V3 and RISC-V4. </para>        </briefdescription>
+<para>Fast but less precise processing function for the Q15 Biquad cascade filter for RISC-V Core with DSP enabled. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -3181,7 +3181,7 @@ Processing function for the floating-point FIR filter.</para><para><parameterlis
 <para>number of samples to process.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
-Fast but less precise processing function for the Q15 Biquad cascade filter for RISC-V3 and RISC-V4.</para><para><parameterlist kind="param"><parameteritem>
+Fast but less precise processing function for the Q15 Biquad cascade filter for RISC-V Core with DSP enabled.</para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">S</parametername>
 </parameternamelist>
@@ -3329,7 +3329,7 @@ Fast but less precise processing function for the Q15 Biquad cascade filter for 
           <declname>blockSize</declname>
         </param>
         <briefdescription>
-<para>Fast but less precise processing function for the Q31 Biquad cascade filter for RISC-V3 and RISC-V4. </para>        </briefdescription>
+<para>Fast but less precise processing function for the Q31 Biquad cascade filter for RISC-V Core with DSP enabled. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -3360,7 +3360,7 @@ Fast but less precise processing function for the Q15 Biquad cascade filter for 
 <para>number of samples to process.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
-Fast but less precise processing function for the Q31 Biquad cascade filter for RISC-V3 and RISC-V4.</para><para><parameterlist kind="param"><parameteritem>
+Fast but less precise processing function for the Q31 Biquad cascade filter for RISC-V Core with DSP enabled.</para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">S</parametername>
 </parameternamelist>
@@ -4495,7 +4495,7 @@ Q31, complex, matrix multiplication.</para><para><parameterlist kind="param"><pa
           <declname>pState</declname>
         </param>
         <briefdescription>
-<para>Q15 matrix multiplication (fast variant) for RISC-V3 and RISC-V4. </para>        </briefdescription>
+<para>Q15 matrix multiplication (fast variant) for RISC-V Core with DSP enabled. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -4527,7 +4527,7 @@ Q31, complex, matrix multiplication.</para><para><parameterlist kind="param"><pa
 </parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>The function returns either <computeroutput>RISCV_MATH_SIZE_MISMATCH</computeroutput> or <computeroutput>RISCV_MATH_SUCCESS</computeroutput> based on the outcome of size checking.</para></simplesect>
-Q15 matrix multiplication (fast variant) for RISC-V3 and RISC-V4.</para><para><parameterlist kind="param"><parameteritem>
+Q15 matrix multiplication (fast variant) for RISC-V Core with DSP enabled.</para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">pSrcA</parametername>
 </parameternamelist>
@@ -4660,7 +4660,7 @@ Q15 matrix multiplication (fast variant) for RISC-V3 and RISC-V4.</para><para><p
           <declname>pDst</declname>
         </param>
         <briefdescription>
-<para>Q31 matrix multiplication (fast variant) for RISC-V3 and RISC-V4. </para>        </briefdescription>
+<para>Q31 matrix multiplication (fast variant) for RISC-V Core with DSP enabled. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -4685,7 +4685,7 @@ Q15 matrix multiplication (fast variant) for RISC-V3 and RISC-V4.</para><para><p
 </parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>The function returns either <computeroutput>RISCV_MATH_SIZE_MISMATCH</computeroutput> or <computeroutput>RISCV_MATH_SUCCESS</computeroutput> based on the outcome of size checking.</para></simplesect>
-Q31 matrix multiplication (fast variant) for RISC-V3 and RISC-V4.</para><para><parameterlist kind="param"><parameteritem>
+Q31 matrix multiplication (fast variant) for RISC-V Core with DSP enabled.</para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">pSrcA</parametername>
 </parameternamelist>
@@ -11771,7 +11771,7 @@ Q31 matrix multiplication (fast variant) for RISC-V3 and RISC-V4.</para><para><p
           <declname>pDst</declname>
         </param>
         <briefdescription>
-<para>Convolution of Q15 sequences (fast version) for RISC-V3 and RISC-V4. </para>        </briefdescription>
+<para>Convolution of Q15 sequences (fast version) for RISC-V Core with DSP enabled. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -11809,7 +11809,7 @@ Q31 matrix multiplication (fast variant) for RISC-V3 and RISC-V4.</para><para><p
 <para>points to the block of output data Length srcALen+srcBLen-1.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
-Convolution of Q15 sequences (fast version) for RISC-V3 and RISC-V4.</para><para><parameterlist kind="param"><parameteritem>
+Convolution of Q15 sequences (fast version) for RISC-V Core with DSP enabled.</para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">pSrcA</parametername>
 </parameternamelist>
@@ -11887,7 +11887,7 @@ Convolution of Q15 sequences (fast version) for RISC-V3 and RISC-V4.</para><para
           <declname>pScratch2</declname>
         </param>
         <briefdescription>
-<para>Convolution of Q15 sequences (fast version) for RISC-V3 and RISC-V4. </para>        </briefdescription>
+<para>Convolution of Q15 sequences (fast version) for RISC-V Core with DSP enabled. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -11939,7 +11939,7 @@ Convolution of Q15 sequences (fast version) for RISC-V3 and RISC-V4.</para><para
 <para>points to scratch buffer of size min(srcALen, srcBLen).</para></parameterdescription>
 </parameteritem>
 </parameterlist>
-Convolution of Q15 sequences (fast version) for RISC-V3 and RISC-V4.</para><para><parameterlist kind="param"><parameteritem>
+Convolution of Q15 sequences (fast version) for RISC-V Core with DSP enabled.</para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">pSrcA</parametername>
 </parameternamelist>
@@ -12130,7 +12130,7 @@ Convolution of Q15 sequences (fast version) for RISC-V3 and RISC-V4.</para><para
           <declname>pDst</declname>
         </param>
         <briefdescription>
-<para>Convolution of Q31 sequences (fast version) for RISC-V3 and RISC-V4. </para>        </briefdescription>
+<para>Convolution of Q31 sequences (fast version) for RISC-V Core with DSP enabled. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -12168,7 +12168,7 @@ Convolution of Q15 sequences (fast version) for RISC-V3 and RISC-V4.</para><para
 <para>points to the block of output data Length srcALen+srcBLen-1.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
-Convolution of Q31 sequences (fast version) for RISC-V3 and RISC-V4.</para><para><parameterlist kind="param"><parameteritem>
+Convolution of Q31 sequences (fast version) for RISC-V Core with DSP enabled.</para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">pSrcA</parametername>
 </parameternamelist>
@@ -12969,7 +12969,7 @@ Convolution of Q31 sequences (fast version) for RISC-V3 and RISC-V4.</para><para
           <declname>numPoints</declname>
         </param>
         <briefdescription>
-<para>Partial convolution of Q15 sequences (fast version) for RISC-V3 and RISC-V4. </para>        </briefdescription>
+<para>Partial convolution of Q15 sequences (fast version) for RISC-V Core with DSP enabled. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -13022,7 +13022,7 @@ Convolution of Q31 sequences (fast version) for RISC-V3 and RISC-V4.</para><para
 </parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>Returns either RISCV_MATH_SUCCESS if the function completed correctly or RISCV_MATH_ARGUMENT_ERROR if the requested subset is not in the range [0 srcALen+srcBLen-2].</para></simplesect>
-Partial convolution of Q15 sequences (fast version) for RISC-V3 and RISC-V4.</para><para><parameterlist kind="param"><parameteritem>
+Partial convolution of Q15 sequences (fast version) for RISC-V Core with DSP enabled.</para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">pSrcA</parametername>
 </parameternamelist>
@@ -13123,7 +13123,7 @@ Partial convolution of Q15 sequences (fast version) for RISC-V3 and RISC-V4.</pa
           <declname>pScratch2</declname>
         </param>
         <briefdescription>
-<para>Partial convolution of Q15 sequences (fast version) for RISC-V3 and RISC-V4. </para>        </briefdescription>
+<para>Partial convolution of Q15 sequences (fast version) for RISC-V Core with DSP enabled. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -13190,7 +13190,7 @@ Partial convolution of Q15 sequences (fast version) for RISC-V3 and RISC-V4.</pa
 </parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>Returns either RISCV_MATH_SUCCESS if the function completed correctly or RISCV_MATH_ARGUMENT_ERROR if the requested subset is not in the range [0 srcALen+srcBLen-2].</para></simplesect>
-Partial convolution of Q15 sequences (fast version) for RISC-V3 and RISC-V4.</para><para><parameterlist kind="param"><parameteritem>
+Partial convolution of Q15 sequences (fast version) for RISC-V Core with DSP enabled.</para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">pSrcA</parametername>
 </parameternamelist>
@@ -13443,7 +13443,7 @@ Partial convolution of Q15 sequences (fast version) for RISC-V3 and RISC-V4.</pa
           <declname>numPoints</declname>
         </param>
         <briefdescription>
-<para>Partial convolution of Q31 sequences (fast version) for RISC-V3 and RISC-V4. </para>        </briefdescription>
+<para>Partial convolution of Q31 sequences (fast version) for RISC-V Core with DSP enabled. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -13496,7 +13496,7 @@ Partial convolution of Q15 sequences (fast version) for RISC-V3 and RISC-V4.</pa
 </parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>Returns either RISCV_MATH_SUCCESS if the function completed correctly or RISCV_MATH_ARGUMENT_ERROR if the requested subset is not in the range [0 srcALen+srcBLen-2].</para></simplesect>
-Partial convolution of Q31 sequences (fast version) for RISC-V3 and RISC-V4.</para><para><parameterlist kind="param"><parameteritem>
+Partial convolution of Q31 sequences (fast version) for RISC-V Core with DSP enabled.</para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">pSrcA</parametername>
 </parameternamelist>
@@ -14213,7 +14213,7 @@ Partial convolution of Q31 sequences (fast version) for RISC-V3 and RISC-V4.</pa
           <declname>blockSize</declname>
         </param>
         <briefdescription>
-<para>Processing function for the Q15 FIR decimator (fast variant) for RISC-V3 and RISC-V4. </para>        </briefdescription>
+<para>Processing function for the Q15 FIR decimator (fast variant) for RISC-V Core with DSP enabled. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -14244,7 +14244,7 @@ Partial convolution of Q31 sequences (fast version) for RISC-V3 and RISC-V4.</pa
 <para>number of input samples to process per call.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
-Processing function for the Q15 FIR decimator (fast variant) for RISC-V3 and RISC-V4.</para><para><parameterlist kind="param"><parameteritem>
+Processing function for the Q15 FIR decimator (fast variant) for RISC-V Core with DSP enabled.</para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">S</parametername>
 </parameternamelist>
@@ -14523,7 +14523,7 @@ Processing function for the Q15 FIR decimator (fast variant) for RISC-V3 and RIS
           <declname>blockSize</declname>
         </param>
         <briefdescription>
-<para>Processing function for the Q31 FIR decimator (fast variant) for RISC-V3 and RISC-V4. </para>        </briefdescription>
+<para>Processing function for the Q31 FIR decimator (fast variant) for RISC-V Core with DSP enabled. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -14554,7 +14554,7 @@ Processing function for the Q15 FIR decimator (fast variant) for RISC-V3 and RIS
 <para>number of input samples to process per call.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
-Processing function for the Q31 FIR decimator (fast variant) for RISC-V3 and RISC-V4.</para><para><parameterlist kind="param"><parameteritem>
+Processing function for the Q31 FIR decimator (fast variant) for RISC-V Core with DSP enabled.</para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">S</parametername>
 </parameternamelist>

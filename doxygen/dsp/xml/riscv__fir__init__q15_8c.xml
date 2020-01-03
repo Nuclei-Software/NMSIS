@@ -82,7 +82,7 @@
     {0.3, -0.3}
 </preformatted> set <computeroutput>numTaps=4</computeroutput> and use the coefficients: <preformatted>
     {0.3, -0.3, 0, 0}.
-</preformatted> <computeroutput>pState</computeroutput> points to the array of state variables. <computeroutput>pState</computeroutput> is of length <computeroutput>numTaps+blockSize</computeroutput>, when running on RISC-V Core with DSP enabled and is of length <computeroutput>numTaps+blockSize-1</computeroutput>, when running on RISC-V0 where <computeroutput>blockSize</computeroutput> is the number of input samples processed by each call to <computeroutput><ref refid="group__FIR_1ga8df4a826bbe755b7b0efa9615bf4df49" kindref="member">riscv_fir_q15()</ref></computeroutput>. </para></simplesect>
+</preformatted> <computeroutput>pState</computeroutput> points to the array of state variables. <computeroutput>pState</computeroutput> is of length <computeroutput>numTaps+blockSize</computeroutput>, when running on RISC-V Core with DSP enabled and is of length <computeroutput>numTaps+blockSize-1</computeroutput>, when running on RISC-V Core without DSP where <computeroutput>blockSize</computeroutput> is the number of input samples processed by each call to <computeroutput><ref refid="group__FIR_1ga8df4a826bbe755b7b0efa9615bf4df49" kindref="member">riscv_fir_q15()</ref></computeroutput>. </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
@@ -102,7 +102,7 @@
 <codeline lineno="6"><highlight class="comment"><sp/>*<sp/>$Date:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>18.<sp/>March<sp/>2019</highlight></codeline>
 <codeline lineno="7"><highlight class="comment"><sp/>*<sp/>$Revision:<sp/><sp/><sp/><sp/>V1.6.0</highlight></codeline>
 <codeline lineno="8"><highlight class="comment"><sp/>*</highlight></codeline>
-<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>Target<sp/>Processor:<sp/>RISC-V<sp/>cores</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>Target<sp/>Processor:<sp/>RISC-V<sp/>Cores</highlight></codeline>
 <codeline lineno="10"><highlight class="comment"><sp/>*<sp/>--------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
 <codeline lineno="12"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(C)<sp/>2010-2019<sp/>ARM<sp/>Limited<sp/>or<sp/>its<sp/>affiliates.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>

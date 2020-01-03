@@ -459,7 +459,7 @@ Finite Impulse Response filter</div></div>
     {0.3, -0.3}
 </pre> set <code>numTaps=4</code> and use the coefficients: <pre>
     {0.3, -0.3, 0, 0}.
-</pre> <code>pState</code> points to the array of state variables. <code>pState</code> is of length <code>numTaps+blockSize</code>, when running on RISC-V Core with DSP enabled and is of length <code>numTaps+blockSize-1</code>, when running on RISC-V0 where <code>blockSize</code> is the number of input samples processed by each call to <code><a class="el" href="group__FIR.html#ga8df4a826bbe755b7b0efa9615bf4df49" title="Processing function for the Q15 FIR filter. ">riscv_fir_q15()</a></code>. </dd></dl>
+</pre> <code>pState</code> points to the array of state variables. <code>pState</code> is of length <code>numTaps+blockSize</code>, when running on RISC-V Core with DSP enabled and is of length <code>numTaps+blockSize-1</code>, when running on RISC-V Core without DSP where <code>blockSize</code> is the number of input samples processed by each call to <code><a class="el" href="group__FIR.html#ga8df4a826bbe755b7b0efa9615bf4df49" title="Processing function for the Q15 FIR filter. ">riscv_fir_q15()</a></code>. </dd></dl>
 
 </div>
 </div>
@@ -746,7 +746,7 @@ Finite Impulse Response filter</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Jan 2 2020 10:16:08 for NMSIS-DSP by
+    <li class="footer">Generated on Fri Jan 3 2020 09:50:52 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

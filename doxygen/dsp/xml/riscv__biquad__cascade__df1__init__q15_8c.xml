@@ -73,7 +73,7 @@
 <simplesect kind="par"><title>Coefficient and State Ordering</title><para>The coefficients are stored in the array <computeroutput>pCoeffs</computeroutput> in the following order: <preformatted>
     {b10, 0, b11, b12, a11, a12, b20, 0, b21, b22, a21, a22, ...}
 </preformatted> </para></simplesect>
-<simplesect kind="par"><title></title><para>where <computeroutput>b1x</computeroutput> and <computeroutput>a1x</computeroutput> are the coefficients for the first stage, <computeroutput>b2x</computeroutput> and <computeroutput>a2x</computeroutput> are the coefficients for the second stage, and so on. The <computeroutput>pCoeffs</computeroutput> array contains a total of <computeroutput>6*numStages</computeroutput> values. The zero coefficient between <computeroutput>b1</computeroutput> and <computeroutput>b2</computeroutput> facilities use of 16-bit SIMD instructions on the RISC-V4. </para></simplesect>
+<simplesect kind="par"><title></title><para>where <computeroutput>b1x</computeroutput> and <computeroutput>a1x</computeroutput> are the coefficients for the first stage, <computeroutput>b2x</computeroutput> and <computeroutput>a2x</computeroutput> are the coefficients for the second stage, and so on. The <computeroutput>pCoeffs</computeroutput> array contains a total of <computeroutput>6*numStages</computeroutput> values. The zero coefficient between <computeroutput>b1</computeroutput> and <computeroutput>b2</computeroutput> facilities use of 16-bit SIMD instructions on the RISC-V Core with DSP. </para></simplesect>
 <simplesect kind="par"><title></title><para>The state variables are stored in the array <computeroutput>pState</computeroutput>. Each Biquad stage has 4 state variables <computeroutput>x[n-1], x[n-2], y[n-1],</computeroutput> and <computeroutput>y[n-2]</computeroutput>. The state variables are arranged in the <computeroutput>pState</computeroutput> array as: <preformatted>
     {x[n-1], x[n-2], y[n-1], y[n-2]}
 </preformatted> The 4 state variables for stage 1 are first, then the 4 state variables for stage 2, and so on. The state array has a total length of <computeroutput>4*numStages</computeroutput> values. The state variables are updated after each block of data is processed; the coefficients are untouched. </para></simplesect>
@@ -96,7 +96,7 @@
 <codeline lineno="6"><highlight class="comment"><sp/>*<sp/>$Date:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>18.<sp/>March<sp/>2019</highlight></codeline>
 <codeline lineno="7"><highlight class="comment"><sp/>*<sp/>$Revision:<sp/><sp/><sp/><sp/>V1.6.0</highlight></codeline>
 <codeline lineno="8"><highlight class="comment"><sp/>*</highlight></codeline>
-<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>Target<sp/>Processor:<sp/>RISC-V<sp/>cores</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>Target<sp/>Processor:<sp/>RISC-V<sp/>Cores</highlight></codeline>
 <codeline lineno="10"><highlight class="comment"><sp/>*<sp/>--------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
 <codeline lineno="12"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(C)<sp/>2010-2019<sp/>ARM<sp/>Limited<sp/>or<sp/>its<sp/>affiliates.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>

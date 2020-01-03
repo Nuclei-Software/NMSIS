@@ -336,7 +336,7 @@
     {0.3, -0.3}
 </preformatted> set <computeroutput>numTaps=4</computeroutput> and use the coefficients: <preformatted>
     {0.3, -0.3, 0, 0}.
-</preformatted> <computeroutput>pState</computeroutput> points to the array of state variables. <computeroutput>pState</computeroutput> is of length <computeroutput>numTaps+blockSize</computeroutput>, when running on RISC-V Core with DSP enabled and is of length <computeroutput>numTaps+blockSize-1</computeroutput>, when running on RISC-V0 where <computeroutput>blockSize</computeroutput> is the number of input samples processed by each call to <computeroutput><ref refid="group__FIR_1ga8df4a826bbe755b7b0efa9615bf4df49" kindref="member">riscv_fir_q15()</ref></computeroutput>. </para></simplesect>
+</preformatted> <computeroutput>pState</computeroutput> points to the array of state variables. <computeroutput>pState</computeroutput> is of length <computeroutput>numTaps+blockSize</computeroutput>, when running on RISC-V Core with DSP enabled and is of length <computeroutput>numTaps+blockSize-1</computeroutput>, when running on RISC-V Core without DSP where <computeroutput>blockSize</computeroutput> is the number of input samples processed by each call to <computeroutput><ref refid="group__FIR_1ga8df4a826bbe755b7b0efa9615bf4df49" kindref="member">riscv_fir_q15()</ref></computeroutput>. </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
