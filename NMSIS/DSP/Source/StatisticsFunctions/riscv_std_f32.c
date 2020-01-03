@@ -6,7 +6,7 @@
  * $Date:        18. March 2019
  * $Revision:    V1.6.0
  *
- * Target Processor: RISC-V cores
+ * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
  * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
@@ -168,7 +168,7 @@ void riscv_std_f32(
   riscv_sqrt_f32((meanOfSquares - squareOfMean), pResult);
 
 #else
-  /* Run the below code for RISC-V0 */
+  /* Run the below code for RISC-V Core without DSP */
 
   /* Compute square of sum */
   squareOfSum = ((sum * sum) / (float32_t) blockSize);

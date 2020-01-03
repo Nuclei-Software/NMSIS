@@ -7,7 +7,7 @@
  * $Date:        27. January 2017
  * $Revision:    V.1.5.1
  *
- * Target Processor: RISC-V cores
+ * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
  * Copyright (C) 2010-2017 ARM Limited or its affiliates. All rights reserved.

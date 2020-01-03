@@ -25,7 +25,7 @@
  * $Date:        13. July 2018
  * $Revision:    V.1.0.0
  *
- * Target Processor:  Nuclei N cores
+ * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 
 /**

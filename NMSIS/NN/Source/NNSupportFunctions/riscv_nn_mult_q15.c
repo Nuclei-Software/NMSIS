@@ -25,7 +25,7 @@
  * $Date:        13. July 2018
  * $Revision:    V.1.0.0
  *
- * Target Processor:  RISC-V cores
+ * Target Processor: RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 
@@ -123,7 +123,7 @@ void riscv_nn_mult_q15(
 
 #else
 
-  /* Run the below code for RISC-V0 */
+  /* Run the below code for RISC-V Core without DSP */
 
   /* Initialize blkCnt with number of samples */
   blkCnt = blockSize;

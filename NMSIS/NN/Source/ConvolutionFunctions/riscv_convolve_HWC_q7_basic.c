@@ -25,7 +25,7 @@
  * $Date:        17. January 2018
  * $Revision:    V.1.0.0
  *
- * Target Processor:  RISC-V cores
+ * Target Processor: RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 #include "riscv_math.h"

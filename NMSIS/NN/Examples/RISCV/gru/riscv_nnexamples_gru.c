@@ -1,6 +1,6 @@
 /* ----------------------------------------------------------------------
 * Copyright (C) 2010-2018 Arm Limited. All rights reserved.
- * Copyright (c) 2019 Nuclei Limited. All rights reserved.
+* Copyright (c) 2019 Nuclei Limited. All rights reserved.
 *
 *
 * Project:       NMSIS NN Library

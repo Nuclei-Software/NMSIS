@@ -1397,7 +1397,7 @@ static inline int32x4_t __riscv_vec_sqrt_q31_neon(int32x4_t vec)
         int8_t postShift);
 
   /**
-   * @brief Fast but less precise processing function for the Q15 Biquad cascade filter for RISC-V3 and RISC-V4.
+   * @brief Fast but less precise processing function for the Q15 Biquad cascade filter for RISC-V Core with DSP enabled.
    * @param[in]  S          points to an instance of the Q15 Biquad cascade structure.
    * @param[in]  pSrc       points to the block of input data.
    * @param[out] pDst       points to the block of output data.
@@ -1423,7 +1423,7 @@ static inline int32x4_t __riscv_vec_sqrt_q31_neon(int32x4_t vec)
         uint32_t blockSize);
 
   /**
-   * @brief Fast but less precise processing function for the Q31 Biquad cascade filter for RISC-V3 and RISC-V4.
+   * @brief Fast but less precise processing function for the Q31 Biquad cascade filter for RISC-V Core with DSP enabled.
    * @param[in]  S          points to an instance of the Q31 Biquad cascade structure.
    * @param[in]  pSrc       points to the block of input data.
    * @param[out] pDst       points to the block of output data.
@@ -1658,7 +1658,7 @@ riscv_status riscv_mat_mult_q15(
         q15_t * pState);
 
   /**
-   * @brief Q15 matrix multiplication (fast variant) for RISC-V3 and RISC-V4
+   * @brief Q15 matrix multiplication (fast variant) for RISC-V Core with DSP enabled
    * @param[in]  pSrcA   points to the first input matrix structure
    * @param[in]  pSrcB   points to the second input matrix structure
    * @param[out] pDst    points to output matrix structure
@@ -1686,7 +1686,7 @@ riscv_status riscv_mat_mult_q31(
         riscv_matrix_instance_q31 * pDst);
 
   /**
-   * @brief Q31 matrix multiplication (fast variant) for RISC-V3 and RISC-V4
+   * @brief Q31 matrix multiplication (fast variant) for RISC-V Core with DSP enabled
    * @param[in]  pSrcA  points to the first input matrix structure
    * @param[in]  pSrcB  points to the second input matrix structure
    * @param[out] pDst   points to output matrix structure
@@ -3065,7 +3065,7 @@ riscv_status riscv_rfft_4096_fast_init_f32 ( riscv_rfft_fast_instance_f32 * S );
 
 
   /**
-   * @brief Convolution of Q15 sequences (fast version) for RISC-V3 and RISC-V4
+   * @brief Convolution of Q15 sequences (fast version) for RISC-V Core with DSP enabled
    * @param[in]  pSrcA    points to the first input sequence.
    * @param[in]  srcALen  length of the first input sequence.
    * @param[in]  pSrcB    points to the second input sequence.
@@ -3081,7 +3081,7 @@ riscv_status riscv_rfft_4096_fast_init_f32 ( riscv_rfft_fast_instance_f32 * S );
 
 
   /**
-   * @brief Convolution of Q15 sequences (fast version) for RISC-V3 and RISC-V4
+   * @brief Convolution of Q15 sequences (fast version) for RISC-V Core with DSP enabled
    * @param[in]  pSrcA      points to the first input sequence.
    * @param[in]  srcALen    length of the first input sequence.
    * @param[in]  pSrcB      points to the second input sequence.
@@ -3117,7 +3117,7 @@ riscv_status riscv_rfft_4096_fast_init_f32 ( riscv_rfft_fast_instance_f32 * S );
 
 
   /**
-   * @brief Convolution of Q31 sequences (fast version) for RISC-V3 and RISC-V4
+   * @brief Convolution of Q31 sequences (fast version) for RISC-V Core with DSP enabled
    * @param[in]  pSrcA    points to the first input sequence.
    * @param[in]  srcALen  length of the first input sequence.
    * @param[in]  pSrcB    points to the second input sequence.
@@ -3236,7 +3236,7 @@ riscv_status riscv_rfft_4096_fast_init_f32 ( riscv_rfft_fast_instance_f32 * S );
 
 
   /**
-   * @brief Partial convolution of Q15 sequences (fast version) for RISC-V3 and RISC-V4
+   * @brief Partial convolution of Q15 sequences (fast version) for RISC-V Core with DSP enabled
    * @param[in]  pSrcA       points to the first input sequence.
    * @param[in]  srcALen     length of the first input sequence.
    * @param[in]  pSrcB       points to the second input sequence.
@@ -3257,7 +3257,7 @@ riscv_status riscv_rfft_4096_fast_init_f32 ( riscv_rfft_fast_instance_f32 * S );
 
 
   /**
-   * @brief Partial convolution of Q15 sequences (fast version) for RISC-V3 and RISC-V4
+   * @brief Partial convolution of Q15 sequences (fast version) for RISC-V Core with DSP enabled
    * @param[in]  pSrcA       points to the first input sequence.
    * @param[in]  srcALen     length of the first input sequence.
    * @param[in]  pSrcB       points to the second input sequence.
@@ -3303,7 +3303,7 @@ riscv_status riscv_rfft_4096_fast_init_f32 ( riscv_rfft_fast_instance_f32 * S );
 
 
   /**
-   * @brief Partial convolution of Q31 sequences (fast version) for RISC-V3 and RISC-V4
+   * @brief Partial convolution of Q31 sequences (fast version) for RISC-V Core with DSP enabled
    * @param[in]  pSrcA       points to the first input sequence.
    * @param[in]  srcALen     length of the first input sequence.
    * @param[in]  pSrcB       points to the second input sequence.
@@ -3453,7 +3453,7 @@ riscv_status riscv_fir_decimate_init_f32(
 
 
   /**
-   * @brief Processing function for the Q15 FIR decimator (fast variant) for RISC-V3 and RISC-V4.
+   * @brief Processing function for the Q15 FIR decimator (fast variant) for RISC-V Core with DSP enabled.
    * @param[in]  S          points to an instance of the Q15 FIR decimator structure.
    * @param[in]  pSrc       points to the block of input data.
    * @param[out] pDst       points to the block of output data
@@ -3500,7 +3500,7 @@ riscv_status riscv_fir_decimate_init_f32(
         uint32_t blockSize);
 
   /**
-   * @brief Processing function for the Q31 FIR decimator (fast variant) for RISC-V3 and RISC-V4.
+   * @brief Processing function for the Q31 FIR decimator (fast variant) for RISC-V Core with DSP enabled.
    * @param[in]  S          points to an instance of the Q31 FIR decimator structure.
    * @param[in]  pSrc       points to the block of input data.
    * @param[out] pDst       points to the block of output data

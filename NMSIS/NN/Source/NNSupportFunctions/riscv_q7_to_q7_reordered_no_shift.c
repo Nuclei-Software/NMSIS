@@ -25,7 +25,7 @@
  * $Date:        17. January 2018
  * $Revision:    V.1.0.0
  *
- * Target Processor:  RISC-V cores
+ * Target Processor: RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 
@@ -134,7 +134,7 @@ void riscv_q7_to_q7_reordered_no_shift(const q7_t * pSrc, q7_t * pDst, uint32_t 
 
 #else
 
-    /* Run the below code for RISC-V0 */
+    /* Run the below code for RISC-V Core without DSP */
 
     /* Loop over blockSize number of values */
     blkCnt = blockSize;

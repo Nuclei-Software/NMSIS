@@ -1,6 +1,6 @@
 /* ----------------------------------------------------------------------
 * Copyright (C) 2010-2012 ARM Limited. All rights reserved.
- * Copyright (c) 2019 Nuclei Limited. All rights reserved.
+* Copyright (c) 2019 Nuclei Limited. All rights reserved.
 *
 * $Date:         12. March 2014
 * $Revision:     V1.4.3

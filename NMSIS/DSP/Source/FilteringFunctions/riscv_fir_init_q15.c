@@ -6,7 +6,7 @@
  * $Date:        18. March 2019
  * $Revision:    V1.6.0
  *
- * Target Processor: RISC-V cores
+ * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
  * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
@@ -73,7 +73,7 @@
       {0.3, -0.3, 0, 0}.
   </pre>
                    <code>pState</code> points to the array of state variables.
-                   <code>pState</code> is of length <code>numTaps+blockSize</code>, when running on RISC-V Core with DSP enabled  and is of length <code>numTaps+blockSize-1</code>, when running on RISC-V0 where <code>blockSize</code> is the number of input samples processed by each call to <code>riscv_fir_q15()</code>.
+                   <code>pState</code> is of length <code>numTaps+blockSize</code>, when running on RISC-V Core with DSP enabled  and is of length <code>numTaps+blockSize-1</code>, when running on RISC-V Core without DSP where <code>blockSize</code> is the number of input samples processed by each call to <code>riscv_fir_q15()</code>.
  */
 
 riscv_status riscv_fir_init_q15(

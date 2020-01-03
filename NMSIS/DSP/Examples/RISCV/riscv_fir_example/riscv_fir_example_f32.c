@@ -11,7 +11,7 @@
  * Description:  Example code demonstrating how an FIR filter can be used
  *               as a low pass filter.
  *
- * Target Processor: RISC-V4/RISC-V3
+ * Target Processor: RISC-V Cores
  *
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the following conditions

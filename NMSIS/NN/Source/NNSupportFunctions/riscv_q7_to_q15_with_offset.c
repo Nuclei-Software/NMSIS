@@ -25,7 +25,7 @@
  * $Date:        July 2019
  * $Revision:    V.1.0.0
  *
- * Target Processor:  RISC-V cores
+ * Target Processor: RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 
@@ -85,7 +85,7 @@ void riscv_q7_to_q15_with_offset(const q7_t *src,
     block_cnt = block_size % 0x4u;
 
 #else
-    /* Run the below code for RISC-V0 */
+    /* Run the below code for RISC-V Core without DSP */
     /* Loop over block_size number of values */
     block_cnt = block_size;
 #endif
