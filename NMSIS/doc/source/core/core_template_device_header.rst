@@ -77,8 +77,8 @@ nmsis_core.h
 +-------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
 | #define                 | Value Range | Default    | Description                                                                                                   |
 +-------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
-| __NUCLEI_N_REV  OR      | 0x0000      | 0x0000     | * For Nuclei N class device, define __NUCLEI_N_REV, for NX class device, define __NUCLEI_NX_REV.              |
-| __NUCLEI_NX_REV         |             |            | * Core revision number ([15:8] revision number, [7:0] patch number)                                           |
+| __NUCLEI_N_REV  OR      | 0x0100 |    | 0x0104     | * For Nuclei N class device, define __NUCLEI_N_REV, for NX class device, define __NUCLEI_NX_REV.              |
+| __NUCLEI_NX_REV         | 0x0104      |            | * Core revision number ([15:8] revision number, [7:0] patch number), 0x0100 -> 1.0, 0x0104 -> 1.4             |
 +-------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
 | __SYSTIMER_PRESENT      | 0 .. 1      | 1          | Define whether Priviate System Timer is present or not. This SysTimer is a Memory Mapped Unit.                |
 +-------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+

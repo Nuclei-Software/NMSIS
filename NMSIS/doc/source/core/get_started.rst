@@ -11,7 +11,7 @@ Introduction
 To use the **NMSIS-Core**, the following files are added to the embedded
 application:
 
--  :ref:`core_template_start_device_asm`, which provided asm startup code
+-  :ref:`core_template_startup_device_asm`, which provided asm startup code
    and vector table.
 
 -  :ref:`core_template_intexc_device`, which provided general exception
@@ -27,7 +27,7 @@ application:
 
 .. Note::
 
-   The files :ref:`core_template_start_device_asm`, :ref:`core_template_intexc_device`,
+   The files :ref:`core_template_startup_device_asm`, :ref:`core_template_intexc_device`,
    :ref:`core_template_linker_script` and :ref:`core_template_system_device` may require
    application specific adaptations and therefore should be copied into
    the application project folder prior configuration.
@@ -36,7 +36,7 @@ application:
    device access and can be stored on a central include folder that is
    generic for all projects.
 
-The :ref:`core_template_start_device_asm` is executed right after device reset, it will do
+The :ref:`core_template_startup_device_asm` is executed right after device reset, it will do
 necessary stack pointer initialization, exception and interrupt entry configuration, then
 call :cpp:func:`SystemInit`, after system initialization, will return to assemble startup code
 and do c/c++ runtime initialization which includes data, bss section initialization, c++ runtime
@@ -48,7 +48,7 @@ It may also contain stack and heap configurations for the user application.
 
 The :ref:`core_template_system_device` performs the setup for the processor
 clock. The variable :cpp:var:`SystemCoreClock` indicates the CPU clock speed.
-:ref:`core_api_system_clock` describes the minimum feature set. In addition
+:ref:`core_api_systick` describes the minimum feature set. In addition
 the file may contain functions for the memory BUS setup and clock re-configuration.
 
 The :ref:`core_template_device_header` is the central include file that the
@@ -90,7 +90,7 @@ following features:
 
 The NMSIS-Core system files are device specific.
 
-In addition, the :ref:`core_template_start_device_asm` is also compiler vendor specific, currently only GCC version is provided.
+In addition, the :ref:`core_template_startup_device_asm` is also compiler vendor specific, currently only GCC version is provided.
 The versions provided by NMSIS are only generic templates. The adopted versions for a concrete device are typically provided by the device
 vendor through the according device familiy package.
 
