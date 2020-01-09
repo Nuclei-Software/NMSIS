@@ -143,8 +143,11 @@ A typical example for using the NMSIS layer is provided below. The example is ba
     #include <gd32vf103.h>                           // File name depends on device used
 
     uint32_t volatile msTicks;                       // Counter for millisecond Interval
+    #define SysTick_Handler     eclic_mtip_handler
+    #define CONFIG_TICKS        (SOC_TIMER_FREQ / 1000)
 
     void SysTick_Handler (void) {                    // SysTick Interrupt Handler
+      SysTick_Reload(CONFIG_TICKS);
       msTicks++;                                     // Increment Counter
     }
 
@@ -153,7 +156,7 @@ A typical example for using the NMSIS layer is provided below. The example is ba
 
       curTicks = msTicks;                            // Save Current SysTick Value
       while (msTicks == curTicks)  {                 // Wait for next SysTick Interrupt
-        __WFE ();                                    // Power-Down until next Event/Interrupt
+        __WFI ();                                    // Power-Down until next Event/Interrupt
       }
     }
 
@@ -168,7 +171,7 @@ A typical example for using the NMSIS layer is provided below. The example is ba
 
 
     void Device_Initialization (void)  {             // Configure & Initialize MCU
-      if (SysTick_Config (SystemCoreClock / 1000)) { // SysTick 1 ms
+      if (SysTick_Config (CONFIG_TICKS)) {
            ; // Handle Error
       }
       timer0_init ();                                // setup device-specific timer
