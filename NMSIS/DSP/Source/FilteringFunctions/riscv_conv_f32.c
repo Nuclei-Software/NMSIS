@@ -104,7 +104,6 @@ void riscv_conv_f32(
         float32_t * pDst)
 {
 
-#if (1)
 
 
   const float32_t *pIn1;                               /* InputA pointer */
@@ -600,36 +599,6 @@ void riscv_conv_f32(
     blockSize3--;
   }
 
-#else
-/* alternate version for CM0_FAMILY */
-
-  const float32_t *pIn1 = pSrcA;                       /* InputA pointer */
-  const float32_t *pIn2 = pSrcB;                       /* InputB pointer */
-        float32_t sum;                                 /* Accumulator */
-        uint32_t i, j;                                 /* Loop counters */
-
-  /* Loop to calculate convolution for output length number of times */
-  for (i = 0U; i < (srcALen + srcBLen - 1U); i++)
-  {
-    /* Initialize sum with zero to carry out MAC operations */
-    sum = 0.0f;
-
-    /* Loop to perform MAC operations according to convolution equation */
-    for (j = 0U; j <= i; j++)
-    {
-      /* Check the array limitations */
-      if (((i - j) < srcBLen) && (j < srcALen))
-      {
-        /* z[i] += x[i-j] * y[j] */
-        sum += ( pIn1[j] * pIn2[i - j]);
-      }
-    }
-
-    /* Store the output in the destination buffer */
-    pDst[i] = sum;
-  }
-
-#endif /* #if !defined(RISCV_MATH_CM0_FAMILY) */
 
 }
 

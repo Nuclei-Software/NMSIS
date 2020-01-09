@@ -136,7 +136,6 @@ void riscv_fir_interpolate_f32(
         float32_t * pDst,
         uint32_t blockSize)
 {
-#if (1)
 
 
         float32_t *pState = S->pState;                 /* State pointer */
@@ -462,94 +461,6 @@ void riscv_fir_interpolate_f32(
     tapCnt--;
   }
 
-#else
-/* alternate version for CM0_FAMILY */
-
-        float32_t *pState = S->pState;                 /* State pointer */
-  const float32_t *pCoeffs = S->pCoeffs;               /* Coefficient pointer */
-        float32_t *pStateCur;                        /* Points to the current sample of the state */
-        float32_t *ptr1;                               /* Temporary pointer for state buffer */
-  const float32_t *ptr2;                               /* Temporary pointer for coefficient buffer */
-        float32_t sum0;                                /* Accumulators */
-        uint32_t i, blkCnt, tapCnt;                    /* Loop counters */
-        uint32_t phaseLen = S->phaseLength;            /* Length of each polyphase filter component */
-
-  /* S->pState buffer contains previous frame (phaseLen - 1) samples */
-  /* pStateCur points to the location where the new input data should be written */
-  pStateCur = S->pState + (phaseLen - 1U);
-
-  /* Total number of intput samples */
-  blkCnt = blockSize;
-
-  /* Loop over the blockSize. */
-  while (blkCnt > 0U)
-  {
-    /* Copy new input sample into the state buffer */
-    *pStateCur++ = *pSrc++;
-
-    /* Loop over the Interpolation factor. */
-    i = S->L;
-
-    while (i > 0U)
-    {
-      /* Set accumulator to zero */
-      sum0 = 0.0f;
-
-      /* Initialize state pointer */
-      ptr1 = pState;
-
-      /* Initialize coefficient pointer */
-      ptr2 = pCoeffs + (i - 1U);
-
-      /* Loop over the polyPhase length */
-      tapCnt = phaseLen;
-
-      while (tapCnt > 0U)
-      {
-        /* Perform the multiply-accumulate */
-        sum0 += *ptr1++ * *ptr2;
-
-        /* Increment the coefficient pointer by interpolation factor times. */
-        ptr2 += S->L;
-
-        /* Decrement the loop counter */
-        tapCnt--;
-      }
-
-      /* The result is in the accumulator, store in the destination buffer. */
-      *pDst++ = sum0;
-
-      /* Decrement loop counter */
-      i--;
-    }
-
-    /* Advance the state pointer by 1
-     * to process the next group of interpolation factor number samples */
-    pState = pState + 1;
-
-    /* Decrement loop counter */
-    blkCnt--;
-  }
-
-  /* Processing is complete.
-   ** Now copy the last phaseLen - 1 samples to the start of the state buffer.
-   ** This prepares the state buffer for the next function call. */
-
-  /* Points to the start of the state buffer */
-  pStateCur = S->pState;
-
-  tapCnt = phaseLen - 1U;
-
-  /* Copy data */
-  while (tapCnt > 0U)
-  {
-    *pStateCur++ = *pState++;
-
-    /* Decrement loop counter */
-    tapCnt--;
-  }
-
-#endif /* #if !defined(RISCV_MATH_CM0_FAMILY) */
 
 }
 

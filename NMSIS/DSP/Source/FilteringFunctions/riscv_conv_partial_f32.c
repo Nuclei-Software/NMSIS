@@ -88,7 +88,6 @@ riscv_status riscv_conv_partial_f32(
         uint32_t numPoints)
 {
 
-#if (1)
 
 
   const float32_t *pIn1 = pSrcA;                       /* InputA pointer */
@@ -623,52 +622,6 @@ riscv_status riscv_conv_partial_f32(
   /* Return to application */
   return (status);
 
-#else
-/* alternate version for CM0_FAMILY */
-
-  const float32_t *pIn1 = pSrcA;                       /* InputA pointer */
-  const float32_t *pIn2 = pSrcB;                       /* InputB pointer */
-        float32_t sum;                                 /* Accumulator */
-        uint32_t i, j;                                 /* Loop counters */
-        riscv_status status;                             /* Status of Partial convolution */
-
-  /* Check for range of output samples to be calculated */
-  if ((firstIndex + numPoints) > ((srcALen + (srcBLen - 1U))))
-  {
-    /* Set status as RISCV_MATH_ARGUMENT_ERROR */
-    status = RISCV_MATH_ARGUMENT_ERROR;
-  }
-  else
-  {
-    /* Loop to calculate convolution for output length number of values */
-    for (i = firstIndex; i <= (firstIndex + numPoints - 1); i++)
-    {
-      /* Initialize sum with zero to carry on MAC operations */
-      sum = 0.0f;
-
-      /* Loop to perform MAC operations according to convolution equation */
-      for (j = 0U; j <= i; j++)
-      {
-        /* Check the array limitations */
-        if (((i - j) < srcBLen) && (j < srcALen))
-        {
-          /* z[i] += x[i-j] * y[j] */
-          sum += ( pIn1[j] * pIn2[i - j]);
-        }
-      }
-
-      /* Store the output in the destination buffer */
-      pDst[i] = sum;
-    }
-
-    /* Set status as RISCV_SUCCESS */
-    status = RISCV_MATH_SUCCESS;
-  }
-
-  /* Return to application */
-  return (status);
-
-#endif /* #if !defined(RISCV_MATH_CM0_FAMILY) */
 
 }
 

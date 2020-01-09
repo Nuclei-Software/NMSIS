@@ -61,7 +61,6 @@ void riscv_fir_lattice_q15(
         uint32_t blkCnt, stageCnt;                     /* Loop counters */
         q31_t fcurr0, fnext0, gnext0, gcurr0;          /* Temporary variables */
 
-#if (1)
 
 
 #if defined (RISCV_MATH_LOOPUNROLL)
@@ -427,73 +426,6 @@ void riscv_fir_lattice_q15(
     blkCnt--;
   }
 
-#else
-/* alternate version for CM0_FAMILY */
-
-  blkCnt = blockSize;
-
-  while (blkCnt > 0U)
-  {
-    /* f0(n) = x(n) */
-    fcurr0 = *pSrc++;
-
-    /* Initialize state pointer */
-    px = pState;
-
-    /* Initialize coeff pointer */
-    pk = pCoeffs;
-
-    /* read g0(n-1) from state buffer */
-    gcurr0 = *px;
-
-    /* for sample 1 processing */
-    /* f1(n) = f0(n) +  K1 * g0(n-1) */
-    fnext0 = ((gcurr0 * (*pk)) >> 15U) + fcurr0;
-    fnext0 = __SSAT(fnext, 16);
-
-    /* g1(n) = f0(n) * K1  +  g0(n-1) */
-    gnext0 = ((fcurr0 * (*pk++)) >> 15U) + gcurr0;
-    gnext0 = __SSAT(gnext0, 16);
-
-    /* save f0(n) in state buffer */
-    *px++ = (q15_t) fcurr0;
-
-    /* f1(n) is saved in fcurr for next stage processing */
-    fcurr0 = fnext0;
-
-    stageCnt = (numStages - 1U);
-
-    /* stage loop */
-    while (stageCnt > 0U)
-    {
-      /* read g1(n-1) from state buffer */
-      gcurr0 = *px;
-
-      /* save g0(n-1) in state buffer */
-      *px++ = (q15_t) gnext0;
-
-      /* Sample processing for K2, K3.... */
-      /* f2(n) = f1(n) +  K2 * g1(n-1) */
-      fnext0 = ((gcurr0 * (*pk)) >> 15U) + fcurr0;
-      fnext0 = __SSAT(fnext0, 16);
-
-      /* g2(n) = f1(n) * K2  +  g1(n-1) */
-      gnext0 = ((fcurr0 * (*pk++)) >> 15U) + gcurr0;
-      gnext0 = __SSAT(gnext0, 16);
-
-      /* f1(n) is saved in fcurr0 for next stage processing */
-      fcurr0 = fnext0;
-
-      stageCnt--;
-    }
-
-    /* y(n) = fN(n) */
-    *pDst++ = __SSAT(fcurr0, 16);
-
-    blkCnt--;
-  }
-
-#endif /* #if !defined(RISCV_MATH_CM0_FAMILY) */
 
 }
 

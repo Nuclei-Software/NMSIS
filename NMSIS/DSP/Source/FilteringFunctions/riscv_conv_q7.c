@@ -65,7 +65,6 @@ void riscv_conv_q7(
         q7_t * pDst)
 {
 
-#if (1)
 
   const q7_t *pIn1;                                    /* InputA pointer */
   const q7_t *pIn2;                                    /* InputB pointer */
@@ -662,36 +661,6 @@ void riscv_conv_q7(
     blockSize3--;
   }
 
-#else
-/* alternate version for CM0_FAMILY */
-
-  const q7_t *pIn1 = pSrcA;                            /* InputA pointer */
-  const q7_t *pIn2 = pSrcB;                            /* InputB pointer */
-        q31_t sum;                                     /* Accumulator */
-        uint32_t i, j;                                 /* Loop counters */
-
-  /* Loop to calculate convolution for output length number of times */
-  for (i = 0U; i < (srcALen + srcBLen - 1U); i++)
-  {
-    /* Initialize sum with zero to carry out MAC operations */
-    sum = 0;
-
-    /* Loop to perform MAC operations according to convolution equation */
-    for (j = 0U; j <= i; j++)
-    {
-      /* Check the array limitations */
-      if (((i - j) < srcBLen) && (j < srcALen))
-      {
-        /* z[i] += x[i-j] * y[j] */
-        sum += ((q15_t) pIn1[j] * pIn2[i - j]);
-      }
-    }
-
-    /* Store the output in the destination buffer */
-    pDst[i] = (q7_t) __SSAT((sum >> 7U), 8U);
-  }
-
-#endif /* #if !defined(RISCV_MATH_CM0_FAMILY) */
 
 }
 
