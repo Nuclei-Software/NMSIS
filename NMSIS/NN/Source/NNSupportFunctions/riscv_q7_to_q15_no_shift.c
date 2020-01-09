@@ -81,13 +81,8 @@ void riscv_q7_to_q15_no_shift(const q7_t * pSrc, q15_t * pDst, uint32_t blockSiz
         /* extend remaining two q7_t values to q15_t values */
         in2 = __SXTB16(in);
 
-#ifndef RISCV_MATH_BIG_ENDIAN
         out2 = __PKHTB(in1, in2, 16);
         out1 = __PKHBT(in2, in1, 16);
-#else
-        out1 = __PKHTB(in1, in2, 16);
-        out2 = __PKHBT(in2, in1, 16);
-#endif
         write_q15x2_ia(&pDst, out1);
         write_q15x2_ia(&pDst, out2);
 
@@ -106,7 +101,7 @@ void riscv_q7_to_q15_no_shift(const q7_t * pSrc, q15_t * pDst, uint32_t blockSiz
     /* Loop over blockSize number of values */
     blkCnt = blockSize;
 
-#endif                          /* #ifndef RISCV_MATH_CM0_FAMILY */
+#endif
 
     while (blkCnt > 0u)
     {

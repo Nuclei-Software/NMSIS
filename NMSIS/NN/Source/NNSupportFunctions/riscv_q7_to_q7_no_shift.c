@@ -91,12 +91,11 @@ void riscv_q7_to_q7_no_shift(const q7_t * pSrc, q7_t * pDst, uint32_t blockSize)
     /* Loop over blockSize number of values */
     blkCnt = blockSize;
 
-#endif                          /* #ifndef RISCV_MATH_CM0_FAMILY */
+#endif
 
     while (blkCnt > 0u)
     {
         /* convert from q7 to q7 and then store the results in the destination buffer */
-        //*pDst++ = (q15_t)*pIn++;
 
         *pDst++ = *pIn++;
 

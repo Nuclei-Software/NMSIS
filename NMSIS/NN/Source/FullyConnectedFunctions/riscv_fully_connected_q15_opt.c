@@ -127,7 +127,6 @@ riscv_fully_connected_q15_opt(const q15_t * pV,
 
         pA = pV;
 
-#ifdef USE_INTRINSIC
 
         while (colCnt)
         {
@@ -146,33 +145,6 @@ riscv_fully_connected_q15_opt(const q15_t * pV,
             colCnt--;
         }
 
-#else
-
-        /*
-         * register needed:
-         * loop counter: colCnt
-         * accumulators: sum, sum2, sum3, sum4
-         * pointers: pB, pA
-         * weight data: inM11, inM12, inM13, inM14
-         * activation data: inV
-         */
-
-        asm volatile ("COL_LOOP_%=:\n"
-                      "ldr.w r4, [%[pA]], #4\n"
-                      "ldr.w r0, [%[pB]], #16\n"
-                      "smlad %[sum], r4, r0, %[sum]\n"
-                      "ldr.w r1, [%[pB] , #-12]\n"
-                      "smlad %[sum2], r4, r1, %[sum2]\n"
-                      "ldr.w r2, [%[pB] , #-8]\n"
-                      "smlad %[sum3], r4, r2, %[sum3]\n"
-                      "ldr.w r3, [%[pB] , #-4]\n"
-                      "smlad %[sum4], r4, r3, %[sum4]\n"
-                      "subs %[colCnt], #1\n"
-                      "bne COL_LOOP_%=\n":[sum] "+r"(sum),
-                      [sum2] "+r"(sum2),[sum3] "+r"(sum3),
-                      [sum4] "+r"(sum4),[pB] "+r"(pB),[pA] "+r"(pA):[colCnt] "r"(colCnt):"r0", "r1", "r2", "r3", "r4");
-
-#endif                          /* USE_INTRINSIC */
 
         colCnt = dim_vec & 0x1;
         while (colCnt)
