@@ -105,7 +105,7 @@ void riscv_conv_f32(
 {
 
 #if (1)
-//#if !defined(RISCV_MATH_CM0_FAMILY)
+
 
   const float32_t *pIn1;                               /* InputA pointer */
   const float32_t *pIn2;                               /* InputB pointer */
@@ -117,7 +117,7 @@ void riscv_conv_f32(
         uint32_t blockSize1, blockSize2, blockSize3;   /* Loop counters */
         uint32_t j, k, count, blkCnt;                  /* Loop counters */
 
-#if defined (RISCV_MATH_LOOPUNROLL) || defined(RISCV_MATH_NEON)
+#if defined (RISCV_MATH_LOOPUNROLL) 
         float32_t acc0, acc1, acc2, acc3;              /* Accumulators */
         float32_t x0, x1, x2, x3, c0;                  /* Temporary variables to hold state and coefficient values */
 #endif
@@ -186,12 +186,6 @@ void riscv_conv_f32(
   /* ------------------------
    * Stage1 process
    * ----------------------*/
-#if defined(RISCV_MATH_NEON)
-    float32x4_t vec1;
-    float32x4_t vec2;
-    float32x4_t res = vdupq_n_f32(0) ;
-    float32x2_t accum = vdup_n_f32(0);
-#endif /* #if defined(RISCV_MATH_NEON) */
 
   /* The first stage starts here */
   while (blockSize1 > 0U)
@@ -199,44 +193,10 @@ void riscv_conv_f32(
     /* Accumulator is made zero for every iteration */
     sum = 0.0f;
 
-#if defined (RISCV_MATH_LOOPUNROLL) || defined(RISCV_MATH_NEON)
+#if defined (RISCV_MATH_LOOPUNROLL) 
     /* Loop unrolling: Compute 4 outputs at a time */
     k = count >> 2U;
 
-#if defined(RISCV_MATH_NEON)
-    res = vdupq_n_f32(0) ;
-    accum = vdup_n_f32(0);
-
-    /* Compute 4 MACs simultaneously. */
-    k = count >> 2U;
-
-    /* First part of the processing.  Compute 4 MACs at a time.
-     ** a second loop below computes MACs for the remaining 1 to 3 samples. */
-
-    while (k > 0U)
-    {
-      vec1 = vld1q_f32(px);
-      vec2 = vld1q_f32(py-3);
-      vec2 = vrev64q_f32(vec2);
-      vec2 = vcombine_f32(vget_high_f32(vec2), vget_low_f32(vec2));
-
-      res = vmlaq_f32(res,vec1, vec2);
-
-      /* Increment pointers */
-      px += 4;
-      py -= 4; 
-
-      /* Decrement the loop counter */
-      k--;
-    }
-
-    accum = vpadd_f32(vget_low_f32(res), vget_high_f32(res));
-    sum += accum[0] + accum[1];
-
-    /* If the count is not a multiple of 4, compute any remaining MACs here.
-     ** No loop unrolling is used. */
-    k = count & 3;
-#else
     while (k > 0U)
     {
       /* x[0] * y[srcBLen - 1] */
@@ -258,13 +218,12 @@ void riscv_conv_f32(
     /* Loop unrolling: Compute remaining outputs */
     k = count % 0x4U;
 
-#endif /* #if defined(RISCV_MATH_NEON) */
 
 #else
     /* Initialize k with number of samples */
     k = count;
 
-#endif /* #if defined (RISCV_MATH_LOOPUNROLL) || defined(RISCV_MATH_NEON) */
+#endif /* #if defined (RISCV_MATH_LOOPUNROLL)  */
 
     while (k > 0U)
     {
@@ -319,18 +278,8 @@ void riscv_conv_f32(
   if (srcBLen >= 4U)
   {
    
-#if defined(RISCV_MATH_NEON)
-      float32x4_t c;
-      float32x4_t x1v;
-      float32x4_t x2v;
-      uint32x4_t x1v_u;
-      uint32x4_t x2v_u;
-      uint32x4_t x_u;
-      float32x4_t x;
-      float32x4_t res = vdupq_n_f32(0) ;
-#endif /* #if defined(RISCV_MATH_NEON) */
    
-#if defined (RISCV_MATH_LOOPUNROLL) || defined(RISCV_MATH_NEON)
+#if defined (RISCV_MATH_LOOPUNROLL) 
 
     /* Loop unrolling: Compute 4 outputs at a time */
     blkCnt = blockSize2 >> 2U;
@@ -346,71 +295,6 @@ void riscv_conv_f32(
        /* Apply loop unrolling and compute 4 MACs simultaneously. */
       k = srcBLen >> 2U;
 
-#if defined(RISCV_MATH_NEON)
-      res = vdupq_n_f32(0) ;
-
-      x1v = vld1q_f32(px);
-      x2v = vld1q_f32(px+4);
-
-      do
-      {
-        c = vld1q_f32(py-3);
-
-        px += 4;
-        x = x1v;
-        res = vmlaq_n_f32(res,x,c[3]);
-
-	x = vextq_f32(x1v,x2v,1);
-
-        res = vmlaq_n_f32(res,x,c[2]);
-
-        x = vextq_f32(x1v,x2v,2);
-
-	res = vmlaq_n_f32(res,x,c[1]);
-
-	x = vextq_f32(x1v,x2v,3);
-
-	res = vmlaq_n_f32(res,x,c[0]);
-
-        py -= 4; 
-
-        x1v = x2v ;
-        x2v = vld1q_f32(px+4);
-
-      } while (--k);
-      
-      
-      /* If the srcBLen is not a multiple of 4, compute any remaining MACs here.
-       ** No loop unrolling is used. */
-      k = srcBLen & 0x3;
-
-      x1v = vld1q_f32(px);
-      px += 4;
-
-      while (k > 0U)
-      {
-        /* Read y[srcBLen - 5] sample */
-        c0 = *(py--);
-
-        res = vmlaq_n_f32(res,x1v,c0);
-
-        /* Reuse the present samples for the next MAC */
-        x1v[0] = x1v[1];
-        x1v[1] = x1v[2];
-        x1v[2] = x1v[3];
-
-        x1v[3] = *(px++);
-
-        /* Decrement the loop counter */
-        k--;
-      }
-
-      acc0 = res[0];
-      acc1 = res[1];
-      acc2 = res[2];
-      acc3 = res[3];
-
-#else
       /* read x[0], x[1], x[2] samples */
       x0 = *px++;
       x1 = *px++;
@@ -512,7 +396,6 @@ void riscv_conv_f32(
         /* Decrement the loop counter */
         k--;
       }
-#endif /* #if defined(RISCV_MATH_NEON) */
 
       /* Store the result in the accumulator in the destination buffer. */
       *pOut++ = acc0;
@@ -540,50 +423,17 @@ void riscv_conv_f32(
     /* Initialize blkCnt with number of samples */
     blkCnt = blockSize2;
 
-#endif /* #if defined (RISCV_MATH_LOOPUNROLL) || defined (RISCV_MATH_NEON)*/
+#endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
 
     while (blkCnt > 0U)
     {
       /* Accumulator is made zero for every iteration */
       sum = 0.0f;
 
-#if defined(RISCV_MATH_NEON) || defined (RISCV_MATH_LOOPUNROLL)
+#if  defined (RISCV_MATH_LOOPUNROLL)
       /* Loop unrolling: Compute 4 outputs at a time */
       k = srcBLen >> 2U;
 
-#if defined (RISCV_MATH_NEON)
-      float32x4_t res = vdupq_n_f32(0) ;
-      float32x4_t x = vdupq_n_f32(0) ;
-      float32x4_t y = vdupq_n_f32(0) ;
-      float32x2_t accum = vdup_n_f32(0) ;
-
-      /* First part of the processing.  Compute 4 MACs at a time.
-       ** a second loop below computes MACs for the remaining 1 to 3 samples. */
-      while (k > 0U)
-      {
-        x = vld1q_f32(px);
-        y = vld1q_f32(py-3);
-
-        y = vrev64q_f32(y);
-        y = vcombine_f32(vget_high_f32(y), vget_low_f32(y));
-
-        res = vmlaq_f32(res,x,y);
-
-        px += 4 ;
-        py -= 4 ;
-
-        /* Decrement the loop counter */
-        k--;
-      }
-
-      accum = vpadd_f32(vget_low_f32(res), vget_high_f32(res));
-      sum += accum[0] + accum[1]; 
-
-      /* If the srcBLen is not a multiple of 4, compute any remaining MACs here.
-       ** No loop unrolling is used. */
-      k = srcBLen & 0x3U;
-
-#else
       while (k > 0U)
       {
         /* Perform the multiply-accumulate */
@@ -599,12 +449,11 @@ void riscv_conv_f32(
       /* Loop unrolling: Compute remaining outputs */
       k = srcBLen % 0x4U;
 
-#endif /* if defined (RISCV_MATH_NEON) */
 #else
       /* Initialize blkCnt with number of samples */
       k = srcBLen;
 
-#endif /* #if defined(RISCV_MATH_NEON) || defined (RISCV_MATH_LOOPUNROLL) */
+#endif /* #if  defined (RISCV_MATH_LOOPUNROLL) */
 
       while (k > 0U)
       {
@@ -698,37 +547,10 @@ void riscv_conv_f32(
     /* Accumulator is made zero for every iteration */
     sum = 0.0f;
 
-#if defined (RISCV_MATH_LOOPUNROLL) || defined(RISCV_MATH_NEON)
+#if defined (RISCV_MATH_LOOPUNROLL) 
     /* Loop unrolling: Compute 4 outputs at a time */
     k = blockSize3 >> 2U;
 
-#if defined(RISCV_MATH_NEON)
-    float32x4_t res = vdupq_n_f32(0) ;
-    float32x4_t x = vdupq_n_f32(0) ;
-    float32x4_t y = vdupq_n_f32(0) ;
-    float32x2_t accum = vdup_n_f32(0) ;
-
-    while (k > 0U)
-    {
-      x = vld1q_f32(px);
-      y = vld1q_f32(py-3);
-
-      y = vrev64q_f32(y);
-      y = vcombine_f32(vget_high_f32(y), vget_low_f32(y));
-
-      res = vmlaq_f32(res,x,y);
-
-      px += 4 ;
-      py -= 4 ;
-
-      /* Decrement the loop counter */
-      k--;
-    }
-
-    accum = vpadd_f32(vget_low_f32(res), vget_high_f32(res));
-    sum += accum[0] + accum[1]; 
-
-#else
     while (k > 0U)
     {
       /* Perform the multiply-accumulate */
@@ -747,7 +569,6 @@ void riscv_conv_f32(
       /* Decrement loop counter */
       k--;
     }
-#endif /* #if defined (RISCV_MATH_NEON) */
 
     /* Loop unrolling: Compute remaining outputs */
     k = blockSize3 % 0x4U;
@@ -756,7 +577,7 @@ void riscv_conv_f32(
     /* Initialize blkCnt with number of samples */
     k = blockSize3;
 
-#endif /* #if defined (RISCV_MATH_NEON) || defined (RISCV_MATH_LOOPUNROLL)*/
+#endif /* #if  defined (RISCV_MATH_LOOPUNROLL)*/
 
     while (k > 0U)
     {

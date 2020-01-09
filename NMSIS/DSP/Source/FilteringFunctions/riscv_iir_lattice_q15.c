@@ -159,11 +159,7 @@ void riscv_iir_lattice_q15(
 
       /* Pack gN-1(n) and gN-2(n) */
 
-#ifndef  RISCV_MATH_BIG_ENDIAN
       gnext = __PKHBT(gnext1, gnext2, 16);
-#else
-      gnext = __PKHBT(gnext2, gnext1, 16);
-#endif /* #ifndef  RISCV_MATH_BIG_ENDIAN */
 
       /* y(n) += gN-1(n) * vN-1  */
       /* process for gN-5(n) * vN-5, gN-9(n) * vN-9 ... */
@@ -201,11 +197,7 @@ void riscv_iir_lattice_q15(
       v = read_q15x2_ia (&pv);
 
       /* Pack gN-3(n) and gN-4(n) */
-#ifndef RISCV_MATH_BIG_ENDIAN
       gnext = __PKHBT(gnext1, gnext2, 16);
-#else
-      gnext = __PKHBT(gnext2, gnext1, 16);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
       /* y(n) += gN-4(n) * vN-4  */
       /* process for gN-8(n) * vN-8, gN-12(n) * vN-12 ... */

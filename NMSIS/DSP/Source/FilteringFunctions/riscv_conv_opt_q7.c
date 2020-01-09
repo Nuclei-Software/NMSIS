@@ -229,11 +229,7 @@ void riscv_conv_opt_q7(
       acc2 = __SMLAD(x2, y1, acc2);
 
       /* pack input data */
-#ifndef RISCV_MATH_BIG_ENDIAN
       x3 = __PKHBT(x2, x1, 0);
-#else
-      x3 = __PKHBT(x1, x2, 0);
-#endif
 
       /* multiply and accumlate */
       acc1 = __SMLADX(x3, y1, acc1);
@@ -242,11 +238,7 @@ void riscv_conv_opt_q7(
       x1 = read_q15x2_ia (&pScr1);
 
       /* pack input data */
-#ifndef RISCV_MATH_BIG_ENDIAN
       x3 = __PKHBT(x1, x2, 0);
-#else
-      x3 = __PKHBT(x2, x1, 0);
-#endif
 
       acc3 = __SMLADX(x3, y1, acc3);
 
@@ -261,11 +253,7 @@ void riscv_conv_opt_q7(
 
       x2 = read_q15x2_ia (&pScr1);
 
-#ifndef RISCV_MATH_BIG_ENDIAN
       x3 = __PKHBT(x2, x1, 0);
-#else
-      x3 = __PKHBT(x1, x2, 0);
-#endif
 
       acc3 = __SMLADX(x3, y1, acc3);
 

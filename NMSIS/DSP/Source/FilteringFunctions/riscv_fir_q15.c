@@ -136,11 +136,7 @@ void riscv_fir_q15(
       acc2 = __SMLALD(x2, c0, acc2);
 
       /* pack  x[n-N-1] and x[n-N-2] */
-#ifndef RISCV_MATH_BIG_ENDIAN
       x1 = __PKHBT(x2, x0, 0);
-#else
-      x1 = __PKHBT(x0, x2, 0);
-#endif
 
       /* Read state x[n-N-4], x[n-N-5] */
       x0 = read_q15x2_ia (&px);
@@ -149,11 +145,7 @@ void riscv_fir_q15(
       acc1 = __SMLALDX(x1, c0, acc1);
 
       /* pack  x[n-N-3] and x[n-N-4] */
-#ifndef RISCV_MATH_BIG_ENDIAN
       x1 = __PKHBT(x0, x2, 0);
-#else
-      x1 = __PKHBT(x2, x0, 0);
-#endif
 
       /* acc3 +=  b[N] * x[n-N-3] + b[N-1] * x[n-N-4] */
       acc3 = __SMLALDX(x1, c0, acc3);
@@ -174,11 +166,7 @@ void riscv_fir_q15(
       acc1 = __SMLALDX(x1, c0, acc1);
 
       /* pack  x[n-N-5] and x[n-N-6] */
-#ifndef RISCV_MATH_BIG_ENDIAN
       x1 = __PKHBT(x2, x0, 0);
-#else
-      x1 = __PKHBT(x0, x2, 0);
-#endif
 
       /* acc3 +=  b[N-2] * x[n-N-5] + b[N-3] * x[n-N-6] */
       acc3 = __SMLALDX(x1, c0, acc3);
@@ -199,11 +187,7 @@ void riscv_fir_q15(
       acc2 = __SMLALD(x2, c0, acc2);
 
       /* pack state variables */
-#ifndef RISCV_MATH_BIG_ENDIAN
       x1 = __PKHBT(x2, x0, 0);
-#else
-      x1 = __PKHBT(x0, x2, 0);
-#endif
 
       /* Read last state variables */
       x0 = read_q15x2 (px);
@@ -212,11 +196,7 @@ void riscv_fir_q15(
       acc1 = __SMLALDX(x1, c0, acc1);
 
       /* pack state variables */
-#ifndef RISCV_MATH_BIG_ENDIAN
       x1 = __PKHBT(x0, x2, 0);
-#else
-      x1 = __PKHBT(x2, x0, 0);
-#endif
 
       /* Perform the multiply-accumulates */
       acc3 = __SMLALDX(x1, c0, acc3);
@@ -224,13 +204,8 @@ void riscv_fir_q15(
 
     /* The results in the 4 accumulators are in 2.30 format. Convert to 1.15 with saturation.
        Then store the 4 outputs in the destination buffer. */
-#ifndef RISCV_MATH_BIG_ENDIAN
     write_q15x2_ia (&pDst, __PKHBT(__SSAT((acc0 >> 15), 16), __SSAT((acc1 >> 15), 16), 16));
     write_q15x2_ia (&pDst, __PKHBT(__SSAT((acc2 >> 15), 16), __SSAT((acc3 >> 15), 16), 16));
-#else
-    write_q15x2_ia (&pDst, __PKHBT(__SSAT((acc1 >> 15), 16), __SSAT((acc0 >> 15), 16), 16));
-    write_q15x2_ia (&pDst, __PKHBT(__SSAT((acc3 >> 15), 16), __SSAT((acc2 >> 15), 16), 16));
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
     /* Advance the state pointer by 4 to process the next group of 4 samples */
     pState = pState + 4U;

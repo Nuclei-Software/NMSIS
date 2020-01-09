@@ -62,7 +62,7 @@ void riscv_fir_interpolate_q15(
         uint32_t blockSize)
 {
 #if (1)
-//#if !defined(RISCV_MATH_CM0_FAMILY)
+
 
         q15_t *pState = S->pState;                     /* State pointer */
   const q15_t *pCoeffs = S->pCoeffs;                   /* Coefficient pointer */

@@ -353,11 +353,7 @@ void riscv_conv_fast_q15(
         /* Read y[srcBLen - 5] */
         c0 = *(py+1);
 
-#ifdef  RISCV_MATH_BIG_ENDIAN
-        c0 = c0 << 16U;
-#else
         c0 = c0 & 0x0000FFFF;
-#endif /* #ifdef  RISCV_MATH_BIG_ENDIAN */
 
         /* Read x[7] */
         x3 = read_q15x2 ((q15_t *) px);
@@ -408,11 +404,7 @@ void riscv_conv_fast_q15(
 
         /* Read y[srcBLen - 7] */
 		c0 = *(py-1);
-#ifdef  RISCV_MATH_BIG_ENDIAN
-        c0 = c0 << 16U;
-#else
         c0 = c0 & 0x0000FFFF;
-#endif /* #ifdef  RISCV_MATH_BIG_ENDIAN */
 
         /* Read x[10] */
         x3 =  read_q15x2 ((q15_t *) px + 2);
@@ -426,13 +418,8 @@ void riscv_conv_fast_q15(
       }
 
       /* Store the result in the accumulator in the destination buffer. */
-#ifndef RISCV_MATH_BIG_ENDIAN
       write_q15x2_ia (&pOut, __PKHBT((acc0 >> 15), (acc1 >> 15), 16));
       write_q15x2_ia (&pOut, __PKHBT((acc2 >> 15), (acc3 >> 15), 16));
-#else
-      write_q15x2_ia (&pOut, __PKHBT((acc1 >> 15), (acc0 >> 15), 16));
-      write_q15x2_ia (&pOut, __PKHBT((acc3 >> 15), (acc2 >> 15), 16));
-#endif /*#ifndef  RISCV_MATH_BIG_ENDIAN*/
 
       /* Increment the pointer pIn1 index, count by 4 */
       count += 4U;

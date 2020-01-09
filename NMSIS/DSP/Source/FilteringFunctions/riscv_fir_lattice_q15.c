@@ -62,7 +62,7 @@ void riscv_fir_lattice_q15(
         q31_t fcurr0, fnext0, gnext0, gcurr0;          /* Temporary variables */
 
 #if (1)
-//#if !defined(RISCV_MATH_CM0_FAMILY)
+
 
 #if defined (RISCV_MATH_LOOPUNROLL)
   q31_t fcurr1, fnext1, gnext1;                  /* Temporary variables for second sample in loop unrolling */
@@ -350,13 +350,8 @@ void riscv_fir_lattice_q15(
     /* The results in the 4 accumulators, store in the destination buffer. */
     /* y(n) = fN(n) */
 
-#ifndef  RISCV_MATH_BIG_ENDIAN
     write_q15x2_ia (&pDst, __PKHBT(fcurr0, fcurr1, 16));
     write_q15x2_ia (&pDst, __PKHBT(fcurr2, fcurr3, 16));
-#else
-    write_q15x2_ia (&pDst, __PKHBT(fcurr1, fcurr0, 16));
-    write_q15x2_ia (&pDst, __PKHBT(fcurr3, fcurr2, 16));
-#endif /* #ifndef  RISCV_MATH_BIG_ENDIAN */
 
     blkCnt--;
   }

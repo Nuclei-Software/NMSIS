@@ -78,7 +78,6 @@ void riscv_q15_to_q31(
     in1 = read_q15x2_ia ((q15_t **) &pIn);
     in2 = read_q15x2_ia ((q15_t **) &pIn);
 
-#ifndef RISCV_MATH_BIG_ENDIAN
 
     /* extract lower 16 bits to 32 bit result */
     out1 = in1 << 16U;
@@ -89,18 +88,6 @@ void riscv_q15_to_q31(
     /* extract upper 16 bits to 32 bit result */
     out4 = in2 & 0xFFFF0000;
 
-#else
-
-    /* extract upper 16 bits to 32 bit result */
-    out1 = in1 & 0xFFFF0000;
-    /* extract lower 16 bits to 32 bit result */
-    out2 = in1 << 16U;
-    /* extract upper 16 bits to 32 bit result */
-    out3 = in2 & 0xFFFF0000;
-    /* extract lower 16 bits to 32 bit result */
-    out4 = in2 << 16U;
-
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
     *pDst++ = out1;
     *pDst++ = out2;

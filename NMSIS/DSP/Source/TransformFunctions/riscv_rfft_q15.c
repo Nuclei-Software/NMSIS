@@ -169,23 +169,14 @@ void riscv_split_rfft_q15(
          */
 
 
-#ifndef RISCV_MATH_BIG_ENDIAN
         /* pSrc[2 * i] * pATable[2 * i] - pSrc[2 * i + 1] * pATable[2 * i + 1] */
         outR = __SMUSD(read_q15x2 (pSrc1), read_q15x2((q15_t *) pCoefA));
-#else
-        /* -(pSrc[2 * i + 1] * pATable[2 * i + 1] - pSrc[2 * i] * pATable[2 * i]) */
-        outR = -(__SMUSD(read_q15x2 (pSrc1), read_q15x2((q15_t *) pCoefA)));
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
         /* pSrc[2 * n - 2 * i] * pBTable[2 * i] + pSrc[2 * n - 2 * i + 1] * pBTable[2 * i + 1]) */
         outR = __SMLAD(read_q15x2 (pSrc2), read_q15x2((q15_t *) pCoefB), outR) >> 16U;
 
         /* pIn[2 * n - 2 * i] * pBTable[2 * i + 1] - pIn[2 * n - 2 * i + 1] * pBTable[2 * i] */
-#ifndef RISCV_MATH_BIG_ENDIAN
         outI = __SMUSDX(read_q15x2_da (&pSrc2), read_q15x2((q15_t *) pCoefB));
-#else
-        outI = __SMUSDX(read_q15x2 ((q15_t *) pCoefB), read_q15x2_da (&pSrc2));
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
         /* (pIn[2 * i + 1] * pATable[2 * i] + pIn[2 * i] * pATable[2 * i + 1] */
         outI = __SMLADX(read_q15x2_ia (&pSrc1), read_q15x2 ((q15_t *) pCoefA), outI);
@@ -320,13 +311,8 @@ void riscv_split_rifft_q15(
 
 #if defined (RISCV_MATH_DSP)
 
-#ifndef RISCV_MATH_BIG_ENDIAN
       /* pIn[2 * n - 2 * i] * pBTable[2 * i] - pIn[2 * n - 2 * i + 1] * pBTable[2 * i + 1]) */
       outR = __SMUSD(read_q15x2(pSrc2), read_q15x2((q15_t *) pCoefB));
-#else
-      /* -(-pIn[2 * n - 2 * i] * pBTable[2 * i] + pIn[2 * n - 2 * i + 1] * pBTable[2 * i + 1])) */
-      outR = -(__SMUSD(read_q15x2(pSrc2), read_q15x2((q15_t *) pCoefB)));
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
       /* pIn[2 * i] * pATable[2 * i] + pIn[2 * i + 1] * pATable[2 * i + 1] + pIn[2 * n - 2 * i] * pBTable[2 * i] */
       outR = __SMLAD(read_q15x2(pSrc1), read_q15x2 ((q15_t *) pCoefA), outR) >> 16U;
@@ -335,18 +321,10 @@ void riscv_split_rifft_q15(
       outI = __SMUADX(read_q15x2_da (&pSrc2), read_q15x2((q15_t *) pCoefB));
 
       /* pIn[2 * i + 1] * pATable[2 * i] - pIn[2 * i] * pATable[2 * i + 1] */
-#ifndef RISCV_MATH_BIG_ENDIAN
       outI = __SMLSDX(read_q15x2 ((q15_t *) pCoefA), read_q15x2_ia (&pSrc1), -outI);
-#else
-      outI = __SMLSDX(read_q15x2_ia (&pSrc1), read_q15x2 ((q15_t *) pCoefA), -outI);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
       /* write output */
-#ifndef RISCV_MATH_BIG_ENDIAN
       write_q15x2_ia (&pDst1, __PKHBT(outR, (outI >> 16U), 16));
-#else
-      write_q15x2_ia (&pDst1, __PKHBT((outI >> 16U), outR, 16));
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
 
 #else  /* #if defined (RISCV_MATH_DSP) */

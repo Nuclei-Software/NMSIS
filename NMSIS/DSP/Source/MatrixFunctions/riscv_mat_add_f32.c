@@ -59,91 +59,6 @@
                    - \ref RISCV_MATH_SUCCESS       : Operation successful
                    - \ref RISCV_MATH_SIZE_MISMATCH : Matrix size check failed
  */
-#if defined(RISCV_MATH_NEON)
-/*
-
-Neon version is assuming the matrix is small enough.
-So no blocking is used for taking into account cache effects.
-For big matrix, there exist better libraries for Neon.
-
-*/
-riscv_status riscv_mat_add_f32(
-  const riscv_matrix_instance_f32 * pSrcA,
-  const riscv_matrix_instance_f32 * pSrcB,
-  riscv_matrix_instance_f32 * pDst)
-{
-  float32_t *pIn1 = pSrcA->pData;                /* input data matrix pointer A  */
-  float32_t *pIn2 = pSrcB->pData;                /* input data matrix pointer B  */
-  float32_t *pOut = pDst->pData;                 /* output data matrix pointer   */
-
-  float32_t inA1, inA2, inB1, inB2, out1, out2;  /* temporary variables */
-
-  uint32_t numSamples;                           /* total number of elements in the matrix  */
-  uint32_t blkCnt;                               /* loop counters */
-  riscv_status status;                             /* status of matrix addition */
-
-#ifdef RISCV_MATH_MATRIX_CHECK
-  /* Check for matrix mismatch condition */
-  if ((pSrcA->numRows != pSrcB->numRows) ||
-     (pSrcA->numCols != pSrcB->numCols) ||
-     (pSrcA->numRows != pDst->numRows) || (pSrcA->numCols != pDst->numCols))
-  {
-    /* Set status as RISCV_MATH_SIZE_MISMATCH */
-    status = RISCV_MATH_SIZE_MISMATCH;
-  }
-  else
-#endif
-  {
-    float32x4_t vec1;
-    float32x4_t vec2;
-    float32x4_t res;
-
-    /* Total number of samples in the input matrix */
-    numSamples = (uint32_t) pSrcA->numRows * pSrcA->numCols;
-
-    blkCnt = numSamples >> 2U;
-
-    /* Compute 4 outputs at a time.
-     ** a second loop below computes the remaining 1 to 3 samples. */
-    while (blkCnt > 0U)
-    {
-      /* C(m,n) = A(m,n) + B(m,n) */
-      /* Add and then store the results in the destination buffer. */
-      vec1 = vld1q_f32(pIn1);
-      vec2 = vld1q_f32(pIn2);
-      res = vaddq_f32(vec1, vec2);
-      vst1q_f32(pOut, res);
-
-      /* update pointers to process next samples */
-      pIn1 += 4U;
-      pIn2 += 4U;
-      pOut += 4U;
-      /* Decrement the loop counter */
-      blkCnt--;
-    }
-
-    /* If the numSamples is not a multiple of 4, compute any remaining output samples here.
-     ** No loop unrolling is used. */
-    blkCnt = numSamples % 0x4U;
-
-    while (blkCnt > 0U)
-    {
-      /* C(m,n) = A(m,n) + B(m,n) */
-      /* Add and then store the results in the destination buffer. */
-      *pOut++ = (*pIn1++) + (*pIn2++);
-
-      /* Decrement the loop counter */
-      blkCnt--;
-    }
-
-    /* set status as RISCV_MATH_SUCCESS */
-    status = RISCV_MATH_SUCCESS;
-  }
-
-  /* Return to application */
-  return (status);
-}
-#else
 riscv_status riscv_mat_add_f32(
   const riscv_matrix_instance_f32 * pSrcA,
   const riscv_matrix_instance_f32 * pSrcB,
@@ -226,7 +141,6 @@ riscv_status riscv_mat_add_f32(
   /* Return to application */
   return (status);
 }
-#endif /* #if defined(RISCV_MATH_NEON) */
 
 /**
   @} end of MatrixAdd group

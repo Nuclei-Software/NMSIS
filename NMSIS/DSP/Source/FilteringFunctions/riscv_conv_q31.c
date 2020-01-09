@@ -70,7 +70,7 @@ void riscv_conv_q31(
 {
 
 #if (1)
-//#if !defined(RISCV_MATH_CM0_FAMILY)
+
 
   const q31_t *pIn1;                                   /* InputA pointer */
   const q31_t *pIn2;                                   /* InputB pointer */

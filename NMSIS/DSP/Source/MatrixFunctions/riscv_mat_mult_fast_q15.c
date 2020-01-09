@@ -129,38 +129,22 @@ riscv_status riscv_mat_mult_fast_q15(
         in = read_q15x2_ia ((q15_t **) &pInB);
 
         /* Unpack and store one element in destination */
-#ifndef RISCV_MATH_BIG_ENDIAN
         *px = (q15_t) in;
-#else
-        *px = (q15_t) ((in & (q31_t) 0xffff0000) >> 16);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
         /* Update pointer px to point to next row of transposed matrix */
         px += numRowsB;
 
         /* Unpack and store second element in destination */
-#ifndef RISCV_MATH_BIG_ENDIAN
         *px = (q15_t) ((in & (q31_t) 0xffff0000) >> 16);
-#else
-        *px = (q15_t) in;
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
         /* Update pointer px to point to next row of transposed matrix */
         px += numRowsB;
 
         in = read_q15x2_ia ((q15_t **) &pInB);
-#ifndef RISCV_MATH_BIG_ENDIAN
         *px = (q15_t) in;
-#else
-        *px = (q15_t) ((in & (q31_t) 0xffff0000) >> 16);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
         px += numRowsB;
 
-#ifndef RISCV_MATH_BIG_ENDIAN
         *px = (q15_t) ((in & (q31_t) 0xffff0000) >> 16);
-#else
-        *px = (q15_t) in;
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
         px += numRowsB;
 
 #else /* #if defined (RISCV_MATH_DSP) */

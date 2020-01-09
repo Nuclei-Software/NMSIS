@@ -65,81 +65,6 @@
                    - \ref RISCV_MATH_SUCCESS       : Operation successful
                    - \ref RISCV_MATH_SIZE_MISMATCH : Matrix size check failed
  */
-#if defined(RISCV_MATH_NEON_EXPERIMENTAL)
-riscv_status riscv_mat_scale_f32(
-  const riscv_matrix_instance_f32 * pSrc,
-  float32_t scale,
-  riscv_matrix_instance_f32 * pDst)
-{
-  float32_t *pIn = pSrc->pData;                  /* input data matrix pointer */
-  float32_t *pOut = pDst->pData;                 /* output data matrix pointer */
-  uint32_t numSamples;                           /* total number of elements in the matrix */
-  uint32_t blkCnt;                               /* loop counters */
-  riscv_status status;                             /* status of matrix scaling     */
-
-
-  float32_t in1, in2, in3, in4;                  /* temporary variables */
-  float32_t out1, out2, out3, out4;              /* temporary variables */
-
-
-#ifdef RISCV_MATH_MATRIX_CHECK
-  /* Check for matrix mismatch condition */
-  if ((pSrc->numRows != pDst->numRows) || (pSrc->numCols != pDst->numCols))
-  {
-    /* Set status as RISCV_MATH_SIZE_MISMATCH */
-    status = RISCV_MATH_SIZE_MISMATCH;
-  }
-  else
-#endif /*    #ifdef RISCV_MATH_MATRIX_CHECK    */
-  {
-    float32x4_t vec1;
-    float32x4_t res;
-
-    /* Total number of samples in the input matrix */
-    numSamples = (uint32_t) pSrc->numRows * pSrc->numCols;
-
-    blkCnt = numSamples >> 2;
-
-    /* Compute 4 outputs at a time.
-     ** a second loop below computes the remaining 1 to 3 samples. */
-    while (blkCnt > 0U)
-    {
-      /* C(m,n) = A(m,n) * scale */
-      /* Scaling and results are stored in the destination buffer. */
-      vec1 = vld1q_f32(pIn);
-      res = vmulq_f32(vec1, vdupq_n_f32(scale));
-      vst1q_f32(pOut, res);
-
-      /* update pointers to process next sampels */
-      pIn += 4U;
-      pOut += 4U;
-
-      /* Decrement the numSamples loop counter */
-      blkCnt--;
-    }
-
-    /* If the numSamples is not a multiple of 4, compute any remaining output samples here.
-     ** No loop unrolling is used. */
-    blkCnt = numSamples % 0x4U;
-
-    while (blkCnt > 0U)
-    {
-      /* C(m,n) = A(m,n) * scale */
-      /* The results are stored in the destination buffer. */
-      *pOut++ = (*pIn++) * scale;
-
-      /* Decrement the loop counter */
-      blkCnt--;
-    }
-
-    /* Set status as RISCV_MATH_SUCCESS */
-    status = RISCV_MATH_SUCCESS;
-  }
-
-  /* Return to application */
-  return (status);
-}
-#else
 riscv_status riscv_mat_scale_f32(
   const riscv_matrix_instance_f32 * pSrc,
         float32_t                 scale,
@@ -215,7 +140,6 @@ riscv_status riscv_mat_scale_f32(
   /* Return to application */
   return (status);
 }
-#endif /* #if defined(RISCV_MATH_NEON) */
 
 /**
   @} end of MatrixScale group

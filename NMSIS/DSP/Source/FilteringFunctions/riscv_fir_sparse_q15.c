@@ -298,20 +298,12 @@ void riscv_fir_sparse_q15(
     in1 = *pScr2++;
     in2 = *pScr2++;
 
-#ifndef RISCV_MATH_BIG_ENDIAN
     write_q15x2_ia (&pOut, __PKHBT((q15_t) __SSAT(in1 >> 15, 16), (q15_t) __SSAT(in2 >> 15, 16), 16));
-#else
-    write_q15x2_ia (&pOut, __PKHBT((q15_t) __SSAT(in2 >> 15, 16), (q15_t) __SSAT(in1 >> 15, 16), 16));
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
     in1 = *pScr2++;
     in2 = *pScr2++;
 
-#ifndef RISCV_MATH_BIG_ENDIAN
     write_q15x2_ia (&pOut, __PKHBT((q15_t) __SSAT(in1 >> 15, 16), (q15_t) __SSAT(in2 >> 15, 16), 16));
-#else
-    write_q15x2_ia (&pOut, __PKHBT((q15_t) __SSAT(in2 >> 15, 16), (q15_t) __SSAT(in1 >> 15, 16), 16));
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
     /* Decrement loop counter */
     blkCnt--;

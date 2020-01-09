@@ -212,11 +212,7 @@ riscv_status riscv_mat_cmplx_mult_q15(
           pSourceB = read_q15x2_ia ((q15_t **) &pInB);
 
           /* Multiply and Accumlates */
-#ifdef RISCV_MATH_BIG_ENDIAN
-          prod1 = -__SMUSD(pSourceA, pSourceB);
-#else
           prod1 = __SMUSD(pSourceA, pSourceB);
-#endif
           prod2 = __SMUADX(pSourceA, pSourceB);
           sumReal += (q63_t) prod1;
           sumImag += (q63_t) prod2;
@@ -226,11 +222,7 @@ riscv_status riscv_mat_cmplx_mult_q15(
           pSourceB = read_q15x2_ia ((q15_t **) &pInB);
 
           /* Multiply and Accumlates */
-#ifdef RISCV_MATH_BIG_ENDIAN
-          prod1 = -__SMUSD(pSourceA, pSourceB);
-#else
           prod1 = __SMUSD(pSourceA, pSourceB);
-#endif
           prod2 = __SMUADX(pSourceA, pSourceB);
           sumReal += (q63_t) prod1;
           sumImag += (q63_t) prod2;
@@ -285,11 +277,7 @@ riscv_status riscv_mat_cmplx_mult_q15(
           pSourceB = read_q15x2_ia ((q15_t **) &pInB);
 
           /* Multiply and Accumlates */
-#ifdef RISCV_MATH_BIG_ENDIAN
-          prod1 = -__SMUSD(pSourceA, pSourceB);
-#else
           prod1 = __SMUSD(pSourceA, pSourceB);
-#endif
           prod2 = __SMUADX(pSourceA, pSourceB);
           sumReal += (q63_t) prod1;
           sumImag += (q63_t) prod2;

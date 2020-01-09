@@ -382,11 +382,7 @@ riscv_status riscv_conv_partial_q15(
         {
           /* Read y[srcBLen - 5] */
           c0 = *(py+1);
-#ifdef  RISCV_MATH_BIG_ENDIAN
-          c0 = c0 << 16U;
-#else
           c0 = c0 & 0x0000FFFF;
-#endif /* #ifdef  RISCV_MATH_BIG_ENDIAN */
 
           /* Read x[7] */
           x3 = read_q15x2 ((q15_t *) px);
@@ -436,11 +432,7 @@ riscv_status riscv_conv_partial_q15(
           acc3 = __SMLALDX(x2, c0, acc3);
 
           c0 = *(py-1);
-#ifdef  RISCV_MATH_BIG_ENDIAN
-          c0 = c0 << 16U;
-#else
           c0 = c0 & 0x0000FFFF;
-#endif /* #ifdef  RISCV_MATH_BIG_ENDIAN */
 
           /* Read x[10] */
           x3 =  read_q15x2 ((q15_t *) px + 2);
@@ -454,13 +446,8 @@ riscv_status riscv_conv_partial_q15(
         }
 
         /* Store the results in the accumulators in the destination buffer. */
-#ifndef RISCV_MATH_BIG_ENDIAN
         write_q15x2_ia (&pOut, __PKHBT(__SSAT((acc0 >> 15), 16), __SSAT((acc1 >> 15), 16), 16));
         write_q15x2_ia (&pOut, __PKHBT(__SSAT((acc2 >> 15), 16), __SSAT((acc3 >> 15), 16), 16));
-#else
-        write_q15x2_ia (&pOut, __PKHBT(__SSAT((acc1 >> 15), 16), __SSAT((acc0 >> 15), 16), 16));
-        write_q15x2_ia (&pOut, __PKHBT(__SSAT((acc3 >> 15), 16), __SSAT((acc2 >> 15), 16), 16));
-#endif /* #ifndef  RISCV_MATH_BIG_ENDIAN */
 
         /* Increment the pointer pIn1 index, count by 4 */
         count += 4U;

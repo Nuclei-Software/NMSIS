@@ -67,7 +67,7 @@ riscv_status riscv_mat_mult_q15(
 {
         q63_t sum;                                     /* Accumulator */
 
-#if defined (RISCV_MATH_DSP)                             /* != CM0 */
+#if defined (RISCV_MATH_DSP)
 
         q15_t *pSrcBT = pState;                        /* Input data matrix pointer for transpose */
         q15_t *pInA = pSrcA->pData;                    /* Input data matrix pointer A of Q15 type */
@@ -115,21 +115,13 @@ riscv_status riscv_mat_mult_q15(
         in = read_q15x2_ia ((q15_t **) &pInB);
 
         /* Unpack and store one element in destination */
-#ifndef RISCV_MATH_BIG_ENDIAN
         *px = (q15_t) in;
-#else
-        *px = (q15_t) ((in & (q31_t) 0xffff0000) >> 16);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
         /* Update pointer px to point to next row of transposed matrix */
         px += numRowsB;
 
         /* Unpack and store second element in destination */
-#ifndef RISCV_MATH_BIG_ENDIAN
         *px = (q15_t) ((in & (q31_t) 0xffff0000) >> 16);
-#else
-        *px = (q15_t) in;
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
         /* Update pointer px to point to next row of transposed matrix */
         px += numRowsB;
@@ -138,18 +130,10 @@ riscv_status riscv_mat_mult_q15(
         in = read_q15x2_ia ((q15_t **) &pInB);
 
         /* Unpack and store one element in destination */
-#ifndef RISCV_MATH_BIG_ENDIAN
         *px = (q15_t) in;
-#else
-        *px = (q15_t) ((in & (q31_t) 0xffff0000) >> 16);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
         px += numRowsB;
 
-#ifndef RISCV_MATH_BIG_ENDIAN
         *px = (q15_t) ((in & (q31_t) 0xffff0000) >> 16);
-#else
-        *px = (q15_t) in;
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
         px += numRowsB;
 
         /* Decrement column loop counter */

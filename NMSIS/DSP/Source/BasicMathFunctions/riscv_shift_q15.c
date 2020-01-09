@@ -62,10 +62,6 @@ void riscv_shift_q15(
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
-//#if defined (RISCV_MATH_DSP)
-//  q15_t in1, in2;                                /* Temporary input variables */
-//#endif
-
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
   while(blkCnt > 0U) {
@@ -77,89 +73,6 @@ void riscv_shift_q15(
  #endif
 	  blkCnt--;
   }
-
-  /* If the shift value is positive then do right shift else left shift */
-//  if (sign == 0U)
-//  {
-//    while (blkCnt > 0U)
-//    {
-//      /* C = A << shiftBits */
-//
-//#if defined (RISCV_MATH_DSP)
-//      /* read 2 samples from source */
-//      in1 = *pSrc++;
-//      in2 = *pSrc++;
-//
-//      /* Shift the inputs and then store the results in the destination buffer. */
-//#ifndef RISCV_MATH_BIG_ENDIAN
-//      write_q15x2_ia (&pDst, __PKHBT(__SSAT((in1 << shiftBits), 16),
-//                                     __SSAT((in2 << shiftBits), 16), 16));
-//#else
-//      write_q15x2_ia (&pDst, __PKHBT(__SSAT((in2 << shiftBits), 16),
-//                                      __SSAT((in1 << shiftBits), 16), 16));
-//#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
-//
-//      /* read 2 samples from source */
-//      in1 = *pSrc++;
-//      in2 = *pSrc++;
-//
-//      write_q15x2_ia (&pDst, __PKHBT(__SSAT((in1 << shiftBits), 16),
-//                                     __SSAT((in2 << shiftBits), 16), 16));
-//
-//#else
-//      *pDst++ = __SSAT(((q31_t) *pSrc++ << shiftBits), 16);
-//      *pDst++ = __SSAT(((q31_t) *pSrc++ << shiftBits), 16);
-//      *pDst++ = __SSAT(((q31_t) *pSrc++ << shiftBits), 16);
-//      *pDst++ = __SSAT(((q31_t) *pSrc++ << shiftBits), 16);
-//#endif
-//
-//      /* Decrement loop counter */
-//      blkCnt--;
-//    }
-//  }
-//  else
-//  {
-//    while (blkCnt > 0U)
-//    {
-//      /* C = A >> shiftBits */
-//
-//#if defined (RISCV_MATH_DSP)
-//      /* read 2 samples from source */
-//      in1 = *pSrc++;
-//      in2 = *pSrc++;
-//
-//      /* Shift the inputs and then store the results in the destination buffer. */
-//#ifndef RISCV_MATH_BIG_ENDIAN
-//      write_q15x2_ia (&pDst, __PKHBT((in1 >> -shiftBits),
-//                                     (in2 >> -shiftBits), 16));
-//#else
-//      write_q15x2_ia (&pDst, __PKHBT((in2 >> -shiftBits),
-//                                     (in1 >> -shiftBits), 16));
-//#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
-//
-//      /* read 2 samples from source */
-//      in1 = *pSrc++;
-//      in2 = *pSrc++;
-//
-//#ifndef RISCV_MATH_BIG_ENDIAN
-//      write_q15x2_ia (&pDst, __PKHBT((in1 >> -shiftBits),
-//                                     (in2 >> -shiftBits), 16));
-//#else
-//      write_q15x2_ia (&pDst, __PKHBT((in2 >> -shiftBits),
-//                                     (in1 >> -shiftBits), 16));
-//#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
-//
-//#else
-//      *pDst++ = (*pSrc++ >> -shiftBits);
-//      *pDst++ = (*pSrc++ >> -shiftBits);
-//      *pDst++ = (*pSrc++ >> -shiftBits);
-//      *pDst++ = (*pSrc++ >> -shiftBits);
-//#endif
-//
-//      /* Decrement loop counter */
-//      blkCnt--;
-//    }
-//  }
 
   /* Loop unrolling: Compute remaining outputs */
   blkCnt = blockSize % 0x4U;

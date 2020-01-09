@@ -339,11 +339,7 @@ void riscv_correlate_fast_q15(
         /* Read y[4] */
         c0 = *py;
 
-#ifdef  RISCV_MATH_BIG_ENDIAN
-        c0 = c0 << 16U;
-#else
         c0 = c0 & 0x0000FFFF;
-#endif /* #ifdef  RISCV_MATH_BIG_ENDIAN */
 
         /* Read x[7] */
         x3 = read_q15x2 ((q15_t *) px);
@@ -394,11 +390,7 @@ void riscv_correlate_fast_q15(
 
         c0 = (*py);
         /* Read y[6] */
-#ifdef  RISCV_MATH_BIG_ENDIAN
-        c0 = c0 << 16U;
-#else
         c0 = c0 & 0x0000FFFF;
-#endif /* #ifdef  RISCV_MATH_BIG_ENDIAN */
 
         /* Read x[10] */
         x3 = read_q15x2 ((q15_t *) px + 2);

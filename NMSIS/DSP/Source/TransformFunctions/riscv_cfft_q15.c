@@ -172,13 +172,8 @@ void riscv_cfft_radix4by2_q15(
 
       write_q15x2_ia (&pSi, __SHADD16(T, S));
 
-#ifndef RISCV_MATH_BIG_ENDIAN
       out1 = __SMUAD(coeff, R) >> 16U;
       out2 = __SMUSDX(coeff, R);
-#else
-      out1 = __SMUSDX(R, coeff) >> 16U;
-      out2 = __SMUAD(coeff, R);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
       write_q15x2_ia (&pSl, (q31_t) ((out2) & 0xFFFF0000) | (out1 & 0x0000FFFF));
   }
@@ -271,13 +266,8 @@ void riscv_cfft_radix4by2_inverse_q15(
 
      write_q15x2_ia (&pSi, __SHADD16(T, S));
 
-#ifndef RISCV_MATH_BIG_ENDIAN
      out1 = __SMUSD(coeff, R) >> 16U;
      out2 = __SMUADX(coeff, R);
-#else
-     out1 = __SMUADX(R, coeff) >> 16U;
-     out2 = __SMUSD(__QSUB(0, coeff), R);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
      write_q15x2_ia (&pSl, (q31_t) ((out2) & 0xFFFF0000) | (out1 & 0x0000FFFF));
   }

@@ -65,7 +65,7 @@ void riscv_fir_lattice_q31(
         q31_t fcurr0, fnext0, gnext0, gcurr0;          /* Temporary variables */
 
 #if (1)
-//#if !defined(RISCV_MATH_CM0_FAMILY)
+
 
 #if defined (RISCV_MATH_LOOPUNROLL)
         q31_t fcurr1, fnext1, gnext1;                  /* Temporary variables for second sample in loop unrolling */

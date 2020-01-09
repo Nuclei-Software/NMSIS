@@ -10,6 +10,8 @@ project(RISCV_DSP)
 
 option(DSP_ENABLE "option to enable dsp" ON)
 option(LOOPUNROLL "option to enable unroll loop" ON)
+option(ROUNDING "Rounding" OFF)
+option(MATRIXCHECK "Matrix Checks" OFF)
 option(DSP64 "option to enable dsp 64" ON)
 option(RISCV_ARCH "option to select riscv arch" rv32imafdc)
 option(RISCV_ABI "option to select riscv abi" ilp32d)
@@ -25,6 +27,14 @@ if (DSP_ENABLE)
     if(DSP64)
         add_definitions(-DRISCV_DSP64)
     endif()
+endif()
+
+if(ROUNDING)
+    add_definitions(-DRISCV_MATH_ROUNDING)
+endif()
+
+if(MATRIXCHECK)
+    add_definitions(-DRISCV_MATH_MATRIX_CHECK)
 endif()
 
 add_library(RISCV_DSP INTERFACE)

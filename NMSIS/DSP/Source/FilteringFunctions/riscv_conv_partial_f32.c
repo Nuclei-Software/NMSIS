@@ -89,7 +89,7 @@ riscv_status riscv_conv_partial_f32(
 {
 
 #if (1)
-//#if !defined(RISCV_MATH_CM0_FAMILY)
+
 
   const float32_t *pIn1 = pSrcA;                       /* InputA pointer */
   const float32_t *pIn2 = pSrcB;                       /* InputB pointer */
