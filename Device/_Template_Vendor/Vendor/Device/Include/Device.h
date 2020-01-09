@@ -113,7 +113,7 @@ typedef enum EXCn {
  *       __NUCLEI_N_REV if your device is a Nuclei-N Class device
  *       __NUCLEI_NX_REV if your device is a Nuclei-NX Class device
  */
-#define __NUCLEI_N#_REV           0x0000                /*!< Core Revision r0p0, change N# to N for Nuclei N class cores, change N# to NX for Nuclei NX cores */
+#define __NUCLEI_N#_REV           0x0100                /*!< Core Revision rXpY, version X.Y, change N# to N for Nuclei N class cores, change N# to NX for Nuclei NX cores */
 /* TODO: define the correct core features for the <Device> */
 #define __ECLIC_PRESENT           1                     /*!< Set to 1 if ECLIC is present */
 #define __ECLIC_BASEADDR          0x0C000000UL          /*!< Set to ECLIC baseaddr of your device */

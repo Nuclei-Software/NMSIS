@@ -116,7 +116,7 @@ typedef enum EXCn {
 /* ===========================  Configuration of the Nuclei N/NX Processor and Core Peripherals  =========================== */
 /*       __NUCLEI_NX_REV if your device is a Nuclei-NX Class device
  */
-#define __NUCLEI_NX_REV           0x0000                /*!< Nuclei NX Core Revision r0p0 */
+#define __NUCLEI_NX_REV           0x0100                /*!< Nuclei NX Core Revision r1p0, version 1.0 */
 #define __ECLIC_PRESENT           1                     /*!< Set to 1 if ECLIC is present */
 #define __ECLIC_BASEADDR          0x0C000000UL          /*!< Set to ECLIC baseaddr of your device */
 #define __ECLIC_INTCTLBITS        8                     /*!< Set to 1 - 8, the number of hardware bits are actually implemented in the clicintctl registers. */
