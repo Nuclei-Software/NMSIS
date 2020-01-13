@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Interrupts and Exceptions &mdash; NMSIS 1.0.0-alpha documentation</title>
+  <title>Interrupts and Exceptions &mdash; NMSIS 1.0.0-alpha.1 documentation</title>
   
 
   
@@ -1502,7 +1502,8 @@ __INTERRUPT void eclic_mtip_handler(void)
 </p>
 </dd>
 <dt><strong>See</strong></dt><dd><p><ul class="simple">
-<li><p>ECLIC_EnableIRQ; ECLIC_DisableIRQ; </p></li>
+<li><p>ECLIC_EnableIRQ</p></li>
+<li><p>ECLIC_DisableIRQ </p></li>
 </ul>
 </p>
 </dd>
@@ -1554,7 +1555,8 @@ __INTERRUPT void eclic_mtip_handler(void)
 </p>
 </dd>
 <dt><strong>See</strong></dt><dd><p><ul class="simple">
-<li><p>ECLIC_SetPendingIRQ; ECLIC_ClearPendingIRQ </p></li>
+<li><p>ECLIC_SetPendingIRQ</p></li>
+<li><p>ECLIC_ClearPendingIRQ </p></li>
 </ul>
 </p>
 </dd>
@@ -1577,7 +1579,8 @@ __INTERRUPT void eclic_mtip_handler(void)
 </p>
 </dd>
 <dt><strong>See</strong></dt><dd><p><ul class="simple">
-<li><p>ECLIC_GetPendingIRQ; ECLIC_ClearPendingIRQ </p></li>
+<li><p>ECLIC_GetPendingIRQ</p></li>
+<li><p>ECLIC_ClearPendingIRQ </p></li>
 </ul>
 </p>
 </dd>
@@ -1600,7 +1603,8 @@ __INTERRUPT void eclic_mtip_handler(void)
 </p>
 </dd>
 <dt><strong>See</strong></dt><dd><p><ul class="simple">
-<li><p>ECLIC_SetPendingIRQ; ECLIC_GetPendingIRQ </p></li>
+<li><p>ECLIC_SetPendingIRQ</p></li>
+<li><p>ECLIC_GetPendingIRQ </p></li>
 </ul>
 </p>
 </dd>
@@ -1796,7 +1800,7 @@ __INTERRUPT void eclic_mtip_handler(void)
 </p>
 </dd>
 <dt><strong>See</strong></dt><dd><p><ul class="simple">
-<li><p>ECLIC_GetLevelIRQ; </p></li>
+<li><p>ECLIC_GetLevelIRQ </p></li>
 </ul>
 </p>
 </dd>
@@ -1892,7 +1896,9 @@ __INTERRUPT void eclic_mtip_handler(void)
 <p>This function set interrupt handler address of the specific interrupt <em>IRQn</em>. <dl class="simple">
 <dt><strong>Remark</strong></dt><dd><p><ul class="simple">
 <li><p>IRQn must not be negative.</p></li>
-<li><p>You can set the CSR_CSR_MTVT to set interrupt vector table entry address. </p></li>
+<li><p>You can set the CSR_CSR_MTVT to set interrupt vector table entry address.</p></li>
+<li><p>If your vector table is placed in readonly section, the vector for IRQn will not be modified. For this case, you need to use the correct irq handler name defined in your vector table as your irq handler function name.</p></li>
+<li><p>This function will only work correctly when the vector table is placed in an read-write enabled section. </p></li>
 </ul>
 </p>
 </dd>

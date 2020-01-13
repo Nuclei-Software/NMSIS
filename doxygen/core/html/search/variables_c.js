@@ -15,8 +15,8 @@ var searchData=
   ['mprv',['mprv',['../unionCSR__MSTATUS__Type.html#a5319b79ff9ccab347d70716fc7ad5bf5',1,'CSR_MSTATUS_Type']]],
   ['msftrst',['MSFTRST',['../structSysTimer__Type.html#a4bc27f5c3a0fefa7063ffbcf2b148f78',1,'SysTimer_Type']]],
   ['msip',['MSIP',['../structSysTimer__Type.html#a5e43fade844d5c21f68c9bace205ef47',1,'SysTimer_Type']]],
-  ['mstop',['MSTOP',['../structSysTimer__Type.html#acbd62ffdcf918cbbbe06d99168f71dfa',1,'SysTimer_Type']]],
   ['mth',['MTH',['../structCLIC__Type.html#afb6fd4c418a7d2394ee740231685698c',1,'CLIC_Type']]],
+  ['mtimectl',['MTIMECTL',['../structSysTimer__Type.html#a2e64638a3327d7932455185033bab733',1,'SysTimer_Type']]],
   ['mtimer',['MTIMER',['../structSysTimer__Type.html#a37a77647021a3ac0325d9337aa063cc7',1,'SysTimer_Type']]],
   ['mtimercmp',['MTIMERCMP',['../structSysTimer__Type.html#a6dee6a8430c65e88e458d9fb90d4d8c7',1,'SysTimer_Type']]],
   ['mxl',['mxl',['../unionCSR__MISA__Type.html#a6f3250a719eb460653f2f4f6f2bc76f8',1,'CSR_MISA_Type']]]

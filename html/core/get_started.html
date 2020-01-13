@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Using NMSIS in Embedded Applications &mdash; NMSIS 1.0.0-alpha documentation</title>
+  <title>Using NMSIS in Embedded Applications &mdash; NMSIS 1.0.0-alpha.1 documentation</title>
   
 
   
@@ -187,7 +187,7 @@
 <p>To use the <strong>NMSIS-Core</strong>, the following files are added to the embedded
 application:</p>
 <ul class="simple">
-<li><p><span class="xref std std-ref">core_template_start_device_asm</span>, which provided asm startup code
+<li><p><a class="reference internal" href="core_template_startup_device.html#core-template-startup-device-asm"><span class="std std-ref">Startup File startup_&lt;device&gt;.S</span></a>, which provided asm startup code
 and vector table.</p></li>
 <li><p><a class="reference internal" href="core_template_intexc.html#core-template-intexc-device"><span class="std std-ref">Interrupt and Exception Handling File: intexc_&lt;device&gt;.S</span></a>, which provided general exception
 handling code for non-vector interrupts and exceptions.</p></li>
@@ -199,7 +199,7 @@ peripherals.</p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The files <span class="xref std std-ref">core_template_start_device_asm</span>, <a class="reference internal" href="core_template_intexc.html#core-template-intexc-device"><span class="std std-ref">Interrupt and Exception Handling File: intexc_&lt;device&gt;.S</span></a>,
+<p>The files <a class="reference internal" href="core_template_startup_device.html#core-template-startup-device-asm"><span class="std std-ref">Startup File startup_&lt;device&gt;.S</span></a>, <a class="reference internal" href="core_template_intexc.html#core-template-intexc-device"><span class="std std-ref">Interrupt and Exception Handling File: intexc_&lt;device&gt;.S</span></a>,
 <a class="reference internal" href="core_template_linker_device.html#core-template-linker-script"><span class="std std-ref">Device Linker Script: gcc_&lt;device&gt;.ld</span></a> and <a class="reference internal" href="core_template_system_device.html#core-template-system-device"><span class="std std-ref">System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h</span></a> may require
 application specific adaptations and therefore should be copied into
 the application project folder prior configuration.</p>
@@ -207,7 +207,7 @@ the application project folder prior configuration.</p>
 device access and can be stored on a central include folder that is
 generic for all projects.</p>
 </div>
-<p>The <span class="xref std std-ref">core_template_start_device_asm</span> is executed right after device reset, it will do
+<p>The <a class="reference internal" href="core_template_startup_device.html#core-template-startup-device-asm"><span class="std std-ref">Startup File startup_&lt;device&gt;.S</span></a> is executed right after device reset, it will do
 necessary stack pointer initialization, exception and interrupt entry configuration, then
 call <a class="reference internal" href="api/core_system_device.html#_CPPv410SystemInitv" title="SystemInit"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">SystemInit()</span></code></a>, after system initialization, will return to assemble startup code
 and do c/c++ runtime initialization which includes data, bss section initialization, c++ runtime
@@ -217,7 +217,7 @@ and implements a default function for every interrupt.
 It may also contain stack and heap configurations for the user application.</p>
 <p>The <a class="reference internal" href="core_template_system_device.html#core-template-system-device"><span class="std std-ref">System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h</span></a> performs the setup for the processor
 clock. The variable <a class="reference internal" href="api/core_system_device.html#_CPPv415SystemCoreClock" title="SystemCoreClock"><code class="xref cpp cpp-var docutils literal notranslate"><span class="pre">SystemCoreClock</span></code></a> indicates the CPU clock speed.
-<span class="xref std std-ref">core_api_system_clock</span> describes the minimum feature set. In addition
+<a class="reference internal" href="api/core_systick.html#core-api-systick"><span class="std std-ref">Systick Timer(SysTimer)</span></a> describes the minimum feature set. In addition
 the file may contain functions for the memory BUS setup and clock re-configuration.</p>
 <p>The <a class="reference internal" href="core_template_device_header.html#core-template-device-header"><span class="std std-ref">Device Header File &lt;device.h&gt;</span></a> is the central include file that the
 application programmer is using in the C source code. It provides the
@@ -242,7 +242,7 @@ C/C++ source code</p></li>
 </ul>
 <a class="reference internal image-reference" href="../_images/NMSIS_CORE_Files_user.png"><img alt="NMSIS-Core User Files" src="../_images/NMSIS_CORE_Files_user.png" style="width: 482.0px; height: 451.5px;" /></a>
 <p>The NMSIS-Core system files are device specific.</p>
-<p>In addition, the <span class="xref std std-ref">core_template_start_device_asm</span> is also compiler vendor specific, currently only GCC version is provided.
+<p>In addition, the <a class="reference internal" href="core_template_startup_device.html#core-template-startup-device-asm"><span class="std std-ref">Startup File startup_&lt;device&gt;.S</span></a> is also compiler vendor specific, currently only GCC version is provided.
 The versions provided by NMSIS are only generic templates. The adopted versions for a concrete device are typically provided by the device
 vendor through the according device familiy package.</p>
 <p>For example, the following files are provided by the <strong>GD32VF103</strong> device family pack:</p>
@@ -343,11 +343,17 @@ vendor through the according device familiy package.</p>
 43
 44
 45
-46</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;gd32vf103.h&gt;                           // File name depends on device used</span><span class="cp"></span>
+46
+47
+48
+49</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;gd32vf103.h&gt;                           // File name depends on device used</span><span class="cp"></span>
 
 <span class="kt">uint32_t</span> <span class="k">volatile</span> <span class="n">msTicks</span><span class="p">;</span>                       <span class="c1">// Counter for millisecond Interval</span>
+<span class="cp">#define SysTick_Handler     eclic_mtip_handler</span>
+<span class="cp">#define CONFIG_TICKS        (SOC_TIMER_FREQ / 1000)</span>
 
 <span class="kt">void</span> <span class="nf">SysTick_Handler</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>                    <span class="c1">// SysTick Interrupt Handler</span>
+  <span class="n">SysTick_Reload</span><span class="p">(</span><span class="n">CONFIG_TICKS</span><span class="p">);</span>
   <span class="n">msTicks</span><span class="o">++</span><span class="p">;</span>                                     <span class="c1">// Increment Counter</span>
 <span class="p">}</span>
 
@@ -356,7 +362,7 @@ vendor through the according device familiy package.</p>
 
   <span class="n">curTicks</span> <span class="o">=</span> <span class="n">msTicks</span><span class="p">;</span>                            <span class="c1">// Save Current SysTick Value</span>
   <span class="k">while</span> <span class="p">(</span><span class="n">msTicks</span> <span class="o">==</span> <span class="n">curTicks</span><span class="p">)</span>  <span class="p">{</span>                 <span class="c1">// Wait for next SysTick Interrupt</span>
-    <span class="n">__WFE</span> <span class="p">();</span>                                    <span class="c1">// Power-Down until next Event/Interrupt</span>
+    <span class="n">__WFI</span> <span class="p">();</span>                                    <span class="c1">// Power-Down until next Event/Interrupt</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
@@ -371,7 +377,7 @@ vendor through the according device familiy package.</p>
 
 
 <span class="kt">void</span> <span class="nf">Device_Initialization</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>  <span class="p">{</span>             <span class="c1">// Configure &amp; Initialize MCU</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">SysTick_Config</span> <span class="p">(</span><span class="n">SystemCoreClock</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">))</span> <span class="p">{</span> <span class="c1">// SysTick 1 ms</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">SysTick_Config</span> <span class="p">(</span><span class="n">CONFIG_TICKS</span><span class="p">))</span> <span class="p">{</span>
        <span class="p">;</span> <span class="c1">// Handle Error</span>
   <span class="p">}</span>
   <span class="n">timer0_init</span> <span class="p">();</span>                                <span class="c1">// setup device-specific timer</span>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Device Header File &lt;device.h&gt; &mdash; NMSIS 1.0.0-alpha documentation</title>
+  <title>Device Header File &lt;device.h&gt; &mdash; NMSIS 1.0.0-alpha.1 documentation</title>
   
 
   
@@ -307,11 +307,12 @@ If these <code class="docutils literal notranslate"><span class="pre">#define</s
 </tr>
 <tr class="row-even"><td><p>__NUCLEI_N_REV  OR
 __NUCLEI_NX_REV</p></td>
-<td><p>0x0000</p></td>
-<td><p>0x0000</p></td>
+<td><p>0x0100 |
+0x0104</p></td>
+<td><p>0x0100</p></td>
 <td><ul class="simple">
 <li><p>For Nuclei N class device, define __NUCLEI_N_REV, for NX class device, define __NUCLEI_NX_REV.</p></li>
-<li><p>Core revision number ([15:8] revision number, [7:0] patch number)</p></li>
+<li><p>Core revision number ([15:8] revision number, [7:0] patch number), 0x0100 -&gt; 1.0, 0x0104 -&gt; 1.4</p></li>
 </ul>
 </td>
 </tr>
@@ -391,7 +392,7 @@ __NUCLEI_NX_REV</p></td>
 <td><p>0 .. 1</p></td>
 <td><p>0</p></td>
 <td><p>If __SYSTIMER_PRESENT is 1, then the __Vendor_SysTickConfig  can be set to 0, otherwise it can only set to 1.</p>
-<p>If this define is set to 1, then the default SysTick_Config function is excluded.</p>
+<p>If this define is set to 1, then the default SysTick_Config and SysTick_Reload function is excluded.</p>
 <p>In this case, the file Device.h must contain a vendor specific implementation of this function.</p>
 </td>
 </tr>
@@ -767,7 +768,7 @@ typedef enum EXCn {
  *       __NUCLEI_N_REV if your device is a Nuclei-N Class device
  *       __NUCLEI_NX_REV if your device is a Nuclei-NX Class device
  */
-#define __NUCLEI_N#_REV           0x0000                /*!&lt; Core Revision r0p0, change N# to N for Nuclei N class cores, change N# to NX for Nuclei NX cores */
+#define __NUCLEI_N#_REV           0x0100                /*!&lt; Core Revision rXpY, version X.Y, change N# to N for Nuclei N class cores, change N# to NX for Nuclei NX cores */
 /* TODO: define the correct core features for the &lt;Device&gt; */
 #define __ECLIC_PRESENT           1                     /*!&lt; Set to 1 if ECLIC is present */
 #define __ECLIC_BASEADDR          0x0C000000UL          /*!&lt; Set to ECLIC baseaddr of your device */

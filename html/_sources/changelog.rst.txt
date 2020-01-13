@@ -3,6 +3,27 @@
 Changelog
 =========
 
+V1.0.0-alpha.1
+--------------
+
+API changes has been maded to system timer.
+
+- Start from Nuclei N core version 1.4, MSTOP register is renamed to MTIMECTL to provide more features
+
+- Changes made to NMSIS/Core/core_feature_timer.h
+
+  - MSTOP register name changed to MTIMECTL due to core spec changes
+  - SysTimer_SetMstopValue renamed to SysTimer_SetControlValue
+  - SysTimer_GetMstopValue renamed to SysTimer_GetControlValue
+  - Add SysTimer_Start and SysTimer_Stop to start or stop system timer counter
+  - SysTick_Reload function is introduced to reload system timer
+  - Macro names started with SysTimer_xxx are changed, please check in the code.
+
+- Removed unused lines of code in DSP and NN library source code which has unused macros which will not work for RISCV cores.
+
+- Fix some documentation issues, mainly typos and invalid cross references.
+
+
 V1.0.0-alpha
 ------------
 

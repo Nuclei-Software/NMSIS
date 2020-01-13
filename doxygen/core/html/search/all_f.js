@@ -85,8 +85,8 @@ var searchData=
   ['mstatus_5fupie',['MSTATUS_UPIE',['../group__NMSIS__Core__CSR__Encoding.html#ga17711b78183c43687036c60962c278cb',1,'riscv_encoding.h']]],
   ['mstatus_5fvm',['MSTATUS_VM',['../group__NMSIS__Core__CSR__Encoding.html#gaa4bb5c6a2a139c0bfd77d4d5de00e8b6',1,'riscv_encoding.h']]],
   ['mstatus_5fxs',['MSTATUS_XS',['../group__NMSIS__Core__CSR__Encoding.html#ga768db67b06c8341a4da264abcb7f3cfe',1,'riscv_encoding.h']]],
-  ['mstop',['MSTOP',['../structSysTimer__Type.html#acbd62ffdcf918cbbbe06d99168f71dfa',1,'SysTimer_Type']]],
   ['mth',['MTH',['../structCLIC__Type.html#afb6fd4c418a7d2394ee740231685698c',1,'CLIC_Type']]],
+  ['mtimectl',['MTIMECTL',['../structSysTimer__Type.html#a2e64638a3327d7932455185033bab733',1,'SysTimer_Type']]],
   ['mtimer',['MTIMER',['../structSysTimer__Type.html#a37a77647021a3ac0325d9337aa063cc7',1,'SysTimer_Type']]],
   ['mtimercmp',['MTIMERCMP',['../structSysTimer__Type.html#a6dee6a8430c65e88e458d9fb90d4d8c7',1,'SysTimer_Type']]],
   ['mxl',['mxl',['../unionCSR__MISA__Type.html#a6f3250a719eb460653f2f4f6f2bc76f8',1,'CSR_MISA_Type']]]

@@ -3989,7 +3989,7 @@ Q15 basic fully-connected layer function.</para><para><parameterlist kind="param
 <bold>Buffer size:</bold></para><para>vec_buffer size: 0</para><para>Here we use only one pointer to read 4 rows in the weight matrix. So if the original matrix looks like this:</para><para>| a11 | a12 | a13 |</para><para>| a21 | a22 | a23 |</para><para>| a31 | a32 | a33 |</para><para>| a41 | a42 | a43 |</para><para>| a51 | a52 | a53 |</para><para>| a61 | a62 | a63 |</para><para>We operates on multiple-of-4 rows, so the first four rows becomes</para><para>| a11 | a12 | a21 | a22 | a31 | a32 | a41 | a42 |</para><para>| a13 | a23 | a33 | a43 |</para><para>Remaining rows are kept the same original order.</para><para>So the stored weight matrix looks like this:</para><para>| a11 | a12 | a21 | a22 | a31 | a32 | a41 | a42 |</para><para>| a13 | a23 | a33 | a43 | a51 | a52 | a53 | a61 |</para><para>| a62 | a63 | </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnfunctions.h" line="780" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_q15_opt.c" bodystart="98" bodyend="332"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnfunctions.h" line="780" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_q15_opt.c" bodystart="98" bodyend="304"/>
       </memberdef>
       <memberdef kind="function" id="group__FC_1gae53e7bbdcd7730c409d71d08c446d666" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>riscv_status</type>
@@ -4347,7 +4347,7 @@ Q15 basic fully-connected layer function.</para><para><parameterlist kind="param
 <bold>Buffer size:</bold></para><para>vec_buffer size: 0</para><para>Q7_Q15 version of the fully connected layer</para><para>Weights are in q7_t and Activations are in q15_t</para><para>Limitation: x4 version requires weight reordering to work</para><para>Here we use only one pointer to read 4 rows in the weight matrix. So if the original q7_t matrix looks like this:</para><para>| a11 | a12 | a13 | a14 | a15 | a16 | a17 |</para><para>| a21 | a22 | a23 | a24 | a25 | a26 | a27 |</para><para>| a31 | a32 | a33 | a34 | a35 | a36 | a37 |</para><para>| a41 | a42 | a43 | a44 | a45 | a46 | a47 |</para><para>| a51 | a52 | a53 | a54 | a55 | a56 | a57 |</para><para>| a61 | a62 | a63 | a64 | a65 | a66 | a67 |</para><para>We operates on multiple-of-4 rows, so the first four rows becomes</para><para>| a11 | a21 | a12 | a22 | a31 | a41 | a32 | a42 |</para><para>| a13 | a23 | a14 | a24 | a33 | a43 | a34 | a44 |</para><para>| a15 | a25 | a16 | a26 | a35 | a45 | a36 | a46 |</para><para>The column left over will be in-order. which is: | a17 | a27 | a37 | a47 |</para><para>For the left-over rows, we do 1x1 computation, so the data remains as its original order.</para><para>So the stored weight matrix looks like this:</para><para>| a11 | a21 | a12 | a22 | a31 | a41 |</para><para>| a32 | a42 | a13 | a23 | a14 | a24 |</para><para>| a33 | a43 | a34 | a44 | a15 | a25 |</para><para>| a16 | a26 | a35 | a45 | a36 | a46 |</para><para>| a17 | a27 | a37 | a47 | a51 | a52 |</para><para>| a53 | a54 | a55 | a56 | a57 | a61 |</para><para>| a62 | a63 | a64 | a65 | a66 | a67 | </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnfunctions.h" line="830" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_mat_q7_vec_q15_opt.c" bodystart="118" bodyend="406"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnfunctions.h" line="830" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/FullyConnectedFunctions/riscv_fully_connected_mat_q7_vec_q15_opt.c" bodystart="118" bodyend="330"/>
       </memberdef>
       <memberdef kind="function" id="riscv__nnfunctions_8h_1a0a5502e6071542d3186fd7e13a773e5b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>q7_t *</type>
@@ -5338,7 +5338,7 @@ This is the direct table look-up approach.</para><para>Assume here the integer p
 <bold>Buffer size:</bold></para><para>bufferA size: 0</para><para>The pooling function is implemented as split x-pooling then y-pooling.</para><para>This pooling function is input-destructive. Input data is undefined after calling this function. </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnfunctions.h" line="1001" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/PoolingFunctions/riscv_pool_q7_HWC.c" bodystart="179" bodyend="302"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnfunctions.h" line="1001" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/PoolingFunctions/riscv_pool_q7_HWC.c" bodystart="172" bodyend="295"/>
       </memberdef>
       <memberdef kind="function" id="group__Pooling_1ga667c1b6d57466cb5ce7e4c41cb79f7d7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -5517,7 +5517,7 @@ This is the direct table look-up approach.</para><para>Assume here the integer p
 <bold>Buffer size:</bold></para><para>bufferA size: 2*dim_im_out*ch_im_in</para><para>The pooling function is implemented as split x-pooling then y-pooling.</para><para>This pooling function is input-destructive. Input data is undefined after calling this function. </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnfunctions.h" line="1026" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/PoolingFunctions/riscv_pool_q7_HWC.c" bodystart="332" bodyend="459"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnfunctions.h" line="1026" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/PoolingFunctions/riscv_pool_q7_HWC.c" bodystart="325" bodyend="452"/>
       </memberdef>
       <memberdef kind="function" id="group__Softmax_1ga4c7867bb7ac62d4581deda5730dce99b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>

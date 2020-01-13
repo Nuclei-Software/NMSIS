@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Changelog &mdash; NMSIS 1.0.0-alpha documentation</title>
+  <title>Changelog &mdash; NMSIS 1.0.0-alpha.1 documentation</title>
   
 
   
@@ -95,6 +95,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dsp/index.html">NMSIS DSP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nn/index.html">NMSIS NN</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#v1-0-0-alpha-1">V1.0.0-alpha.1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v1-0-0-alpha">V1.0.0-alpha</a></li>
 </ul>
 </li>
@@ -166,6 +167,25 @@
             
   <div class="section" id="changelog">
 <span id="id1"></span><h1>Changelog<a class="headerlink" href="#changelog" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="v1-0-0-alpha-1">
+<h2>V1.0.0-alpha.1<a class="headerlink" href="#v1-0-0-alpha-1" title="Permalink to this headline">¶</a></h2>
+<p>API changes has been maded to system timer.</p>
+<ul class="simple">
+<li><p>Start from Nuclei N core version 1.4, MSTOP register is renamed to MTIMECTL to provide more features</p></li>
+<li><p>Changes made to NMSIS/Core/core_feature_timer.h</p>
+<ul>
+<li><p>MSTOP register name changed to MTIMECTL due to core spec changes</p></li>
+<li><p>SysTimer_SetMstopValue renamed to SysTimer_SetControlValue</p></li>
+<li><p>SysTimer_GetMstopValue renamed to SysTimer_GetControlValue</p></li>
+<li><p>Add SysTimer_Start and SysTimer_Stop to start or stop system timer counter</p></li>
+<li><p>SysTick_Reload function is introduced to reload system timer</p></li>
+<li><p>Macro names started with SysTimer_xxx are changed, please check in the code.</p></li>
+</ul>
+</li>
+<li><p>Removed unused lines of code in DSP and NN library source code which has unused macros which will not work for RISCV cores.</p></li>
+<li><p>Fix some documentation issues, mainly typos and invalid cross references.</p></li>
+</ul>
+</div>
 <div class="section" id="v1-0-0-alpha">
 <h2>V1.0.0-alpha<a class="headerlink" href="#v1-0-0-alpha" title="Permalink to this headline">¶</a></h2>
 <p>This is the <code class="docutils literal notranslate"><span class="pre">V1.0.0-alpha</span></code> release of Nuclei MCU Software Interface Standard(NMSIS).</p>

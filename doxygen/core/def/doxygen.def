@@ -2270,7 +2270,7 @@ __IOM uint64_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'MTIMER';
       sec-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
-      sec-mem-desc-line = '47';
+      sec-mem-desc-line = '53';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Offset: 0x000 (R/W)  System Timer current value 64bits Register.
 _EnD_oF_dEf_TeXt_;
@@ -2288,7 +2288,7 @@ __IOM uint64_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'MTIMERCMP';
       sec-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
-      sec-mem-desc-line = '48';
+      sec-mem-desc-line = '54';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Offset: 0x008 (R/W)  System Timer compare Value 64bits Register.
 _EnD_oF_dEf_TeXt_;
@@ -2306,7 +2306,7 @@ __IOM uint32_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'RESERVED0';
       sec-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
-      sec-mem-desc-line = '49';
+      sec-mem-desc-line = '55';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Offset: 0x010 - 0xFEC Reserved.
 _EnD_oF_dEf_TeXt_;
@@ -2324,7 +2324,7 @@ __IOM uint32_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'MSFTRST';
       sec-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
-      sec-mem-desc-line = '50';
+      sec-mem-desc-line = '56';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Offset: 0xFF0 (R/W)  System Timer Software Core Reset Register.
 _EnD_oF_dEf_TeXt_;
@@ -2342,7 +2342,7 @@ __IOM uint32_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'RESERVED1';
       sec-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
-      sec-mem-desc-line = '51';
+      sec-mem-desc-line = '57';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Offset: 0xFF4 Reserved.
 _EnD_oF_dEf_TeXt_;
@@ -2352,17 +2352,17 @@ _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'variable';
-      sec-mem-id   = 'structSysTimer__Type_1acbd62ffdcf918cbbbe06d99168f71dfa';
+      sec-mem-id   = 'structSysTimer__Type_1a2e64638a3327d7932455185033bab733';
       sec-mem-virt = normal;
       sec-mem-prot = public;
       sec-mem-type = <<_EnD_oF_dEf_TeXt_
 __IOM uint32_t
 _EnD_oF_dEf_TeXt_;
-      sec-mem-name = 'MSTOP';
+      sec-mem-name = 'MTIMECTL';
       sec-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
-      sec-mem-desc-line = '52';
+      sec-mem-desc-line = '58';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-Offset: 0xFF8 (R/W)  System Timer Stop Register.
+Offset: 0xFF8 (R/W)  System Timer Control Register, previously MSTOP register.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 
@@ -2378,7 +2378,7 @@ __IOM uint32_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'MSIP';
       sec-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
-      sec-mem-desc-line = '53';
+      sec-mem-desc-line = '59';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Offset: 0xFFC (R/W)  System Timer SW interrupt Register.
 _EnD_oF_dEf_TeXt_;
@@ -2388,12 +2388,16 @@ _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
   }; /* cp-section */
   cp-filename  = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
-  cp-fileline  = '46';
+  cp-fileline  = '52';
   cp-briefdesc = <<_EnD_oF_dEf_TeXt_
 Structure type to access the System Timer (SysTimer).
 _EnD_oF_dEf_TeXt_;
   cp-documentation = <<_EnD_oF_dEf_TeXt_
-
+Structure definition to access the system timer(SysTimer).
+\remarks
+- MSFTRST register is introduced in Nuclei N Core version 1.3(\ref __NUCLEI_N_REV >= 0x0103)
+- MSTOP register is renamed to MTIMECTL register in Nuclei N Core version 1.4(\ref __NUCLEI_N_REV >= 0x0104)
+- CMPCLREN and CLKSRC bit in MTIMECTL register is introduced in Nuclei N Core version 1.4(\ref __NUCLEI_N_REV >= 0x0104)
 _EnD_oF_dEf_TeXt_;
 }; /* struct */
 file = {
@@ -2912,27 +2916,27 @@ Read the content of csr register to __v and return it
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1ga7b8025dd8eac9993066d730cee6475a0';
-        define-mem-ref-line = '732';
+        define-mem-ref-line = '740';
         define-mem-ref-name = '__ECLIC_GetVector';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1ga2e80049df57b285d4dd43454377c0845';
-        define-mem-ref-line = '703';
+        define-mem-ref-line = '711';
         define-mem-ref-name = '__ECLIC_SetVector';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1ga05bee6a5e41963ef1845c8a7e5a09c89';
-        define-mem-ref-line = '770';
+        define-mem-ref-line = '778';
         define-mem-ref-name = '__get_exc_entry';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gac5b9521ea1bd5260330714b8032d04d5';
-        define-mem-ref-line = '829';
+        define-mem-ref-line = '837';
         define-mem-ref-name = '__get_nmi_entry';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1ga2fe20dcdecc453c6709448944b1f5350';
-        define-mem-ref-line = '809';
+        define-mem-ref-line = '817';
         define-mem-ref-name = '__get_nonvec_entry';
     };
       define-mem-referenceby = {
@@ -2967,7 +2971,7 @@ _EnD_oF_dEf_TeXt_;
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gadbe0f14f32c5989304fd05faf0cff648';
-        define-mem-ref-line = '787';
+        define-mem-ref-line = '795';
         define-mem-ref-name = '__set_nonvec_entry';
     };
       define-mem-referenceby = {
@@ -3010,12 +3014,12 @@ Write the content of val to csr register
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gaec014abd3940e642f652b97b70d7ac8e';
-        define-mem-ref-line = '753';
+        define-mem-ref-line = '761';
         define-mem-ref-name = '__set_exc_entry';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gadbe0f14f32c5989304fd05faf0cff648';
-        define-mem-ref-line = '787';
+        define-mem-ref-line = '795';
         define-mem-ref-name = '__set_nonvec_entry';
     };
       define-mem-referenceby = {
@@ -24697,17 +24701,17 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1ga79f14465b1588b3c970efd8d55422638';
-        define-mem-ref-line = '446';
+        define-mem-ref-line = '450';
         define-mem-ref-name = '__ECLIC_ClearPendingIRQ';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gaa20c0e2158dbe29f589468de10abde12';
-        define-mem-ref-line = '415';
+        define-mem-ref-line = '417';
         define-mem-ref-name = '__ECLIC_GetPendingIRQ';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gadadcfda306ae9024c5e7a5a79c3d49de';
-        define-mem-ref-line = '430';
+        define-mem-ref-line = '433';
         define-mem-ref-name = '__ECLIC_SetPendingIRQ';
     };
     }; /* define-member */
@@ -24748,7 +24752,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gaa34edbcf50501a1ef4ebe1e2fbfae2b5';
-        define-mem-ref-line = '397';
+        define-mem-ref-line = '398';
         define-mem-ref-name = '__ECLIC_DisableIRQ';
     };
       define-mem-referenceby = {
@@ -24758,7 +24762,7 @@ _EnD_oF_dEf_TeXt_;
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gad91c17c202ac4f466a9501c88d23e825';
-        define-mem-ref-line = '382';
+        define-mem-ref-line = '383';
         define-mem-ref-name = '__ECLIC_GetEnableIRQ';
     };
     }; /* define-member */
@@ -24781,12 +24785,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gabe634783ac950552cb51588e78ff2a57';
-        define-mem-ref-line = '490';
+        define-mem-ref-line = '494';
         define-mem-ref-name = '__ECLIC_GetTrigIRQ';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gaecf87e71c0c4a2ee711f0c292c3ebd8a';
-        define-mem-ref-line = '468';
+        define-mem-ref-line = '472';
         define-mem-ref-name = '__ECLIC_SetTrigIRQ';
     };
     }; /* define-member */
@@ -24809,12 +24813,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gabe634783ac950552cb51588e78ff2a57';
-        define-mem-ref-line = '490';
+        define-mem-ref-line = '494';
         define-mem-ref-name = '__ECLIC_GetTrigIRQ';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gaecf87e71c0c4a2ee711f0c292c3ebd8a';
-        define-mem-ref-line = '468';
+        define-mem-ref-line = '472';
         define-mem-ref-name = '__ECLIC_SetTrigIRQ';
     };
     }; /* define-member */
@@ -24837,12 +24841,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gad7d7238a79c39c226a8289d027266cc0';
-        define-mem-ref-line = '529';
+        define-mem-ref-line = '533';
         define-mem-ref-name = '__ECLIC_GetShvIRQ';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1ga226570d14c924615a955e07b9883e415';
-        define-mem-ref-line = '509';
+        define-mem-ref-line = '513';
         define-mem-ref-name = '__ECLIC_SetShvIRQ';
     };
     }; /* define-member */
@@ -24865,12 +24869,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gad7d7238a79c39c226a8289d027266cc0';
-        define-mem-ref-line = '529';
+        define-mem-ref-line = '533';
         define-mem-ref-name = '__ECLIC_GetShvIRQ';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1ga226570d14c924615a955e07b9883e415';
-        define-mem-ref-line = '509';
+        define-mem-ref-line = '513';
         define-mem-ref-name = '__ECLIC_SetShvIRQ';
     };
     }; /* define-member */
@@ -24893,22 +24897,22 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1ga1ccefb6dd64211176683848ef52e5b8f';
-        define-mem-ref-line = '615';
+        define-mem-ref-line = '619';
         define-mem-ref-name = '__ECLIC_GetLevelIRQ';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1ga5e47fae9a66b286f1d0df6799e5a244c';
-        define-mem-ref-line = '676';
+        define-mem-ref-line = '680';
         define-mem-ref-name = '__ECLIC_GetPriorityIRQ';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gae1d0b0d592b55bc57be6704ceeb314b1';
-        define-mem-ref-line = '581';
+        define-mem-ref-line = '585';
         define-mem-ref-name = '__ECLIC_SetLevelIRQ';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gaafd7870e3de2a0831a5ba0fec6795207';
-        define-mem-ref-line = '646';
+        define-mem-ref-line = '650';
         define-mem-ref-name = '__ECLIC_SetPriorityIRQ';
     };
     }; /* define-member */
@@ -24931,22 +24935,22 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1ga05bee6a5e41963ef1845c8a7e5a09c89';
-        define-mem-ref-line = '770';
+        define-mem-ref-line = '778';
         define-mem-ref-name = '__get_exc_entry';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1ga2fe20dcdecc453c6709448944b1f5350';
-        define-mem-ref-line = '809';
+        define-mem-ref-line = '817';
         define-mem-ref-name = '__get_nonvec_entry';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gaec014abd3940e642f652b97b70d7ac8e';
-        define-mem-ref-line = '753';
+        define-mem-ref-line = '761';
         define-mem-ref-name = '__set_exc_entry';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gadbe0f14f32c5989304fd05faf0cff648';
-        define-mem-ref-line = '787';
+        define-mem-ref-line = '795';
         define-mem-ref-name = '__set_nonvec_entry';
     };
     }; /* define-member */
@@ -24969,7 +24973,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__timer_8h_1ga349805c25d9aa753c6fd69b3c0151126';
-        define-mem-ref-line = '245';
+        define-mem-ref-line = '304';
         define-mem-ref-name = 'SysTick_Config';
     };
     }; /* define-member */
@@ -25028,12 +25032,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1ga79f14465b1588b3c970efd8d55422638';
-        define-mem-ref-line = '446';
+        define-mem-ref-line = '450';
         define-mem-ref-name = '__ECLIC_ClearPendingIRQ';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gaa34edbcf50501a1ef4ebe1e2fbfae2b5';
-        define-mem-ref-line = '397';
+        define-mem-ref-line = '398';
         define-mem-ref-name = '__ECLIC_DisableIRQ';
     };
       define-mem-referenceby = {
@@ -25048,12 +25052,12 @@ _EnD_oF_dEf_TeXt_;
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1ga0c552df637ed3e5830ae27fc712593da';
-        define-mem-ref-line = '561';
+        define-mem-ref-line = '565';
         define-mem-ref-name = '__ECLIC_GetCtrlIRQ';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gad91c17c202ac4f466a9501c88d23e825';
-        define-mem-ref-line = '382';
+        define-mem-ref-line = '383';
         define-mem-ref-name = '__ECLIC_GetEnableIRQ';
     };
       define-mem-referenceby = {
@@ -25078,17 +25082,17 @@ _EnD_oF_dEf_TeXt_;
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gaa20c0e2158dbe29f589468de10abde12';
-        define-mem-ref-line = '415';
+        define-mem-ref-line = '417';
         define-mem-ref-name = '__ECLIC_GetPendingIRQ';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gad7d7238a79c39c226a8289d027266cc0';
-        define-mem-ref-line = '529';
+        define-mem-ref-line = '533';
         define-mem-ref-name = '__ECLIC_GetShvIRQ';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gabe634783ac950552cb51588e78ff2a57';
-        define-mem-ref-line = '490';
+        define-mem-ref-line = '494';
         define-mem-ref-name = '__ECLIC_GetTrigIRQ';
     };
       define-mem-referenceby = {
@@ -25098,7 +25102,7 @@ _EnD_oF_dEf_TeXt_;
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1ga2c72ee40cad78719f6d60767b75f6dcd';
-        define-mem-ref-line = '545';
+        define-mem-ref-line = '549';
         define-mem-ref-name = '__ECLIC_SetCtrlIRQ';
     };
       define-mem-referenceby = {
@@ -25108,17 +25112,17 @@ _EnD_oF_dEf_TeXt_;
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gadadcfda306ae9024c5e7a5a79c3d49de';
-        define-mem-ref-line = '430';
+        define-mem-ref-line = '433';
         define-mem-ref-name = '__ECLIC_SetPendingIRQ';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1ga226570d14c924615a955e07b9883e415';
-        define-mem-ref-line = '509';
+        define-mem-ref-line = '513';
         define-mem-ref-name = '__ECLIC_SetShvIRQ';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gaecf87e71c0c4a2ee711f0c292c3ebd8a';
-        define-mem-ref-line = '468';
+        define-mem-ref-line = '472';
         define-mem-ref-name = '__ECLIC_SetTrigIRQ';
     };
     }; /* define-member */
@@ -25267,7 +25271,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__timer_8h_1ga349805c25d9aa753c6fd69b3c0151126';
-        define-mem-ref-line = '245';
+        define-mem-ref-line = '304';
         define-mem-ref-name = 'SysTick_Config';
     };
     }; /* define-member */
@@ -25416,7 +25420,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__timer_8h_1ga349805c25d9aa753c6fd69b3c0151126';
-        define-mem-ref-line = '245';
+        define-mem-ref-line = '304';
         define-mem-ref-name = 'SysTick_Config';
     };
     }; /* define-member */
@@ -25493,7 +25497,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__timer_8h_1ga349805c25d9aa753c6fd69b3c0151126';
-        define-mem-ref-line = '245';
+        define-mem-ref-line = '304';
         define-mem-ref-name = 'SysTick_Config';
     };
     }; /* define-member */
@@ -25600,7 +25604,7 @@ rv_csr_t __mcause = __RV_CSR_READ(CSR_MCAUSE);                      \
         __enable_irq();
 _EnD_oF_dEf_TeXt_;
       define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      define-mem-desc-line = '864';
+      define-mem-desc-line = '872';
       define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Save necessary CSRs into variables for vector interrupt nesting.
 _EnD_oF_dEf_TeXt_;
@@ -25646,7 +25650,7 @@ __disable_irq();                                                    \
         __RV_CSR_WRITE(CSR_MCAUSE, __mcause);
 _EnD_oF_dEf_TeXt_;
       define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      define-mem-desc-line = '879';
+      define-mem-desc-line = '887';
       define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Restore necessary CSRs from variables for vector interrupt nesting.
 _EnD_oF_dEf_TeXt_;
@@ -25809,22 +25813,22 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'core__feature__eclic_8h_1ga1ccefb6dd64211176683848ef52e5b8f';
-        func-mem-ref-line = '615';
+        func-mem-ref-line = '619';
         func-mem-ref-name = '__ECLIC_GetLevelIRQ';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'core__feature__eclic_8h_1ga5e47fae9a66b286f1d0df6799e5a244c';
-        func-mem-ref-line = '676';
+        func-mem-ref-line = '680';
         func-mem-ref-name = '__ECLIC_GetPriorityIRQ';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'core__feature__eclic_8h_1gae1d0b0d592b55bc57be6704ceeb314b1';
-        func-mem-ref-line = '581';
+        func-mem-ref-line = '585';
         func-mem-ref-name = '__ECLIC_SetLevelIRQ';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'core__feature__eclic_8h_1gaafd7870e3de2a0831a5ba0fec6795207';
-        func-mem-ref-line = '646';
+        func-mem-ref-line = '650';
         func-mem-ref-name = '__ECLIC_SetPriorityIRQ';
     };
     }; /* func-member */
@@ -26079,7 +26083,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'IRQn';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      func-mem-desc-line = '382';
+      func-mem-desc-line = '383';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get a specific interrupt enable status.
 _EnD_oF_dEf_TeXt_;
@@ -26092,7 +26096,8 @@ This function returns the interrupt enable status for the specific interrupt \em
 \remarks
 - IRQn must not be negative.
 \sa
-- \ref ECLIC_EnableIRQ; ECLIC_DisableIRQ;
+- \ref ECLIC_EnableIRQ
+- \ref ECLIC_DisableIRQ
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'core__feature__eclic_8h_1ga70aa615d81bc48ea8ed2b64c09c2d63f';
@@ -26121,7 +26126,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'IRQn';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      func-mem-desc-line = '397';
+      func-mem-desc-line = '398';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Disable a specific interrupt.
 _EnD_oF_dEf_TeXt_;
@@ -26160,7 +26165,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'IRQn';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      func-mem-desc-line = '415';
+      func-mem-desc-line = '417';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get the pending specific interrupt.
 _EnD_oF_dEf_TeXt_;
@@ -26173,7 +26178,8 @@ This function returns the pending status of the specific interrupt \em IRQn.
 \remarks
 - IRQn must not be negative.
 \sa
-- \ref ECLIC_SetPendingIRQ; ECLIC_ClearPendingIRQ
+- \ref ECLIC_SetPendingIRQ
+- \ref ECLIC_ClearPendingIRQ
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'core__feature__eclic_8h_1gad7395594207c3fa20c423a1c9ae26cb7';
@@ -26202,7 +26208,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'IRQn';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      func-mem-desc-line = '430';
+      func-mem-desc-line = '433';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set a specific interrupt to pending.
 _EnD_oF_dEf_TeXt_;
@@ -26212,7 +26218,8 @@ This function sets the pending bit for the specific interrupt \em IRQn.
 \remarks
 - IRQn must not be negative.
 \sa
-- \ref ECLIC_GetPendingIRQ; ECLIC_ClearPendingIRQ
+- \ref ECLIC_GetPendingIRQ
+- \ref ECLIC_ClearPendingIRQ
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'core__feature__eclic_8h_1gad7395594207c3fa20c423a1c9ae26cb7';
@@ -26241,7 +26248,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'IRQn';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      func-mem-desc-line = '446';
+      func-mem-desc-line = '450';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Clear a specific interrupt from pending.
 _EnD_oF_dEf_TeXt_;
@@ -26252,7 +26259,8 @@ This function removes the pending state of the specific interrupt \em IRQn.
 \remarks
 - IRQn must not be negative.
 \sa
-- \ref ECLIC_SetPendingIRQ; ECLIC_GetPendingIRQ
+- \ref ECLIC_SetPendingIRQ
+- \ref ECLIC_GetPendingIRQ
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'core__feature__eclic_8h_1gad7395594207c3fa20c423a1c9ae26cb7';
@@ -26287,7 +26295,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'trig';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      func-mem-desc-line = '468';
+      func-mem-desc-line = '472';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set trigger mode and polarity for a specific interrupt.
 _EnD_oF_dEf_TeXt_;
@@ -26338,7 +26346,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'IRQn';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      func-mem-desc-line = '490';
+      func-mem-desc-line = '494';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get trigger mode and polarity for a specific interrupt.
 _EnD_oF_dEf_TeXt_;
@@ -26394,7 +26402,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'shv';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      func-mem-desc-line = '509';
+      func-mem-desc-line = '513';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set trigger mode and polarity for a specific interrupt.
 _EnD_oF_dEf_TeXt_;
@@ -26442,7 +26450,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'IRQn';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      func-mem-desc-line = '529';
+      func-mem-desc-line = '533';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get trigger mode and polarity for a specific interrupt.
 _EnD_oF_dEf_TeXt_;
@@ -26496,7 +26504,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'intctrl';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      func-mem-desc-line = '545';
+      func-mem-desc-line = '549';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Modify ECLIC Interrupt Input Control Register for a specific interrupt.
 _EnD_oF_dEf_TeXt_;
@@ -26516,12 +26524,12 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'core__feature__eclic_8h_1gae1d0b0d592b55bc57be6704ceeb314b1';
-        func-mem-ref-line = '581';
+        func-mem-ref-line = '585';
         func-mem-ref-name = '__ECLIC_SetLevelIRQ';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'core__feature__eclic_8h_1gaafd7870e3de2a0831a5ba0fec6795207';
-        func-mem-ref-line = '646';
+        func-mem-ref-line = '650';
         func-mem-ref-name = '__ECLIC_SetPriorityIRQ';
     };
     }; /* func-member */
@@ -26541,7 +26549,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'IRQn';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      func-mem-desc-line = '561';
+      func-mem-desc-line = '565';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get ECLIC Interrupt Input Control Register value for a specific interrupt.
 _EnD_oF_dEf_TeXt_;
@@ -26561,22 +26569,22 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'core__feature__eclic_8h_1ga1ccefb6dd64211176683848ef52e5b8f';
-        func-mem-ref-line = '615';
+        func-mem-ref-line = '619';
         func-mem-ref-name = '__ECLIC_GetLevelIRQ';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'core__feature__eclic_8h_1ga5e47fae9a66b286f1d0df6799e5a244c';
-        func-mem-ref-line = '676';
+        func-mem-ref-line = '680';
         func-mem-ref-name = '__ECLIC_GetPriorityIRQ';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'core__feature__eclic_8h_1gae1d0b0d592b55bc57be6704ceeb314b1';
-        func-mem-ref-line = '581';
+        func-mem-ref-line = '585';
         func-mem-ref-name = '__ECLIC_SetLevelIRQ';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'core__feature__eclic_8h_1gaafd7870e3de2a0831a5ba0fec6795207';
-        func-mem-ref-line = '646';
+        func-mem-ref-line = '650';
         func-mem-ref-name = '__ECLIC_SetPriorityIRQ';
     };
     }; /* func-member */
@@ -26602,7 +26610,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'lvl_abs';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      func-mem-desc-line = '581';
+      func-mem-desc-line = '585';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set ECLIC Interrupt level of a specific interrupt.
 _EnD_oF_dEf_TeXt_;
@@ -26617,7 +26625,7 @@ This function set interrupt level of the specific interrupt \em IRQn.
   Then we could know the maximum of level. CLICINTCTLBITS is how many total bits are
   present in the clicintctl register.
 \sa
-- \ref ECLIC_GetLevelIRQ;
+- \ref ECLIC_GetLevelIRQ
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'core__feature__eclic_8h_1ga1dce18ecc4a504cc128c62596d25f3ab';
@@ -26626,12 +26634,12 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'core__feature__eclic_8h_1ga0c552df637ed3e5830ae27fc712593da';
-        func-mem-ref-line = '561';
+        func-mem-ref-line = '565';
         func-mem-ref-name = '__ECLIC_GetCtrlIRQ';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'core__feature__eclic_8h_1ga2c72ee40cad78719f6d60767b75f6dcd';
-        func-mem-ref-line = '545';
+        func-mem-ref-line = '549';
         func-mem-ref-name = '__ECLIC_SetCtrlIRQ';
     };
       func-mem-referenceto = {
@@ -26656,7 +26664,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'IRQn';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      func-mem-desc-line = '615';
+      func-mem-desc-line = '619';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get ECLIC Interrupt level of a specific interrupt.
 _EnD_oF_dEf_TeXt_;
@@ -26676,7 +26684,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'core__feature__eclic_8h_1ga0c552df637ed3e5830ae27fc712593da';
-        func-mem-ref-line = '561';
+        func-mem-ref-line = '565';
         func-mem-ref-name = '__ECLIC_GetCtrlIRQ';
     };
       func-mem-referenceto = {
@@ -26707,7 +26715,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'pri';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      func-mem-desc-line = '646';
+      func-mem-desc-line = '650';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get ECLIC Interrupt priority of a specific interrupt.
 _EnD_oF_dEf_TeXt_;
@@ -26730,12 +26738,12 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'core__feature__eclic_8h_1ga0c552df637ed3e5830ae27fc712593da';
-        func-mem-ref-line = '561';
+        func-mem-ref-line = '565';
         func-mem-ref-name = '__ECLIC_GetCtrlIRQ';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'core__feature__eclic_8h_1ga2c72ee40cad78719f6d60767b75f6dcd';
-        func-mem-ref-line = '545';
+        func-mem-ref-line = '549';
         func-mem-ref-name = '__ECLIC_SetCtrlIRQ';
     };
       func-mem-referenceto = {
@@ -26760,7 +26768,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'IRQn';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      func-mem-desc-line = '676';
+      func-mem-desc-line = '680';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get ECLIC Interrupt priority of a specific interrupt.
 _EnD_oF_dEf_TeXt_;
@@ -26780,7 +26788,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'core__feature__eclic_8h_1ga0c552df637ed3e5830ae27fc712593da';
-        func-mem-ref-line = '561';
+        func-mem-ref-line = '565';
         func-mem-ref-name = '__ECLIC_GetCtrlIRQ';
     };
       func-mem-referenceto = {
@@ -26811,7 +26819,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'vector';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      func-mem-desc-line = '703';
+      func-mem-desc-line = '711';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set Interrupt Vector of a specific interrupt.
 _EnD_oF_dEf_TeXt_;
@@ -26822,6 +26830,10 @@ This function set interrupt handler address of the specific interrupt \em IRQn.
 \remarks
 - IRQn must not be negative.
 - You can set the \ref CSR_CSR_MTVT to set interrupt vector table entry address.
+- If your vector table is placed in readonly section, the vector for IRQn will not be modified.
+  For this case, you need to use the correct irq handler name defined in your vector table as
+  your irq handler function name.
+- This function will only work correctly when the vector table is placed in an read-write enabled section.
 \sa
 - \ref ECLIC_GetVector
 _EnD_oF_dEf_TeXt_;
@@ -26852,7 +26864,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'IRQn';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      func-mem-desc-line = '732';
+      func-mem-desc-line = '740';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get Interrupt Vector of a specific interrupt.
 _EnD_oF_dEf_TeXt_;
@@ -26893,7 +26905,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'addr';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      func-mem-desc-line = '753';
+      func-mem-desc-line = '761';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set Exception entry address.
 _EnD_oF_dEf_TeXt_;
@@ -26936,7 +26948,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      func-mem-desc-line = '770';
+      func-mem-desc-line = '778';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get Exception entry address.
 _EnD_oF_dEf_TeXt_;
@@ -26980,7 +26992,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'addr';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      func-mem-desc-line = '787';
+      func-mem-desc-line = '795';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set Non-vector interrupt entry address.
 _EnD_oF_dEf_TeXt_;
@@ -27034,7 +27046,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      func-mem-desc-line = '809';
+      func-mem-desc-line = '817';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get Non-vector interrupt entry address.
 _EnD_oF_dEf_TeXt_;
@@ -27083,7 +27095,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      func-mem-desc-line = '829';
+      func-mem-desc-line = '837';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get NMI interrupt entry from 'CSR_MNVEC'.
 _EnD_oF_dEf_TeXt_;
@@ -28126,17 +28138,17 @@ file = {
     define = {
     define-member = {
       define-mem-kind = 'define';
-      define-mem-id   = 'group__NMSIS__Core__SysTimer__Registers_1gac8e1c84a58c74328b272790727f0be54';
+      define-mem-id   = 'group__NMSIS__Core__SysTimer__Registers_1ga54ecde494dc735799ed978b91bf709d8';
       define-mem-virt = normal;
       define-mem-prot = public;
-      define-mem-name = 'SysTimer_TIMER_MSTOP_Pos';
+      define-mem-name = 'SysTimer_MTIMECTL_TIMESTOP_Pos';
       define-mem-initializer = <<_EnD_oF_dEf_TeXt_
 0U
 _EnD_oF_dEf_TeXt_;
       define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
-      define-mem-desc-line = '57';
+      define-mem-desc-line = '63';
       define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-SysTick TIMER STOP: MSTOP Position.
+SysTick Timer MTIMECTL: TIMESTOP bit Position.
 _EnD_oF_dEf_TeXt_;
       define-mem-documentation = <<_EnD_oF_dEf_TeXt_
 
@@ -28144,45 +28156,117 @@ _EnD_oF_dEf_TeXt_;
     }; /* define-member */
     define-member = {
       define-mem-kind = 'define';
-      define-mem-id   = 'group__NMSIS__Core__SysTimer__Registers_1ga7b90dedab1d63b9bf890775ab049dd35';
+      define-mem-id   = 'group__NMSIS__Core__SysTimer__Registers_1gaab93093166696848e52d055a2e139e9f';
       define-mem-virt = normal;
       define-mem-prot = public;
-      define-mem-name = 'SysTimer_TIMER_MSTOP_Msk';
+      define-mem-name = 'SysTimer_MTIMECTL_TIMESTOP_Msk';
       define-mem-initializer = <<_EnD_oF_dEf_TeXt_
-(1UL << SysTimer_TIMER_MSTOP_Pos)
+(1UL << SysTimer_MTIMECTL_TIMESTOP_Pos)
 _EnD_oF_dEf_TeXt_;
       define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
-      define-mem-desc-line = '58';
+      define-mem-desc-line = '64';
       define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-SysTick TIMER STOP: MSTOP Mask.
+SysTick Timer MTIMECTL: TIMESTOP Mask.
 _EnD_oF_dEf_TeXt_;
       define-mem-documentation = <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
-        define-mem-ref-id = 'core__feature__timer_8h_1gaefb4407e361cee4eb7b88533139211cf';
-        define-mem-ref-line = '161';
-        define-mem-ref-name = 'SysTimer_GetMstopValue';
+        define-mem-ref-id = 'core__feature__timer_8h_1ga95360ac7f66badad67c57d540a1ae4e1';
+        define-mem-ref-line = '160';
+        define-mem-ref-name = 'SysTimer_Start';
     };
       define-mem-referenceby = {
-        define-mem-ref-id = 'core__feature__timer_8h_1gafbb922deb659bbd92d894046db0e49a8';
-        define-mem-ref-line = '148';
-        define-mem-ref-name = 'SysTimer_SetMstopValue';
+        define-mem-ref-id = 'core__feature__timer_8h_1gaf74222f6d8c603f61571884732726e91';
+        define-mem-ref-line = '171';
+        define-mem-ref-name = 'SysTimer_Stop';
     };
     }; /* define-member */
     define-member = {
       define-mem-kind = 'define';
-      define-mem-id   = 'group__NMSIS__Core__SysTimer__Registers_1gab9d1663777854e642af6aa3057aa1ea8';
+      define-mem-id   = 'group__NMSIS__Core__SysTimer__Registers_1gac0cd51358c944397328146b6f4a4a8a5';
       define-mem-virt = normal;
       define-mem-prot = public;
-      define-mem-name = 'SysTimer_TIMER_MSIP_Pos';
+      define-mem-name = 'SysTimer_MTIMECTL_CMPCLREN_Pos';
+      define-mem-initializer = <<_EnD_oF_dEf_TeXt_
+1U
+_EnD_oF_dEf_TeXt_;
+      define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
+      define-mem-desc-line = '65';
+      define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+SysTick Timer MTIMECTL: CMPCLREN bit Position.
+_EnD_oF_dEf_TeXt_;
+      define-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+    }; /* define-member */
+    define-member = {
+      define-mem-kind = 'define';
+      define-mem-id   = 'group__NMSIS__Core__SysTimer__Registers_1ga5d372de2d560f90d8ed8306277068cf1';
+      define-mem-virt = normal;
+      define-mem-prot = public;
+      define-mem-name = 'SysTimer_MTIMECTL_CMPCLREN_Msk';
+      define-mem-initializer = <<_EnD_oF_dEf_TeXt_
+(1UL << SysTimer_MTIMECTL_CMPCLREN_Pos)
+_EnD_oF_dEf_TeXt_;
+      define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
+      define-mem-desc-line = '66';
+      define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+SysTick Timer MTIMECTL: CMPCLREN Mask.
+_EnD_oF_dEf_TeXt_;
+      define-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+    }; /* define-member */
+    define-member = {
+      define-mem-kind = 'define';
+      define-mem-id   = 'group__NMSIS__Core__SysTimer__Registers_1ga4ee15edaeadcd48a5aaab1aa9ec20496';
+      define-mem-virt = normal;
+      define-mem-prot = public;
+      define-mem-name = 'SysTimer_MTIMECTL_CLKSRC_Pos';
+      define-mem-initializer = <<_EnD_oF_dEf_TeXt_
+2U
+_EnD_oF_dEf_TeXt_;
+      define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
+      define-mem-desc-line = '67';
+      define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+SysTick Timer MTIMECTL: CLKSRC bit Position.
+_EnD_oF_dEf_TeXt_;
+      define-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+    }; /* define-member */
+    define-member = {
+      define-mem-kind = 'define';
+      define-mem-id   = 'group__NMSIS__Core__SysTimer__Registers_1ga2513c82f2ce2811952b83f6d1c8e4172';
+      define-mem-virt = normal;
+      define-mem-prot = public;
+      define-mem-name = 'SysTimer_MTIMECTL_CLKSRC_Msk';
+      define-mem-initializer = <<_EnD_oF_dEf_TeXt_
+(1UL << SysTimer_MTIMECTL_CLKSRC_Pos)
+_EnD_oF_dEf_TeXt_;
+      define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
+      define-mem-desc-line = '68';
+      define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+SysTick Timer MTIMECTL: CLKSRC Mask.
+_EnD_oF_dEf_TeXt_;
+      define-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+    }; /* define-member */
+    define-member = {
+      define-mem-kind = 'define';
+      define-mem-id   = 'group__NMSIS__Core__SysTimer__Registers_1gad756a0be76154b3f64f6790663581c52';
+      define-mem-virt = normal;
+      define-mem-prot = public;
+      define-mem-name = 'SysTimer_MSIP_MSIP_Pos';
       define-mem-initializer = <<_EnD_oF_dEf_TeXt_
 0U
 _EnD_oF_dEf_TeXt_;
       define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
-      define-mem-desc-line = '60';
+      define-mem-desc-line = '70';
       define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-SysTick TIMER MSIP: MSIP Position.
+SysTick Timer MSIP: MSIP bit Position.
 _EnD_oF_dEf_TeXt_;
       define-mem-documentation = <<_EnD_oF_dEf_TeXt_
 
@@ -28190,50 +28274,45 @@ _EnD_oF_dEf_TeXt_;
     }; /* define-member */
     define-member = {
       define-mem-kind = 'define';
-      define-mem-id   = 'group__NMSIS__Core__SysTimer__Registers_1ga3ba5a1fee8efbd89eca4e1d0f1f764db';
+      define-mem-id   = 'group__NMSIS__Core__SysTimer__Registers_1ga62b819dc444c74f1424c50cf13fcb2a0';
       define-mem-virt = normal;
       define-mem-prot = public;
-      define-mem-name = 'SysTimer_TIMER_MSIP_Msk';
+      define-mem-name = 'SysTimer_MSIP_MSIP_Msk';
       define-mem-initializer = <<_EnD_oF_dEf_TeXt_
-(1UL << SysTimer_TIMER_MSIP_Pos)
+(1UL << SysTimer_MSIP_MSIP_Pos)
 _EnD_oF_dEf_TeXt_;
       define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
-      define-mem-desc-line = '61';
+      define-mem-desc-line = '71';
       define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-SysTick TIMER MSIP: MSIP Mask.
+SysTick Timer MSIP: MSIP Mask.
 _EnD_oF_dEf_TeXt_;
       define-mem-documentation = <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
-        define-mem-ref-id = 'core__feature__timer_8h_1ga1d6872b364b566c6c275e3e66086a95e';
-        define-mem-ref-line = '187';
+        define-mem-ref-id = 'core__feature__timer_8h_1ga57b4f64ed87262daf831573e704b12c8';
+        define-mem-ref-line = '231';
         define-mem-ref-name = 'SysTimer_ClearSWIRQ';
     };
       define-mem-referenceby = {
-        define-mem-ref-id = 'core__feature__timer_8h_1gac71f565a339896bec3712530d8c683fe';
-        define-mem-ref-line = '202';
-        define-mem-ref-name = 'SysTimer_GetMsipValue';
-    };
-      define-mem-referenceby = {
-        define-mem-ref-id = 'core__feature__timer_8h_1ga2b02f4075e3ecb245559fee19bebacf4';
-        define-mem-ref-line = '174';
+        define-mem-ref-id = 'core__feature__timer_8h_1gaa4d13cddf35ef77fd3b3b59e82eb1d47';
+        define-mem-ref-line = '217';
         define-mem-ref-name = 'SysTimer_SetSWIRQ';
     };
     }; /* define-member */
     define-member = {
       define-mem-kind = 'define';
-      define-mem-id   = 'group__NMSIS__Core__SysTimer__Registers_1gaf56843a0e21d2287348410b30811b0bc';
+      define-mem-id   = 'group__NMSIS__Core__SysTimer__Registers_1gacffb8ad26cdd32cef2ee67bde9ddb122';
       define-mem-virt = normal;
       define-mem-prot = public;
-      define-mem-name = 'SysTimer_VALUE_Msk';
+      define-mem-name = 'SysTimer_MTIMER_Msk';
       define-mem-initializer = <<_EnD_oF_dEf_TeXt_
-0xFFFFFFFFFFFFFFFFULL
+(0xFFFFFFFFFFFFFFFFULL)
 _EnD_oF_dEf_TeXt_;
       define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
-      define-mem-desc-line = '62';
+      define-mem-desc-line = '73';
       define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-SysTick Timer Value Mask.
+SysTick Timer MTIMER value Mask.
 _EnD_oF_dEf_TeXt_;
       define-mem-documentation = <<_EnD_oF_dEf_TeXt_
 
@@ -28241,24 +28320,116 @@ _EnD_oF_dEf_TeXt_;
     }; /* define-member */
     define-member = {
       define-mem-kind = 'define';
-      define-mem-id   = 'group__NMSIS__Core__SysTimer__Registers_1ga23259b9a0920d10554888fc09f5017b8';
+      define-mem-id   = 'group__NMSIS__Core__SysTimer__Registers_1ga0fb8a9811b2d773529fb0f7db866e5e5';
       define-mem-virt = normal;
       define-mem-prot = public;
-      define-mem-name = 'SysTimer_TIMER_MSFRST_KEY';
+      define-mem-name = 'SysTimer_MTIMERCMP_Msk';
       define-mem-initializer = <<_EnD_oF_dEf_TeXt_
-(0x80000A5F)
+(0xFFFFFFFFFFFFFFFFULL)
 _EnD_oF_dEf_TeXt_;
       define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
-      define-mem-desc-line = '64';
+      define-mem-desc-line = '74';
       define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-SysTick TIMER Software Reset Request Key.
+SysTick Timer MTIMERCMP value Mask.
+_EnD_oF_dEf_TeXt_;
+      define-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+    }; /* define-member */
+    define-member = {
+      define-mem-kind = 'define';
+      define-mem-id   = 'group__NMSIS__Core__SysTimer__Registers_1ga9b50cbd77c10af62deca85e3d2509c72';
+      define-mem-virt = normal;
+      define-mem-prot = public;
+      define-mem-name = 'SysTimer_MTIMECTL_Msk';
+      define-mem-initializer = <<_EnD_oF_dEf_TeXt_
+(0xFFFFFFFFUL)
+_EnD_oF_dEf_TeXt_;
+      define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
+      define-mem-desc-line = '75';
+      define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+SysTick Timer MTIMECTL/MSTOP value Mask.
 _EnD_oF_dEf_TeXt_;
       define-mem-documentation = <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
-        define-mem-ref-id = 'core__feature__timer_8h_1gae9b7cf533c958b702dae2b5654672a78';
-        define-mem-ref-line = '217';
+        define-mem-ref-id = 'core__feature__timer_8h_1gafc922423699826bc5d833ab5d08219d2';
+        define-mem-ref-line = '203';
+        define-mem-ref-name = 'SysTimer_GetControlValue';
+    };
+      define-mem-referenceby = {
+        define-mem-ref-id = 'core__feature__timer_8h_1gaf0e25c3ad2965ce6cd523cd101cee16f';
+        define-mem-ref-line = '190';
+        define-mem-ref-name = 'SysTimer_SetControlValue';
+    };
+    }; /* define-member */
+    define-member = {
+      define-mem-kind = 'define';
+      define-mem-id   = 'group__NMSIS__Core__SysTimer__Registers_1ga40ba61e02d93e37ffbb6452b54806af6';
+      define-mem-virt = normal;
+      define-mem-prot = public;
+      define-mem-name = 'SysTimer_MSIP_Msk';
+      define-mem-initializer = <<_EnD_oF_dEf_TeXt_
+(0xFFFFFFFFUL)
+_EnD_oF_dEf_TeXt_;
+      define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
+      define-mem-desc-line = '76';
+      define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+SysTick Timer MSIP   value Mask.
+_EnD_oF_dEf_TeXt_;
+      define-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+      define-mem-referenceby = {
+        define-mem-ref-id = 'core__feature__timer_8h_1ga0431e3f4a44ca2265884c19096912729';
+        define-mem-ref-line = '247';
+        define-mem-ref-name = 'SysTimer_GetMsipValue';
+    };
+      define-mem-referenceby = {
+        define-mem-ref-id = 'core__feature__timer_8h_1gaa7f8e6c1423f582f958e151ce692395c';
+        define-mem-ref-line = '258';
+        define-mem-ref-name = 'SysTimer_SetMsipValue';
+    };
+    }; /* define-member */
+    define-member = {
+      define-mem-kind = 'define';
+      define-mem-id   = 'group__NMSIS__Core__SysTimer__Registers_1ga1028d9f654728860327c082a44b9f34f';
+      define-mem-virt = normal;
+      define-mem-prot = public;
+      define-mem-name = 'SysTimer_MSFTRST_Msk';
+      define-mem-initializer = <<_EnD_oF_dEf_TeXt_
+(0xFFFFFFFFUL)
+_EnD_oF_dEf_TeXt_;
+      define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
+      define-mem-desc-line = '77';
+      define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+SysTick Timer MSFTRST value Mask.
+_EnD_oF_dEf_TeXt_;
+      define-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+    }; /* define-member */
+    define-member = {
+      define-mem-kind = 'define';
+      define-mem-id   = 'group__NMSIS__Core__SysTimer__Registers_1ga181dffb1870282631f8858ea23d9b8fa';
+      define-mem-virt = normal;
+      define-mem-prot = public;
+      define-mem-name = 'SysTimer_MSFRST_KEY';
+      define-mem-initializer = <<_EnD_oF_dEf_TeXt_
+(0x80000A5FUL)
+_EnD_oF_dEf_TeXt_;
+      define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
+      define-mem-desc-line = '79';
+      define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+SysTick Timer Software Reset Request Key.
+_EnD_oF_dEf_TeXt_;
+      define-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+      define-mem-referenceby = {
+        define-mem-ref-id = 'core__feature__timer_8h_1gac41101f6eb4776148a05d1b02b643f8e';
+        define-mem-ref-line = '273';
         define-mem-ref-name = 'SysTimer_SoftwareReset';
     };
     }; /* define-member */
@@ -28272,7 +28443,7 @@ _EnD_oF_dEf_TeXt_;
 __SYSTIMER_BASEADDR
 _EnD_oF_dEf_TeXt_;
       define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
-      define-mem-desc-line = '71';
+      define-mem-desc-line = '86';
       define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 SysTick Base Address.
 _EnD_oF_dEf_TeXt_;
@@ -28290,7 +28461,7 @@ _EnD_oF_dEf_TeXt_;
 ((SysTimer_Type *) SysTimer_BASE)
 _EnD_oF_dEf_TeXt_;
       define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
-      define-mem-desc-line = '72';
+      define-mem-desc-line = '87';
       define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 SysTick configuration struct.
 _EnD_oF_dEf_TeXt_;
@@ -28298,65 +28469,85 @@ _EnD_oF_dEf_TeXt_;
 
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
-        define-mem-ref-id = 'core__feature__timer_8h_1ga1d6872b364b566c6c275e3e66086a95e';
-        define-mem-ref-line = '187';
+        define-mem-ref-id = 'core__feature__timer_8h_1ga9906dae1937eac222354df5a9069945a';
+        define-mem-ref-line = '336';
+        define-mem-ref-name = 'SysTick_Reload';
+    };
+      define-mem-referenceby = {
+        define-mem-ref-id = 'core__feature__timer_8h_1ga57b4f64ed87262daf831573e704b12c8';
+        define-mem-ref-line = '231';
         define-mem-ref-name = 'SysTimer_ClearSWIRQ';
     };
       define-mem-referenceby = {
-        define-mem-ref-id = 'core__feature__timer_8h_1gadded449522bea6f5ecdbb7d5c4554f43';
-        define-mem-ref-line = '134';
+        define-mem-ref-id = 'core__feature__timer_8h_1ga515d63f4e4581430fb0bf6e864e5bca9';
+        define-mem-ref-line = '149';
         define-mem-ref-name = 'SysTimer_GetCompareValue';
     };
       define-mem-referenceby = {
-        define-mem-ref-id = 'core__feature__timer_8h_1ga8672ac25251ede92992effc9d40d2706';
-        define-mem-ref-line = '104';
+        define-mem-ref-id = 'core__feature__timer_8h_1gafc922423699826bc5d833ab5d08219d2';
+        define-mem-ref-line = '203';
+        define-mem-ref-name = 'SysTimer_GetControlValue';
+    };
+      define-mem-referenceby = {
+        define-mem-ref-id = 'core__feature__timer_8h_1ga5b454e48769abd7a88c2cc65fe53ac7a';
+        define-mem-ref-line = '119';
         define-mem-ref-name = 'SysTimer_GetLoadValue';
     };
       define-mem-referenceby = {
-        define-mem-ref-id = 'core__feature__timer_8h_1gac71f565a339896bec3712530d8c683fe';
-        define-mem-ref-line = '202';
+        define-mem-ref-id = 'core__feature__timer_8h_1ga0431e3f4a44ca2265884c19096912729';
+        define-mem-ref-line = '247';
         define-mem-ref-name = 'SysTimer_GetMsipValue';
     };
       define-mem-referenceby = {
-        define-mem-ref-id = 'core__feature__timer_8h_1gaefb4407e361cee4eb7b88533139211cf';
-        define-mem-ref-line = '161';
-        define-mem-ref-name = 'SysTimer_GetMstopValue';
-    };
-      define-mem-referenceby = {
-        define-mem-ref-id = 'core__feature__timer_8h_1gaec492fdd4dd0a8c72e4958a3b86d60bb';
-        define-mem-ref-line = '120';
+        define-mem-ref-id = 'core__feature__timer_8h_1ga52e85918789aa95fc4cd0d7238ca9b6c';
+        define-mem-ref-line = '135';
         define-mem-ref-name = 'SysTimer_SetCompareValue';
     };
       define-mem-referenceby = {
-        define-mem-ref-id = 'core__feature__timer_8h_1ga40fa66eae9a7df053bb7501866073aea';
-        define-mem-ref-line = '90';
+        define-mem-ref-id = 'core__feature__timer_8h_1gaf0e25c3ad2965ce6cd523cd101cee16f';
+        define-mem-ref-line = '190';
+        define-mem-ref-name = 'SysTimer_SetControlValue';
+    };
+      define-mem-referenceby = {
+        define-mem-ref-id = 'core__feature__timer_8h_1ga08c74ffae27d46218ae11321ff5e1673';
+        define-mem-ref-line = '105';
         define-mem-ref-name = 'SysTimer_SetLoadValue';
     };
       define-mem-referenceby = {
-        define-mem-ref-id = 'core__feature__timer_8h_1gafbb922deb659bbd92d894046db0e49a8';
-        define-mem-ref-line = '148';
-        define-mem-ref-name = 'SysTimer_SetMstopValue';
+        define-mem-ref-id = 'core__feature__timer_8h_1gaa7f8e6c1423f582f958e151ce692395c';
+        define-mem-ref-line = '258';
+        define-mem-ref-name = 'SysTimer_SetMsipValue';
     };
       define-mem-referenceby = {
-        define-mem-ref-id = 'core__feature__timer_8h_1ga2b02f4075e3ecb245559fee19bebacf4';
-        define-mem-ref-line = '174';
+        define-mem-ref-id = 'core__feature__timer_8h_1gaa4d13cddf35ef77fd3b3b59e82eb1d47';
+        define-mem-ref-line = '217';
         define-mem-ref-name = 'SysTimer_SetSWIRQ';
     };
       define-mem-referenceby = {
-        define-mem-ref-id = 'core__feature__timer_8h_1gae9b7cf533c958b702dae2b5654672a78';
-        define-mem-ref-line = '217';
+        define-mem-ref-id = 'core__feature__timer_8h_1gac41101f6eb4776148a05d1b02b643f8e';
+        define-mem-ref-line = '273';
         define-mem-ref-name = 'SysTimer_SoftwareReset';
+    };
+      define-mem-referenceby = {
+        define-mem-ref-id = 'core__feature__timer_8h_1ga95360ac7f66badad67c57d540a1ae4e1';
+        define-mem-ref-line = '160';
+        define-mem-ref-name = 'SysTimer_Start';
+    };
+      define-mem-referenceby = {
+        define-mem-ref-id = 'core__feature__timer_8h_1gaf74222f6d8c603f61571884732726e91';
+        define-mem-ref-line = '171';
+        define-mem-ref-name = 'SysTimer_Stop';
     };
     }; /* define-member */
     };
     func = {
     func-member = {
       func-mem-kind = 'function';
-      func-mem-id   = 'group__NMSIS__Core__SysTimer_1ga40fa66eae9a7df053bb7501866073aea';
+      func-mem-id   = 'group__NMSIS__Core__SysTimer_1ga08c74ffae27d46218ae11321ff5e1673';
       func-mem-virt = normal;
       func-mem-prot = public;
       func-mem-type = <<_EnD_oF_dEf_TeXt_
-__STATIC_INLINE void
+__STATIC_FORCEINLINE void
 _EnD_oF_dEf_TeXt_;
       func-mem-name = 'SysTimer_SetLoadValue';
       func-mem-param = {
@@ -28366,35 +28557,35 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'value';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
-      func-mem-desc-line = '90';
+      func-mem-desc-line = '105';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-Set system Timer load value.
+Set system timer load value.
 _EnD_oF_dEf_TeXt_;
       func-mem-documentation = <<_EnD_oF_dEf_TeXt_
-This function set the system Timer load value.
-\param [in]      value  init value for system timer.
+This function set the system timer load value in MTIMER register.
+\param [in]  value   value to set system timer MTIMER register.
 \remarks
 - Load value is 64bits wide.
 - \ref SysTimer_GetLoadValue
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'core__feature__timer_8h_1ga55d0982631fe5ecbcfbb808913f6ad99';
-        func-mem-ref-line = '72';
+        func-mem-ref-line = '87';
         func-mem-ref-name = 'SysTimer';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'core__feature__timer_8h_1ga349805c25d9aa753c6fd69b3c0151126';
-        func-mem-ref-line = '245';
+        func-mem-ref-line = '304';
         func-mem-ref-name = 'SysTick_Config';
     };
     }; /* func-member */
     func-member = {
       func-mem-kind = 'function';
-      func-mem-id   = 'group__NMSIS__Core__SysTimer_1ga8672ac25251ede92992effc9d40d2706';
+      func-mem-id   = 'group__NMSIS__Core__SysTimer_1ga5b454e48769abd7a88c2cc65fe53ac7a';
       func-mem-virt = normal;
       func-mem-prot = public;
       func-mem-type = <<_EnD_oF_dEf_TeXt_
-__STATIC_INLINE uint64_t
+__STATIC_FORCEINLINE uint64_t
 _EnD_oF_dEf_TeXt_;
       func-mem-name = 'SysTimer_GetLoadValue';
       func-mem-param = {
@@ -28403,30 +28594,30 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
-      func-mem-desc-line = '104';
+      func-mem-desc-line = '119';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-Get system Timer load value.
+Get system timer load value.
 _EnD_oF_dEf_TeXt_;
       func-mem-documentation = <<_EnD_oF_dEf_TeXt_
-This function get the system Timer current value.
-\return       current value for system timer.
+This function get the system timer current value in MTIMER register.
+\return  current value(64bit) of system timer MTIMER register.
 \remarks
 - Load value is 64bits wide.
 - \ref SysTimer_SetLoadValue
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'core__feature__timer_8h_1ga55d0982631fe5ecbcfbb808913f6ad99';
-        func-mem-ref-line = '72';
+        func-mem-ref-line = '87';
         func-mem-ref-name = 'SysTimer';
     };
     }; /* func-member */
     func-member = {
       func-mem-kind = 'function';
-      func-mem-id   = 'group__NMSIS__Core__SysTimer_1gaec492fdd4dd0a8c72e4958a3b86d60bb';
+      func-mem-id   = 'group__NMSIS__Core__SysTimer_1ga52e85918789aa95fc4cd0d7238ca9b6c';
       func-mem-virt = normal;
       func-mem-prot = public;
       func-mem-type = <<_EnD_oF_dEf_TeXt_
-__STATIC_INLINE void
+__STATIC_FORCEINLINE void
 _EnD_oF_dEf_TeXt_;
       func-mem-name = 'SysTimer_SetCompareValue';
       func-mem-param = {
@@ -28436,37 +28627,37 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'value';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
-      func-mem-desc-line = '120';
+      func-mem-desc-line = '135';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-Set system Timer compare value.
+Set system timer compare value.
 _EnD_oF_dEf_TeXt_;
       func-mem-documentation = <<_EnD_oF_dEf_TeXt_
-This function set the system Timer compare value.
-\param [in]      value  compare value for system timer.
+This function set the system Timer compare value in MTIMERCMP register.
+\param [in]  value   compare value to set system timer MTIMERCMP register.
 \remarks
-- Compare value is 64bits wide. 
-- If compare value is larger than current value Timer interrupt generate.
+- Compare value is 64bits wide.
+- If compare value is larger than current value timer interrupt generate.
 - Modify the load value or compare value less to clear the interrupt.
 - \ref SysTimer_GetCompareValue
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'core__feature__timer_8h_1ga55d0982631fe5ecbcfbb808913f6ad99';
-        func-mem-ref-line = '72';
+        func-mem-ref-line = '87';
         func-mem-ref-name = 'SysTimer';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'core__feature__timer_8h_1ga349805c25d9aa753c6fd69b3c0151126';
-        func-mem-ref-line = '245';
+        func-mem-ref-line = '304';
         func-mem-ref-name = 'SysTick_Config';
     };
     }; /* func-member */
     func-member = {
       func-mem-kind = 'function';
-      func-mem-id   = 'group__NMSIS__Core__SysTimer_1gadded449522bea6f5ecdbb7d5c4554f43';
+      func-mem-id   = 'group__NMSIS__Core__SysTimer_1ga515d63f4e4581430fb0bf6e864e5bca9';
       func-mem-virt = normal;
       func-mem-prot = public;
       func-mem-type = <<_EnD_oF_dEf_TeXt_
-__STATIC_INLINE uint64_t
+__STATIC_FORCEINLINE uint64_t
 _EnD_oF_dEf_TeXt_;
       func-mem-name = 'SysTimer_GetCompareValue';
       func-mem-param = {
@@ -28475,104 +28666,177 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
-      func-mem-desc-line = '134';
+      func-mem-desc-line = '149';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-Get system Timer compare value.
+Get system timer compare value.
 _EnD_oF_dEf_TeXt_;
       func-mem-documentation = <<_EnD_oF_dEf_TeXt_
-This function get the system Timer compare value.
-\return       compare value for system timer.
+This function get the system timer compare value in MTIMERCMP register.
+\return  compare value of system timer MTIMERCMP register.
 \remarks
 - Compare value is 64bits wide.
 - \ref SysTimer_SetCompareValue
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'core__feature__timer_8h_1ga55d0982631fe5ecbcfbb808913f6ad99';
-        func-mem-ref-line = '72';
+        func-mem-ref-line = '87';
         func-mem-ref-name = 'SysTimer';
     };
     }; /* func-member */
     func-member = {
       func-mem-kind = 'function';
-      func-mem-id   = 'group__NMSIS__Core__SysTimer_1gafbb922deb659bbd92d894046db0e49a8';
+      func-mem-id   = 'group__NMSIS__Core__SysTimer_1ga95360ac7f66badad67c57d540a1ae4e1';
       func-mem-virt = normal;
       func-mem-prot = public;
       func-mem-type = <<_EnD_oF_dEf_TeXt_
-__STATIC_INLINE void
+__STATIC_FORCEINLINE void
 _EnD_oF_dEf_TeXt_;
-      func-mem-name = 'SysTimer_SetMstopValue';
-      func-mem-param = {
-        func-mem-param-type = <<_EnD_oF_dEf_TeXt_
-uint32_t
-_EnD_oF_dEf_TeXt_;
-        func-mem-param-declname = 'mstop';
-      }; /*        func-mem-param--param */
-      func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
-      func-mem-desc-line = '148';
-      func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-Set system Timer MSTOP.
-_EnD_oF_dEf_TeXt_;
-      func-mem-documentation = <<_EnD_oF_dEf_TeXt_
-This function set the system Timer MSTOP bit.
-\param [in]       mstop   0 stop timer and 1 start timer.
-\remarks
-- Bit0 is used to start and stop. Set bit0 timer start. Clear Bit0 Timer stop.
-- \ref SysTimer_SetMstopValue
-_EnD_oF_dEf_TeXt_;
-      func-mem-referenceto = {
-        func-mem-ref-id = 'core__feature__timer_8h_1ga55d0982631fe5ecbcfbb808913f6ad99';
-        func-mem-ref-line = '72';
-        func-mem-ref-name = 'SysTimer';
-    };
-      func-mem-referenceto = {
-        func-mem-ref-id = 'core__feature__timer_8h_1ga7b90dedab1d63b9bf890775ab049dd35';
-        func-mem-ref-line = '58';
-        func-mem-ref-name = 'SysTimer_TIMER_MSTOP_Msk';
-    };
-    }; /* func-member */
-    func-member = {
-      func-mem-kind = 'function';
-      func-mem-id   = 'group__NMSIS__Core__SysTimer_1gaefb4407e361cee4eb7b88533139211cf';
-      func-mem-virt = normal;
-      func-mem-prot = public;
-      func-mem-type = <<_EnD_oF_dEf_TeXt_
-__STATIC_INLINE uint32_t
-_EnD_oF_dEf_TeXt_;
-      func-mem-name = 'SysTimer_GetMstopValue';
+      func-mem-name = 'SysTimer_Start';
       func-mem-param = {
         func-mem-param-type = <<_EnD_oF_dEf_TeXt_
 void
 _EnD_oF_dEf_TeXt_;
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
-      func-mem-desc-line = '161';
+      func-mem-desc-line = '160';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-Set system Timer MSTOP.
+Enable system timer counter running.
 _EnD_oF_dEf_TeXt_;
       func-mem-documentation = <<_EnD_oF_dEf_TeXt_
-This function set the system Timer MSTOP bit.
-\return         0  timer stop and  1 timer is running.
-\remarks
-- \ref SysTimer_SetMstopValue
+Enable system timer counter running by clear
+TIMESTOP bit in MTIMECTL register.
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'core__feature__timer_8h_1ga55d0982631fe5ecbcfbb808913f6ad99';
-        func-mem-ref-line = '72';
+        func-mem-ref-line = '87';
         func-mem-ref-name = 'SysTimer';
     };
       func-mem-referenceto = {
-        func-mem-ref-id = 'core__feature__timer_8h_1ga7b90dedab1d63b9bf890775ab049dd35';
-        func-mem-ref-line = '58';
-        func-mem-ref-name = 'SysTimer_TIMER_MSTOP_Msk';
+        func-mem-ref-id = 'core__feature__timer_8h_1gaab93093166696848e52d055a2e139e9f';
+        func-mem-ref-line = '64';
+        func-mem-ref-name = 'SysTimer_MTIMECTL_TIMESTOP_Msk';
     };
     }; /* func-member */
     func-member = {
       func-mem-kind = 'function';
-      func-mem-id   = 'group__NMSIS__Core__SysTimer_1ga2b02f4075e3ecb245559fee19bebacf4';
+      func-mem-id   = 'group__NMSIS__Core__SysTimer_1gaf74222f6d8c603f61571884732726e91';
       func-mem-virt = normal;
       func-mem-prot = public;
       func-mem-type = <<_EnD_oF_dEf_TeXt_
-__STATIC_INLINE void
+__STATIC_FORCEINLINE void
+_EnD_oF_dEf_TeXt_;
+      func-mem-name = 'SysTimer_Stop';
+      func-mem-param = {
+        func-mem-param-type = <<_EnD_oF_dEf_TeXt_
+void
+_EnD_oF_dEf_TeXt_;
+      }; /*        func-mem-param--param */
+      func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
+      func-mem-desc-line = '171';
+      func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+Stop system timer counter running.
+_EnD_oF_dEf_TeXt_;
+      func-mem-documentation = <<_EnD_oF_dEf_TeXt_
+Stop system timer counter running by set
+TIMESTOP bit in MTIMECTL register.
+_EnD_oF_dEf_TeXt_;
+      func-mem-referenceto = {
+        func-mem-ref-id = 'core__feature__timer_8h_1ga55d0982631fe5ecbcfbb808913f6ad99';
+        func-mem-ref-line = '87';
+        func-mem-ref-name = 'SysTimer';
+    };
+      func-mem-referenceto = {
+        func-mem-ref-id = 'core__feature__timer_8h_1gaab93093166696848e52d055a2e139e9f';
+        func-mem-ref-line = '64';
+        func-mem-ref-name = 'SysTimer_MTIMECTL_TIMESTOP_Msk';
+    };
+    }; /* func-member */
+    func-member = {
+      func-mem-kind = 'function';
+      func-mem-id   = 'group__NMSIS__Core__SysTimer_1gaf0e25c3ad2965ce6cd523cd101cee16f';
+      func-mem-virt = normal;
+      func-mem-prot = public;
+      func-mem-type = <<_EnD_oF_dEf_TeXt_
+__STATIC_FORCEINLINE void
+_EnD_oF_dEf_TeXt_;
+      func-mem-name = 'SysTimer_SetControlValue';
+      func-mem-param = {
+        func-mem-param-type = <<_EnD_oF_dEf_TeXt_
+uint32_t
+_EnD_oF_dEf_TeXt_;
+        func-mem-param-declname = 'mctl';
+      }; /*        func-mem-param--param */
+      func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
+      func-mem-desc-line = '190';
+      func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+Set system timer control value.
+_EnD_oF_dEf_TeXt_;
+      func-mem-documentation = <<_EnD_oF_dEf_TeXt_
+This function set the system timer MTIMECTL register value.
+\param [in]  mctl    value to set MTIMECTL register
+\remarks
+- Bit TIMESTOP is used to start and stop timer.
+  Clear TIMESTOP bit to 0 to start timer, otherwise to stop timer.
+- Bit CMPCLREN is used to enable auto MTIMER clear to zero when MTIMER >= MTIMERCMP.
+  Clear CMPCLREN bit to 0 to stop auto clear MTIMER feature, otherwise to enable it.
+- Bit CLKSRC is used to select timer clock source.
+  Clear CLKSRC bit to 0 to use <em>mtime_toggle_a</em>, otherwise use <em>core_clk_aon</em>
+- \ref SysTimer_GetControlValue
+_EnD_oF_dEf_TeXt_;
+      func-mem-referenceto = {
+        func-mem-ref-id = 'core__feature__timer_8h_1ga55d0982631fe5ecbcfbb808913f6ad99';
+        func-mem-ref-line = '87';
+        func-mem-ref-name = 'SysTimer';
+    };
+      func-mem-referenceto = {
+        func-mem-ref-id = 'core__feature__timer_8h_1ga9b50cbd77c10af62deca85e3d2509c72';
+        func-mem-ref-line = '75';
+        func-mem-ref-name = 'SysTimer_MTIMECTL_Msk';
+    };
+    }; /* func-member */
+    func-member = {
+      func-mem-kind = 'function';
+      func-mem-id   = 'group__NMSIS__Core__SysTimer_1gafc922423699826bc5d833ab5d08219d2';
+      func-mem-virt = normal;
+      func-mem-prot = public;
+      func-mem-type = <<_EnD_oF_dEf_TeXt_
+__STATIC_FORCEINLINE uint32_t
+_EnD_oF_dEf_TeXt_;
+      func-mem-name = 'SysTimer_GetControlValue';
+      func-mem-param = {
+        func-mem-param-type = <<_EnD_oF_dEf_TeXt_
+void
+_EnD_oF_dEf_TeXt_;
+      }; /*        func-mem-param--param */
+      func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
+      func-mem-desc-line = '203';
+      func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+Get system timer control value.
+_EnD_oF_dEf_TeXt_;
+      func-mem-documentation = <<_EnD_oF_dEf_TeXt_
+This function get the system timer MTIMECTL register value.
+\return  MTIMECTL register value
+\remarks
+- \ref SysTimer_SetControlValue
+_EnD_oF_dEf_TeXt_;
+      func-mem-referenceto = {
+        func-mem-ref-id = 'core__feature__timer_8h_1ga55d0982631fe5ecbcfbb808913f6ad99';
+        func-mem-ref-line = '87';
+        func-mem-ref-name = 'SysTimer';
+    };
+      func-mem-referenceto = {
+        func-mem-ref-id = 'core__feature__timer_8h_1ga9b50cbd77c10af62deca85e3d2509c72';
+        func-mem-ref-line = '75';
+        func-mem-ref-name = 'SysTimer_MTIMECTL_Msk';
+    };
+    }; /* func-member */
+    func-member = {
+      func-mem-kind = 'function';
+      func-mem-id   = 'group__NMSIS__Core__SysTimer_1gaa4d13cddf35ef77fd3b3b59e82eb1d47';
+      func-mem-virt = normal;
+      func-mem-prot = public;
+      func-mem-type = <<_EnD_oF_dEf_TeXt_
+__STATIC_FORCEINLINE void
 _EnD_oF_dEf_TeXt_;
       func-mem-name = 'SysTimer_SetSWIRQ';
       func-mem-param = {
@@ -28581,34 +28845,35 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
-      func-mem-desc-line = '174';
+      func-mem-desc-line = '217';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-Set system Timer MSIP to trigger SW interrupt.
+Trigger or set software interrupt via system timer.
 _EnD_oF_dEf_TeXt_;
       func-mem-documentation = <<_EnD_oF_dEf_TeXt_
-This function set the system Timer MSIP bit.
+This function set the system timer MSIP bit in MSIP register.
 \remarks
 - Set system timer MSIP bit and generate a SW interrupt.
-- \ref SysTimer_ClearSWIRQ;SysTimer_GetMsipValue;
+- \ref SysTimer_ClearSWIRQ
+- \ref SysTimer_GetMsipValue
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'core__feature__timer_8h_1ga55d0982631fe5ecbcfbb808913f6ad99';
-        func-mem-ref-line = '72';
+        func-mem-ref-line = '87';
         func-mem-ref-name = 'SysTimer';
     };
       func-mem-referenceto = {
-        func-mem-ref-id = 'core__feature__timer_8h_1ga3ba5a1fee8efbd89eca4e1d0f1f764db';
-        func-mem-ref-line = '61';
-        func-mem-ref-name = 'SysTimer_TIMER_MSIP_Msk';
+        func-mem-ref-id = 'core__feature__timer_8h_1ga62b819dc444c74f1424c50cf13fcb2a0';
+        func-mem-ref-line = '71';
+        func-mem-ref-name = 'SysTimer_MSIP_MSIP_Msk';
     };
     }; /* func-member */
     func-member = {
       func-mem-kind = 'function';
-      func-mem-id   = 'group__NMSIS__Core__SysTimer_1ga1d6872b364b566c6c275e3e66086a95e';
+      func-mem-id   = 'group__NMSIS__Core__SysTimer_1ga57b4f64ed87262daf831573e704b12c8';
       func-mem-virt = normal;
       func-mem-prot = public;
       func-mem-type = <<_EnD_oF_dEf_TeXt_
-__STATIC_INLINE void
+__STATIC_FORCEINLINE void
 _EnD_oF_dEf_TeXt_;
       func-mem-name = 'SysTimer_ClearSWIRQ';
       func-mem-param = {
@@ -28617,34 +28882,35 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
-      func-mem-desc-line = '187';
+      func-mem-desc-line = '231';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-Clear system Timer MSIP to clear SW interrupt.
+Clear system timer software interrupt pending request.
 _EnD_oF_dEf_TeXt_;
       func-mem-documentation = <<_EnD_oF_dEf_TeXt_
-This function set the system Timer MSIP bit.
+This function clear the system timer MSIP bit in MSIP register.
 \remarks
-- Clear system timer MSIP bit and Clear the SW interrupt.
-- \ref SysTimer_SetSWIRQ;SysTimer_GetMsipValue;
+- Clear system timer MSIP bit in MSIP register to clear the software interrupt pending.
+- \ref SysTimer_SetSWIRQ
+- \ref SysTimer_GetMsipValue
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'core__feature__timer_8h_1ga55d0982631fe5ecbcfbb808913f6ad99';
-        func-mem-ref-line = '72';
+        func-mem-ref-line = '87';
         func-mem-ref-name = 'SysTimer';
     };
       func-mem-referenceto = {
-        func-mem-ref-id = 'core__feature__timer_8h_1ga3ba5a1fee8efbd89eca4e1d0f1f764db';
-        func-mem-ref-line = '61';
-        func-mem-ref-name = 'SysTimer_TIMER_MSIP_Msk';
+        func-mem-ref-id = 'core__feature__timer_8h_1ga62b819dc444c74f1424c50cf13fcb2a0';
+        func-mem-ref-line = '71';
+        func-mem-ref-name = 'SysTimer_MSIP_MSIP_Msk';
     };
     }; /* func-member */
     func-member = {
       func-mem-kind = 'function';
-      func-mem-id   = 'group__NMSIS__Core__SysTimer_1gac71f565a339896bec3712530d8c683fe';
+      func-mem-id   = 'group__NMSIS__Core__SysTimer_1ga0431e3f4a44ca2265884c19096912729';
       func-mem-virt = normal;
       func-mem-prot = public;
       func-mem-type = <<_EnD_oF_dEf_TeXt_
-__STATIC_INLINE uint32_t
+__STATIC_FORCEINLINE uint32_t
 _EnD_oF_dEf_TeXt_;
       func-mem-name = 'SysTimer_GetMsipValue';
       func-mem-param = {
@@ -28653,36 +28919,72 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
-      func-mem-desc-line = '202';
+      func-mem-desc-line = '247';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-Get system Timer MSIP.
+Get system timer MSIP register value.
 _EnD_oF_dEf_TeXt_;
       func-mem-documentation = <<_EnD_oF_dEf_TeXt_
-This function get the system Timer MSIP bit.
-\return         0  SW interrupt set and 1 SW interrupt clear.
+This function get the system timer MSIP register value.
+\return    Value of Timer MSIP register.
 \remarks
-- Bit0 is SW interrupt flag. Bit0 is 1 then SW interrupt set. Bit0 is 0 then SW interrupt clear.
-- \ref SysTimer_SetSWIRQ; SysTimer_ClearSWIRQ;
-- \ref Set_MTVEC
+- Bit0 is SW interrupt flag.
+  Bit0 is 1 then SW interrupt set. Bit0 is 0 then SW interrupt clear.
+- \ref SysTimer_SetSWIRQ
+- \ref SysTimer_ClearSWIRQ
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'core__feature__timer_8h_1ga55d0982631fe5ecbcfbb808913f6ad99';
-        func-mem-ref-line = '72';
+        func-mem-ref-line = '87';
         func-mem-ref-name = 'SysTimer';
     };
       func-mem-referenceto = {
-        func-mem-ref-id = 'core__feature__timer_8h_1ga3ba5a1fee8efbd89eca4e1d0f1f764db';
-        func-mem-ref-line = '61';
-        func-mem-ref-name = 'SysTimer_TIMER_MSIP_Msk';
+        func-mem-ref-id = 'core__feature__timer_8h_1ga40ba61e02d93e37ffbb6452b54806af6';
+        func-mem-ref-line = '76';
+        func-mem-ref-name = 'SysTimer_MSIP_Msk';
     };
     }; /* func-member */
     func-member = {
       func-mem-kind = 'function';
-      func-mem-id   = 'group__NMSIS__Core__SysTimer_1gae9b7cf533c958b702dae2b5654672a78';
+      func-mem-id   = 'group__NMSIS__Core__SysTimer_1gaa7f8e6c1423f582f958e151ce692395c';
       func-mem-virt = normal;
       func-mem-prot = public;
       func-mem-type = <<_EnD_oF_dEf_TeXt_
-__STATIC_INLINE void
+__STATIC_FORCEINLINE void
+_EnD_oF_dEf_TeXt_;
+      func-mem-name = 'SysTimer_SetMsipValue';
+      func-mem-param = {
+        func-mem-param-type = <<_EnD_oF_dEf_TeXt_
+uint32_t
+_EnD_oF_dEf_TeXt_;
+        func-mem-param-declname = 'msip';
+      }; /*        func-mem-param--param */
+      func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
+      func-mem-desc-line = '258';
+      func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+Set system timer MSIP register value.
+_EnD_oF_dEf_TeXt_;
+      func-mem-documentation = <<_EnD_oF_dEf_TeXt_
+This function set the system timer MSIP register value.
+\param [in]  msip   value to set MSIP register
+_EnD_oF_dEf_TeXt_;
+      func-mem-referenceto = {
+        func-mem-ref-id = 'core__feature__timer_8h_1ga55d0982631fe5ecbcfbb808913f6ad99';
+        func-mem-ref-line = '87';
+        func-mem-ref-name = 'SysTimer';
+    };
+      func-mem-referenceto = {
+        func-mem-ref-id = 'core__feature__timer_8h_1ga40ba61e02d93e37ffbb6452b54806af6';
+        func-mem-ref-line = '76';
+        func-mem-ref-name = 'SysTimer_MSIP_Msk';
+    };
+    }; /* func-member */
+    func-member = {
+      func-mem-kind = 'function';
+      func-mem-id   = 'group__NMSIS__Core__SysTimer_1gac41101f6eb4776148a05d1b02b643f8e';
+      func-mem-virt = normal;
+      func-mem-prot = public;
+      func-mem-type = <<_EnD_oF_dEf_TeXt_
+__STATIC_FORCEINLINE void
 _EnD_oF_dEf_TeXt_;
       func-mem-name = 'SysTimer_SoftwareReset';
       func-mem-param = {
@@ -28691,13 +28993,13 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
-      func-mem-desc-line = '217';
+      func-mem-desc-line = '273';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Do software reset request.
 _EnD_oF_dEf_TeXt_;
       func-mem-documentation = <<_EnD_oF_dEf_TeXt_
-This function will do software reset request through TIMER/
-- Software need to write \ref SysTimer_TIMER_MSFRST_KEY to generate software reset request
+This function will do software reset request through MTIMER
+- Software need to write \ref SysTimer_MSFRST_KEY to generate software reset request
 - The software request flag can be cleared by reset operation to clear
 \remarks
 - The software reset is sent to SoC, SoC need to generate reset signal and send back to Core
@@ -28705,13 +29007,13 @@ This function will do software reset request through TIMER/
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'core__feature__timer_8h_1ga55d0982631fe5ecbcfbb808913f6ad99';
-        func-mem-ref-line = '72';
+        func-mem-ref-line = '87';
         func-mem-ref-name = 'SysTimer';
     };
       func-mem-referenceto = {
-        func-mem-ref-id = 'core__feature__timer_8h_1ga23259b9a0920d10554888fc09f5017b8';
-        func-mem-ref-line = '64';
-        func-mem-ref-name = 'SysTimer_TIMER_MSFRST_KEY';
+        func-mem-ref-id = 'core__feature__timer_8h_1ga181dffb1870282631f8858ea23d9b8fa';
+        func-mem-ref-line = '79';
+        func-mem-ref-name = 'SysTimer_MSFRST_KEY';
     };
     }; /* func-member */
     func-member = {
@@ -28730,7 +29032,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'ticks';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
-      func-mem-desc-line = '245';
+      func-mem-desc-line = '304';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 System Tick Configuration.
 _EnD_oF_dEf_TeXt_;
@@ -28738,18 +29040,21 @@ _EnD_oF_dEf_TeXt_;
 Initializes the System Timer and its non-vector interrupt, and starts the System Tick Timer.
 
  In our default implementation, the timer counter will be set to zero, and it will start a timer compare non-vector interrupt
- when it matchs the ticks user set, during the timer interrupt user should reload the timer counter to zero, so it
- can produce period timer interrupt.
+ when it matchs the ticks user set, during the timer interrupt user should reload the system tick using \ref SysTick_Reload function
+ or similar function written by user, so it can produce period timer interrupt.
 \param [in]  ticks  Number of ticks between two interrupts.
 \return          0  Function succeeded.
 \return          1  Function failed.
 \remarks
+- For \ref __NUCLEI_N_REV >= 0x0104, the CMPCLREN bit in MTIMECTL is introduced,
+  but we assume that the CMPCLREN bit is set to 0, so MTIMER register will not be
+  auto cleared to 0 when MTIMER >= MTIMERCMP.
 - When the variable \ref __Vendor_SysTickConfig is set to 1, then the
   function \ref SysTick_Config is not included.
-- In this case, the file **<Device>.h** must contain a vendor-specific implementation
+- In this case, the file <b><Device>.h</b> must contain a vendor-specific implementation
   of this function.
 - If user need this function to start a period timer interrupt, then in timer interrupt handler
-  routine code, user should call \ref SysTimer_SetLoadValue to set counter as 0 to reload the timer.
+  routine code, user should call \ref SysTick_Reload with ticks to reload the timer.
 - This function only available when __SYSTIMER_PRESENT == 1 and __ECLIC_PRESENT == 1 and __Vendor_SysTickConfig == 0
 \sa
 - \ref SysTimer_SetCompareValue; SysTimer_SetLoadValue
@@ -28780,14 +29085,61 @@ _EnD_oF_dEf_TeXt_;
         func-mem-ref-name = 'SysTimer_IRQn';
     };
       func-mem-referenceto = {
-        func-mem-ref-id = 'core__feature__timer_8h_1gaec492fdd4dd0a8c72e4958a3b86d60bb';
-        func-mem-ref-line = '120';
+        func-mem-ref-id = 'core__feature__timer_8h_1ga52e85918789aa95fc4cd0d7238ca9b6c';
+        func-mem-ref-line = '135';
         func-mem-ref-name = 'SysTimer_SetCompareValue';
     };
       func-mem-referenceto = {
-        func-mem-ref-id = 'core__feature__timer_8h_1ga40fa66eae9a7df053bb7501866073aea';
-        func-mem-ref-line = '90';
+        func-mem-ref-id = 'core__feature__timer_8h_1ga08c74ffae27d46218ae11321ff5e1673';
+        func-mem-ref-line = '105';
         func-mem-ref-name = 'SysTimer_SetLoadValue';
+    };
+    }; /* func-member */
+    func-member = {
+      func-mem-kind = 'function';
+      func-mem-id   = 'group__NMSIS__Core__SysTimer_1ga9906dae1937eac222354df5a9069945a';
+      func-mem-virt = normal;
+      func-mem-prot = public;
+      func-mem-type = <<_EnD_oF_dEf_TeXt_
+__STATIC_FORCEINLINE uint32_t
+_EnD_oF_dEf_TeXt_;
+      func-mem-name = 'SysTick_Reload';
+      func-mem-param = {
+        func-mem-param-type = <<_EnD_oF_dEf_TeXt_
+uint64_t
+_EnD_oF_dEf_TeXt_;
+        func-mem-param-declname = 'ticks';
+      }; /*        func-mem-param--param */
+      func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
+      func-mem-desc-line = '336';
+      func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+System Tick Reload.
+_EnD_oF_dEf_TeXt_;
+      func-mem-documentation = <<_EnD_oF_dEf_TeXt_
+Reload the System Timer Tick when the MTIMECMP reached TIME value
+
+\param [in]  ticks  Number of ticks between two interrupts.
+\return          0  Function succeeded.
+\return          1  Function failed.
+\remarks
+- For \ref __NUCLEI_N_REV >= 0x0104, the CMPCLREN bit in MTIMECTL is introduced,
+  but for this \ref SysTick_Config function, we assume this CMPCLREN bit is set to 0,
+  so in interrupt handler function, user still need to set the MTIMERCMP or MTIMER to reload
+  the system tick, if vendor want to use this timer's auto clear feature, they can define
+  \ref __Vendor_SysTickConfig to 1, and implement \ref SysTick_Config and \ref SysTick_Reload functions.
+- When the variable \ref __Vendor_SysTickConfig is set to 1, then the
+  function \ref SysTick_Reload is not included.
+- In this case, the file <b><Device>.h</b> must contain a vendor-specific implementation
+  of this function.
+- This function only available when __SYSTIMER_PRESENT == 1 and __ECLIC_PRESENT == 1 and __Vendor_SysTickConfig == 0
+\sa
+- \ref SysTimer_SetCompareValue
+- \ref SysTimer_SetLoadValue
+_EnD_oF_dEf_TeXt_;
+      func-mem-referenceto = {
+        func-mem-ref-id = 'core__feature__timer_8h_1ga55d0982631fe5ecbcfbb808913f6ad99';
+        func-mem-ref-line = '87';
+        func-mem-ref-name = 'SysTimer';
     };
     }; /* func-member */
     };
@@ -35804,22 +36156,22 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1ga05bee6a5e41963ef1845c8a7e5a09c89';
-        define-mem-ref-line = '770';
+        define-mem-ref-line = '778';
         define-mem-ref-name = '__get_exc_entry';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1ga2fe20dcdecc453c6709448944b1f5350';
-        define-mem-ref-line = '809';
+        define-mem-ref-line = '817';
         define-mem-ref-name = '__get_nonvec_entry';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gaec014abd3940e642f652b97b70d7ac8e';
-        define-mem-ref-line = '753';
+        define-mem-ref-line = '761';
         define-mem-ref-name = '__set_exc_entry';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gadbe0f14f32c5989304fd05faf0cff648';
-        define-mem-ref-line = '787';
+        define-mem-ref-line = '795';
         define-mem-ref-name = '__set_nonvec_entry';
     };
     }; /* define-member */
@@ -39023,12 +39375,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1ga7b8025dd8eac9993066d730cee6475a0';
-        define-mem-ref-line = '732';
+        define-mem-ref-line = '740';
         define-mem-ref-name = '__ECLIC_GetVector';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1ga2e80049df57b285d4dd43454377c0845';
-        define-mem-ref-line = '703';
+        define-mem-ref-line = '711';
         define-mem-ref-name = '__ECLIC_SetVector';
     };
     }; /* define-member */
@@ -39189,7 +39541,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gac5b9521ea1bd5260330714b8032d04d5';
-        define-mem-ref-line = '829';
+        define-mem-ref-line = '837';
         define-mem-ref-name = '__get_nmi_entry';
     };
     }; /* define-member */
@@ -39448,12 +39800,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1ga2fe20dcdecc453c6709448944b1f5350';
-        define-mem-ref-line = '809';
+        define-mem-ref-line = '817';
         define-mem-ref-name = '__get_nonvec_entry';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gadbe0f14f32c5989304fd05faf0cff648';
-        define-mem-ref-line = '787';
+        define-mem-ref-line = '795';
         define-mem-ref-name = '__set_nonvec_entry';
     };
     }; /* define-member */

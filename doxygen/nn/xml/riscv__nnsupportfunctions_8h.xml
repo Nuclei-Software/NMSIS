@@ -111,7 +111,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" line="265" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" bodystart="265" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" line="250" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" bodystart="250" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="enum">
@@ -215,7 +215,7 @@ The equation used for the conversion process is:</para><para><preformatted>
 </preformatted> </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" line="90" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_q7_to_q15_no_shift.c" bodystart="60" bodyend="120"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" line="90" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_q7_to_q15_no_shift.c" bodystart="60" bodyend="115"/>
       </memberdef>
       <memberdef kind="function" id="group__nndata__convert_1ga3caedd7ab46f10c71af9d3d7876215df" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -266,7 +266,7 @@ The equation used for the conversion process is:</para><para><preformatted>
 </preformatted> </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" line="92" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_q7_to_q7_no_shift.c" bodystart="60" bodyend="107"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" line="92" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_q7_to_q7_no_shift.c" bodystart="60" bodyend="106"/>
       </memberdef>
       <memberdef kind="function" id="group__NNBasicMath_1gae72ab1e8045b992f1bf49b0bbafee3b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -392,7 +392,7 @@ This function does the q7 to q15 expansion with re-ordering</para><para><preform
 </preformatted></para><para>This looks strange but is natural considering how sign-extension is done at assembly level.</para><para>The expansion of other other oprand will follow the same rule so that the end results are the same.</para><para>The tail (i.e., last (N % 4) elements) will still be in original order. </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" line="121" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_q7_to_q15_reordered_no_shift.c" bodystart="79" bodyend="142"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" line="121" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_q7_to_q15_reordered_no_shift.c" bodystart="79" bodyend="128"/>
       </memberdef>
       <memberdef kind="function" id="group__nndata__convert_1gae41bc04256cf974ec36e82c521b43d02" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -444,7 +444,7 @@ This function does the q7 to q7 expansion with re-ordering</para><para><preforma
 </preformatted></para><para>This looks strange but is natural considering how sign-extension is done at assembly level.</para><para>The expansion of other other oprand will follow the same rule so that the end results are the same.</para><para>The tail (i.e., last (N % 4) elements) will still be in original order. </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" line="123" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_q7_to_q7_reordered_no_shift.c" bodystart="79" bodyend="154"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" line="123" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_q7_to_q7_reordered_no_shift.c" bodystart="79" bodyend="122"/>
       </memberdef>
       <memberdef kind="function" id="group__nndata__convert_1gaad762d8ce3dcb357549463e16cc41aaa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -615,7 +615,7 @@ q7 vector multiplication with variable output shifts</para><para><parameterlist 
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" line="232" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_nn_mult_q15.c" bodystart="59" bodyend="143"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" line="217" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_nn_mult_q15.c" bodystart="59" bodyend="136"/>
       </memberdef>
       <memberdef kind="function" id="group__NNBasicMath_1ga53b69e8309dbc2e6c3f6f5bc42ea3d88" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -724,7 +724,7 @@ q7 vector multiplication with variable output shifts</para><para><parameterlist 
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" line="254" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_nn_mult_q7.c" bodystart="58" bodyend="116"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" line="239" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/NNSupportFunctions/riscv_nn_mult_q7.c" bodystart="58" bodyend="116"/>
       </memberdef>
       <memberdef kind="function" id="riscv__nnsupportfunctions_8h_1a0eed1ae83de558d25891df3a6b845ca9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>__STATIC_FORCEINLINE q31_t</type>
@@ -761,7 +761,7 @@ q7 vector multiplication with variable output shifts</para><para><parameterlist 
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" line="278" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" bodystart="278" bodyend="300"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" line="263" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" bodystart="263" bodyend="285"/>
       </memberdef>
       <memberdef kind="function" id="riscv__nnsupportfunctions_8h_1aa3220bb59a32ca8406b74027c0b0f5ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>__STATIC_FORCEINLINE q31_t</type>
@@ -798,7 +798,7 @@ q7 vector multiplication with variable output shifts</para><para><parameterlist 
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" line="310" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" bodystart="310" bodyend="331"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" line="295" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" bodystart="295" bodyend="316"/>
       </memberdef>
       <memberdef kind="function" id="riscv__nnsupportfunctions_8h_1a033decfdd0ba2c120155019cadd216f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>__STATIC_FORCEINLINE q31_t</type>
@@ -846,7 +846,7 @@ q7 vector multiplication with variable output shifts</para><para><parameterlist 
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" line="342" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" bodystart="342" bodyend="346"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" line="327" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" bodystart="327" bodyend="331"/>
       </memberdef>
       <memberdef kind="function" id="riscv__nnsupportfunctions_8h_1aae3cc1a9193fa8abdf46d271cb95849c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>__STATIC_FORCEINLINE q31_t</type>
@@ -872,7 +872,7 @@ q7 vector multiplication with variable output shifts</para><para><parameterlist 
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" line="353" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" bodystart="353" bodyend="361"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" line="338" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" bodystart="338" bodyend="346"/>
       </memberdef>
       <memberdef kind="function" id="riscv__nnsupportfunctions_8h_1a88800ac5c302003036c78d5ee2f79845" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>__STATIC_FORCEINLINE q31_t</type>
@@ -898,7 +898,7 @@ q7 vector multiplication with variable output shifts</para><para><parameterlist 
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" line="368" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" bodystart="368" bodyend="375"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" line="353" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h" bodystart="353" bodyend="360"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -988,150 +988,135 @@ q7 vector multiplication with variable output shifts</para><para><parameterlist 
 <codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>q31_t<sp/><sp/><sp/><sp/><sp/>inAbuf1<sp/>=<sp/>__SXTB16(__ROR(inA,<sp/>8));</highlight></codeline>
 <codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>q31_t<sp/><sp/><sp/><sp/><sp/>inAbuf2<sp/>=<sp/>__SXTB16(inA);</highlight></codeline>
 <codeline lineno="155"><highlight class="normal"></highlight></codeline>
-<codeline lineno="156"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>RISCV_MATH_BIG_ENDIAN</highlight></codeline>
-<codeline lineno="157"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*out2<sp/>=<sp/>__PKHTB(inAbuf1,<sp/>inAbuf2,<sp/>16);</highlight></codeline>
-<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*out1<sp/>=<sp/>__PKHBT(inAbuf2,<sp/>inAbuf1,<sp/>16);</highlight></codeline>
-<codeline lineno="159"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
-<codeline lineno="160"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*out1<sp/>=<sp/>__PKHTB(inAbuf1,<sp/>inAbuf2,<sp/>16);</highlight></codeline>
-<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*out2<sp/>=<sp/>__PKHBT(inAbuf2,<sp/>inAbuf1,<sp/>16);</highlight></codeline>
-<codeline lineno="162"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
-<codeline lineno="163"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>source;</highlight></codeline>
-<codeline lineno="165"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="166"><highlight class="normal"></highlight></codeline>
-<codeline lineno="171"><highlight class="normal">__STATIC_FORCEINLINE<sp/>q7_t<sp/>*read_and_pad_reordered(q7_t<sp/>*source,<sp/>q31_t<sp/>*<sp/>out1,<sp/>q31_t<sp/>*<sp/>out2)</highlight></codeline>
-<codeline lineno="172"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>q31_t<sp/><sp/><sp/><sp/><sp/>inA<sp/>=<sp/>read_q7x4_ia(&amp;source);</highlight></codeline>
-<codeline lineno="174"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>RISCV_MATH_BIG_ENDIAN</highlight></codeline>
-<codeline lineno="175"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*out2<sp/>=<sp/>__SXTB16(__ROR(inA,<sp/>8));</highlight></codeline>
-<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*out1<sp/>=<sp/>__SXTB16(inA);</highlight></codeline>
-<codeline lineno="177"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
-<codeline lineno="178"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*out1<sp/>=<sp/>__SXTB16(__ROR(inA,<sp/>8));</highlight></codeline>
-<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*out2<sp/>=<sp/>__SXTB16(inA);</highlight></codeline>
-<codeline lineno="180"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
-<codeline lineno="181"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>source;</highlight></codeline>
-<codeline lineno="183"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="184"><highlight class="normal"></highlight></codeline>
-<codeline lineno="188"><highlight class="normal">__STATIC_FORCEINLINE<sp/>q7_t<sp/>*read_and_pad_reordered_with_offset(q7_t<sp/>*source,<sp/>q31_t<sp/>*<sp/>out1,<sp/>q31_t<sp/>*<sp/>out2,q31_t<sp/>offset)</highlight></codeline>
-<codeline lineno="189"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>q31_t<sp/><sp/><sp/><sp/><sp/>inA<sp/>=<sp/>read_q7x4_ia(&amp;source);</highlight></codeline>
-<codeline lineno="191"><highlight class="normal"></highlight></codeline>
-<codeline lineno="192"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>RISCV_MATH_BIG_ENDIAN</highlight></codeline>
-<codeline lineno="193"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*out2<sp/>=<sp/>__SXTB16(__ROR(inA,<sp/>8));</highlight></codeline>
-<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*out1<sp/>=<sp/>__SXTB16(inA);</highlight></codeline>
-<codeline lineno="195"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight></codeline>
-<codeline lineno="196"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*out1<sp/>=<sp/>__SXTB16(__ROR(inA,<sp/>8));</highlight></codeline>
-<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*out2<sp/>=<sp/>__SXTB16(inA);</highlight></codeline>
-<codeline lineno="198"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
-<codeline lineno="199"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*out1<sp/>=<sp/>__QADD16(*out1,offset);</highlight></codeline>
-<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*out2<sp/>=<sp/>__QADD16(*out2,offset);</highlight></codeline>
-<codeline lineno="201"><highlight class="normal"></highlight></codeline>
-<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>source;</highlight></codeline>
-<codeline lineno="203"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="204"><highlight class="normal"></highlight></codeline>
-<codeline lineno="205"><highlight class="normal"></highlight></codeline>
-<codeline lineno="206"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
-<codeline lineno="207"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="208"><highlight class="normal"></highlight></codeline>
-<codeline lineno="209"><highlight class="normal"></highlight></codeline>
-<codeline lineno="232"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__NNBasicMath_1gae785703e6b6be36f6c643de582e1bdbf" kindref="member">riscv_nn_mult_q15</ref>(</highlight></codeline>
-<codeline lineno="233"><highlight class="normal"><sp/><sp/>q15_t<sp/>*<sp/>pSrcA,</highlight></codeline>
-<codeline lineno="234"><highlight class="normal"><sp/><sp/>q15_t<sp/>*<sp/>pSrcB,</highlight></codeline>
-<codeline lineno="235"><highlight class="normal"><sp/><sp/>q15_t<sp/>*<sp/>pDst,</highlight></codeline>
-<codeline lineno="236"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint16_t<sp/>out_shift,</highlight></codeline>
-<codeline lineno="237"><highlight class="normal"><sp/><sp/>uint32_t<sp/>blockSize);</highlight></codeline>
-<codeline lineno="238"><highlight class="normal"></highlight></codeline>
-<codeline lineno="254"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__NNBasicMath_1ga53b69e8309dbc2e6c3f6f5bc42ea3d88" kindref="member">riscv_nn_mult_q7</ref>(</highlight></codeline>
-<codeline lineno="255"><highlight class="normal"><sp/><sp/>q7_t<sp/>*<sp/>pSrcA,</highlight></codeline>
-<codeline lineno="256"><highlight class="normal"><sp/><sp/>q7_t<sp/>*<sp/>pSrcB,</highlight></codeline>
-<codeline lineno="257"><highlight class="normal"><sp/><sp/>q7_t<sp/>*<sp/>pDst,</highlight></codeline>
-<codeline lineno="258"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint16_t<sp/>out_shift,</highlight></codeline>
-<codeline lineno="259"><highlight class="normal"><sp/><sp/>uint32_t<sp/>blockSize);</highlight></codeline>
-<codeline lineno="260"><highlight class="normal"></highlight></codeline>
-<codeline lineno="264"><highlight class="preprocessor">#ifndef<sp/>RISCV_NN_TRUNCATE</highlight></codeline>
-<codeline lineno="265"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>NN_ROUND(out_shift)<sp/>(<sp/>(0x1<sp/>&lt;&lt;<sp/>out_shift)<sp/>&gt;&gt;<sp/>1<sp/>)</highlight></codeline>
-<codeline lineno="266"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#else</highlight></codeline>
-<codeline lineno="267"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>NN_ROUND(out_shift)<sp/>0</highlight></codeline>
-<codeline lineno="268"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
-<codeline lineno="269"><highlight class="preprocessor"></highlight></codeline>
-<codeline lineno="278"><highlight class="normal">__STATIC_FORCEINLINE<sp/>q31_t<sp/>riscv_nn_sat_doubling_high_mult(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q31_t<sp/>m1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q31_t<sp/>m2)</highlight></codeline>
-<codeline lineno="279"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/>q31_t<sp/>result<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Rounding<sp/>offset<sp/>to<sp/>add<sp/>for<sp/>a<sp/>right<sp/>shift<sp/>of<sp/>31</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/>q63_t<sp/>mult<sp/>=<sp/>1<sp/>&lt;&lt;<sp/>30;</highlight></codeline>
-<codeline lineno="283"><highlight class="normal"></highlight></codeline>
-<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((m1<sp/>&lt;<sp/>0)<sp/>^<sp/>(m2<sp/>&lt;<sp/>0))</highlight></codeline>
-<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mult<sp/>=<sp/>1<sp/>-<sp/>mult;</highlight></codeline>
-<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Gets<sp/>resolved<sp/>as<sp/>a<sp/>SMLAL<sp/>instruction</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/>mult<sp/>=<sp/>mult<sp/>+<sp/>(q63_t)m1<sp/>*<sp/>m2;</highlight></codeline>
-<codeline lineno="290"><highlight class="normal"></highlight></codeline>
-<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Utilize<sp/>all<sp/>of<sp/>the<sp/>upper<sp/>32<sp/>bits.<sp/>This<sp/>is<sp/>the<sp/>doubling<sp/>step</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>as<sp/>well.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/>result<sp/>=<sp/>mult<sp/>/<sp/>(1UL<sp/>&lt;&lt;<sp/>31);</highlight></codeline>
-<codeline lineno="294"><highlight class="normal"></highlight></codeline>
-<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((m1<sp/>==<sp/>m2)<sp/>&amp;&amp;<sp/>(m1<sp/>==<sp/>Q31_MIN))</highlight></codeline>
-<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>=<sp/>Q31_MAX;</highlight></codeline>
-<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
-<codeline lineno="300"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="301"><highlight class="normal"></highlight></codeline>
-<codeline lineno="310"><highlight class="normal">__STATIC_FORCEINLINE<sp/>q31_t<sp/>riscv_nn_divide_by_power_of_two(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q31_t<sp/>dividend,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q31_t<sp/>exponent)</highlight></codeline>
-<codeline lineno="311"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/>q31_t<sp/>result<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q31_t<sp/>remainder_mask<sp/>=<sp/>(1l<sp/>&lt;&lt;<sp/>exponent)<sp/>-<sp/>1;</highlight></codeline>
-<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/>int32_t<sp/>remainder<sp/>=<sp/>remainder_mask<sp/>&amp;<sp/>dividend;</highlight></codeline>
-<codeline lineno="315"><highlight class="normal"></highlight></codeline>
-<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Basic<sp/>division</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/>result<sp/>=<sp/>dividend<sp/>&gt;&gt;<sp/>exponent;</highlight></codeline>
-<codeline lineno="318"><highlight class="normal"></highlight></codeline>
-<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Adjust<sp/>&apos;result&apos;<sp/>for<sp/>rounding<sp/>(mid<sp/>point<sp/>away<sp/>from<sp/>zero)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/>q31_t<sp/>threshold<sp/>=<sp/>remainder_mask<sp/>&gt;&gt;<sp/>1;</highlight></codeline>
-<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(result<sp/>&lt;<sp/>0)</highlight></codeline>
-<codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>threshold++;</highlight></codeline>
-<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(remainder<sp/>&gt;<sp/>threshold)</highlight></codeline>
-<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result++;</highlight></codeline>
-<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="329"><highlight class="normal"></highlight></codeline>
-<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*out2<sp/>=<sp/>__PKHTB(inAbuf1,<sp/>inAbuf2,<sp/>16);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*out1<sp/>=<sp/>__PKHBT(inAbuf2,<sp/>inAbuf1,<sp/>16);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>source;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal">__STATIC_FORCEINLINE<sp/>q7_t<sp/>*read_and_pad_reordered(q7_t<sp/>*source,<sp/>q31_t<sp/>*<sp/>out1,<sp/>q31_t<sp/>*<sp/>out2)</highlight></codeline>
+<codeline lineno="167"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>q31_t<sp/><sp/><sp/><sp/><sp/>inA<sp/>=<sp/>read_q7x4_ia(&amp;source);</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*out2<sp/>=<sp/>__SXTB16(__ROR(inA,<sp/>8));</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*out1<sp/>=<sp/>__SXTB16(inA);</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>source;</highlight></codeline>
+<codeline lineno="173"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal">__STATIC_FORCEINLINE<sp/>q7_t<sp/>*read_and_pad_reordered_with_offset(q7_t<sp/>*source,<sp/>q31_t<sp/>*<sp/>out1,<sp/>q31_t<sp/>*<sp/>out2,q31_t<sp/>offset)</highlight></codeline>
+<codeline lineno="179"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>q31_t<sp/><sp/><sp/><sp/><sp/>inA<sp/>=<sp/>read_q7x4_ia(&amp;source);</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*out2<sp/>=<sp/>__SXTB16(__ROR(inA,<sp/>8));</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*out1<sp/>=<sp/>__SXTB16(inA);</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*out1<sp/>=<sp/>__QADD16(*out1,offset);</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*out2<sp/>=<sp/>__QADD16(*out2,offset);</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>source;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="192"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__NNBasicMath_1gae785703e6b6be36f6c643de582e1bdbf" kindref="member">riscv_nn_mult_q15</ref>(</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/>q15_t<sp/>*<sp/>pSrcA,</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/>q15_t<sp/>*<sp/>pSrcB,</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/>q15_t<sp/>*<sp/>pDst,</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint16_t<sp/>out_shift,</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/>uint32_t<sp/>blockSize);</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"></highlight></codeline>
+<codeline lineno="239"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__NNBasicMath_1ga53b69e8309dbc2e6c3f6f5bc42ea3d88" kindref="member">riscv_nn_mult_q7</ref>(</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/>q7_t<sp/>*<sp/>pSrcA,</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/>q7_t<sp/>*<sp/>pSrcB,</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/>q7_t<sp/>*<sp/>pDst,</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint16_t<sp/>out_shift,</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/>uint32_t<sp/>blockSize);</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"></highlight></codeline>
+<codeline lineno="249"><highlight class="preprocessor">#ifndef<sp/>RISCV_NN_TRUNCATE</highlight></codeline>
+<codeline lineno="250"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>NN_ROUND(out_shift)<sp/>(<sp/>(0x1<sp/>&lt;&lt;<sp/>out_shift)<sp/>&gt;&gt;<sp/>1<sp/>)</highlight></codeline>
+<codeline lineno="251"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#else</highlight></codeline>
+<codeline lineno="252"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>NN_ROUND(out_shift)<sp/>0</highlight></codeline>
+<codeline lineno="253"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="254"><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="263"><highlight class="normal">__STATIC_FORCEINLINE<sp/>q31_t<sp/>riscv_nn_sat_doubling_high_mult(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q31_t<sp/>m1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q31_t<sp/>m2)</highlight></codeline>
+<codeline lineno="264"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/>q31_t<sp/>result<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Rounding<sp/>offset<sp/>to<sp/>add<sp/>for<sp/>a<sp/>right<sp/>shift<sp/>of<sp/>31</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/>q63_t<sp/>mult<sp/>=<sp/>1<sp/>&lt;&lt;<sp/>30;</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"></highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((m1<sp/>&lt;<sp/>0)<sp/>^<sp/>(m2<sp/>&lt;<sp/>0))</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mult<sp/>=<sp/>1<sp/>-<sp/>mult;</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Gets<sp/>resolved<sp/>as<sp/>a<sp/>SMLAL<sp/>instruction</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/>mult<sp/>=<sp/>mult<sp/>+<sp/>(q63_t)m1<sp/>*<sp/>m2;</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"></highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Utilize<sp/>all<sp/>of<sp/>the<sp/>upper<sp/>32<sp/>bits.<sp/>This<sp/>is<sp/>the<sp/>doubling<sp/>step</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>as<sp/>well.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/>result<sp/>=<sp/>mult<sp/>/<sp/>(1UL<sp/>&lt;&lt;<sp/>31);</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"></highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((m1<sp/>==<sp/>m2)<sp/>&amp;&amp;<sp/>(m1<sp/>==<sp/>Q31_MIN))</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>=<sp/>Q31_MAX;</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
+<codeline lineno="285"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"></highlight></codeline>
+<codeline lineno="295"><highlight class="normal">__STATIC_FORCEINLINE<sp/>q31_t<sp/>riscv_nn_divide_by_power_of_two(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q31_t<sp/>dividend,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q31_t<sp/>exponent)</highlight></codeline>
+<codeline lineno="296"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/>q31_t<sp/>result<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q31_t<sp/>remainder_mask<sp/>=<sp/>(1l<sp/>&lt;&lt;<sp/>exponent)<sp/>-<sp/>1;</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/>int32_t<sp/>remainder<sp/>=<sp/>remainder_mask<sp/>&amp;<sp/>dividend;</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"></highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Basic<sp/>division</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/>result<sp/>=<sp/>dividend<sp/>&gt;&gt;<sp/>exponent;</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"></highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Adjust<sp/>&apos;result&apos;<sp/>for<sp/>rounding<sp/>(mid<sp/>point<sp/>away<sp/>from<sp/>zero)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/>q31_t<sp/>threshold<sp/>=<sp/>remainder_mask<sp/>&gt;&gt;<sp/>1;</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(result<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>threshold++;</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(remainder<sp/>&gt;<sp/>threshold)</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result++;</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"></highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
+<codeline lineno="316"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="317"><highlight class="normal"></highlight></codeline>
+<codeline lineno="327"><highlight class="normal">__STATIC_FORCEINLINE<sp/>q31_t<sp/>riscv_nn_requantize(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q31_t<sp/>val,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q31_t<sp/>multiplier,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q31_t<sp/>shift)</highlight></codeline>
+<codeline lineno="328"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>riscv_nn_divide_by_power_of_two(riscv_nn_sat_doubling_high_mult(val<sp/>*<sp/>(1<sp/>&lt;&lt;<sp/>LEFT_SHIFT(shift)),<sp/>multiplier),</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RIGHT_SHIFT(shift));</highlight></codeline>
 <codeline lineno="331"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="332"><highlight class="normal"></highlight></codeline>
-<codeline lineno="342"><highlight class="normal">__STATIC_FORCEINLINE<sp/>q31_t<sp/>riscv_nn_requantize(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q31_t<sp/>val,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q31_t<sp/>multiplier,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q31_t<sp/>shift)</highlight></codeline>
-<codeline lineno="343"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="344"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>riscv_nn_divide_by_power_of_two(riscv_nn_sat_doubling_high_mult(val<sp/>*<sp/>(1<sp/>&lt;&lt;<sp/>LEFT_SHIFT(shift)),<sp/>multiplier),</highlight></codeline>
-<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RIGHT_SHIFT(shift));</highlight></codeline>
+<codeline lineno="338"><highlight class="normal">__STATIC_FORCEINLINE<sp/>q31_t<sp/>riscv_nn_read_q15x2_ia(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q15_t<sp/>**in_q15)</highlight></codeline>
+<codeline lineno="339"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><sp/>q31_t<sp/>val;</highlight></codeline>
+<codeline lineno="341"><highlight class="normal"></highlight></codeline>
+<codeline lineno="342"><highlight class="normal"><sp/><sp/>memcpy(&amp;val,<sp/>*in_q15,<sp/>4);</highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/>*in_q15<sp/>+=<sp/>2;</highlight></codeline>
+<codeline lineno="344"><highlight class="normal"></highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(val);</highlight></codeline>
 <codeline lineno="346"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="347"><highlight class="normal"></highlight></codeline>
-<codeline lineno="353"><highlight class="normal">__STATIC_FORCEINLINE<sp/>q31_t<sp/>riscv_nn_read_q15x2_ia(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q15_t<sp/>**in_q15)</highlight></codeline>
+<codeline lineno="353"><highlight class="normal">__STATIC_FORCEINLINE<sp/>q31_t<sp/>riscv_nn_read_q7x4_ia(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q7_t<sp/>**in_q7)</highlight></codeline>
 <codeline lineno="354"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="355"><highlight class="normal"><sp/><sp/>q31_t<sp/>val;</highlight></codeline>
-<codeline lineno="356"><highlight class="normal"></highlight></codeline>
-<codeline lineno="357"><highlight class="normal"><sp/><sp/>memcpy(&amp;val,<sp/>*in_q15,<sp/>4);</highlight></codeline>
-<codeline lineno="358"><highlight class="normal"><sp/><sp/>*in_q15<sp/>+=<sp/>2;</highlight></codeline>
-<codeline lineno="359"><highlight class="normal"></highlight></codeline>
-<codeline lineno="360"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(val);</highlight></codeline>
-<codeline lineno="361"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="362"><highlight class="normal"></highlight></codeline>
-<codeline lineno="368"><highlight class="normal">__STATIC_FORCEINLINE<sp/>q31_t<sp/>riscv_nn_read_q7x4_ia(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>q7_t<sp/>**in_q7)</highlight></codeline>
-<codeline lineno="369"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="370"><highlight class="normal"><sp/><sp/>q31_t<sp/>val;</highlight></codeline>
-<codeline lineno="371"><highlight class="normal"><sp/><sp/>memcpy(&amp;val,<sp/>*in_q7,<sp/>4);</highlight></codeline>
-<codeline lineno="372"><highlight class="normal"><sp/><sp/>*in_q7<sp/>+=<sp/>4;</highlight></codeline>
-<codeline lineno="373"><highlight class="normal"></highlight></codeline>
-<codeline lineno="374"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(val);</highlight></codeline>
-<codeline lineno="375"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="376"><highlight class="normal"></highlight></codeline>
-<codeline lineno="377"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight></codeline>
-<codeline lineno="378"><highlight class="preprocessor"></highlight><highlight class="normal">}</highlight></codeline>
-<codeline lineno="379"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
-<codeline lineno="380"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="381"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"><sp/><sp/>memcpy(&amp;val,<sp/>*in_q7,<sp/>4);</highlight></codeline>
+<codeline lineno="357"><highlight class="normal"><sp/><sp/>*in_q7<sp/>+=<sp/>4;</highlight></codeline>
+<codeline lineno="358"><highlight class="normal"></highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(val);</highlight></codeline>
+<codeline lineno="360"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="361"><highlight class="normal"></highlight></codeline>
+<codeline lineno="362"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight></codeline>
+<codeline lineno="363"><highlight class="preprocessor"></highlight><highlight class="normal">}</highlight></codeline>
+<codeline lineno="364"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="365"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="366"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
     <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Include/riscv_nnsupportfunctions.h"/>
   </compounddef>

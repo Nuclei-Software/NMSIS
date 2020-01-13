@@ -20,7 +20,7 @@ SysTimer API
 SysTick Code Example
 --------------------
 
-The code below shows the usage of the function :cpp:func:`SysTick_Config` with an GD32VF103.
+The code below shows the usage of the function :cpp:func:`SysTick_Config` and :cpp:func:`SysTick_Reload` with an GD32VF103 SoC.
 
 .. code-block:: c
     :linenos:
@@ -30,15 +30,18 @@ The code below shows the usage of the function :cpp:func:`SysTick_Config` with a
 
     volatile uint32_t msTicks = 0;                              /* Variable to store millisecond ticks */
 
+    #define CONFIG_TICKS        (SOC_TIMER_FREQ / 1000)
+    #define SysTick_Handler     eclic_mtip_handler
+
     void SysTick_Handler(void) {                                /* SysTick interrupt Handler. */
-      SysTimer_SetLoadValue(0);                                 /* Set 0 to Timer counter to reload timer. */
-      msTicks++;                                                /* See startup file startup_GD32VF103.s for SysTick vector */
+      SysTimer_Reload(CONFIG_TICKS);                            /* Call SysTick_Reload to reload timer. */
+      msTicks++;                                                /* See startup file startup_gd32vf103.S for SysTick vector */
     }
 
     int main (void) {
       uint32_t returnCode;
 
-      returnCode = SysTick_Config(SystemCoreClock / 1000);      /* Configure SysTick to generate an interrupt every millisecond */
+      returnCode = SysTick_Config(CONFIG_TICKS);                /* Configure SysTick to generate an interrupt every millisecond */
 
       if (returnCode != 0) {                                    /* Check return code for errors */
         // Error Handling
@@ -64,7 +67,7 @@ The code below shows the usage of various NMSIS Timer Interrupt functions with a
     void eclic_mtip_handler(void)
     {
         uint64_t now =  SysTimer_GetLoadValue();
-        SysTimer_SetCompareValue(now + TIMER_FREQ/100);
+        SysTimer_SetCompareValue(now + SOC_TIMER_FREQ/100);
     }
 
     static uint32_t int_cnt = 0;
@@ -94,7 +97,7 @@ The code below shows the usage of various NMSIS Timer Interrupt functions with a
     void setup_timer(void)
     {
         SysTimer_SetLoadValue(0);
-        SysTimer_SetCompareValue(TIMER_FREQ/100);
+        SysTimer_SetCompareValue(SOC_TIMER_FREQ/100);
     }
 
     int main (void)
