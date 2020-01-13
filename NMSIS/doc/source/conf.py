@@ -24,7 +24,7 @@ author = 'Nuclei'
 version = '1.0.0'
 
 # The full version, including alpha/beta/rc tags
-release = '1.0.0-alpha'
+release = '1.0.0-alpha.1'
 
 
 # -- General configuration ---------------------------------------------------
