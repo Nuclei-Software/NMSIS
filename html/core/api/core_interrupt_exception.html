@@ -1623,7 +1623,6 @@ __INTERRUPT void eclic_mtip_handler(void)
 <p>This function set trigger mode and polarity of the specific interrupt <em>IRQn</em>. <dl class="simple">
 <dt><strong>Remark</strong></dt><dd><p><ul class="simple">
 <li><p>IRQn must not be negative.</p></li>
-<li><p>The registers that control the status of interrupts are attribute.</p></li>
 </ul>
 </p>
 </dd>
@@ -1661,8 +1660,7 @@ __INTERRUPT void eclic_mtip_handler(void)
 </p>
 </dd>
 <dt><strong>Remark</strong></dt><dd><p><ul class="simple">
-<li><p>IRQn must not be negative.</p></li>
-<li><p>The registers that control the status of interrupts are attribute. </p></li>
+<li><p>IRQn must not be negative. </p></li>
 </ul>
 </p>
 </dd>
@@ -1682,11 +1680,10 @@ __INTERRUPT void eclic_mtip_handler(void)
 <dl class="function">
 <dt>
 <span class="target" id="group__NMSIS__Core__IntExc_1ga226570d14c924615a955e07b9883e415"></span><code class="sig-name descname">__STATIC_FORCEINLINE void __ECLIC_SetShvIRQ(IRQn_Type IRQn, uint32_t shv)</code></dt>
-<dd><p>Set trigger mode and polarity for a specific interrupt. </p>
-<p>This function set selective hardware vector of the specific interrupt <em>IRQn</em>. <dl class="simple">
+<dd><p>Set interrupt working mode for a specific interrupt. </p>
+<p>This function set selective hardware vector or non-vector working mode of the specific interrupt <em>IRQn</em>. <dl class="simple">
 <dt><strong>Remark</strong></dt><dd><p><ul class="simple">
-<li><p>IRQn must not be negative.</p></li>
-<li><p>The registers that control the status of interrupts are attribute. </p></li>
+<li><p>IRQn must not be negative. </p></li>
 </ul>
 </p>
 </dd>
@@ -1711,8 +1708,8 @@ __INTERRUPT void eclic_mtip_handler(void)
 <dl class="function">
 <dt>
 <span class="target" id="group__NMSIS__Core__IntExc_1gad7d7238a79c39c226a8289d027266cc0"></span><code class="sig-name descname">__STATIC_FORCEINLINE uint32_t __ECLIC_GetShvIRQ(IRQn_Type IRQn)</code></dt>
-<dd><p>Get trigger mode and polarity for a specific interrupt. </p>
-<p>This function get selective hardware vector of the specific interrupt <em>IRQn</em>. <dl class="simple">
+<dd><p>Get interrupt working mode for a specific interrupt. </p>
+<p>This function get selective hardware vector or non-vector working mode of the specific interrupt <em>IRQn</em>. <dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>shv<ul class="simple">
 <li><p>0 non-vector mode, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1ga6a01697e0ba89c691f98fee801f4a25c"><span class="std std-ref">ECLIC_NON_VECTOR_INTERRUPT</span></a></p></li>
 <li><p>1 vector mode, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1ga915384ab6567d38315e8cf5a566f4840"><span class="std std-ref">ECLIC_VECTOR_INTERRUPT</span></a> </p></li>
@@ -1720,8 +1717,7 @@ __INTERRUPT void eclic_mtip_handler(void)
 </p>
 </dd>
 <dt><strong>Remark</strong></dt><dd><p><ul class="simple">
-<li><p>IRQn must not be negative.</p></li>
-<li><p>The registers that control the status of interrupts are attribute. </p></li>
+<li><p>IRQn must not be negative. </p></li>
 </ul>
 </p>
 </dd>
@@ -1795,7 +1791,7 @@ __INTERRUPT void eclic_mtip_handler(void)
 <dt><strong>Remark</strong></dt><dd><p><ul class="simple">
 <li><p>IRQn must not be negative.</p></li>
 <li><p>If lvl_abs to be set is larger than the max level allowed, it will be force to be max level.</p></li>
-<li><p>When you set level value you need use clciinfo.nlbits to get the width of level. Then we could know the maximum of level. CLICINTCTLBITS is how many total bits are present in the clicintctl register. </p></li>
+<li><p>When you set level value you need use clciinfo.nlbits to get the width of level. Then we could know the maximum of level. CLICINTCTLBITS is how many total bits are present in the CLICINTCTL register. </p></li>
 </ul>
 </p>
 </dd>
