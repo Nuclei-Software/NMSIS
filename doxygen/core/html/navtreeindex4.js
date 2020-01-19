@@ -1,5 +1,8 @@
 var NAVTREEINDEX4 =
 {
+"group__NMSIS__Core__PeriphAccess.html#gaec43007d9998a0a0e01faede4133d6be":[1,2,2],
+"group__NMSIS__Core__PeriphAccess.html#gaf63697ed9952cc71e1225efe205f6cd3":[1,2,0],
+"group__NMSIS__Core__Registers.html":[1,4],
 "group__NMSIS__Core__Registers.html#ga768dc3bf3c5e4e75e117c4a053b6d0f7":[1,4,3],
 "group__NMSIS__Core__Registers.html#ga9fe08aae694cff694dde8758e73f4e3e":[1,4,4],
 "group__NMSIS__Core__SysTimer.html":[1,8],

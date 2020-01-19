@@ -1,5 +1,8 @@
 var NAVTREEINDEX3 =
 {
+"group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__MISC.html#ga4025d5f632fcaa18a002c764daa577bd":[1,10,0,8,4],
+"group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__MISC.html#ga562f85675e7444c4fb1e5e6c28c3c6c7":[1,10,0,8,7],
+"group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__MISC.html#ga5b8419c5f8c624d1a0e16c43efb798eb":[1,10,0,8,6],
 "group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__MISC.html#ga862e937fdf95c754472d41ab2df392f2":[1,10,0,8,2],
 "group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__MISC.html#ga9fefb44ce69dae8452a1f78462b36ace":[1,10,0,8,5],
 "group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__MISC.html#gaa75623ba7f5f23a440782f47f62f1f6f":[1,10,0,8,8],
@@ -246,8 +249,5 @@ var NAVTREEINDEX3 =
 "group__NMSIS__Core__PeriphAccess.html#ga286e3b913dbd236c7f48ea70c8821f4e":[1,2,7],
 "group__NMSIS__Core__PeriphAccess.html#ga4cc1649793116d7c2d8afce7a4ffce43":[1,2,1],
 "group__NMSIS__Core__PeriphAccess.html#ga7e25d9380f9ef903923964322e71f2f6":[1,2,4],
-"group__NMSIS__Core__PeriphAccess.html#gab6caba5853a60a17e8e04499b52bf691":[1,2,3],
-"group__NMSIS__Core__PeriphAccess.html#gaec43007d9998a0a0e01faede4133d6be":[1,2,2],
-"group__NMSIS__Core__PeriphAccess.html#gaf63697ed9952cc71e1225efe205f6cd3":[1,2,0],
-"group__NMSIS__Core__Registers.html":[1,4]
+"group__NMSIS__Core__PeriphAccess.html#gab6caba5853a60a17e8e04499b52bf691":[1,2,3]
 };

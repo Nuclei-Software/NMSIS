@@ -768,6 +768,9 @@
     <member refid="group__NMSIS__Core__CSR__Encoding_1gaa4bb5c6a2a139c0bfd77d4d5de00e8b6" kind="define"><name>MSTATUS_VM</name></member>
     <member refid="group__NMSIS__Core__CSR__Encoding_1gacca6e5c4f8af666a9b299af295f43348" kind="define"><name>MSTATUS32_SD</name></member>
     <member refid="group__NMSIS__Core__CSR__Encoding_1ga9d7df82e40e8cf00821e97a0bb8db04e" kind="define"><name>MSTATUS64_SD</name></member>
+    <member refid="group__NMSIS__Core__CSR__Encoding_1ga95a34cc78abc173fe829cf5b0daba397" kind="define"><name>MSTATUS_FS_INITIAL</name></member>
+    <member refid="group__NMSIS__Core__CSR__Encoding_1gaef9ff6d95030e46ca86237a320898ca3" kind="define"><name>MSTATUS_FS_CLEAN</name></member>
+    <member refid="group__NMSIS__Core__CSR__Encoding_1gaa704a5aece9149a30cefae0a0f77f034" kind="define"><name>MSTATUS_FS_DIRTY</name></member>
     <member refid="group__NMSIS__Core__CSR__Encoding_1ga431c67f7f0e4b5dbdf2048310ad814e0" kind="define"><name>SSTATUS_UIE</name></member>
     <member refid="group__NMSIS__Core__CSR__Encoding_1ga1c1f1da0ecfca5bc4fc4db3acadf1bc8" kind="define"><name>SSTATUS_SIE</name></member>
     <member refid="group__NMSIS__Core__CSR__Encoding_1ga796ad1a8b2314776082e72e13f4a30cf" kind="define"><name>SSTATUS_UPIE</name></member>
@@ -1133,8 +1136,8 @@
     <member refid="group__NMSIS__Core__CSR__Registers_1ga5e44edb3f3d95986c92f8efad5db0c2c" kind="define"><name>CSR_MTVT</name></member>
     <member refid="group__NMSIS__Core__CSR__Registers_1gacc09c434f52be7b1d5f715b9e7c87a81" kind="define"><name>CSR_MNXTI</name></member>
     <member refid="group__NMSIS__Core__CSR__Registers_1ga45bf722f7c1099ed2861045c00003379" kind="define"><name>CSR_MINTSTATUS</name></member>
-    <member refid="group__NMSIS__Core__CSR__Registers_1ga5fa2ec93eb9b347f21221e166381b742" kind="define"><name>CSR_SCRATCHCSW</name></member>
-    <member refid="group__NMSIS__Core__CSR__Registers_1ga241b2b266e6d0f4ab7a0fccd2794df89" kind="define"><name>CSR_SCRATCHCSWL</name></member>
+    <member refid="group__NMSIS__Core__CSR__Registers_1ga0e69a0c75e594c7801fce720de10fdbe" kind="define"><name>CSR_MSCRATCHCSW</name></member>
+    <member refid="group__NMSIS__Core__CSR__Registers_1gae205d4db7d1975b8a8accf904cb6feda" kind="define"><name>CSR_MSCRATCHCSWL</name></member>
     <member refid="group__NMSIS__Core__CSR__Registers_1gafa653e51ce2be6aa201caa8d36337e0f" kind="define"><name>CSR_MCLICBASE</name></member>
     <member refid="group__NMSIS__Core__CSR__Registers_1ga9643607a23d4bc6a50a562d0a1f5a8f3" kind="define"><name>CSR_MCOUNTINHIBIT</name></member>
     <member refid="group__NMSIS__Core__CSR__Registers_1ga13df3ff8aec804cae346b61b2643c589" kind="define"><name>CSR_MNVEC</name></member>
@@ -1261,6 +1264,9 @@
     <member refid="group__NMSIS__Core__CSR__Encoding_1gaa4bb5c6a2a139c0bfd77d4d5de00e8b6" kind="define"><name>MSTATUS_VM</name></member>
     <member refid="group__NMSIS__Core__CSR__Encoding_1gacca6e5c4f8af666a9b299af295f43348" kind="define"><name>MSTATUS32_SD</name></member>
     <member refid="group__NMSIS__Core__CSR__Encoding_1ga9d7df82e40e8cf00821e97a0bb8db04e" kind="define"><name>MSTATUS64_SD</name></member>
+    <member refid="group__NMSIS__Core__CSR__Encoding_1ga95a34cc78abc173fe829cf5b0daba397" kind="define"><name>MSTATUS_FS_INITIAL</name></member>
+    <member refid="group__NMSIS__Core__CSR__Encoding_1gaef9ff6d95030e46ca86237a320898ca3" kind="define"><name>MSTATUS_FS_CLEAN</name></member>
+    <member refid="group__NMSIS__Core__CSR__Encoding_1gaa704a5aece9149a30cefae0a0f77f034" kind="define"><name>MSTATUS_FS_DIRTY</name></member>
     <member refid="group__NMSIS__Core__CSR__Encoding_1ga431c67f7f0e4b5dbdf2048310ad814e0" kind="define"><name>SSTATUS_UIE</name></member>
     <member refid="group__NMSIS__Core__CSR__Encoding_1ga1c1f1da0ecfca5bc4fc4db3acadf1bc8" kind="define"><name>SSTATUS_SIE</name></member>
     <member refid="group__NMSIS__Core__CSR__Encoding_1ga796ad1a8b2314776082e72e13f4a30cf" kind="define"><name>SSTATUS_UPIE</name></member>
@@ -1647,8 +1653,8 @@
     <member refid="group__NMSIS__Core__CSR__Registers_1ga5e44edb3f3d95986c92f8efad5db0c2c" kind="define"><name>CSR_MTVT</name></member>
     <member refid="group__NMSIS__Core__CSR__Registers_1gacc09c434f52be7b1d5f715b9e7c87a81" kind="define"><name>CSR_MNXTI</name></member>
     <member refid="group__NMSIS__Core__CSR__Registers_1ga45bf722f7c1099ed2861045c00003379" kind="define"><name>CSR_MINTSTATUS</name></member>
-    <member refid="group__NMSIS__Core__CSR__Registers_1ga5fa2ec93eb9b347f21221e166381b742" kind="define"><name>CSR_SCRATCHCSW</name></member>
-    <member refid="group__NMSIS__Core__CSR__Registers_1ga241b2b266e6d0f4ab7a0fccd2794df89" kind="define"><name>CSR_SCRATCHCSWL</name></member>
+    <member refid="group__NMSIS__Core__CSR__Registers_1ga0e69a0c75e594c7801fce720de10fdbe" kind="define"><name>CSR_MSCRATCHCSW</name></member>
+    <member refid="group__NMSIS__Core__CSR__Registers_1gae205d4db7d1975b8a8accf904cb6feda" kind="define"><name>CSR_MSCRATCHCSWL</name></member>
     <member refid="group__NMSIS__Core__CSR__Registers_1gafa653e51ce2be6aa201caa8d36337e0f" kind="define"><name>CSR_MCLICBASE</name></member>
     <member refid="group__NMSIS__Core__CSR__Registers_1ga9643607a23d4bc6a50a562d0a1f5a8f3" kind="define"><name>CSR_MCOUNTINHIBIT</name></member>
     <member refid="group__NMSIS__Core__CSR__Registers_1ga13df3ff8aec804cae346b61b2643c589" kind="define"><name>CSR_MNVEC</name></member>
