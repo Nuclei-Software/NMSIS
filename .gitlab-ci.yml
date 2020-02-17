@@ -1,0 +1,83 @@
+variables:
+#  GIT_STRATEGY: fetch
+    CI_SCRATCH: /home/xl_ci/ci_scratch
+
+
+before_script:
+    - module load nucleisys/riscv-nuclei-elf-gcc
+    - module load common
+    - module load riscv/riscv32
+
+stages:
+    - build
+    - test
+    - release
+
+build_library:
+    stage: build
+    retry: 1
+    artifacts:
+        name: "nmsis_library-${CI_COMMIT_SHA::8}"
+        paths:
+            - NMSIS/Library
+        expire_in: 2 day
+    script:
+        - cd NMSIS
+        - make PARELLEL=1 gen
+    tags:
+        - software-server
+
+test_nn_library:
+    stage: test
+    when: delayed
+    start_in: 15 seconds
+    retry: 1
+    script:
+        - cd NMSIS/NN/NN_Lib_Tests/
+        - make gen
+        - cd nn_test
+        - make -B DSP_ENABLE=ON  run
+        - make -B DSP_ENABLE=OFF run
+        - cd ../../Examples/RISCV/
+        - source setup.sh
+        - DSP_ENABLE=ON run_all_nn_examples .
+        - DSP_ENABLE=OFF run_all_nn_examples .
+    tags:
+        - software-server
+    dependencies:
+        - build_library
+
+test_dsp_library:
+    stage: test
+    retry: 1
+    script:
+        - cd NMSIS/DSP/Examples/RISCV/
+        - source setup.sh
+        - DSP_ENABLE=ON run_all_dsp_examples .
+        - DSP_ENABLE=OFF run_all_dsp_examples .
+    tags:
+        - software-server
+    dependencies:
+        - build_library
+
+deploy_website:
+    stage: release
+    retry: 1
+    artifacts:
+        name: "nmsis_doc-${CI_COMMIT_SHA::8}"
+        paths:
+            - NMSIS/doc/build
+        expire_in: 2 day
+    script:
+        - pip3 install --user -r NMSIS/doc/requirements.txt
+        - cd NMSIS/doc
+        - export PATH=$HOME/.local/bin:$PATH
+        - make clean
+        - make all
+        - make latexpdf
+        - cp build/latex/*.pdf build/html/
+        - cd ../../
+        - ./.ci/ftp_deploy.sh $FTPUSER $FTPPWD $FTPSERVER NMSIS/doc/build/html nmsis
+    tags:
+        - software-server
+
