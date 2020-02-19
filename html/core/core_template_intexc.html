@@ -212,6 +212,7 @@
 <strong>Vector Interrupt</strong> and <strong>Non-Vector Interrupt</strong> features.</p>
 <div class="section" id="nmi-non-maskable-interrupt">
 <h2>NMI(Non-Maskable Interrupt)<a class="headerlink" href="#nmi-non-maskable-interrupt" title="Permalink to this headline">¶</a></h2>
+<p>Click <a class="reference external" href="https://doc.nucleisys.com/nuclei_spec/isa/nmi.html">https://doc.nucleisys.com/nuclei_spec/isa/nmi.html</a> to learn about Nuclei Processor Core NMI in Nuclei Spec.</p>
 <p>NMI is used for urgent external HW error. It can’t be masked and disabled.</p>
 <p>When NMI happened, bit 9 of CSR <code class="docutils literal notranslate"><span class="pre">MMSIC_CTL</span></code> will be checked.
 If this bit value is 1, then NMI entry address will be the same as exception(CSR_MTVEC), and exception code for NMI will be 0xFFF, otherwise NMI entry will be same as reset_vector.</p>
@@ -219,6 +220,7 @@ If this bit value is 1, then NMI entry address will be the same as exception(CSR
 </div>
 <div class="section" id="exception">
 <h2>Exception<a class="headerlink" href="#exception" title="Permalink to this headline">¶</a></h2>
+<p>Click <a class="reference external" href="https://doc.nucleisys.com/nuclei_spec/isa/exception.html">https://doc.nucleisys.com/nuclei_spec/isa/exception.html</a> to learn about Nuclei Processor Core Exception in Nuclei Spec.</p>
 <p>For CPU exception, the entry for exception will be <code class="docutils literal notranslate"><span class="pre">exc_entry</span></code>, in this entry code, it will call default exception handler <a class="reference internal" href="api/core_system_device.html#_CPPv422core_exception_handlermm" title="core_exception_handler"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">core_exception_handler()</span></code></a>.</p>
 <p>In the common exception routine(<code class="docutils literal notranslate"><span class="pre">exc_entry</span></code>) to get more information like exception code.
 Exception handle flow show as below picture:</p>
@@ -236,6 +238,7 @@ Exception handle flow show as below picture:</p>
 </div>
 <div class="section" id="interrupt">
 <h2>Interrupt<a class="headerlink" href="#interrupt" title="Permalink to this headline">¶</a></h2>
+<p>Click <a class="reference external" href="https://doc.nucleisys.com/nuclei_spec/isa/interrupt.html">https://doc.nucleisys.com/nuclei_spec/isa/interrupt.html</a> to learn about Nuclei Processor Core Interrupt in Nuclei Spec.</p>
 <p>Interrupt could be configured as <strong>CLINT</strong> mode or <strong>ECILC</strong> mode.</p>
 <p>In NMSIS-Core, Interrupt has been configured as <strong>ECLIC</strong> mode during startup in <em>startup_&lt;Devices&gt;.S</em>, which is also recommended setting using Nuclei Processors.</p>
 <p>ECLIC managed interrupt could configured as <strong>vector</strong> and <strong>non-vector</strong> mode.</p>
@@ -343,7 +346,7 @@ Non-vector mode software handle flow show as below pciture:</p>
 7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">static</span> <span class="kt">uint32_t</span> <span class="n">btn_pressed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="c1">// Vector interrupt handler for on-board button</span>
 <span class="c1">// This function is an leaf function, no function call is allowed</span>
-<span class="kt">void</span> <span class="nf">SOC_BUTTON_1_HANDLER</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="n">__INTERRUPT</span> <span class="kt">void</span> <span class="nf">SOC_BUTTON_1_HANDLER</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">btn_pressed</span> <span class="o">++</span><span class="p">;</span>
 <span class="p">}</span>
