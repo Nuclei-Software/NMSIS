@@ -38,7 +38,7 @@ curve for micro-controller developers, and reducing the time to market for new d
 
 ## Documentation
 
-If you want to learn more about this project, please visit this [NMSIS documentation](https://nuclei-software.github.io/NMSIS).
+If you want to learn more about this project, please visit this [NMSIS documentation](https://doc.nucleisys.com/nmsis/).
 
 ## License
 

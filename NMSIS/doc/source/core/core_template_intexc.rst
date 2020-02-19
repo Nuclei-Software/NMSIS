@@ -14,6 +14,8 @@ Nuclei processors provide **NMI(Non-Maskable Interrupt)**, **Exception**,
 NMI(Non-Maskable Interrupt)
 ---------------------------
 
+Click https://doc.nucleisys.com/nuclei_spec/isa/nmi.html to learn about Nuclei Processor Core NMI in Nuclei Spec.
+
 NMI is used for urgent external HW error. It can't be masked and disabled.
 
 When NMI happened, bit 9 of CSR ``MMSIC_CTL`` will be checked.
@@ -24,6 +26,8 @@ In NMSIS-Core, the bit 9 of CSR ``MMISC_CTL`` is set to 1 during core startup, s
 
 Exception
 ---------
+
+Click https://doc.nucleisys.com/nuclei_spec/isa/exception.html to learn about Nuclei Processor Core Exception in Nuclei Spec.
 
 For CPU exception, the entry for exception will be ``exc_entry``, in this entry code, it will call default exception handler :cpp:func:`core_exception_handler`.
 
@@ -51,6 +55,8 @@ When exception exception return it will run the intruction which trigger the exc
 
 Interrupt
 ---------
+
+Click https://doc.nucleisys.com/nuclei_spec/isa/interrupt.html to learn about Nuclei Processor Core Interrupt in Nuclei Spec.
 
 Interrupt could be configured as **CLINT** mode or **ECILC** mode.
 
@@ -185,7 +191,7 @@ Here is sample code for above non-nested vector interrupt handler which is a lea
     static uint32_t btn_pressed = 0;
     // Vector interrupt handler for on-board button
     // This function is an leaf function, no function call is allowed
-    void SOC_BUTTON_1_HANDLER(void)
+    __INTERRUPT void SOC_BUTTON_1_HANDLER(void)
     {
         btn_pressed ++;
     }

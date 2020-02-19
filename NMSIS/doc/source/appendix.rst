@@ -17,10 +17,12 @@ Appendix
 
 * **Nuclei SDK**: https://github.com/Nuclei-Software/nuclei-sdk
 
-* **NMSIS**: https://github.com/Nuclei-Software/NMSIS
+* **NMSIS**: https://doc.nucleisys.com/nmsis/
 
 * **Nuclei Bumblebee Core Document**: https://github.com/nucleisys/Bumblebee_Core_Doc
 
 * **Nuclei RISC-V IP Products**: https://www.nucleisys.com/product.php
 
 * **RISC-V MCU Community Website**: http://www.riscv-mcu.com/
+
+* **Nuclei Spec**: https://doc.nucleisys.com/nuclei_spec

@@ -8,7 +8,7 @@ About NMSIS
 -----------
 
 The **NMSIS** is a vendor-independent hardware abstraction layer for
-micro-controllers that are based on Nuclei processors.
+micro-controllers that are based on `Nuclei Processors`_.
 
 The **NMSIS** defines generic tool interfaces and enables consistent
 device support. It provides simple software interfaces to the processor
@@ -152,3 +152,4 @@ This **NMSIS** is provided free of charge by Nuclei under the `Apache 2.0 Licens
 .. _RISC-V ELF psABI specification: https://github.com/riscv/riscv-elf-psabi-doc/blob/master/riscv-elf.md
 .. _Apache 2.0 License: http://www.apache.org/licenses/LICENSE-2.0
 .. _NMSIS Github Repository: https://github.com/Nuclei-Software/NMSIS
+.. _Nuclei Processors: https://doc.nucleisys.com/nuclei_spec
