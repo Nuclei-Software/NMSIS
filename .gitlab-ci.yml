@@ -64,8 +64,10 @@ deploy_website:
     stage: release
     retry: 1
     only:
+        refs:
+          - master
         changes:
-            - NMSIS/doc/source/*
+          - NMSIS/doc/source/**/**/**/*
     artifacts:
         name: "nmsis_doc-${CI_COMMIT_SHA::8}"
         paths:
@@ -83,6 +85,4 @@ deploy_website:
         - ./.ci/ftp_deploy.sh $FTPUSER $FTPPWD $FTPSERVER NMSIS/doc/build/html nmsis
     tags:
         - software-server
-    only:
-        - master
 
