@@ -3,7 +3,7 @@
 Appendix
 ========
 
-* **Nuclei RISCV Tools Download**: https://nucleisys.com/download.php
+* **Nuclei Tools and Documents**: https://nucleisys.com/download.php
 
 * **Nuclei riscv-openocd Repo**: https://github.com/riscv-mcu/riscv-openocd
 
