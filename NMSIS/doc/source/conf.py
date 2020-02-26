@@ -24,7 +24,7 @@ author = 'Nuclei'
 version = '1.0.0'
 
 # The full version, including alpha/beta/rc tags
-release = '1.0.0-alpha.1'
+release = '1.0.0-beta'
 
 
 # -- General configuration ---------------------------------------------------
@@ -76,6 +76,11 @@ breathe_projects = {
 breathe_default_project = "nmsis_core"
 breathe_show_define_initializer = True
 
+# -- Options for Latex output -------------------------------------------------
+latex_logo = 'asserts/images/nmsis_logo.png'
+latex_show_pagerefs = True
+latex_toplevel_sectioning = 'chapter'
+latex_show_urls = 'footnote'
 
 rst_epilog = """
 .. |nuclei_core| replace:: Nuclei N/NX Class Processors
