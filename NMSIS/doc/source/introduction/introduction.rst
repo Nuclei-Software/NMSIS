@@ -49,9 +49,14 @@ standard peripherals. The silicon industry can therefore support the
 wide variations of Nuclei processor-based devices with this common
 standard.
 
-.. image:: /asserts/images/NMSIS_Overview.png
+.. _figure_intro_1:
+
+.. figure:: /asserts/images/NMSIS_Overview.png
     :alt: NMSIS Design Diagram
-    :scale: 80%
+    :width: 70%
+    :align: center
+
+    NMSIS Design Diagram
 
 
 We can achieve the following benefits of **NMSIS**:
