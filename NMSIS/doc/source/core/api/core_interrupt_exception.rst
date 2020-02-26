@@ -6,50 +6,60 @@ Interrupts and Exceptions
 Description
 -----------
 
-This section explains how to use interrupts and exceptions and access functions for the  Enhanced Core Local Interrupt Controller(ECLIC).
+This section explains how to use interrupts and exceptions and access functions for the 
+`Enhanced Core Local Interrupt Controller(ECLIC)`_.
 
-Nuclei provides a template file startup_device for each supported compiler. The file must be adapted by the silicon vendor to include
-interrupt vectors for all device-specific interrupt handlers. Each interrupt handler is defined as a weak function to an dummy handler.
+Nuclei provides a template file startup_device for each supported compiler. 
+The file must be adapted by the silicon vendor to include
+interrupt vectors for all device-specific interrupt handlers.
+Each interrupt handler is defined as a weak function to an dummy handler.
 These interrupt handlers can be used directly in application software without being adapted by the programmer.
+
+Click `Interrupt`_ to learn more about interrupt handling in Nuclei processor core.
 
 NMI Interrupt
 -------------
 
-NMI interrupt entry is stored by CSR_MNVEC. If CSR_MMSIC[9] is 1 then NMI entry is the same as **Exception** which get from CSR_MTVEC.
+`NMI interrupt`_ entry is stored by **CSR_MNVEC**.
+If CSR_MMSIC[9] is 1 then NMI entry is the same as **Exception** which get from CSR_MTVEC.
 If CSR_MMSIC[9] is 1 NMI entry is reset vector.
 
 Exception
 ---------
 
-Exception has only 1 entry address which stored by CSR_MTVEC. All the exceptions will jump to the same entry ``exc_entry`` defined in ``intexc_<Device>.S``.
+`Exception`_ has only 1 entry address which stored by CSR_MTVEC. All the exceptions will jump to the same entry ``exc_entry`` defined in ``intexc_<Device>.S``.
 
 The table below lists the core exception code of the Nuclei N/NX processors.
 
-+--------------------+-------+------------------------------------+
-| Exception Code     | Value | Description                        |
-+--------------------+-------+------------------------------------+
-| InsUnalign_EXCn    | 0     | Instruction address misaligned     |
-+--------------------+-------+------------------------------------+
-| InsAccFault_EXCn   | 1     | Instruction access fault           |
-+--------------------+-------+------------------------------------+
-| IlleIns_EXCn       | 2     | Illegal instruction                |
-+--------------------+-------+------------------------------------+
-| Break_EXCn         | 3     | Beakpoint                          |
-+--------------------+-------+------------------------------------+
-| LdAddrUnalign_EXCn | 4     | Load address misaligned            |
-+--------------------+-------+------------------------------------+
-| LdFault_EXCn       | 5     | Load access fault                  |
-+--------------------+-------+------------------------------------+
-| StAddrUnalign_EXCn | 6     | Store or AMO address misaligned    |
-+--------------------+-------+------------------------------------+
-| StAccessFault_EXCn | 7     | Store or AMO access fault          |
-+--------------------+-------+------------------------------------+
-| UmodeEcall_EXCn    | 8     | Environment call from User mode    |
-+--------------------+-------+------------------------------------+
-| MmodeEcall_EXCn    | 11    | Environment call from Machine mode |
-+--------------------+-------+------------------------------------+
-| NMI_EXCn           | 0xfff | NMI interrupt                      |
-+--------------------+-------+------------------------------------+
+.. _table_api_core_intexc_1:
+
+.. table:: Core exception code of the Nuclei N/NX processors
+
+   +--------------------+-------+------------------------------------+
+   | Exception Code     | Value | Description                        |
+   +--------------------+-------+------------------------------------+
+   | InsUnalign_EXCn    | 0     | Instruction address misaligned     |
+   +--------------------+-------+------------------------------------+
+   | InsAccFault_EXCn   | 1     | Instruction access fault           |
+   +--------------------+-------+------------------------------------+
+   | IlleIns_EXCn       | 2     | Illegal instruction                |
+   +--------------------+-------+------------------------------------+
+   | Break_EXCn         | 3     | Beakpoint                          |
+   +--------------------+-------+------------------------------------+
+   | LdAddrUnalign_EXCn | 4     | Load address misaligned            |
+   +--------------------+-------+------------------------------------+
+   | LdFault_EXCn       | 5     | Load access fault                  |
+   +--------------------+-------+------------------------------------+
+   | StAddrUnalign_EXCn | 6     | Store or AMO address misaligned    |
+   +--------------------+-------+------------------------------------+
+   | StAccessFault_EXCn | 7     | Store or AMO access fault          |
+   +--------------------+-------+------------------------------------+
+   | UmodeEcall_EXCn    | 8     | Environment call from User mode    |
+   +--------------------+-------+------------------------------------+
+   | MmodeEcall_EXCn    | 11    | Environment call from Machine mode |
+   +--------------------+-------+------------------------------------+
+   | NMI_EXCn           | 0xfff | NMI interrupt                      |
+   +--------------------+-------+------------------------------------+
 
 Vector Table
 ------------
@@ -60,23 +70,27 @@ It is typically located at the beginning of the program memory,
 and you can modify CSR MTVT to reallocate the base address of this vector table,
 but you need to take care of the base address alignment according to the number of interrupts.
 
-+---------------------+------------------------------------+
-| Number of Interrupt | Alignment Requirements of CSR MTVT |
-+---------------------+------------------------------------+
-| 0 to 16             | 64-byte                            |
-+---------------------+------------------------------------+
-| 17 to 32            | 128-byte                           |
-+---------------------+------------------------------------+
-| 33 to 64            | 256-byte                           |
-+---------------------+------------------------------------+
-| 65 to 128           | 512-byte                           |
-+---------------------+------------------------------------+
-| 129 to 256          | 1KB                                |
-+---------------------+------------------------------------+
-| 257 to 512          | 2KB                                |
-+---------------------+------------------------------------+
-| 513 to 1024         | 4KB                                |
-+---------------------+------------------------------------+
+.. _table_api_core_intexc_2:
+
+.. table:: base address alignment according to the number of interrupts
+
+   +---------------------+------------------------------------+
+   | Number of Interrupt | Alignment Requirements of CSR MTVT |
+   +---------------------+------------------------------------+
+   | 0 to 16             | 64-byte                            |
+   +---------------------+------------------------------------+
+   | 17 to 32            | 128-byte                           |
+   +---------------------+------------------------------------+
+   | 33 to 64            | 256-byte                           |
+   +---------------------+------------------------------------+
+   | 65 to 128           | 512-byte                           |
+   +---------------------+------------------------------------+
+   | 129 to 256          | 1KB                                |
+   +---------------------+------------------------------------+
+   | 257 to 512          | 2KB                                |
+   +---------------------+------------------------------------+
+   | 513 to 1024         | 4KB                                |
+   +---------------------+------------------------------------+
 
 Interrupt number 0~18 is reserved by Nuclei Core.
 19~1023 could be used by Silicon Vendor Device.
@@ -126,55 +140,59 @@ When macro ``NMSIS_ECLIC_VIRTUAL`` is defined, the ECLIC access functions in the
 These functions should be implemented in a separate source module.
 The original NMSIS-Core ``__ECLIC_xxx`` functions are always available independent of ``NMSIS_ECLIC_VIRTUAL`` macro.
 
-+----------------------------------+-------------------------------------+
-| ECLIC ACCESS FUNCTIONS           | NMSIS-CORE FUNCTIONS FOR ECLIC      |
-+----------------------------------+-------------------------------------+
-| :c:macro:`ECLIC_SetCfgNlbits`    | :cpp:func:`__ECLIC_SetCfgNlbits`    |
-+----------------------------------+-------------------------------------+
-| :c:macro:`ECLIC_GetCfgNlbits`    | :cpp:func:`__ECLIC_GetCfgNlbits`    |
-+----------------------------------+-------------------------------------+
-| :c:macro:`ECLIC_GetInfoVer`      | :cpp:func:`__ECLIC_GetInfoVer`      |
-+----------------------------------+-------------------------------------+
-| :c:macro:`ECLIC_GetInfoCtlbits`  | :cpp:func:`__ECLIC_GetInfoCtlbits`  |
-+----------------------------------+-------------------------------------+
-| :c:macro:`ECLIC_GetInfoNum`      | :cpp:func:`__ECLIC_GetInfoNum`      |
-+----------------------------------+-------------------------------------+
-| :c:macro:`ECLIC_SetMth`          | :cpp:func:`__ECLIC_SetMth`          |
-+----------------------------------+-------------------------------------+
-| :c:macro:`ECLIC_GetMth`          | :cpp:func:`__ECLIC_GetMth`          |
-+----------------------------------+-------------------------------------+
-| :c:macro:`ECLIC_EnableIRQ`       | :cpp:func:`__ECLIC_EnableIRQ`       |
-+----------------------------------+-------------------------------------+
-| :c:macro:`ECLIC_GetEnableIRQ`    | :cpp:func:`__ECLIC_GetEnableIRQ`    |
-+----------------------------------+-------------------------------------+
-| :c:macro:`ECLIC_DisableIRQ`      | :cpp:func:`__ECLIC_DisableIRQ`      |
-+----------------------------------+-------------------------------------+
-| :c:macro:`ECLIC_SetPendingIRQ`   | :cpp:func:`__ECLIC_SetPendingIRQ`   |
-+----------------------------------+-------------------------------------+
-| :c:macro:`ECLIC_GetPendingIRQ`   | :cpp:func:`__ECLIC_GetPendingIRQ`   |
-+----------------------------------+-------------------------------------+
-| :c:macro:`ECLIC_ClearPendingIRQ` | :cpp:func:`__ECLIC_ClearPendingIRQ` |
-+----------------------------------+-------------------------------------+
-| :c:macro:`ECLIC_SetTrigIRQ`      | :cpp:func:`__ECLIC_SetTrigIRQ`      |
-+----------------------------------+-------------------------------------+
-| :c:macro:`ECLIC_GetTrigIRQ`      | :cpp:func:`__ECLIC_GetTrigIRQ`      |
-+----------------------------------+-------------------------------------+
-| :c:macro:`ECLIC_SetShvIRQ`       | :cpp:func:`__ECLIC_SetShvIRQ`       |
-+----------------------------------+-------------------------------------+
-| :c:macro:`ECLIC_GetShvIRQ`       | :cpp:func:`__ECLIC_GetShvIRQ`       |
-+----------------------------------+-------------------------------------+
-| :c:macro:`ECLIC_SetCtrlIRQ`      | :cpp:func:`__ECLIC_SetCtrlIRQ`      |
-+----------------------------------+-------------------------------------+
-| :c:macro:`ECLIC_GetCtrlIRQ`      | :cpp:func:`__ECLIC_GetCtrlIRQ`      |
-+----------------------------------+-------------------------------------+
-| :c:macro:`ECLIC_SetLevelIRQ`     | :cpp:func:`__ECLIC_SetLevelIRQ`     |
-+----------------------------------+-------------------------------------+
-| :c:macro:`ECLIC_GetLevelIRQ`     | :cpp:func:`__ECLIC_GetLevelIRQ`     |
-+----------------------------------+-------------------------------------+
-| :c:macro:`ECLIC_SetPriorityIRQ`  | :cpp:func:`__ECLIC_SetPriorityIRQ`  |
-+----------------------------------+-------------------------------------+
-| :c:macro:`ECLIC_GetPriorityIRQ`  | :cpp:func:`__ECLIC_GetPriorityIRQ`  |
-+----------------------------------+-------------------------------------+
+.. _table_api_core_intexc_3:
+
+.. table:: ECLIC Access Functions
+
+   +----------------------------------+-------------------------------------+
+   | ECLIC ACCESS FUNCTIONS           | NMSIS-CORE FUNCTIONS FOR ECLIC      |
+   +----------------------------------+-------------------------------------+
+   | :c:macro:`ECLIC_SetCfgNlbits`    | :cpp:func:`__ECLIC_SetCfgNlbits`    |
+   +----------------------------------+-------------------------------------+
+   | :c:macro:`ECLIC_GetCfgNlbits`    | :cpp:func:`__ECLIC_GetCfgNlbits`    |
+   +----------------------------------+-------------------------------------+
+   | :c:macro:`ECLIC_GetInfoVer`      | :cpp:func:`__ECLIC_GetInfoVer`      |
+   +----------------------------------+-------------------------------------+
+   | :c:macro:`ECLIC_GetInfoCtlbits`  | :cpp:func:`__ECLIC_GetInfoCtlbits`  |
+   +----------------------------------+-------------------------------------+
+   | :c:macro:`ECLIC_GetInfoNum`      | :cpp:func:`__ECLIC_GetInfoNum`      |
+   +----------------------------------+-------------------------------------+
+   | :c:macro:`ECLIC_SetMth`          | :cpp:func:`__ECLIC_SetMth`          |
+   +----------------------------------+-------------------------------------+
+   | :c:macro:`ECLIC_GetMth`          | :cpp:func:`__ECLIC_GetMth`          |
+   +----------------------------------+-------------------------------------+
+   | :c:macro:`ECLIC_EnableIRQ`       | :cpp:func:`__ECLIC_EnableIRQ`       |
+   +----------------------------------+-------------------------------------+
+   | :c:macro:`ECLIC_GetEnableIRQ`    | :cpp:func:`__ECLIC_GetEnableIRQ`    |
+   +----------------------------------+-------------------------------------+
+   | :c:macro:`ECLIC_DisableIRQ`      | :cpp:func:`__ECLIC_DisableIRQ`      |
+   +----------------------------------+-------------------------------------+
+   | :c:macro:`ECLIC_SetPendingIRQ`   | :cpp:func:`__ECLIC_SetPendingIRQ`   |
+   +----------------------------------+-------------------------------------+
+   | :c:macro:`ECLIC_GetPendingIRQ`   | :cpp:func:`__ECLIC_GetPendingIRQ`   |
+   +----------------------------------+-------------------------------------+
+   | :c:macro:`ECLIC_ClearPendingIRQ` | :cpp:func:`__ECLIC_ClearPendingIRQ` |
+   +----------------------------------+-------------------------------------+
+   | :c:macro:`ECLIC_SetTrigIRQ`      | :cpp:func:`__ECLIC_SetTrigIRQ`      |
+   +----------------------------------+-------------------------------------+
+   | :c:macro:`ECLIC_GetTrigIRQ`      | :cpp:func:`__ECLIC_GetTrigIRQ`      |
+   +----------------------------------+-------------------------------------+
+   | :c:macro:`ECLIC_SetShvIRQ`       | :cpp:func:`__ECLIC_SetShvIRQ`       |
+   +----------------------------------+-------------------------------------+
+   | :c:macro:`ECLIC_GetShvIRQ`       | :cpp:func:`__ECLIC_GetShvIRQ`       |
+   +----------------------------------+-------------------------------------+
+   | :c:macro:`ECLIC_SetCtrlIRQ`      | :cpp:func:`__ECLIC_SetCtrlIRQ`      |
+   +----------------------------------+-------------------------------------+
+   | :c:macro:`ECLIC_GetCtrlIRQ`      | :cpp:func:`__ECLIC_GetCtrlIRQ`      |
+   +----------------------------------+-------------------------------------+
+   | :c:macro:`ECLIC_SetLevelIRQ`     | :cpp:func:`__ECLIC_SetLevelIRQ`     |
+   +----------------------------------+-------------------------------------+
+   | :c:macro:`ECLIC_GetLevelIRQ`     | :cpp:func:`__ECLIC_GetLevelIRQ`     |
+   +----------------------------------+-------------------------------------+
+   | :c:macro:`ECLIC_SetPriorityIRQ`  | :cpp:func:`__ECLIC_SetPriorityIRQ`  |
+   +----------------------------------+-------------------------------------+
+   | :c:macro:`ECLIC_GetPriorityIRQ`  | :cpp:func:`__ECLIC_GetPriorityIRQ`  |
+   +----------------------------------+-------------------------------------+
 
 When ``NMSIS_VECTAB_VIRTUAL`` macro is defined, the functions in the table below must be replaced to virtualize the API access functions to the interrupt vector table.
 
@@ -184,13 +202,17 @@ This allows, for example, alternate implementations to relocate the vector table
 
 The original NMSIS-Core functions are always available, but prefixed with ``__ECLIC``.
 
-+-----------------------------+--------------------------------+
-| ECLIC Vector Table Access   | NMSIS-CORE FUNCTIONS           |
-+-----------------------------+--------------------------------+
-| :c:macro:`ECLIC_SetVector`  | :cpp:func:`__ECLIC_SetVector`  |
-+-----------------------------+--------------------------------+
-| :c:macro:`ECLIC_GetVector`  | :cpp:func:`__ECLIC_GetVector`  |
-+-----------------------------+--------------------------------+
+.. _table_api_core_intexc_4:
+
+.. table:: ECLIC Vector Access Functions
+
+   +-----------------------------+--------------------------------+
+   | ECLIC Vector Table Access   | NMSIS-CORE FUNCTIONS           |
+   +-----------------------------+--------------------------------+
+   | :c:macro:`ECLIC_SetVector`  | :cpp:func:`__ECLIC_SetVector`  |
+   +-----------------------------+--------------------------------+
+   | :c:macro:`ECLIC_GetVector`  | :cpp:func:`__ECLIC_GetVector`  |
+   +-----------------------------+--------------------------------+
 
 ECLIC Function Usage
 --------------------
@@ -270,3 +292,7 @@ Interrupt and Exception API
 .. doxygengroup:: NMSIS_Core_IntExc
    :project: nmsis_core
 
+.. _Enhanced Core Local Interrupt Controller(ECLIC): https://doc.nucleisys.com/nuclei_spec/isa/eclic.html
+.. _NMI interrupt: https://doc.nucleisys.com/nuclei_spec/isa/nmi.html
+.. _Exception: https://doc.nucleisys.com/nuclei_spec/isa/exception.html
+.. _Interrupt: https://doc.nucleisys.com/nuclei_spec/isa/interrupt.html

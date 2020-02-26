@@ -74,46 +74,51 @@ If these ``#define`` are missing default values are used.
 nmsis_core.h
 ^^^^^^^^^^^^
 
-+-------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
-| #define                 | Value Range | Default    | Description                                                                                                   |
-+-------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
-| __NUCLEI_N_REV  OR      | 0x0100 |    | 0x0100     | * For Nuclei N class device, define __NUCLEI_N_REV, for NX class device, define __NUCLEI_NX_REV.              |
-| __NUCLEI_NX_REV         | 0x0104      |            | * Core revision number ([15:8] revision number, [7:0] patch number), 0x0100 -> 1.0, 0x0104 -> 1.4             |
-+-------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
-| __SYSTIMER_PRESENT      | 0 .. 1      | 1          | Define whether Priviate System Timer is present or not. This SysTimer is a Memory Mapped Unit.                |
-+-------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
-| __SYSTIMER_BASEADDR     | -           | 0x02000000 | Base address of the System Timer Unit.                                                                        |
-+-------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
-| __ECLIC_PRESENT         | 0 .. 1      | 1          | Define whether Enhanced Core Local Interrupt Controller (ECLIC) Unit is present or not                        |
-+-------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
-| __ECLIC_BASEADDR        | -           | 0x0C000000 | Base address of the ECLIC unit.                                                                               |
-+-------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
-| __ECLIC_INTCTLBITS      | 1 .. 8      | 1          | Define the number of hardware bits are actually implemented in the clicintctl registers.                      |
-+-------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
-| __ECLIC_INTNUM          | 1 .. 1024   | 1          | Define the total interrupt number(including the internal core interrupts) of ECLIC Unit                       |
-+-------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
-| __PMP_PRESENT           | 0 .. 1      | 0          | Define whether Physical Memory Protection (PMP) Unit is present or not.                                       |
-+-------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
-| __PMP_ENTRY_NUM         | 8 or 16     | 8          | Define the numbers of PMP entries.                                                                            |
-+-------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
-| __FPU_PRESENT           | 0 .. 2      | 0          | Define whether Floating Point Unit (FPU) is present or not.                                                   |
-|                         |             |            |                                                                                                               |
-|                         |             |            | * 0: Not present                                                                                              |
-|                         |             |            | * 1: Single precision FPU present                                                                             |
-|                         |             |            | * 2: Double precision FPU present                                                                             |
-+-------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
-| __DSP_PRESENT           | 0 .. 1      | 0          | Define whether Digital Signal Processing Unit (DSP) is present or not.                                        |
-+-------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
-| __ICACHE_PRESENT        | 0 .. 1      | 0          | Define whether I-Cache Unit is present or not.                                                                |
-+-------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
-| __DCACHE_PRESENT        | 0 .. 1      | 0          | Define whether D-Cache Unit is present or not.                                                                |
-+-------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
-| __Vendor_SysTickConfig  | 0 .. 1      | 0          | If __SYSTIMER_PRESENT is 1, then the __Vendor_SysTickConfig  can be set to 0, otherwise it can only set to 1. |
-|                         |             |            |                                                                                                               |
-|                         |             |            | If this define is set to 1, then the default SysTick_Config and SysTick_Reload function is excluded.          |
-|                         |             |            |                                                                                                               |
-|                         |             |            | In this case, the file Device.h must contain a vendor specific implementation of this function.               |
-+-------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+.. _table_template_device_header_1:
+
+.. table:: Macros used in nmsis_core.h
+   :widths: 120, 70, 60, 200
+
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | #define                | Value Range | Default    | Description                                                                                                   |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | | __NUCLEI_N_REV OR    || 0x0100 |   | 0x0100     | * For Nuclei N class device, define __NUCLEI_N_REV, for NX class device, define __NUCLEI_NX_REV.              |
+   | | __NUCLEI_NX_REV      || 0x0104     |            | * Core revision number ([15:8] revision number, [7:0] patch number), 0x0100 -> 1.0, 0x0104 -> 1.4             |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __SYSTIMER_PRESENT     | 0 .. 1      | 1          | Define whether Priviate System Timer is present or not. This SysTimer is a Memory Mapped Unit.                |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __SYSTIMER_BASEADDR    | -           | 0x02000000 | Base address of the System Timer Unit.                                                                        |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __ECLIC_PRESENT        | 0 .. 1      | 1          | Define whether Enhanced Core Local Interrupt Controller (ECLIC) Unit is present or not                        |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __ECLIC_BASEADDR       | -           | 0x0C000000 | Base address of the ECLIC unit.                                                                               |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __ECLIC_INTCTLBITS     | 1 .. 8      | 1          | Define the number of hardware bits are actually implemented in the clicintctl registers.                      |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __ECLIC_INTNUM         | 1 .. 1024   | 1          | Define the total interrupt number(including the internal core interrupts) of ECLIC Unit                       |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __PMP_PRESENT          | 0 .. 1      | 0          | Define whether Physical Memory Protection (PMP) Unit is present or not.                                       |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __PMP_ENTRY_NUM        | 8 or 16     | 8          | Define the numbers of PMP entries.                                                                            |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __FPU_PRESENT          | 0 .. 2      | 0          | Define whether Floating Point Unit (FPU) is present or not.                                                   |
+   |                        |             |            |                                                                                                               |
+   |                        |             |            | * 0: Not present                                                                                              |
+   |                        |             |            | * 1: Single precision FPU present                                                                             |
+   |                        |             |            | * 2: Double precision FPU present                                                                             |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __DSP_PRESENT          | 0 .. 1      | 0          | Define whether Digital Signal Processing Unit (DSP) is present or not.                                        |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __ICACHE_PRESENT       | 0 .. 1      | 0          | Define whether I-Cache Unit is present or not.                                                                |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __DCACHE_PRESENT       | 0 .. 1      | 0          | Define whether D-Cache Unit is present or not.                                                                |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __Vendor_SysTickConfig | 0 .. 1      | 0          | If __SYSTIMER_PRESENT is 1, then the __Vendor_SysTickConfig can be set to 0, otherwise it can only set to 1.  |
+   |                        |             |            |                                                                                                               |
+   |                        |             |            | If this define is set to 1, then the default SysTick_Config and SysTick_Reload function is excluded.          |
+   |                        |             |            |                                                                                                               |
+   |                        |             |            | In this case, the file Device.h must contain a vendor specific implementation of this function.               |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
 
 NMSIS Version and Processor Information
 ---------------------------------------
@@ -139,5 +144,5 @@ Device.h Template File
 Here we provided ``Device.h`` template file as below:
 
 .. literalinclude:: ../../../../Device/_Template_Vendor/Vendor/Device/Include/Device.h
-    :language: text
+    :language: c
     :linenos:

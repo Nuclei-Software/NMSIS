@@ -17,5 +17,5 @@ gcc_Device.ld Template File
 Here we provided ``gcc_Device.ld`` template file as below:
 
 .. literalinclude:: ../../../../Device/_Template_Vendor/Vendor/Device/Source/GCC/gcc_Device.ld
-    :language: text
+    :language: c
     :linenos:
