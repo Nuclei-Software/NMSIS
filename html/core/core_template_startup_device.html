@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Startup File startup_&lt;device&gt;.S &mdash; NMSIS 1.0.0-alpha.1 documentation</title>
+  <title>Startup File startup_&lt;device&gt;.S &mdash; NMSIS 1.0.0-beta documentation</title>
   
 
   
@@ -202,7 +202,6 @@
 </dd>
 </dl>
 <p>The processer level start flow is implemented in the <em>startup_&lt;device&gt;.S</em>. Detail description as below picture:</p>
-<a class="reference internal image-reference" href="../_images/NMSIS_startup.png"><img alt="NMSIS-Startup User Files" src="../_images/NMSIS_startup.png" style="width: 658.4000000000001px; height: 622.4000000000001px;" /></a>
 <dl class="simple">
 <dt>Stage1: Interrupt and Exception initialization</dt><dd><ul class="simple">
 <li><p>Disable Interrupt</p></li>
@@ -221,7 +220,7 @@
 <dt>Stage3: Section initialization</dt><dd><ul class="simple">
 <li><p>Copy section, e.g. data section, text section if necessary.</p></li>
 <li><p>Clear Block Started by Symbol (BSS) section</p></li>
-<li><p>Call __libc_fini_array and __libc_init_array functions to do c library initialization</p></li>
+<li><p>Call <code class="docutils literal notranslate"><span class="pre">__libc_fini_array</span></code> and <code class="docutils literal notranslate"><span class="pre">__libc_init_array</span></code> functions to do C library initialization</p></li>
 <li><p>Jump Main</p></li>
 </ul>
 </dd>
@@ -232,7 +231,7 @@ the device-specific interrupt handlers.</p>
 <p>The naming convention for the interrupt handler names are <code class="docutils literal notranslate"><span class="pre">eclic_&lt;interrupt_name&gt;_handler</span></code>.</p>
 <p>This table needs to be consistent with <code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">IRQn_Type</span></code> that defines all the IRQ numbers for each interrupt.</p>
 <p>The following example shows the extension of the interrupt vector table for the GD32VF103 device family.</p>
-<div class="highlight-asm notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -264,46 +263,46 @@ the device-specific interrupt handlers.</p>
 30
 31
 32
-33</pre></div></td><td class="code"><div class="highlight"><pre><span></span>    .section .vtable
+33</pre></div></td><td class="code"><div class="highlight"><pre><span></span>    <span class="p">.</span><span class="n">section</span> <span class="p">.</span><span class="n">vtable</span>
 
-    .weak  eclic_msip_handler
-    .weak  eclic_mtip_handler
-    .weak  eclic_pmaf_handler
-    /* Adjusted for GD32VF103 interrupt handlers */
-    .weak  eclic_wwdgt_handler
-    .weak  eclic_lvd_handler
-    .weak  eclic_tamper_handler
-        :    :
-        :    :
-    .weak  eclic_can1_ewmc_handler
-    .weak  eclic_usbfs_handler
+    <span class="p">.</span><span class="n">weak</span>  <span class="n">eclic_msip_handler</span>
+    <span class="p">.</span><span class="n">weak</span>  <span class="n">eclic_mtip_handler</span>
+    <span class="p">.</span><span class="n">weak</span>  <span class="n">eclic_pmaf_handler</span>
+    <span class="cm">/* Adjusted for GD32VF103 interrupt handlers */</span>
+    <span class="p">.</span><span class="n">weak</span>  <span class="n">eclic_wwdgt_handler</span>
+    <span class="p">.</span><span class="n">weak</span>  <span class="n">eclic_lvd_handler</span>
+    <span class="p">.</span><span class="n">weak</span>  <span class="nl">eclic_tamper_handler</span>
+        <span class="p">:</span>    <span class="o">:</span>
+        <span class="o">:</span>    <span class="o">:</span>
+    <span class="p">.</span><span class="n">weak</span>  <span class="n">eclic_can1_ewmc_handler</span>
+    <span class="p">.</span><span class="n">weak</span>  <span class="n">eclic_usbfs_handler</span>
 
-    .globl vector_base
-vector_base:
-    /* Run in FlashXIP download mode */
-    j _start                                                /* 0: Reserved, Jump to _start when reset for ILM/FlashXIP mode.*/
-    .align LOG_REGBYTES                                     /*    Need to align 4 byte for RV32, 8 Byte for RV64 */
-    DECLARE_INT_HANDLER     default_intexc_handler          /* 1: Reserved */
-    DECLARE_INT_HANDLER     default_intexc_handler          /* 2: Reserved */
-    DECLARE_INT_HANDLER     eclic_msip_handler              /* 3: Machine software interrupt */
-                    :          :
-                    :          :
-    /* Adjusted for Vendor Defined External Interrupts */
-    DECLARE_INT_HANDLER     eclic_wwdgt_handler             /* 19: Window watchDog timer interrupt */
+    <span class="p">.</span><span class="n">globl</span> <span class="n">vector_base</span>
+<span class="nl">vector_base</span><span class="p">:</span>
+    <span class="cm">/* Run in FlashXIP download mode */</span>
+    <span class="n">j</span> <span class="n">_start</span>                                                <span class="cm">/* 0: Reserved, Jump to _start when reset for ILM/FlashXIP mode.*/</span>
+    <span class="p">.</span><span class="n">align</span> <span class="n">LOG_REGBYTES</span>                                     <span class="cm">/*    Need to align 4 byte for RV32, 8 Byte for RV64 */</span>
+    <span class="n">DECLARE_INT_HANDLER</span>     <span class="n">default_intexc_handler</span>          <span class="cm">/* 1: Reserved */</span>
+    <span class="n">DECLARE_INT_HANDLER</span>     <span class="n">default_intexc_handler</span>          <span class="cm">/* 2: Reserved */</span>
+    <span class="n">DECLARE_INT_HANDLER</span>     <span class="n">eclic_msip_handler</span>              <span class="cm">/* 3: Machine software interrupt */</span>
+                    <span class="o">:</span>          <span class="o">:</span>
+                    <span class="o">:</span>          <span class="o">:</span>
+    <span class="cm">/* Adjusted for Vendor Defined External Interrupts */</span>
+    <span class="n">DECLARE_INT_HANDLER</span>     <span class="n">eclic_wwdgt_handler</span>             <span class="cm">/* 19: Window watchDog timer interrupt */</span>
 
-    DECLARE_INT_HANDLER     eclic_lvd_handler               /* 20: LVD through EXTI line detect interrupt */
-    DECLARE_INT_HANDLER     eclic_tamper_handler            /* 21: tamper through EXTI line detect */
-                    :          :
-                    :          :
-    DECLARE_INT_HANDLER     eclic_can1_ewmc_handler         /* 85: CAN1 EWMC interrupt */
-    DECLARE_INT_HANDLER     eclic_usbfs_handler             /* 86: USBFS global interrupt */
+    <span class="n">DECLARE_INT_HANDLER</span>     <span class="n">eclic_lvd_handler</span>               <span class="cm">/* 20: LVD through EXTI line detect interrupt */</span>
+    <span class="n">DECLARE_INT_HANDLER</span>     <span class="n">eclic_tamper_handler</span>            <span class="cm">/* 21: tamper through EXTI line detect */</span>
+                    <span class="o">:</span>          <span class="o">:</span>
+                    <span class="o">:</span>          <span class="o">:</span>
+    <span class="n">DECLARE_INT_HANDLER</span>     <span class="n">eclic_can1_ewmc_handler</span>         <span class="cm">/* 85: CAN1 EWMC interrupt */</span>
+    <span class="n">DECLARE_INT_HANDLER</span>     <span class="n">eclic_usbfs_handler</span>             <span class="cm">/* 86: USBFS global interrupt */</span>
 </pre></div>
 </td></tr></table></div>
 <div class="section" id="startup-device-s-template-file">
 <h2>startup_Device.S Template File<a class="headerlink" href="#startup-device-s-template-file" title="Permalink to this headline">¶</a></h2>
 <p>Here provided a riscv-gcc template startup assemble code template file as below.
 The files for other compilers can slightly differ from this version.</p>
-<div class="highlight-asm notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+<div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
   2
   3
   4

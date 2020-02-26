@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Using NMSIS in Embedded Applications &mdash; NMSIS 1.0.0-alpha.1 documentation</title>
+  <title>Using NMSIS in Embedded Applications &mdash; NMSIS 1.0.0-beta documentation</title>
   
 
   
@@ -240,13 +240,17 @@ for example for activating sleep mode or the NOP instruction.</p></li>
 <li><p><a class="reference internal" href="api/core_compiler_control.html#core-api-compiler-control"><span class="std std-ref">Compiler Control</span></a> is compiler agnostic <cite>#define</cite> symbols for generic
 C/C++ source code</p></li>
 </ul>
-<a class="reference internal image-reference" href="../_images/NMSIS_CORE_Files_user.png"><img alt="NMSIS-Core User Files" src="../_images/NMSIS_CORE_Files_user.png" style="width: 482.0px; height: 451.5px;" /></a>
+<div class="figure align-center" id="id3">
+<span id="figure-get-started-1"></span><a class="reference internal image-reference" href="../_images/NMSIS_CORE_Files_user.png"><img alt="NMSIS-Core User Files" src="../_images/NMSIS_CORE_Files_user.png" style="width: 70%;" /></a>
+<p class="caption"><span class="caption-text">NMSIS-Core User Files</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
 <p>The NMSIS-Core system files are device specific.</p>
 <p>In addition, the <a class="reference internal" href="core_template_startup_device.html#core-template-startup-device-asm"><span class="std std-ref">Startup File startup_&lt;device&gt;.S</span></a> is also compiler vendor specific, currently only GCC version is provided.
 The versions provided by NMSIS are only generic templates. The adopted versions for a concrete device are typically provided by the device
 vendor through the according device familiy package.</p>
 <p>For example, the following files are provided by the <strong>GD32VF103</strong> device family pack:</p>
-<table class="docutils align-default">
+<span id="table-get-started-1"></span><table class="colwidths-given docutils align-default" id="id4">
+<caption><span class="caption-text">Files provided by GD32VF103 device family pack</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 42%" />
 <col style="width: 58%" />
@@ -256,33 +260,45 @@ vendor through the according device familiy package.</p>
 <td><p><strong>Description</strong></p></td>
 </tr>
 <tr class="row-even"><td><p>./Device/Source/GCC/startup_gd32vf103.S</p></td>
-<td><p>Startup File startup_&lt;device&gt;.S</p>
-<p>for the GD32VF103 device variants.</p>
+<td><div class="line-block">
+<div class="line">Startup File startup_&lt;device&gt;.S</div>
+<div class="line">for the GD32VF103 device variants.</div>
+</div>
 </td>
 </tr>
 <tr class="row-odd"><td><p>./Device/Source/GCC/intexc_gd32vf103.S</p></td>
-<td><p>Exception and Interrupt Handling File intexc_&lt;device&gt;.S</p>
-<p>for the GD32VF103 device variants.</p>
+<td><div class="line-block">
+<div class="line">Exception and Interrupt Handling File</div>
+<div class="line">intexc_&lt;device&gt;.S for the GD32VF103 device variants.</div>
+</div>
 </td>
 </tr>
 <tr class="row-even"><td><p>./Device/Source/GCC/gcc_gd32vf103.ld</p></td>
-<td><p>Linker script File gcc_&lt;device&gt;.ld</p>
-<p>for the GD32VF103 device variants.</p>
+<td><div class="line-block">
+<div class="line">Linker script File gcc_&lt;device&gt;.ld</div>
+<div class="line">for the GD32VF103 device variants.</div>
+</div>
 </td>
 </tr>
 <tr class="row-odd"><td><p>./Device/Source/system_gd32vf103.c</p></td>
-<td><p>System Configuration File system_&lt;device&gt;.c</p>
-<p>for the GD32VF103 device families</p>
+<td><div class="line-block">
+<div class="line">System Configuration File system_&lt;device&gt;.c</div>
+<div class="line">for the GD32VF103 device families</div>
+</div>
 </td>
 </tr>
 <tr class="row-even"><td><p>./Device/Include/system_gd32vf103.h</p></td>
-<td><p>System Configuration File system_&lt;device&gt;.h</p>
-<p>for the GD32VF103 device families</p>
+<td><div class="line-block">
+<div class="line">System Configuration File system_&lt;device&gt;.h</div>
+<div class="line">for the GD32VF103 device families</div>
+</div>
 </td>
 </tr>
 <tr class="row-odd"><td><p>./Device/Include/gd32vf103.h</p></td>
-<td><p>Device Header File &lt;device.h&gt;</p>
-<p>for the GD32VF103 device families.</p>
+<td><div class="line-block">
+<div class="line">Device Header File &lt;device.h&gt;</div>
+<div class="line">for the GD32VF103 device families.</div>
+</div>
 </td>
 </tr>
 </tbody>
@@ -296,8 +312,8 @@ vendor through the according device familiy package.</p>
 <div class="section" id="basic-nmsis-example">
 <span id="id1"></span><h2>Basic NMSIS Example<a class="headerlink" href="#basic-nmsis-example" title="Permalink to this headline">¶</a></h2>
 <p>A typical example for using the NMSIS layer is provided below. The example is based on a GD32VF103 Device.</p>
-<div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text">gd32vf103_example.c</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">gd32vf103_example.c</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
 <div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -409,12 +425,13 @@ vendor through the according device familiy package.</p>
 <p>Nuclei provides NMSIS-Core files for the supported Nuclei Processors and for various compiler vendors.
 These files can be used when standard Nuclei processors should be used in a project.
 The table below lists the folder and device names of the Nuclei processors.</p>
-<table class="docutils align-default">
+<span id="table-get-started-2"></span><table class="colwidths-given docutils align-default" id="id6">
+<caption><span class="caption-text">Folder and device names of the Nuclei processors</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 7%" />
-<col style="width: 5%" />
-<col style="width: 68%" />
+<col style="width: 29%" />
+<col style="width: 14%" />
+<col style="width: 10%" />
+<col style="width: 48%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p>Folder</p></td>
@@ -430,15 +447,21 @@ The table below lists the folder and device names of the Nuclei processors.</p>
 </ul>
 </td>
 <td><p>RV32</p></td>
-<td><p>Contains Include and Source template files configured for the Nuclei N200/N300/N600 processor.</p>
-<p>The device name is NUCLEI_N and the name of the Device Header File &lt;device.h&gt; is &lt;NUCLEI_N.h&gt;.</p>
+<td><div class="line-block">
+<div class="line">Contains Include and Source template files configured for the</div>
+<div class="line">Nuclei N200/N300/N600 processor. The device name is NUCLEI_N</div>
+<div class="line">and the name of the Device Header File &lt;device.h&gt; is &lt;NUCLEI_N.h&gt;.</div>
+</div>
 </td>
 </tr>
 <tr class="row-odd"><td><p>./Device/Nuclei/NUCLEI_NX</p></td>
 <td><p>NX600</p></td>
 <td><p>RV64</p></td>
-<td><p>Contains Include and Source template files configured for the Nuclei NX600 processor.</p>
-<p>The device name is NUCLEI_NX and the name of the Device Header File &lt;device.h&gt; is &lt;NUCLEI_NX.h&gt;.</p>
+<td><div class="line-block">
+<div class="line">Contains Include and Source template files configured for the</div>
+<div class="line">Nuclei NX600 processor. The device name is NUCLEI_NX</div>
+<div class="line">and the name of the Device Header File &lt;device.h&gt; is &lt;NUCLEI_NX.h&gt;.</div>
+</div>
 </td>
 </tr>
 </tbody>
@@ -459,8 +482,8 @@ library for N200, N300, N600, NX600.</p>
 <p>One of these defines needs to be provided on the compiler command line.</p>
 <p>By using this header file, the source code can access the functions for <a class="reference internal" href="api/core_csr_access.html#core-api-csr-access"><span class="std std-ref">Core CSR Register Access</span></a>,
 <a class="reference internal" href="api/core_intrinsics.html#core-api-core-intrinsic"><span class="std std-ref">CPU Intrinsic Functions</span></a> and <a class="reference internal" href="api/api_nmsis_core_dsp_intrinsic.html#nmsis-core-api-intrinsic-functions-for-simd-instructions"><span class="std std-ref">Intrinsic Functions for SIMD Instructions</span></a>.</p>
-<div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-text">core_generic.h</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">core_generic.h</span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
 <div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#define __NMSIS_GENERIC   </span><span class="c1">// Disable Eclic and Systick functions</span>
 <span class="cp">#include</span> <span class="cpf">&lt;nmsis_core.h&gt;</span><span class="cp"></span>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Changelog &mdash; NMSIS 1.0.0-alpha.1 documentation</title>
+  <title>Changelog &mdash; NMSIS 1.0.0-beta documentation</title>
   
 
   
@@ -95,6 +95,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dsp/index.html">NMSIS DSP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nn/index.html">NMSIS NN</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#v1-0-0-beta">V1.0.0-beta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v1-0-0-alpha-1">V1.0.0-alpha.1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v1-0-0-alpha">V1.0.0-alpha</a></li>
 </ul>
@@ -167,6 +168,29 @@
             
   <div class="section" id="changelog">
 <span id="id1"></span><h1>Changelog<a class="headerlink" href="#changelog" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="v1-0-0-beta">
+<h2>V1.0.0-beta<a class="headerlink" href="#v1-0-0-beta" title="Permalink to this headline">¶</a></h2>
+<p>Main changes in release <strong>V1.0.0-beta</strong>.</p>
+<ul class="simple">
+<li><p><strong>NMSIS-Core</strong></p>
+<ul>
+<li><p>Fix error typedef of CSR_MCAUSE_Type</p></li>
+<li><p>Change CSR_MCACHE_CTL_DE to future value 0x00010000</p></li>
+<li><p>Fix names in CSR naming, CSR_SCRATCHCSW -&gt; CSR_MSCRATCHCSW,
+and CSR_SCRATCHCSWL -&gt; CSR_MSCRATCHCSWL</p></li>
+<li><p>Add macros in riscv_encoding.h: MSTATUS_FS_INITIAL, MSTATUS_FS_CLEAN, MSTATUS_FS_DIRTY</p></li>
+</ul>
+</li>
+<li><p><strong>Documentation</strong></p>
+<ul>
+<li><p>Fix an typo in core_template_intexc.rst</p></li>
+<li><p>Add cross references of Nuclei ISA Spec</p></li>
+<li><p>Update appendix</p></li>
+<li><p>Refines tables and figures</p></li>
+</ul>
+</li>
+</ul>
+</div>
 <div class="section" id="v1-0-0-alpha-1">
 <h2>V1.0.0-alpha.1<a class="headerlink" href="#v1-0-0-alpha-1" title="Permalink to this headline">¶</a></h2>
 <p>API changes has been maded to system timer.</p>

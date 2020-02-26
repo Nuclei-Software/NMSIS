@@ -3,6 +3,8 @@
 Systick Timer(SysTimer)
 =======================
 
+Click `Nuclei Timer Unit`_ to learn about Core Timer Unit in Nuclei ISA Spec.
+
 SysTimer API
 ------------
 
@@ -123,3 +125,4 @@ The code below shows the usage of various NMSIS Timer Interrupt functions with a
         while(1);
     }
 
+.. _Nuclei Timer Unit: https://doc.nucleisys.com/nuclei_spec/isa/timer.html

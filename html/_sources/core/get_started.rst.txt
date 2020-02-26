@@ -82,10 +82,14 @@ following features:
 -  :ref:`core_api_compiler_control` is compiler agnostic `#define` symbols for generic
    C/C++ source code
 
+.. _figure_get_started_1:
 
-.. image:: /asserts/images/NMSIS_CORE_Files_user.png
+.. figure:: /asserts/images/NMSIS_CORE_Files_user.png
     :alt: NMSIS-Core User Files
-    :scale: 50%
+    :width: 70 %
+    :align: center
+
+    NMSIS-Core User Files
 
 
 The NMSIS-Core system files are device specific.
@@ -96,33 +100,32 @@ vendor through the according device familiy package.
 
 For example, the following files are provided by the **GD32VF103** device family pack:
 
-+-----------------------------------------+---------------------------------------------------------+
-|                **File**                 |                 **Description**                         |
-+-----------------------------------------+---------------------------------------------------------+
-| ./Device/Source/GCC/startup_gd32vf103.S | Startup File startup_<device>.S                         |
-|                                         |                                                         |
-|                                         | for the GD32VF103 device variants.                      |
-+-----------------------------------------+---------------------------------------------------------+
-| ./Device/Source/GCC/intexc_gd32vf103.S  | Exception and Interrupt Handling File intexc_<device>.S |
-|                                         |                                                         |
-|                                         | for the GD32VF103 device variants.                      |
-+-----------------------------------------+---------------------------------------------------------+
-| ./Device/Source/GCC/gcc_gd32vf103.ld    | Linker script File gcc_<device>.ld                      |
-|                                         |                                                         |
-|                                         | for the GD32VF103 device variants.                      |
-+-----------------------------------------+---------------------------------------------------------+
-| ./Device/Source/system_gd32vf103.c      | System Configuration File system_<device>.c             |
-|                                         |                                                         |
-|                                         | for the GD32VF103 device families                       |
-+-----------------------------------------+---------------------------------------------------------+
-| ./Device/Include/system_gd32vf103.h     | System Configuration File system_<device>.h             |
-|                                         |                                                         |
-|                                         | for the GD32VF103 device families                       |
-+-----------------------------------------+---------------------------------------------------------+
-| ./Device/Include/gd32vf103.h            | Device Header File <device.h>                           |
-|                                         |                                                         |
-|                                         | for the GD32VF103 device families.                      |
-+-----------------------------------------+---------------------------------------------------------+
+.. _table_get_started_1:
+
+.. table:: Files provided by GD32VF103 device family pack
+   :widths: 50, 70
+
+   +-----------------------------------------+---------------------------------------------------------+
+   |                **File**                 |                 **Description**                         |
+   +-----------------------------------------+---------------------------------------------------------+
+   | ./Device/Source/GCC/startup_gd32vf103.S | | Startup File startup_<device>.S                       |
+   |                                         | | for the GD32VF103 device variants.                    |
+   +-----------------------------------------+---------------------------------------------------------+
+   | ./Device/Source/GCC/intexc_gd32vf103.S  | | Exception and Interrupt Handling File                 |
+   |                                         | | intexc_<device>.S for the GD32VF103 device variants.  |
+   +-----------------------------------------+---------------------------------------------------------+
+   | ./Device/Source/GCC/gcc_gd32vf103.ld    | | Linker script File gcc_<device>.ld                    |
+   |                                         | | for the GD32VF103 device variants.                    |
+   +-----------------------------------------+---------------------------------------------------------+
+   | ./Device/Source/system_gd32vf103.c      | | System Configuration File system_<device>.c           |
+   |                                         | | for the GD32VF103 device families                     |
+   +-----------------------------------------+---------------------------------------------------------+
+   | ./Device/Include/system_gd32vf103.h     | | System Configuration File system_<device>.h           |
+   |                                         | | for the GD32VF103 device families                     |
+   +-----------------------------------------+---------------------------------------------------------+
+   | ./Device/Include/gd32vf103.h            | | Device Header File <device.h>                         |
+   |                                         | | for the GD32VF103 device families.                    |
+   +-----------------------------------------+---------------------------------------------------------+
 
 .. Note::
   The silicon vendors create these device-specific NMSIS-Core files based on :ref:`core_device_templates` provided by Nuclei.
@@ -208,17 +211,23 @@ Nuclei provides NMSIS-Core files for the supported Nuclei Processors and for var
 These files can be used when standard Nuclei processors should be used in a project.
 The table below lists the folder and device names of the Nuclei processors.
 
-+------------------------------+-----------+--------+--------------------------------------------------------------------------------------------------------+
-| Folder                       | Processor | RISC-V | Description                                                                                            |
-+------------------------------+-----------+--------+--------------------------------------------------------------------------------------------------------+
-| ./Device/Nuclei/NUCLEI_N     | * N200    | RV32   | Contains Include and Source template files configured for the Nuclei N200/N300/N600 processor.         |
-|                              | * N300    |        |                                                                                                        |
-|                              | * N600    |        | The device name is NUCLEI_N and the name of the Device Header File <device.h> is <NUCLEI_N.h>.         |
-+------------------------------+-----------+--------+--------------------------------------------------------------------------------------------------------+
-| ./Device/Nuclei/NUCLEI_NX    | NX600     | RV64   | Contains Include and Source template files configured for the Nuclei NX600 processor.                  |
-|                              |           |        |                                                                                                        |
-|                              |           |        | The device name is NUCLEI_NX and the name of the Device Header File <device.h> is <NUCLEI_NX.h>.       |
-+------------------------------+-----------+--------+--------------------------------------------------------------------------------------------------------+
+
+.. _table_get_started_2:
+
+.. table:: Folder and device names of the Nuclei processors
+   :widths: 120, 60, 40, 200
+
+   +---------------------------+-----------+--------+-----------------------------------------------------------------------+
+   | Folder                    | Processor | RISC-V | Description                                                           |
+   +---------------------------+-----------+--------+-----------------------------------------------------------------------+
+   | ./Device/Nuclei/NUCLEI_N  | * N200    | RV32   | | Contains Include and Source template files configured for the       |
+   |                           | * N300    |        | | Nuclei N200/N300/N600 processor. The device name is NUCLEI_N        |
+   |                           | * N600    |        | | and the name of the Device Header File <device.h> is <NUCLEI_N.h>.  |
+   +---------------------------+-----------+--------+-----------------------------------------------------------------------+
+   | ./Device/Nuclei/NUCLEI_NX | NX600     | RV64   | | Contains Include and Source template files configured for the       |
+   |                           |           |        | | Nuclei NX600 processor. The device name is NUCLEI_NX                |
+   |                           |           |        | | and the name of the Device Header File <device.h> is <NUCLEI_NX.h>. |
+   +---------------------------+-----------+--------+-----------------------------------------------------------------------+
 
 .. _create_generic_libraries_with_nmsis:
 

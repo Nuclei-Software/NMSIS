@@ -27,14 +27,17 @@ The implementation details are also
 described in this paper `CMSIS-NN: Efficient Neural Network Kernels for Arm Cortex-M CPUs`_ .
 
 
-
 Block Diagram
 -------------
 
-.. image:: /asserts/images/nn/NMSIS-NN-OVERVIEW.PNG
-    :alt: NMSIS NN Block Diagram
-    :scale: 80%
+.. _figure_nn_overview_1:
 
+.. figure:: /asserts/images/nn/NMSIS-NN-OVERVIEW.PNG
+    :alt: NMSIS NN Block Diagram
+    :width: 80%
+    :align: center
+    
+    NMSIS NN Block Diagram
 
 Examples
 --------

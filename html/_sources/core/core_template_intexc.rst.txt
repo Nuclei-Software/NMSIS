@@ -14,7 +14,7 @@ Nuclei processors provide **NMI(Non-Maskable Interrupt)**, **Exception**,
 NMI(Non-Maskable Interrupt)
 ---------------------------
 
-Click https://doc.nucleisys.com/nuclei_spec/isa/nmi.html to learn about Nuclei Processor Core NMI in Nuclei Spec.
+Click `NMI`_ to learn about Nuclei Processor Core NMI in Nuclei ISA Spec.
 
 NMI is used for urgent external HW error. It can't be masked and disabled.
 
@@ -27,16 +27,21 @@ In NMSIS-Core, the bit 9 of CSR ``MMISC_CTL`` is set to 1 during core startup, s
 Exception
 ---------
 
-Click https://doc.nucleisys.com/nuclei_spec/isa/exception.html to learn about Nuclei Processor Core Exception in Nuclei Spec.
+Click `Exception`_ to learn about Nuclei Processor Core Exception in Nuclei ISA Spec.
 
 For CPU exception, the entry for exception will be ``exc_entry``, in this entry code, it will call default exception handler :cpp:func:`core_exception_handler`.
 
 In the common exception routine(``exc_entry``) to get more information like exception code.
 Exception handle flow show as below picture:
 
-.. image:: /asserts/images/NMSIS_exception.png
-    :alt: NMSIS-Intexc User Files
-    :scale: 80%
+.. _figure_template_intexc_1:
+
+.. figure:: /asserts/images/NMSIS_exception.png
+    :alt: Exception Handling Flow
+    :width: 50%
+    :align: center
+
+    Exception Handling Flow
 
 NMI and exception could support nesting. Two levels of NMI/Exception state save stacks are supported.
 
@@ -56,7 +61,7 @@ When exception exception return it will run the intruction which trigger the exc
 Interrupt
 ---------
 
-Click https://doc.nucleisys.com/nuclei_spec/isa/interrupt.html to learn about Nuclei Processor Core Interrupt in Nuclei Spec.
+Click `Interrupt`_ to learn about Nuclei Processor Core Interrupt in Nuclei Spec.
 
 Interrupt could be configured as **CLINT** mode or **ECILC** mode.
 
@@ -66,9 +71,15 @@ ECLIC managed interrupt could configured as **vector** and **non-vector** mode.
 
 Detail interrupt handling process as below picture:
 
-.. image:: /asserts/images/NMSIS_intexc.png
-    :alt: NMSIS-intexc User Files
-    :scale: 80%
+.. _figure_template_intexc_2:
+
+.. figure:: /asserts/images/NMSIS_intexc.png
+    :alt: Interrupt Handling Flow
+    :width: 80%
+    :align: center
+
+    Interrupt Handling Flow
+
 
 To get highest priority interrupt we need compare the interrupt level first.If level is the same then compare the priority. High level interrupt could interrupt low level
 ISR and trigger interrupt nesting. If different priority with same level interrupt pending higher priority will be served first. Interrupt could be configured as vector mode 
@@ -82,9 +93,14 @@ Non-Vector Interrupt SW handler
 For **non-vector** mode interrupt it will make the necessary CSR registers and context save and restore.
 Non-vector mode software handle flow show as below pciture:
 
-.. image:: /asserts/images/NMSIS_Interrupt_Nonvec_SW_flow.png
-    :alt: NMSIS-intexc User Files
-    :scale: 80%
+.. _figure_template_intexc_3:
+
+.. figure:: /asserts/images/NMSIS_Interrupt_Nonvec_SW_flow.png
+    :alt: Non-vector mode interrupt software handle flow
+    :width: 50%
+    :align: center
+
+    Non-vector mode interrupt software handle flow
 
 **Detail description for non-vector mode interrupt handler as below steps:**
 
@@ -110,9 +126,14 @@ For **non-vector** mode iterrupt it could support **interrupt nesting**.
 
 **Interrupt nesting** handle flow show as below picture:
 
-.. image:: /asserts/images/NMSIS_Interrupt_Nonvec_Nesting_SW_flow.png
-    :alt: NMSIS-intexc User Files
-    :scale: 80%
+.. _figure_template_intexc_4:
+
+.. figure:: /asserts/images/NMSIS_Interrupt_Nonvec_Nesting_SW_flow.png
+    :alt: Nesting interrupt handling flow
+    :width: 80%
+    :align: center
+
+    Nesting interrupt handling flow
 
 
 Vector Interrupt SW handler
@@ -120,9 +141,14 @@ Vector Interrupt SW handler
 
 If vector interrupt handler need support nesting or making function call Vector mode software handling flow show as below picture:
 
-.. image:: /asserts/images/NMSIS_Nesting_Vector_Interrupt_SW_flow.png
-    :alt: NMSIS-intexc User Files
-    :scale: 80%
+.. _figure_template_intexc_5:
+
+.. figure:: /asserts/images/NMSIS_Nesting_Vector_Interrupt_SW_flow.png
+    :alt: Vector mode nesting interrupt handling flow
+    :width: 20%
+    :align: center
+
+    Vector mode nesting interrupt handling flow
 
 
 **Detail description for nested vector mode interrupt handler as below steps:**
@@ -208,5 +234,10 @@ changes you may need some adaption.
 Here we provided ``intexc_Device.S`` template file as below:
 
 .. literalinclude:: ../../../../Device/_Template_Vendor/Vendor/Device/Source/GCC/intexc_Device.S
-    :language: asm
+    :language: c
     :linenos:
+
+
+.. _NMI: https://doc.nucleisys.com/nuclei_spec/isa/nmi.html
+.. _Exception: https://doc.nucleisys.com/nuclei_spec/isa/exception.html
+.. _Interrupt: https://doc.nucleisys.com/nuclei_spec/isa/interrupt.html

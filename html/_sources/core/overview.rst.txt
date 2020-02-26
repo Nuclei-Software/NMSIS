@@ -56,6 +56,10 @@ Processor Support
 
 **NMSIS** have provided support for all the |nuclei_core|.
 
+**Nuclei ISA Spec:**
+
+- `Nuclei Process Core Instruction Set Architecture Spec`_
+
 **Nuclei N Class Processor Reference Manuals:**
 
 - `N200 series`_
@@ -80,8 +84,9 @@ verified using these toolchains:
 - GNU Toolchain for RISC-V modified by Nuclei
 
 
-.. _N100 series: https://nucleisys.com/product/site/n100/
-.. _N200 series: https://nucleisys.com/product/site/n200/
-.. _N300 series: https://nucleisys.com/product/site/n300/
-.. _N600 series: https://nucleisys.com/product/site/n600/
-.. _NX600 series: https://nucleisys.com/product/site/nx600/
+.. _N100 series: https://www.nucleisys.com/product.php?site=n100
+.. _N200 series: https://www.nucleisys.com/product.php?site=n200
+.. _N300 series: https://www.nucleisys.com/product.php?site=n300
+.. _N600 series: https://www.nucleisys.com/product.php?site=n600
+.. _NX600 series: https://www.nucleisys.com/product.php?site=nx600
+.. _Nuclei Process Core Instruction Set Architecture Spec: https://doc.nucleisys.com/nuclei_spec

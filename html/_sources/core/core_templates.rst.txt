@@ -16,9 +16,15 @@ These NMSIS-Core device template files include the following:
 
 The detailed file structure of the NMSIS-Core device templates is shown in the following picture.
 
-.. image:: /asserts/images/NMSIS_CORE_Templates.png
+.. _figure_core_templates_1:
+
+.. figure:: /asserts/images/NMSIS_CORE_Templates.png
     :alt: NMSIS-Core Device Templates
-    :scale: 50%
+    :width: 80%
+    :align: center
+
+    NMSIS-Core Device Templates
+
 
 NMSIS-Core Processor Files
 --------------------------
@@ -39,13 +45,17 @@ NMSIS-Core processor file explained before.
 
 The following sample devices are defined as below:
 
-+--------------+-----------------+------------------------------+
-| **Family**   | **Device**      | **Description**              |
-+--------------+-----------------+------------------------------+
-| Nuclei N     | NUCLEI N Class  | Nuclei N Class based device  |
-+--------------+-----------------+------------------------------+
-| Nuclei NX    | NUCLEI NX Class | Nuclei NX Class based device |
-+--------------+-----------------+------------------------------+
+.. _table_core_template_1:
+
+.. table:: Device Examples of Nuclei Processor
+
+   +--------------+-----------------+------------------------------+
+   | **Family**   | **Device**      | **Description**              |
+   +--------------+-----------------+------------------------------+
+   | Nuclei N     | NUCLEI N Class  | Nuclei N Class based device  |
+   +--------------+-----------------+------------------------------+
+   | Nuclei NX    | NUCLEI NX Class | Nuclei NX Class based device |
+   +--------------+-----------------+------------------------------+
 
 Template Files
 --------------
@@ -58,31 +68,36 @@ Silicon vendors add to these template files the following information:
  - **Access Functions for Peripherals** (optional) that provides additional helper functions to access device-specific peripherals.
  - **Interrupt vectors** in the startup file that are device specific.
 
-+-------------------------------------------+----------------------------------------------------------------------------+
-| **Template File**                         | **Description**                                                            |
-|                                           |                                                                            |
-| (Under ./Device/_Template_Vendor/Vendor/) |                                                                            |
-+-------------------------------------------+----------------------------------------------------------------------------+
-| Device/Source/GCC/startup_Device.S        | Startup file template for GNU GCC RISC-V Embedded Compiler.                |
-+-------------------------------------------+----------------------------------------------------------------------------+
-| Device/Source/GCC/gcc_Device.ld           | Link Script file template for GNU GCC RISC-V Embedded Compiler.            |
-+-------------------------------------------+----------------------------------------------------------------------------+
-| Device/Source/GCC/intexc_Device.S         | Exception and Interrupt handling file template                             |
-|                                           |                                                                            |
-|                                           | for GNU GCC RISC-V Embedded Compiler.                                      |
-+-------------------------------------------+----------------------------------------------------------------------------+
-| Device/Source/system_Device.c             | Generic system_Device.c file for system configuration                      |
-|                                           |                                                                            |
-|                                           | (i.e. processor clock and memory bus system).                              |
-+-------------------------------------------+----------------------------------------------------------------------------+
-| Device/Include/Device.h                   | Generic device header file.                                                |
-|                                           |                                                                            |
-|                                           | Needs to be extended with the device-specific peripheral registers.        |
-|                                           |                                                                            |
-|                                           | Optionally functions that access the peripherals can be part of that file. |
-+-------------------------------------------+----------------------------------------------------------------------------+
-| Device/Include/system_Device.h            | Generic system device configuration include file.                          |
-+-------------------------------------------+----------------------------------------------------------------------------+
+.. _table_core_template_2:
+
+.. table:: NMSIS-Core Device Template Files
+   :widths: 100, 200
+
+   +-------------------------------------------+----------------------------------------------------------------------------+
+   | **Template File**                         | **Description**                                                            |
+   |                                           |                                                                            |
+   | (Under ./Device/_Template_Vendor/Vendor/) |                                                                            |
+   +-------------------------------------------+----------------------------------------------------------------------------+
+   | Device/Source/GCC/startup_Device.S        | Startup file template for GNU GCC RISC-V Embedded Compiler.                |
+   +-------------------------------------------+----------------------------------------------------------------------------+
+   | Device/Source/GCC/gcc_Device.ld           | Link Script file template for GNU GCC RISC-V Embedded Compiler.            |
+   +-------------------------------------------+----------------------------------------------------------------------------+
+   | Device/Source/GCC/intexc_Device.S         | Exception and Interrupt handling file template                             |
+   |                                           |                                                                            |
+   |                                           | for GNU GCC RISC-V Embedded Compiler.                                      |
+   +-------------------------------------------+----------------------------------------------------------------------------+
+   | Device/Source/system_Device.c             | Generic system_Device.c file for system configuration                      |
+   |                                           |                                                                            |
+   |                                           | (i.e. processor clock and memory bus system).                              |
+   +-------------------------------------------+----------------------------------------------------------------------------+
+   | Device/Include/Device.h                   | Generic device header file.                                                |
+   |                                           |                                                                            |
+   |                                           | Needs to be extended with the device-specific peripheral registers.        |
+   |                                           |                                                                            |
+   |                                           | Optionally functions that access the peripherals can be part of that file. |
+   +-------------------------------------------+----------------------------------------------------------------------------+
+   | Device/Include/system_Device.h            | Generic system device configuration include file.                          |
+   +-------------------------------------------+----------------------------------------------------------------------------+
 
 .. Note::
     The template files for silicon vendors are placed under *./Device/_Template_Vendor/Vendor/*.
@@ -103,17 +118,21 @@ Each template file contains comments that start with **TODO**: that describe a r
 
 The template files contain place holders:
 
-+----------------------+-----------------------------------------------------------------+
-| **Placeholder**      | **Replaced with**                                               |
-+----------------------+-----------------------------------------------------------------+
-| <Device>             | the specific device name or device family name; i.e. GD32VF103. |
-+----------------------+-----------------------------------------------------------------+
-| <DeviceInterrupt>    | a specific interrupt name of the device; i.e. TIM1 for Timer 1. |
-+----------------------+-----------------------------------------------------------------+
-| <DeviceAbbreviation> | short name or abbreviation of the device family; i.e. GD32VF.   |
-+----------------------+-----------------------------------------------------------------+
-| Nuclei-N#            | the specific Nuclei Class name; i.e. Nuclei N or Nuclei NX.     |
-+----------------------+-----------------------------------------------------------------+
+.. _table_core_template_3:
+
+.. table:: Placeholders of Template files
+
+   +----------------------+-----------------------------------------------------------------+
+   | **Placeholder**      | **Replaced with**                                               |
+   +----------------------+-----------------------------------------------------------------+
+   | <Device>             | the specific device name or device family name; i.e. GD32VF103. |
+   +----------------------+-----------------------------------------------------------------+
+   | <DeviceInterrupt>    | a specific interrupt name of the device; i.e. TIM1 for Timer 1. |
+   +----------------------+-----------------------------------------------------------------+
+   | <DeviceAbbreviation> | short name or abbreviation of the device family; i.e. GD32VF.   |
+   +----------------------+-----------------------------------------------------------------+
+   | Nuclei-N#            | the specific Nuclei Class name; i.e. Nuclei N or Nuclei NX.     |
+   +----------------------+-----------------------------------------------------------------+
 
 Device Templates Explaination
 -----------------------------

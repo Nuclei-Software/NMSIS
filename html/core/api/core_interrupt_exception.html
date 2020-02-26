@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Interrupts and Exceptions &mdash; NMSIS 1.0.0-alpha.1 documentation</title>
+  <title>Interrupts and Exceptions &mdash; NMSIS 1.0.0-beta documentation</title>
   
 
   
@@ -202,21 +202,27 @@
 <span id="core-api-interrupt-exception"></span><h1>Interrupts and Exceptions<a class="headerlink" href="#interrupts-and-exceptions" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
-<p>This section explains how to use interrupts and exceptions and access functions for the  Enhanced Core Local Interrupt Controller(ECLIC).</p>
-<p>Nuclei provides a template file startup_device for each supported compiler. The file must be adapted by the silicon vendor to include
-interrupt vectors for all device-specific interrupt handlers. Each interrupt handler is defined as a weak function to an dummy handler.
+<p>This section explains how to use interrupts and exceptions and access functions for the
+<a class="reference external" href="https://doc.nucleisys.com/nuclei_spec/isa/eclic.html">Enhanced Core Local Interrupt Controller(ECLIC)</a>.</p>
+<p>Nuclei provides a template file startup_device for each supported compiler.
+The file must be adapted by the silicon vendor to include
+interrupt vectors for all device-specific interrupt handlers.
+Each interrupt handler is defined as a weak function to an dummy handler.
 These interrupt handlers can be used directly in application software without being adapted by the programmer.</p>
+<p>Click <a class="reference external" href="https://doc.nucleisys.com/nuclei_spec/isa/interrupt.html">Interrupt</a> to learn more about interrupt handling in Nuclei processor core.</p>
 </div>
 <div class="section" id="nmi-interrupt">
 <h2>NMI Interrupt<a class="headerlink" href="#nmi-interrupt" title="Permalink to this headline">¶</a></h2>
-<p>NMI interrupt entry is stored by CSR_MNVEC. If CSR_MMSIC[9] is 1 then NMI entry is the same as <strong>Exception</strong> which get from CSR_MTVEC.
+<p><a class="reference external" href="https://doc.nucleisys.com/nuclei_spec/isa/nmi.html">NMI interrupt</a> entry is stored by <strong>CSR_MNVEC</strong>.
+If CSR_MMSIC[9] is 1 then NMI entry is the same as <strong>Exception</strong> which get from CSR_MTVEC.
 If CSR_MMSIC[9] is 1 NMI entry is reset vector.</p>
 </div>
 <div class="section" id="exception">
 <h2>Exception<a class="headerlink" href="#exception" title="Permalink to this headline">¶</a></h2>
-<p>Exception has only 1 entry address which stored by CSR_MTVEC. All the exceptions will jump to the same entry <code class="docutils literal notranslate"><span class="pre">exc_entry</span></code> defined in <code class="docutils literal notranslate"><span class="pre">intexc_&lt;Device&gt;.S</span></code>.</p>
+<p><a class="reference external" href="https://doc.nucleisys.com/nuclei_spec/isa/exception.html">Exception</a> has only 1 entry address which stored by CSR_MTVEC. All the exceptions will jump to the same entry <code class="docutils literal notranslate"><span class="pre">exc_entry</span></code> defined in <code class="docutils literal notranslate"><span class="pre">intexc_&lt;Device&gt;.S</span></code>.</p>
 <p>The table below lists the core exception code of the Nuclei N/NX processors.</p>
-<table class="docutils align-default">
+<span id="table-api-core-intexc-1"></span><table class="docutils align-default" id="id3">
+<caption><span class="caption-text">Core exception code of the Nuclei N/NX processors</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 32%" />
 <col style="width: 11%" />
@@ -280,7 +286,8 @@ If CSR_MMSIC[9] is 1 NMI entry is reset vector.</p>
 <p>It is typically located at the beginning of the program memory,
 and you can modify CSR MTVT to reallocate the base address of this vector table,
 but you need to take care of the base address alignment according to the number of interrupts.</p>
-<table class="docutils align-default">
+<span id="table-api-core-intexc-2"></span><table class="docutils align-default" id="id4">
+<caption><span class="caption-text">base address alignment according to the number of interrupts</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 37%" />
 <col style="width: 63%" />
@@ -384,7 +391,8 @@ but you need to take care of the base address alignment according to the number 
 <p>When macro <code class="docutils literal notranslate"><span class="pre">NMSIS_ECLIC_VIRTUAL</span></code> is defined, the ECLIC access functions in the table below must be implemented for virtualizing ECLIC access.</p>
 <p>These functions should be implemented in a separate source module.
 The original NMSIS-Core <code class="docutils literal notranslate"><span class="pre">__ECLIC_xxx</span></code> functions are always available independent of <code class="docutils literal notranslate"><span class="pre">NMSIS_ECLIC_VIRTUAL</span></code> macro.</p>
-<table class="docutils align-default">
+<span id="table-api-core-intexc-3"></span><table class="docutils align-default" id="id5">
+<caption><span class="caption-text">ECLIC Access Functions</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 48%" />
 <col style="width: 52%" />
@@ -468,7 +476,8 @@ The original NMSIS-Core <code class="docutils literal notranslate"><span class="
 <p>The ECLIC vector table API should be implemented in a separate source module.</p>
 <p>This allows, for example, alternate implementations to relocate the vector table from flash to RAM on the first vector table update.</p>
 <p>The original NMSIS-Core functions are always available, but prefixed with <code class="docutils literal notranslate"><span class="pre">__ECLIC</span></code>.</p>
-<table class="docutils align-default">
+<span id="table-api-core-intexc-4"></span><table class="docutils align-default" id="id6">
+<caption><span class="caption-text">ECLIC Vector Access Functions</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 48%" />
 <col style="width: 52%" />
@@ -489,8 +498,8 @@ The original NMSIS-Core <code class="docutils literal notranslate"><span class="
 <div class="section" id="eclic-function-usage">
 <h2>ECLIC Function Usage<a class="headerlink" href="#eclic-function-usage" title="Permalink to this headline">¶</a></h2>
 <p>The code below shows the usage of various NMSIS ECLIC flow with an GD32VF103 device.</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text">gd32vf103_interrupt_example1.c</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">gd32vf103_interrupt_example1.c</span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
 <div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3

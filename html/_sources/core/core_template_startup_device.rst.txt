@@ -11,9 +11,14 @@ The **Startup File startup_<device>.S** contains:
 
 The processer level start flow is implemented in the *startup_<device>.S*. Detail description as below picture:
 
+.. _figure_template_startup_1:
+
 .. image:: /asserts/images/NMSIS_startup.png
     :alt: NMSIS-Startup User Files
-    :scale: 80%
+    :width: 80%
+    :align: center
+
+    NMSIS-Startup User Files
 
 Stage1: Interrupt and Exception initialization
   * Disable Interrupt
@@ -30,7 +35,7 @@ Stage2: Hardware initialization
 Stage3: Section initialization
   * Copy section, e.g. data section, text section if necessary.
   * Clear Block Started by Symbol (BSS) section
-  * Call __libc_fini_array and __libc_init_array functions to do c library initialization
+  * Call ``__libc_fini_array`` and ``__libc_init_array`` functions to do C library initialization
   * Jump Main
 
 
@@ -45,7 +50,7 @@ This table needs to be consistent with :cpp:enum:`IRQn_Type` that defines all th
 
 The following example shows the extension of the interrupt vector table for the GD32VF103 device family.
 
-.. code-block:: asm
+.. code-block:: c
     :linenos:
 
         .section .vtable
@@ -90,5 +95,5 @@ Here provided a riscv-gcc template startup assemble code template file as below.
 The files for other compilers can slightly differ from this version.
 
 .. literalinclude:: ../../../../Device/_Template_Vendor/Vendor/Device/Source/GCC/startup_Device.S
-    :language: asm
+    :language: c
     :linenos:
