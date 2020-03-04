@@ -3,6 +3,18 @@
 Changelog
 =========
 
+V1.0.0-xxx
+----------
+
+Release tag is not yet decided.
+
+- **NMSIS-Core**
+
+  - Fix wrong macro check in cache function
+  - Add missing ``SOC_INT_MAX`` enum definition in Device template
+  - In ``System_<Device>.c``, ECLIC NLBits set to ``__ECLIC_INTCTLBITS``,
+    which means all the bits are for level, no bits for priority
+
 
 V1.0.0-beta
 -----------
@@ -11,15 +23,15 @@ Main changes in release **V1.0.0-beta**.
 
 - **NMSIS-Core**
 
-  - Fix error typedef of CSR_MCAUSE_Type
-  - Change CSR_MCACHE_CTL_DE to future value 0x00010000
-  - Fix names in CSR naming, CSR_SCRATCHCSW -> CSR_MSCRATCHCSW,
-    and CSR_SCRATCHCSWL -> CSR_MSCRATCHCSWL
-  - Add macros in riscv_encoding.h: MSTATUS_FS_INITIAL, MSTATUS_FS_CLEAN, MSTATUS_FS_DIRTY
+  - Fix error typedef of ``CSR_MCAUSE_Type``
+  - Change ``CSR_MCACHE_CTL_DE`` to future value ``0x00010000``
+  - Fix names in CSR naming, ``CSR_SCRATCHCSW`` -> ``CSR_MSCRATCHCSW``,
+    and ``CSR_SCRATCHCSWL`` -> ``CSR_MSCRATCHCSWL``
+  - Add macros in ``riscv_encoding.h``: ``MSTATUS_FS_INITIAL``, ``MSTATUS_FS_CLEAN``, ``MSTATUS_FS_DIRTY``
 
 - **Documentation**
 
-  - Fix an typo in core_template_intexc.rst
+  - Fix an typo in *core_template_intexc.rst*
   - Add cross references of Nuclei ISA Spec
   - Update appendix
   - Refines tables and figures
