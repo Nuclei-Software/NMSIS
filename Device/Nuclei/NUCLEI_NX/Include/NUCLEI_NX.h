@@ -88,6 +88,7 @@ typedef enum IRQn {
     Interrupt29_IRQn    = 29,                /*!< Device Interrupt*/
     Interrupt30_IRQn    = 30,                /*!< Device Interrupt*/
     Interrupt31_IRQn    = 31,                /*!< Device Interrupt*/
+    SOC_INT_MAX,
 } IRQn_Type;
 
 /* =========================================================================================================================== */

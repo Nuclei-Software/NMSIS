@@ -246,7 +246,7 @@ uint32_t core_exception_handler(unsigned long mcause, unsigned long sp)
 void ECLIC_Init(void)
 {
     ECLIC_SetMth(0);
-    ECLIC_SetCfgNlbits(3);
+    ECLIC_SetCfgNlbits(__ECLIC_INTCTLBITS);
 }
 
 /**
