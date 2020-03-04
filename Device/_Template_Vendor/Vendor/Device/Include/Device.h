@@ -82,6 +82,8 @@ typedef enum IRQn {
          could get from clicinfo.NUM_INTERRUPT. According the interrupt handlers defined in startup_Device.s
          eg.: Interrupt for Timer#1       eclic_tim0_handler   ->   TIM0_IRQn */
     <DeviceInterrupt>_IRQn    = 19,                /*!< Device Interrupt */
+
+    SOC_INT_MAX,                                   /* Max SoC interrupt Number */
 } IRQn_Type;
 
 /* =========================================================================================================================== */

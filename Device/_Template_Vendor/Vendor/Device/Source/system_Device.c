@@ -264,8 +264,10 @@ void ECLIC_Init(void)
     /* Global Configuration about MTH and NLBits.
      * TODO: Please adapt it according to your system requirement. 
      * This function is called in _init function */
+    /* Set CSR MTH to zero */
     ECLIC_SetMth(0);
-    ECLIC_SetCfgNlbits(2);
+    /* Set Nlbits to the CLICINTCTLBITS, all the bits are level bits */
+    ECLIC_SetCfgNlbits(__ECLIC_INTCTLBITS);
 }
 
 /**
