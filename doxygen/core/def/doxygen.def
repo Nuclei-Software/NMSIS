@@ -28467,7 +28467,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__timer_8h_1ga9906dae1937eac222354df5a9069945a';
-        define-mem-ref-line = '336';
+        define-mem-ref-line = '337';
         define-mem-ref-name = 'SysTick_Reload';
     };
       define-mem-referenceby = {
@@ -29108,7 +29108,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'ticks';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h';
-      func-mem-desc-line = '336';
+      func-mem-desc-line = '337';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 System Tick Reload.
 _EnD_oF_dEf_TeXt_;
@@ -29129,10 +29129,16 @@ Reload the System Timer Tick when the MTIMECMP reached TIME value
 - In this case, the file <b><Device>.h</b> must contain a vendor-specific implementation
   of this function.
 - This function only available when __SYSTIMER_PRESENT == 1 and __ECLIC_PRESENT == 1 and __Vendor_SysTickConfig == 0
+- Since the MTIMERCMP value might overflow, if overflowed, MTIMER will be set to 0, and MTIMERCMP set to ticks
 \sa
 - \ref SysTimer_SetCompareValue
 - \ref SysTimer_SetLoadValue
 _EnD_oF_dEf_TeXt_;
+      func-mem-referenceto = {
+        func-mem-ref-id = 'nmsis__gcc_8h_1ga399dde24635692b7740781dc9cc067e0';
+        func-mem-ref-line = '181';
+        func-mem-ref-name = '__USUALLY';
+    };
       func-mem-referenceto = {
         func-mem-ref-id = 'core__feature__timer_8h_1ga55d0982631fe5ecbcfbb808913f6ad99';
         func-mem-ref-line = '87';
@@ -31012,6 +31018,11 @@ _EnD_oF_dEf_TeXt_;
       define-mem-documentation = <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
+      define-mem-referenceby = {
+        define-mem-ref-id = 'core__feature__timer_8h_1ga9906dae1937eac222354df5a9069945a';
+        define-mem-ref-line = '337';
+        define-mem-ref-name = 'SysTick_Reload';
+    };
     }; /* define-member */
     define-member = {
       define-mem-kind = 'define';
@@ -40696,7 +40707,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'handler';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c';
-      func-mem-desc-line = '288';
+      func-mem-desc-line = '290';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Initialize a specific IRQ and register the handler.
 _EnD_oF_dEf_TeXt_;
@@ -40708,10 +40719,12 @@ assign handler for specific IRQn.
 \param [in]  trig_mode   see \ref ECLIC_TRIGGER_Type
 \param [in]  lvl         interupt level
 \param [in]  priority    interrupt priority
-\param [in]  handler     interrupt handler
-return       -1 means invalid input parameter. 0 means successful.
+\param [in]  handler     interrupt handler, if NULL, handler will not be installed
+
+\return       -1 means invalid input parameter. 0 means successful.
 \remarks
 - This function use to configure specific eclic interrupt and register its interrupt handler and enable its interrupt.
+- If the vector table is placed in read-only section(FLASHXIP mode), handler could not be installed
 _EnD_oF_dEf_TeXt_;
     }; /* func-member */
     func-member = {
@@ -40729,7 +40742,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c';
-      func-mem-desc-line = '318';
+      func-mem-desc-line = '322';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 _init function called in __libc_init_array()
 _EnD_oF_dEf_TeXt_;
@@ -40754,7 +40767,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c';
-      func-mem-desc-line = '338';
+      func-mem-desc-line = '342';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 _fini function called in __libc_fini_array()
 _EnD_oF_dEf_TeXt_;

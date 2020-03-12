@@ -352,7 +352,8 @@ but you need to take care of the base address alignment according to the number 
 28
 29
 30
-31</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="k">enum</span> <span class="n">IRQn</span> <span class="p">{</span>
+31
+32</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="k">enum</span> <span class="n">IRQn</span> <span class="p">{</span>
     <span class="cm">/******  Nuclei N/NX Processor Core Internal Interrupt Numbers *************************/</span>
     <span class="n">Reserved0_IRQn</span>               <span class="o">=</span>   <span class="mi">0</span><span class="p">,</span>     <span class="cm">/*!&lt;  Internal reserved                        */</span>
     <span class="n">Reserved1_IRQn</span>               <span class="o">=</span>   <span class="mi">1</span><span class="p">,</span>     <span class="cm">/*!&lt;  Internal reserved                        */</span>
@@ -382,6 +383,7 @@ but you need to take care of the base address alignment according to the number 
                  <span class="o">:</span>       <span class="o">:</span>
     <span class="n">CAN1_EWMC_IRQn</span>               <span class="o">=</span>  <span class="mi">85</span><span class="p">,</span>     <span class="cm">/*!&lt; CAN1 EWMC interrupt                       */</span>
     <span class="n">USBFS_IRQn</span>                   <span class="o">=</span>  <span class="mi">86</span><span class="p">,</span>     <span class="cm">/*!&lt; USBFS global interrupt                    */</span>
+    <span class="n">SOC_INT_MAX</span><span class="p">,</span>                            <span class="cm">/*!&lt; Number of total Interrupts                */</span>
 <span class="p">}</span> <span class="n">IRQn_Type</span><span class="p">;</span>
 </pre></div>
 </td></tr></table></div>
@@ -2093,6 +2095,9 @@ __INTERRUPT void eclic_mtip_handler(void)
   <div role="contentinfo">
     <p>
         &copy; Copyright 2019, Nuclei
+      <span class="lastupdated">
+        Last updated on Mar 12, 2020.
+      </span>
 
     </p>
   </div>

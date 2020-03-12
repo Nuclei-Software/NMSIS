@@ -377,8 +377,11 @@
 <span id="_CPPv318ECLIC_Register_IRQ9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv"></span><span id="_CPPv218ECLIC_Register_IRQ9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv"></span><span id="ECLIC_Register_IRQ__IRQn_Type.uint8_t.ECLIC_TRIGGER_Type.uint8_t.uint8_t.voidP"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga52cbc8fa60b210b75ac79baa25ac74bb"></span>int32_t <code class="sig-name descname">ECLIC_Register_IRQ</code><span class="sig-paren">(</span>IRQn_Type <em>IRQn</em>, uint8_t <em>shv</em>, ECLIC_TRIGGER_Type <em>trig_mode</em>, uint8_t <em>lvl</em>, uint8_t <em>priority</em>, void *<em>handler</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418ECLIC_Register_IRQ9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Initialize a specific IRQ and register the handler. </p>
 <p>This function set vector mode, trigger mode and polarity, interrupt level and priority, assign handler for specific IRQn. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>-1 means invalid input parameter. 0 means successful. </p>
+</dd>
 <dt><strong>Remark</strong></dt><dd><p><ul class="simple">
-<li><p>This function use to configure specific eclic interrupt and register its interrupt handler and enable its interrupt. </p></li>
+<li><p>This function use to configure specific eclic interrupt and register its interrupt handler and enable its interrupt.</p></li>
+<li><p>If the vector table is placed in read-only section(FLASHXIP mode), handler could not be installed </p></li>
 </ul>
 </p>
 </dd>
@@ -388,7 +391,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">trig_mode</span></code>: see <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1ga35f79c25d5118ccfde82872bc5946ecf"><span class="std std-ref">ECLIC_TRIGGER_Type</span></a> </p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">lvl</span></code>: interupt level </p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">priority</span></code>: interrupt priority </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">handler</span></code>: interrupt handler return -1 means invalid input parameter. 0 means successful. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">handler</span></code>: interrupt handler, if NULL, handler will not be installed</p></li>
 </ul>
 </dd>
 </dl>
@@ -441,6 +444,9 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2019, Nuclei
+      <span class="lastupdated">
+        Last updated on Mar 12, 2020.
+      </span>
 
     </p>
   </div>

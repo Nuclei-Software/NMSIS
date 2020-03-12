@@ -10,6 +10,8 @@ Main changes in release **V1.0.0-beta1**.
 
 - **NMSIS-Core**
 
+  - Fix ``SysTick_Reload`` implementation
+  - Update ``ECLIC_Register_IRQ`` implementation to allow handler == NULL
   - Fix ``MTH`` offset from 0x8 to 0xB, this will affect function of ``ECLIC_GetMth`` and ``ECLIC_SetMth``
   - Fix wrong macro check in cache function
   - Add missing ``SOC_INT_MAX`` enum definition in Device template

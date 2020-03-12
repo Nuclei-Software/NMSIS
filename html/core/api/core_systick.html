@@ -529,7 +529,8 @@
 <li><p>For <a class="reference internal" href="core_version_control.html#group__NMSIS__Core__VersionControl_1ga1b769df3cb99a779a9abaeb6e00d46f5"><span class="std std-ref">__NUCLEI_N_REV</span></a> &gt;= 0x0104, the CMPCLREN bit in MTIMECTL is introduced, but for this SysTick_Config function, we assume this CMPCLREN bit is set to 0, so in interrupt handler function, user still need to set the MTIMERCMP or MTIMER to reload the system tick, if vendor want to use this timer’s auto clear feature, they can define __Vendor_SysTickConfig to 1, and implement SysTick_Config and SysTick_Reload functions.</p></li>
 <li><p>When the variable __Vendor_SysTickConfig is set to 1, then the function SysTick_Reload is not included.</p></li>
 <li><p>In this case, the file <strong>&lt;Device&gt;.h</strong> must contain a vendor-specific implementation of this function.</p></li>
-<li><p>This function only available when __SYSTIMER_PRESENT == 1 and __ECLIC_PRESENT == 1 and __Vendor_SysTickConfig == 0 </p></li>
+<li><p>This function only available when __SYSTIMER_PRESENT == 1 and __ECLIC_PRESENT == 1 and __Vendor_SysTickConfig == 0</p></li>
+<li><p>Since the MTIMERCMP value might overflow, if overflowed, MTIMER will be set to 0, and MTIMERCMP set to ticks </p></li>
 </ul>
 </p>
 </dd>
@@ -756,6 +757,9 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2019, Nuclei
+      <span class="lastupdated">
+        Last updated on Mar 12, 2020.
+      </span>
 
     </p>
   </div>

@@ -247,7 +247,8 @@ Functions</h2></td></tr>
 <li>For <a class="el" href="group__NMSIS__Core__VersionControl.html#ga1b769df3cb99a779a9abaeb6e00d46f5">__NUCLEI_N_REV</a> &gt;= 0x0104, the CMPCLREN bit in MTIMECTL is introduced, but for this <a class="el" href="group__NMSIS__Core__SysTimer.html#ga349805c25d9aa753c6fd69b3c0151126">SysTick_Config</a> function, we assume this CMPCLREN bit is set to 0, so in interrupt handler function, user still need to set the MTIMERCMP or MTIMER to reload the system tick, if vendor want to use this timer's auto clear feature, they can define __Vendor_SysTickConfig to 1, and implement <a class="el" href="group__NMSIS__Core__SysTimer.html#ga349805c25d9aa753c6fd69b3c0151126">SysTick_Config</a> and <a class="el" href="group__NMSIS__Core__SysTimer.html#ga9906dae1937eac222354df5a9069945a">SysTick_Reload</a> functions.</li>
 <li>When the variable __Vendor_SysTickConfig is set to 1, then the function <a class="el" href="group__NMSIS__Core__SysTimer.html#ga9906dae1937eac222354df5a9069945a">SysTick_Reload</a> is not included.</li>
 <li>In this case, the file <b>&lt;Device&gt;.h</b> must contain a vendor-specific implementation of this function.</li>
-<li>This function only available when __SYSTIMER_PRESENT == 1 and __ECLIC_PRESENT == 1 and __Vendor_SysTickConfig == 0 </li>
+<li>This function only available when __SYSTIMER_PRESENT == 1 and __ECLIC_PRESENT == 1 and __Vendor_SysTickConfig == 0</li>
+<li>Since the MTIMERCMP value might overflow, if overflowed, MTIMER will be set to 0, and MTIMERCMP set to ticks </li>
 </ul>
 </dd></dl>
 <dl class="section see"><dt>See Also</dt><dd><ul>
@@ -256,13 +257,26 @@ Functions</h2></td></tr>
 </ul>
 </dd></dl>
 
-<p>Definition at line <a class="el" href="core__feature__timer_8h_source.html#l00336">336</a> of file <a class="el" href="core__feature__timer_8h_source.html">core_feature_timer.h</a>.</p>
+<p>Definition at line <a class="el" href="core__feature__timer_8h_source.html#l00337">337</a> of file <a class="el" href="core__feature__timer_8h_source.html">core_feature_timer.h</a>.</p>
 
-<p>References <a class="el" href="core__feature__timer_8h_source.html#l00087">SysTimer</a>.</p>
-<div class="fragment"><div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;{</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;    <a class="code" href="group__NMSIS__Core__SysTimer__Registers.html#ga55d0982631fe5ecbcfbb808913f6ad99">SysTimer</a>-&gt;MTIMERCMP = ticks + <a class="code" href="group__NMSIS__Core__SysTimer__Registers.html#ga55d0982631fe5ecbcfbb808913f6ad99">SysTimer</a>-&gt;MTIMER;</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;    <span class="keywordflow">return</span> (0UL);</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;}</div>
+<p>References <a class="el" href="nmsis__gcc_8h_source.html#l00181">__USUALLY</a>, and <a class="el" href="core__feature__timer_8h_source.html#l00087">SysTimer</a>.</p>
+<div class="fragment"><div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;{</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;    uint64_t cur_ticks = <a class="code" href="group__NMSIS__Core__SysTimer__Registers.html#ga55d0982631fe5ecbcfbb808913f6ad99">SysTimer</a>-&gt;MTIMER;</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;    uint64_t reload_ticks = ticks + cur_ticks;</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="group__NMSIS__Core__CompilerControl.html#ga399dde24635692b7740781dc9cc067e0">__USUALLY</a>(reload_ticks &gt; cur_ticks)) {</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;        <a class="code" href="group__NMSIS__Core__SysTimer__Registers.html#ga55d0982631fe5ecbcfbb808913f6ad99">SysTimer</a>-&gt;MTIMERCMP = reload_ticks;</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;        <span class="comment">/* When added the ticks value, then the MTIMERCMP &lt; TIMER,</span></div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;<span class="comment">         * which means the MTIMERCMP is overflowed,</span></div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;<span class="comment">         * so we need to reset the counter to zero */</span></div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;        <a class="code" href="group__NMSIS__Core__SysTimer__Registers.html#ga55d0982631fe5ecbcfbb808913f6ad99">SysTimer</a>-&gt;MTIMER = 0;</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;        <a class="code" href="group__NMSIS__Core__SysTimer__Registers.html#ga55d0982631fe5ecbcfbb808913f6ad99">SysTimer</a>-&gt;MTIMERCMP = ticks;</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    }</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;    <span class="keywordflow">return</span> (0UL);</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;}</div>
+<div class="ttc" id="group__NMSIS__Core__CompilerControl_html_ga399dde24635692b7740781dc9cc067e0"><div class="ttname"><a href="group__NMSIS__Core__CompilerControl.html#ga399dde24635692b7740781dc9cc067e0">__USUALLY</a></div><div class="ttdeci">#define __USUALLY(exp)</div><div class="ttdoc">provide the compiler with branch prediction information, the branch is usually true ...</div><div class="ttdef"><b>Definition:</b> <a href="nmsis__gcc_8h_source.html#l00181">nmsis_gcc.h:181</a></div></div>
 <div class="ttc" id="group__NMSIS__Core__SysTimer__Registers_html_ga55d0982631fe5ecbcfbb808913f6ad99"><div class="ttname"><a href="group__NMSIS__Core__SysTimer__Registers.html#ga55d0982631fe5ecbcfbb808913f6ad99">SysTimer</a></div><div class="ttdeci">#define SysTimer</div><div class="ttdoc">SysTick configuration struct. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__timer_8h_source.html#l00087">core_feature_timer.h:87</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -723,7 +737,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Mar 12 2020 03:03:15 for NMSIS-Core by
+    <li class="footer">Generated on Thu Mar 12 2020 13:07:02 for NMSIS-Core by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

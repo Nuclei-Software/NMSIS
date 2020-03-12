@@ -201,7 +201,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h" line="87" column="9" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h" bodystart="87" bodyend="-1"/>
-        <referencedby refid="group__NMSIS__Core__SysTimer_1ga9906dae1937eac222354df5a9069945a" compoundref="core__feature__timer_8h" startline="336" endline="340">SysTick_Reload</referencedby>
+        <referencedby refid="group__NMSIS__Core__SysTimer_1ga9906dae1937eac222354df5a9069945a" compoundref="core__feature__timer_8h" startline="337" endline="353">SysTick_Reload</referencedby>
         <referencedby refid="group__NMSIS__Core__SysTimer_1ga57b4f64ed87262daf831573e704b12c8" compoundref="core__feature__timer_8h" startline="231" endline="234">SysTimer_ClearSWIRQ</referencedby>
         <referencedby refid="group__NMSIS__Core__SysTimer_1ga515d63f4e4581430fb0bf6e864e5bca9" compoundref="core__feature__timer_8h" startline="149" endline="152">SysTimer_GetCompareValue</referencedby>
         <referencedby refid="group__NMSIS__Core__SysTimer_1gafc922423699826bc5d833ab5d08219d2" compoundref="core__feature__timer_8h" startline="203" endline="206">SysTimer_GetControlValue</referencedby>
@@ -581,7 +581,7 @@
 </parameterlist>
 <simplesect kind="return"><para>0 Function succeeded. </para><simplesectsep/><para>1 Function failed. </para></simplesect>
 <simplesect kind="remark"><para><itemizedlist>
-<listitem><para>For <ref refid="group__NMSIS__Core__VersionControl_1ga1b769df3cb99a779a9abaeb6e00d46f5" kindref="member">__NUCLEI_N_REV</ref> &gt;= 0x0104, the CMPCLREN bit in MTIMECTL is introduced, but for this <ref refid="group__NMSIS__Core__SysTimer_1ga349805c25d9aa753c6fd69b3c0151126" kindref="member">SysTick_Config</ref> function, we assume this CMPCLREN bit is set to 0, so in interrupt handler function, user still need to set the MTIMERCMP or MTIMER to reload the system tick, if vendor want to use this timer&apos;s auto clear feature, they can define __Vendor_SysTickConfig to 1, and implement <ref refid="group__NMSIS__Core__SysTimer_1ga349805c25d9aa753c6fd69b3c0151126" kindref="member">SysTick_Config</ref> and <ref refid="group__NMSIS__Core__SysTimer_1ga9906dae1937eac222354df5a9069945a" kindref="member">SysTick_Reload</ref> functions.</para></listitem><listitem><para>When the variable __Vendor_SysTickConfig is set to 1, then the function <ref refid="group__NMSIS__Core__SysTimer_1ga9906dae1937eac222354df5a9069945a" kindref="member">SysTick_Reload</ref> is not included.</para></listitem><listitem><para>In this case, the file <bold>&lt;Device&gt;.h</bold> must contain a vendor-specific implementation of this function.</para></listitem><listitem><para>This function only available when __SYSTIMER_PRESENT == 1 and __ECLIC_PRESENT == 1 and __Vendor_SysTickConfig == 0 </para></listitem></itemizedlist>
+<listitem><para>For <ref refid="group__NMSIS__Core__VersionControl_1ga1b769df3cb99a779a9abaeb6e00d46f5" kindref="member">__NUCLEI_N_REV</ref> &gt;= 0x0104, the CMPCLREN bit in MTIMECTL is introduced, but for this <ref refid="group__NMSIS__Core__SysTimer_1ga349805c25d9aa753c6fd69b3c0151126" kindref="member">SysTick_Config</ref> function, we assume this CMPCLREN bit is set to 0, so in interrupt handler function, user still need to set the MTIMERCMP or MTIMER to reload the system tick, if vendor want to use this timer&apos;s auto clear feature, they can define __Vendor_SysTickConfig to 1, and implement <ref refid="group__NMSIS__Core__SysTimer_1ga349805c25d9aa753c6fd69b3c0151126" kindref="member">SysTick_Config</ref> and <ref refid="group__NMSIS__Core__SysTimer_1ga9906dae1937eac222354df5a9069945a" kindref="member">SysTick_Reload</ref> functions.</para></listitem><listitem><para>When the variable __Vendor_SysTickConfig is set to 1, then the function <ref refid="group__NMSIS__Core__SysTimer_1ga9906dae1937eac222354df5a9069945a" kindref="member">SysTick_Reload</ref> is not included.</para></listitem><listitem><para>In this case, the file <bold>&lt;Device&gt;.h</bold> must contain a vendor-specific implementation of this function.</para></listitem><listitem><para>This function only available when __SYSTIMER_PRESENT == 1 and __ECLIC_PRESENT == 1 and __Vendor_SysTickConfig == 0</para></listitem><listitem><para>Since the MTIMERCMP value might overflow, if overflowed, MTIMER will be set to 0, and MTIMERCMP set to ticks </para></listitem></itemizedlist>
 </para></simplesect>
 <simplesect kind="see"><para><itemizedlist>
 <listitem><para><ref refid="group__NMSIS__Core__SysTimer_1ga52e85918789aa95fc4cd0d7238ca9b6c" kindref="member">SysTimer_SetCompareValue</ref></para></listitem><listitem><para><ref refid="group__NMSIS__Core__SysTimer_1ga08c74ffae27d46218ae11321ff5e1673" kindref="member">SysTimer_SetLoadValue</ref> </para></listitem></itemizedlist>
@@ -589,7 +589,8 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h" line="336" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h" bodystart="336" bodyend="340"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h" line="337" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h" bodystart="337" bodyend="353"/>
+        <references refid="group__NMSIS__Core__CompilerControl_1ga399dde24635692b7740781dc9cc067e0" compoundref="nmsis__gcc_8h" startline="181">__USUALLY</references>
         <references refid="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99" compoundref="core__feature__timer_8h" startline="87">SysTimer</references>
       </memberdef>
       </sectiondef>
@@ -743,21 +744,33 @@
 <codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(0UL);</highlight></codeline>
 <codeline lineno="312"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="313"><highlight class="normal"></highlight></codeline>
-<codeline lineno="336" refid="group__NMSIS__Core__SysTimer_1ga9906dae1937eac222354df5a9069945a" refkind="member"><highlight class="normal"><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref><sp/>uint32_t<sp/><ref refid="group__NMSIS__Core__SysTimer_1ga9906dae1937eac222354df5a9069945a" kindref="member">SysTick_Reload</ref>(uint64_t<sp/>ticks)</highlight></codeline>
-<codeline lineno="337"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99" kindref="member">SysTimer</ref>-&gt;MTIMERCMP<sp/>=<sp/>ticks<sp/>+<sp/><ref refid="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99" kindref="member">SysTimer</ref>-&gt;MTIMER;</highlight></codeline>
-<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(0UL);</highlight></codeline>
-<codeline lineno="340"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="337" refid="group__NMSIS__Core__SysTimer_1ga9906dae1937eac222354df5a9069945a" refkind="member"><highlight class="normal"><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref><sp/>uint32_t<sp/><ref refid="group__NMSIS__Core__SysTimer_1ga9906dae1937eac222354df5a9069945a" kindref="member">SysTick_Reload</ref>(uint64_t<sp/>ticks)</highlight></codeline>
+<codeline lineno="338"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/>cur_ticks<sp/>=<sp/><ref refid="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99" kindref="member">SysTimer</ref>-&gt;MTIMER;</highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/>reload_ticks<sp/>=<sp/>ticks<sp/>+<sp/>cur_ticks;</highlight></codeline>
 <codeline lineno="341"><highlight class="normal"></highlight></codeline>
-<codeline lineno="342"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>defined(__Vendor_SysTickConfig)<sp/>&amp;&amp;<sp/>(__Vendor_SysTickConfig<sp/>==<sp/>0U)<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
-<codeline lineno="343"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/></highlight><highlight class="comment">/*<sp/>End<sp/>of<sp/>Doxygen<sp/>Group<sp/>NMSIS_Core_SysTimer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="344"><highlight class="normal"></highlight></codeline>
-<codeline lineno="345"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>defined(__SYSTIMER_PRESENT)<sp/>&amp;&amp;<sp/>(__SYSTIMER_PRESENT<sp/>==<sp/>1)<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
-<codeline lineno="346"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="347"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight></codeline>
-<codeline lineno="348"><highlight class="preprocessor"></highlight><highlight class="normal">}</highlight></codeline>
-<codeline lineno="349"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
-<codeline lineno="350"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+<codeline lineno="342"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="group__NMSIS__Core__CompilerControl_1ga399dde24635692b7740781dc9cc067e0" kindref="member">__USUALLY</ref>(reload_ticks<sp/>&gt;<sp/>cur_ticks))<sp/>{</highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99" kindref="member">SysTimer</ref>-&gt;MTIMERCMP<sp/>=<sp/>reload_ticks;</highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>When<sp/>added<sp/>the<sp/>ticks<sp/>value,<sp/>then<sp/>the<sp/>MTIMERCMP<sp/>&lt;<sp/>TIMER,</highlight></codeline>
+<codeline lineno="346"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/>which<sp/>means<sp/>the<sp/>MTIMERCMP<sp/>is<sp/>overflowed,</highlight></codeline>
+<codeline lineno="347"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/>so<sp/>we<sp/>need<sp/>to<sp/>reset<sp/>the<sp/>counter<sp/>to<sp/>zero<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99" kindref="member">SysTimer</ref>-&gt;MTIMER<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99" kindref="member">SysTimer</ref>-&gt;MTIMERCMP<sp/>=<sp/>ticks;</highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="351"><highlight class="normal"></highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(0UL);</highlight></codeline>
+<codeline lineno="353"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="354"><highlight class="normal"></highlight></codeline>
+<codeline lineno="355"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>defined(__Vendor_SysTickConfig)<sp/>&amp;&amp;<sp/>(__Vendor_SysTickConfig<sp/>==<sp/>0U)<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="356"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/></highlight><highlight class="comment">/*<sp/>End<sp/>of<sp/>Doxygen<sp/>Group<sp/>NMSIS_Core_SysTimer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="357"><highlight class="normal"></highlight></codeline>
+<codeline lineno="358"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>defined(__SYSTIMER_PRESENT)<sp/>&amp;&amp;<sp/>(__SYSTIMER_PRESENT<sp/>==<sp/>1)<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="359"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="360"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight></codeline>
+<codeline lineno="361"><highlight class="preprocessor"></highlight><highlight class="normal">}</highlight></codeline>
+<codeline lineno="362"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="363"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
     </programlisting>
     <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_timer.h"/>
   </compounddef>

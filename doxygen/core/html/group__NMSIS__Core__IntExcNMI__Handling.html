@@ -336,36 +336,40 @@ Variables</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">trig_mode</td><td>see <a class="el" href="group__NMSIS__Core__ECLIC__Registers.html#ga35f79c25d5118ccfde82872bc5946ecf">ECLIC_TRIGGER_Type</a> </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lvl</td><td>interupt level </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">priority</td><td>interrupt priority </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">handler</td><td>interrupt handler return -1 means invalid input parameter. 0 means successful. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">handler</td><td>interrupt handler, if NULL, handler will not be installed</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>-1 means invalid input parameter. 0 means successful. </dd></dl>
 <dl class="section remark"><dt>Remarks</dt><dd><ul>
-<li>This function use to configure specific eclic interrupt and register its interrupt handler and enable its interrupt. </li>
+<li>This function use to configure specific eclic interrupt and register its interrupt handler and enable its interrupt.</li>
+<li>If the vector table is placed in read-only section(FLASHXIP mode), handler could not be installed </li>
 </ul>
 </dd></dl>
 
-<p>Definition at line <a class="el" href="system__Device_8c_source.html#l00288">288</a> of file <a class="el" href="system__Device_8c_source.html">system_Device.c</a>.</p>
-<div class="fragment"><div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;{</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;    <span class="keywordflow">if</span> ((IRQn &gt; <a class="code" href="group__NMSIS__Core__IntExc.html#gga7e1129cd8a196f4284d41db3e82ad5c8adddd70a514a83716a447d622adf17c78">SOC_INT_MAX</a>) || (shv &gt; <a class="code" href="group__NMSIS__Core__ECLIC__Registers.html#ga915384ab6567d38315e8cf5a566f4840">ECLIC_VECTOR_INTERRUPT</a>) \</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;        || (trig_mode &gt; <a class="code" href="group__NMSIS__Core__ECLIC__Registers.html#gga35f79c25d5118ccfde82872bc5946ecfad5184faf1eeb1cd9f5d79f903b65297c">ECLIC_NEGTIVE_EDGE_TRIGGER</a> ) || (handler == NULL)) {</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;        <span class="keywordflow">return</span> -1;</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    }</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    <span class="comment">/* set interrupt vector mode */</span></div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;    <a class="code" href="group__NMSIS__Core__IntExc.html#ga0bd2875fbd02a00bec78735940704c13">ECLIC_SetShvIRQ</a>(IRQn, shv);</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    <span class="comment">/* set interrupt trigger mode and polarity */</span></div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    <a class="code" href="group__NMSIS__Core__IntExc.html#gac0681d16f62ce0b08e48e89131995a05">ECLIC_SetTrigIRQ</a>(IRQn, trig_mode);</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    <span class="comment">/* set interrupt level */</span></div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    <a class="code" href="group__NMSIS__Core__IntExc.html#gad6f35a2f69908b97b083c5e31c1c5aad">ECLIC_SetLevelIRQ</a>(IRQn, lvl);</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    <span class="comment">/* set interrupt priority */</span></div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    <a class="code" href="group__NMSIS__Core__IntExc.html#ga721375660a030d16e429a9718c1271c8">ECLIC_SetPriorityIRQ</a>(IRQn, priority);</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    <span class="comment">/* set interrupt handler entry to vector table */</span></div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    <a class="code" href="group__NMSIS__Core__IntExc.html#gaa7cacacc369af014a0008fe3b5705b77">ECLIC_SetVector</a>(IRQn, (<a class="code" href="group__NMSIS__Core__Registers.html#ga9fe08aae694cff694dde8758e73f4e3e">rv_csr_t</a>)handler);</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    <span class="comment">/* enable interrupt */</span></div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    <a class="code" href="group__NMSIS__Core__IntExc.html#gaef478ada8e8906c9fe8d4dc2311a39e1">ECLIC_EnableIRQ</a>(IRQn); </div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;}</div>
+<p>Definition at line <a class="el" href="system__Device_8c_source.html#l00290">290</a> of file <a class="el" href="system__Device_8c_source.html">system_Device.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;{</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    <span class="keywordflow">if</span> ((IRQn &gt; <a class="code" href="group__NMSIS__Core__IntExc.html#gga7e1129cd8a196f4284d41db3e82ad5c8adddd70a514a83716a447d622adf17c78">SOC_INT_MAX</a>) || (shv &gt; <a class="code" href="group__NMSIS__Core__ECLIC__Registers.html#ga915384ab6567d38315e8cf5a566f4840">ECLIC_VECTOR_INTERRUPT</a>) \</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;        || (trig_mode &gt; <a class="code" href="group__NMSIS__Core__ECLIC__Registers.html#gga35f79c25d5118ccfde82872bc5946ecfad5184faf1eeb1cd9f5d79f903b65297c">ECLIC_NEGTIVE_EDGE_TRIGGER</a> )) {</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;        <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    }</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    <span class="comment">/* set interrupt vector mode */</span></div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    <a class="code" href="group__NMSIS__Core__IntExc.html#ga0bd2875fbd02a00bec78735940704c13">ECLIC_SetShvIRQ</a>(IRQn, shv);</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    <span class="comment">/* set interrupt trigger mode and polarity */</span></div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    <a class="code" href="group__NMSIS__Core__IntExc.html#gac0681d16f62ce0b08e48e89131995a05">ECLIC_SetTrigIRQ</a>(IRQn, trig_mode);</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    <span class="comment">/* set interrupt level */</span></div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    <a class="code" href="group__NMSIS__Core__IntExc.html#gad6f35a2f69908b97b083c5e31c1c5aad">ECLIC_SetLevelIRQ</a>(IRQn, lvl);</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    <span class="comment">/* set interrupt priority */</span></div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    <a class="code" href="group__NMSIS__Core__IntExc.html#ga721375660a030d16e429a9718c1271c8">ECLIC_SetPriorityIRQ</a>(IRQn, priority);</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    <span class="keywordflow">if</span> (handler != NULL) {</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;        <span class="comment">/* set interrupt handler entry to vector table */</span></div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;        <a class="code" href="group__NMSIS__Core__IntExc.html#gaa7cacacc369af014a0008fe3b5705b77">ECLIC_SetVector</a>(IRQn, (<a class="code" href="group__NMSIS__Core__Registers.html#ga9fe08aae694cff694dde8758e73f4e3e">rv_csr_t</a>)handler);</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    }</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;    <span class="comment">/* enable interrupt */</span></div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    <a class="code" href="group__NMSIS__Core__IntExc.html#gaef478ada8e8906c9fe8d4dc2311a39e1">ECLIC_EnableIRQ</a>(IRQn); </div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;}</div>
 <div class="ttc" id="group__NMSIS__Core__IntExc_html_gga7e1129cd8a196f4284d41db3e82ad5c8adddd70a514a83716a447d622adf17c78"><div class="ttname"><a href="group__NMSIS__Core__IntExc.html#gga7e1129cd8a196f4284d41db3e82ad5c8adddd70a514a83716a447d622adf17c78">SOC_INT_MAX</a></div><div class="ttdoc">Number of total interrupts. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__eclic_8h_source.html#l00202">core_feature_eclic.h:202</a></div></div>
 <div class="ttc" id="group__NMSIS__Core__IntExc_html_gaa7cacacc369af014a0008fe3b5705b77"><div class="ttname"><a href="group__NMSIS__Core__IntExc.html#gaa7cacacc369af014a0008fe3b5705b77">ECLIC_SetVector</a></div><div class="ttdeci">#define ECLIC_SetVector</div><div class="ttdef"><b>Definition:</b> <a href="core__feature__eclic_8h_source.html#l00244">core_feature_eclic.h:244</a></div></div>
 <div class="ttc" id="group__NMSIS__Core__IntExc_html_ga721375660a030d16e429a9718c1271c8"><div class="ttname"><a href="group__NMSIS__Core__IntExc.html#ga721375660a030d16e429a9718c1271c8">ECLIC_SetPriorityIRQ</a></div><div class="ttdeci">#define ECLIC_SetPriorityIRQ</div><div class="ttdef"><b>Definition:</b> <a href="core__feature__eclic_8h_source.html#l00233">core_feature_eclic.h:233</a></div></div>
@@ -592,7 +596,7 @@ Variables</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Mar 12 2020 03:03:16 for NMSIS-Core by
+    <li class="footer">Generated on Thu Mar 12 2020 13:07:03 for NMSIS-Core by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

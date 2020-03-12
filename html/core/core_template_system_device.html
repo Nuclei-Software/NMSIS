@@ -546,7 +546,11 @@ In case of additional features the function prototypes need to be added to the <
 341
 342
 343
-344</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+344
+345
+346
+347
+348</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm"> * Copyright (c) 2009-2018 Arm Limited. All rights reserved.</span>
 <span class="cm"> * Copyright (c) 2019 Nuclei Limited. All rights reserved.</span>
 <span class="cm"> *</span>
@@ -828,15 +832,17 @@ In case of additional features the function prototypes need to be added to the <
 <span class="cm"> * \param [in]  trig_mode   see \ref ECLIC_TRIGGER_Type</span>
 <span class="cm"> * \param [in]  lvl         interupt level</span>
 <span class="cm"> * \param [in]  priority    interrupt priority</span>
-<span class="cm"> * \param [in]  handler     interrupt handler</span>
-<span class="cm"> * return       -1 means invalid input parameter. 0 means successful.</span>
+<span class="cm"> * \param [in]  handler     interrupt handler, if NULL, handler will not be installed</span>
+<span class="cm"> *</span>
+<span class="cm"> * \return       -1 means invalid input parameter. 0 means successful.</span>
 <span class="cm"> * \remarks</span>
 <span class="cm"> * - This function use to configure specific eclic interrupt and register its interrupt handler and enable its interrupt.</span>
+<span class="cm"> * - If the vector table is placed in read-only section(FLASHXIP mode), handler could not be installed</span>
 <span class="cm"> */</span>
 <span class="kt">int32_t</span> <span class="nf">ECLIC_Register_IRQ</span><span class="p">(</span><span class="n">IRQn_Type</span> <span class="n">IRQn</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">shv</span><span class="p">,</span> <span class="n">ECLIC_TRIGGER_Type</span> <span class="n">trig_mode</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">lvl</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">priority</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">handler</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="k">if</span> <span class="p">((</span><span class="n">IRQn</span> <span class="o">&gt;</span> <span class="n">SOC_INT_MAX</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">shv</span> <span class="o">&gt;</span> <span class="n">ECLIC_VECTOR_INTERRUPT</span><span class="p">)</span> \
-        <span class="o">||</span> <span class="p">(</span><span class="n">trig_mode</span> <span class="o">&gt;</span> <span class="n">ECLIC_NEGTIVE_EDGE_TRIGGER</span> <span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">handler</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">))</span> <span class="p">{</span>
+        <span class="o">||</span> <span class="p">(</span><span class="n">trig_mode</span> <span class="o">&gt;</span> <span class="n">ECLIC_NEGTIVE_EDGE_TRIGGER</span> <span class="p">))</span> <span class="p">{</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
     <span class="p">}</span>
 
@@ -848,8 +854,10 @@ In case of additional features the function prototypes need to be added to the <
     <span class="n">ECLIC_SetLevelIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="n">lvl</span><span class="p">);</span>
     <span class="cm">/* set interrupt priority */</span>
     <span class="n">ECLIC_SetPriorityIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="n">priority</span><span class="p">);</span>
-    <span class="cm">/* set interrupt handler entry to vector table */</span>
-    <span class="n">ECLIC_SetVector</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="p">(</span><span class="n">rv_csr_t</span><span class="p">)</span><span class="n">handler</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">handler</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+        <span class="cm">/* set interrupt handler entry to vector table */</span>
+        <span class="n">ECLIC_SetVector</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="p">(</span><span class="n">rv_csr_t</span><span class="p">)</span><span class="n">handler</span><span class="p">);</span>
+    <span class="p">}</span>
     <span class="cm">/* enable interrupt */</span>
     <span class="n">ECLIC_EnableIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">);</span> 
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
@@ -1097,6 +1105,9 @@ In case of additional features the function prototypes need to be added to the <
   <div role="contentinfo">
     <p>
         &copy; Copyright 2019, Nuclei
+      <span class="lastupdated">
+        Last updated on Mar 12, 2020.
+      </span>
 
     </p>
   </div>
