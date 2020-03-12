@@ -57,6 +57,7 @@ The following example shows the extension of the interrupt vector table for the 
                      :       :
         CAN1_EWMC_IRQn               =  85,     /*!< CAN1 EWMC interrupt                       */
         USBFS_IRQn                   =  86,     /*!< USBFS global interrupt                    */
+        SOC_INT_MAX,                            /*!< Number of total Interrupts                */
     } IRQn_Type;
 
 
