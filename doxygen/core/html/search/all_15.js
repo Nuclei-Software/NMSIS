@@ -26,6 +26,7 @@ var searchData=
   ['sie',['sie',['../unionCSR__MSTATUS__Type.html#a39782c19cb5e81a9bb2ac6231b11edcd',1,'CSR_MSTATUS_Type']]],
   ['sip_5fssip',['SIP_SSIP',['../group__NMSIS__Core__CSR__Encoding.html#gacdfe2a4376d4c9873b865b878c6d5d2e',1,'riscv_encoding.h']]],
   ['sip_5fstip',['SIP_STIP',['../group__NMSIS__Core__CSR__Encoding.html#gaa32b89e7176c6d37caa3ad78a600f4a1',1,'riscv_encoding.h']]],
+  ['soc_5fint_5fmax',['SOC_INT_MAX',['../group__NMSIS__Core__IntExc.html#gga7e1129cd8a196f4284d41db3e82ad5c8adddd70a514a83716a447d622adf17c78',1,'core_feature_eclic.h']]],
   ['spie',['spie',['../unionCSR__MSTATUS__Type.html#a2da21bb426da143dfba005be019592b3',1,'CSR_MSTATUS_Type']]],
   ['sstatus32_5fsd',['SSTATUS32_SD',['../group__NMSIS__Core__CSR__Encoding.html#ga5f2248b3f4a648ce63c0468a92132971',1,'riscv_encoding.h']]],
   ['sstatus64_5fsd',['SSTATUS64_SD',['../group__NMSIS__Core__CSR__Encoding.html#ga517c9ab9421f99b99f5da4d549177f38',1,'riscv_encoding.h']]],

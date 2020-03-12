@@ -279,7 +279,7 @@
 <para>ECLIC needs be initialized after boot up, Vendor could also change the initialization configuration. </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" line="262" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" bodystart="262" bodyend="269"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" line="262" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" bodystart="262" bodyend="271"/>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__IntExcNMI__Handling_1ga52cbc8fa60b210b75ac79baa25ac74bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int32_t</type>
@@ -362,7 +362,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" line="286" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" bodystart="286" bodyend="306"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" line="288" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" bodystart="288" bodyend="308"/>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__SystemConfig_1gad1cbc4315ef293463e6057dfb24c8115" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -378,7 +378,7 @@
 <para>This <computeroutput>__libc_init_array()</computeroutput> function is called during startup code, user need to implement this function, otherwise when link it will error init.c:(.text.__libc_init_array+0x26): undefined reference to `_init&apos; </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" line="316" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" bodystart="316" bodyend="327"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" line="318" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" bodystart="318" bodyend="329"/>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__SystemConfig_1ga173a20f19acf36985bbac6786a02b544" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -394,7 +394,7 @@
 <para>This <computeroutput>__libc_fini_array()</computeroutput> function is called when exit main. user need to implement this function, otherwise when link it will error fini.c:(.text.__libc_fini_array+0x28): undefined reference to `_fini&apos; </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" line="336" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" bodystart="336" bodyend="340"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" line="338" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c" bodystart="338" bodyend="342"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -537,51 +537,53 @@
 <codeline lineno="264"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>/*<sp/>Global<sp/>Configuration<sp/>about<sp/>MTH<sp/>and<sp/>NLBits.</highlight></codeline>
 <codeline lineno="265"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/>*<sp/>TODO:<sp/>Please<sp/>adapt<sp/>it<sp/>according<sp/>to<sp/>your<sp/>system<sp/>requirement.<sp/></highlight></codeline>
 <codeline lineno="266"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/>*<sp/>This<sp/>function<sp/>is<sp/>called<sp/>in<sp/>_init<sp/>function<sp/>*/</highlight></codeline>
-<codeline lineno="267"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>ECLIC_SetMth(0);</highlight></codeline>
-<codeline lineno="268"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>ECLIC_SetCfgNlbits(2);</highlight></codeline>
-<codeline lineno="269"><highlight class="stringliteral">}</highlight></codeline>
-<codeline lineno="270"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="286" refid="group__NMSIS__Core__IntExcNMI__Handling_1ga52cbc8fa60b210b75ac79baa25ac74bb" refkind="member"><highlight class="stringliteral">int32_t<sp/>ECLIC_Register_IRQ(IRQn_Type<sp/>IRQn,<sp/>uint8_t<sp/>shv,<sp/>ECLIC_TRIGGER_Type<sp/>trig_mode,<sp/>uint8_t<sp/>lvl,<sp/>uint8_t<sp/>priority,<sp/>void<sp/>*handler)</highlight></codeline>
-<codeline lineno="287"><highlight class="stringliteral">{</highlight></codeline>
-<codeline lineno="288"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>if<sp/>((IRQn<sp/>&gt;<sp/>SOC_INT_MAX)<sp/>||<sp/>(shv<sp/>&gt;<sp/>ECLIC_VECTOR_INTERRUPT)<sp/>\</highlight></codeline>
-<codeline lineno="289"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>||<sp/>(trig_mode<sp/>&gt;<sp/>ECLIC_NEGTIVE_EDGE_TRIGGER<sp/>)<sp/>||<sp/>(handler<sp/>==<sp/>NULL))<sp/>{</highlight></codeline>
-<codeline lineno="290"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>-1;</highlight></codeline>
-<codeline lineno="291"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="292"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="293"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>/*<sp/>set<sp/>interrupt<sp/>vector<sp/>mode<sp/>*/</highlight></codeline>
-<codeline lineno="294"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>ECLIC_SetShvIRQ(IRQn,<sp/>shv);</highlight></codeline>
-<codeline lineno="295"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>/*<sp/>set<sp/>interrupt<sp/>trigger<sp/>mode<sp/>and<sp/>polarity<sp/>*/</highlight></codeline>
-<codeline lineno="296"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>ECLIC_SetTrigIRQ(IRQn,<sp/>trig_mode);</highlight></codeline>
-<codeline lineno="297"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>/*<sp/>set<sp/>interrupt<sp/>level<sp/>*/</highlight></codeline>
-<codeline lineno="298"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>ECLIC_SetLevelIRQ(IRQn,<sp/>lvl);</highlight></codeline>
-<codeline lineno="299"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>/*<sp/>set<sp/>interrupt<sp/>priority<sp/>*/</highlight></codeline>
-<codeline lineno="300"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>ECLIC_SetPriorityIRQ(IRQn,<sp/>priority);</highlight></codeline>
-<codeline lineno="301"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>/*<sp/>set<sp/>interrupt<sp/>handler<sp/>entry<sp/>to<sp/>vector<sp/>table<sp/>*/</highlight></codeline>
-<codeline lineno="302"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>ECLIC_SetVector(IRQn,<sp/>(rv_csr_t)handler);</highlight></codeline>
-<codeline lineno="303"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>/*<sp/>enable<sp/>interrupt<sp/>*/</highlight></codeline>
-<codeline lineno="304"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>ECLIC_EnableIRQ(IRQn);<sp/></highlight></codeline>
-<codeline lineno="305"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>return<sp/>0;</highlight></codeline>
-<codeline lineno="306"><highlight class="stringliteral">}<sp/>/*<sp/>End<sp/>of<sp/>Doxygen<sp/>Group<sp/>NMSIS_Core_ExceptionAndNMI<sp/>*/</highlight></codeline>
-<codeline lineno="308"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="316" refid="group__NMSIS__Core__SystemConfig_1gad1cbc4315ef293463e6057dfb24c8115" refkind="member"><highlight class="stringliteral">void<sp/>_init(void)</highlight></codeline>
-<codeline lineno="317"><highlight class="stringliteral">{</highlight></codeline>
-<codeline lineno="318"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>/*<sp/>TODO:<sp/>Add<sp/>your<sp/>own<sp/>initialization<sp/>code<sp/>here,<sp/>called<sp/>before<sp/>main<sp/>via<sp/>__libc_init_array<sp/>*/</highlight></codeline>
-<codeline lineno="319"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>//<sp/>TODO:<sp/>Add<sp/>code<sp/>to<sp/>set<sp/>the<sp/>system<sp/>clock<sp/>frequency<sp/>value<sp/>SystemCoreClock</highlight></codeline>
-<codeline lineno="320"><highlight class="stringliteral"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="321"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>//<sp/>TODO:<sp/>Add<sp/>code<sp/>to<sp/>initialize<sp/>necessary<sp/>gpio<sp/>and<sp/>basic<sp/>uart<sp/>for<sp/>debug<sp/>print</highlight></codeline>
+<codeline lineno="267"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>/*<sp/>Set<sp/>CSR<sp/>MTH<sp/>to<sp/>zero<sp/>*/</highlight></codeline>
+<codeline lineno="268"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>ECLIC_SetMth(0);</highlight></codeline>
+<codeline lineno="269"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>/*<sp/>Set<sp/>Nlbits<sp/>to<sp/>the<sp/>CLICINTCTLBITS,<sp/>all<sp/>the<sp/>bits<sp/>are<sp/>level<sp/>bits<sp/>*/</highlight></codeline>
+<codeline lineno="270"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>ECLIC_SetCfgNlbits(__ECLIC_INTCTLBITS);</highlight></codeline>
+<codeline lineno="271"><highlight class="stringliteral">}</highlight></codeline>
+<codeline lineno="272"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="288" refid="group__NMSIS__Core__IntExcNMI__Handling_1ga52cbc8fa60b210b75ac79baa25ac74bb" refkind="member"><highlight class="stringliteral">int32_t<sp/>ECLIC_Register_IRQ(IRQn_Type<sp/>IRQn,<sp/>uint8_t<sp/>shv,<sp/>ECLIC_TRIGGER_Type<sp/>trig_mode,<sp/>uint8_t<sp/>lvl,<sp/>uint8_t<sp/>priority,<sp/>void<sp/>*handler)</highlight></codeline>
+<codeline lineno="289"><highlight class="stringliteral">{</highlight></codeline>
+<codeline lineno="290"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>if<sp/>((IRQn<sp/>&gt;<sp/>SOC_INT_MAX)<sp/>||<sp/>(shv<sp/>&gt;<sp/>ECLIC_VECTOR_INTERRUPT)<sp/>\</highlight></codeline>
+<codeline lineno="291"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>||<sp/>(trig_mode<sp/>&gt;<sp/>ECLIC_NEGTIVE_EDGE_TRIGGER<sp/>)<sp/>||<sp/>(handler<sp/>==<sp/>NULL))<sp/>{</highlight></codeline>
+<codeline lineno="292"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>-1;</highlight></codeline>
+<codeline lineno="293"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="294"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="295"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>/*<sp/>set<sp/>interrupt<sp/>vector<sp/>mode<sp/>*/</highlight></codeline>
+<codeline lineno="296"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>ECLIC_SetShvIRQ(IRQn,<sp/>shv);</highlight></codeline>
+<codeline lineno="297"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>/*<sp/>set<sp/>interrupt<sp/>trigger<sp/>mode<sp/>and<sp/>polarity<sp/>*/</highlight></codeline>
+<codeline lineno="298"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>ECLIC_SetTrigIRQ(IRQn,<sp/>trig_mode);</highlight></codeline>
+<codeline lineno="299"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>/*<sp/>set<sp/>interrupt<sp/>level<sp/>*/</highlight></codeline>
+<codeline lineno="300"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>ECLIC_SetLevelIRQ(IRQn,<sp/>lvl);</highlight></codeline>
+<codeline lineno="301"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>/*<sp/>set<sp/>interrupt<sp/>priority<sp/>*/</highlight></codeline>
+<codeline lineno="302"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>ECLIC_SetPriorityIRQ(IRQn,<sp/>priority);</highlight></codeline>
+<codeline lineno="303"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>/*<sp/>set<sp/>interrupt<sp/>handler<sp/>entry<sp/>to<sp/>vector<sp/>table<sp/>*/</highlight></codeline>
+<codeline lineno="304"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>ECLIC_SetVector(IRQn,<sp/>(rv_csr_t)handler);</highlight></codeline>
+<codeline lineno="305"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>/*<sp/>enable<sp/>interrupt<sp/>*/</highlight></codeline>
+<codeline lineno="306"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>ECLIC_EnableIRQ(IRQn);<sp/></highlight></codeline>
+<codeline lineno="307"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>return<sp/>0;</highlight></codeline>
+<codeline lineno="308"><highlight class="stringliteral">}<sp/>/*<sp/>End<sp/>of<sp/>Doxygen<sp/>Group<sp/>NMSIS_Core_ExceptionAndNMI<sp/>*/</highlight></codeline>
+<codeline lineno="310"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="318" refid="group__NMSIS__Core__SystemConfig_1gad1cbc4315ef293463e6057dfb24c8115" refkind="member"><highlight class="stringliteral">void<sp/>_init(void)</highlight></codeline>
+<codeline lineno="319"><highlight class="stringliteral">{</highlight></codeline>
+<codeline lineno="320"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>/*<sp/>TODO:<sp/>Add<sp/>your<sp/>own<sp/>initialization<sp/>code<sp/>here,<sp/>called<sp/>before<sp/>main<sp/>via<sp/>__libc_init_array<sp/>*/</highlight></codeline>
+<codeline lineno="321"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>//<sp/>TODO:<sp/>Add<sp/>code<sp/>to<sp/>set<sp/>the<sp/>system<sp/>clock<sp/>frequency<sp/>value<sp/>SystemCoreClock</highlight></codeline>
 <codeline lineno="322"><highlight class="stringliteral"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="323"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>/*<sp/>Initialize<sp/>exception<sp/>default<sp/>handlers<sp/>*/</highlight></codeline>
-<codeline lineno="324"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Exception_Init();</highlight></codeline>
-<codeline lineno="325"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>/*<sp/>ECLIC<sp/>initilization,<sp/>mainly<sp/>MTH<sp/>and<sp/>NLBIT<sp/>settings<sp/>*/</highlight></codeline>
-<codeline lineno="326"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>ECLIC_Init();</highlight></codeline>
-<codeline lineno="327"><highlight class="stringliteral">}</highlight></codeline>
-<codeline lineno="328"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="336" refid="group__NMSIS__Core__SystemConfig_1ga173a20f19acf36985bbac6786a02b544" refkind="member"><highlight class="stringliteral">void<sp/>_fini(void)</highlight></codeline>
-<codeline lineno="337"><highlight class="stringliteral">{</highlight></codeline>
-<codeline lineno="338"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>/*<sp/>TODO:<sp/>Add<sp/>your<sp/>own<sp/>finishing<sp/>code<sp/>here,<sp/>called<sp/>after<sp/>main<sp/>via<sp/>__libc_fini_array<sp/>*/</highlight></codeline>
-<codeline lineno="339"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="340"><highlight class="stringliteral">}</highlight></codeline>
-<codeline lineno="341"><highlight class="stringliteral"><sp/>/*<sp/>End<sp/>of<sp/>Doxygen<sp/>Group<sp/>NMSIS_Core_SystemAndClock<sp/>*/</highlight></codeline>
+<codeline lineno="323"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>//<sp/>TODO:<sp/>Add<sp/>code<sp/>to<sp/>initialize<sp/>necessary<sp/>gpio<sp/>and<sp/>basic<sp/>uart<sp/>for<sp/>debug<sp/>print</highlight></codeline>
+<codeline lineno="324"><highlight class="stringliteral"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="325"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>/*<sp/>Initialize<sp/>exception<sp/>default<sp/>handlers<sp/>*/</highlight></codeline>
+<codeline lineno="326"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Exception_Init();</highlight></codeline>
+<codeline lineno="327"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>/*<sp/>ECLIC<sp/>initilization,<sp/>mainly<sp/>MTH<sp/>and<sp/>NLBIT<sp/>settings<sp/>*/</highlight></codeline>
+<codeline lineno="328"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>ECLIC_Init();</highlight></codeline>
+<codeline lineno="329"><highlight class="stringliteral">}</highlight></codeline>
+<codeline lineno="330"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="338" refid="group__NMSIS__Core__SystemConfig_1ga173a20f19acf36985bbac6786a02b544" refkind="member"><highlight class="stringliteral">void<sp/>_fini(void)</highlight></codeline>
+<codeline lineno="339"><highlight class="stringliteral">{</highlight></codeline>
+<codeline lineno="340"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>/*<sp/>TODO:<sp/>Add<sp/>your<sp/>own<sp/>finishing<sp/>code<sp/>here,<sp/>called<sp/>after<sp/>main<sp/>via<sp/>__libc_fini_array<sp/>*/</highlight></codeline>
+<codeline lineno="341"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="342"><highlight class="stringliteral">}</highlight></codeline>
+<codeline lineno="343"><highlight class="stringliteral"><sp/>/*<sp/>End<sp/>of<sp/>Doxygen<sp/>Group<sp/>NMSIS_Core_SystemAndClock<sp/>*/</highlight></codeline>
     </programlisting>
     <location file="/home/travis/build/Nuclei-Software/NMSIS/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c"/>
   </compounddef>

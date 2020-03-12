@@ -19,7 +19,7 @@ var NAVTREEINDEX =
 "group__NMSIS__Core__CSR__Encoding.html#gafa733f6d7aadab5b3c0318d005745a98",
 "group__NMSIS__Core__CSR__Registers.html#gafa653e51ce2be6aa201caa8d36337e0f",
 "group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__MISC.html#ga4025d5f632fcaa18a002c764daa577bd",
-"group__NMSIS__Core__PeriphAccess.html#gaec43007d9998a0a0e01faede4133d6be"
+"group__NMSIS__Core__PeriphAccess.html#gab6caba5853a60a17e8e04499b52bf691"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

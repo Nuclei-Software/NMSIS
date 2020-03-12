@@ -223,6 +223,7 @@ var NAVTREEINDEX3 =
 "group__NMSIS__Core__IntExc.html#gga7e1129cd8a196f4284d41db3e82ad5c8ab38c7d66cde0d826a8cb0950367e541f":[1,7,27,10],
 "group__NMSIS__Core__IntExc.html#gga7e1129cd8a196f4284d41db3e82ad5c8abf73d47e24ab97a72266dd22fd05d7c4":[1,7,27,19],
 "group__NMSIS__Core__IntExc.html#gga7e1129cd8a196f4284d41db3e82ad5c8add6253fd238cff7fa4b35e4ef81ffc07":[1,7,27,1],
+"group__NMSIS__Core__IntExc.html#gga7e1129cd8a196f4284d41db3e82ad5c8adddd70a514a83716a447d622adf17c78":[1,7,27,20],
 "group__NMSIS__Core__IntExc.html#gga7e1129cd8a196f4284d41db3e82ad5c8afc0887f9ed1d32ff9100f7c9083b9e96":[1,7,27,9],
 "group__NMSIS__Core__IntExc.html#gga7e1129cd8a196f4284d41db3e82ad5c8aff930d0f4734a469931373907ae78b34":[1,7,27,4],
 "group__NMSIS__Core__IntExcNMI__Handling.html":[1,14,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX3 =
 "group__NMSIS__Core__PeriphAccess.html#ga139b6e261c981f014f386927ca4a8444":[1,2,6],
 "group__NMSIS__Core__PeriphAccess.html#ga286e3b913dbd236c7f48ea70c8821f4e":[1,2,7],
 "group__NMSIS__Core__PeriphAccess.html#ga4cc1649793116d7c2d8afce7a4ffce43":[1,2,1],
-"group__NMSIS__Core__PeriphAccess.html#ga7e25d9380f9ef903923964322e71f2f6":[1,2,4],
-"group__NMSIS__Core__PeriphAccess.html#gab6caba5853a60a17e8e04499b52bf691":[1,2,3]
+"group__NMSIS__Core__PeriphAccess.html#ga7e25d9380f9ef903923964322e71f2f6":[1,2,4]
 };

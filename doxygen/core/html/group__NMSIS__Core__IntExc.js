@@ -47,7 +47,8 @@ var group__NMSIS__Core__IntExc =
       [ "Reserved14_IRQn", "group__NMSIS__Core__IntExc.html#gga7e1129cd8a196f4284d41db3e82ad5c8a18ffa53a85e8eeacdf533fe75fcb79e3", null ],
       [ "Reserved15_IRQn", "group__NMSIS__Core__IntExc.html#gga7e1129cd8a196f4284d41db3e82ad5c8a1318a58d8c42de0ed910336b0bb92425", null ],
       [ "Reserved16_IRQn", "group__NMSIS__Core__IntExc.html#gga7e1129cd8a196f4284d41db3e82ad5c8a2560f554a6c84ae4cfab56e1f4bcb021", null ],
-      [ "FirstDeviceSpecificInterrupt_IRQn", "group__NMSIS__Core__IntExc.html#gga7e1129cd8a196f4284d41db3e82ad5c8abf73d47e24ab97a72266dd22fd05d7c4", null ]
+      [ "FirstDeviceSpecificInterrupt_IRQn", "group__NMSIS__Core__IntExc.html#gga7e1129cd8a196f4284d41db3e82ad5c8abf73d47e24ab97a72266dd22fd05d7c4", null ],
+      [ "SOC_INT_MAX", "group__NMSIS__Core__IntExc.html#gga7e1129cd8a196f4284d41db3e82ad5c8adddd70a514a83716a447d622adf17c78", null ]
     ] ],
     [ "__ECLIC_ClearPendingIRQ", "group__NMSIS__Core__IntExc.html#ga79f14465b1588b3c970efd8d55422638", null ],
     [ "__ECLIC_DisableIRQ", "group__NMSIS__Core__IntExc.html#gaa34edbcf50501a1ef4ebe1e2fbfae2b5", null ],

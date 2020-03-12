@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h &mdash; NMSIS 1.0.0-beta documentation</title>
+  <title>System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h &mdash; NMSIS 1.0.0-beta1 documentation</title>
   
 
   
@@ -544,7 +544,9 @@ In case of additional features the function prototypes need to be added to the <
 339
 340
 341
-342</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+342
+343
+344</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm"> * Copyright (c) 2009-2018 Arm Limited. All rights reserved.</span>
 <span class="cm"> * Copyright (c) 2019 Nuclei Limited. All rights reserved.</span>
 <span class="cm"> *</span>
@@ -810,8 +812,10 @@ In case of additional features the function prototypes need to be added to the <
     <span class="cm">/* Global Configuration about MTH and NLBits.</span>
 <span class="cm">     * TODO: Please adapt it according to your system requirement. </span>
 <span class="cm">     * This function is called in _init function */</span>
+    <span class="cm">/* Set CSR MTH to zero */</span>
     <span class="n">ECLIC_SetMth</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-    <span class="n">ECLIC_SetCfgNlbits</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+    <span class="cm">/* Set Nlbits to the CLICINTCTLBITS, all the bits are level bits */</span>
+    <span class="n">ECLIC_SetCfgNlbits</span><span class="p">(</span><span class="n">__ECLIC_INTCTLBITS</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="cm">/**</span>

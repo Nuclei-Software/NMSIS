@@ -1,5 +1,6 @@
 var NAVTREEINDEX4 =
 {
+"group__NMSIS__Core__PeriphAccess.html#gab6caba5853a60a17e8e04499b52bf691":[1,2,3],
 "group__NMSIS__Core__PeriphAccess.html#gaec43007d9998a0a0e01faede4133d6be":[1,2,2],
 "group__NMSIS__Core__PeriphAccess.html#gaf63697ed9952cc71e1225efe205f6cd3":[1,2,0],
 "group__NMSIS__Core__Registers.html":[1,4],
@@ -51,8 +52,8 @@ var NAVTREEINDEX4 =
 "group__NMSIS__Core__VersionControl.html#gab04e403f865e54d51a172e7b930e9450":[1,0,1],
 "group__NMSIS__Core__VersionControl.html#gab5a0b348cd079c5b07a64ea593e67b29":[1,0,0],
 "group__NMSIS__Core__VersionControl.html#gabbb55762c8f33bff41889171e1e81fed":[1,0,5],
-"index.html":[],
 "index.html":[0],
+"index.html":[],
 "modules.html":[1],
 "pages.html":[],
 "structCLIC__CTRL__Type.html":[1,4,1,2],

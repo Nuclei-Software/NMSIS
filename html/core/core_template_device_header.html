@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Device Header File &lt;device.h&gt; &mdash; NMSIS 1.0.0-beta documentation</title>
+  <title>Device Header File &lt;device.h&gt; &mdash; NMSIS 1.0.0-beta1 documentation</title>
   
 
   
@@ -250,7 +250,8 @@ The IRQn values needs extension to reflect the device-specific interrupt vector 
 28
 29
 30
-31</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="k">enum</span> <span class="n">IRQn</span> <span class="p">{</span>
+31
+32</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="k">enum</span> <span class="n">IRQn</span> <span class="p">{</span>
     <span class="cm">/******  N200 Processor Exceptions Numbers *********************************************/</span>
     <span class="n">Reserved0_IRQn</span>               <span class="o">=</span>   <span class="mi">0</span><span class="p">,</span>     <span class="cm">/*!&lt;  Internal reserved                        */</span>
     <span class="n">Reserved1_IRQn</span>               <span class="o">=</span>   <span class="mi">1</span><span class="p">,</span>     <span class="cm">/*!&lt;  Internal reserved                        */</span>
@@ -280,6 +281,7 @@ The IRQn values needs extension to reflect the device-specific interrupt vector 
                  <span class="o">:</span>       <span class="o">:</span>
     <span class="n">CAN1_EWMC_IRQn</span>               <span class="o">=</span>  <span class="mi">85</span><span class="p">,</span>     <span class="cm">/*!&lt; CAN1 EWMC interrupt                       */</span>
     <span class="n">USBFS_IRQn</span>                   <span class="o">=</span>  <span class="mi">86</span><span class="p">,</span>     <span class="cm">/*!&lt; USBFS global interrupt                    */</span>
+    <span class="n">SOC_INT_MAX</span><span class="p">,</span>                            <span class="cm">/*!&lt; Number of total Interrupts                */</span>
 <span class="p">}</span> <span class="n">IRQn_Type</span><span class="p">;</span>
 </pre></div>
 </td></tr></table></div>
@@ -660,7 +662,9 @@ If these <code class="docutils literal notranslate"><span class="pre">#define</s
 231
 232
 233
-234</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+234
+235
+236</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm"> * Copyright (c) 2009-2019 Arm Limited. All rights reserved.</span>
 <span class="cm"> * Copyright (c) 2019 Nuclei Limited. All rights reserved.</span>
 <span class="cm"> *</span>
@@ -744,6 +748,8 @@ If these <code class="docutils literal notranslate"><span class="pre">#define</s
 <span class="cm">         could get from clicinfo.NUM_INTERRUPT. According the interrupt handlers defined in startup_Device.s</span>
 <span class="cm">         eg.: Interrupt for Timer#1       eclic_tim0_handler   -&gt;   TIM0_IRQn */</span>
     <span class="o">&lt;</span><span class="n">DeviceInterrupt</span><span class="o">&gt;</span><span class="n">_IRQn</span>    <span class="o">=</span> <span class="mi">19</span><span class="p">,</span>                <span class="cm">/*!&lt; Device Interrupt */</span>
+
+    <span class="n">SOC_INT_MAX</span><span class="p">,</span>                                   <span class="cm">/* Max SoC interrupt Number */</span>
 <span class="p">}</span> <span class="n">IRQn_Type</span><span class="p">;</span>
 
 <span class="cm">/* =========================================================================================================================== */</span>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Interrupts and Exceptions &mdash; NMSIS 1.0.0-beta documentation</title>
+  <title>Interrupts and Exceptions &mdash; NMSIS 1.0.0-beta1 documentation</title>
   
 
   
@@ -721,6 +721,11 @@ The original NMSIS-Core <code class="docutils literal notranslate"><span class="
 <span id="_CPPv3N17NMSIS_Core_IntExc33FirstDeviceSpecificInterrupt_IRQnE"></span><span id="_CPPv2N17NMSIS_Core_IntExc33FirstDeviceSpecificInterrupt_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8abf73d47e24ab97a72266dd22fd05d7c4"></span><code class="sig-name descname">FirstDeviceSpecificInterrupt_IRQn</code> = 19<a class="headerlink" href="#_CPPv4N17NMSIS_Core_IntExc33FirstDeviceSpecificInterrupt_IRQnE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
+<dl class="enumerator">
+<dt id="_CPPv4N17NMSIS_Core_IntExc11SOC_INT_MAXE">
+<span id="_CPPv3N17NMSIS_Core_IntExc11SOC_INT_MAXE"></span><span id="_CPPv2N17NMSIS_Core_IntExc11SOC_INT_MAXE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8adddd70a514a83716a447d622adf17c78"></span><code class="sig-name descname">SOC_INT_MAX</code><a class="headerlink" href="#_CPPv4N17NMSIS_Core_IntExc11SOC_INT_MAXE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="function">
@@ -1322,6 +1327,12 @@ __INTERRUPT void eclic_mtip_handler(void)
 <dd><p>First Device Specific Interrupt. </p>
 </dd></dl>
 
+<dl class="enumerator">
+<dt id="_CPPv4N17NMSIS_Core_IntExc11SOC_INT_MAXE">
+<span id="_CPPv3N17NMSIS_Core_IntExc11SOC_INT_MAXE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8adddd70a514a83716a447d622adf17c78"></span><code class="sig-name descname">SOC_INT_MAX</code><br /></dt>
+<dd><p>Number of total interrupts. </p>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -1330,10 +1341,10 @@ __INTERRUPT void eclic_mtip_handler(void)
 <dl class="function">
 <dt>
 <span class="target" id="group__NMSIS__Core__IntExc_1ga38900ce869dd78e9b432ac90d8006082"></span><code class="sig-name descname">__STATIC_FORCEINLINE void __ECLIC_SetCfgNlbits(uint32_t nlbits)</code></dt>
-<dd><p>Set nlbits value of cliccfg register. </p>
-<p>This function set the nlbits value of cliccfg register. <dl class="simple">
+<dd><p>Set nlbits value. </p>
+<p>This function set the nlbits value of CLICCFG register. <dl class="simple">
 <dt><strong>Remark</strong></dt><dd><p><ul class="simple">
-<li><p>nlbits is used to set the width of level in the clicintctl. </p></li>
+<li><p>nlbits is used to set the width of level in the CLICINTCTL[i]. </p></li>
 </ul>
 </p>
 </dd>
@@ -1353,12 +1364,12 @@ __INTERRUPT void eclic_mtip_handler(void)
 <dl class="function">
 <dt>
 <span class="target" id="group__NMSIS__Core__IntExc_1ga1dce18ecc4a504cc128c62596d25f3ab"></span><code class="sig-name descname">__STATIC_FORCEINLINE uint32_t __ECLIC_GetCfgNlbits(void)</code></dt>
-<dd><p>Get nlbits value from cliccfg register. </p>
-<p>This function get the nlbits value of cliccfg register. <dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>nlbits value of cliccfg register </p>
+<dd><p>Get nlbits value. </p>
+<p>This function get the nlbits value of CLICCFG register. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>nlbits value of CLICCFG register </p>
 </dd>
 <dt><strong>Remark</strong></dt><dd><p><ul class="simple">
-<li><p>nlbits is used to get the width of level in the clicintctl. </p></li>
+<li><p>nlbits is used to set the width of level in the CLICINTCTL[i]. </p></li>
 </ul>
 </p>
 </dd>
@@ -1374,12 +1385,12 @@ __INTERRUPT void eclic_mtip_handler(void)
 <dl class="function">
 <dt>
 <span class="target" id="group__NMSIS__Core__IntExc_1ga062b7c1b16828b4dbc502a303648dbb1"></span><code class="sig-name descname">__STATIC_FORCEINLINE uint32_t __ECLIC_GetInfoVer(void)</code></dt>
-<dd><p>Get the version control from CLIC information register. </p>
-<p>This function gets the hardware version information from CLIC information register. <dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>hardware version information from CLIC information register. </p>
+<dd><p>Get the ECLIC version number. </p>
+<p>This function gets the hardware version information from CLICINFO register. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>hardware version number in CLICINFO register. </p>
 </dd>
 <dt><strong>Remark</strong></dt><dd><p><ul class="simple">
-<li><p>This function gets harware version information from CLIC information register.</p></li>
+<li><p>This function gets harware version information from CLICINFO register.</p></li>
 <li><p>Bit 20:17 for architecture version, bit 16:13 for implementation version. </p></li>
 </ul>
 </p>
@@ -1396,13 +1407,13 @@ __INTERRUPT void eclic_mtip_handler(void)
 <dl class="function">
 <dt>
 <span class="target" id="group__NMSIS__Core__IntExc_1ga6db42f6efa6f57690930a78b35c64b40"></span><code class="sig-name descname">__STATIC_FORCEINLINE uint32_t __ECLIC_GetInfoCtlbits(void)</code></dt>
-<dd><p>Get CLICINTCTLBITS from CLIC information register. </p>
-<p>This function gets CLICINTCTLBITS from CLIC information register. <dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>CLICINTCTLBITS from CLIC information register. </p>
+<dd><p>Get CLICINTCTLBITS. </p>
+<p>This function gets CLICINTCTLBITS from CLICINFO register. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CLICINTCTLBITS from CLICINFO register. </p>
 </dd>
 <dt><strong>Remark</strong></dt><dd><p><ul class="simple">
-<li><p>In the clicintctl registers, with 2 &lt;= CLICINTCTLBITS &lt;= 8.</p></li>
-<li><p>The implemented bits are kept left-justified in the most-significant bits of each 8-bit clicintctl[i] register, with the lower unimplemented bits treated as hardwired to 1. </p></li>
+<li><p>In the CLICINTCTL[i] registers, with 2 &lt;= CLICINTCTLBITS &lt;= 8.</p></li>
+<li><p>The implemented bits are kept left-justified in the most-significant bits of each 8-bit CLICINTCTL[I] register, with the lower unimplemented bits treated as hardwired to 1. </p></li>
 </ul>
 </p>
 </dd>
@@ -1418,12 +1429,12 @@ __INTERRUPT void eclic_mtip_handler(void)
 <dl class="function">
 <dt>
 <span class="target" id="group__NMSIS__Core__IntExc_1ga2875bb0f9e3ceb6c750dcd5396d099b7"></span><code class="sig-name descname">__STATIC_FORCEINLINE uint32_t __ECLIC_GetInfoNum(void)</code></dt>
-<dd><p>Get number of maximum interrupt inputs supported from CLIC information register. </p>
-<p>This function gets number of maximum interrupt inputs supported from CLIC information register. <dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>number of maximum interrupt inputs supported from CLIC information register. </p>
+<dd><p>Get number of maximum interrupt inputs supported. </p>
+<p>This function gets number of maximum interrupt inputs supported from CLICINFO register. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>number of maximum interrupt inputs supported from CLICINFO register. </p>
 </dd>
 <dt><strong>Remark</strong></dt><dd><p><ul class="simple">
-<li><p>This function gets number of maximum interrupt inputs supported from CLIC information register.</p></li>
+<li><p>This function gets number of maximum interrupt inputs supported from CLICINFO register.</p></li>
 <li><p>The num_interrupt field specifies the actual number of maximum interrupt inputs supported in this implementation. </p></li>
 </ul>
 </p>
@@ -1747,7 +1758,7 @@ __INTERRUPT void eclic_mtip_handler(void)
 <dt>
 <span class="target" id="group__NMSIS__Core__IntExc_1ga2c72ee40cad78719f6d60767b75f6dcd"></span><code class="sig-name descname">__STATIC_FORCEINLINE void __ECLIC_SetCtrlIRQ(IRQn_Type IRQn, uint8_t intctrl)</code></dt>
 <dd><p>Modify ECLIC Interrupt Input Control Register for a specific interrupt. </p>
-<p>This function modify ECLIC Interrupt Input Control register of the specific interrupt <em>IRQn</em>. <dl class="simple">
+<p>This function modify ECLIC Interrupt Input Control(CLICINTCTL[i]) register of the specific interrupt <em>IRQn</em>. <dl class="simple">
 <dt><strong>Remark</strong></dt><dd><p><ul class="simple">
 <li><p>IRQn must not be negative. </p></li>
 </ul>
@@ -1760,7 +1771,7 @@ __INTERRUPT void eclic_mtip_handler(void)
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">IRQn</span></code>: Interrupt number </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">intctrl</span></code>: Set value for clicctrl </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">intctrl</span></code>: Set value for CLICINTCTL[i] register </p></li>
 </ul>
 </dd>
 </dl>

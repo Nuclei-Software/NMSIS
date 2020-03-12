@@ -166,6 +166,13 @@
           <detaileddescription>
           </detaileddescription>
         </enumvalue>
+        <enumvalue id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8adddd70a514a83716a447d622adf17c78" prot="public">
+          <name>SOC_INT_MAX</name>
+          <briefdescription>
+<para>Number of total interrupts. </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
         <briefdescription>
 <para>Definition of IRQn numbers. </para>        </briefdescription>
         <detaileddescription>
@@ -174,7 +181,7 @@
 </para><para>The table below describes the core interrupt names and their availability in various Nuclei Cores. </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="172" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="172" bodyend="202"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="172" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="172" bodyend="203"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="func">
@@ -188,9 +195,9 @@
           <declname>nlbits</declname>
         </param>
         <briefdescription>
-<para>Set nlbits value of cliccfg register. </para>        </briefdescription>
+<para>Set nlbits value. </para>        </briefdescription>
         <detaileddescription>
-<para>This function set the nlbits value of cliccfg register. <parameterlist kind="param"><parameteritem>
+<para>This function set the nlbits value of CLICCFG register. <parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">nlbits</parametername>
 </parameternamelist>
@@ -199,7 +206,7 @@
 </parameteritem>
 </parameterlist>
 <simplesect kind="remark"><para><itemizedlist>
-<listitem><para>nlbits is used to set the width of level in the clicintctl. </para></listitem></itemizedlist>
+<listitem><para>nlbits is used to set the width of level in the CLICINTCTL[i]. </para></listitem></itemizedlist>
 </para></simplesect>
 <simplesect kind="see"><para><itemizedlist>
 <listitem><para><ref refid="group__NMSIS__Core__IntExc_1ga47f628da4dcf09a2fc43bfb7c8de1528" kindref="member">ECLIC_GetCfgNlbits</ref> </para></listitem></itemizedlist>
@@ -207,7 +214,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="257" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="257" bodyend="261"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="258" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="258" bodyend="262"/>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1ga6c31823bbd3bd593dcecd6d7d5f0afbb" compoundref="core__feature__eclic_8h" startline="96">CLIC_CLICCFG_NLBIT_Msk</references>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1ga0ee0922b5a83b6ff92fed6c9dea63da3" compoundref="core__feature__eclic_8h" startline="95">CLIC_CLICCFG_NLBIT_Pos</references>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1gab5a72455ad01a7caea954a82c907256d" compoundref="core__feature__eclic_8h" startline="145">ECLIC</references>
@@ -221,11 +228,11 @@
           <type>void</type>
         </param>
         <briefdescription>
-<para>Get nlbits value from cliccfg register. </para>        </briefdescription>
+<para>Get nlbits value. </para>        </briefdescription>
         <detaileddescription>
-<para>This function get the nlbits value of cliccfg register. <simplesect kind="return"><para>nlbits value of cliccfg register </para></simplesect>
+<para>This function get the nlbits value of CLICCFG register. <simplesect kind="return"><para>nlbits value of CLICCFG register </para></simplesect>
 <simplesect kind="remark"><para><itemizedlist>
-<listitem><para>nlbits is used to get the width of level in the clicintctl. </para></listitem></itemizedlist>
+<listitem><para>nlbits is used to set the width of level in the CLICINTCTL[i]. </para></listitem></itemizedlist>
 </para></simplesect>
 <simplesect kind="see"><para><itemizedlist>
 <listitem><para><ref refid="group__NMSIS__Core__IntExc_1gad35a05a1e8fb89332d59c7db2904756b" kindref="member">ECLIC_SetCfgNlbits</ref> </para></listitem></itemizedlist>
@@ -233,14 +240,14 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="273" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="273" bodyend="276"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="274" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="274" bodyend="277"/>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1ga6c31823bbd3bd593dcecd6d7d5f0afbb" compoundref="core__feature__eclic_8h" startline="96">CLIC_CLICCFG_NLBIT_Msk</references>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1ga0ee0922b5a83b6ff92fed6c9dea63da3" compoundref="core__feature__eclic_8h" startline="95">CLIC_CLICCFG_NLBIT_Pos</references>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1gab5a72455ad01a7caea954a82c907256d" compoundref="core__feature__eclic_8h" startline="145">ECLIC</references>
-        <referencedby refid="group__NMSIS__Core__IntExc_1ga1ccefb6dd64211176683848ef52e5b8f" compoundref="core__feature__eclic_8h" startline="615" endline="630">__ECLIC_GetLevelIRQ</referencedby>
-        <referencedby refid="group__NMSIS__Core__IntExc_1ga5e47fae9a66b286f1d0df6799e5a244c" compoundref="core__feature__eclic_8h" startline="676" endline="689">__ECLIC_GetPriorityIRQ</referencedby>
-        <referencedby refid="group__NMSIS__Core__IntExc_1gae1d0b0d592b55bc57be6704ceeb314b1" compoundref="core__feature__eclic_8h" startline="581" endline="602">__ECLIC_SetLevelIRQ</referencedby>
-        <referencedby refid="group__NMSIS__Core__IntExc_1gaafd7870e3de2a0831a5ba0fec6795207" compoundref="core__feature__eclic_8h" startline="646" endline="663">__ECLIC_SetPriorityIRQ</referencedby>
+        <referencedby refid="group__NMSIS__Core__IntExc_1ga1ccefb6dd64211176683848ef52e5b8f" compoundref="core__feature__eclic_8h" startline="616" endline="631">__ECLIC_GetLevelIRQ</referencedby>
+        <referencedby refid="group__NMSIS__Core__IntExc_1ga5e47fae9a66b286f1d0df6799e5a244c" compoundref="core__feature__eclic_8h" startline="677" endline="690">__ECLIC_GetPriorityIRQ</referencedby>
+        <referencedby refid="group__NMSIS__Core__IntExc_1gae1d0b0d592b55bc57be6704ceeb314b1" compoundref="core__feature__eclic_8h" startline="582" endline="603">__ECLIC_SetLevelIRQ</referencedby>
+        <referencedby refid="group__NMSIS__Core__IntExc_1gaafd7870e3de2a0831a5ba0fec6795207" compoundref="core__feature__eclic_8h" startline="647" endline="664">__ECLIC_SetPriorityIRQ</referencedby>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__IntExc_1ga062b7c1b16828b4dbc502a303648dbb1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> uint32_t</type>
@@ -251,11 +258,11 @@
           <type>void</type>
         </param>
         <briefdescription>
-<para>Get the version control from CLIC information register. </para>        </briefdescription>
+<para>Get the ECLIC version number. </para>        </briefdescription>
         <detaileddescription>
-<para>This function gets the hardware version information from CLIC information register. <simplesect kind="return"><para>hardware version information from CLIC information register. </para></simplesect>
+<para>This function gets the hardware version information from CLICINFO register. <simplesect kind="return"><para>hardware version number in CLICINFO register. </para></simplesect>
 <simplesect kind="remark"><para><itemizedlist>
-<listitem><para>This function gets harware version information from CLIC information register.</para></listitem><listitem><para>Bit 20:17 for architecture version, bit 16:13 for implementation version. </para></listitem></itemizedlist>
+<listitem><para>This function gets harware version information from CLICINFO register.</para></listitem><listitem><para>Bit 20:17 for architecture version, bit 16:13 for implementation version. </para></listitem></itemizedlist>
 </para></simplesect>
 <simplesect kind="see"><para><itemizedlist>
 <listitem><para><ref refid="group__NMSIS__Core__IntExc_1ga6308d1600c92e3f9dc67c7837c68f854" kindref="member">ECLIC_GetInfoNum</ref> </para></listitem></itemizedlist>
@@ -263,7 +270,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="289" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="289" bodyend="292"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="290" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="290" bodyend="293"/>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1ga2b40a58247f1ae1eb207ebfd224a6519" compoundref="core__feature__eclic_8h" startline="102">CLIC_CLICINFO_VER_Msk</references>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1ga3047dd362f08b827b4f3595fdee555e1" compoundref="core__feature__eclic_8h" startline="101">CLIC_CLICINFO_VER_Pos</references>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1gab5a72455ad01a7caea954a82c907256d" compoundref="core__feature__eclic_8h" startline="145">ECLIC</references>
@@ -277,11 +284,11 @@
           <type>void</type>
         </param>
         <briefdescription>
-<para>Get CLICINTCTLBITS from CLIC information register. </para>        </briefdescription>
+<para>Get CLICINTCTLBITS. </para>        </briefdescription>
         <detaileddescription>
-<para>This function gets CLICINTCTLBITS from CLIC information register. <simplesect kind="return"><para>CLICINTCTLBITS from CLIC information register. </para></simplesect>
+<para>This function gets CLICINTCTLBITS from CLICINFO register. <simplesect kind="return"><para>CLICINTCTLBITS from CLICINFO register. </para></simplesect>
 <simplesect kind="remark"><para><itemizedlist>
-<listitem><para>In the clicintctl registers, with 2 &lt;= CLICINTCTLBITS &lt;= 8.</para></listitem><listitem><para>The implemented bits are kept left-justified in the most-significant bits of each 8-bit clicintctl[i] register, with the lower unimplemented bits treated as hardwired to 1. </para></listitem></itemizedlist>
+<listitem><para>In the CLICINTCTL[i] registers, with 2 &lt;= CLICINTCTLBITS &lt;= 8.</para></listitem><listitem><para>The implemented bits are kept left-justified in the most-significant bits of each 8-bit CLICINTCTL[I] register, with the lower unimplemented bits treated as hardwired to 1. </para></listitem></itemizedlist>
 </para></simplesect>
 <simplesect kind="see"><para><itemizedlist>
 <listitem><para><ref refid="group__NMSIS__Core__IntExc_1ga6308d1600c92e3f9dc67c7837c68f854" kindref="member">ECLIC_GetInfoNum</ref> </para></listitem></itemizedlist>
@@ -289,7 +296,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="306" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="306" bodyend="309"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="307" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="307" bodyend="310"/>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1ga146a1208d7982a0ec073f9c3bb77528f" compoundref="core__feature__eclic_8h" startline="99">CLIC_CLICINFO_CTLBIT_Msk</references>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1gac63632ddf28ed47570b441f003ba5c5f" compoundref="core__feature__eclic_8h" startline="98">CLIC_CLICINFO_CTLBIT_Pos</references>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1gab5a72455ad01a7caea954a82c907256d" compoundref="core__feature__eclic_8h" startline="145">ECLIC</references>
@@ -303,11 +310,11 @@
           <type>void</type>
         </param>
         <briefdescription>
-<para>Get number of maximum interrupt inputs supported from CLIC information register. </para>        </briefdescription>
+<para>Get number of maximum interrupt inputs supported. </para>        </briefdescription>
         <detaileddescription>
-<para>This function gets number of maximum interrupt inputs supported from CLIC information register. <simplesect kind="return"><para>number of maximum interrupt inputs supported from CLIC information register. </para></simplesect>
+<para>This function gets number of maximum interrupt inputs supported from CLICINFO register. <simplesect kind="return"><para>number of maximum interrupt inputs supported from CLICINFO register. </para></simplesect>
 <simplesect kind="remark"><para><itemizedlist>
-<listitem><para>This function gets number of maximum interrupt inputs supported from CLIC information register.</para></listitem><listitem><para>The num_interrupt field specifies the actual number of maximum interrupt inputs supported in this implementation. </para></listitem></itemizedlist>
+<listitem><para>This function gets number of maximum interrupt inputs supported from CLICINFO register.</para></listitem><listitem><para>The num_interrupt field specifies the actual number of maximum interrupt inputs supported in this implementation. </para></listitem></itemizedlist>
 </para></simplesect>
 <simplesect kind="see"><para><itemizedlist>
 <listitem><para><ref refid="group__NMSIS__Core__IntExc_1ga2b075534f2e421549ebe16b9c97a496f" kindref="member">ECLIC_GetInfoCtlbits</ref> </para></listitem></itemizedlist>
@@ -315,7 +322,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="322" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="322" bodyend="325"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="323" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="323" bodyend="326"/>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1ga7f3148e774c092b06d81b400ac6c80bb" compoundref="core__feature__eclic_8h" startline="105">CLIC_CLICINFO_NUM_Msk</references>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1ga39c37a90e1445851aede44b002a83a99" compoundref="core__feature__eclic_8h" startline="104">CLIC_CLICINFO_NUM_Pos</references>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1gab5a72455ad01a7caea954a82c907256d" compoundref="core__feature__eclic_8h" startline="145">ECLIC</references>
@@ -346,7 +353,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="335" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="335" bodyend="338"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="336" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="336" bodyend="339"/>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1gab5a72455ad01a7caea954a82c907256d" compoundref="core__feature__eclic_8h" startline="145">ECLIC</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__IntExc_1ga36108f1b6b9e2545727701d856a63c6e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -367,7 +374,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="348" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="348" bodyend="351"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="349" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="349" bodyend="352"/>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1gab5a72455ad01a7caea954a82c907256d" compoundref="core__feature__eclic_8h" startline="145">ECLIC</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__IntExc_1gae081f15804b168a9573aca186c6176aa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -399,7 +406,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="364" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="364" bodyend="367"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="365" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="365" bodyend="368"/>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1ga70aa615d81bc48ea8ed2b64c09c2d63f" compoundref="core__feature__eclic_8h" startline="111">CLIC_INTIE_IE_Msk</references>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1gab5a72455ad01a7caea954a82c907256d" compoundref="core__feature__eclic_8h" startline="145">ECLIC</references>
       </memberdef>
@@ -435,7 +442,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="383" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="383" bodyend="386"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="384" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="384" bodyend="387"/>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1ga70aa615d81bc48ea8ed2b64c09c2d63f" compoundref="core__feature__eclic_8h" startline="111">CLIC_INTIE_IE_Msk</references>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1gab5a72455ad01a7caea954a82c907256d" compoundref="core__feature__eclic_8h" startline="145">ECLIC</references>
       </memberdef>
@@ -468,7 +475,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="398" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="398" bodyend="401"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="399" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="399" bodyend="402"/>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1ga70aa615d81bc48ea8ed2b64c09c2d63f" compoundref="core__feature__eclic_8h" startline="111">CLIC_INTIE_IE_Msk</references>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1gab5a72455ad01a7caea954a82c907256d" compoundref="core__feature__eclic_8h" startline="145">ECLIC</references>
       </memberdef>
@@ -504,7 +511,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="417" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="417" bodyend="420"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="418" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="418" bodyend="421"/>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1gad7395594207c3fa20c423a1c9ae26cb7" compoundref="core__feature__eclic_8h" startline="108">CLIC_INTIP_IP_Msk</references>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1gab5a72455ad01a7caea954a82c907256d" compoundref="core__feature__eclic_8h" startline="145">ECLIC</references>
       </memberdef>
@@ -537,7 +544,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="433" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="433" bodyend="436"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="434" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="434" bodyend="437"/>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1gad7395594207c3fa20c423a1c9ae26cb7" compoundref="core__feature__eclic_8h" startline="108">CLIC_INTIP_IP_Msk</references>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1gab5a72455ad01a7caea954a82c907256d" compoundref="core__feature__eclic_8h" startline="145">ECLIC</references>
       </memberdef>
@@ -570,7 +577,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="450" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="450" bodyend="453"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="451" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="451" bodyend="454"/>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1gad7395594207c3fa20c423a1c9ae26cb7" compoundref="core__feature__eclic_8h" startline="108">CLIC_INTIP_IP_Msk</references>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1gab5a72455ad01a7caea954a82c907256d" compoundref="core__feature__eclic_8h" startline="145">ECLIC</references>
       </memberdef>
@@ -616,7 +623,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="471" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="471" bodyend="475"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="472" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="472" bodyend="476"/>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1ga476263a60ffcbb45417ab2b6864d47b4" compoundref="core__feature__eclic_8h" startline="114">CLIC_INTATTR_TRIG_Msk</references>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1gac4ec4063ec15f49408130b8a095a2a91" compoundref="core__feature__eclic_8h" startline="113">CLIC_INTATTR_TRIG_Pos</references>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1gab5a72455ad01a7caea954a82c907256d" compoundref="core__feature__eclic_8h" startline="145">ECLIC</references>
@@ -653,7 +660,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="492" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="492" bodyend="495"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="493" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="493" bodyend="496"/>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1ga476263a60ffcbb45417ab2b6864d47b4" compoundref="core__feature__eclic_8h" startline="114">CLIC_INTATTR_TRIG_Msk</references>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1gac4ec4063ec15f49408130b8a095a2a91" compoundref="core__feature__eclic_8h" startline="113">CLIC_INTATTR_TRIG_Pos</references>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1gab5a72455ad01a7caea954a82c907256d" compoundref="core__feature__eclic_8h" startline="145">ECLIC</references>
@@ -700,7 +707,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="510" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="510" bodyend="514"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="511" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="511" bodyend="515"/>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1ga2b6efddec2286b358747be5985110b3a" compoundref="core__feature__eclic_8h" startline="117">CLIC_INTATTR_SHV_Msk</references>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1ga49ea87f8a0207a2622f0ce467b7158dc" compoundref="core__feature__eclic_8h" startline="116">CLIC_INTATTR_SHV_Pos</references>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1gab5a72455ad01a7caea954a82c907256d" compoundref="core__feature__eclic_8h" startline="145">ECLIC</references>
@@ -737,7 +744,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="529" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="529" bodyend="532"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="530" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="530" bodyend="533"/>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1ga2b6efddec2286b358747be5985110b3a" compoundref="core__feature__eclic_8h" startline="117">CLIC_INTATTR_SHV_Msk</references>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1ga49ea87f8a0207a2622f0ce467b7158dc" compoundref="core__feature__eclic_8h" startline="116">CLIC_INTATTR_SHV_Pos</references>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1gab5a72455ad01a7caea954a82c907256d" compoundref="core__feature__eclic_8h" startline="145">ECLIC</references>
@@ -758,7 +765,7 @@
         <briefdescription>
 <para>Modify ECLIC Interrupt Input Control Register for a specific interrupt. </para>        </briefdescription>
         <detaileddescription>
-<para>This function modify ECLIC Interrupt Input Control register of the specific interrupt <emphasis>IRQn</emphasis>. <parameterlist kind="param"><parameteritem>
+<para>This function modify ECLIC Interrupt Input Control(CLICINTCTL[i]) register of the specific interrupt <emphasis>IRQn</emphasis>. <parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername direction="in">IRQn</parametername>
 </parameternamelist>
@@ -770,7 +777,7 @@
 <parametername direction="in">intctrl</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>Set value for clicctrl </para></parameterdescription>
+<para>Set value for CLICINTCTL[i] register </para></parameterdescription>
 </parameteritem>
 </parameterlist>
 <simplesect kind="remark"><para><itemizedlist>
@@ -782,10 +789,10 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="545" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="545" bodyend="548"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="546" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="546" bodyend="549"/>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1gab5a72455ad01a7caea954a82c907256d" compoundref="core__feature__eclic_8h" startline="145">ECLIC</references>
-        <referencedby refid="group__NMSIS__Core__IntExc_1gae1d0b0d592b55bc57be6704ceeb314b1" compoundref="core__feature__eclic_8h" startline="581" endline="602">__ECLIC_SetLevelIRQ</referencedby>
-        <referencedby refid="group__NMSIS__Core__IntExc_1gaafd7870e3de2a0831a5ba0fec6795207" compoundref="core__feature__eclic_8h" startline="646" endline="663">__ECLIC_SetPriorityIRQ</referencedby>
+        <referencedby refid="group__NMSIS__Core__IntExc_1gae1d0b0d592b55bc57be6704ceeb314b1" compoundref="core__feature__eclic_8h" startline="582" endline="603">__ECLIC_SetLevelIRQ</referencedby>
+        <referencedby refid="group__NMSIS__Core__IntExc_1gaafd7870e3de2a0831a5ba0fec6795207" compoundref="core__feature__eclic_8h" startline="647" endline="664">__ECLIC_SetPriorityIRQ</referencedby>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__IntExc_1ga0c552df637ed3e5830ae27fc712593da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> uint8_t</type>
@@ -817,12 +824,12 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="561" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="561" bodyend="564"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="562" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="562" bodyend="565"/>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1gab5a72455ad01a7caea954a82c907256d" compoundref="core__feature__eclic_8h" startline="145">ECLIC</references>
-        <referencedby refid="group__NMSIS__Core__IntExc_1ga1ccefb6dd64211176683848ef52e5b8f" compoundref="core__feature__eclic_8h" startline="615" endline="630">__ECLIC_GetLevelIRQ</referencedby>
-        <referencedby refid="group__NMSIS__Core__IntExc_1ga5e47fae9a66b286f1d0df6799e5a244c" compoundref="core__feature__eclic_8h" startline="676" endline="689">__ECLIC_GetPriorityIRQ</referencedby>
-        <referencedby refid="group__NMSIS__Core__IntExc_1gae1d0b0d592b55bc57be6704ceeb314b1" compoundref="core__feature__eclic_8h" startline="581" endline="602">__ECLIC_SetLevelIRQ</referencedby>
-        <referencedby refid="group__NMSIS__Core__IntExc_1gaafd7870e3de2a0831a5ba0fec6795207" compoundref="core__feature__eclic_8h" startline="646" endline="663">__ECLIC_SetPriorityIRQ</referencedby>
+        <referencedby refid="group__NMSIS__Core__IntExc_1ga1ccefb6dd64211176683848ef52e5b8f" compoundref="core__feature__eclic_8h" startline="616" endline="631">__ECLIC_GetLevelIRQ</referencedby>
+        <referencedby refid="group__NMSIS__Core__IntExc_1ga5e47fae9a66b286f1d0df6799e5a244c" compoundref="core__feature__eclic_8h" startline="677" endline="690">__ECLIC_GetPriorityIRQ</referencedby>
+        <referencedby refid="group__NMSIS__Core__IntExc_1gae1d0b0d592b55bc57be6704ceeb314b1" compoundref="core__feature__eclic_8h" startline="582" endline="603">__ECLIC_SetLevelIRQ</referencedby>
+        <referencedby refid="group__NMSIS__Core__IntExc_1gaafd7870e3de2a0831a5ba0fec6795207" compoundref="core__feature__eclic_8h" startline="647" endline="664">__ECLIC_SetPriorityIRQ</referencedby>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__IntExc_1gae1d0b0d592b55bc57be6704ceeb314b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040" kindref="member">__STATIC_FORCEINLINE</ref> void</type>
@@ -864,10 +871,10 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="581" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="581" bodyend="602"/>
-        <references refid="group__NMSIS__Core__IntExc_1ga1dce18ecc4a504cc128c62596d25f3ab" compoundref="core__feature__eclic_8h" startline="273" endline="276">__ECLIC_GetCfgNlbits</references>
-        <references refid="group__NMSIS__Core__IntExc_1ga0c552df637ed3e5830ae27fc712593da" compoundref="core__feature__eclic_8h" startline="561" endline="564">__ECLIC_GetCtrlIRQ</references>
-        <references refid="group__NMSIS__Core__IntExc_1ga2c72ee40cad78719f6d60767b75f6dcd" compoundref="core__feature__eclic_8h" startline="545" endline="548">__ECLIC_SetCtrlIRQ</references>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="582" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="582" bodyend="603"/>
+        <references refid="group__NMSIS__Core__IntExc_1ga1dce18ecc4a504cc128c62596d25f3ab" compoundref="core__feature__eclic_8h" startline="274" endline="277">__ECLIC_GetCfgNlbits</references>
+        <references refid="group__NMSIS__Core__IntExc_1ga0c552df637ed3e5830ae27fc712593da" compoundref="core__feature__eclic_8h" startline="562" endline="565">__ECLIC_GetCtrlIRQ</references>
+        <references refid="group__NMSIS__Core__IntExc_1ga2c72ee40cad78719f6d60767b75f6dcd" compoundref="core__feature__eclic_8h" startline="546" endline="549">__ECLIC_SetCtrlIRQ</references>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1ga34443f8b2b2935d099e6a0119b96c712" compoundref="core__feature__eclic_8h" startline="119">ECLIC_MAX_NLBITS</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__IntExc_1ga1ccefb6dd64211176683848ef52e5b8f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -900,9 +907,9 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="615" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="615" bodyend="630"/>
-        <references refid="group__NMSIS__Core__IntExc_1ga1dce18ecc4a504cc128c62596d25f3ab" compoundref="core__feature__eclic_8h" startline="273" endline="276">__ECLIC_GetCfgNlbits</references>
-        <references refid="group__NMSIS__Core__IntExc_1ga0c552df637ed3e5830ae27fc712593da" compoundref="core__feature__eclic_8h" startline="561" endline="564">__ECLIC_GetCtrlIRQ</references>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="616" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="616" bodyend="631"/>
+        <references refid="group__NMSIS__Core__IntExc_1ga1dce18ecc4a504cc128c62596d25f3ab" compoundref="core__feature__eclic_8h" startline="274" endline="277">__ECLIC_GetCfgNlbits</references>
+        <references refid="group__NMSIS__Core__IntExc_1ga0c552df637ed3e5830ae27fc712593da" compoundref="core__feature__eclic_8h" startline="562" endline="565">__ECLIC_GetCtrlIRQ</references>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1ga34443f8b2b2935d099e6a0119b96c712" compoundref="core__feature__eclic_8h" startline="119">ECLIC_MAX_NLBITS</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__IntExc_1gaafd7870e3de2a0831a5ba0fec6795207" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -945,10 +952,10 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="646" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="646" bodyend="663"/>
-        <references refid="group__NMSIS__Core__IntExc_1ga1dce18ecc4a504cc128c62596d25f3ab" compoundref="core__feature__eclic_8h" startline="273" endline="276">__ECLIC_GetCfgNlbits</references>
-        <references refid="group__NMSIS__Core__IntExc_1ga0c552df637ed3e5830ae27fc712593da" compoundref="core__feature__eclic_8h" startline="561" endline="564">__ECLIC_GetCtrlIRQ</references>
-        <references refid="group__NMSIS__Core__IntExc_1ga2c72ee40cad78719f6d60767b75f6dcd" compoundref="core__feature__eclic_8h" startline="545" endline="548">__ECLIC_SetCtrlIRQ</references>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="647" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="647" bodyend="664"/>
+        <references refid="group__NMSIS__Core__IntExc_1ga1dce18ecc4a504cc128c62596d25f3ab" compoundref="core__feature__eclic_8h" startline="274" endline="277">__ECLIC_GetCfgNlbits</references>
+        <references refid="group__NMSIS__Core__IntExc_1ga0c552df637ed3e5830ae27fc712593da" compoundref="core__feature__eclic_8h" startline="562" endline="565">__ECLIC_GetCtrlIRQ</references>
+        <references refid="group__NMSIS__Core__IntExc_1ga2c72ee40cad78719f6d60767b75f6dcd" compoundref="core__feature__eclic_8h" startline="546" endline="549">__ECLIC_SetCtrlIRQ</references>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1ga34443f8b2b2935d099e6a0119b96c712" compoundref="core__feature__eclic_8h" startline="119">ECLIC_MAX_NLBITS</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__IntExc_1ga5e47fae9a66b286f1d0df6799e5a244c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -981,9 +988,9 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="676" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="676" bodyend="689"/>
-        <references refid="group__NMSIS__Core__IntExc_1ga1dce18ecc4a504cc128c62596d25f3ab" compoundref="core__feature__eclic_8h" startline="273" endline="276">__ECLIC_GetCfgNlbits</references>
-        <references refid="group__NMSIS__Core__IntExc_1ga0c552df637ed3e5830ae27fc712593da" compoundref="core__feature__eclic_8h" startline="561" endline="564">__ECLIC_GetCtrlIRQ</references>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="677" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="677" bodyend="690"/>
+        <references refid="group__NMSIS__Core__IntExc_1ga1dce18ecc4a504cc128c62596d25f3ab" compoundref="core__feature__eclic_8h" startline="274" endline="277">__ECLIC_GetCfgNlbits</references>
+        <references refid="group__NMSIS__Core__IntExc_1ga0c552df637ed3e5830ae27fc712593da" compoundref="core__feature__eclic_8h" startline="562" endline="565">__ECLIC_GetCtrlIRQ</references>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1ga34443f8b2b2935d099e6a0119b96c712" compoundref="core__feature__eclic_8h" startline="119">ECLIC_MAX_NLBITS</references>
       </memberdef>
       <memberdef kind="function" id="group__NMSIS__Core__IntExc_1ga2e80049df57b285d4dd43454377c0845" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -1026,7 +1033,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="707" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="707" bodyend="722"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="708" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="708" bodyend="723"/>
         <references refid="group__NMSIS__Core__CSR__Register__Access_1ga355c96e5bd1ab3df0203e23a887c00c0" compoundref="core__feature__base_8h" startline="303">__RV_CSR_READ</references>
         <references refid="group__NMSIS__Core__CSR__Registers_1ga5e44edb3f3d95986c92f8efad5db0c2c" compoundref="riscv__encoding_8h" startline="495">CSR_MTVT</references>
       </memberdef>
@@ -1060,7 +1067,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="736" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="736" bodyend="745"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="737" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="737" bodyend="746"/>
         <references refid="group__NMSIS__Core__CSR__Register__Access_1ga355c96e5bd1ab3df0203e23a887c00c0" compoundref="core__feature__base_8h" startline="303">__RV_CSR_READ</references>
         <references refid="group__NMSIS__Core__CSR__Registers_1ga5e44edb3f3d95986c92f8efad5db0c2c" compoundref="riscv__encoding_8h" startline="495">CSR_MTVT</references>
       </memberdef>
@@ -1093,7 +1100,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="757" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="757" bodyend="762"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="758" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="758" bodyend="763"/>
         <references refid="group__NMSIS__Core__CSR__Register__Access_1gaa2d43f43f3f333cfd8e5a326a2aed413" compoundref="core__feature__base_8h" startline="321">__RV_CSR_WRITE</references>
         <references refid="group__NMSIS__Core__CSR__Registers_1ga22f5cd17199a966b4b840dd56d151216" compoundref="riscv__encoding_8h" startline="330">CSR_MTVEC</references>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1ga2bcc1789c000ec72b06b7d7e736aa1c3" compoundref="core__feature__eclic_8h" startline="120">ECLIC_MODE_MTVEC_Msk</references>
@@ -1119,7 +1126,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="774" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="774" bodyend="778"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="775" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="775" bodyend="779"/>
         <references refid="group__NMSIS__Core__CSR__Register__Access_1ga355c96e5bd1ab3df0203e23a887c00c0" compoundref="core__feature__base_8h" startline="303">__RV_CSR_READ</references>
         <references refid="group__NMSIS__Core__CSR__Registers_1ga22f5cd17199a966b4b840dd56d151216" compoundref="riscv__encoding_8h" startline="330">CSR_MTVEC</references>
         <references refid="group__NMSIS__Core__ECLIC__Registers_1ga2bcc1789c000ec72b06b7d7e736aa1c3" compoundref="core__feature__eclic_8h" startline="120">ECLIC_MODE_MTVEC_Msk</references>
@@ -1153,7 +1160,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="791" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="791" bodyend="800"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="792" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="792" bodyend="801"/>
         <references refid="group__NMSIS__Core__CSR__Register__Access_1ga355c96e5bd1ab3df0203e23a887c00c0" compoundref="core__feature__base_8h" startline="303">__RV_CSR_READ</references>
         <references refid="group__NMSIS__Core__CSR__Register__Access_1gaa2d43f43f3f333cfd8e5a326a2aed413" compoundref="core__feature__base_8h" startline="321">__RV_CSR_WRITE</references>
         <references refid="group__NMSIS__Core__CSR__Registers_1ga22f5cd17199a966b4b840dd56d151216" compoundref="riscv__encoding_8h" startline="330">CSR_MTVEC</references>
@@ -1181,7 +1188,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="813" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="813" bodyend="821"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="814" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="814" bodyend="822"/>
         <references refid="group__NMSIS__Core__CSR__Register__Access_1ga355c96e5bd1ab3df0203e23a887c00c0" compoundref="core__feature__base_8h" startline="303">__RV_CSR_READ</references>
         <references refid="group__NMSIS__Core__CSR__Registers_1ga22f5cd17199a966b4b840dd56d151216" compoundref="riscv__encoding_8h" startline="330">CSR_MTVEC</references>
         <references refid="group__NMSIS__Core__CSR__Registers_1ga7d9dcb2dd7d7c764aab4b68033b383f2" compoundref="riscv__encoding_8h" startline="517">CSR_MTVT2</references>
@@ -1205,7 +1212,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="833" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="833" bodyend="836"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="834" column="1" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="834" bodyend="837"/>
         <references refid="group__NMSIS__Core__CSR__Register__Access_1ga355c96e5bd1ab3df0203e23a887c00c0" compoundref="core__feature__base_8h" startline="303">__RV_CSR_READ</references>
         <references refid="group__NMSIS__Core__CSR__Registers_1ga13df3ff8aec804cae346b61b2643c589" compoundref="riscv__encoding_8h" startline="504">CSR_MNVEC</references>
       </memberdef>
@@ -1220,7 +1227,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="211" column="14" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="211" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="212" column="14" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="212" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__NMSIS__Core__IntExc_1ga47f628da4dcf09a2fc43bfb7c8de1528" prot="public" static="no">
         <name>ECLIC_GetCfgNlbits</name>
@@ -1231,7 +1238,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="212" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="212" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="213" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="213" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__NMSIS__Core__IntExc_1ga5d8158db12cd1bdfe0bfc82667eeffc5" prot="public" static="no">
         <name>ECLIC_GetInfoVer</name>
@@ -1242,7 +1249,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="213" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="213" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="214" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="214" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__NMSIS__Core__IntExc_1ga2b075534f2e421549ebe16b9c97a496f" prot="public" static="no">
         <name>ECLIC_GetInfoCtlbits</name>
@@ -1253,7 +1260,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="214" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="214" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="215" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="215" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__NMSIS__Core__IntExc_1ga6308d1600c92e3f9dc67c7837c68f854" prot="public" static="no">
         <name>ECLIC_GetInfoNum</name>
@@ -1264,7 +1271,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="215" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="215" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="216" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="216" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__NMSIS__Core__IntExc_1ga59e29ad3023110a58eb9163d976f44c6" prot="public" static="no">
         <name>ECLIC_SetMth</name>
@@ -1275,7 +1282,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="216" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="216" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="217" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="217" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__NMSIS__Core__IntExc_1gaf52f1885d59864d30dd5da7681f5985b" prot="public" static="no">
         <name>ECLIC_GetMth</name>
@@ -1286,7 +1293,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="217" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="217" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="218" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="218" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__NMSIS__Core__IntExc_1gaef478ada8e8906c9fe8d4dc2311a39e1" prot="public" static="no">
         <name>ECLIC_EnableIRQ</name>
@@ -1297,7 +1304,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="218" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="218" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="219" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="219" bodyend="-1"/>
         <referencedby refid="group__NMSIS__Core__SysTimer_1ga349805c25d9aa753c6fd69b3c0151126" compoundref="core__feature__timer_8h" startline="304" endline="312">SysTick_Config</referencedby>
       </memberdef>
       <memberdef kind="define" id="group__NMSIS__Core__IntExc_1gacc2434143882fd815f46f546ecaf1371" prot="public" static="no">
@@ -1309,7 +1316,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="219" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="219" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="220" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="220" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__NMSIS__Core__IntExc_1ga2fd91a5d186fe3fb4ca3bed07df78813" prot="public" static="no">
         <name>ECLIC_DisableIRQ</name>
@@ -1320,7 +1327,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="220" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="220" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="221" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="221" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__NMSIS__Core__IntExc_1ga2776c309447ab5f7258266299df2f6aa" prot="public" static="no">
         <name>ECLIC_SetPendingIRQ</name>
@@ -1331,7 +1338,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="221" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="221" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="222" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="222" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__NMSIS__Core__IntExc_1gaf5a8f8a271f159769eac14959748ec92" prot="public" static="no">
         <name>ECLIC_GetPendingIRQ</name>
@@ -1342,7 +1349,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="222" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="222" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="223" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="223" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__NMSIS__Core__IntExc_1ga2006752b49d78e3247b2b355652a429a" prot="public" static="no">
         <name>ECLIC_ClearPendingIRQ</name>
@@ -1353,7 +1360,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="223" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="223" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="224" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="224" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__NMSIS__Core__IntExc_1gac0681d16f62ce0b08e48e89131995a05" prot="public" static="no">
         <name>ECLIC_SetTrigIRQ</name>
@@ -1364,7 +1371,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="224" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="224" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="225" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="225" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__NMSIS__Core__IntExc_1gadaaf360694309accdc74c0808161755c" prot="public" static="no">
         <name>ECLIC_GetTrigIRQ</name>
@@ -1375,7 +1382,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="225" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="225" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="226" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="226" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__NMSIS__Core__IntExc_1ga0bd2875fbd02a00bec78735940704c13" prot="public" static="no">
         <name>ECLIC_SetShvIRQ</name>
@@ -1386,7 +1393,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="226" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="226" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="227" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="227" bodyend="-1"/>
         <referencedby refid="group__NMSIS__Core__SysTimer_1ga349805c25d9aa753c6fd69b3c0151126" compoundref="core__feature__timer_8h" startline="304" endline="312">SysTick_Config</referencedby>
       </memberdef>
       <memberdef kind="define" id="group__NMSIS__Core__IntExc_1gaa8dc0e0203d692a0cc565e59906fb706" prot="public" static="no">
@@ -1398,7 +1405,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="227" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="227" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="228" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="228" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__NMSIS__Core__IntExc_1ga44797af8a09e6b798cc7cb2bc3b9602b" prot="public" static="no">
         <name>ECLIC_SetCtrlIRQ</name>
@@ -1409,7 +1416,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="228" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="228" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="229" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="229" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__NMSIS__Core__IntExc_1ga32d7fe236e9b906bfee340fb42a1a644" prot="public" static="no">
         <name>ECLIC_GetCtrlIRQ</name>
@@ -1420,7 +1427,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="229" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="229" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="230" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="230" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__NMSIS__Core__IntExc_1gad6f35a2f69908b97b083c5e31c1c5aad" prot="public" static="no">
         <name>ECLIC_SetLevelIRQ</name>
@@ -1431,7 +1438,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="230" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="230" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="231" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="231" bodyend="-1"/>
         <referencedby refid="group__NMSIS__Core__SysTimer_1ga349805c25d9aa753c6fd69b3c0151126" compoundref="core__feature__timer_8h" startline="304" endline="312">SysTick_Config</referencedby>
       </memberdef>
       <memberdef kind="define" id="group__NMSIS__Core__IntExc_1gaf323b6babdd4236644d84057332e7533" prot="public" static="no">
@@ -1443,7 +1450,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="231" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="231" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="232" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="232" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__NMSIS__Core__IntExc_1ga721375660a030d16e429a9718c1271c8" prot="public" static="no">
         <name>ECLIC_SetPriorityIRQ</name>
@@ -1454,7 +1461,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="232" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="232" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="233" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="233" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__NMSIS__Core__IntExc_1ga0fe4f3d20b099c74db7dfef3eea81817" prot="public" static="no">
         <name>ECLIC_GetPriorityIRQ</name>
@@ -1465,7 +1472,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="233" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="233" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="234" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="234" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__NMSIS__Core__IntExc_1gaa7cacacc369af014a0008fe3b5705b77" prot="public" static="no">
         <name>ECLIC_SetVector</name>
@@ -1476,7 +1483,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="243" column="14" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="243" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="244" column="14" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="244" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__NMSIS__Core__IntExc_1ga76b3769badcf8362e1cb6a058f65c65e" prot="public" static="no">
         <name>ECLIC_GetVector</name>
@@ -1487,7 +1494,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="244" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="244" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="245" column="13" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="245" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__NMSIS__Core__IntExc_1gab7b083edd7a39c7aa7b17b5f43f13452" prot="public" static="no">
         <name>SAVE_IRQ_CSR_CONTEXT</name>
@@ -1515,7 +1522,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="868" column="9" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="868" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="869" column="9" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="869" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__NMSIS__Core__IntExc_1gaefefc59dbf6bd6ef8cd0a9b58b2bbeaf" prot="public" static="no">
         <name>RESTORE_IRQ_CSR_CONTEXT</name>
@@ -1529,7 +1536,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="883" column="9" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="883" bodyend="-1"/>
+        <location file="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" line="884" column="9" bodyfile="/home/travis/build/Nuclei-Software/NMSIS/NMSIS/Core/Include/core_feature_eclic.h" bodystart="884" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
