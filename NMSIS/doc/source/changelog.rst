@@ -3,17 +3,19 @@
 Changelog
 =========
 
-V1.0.0-xxx
-----------
+V1.0.0-beta1
+------------
 
-Release tag is not yet decided.
+Main changes in release **V1.0.0-beta1**.
 
 - **NMSIS-Core**
 
+  - Fix ``MTH`` offset from 0x8 to 0xB, this will affect function of ``ECLIC_GetMth`` and ``ECLIC_SetMth``
   - Fix wrong macro check in cache function
   - Add missing ``SOC_INT_MAX`` enum definition in Device template
   - In ``System_<Device>.c``, ECLIC NLBits set to ``__ECLIC_INTCTLBITS``,
     which means all the bits are for level, no bits for priority
+
 
 
 V1.0.0-beta
