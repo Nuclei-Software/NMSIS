@@ -22,4 +22,4 @@ please click `NMSIS DSP API Doxygen Documentation`_.
    api_groupinterpolation.rst
    api_groupexamples.rst
 
-.. _NMSIS DSP API Doxygen Documentation: ../../../doxygen/dsp/html/modules.html
+.. _NMSIS DSP API Doxygen Documentation: ../../doxygen/dsp/html/modules.html
