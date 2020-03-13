@@ -7,6 +7,7 @@ SPHINXOPTS    ?=
 SPHINXBUILD   ?= sphinx-build
 SOURCEDIR     = source
 BUILDDIR      = build
+DOXYDIR       = $(BUILDDIR)/html/doxygen
 
 # Put it first so that "make" without argument is like "make help".
 help:
@@ -25,25 +26,24 @@ all:
 	make doxygen_nn
 	make html
 
+clean_xml:
+	rm -rf $(DOXYDIR)/core/xml/
+	rm -rf $(DOXYDIR)/dsp/xml/
+	rm -rf $(DOXYDIR)/nn/xml/
+
 doxygen_core:
-	mkdir -p build/doxygen
+	mkdir -p $(DOXYDIR)
 	cd source/doxygen && doxygen nmsis_core.dxy
 
 doxygen_dsp:
-	mkdir -p build/doxygen
+	mkdir -p $(DOXYDIR)
 	cd source/doxygen && doxygen nmsis_dsp.dxy
-	cp source/asserts/images/dsp/* build/doxygen/dsp/xml/
+	cp source/asserts/images/dsp/* $(DOXYDIR)/dsp/xml/
 
 doxygen_nn:
-	mkdir -p build/doxygen
+	mkdir -p $(DOXYDIR)
 	cd source/doxygen && doxygen nmsis_nn.dxy
-	cp source/asserts/images/nn/* build/doxygen/nn/xml/
-
-doxygen:
-	doxygen nmsis.doxy
-
-doxygen_pdf: doxygen
-	make -C build/doxygen/latex pdf
+	cp source/asserts/images/nn/* $(DOXYDIR)/nn/xml/
 
 firefox:
 	firefox build/html/index.html

@@ -71,9 +71,9 @@ html_theme_options = {
 
 # -- Options for Breathe Project ---------------------------------------------
 breathe_projects = {
-    "nmsis_core": "../build/doxygen/core/xml",
-    "nmsis_dsp": "../build/doxygen/dsp/xml",
-    "nmsis_nn": "../build/doxygen/nn/xml"
+    "nmsis_core": "../build/html/doxygen/core/xml",
+    "nmsis_dsp": "../build/html/doxygen/dsp/xml",
+    "nmsis_nn": "../build/html/doxygen/nn/xml"
 }
 breathe_default_project = "nmsis_core"
 breathe_show_define_initializer = True

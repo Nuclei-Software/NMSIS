@@ -25,4 +25,4 @@ please click `NMSIS Core Doxygen API Documentation`_.
    core_system_device.rst
    core_arm_compatiable.rst
 
-.. _NMSIS Core Doxygen API Documentation: ../../../doxygen/core/html/modules.html
+.. _NMSIS Core Doxygen API Documentation: ../../doxygen/core/html/modules.html

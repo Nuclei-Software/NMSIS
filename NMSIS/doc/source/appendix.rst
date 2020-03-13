@@ -23,6 +23,6 @@ Appendix
 
 * **Nuclei RISC-V IP Products**: https://www.nucleisys.com/product.php
 
-* **RISC-V MCU Community Website**: http://www.riscv-mcu.com/
+* **RISC-V MCU Community Website**: https://www.riscv-mcu.com/
 
 * **Nuclei Spec**: https://doc.nucleisys.com/nuclei_spec
