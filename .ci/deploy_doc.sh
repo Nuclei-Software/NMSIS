@@ -22,7 +22,7 @@ pip install -r NMSIS/doc/requirements.txt
 # Build documentation
 echo 'Generating documentation ...'
 cd NMSIS/doc
-make all || die "Failed to build sphinx documentation"
+make all clean_xml || die "Failed to build sphinx documentation"
 
 # Check if this is a pull request
 if [ "$TRAVIS_PULL_REQUEST" != "false" ] ; then
@@ -42,7 +42,7 @@ echo 'Push generated documentation to gh-pages branch...'
 # Only commit changes when it is not a pull request
 # tar doc
 cd build
-tar czf nmsis_doc.tar.gz html doxygen || die "Failed to achieve documentation"
+tar czf nmsis_doc.tar.gz html || die "Failed to achieve documentation"
 
 git fetch origin || die
 git branch -a || die
