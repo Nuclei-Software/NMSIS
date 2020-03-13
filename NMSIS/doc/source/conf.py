@@ -17,7 +17,7 @@ import sys
 # -- Project information -----------------------------------------------------
 
 project = 'NMSIS'
-copyright = '2019, Nuclei'
+copyright = '2019-Present, Nuclei'
 author = 'Nuclei'
 
 # The short X.Y version
