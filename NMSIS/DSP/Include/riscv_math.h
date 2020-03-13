@@ -52,7 +52,7 @@
    * The Library supports single public header file <code>riscv_math.h</code> for Nuclei N cores with little endian.
    * Same header file will be used for floating point unit(FPU) variants.
    *
-   * \note Please refer to [NMSIS-DSP](../../../html/dsp/index.html)
+   * \note Please refer to [NMSIS-DSP](../../dsp/index.html)
    *
    * Examples
    * --------
