@@ -33,6 +33,8 @@ ifdef PARELLEL
 MAKE_OPT = -j
 endif
 
+NNREFLIB_TARGETS = $(addsuffix _nnreflib,$(SUPPORTED_CORES))
+
 .DEFAULT_GOAL = all
 
 all: no_dsp
@@ -64,8 +66,8 @@ install_no_dsp:
 ar_no_dsp:
 	cd $(TARGET_CMAKE_BUILD) ; find ./ -name "*.o" | xargs ar rcs $(TARGET_LIB_NAME).a
 
-gen_nnref_lib:
-	make $(MAKE_PARAMS) CORE=n205
-	make $(MAKE_PARAMS) CORE=n307
-	make $(MAKE_PARAMS) CORE=n307fd
+$(NNREFLIB_TARGETS):
+	make $(MAKE_PARAMS) CORE=$(subst _nnreflib,,$@)
 
+gen_nnref_lib: $(NNREFLIB_TARGETS)
+	@echo "Generated NN Reference library for cores: $(subst _nnreflib,,$^)"

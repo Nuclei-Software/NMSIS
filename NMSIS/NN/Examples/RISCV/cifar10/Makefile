@@ -1,3 +1,8 @@
+DSP_ENABLE ?= ON
+CORE ?= n307fd
+NANO ?= OFF
+TEST_IMAGE ?= cat1
+
 ROOT_DIR = ../../../..
 DSP_ROOT_DIR = ${ROOT_DIR}/DSP
 NN_ROOT_DIR = ${ROOT_DIR}/NN
@@ -14,11 +19,6 @@ INC_DIR = . $(CORE_ROOT_DIR)/Include $(DSP_ROOT_DIR)/Include $(NN_ROOT_DIR)/Incl
 LIB_DIR = $(ROOT_DIR)/Library/DSP/$(TOOLCHAIN) \
 		  $(ROOT_DIR)/Library/NN/$(TOOLCHAIN)
 
-DSP_ENABLE ?= ON
-CORE ?= n307fd
-NANO ?= OFF
-TEST_IMAGE ?= cat1
-
 CORE_UPPER = $(shell echo $(CORE) | tr a-z A-Z)
 include ../../../../Makefile.core
 
@@ -31,6 +31,17 @@ RISCV_ARCH = $(word 1, $(CORE_ARCH_ABI))
 RISCV_ABI = $(word 2, $(CORE_ARCH_ABI))
 
 RISCV_CORE_OPT=-march=$(RISCV_ARCH) -mabi=$(RISCV_ABI)
+
+SPIKE_ROOT ?= $(shell readlink -f $(shell dirname $(shell which spike))/../../)
+ifeq ($(subst 32,64,$(RISCV_ABI)),$(RISCV_ABI))
+SPIKE_ISA ?= rv64gct
+SPIKE ?= $(SPIKE_ROOT)/64/bin/spike
+PK ?= $(SPIKE_ROOT)/64/riscv64-unknown-elf/bin/pk
+else
+SPIKE_ISA ?= rv32gct
+SPIKE ?= $(SPIKE_ROOT)/32/bin/spike
+PK ?= $(SPIKE_ROOT)/32/riscv32-unknown-elf/bin/pk
+endif
 
 ifeq ($(DSP_ENABLE),ON)
 $(warning "enable dsp")
@@ -50,8 +61,6 @@ DEFINES += -DTEST_IMAGE=$(TEST_IMAGE)
 endif
 
 SRC_C = $(wildcard *.c)
-SPIKE ?= spike
-PK ?= /home/share/tools/riscv/32/riscv32-unknown-elf/bin/pk
 
 INCS_OPT = $(foreach dir,$(INC_DIR),-I$(dir))
 LIBS_OPT = $(foreach dir,$(LIB_DIR),-L$(dir)) $(lib)
@@ -66,10 +75,10 @@ test: $(SRC_C)
 	$(CC) $(RISCV_CORE_OPT) -g -flto $(DEFINES) $< $(LIBS_OPT) $(INCS_OPT) -o run.elf -Xlinker -verbose
 
 run: run.elf
-	$(SPIKE) --isa=rv32gct $(PK) $<
+	$(SPIKE) --isa=$(SPIKE_ISA) $(PK) $<
 
 debug: run.elf
-	$(SPIKE) --isa=rv32gct -d $(PK) $<
+	$(SPIKE) --isa=$(SPIKE_ISA) -d $(PK) $<
 
 diss:
 	$(OBJDUMP) -S -d run.elf > run.diss

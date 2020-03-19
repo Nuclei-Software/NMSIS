@@ -54,6 +54,7 @@
 	__temp;  \
 })
 
+#if __riscv_xlen == 32
 static inline uint64_t read_cpu_cycle(void)
 {
     uint32_t hi = 0, hi1 = 0, lo = 0;
@@ -68,6 +69,14 @@ static inline uint64_t read_cpu_cycle(void)
     val = (((uint64_t)hi) << 32) | lo;
     return val;
 }
+#else
+static inline uint64_t read_cpu_cycle(void)
+{
+    uint64_t val = 0;
+    val = read_csr(cycle);
+    return val;
+}
+#endif
 
 uint64_t enter_cycle;
 uint64_t exit_cycle;
