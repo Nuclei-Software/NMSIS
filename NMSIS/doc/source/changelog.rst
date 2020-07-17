@@ -3,6 +3,46 @@
 Changelog
 =========
 
+V1.0.1-dev
+----------
+
+This is release version ``V1.0.1-dev`` of NMSIS, which is still in development.
+
+.. warning::
+
+   * The formal release is not yet published, the code is still under development,
+     the changelog is updated due to code changes.
+
+
+* **NMSIS-Core**
+
+  - Add RISC-V DSP 64bit intrinsic functions in ``core_feature_dsp.h``
+  - Add more CSR definitions in ``riscv_encoding.h``
+  - Update arm compatiable functions for RISC-V dsp instruction cases in ``core_compatiable.h``
+
+* **NMSIS-DSP**
+
+  - Optimize RISC-V 32bit DSP library implementation
+  - Add support for Nuclei RISC-V 64bit DSP SIMD instruction for DSP library
+  - Add test cases used for DSP library testing, mainly for internal usage
+  - Change the examples and tests to use Nuclei SDK as running environment
+
+* **NMSIS-NN**
+
+  - Add support for Nuclei RISC-V 64bit DSP SIMD instruction for NN library
+  - Change the examples and tests to use Nuclei SDK as running environment
+
+* **Device Templates**
+
+  - Add ``DDR DOWNLOAD_MODE`` in device templates
+  - Modifications to ``startup_<Device>.S** files
+    - ``_premain_init`` is added to replace ``_init``
+    - ``_postmain_fini`` is added to replace ``_fini``
+    - I/D Cache will be enabled by default now if present
+  - If you have implemented your functions in ``_init`` or ``_fini``,
+    please place the changes in functions defined ``system_<Device>.c``
+
+
 V1.0.0-beta1
 ------------
 
@@ -73,7 +113,7 @@ In this release, we have release three main compoments:
 
 * **NMSIS-DSP**: DSP library collection optimized for the Nuclei Processors which has RISC-V SIMD instruction set.
 
-* **NMSIS-NN**: Efficient neural network 
+* **NMSIS-NN**: Efficient neural network
   library developed to maximize the performance and minimize the memory footprint Nuclei Processors which has RISC-V SIMD instruction set.
 
 We also released totally new `Nuclei-SDK`_ which is an SDK implementation based on the **NMSIS-Core** for Nuclei N/NX evaluation cores running on HummingBird Evaluation Kit.
