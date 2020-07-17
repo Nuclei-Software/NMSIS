@@ -1,17 +1,38 @@
 variables:
 #  GIT_STRATEGY: fetch
     CI_SCRATCH: /home/xl_ci/ci_scratch
-
+    NMSIS_BENCHDIR: $CI_SCRATCH/NMSIS/benchmark_release
+    NUCLEI_SDK: git@xl01:software/library/nuclei-sdk.git
+    SDK_BRANCH: dev_xlspike
+    FIND_IGNORE: "! -wholename \"*build*\""
+    CORES: "n205,n307,n307fd,nx600,nx600f,nx600fd"
+    SOC: xlspike
 
 before_script:
     - module load nucleisys/riscv-nuclei-elf-gcc
     - module load common
-    - module load riscv/riscv32
+    - if [ -f Work/env.sh ] ; then source Work/env.sh ; fi
 
 stages:
+    - prepare
     - build
     - test
     - release
+
+cache:
+    key: "$CI_COMMIT_SHA"
+    paths:
+        - Work
+
+prepare:
+    stage: prepare
+    retry: 1
+    script:
+        - mkdir -p Work
+        - mkdir -p $NMSIS_BENCHDIR
+        - echo "export NMSIS_BENCH_LOGDIR=$NMSIS_BENCHDIR/$(TZ=Asia/Shanghai date +%Y%m%d-%H%M%S)" > Work/env.sh
+    tags:
+        - software-server
 
 build_library:
     stage: build
@@ -23,25 +44,60 @@ build_library:
         expire_in: 2 day
     script:
         - cd NMSIS
+        - echo "Generate NMSIS Library for Nuclei RISC-V Processors"
         - make PARELLEL=1 gen
+        - echo "Strip debug information in NMSIS Library for Nuclei RISC-V Processors"
+        - make strip
+    tags:
+        - software-server
+
+build_align_library:
+    stage: build
+    retry: 1
+    artifacts:
+        name: "nmsis_align_library-${CI_COMMIT_SHA::8}"
+        paths:
+            - NMSIS/Library
+        expire_in: 2 day
+    script:
+        - cd NMSIS
+        - echo "Generate NMSIS Library(Memory access without unalign R/W) for Nuclei RISC-V Processors"
+        - make PARELLEL=1 RISCV_ALIGN=ON gen
+        - echo "Strip debug information in NMSIS Library for Nuclei RISC-V Processors"
+        - make strip
     tags:
         - software-server
 
 test_nn_library:
     stage: test
-    when: delayed
-    start_in: 15 seconds
-    retry: 1
+    artifacts:
+        name: "nmsis_nn_test_cycles_log-${CI_COMMIT_SHA::8}"
+        paths:
+            - NMSIS/Logs
+        expire_in: 2 day
     script:
+        - git clone -b $SDK_BRANCH $NUCLEI_SDK NMSIS/nuclei_sdk
+        - export NUCLEI_SDK_ROOT=$(readlink -f NMSIS/nuclei_sdk)
+        - export NUCLEI_SDK_NMSIS=$(readlink -f NMSIS)
+        - export NMSIS_LOGS=$NUCLEI_SDK_NMSIS/Logs
+        - mkdir $NMSIS_LOGS
+        - source NMSIS/env.sh
         - cd NMSIS/NN/NN_Lib_Tests/
         - make gen
         - cd nn_test
-        - make -B DSP_ENABLE=ON  run
-        - make -B DSP_ENABLE=OFF run
+        - echo "Benchmark with cycles"
+        - export BENCH_UNIT=cycle
+        - DSP_ENABLE=OFF nmsis_run_all_apps $CORES . 2>&1 | tee $NMSIS_LOGS/nn_test_dsp_off_cycles.log
+        - cat $NMSIS_LOGS/nn_test_dsp_off_cycles.log | grep CSV | tee $NMSIS_LOGS/nn_test_dsp_off_cycles.csv
+        - DSP_ENABLE=ON nmsis_run_all_apps $CORES . 2>&1 | tee $NMSIS_LOGS/nn_test_dsp_on_cycles.log
+        - cat $NMSIS_LOGS/nn_test_dsp_on_cycles.log | grep CSV | tee $NMSIS_LOGS/nn_test_dsp_on_cycles.csv
         - cd ../../Examples/RISCV/
-        - source setup.sh
-        - DSP_ENABLE=ON run_all_nn_examples .
-        - DSP_ENABLE=OFF run_all_nn_examples .
+        - DSP_ENABLE=OFF nmsis_run_all_apps $CORES . 2>&1 | tee $NMSIS_LOGS/nn_examples_dsp_off_cycles.log
+        - cat $NMSIS_LOGS/nn_examples_dsp_off_cycles.log | grep CSV | tee $NMSIS_LOGS/nn_examples_dsp_off_cycles.csv
+        - DSP_ENABLE=ON nmsis_run_all_apps $CORES . 2>&1 | tee $NMSIS_LOGS/nn_examples_dsp_on_cycles.log
+        - cat $NMSIS_LOGS/nn_examples_dsp_on_cycles.log | grep CSV | tee $NMSIS_LOGS/nn_examples_dsp_on_cycles.csv
+        - mkdir -p $NMSIS_BENCH_LOGDIR/NMSIS
+        - cp $NMSIS_LOGS/*.csv $NMSIS_BENCH_LOGDIR/NMSIS
     tags:
         - software-server
     dependencies:
@@ -49,12 +105,32 @@ test_nn_library:
 
 test_dsp_library:
     stage: test
-    retry: 1
+    artifacts:
+      name: "nmsis_dsp_test_cycles_log-${CI_COMMIT_SHA::8}"
+      paths:
+          - NMSIS/Logs
+      expire_in: 2 day
     script:
+        - git clone -b $SDK_BRANCH $NUCLEI_SDK NMSIS/nuclei_sdk
+        - export NUCLEI_SDK_ROOT=$(readlink -f NMSIS/nuclei_sdk)
+        - export NUCLEI_SDK_NMSIS=$(readlink -f NMSIS)
+        - export NMSIS_LOGS=$NUCLEI_SDK_NMSIS/Logs
+        - mkdir $NMSIS_LOGS
+        - source NMSIS/env.sh
         - cd NMSIS/DSP/Examples/RISCV/
-        - source setup.sh
-        - DSP_ENABLE=ON run_all_dsp_examples .
-        - DSP_ENABLE=OFF run_all_dsp_examples .
+        - DSP_ENABLE=OFF nmsis_run_all_apps $CORES . 2>&1 | tee $NMSIS_LOGS/dsp_examples_dsp_off.log
+        - DSP_ENABLE=ON nmsis_run_all_apps $CORES . 2>&1 | tee $NMSIS_LOGS/dsp_examples_dsp_on.log
+        - cd -
+        - cd NMSIS/DSP/Test
+        - echo "Benchmark with cycles"
+        - export BENCH_UNIT=cycle
+        - DSP_ENABLE=OFF nmsis_run_all_apps $CORES . 2>&1 | tee $NMSIS_LOGS/dsp_test_dsp_off_cycles.log
+        - cat $NMSIS_LOGS/dsp_test_dsp_off_cycles.log | grep CSV | tee $NMSIS_LOGS/dsp_test_dsp_off_cycles.csv
+        - DSP_ENABLE=ON nmsis_run_all_apps $CORES . 2>&1 | tee $NMSIS_LOGS/dsp_test_dsp_on_cycles.log
+        - cat $NMSIS_LOGS/dsp_test_dsp_on_cycles.log | grep CSV | tee $NMSIS_LOGS/dsp_test_dsp_on_cycles.csv
+        - cd -
+        - mkdir -p $NMSIS_BENCH_LOGDIR/NMSIS
+        - cp $NMSIS_LOGS/*.csv $NMSIS_BENCH_LOGDIR/NMSIS
     tags:
         - software-server
     dependencies:
@@ -86,4 +162,3 @@ deploy_website:
         - ./.ci/ftp_deploy.sh $FTPUSER $FTPPWD $FTPSERVER NMSIS/doc/build/html nmsis
     tags:
         - software-server
-
