@@ -186,6 +186,9 @@ void riscv_conv_q15(
   /* To, read the last two inputB samples using SIMD:
    * y[srcBLen] and y[srcBLen-1] coefficients, py is decremented by 1 */
   py = py - 1;
+#if __RISCV_XLEN == 64
+  py = py - 2; 
+#endif /* __RISCV_XLEN == 64 */
 
   while (blockSize1 > 0U)
   {
@@ -200,10 +203,15 @@ void riscv_conv_q15(
     while (k > 0U)
     {
       /* Perform the multiply-accumulate */
+
+#if __RISCV_XLEN == 64
+      sum = __RV_SMALXDA(sum, read_q15x4_ia ((q15_t **) &px), read_q15x4_da ((q15_t **) &py));
+#else
       /* x[0], x[1] are multiplied with y[srcBLen - 1], y[srcBLen - 2] respectively */
-      sum = __SMLALDX(read_q15x2_ia ((q15_t **) &px), read_q15x2_da ((q15_t **) &py), sum);
+      sum = __RV_SMALXDA(sum, read_q15x2_ia ((q15_t **) &px), read_q15x2_da ((q15_t **) &py));
       /* x[2], x[3] are multiplied with y[srcBLen - 3], y[srcBLen - 4] respectively */
-      sum = __SMLALDX(read_q15x2_ia ((q15_t **) &px), read_q15x2_da ((q15_t **) &py), sum);
+      sum = __RV_SMALXDA(sum, read_q15x2_ia ((q15_t **) &px), read_q15x2_da ((q15_t **) &py));
+#endif /* __RISCV_XLEN == 64 */
 
       /* Decrement loop counter */
       k--;
@@ -212,7 +220,9 @@ void riscv_conv_q15(
     /* For the next MAC operations, the pointer py is used without SIMD
      * So, py is incremented by 1 */
     py = py + 1U;
-
+#if __RISCV_XLEN == 64
+    py = py + 2;
+#endif /* __RISCV_XLEN == 64 */
     /* If the count is not a multiple of 4, compute any remaining MACs here.
      ** No loop unrolling is used. */
     k = count % 0x4U;
@@ -354,17 +364,21 @@ void riscv_conv_q15(
       {
         /* Read y[srcBLen - 5] */
         c0 = *(py + 1);
+#ifdef  RISCV_MATH_BIG_ENDIAN
+        c0 = c0 << 16U;
+#else
         c0 = c0 & 0x0000FFFF;
+#endif /* #ifdef  RISCV_MATH_BIG_ENDIAN */
 
         /* Read x[7] */
         x3 = read_q15x2 ((q15_t *) px);
         px++;
 
         /* Perform the multiply-accumulate */
-        acc0 = __SMLALD(x0, c0, acc0);
-        acc1 = __SMLALD(x1, c0, acc1);
-        acc2 = __SMLALDX(x1, c0, acc2);
-        acc3 = __SMLALDX(x3, c0, acc3);
+        acc0 = __RV_SMALDA(acc0, x0, c0);
+        acc1 = __RV_SMALDA(acc1, x1, c0);
+        acc2 = __RV_SMALXDA(acc2, x1, c0);
+        acc3 = __RV_SMALXDA(acc3, x3, c0);
       }
 
       if (k == 2U)
@@ -380,10 +394,10 @@ void riscv_conv_q15(
         px += 2U;
 
         /* Perform the multiply-accumulate */
-        acc0 = __SMLALDX(x0, c0, acc0);
-        acc1 = __SMLALDX(x1, c0, acc1);
-        acc2 = __SMLALDX(x3, c0, acc2);
-        acc3 = __SMLALDX(x2, c0, acc3);
+        acc0 = __RV_SMALXDA(acc0, x0, c0);
+        acc1 = __RV_SMALXDA(acc1, x1, c0);
+        acc2 = __RV_SMALXDA(acc2, x3, c0);
+        acc3 = __RV_SMALXDA(acc3, x2, c0);
       }
 
       if (k == 3U)
@@ -398,28 +412,37 @@ void riscv_conv_q15(
         x2 = read_q15x2 ((q15_t *) px + 1);
 
         /* Perform the multiply-accumulate */
-        acc0 = __SMLALDX(x0, c0, acc0);
-        acc1 = __SMLALDX(x1, c0, acc1);
-        acc2 = __SMLALDX(x3, c0, acc2);
-        acc3 = __SMLALDX(x2, c0, acc3);
+        acc0 = __RV_SMALXDA(acc0, x0, c0);
+        acc1 = __RV_SMALXDA(acc1, x1, c0);
+        acc2 = __RV_SMALXDA(acc2, x3, c0);
+        acc3 = __RV_SMALXDA(acc3, x2, c0);
 
         c0 = *(py-1);
+#ifdef  RISCV_MATH_BIG_ENDIAN
+        c0 = c0 << 16U;
+#else
         c0 = c0 & 0x0000FFFF;
+#endif /* #ifdef  RISCV_MATH_BIG_ENDIAN */
 
         /* Read x[10] */
         x3 =  read_q15x2 ((q15_t *) px + 2);
         px += 3U;
 
         /* Perform the multiply-accumulates */
-        acc0 = __SMLALDX(x1, c0, acc0);
-        acc1 = __SMLALD(x2, c0, acc1);
-        acc2 = __SMLALDX(x2, c0, acc2);
-        acc3 = __SMLALDX(x3, c0, acc3);
+        acc0 = __RV_SMALXDA(acc0, x1, c0);
+        acc1 = __RV_SMALDA(acc1, x2, c0);
+        acc2 = __RV_SMALXDA(acc2, x2, c0);
+        acc3 = __RV_SMALXDA(acc3, x3, c0);
       }
 
       /* Store the result in the accumulator in the destination buffer. */
+#ifndef  RISCV_MATH_BIG_ENDIAN
       write_q15x2_ia (&pOut, __PKHBT(__SSAT((acc0 >> 15), 16), __SSAT((acc1 >> 15), 16), 16));
       write_q15x2_ia (&pOut, __PKHBT(__SSAT((acc2 >> 15), 16), __SSAT((acc3 >> 15), 16), 16));
+#else
+      write_q15x2_ia (&pOut, __PKHBT(__SSAT((acc1 >> 15), 16), __SSAT((acc0 >> 15), 16), 16));
+      write_q15x2_ia (&pOut, __PKHBT(__SSAT((acc3 >> 15), 16), __SSAT((acc2 >> 15), 16), 16));
+#endif /*      #ifndef  RISCV_MATH_BIG_ENDIAN    */
 
       /* Increment the pointer pIn1 index, count by 4 */
       count += 4U;
@@ -444,15 +467,25 @@ void riscv_conv_q15(
       /* Apply loop unrolling and compute 4 MACs simultaneously. */
       k = srcBLen >> 2U;
 
+// #if __RISCV_XLEN == 64
+//       py -= 4;
+//       q63_t acc064, acc164;
+// #endif /* __RISCV_XLEN == 64 */
       /* First part of the processing with loop unrolling.  Compute 4 MACs at a time.
        ** a second loop below computes MACs for the remaining 1 to 3 samples. */
       while (k > 0U)
       {
         /* Perform the multiply-accumulates */
+// #if __RISCV_XLEN == 64
+//         acc064 = read_q15x4_ia((q15_t **) &px);
+//         acc164 = read_q15x4_da((q15_t **) &py);
+//         sum = __RV_KMADA(sum, acc064, acc164);
+// #else
         sum += (q63_t) ((q31_t) *px++ * *py--);
         sum += (q63_t) ((q31_t) *px++ * *py--);
         sum += (q63_t) ((q31_t) *px++ * *py--);
         sum += (q63_t) ((q31_t) *px++ * *py--);
+// #endif /* __RISCV_XLEN == 64 */
 
         /* Decrement loop counter */
         k--;
@@ -567,17 +600,25 @@ void riscv_conv_q15(
     /* Apply loop unrolling and compute 4 MACs simultaneously. */
     k = blockSize3 >> 2U;
 
+#if __RISCV_XLEN == 64
+    py -= 2;
+#endif /* __RISCV_XLEN == 64 */
     /* First part of the processing with loop unrolling.  Compute 4 MACs at a time.
      ** a second loop below computes MACs for the remaining 1 to 3 samples. */
     while (k > 0U)
     {
       /* Perform the multiply-accumulate */
+
+#if __RISCV_XLEN == 64
+      sum = __SMLALDX(read_q15x4_ia ((q15_t **) &px), read_q15x4_da ((q15_t **) &py), sum);
+#else
       /* x[srcALen - srcBLen + 1], x[srcALen - srcBLen + 2] are multiplied
        * with y[srcBLen - 1], y[srcBLen - 2] respectively */
       sum = __SMLALDX(read_q15x2_ia ((q15_t **) &px), read_q15x2_da ((q15_t **) &py), sum);
       /* x[srcALen - srcBLen + 3], x[srcALen - srcBLen + 4] are multiplied
        * with y[srcBLen - 3], y[srcBLen - 4] respectively */
       sum = __SMLALDX(read_q15x2_ia ((q15_t **) &px), read_q15x2_da ((q15_t **) &py), sum);
+#endif /* __RISCV_XLEN == 64 */
 
       /* Decrement loop counter */
       k--;
@@ -586,7 +627,9 @@ void riscv_conv_q15(
     /* For the next MAC operations, the pointer py is used without SIMD
      * So, py is incremented by 1 */
     py = py + 1U;
-
+#if __RISCV_XLEN == 64
+    py += 2;
+#endif /* __RISCV_XLEN == 64 */
     /* If the blockSize3 is not a multiple of 4, compute any remaining MACs here.
      ** No loop unrolling is used. */
     k = blockSize3 % 0x4U;

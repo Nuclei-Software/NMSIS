@@ -102,6 +102,7 @@ void riscv_correlate_f32(
         float32_t * pDst)
 {
 
+#if (1)
 
   
   const float32_t *pIn1;                               /* InputA pointer */
@@ -116,7 +117,7 @@ void riscv_correlate_f32(
         uint32_t outBlockSize;                         /* Loop counter */
         int32_t inc = 1;                               /* Destination address modifier */
 
-#if defined (RISCV_MATH_LOOPUNROLL) 
+#if defined (RISCV_MATH_LOOPUNROLL) || defined (RISCV_MATH_NEON)
   float32_t acc0, acc1, acc2, acc3;                    /* Accumulators */
   float32_t x0, x1, x2, x3, c0;                        /* temporary variables for holding input and coefficient values */
 #endif
@@ -220,11 +221,35 @@ void riscv_correlate_f32(
     /* Accumulator is made zero for every iteration */
     sum = 0.0f;
 
-#if defined (RISCV_MATH_LOOPUNROLL) 
+#if defined (RISCV_MATH_LOOPUNROLL) || defined(RISCV_MATH_NEON)
 
     /* Loop unrolling: Compute 4 outputs at a time */
     k = count >> 2U;
 
+#if defined(RISCV_MATH_NEON)
+    float32x4_t x,y;
+    float32x4_t res = vdupq_n_f32(0) ;
+    float32x2_t accum = vdup_n_f32(0);
+
+    while (k > 0U)
+    {
+      x = vld1q_f32(px);
+      y = vld1q_f32(py);
+
+      res = vmlaq_f32(res,x, y);
+
+      px += 4;
+      py += 4;
+
+      /* Decrement the loop counter */
+      k--;
+    }
+
+    accum = vpadd_f32(vget_low_f32(res), vget_high_f32(res));
+    sum += accum[0] + accum[1];
+
+    k = count & 0x3;
+#else
     /* First part of the processing with loop unrolling.  Compute 4 MACs at a time.
      ** a second loop below computes MACs for the remaining 1 to 3 samples. */
     while (k > 0U)
@@ -248,12 +273,13 @@ void riscv_correlate_f32(
     /* Loop unrolling: Compute remaining outputs */
     k = count % 0x4U;
 
+#endif /* #if defined(RISCV_MATH_NEON) */
 #else
 
     /* Initialize k with number of samples */
     k = count;
 
-#endif /* #if defined (RISCV_MATH_LOOPUNROLL)  */
+#endif /* #if defined (RISCV_MATH_LOOPUNROLL) || defined(RISCV_MATH_NEON) */
 
     while (k > 0U)
     {
@@ -309,11 +335,21 @@ void riscv_correlate_f32(
    * srcBLen should be greater than or equal to 4 */
   if (srcBLen >= 4U)
   {
-#if defined (RISCV_MATH_LOOPUNROLL) 
+#if defined (RISCV_MATH_LOOPUNROLL) || defined(RISCV_MATH_NEON)
 
     /* Loop unrolling: Compute 4 outputs at a time */
     blkCnt = blockSize2 >> 2U;
 
+#if defined(RISCV_MATH_NEON)
+      float32x4_t c;
+      float32x4_t x1v;
+      float32x4_t x2v;
+      uint32x4_t x1v_u;
+      uint32x4_t x2v_u;
+      float32x4_t x;
+      uint32x4_t x_u;
+      float32x4_t res = vdupq_n_f32(0) ;
+#endif /* #if defined(RISCV_MATH_NEON) */
 
     while (blkCnt > 0U)
     {
@@ -323,6 +359,71 @@ void riscv_correlate_f32(
       acc2 = 0.0f;
       acc3 = 0.0f;
 
+#if defined(RISCV_MATH_NEON)
+      /* Compute 4 MACs simultaneously. */
+      k = srcBLen >> 2U;
+
+      res = vdupq_n_f32(0) ;
+
+      x1v = vld1q_f32(px);
+      px += 4;
+      do
+      {
+        x2v = vld1q_f32(px);
+        c = vld1q_f32(py);
+
+        py += 4;
+
+        x = x1v;
+        res = vmlaq_n_f32(res,x,c[0]);
+
+        x = vextq_f32(x1v,x2v,1);
+
+        res = vmlaq_n_f32(res,x,c[1]);
+
+        x = vextq_f32(x1v,x2v,2);
+
+	res = vmlaq_n_f32(res,x,c[2]);
+
+        x = vextq_f32(x1v,x2v,3);
+
+	res = vmlaq_n_f32(res,x,c[3]);
+
+        x1v = x2v;
+        px+=4;
+        x2v = vld1q_f32(px);
+
+      } while (--k);
+      
+      /* If the srcBLen is not a multiple of 4, compute any remaining MACs here.
+       ** No loop unrolling is used. */
+      k = srcBLen & 0x3;
+
+      while (k > 0U)
+      {
+        /* Read y[srcBLen - 5] sample */
+        c0 = *(py++);
+
+        res = vmlaq_n_f32(res,x1v,c0);
+
+        /* Reuse the present samples for the next MAC */
+        x1v[0] = x1v[1];
+        x1v[1] = x1v[2];
+        x1v[2] = x1v[3];
+
+        x1v[3] = *(px++);
+
+        /* Decrement the loop counter */
+        k--;
+      }
+
+      px-=1;
+
+      acc0 = res[0];
+      acc1 = res[1];
+      acc2 = res[2];
+      acc3 = res[3];
+#else
       /* read x[0], x[1], x[2] samples */
       x0 = *px++;
       x1 = *px++;
@@ -427,6 +528,7 @@ void riscv_correlate_f32(
         k--;
       }
 
+#endif /* #if defined(RISCV_MATH_NEON) */
 
       /* Store the result in the accumulator in the destination buffer. */
       *pOut = acc0;
@@ -461,18 +563,39 @@ void riscv_correlate_f32(
     /* Initialize blkCnt with number of samples */
     blkCnt = blockSize2;
 
-#endif /* #if defined (RISCV_MATH_LOOPUNROLL)  */
+#endif /* #if defined (RISCV_MATH_LOOPUNROLL) || defined(RISCV_MATH_NEON) */
 
     while (blkCnt > 0U)
     {
       /* Accumulator is made zero for every iteration */
       sum = 0.0f;
 
-#if defined (RISCV_MATH_LOOPUNROLL) 
+#if defined (RISCV_MATH_LOOPUNROLL) || defined(RISCV_MATH_NEON)
 
     /* Loop unrolling: Compute 4 outputs at a time */
       k = srcBLen >> 2U;
 
+#if defined(RISCV_MATH_NEON)
+    float32x4_t x,y;
+    float32x4_t res = vdupq_n_f32(0) ;
+    float32x2_t accum = vdup_n_f32(0);
+
+    while (k > 0U)
+    {
+      x = vld1q_f32(px);
+      y = vld1q_f32(py);
+
+      res = vmlaq_f32(res,x, y);
+
+      px += 4;
+      py += 4;
+      /* Decrement the loop counter */
+      k--;
+    }
+
+    accum = vpadd_f32(vget_low_f32(res), vget_high_f32(res));
+    sum += accum[0] + accum[1];
+#else
       /* First part of the processing with loop unrolling.  Compute 4 MACs at a time.
        ** a second loop below computes MACs for the remaining 1 to 3 samples. */
       while (k > 0U)
@@ -486,6 +609,7 @@ void riscv_correlate_f32(
         /* Decrement loop counter */
         k--;
       }
+#endif /* #if defined(RISCV_MATH_NEON) */
       /* If the srcBLen is not a multiple of 4, compute any remaining MACs here.
        ** No loop unrolling is used. */
       k = srcBLen % 0x4U;
@@ -494,7 +618,7 @@ void riscv_correlate_f32(
       /* Initialize blkCnt with number of samples */
       k = srcBLen;
 
-#endif /* #if defined (RISCV_MATH_LOOPUNROLL)  */
+#endif /* #if defined (RISCV_MATH_LOOPUNROLL) || defined(RISCV_MATH_NEON) */
 
       while (k > 0U)
       {
@@ -594,11 +718,33 @@ void riscv_correlate_f32(
     /* Accumulator is made zero for every iteration */
     sum = 0.0f;
 
-#if defined (RISCV_MATH_LOOPUNROLL) 
+#if defined (RISCV_MATH_LOOPUNROLL) || defined(RISCV_MATH_NEON)
 
     /* Loop unrolling: Compute 4 outputs at a time */
     k = count >> 2U;
 
+#if defined(RISCV_MATH_NEON)
+    float32x4_t x,y;
+    float32x4_t res = vdupq_n_f32(0) ;
+    float32x2_t accum = vdup_n_f32(0);
+
+    while (k > 0U)
+    {
+      x = vld1q_f32(px);
+      y = vld1q_f32(py);
+
+      res = vmlaq_f32(res,x, y);
+
+      px += 4;
+      py += 4;
+
+      /* Decrement the loop counter */
+      k--;
+    }
+
+    accum = vpadd_f32(vget_low_f32(res), vget_high_f32(res));
+    sum += accum[0] + accum[1];
+#else
     /* First part of the processing with loop unrolling.  Compute 4 MACs at a time.
      ** a second loop below computes MACs for the remaining 1 to 3 samples. */
     while (k > 0U)
@@ -620,6 +766,7 @@ void riscv_correlate_f32(
       k--;
     }
 
+#endif /* #if defined (RISCV_MATH_NEON) */
     /* Loop unrolling: Compute remaining outputs */
     k = count % 0x4U;
 
@@ -628,7 +775,7 @@ void riscv_correlate_f32(
     /* Initialize blkCnt with number of samples */
     k = count;
 
-#endif /* #if defined (RISCV_MATH_LOOPUNROLL)  */
+#endif /* #if defined (RISCV_MATH_LOOPUNROLL) || defined(RISCV_MATH_NEON) */
 
     while (k > 0U)
     {
@@ -655,6 +802,90 @@ void riscv_correlate_f32(
     blockSize3--;
   }
 
+#else
+/* alternate version for CM0_FAMILY */
+
+  const float32_t *pIn1 = pSrcA;                       /* inputA pointer */
+  const float32_t *pIn2 = pSrcB + (srcBLen - 1U);      /* inputB pointer */
+        float32_t sum;                                 /* Accumulator */
+        uint32_t i = 0U, j;                            /* Loop counters */
+        uint32_t inv = 0U;                             /* Reverse order flag */
+        uint32_t tot = 0U;                             /* Length */
+
+  /* The algorithm implementation is based on the lengths of the inputs. */
+  /* srcB is always made to slide across srcA. */
+  /* So srcBLen is always considered as shorter or equal to srcALen */
+  /* But CORR(x, y) is reverse of CORR(y, x) */
+  /* So, when srcBLen > srcALen, output pointer is made to point to the end of the output buffer */
+  /* and a varaible, inv is set to 1 */
+  /* If lengths are not equal then zero pad has to be done to  make the two
+   * inputs of same length. But to improve the performance, we assume zeroes
+   * in the output instead of zero padding either of the the inputs*/
+  /* If srcALen > srcBLen, (srcALen - srcBLen) zeroes has to included in the
+   * starting of the output buffer */
+  /* If srcALen < srcBLen, (srcALen - srcBLen) zeroes has to included in the
+   * ending of the output buffer */
+  /* Once the zero padding is done the remaining of the output is calcualted
+   * using convolution but with the shorter signal time shifted. */
+
+  /* Calculate the length of the remaining sequence */
+  tot = ((srcALen + srcBLen) - 2U);
+
+  if (srcALen > srcBLen)
+  {
+    /* Calculating the number of zeros to be padded to the output */
+    j = srcALen - srcBLen;
+
+    /* Initialise the pointer after zero padding */
+    pDst += j;
+  }
+
+  else if (srcALen < srcBLen)
+  {
+    /* Initialization to inputB pointer */
+    pIn1 = pSrcB;
+
+    /* Initialization to the end of inputA pointer */
+    pIn2 = pSrcA + (srcALen - 1U);
+
+    /* Initialisation of the pointer after zero padding */
+    pDst = pDst + tot;
+
+    /* Swapping the lengths */
+    j = srcALen;
+    srcALen = srcBLen;
+    srcBLen = j;
+
+    /* Setting the reverse flag */
+    inv = 1;
+
+  }
+
+  /* Loop to calculate convolution for output length number of times */
+  for (i = 0U; i <= tot; i++)
+  {
+    /* Initialize sum with zero to carry out MAC operations */
+    sum = 0.0f;
+
+    /* Loop to perform MAC operations according to convolution equation */
+    for (j = 0U; j <= i; j++)
+    {
+      /* Check the array limitations */
+      if ((((i - j) < srcBLen) && (j < srcALen)))
+      {
+        /* z[i] += x[i-j] * y[j] */
+        sum += pIn1[j] * pIn2[-((int32_t) i - j)];
+      }
+    }
+
+    /* Store the output in the destination buffer */
+    if (inv == 1)
+      *pDst-- = sum;
+    else
+      *pDst++ = sum;
+  }
+
+#endif /* #if !defined(RISCV_MATH_CM0_FAMILY) */
 
 }
 

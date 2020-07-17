@@ -76,6 +76,9 @@ void riscv_fir_q31(
         q63_t acc1, acc2;                              /* Accumulators */
         q31_t x0, x1, x2;                              /* Temporary variables to hold state values */
         q31_t c0;                                      /* Temporary variable to hold coefficient value */
+#if __RISCV_XLEN == 64
+        q63_t c064, x064, x164, x264;
+#endif /* __RISCV_XLEN == 64 */
 #endif
 
   /* S->pState points to state array which contains previous frame (numTaps - 1) samples */
@@ -122,6 +125,16 @@ void riscv_fir_q31(
 
     while (tapCnt > 0U)
     {
+#if __RISCV_XLEN == 64
+      c064 = read_q31x2_ia ((q31_t **) &pb);
+      x2 = *(px++);
+      acc0 = __RV_KMADA32(acc0, __RV_PKBB32(x1, x0), c064);
+      acc1 = __RV_KMADA32(acc1, __RV_PKBB32(x2, x1), c064);
+      x0 = *(px++);
+      acc2 = __RV_KMADA32(acc2, __RV_PKBB32(x0, x2), c064);
+      c0 = *(pb++);
+      x1 = *(px++);
+#else
       /* Read the b[numTaps] coefficient */
       c0 = *pb;
 
@@ -148,6 +161,7 @@ void riscv_fir_q31(
 
       /* update coefficient pointer */
       pb += 3U;
+#endif /* __RISCV_XLEN == 64 */
 
       /* Perform the multiply-accumulates */
       acc0 += ((q63_t) x2 * c0);

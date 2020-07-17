@@ -80,10 +80,17 @@ void riscv_q15_to_q7(
     in1 = read_q15x2_ia ((q15_t **) &pIn);
     in2 = read_q15x2_ia ((q15_t **) &pIn);
 
+#ifndef RISCV_MATH_BIG_ENDIAN
 
     out1 = __PKHTB(in2, in1, 16);
     out2 = __PKHBT(in2, in1, 16);
 
+#else
+
+    out1 = __PKHTB(in1, in2, 16);
+    out2 = __PKHBT(in1, in2, 16);
+
+#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
     /* rotate packed value by 24 */
     out2 = ((uint32_t) out2 << 8) | ((uint32_t) out2 >> 24);

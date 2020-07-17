@@ -84,12 +84,16 @@ void riscv_sub_q15(
     ///* Subtract and store 2 times 2 samples at a time */
     //write_q15x2_ia (&pDst, __QSUB16(inA1, inB1));
     //write_q15x2_ia (&pDst, __QSUB16(inA2, inB2));
+#if __RISCV_XLEN == 64
+    write_q15x4_ia(&pDst, __RV_KSUB16(read_q15x4_ia((q15_t**)&pSrcA), read_q15x4_ia((q15_t **)&pSrcB)));
+#else
 #ifdef RISCV_DSP64
     write_q15x4_ia(&pDst, __DKSUB16(read_q15x4_ia((q15_t**)&pSrcA), read_q15x4_ia((q15_t **)&pSrcB)));
 #else
-	write_q15x2_ia(&pDst, __KSUB16(read_q15x2_ia((q15_t**)&pSrcA), read_q15x2_ia((q15_t **)&pSrcB)));
-    write_q15x2_ia(&pDst, __KSUB16(read_q15x2_ia((q15_t**)&pSrcA), read_q15x2_ia((q15_t **)&pSrcB)));
+	  write_q15x2_ia(&pDst, __RV_KSUB16(read_q15x2_ia((q15_t**)&pSrcA), read_q15x2_ia((q15_t **)&pSrcB)));
+    write_q15x2_ia(&pDst, __RV_KSUB16(read_q15x2_ia((q15_t**)&pSrcA), read_q15x2_ia((q15_t **)&pSrcB)));
 #endif
+#endif /* __RISCV_XLEN == 64 */
 #else
     *pDst++ = (q15_t) __SSAT(((q31_t) *pSrcA++ - *pSrcB++), 16);
     *pDst++ = (q15_t) __SSAT(((q31_t) *pSrcA++ - *pSrcB++), 16);

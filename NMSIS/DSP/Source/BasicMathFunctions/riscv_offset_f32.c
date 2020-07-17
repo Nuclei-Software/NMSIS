@@ -69,6 +69,34 @@ void riscv_offset_f32(
 {
         uint32_t blkCnt;                               /* Loop counter */
 
+#if defined(RISCV_MATH_NEON_EXPERIMENTAL)
+    float32x4_t vec1;
+    float32x4_t res;
+
+    /* Compute 4 outputs at a time */
+    blkCnt = blockSize >> 2U;
+
+    while (blkCnt > 0U)
+    {
+        /* C = A + offset */
+ 
+        /* Add offset and then store the results in the destination buffer. */
+        vec1 = vld1q_f32(pSrc);
+        res = vaddq_f32(vec1,vdupq_n_f32(offset));
+        vst1q_f32(pDst, res);
+
+        /* Increment pointers */
+        pSrc += 4;
+        pDst += 4;
+        
+        /* Decrement the loop counter */
+        blkCnt--;
+    }
+
+    /* Tail */
+    blkCnt = blockSize & 0x3;
+
+#else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -100,6 +128,7 @@ void riscv_offset_f32(
   blkCnt = blockSize;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
+#endif /* #if defined(RISCV_MATH_NEON_EXPERIMENTAL) */
 
   while (blkCnt > 0U)
   {

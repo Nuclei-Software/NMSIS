@@ -154,10 +154,14 @@ void riscv_cfft_radix4by2_q31(
      l = i + n2;
 
      xt =          (pSrc[2 * i] >> 2U) - (pSrc[2 * l] >> 2U);
-     pSrc[2 * i] = (pSrc[2 * i] >> 2U) + (pSrc[2 * l] >> 2U);
-
      yt =              (pSrc[2 * i + 1] >> 2U) - (pSrc[2 * l + 1] >> 2U);
+#if defined RISCV_MATH_DSP && (__RISCV_XLEN == 64)
+     
+     write_q31x2 ((pSrc+2*i), (q63_t) ((q63_t)((pSrc[2 * i] >> 2U) + (pSrc[2 * l] >> 2U)) | (((q63_t)((pSrc[2 * l + 1] >> 2U) + (pSrc[2 * i + 1] >> 2U))) << 32)));
+#else
+     pSrc[2 * i] = (pSrc[2 * i] >> 2U) + (pSrc[2 * l] >> 2U);
      pSrc[2 * i + 1] = (pSrc[2 * l + 1] >> 2U) + (pSrc[2 * i + 1] >> 2U);
+#endif /* __RISCV_XLEN == 64 */
 
      mult_32x32_keep32_R(p0, xt, cosVal);
      mult_32x32_keep32_R(p1, yt, cosVal);
@@ -214,10 +218,14 @@ void riscv_cfft_radix4by2_inverse_q31(
      l = i + n2;
 
      xt =          (pSrc[2 * i] >> 2U) - (pSrc[2 * l] >> 2U);
-     pSrc[2 * i] = (pSrc[2 * i] >> 2U) + (pSrc[2 * l] >> 2U);
-
      yt =              (pSrc[2 * i + 1] >> 2U) - (pSrc[2 * l + 1] >> 2U);
+#if defined RISCV_MATH_DSP && (__RISCV_XLEN == 64)
+     
+     write_q31x2 ((pSrc+2*i), (q63_t) ((q63_t)((pSrc[2 * i] >> 2U) + (pSrc[2 * l] >> 2U)) | (((q63_t)((pSrc[2 * l + 1] >> 2U) + (pSrc[2 * i + 1] >> 2U))) << 32)));
+#else
+     pSrc[2 * i] = (pSrc[2 * i] >> 2U) + (pSrc[2 * l] >> 2U);
      pSrc[2 * i + 1] = (pSrc[2 * l + 1] >> 2U) + (pSrc[2 * i + 1] >> 2U);
+#endif /* __RISCV_XLEN == 64 */
 
      mult_32x32_keep32_R(p0, xt, cosVal);
      mult_32x32_keep32_R(p1, yt, cosVal);

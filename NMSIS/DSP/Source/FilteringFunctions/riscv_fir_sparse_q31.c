@@ -77,7 +77,9 @@ void riscv_fir_sparse_q31(
         q31_t in;
         q63_t out;                                     /* Temporary output variable */
 
-
+#if __RISCV_XLEN == 64
+        q63_t temp;   
+#endif /* __RISCV_XLEN == 64 */
   /* BlockSize of Input samples are copied into the state buffer */
   /* StateIndex points to the starting position to write in the state buffer */
   riscv_circularWrite_f32((int32_t *) py, delaySize, &S->stateIndex, 1,
@@ -113,6 +115,12 @@ void riscv_fir_sparse_q31(
 
   while (blkCnt > 0U)
   {
+#if __RISCV_XLEN == 64
+    temp = read_q31x2_ia((q63_t) &px);
+    write_q31x2_ia (&pOut, __RV_PKBB32((__RV_SMBT32(coeff, temp) >> 32), (__RV_SMBB32(temp, coeff) >> 32)));
+    temp = read_q31x2_ia((q63_t) &px);
+    write_q31x2_ia (&pOut, __RV_PKBB32((__RV_SMBT32(coeff, temp) >> 32), (__RV_SMBB32(temp, coeff) >> 32)));
+#else
     /* Perform Multiplications and store in destination buffer */
     *pOut++ = (q31_t) (((q63_t) *px++ * coeff) >> 32);
 
@@ -121,6 +129,7 @@ void riscv_fir_sparse_q31(
     *pOut++ = (q31_t) (((q63_t) *px++ * coeff) >> 32);
 
     *pOut++ = (q31_t) (((q63_t) *px++ * coeff) >> 32);
+#endif /* __RISCV_XLEN == 64 */
 
     /* Decrement loop counter */
     blkCnt--;

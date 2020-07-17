@@ -65,12 +65,16 @@ void riscv_shift_q15(
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
   while(blkCnt > 0U) {
+ #if __RISCV_XLEN == 64
+	  write_q15x4_ia(&pDst, __RV_KSLRA16(read_q15x4_ia((q15_t **)&pSrc), shiftBits));
+#else
  #ifdef RISCV_DSP64
 	  write_q15x4_ia(&pDst, __DKSLRA16(read_q15x4_ia((q15_t **)&pSrc), shiftBits));
  #else
-	  write_q15x2_ia(&pDst, __KSLRA16(read_q15x2_ia((q15_t **)&pSrc), shiftBits));
-	  write_q15x2_ia(&pDst, __KSLRA16(read_q15x2_ia((q15_t **)&pSrc), shiftBits));
+	  write_q15x2_ia(&pDst, __RV_KSLRA16(read_q15x2_ia((q15_t **)&pSrc), shiftBits));
+	  write_q15x2_ia(&pDst, __RV_KSLRA16(read_q15x2_ia((q15_t **)&pSrc), shiftBits));
  #endif
+ #endif /* __RISCV_XLEN == 64 */
 	  blkCnt--;
   }
 

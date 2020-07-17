@@ -68,15 +68,36 @@ void riscv_scale_q7(
   q7_t in1,  in2,  in3,  in4;                    /* Temporary input variables */
   q7_t out1, out2, out3, out4;                   /* Temporary output variables */
 #endif
-
+// #if __RISCV_XLEN == 64
+//   /* Loop unrolling: Compute 8 outputs at a time */
+//   blkCnt = blockSize >> 3U;
+// #else
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
+// #endif /* __RISCV_XLEN == 64 */
 
   while (blkCnt > 0U)
   {
     /* C = A * scale */
 
 #if defined (RISCV_MATH_DSP)
+// #if __RISCV_XLEN == 64
+// 	q63_t scale_packed;                           /* scale packed to 32 bit */
+// 	//q31_t scale_packed_32;
+// 	q7_t scale_a[8];
+// 	scale_a[0]	 = scaleFract;
+// 	scale_a[1]	 = scaleFract;
+// 	scale_a[2]	 = scaleFract;
+// 	scale_a[3]	 = scaleFract;
+// 	scale_a[4]	 = scaleFract;
+// 	scale_a[5]	 = scaleFract;
+// 	scale_a[6]	 = scaleFract;
+// 	scale_a[7]	 = scaleFract;
+
+// 	/* scale is packed to 64 bit in order to use SIMD64 for addition */
+//     scale_packed = *((q63_t *)scale_a);
+//   write_q7x8_ia (&pDst,__RV_KSLRA8((__RV_SMUL8(read_q7x8_ia ((q7_t **) &pSrc), scale_packed)),shift));
+// #else
     /* Reading 4 inputs from memory */
     in1 = *pSrc++;
     in2 = *pSrc++;
@@ -91,6 +112,7 @@ void riscv_scale_q7(
 
     /* Pack and store result in destination buffer (in single write) */
     write_q7x4_ia (&pDst, __PACKq7(out1, out2, out3, out4));
+// #endif /* __RISCV_XLEN == 64 */
 #else
     *pDst++ = (q7_t) (__SSAT((((q15_t) *pSrc++ * scaleFract) >> kShift), 8));
     *pDst++ = (q7_t) (__SSAT((((q15_t) *pSrc++ * scaleFract) >> kShift), 8));
@@ -101,10 +123,13 @@ void riscv_scale_q7(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+// #if __RISCV_XLEN == 64
+//   /* Loop unrolling: Compute remaining outputs */
+//   blkCnt = blockSize % 0x8U;
+// #else
   /* Loop unrolling: Compute remaining outputs */
   blkCnt = blockSize % 0x4U;
-
+// #endif /* __RISCV_XLEN == 64 */
 #else
 
   /* Initialize blkCnt with number of samples */

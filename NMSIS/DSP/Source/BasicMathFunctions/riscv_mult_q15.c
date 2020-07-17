@@ -61,12 +61,12 @@ void riscv_mult_q15(
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
-#if defined (RISCV_MATH_DSP)
-  q31_t inA1, inA2, inB1, inB2;                  /* Temporary input variables */
-  q15_t out1, out2, out3, out4;                  /* Temporary output variables */
-  q31_t mul1, mul2, mul3, mul4;                  /* Temporary variables */
-  q63_t opa, opb;
-#endif
+// #if defined (RISCV_MATH_DSP)
+//   q31_t inA1, inA2, inB1, inB2;                  /* Temporary input variables */
+//   q15_t out1, out2, out3, out4;                  /* Temporary output variables */
+//   q31_t mul1, mul2, mul3, mul4;                  /* Temporary variables */
+//   q63_t opa, opb;
+// #endif
 
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
@@ -103,13 +103,16 @@ void riscv_mult_q15(
 
 	//write_q15x2_ia (&pDst, __KHM16(inA1, inB1));
 	//write_q15x2_ia (&pDst, __KHM16(inA2, inB2));
-
-#ifdef RISCV_DSP64
-	write_q15x4_ia(&pDst, __DKHM16(read_q15x4_ia((q15_t **)& pSrcA), read_q15x4_ia((q15_t**)&pSrcB)));
+#if __RISCV_XLEN == 64
+	write_q15x4_ia(&pDst, __RV_KHM16(read_q15x4_ia((q15_t **)& pSrcA), read_q15x4_ia((q15_t**)&pSrcB)));
 #else
-	write_q15x2_ia(&pDst, __KHM16(read_q15x2_ia((q15_t **)& pSrcA), read_q15x2_ia((q15_t**)&pSrcB)));
-	write_q15x2_ia(&pDst, __KHM16(read_q15x2_ia((q15_t **)& pSrcA), read_q15x2_ia((q15_t**)&pSrcB)));
+#ifdef RISCV_DSP64
+	write_q15x4_ia(&pDst, __RV_DKHM16(read_q15x4_ia((q15_t **)& pSrcA), read_q15x4_ia((q15_t**)&pSrcB)));
+#else
+	write_q15x2_ia(&pDst, __RV_KHM16(read_q15x2_ia((q15_t **)& pSrcA), read_q15x2_ia((q15_t**)&pSrcB)));
+	write_q15x2_ia(&pDst, __RV_KHM16(read_q15x2_ia((q15_t **)& pSrcA), read_q15x2_ia((q15_t**)&pSrcB)));
 #endif
+#endif /* __RISCV_XLEN == 64 */
 #else
     *pDst++ = (q15_t) __SSAT((((q31_t) (*pSrcA++) * (*pSrcB++)) >> 15), 16);
     *pDst++ = (q15_t) __SSAT((((q31_t) (*pSrcA++) * (*pSrcB++)) >> 15), 16);

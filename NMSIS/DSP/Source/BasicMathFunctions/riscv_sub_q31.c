@@ -63,16 +63,21 @@ void riscv_sub_q31(
 
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
-
   while (blkCnt > 0U)
   {
     /* C = A - B */
 
+#if __RISCV_XLEN == 64
+    /* Subtract and store result in destination buffer (8 samples at a time). */
+    write_q31x2_ia (&pDst, __RV_KSUB32(read_q31x2_ia ((q31_t **) &pSrcA), read_q31x2_ia ((q31_t **) &pSrcB)));
+    write_q31x2_ia (&pDst, __RV_KSUB32(read_q31x2_ia ((q31_t **) &pSrcA), read_q31x2_ia ((q31_t **) &pSrcB)));
+#else
     /* Subtract and store result in destination buffer. */
     *pDst++ = __QSUB(*pSrcA++, *pSrcB++);
     *pDst++ = __QSUB(*pSrcA++, *pSrcB++);
     *pDst++ = __QSUB(*pSrcA++, *pSrcB++);
     *pDst++ = __QSUB(*pSrcA++, *pSrcB++);
+#endif /* __RISCV_XLEN == 64 */
     /* Decrement loop counter */
     blkCnt--;
   }

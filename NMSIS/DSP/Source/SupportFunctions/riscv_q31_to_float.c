@@ -56,6 +56,54 @@
   </pre>
  */
 
+#if defined(RISCV_MATH_NEON_EXPERIMENTAL)
+void riscv_q31_to_float(
+  const q31_t * pSrc,
+        float32_t * pDst,
+        uint32_t blockSize)
+{
+  const q31_t *pIn = pSrc;                             /* Src pointer */
+  uint32_t blkCnt;                               /* loop counter */
+
+  int32x4_t inV;
+  float32x4_t outV;
+
+  blkCnt = blockSize >> 2U;
+
+  /* Compute 4 outputs at a time.
+   ** a second loop below computes the remaining 1 to 3 samples. */
+  while (blkCnt > 0U)
+  {
+    /* C = (float32_t) A / 2147483648 */
+    /* Convert from q31 to float and then store the results in the destination buffer */
+    inV = vld1q_s32(pIn);
+    pIn += 4;
+
+    outV = vcvtq_n_f32_s32(inV,31);
+
+    vst1q_f32(pDst, outV);
+    pDst += 4;
+
+    /* Decrement the loop counter */
+    blkCnt--;
+  }
+
+  /* If the blockSize is not a multiple of 4, compute any remaining output samples here.
+   ** No loop unrolling is used. */
+  blkCnt = blockSize & 3;
+
+
+  while (blkCnt > 0U)
+  {
+    /* C = (float32_t) A / 2147483648 */
+    /* Convert from q31 to float and then store the results in the destination buffer */
+    *pDst++ = ((float32_t) * pIn++ / 2147483648.0f);
+
+    /* Decrement the loop counter */
+    blkCnt--;
+  }
+}
+#else
 void riscv_q31_to_float(
   const q31_t * pSrc,
   float32_t * pDst,
@@ -105,6 +153,7 @@ void riscv_q31_to_float(
   }
 
 }
+#endif /* #if defined(RISCV_MATH_NEON) */
 
 /**
   @} end of q31_to_x group

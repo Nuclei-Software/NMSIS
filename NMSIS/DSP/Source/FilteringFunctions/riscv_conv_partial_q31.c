@@ -65,6 +65,7 @@ riscv_status riscv_conv_partial_q31(
         uint32_t numPoints)
 {
 
+#if (1)
 
 
   const q31_t *pIn1;                                   /* InputA pointer */
@@ -81,6 +82,9 @@ riscv_status riscv_conv_partial_q31(
 #if defined (RISCV_MATH_LOOPUNROLL)
         q63_t acc0, acc1, acc2;                        /* Accumulator */
         q31_t x0, x1, x2, c0;                          /* Temporary variables */
+#if __RISCV_XLEN == 64
+        q63_t acc064, acc164, acc264;
+#endif /* __RISCV_XLEN == 64 */
 #endif
 
   /* Check for range of output samples to be calculated */
@@ -173,12 +177,22 @@ riscv_status riscv_conv_partial_q31(
       sum = 0;
 
 #if defined (RISCV_MATH_LOOPUNROLL)
-
+#if __RISCV_XLEN == 64
+    py--;
+#endif /* __RISCV_XLEN == 64 */
       /* Loop unrolling: Compute 4 outputs at a time */
       k = count >> 2U;
 
       while (k > 0U)
       {
+#if __RISCV_XLEN == 64
+      acc064 = read_q31x2_ia((q31_t **)&px);
+      acc164 = read_q31x2_da((q31_t **)&py);
+      sum = __RV_KMAXDA32(sum, acc064, acc164);
+      acc064 = read_q31x2_ia((q31_t **)&px);
+      acc164 = read_q31x2_da((q31_t **)&py);
+      sum = __RV_KMAXDA32(sum, acc064, acc164);
+#else
         /* x[0] * y[srcBLen - 1] */
         sum += (q63_t) *px++ * (*py--);
 
@@ -190,6 +204,7 @@ riscv_status riscv_conv_partial_q31(
 
         /* x[3] * y[srcBLen - 4] */
         sum += (q63_t) *px++ * (*py--);
+#endif /* __RISCV_XLEN == 64 */
 
         /* Decrement loop counter */
         k--;
@@ -402,11 +417,20 @@ riscv_status riscv_conv_partial_q31(
 
         while (k > 0U)
         {
+#if __RISCV_XLEN == 64
+      acc064 = read_q31x2_ia((q31_t **)&px);
+      acc164 = read_q31x2_da((q31_t **)&py);
+      sum = __RV_KMAXDA32(sum, acc064, acc164);
+      acc064 = read_q31x2_ia((q31_t **)&px);
+      acc164 = read_q31x2_da((q31_t **)&py);
+      sum = __RV_KMAXDA32(sum, acc064, acc164);
+#else
           /* Perform the multiply-accumulates */
           sum += (q63_t) *px++ * (*py--);
           sum += (q63_t) *px++ * (*py--);
           sum += (q63_t) *px++ * (*py--);
           sum += (q63_t) *px++ * (*py--);
+#endif /* __RISCV_XLEN == 64 */
 
           /* Decrement loop counter */
           k--;
@@ -517,12 +541,22 @@ riscv_status riscv_conv_partial_q31(
       sum = 0;
 
 #if defined (RISCV_MATH_LOOPUNROLL)
-
+#if __RISCV_XLEN == 64
+    py--;
+#endif /* __RISCV_XLEN == 64 */
       /* Loop unrolling: Compute 4 outputs at a time */
       k = count >> 2U;
 
       while (k > 0U)
       {
+#if __RISCV_XLEN == 64
+      acc064 = read_q31x2_ia((q31_t **)&px);
+      acc164 = read_q31x2_da((q31_t **)&py);
+      sum = __RV_KMAXDA32(sum, acc064, acc164);
+      acc064 = read_q31x2_ia((q31_t **)&px);
+      acc164 = read_q31x2_da((q31_t **)&py);
+      sum = __RV_KMAXDA32(sum, acc064, acc164);
+#else
         /* sum += x[srcALen - srcBLen + 1] * y[srcBLen - 1] */
         sum += (q63_t) *px++ * *py--;
 
@@ -534,7 +568,7 @@ riscv_status riscv_conv_partial_q31(
 
         /* sum += x[srcALen - srcBLen + 4] * y[srcBLen - 4] */
         sum += (q63_t) *px++ * *py--;
-
+#endif /* __RISCV_XLEN == 64 */
         /* Decrement loop counter */
         k--;
       }
@@ -580,6 +614,52 @@ riscv_status riscv_conv_partial_q31(
   /* Return to application */
   return (status);
 
+#else
+/* alternate version for CM0_FAMILY */
+
+  const q31_t *pIn1 = pSrcA;                           /* InputA pointer */
+  const q31_t *pIn2 = pSrcB;                           /* InputB pointer */
+        q63_t sum;                                     /* Accumulator */
+        uint32_t i, j;                                 /* Loop counters */
+        riscv_status status;                             /* Status of Partial convolution */
+
+  /* Check for range of output samples to be calculated */
+  if ((firstIndex + numPoints) > ((srcALen + (srcBLen - 1U))))
+  {
+    /* Set status as RISCV_MATH_ARGUMENT_ERROR */
+    status = RISCV_MATH_ARGUMENT_ERROR;
+  }
+  else
+  {
+    /* Loop to calculate convolution for output length number of values */
+    for (i = firstIndex; i <= (firstIndex + numPoints - 1); i++)
+    {
+      /* Initialize sum with zero to carry on MAC operations */
+      sum = 0;
+
+      /* Loop to perform MAC operations according to convolution equation */
+      for (j = 0U; j <= i; j++)
+      {
+        /* Check the array limitations */
+        if (((i - j) < srcBLen) && (j < srcALen))
+        {
+          /* z[i] += x[i-j] * y[j] */
+          sum += ((q63_t) pIn1[j] * pIn2[i - j]);
+        }
+      }
+
+      /* Store the output in the destination buffer */
+      pDst[i] = (q31_t) (sum >> 31U);
+    }
+
+    /* Set status as RISCV_MATH_SUCCESS */
+    status = RISCV_MATH_SUCCESS;
+  }
+
+  /* Return to application */
+  return (status);
+
+#endif /* #if !defined(RISCV_MATH_CM0_FAMILY) */
 
 }
 

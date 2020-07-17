@@ -81,6 +81,9 @@ void riscv_fir_decimate_q15(
 
 #if defined (RISCV_MATH_LOOPUNROLL)
         q31_t c1;                                      /* Temporary variables to hold state and coefficient values */
+#if __RISCV_XLEN == 64
+        q63_t x064, x164, c064;
+#endif /* __RISCV_XLEN == 64 */
 #endif
 
   /* S->pState buffer contains previous frame (numTaps - 1) samples */
@@ -120,6 +123,18 @@ void riscv_fir_decimate_q15(
 
     while (tapCnt > 0U)
     {
+#if __RISCV_XLEN == 64
+      /* Read the b[numTaps-1] and b[numTaps-2] coefficients */
+      c064 = read_q15x4_ia ((q15_t **) &pb);
+
+      /* Read x[n-numTaps-1] and x[n-numTaps-2]sample */
+      x064 = read_q15x4_ia ((q15_t **) &px0);
+      x164 = read_q15x4_ia ((q15_t **) &px1);
+
+      acc0 = __RV_SMALDA(acc0, x064, c064);
+      acc1 = __RV_SMALDA(acc1, x164, c064);
+
+#else
       /* Read the b[numTaps-1] and b[numTaps-2] coefficients */
       c0 = read_q15x2_ia ((q15_t **) &pb);
 
@@ -128,8 +143,8 @@ void riscv_fir_decimate_q15(
       x1 = read_q15x2_ia (&px1);
 
       /* Perform the multiply-accumulate */
-      acc0 = __SMLALD(x0, c0, acc0);
-      acc1 = __SMLALD(x1, c0, acc1);
+      acc0 = __RV_SMALDA(acc0, x0, c0);
+      acc1 = __RV_SMALDA(acc1, x1, c0);
 
       /* Read the b[numTaps-3] and b[numTaps-4] coefficient */
       c0 = read_q15x2_ia ((q15_t **) &pb);
@@ -139,8 +154,9 @@ void riscv_fir_decimate_q15(
       x1 = read_q15x2_ia (&px1);
 
       /* Perform the multiply-accumulate */
-      acc0 = __SMLALD(x0, c0, acc0);
-      acc1 = __SMLALD(x1, c0, acc1);
+      acc0 = __RV_SMALDA(acc0, x0, c0);
+      acc1 = __RV_SMALDA(acc1, x1, c0);
+#endif /* __RISCV_XLEN == 64 */
 
       /* Decrement loop counter */
       tapCnt--;

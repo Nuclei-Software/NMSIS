@@ -66,7 +66,9 @@ void riscv_rms_q31(
         uint32_t blkCnt;                               /* Loop counter */
         uint64_t sum = 0;                              /* Temporary result storage (can get never negative. changed type from q63 to uint64 */
         q31_t in;                                      /* Temporary variable to store input value */
-
+#if __RISCV_XLEN == 64
+        q63_t in64;                                      /* Temporary variable to store input value */
+#endif /* __RISCV_XLEN == 64 */
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -75,7 +77,14 @@ void riscv_rms_q31(
   while (blkCnt > 0U)
   {
     /* C = A[0] * A[0] + A[1] * A[1] + ... + A[blockSize-1] * A[blockSize-1] */
-
+#if __RISCV_XLEN == 64
+    in64 = read_q31x2_ia ((q31_t **) &pSrc);
+    sum += ((q63_t)__RV_SMBB32(in64, in64) >> 32);
+    sum += __RV_SMTT32(in64, in64);
+    in64 = read_q31x2_ia ((q31_t **) &pSrc);
+    sum += ((q63_t)__RV_SMBB32(in64, in64) >> 32);
+    sum += __RV_SMTT32(in64, in64);
+#else
     in = *pSrc++;
     /* Compute sum of squares and store result in a temporary variable, sum. */
     sum += ((q63_t) in * in);
@@ -88,6 +97,8 @@ void riscv_rms_q31(
 
     in = *pSrc++;
     sum += ((q63_t) in * in);
+
+#endif /* __RISCV_XLEN == 64 */
 
     /* Decrement loop counter */
     blkCnt--;

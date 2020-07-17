@@ -64,7 +64,9 @@ void riscv_power_q31(
         uint32_t blkCnt;                               /* Loop counter */
         q63_t sum = 0;                                 /* Temporary result storage */
         q31_t in;                                      /* Temporary variable to store input value */
-
+#if __RISCV_XLEN == 64
+        q63_t in64;                                      /* Temporary variable to store input value */
+#endif /* __RISCV_XLEN == 64 */
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -73,7 +75,14 @@ void riscv_power_q31(
   while (blkCnt > 0U)
   {
     /* C = A[0] * A[0] + A[1] * A[1] + ... + A[blockSize-1] * A[blockSize-1] */
-
+#if __RISCV_XLEN == 64
+    in64 = read_q31x2_ia ((q31_t **) &pSrc);
+    sum += __RV_SMBB32(in64, in64);
+    sum += __RV_SMTT32(in64, in64);
+    in64 = read_q31x2_ia ((q31_t **) &pSrc);
+    sum += __RV_SMBB32(in64, in64);
+    sum += __RV_SMTT32(in64, in64);
+#else
     /* Compute Power then shift intermediate results by 14 bits to maintain 16.48 format and store result in a temporary variable sum, providing 15 guard bits. */
     in = *pSrc++;
     sum += ((q63_t) in * in) >> 14U;
@@ -86,6 +95,7 @@ void riscv_power_q31(
 
     in = *pSrc++;
     sum += ((q63_t) in * in) >> 14U;
+#endif /* __RISCV_XLEN == 64 */
 
     /* Decrement loop counter */
     blkCnt--;

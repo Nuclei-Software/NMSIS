@@ -63,7 +63,7 @@ void riscv_offset_q7(
 
 #if defined (RISCV_MATH_DSP)
 
- #ifdef RISCV_DSP64
+ #if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
 	q63_t offset_packed;                           /* Offset packed to 32 bit */
 	//q31_t offset_packed_32;
 	q7_t offset_a[8];
@@ -86,7 +86,7 @@ void riscv_offset_q7(
  #endif
 #endif // RISCV_MATH_DSP
 
-#ifdef RISCV_DSP64
+#if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
   /* Loop unrolling: Compute 8 outputs at a time */
   blkCnt = blockSize >> 3U;
 #else
@@ -99,19 +99,22 @@ void riscv_offset_q7(
     /* C = A + offset */
 
 #if defined (RISCV_MATH_DSP)
-
+#if __RISCV_XLEN == 64
+    write_q7x8_ia (&pDst, __RV_KADD8(read_q7x8_ia ((q7_t **) &pSrc), offset_packed));
+#else
   #ifdef RISCV_DSP64
     /* Add offset and store result in destination buffer (8 samples at a time). */
-    write_q7x8_ia (&pDst, __DQADD8(read_q7x8_ia ((q7_t **) &pSrc), offset_packed));
+    write_q7x8_ia (&pDst, __RV_DKADD8(read_q7x8_ia ((q7_t **) &pSrc), offset_packed));
   #else
-    write_q7x4_ia (&pDst, __QADD8(read_q7x4_ia ((q7_t **) &pSrc), offset_packed));
+    write_q7x4_ia (&pDst, __RV_KADD8(read_q7x4_ia ((q7_t **) &pSrc), offset_packed));
   #endif
+#endif /* __RISCV_XLEN == 64 */
 #else
     *pDst++ = (q7_t) __SSAT(*pSrc++ + offset, 8);
     *pDst++ = (q7_t) __SSAT(*pSrc++ + offset, 8);
     *pDst++ = (q7_t) __SSAT(*pSrc++ + offset, 8);
     *pDst++ = (q7_t) __SSAT(*pSrc++ + offset, 8);
-  #ifdef RISCV_DSP64
+  #if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
     *pDst++ = (q7_t) __SSAT(*pSrc++ + offset, 8);
     *pDst++ = (q7_t) __SSAT(*pSrc++ + offset, 8);
     *pDst++ = (q7_t) __SSAT(*pSrc++ + offset, 8);
@@ -124,7 +127,7 @@ void riscv_offset_q7(
   }
 
   /* Loop unrolling: Compute remaining outputs */
- #ifdef RISCV_DSP64
+#if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
   blkCnt = blockSize % 0x8U;
  #else
   blkCnt = blockSize % 0x4U;

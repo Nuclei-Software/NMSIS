@@ -86,7 +86,9 @@ void riscv_lms_q31(
         q31_t acc_l, acc_h;                            /* Temporary input */
         uint32_t uShift = ((uint32_t) S->postShift + 1U);
         uint32_t lShift = 32U - uShift;                /*  Shift to be applied to the output */
-
+#if __RISCV_XLEN == 64
+        q63_t acc064, acc164, acc264;
+#endif /* __RISCV_XLEN == 64 */
   /* S->pState points to buffer which contains previous frame (numTaps - 1) samples */
   /* pStateCurnt points to the location where the new input data should be written */
   pStateCurnt = &(S->pState[(numTaps - 1U)]);
@@ -115,6 +117,14 @@ void riscv_lms_q31(
 
     while (tapCnt > 0U)
     {
+#if __RISCV_XLEN == 64
+      acc064 = read_q31x2_ia(&px);
+      acc164 = read_q31x2_ia(&pb);
+      acc = __RV_KMADA32(acc, acc064, acc164);
+      acc064 = read_q31x2_ia(&px);
+      acc164 = read_q31x2_ia(&pb);
+      acc = __RV_KMADA32(acc, acc064, acc164);
+#else
       /* Perform the multiply-accumulate */
       /* acc +=  b[N] * x[n-N] */
       acc += ((q63_t) (*px++)) * (*pb++);
@@ -127,7 +137,7 @@ void riscv_lms_q31(
 
       /* acc +=  b[N-3] * x[n-N-3] */
       acc += ((q63_t) (*px++)) * (*pb++);
-
+#endif /* __RISCV_XLEN == 64 */
       /* Decrement loop counter */
       tapCnt--;
     }

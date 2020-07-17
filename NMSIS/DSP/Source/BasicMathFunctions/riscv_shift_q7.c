@@ -67,13 +67,21 @@ void riscv_shift_q7(
 //#if defined (RISCV_MATH_DSP)
 //  q7_t in1,  in2,  in3,  in4;                    /* Temporary input variables */
 //#endif
+#if __RISCV_XLEN == 64
+  /* Loop unrolling: Compute 8 outputs at a time */
+  blkCnt = blockSize >> 3U;
 
+  while(blkCnt > 0U) {
+	  write_q7x8_ia(&pDst, __RV_KSLRA8(read_q7x8_ia((q7_t **)&pSrc), shiftBits));
+	  blkCnt--;
+  }
+#else
 #ifdef RISCV_DSP64
   /* Loop unrolling: Compute 8 outputs at a time */
   blkCnt = blockSize >> 3U;
 
   while(blkCnt > 0U) {
-	  write_q7x8_ia(&pDst, __DKSLRA8(read_q7x8_ia((q7_t **)&pSrc), shiftBits));
+	  write_q7x8_ia(&pDst, __RV_DKSLRA8(read_q7x8_ia((q7_t **)&pSrc), shiftBits));
 	  blkCnt--;
   }
 #else
@@ -81,11 +89,11 @@ void riscv_shift_q7(
   blkCnt = blockSize >> 2U;
 
   while(blkCnt > 0U) {
-	  write_q7x4_ia(&pDst, __KSLRA8(read_q7x4_ia((q7_t **)&pSrc), shiftBits));
+	  write_q7x4_ia(&pDst, __RV_KSLRA8(read_q7x4_ia((q7_t **)&pSrc), shiftBits));
 	  blkCnt--;
   }
 #endif
-
+#endif /* __RISCV_XLEN == 64 */
 //  /* If the shift value is positive then do right shift else left shift */
 //  if (sign == 0U)
 //  {
@@ -148,7 +156,7 @@ void riscv_shift_q7(
 //  }
 
   /* Loop unrolling: Compute remaining outputs */
-#ifdef RISCV_DSP64
+#if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
   blkCnt = blockSize % 0x8U;
 #else
   blkCnt = blockSize % 0x4U;

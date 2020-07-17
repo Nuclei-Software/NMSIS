@@ -66,6 +66,9 @@ riscv_status riscv_mat_scale_q15(
         riscv_status status;                             /* Status of matrix scaling */
         int32_t kShift = 15 - shift;                   /* Total shift to apply after scaling */
 
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+        q63_t inA164;
+#endif /* __RISCV_XLEN == 64 */
 #if defined (RISCV_MATH_LOOPUNROLL) && defined (RISCV_MATH_DSP)
         q31_t inA1, inA2;
         q31_t out1, out2, out3, out4;                  /* Temporary output variables */
@@ -99,6 +102,16 @@ riscv_status riscv_mat_scale_q15(
       /* C(m,n) = A(m,n) * k */
 
 #if defined (RISCV_MATH_DSP)
+#if __RISCV_XLEN == 64
+      inA164 = read_q15x4_ia ((q15_t **) &pIn);
+
+      /* Scale inputs and store result in temporary variables
+       * in single cycle by packing the outputs */
+      out1 = (q31_t) ((q15_t) (inA164 >> 16) * scaleFract);
+      out2 = (q31_t) ((q15_t) (inA164      ) * scaleFract);
+      out3 = (q31_t) ((q15_t) (inA164 >> 48) * scaleFract);
+      out4 = (q31_t) ((q15_t) (inA164 >> 32) * scaleFract);
+#else
       /* read 2 times 2 samples at a time from source */
       inA1 = read_q15x2_ia ((q15_t **) &pIn);
       inA2 = read_q15x2_ia ((q15_t **) &pIn);
@@ -109,6 +122,7 @@ riscv_status riscv_mat_scale_q15(
       out2 = (q31_t) ((q15_t) (inA1      ) * scaleFract);
       out3 = (q31_t) ((q15_t) (inA2 >> 16) * scaleFract);
       out4 = (q31_t) ((q15_t) (inA2      ) * scaleFract);
+#endif /* __RISCV_XLEN == 64 */
 
       /* apply shifting */
       out1 = out1 >> kShift;

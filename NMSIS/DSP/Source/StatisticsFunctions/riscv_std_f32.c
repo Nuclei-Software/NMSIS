@@ -61,6 +61,17 @@
   @param[out]    pResult    standard deviation value returned here
   @return        none
  */
+#if defined(RISCV_MATH_NEON_EXPERIMENTAL)
+void riscv_std_f32(
+  const float32_t * pSrc,
+        uint32_t blockSize,
+        float32_t * pResult)
+{
+  float32_t var;
+  riscv_var_f32(pSrc,blockSize,&var);
+  riscv_sqrt_f32(var, pResult);
+}
+#else
 void riscv_std_f32(
   const float32_t * pSrc,
         uint32_t blockSize,
@@ -71,7 +82,12 @@ void riscv_std_f32(
         float32_t sumOfSquares = 0.0f;                 /* Sum of squares */
         float32_t in;                                  /* Temporary variable to store input value */
 
+#ifndef RISCV_MATH_CM0_FAMILY
         float32_t meanOfSquares, mean, squareOfMean;   /* Temporary variables */
+#else
+        float32_t squareOfSum;                         /* Square of Sum */
+        float32_t var;                                 /* Temporary varaince storage */
+#endif
 
   if (blockSize <= 1U)
   {
@@ -136,6 +152,7 @@ void riscv_std_f32(
     blkCnt--;
   }
 
+#ifndef RISCV_MATH_CM0_FAMILY
 
   /* Compute Mean of squares and store result in a temporary variable, meanOfSquares. */
   meanOfSquares = sumOfSquares / ((float32_t) blockSize - 1.0f);
@@ -150,8 +167,22 @@ void riscv_std_f32(
   /* Compute standard deviation and store result to destination */
   riscv_sqrt_f32((meanOfSquares - squareOfMean), pResult);
 
+#else
+  /* Run the below code for RISC-V Core without DSP */
+
+  /* Compute square of sum */
+  squareOfSum = ((sum * sum) / (float32_t) blockSize);
+
+  /* Compute variance */
+  var = ((sumOfSquares - squareOfSum) / (float32_t) (blockSize - 1.0f));
+
+  /* Compute standard deviation and store result in destination */
+  riscv_sqrt_f32(var, pResult);
+
+#endif /* #ifndef RISCV_MATH_CM0_FAMILY */
 
 }
+#endif /* #if defined(RISCV_MATH_NEON) */
 
 /**
   @} end of STD group

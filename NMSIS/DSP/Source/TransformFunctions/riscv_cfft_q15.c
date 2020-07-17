@@ -149,6 +149,13 @@ void riscv_cfft_radix4by2_q15(
   const q15_t *pC = pCoef;
         q15_t *pSi = pSrc;
         q15_t *pSl = pSrc + fftLen;
+#if __RISCV_XLEN == 64
+        q15_t xt, yt, cosVal, sinVal;
+        uint32_t n264;
+        q63_t T64, S64, R64;
+        q63_t coeff64, out164, out264;
+        uint32_t l;
+#endif /* __RISCV_XLEN == 64 */
 #else
         uint32_t l;
         q15_t xt, yt, cosVal, sinVal;
@@ -157,26 +164,59 @@ void riscv_cfft_radix4by2_q15(
   n2 = fftLen >> 1U;
 
 #if defined (RISCV_MATH_DSP)
+#if __RISCV_XLEN == 64
+  n264 = n2 >> 1U;
+  for (i = n264; i > 0; i--)
+  {
+      coeff64 = read_q15x4_ia ((q15_t **) &pC);
 
+      T64 = read_q15x4 (pSi);
+      T64 = __RV_RADD16(T64, 0); /* this is just a SIMD arithmetic shift right by 1 */
+
+      S64 = read_q15x4 (pSl);
+      S64 = __RV_RADD16(S64, 0); /* this is just a SIMD arithmetic shift right by 1 */
+
+      R64 = __RV_KSUB16(T64, S64);
+
+      write_q15x4_ia (&pSi, __RV_RADD16(T64, S64));
+
+#ifndef RISCV_MATH_BIG_ENDIAN
+      out164 = __RV_KMDA(coeff64, R64) >> 16U;
+      out264 = __RV_SMXDS(R64, coeff64);
+#else
+      out164 = __RV_SMXDS(R64, coeff64) >> 16U;
+      out264 = __RV_KMDA(coeff64, R64);
+#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
+
+      write_q15x4_ia (&pSl, (q63_t) (((out264) & 0xFFFF0000FFFF0000) | (out164 & 0x0000FFFF0000FFFF)));
+  }
+
+#else
   for (i = n2; i > 0; i--)
   {
       coeff = read_q15x2_ia ((q15_t **) &pC);
 
       T = read_q15x2 (pSi);
-      T = __SHADD16(T, 0); /* this is just a SIMD arithmetic shift right by 1 */
+      T = __RV_RADD16(T, 0); /* this is just a SIMD arithmetic shift right by 1 */
 
       S = read_q15x2 (pSl);
-      S = __SHADD16(S, 0); /* this is just a SIMD arithmetic shift right by 1 */
+      S = __RV_RADD16(S, 0); /* this is just a SIMD arithmetic shift right by 1 */
 
-      R = __QSUB16(T, S);
+      R = __RV_KSUB16(T, S);
 
-      write_q15x2_ia (&pSi, __SHADD16(T, S));
+      write_q15x2_ia (&pSi, __RV_RADD16(T, S));
 
-      out1 = __SMUAD(coeff, R) >> 16U;
-      out2 = __SMUSDX(coeff, R);
+#ifndef RISCV_MATH_BIG_ENDIAN
+      out1 = __RV_KMDA(coeff, R) >> 16U;
+      out2 = __RV_SMXDS(R, coeff);
+#else
+      out1 = __RV_SMXDS(R, coeff) >> 16U;
+      out2 = __RV_KMDA(coeff, R);
+#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
       write_q15x2_ia (&pSl, (q31_t) ((out2) & 0xFFFF0000) | (out1 & 0x0000FFFF));
   }
+#endif /* __RISCV_XLEN == 64 */
 
 #else /* #if defined (RISCV_MATH_DSP) */
 
@@ -243,6 +283,13 @@ void riscv_cfft_radix4by2_inverse_q15(
   const q15_t *pC = pCoef;
         q15_t *pSi = pSrc;
         q15_t *pSl = pSrc + fftLen;
+#if __RISCV_XLEN == 64
+        q15_t xt, yt, cosVal, sinVal;
+        uint32_t n264;
+        q63_t T64, S64, R64;
+        q63_t coeff64, out164, out264;
+        uint32_t l;
+#endif /* __RISCV_XLEN == 64 */
 #else
         uint32_t l;
         q15_t xt, yt, cosVal, sinVal;
@@ -251,27 +298,85 @@ void riscv_cfft_radix4by2_inverse_q15(
   n2 = fftLen >> 1U;
 
 #if defined (RISCV_MATH_DSP)
+#if __RISCV_XLEN == 64
+  n264 = n2 >> 1U;
+  for (i = n264; i > 0; i--)
+  {
+      coeff64 = read_q15x4_ia ((q15_t **) &pC);
+
+      T64 = read_q15x4 (pSi);
+      T64 = __RV_RADD16(T64, 0); /* this is just a SIMD arithmetic shift right by 1 */
+
+      S64 = read_q15x4 (pSl);
+      S64 = __RV_RADD16(S64, 0); /* this is just a SIMD arithmetic shift right by 1 */
+
+      R64 = __RV_KSUB16(T64, S64);
+
+      write_q15x4_ia (&pSi, __RV_RADD16(T64, S64));
+
+#ifndef RISCV_MATH_BIG_ENDIAN
+      out1 = __SMUAD(coeff, R) >> 16U;
+      out2 = __SMUSDX(coeff, R);
+#else
+      out164 = __RV_SMXDS(R64, coeff64) >> 16U;
+      out264 = __RV_KMDA(coeff64, R64);
+#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
+
+      write_q15x4_ia (&pSl, (q63_t) ((out264) & 0xFFFF0000FFFF0000) | (out164 & 0x0000FFFF0000FFFF));
+  }
+  n264 = n2 % 2;
+  if (1 == n264)
+  {
+      coeff = read_q15x2_ia ((q15_t **) &pC);
+
+      T = read_q15x2 (pSi);
+      T = __RV_RADD16(T, 0); /* this is just a SIMD arithmetic shift right by 1 */
+
+      S = read_q15x2 (pSl);
+      S = __RV_RADD16(S, 0); /* this is just a SIMD arithmetic shift right by 1 */
+
+      R = __RV_KSUB16(T, S);
+
+      write_q15x2_ia (&pSi, __RV_RADD16(T, S));
+
+#ifndef RISCV_MATH_BIG_ENDIAN
+      out1 = __SMUAD(coeff, R) >> 16U;
+      out2 = __SMUSDX(coeff, R);
+#else
+      out1 = __RV_SMXDS(R, coeff) >> 16U;
+      out2 = __RV_KMDA(coeff, R);
+#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
+
+      write_q15x2_ia (&pSl, (q31_t) ((out2) & 0xFFFF0000) | (out1 & 0x0000FFFF));
+  }
+
+#else
 
   for (i = n2; i > 0; i--)
   {
      coeff = read_q15x2_ia ((q15_t **) &pC);
 
      T = read_q15x2 (pSi);
-     T = __SHADD16(T, 0); /* this is just a SIMD arithmetic shift right by 1 */
+     T = __RV_RADD16(T, 0); /* this is just a SIMD arithmetic shift right by 1 */
 
      S = read_q15x2 (pSl);
-     S = __SHADD16(S, 0); /* this is just a SIMD arithmetic shift right by 1 */
+     S = __RV_RADD16(S, 0); /* this is just a SIMD arithmetic shift right by 1 */
 
-     R = __QSUB16(T, S);
+     R = __RV_KSUB16(T, S);
 
-     write_q15x2_ia (&pSi, __SHADD16(T, S));
+     write_q15x2_ia (&pSi, __RV_RADD16(T, S));
 
+#ifndef RISCV_MATH_BIG_ENDIAN
      out1 = __SMUSD(coeff, R) >> 16U;
      out2 = __SMUADX(coeff, R);
+#else
+     out1 = __RV_KMXDA(R, coeff) >> 16U;
+     out2 = __RV_SMDRS(__QSUB(0, coeff), R);
+#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
      write_q15x2_ia (&pSl, (q31_t) ((out2) & 0xFFFF0000) | (out1 & 0x0000FFFF));
   }
-
+#endif
 #else /* #if defined (RISCV_MATH_DSP) */
 
   for (i = 0; i < n2; i++)

@@ -58,7 +58,9 @@ void riscv_cmplx_mult_cmplx_q15(
 {
         uint32_t blkCnt;                               /* Loop counter */
         q15_t a, b, c, d;                              /* Temporary variables */
-
+#if __RISCV_XLEN == 64
+        q31_t RESA,RESB;
+#endif /* __RISCV_XLEN == 64 */
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -68,6 +70,29 @@ void riscv_cmplx_mult_cmplx_q15(
   {
     /* C[2 * i    ] = A[2 * i] * B[2 * i    ] - A[2 * i + 1] * B[2 * i + 1]. */
     /* C[2 * i + 1] = A[2 * i] * B[2 * i + 1] + A[2 * i + 1] * B[2 * i    ]. */
+#if defined(RISCV_MATH_DSP)
+#if __RISCV_XLEN == 64
+    RESA = read_q15x2_ia((q15_t **) &pSrcA);
+    RESB = read_q15x2_ia((q15_t **) &pSrcB);
+    *pDst++ = (q15_t) (__RV_SMALDRS(0,RESA,RESB) >> 17);
+    *pDst++ = (q15_t) (__RV_SMALXDA(0,RESA,RESB) >> 17);
+
+    RESA = read_q15x2_ia((q15_t **) &pSrcA);
+    RESB = read_q15x2_ia((q15_t **) &pSrcB);
+    *pDst++ = (q15_t) (__RV_SMALDRS(0,RESA,RESB) >> 17);
+    *pDst++ = (q15_t) (__RV_SMALXDA(0,RESA,RESB) >> 17);
+
+    RESA = read_q15x2_ia((q15_t **) &pSrcA);
+    RESB = read_q15x2_ia((q15_t **) &pSrcB);
+    *pDst++ = (q15_t) (__RV_SMALDRS(0,RESA,RESB) >> 17);
+    *pDst++ = (q15_t) (__RV_SMALXDA(0,RESA,RESB) >> 17);
+
+    RESA = read_q15x2_ia((q15_t **) &pSrcA);
+    RESB = read_q15x2_ia((q15_t **) &pSrcB);
+    *pDst++ = (q15_t) (__RV_SMALDRS(0,RESA,RESB) >> 17);
+    *pDst++ = (q15_t) (__RV_SMALXDA(0,RESA,RESB) >> 17);
+
+#else
 
     a = *pSrcA++;
     b = *pSrcA++;
@@ -121,7 +146,8 @@ void riscv_cmplx_mult_cmplx_q15(
 	*pDst++ = (q15_t) ( (((q31_t) a * c) >> 17) - (((q31_t) b * d) >> 17) );
     *pDst++ = (q15_t) ( (((q31_t) a * d) >> 17) + (((q31_t) b * c) >> 17) );
 #endif
-
+#endif
+#endif /* __RISCV_XLEN == 64 */
     /* Decrement loop counter */
     blkCnt--;
   }

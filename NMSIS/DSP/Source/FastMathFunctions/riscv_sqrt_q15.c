@@ -66,7 +66,11 @@ riscv_status riscv_sqrt_q15(
   /* If the input is a positive number then compute the signBits. */
   if (number > 0)
   {
+#if __RISCV_XLEN == 64
+    signBits1 = __CLZ(number) - 0x808080800000011;
+#else
     signBits1 = __CLZ(number) - 17;
+#endif /* __RISCV_XLEN == 64 */
 
     /* Shift by the number of signBits1 */
     if ((signBits1 % 2) == 0)

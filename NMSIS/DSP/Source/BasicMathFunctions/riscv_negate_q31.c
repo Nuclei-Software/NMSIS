@@ -66,7 +66,10 @@ void riscv_negate_q31(
   while (blkCnt > 0U)
   {
     /* C = -A */
-
+#if __RISCV_XLEN == 64
+    write_q15x4_ia(&pDst, __RV_KSUB32(0, read_q15x4_ia((q31_t **)&pSrc)));
+    write_q15x4_ia(&pDst, __RV_KSUB32(0, read_q15x4_ia((q31_t **)&pSrc)));
+#else
     /* Negate and store result in destination buffer. */
     in = *pSrc++;
 #if defined (RISCV_MATH_DSP)
@@ -95,7 +98,7 @@ void riscv_negate_q31(
 #else
     *pDst++ = (in == INT32_MIN) ? INT32_MAX : -in;
 #endif
-
+#endif /* __RISCV_XLEN == 64 */
     /* Decrement loop counter */
     blkCnt--;
   }

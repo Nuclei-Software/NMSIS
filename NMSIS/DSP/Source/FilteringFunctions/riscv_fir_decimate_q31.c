@@ -77,6 +77,9 @@ void riscv_fir_decimate_q31(
         q31_t *px1, *px2, *px3;
         q31_t x1, x2, x3;
         q63_t acc1, acc2, acc3;
+#if __RISCV_XLEN == 64
+        q63_t x064, c064, x164, x264, x364; 
+#endif /* __RISCV_XLEN == 64 */
 #endif
 
   /* S->pState buffer contains previous frame (numTaps - 1) samples */
@@ -120,6 +123,30 @@ void riscv_fir_decimate_q31(
 
     while (tapCnt > 0U)
     {
+#if __RISCV_XLEN == 64
+      c064 = read_q31x2_ia((q31_t **)&pb);
+      x064 = read_q31x2_ia((q31_t **)&px0);
+      x164 = read_q31x2_ia((q31_t **)&px1);
+      x264 = read_q31x2_ia((q31_t **)&px2);
+      x364 = read_q31x2_ia((q31_t **)&px3);
+
+      acc0 = __RV_KMADA32(acc0, x064, c064);
+      acc1 = __RV_KMADA32(acc1, x164, c064);
+      acc2 = __RV_KMADA32(acc2, x264, c064);
+      acc3 = __RV_KMADA32(acc3, x364, c064);
+
+      c064 = read_q31x2_ia((q31_t **)&pb);
+      x064 = read_q31x2_ia((q31_t **)&px0);
+      x164 = read_q31x2_ia((q31_t **)&px1);
+      x264 = read_q31x2_ia((q31_t **)&px2);
+      x364 = read_q31x2_ia((q31_t **)&px3);
+
+      acc0 = __RV_KMADA32(acc0, x064, c064);
+      acc1 = __RV_KMADA32(acc1, x164, c064);
+      acc2 = __RV_KMADA32(acc2, x264, c064);
+      acc3 = __RV_KMADA32(acc3, x364, c064);
+
+#else
       /* Read the b[numTaps-1] coefficient */
       c0 = *(pb++);
 
@@ -182,6 +209,7 @@ void riscv_fir_decimate_q31(
       acc1 += (q63_t) x1 * c0;
       acc2 += (q63_t) x2 * c0;
       acc3 += (q63_t) x3 * c0;
+#endif /* __RISCV_XLEN == 64 */
 
       /* Decrement loop counter */
       tapCnt--;
@@ -353,10 +381,15 @@ void riscv_fir_decimate_q31(
   /* Copy data */
   while (tapCnt > 0U)
   {
+#if __RISCV_XLEN == 64
+    write_q31x2_ia((q31_t **)&pStateCur,read_q31x2_ia((q31_t **)&pState));
+    write_q31x2_ia((q31_t **)&pStateCur,read_q31x2_ia((q31_t **)&pState));
+#else
     *pStateCur++ = *pState++;
     *pStateCur++ = *pState++;
     *pStateCur++ = *pState++;
     *pStateCur++ = *pState++;
+#endif /* __RISCV_XLEN == 64 */
 
     /* Decrement loop counter */
     tapCnt--;

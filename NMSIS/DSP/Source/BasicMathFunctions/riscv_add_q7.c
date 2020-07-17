@@ -61,7 +61,7 @@ void riscv_add_q7(
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
-#ifdef RISCV_DSP64
+#if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
   /* Loop unrolling: Compute 8 outputs at a time */
   blkCnt = blockSize >> 3U;
 #else
@@ -74,16 +74,18 @@ void riscv_add_q7(
     /* C = A + B */
 
 #if defined (RISCV_MATH_DSP)
-
+#if __RISCV_XLEN == 64
+    write_q7x8_ia (&pDst, __RV_KADD8 (read_q7x8_ia ((q7_t **) &pSrcA), read_q7x8_ia ((q7_t **) &pSrcB)));
+#else
 #ifdef RISCV_DSP64
     /* Add and store result in destination buffer (4 samples at a time). */
-    write_q7x8_ia (&pDst, __DQADD8 (read_q7x8_ia ((q7_t **) &pSrcA), read_q7x8_ia ((q7_t **) &pSrcB)));
+    write_q7x8_ia (&pDst, __RV_DKADD8 (read_q7x8_ia ((q7_t **) &pSrcA), read_q7x8_ia ((q7_t **) &pSrcB)));
 #else
-	  write_q7x4_ia (&pDst, __QADD8 (read_q7x4_ia ((q7_t **) &pSrcA), read_q7x4_ia ((q7_t **) &pSrcB)));
+	  write_q7x4_ia (&pDst, __RV_QADD8 (read_q7x4_ia ((q7_t **) &pSrcA), read_q7x4_ia ((q7_t **) &pSrcB)));
 #endif
-
+#endif /* __RISCV_XLEN == 64 */
 #else
-	*pDst++ = (q7_t) __SSAT((q15_t) *pSrcA++ + *pSrcB++, 8);
+	  *pDst++ = (q7_t) __SSAT((q15_t) *pSrcA++ + *pSrcB++, 8);
     *pDst++ = (q7_t) __SSAT((q15_t) *pSrcA++ + *pSrcB++, 8);
     *pDst++ = (q7_t) __SSAT((q15_t) *pSrcA++ + *pSrcB++, 8);
     *pDst++ = (q7_t) __SSAT((q15_t) *pSrcA++ + *pSrcB++, 8);
@@ -92,8 +94,8 @@ void riscv_add_q7(
     /* Decrement loop counter */
     blkCnt--;
   }
-
-#ifdef RISCV_DSP64
+  
+#if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
   /* Loop unrolling: Compute remaining outputs */
   blkCnt = blockSize % 0x8U;
 #else

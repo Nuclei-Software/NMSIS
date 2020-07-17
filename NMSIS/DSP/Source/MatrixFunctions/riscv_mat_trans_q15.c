@@ -59,7 +59,11 @@ riscv_status riscv_mat_trans_q15(
         riscv_status status;                             /* status of matrix transpose */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
+#if __RISCV_XLEN == 64
+        q63_t in64;                                      /* variable to hold temporary output  */
+#else
         q31_t in;                                      /* variable to hold temporary output  */
+#endif /* __RISCV_XLEN == 64 */
 #endif
 
 #ifdef RISCV_MATH_MATRIX_CHECK
@@ -90,17 +94,39 @@ riscv_status riscv_mat_trans_q15(
 
       while (col > 0U)        /* column loop */
       {
+#if __RISCV_XLEN == 64
+        in64 = read_q15x4_ia ((q15_t **) &pIn);
+
+        *pOut = (q15_t) in64;
+        /* Update pointer pOut to point to next row of transposed matrix */
+        pOut += nRows;
+        *pOut = (q15_t) ((in64 & (q31_t) 0xffff0000) >> 16);
+        pOut += nRows;
+        *pOut = (q15_t) (in64 >> 32);
+        pOut += nRows;
+        *pOut = (q15_t) (((in64 >> 32) & (q31_t) 0xffff0000) >> 16);
+        pOut += nRows;
+
+#else
         /* Read two elements from row */
         in = read_q15x2_ia ((q15_t **) &pIn);
 
         /* Unpack and store one element in  destination */
+#ifndef RISCV_MATH_BIG_ENDIAN
         *pOut = (q15_t) in;
+#else
+        *pOut = (q15_t) ((in & (q31_t) 0xffff0000) >> 16);
+#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
         /* Update pointer pOut to point to next row of transposed matrix */
         pOut += nRows;
 
         /* Unpack and store second element in destination */
+#ifndef RISCV_MATH_BIG_ENDIAN
         *pOut = (q15_t) ((in & (q31_t) 0xffff0000) >> 16);
+#else
+        *pOut = (q15_t) in;
+#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
         /* Update  pointer pOut to point to next row of transposed matrix */
         pOut += nRows;
@@ -109,17 +135,26 @@ riscv_status riscv_mat_trans_q15(
         in = read_q15x2_ia ((q15_t **) &pIn);
 
         /* Unpack and store one element in destination */
+#ifndef RISCV_MATH_BIG_ENDIAN
         *pOut = (q15_t) in;
+#else
+        *pOut = (q15_t) ((in & (q31_t) 0xffff0000) >> 16);
+
+#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
         /* Update pointer pOut to point to next row of transposed matrix */
         pOut += nRows;
 
         /* Unpack and store second element in destination */
+#ifndef RISCV_MATH_BIG_ENDIAN
         *pOut = (q15_t) ((in & (q31_t) 0xffff0000) >> 16);
+#else
+        *pOut = (q15_t) in;
+#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
         /* Update pointer pOut to point to next row of transposed matrix */
         pOut += nRows;
-
+#endif /* __RISCV_XLEN == 64 */
         /* Decrement column loop counter */
         col--;
       }

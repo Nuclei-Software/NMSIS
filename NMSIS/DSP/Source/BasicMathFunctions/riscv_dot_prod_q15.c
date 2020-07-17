@@ -64,20 +64,28 @@ void riscv_dot_prod_q15(
         volatile q63_t sum = 0;                                 /* Temporary return variable */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
-
+#if __RISCV_XLEN == 64
+  /* Loop unrolling: Compute 8 outputs at a time */
+  blkCnt = blockSize >> 3U;
+#else
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
-
+#endif /* __RISCV_XLEN == 64 */
   while (blkCnt > 0U)
   {
     /* C = A[0]* B[0] + A[1]* B[1] + A[2]* B[2] + .....+ A[blockSize-1]* B[blockSize-1] */
 
 #if defined (RISCV_MATH_DSP)
+#if __RISCV_XLEN == 64
+	sum = __RV_SMALDA(sum, read_q15x4_ia ((q15_t **) &pSrcA), read_q15x4_ia ((q15_t **) &pSrcB));
+	sum = __RV_SMALDA(sum, read_q15x4_ia ((q15_t **) &pSrcA), read_q15x4_ia ((q15_t **) &pSrcB));
+#else
     /* Calculate dot product and store result in a temporary buffer. */
     //sum = __SMLALD(read_q15x2_ia ((q15_t **) &pSrcA), read_q15x2_ia ((q15_t **) &pSrcB), sum);
     //sum = __SMLALD(read_q15x2_ia ((q15_t **) &pSrcA), read_q15x2_ia ((q15_t **) &pSrcB), sum);
-	sum = __SMALDA(sum, read_q15x2_ia ((q15_t **) &pSrcA), read_q15x2_ia ((q15_t **) &pSrcB));
-	sum = __SMALDA(sum, read_q15x2_ia ((q15_t **) &pSrcA), read_q15x2_ia ((q15_t **) &pSrcB));
+	sum = __RV_SMALDA(sum, read_q15x2_ia ((q15_t **) &pSrcA), read_q15x2_ia ((q15_t **) &pSrcB));
+	sum = __RV_SMALDA(sum, read_q15x2_ia ((q15_t **) &pSrcA), read_q15x2_ia ((q15_t **) &pSrcB));
+#endif /* __RISCV_XLEN == 64 */
 #else
     sum += (q63_t)((q31_t) *pSrcA++ * *pSrcB++);
     sum += (q63_t)((q31_t) *pSrcA++ * *pSrcB++);

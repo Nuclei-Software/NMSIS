@@ -114,9 +114,13 @@ void riscv_conv_fast_opt_q15(
     srcBLen = srcALen;
     srcALen = j;
   }
-
+#if __RISCV_XLEN == 64
+  /* Pointer to take end of scratch2 buffer */
+  pScr2 = pScratch2 + srcBLen - 4;
+#else
   /* Pointer to take end of scratch2 buffer */
   pScr2 = pScratch2 + srcBLen - 1;
+#endif /* __RISCV_XLEN == 64 */
 
   /* points to smaller length sequence */
   px = pIn2;
@@ -129,16 +133,22 @@ void riscv_conv_fast_opt_q15(
   /* Copy smaller length input sequence in reverse order into second scratch buffer */
   while (k > 0U)
   {
+#if __RISCV_XLEN == 64
+    write_q15x4_da(&pScr2,read_q15x4_ia((q15_t **)&px));
+#else
     /* copy second buffer in reversal manner */
     *pScr2-- = *px++;
     *pScr2-- = *px++;
     *pScr2-- = *px++;
     *pScr2-- = *px++;
+#endif /* __RISCV_XLEN == 64 */
 
     /* Decrement loop counter */
     k--;
   }
-
+#if __RISCV_XLEN == 64
+    pScr2 += 3;
+#endif /* __RISCV_XLEN == 64 */
   /* Loop unrolling: Compute remaining outputs */
   k = srcBLen % 0x4U;
 
@@ -226,7 +236,11 @@ void riscv_conv_fast_opt_q15(
       acc2 = __SMLAD(x2, y1, acc2);
 
       /* pack input data */
+#ifndef RISCV_MATH_BIG_ENDIAN
       x3 = __PKHBT(x2, x1, 0);
+#else
+      x3 = __PKHBT(x1, x2, 0);
+#endif
 
       /* multiply and accumlate */
       acc1 = __SMLADX(x3, y1, acc1);
@@ -239,14 +253,22 @@ void riscv_conv_fast_opt_q15(
       acc2 = __SMLAD(x1, y2, acc2);
 
       /* pack input data */
+#ifndef RISCV_MATH_BIG_ENDIAN
       x3 = __PKHBT(x1, x2, 0);
+#else
+      x3 = __PKHBT(x2, x1, 0);
+#endif
 
       acc3 = __SMLADX(x3, y1, acc3);
       acc1 = __SMLADX(x3, y2, acc1);
 
       x2 = read_q15x2_ia (&pScr1);
 
+#ifndef RISCV_MATH_BIG_ENDIAN
       x3 = __PKHBT(x2, x1, 0);
+#else
+      x3 = __PKHBT(x1, x2, 0);
+#endif
 
       acc3 = __SMLADX(x3, y2, acc3);
 
@@ -277,8 +299,13 @@ void riscv_conv_fast_opt_q15(
     blkCnt--;
 
     /* Store the results in the accumulators in the destination buffer. */
+#ifndef RISCV_MATH_BIG_ENDIAN
     write_q15x2_ia (&pOut, __PKHBT(__SSAT((acc0 >> 15), 16), __SSAT((acc1 >> 15), 16), 16));
     write_q15x2_ia (&pOut, __PKHBT(__SSAT((acc2 >> 15), 16), __SSAT((acc3 >> 15), 16), 16));
+#else
+    write_q15x2_ia (&pOut, __PKHBT(__SSAT((acc1 >> 15), 16), __SSAT((acc0 >> 15), 16), 16));
+    write_q15x2_ia (&pOut, __PKHBT(__SSAT((acc3 >> 15), 16), __SSAT((acc2 >> 15), 16), 16));
+#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
     /* Initialization of inputB pointer */
     pIn2 = py;

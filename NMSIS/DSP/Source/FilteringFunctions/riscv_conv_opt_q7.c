@@ -102,9 +102,13 @@ void riscv_conv_opt_q7(
     srcBLen = srcALen;
     srcALen = j;
   }
-
+// #if __RISCV_XLEN == 64
+//   /* points to smaller length sequence */
+//   px = pIn2 + srcBLen - 8;
+// #else
   /* points to smaller length sequence */
   px = pIn2 + srcBLen - 1;
+// #endif /* __RISCV_XLEN == 64 */
 
   /* Apply loop unrolling and do 4 Copies simultaneously. */
   k = srcBLen >> 2U;
@@ -113,6 +117,9 @@ void riscv_conv_opt_q7(
    ** a second loop below copies for the remaining 1 to 3 samples. */
   while (k > 0U)
   {
+// #if __RISCV_XLEN == 64
+//     write_q15x4_ia(&pScr2,read_q15x4_da((q15_t **)&px));
+// #else
     /* copy second buffer in reversal manner */
     x4 = (q15_t) *px--;
     *pScr2++ = x4;
@@ -122,6 +129,7 @@ void riscv_conv_opt_q7(
     *pScr2++ = x4;
     x4 = (q15_t) *px--;
     *pScr2++ = x4;
+// #endif /* __RISCV_XLEN == 64 */
 
     /* Decrement loop counter */
     k--;
@@ -168,7 +176,6 @@ void riscv_conv_opt_q7(
     /* Decrement loop counter */
     k--;
   }
-
   /* If the count is not a multiple of 4, copy remaining samples here.
    ** No loop unrolling is used. */
   k = srcALen % 0x4U;
@@ -229,7 +236,11 @@ void riscv_conv_opt_q7(
       acc2 = __SMLAD(x2, y1, acc2);
 
       /* pack input data */
+#ifndef RISCV_MATH_BIG_ENDIAN
       x3 = __PKHBT(x2, x1, 0);
+#else
+      x3 = __PKHBT(x1, x2, 0);
+#endif
 
       /* multiply and accumlate */
       acc1 = __SMLADX(x3, y1, acc1);
@@ -238,7 +249,11 @@ void riscv_conv_opt_q7(
       x1 = read_q15x2_ia (&pScr1);
 
       /* pack input data */
+#ifndef RISCV_MATH_BIG_ENDIAN
       x3 = __PKHBT(x1, x2, 0);
+#else
+      x3 = __PKHBT(x2, x1, 0);
+#endif
 
       acc3 = __SMLADX(x3, y1, acc3);
 
@@ -253,7 +268,11 @@ void riscv_conv_opt_q7(
 
       x2 = read_q15x2_ia (&pScr1);
 
+#ifndef RISCV_MATH_BIG_ENDIAN
       x3 = __PKHBT(x2, x1, 0);
+#else
+      x3 = __PKHBT(x1, x2, 0);
+#endif
 
       acc3 = __SMLADX(x3, y1, acc3);
 

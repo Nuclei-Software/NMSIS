@@ -61,7 +61,9 @@ void riscv_mean_q31(
 {
         uint32_t blkCnt;                               /* Loop counter */
         q63_t sum = 0;                                 /* Temporary result storage */
-
+#if __RISCV_XLEN == 64
+        q63_t valueA,valueB;                                 /* Temporary result storage */
+#endif /* __RISCV_XLEN == 64 */
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -69,6 +71,12 @@ void riscv_mean_q31(
 
   while (blkCnt > 0U)
   {
+#if __RISCV_XLEN == 64
+    valueA = read_q31x2_ia ((q31_t **) &pSrc);
+    valueB = read_q31x2_ia ((q31_t **) &pSrc);
+    valueA = __RV_ADD32(valueA,valueB);
+    sum += (((int64_t)__RV_CRAS32(valueA,valueA)) >> 32);
+#else
     /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) */
     sum += *pSrc++;
 
@@ -77,6 +85,7 @@ void riscv_mean_q31(
     sum += *pSrc++;
 
     sum += *pSrc++;
+#endif /* __RISCV_XLEN == 64 */
 
     /* Decrement the loop counter */
     blkCnt--;

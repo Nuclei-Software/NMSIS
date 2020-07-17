@@ -69,6 +69,7 @@ void riscv_conv_q31(
         q31_t * pDst)
 {
 
+#if (1)
 
 
   const q31_t *pIn1;                                   /* InputA pointer */
@@ -84,6 +85,9 @@ void riscv_conv_q31(
 #if defined (RISCV_MATH_LOOPUNROLL)
         q63_t acc0, acc1, acc2;                        /* Accumulators */
         q31_t x0, x1, x2, c0;                          /* Temporary variables to hold state and coefficient values */
+#if __RISCV_XLEN == 64
+        q63_t acc064, acc164, acc264;
+#endif /* __RISCV_XLEN == 64 */
 #endif
 
   /* The algorithm implementation is based on the lengths of the inputs. */
@@ -161,9 +165,19 @@ void riscv_conv_q31(
 
     /* Loop unrolling: Compute 4 outputs at a time */
     k = count >> 2U;
-
+#if __RISCV_XLEN == 64
+    py--;
+#endif /* __RISCV_XLEN == 64 */
     while (k > 0U)
     {
+#if __RISCV_XLEN == 64
+      acc064 = read_q31x2_ia((q31_t **)&px);
+      acc164 = read_q31x2_da((q31_t **)&py);
+      sum = __RV_KMAXDA32(sum, acc064, acc164);
+      acc064 = read_q31x2_ia((q31_t **)&px);
+      acc164 = read_q31x2_da((q31_t **)&py);
+      sum = __RV_KMAXDA32(sum, acc064, acc164);
+#else
       /* x[0] * y[srcBLen - 1] */
       sum += (q63_t) *px++ * (*py--);
 
@@ -175,6 +189,7 @@ void riscv_conv_q31(
 
       /* x[3] * y[srcBLen - 4] */
       sum += (q63_t) *px++ * (*py--);
+#endif /* __RISCV_XLEN == 64 */
 
       /* Decrement loop counter */
       k--;
@@ -372,14 +387,25 @@ void riscv_conv_q31(
 
     /* Loop unrolling: Compute 4 outputs at a time */
       k = srcBLen >> 2U;
-
+#if __RISCV_XLEN == 64
+    py--;
+#endif /* __RISCV_XLEN == 64 */
       while (k > 0U)
       {
+#if __RISCV_XLEN == 64
+      acc064 = read_q31x2_ia((q31_t **)&px);
+      acc164 = read_q31x2_da((q31_t **)&py);
+      sum = __RV_KMAXDA32(sum, acc064, acc164);
+      acc064 = read_q31x2_ia((q31_t **)&px);
+      acc164 = read_q31x2_da((q31_t **)&py);
+      sum = __RV_KMAXDA32(sum, acc064, acc164);
+#else
         /* Perform the multiply-accumulates */
         sum += (q63_t) *px++ * *py--;
         sum += (q63_t) *px++ * *py--;
         sum += (q63_t) *px++ * *py--;
         sum += (q63_t) *px++ * *py--;
+#endif /* __RISCV_XLEN == 64 */
 
         /* Decrement loop counter */
         k--;
@@ -492,9 +518,19 @@ void riscv_conv_q31(
 
     /* Loop unrolling: Compute 4 outputs at a time */
     k = blockSize3 >> 2U;
-
+#if __RISCV_XLEN == 64
+    py--;
+#endif /* __RISCV_XLEN == 64 */
     while (k > 0U)
     {
+#if __RISCV_XLEN == 64
+      acc064 = read_q31x2_ia((q31_t **)&px);
+      acc164 = read_q31x2_da((q31_t **)&py);
+      sum = __RV_KMAXDA32(sum, acc064, acc164);
+      acc064 = read_q31x2_ia((q31_t **)&px);
+      acc164 = read_q31x2_da((q31_t **)&py);
+      sum = __RV_KMAXDA32(sum, acc064, acc164);
+#else
       /* Perform the multiply-accumulate */
       /* sum += x[srcALen - srcBLen + 1] * y[srcBLen - 1] */
       sum += (q63_t) *px++ * *py--;
@@ -507,6 +543,7 @@ void riscv_conv_q31(
 
       /* sum += x[srcALen - srcBLen + 4] * y[srcBLen - 4] */
       sum += (q63_t) *px++ * *py--;
+#endif /* __RISCV_XLEN == 64 */
 
       /* Decrement loop counter */
       k--;
@@ -543,6 +580,36 @@ void riscv_conv_q31(
     blockSize3--;
   }
 
+#else
+/* alternate version for CM0_FAMILY */
+
+  const q31_t *pIn1 = pSrcA;                           /* InputA pointer */
+  const q31_t *pIn2 = pSrcB;                           /* InputB pointer */
+        q63_t sum;                                     /* Accumulators */
+        uint32_t i, j;                                 /* Loop counters */
+
+  /* Loop to calculate convolution for output length number of times */
+  for (i = 0U; i < (srcALen + srcBLen - 1U); i++)
+  {
+    /* Initialize sum with zero to carry out MAC operations */
+    sum = 0;
+
+    /* Loop to perform MAC operations according to convolution equation */
+    for (j = 0U; j <= i; j++)
+    {
+      /* Check the array limitations */
+      if (((i - j) < srcBLen) && (j < srcALen))
+      {
+        /* z[i] += x[i-j] * y[j] */
+        sum += ((q63_t) pIn1[j] * pIn2[i - j]);
+      }
+    }
+
+    /* Store the output in the destination buffer */
+    pDst[i] = (q31_t) (sum >> 31U);
+  }
+
+#endif /* #if !defined(RISCV_MATH_CM0_FAMILY) */
 
 }
 

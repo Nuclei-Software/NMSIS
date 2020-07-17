@@ -64,6 +64,9 @@ void riscv_cmplx_dot_prod_q15(
 {
         uint32_t blkCnt;                               /* Loop counter */
         q63_t real_sum = 0, imag_sum = 0;              /* Temporary result variables */
+#if __RISCV_XLEN == 64
+        q31_t RESA,RESB;
+#endif /* __RISCV_XLEN == 64 */
         q15_t a0,b0,c0,d0;
 
 #if defined (RISCV_MATH_LOOPUNROLL)
@@ -73,6 +76,27 @@ void riscv_cmplx_dot_prod_q15(
 
   while (blkCnt > 0U)
   {
+#if __RISCV_XLEN == 64
+    RESA = read_q15x2_ia((q15_t **) &pSrcA);
+    RESB = read_q15x2_ia((q15_t **) &pSrcB);
+    real_sum += __RV_SMALDRS(0,RESA,RESB);
+    imag_sum += __RV_SMALXDA(0,RESA,RESB);
+
+    RESA = read_q15x2_ia((q15_t **) &pSrcA);
+    RESB = read_q15x2_ia((q15_t **) &pSrcB);
+    real_sum += __RV_SMALDRS(0,RESA,RESB);
+    imag_sum += __RV_SMALXDA(0,RESA,RESB);
+
+    RESA = read_q15x2_ia((q15_t **) &pSrcA);
+    RESB = read_q15x2_ia((q15_t **) &pSrcB);
+    real_sum += __RV_SMALDRS(0,RESA,RESB);
+    imag_sum += __RV_SMALXDA(0,RESA,RESB);
+
+    RESA = read_q15x2_ia((q15_t **) &pSrcA);
+    RESB = read_q15x2_ia((q15_t **) &pSrcB);
+    real_sum += __RV_SMALDRS(0,RESA,RESB);
+    imag_sum += __RV_SMALXDA(0,RESA,RESB);
+#else
     a0 = *pSrcA++;
     b0 = *pSrcA++;
     c0 = *pSrcB++;
@@ -140,7 +164,7 @@ void riscv_cmplx_dot_prod_q15(
     real_sum -= (q31_t)b0 * d0;
     imag_sum += (q31_t)b0 * c0;
 #endif
-
+#endif /* __RISCV_XLEN == 64 */
     /* Decrement loop counter */
     blkCnt--;
   }
@@ -162,17 +186,17 @@ void riscv_cmplx_dot_prod_q15(
     c0 = *pSrcB++;
     d0 = *pSrcB++;
 
-#if defined(RISCV_MATH_DSP)
-	real_sum = __SMALBB(real_sum, a0, c0);
-	imag_sum = __SMALBB(imag_sum, a0, d0);
-	real_sum = __SMSLDA(real_sum, b0, d0);
-	imag_sum = __SMALBB(imag_sum, b0, c0);
-#else
+// #if defined(RISCV_MATH_DSP)
+// 	real_sum = __SMALBB(real_sum, a0, c0);
+// 	imag_sum = __SMALBB(imag_sum, a0, d0);
+// 	real_sum = __SMSLDA(real_sum, b0, d0);
+// 	imag_sum = __SMALBB(imag_sum, b0, c0);
+// #else
     real_sum += (q31_t)a0 * c0;
     imag_sum += (q31_t)a0 * d0;
     real_sum -= (q31_t)b0 * d0;
     imag_sum += (q31_t)b0 * c0;
-#endif
+// #endif
 
     /* Decrement loop counter */
     blkCnt--;

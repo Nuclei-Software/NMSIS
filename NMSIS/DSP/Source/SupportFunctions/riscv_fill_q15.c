@@ -59,17 +59,23 @@ void riscv_fill_q15(
   /* Packing two 16 bit values to 32 bit value in order to use SIMD */
   //packedValue = __PKHBT(value, value, 16U);
   packedValue = __PKBB16(value, value);
-
+#if __RISCV_XLEN == 64
+  q63_t packedValue64;                             /* value packed to 32 bits */
+  packedValue64 = __RV_PKBB32(packedValue,packedValue);
+#endif /* __RISCV_XLEN == 64 */
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
 
   while (blkCnt > 0U)
   {
     /* C = value */
-
+#if __RISCV_XLEN == 64
+    write_q15x4_ia (&pDst, packedValue64);
+#else
     /* fill 2 times 2 samples at a time */
     write_q15x2_ia (&pDst, packedValue);
     write_q15x2_ia (&pDst, packedValue);
+#endif /* __RISCV_XLEN == 64 */
 
     /* Decrement loop counter */
     blkCnt--;

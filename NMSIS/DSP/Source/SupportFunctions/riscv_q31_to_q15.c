@@ -83,8 +83,13 @@ void riscv_q31_to_q15(
     in4 = *pIn++;
 
     /* pack two higher 16-bit values from two 32-bit values */
+#ifndef RISCV_MATH_BIG_ENDIAN
     out1 = __PKHTB(in2, in1, 16);
     out2 = __PKHTB(in4, in3, 16);
+#else
+    out1 = __PKHTB(in1, in2, 16);
+    out2 = __PKHTB(in3, in4, 16);
+#endif /* #ifdef RISCV_MATH_BIG_ENDIAN */
 
     write_q15x2_ia (&pDst, out1);
     write_q15x2_ia (&pDst, out2);

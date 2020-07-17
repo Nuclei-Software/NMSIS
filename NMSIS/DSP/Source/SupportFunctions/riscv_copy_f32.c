@@ -58,6 +58,48 @@
   @return        none
  */
 
+#if defined(RISCV_MATH_NEON_EXPERIMENTAL)
+void riscv_copy_f32(
+  const float32_t * pSrc,
+  float32_t * pDst,
+  uint32_t blockSize)
+{
+  uint32_t blkCnt;                               /* loop counter */
+
+  float32x4_t inV;
+
+  blkCnt = blockSize >> 2U;
+
+  /* Compute 4 outputs at a time.
+   ** a second loop below computes the remaining 1 to 3 samples. */
+  while (blkCnt > 0U)
+  {
+    /* C = A */
+    /* Copy and then store the results in the destination buffer */
+    inV = vld1q_f32(pSrc);
+    vst1q_f32(pDst, inV);
+    pSrc += 4;
+    pDst += 4;
+
+    /* Decrement the loop counter */
+    blkCnt--;
+  }
+
+  /* If the blockSize is not a multiple of 4, compute any remaining output samples here.
+   ** No loop unrolling is used. */
+  blkCnt = blockSize & 3;
+
+  while (blkCnt > 0U)
+  {
+    /* C = A */
+    /* Copy and then store the results in the destination buffer */
+    *pDst++ = *pSrc++;
+
+    /* Decrement the loop counter */
+    blkCnt--;
+  }
+}
+#else
 void riscv_copy_f32(
   const float32_t * pSrc,
         float32_t * pDst,
@@ -105,6 +147,7 @@ void riscv_copy_f32(
     blkCnt--;
   }
 }
+#endif /* #if defined(RISCV_MATH_NEON) */
 /**
   @} end of BasicCopy group
  */

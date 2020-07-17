@@ -69,11 +69,14 @@ void riscv_abs_q15(
 
     /* Calculate absolute of input (if -1 then saturated to 0x7fff) and store result in destination buffer. */
 #if defined (RISCV_MATH_DSP)
-#ifdef RISCV_DSP64
-	write_q15x4_ia (&pDst, __DKABS16(read_q15x4_ia ((q15_t **) &pSrc)));
+#if __RISCV_XLEN == 64
+	write_q15x4_ia (&pDst, __RV_KABS16(read_q15x4_ia ((q15_t **) &pSrc)));
 #else
-	write_q15x2_ia (&pDst, __KABS16(read_q15x2_ia ((q15_t **) &pSrc)));
-	write_q15x2_ia (&pDst, __KABS16(read_q15x2_ia ((q15_t **) &pSrc)));
+#ifdef RISCV_DSP64
+	write_q15x4_ia (&pDst, __RV_DKABS16(read_q15x4_ia ((q15_t **) &pSrc)));
+#else
+	write_q15x2_ia (&pDst, __RV_KABS16(read_q15x2_ia ((q15_t **) &pSrc)));
+	write_q15x2_ia (&pDst, __RV_KABS16(read_q15x2_ia ((q15_t **) &pSrc)));
 #endif
 	in = *pSrc++;
     *pDst++ = (in > 0) ? in : ((in == (q15_t) 0x8000) ? 0x7fff : -in);
@@ -84,6 +87,7 @@ void riscv_abs_q15(
 	in = *pSrc++;
     *pDst++ = (in > 0) ? in : ((in == (q15_t) 0x8000) ? 0x7fff : -in);
 #endif
+#endif /* __RISCV_XLEN == 64 */
     /* Decrement loop counter */
     blkCnt--;
   }
@@ -106,7 +110,7 @@ void riscv_abs_q15(
     in = *pSrc++;
 #if defined (RISCV_MATH_DSP)
     //*pDst++ = (in > 0) ? in : (q15_t)__QSUB16(0, in);
-    *pDst++ = (q15_t)__KABSW(in);
+    *pDst++ = (q15_t)__RV_KABSW(in);
 #else
     *pDst++ = (in > 0) ? in : ((in == (q15_t) 0x8000) ? 0x7fff : -in);
 #endif

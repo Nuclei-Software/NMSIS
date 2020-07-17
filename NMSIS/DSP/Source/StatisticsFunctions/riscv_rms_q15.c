@@ -66,6 +66,9 @@ void riscv_rms_q15(
         q15_t in;                                      /* Temporary variable to store input value */
 
 #if defined (RISCV_MATH_LOOPUNROLL) && defined (RISCV_MATH_DSP)
+#if __RISCV_XLEN == 64
+        q63_t in64;                                    /* Temporary variable to store packed input value */
+#endif /* __RISCV_XLEN == 64 */
         q31_t in32;                                    /* Temporary variable to store input value */
 #endif
 
@@ -80,11 +83,16 @@ void riscv_rms_q15(
 
     /* Compute sum of squares and store result in a temporary variable. */
 #if defined (RISCV_MATH_DSP)
+#if __RISCV_XLEN == 64
+    in64 = read_q15x4_ia ((q15_t **) &pSrc);
+    sum = __RV_SMALDA(sum, in64, in64);
+#else
     in32 = read_q15x2_ia ((q15_t **) &pSrc);
     sum = __SMLALD(in32, in32, sum);
 
     in32 = read_q15x2_ia ((q15_t **) &pSrc);
     sum = __SMLALD(in32, in32, sum);
+#endif
 #else
     in = *pSrc++;
     sum += ((q31_t) in * in);

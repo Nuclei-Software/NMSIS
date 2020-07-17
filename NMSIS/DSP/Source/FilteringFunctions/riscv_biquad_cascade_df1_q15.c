@@ -116,12 +116,12 @@ void riscv_biquad_cascade_df1_q15(
       in = read_q15x2_ia ((q15_t **) &pIn);
 
       /* out =  b0 * x[n] + 0 * 0 */
-      out = __SMUAD(b0, in);
+      out = __RV_KMDA(b0, in);
 
       /* acc +=  b1 * x[n-1] +  b2 * x[n-2] + out */
-      acc = __SMLALD(b1, state_in, out);
+      acc = __RV_SMALDA(out, b1, state_in);
       /* acc +=  a1 * y[n-1] +  a2 * y[n-2] */
-      acc = __SMLALD(a1, state_out, acc);
+      acc = __RV_SMALDA(acc, a1, state_out);
 
       /* The result is converted from 3.29 to 1.31 if postShift = 1, and then saturation is applied */
       /* Calc lower part of acc */
@@ -144,15 +144,20 @@ void riscv_biquad_cascade_df1_q15(
       /* x[n-N], x[n-N-1] are packed together to make state_in of type q31 */
       /* y[n-N], y[n-N-1] are packed together to make state_out of type q31 */
 
+#ifndef  RISCV_MATH_BIG_ENDIAN
       state_in  = __PKHBT(in, state_in, 16);
       state_out = __PKHBT(out, state_out, 16);
+#else
+      state_in  = __PKHBT(state_in >> 16, (in >> 16), 16);
+      state_out = __PKHBT(state_out >> 16, (out), 16);
+#endif /* #ifndef  RISCV_MATH_BIG_ENDIAN */
 
       /* out =  b0 * x[n] + 0 * 0 */
-      out = __SMUADX(b0, in);
+      out = __RV_KMXDA(b0, in);
       /* acc +=  b1 * x[n-1] +  b2 * x[n-2] + out */
-      acc = __SMLALD(b1, state_in, out);
+      acc = __RV_SMALDA(out, b1, state_in);
       /* acc +=  a1 * y[n-1] + a2 * y[n-2] */
-      acc = __SMLALD(a1, state_out, acc);
+      acc = __RV_SMALDA(acc, a1, state_out);
 
       /* The result is converted from 3.29 to 1.31 if postShift = 1, and then saturation is applied */
       /* Calc lower part of acc */
@@ -167,7 +172,11 @@ void riscv_biquad_cascade_df1_q15(
       out = __SSAT(out, 16);
 
       /* Store the output in the destination buffer. */
+#ifndef  RISCV_MATH_BIG_ENDIAN
       write_q15x2_ia (&pOut, __PKHBT(state_out, out, 16));
+#else
+      write_q15x2_ia (&pOut, __PKHBT(out, state_out >> 16, 16));
+#endif /* #ifndef  RISCV_MATH_BIG_ENDIAN */
 
       /* Every time after the output is computed state should be updated. */
       /* The states should be updated as:  */
@@ -177,8 +186,13 @@ void riscv_biquad_cascade_df1_q15(
       /* Yn1 = acc */
       /* x[n-N], x[n-N-1] are packed together to make state_in of type q31 */
       /* y[n-N], y[n-N-1] are packed together to make state_out of type q31 */
+#ifndef  RISCV_MATH_BIG_ENDIAN
       state_in  = __PKHBT(in >> 16, state_in, 16);
       state_out = __PKHBT(out, state_out, 16);
+#else
+      state_in  = __PKHBT(state_in >> 16, in, 16);
+      state_out = __PKHBT(state_out >> 16, out, 16);
+#endif /* #ifndef  RISCV_MATH_BIG_ENDIAN */
 
       /* Decrement loop counter */
       sample--;
@@ -193,12 +207,16 @@ void riscv_biquad_cascade_df1_q15(
       in = *pIn++;
 
       /* out =  b0 * x[n] + 0 * 0 */
-      out = __SMUAD(b0, in);
+#ifndef  RISCV_MATH_BIG_ENDIAN
+      out = __RV_KMDA(b0, in);
+#else
+      out = __SMUADX(b0, in);
+#endif /* #ifndef  RISCV_MATH_BIG_ENDIAN */
 
       /* acc =  b1 * x[n-1] + b2 * x[n-2] + out */
-      acc = __SMLALD(b1, state_in, out);
+      acc = __RV_SMALDA(out, b1, state_in);
       /* acc +=  a1 * y[n-1] + a2 * y[n-2] */
-      acc = __SMLALD(a1, state_out, acc);
+      acc = __RV_SMALDA(acc, a1, state_out);
 
       /* The result is converted from 3.29 to 1.31 if postShift = 1, and then saturation is applied */
       /* Calc lower part of acc */
@@ -223,8 +241,13 @@ void riscv_biquad_cascade_df1_q15(
       /* Yn1 = acc */
       /* x[n-N], x[n-N-1] are packed together to make state_in of type q31 */
       /* y[n-N], y[n-N-1] are packed together to make state_out of type q31 */
+#ifndef  RISCV_MATH_BIG_ENDIAN
       state_in = __PKHBT(in, state_in, 16);
       state_out = __PKHBT(out, state_out, 16);
+#else
+      state_in = __PKHBT(state_in >> 16, in, 16);
+      state_out = __PKHBT(state_out >> 16, out, 16);
+#endif /* #ifndef  RISCV_MATH_BIG_ENDIAN */
     }
 
     /* The first stage goes from the input wire to the output wire.  */

@@ -158,7 +158,10 @@ void riscv_radix4_butterfly_q31(
         q31_t ya_out, yb_out, yc_out, yd_out;
         
         q31_t *ptr1;
-
+#if __RISCV_XLEN == 64
+        q63_t xa64, xb64, xc64, xd64;
+        q63_t xa_out64;
+#endif /* __RISCV_XLEN == 64 */
   /* Total process is divided into three stages */
 
   /* process first stage, middle stages, & last stage */
@@ -403,6 +406,27 @@ void riscv_radix4_butterfly_q31(
   /*  Calculations of last stage */
   do
   {
+#if defined RISCV_MATH_DSP && (__RISCV_XLEN == 64)
+    xa64 = read_q31x2_ia((q31_t **)&ptr1);
+    xb64 = read_q31x2_ia((q31_t **)&ptr1);
+    xc64 = read_q31x2_ia((q31_t **)&ptr1);
+    xd64 = read_q31x2_ia((q31_t **)&ptr1);
+    /* xa' = xa + xb + xc + xd */ /* ya' = ya + yb + yc + yd */
+    xa_out64 = __RV_KADD32( __RV_KADD32( __RV_KADD32(xa64, xb64), xc64), xd64);
+    /* pointer updation for writing */
+    ptr1 = ptr1 - 8U;
+    write_q31x2_ia((q31_t **)&ptr1, xa_out64);
+    /*   xc_out = (xa - xb + xc - xd);yc_out = (ya - yb + yc - yd);*/
+    xa_out64 = __RV_KSUB32( __RV_KADD32( __RV_KSUB32(xa64, xb64), xc64), xd64);
+    write_q31x2_ia((q31_t **)&ptr1, xa_out64);
+    /*    xb_out = (xa + yb - xc - yd);yb_out = (ya - xb - yc + xd);*/
+    xa_out64 = __RV_KCRAS32( __RV_KSUB32( __RV_KCRSA32(xa64, xb64), xc64), xd64);
+    write_q31x2_ia((q31_t **)&ptr1, xa_out64);
+    /*        xd_out = (xa - yb - xc + yd); yd_out = (ya + xb - yc - xd);*/
+    xa_out64 = __RV_KCRSA32( __RV_KSUB32( __RV_KCRAS32(xa64, xb64), xc64), xd64);
+    write_q31x2_ia((q31_t **)&ptr1, xa_out64);
+
+#else
     /* Read xa (real), ya(imag) input */
     xa = *ptr1++;
     ya = *ptr1++;
@@ -415,7 +439,7 @@ void riscv_radix4_butterfly_q31(
     xc = *ptr1++;
     yc = *ptr1++;
 
-    /* Read xc (real), yc(imag) input */
+    /* Read xd (real), yd(imag) input */
     xd = *ptr1++;
     yd = *ptr1++;
 
@@ -453,6 +477,7 @@ void riscv_radix4_butterfly_q31(
     *ptr1++ = xd_out;
     *ptr1++ = yd_out;
 
+#endif /* __RISCV_XLEN == 64 */
 
   } while (--j);
 
@@ -529,7 +554,10 @@ void riscv_radix4_butterfly_inverse_q31(
         q31_t ya_out, yb_out, yc_out, yd_out;
         
         q31_t *ptr1;
-
+#if __RISCV_XLEN == 64
+        q63_t xa64, xb64, xc64, xd64;
+        q63_t xa_out64;
+#endif /* __RISCV_XLEN == 64 */
   /* input is be 1.31(q31) format for all FFT sizes */
   /* Total process is divided into three stages */
   /* process first stage, middle stages, & last stage */
@@ -767,6 +795,27 @@ void riscv_radix4_butterfly_inverse_q31(
   /*  Calculations of last stage */
   do
   {
+#if defined RISCV_MATH_DSP && (__RISCV_XLEN == 64)
+    xa64 = read_q31x2_ia((q31_t **)&ptr1);
+    xb64 = read_q31x2_ia((q31_t **)&ptr1);
+    xc64 = read_q31x2_ia((q31_t **)&ptr1);
+    xd64 = read_q31x2_ia((q31_t **)&ptr1);
+    /* xa' = xa + xb + xc + xd */ /* ya' = ya + yb + yc + yd */
+    xa_out64 = __RV_KADD32( __RV_KADD32( __RV_KADD32(xa64, xb64), xc64), xd64);
+    /* pointer updation for writing */
+    ptr1 = ptr1 - 8U;
+    write_q31x2_ia((q31_t **)&ptr1, xa_out64);
+    /*   xc_out = (xa - xb + xc - xd);yc_out = (ya - yb + yc - yd);*/
+    xa_out64 = __RV_KSUB32( __RV_KADD32( __RV_KSUB32(xa64, xb64), xc64), xd64);
+    write_q31x2_ia((q31_t **)&ptr1, xa_out64);
+    /*    xb_out = (xa + yb - xc - yd);yb_out = (ya - xb - yc + xd);*/
+    xa_out64 = __RV_KCRAS32( __RV_KSUB32( __RV_KCRSA32(xa64, xb64), xc64), xd64);
+    write_q31x2_ia((q31_t **)&ptr1, xa_out64);
+    /*        xd_out = (xa - yb - xc + yd); yd_out = (ya + xb - yc - xd);*/
+    xa_out64 = __RV_KCRSA32( __RV_KSUB32( __RV_KCRAS32(xa64, xb64), xc64), xd64);
+    write_q31x2_ia((q31_t **)&ptr1, xa_out64);
+
+#else
     /* Read xa (real), ya(imag) input */
     xa = *ptr1++;
     ya = *ptr1++;
@@ -816,6 +865,7 @@ void riscv_radix4_butterfly_inverse_q31(
     /* writing xd' and yd' */
     *ptr1++ = xd_out;
     *ptr1++ = yd_out;
+#endif /* __RISCV_XLEN == 64 */
 
   } while (--j);
 

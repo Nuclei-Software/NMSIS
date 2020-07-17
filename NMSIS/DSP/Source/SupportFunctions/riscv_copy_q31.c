@@ -61,12 +61,16 @@ void riscv_copy_q31(
   while (blkCnt > 0U)
   {
     /* C = A */
-
+#if __RISCV_XLEN == 64
+    write_q31x2_ia (&pDst, read_q31x2_ia ((q31_t **) &pSrc));
+    write_q31x2_ia (&pDst, read_q31x2_ia ((q31_t **) &pSrc));
+#else
     /* Copy and store result in destination buffer */
     *pDst++ = *pSrc++;
     *pDst++ = *pSrc++;
     *pDst++ = *pSrc++;
     *pDst++ = *pSrc++;
+#endif /* __RISCV_XLEN == 64 */
 
     /* Decrement loop counter */
     blkCnt--;

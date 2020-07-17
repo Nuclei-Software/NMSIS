@@ -217,12 +217,17 @@ void riscv_fir_decimate_fast_q31(
     /* Advance the state pointer by the decimation factor
      * to process the next group of decimation factor number samples */
     pState = pState + S->M * 4;
+// #if __RISCV_XLEN == 64
+//       write_q31x2_ia ((q31_t **) &pDst,__RV_PKBB32((q31_t) (acc0<<1),(q31_t) (acc1<<1)));
+//       write_q31x2_ia ((q31_t **) &pDst,__RV_PKBB32((q31_t) (acc2<<1),(q31_t) (acc3<<1)));
+// #else
 
     /* The result is in the accumulator, store in the destination buffer. */
     *pDst++ = (q31_t) (acc0 << 1);
     *pDst++ = (q31_t) (acc1 << 1);
     *pDst++ = (q31_t) (acc2 << 1);
     *pDst++ = (q31_t) (acc3 << 1);
+// #endif /* __RISCV_XLEN == 64 */
 
     /* Decrement loop counter */
     blkCnt--;

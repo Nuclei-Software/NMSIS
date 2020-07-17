@@ -83,7 +83,14 @@ void riscv_shift_q31(
 
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
-
+#if __RISCV_XLEN == 64
+    while (blkCnt > 0U)
+    {
+	    write_q31x2_ia(&pDst, __RV_KSLRA32(read_q31x2_ia((q31_t **)&pSrc), shiftBits));
+	    write_q31x2_ia(&pDst, __RV_KSLRA32(read_q31x2_ia((q31_t **)&pSrc), shiftBits));
+      blkCnt--;
+    }
+#else
   /* If the shift value is positive then do right shift else left shift */
   if (sign == 0U)
   {
@@ -136,7 +143,7 @@ void riscv_shift_q31(
       blkCnt--;
     }
   }
-
+#endif /* __RISCV_XLEN == 64 */
   /* Loop unrolling: Compute remaining outputs */
   blkCnt = blockSize % 0x4U;
 

@@ -198,7 +198,11 @@ void riscv_correlate_opt_q15(
       acc2 = __SMLALD(x2, y1, acc2);
 
       /* pack input data */
+#ifndef RISCV_MATH_BIG_ENDIAN
       x3 = __PKHBT(x2, x1, 0);
+#else
+      x3 = __PKHBT(x1, x2, 0);
+#endif
 
       /* multiply and accumlate */
       acc1 = __SMLALDX(x3, y1, acc1);
@@ -211,14 +215,22 @@ void riscv_correlate_opt_q15(
       acc2 = __SMLALD(x1, y2, acc2);
 
       /* pack input data */
+#ifndef RISCV_MATH_BIG_ENDIAN
       x3 = __PKHBT(x1, x2, 0);
+#else
+      x3 = __PKHBT(x2, x1, 0);
+#endif
 
       acc3 = __SMLALDX(x3, y1, acc3);
       acc1 = __SMLALDX(x3, y2, acc1);
 
       x2 = read_q15x2_ia (&pScr1);
 
+#ifndef RISCV_MATH_BIG_ENDIAN
       x3 = __PKHBT(x2, x1, 0);
+#else
+      x3 = __PKHBT(x1, x2, 0);
+#endif
 
       acc3 = __SMLALDX(x3, y2, acc3);
 

@@ -74,14 +74,18 @@ void riscv_sub_q7(
     /* C = A - B */
 
 #if defined (RISCV_MATH_DSP)
-
+#if __RISCV_XLEN == 64
+    /* Subtract and store result in destination buffer (8 samples at a time). */
+    write_q7x8_ia (&pDst, __RV_KSUB8(read_q7x8_ia ((q7_t **) &pSrcA), read_q7x8_ia ((q7_t **) &pSrcB)));
+#else
 #ifdef RISCV_DSP64
     /* Subtract and store result in destination buffer (8 samples at a time). */
     write_q7x8_ia (&pDst, __DQSUB8(read_q7x8_ia ((q7_t **) &pSrcA), read_q7x8_ia ((q7_t **) &pSrcB)));
 #else
 	  /* Subtract and store result in destination buffer (4 samples at a time). */
-    write_q7x4_ia (&pDst, __QSUB8(read_q7x4_ia ((q7_t **) &pSrcA), read_q7x4_ia ((q7_t **) &pSrcB)));
+    write_q7x4_ia (&pDst, __RV_KSUB8(read_q7x4_ia ((q7_t **) &pSrcA), read_q7x4_ia ((q7_t **) &pSrcB)));
 #endif
+#endif /* __RISCV_XLEN == 64 */
 #else
     *pDst++ = (q7_t) __SSAT((q15_t) *pSrcA++ - *pSrcB++, 8);
     *pDst++ = (q7_t) __SSAT((q15_t) *pSrcA++ - *pSrcB++, 8);

@@ -75,7 +75,9 @@ riscv_status riscv_mat_cmplx_mult_q31(
   q31_t a1, b1, c1, d1;
   uint32_t col, i = 0U, j, row = numRowsA, colCnt; /* loop counters */
   riscv_status status;                             /* status of matrix multiplication */
-
+#if defined RISCV_MATH_DSP && (__RISCV_XLEN == 64)
+  q63_t in164, in264;
+#endif /* defined RISCV_MATH_DSP && (__RISCV_XLEN == 64) */
 #if defined (RISCV_MATH_LOOPUNROLL)
   q31_t a0, b0, c0, d0;
 #endif
@@ -129,6 +131,43 @@ riscv_status riscv_mat_cmplx_mult_q31(
         /* matrix multiplication */
         while (colCnt > 0U)
         {
+#if __RISCV_XLEN == 64
+          in164 = read_q31x2_ia ((q31_t **) &pIn1);
+          in264 = read_q31x2_ia ((q31_t **) &pIn2);
+          pIn2 -= 2;
+          pIn2 += 2 * numColsB;
+          sumReal =  __RV_KMABB32(sumReal, in164, in264);
+          sumImag =  __RV_KMABT32(sumImag, in264, in164);
+          sumReal -= __RV_SMTT32(in164, in264);
+          sumImag =  __RV_KMABT32(sumImag, in164, in264);
+
+          in164 = read_q31x2_ia ((q31_t **) &pIn1);
+          in264 = read_q31x2_ia ((q31_t **) &pIn2);
+          pIn2 -= 2;
+          pIn2 += 2 * numColsB;
+          sumReal =  __RV_KMABB32(sumReal, in164, in264);
+          sumImag =  __RV_KMABT32(sumImag, in264, in164);
+          sumReal -= __RV_SMTT32(in164, in264);
+          sumImag =  __RV_KMABT32(sumImag, in164, in264);
+
+          in164 = read_q31x2_ia ((q31_t **) &pIn1);
+          in264 = read_q31x2_ia ((q31_t **) &pIn2);
+          pIn2 -= 2;
+          pIn2 += 2 * numColsB;
+          sumReal =  __RV_KMABB32(sumReal, in164, in264);
+          sumImag =  __RV_KMABT32(sumImag, in264, in164);
+          sumReal -= __RV_SMTT32(in164, in264);
+          sumImag =  __RV_KMABT32(sumImag, in164, in264);
+
+          in164 = read_q31x2_ia ((q31_t **) &pIn1);
+          in264 = read_q31x2_ia ((q31_t **) &pIn2);
+          pIn2 -= 2;
+          pIn2 += 2 * numColsB;
+          sumReal =  __RV_KMABB32(sumReal, in164, in264);
+          sumImag =  __RV_KMABT32(sumImag, in264, in164);
+          sumReal -= __RV_SMTT32(in164, in264);
+          sumImag =  __RV_KMABT32(sumImag, in164, in264);
+#else
 
           /* Reading real part of complex matrix A */
           a0 = *pIn1;
@@ -209,7 +248,7 @@ riscv_status riscv_mat_cmplx_mult_q31(
           /* Multiply and Accumlates */
           sumReal -= (q63_t) b1 * d1;
           sumImag += (q63_t) a1 * d1;
-
+#endif /* __RISCV_XLEN == 64 */
           /* Decrement loop count */
           colCnt--;
         }

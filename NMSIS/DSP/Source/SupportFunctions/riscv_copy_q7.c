@@ -54,23 +54,35 @@ void riscv_copy_q7(
   uint32_t blkCnt;                               /* Loop counter */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
-
+#if __RISCV_XLEN == 64
+  /* Loop unrolling: Compute 8 outputs at a time */
+  blkCnt = blockSize >> 3U;
+#else
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
+#endif /* __RISCV_XLEN == 64 */
 
   while (blkCnt > 0U)
   {
     /* C = A */
-
+#if __RISCV_XLEN == 64
+    /* read 8 samples at a time */
+    write_q7x8_ia (&pDst, read_q7x8_ia ((q7_t **) &pSrc));
+#else
     /* read 4 samples at a time */
     write_q7x4_ia (&pDst, read_q7x4_ia ((q7_t **) &pSrc));
+#endif /* __RISCV_XLEN == 64 */
 
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#if __RISCV_XLEN == 64
+  /* Loop unrolling: Compute remaining outputs */
+  blkCnt = blockSize % 0x8U;
+#else
   /* Loop unrolling: Compute remaining outputs */
   blkCnt = blockSize % 0x4U;
+#endif /* __RISCV_XLEN == 64 */
 
 #else
 

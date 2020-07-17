@@ -66,18 +66,32 @@ void riscv_dot_prod_q7(
 #if defined (RISCV_MATH_LOOPUNROLL)
 
 #if defined (RISCV_MATH_DSP)
+#if __RISCV_XLEN == 64
+  q63_t input1, input2;                          /* Temporary variables */
+  q63_t sum64 = 0;
+    /* Loop unrolling: Compute 8 outputs at a time */
+  blkCnt = blockSize >> 3U;
+#else
   q31_t input1, input2;                          /* Temporary variables */
   //q31_t inA1, inA2, inB1, inB2;                  /* Temporary variables */
+    /* Loop unrolling: Compute 4 outputs at a time */
+  blkCnt = blockSize >> 2U;
+#endif /* __RISCV_XLEN == 64 */
 #endif
 
-  /* Loop unrolling: Compute 4 outputs at a time */
-  blkCnt = blockSize >> 2U;
 
   while (blkCnt > 0U)
   {
     /* C = A[0]* B[0] + A[1]* B[1] + A[2]* B[2] + .....+ A[blockSize-1]* B[blockSize-1] */
 
 #if defined (RISCV_MATH_DSP)
+#if __RISCV_XLEN == 64
+    /* read 4 samples at a time from sourceA */
+    input1 = read_q7x8_ia ((q7_t **) &pSrcA);
+    /* read 4 samples at a time from sourceB */
+    input2 = read_q7x8_ia ((q7_t **) &pSrcB);
+    sum64 = __RV_SMAQA(sum64, input1, input2);
+#else
     /* read 4 samples at a time from sourceA */
     input1 = read_q7x4_ia ((q7_t **) &pSrcA);
     /* read 4 samples at a time from sourceB */
@@ -95,7 +109,8 @@ void riscv_dot_prod_q7(
     ///* multiply and accumulate two samples at a time */
     //sum = __SMLAD(inA1, inB1, sum);
     //sum = __SMLAD(inA2, inB2, sum);
-    sum = __SMAQA(sum, input1, input2);
+    sum = __RV_SMAQA(sum, input1, input2);
+#endif /* __RISCV_XLEN == 64 */
 #else
     sum += (q31_t) ((q15_t) *pSrcA++ * *pSrcB++);
     sum += (q31_t) ((q15_t) *pSrcA++ * *pSrcB++);
@@ -106,10 +121,14 @@ void riscv_dot_prod_q7(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#if __RISCV_XLEN == 64
+  sum +=((sum64 + (sum64<<32u))>>32u);
+  /* Loop unrolling: Compute remaining outputs */
+  blkCnt = blockSize % 0x8U;
+#else
   /* Loop unrolling: Compute remaining outputs */
   blkCnt = blockSize % 0x4U;
-
+#endif /* __RISCV_XLEN == 64 */
 #else
 
   /* Initialize blkCnt with number of samples */

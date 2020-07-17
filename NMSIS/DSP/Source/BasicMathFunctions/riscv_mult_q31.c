@@ -68,7 +68,10 @@ void riscv_mult_q31(
   while (blkCnt > 0U)
   {
     /* C = A * B */
-
+// #if __RISCV_XLEN == 64
+// 	write_q31x2_ia (&pDst, __RV_SMBB32(read_q31x2_ia ((q31_t **) &pSrcA),read_q31x2_ia ((q31_t **) &pSrcB)));
+// 	write_q31x2_ia (&pDst, __RV_SMBB32(read_q31x2_ia ((q31_t **) &pSrcA),read_q31x2_ia ((q31_t **) &pSrcB)));
+// #else
     /* Multiply inputs and store result in destination buffer. */
     out = ((q63_t) *pSrcA++ * *pSrcB++) >> 32;
     out = __SSAT(out, 31);
@@ -86,6 +89,7 @@ void riscv_mult_q31(
     out = __SSAT(out, 31);
     *pDst++ = out << 1U;
 
+// #endif /* __RISCV_XLEN == 64 */
     /* Decrement loop counter */
     blkCnt--;
   }

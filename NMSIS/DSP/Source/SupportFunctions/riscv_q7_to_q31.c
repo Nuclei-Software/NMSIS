@@ -74,12 +74,21 @@ void riscv_q7_to_q31(
     /* Convert from q7 to q31 and store result in destination buffer */
     in = read_q7x4_ia ((q7_t **) &pIn);
 
+#ifndef RISCV_MATH_BIG_ENDIAN
 
     *pDst++ = (__ROR(in, 8)) & 0xFF000000;
     *pDst++ = (__ROR(in, 16)) & 0xFF000000;
     *pDst++ = (__ROR(in, 24)) & 0xFF000000;
     *pDst++ = (in & 0xFF000000);
 
+#else
+
+    *pDst++ = (in & 0xFF000000);
+    *pDst++ = (__ROR(in, 24)) & 0xFF000000;
+    *pDst++ = (__ROR(in, 16)) & 0xFF000000;
+    *pDst++ = (__ROR(in, 8)) & 0xFF000000;
+
+#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
     /* Decrement loop counter */
     blkCnt--;

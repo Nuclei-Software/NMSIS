@@ -63,17 +63,17 @@ void riscv_offset_q15(
 
 #if defined (RISCV_MATH_DSP)
 
- #ifdef RISCV_DSP64
+ #if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
 	q31_t offset_packed[2];                           /* Offset packed to 32 bit */
 	q63_t offset_all;
   /* Offset is packed to 64 bit in order to use SIMD64 for addition */
-  offset_packed[0] = __PKBB16(offset, offset);
-  offset_packed[1] = __PKBB16(offset, offset);
+  offset_packed[0] = __RV_PKBB16(offset, offset);
+  offset_packed[1] = __RV_PKBB16(offset, offset);
   offset_all = *((q63_t *)offset_packed);
  #else
   q31_t offset_all;
   /* Offset is packed to 32 bit in order to use SIMD32 for addition */
-  offset_all = __PKBB16(offset, offset);
+  offset_all = __RV_PKBB16(offset, offset);
  #endif
 
 #endif
@@ -86,13 +86,17 @@ void riscv_offset_q15(
     /* C = A + offset */
 
 #if defined (RISCV_MATH_DSP)
+#if __RISCV_XLEN == 64
+	write_q15x4_ia (&pDst, __RV_KADD32(read_q15x4_ia ((q15_t **) &pSrc), offset_all));
+#else
  #ifdef RISCV_DSP64
 	write_q15x4_ia (&pDst, __DKADD16(read_q15x4_ia ((q15_t **) &pSrc), offset_all));
  #else
     /* Add offset and store result in destination buffer (2 samples at a time). */
-    write_q15x2_ia (&pDst, __QADD16(read_q15x2_ia ((q15_t **) &pSrc), offset_all));
-    write_q15x2_ia (&pDst, __QADD16(read_q15x2_ia ((q15_t **) &pSrc), offset_all));
+    write_q15x2_ia (&pDst, __RV_KADD16(read_q15x2_ia ((q15_t **) &pSrc), offset_all));
+    write_q15x2_ia (&pDst, __RV_KADD16(read_q15x2_ia ((q15_t **) &pSrc), offset_all));
  #endif
+#endif /* __RISCV_XLEN == 64 */
 #else
     *pDst++ = (q15_t) __SSAT(((q31_t) *pSrc++ + offset), 16);
     *pDst++ = (q15_t) __SSAT(((q31_t) *pSrc++ + offset), 16);

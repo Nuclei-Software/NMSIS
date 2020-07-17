@@ -77,8 +77,8 @@ void riscv_cmplx_mult_cmplx_q31(
 
     /* store result in 3.29 format in destination buffer. */
 #if defined(RISCV_MATH_DSP)
-	*pDst++ = (q31_t) __SUB64( (__MULSR64(a, c) >> 33) , (__MULSR64(b, d) >> 33) );
-	*pDst++ = (q31_t) __ADD64( (__MULSR64(a, d) >> 33) , (__MULSR64(b, c) >> 33) );
+	*pDst++ = (q31_t) ( ((q31_t)__RV_SMMUL(a, c) >> 1) - ((q31_t)__RV_SMMUL(b, d) >> 1) );
+	*pDst++ = (q31_t) ( ((q31_t)__RV_SMMUL(a, d) >> 1) + ((q31_t)__RV_SMMUL(b, c) >> 1) );
 #else
 	*pDst++ = (q31_t) ( (((q63_t) a * c) >> 33) - (((q63_t) b * d) >> 33) );
     *pDst++ = (q31_t) ( (((q63_t) a * d) >> 33) + (((q63_t) b * c) >> 33) );
@@ -90,8 +90,8 @@ void riscv_cmplx_mult_cmplx_q31(
     d = *pSrcB++;
 
 #if defined(RISCV_MATH_DSP)
-	*pDst++ = (q31_t) __SUB64( (__MULSR64(a, c) >> 33) , (__MULSR64(b, d) >> 33) );
-	*pDst++ = (q31_t) __ADD64( (__MULSR64(a, d) >> 33) , (__MULSR64(b, c) >> 33) );
+	*pDst++ = (q31_t) ( ((q31_t)__RV_SMMUL(a, c) >> 1) - ((q31_t)__RV_SMMUL(b, d) >> 1) );
+	*pDst++ = (q31_t) ( ((q31_t)__RV_SMMUL(a, d) >> 1) + ((q31_t)__RV_SMMUL(b, c) >> 1) );
 #else
 	*pDst++ = (q31_t) ( (((q63_t) a * c) >> 33) - (((q63_t) b * d) >> 33) );
     *pDst++ = (q31_t) ( (((q63_t) a * d) >> 33) + (((q63_t) b * c) >> 33) );
@@ -103,8 +103,8 @@ void riscv_cmplx_mult_cmplx_q31(
     d = *pSrcB++;
 
 #if defined(RISCV_MATH_DSP)
-	*pDst++ = (q31_t) __SUB64( (__MULSR64(a, c) >> 33) , (__MULSR64(b, d) >> 33) );
-	*pDst++ = (q31_t) __ADD64( (__MULSR64(a, d) >> 33) , (__MULSR64(b, c) >> 33) );
+	*pDst++ = (q31_t) ( ((q31_t)__RV_SMMUL(a, c) >> 1) - ((q31_t)__RV_SMMUL(b, d) >> 1) );
+	*pDst++ = (q31_t) ( ((q31_t)__RV_SMMUL(a, d) >> 1) + ((q31_t)__RV_SMMUL(b, c) >> 1) );
 #else
 	*pDst++ = (q31_t) ( (((q63_t) a * c) >> 33) - (((q63_t) b * d) >> 33) );
     *pDst++ = (q31_t) ( (((q63_t) a * d) >> 33) + (((q63_t) b * c) >> 33) );
@@ -116,8 +116,8 @@ void riscv_cmplx_mult_cmplx_q31(
     d = *pSrcB++;
 
 #if defined(RISCV_MATH_DSP)
-	*pDst++ = (q31_t) __SUB64( (__MULSR64(a, c) >> 33) , (__MULSR64(b, d) >> 33) );
-	*pDst++ = (q31_t) __ADD64( (__MULSR64(a, d) >> 33) , (__MULSR64(b, c) >> 33) );
+	*pDst++ = (q31_t) ( ((q31_t)__RV_SMMUL(a, c) >> 1) - ((q31_t)__RV_SMMUL(b, d) >> 1) );
+	*pDst++ = (q31_t) ( ((q31_t)__RV_SMMUL(a, d) >> 1) + ((q31_t)__RV_SMMUL(b, c) >> 1) );
 #else
 	*pDst++ = (q31_t) ( (((q63_t) a * c) >> 33) - (((q63_t) b * d) >> 33) );
     *pDst++ = (q31_t) ( (((q63_t) a * d) >> 33) + (((q63_t) b * c) >> 33) );
@@ -149,8 +149,8 @@ void riscv_cmplx_mult_cmplx_q31(
 
     /* store result in 3.29 format in destination buffer. */
 #if defined(RISCV_MATH_DSP)
-	*pDst++ = (q31_t) __SUB64( (__MULSR64(a, c) >> 33) , (__MULSR64(b, d) >> 33) );
-	*pDst++ = (q31_t) __ADD64( (__MULSR64(a, d) >> 33) , (__MULSR64(b, c) >> 33) );
+	*pDst++ = (q31_t) ( ((q31_t)__RV_SMMUL(a, c) >> 1) - ((q31_t)__RV_SMMUL(b, d) >> 1) );
+	*pDst++ = (q31_t) ( ((q31_t)__RV_SMMUL(a, d) >> 1) + ((q31_t)__RV_SMMUL(b, c) >> 1) );
 #else
     *pDst++ = (q31_t) ( (((q63_t) a * c) >> 33) - (((q63_t) b * d) >> 33) );
     *pDst++ = (q31_t) ( (((q63_t) a * d) >> 33) + (((q63_t) b * c) >> 33) );

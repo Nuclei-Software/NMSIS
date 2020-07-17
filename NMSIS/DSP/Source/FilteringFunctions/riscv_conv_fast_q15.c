@@ -195,15 +195,22 @@ void riscv_conv_fast_q15(
     /* Apply loop unrolling and compute 4 MACs simultaneously. */
     k = count >> 2U;
 
+#if defined RISCV_MATH_DSP && __RISCV_XLEN == 64
+    py -= 2;
+#endif /* defined RISCV_MATH_DSP && __RISCV_XLEN == 64 */
     /* First part of the processing with loop unrolling.  Compute 4 MACs at a time.
      ** a second loop below computes MACs for the remaining 1 to 3 samples. */
     while (k > 0U)
     {
       /* Perform the multiply-accumulates */
+#if defined RISCV_MATH_DSP && __RISCV_XLEN == 64
+      sum = __RV_KMAXDA(sum, read_q15x4_ia ((q15_t **) &px), read_q15x4_da ((q15_t **) &py));
+#else
       /* x[0], x[1] are multiplied with y[srcBLen - 1], y[srcBLen - 2] respectively */
       sum = __SMLADX(read_q15x2_ia ((q15_t **) &px), read_q15x2_da ((q15_t **) &py), sum);
       /* x[2], x[3] are multiplied with y[srcBLen - 3], y[srcBLen - 4] respectively */
       sum = __SMLADX(read_q15x2_ia ((q15_t **) &px), read_q15x2_da ((q15_t **) &py), sum);
+#endif /* defined RISCV_MATH_DSP && __RISCV_XLEN == 64 */
 
       /* Decrement loop counter */
       k--;
@@ -353,7 +360,11 @@ void riscv_conv_fast_q15(
         /* Read y[srcBLen - 5] */
         c0 = *(py+1);
 
+#ifdef  RISCV_MATH_BIG_ENDIAN
+        c0 = c0 << 16U;
+#else
         c0 = c0 & 0x0000FFFF;
+#endif /* #ifdef  RISCV_MATH_BIG_ENDIAN */
 
         /* Read x[7] */
         x3 = read_q15x2 ((q15_t *) px);
@@ -404,7 +415,11 @@ void riscv_conv_fast_q15(
 
         /* Read y[srcBLen - 7] */
 		c0 = *(py-1);
+#ifdef  RISCV_MATH_BIG_ENDIAN
+        c0 = c0 << 16U;
+#else
         c0 = c0 & 0x0000FFFF;
+#endif /* #ifdef  RISCV_MATH_BIG_ENDIAN */
 
         /* Read x[10] */
         x3 =  read_q15x2 ((q15_t *) px + 2);
@@ -418,8 +433,13 @@ void riscv_conv_fast_q15(
       }
 
       /* Store the result in the accumulator in the destination buffer. */
+#ifndef RISCV_MATH_BIG_ENDIAN
       write_q15x2_ia (&pOut, __PKHBT((acc0 >> 15), (acc1 >> 15), 16));
       write_q15x2_ia (&pOut, __PKHBT((acc2 >> 15), (acc3 >> 15), 16));
+#else
+      write_q15x2_ia (&pOut, __PKHBT((acc1 >> 15), (acc0 >> 15), 16));
+      write_q15x2_ia (&pOut, __PKHBT((acc3 >> 15), (acc2 >> 15), 16));
+#endif /*#ifndef  RISCV_MATH_BIG_ENDIAN*/
 
       /* Increment the pointer pIn1 index, count by 4 */
       count += 4U;

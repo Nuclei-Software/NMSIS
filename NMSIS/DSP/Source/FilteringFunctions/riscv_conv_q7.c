@@ -65,6 +65,7 @@ void riscv_conv_q7(
         q7_t * pDst)
 {
 
+#if (1)
 
   const q7_t *pIn1;                                    /* InputA pointer */
   const q7_t *pIn2;                                    /* InputB pointer */
@@ -81,6 +82,11 @@ void riscv_conv_q7(
         q31_t input1, input2;                          /* Temporary input variables */
         q15_t in1, in2;                                /* Temporary input variables */
         q7_t x0, x1, x2, x3, c0, c1;                   /* Temporary variables to hold state and coefficient values */
+
+#if __RISCV_XLEN == 64
+        q63_t input164, input264;                          /* Temporary input variables */
+        q63_t in164, in264;                                /* Temporary input variables */
+#endif /* __RISCV_XLEN == 64 */
 #endif
 
   /* The algorithm implementation is based on the lengths of the inputs. */
@@ -155,12 +161,25 @@ void riscv_conv_q7(
     sum = 0;
 
 #if defined (RISCV_MATH_LOOPUNROLL)
-
+#if __RISCV_XLEN == 64
+    /* Loop unrolling: Compute 4 outputs at a time */
+    k = count >> 3U;
+#else
     /* Loop unrolling: Compute 4 outputs at a time */
     k = count >> 2U;
+#endif /* __RISCV_XLEN == 64 */
 
+#if __RISCV_XLEN == 64
+    py -= 7;
+#endif /* __RISCV_XLEN == 64 */
     while (k > 0U)
     {
+
+#if __RISCV_XLEN == 64
+      in164 = read_q7x8_ia ((q7_t **) &px);
+      in264 = read_q7x8_da ((q7_t **) &py);
+      sum = __RV_SMAQA(sum, in164, in264);
+#else
       /* x[0] , x[1] */
       in1 = (q15_t) *px++;
       in2 = (q15_t) *px++;
@@ -173,7 +192,7 @@ void riscv_conv_q7(
 
       /* x[0] * y[srcBLen - 1] */
       /* x[1] * y[srcBLen - 2] */
-      sum = __SMLAD(input1, input2, sum);
+      sum = __RV_KMADA(sum, input1, input2);
 
       /* x[2] , x[3] */
       in1 = (q15_t) *px++;
@@ -187,14 +206,23 @@ void riscv_conv_q7(
 
       /* x[2] * y[srcBLen - 3] */
       /* x[3] * y[srcBLen - 4] */
-      sum = __SMLAD(input1, input2, sum);
+      sum = __RV_KMADA(sum, input1, input2);
 
+#endif /* __RISCV_XLEN == 64 */
       /* Decrement loop counter */
       k--;
     }
 
-    /* Loop unrolling: Compute remaining outputs */
+#if __RISCV_XLEN == 64
+    py +=7;
+#endif /* __RISCV_XLEN == 64 */
+#if __RISCV_XLEN == 64
+    /* Loop unrolling: Compute 4 outputs at a time */
+    k = count % 0x8U;
+#else
+    /* Loop unrolling: Compute 4 outputs at a time */
     k = count % 0x4U;
+#endif /* __RISCV_XLEN == 64 */
 
 #else
 
@@ -661,6 +689,36 @@ void riscv_conv_q7(
     blockSize3--;
   }
 
+#else
+/* alternate version for CM0_FAMILY */
+
+  const q7_t *pIn1 = pSrcA;                            /* InputA pointer */
+  const q7_t *pIn2 = pSrcB;                            /* InputB pointer */
+        q31_t sum;                                     /* Accumulator */
+        uint32_t i, j;                                 /* Loop counters */
+
+  /* Loop to calculate convolution for output length number of times */
+  for (i = 0U; i < (srcALen + srcBLen - 1U); i++)
+  {
+    /* Initialize sum with zero to carry out MAC operations */
+    sum = 0;
+
+    /* Loop to perform MAC operations according to convolution equation */
+    for (j = 0U; j <= i; j++)
+    {
+      /* Check the array limitations */
+      if (((i - j) < srcBLen) && (j < srcALen))
+      {
+        /* z[i] += x[i-j] * y[j] */
+        sum += ((q15_t) pIn1[j] * pIn2[i - j]);
+      }
+    }
+
+    /* Store the output in the destination buffer */
+    pDst[i] = (q7_t) __SSAT((sum >> 7U), 8U);
+  }
+
+#endif /* #if !defined(RISCV_MATH_CM0_FAMILY) */
 
 }
 

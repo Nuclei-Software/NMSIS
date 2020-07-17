@@ -92,8 +92,13 @@ void riscv_q7_to_q15(
     in1 = in1 & 0xFF00FF00;
     in2 = in2 & 0xFF00FF00;
 
+#ifndef RISCV_MATH_BIG_ENDIAN
     out2 = __PKHTB(in1, in2, 16);
     out1 = __PKHBT(in2, in1, 16);
+#else
+    out1 = __PKHTB(in1, in2, 16);
+    out2 = __PKHBT(in2, in1, 16);
+#endif
 
     write_q15x2_ia (&pDst, out1);
     write_q15x2_ia (&pDst, out2);

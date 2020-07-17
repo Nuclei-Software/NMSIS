@@ -80,12 +80,16 @@ void riscv_negate_q15(
 
     //in1 = read_q15x2_ia ((q15_t **) &pSrc);
     //write_q15x2_ia (&pDst, __QSUB16(0, in1));
+#if __RISCV_XLEN == 64
+    write_q15x4_ia(&pDst, __RV_KSUB16(0, read_q15x4_ia((q15_t **)&pSrc)));
+#else
 #ifdef RISCV_DSP64
     write_q15x4_ia(&pDst, __DKSUB16(0, read_q15x4_ia((q15_t **)&pSrc)));
 #else
-	write_q15x2_ia(&pDst, __KSUB16(0, read_q15x2_ia((q15_t **)&pSrc)));
-	write_q15x2_ia(&pDst, __KSUB16(0, read_q15x2_ia((q15_t **)&pSrc)));
+	  write_q15x2_ia(&pDst, __RV_KSUB16(0, read_q15x2_ia((q15_t **)&pSrc)));
+	  write_q15x2_ia(&pDst, __RV_KSUB16(0, read_q15x2_ia((q15_t **)&pSrc)));
 #endif
+#endif /* __RISCV_XLEN == 64 */
 #else
     in = *pSrc++;
     *pDst++ = (in == (q15_t) 0x8000) ? (q15_t) 0x7fff : -in;

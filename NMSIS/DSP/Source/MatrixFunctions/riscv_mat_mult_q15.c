@@ -79,9 +79,12 @@ riscv_status riscv_mat_mult_q15(
         uint16_t numRowsB = pSrcB->numRows;            /* Number of rows of input matrix A */
         uint32_t col, i = 0U, row = numRowsB, colCnt;  /* Loop counters */
         riscv_status status;                             /* Status of matrix multiplication */
-        
         q31_t in;                                      /* Temporary variable to hold the input value */
         q31_t inA1, inB1, inA2, inB2;
+#if __RISCV_XLEN == 64
+        q63_t inA164, inB164, sum64;
+#else
+#endif /* __RISCV_XLEN == 64 */
 
 #ifdef RISCV_MATH_MATRIX_CHECK
 
@@ -115,13 +118,21 @@ riscv_status riscv_mat_mult_q15(
         in = read_q15x2_ia ((q15_t **) &pInB);
 
         /* Unpack and store one element in destination */
+#ifndef RISCV_MATH_BIG_ENDIAN
         *px = (q15_t) in;
+#else
+        *px = (q15_t) ((in & (q31_t) 0xffff0000) >> 16);
+#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
         /* Update pointer px to point to next row of transposed matrix */
         px += numRowsB;
 
         /* Unpack and store second element in destination */
+#ifndef RISCV_MATH_BIG_ENDIAN
         *px = (q15_t) ((in & (q31_t) 0xffff0000) >> 16);
+#else
+        *px = (q15_t) in;
+#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
         /* Update pointer px to point to next row of transposed matrix */
         px += numRowsB;
@@ -130,10 +141,18 @@ riscv_status riscv_mat_mult_q15(
         in = read_q15x2_ia ((q15_t **) &pInB);
 
         /* Unpack and store one element in destination */
+#ifndef RISCV_MATH_BIG_ENDIAN
         *px = (q15_t) in;
+#else
+        *px = (q15_t) ((in & (q31_t) 0xffff0000) >> 16);
+#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
         px += numRowsB;
 
+#ifndef RISCV_MATH_BIG_ENDIAN
         *px = (q15_t) ((in & (q31_t) 0xffff0000) >> 16);
+#else
+        *px = (q15_t) in;
+#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
         px += numRowsB;
 
         /* Decrement column loop counter */
@@ -194,7 +213,14 @@ riscv_status riscv_mat_mult_q15(
         while (colCnt > 0U)
         {
           /* c(m,n) = a(1,1) * b(1,1) + a(1,2) * b(2,1) + .... + a(m,p) * b(p,n) */
+#if __RISCV_XLEN == 64
+          inA164 = read_q15x4_ia ((q15_t **) &pInA);
+          inB164 = read_q15x4_ia ((q15_t **) &pInB);
+          /* Multiply and Accumlates */
+          sum = __RV_SMALDA(sum, inA164, inB164);
+          // sum = (q31_t)(sum64 + (sum64 >> 32));
 
+#else
           /* read real and imag values from pSrcA and pSrcB buffer */
           inA1 = read_q15x2_ia ((q15_t **) &pInA);
           inB1 = read_q15x2_ia ((q15_t **) &pInB);
@@ -203,8 +229,9 @@ riscv_status riscv_mat_mult_q15(
           inB2 = read_q15x2_ia ((q15_t **) &pInB);
 
           /* Multiply and Accumlates */
-          sum = __SMLALD(inA1, inB1, sum);
-          sum = __SMLALD(inA2, inB2, sum);
+          sum = __RV_SMALDA(sum, inA1, inB1);
+          sum = __RV_SMALDA(sum, inA2, inB2);
+#endif /* __RISCV_XLEN == 64 */
 
           /* Decrement loop counter */
           colCnt--;

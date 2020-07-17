@@ -55,30 +55,48 @@ void riscv_fill_q7(
 
 #if defined (RISCV_MATH_LOOPUNROLL)
   q31_t packedValue;                             /* value packed to 32 bits */
+#if __RISCV_XLEN == 64
+  q63_t packedValue64;                             /* value packed to 32 bits */
 
+  packedValue = __PACKq7(value, value, value, value);
+  packedValue64 = __RV_PKBB32(packedValue,packedValue);
+#else
   #ifdef RISCV_DSP64
-  //packedValue = __PACKq7(value, value, value, value);
-  packedValue = __EXPD80(value);
+  packedValue = __PACKq7(value, value, value, value);
+  // packedValue = __RV_EXPD80(value);
   #else
   packedValue = __PACKq7(value, value, value, value);
   #endif
-
+#endif /* __RISCV_XLEN == 64 */
+#if __RISCV_XLEN == 64
+  /* Loop unrolling: Compute 8 outputs at a time */
+  blkCnt = blockSize >> 3U;
+#else
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
+#endif /* __RISCV_XLEN == 64 */
 
   while (blkCnt > 0U)
   {
     /* C = value */
-
+#if __RISCV_XLEN == 64
+    /* fill 4 samples at a time */
+    write_q7x8_ia (&pDst, packedValue64);
+#else
     /* fill 4 samples at a time */
     write_q7x4_ia (&pDst, packedValue);
+#endif /* __RISCV_XLEN == 64 */
 
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#if __RISCV_XLEN == 64
+  /* Loop unrolling: Compute remaining outputs */
+  blkCnt = blockSize % 0x8U;
+#else
   /* Loop unrolling: Compute remaining outputs */
   blkCnt = blockSize % 0x4U;
+#endif /* __RISCV_XLEN == 64 */
 
 #else
 

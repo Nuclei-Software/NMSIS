@@ -67,12 +67,16 @@ void riscv_add_q31(
   while (blkCnt > 0U)
   {
     /* C = A + B */
-
+#if __RISCV_XLEN == 64
+	write_q31x2_ia (&pDst, __RV_KADD32(read_q31x2_ia ((q31_t **) &pSrcA),read_q31x2_ia ((q31_t **) &pSrcB)));
+	write_q31x2_ia (&pDst, __RV_KADD32(read_q31x2_ia ((q31_t **) &pSrcA),read_q31x2_ia ((q31_t **) &pSrcB)));
+#else
     /* Add and store result in destination buffer. */
-    *pDst++ = __QADD(*pSrcA++, *pSrcB++);
-    *pDst++ = __QADD(*pSrcA++, *pSrcB++);
-    *pDst++ = __QADD(*pSrcA++, *pSrcB++);
-    *pDst++ = __QADD(*pSrcA++, *pSrcB++);
+    *pDst++ = __RV_KADDW(*pSrcA++, *pSrcB++);
+    *pDst++ = __RV_KADDW(*pSrcA++, *pSrcB++);
+    *pDst++ = __RV_KADDW(*pSrcA++, *pSrcB++);
+    *pDst++ = __RV_KADDW(*pSrcA++, *pSrcB++);
+  #endif /* __RISCV_XLEN == 64 */
     /* Decrement loop counter */
     blkCnt--;
   }

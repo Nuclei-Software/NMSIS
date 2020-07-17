@@ -61,12 +61,16 @@ void riscv_fill_q31(
   while (blkCnt > 0U)
   {
     /* C = value */
-
+#if __RISCV_XLEN == 64
+    write_q31x2_ia (&pDst, ((((uint64_t)((uint32_t)value)) << 32) | (((uint64_t)((uint32_t)value)))));
+    write_q31x2_ia (&pDst, ((((uint64_t)((uint32_t)value)) << 32) | (((uint64_t)((uint32_t)value)))));
+#else
     /* Fill value in destination buffer */
     *pDst++ = value;
     *pDst++ = value;
     *pDst++ = value;
     *pDst++ = value;
+#endif /* __RISCV_XLEN == 64 */
 
     /* Decrement loop counter */
     blkCnt--;

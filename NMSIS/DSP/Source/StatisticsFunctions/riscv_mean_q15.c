@@ -64,15 +64,31 @@ void riscv_mean_q15(
 
 #if defined (RISCV_MATH_LOOPUNROLL)
         q31_t in;
+#if __RISCV_XLEN == 64
+        q63_t in64A,in64B,sum64;
+#endif /* __RISCV_XLEN == 64 */
 #endif
 
 #if defined (RISCV_MATH_LOOPUNROLL)
-
+#if __RISCV_XLEN == 64
+  /* Loop unrolling: Compute 8 outputs at a time */
+  blkCnt = blockSize >> 3U;
+#else
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
+#endif /* __RISCV_XLEN == 64 */
 
   while (blkCnt > 0U)
   {
+#if __RISCV_XLEN == 64
+    in64A = read_q15x4_ia ((q15_t **) &pSrc);
+    in64B = read_q15x4_ia ((q15_t **) &pSrc);
+    sum64 = __RV_KADD16(in64A, in64B);
+    sum += ((q31_t)((sum64 << 48U) >> 48U));
+    sum += ((q31_t)((sum64 << 32U) >> 48U));
+    sum += ((q31_t)((sum64 << 16U) >> 48U));
+    sum += ((q31_t)((sum64       ) >> 48U));
+#else
     /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) */
     in = read_q15x2_ia ((q15_t **) &pSrc);
     sum += ((in << 16U) >> 16U);
@@ -81,13 +97,18 @@ void riscv_mean_q15(
     in = read_q15x2_ia ((q15_t **) &pSrc);
     sum += ((in << 16U) >> 16U);
     sum +=  (in >> 16U);
+#endif /* __RISCV_XLEN == 64 */
 
     /* Decrement the loop counter */
     blkCnt--;
   }
-
+#if __RISCV_XLEN == 64
+  /* Loop unrolling: Compute remaining outputs */
+  blkCnt = blockSize % 0x8U;
+#else
   /* Loop unrolling: Compute remaining outputs */
   blkCnt = blockSize % 0x4U;
+#endif /* __RISCV_XLEN == 64 */
 
 #else
 

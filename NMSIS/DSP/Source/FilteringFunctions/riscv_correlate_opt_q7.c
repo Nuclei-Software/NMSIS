@@ -140,6 +140,9 @@ void riscv_correlate_opt_q7(
      a second loop below copies for the remaining 1 to 3 samples. */
   while (k > 0U)
   {
+// #if __RISCV_XLEN == 64 && defined RISCV_MATH_DSP
+//     write_q15x4_ia(&pScr2,read_q15x4_ia((q15_t **)&pIn2));
+// #else
     /* copy second buffer in reversal manner */
     x4 = (q15_t) *pIn2++;
     *pScr2++ = x4;
@@ -149,7 +152,7 @@ void riscv_correlate_opt_q7(
     *pScr2++ = x4;
     x4 = (q15_t) *pIn2++;
     *pScr2++ = x4;
-
+// #endif /*__RISCV_XLEN == 64 && defined RISCV_MATH_DSP*/
     /* Decrement loop counter */
     k--;
   }
@@ -254,7 +257,11 @@ void riscv_correlate_opt_q7(
       acc2 = __SMLAD(x2, y1, acc2);
 
       /* pack input data */
+#ifndef RISCV_MATH_BIG_ENDIAN
       x3 = __PKHBT(x2, x1, 0);
+#else
+      x3 = __PKHBT(x1, x2, 0);
+#endif
 
       /* multiply and accumlate */
       acc1 = __SMLADX(x3, y1, acc1);
@@ -263,7 +270,11 @@ void riscv_correlate_opt_q7(
       x1 = read_q15x2_ia (&pScr1);
 
       /* pack input data */
+#ifndef RISCV_MATH_BIG_ENDIAN
       x3 = __PKHBT(x1, x2, 0);
+#else
+      x3 = __PKHBT(x2, x1, 0);
+#endif
 
       acc3 = __SMLADX(x3, y1, acc3);
 
@@ -278,7 +289,11 @@ void riscv_correlate_opt_q7(
 
       x2 = read_q15x2_ia (&pScr1);
 
+#ifndef RISCV_MATH_BIG_ENDIAN
       x3 = __PKHBT(x2, x1, 0);
+#else
+      x3 = __PKHBT(x1, x2, 0);
+#endif
 
       acc3 = __SMLADX(x3, y1, acc3);
 

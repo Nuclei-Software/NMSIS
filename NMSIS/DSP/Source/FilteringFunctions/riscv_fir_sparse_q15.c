@@ -81,6 +81,9 @@ void riscv_fir_sparse_q15(
 
 #if defined (RISCV_MATH_LOOPUNROLL)
         q31_t in1, in2;                                /* Temporary variables */
+#if __RISCV_XLEN == 64
+        q63_t temp; 
+#endif /* __RISCV_XLEN == 64 */
 #endif
 
   /* BlockSize of Input samples are copied into the state buffer */
@@ -120,11 +123,18 @@ void riscv_fir_sparse_q15(
 
   while (blkCnt > 0U)
   {
+#if __RISCV_XLEN == 64
+    temp = (((q63_t)coeff) << 16) | ((uint64_t)((uint16_t)coeff));
+//     // temp = __RV_PKBB16(coeff, coeff);
+    write_q31x2_ia (&pScratchOut, __RV_SMUL16(read_q15x2_ia(&px), (q31_t)temp));
+    write_q31x2_ia (&pScratchOut, __RV_SMUL16(read_q15x2_ia(&px), (q31_t)temp));
+#else
     /* Perform multiplication and store in the scratch buffer */
     *pScratchOut++ = ((q31_t) *px++ * coeff);
     *pScratchOut++ = ((q31_t) *px++ * coeff);
     *pScratchOut++ = ((q31_t) *px++ * coeff);
     *pScratchOut++ = ((q31_t) *px++ * coeff);
+#endif /* __RISCV_XLEN == 64 */
 
     /* Decrement loop counter */
     blkCnt--;
@@ -298,12 +308,20 @@ void riscv_fir_sparse_q15(
     in1 = *pScr2++;
     in2 = *pScr2++;
 
+#ifndef RISCV_MATH_BIG_ENDIAN
     write_q15x2_ia (&pOut, __PKHBT((q15_t) __SSAT(in1 >> 15, 16), (q15_t) __SSAT(in2 >> 15, 16), 16));
+#else
+    write_q15x2_ia (&pOut, __PKHBT((q15_t) __SSAT(in2 >> 15, 16), (q15_t) __SSAT(in1 >> 15, 16), 16));
+#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
     in1 = *pScr2++;
     in2 = *pScr2++;
 
+#ifndef RISCV_MATH_BIG_ENDIAN
     write_q15x2_ia (&pOut, __PKHBT((q15_t) __SSAT(in1 >> 15, 16), (q15_t) __SSAT(in2 >> 15, 16), 16));
+#else
+    write_q15x2_ia (&pOut, __PKHBT((q15_t) __SSAT(in2 >> 15, 16), (q15_t) __SSAT(in1 >> 15, 16), 16));
+#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
     /* Decrement loop counter */
     blkCnt--;

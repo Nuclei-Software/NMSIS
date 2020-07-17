@@ -92,7 +92,10 @@ riscv_status riscv_mat_add_q31(
     while (blkCnt > 0U)
     {
       /* C(m,n) = A(m,n) + B(m,n) */
-
+#if __RISCV_XLEN == 64
+	write_q31x2_ia (&pOut, __RV_KADD32(read_q31x2_ia ((q31_t **) &pInA),read_q31x2_ia ((q31_t **) &pInB)));
+	write_q31x2_ia (&pOut, __RV_KADD32(read_q31x2_ia ((q31_t **) &pInA),read_q31x2_ia ((q31_t **) &pInB)));
+#else
       /* Add, saturate and store result in destination buffer. */
       *pOut++ = __QADD(*pInA++, *pInB++);
 
@@ -101,6 +104,7 @@ riscv_status riscv_mat_add_q31(
       *pOut++ = __QADD(*pInA++, *pInB++);
 
       *pOut++ = __QADD(*pInA++, *pInB++);
+#endif /* __RISCV_XLEN == 64 */
 
       /* Decrement loop counter */
       blkCnt--;

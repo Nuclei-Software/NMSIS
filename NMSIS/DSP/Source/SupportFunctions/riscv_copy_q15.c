@@ -61,10 +61,14 @@ void riscv_copy_q15(
   while (blkCnt > 0U)
   {
     /* C = A */
-
+#if __RISCV_XLEN == 64
+    /* read 4 samples at a time */
+    write_q15x4_ia (&pDst, read_q15x4_ia ((q15_t **) &pSrc));
+#else
     /* read 2 times 2 samples at a time */
     write_q15x2_ia (&pDst, read_q15x2_ia ((q15_t **) &pSrc));
     write_q15x2_ia (&pDst, read_q15x2_ia ((q15_t **) &pSrc));
+#endif /* __RISCV_XLEN == 64 */
 
     /* Decrement loop counter */
     blkCnt--;

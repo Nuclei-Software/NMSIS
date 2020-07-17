@@ -66,7 +66,10 @@ void riscv_abs_q31(
   while (blkCnt > 0U)
   {
     /* C = |A| */
-
+#if __RISCV_XLEN == 64
+	write_q31x2_ia (&pDst, __RV_KABS32(read_q31x2_ia ((q31_t **) &pSrc)));
+	write_q31x2_ia (&pDst, __RV_KABS32(read_q31x2_ia ((q31_t **) &pSrc)));
+#else
     /* Calculate absolute of input (if -1 then saturated to 0x7fffffff) and store result in destination buffer. */
     in = *pSrc++;
 #if defined (RISCV_MATH_DSP)
@@ -97,6 +100,7 @@ void riscv_abs_q31(
 #endif
 
     /* Decrement loop counter */
+#endif /* __RISCV_XLEN == 64 */
     blkCnt--;
   }
 

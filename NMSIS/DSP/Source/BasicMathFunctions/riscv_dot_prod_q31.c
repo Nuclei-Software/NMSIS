@@ -75,10 +75,17 @@ void riscv_dot_prod_q31(
 
     /* Calculate dot product and store result in a temporary buffer. */
 #if defined(RISCV_MATH_DSP)
-	sum += (__MULSR64(*pSrcA++, *pSrcB++) >> 14);
-	sum += (__MULSR64(*pSrcA++, *pSrcB++) >> 14);
-	sum += (__MULSR64(*pSrcA++, *pSrcB++) >> 14);
-	sum += (__MULSR64(*pSrcA++, *pSrcB++) >> 14);
+#if __RISCV_XLEN == 64
+	sum += (__RV_MULSR64(*pSrcA++, *pSrcB++) >> 14);
+	sum += (__RV_MULSR64(*pSrcA++, *pSrcB++) >> 14);
+	sum += (__RV_MULSR64(*pSrcA++, *pSrcB++) >> 14);
+	sum += (__RV_MULSR64(*pSrcA++, *pSrcB++) >> 14);
+#else
+	sum += (__RV_MULSR64(*pSrcA++, *pSrcB++) >> 14);
+	sum += (__RV_MULSR64(*pSrcA++, *pSrcB++) >> 14);
+	sum += (__RV_MULSR64(*pSrcA++, *pSrcB++) >> 14);
+	sum += (__RV_MULSR64(*pSrcA++, *pSrcB++) >> 14);
+#endif /* __RISCV_XLEN == 64 */
 #else
     sum += ((q63_t) *pSrcA++ * *pSrcB++) >> 14U;
     sum += ((q63_t) *pSrcA++ * *pSrcB++) >> 14U;

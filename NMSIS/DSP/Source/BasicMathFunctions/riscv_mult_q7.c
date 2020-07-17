@@ -66,13 +66,13 @@ void riscv_mult_q7(
 #endif
 
 
-#ifdef RISCV_DSP64
+#if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
   /* Loop unrolling: Compute 8 outputs at a time */
   blkCnt = blockSize >> 3U;
 #else
 	/* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
-#endif
+#endif /* defined (RISCV_DSP64) || (__RISCV_XLEN == 64) */
 
   while (blkCnt > 0U)
   {
@@ -88,17 +88,21 @@ void riscv_mult_q7(
     ///* Pack and store result in destination buffer (in single write) */
     //write_q7x4_ia (&pDst, __PACKq7(out1, out2, out3, out4));
 	//write_q7x4_ia (&pDst, __KHM8 (read_q7x4_ia ((q7_t **) &pSrcA), read_q7x4_ia ((q7_t **) &pSrcB)));
-#ifdef RISCV_DSP64
-	write_q7x8_ia (&pDst, __DKHM8 (read_q7x8_ia ((q7_t **) &pSrcA), read_q7x8_ia ((q7_t **) &pSrcB)));
+#if __RISCV_XLEN == 64
+	write_q7x8_ia (&pDst, __RV_KHM8 (read_q7x8_ia ((q7_t **) &pSrcA), read_q7x8_ia ((q7_t **) &pSrcB)));
 #else
-	write_q7x4_ia (&pDst, __KHM8 (read_q7x4_ia ((q7_t **) &pSrcA), read_q7x4_ia ((q7_t **) &pSrcB)));
+#ifdef RISCV_DSP64
+	write_q7x8_ia (&pDst, __RV_DKHM8 (read_q7x8_ia ((q7_t **) &pSrcA), read_q7x8_ia ((q7_t **) &pSrcB)));
+#else
+	write_q7x4_ia (&pDst, __RV_KHM8 (read_q7x4_ia ((q7_t **) &pSrcA), read_q7x4_ia ((q7_t **) &pSrcB)));
 #endif
+#endif /* __RISCV_XLEN == 64 */
 #else
     *pDst++ = (q7_t) __SSAT((((q15_t) (*pSrcA++) * (*pSrcB++)) >> 7), 8);
     *pDst++ = (q7_t) __SSAT((((q15_t) (*pSrcA++) * (*pSrcB++)) >> 7), 8);
     *pDst++ = (q7_t) __SSAT((((q15_t) (*pSrcA++) * (*pSrcB++)) >> 7), 8);
     *pDst++ = (q7_t) __SSAT((((q15_t) (*pSrcA++) * (*pSrcB++)) >> 7), 8);
-#ifdef RISCV_DSP64
+#if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
     *pDst++ = (q7_t) __SSAT((((q15_t) (*pSrcA++) * (*pSrcB++)) >> 7), 8);
     *pDst++ = (q7_t) __SSAT((((q15_t) (*pSrcA++) * (*pSrcB++)) >> 7), 8);
     *pDst++ = (q7_t) __SSAT((((q15_t) (*pSrcA++) * (*pSrcB++)) >> 7), 8);
@@ -110,7 +114,7 @@ void riscv_mult_q7(
     blkCnt--;
   }
 
-#ifdef  RISCV_DSP64
+#if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
   /* Loop unrolling: Compute remaining outputs */
   blkCnt = blockSize % 0x8U;
 #else

@@ -126,7 +126,7 @@ void riscv_fir_sparse_q7(
     *pScratchOut++ = ((q31_t) *px++ * coeff);
     *pScratchOut++ = ((q31_t) *px++ * coeff);
     *pScratchOut++ = ((q31_t) *px++ * coeff);
-
+    
     /* Decrement loop counter */
     blkCnt--;
   }

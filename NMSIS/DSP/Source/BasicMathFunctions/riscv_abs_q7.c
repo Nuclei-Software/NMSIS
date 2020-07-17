@@ -61,12 +61,11 @@ void riscv_abs_q7(
         q7_t in;                                       /* Temporary input variable */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
-
-#ifdef RISCV_DSP64
+#if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
   /* Loop unrolling: Compute 8 outputs at a time */
   blkCnt = blockSize >> 3U;
 #else
-	blkCnt = blockSize >> 2U;
+  blkCnt = blockSize >> 2U;
 #endif
 
   while (blkCnt > 0U)
@@ -75,11 +74,15 @@ void riscv_abs_q7(
 
     /* Calculate absolute of input (if -1 then saturated to 0x7f) and store result in destination buffer. */
 #if defined (RISCV_MATH_DSP)
-#ifdef RISCV_DSP64
-	 write_q7x8_ia (&pDst, __DKABS8(read_q7x8_ia ((q7_t **) &pSrc)));
+#if __RISCV_XLEN == 64
+  write_q7x8_ia (&pDst, __RV_KABS8(read_q7x8_ia ((q7_t **) &pSrc)));
 #else
-	  write_q7x4_ia (&pDst, __KABS8(read_q7x4_ia ((q7_t **) &pSrc)));
+#if defined (RISCV_DSP64)
+  write_q7x8_ia (&pDst, __RV_DKABS8(read_q7x8_ia ((q7_t **) &pSrc)));
+#else
+  write_q7x4_ia (&pDst, __RV_KABS8(read_q7x4_ia ((q7_t **) &pSrc)));
 #endif
+#endif /* __RISCV_XLEN == 64 */
 #else
 	in = *pSrc++;
     *pDst++ = (in > 0) ? in : ((in == (q7_t) 0x80) ? (q7_t) 0x7f : -in);
@@ -89,7 +92,7 @@ void riscv_abs_q7(
     *pDst++ = (in > 0) ? in : ((in == (q7_t) 0x80) ? (q7_t) 0x7f : -in);
 	in = *pSrc++;
     *pDst++ = (in > 0) ? in : ((in == (q7_t) 0x80) ? (q7_t) 0x7f : -in);
-#ifdef RISCV_DSP64
+#if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
 	in = *pSrc++;
     *pDst++ = (in > 0) ? in : ((in == (q7_t) 0x80) ? (q7_t) 0x7f : -in);
 	in = *pSrc++;
@@ -98,19 +101,19 @@ void riscv_abs_q7(
     *pDst++ = (in > 0) ? in : ((in == (q7_t) 0x80) ? (q7_t) 0x7f : -in);
 	in = *pSrc++;
     *pDst++ = (in > 0) ? in : ((in == (q7_t) 0x80) ? (q7_t) 0x7f : -in);
-#endif
+#endif /* defined (RISCV_DSP64) || (__RISCV_XLEN == 64) */
 
 #endif
     /* Decrement loop counter */
     blkCnt--;
   }
 
-#ifdef RISCV_DSP64
+#if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
   /* Loop unrolling: Compute remaining outputs */
   blkCnt = blockSize % 0x8U;
 #else
-	blkCnt = blockSize % 0x4U;
-#endif
+  blkCnt = blockSize % 0x4U;
+#endif /* defined (RISCV_DSP64) || (__RISCV_XLEN == 64) */
 
 #else
 
@@ -126,12 +129,12 @@ void riscv_abs_q7(
     /* Calculate absolute of input (if -1 then saturated to 0x7f) and store result in destination buffer. */
     in = *pSrc++;
 #if defined (RISCV_MATH_DSP)
-	*pDst++ = (q7_t)__KABSW(in);
+	  *pDst++ = (q7_t)__RV_KABSW(in);
 #else
     *pDst++ = (in > 0) ? in : ((in == (q7_t) 0x80) ? (q7_t) 0x7f : -in);
 #endif
 
-    /* Decrement loop counter */
+  /* Decrement loop counter */
     blkCnt--;
   }
 
@@ -140,3 +143,4 @@ void riscv_abs_q7(
 /**
   @} end of BasicAbs group
  */
+

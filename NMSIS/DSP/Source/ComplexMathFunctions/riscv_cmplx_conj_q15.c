@@ -59,7 +59,11 @@ void riscv_cmplx_conj_q15(
         q31_t in1;                                     /* Temporary input variable */
 
 #if defined (RISCV_MATH_LOOPUNROLL) && defined (RISCV_MATH_DSP)
+#if __RISCV_XLEN == 64
+        q63_t in641, in642, in643, in644; 
+#else
         q31_t in2, in3, in4;                           /* Temporary input variables */
+#endif /* __RISCV_XLEN == 64 */
 #endif
 
 
@@ -75,15 +79,25 @@ void riscv_cmplx_conj_q15(
     /* Calculate Complex Conjugate and store result in destination buffer. */
 
 #if defined (RISCV_MATH_DSP)
+#if __RISCV_XLEN == 64
+    in641 = read_q15x4_ia ((q15_t **) &pSrc);
+    in641 = __RV_KCRAS16(0, in641);
+    in641 = ((((uint64_t)in641) >> 48) << 32) | (((((uint64_t)in641) << 16) >> 48) << 48) | (((((uint64_t)in641) << 32) >> 48)) | (((((uint64_t)in641) << 48) >> 32));
+    write_q15x4_ia (&pDst, in641);
+    in641 = read_q15x4_ia ((q15_t **) &pSrc);
+    in641 = __RV_KCRAS16(0, in641);
+    in641 = ((((uint64_t)in641) >> 48) << 32) | (((((uint64_t)in641) << 16) >> 48) << 48) | (((((uint64_t)in641) << 32) >> 48)) | (((((uint64_t)in641) << 48) >> 32));    
+    write_q15x4_ia (&pDst, in641);
+#else
     in1 = read_q15x2_ia ((q15_t **) &pSrc);
     in2 = read_q15x2_ia ((q15_t **) &pSrc);
     in3 = read_q15x2_ia ((q15_t **) &pSrc);
     in4 = read_q15x2_ia ((q15_t **) &pSrc);
 
-    in1 = __QASX(0, in1);
-    in2 = __QASX(0, in2);
-    in3 = __QASX(0, in3);
-    in4 = __QASX(0, in4);
+    in1 = __RV_KCRAS16(0, in1);
+    in2 = __RV_KCRAS16(0, in2);
+    in3 = __RV_KCRAS16(0, in3);
+    in4 = __RV_KCRAS16(0, in4);
 
     in1 = ((uint32_t) in1 >> 16) | ((uint32_t) in1 << 16);
     in2 = ((uint32_t) in2 >> 16) | ((uint32_t) in2 << 16);
@@ -94,6 +108,7 @@ void riscv_cmplx_conj_q15(
     write_q15x2_ia (&pDst, in2);
     write_q15x2_ia (&pDst, in3);
     write_q15x2_ia (&pDst, in4);
+#endif /* __RISCV_XLEN == 64 */
 #else
     *pDst++ =  *pSrc++;
     in1 = *pSrc++;
@@ -134,11 +149,11 @@ void riscv_cmplx_conj_q15(
     /* Calculate Complex Conjugate and store result in destination buffer. */
     *pDst++ =  *pSrc++;
     in1 = *pSrc++;
-#if defined (RISCV_MATH_DSP)
-    *pDst++ = __SSAT(-in1, 16);
-#else
+// #if defined (RISCV_MATH_DSP)
+//     *pDst++ = __SSAT(-in1, 16);
+// #else
     *pDst++ = (in1 == (q15_t) 0x8000) ? (q15_t) 0x7fff : -in1;
-#endif
+// #endif
 
     /* Decrement loop counter */
     blkCnt--;

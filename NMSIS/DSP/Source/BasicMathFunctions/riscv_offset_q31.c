@@ -60,14 +60,21 @@ void riscv_offset_q31(
         uint32_t blkCnt;                               /* Loop counter */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
-
+#if __RISCV_XLEN == 64
+	q63_t offset_all;
+  /* Offset is packed to 64 bit in order to use SIMD64 for addition */
+  offset_all = __RV_PKBB32(offset, offset);
+#endif /* __RISCV_XLEN == 64 */
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
 
   while (blkCnt > 0U)
   {
     /* C = A + offset */
-
+#if __RISCV_XLEN == 64
+    write_q31x2_ia (&pDst, __RV_KADD32(read_q31x2_ia ((q31_t **) &pSrc), offset_all));
+    write_q31x2_ia (&pDst, __RV_KADD32(read_q31x2_ia ((q31_t **) &pSrc), offset_all));
+#else
     /* Add offset and store result in destination buffer. */
 #if defined (RISCV_MATH_DSP)
     *pDst++ = __QADD(*pSrc++, offset);
@@ -92,7 +99,7 @@ void riscv_offset_q31(
 #else
     *pDst++ = (q31_t) clip_q63_to_q31((q63_t) * pSrc++ + offset);
 #endif
-
+#endif /* __RISCV_XLEN == 64 */
     /* Decrement loop counter */
     blkCnt--;
   }

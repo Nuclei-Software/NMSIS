@@ -94,8 +94,12 @@ riscv_status riscv_mat_sub_q15(
 
       /* Subtract, Saturate and store result in destination buffer. */
 #if defined (RISCV_MATH_DSP)
+#if __RISCV_XLEN == 64
+      write_q15x4_ia (&pOut, __RV_KSUB16(read_q15x4_ia((q15_t**)&pInA), read_q15x4_ia((q15_t **)&pInB)));
+#else
       write_q15x2_ia (&pOut, __QSUB16(read_q15x2_ia ((q15_t **) &pInA), read_q15x2_ia ((q15_t **) &pInB)));
       write_q15x2_ia (&pOut, __QSUB16(read_q15x2_ia ((q15_t **) &pInA), read_q15x2_ia ((q15_t **) &pInB)));
+#endif /* __RISCV_XLEN == 64 */
 #else
       *pOut++ = (q15_t) __SSAT(((q31_t) * pInA++ - *pInB++), 16);
       *pOut++ = (q15_t) __SSAT(((q31_t) * pInA++ - *pInB++), 16);

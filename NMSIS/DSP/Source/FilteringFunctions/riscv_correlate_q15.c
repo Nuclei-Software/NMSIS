@@ -189,11 +189,15 @@ void riscv_correlate_q15(
      ** a second loop below computes MACs for the remaining 1 to 3 samples. */
     while (k > 0U)
     {
+#if __RISCV_XLEN == 64
+      sum = __RV_SMALDA(sum, read_q15x4_ia ((q15_t **) &px), read_q15x4_ia ((q15_t **) &py));
+#else
       /* Perform the multiply-accumulate */
       /* x[0] * y[srcBLen - 4] , x[1] * y[srcBLen - 3] */
       sum = __SMLALD(read_q15x2_ia ((q15_t **) &px), read_q15x2_ia ((q15_t **) &py), sum);
       /* x[3] * y[srcBLen - 1] , x[2] * y[srcBLen - 2] */
       sum = __SMLALD(read_q15x2_ia ((q15_t **) &px), read_q15x2_ia ((q15_t **) &py), sum);
+#endif /* __RISCV_XLEN == 64 */
 
       /* Decrement loop counter */
       k--;
@@ -336,7 +340,11 @@ void riscv_correlate_q15(
       {
         /* Read y[4] */
         c0 = *py;
+#ifdef  RISCV_MATH_BIG_ENDIAN
+        c0 = c0 << 16U;
+#else
         c0 = c0 & 0x0000FFFF;
+#endif /* #ifdef  RISCV_MATH_BIG_ENDIAN */
 
         /* Read x[7] */
         x3 = read_q15x2 ((q15_t *) px);
@@ -388,7 +396,11 @@ void riscv_correlate_q15(
         c0 = (*py);
 
         /* Read y[6] */
+#ifdef  RISCV_MATH_BIG_ENDIAN
+        c0 = c0 << 16U;
+#else
         c0 = c0 & 0x0000FFFF;
+#endif /* #ifdef  RISCV_MATH_BIG_ENDIAN */
 
         /* Read x[10] */
         x3 = read_q15x2 ((q15_t *) px + 2);
@@ -429,7 +441,9 @@ void riscv_correlate_q15(
     /* If the blockSize2 is not a multiple of 4, compute any remaining output samples here.
      ** No loop unrolling is used. */
     blkCnt = blockSize2 % 0x4U;
-
+// #if __RISCV_XLEN == 64
+//       q63_t acc064, acc164;
+// #endif /* __RISCV_XLEN == 64 */
     while (blkCnt > 0U)
     {
       /* Accumulator is made zero for every iteration */
@@ -442,12 +456,17 @@ void riscv_correlate_q15(
        ** a second loop below computes MACs for the remaining 1 to 3 samples. */
       while (k > 0U)
       {
+#if __RISCV_XLEN == 64
+//         acc064 = read_q15x4_ia((q15_t **) &px);
+//         acc164 = read_q15x4_ia((q15_t **) &py);
+        sum = __RV_SMALDA(sum, read_q15x4_ia((q15_t **) &px), read_q15x4_ia((q15_t **) &py));
+#else
         /* Perform the multiply-accumulates */
         sum += ((q63_t) *px++ * *py++);
         sum += ((q63_t) *px++ * *py++);
         sum += ((q63_t) *px++ * *py++);
         sum += ((q63_t) *px++ * *py++);
-
+#endif /* __RISCV_XLEN == 64 */
         /* Decrement loop counter */
         k--;
       }
@@ -560,11 +579,15 @@ void riscv_correlate_q15(
      ** a second loop below computes MACs for the remaining 1 to 3 samples. */
     while (k > 0U)
     {
+#if __RISCV_XLEN == 64
+      sum = __SMLALD(read_q15x4_ia ((q15_t **) &px), read_q15x4_ia ((q15_t **) &py), sum);
+#else
       /* Perform the multiply-accumulate */
       /* sum += x[srcALen - srcBLen + 4] * y[3] , sum += x[srcALen - srcBLen + 3] * y[2] */
       sum = __SMLALD(read_q15x2_ia ((q15_t **) &px), read_q15x2_ia ((q15_t **) &py), sum);
       /* sum += x[srcALen - srcBLen + 2] * y[1] , sum += x[srcALen - srcBLen + 1] * y[0] */
       sum = __SMLALD(read_q15x2_ia ((q15_t **) &px), read_q15x2_ia ((q15_t **) &py), sum);
+#endif /* __RISCV_XLEN == 64 */
 
       /* Decrement loop counter */
       k--;
@@ -604,7 +627,7 @@ void riscv_correlate_q15(
   const q15_t *pIn1 = pSrcA;                           /* InputA pointer */
   const q15_t *pIn2 = pSrcB + (srcBLen - 1U);          /* InputB pointer */
         q63_t sum;                                     /* Accumulators */
-        uint32_t i = 0U, j;                            /* Loop counters */
+        int32_t i = 0U, j;                            /* Loop counters */
         uint32_t inv = 0U;                             /* Reverse order flag */
         uint32_t tot = 0U;                             /* Length */
 
