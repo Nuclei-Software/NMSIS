@@ -1,6 +1,7 @@
 TARGET ?= DSP
 CORE ?= n307fd
 DSP64 ?= ON
+RISCV_ALIGN ?= OFF
 TOOLCHAIN ?= GCC
 LIBIRAY_ROOT ?= Library
 PARELLEL ?=
@@ -9,7 +10,7 @@ BUILD := build
 CORE_UPPER = $(shell echo $(CORE) | tr a-z A-Z)
 TARGET_LOWER = $(shell echo $(TARGET) | tr A-Z a-z)
 
-MAKE_PARAMS = DSP64=$(DSP64) TOOLCHAIN=$(TOOLCHAIN) PARELLEL=$(PARELLEL) LIBIRAY_ROOT=$(LIBIRAY_ROOT) BUILD=$(BUILD) 
+MAKE_PARAMS = DSP64=$(DSP64) RISCV_ALIGN=$(RISCV_ALIGN) TOOLCHAIN=$(TOOLCHAIN) PARELLEL=$(PARELLEL) LIBIRAY_ROOT=$(LIBIRAY_ROOT) BUILD=$(BUILD)
 
 include Makefile.core
 
@@ -40,7 +41,7 @@ endif
 
 .DEFAULT_GOAL = all
 
-.PHONY: all dsp no_dsp help gen clean build_dsp build_no_dsp install_dsp install_no_dsp ar_dsp ar_no_dsp gen_dsp_lib gen_nn_lib doc doc_all ctags
+.PHONY: all dsp no_dsp help gen clean build_dsp build_no_dsp install_dsp install_no_dsp ar_dsp ar_no_dsp gen_dsp_lib gen_nn_lib strip strip_nn_lib strip_dsp_lib strip_symbols doc doc_all ctags
 
 all: dsp no_dsp
 	@echo "Build, generate and install $(TARGET) library for $(CORE) into $(TARGET_LIB_ROOT) all finished"
@@ -56,6 +57,7 @@ help:
 	@echo "TARGET       Currently only NN and DSP library suppported, eg. TARGET=DSP"
 	@echo "CORE         Core to build, supported cores: $(SUPPORTED_CORES), eg. CORE=n307"
 	@echo "DSP64        Enable DSP64 or not using ON, OFF, eg. DSP64=ON"
+	@echo "RISCV_ALIGN  Enable RISC-V memory access without unalign R/W feature using ON, OFF, eg. RISCV_ALIGN=ON"
 	@echo "PARELLEL     Compile library in parellel, enable parellel by PARELLEL=1"
 	@echo "By default, the installed library will be saved into $(LIBIRAY_ROOT)"
 
@@ -67,9 +69,12 @@ no_dsp: build_no_dsp ar_no_dsp install_no_dsp
 
 gen: gen_nn_lib gen_dsp_lib
 	@echo "Build, generate and install all the libraries for $(SUPPORTED_CORES) into $(TARGET_LIB_ROOT)"
-	
+
+strip: strip_nn_lib strip_dsp_lib
+	@echo "Strip symbols in libraries for $(SUPPORTED_CORES) in $(TARGET_LIB_ROOT)"
+
 clean:
-	rm -rf $(TARGET_CMAKE_BUILD) 
+	rm -rf $(TARGET_CMAKE_BUILD)
 	mkdir -p $(TARGET_CMAKE_BUILD)
 
 build_dsp: clean
@@ -77,7 +82,7 @@ build_dsp: clean
 	make $(MAKE_OPT) -C $(TARGET_CMAKE_BUILD)
 
 build_no_dsp: clean
-	cd $(TARGET_CMAKE_BUILD); cmake $(RISCV_ARCH_DEFINE) -DDSP_ENABLE=OFF ../
+	cd $(TARGET_CMAKE_BUILD); cmake $(RISCV_ARCH_DEFINE) -DDSP_ENABLE=OFF -DRISCV_ALIGN=$(RISCV_ALIGN) ../
 	make $(MAKE_OPT) -C $(TARGET_CMAKE_BUILD)
 
 install_dsp:
@@ -99,6 +104,16 @@ $(NNLIB_TARGETS):
 
 $(DSPLIB_TARGETS):
 	make $(MAKE_PARAMS) CORE=$(subst _dsplib,,$@)   TARGET=DSP
+
+strip_symbols:
+	@echo "Strip out symbols for TARGET=$(TARGET)"
+	riscv-nuclei-elf-strip -g $(TARGET_LIB_ROOT)/*.a
+
+strip_nn_lib:
+	make $(MAKE_PARAMS) TARGET=NN strip_symbols
+
+strip_dsp_lib:
+	make $(MAKE_PARAMS) TARGET=DSP strip_symbols
 
 gen_dsp_lib: $(DSPLIB_TARGETS)
 	@echo "Generated DSP library for cores: $(subst _dsplib,,$^)"
