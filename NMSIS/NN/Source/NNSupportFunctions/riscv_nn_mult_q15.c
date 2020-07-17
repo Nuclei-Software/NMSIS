@@ -101,10 +101,17 @@ void riscv_nn_mult_q15(
     out4 = (q15_t) __SSAT((mul4 + NN_ROUND(out_shift)) >> out_shift, 16);
 
     /* store the result */
+#ifndef RISCV_MATH_BIG_ENDIAN
 
     *__SIMD32(pDst)++ = __PKHBT(out2, out1, 16);
     *__SIMD32(pDst)++ = __PKHBT(out4, out3, 16);
 
+#else
+
+    *__SIMD32(pDst)++ = __PKHBT(out2, out1, 16);
+    *__SIMD32(pDst)++ = __PKHBT(out4, out3, 16);
+
+#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
     /* Decrement the blockSize loop counter */
     blkCnt--;

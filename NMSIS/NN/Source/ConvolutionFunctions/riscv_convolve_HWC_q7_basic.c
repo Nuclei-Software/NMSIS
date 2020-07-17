@@ -157,7 +157,23 @@ riscv_convolve_HWC_q7_basic(const q7_t * Im_in,
 
             /* Point to the beging of the im2col buffer */
               q7_t    *pB = (q7_t *)bufferA;
+#if __RISCV_XLEN == 64
+            /* Each time it process 4 entries */
+            uint16_t  colCnt = ch_im_in * dim_kernel * dim_kernel >> 3;
+            q63_t sum64 = 0;
+            while (colCnt)
+            {                
+                
+                q63_t     inB1 = *__SIMD64(pB)++;
+                q63_t     inA1 = *__SIMD64(pA)++;
+                sum64  = __RV_SMAQA(sum64, inA1, inB1);
+                
+                colCnt--;
+            }
+            sum = sum + (q31_t)(sum64 & 0xFFFFFFFF) + (q31_t)((sum64 & 0xFFFFFFFF00000000)>>32);
+            colCnt = ch_im_in * dim_kernel * dim_kernel & 0x7;
 
+#else
             /* Each time it process 4 entries */
             uint16_t  colCnt = ch_im_in * dim_kernel * dim_kernel >> 2;
 
@@ -172,6 +188,7 @@ riscv_convolve_HWC_q7_basic(const q7_t * Im_in,
                 colCnt--;
             }
             colCnt = ch_im_in * dim_kernel * dim_kernel & 0x3;
+#endif /* __RISCV_XLEN == 64 */
             while (colCnt)
             {
                 q7_t      inA1 = *pA++;

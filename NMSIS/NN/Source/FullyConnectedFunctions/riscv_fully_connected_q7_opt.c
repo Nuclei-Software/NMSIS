@@ -220,10 +220,28 @@ riscv_fully_connected_q7_opt(const q7_t * pV,
     while (rowCnt)
     {
         q31_t     sum = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
-        uint16_t  colCnt = dim_vec >> 2;
 
         pA = (q7_t *)vec_buffer;
 
+#if __RISCV_XLEN == 64
+        uint16_t  colCnt = dim_vec >> 3;
+        q63_t sum64 = 0;
+        while (colCnt)
+        {
+
+            q63_t     inA1 = *__SIMD64(pA)++;
+            q63_t     inB1 = *__SIMD64(pB)++;
+                 
+            sum64  = __RV_SMAQA(sum64, inA1, inB1);
+
+            colCnt--;
+        }
+        sum = sum + (q31_t)(sum64 & 0xFFFFFFFF) + (q31_t)((sum64 & 0xFFFFFFFF00000000)>>32);
+        /* left-over of the vector */
+        colCnt = dim_vec & 0x7;
+
+#else
+        uint16_t  colCnt = dim_vec >> 2;
         while (colCnt)
         {
 
@@ -237,6 +255,7 @@ riscv_fully_connected_q7_opt(const q7_t * pV,
 
         /* left-over of the vector */
         colCnt = dim_vec & 0x3;
+#endif /* __RISCV_XLEN == 64 */
         while (colCnt)
         {
             q15_t     inV = *pA++;

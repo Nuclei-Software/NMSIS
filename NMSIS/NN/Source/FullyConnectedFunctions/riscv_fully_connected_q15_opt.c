@@ -127,6 +127,7 @@ riscv_fully_connected_q15_opt(const q15_t * pV,
 
         pA = pV;
 
+#ifdef USE_INTRINSIC
 
         while (colCnt)
         {
@@ -135,16 +136,43 @@ riscv_fully_connected_q15_opt(const q15_t * pV,
 
             inV = *__SIMD32(pA)++;
             inM11 = *__SIMD32(pB)++;
-            sum = __RV_SMALDA(sum , inV, inM11);
+            sum = __RV_KMADA(sum , inV, inM11);
             inM12 = *__SIMD32(pB)++;
-            sum2 = __RV_SMALDA(sum2, inV, inM12);
+            sum2 = __RV_KMADA(sum2, inV, inM12);
             inM13 = *__SIMD32(pB)++;
-            sum3 = __RV_SMALDA(sum3, inV, inM13);
+            sum3 = __RV_KMADA(sum3, inV, inM13);
             inM14 = *__SIMD32(pB)++;
-            sum4 = __RV_SMALDA(sum4, inV, inM14);
+            sum4 = __RV_KMADA(sum4, inV, inM14);
             colCnt--;
         }
 
+#else
+
+        /*
+         * register needed:
+         * loop counter: colCnt
+         * accumulators: sum, sum2, sum3, sum4
+         * pointers: pB, pA
+         * weight data: inM11, inM12, inM13, inM14
+         * activation data: inV
+         */
+
+        asm volatile ("COL_LOOP_%=:\n"
+                      "ldr.w r4, [%[pA]], #4\n"
+                      "ldr.w r0, [%[pB]], #16\n"
+                      "smlad %[sum], r4, r0, %[sum]\n"
+                      "ldr.w r1, [%[pB] , #-12]\n"
+                      "smlad %[sum2], r4, r1, %[sum2]\n"
+                      "ldr.w r2, [%[pB] , #-8]\n"
+                      "smlad %[sum3], r4, r2, %[sum3]\n"
+                      "ldr.w r3, [%[pB] , #-4]\n"
+                      "smlad %[sum4], r4, r3, %[sum4]\n"
+                      "subs %[colCnt], #1\n"
+                      "bne COL_LOOP_%=\n":[sum] "+r"(sum),
+                      [sum2] "+r"(sum2),[sum3] "+r"(sum3),
+                      [sum4] "+r"(sum4),[pB] "+r"(pB),[pA] "+r"(pA):[colCnt] "r"(colCnt):"r0", "r1", "r2", "r3", "r4");
+
+#endif                          /* USE_INTRINSIC */
 
         colCnt = dim_vec & 0x1;
         while (colCnt)
@@ -176,11 +204,38 @@ riscv_fully_connected_q15_opt(const q15_t * pV,
 
     while (rowCnt)
     {
-        q31_t     sum = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
 
-        uint16_t  colCnt = dim_vec >> 2;
 
         pA = pV;
+        q31_t     sum = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
+        uint16_t  colCnt = dim_vec >> 2;
+#if __RISCV_XLEN == 64
+        // q63_t     sum = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
+        // uint16_t  colCnt = dim_vec >> 3;
+        q63_t sum64 = 0;
+        while (colCnt)
+        {
+            q63_t     inV1, inV2, inM1, inM2;
+
+            inM1 = *__SIMD64(pB)++;
+            inV1 = *__SIMD64(pA)++;
+            sum64 = __RV_KMADA(sum64, inV1, inM1);
+
+            // inM2 = *__SIMD64(pB)++;
+            // inV2 = *__SIMD64(pA)++;
+            // sum = __RV_SMALDA(sum, inV2, inM2);
+         
+           // q31_t   inB1 = *__SIMD32(pB)++;
+           // q31_t   inA1 = *__SIMD32(pA)++;
+            //sum = __RV_KMAR64(sum, inB1, inA1);
+            colCnt--;
+        }
+    sum = sum + (q31_t)(sum64 & 0xFFFFFFFF) + (q31_t)((sum64 & 0xFFFFFFFF00000000)>>32);
+
+        /* left-over of the vector */
+        // colCnt = dim_vec & 0x7;
+#else
+//original should be q63_t?
 
         while (colCnt)
         {
@@ -188,11 +243,11 @@ riscv_fully_connected_q15_opt(const q15_t * pV,
 
             inM1 = *__SIMD32(pB)++;
             inV1 = *__SIMD32(pA)++;
-            sum = __RV_SMALDA(sum, inV1, inM1);
+            sum = __RV_KMADA(sum, inV1, inM1);
 
             inM2 = *__SIMD32(pB)++;
             inV2 = *__SIMD32(pA)++;
-            sum = __RV_SMALDA(sum, inV2, inM2);
+            sum = __RV_KMADA(sum, inV2, inM2);
          
            // q31_t   inB1 = *__SIMD32(pB)++;
            // q31_t   inA1 = *__SIMD32(pA)++;
@@ -200,6 +255,7 @@ riscv_fully_connected_q15_opt(const q15_t * pV,
             colCnt--;
         }
 
+#endif /* __RISCV_XLEN == 64 */
         /* left-over of the vector */
         colCnt = dim_vec & 0x3;
         while (colCnt)

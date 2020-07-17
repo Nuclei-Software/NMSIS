@@ -81,6 +81,7 @@ void riscv_q7_to_q15_reordered_no_shift(const q7_t * pSrc, q15_t * pDst, uint32_
     const q7_t *pIn = pSrc;     /* Src pointer */
     uint32_t  blkCnt;           /* loop counter */
 
+#ifndef RISCV_MATH_CM0_FAMILY
     q31_t     in;
     q31_t     in1, in2;
 
@@ -103,8 +104,13 @@ void riscv_q7_to_q15_reordered_no_shift(const q7_t * pSrc, q15_t * pDst, uint32_
         /* extend remainig two q7_t values to q15_t values */
         in2 = __SXTB16(in);
 
+#ifndef RISCV_MATH_BIG_ENDIAN
         *__SIMD32(pDst)++ = in2;
         *__SIMD32(pDst)++ = in1;
+#else
+        *__SIMD32(pDst)++ = in1;
+        *__SIMD32(pDst)++ = in2;
+#endif
 
         /* Decrement the loop counter */
         blkCnt--;
@@ -114,6 +120,14 @@ void riscv_q7_to_q15_reordered_no_shift(const q7_t * pSrc, q15_t * pDst, uint32_
      ** No loop unrolling is used. */
     blkCnt = blockSize % 0x4u;
 
+#else
+
+    /* Run the below code for RISC-V Core without DSP */
+
+    /* Loop over blockSize number of values */
+    blkCnt = blockSize;
+
+#endif                          /* #ifndef RISCV_MATH_CM0_FAMILY */
 
     while (blkCnt > 0u)
     {

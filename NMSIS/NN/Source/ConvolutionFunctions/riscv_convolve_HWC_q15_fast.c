@@ -156,7 +156,26 @@ riscv_convolve_HWC_q15_fast(const q15_t * Im_in,
                     q31_t     sum2 = ((q31_t)bias[i] << bias_shift) + NN_ROUND(out_shift);
                     q31_t     sum3 = ((q31_t)bias[i + 1] << bias_shift) + NN_ROUND(out_shift);
                     q31_t     sum4 = ((q31_t)bias[i + 1] << bias_shift) + NN_ROUND(out_shift);
+#if __RISCV_XLEN == 64
+                    uint16_t  colCnt = ch_im_in * dim_kernel * dim_kernel >> 2;
+                    /* accumulate over the vector */
+                    while (colCnt)
+                    {
+                        q63_t     inA1 = *__SIMD64(pA)++;
+                        q63_t     inB1 = *__SIMD64(pB)++;
+                        q63_t     inA2 = *__SIMD64(pA2)++;
+                        q63_t     inB2 = *__SIMD64(pB2)++;
 
+                        sum  = __RV_SMALDA(sum , inA1, inB1);
+                        sum2 = __RV_SMALDA(sum2, inA1, inB2);
+                        sum3 = __RV_SMALDA(sum3, inA2, inB1);
+                        sum4 = __RV_SMALDA(sum4, inA2, inB2);
+
+                        colCnt--;
+                    }           /* while over colCnt */
+                    colCnt = ch_im_in * dim_kernel * dim_kernel & 0x3;
+
+#else
                     uint16_t  colCnt = ch_im_in * dim_kernel * dim_kernel >> 1;
                     /* accumulate over the vector */
                     while (colCnt)
@@ -174,6 +193,7 @@ riscv_convolve_HWC_q15_fast(const q15_t * Im_in,
                         colCnt--;
                     }           /* while over colCnt */
                     colCnt = ch_im_in * dim_kernel * dim_kernel & 0x1;
+#endif /* __RISCV_XLEN == 64 */
                     while (colCnt)
                     {
                         q15_t     inA1 = *pA++;

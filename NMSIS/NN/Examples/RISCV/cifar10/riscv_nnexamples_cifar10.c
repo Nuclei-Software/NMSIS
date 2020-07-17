@@ -51,12 +51,12 @@
  *
  * \par Model definition:
  * \par
- * The CNN used in this example is based on CIFAR-10 example from Caffe [1]. 
+ * The CNN used in this example is based on CIFAR-10 example from Caffe [1].
  * The neural network consists
- * of 3 convolution layers interspersed by ReLU activation and max pooling layers, followed by a 
- * fully-connected layer at the end. The input to the network is a 32x32 pixel color image, which will 
- * be classified into one of the 10 output classes. 
- * This example model implementation needs 32.3 KB to store weights, 40 KB for activations and 
+ * of 3 convolution layers interspersed by ReLU activation and max pooling layers, followed by a
+ * fully-connected layer at the end. The input to the network is a 32x32 pixel color image, which will
+ * be classified into one of the 10 output classes.
+ * This example model implementation needs 32.3 KB to store weights, 40 KB for activations and
  * 3.1 KB for storing the \c im2col data.
  *
  * \image html CIFAR10_CNN.png "Neural Network model definition"
@@ -96,6 +96,7 @@
 #include "riscv_nnfunctions.h"
 #include "riscv_nnexamples_cifar10_inputs.h"
 #include "image_data.h"
+#include "bench.h"
 
 #ifdef _RTE_
 #include "RTE_Components.h"
@@ -103,55 +104,6 @@
 #include "EventRecorder.h"
 #endif
 #endif
-
-
-#define read_csr(reg) ({ \
-	unsigned long __temp;   \
-	asm volatile("csrr %0, " #reg: "=r"(__temp)); \
-	__temp;  \
-})
-
-#if __riscv_xlen == 32
-static inline uint64_t read_cpu_cycle(void)
-{
-    uint32_t hi = 0, hi1 = 0, lo = 0;
-    uint64_t val = 0;
-    hi = read_csr(cycleh);
-    lo = read_csr(cycle);
-    hi1 = read_csr(cycleh);
-    if (hi != hi1) {
-        hi = read_csr(cycleh);
-        lo = read_csr(cycle);
-    }
-    val = (((uint64_t)hi) << 32) | lo;
-    return val;
-}
-#else
-static inline uint64_t read_cpu_cycle(void)
-{
-    uint64_t val = 0;
-    val = read_csr(cycle);
-    return val;
-}
-#endif
-
-uint64_t enter_cycle;
-uint64_t exit_cycle;
-uint64_t start_cycle;
-uint64_t end_cycle;
-uint64_t cycle;
-
-#define BENCH_INIT                enter_cycle=read_cpu_cycle(); \
-                                printf("CSV, BENCH START, %llu\n", enter_cycle);
-
-#define BENCH_START(func)         start_cycle=read_cpu_cycle();
-#define BENCH_END(func)           end_cycle=read_cpu_cycle(); \
-                                cycle=end_cycle-start_cycle; \
-                                printf("CSV, %s, %llu\n", #func, cycle); 
-
-#define BENCH_FINISH              exit_cycle=read_cpu_cycle(); \
-                                cycle=exit_cycle-enter_cycle; \
-                                printf("CSV, BENCH END, %llu\n", cycle);
 
 // include the input and weights
 
@@ -170,7 +122,7 @@ static q7_t ip1_bias[IP1_OUT] = IP1_BIAS;
 /* Here the image_data should be the raw uint8 type RGB image in [RGB, RGB, RGB ... RGB] format */
 #define _DECLARE_IMAGE(img) static uint8_t image_data[CONV1_IM_CH * CONV1_IM_DIM * CONV1_IM_DIM] = IMG_DATA_##img; \
                            const char *image_name = #img;
-#define DECLARE_IMAGE(img) _DECLARE_IMAGE(img) 
+#define DECLARE_IMAGE(img) _DECLARE_IMAGE(img)
 // Change the DECLARE_IMAGE(imgno) to select different images
 // img could be airplane, automobile, bird, cat, deer, dog, horse, ship, truck
 // no could be 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
@@ -205,8 +157,6 @@ int main()
   q7_t     *img_buffer2 = img_buffer1 + 32 * 32 * 32;
 
   BENCH_INIT;
-  BENCH_START(extra_cost);
-  BENCH_END(extra_cost);
 
   /* input pre-processing */
   BENCH_START(preprocess);
@@ -221,7 +171,7 @@ int main()
                              >> scale_data[2], 8);
   }
   BENCH_END(preprocess);
- 
+
   BENCH_START(riscv_convolve_HWC_q7_RGB);
   // conv1 img_buffer2 -> img_buffer1
   riscv_convolve_HWC_q7_RGB(img_buffer2, CONV1_IM_DIM, CONV1_IM_CH, conv1_wt, CONV1_OUT_CH, CONV1_KER_DIM, CONV1_PADDING,
@@ -281,7 +231,7 @@ int main()
   BENCH_START(riscv_softmax_q7);
   riscv_softmax_q7(output_data, 10, output_data);
   BENCH_END(riscv_softmax_q7);
-  
+
   float confidence = 0.0;
   for (int i = 0; i < 10; i++) {
       confidence = (output_data[i]/127.0)*100;

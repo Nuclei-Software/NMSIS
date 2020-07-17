@@ -72,9 +72,9 @@ riscv_fully_connected_mat_q7_vec_q15(const q15_t * pV,
                                    const uint16_t dim_vec,
                                    const uint16_t num_of_rows,
                                    const uint16_t bias_shift,
-                                   const uint16_t out_shift, 
-                                   const q7_t * bias, 
-                                   q15_t * pOut, 
+                                   const uint16_t out_shift,
+                                   const q7_t * bias,
+                                   q15_t * pOut,
                                    q15_t * vec_buffer)
 {
 
@@ -106,13 +106,13 @@ riscv_fully_connected_mat_q7_vec_q15(const q15_t * pV,
 
             inV = *__SIMD32(pA)++;
 
-            sum  = __RV_SMALDA(sum , inV, inM11);
-            sum2 = __RV_SMALDA(sum2, inV, inM21);
+            sum  = __RV_KMADA(sum , inV, inM11);
+            sum2 = __RV_KMADA(sum2, inV, inM21);
 
             inV = *__SIMD32(pA)++;
 
-            sum  = __RV_SMALDA(sum , inV, inM12);
-            sum2 = __RV_SMALDA(sum2, inV, inM22);
+            sum  = __RV_KMADA(sum , inV, inM12);
+            sum2 = __RV_KMADA(sum2, inV, inM22);
 
             colCnt--;
         }
@@ -140,30 +140,50 @@ riscv_fully_connected_mat_q7_vec_q15(const q15_t * pV,
 
     while (rowCnt)
     {
-        q31_t     sum = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
-        uint16_t  colCnt = dim_vec >> 2;
 
         pA = pV;
+        q31_t     sum = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
+        uint16_t  colCnt = dim_vec >> 2;
+#if __RISCV_XLEN == 64
+        q63_t sum64 = 0;
+        while (colCnt)
+        {
+            q63_t     inV1, inV2;
+            q31_t     inM11, inM12;
+            pB = (q7_t *) read_and_pad((void *)pB, &inM11, &inM12);
+            inV2 = __RV_PKBB32(inM12,inM11);
+            inV1 = *__SIMD64(pA)++;
+            sum64 = __RV_KMADA(sum64, inV1, inV2);
+
+            // inV2 = *__SIMD32(pA)++;
+            // sum = __RV_KMADA(sum, inV2, inM12);
+            colCnt--;
+
+        }
+        sum = sum + (q31_t)(sum64 & 0xFFFFFFFF) + (q31_t)((sum64 & 0xFFFFFFFF00000000)>>32);
+
+#else
 
         while (colCnt)
         {
-           /* q31_t     inV1, inV2, inM11, inM12;
+            q31_t     inV1, inV2, inM11, inM12;
 
             pB = (q7_t *) read_and_pad((void *)pB, &inM11, &inM12);
 
             inV1 = *__SIMD32(pA)++;
-            sum = __SMLAD(inV1, inM11, sum);
+            sum = __RV_KMADA(sum, inV1, inM11);
 
             inV2 = *__SIMD32(pA)++;
-            sum = __SMLAD(inV2, inM12, sum);*/
-
+            sum = __RV_KMADA(sum, inV2, inM12);
+            /*
             q31_t     inB1 = *__SIMD32(pB)++;
             q31_t     inA1 = *__SIMD32(pA)++;
-            sum  = __RV_SMALDA(sum, inA1, inB1);
+            sum  = __RV_SMALDA(sum, inA1, inB1); */
 
             colCnt--;
         }
 
+#endif /* __RISCV_XLEN == 64 */
         /* left-over of the vector */
         colCnt = dim_vec & 0x3;
         while (colCnt)
@@ -174,7 +194,7 @@ riscv_fully_connected_mat_q7_vec_q15(const q15_t * pV,
             colCnt--;
         }
 
-        *pO++ = (q15_t) (__SSAT((sum >> out_shift), 16));
+        *pO++ = (q15_t) (__SSAT(((uint64_t)sum >> out_shift), 16));
 
         rowCnt--;
     }

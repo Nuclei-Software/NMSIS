@@ -82,6 +82,7 @@ void riscv_q7_to_q7_reordered_no_shift(const q7_t * pSrc, q7_t * pDst, uint32_t 
     uint32_t  blkCnt;           /* loop counter */
 
 
+#ifndef RISCV_MATH_CM0_FAMILY
     q31_t     in;
     //q31_t     in1, in2;
     q31_t     out;
@@ -108,6 +109,14 @@ void riscv_q7_to_q7_reordered_no_shift(const q7_t * pSrc, q7_t * pDst, uint32_t 
      ** No loop unrolling is used. */
     blkCnt = blockSize % 0x4u;
 
+#else
+
+    /* Run the below code for RISC-V Core without DSP */
+
+    /* Loop over blockSize number of values */
+    blkCnt = blockSize;
+
+#endif  /* #ifndef RISCV_MATH_CM0_FAMILY */
 
     while (blkCnt > 0u)
     {

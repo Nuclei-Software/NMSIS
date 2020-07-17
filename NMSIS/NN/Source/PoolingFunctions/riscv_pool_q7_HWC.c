@@ -108,11 +108,18 @@ static void accumulate_q7_to_q15(q15_t * base, q7_t * target, const uint16_t len
         q31_t     value = *__SIMD32(pV)++;
         v1 = __SXTB16(__ROR(value, 8));
         v2 = __SXTB16(value);
+#ifndef RISCV_MATH_BIG_ENDIAN
 
         vo2 = __RV_PKTT16(v1,v2);
         vo1 = __RV_PKBB16(v1,v2);
         
 
+#else
+        vo1 = __RV_PKTT16(v1,v2);
+        vo2 = __RV_PKBB16(v1,v2);
+       
+
+#endif
 
         in = *__SIMD32(pCnt);
         *__SIMD32(pCnt)++ = __RV_KADD16(vo1, in);

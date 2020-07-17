@@ -38,6 +38,7 @@
 * -------------------------------------------------------------------- */
 
 #include "riscv_nnexamples_nn_test.h"
+#include "bench.h"
 
 //#define TEST_SIGMOID
 //#define TEST_TANH
@@ -48,53 +49,6 @@
 #define TEST_NONSQUARE
 #define TEST_NNMULT
 
-#define read_csr(reg) ({ \
-	unsigned long __temp;   \
-	asm volatile("csrr %0, " #reg: "=r"(__temp)); \
-	__temp;  \
-})
-
-#if __riscv_xlen == 32
-static inline uint64_t read_cpu_cycle(void)
-{
-    uint32_t hi = 0, hi1 = 0, lo = 0;
-    uint64_t val = 0;
-    hi = read_csr(cycleh);
-    lo = read_csr(cycle);
-    hi1 = read_csr(cycleh);
-    if (hi != hi1) {
-        hi = read_csr(cycleh);
-        lo = read_csr(cycle);
-    }
-    val = (((uint64_t)hi) << 32) | lo;
-    return val;
-}
-#else
-static inline uint64_t read_cpu_cycle(void)
-{
-    uint64_t val = 0;
-    val = read_csr(cycle);
-    return val;
-}
-#endif
-
-uint64_t enter_cycle;
-uint64_t exit_cycle;
-uint64_t start_cycle;
-uint64_t end_cycle;
-uint64_t cycle;
-
-#define BENCH_INIT                enter_cycle=read_cpu_cycle(); \
-                                printf("CSV, BENCH START, %llu\n", enter_cycle);
-
-#define BENCH_START(func)         start_cycle=read_cpu_cycle();
-#define BENCH_END(func)           end_cycle=read_cpu_cycle(); \
-                                cycle=end_cycle-start_cycle; \
-                                printf("CSV, %s, %llu\n", #func, cycle); 
-
-#define BENCH_FINISH              exit_cycle=read_cpu_cycle(); \
-                                cycle=exit_cycle-enter_cycle; \
-                                printf("CSV, BENCH END, %llu\n", cycle);
 int test_index = 0;
 q7_t test_flags[50];
 bool test_pass;
@@ -112,8 +66,6 @@ int main()
     q15_t    *test4;
 
     BENCH_INIT;
-    BENCH_START(extra_cost);
-    BENCH_END(extra_cost);
 
     for (test_index = 0; test_index<50; test_index++) {
         test_flags[test_index] = -1;
@@ -712,7 +664,7 @@ int main()
     delete[]test1;
     delete[]test2;
     delete[]test3;
-	
+
 	test2 = new q15_t[RCONV_KER_DIM_Y * RCONV_KER_DIM_X * RCONV_IM_CH * RCONV_OUT_CH + RCONV_OUT_CH]; // weights + bias
 	test4 = new q15_t[2 * RCONV_KER_DIM_Y * RCONV_KER_DIM_X * RCONV_IM_CH   //buffer
 	         + RCONV_IM_DIM_Y * RCONV_IM_DIM_X * RCONV_IM_CH + 2 * RCONV_OUT_DIM_Y * RCONV_OUT_DIM_X * RCONV_OUT_CH]; // i/o
@@ -758,7 +710,7 @@ int main()
     BENCH_END(riscv_convolve_HWC_q15_fast_nonsquare);
 
     verify_results_q15(rconv_im_out_ref_q15, rconv_im_out_opt_q15, RCONV_OUT_DIM_Y * RCONV_OUT_DIM_X * RCONV_OUT_CH);
-	
+
     delete [] test2;
     delete [] test4;
 #endif

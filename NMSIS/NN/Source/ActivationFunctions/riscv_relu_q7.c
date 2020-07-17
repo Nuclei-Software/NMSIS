@@ -59,13 +59,28 @@ void riscv_relu_q7(q7_t * data, uint16_t size)
 #if defined (RISCV_MATH_DSP)
     /* Run the following code for RISC-V Core with DSP enabled */
 
-    uint16_t  i = size >> 2;
     q7_t     *pIn = data;
     q7_t     *pOut = data;
     q31_t     in;
     q31_t     buf;
     q31_t     mask;
     q31_t     zero = 0;
+#if __RISCV_XLEN == 64
+uint16_t  i = size >> 3;
+   q63_t in64;
+    while (i)
+    {      
+        
+        in64 = *__SIMD64(pIn)++;
+
+        *__SIMD64(pOut)++ = __RV_SMAX8 (in64,zero);
+        
+        i--;
+    }
+
+    i = size & 0x7;
+#else
+    uint16_t  i = size >> 2;
    
     while (i)
     {      
@@ -78,6 +93,7 @@ void riscv_relu_q7(q7_t * data, uint16_t size)
     }
 
     i = size & 0x3;
+#endif /* __RISCV_XLEN == 64 */
     while (i)
     {
         if (*pIn < 0)

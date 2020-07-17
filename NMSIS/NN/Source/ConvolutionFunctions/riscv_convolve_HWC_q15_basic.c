@@ -131,6 +131,18 @@ riscv_convolve_HWC_q15_basic(const q15_t * Im_in,
                 q31_t     sum = ((q31_t)bias[i] << bias_shift) + NN_ROUND(out_shift);
                 q15_t    *pB = im_buffer;
                 uint16_t  colCnt = ch_im_in * dim_kernel * dim_kernel >> 2;
+#if __RISCV_XLEN == 64
+                while (colCnt)
+                {
+                    q63_t     inA1 = *__SIMD64(pA)++;
+                    q63_t     inB1 = *__SIMD64(pB)++;
+
+                    sum = __RV_SMALDA(sum, inA1, inB1);
+
+                    colCnt--;
+                }
+                colCnt = ch_im_in * dim_kernel * dim_kernel & 0x3;
+#else
                 while (colCnt)
                 {
                     q31_t     inA1 = *__SIMD32(pA)++;
@@ -144,6 +156,7 @@ riscv_convolve_HWC_q15_basic(const q15_t * Im_in,
                     colCnt--;
                 }
                 colCnt = ch_im_in * dim_kernel * dim_kernel & 0x3;
+#endif /* __RISCV_XLEN == 64 */
                 while (colCnt)
                 {
                     q15_t     inA1 = *pA++;

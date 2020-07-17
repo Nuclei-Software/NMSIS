@@ -27,7 +27,9 @@ option(DSP64 "option to enable dsp 64" ON)
 option(RISCV_ARCH "option to select riscv arch" rv32imafdc)
 option(RISCV_ABI "option to select riscv abi" ilp32d)
 
+
 add_definitions(-march=${RISCV_ARCH} -mabi=${RISCV_ABI})
+add_definitions(-mcmodel=medany)
 
 add_definitions(-g -O2)
 if (DSP_ENABLE)

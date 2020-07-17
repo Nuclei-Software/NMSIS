@@ -62,9 +62,11 @@ build_no_dsp: clean
 install_no_dsp:
 	-mkdir -p $(TARGET_LIB_ROOT)
 	cp -f $(TARGET_CMAKE_BUILD)/$(TARGET_LIB_NAME).a $(TARGET_LIB_ROOT)
+	cp -f $(TARGET_CMAKE_BUILD)/$(TARGET_LIB_NAME)p.a $(TARGET_LIB_ROOT)
 
 ar_no_dsp:
 	cd $(TARGET_CMAKE_BUILD) ; find ./ -name "*.o" | xargs ar rcs $(TARGET_LIB_NAME).a
+	cd $(TARGET_CMAKE_BUILD) ; find ./ -name "*.o" | xargs ar rcs $(TARGET_LIB_NAME)p.a
 
 $(NNREFLIB_TARGETS):
 	make $(MAKE_PARAMS) CORE=$(subst _nnreflib,,$@)

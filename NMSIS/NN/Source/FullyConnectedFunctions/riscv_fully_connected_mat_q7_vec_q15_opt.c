@@ -94,7 +94,7 @@
    *  | a17 | a27 | a37 | a47 |
    *
    *  For the left-over rows, we do 1x1 computation, so the data remains
-   *  as its original order. 
+   *  as its original order.
    *
    *  So the stored weight matrix looks like this:
    *
@@ -144,7 +144,32 @@ riscv_fully_connected_mat_q7_vec_q15_opt(const q15_t * pV,
 
         pA = pV;
 
+#ifdef USE_INTRINSIC
 
+#ifndef RISCV_MATH_BIG_ENDIAN
+
+        while (colCnt)
+        {
+            q31_t     inM11, inM12, inM13, inM14;
+            q31_t     inV;
+
+            inV = *__SIMD32(pA)++;
+            inM11 = *__SIMD32(pB)++;
+            inM12 = __RV_SUNPKD820(__ROR(inM11, 8));
+            inM11 = __RV_SUNPKD820(inM11);
+            sum = __RV_KMADA(sum, inM11, inV);
+            sum2 = __RV_KMADA(sum2, inM12, inV);
+            inM13 = *__SIMD32(pB)++;
+            inM14 = __RV_SUNPKD820(__ROR(inM13, 8));
+            inM13 = __RV_SUNPKD820(inM13);
+            sum3 = __RV_KMADA(sum3, inM13, inV);
+            sum4 = __RV_KMADA(sum4, inM14, inV);
+
+
+            colCnt--;
+        }
+
+#else
 
         while (colCnt)
         {
@@ -155,19 +180,70 @@ riscv_fully_connected_mat_q7_vec_q15_opt(const q15_t * pV,
             inM11 = *__SIMD32(pB)++;
             inM12 = __SXTB16(__ROR(inM11, 8));
             inM11 = __SXTB16(inM11);
-            sum = __SMLAD(inM11, inV, sum);
-            sum2 = __SMLAD(inM12, inV, sum2);
+            sum = __SMLAD(inM12, inV, sum);
+            sum2 = __SMLAD(inM11, inV, sum2);
             inM13 = *__SIMD32(pB)++;
             inM14 = __SXTB16(__ROR(inM13, 8));
             inM13 = __SXTB16(inM13);
-            sum3 = __SMLAD(inM13, inV, sum3);
-            sum4 = __SMLAD(inM14, inV, sum4);
-            
-            
+            sum3 = __SMLAD(inM14, inV, sum3);
+            sum4 = __SMLAD(inM13, inV, sum4);
             colCnt--;
         }
 
+#endif                          /* RISCV_MATH_BIG_ENDIAN */
 
+#else
+
+        /*
+         * register needed:
+         * loop counter: colCnt
+         * accumulators: sum, sum2, sum3, sum4
+         * pointers: pB, pA
+         * weight data: inM11, inM12, inM13, inM14
+         * activation data: inV
+         */
+
+#ifndef RISCV_MATH_BIG_ENDIAN
+        asm volatile ("COL_LOOP_%=:\n"
+                      "ldr.w r4, [%[pA]], #4\n"
+                      "ldr.w r1, [%[pB]], #8\n"
+                      "mov.w r0, r1, ror #8\n"
+                      "sxtb16 r0, r0\n"
+                      "sxtb16 r1, r1\n"
+                      "smlad %[sum], r4, r1, %[sum]\n"
+                      "smlad %[sum2], r4, r0, %[sum2]\n"
+                      "ldr.w r3, [%[pB], #-4]\n"
+                      "mov.w r2, r3, ror #8\n"
+                      "sxtb16 r2, r2\n"
+                      "sxtb16 r3, r3\n"
+                      "smlad %[sum3], r4, r3, %[sum3]\n"
+                      "smlad %[sum4], r4, r2, %[sum4]\n"
+                      "subs %[colCnt], #1\n"
+                      "bne COL_LOOP_%=\n":[sum] "+r"(sum),
+                      [sum2] "+r"(sum2),[sum3] "+r"(sum3),
+                      [sum4] "+r"(sum4),[pB] "+r"(pB),[pA] "+r"(pA):[colCnt] "r"(colCnt):"r0", "r1", "r2", "r3", "r4");
+#else
+        asm volatile ("COL_LOOP_%=:\n"
+                      "ldr.w r4, [%[pA]], #4\n"
+                      "ldr.w r1, [%[pB]], #8\n"
+                      "mov.w r0, r1, ror #8\n"
+                      "sxtb16 r0, r0\n"
+                      "sxtb16 r1, r1\n"
+                      "smlad %[sum], r4, r0, %[sum]\n"
+                      "smlad %[sum2], r4, r1, %[sum2]\n"
+                      "ldr.w r3, [%[pB], #-4]\n"
+                      "mov.w r2, r3, ror #8\n"
+                      "sxtb16 r2, r2\n"
+                      "sxtb16 r3, r3\n"
+                      "smlad %[sum3], r4, r2, %[sum3]\n"
+                      "smlad %[sum4], r4, r3, %[sum4]\n"
+                      "subs %[colCnt], #1\n"
+                      "bne COL_LOOP_%=\n":[sum] "+r"(sum),
+                      [sum2] "+r"(sum2),[sum3] "+r"(sum3),
+                      [sum4] "+r"(sum4),[pB] "+r"(pB),[pA] "+r"(pA):[colCnt] "r"(colCnt):"r0", "r1", "r2", "r3", "r4");
+#endif                          /* RISCV_MATH_BIG_ENDIAN */
+
+#endif                          /* USE_INTRINSIC */
 
         colCnt = dim_vec & 0x1;
         while (colCnt)
@@ -199,29 +275,48 @@ riscv_fully_connected_mat_q7_vec_q15_opt(const q15_t * pV,
     while (rowCnt)
     {
         q31_t     sum = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
-
-        uint16_t  colCnt = dim_vec >> 2;
-
         pA = pV;
+        uint16_t  colCnt = dim_vec >> 2;
+#if __RISCV_XLEN == 64
+        q63_t sum64 = 0;
+        while (colCnt)
+        {
+            q63_t     inV1, inV2;
+            q31_t     inM11, inM12;
+            pB = (q7_t *) read_and_pad((void *)pB, &inM11, &inM12);
+            inV2 = __RV_PKBB32(inM12,inM11);
+            inV1 = *__SIMD64(pA)++;
+            sum64 = __RV_KMADA(sum64, inV1, inV2);
+            colCnt--;
+
+            // inV2 = *__SIMD32(pA)++;
+            // sum = __RV_KMADA(sum, inV2, inM12);
+
+        }
+        sum = sum + (q31_t)(sum64 & 0xFFFFFFFF) + (q31_t)((sum64 & 0xFFFFFFFF00000000)>>32);
+        /* left-over of the vector */
+#else
+
 
         while (colCnt)
-        {/*
+        {
             q31_t     inV1, inV2, inM11, inM12;
 
             pB = (q7_t *) read_and_pad((void *)pB, &inM11, &inM12);
 
             inV1 = *__SIMD32(pA)++;
-            sum = __SMLAD(inV1, inM11, sum);
+            sum = __RV_KMADA(sum, inV1, inM11);
 
             inV2 = *__SIMD32(pA)++;
-            sum = __SMLAD(inV2, inM12, sum);*/
-
+            sum = __RV_KMADA(sum, inV2, inM12);
+            /*
             q31_t     inB1 = *__SIMD32(pB)++;
             q31_t     inA1 = *__SIMD32(pA)++;
-            sum  = __RV_KMAR64(inA1, inB1, sum);
+            sum  = __RV_KMAR64(sum, inA1, inB1);*/
             colCnt--;
-            
+
         }
+#endif /* __RISCV_XLEN == 64 */
 
         /* left-over of the vector */
         colCnt = dim_vec & 0x3;
@@ -233,7 +328,7 @@ riscv_fully_connected_mat_q7_vec_q15_opt(const q15_t * pV,
             colCnt--;
         }
 
-        *pO++ = (q15_t) (__SSAT((sum >> out_shift), 16));
+        *pO++ = (q15_t) (__SSAT(((q31_t)((uint64_t)sum) >> out_shift), 16));
 
         rowCnt--;
     }
@@ -250,8 +345,8 @@ riscv_fully_connected_mat_q7_vec_q15_opt(const q15_t * pV,
     {
         q31_t     sum =  ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
         q31_t     sum2 = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
-        q31_t     sum3 = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift); 
-        q31_t     sum4 = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift); 
+        q31_t     sum3 = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
+        q31_t     sum4 = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
         uint16_t  colCnt = dim_vec >> 1;
 
         pA = pV;

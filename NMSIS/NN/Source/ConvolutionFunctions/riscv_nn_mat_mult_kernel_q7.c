@@ -79,7 +79,31 @@ q7_t     *riscv_nn_mat_mult_kernel_q7(const q7_t * pA,
         q31_t     sum2 = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
         q31_t     sum3 = ((q31_t)(*pBias) << bias_shift) + NN_ROUND(out_shift);
         q31_t     sum4 = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
+#if __RISCV_XLEN == 64
+        uint16_t  colCnt = numCol_A >> 3;
+        q63_t sum64 = 0, sum642 = 0, sum643 = 0, sum644 = 0;
+        /* accumulate over the vector */
+        while (colCnt)
+        {
+           
+            q63_t     inB1 = *__SIMD64(pB)++;
+            q63_t     inB2 = *__SIMD64(pB2)++;
+            q63_t     inA1 = *__SIMD64(pA)++;
+            q63_t     inA2 = *__SIMD64(pA2)++;
 
+            sum64  = __RV_SMAQA(sum64 , inA1, inB1);
+            sum642 = __RV_SMAQA(sum642, inA1, inB2);
+            sum643 = __RV_SMAQA(sum643, inA2, inB1);
+            sum644 = __RV_SMAQA(sum644, inA2, inB2);
+
+            colCnt--;
+        }                       /* while over colCnt */
+        sum  = sum  + (q31_t)(sum64  & 0xFFFFFFFF) + (q31_t)((sum64  & 0xFFFFFFFF00000000)>>32);
+        sum2 = sum2 + (q31_t)(sum642 & 0xFFFFFFFF) + (q31_t)((sum642 & 0xFFFFFFFF00000000)>>32);
+        sum3 = sum3 + (q31_t)(sum643 & 0xFFFFFFFF) + (q31_t)((sum643 & 0xFFFFFFFF00000000)>>32);
+        sum4 = sum4 + (q31_t)(sum644 & 0xFFFFFFFF) + (q31_t)((sum644 & 0xFFFFFFFF00000000)>>32);
+        colCnt = numCol_A & 0x7;
+#else
         uint16_t  colCnt = numCol_A >> 2;
         /* accumulate over the vector */
         while (colCnt)
@@ -100,6 +124,7 @@ q7_t     *riscv_nn_mat_mult_kernel_q7(const q7_t * pA,
         }                       /* while over colCnt */
  
         colCnt = numCol_A & 0x3;
+#endif /* __RISCV_XLEN == 64 */
         while (colCnt)
         {
             q7_t      inA1 = *pA++;
