@@ -39,6 +39,7 @@
  * flashxip: Program will to be download into flash and run directly in Flash
  * flash: Program will be download into flash, when running, program will be copied to ilm/ram and run in ilm/ram
  * ilm: Program will be download into ilm/ram and run directly in ilm/ram, program lost when poweroff
+ * ddr: Program will be download into ddr and run directly in ddr, program lost when poweroff
  */
 
 /*** Vector Table Code Section ***/
@@ -47,6 +48,7 @@
      * This template startup code by default is for FlashXIP mode:
      * FlashXIP: .vtable
      * ILM: .vtable
+     * DDR: .vtable
      * Flash: .vtable_ilm
      */
     .section .vtable
@@ -89,7 +91,7 @@
 
     .globl vector_base
 vector_base:
-    /* TODO: For ILM and FlashXIP download mode, please place the following two lines */
+    /* TODO: For ILM, DDR, and FlashXIP download mode, please place the following two lines */
     j _start                                                /* 0: Reserved, Jump to _start when reset for ILM/FlashXIP mode.*/
     .align LOG_REGBYTES                                     /*    Need to align 4 byte for RV32, 8 Byte for RV64 */
 
@@ -235,6 +237,9 @@ _start:
     /* Enable mcycle and minstret counter */
     csrci CSR_MCOUNTINHIBIT, 0x5
 
+    /* Enable ICache and DCache if present */
+    csrs CSR_MCACHE_CTL, 0x10001
+
     /*
      * Call vendor defined SystemInit to
      * initialize the micro-controller system.
@@ -294,12 +299,15 @@ _start:
     /* Call C/C++ constructor start up code */
     call __libc_init_array
 
-
+    /* do pre-init steps before main */
+    call _premain_init
     /* ===== Call Main Function  ===== */
     /* argc = argv = 0 */
     li a0, 0
     li a1, 0
     call main
+    /* do post-main steps after main */
+    call _postmain_fini
 
 1:
     j 1b

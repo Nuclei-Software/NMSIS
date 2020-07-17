@@ -139,13 +139,13 @@ void SystemInit (void)
  */
 /** \brief Max exception handler number, don't include the NMI(0xFFF) one */
 #define MAX_SYSTEM_EXCEPTION_NUM        12
-/** 
+/**
  * \brief      Store the exception handlers for each exception ID
  * \note
  * - This SystemExceptionHandlers are used to store all the handlers for all
  * the exception codes Nuclei N/NX core provided.
  * - Exception code 0 - 11, totally 12 exceptions are mapped to SystemExceptionHandlers[0:11]
- * - Exception for NMI is also re-routed to exception handling(exception code 0xFFF) in startup code configuration, the handler itself is mapped to SystemExceptionHandlers[MAX_SYSTEM_EXCEPTION_NUM] 
+ * - Exception for NMI is also re-routed to exception handling(exception code 0xFFF) in startup code configuration, the handler itself is mapped to SystemExceptionHandlers[MAX_SYSTEM_EXCEPTION_NUM]
  */
 static unsigned long SystemExceptionHandlers[MAX_SYSTEM_EXCEPTION_NUM+1];
 
@@ -173,7 +173,7 @@ static void system_default_exception_handler(unsigned long mcause, unsigned long
     while(1);
 }
 
-/** 
+/**
  * \brief      Initialize all the default core exception handlers
  * \details
  * The core exception handler for each exception id will be initialized to \ref system_default_exception_handler.
@@ -187,7 +187,7 @@ static void Exception_Init(void)
     }
 }
 
-/** 
+/**
  * \brief       Register an exception handler for exception code EXCn
  * \details
  * * For EXCn < \ref MAX_SYSTEM_EXCEPTION_NUM, it will be registered into SystemExceptionHandlers[EXCn-1].
@@ -204,7 +204,7 @@ void Exception_Register_EXC(uint32_t EXCn, unsigned long exc_handler)
     }
 }
 
-/** 
+/**
  * \brief       Get current exception handler for exception code EXCn
  * \details
  * * For EXCn < \ref MAX_SYSTEM_EXCEPTION_NUM, it will return SystemExceptionHandlers[EXCn-1].
@@ -262,7 +262,7 @@ uint32_t core_exception_handler(unsigned long mcause, unsigned long sp)
 void ECLIC_Init(void)
 {
     /* Global Configuration about MTH and NLBits.
-     * TODO: Please adapt it according to your system requirement. 
+     * TODO: Please adapt it according to your system requirement.
      * This function is called in _init function */
     /* Set CSR MTH to zero */
     ECLIC_SetMth(0);
@@ -307,10 +307,44 @@ int32_t ECLIC_Register_IRQ(IRQn_Type IRQn, uint8_t shv, ECLIC_TRIGGER_Type trig_
         ECLIC_SetVector(IRQn, (rv_csr_t)handler);
     }
     /* enable interrupt */
-    ECLIC_EnableIRQ(IRQn); 
+    ECLIC_EnableIRQ(IRQn);
     return 0;
 }
 /** @} */ /* End of Doxygen Group NMSIS_Core_ExceptionAndNMI */
+
+/**
+ * \brief early init function before main
+ * \details
+ * This function is executed right before main function.
+ * For RISC-V gnu toolchain, _init function might not be called
+ * by __libc_init_array function, so we defined a new function
+ * to do initialization
+ */
+void _premain_init(void)
+{
+    /* TODO: Add your own initialization code here, called before main  */
+    // TODO: Add code to set the system clock frequency value SystemCoreClock
+
+    // TODO: Add code to initialize necessary gpio and basic uart for debug print
+
+    /* Initialize exception default handlers */
+    Exception_Init();
+    /* ECLIC initilization, mainly MTH and NLBIT settings */
+    ECLIC_Init();
+}
+
+/**
+ * \brief finish function after main
+ * \details
+ * This function is executed right after main function.
+ * For RISC-V gnu toolchain, _fini function might not be called
+ * by __libc_fini_array function, so we defined a new function
+ * to do initialization
+ */
+void _postmain_fini(void)
+{
+    /* TODO: Add your own finishing code here, called after main */
+}
 
 /**
  * \brief _init function called in __libc_init_array()
@@ -318,18 +352,12 @@ int32_t ECLIC_Register_IRQ(IRQn_Type IRQn, uint8_t shv, ECLIC_TRIGGER_Type trig_
  * This `__libc_init_array()` function is called during startup code,
  * user need to implement this function, otherwise when link it will
  * error init.c:(.text.__libc_init_array+0x26): undefined reference to `_init'
+ * \note
+ * Please use \ref _premain_init function now
  */
 void _init(void)
 {
-    /* TODO: Add your own initialization code here, called before main via __libc_init_array */
-    // TODO: Add code to set the system clock frequency value SystemCoreClock
-    
-    // TODO: Add code to initialize necessary gpio and basic uart for debug print
-    
-    /* Initialize exception default handlers */
-    Exception_Init();
-    /* ECLIC initilization, mainly MTH and NLBIT settings */
-    ECLIC_Init();
+    /* Don't put any code here, please use _premain_init now */
 }
 
 /**
@@ -338,11 +366,12 @@ void _init(void)
  * This `__libc_fini_array()` function is called when exit main.
  * user need to implement this function, otherwise when link it will
  * error fini.c:(.text.__libc_fini_array+0x28): undefined reference to `_fini'
+ * \note
+ * Please use \ref _postmain_fini function now
  */
 void _fini(void)
 {
-    /* TODO: Add your own finishing code here, called after main via __libc_fini_array */
-
+    /* Don't put any code here, please use _postmain_fini now */
 }
 
 /** @} */ /* End of Doxygen Group NMSIS_Core_SystemAndClock */
