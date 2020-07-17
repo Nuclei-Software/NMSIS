@@ -144,6 +144,7 @@ deploy_website:
           - master
         changes:
           - NMSIS/doc/source/**/**/**/*
+          - .gitlab-ci.yml
     artifacts:
         name: "nmsis_doc-${CI_COMMIT_SHA::8}"
         paths:
