@@ -170,7 +170,7 @@ _start:
     csrw CSR_MTVEC, t0
 
     /* Set the interrupt processing mode to ECLIC mode */
-    la t0, 0x3f
+    li t0, 0x3f
     csrc CSR_MTVEC, t0
     csrs CSR_MTVEC, 0x3
 
@@ -187,7 +187,8 @@ _start:
     csrci CSR_MCOUNTINHIBIT, 0x5
 
     /* Enable ICache and DCache if present */
-    csrs CSR_MCACHE_CTL, 0x10001
+    li t0, 0x10001
+    csrs CSR_MCACHE_CTL, t0
 
     /*
      * Call vendor defined SystemInit to
