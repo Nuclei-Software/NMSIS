@@ -251,7 +251,7 @@ _start:
 
     /* ===== Startup Stage 3 ===== */
     /*
-     * Load code section frm FLASH to ILM
+     * Load code section from FLASH to ILM
      * when code LMA is different with VMA
      */
     la a0, _ilm_lma
