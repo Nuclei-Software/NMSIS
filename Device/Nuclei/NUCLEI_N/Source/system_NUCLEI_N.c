@@ -141,7 +141,7 @@ static unsigned long SystemExceptionHandlers[MAX_SYSTEM_EXCEPTION_NUM+1];
  * This typedef is only used internal in this system_NUCLEI_N.c file.
  * It is used to do type conversion for registered exception handler before calling it.
  */
-typedef	void (*EXC_HANDLER) (unsigned long mcause, unsigned long sp);
+typedef void (*EXC_HANDLER) (unsigned long mcause, unsigned long sp);
 
 /**
  * \brief      System Default Exception Handler
@@ -233,7 +233,7 @@ uint32_t core_exception_handler(unsigned long mcause, unsigned long sp)
     if (exc_handler != NULL) {
         exc_handler(mcause, sp);
     }
-	return 0;
+    return 0;
 }
 
 /**
