@@ -58,7 +58,11 @@ void riscv_mult_q31(
         uint32_t blockSize)
 {
         uint32_t blkCnt;                               /* Loop counter */
+#if __RISCV_XLEN == 64
+        q63_t temp;                                     /* Temporary output variable */
+#endif
         q31_t out;                                     /* Temporary output variable */
+
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -68,28 +72,42 @@ void riscv_mult_q31(
   while (blkCnt > 0U)
   {
     /* C = A * B */
-// #if __RISCV_XLEN == 64
-// 	write_q31x2_ia (&pDst, __RV_SMBB32(read_q31x2_ia ((q31_t **) &pSrcA),read_q31x2_ia ((q31_t **) &pSrcB)));
-// 	write_q31x2_ia (&pDst, __RV_SMBB32(read_q31x2_ia ((q31_t **) &pSrcA),read_q31x2_ia ((q31_t **) &pSrcB)));
-// #else
+#if __RISCV_XLEN == 64
+
+    temp = __RV_SMMUL(read_q31x2_ia((q31_t **) &pSrcA), read_q31x2_ia((q31_t **) &pSrcB));
+    out = __SSAT(temp, 31);
+    *pDst++ = out << 1U;
+
+    // out = __RV_SMMUL(*pSrcA++, *pSrcB++);
+    out = __SSAT(temp>>32, 31);
+    *pDst++ = out << 1U;
+
+    temp = __RV_SMMUL(read_q31x2_ia((q31_t **) &pSrcA), read_q31x2_ia((q31_t **) &pSrcB));
+    out = __SSAT(temp, 31);
+    *pDst++ = out << 1U;
+
+    // out = __RV_SMMUL(*pSrcA++, *pSrcB++);
+    out = __SSAT(temp>>32, 31);
+    *pDst++ = out << 1U;
+#else
     /* Multiply inputs and store result in destination buffer. */
-    out = ((q63_t) *pSrcA++ * *pSrcB++) >> 32;
+    out = __RV_SMMUL(*pSrcA++, *pSrcB++);
     out = __SSAT(out, 31);
     *pDst++ = out << 1U;
 
-    out = ((q63_t) *pSrcA++ * *pSrcB++) >> 32;
+    out = __RV_SMMUL(*pSrcA++, *pSrcB++);
     out = __SSAT(out, 31);
     *pDst++ = out << 1U;
 
-    out = ((q63_t) *pSrcA++ * *pSrcB++) >> 32;
+    out = __RV_SMMUL(*pSrcA++, *pSrcB++);
     out = __SSAT(out, 31);
     *pDst++ = out << 1U;
 
-    out = ((q63_t) *pSrcA++ * *pSrcB++) >> 32;
+    out = __RV_SMMUL(*pSrcA++, *pSrcB++);
     out = __SSAT(out, 31);
     *pDst++ = out << 1U;
 
-// #endif /* __RISCV_XLEN == 64 */
+#endif /* __RISCV_XLEN == 64 */
     /* Decrement loop counter */
     blkCnt--;
   }
@@ -116,6 +134,7 @@ void riscv_mult_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
+
 
 }
 
