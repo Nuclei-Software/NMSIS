@@ -224,7 +224,9 @@ riscv_status riscv_conv_partial_q7(
         /* Decrement loop counter */
         k--;
       }
-
+#if __RISCV_XLEN == 64
+    py += 7;
+#endif /* __RISCV_XLEN == 64 */
       /* Loop unrolling: Compute remaining outputs */
       k = count % 0x4U;
 

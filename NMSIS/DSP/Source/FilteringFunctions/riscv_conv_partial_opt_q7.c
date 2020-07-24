@@ -168,9 +168,6 @@ riscv_status riscv_conv_partial_opt_q7(
      ** a second loop below copies for the remaining 1 to 3 samples. */
     while (k > 0U)
     {
-#if __RISCV_XLEN == 64
-    write_q15x4_ia(&pScr2,read_q15x4_da((q15_t **)&px));
-#else
       /* copy second buffer in reversal manner */
       x4 = (q15_t) *pIn1++;
       *pScr1++ = x4;
@@ -180,7 +177,6 @@ riscv_status riscv_conv_partial_opt_q7(
       *pScr1++ = x4;
       x4 = (q15_t) *pIn1++;
       *pScr1++ = x4;
-#endif /* __RISCV_XLEN == 64 */
       /* Decrement loop counter */
       k--;
     }

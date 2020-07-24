@@ -122,7 +122,7 @@ void riscv_conv_opt_q15(
   /* Loop unrolling: Compute 4 outputs at a time */
   k = srcBLen >> 2U;
 #if __RISCV_XLEN == 64
-  pScr2 -= 4;
+  pScr2 -= 3;
 #endif /* __RISCV_XLEN == 64 */
   /* Copy smaller length input sequence in reverse order into second scratch buffer */
   while (k > 0U)
@@ -140,7 +140,9 @@ void riscv_conv_opt_q15(
     /* Decrement loop counter */
     k--;
   }
-
+#if __RISCV_XLEN == 64
+  pScr2 += 3;
+#endif /* __RISCV_XLEN == 64 */
   /* Loop unrolling: Compute remaining outputs */
   k = srcBLen % 0x4U;
 

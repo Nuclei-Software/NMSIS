@@ -209,7 +209,9 @@ riscv_status riscv_conv_partial_q31(
         /* Decrement loop counter */
         k--;
       }
-
+#if __RISCV_XLEN == 64
+    py++;
+#endif /* __RISCV_XLEN == 64 */
       /* Loop unrolling: Compute remaining outputs */
       k = count % 0x4U;
 
@@ -414,7 +416,9 @@ riscv_status riscv_conv_partial_q31(
 
         /* Loop unrolling: Compute 4 outputs at a time */
         k = srcBLen >> 2U;
-
+#if __RISCV_XLEN == 64
+    py--;
+#endif /* __RISCV_XLEN == 64 */
         while (k > 0U)
         {
 #if __RISCV_XLEN == 64
@@ -435,7 +439,9 @@ riscv_status riscv_conv_partial_q31(
           /* Decrement loop counter */
           k--;
         }
-
+#if __RISCV_XLEN == 64
+    py++;
+#endif /* __RISCV_XLEN == 64 */
         /* Loop unrolling: Compute remaining outputs */
         k = srcBLen % 0x4U;
 
@@ -572,7 +578,9 @@ riscv_status riscv_conv_partial_q31(
         /* Decrement loop counter */
         k--;
       }
-
+#if __RISCV_XLEN == 64
+    py++;
+#endif /* __RISCV_XLEN == 64 */
       /* Loop unrolling: Compute remaining outputs */
       k = count % 0x4U;
 

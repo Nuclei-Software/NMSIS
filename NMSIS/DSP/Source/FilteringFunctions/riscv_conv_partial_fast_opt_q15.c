@@ -126,7 +126,7 @@ riscv_status riscv_conv_partial_fast_opt_q15(
 
 #if __RISCV_XLEN == 64
   /* Pointer to take end of scratch2 buffer */
-  pScr2 = pScratch2 + srcBLen - 5;
+  pScr2 = pScratch2 + srcBLen - 4;
 #else
    /* Pointer to take end of scratch2 buffer */
     pScr2 = pScratch2 + srcBLen - 1;

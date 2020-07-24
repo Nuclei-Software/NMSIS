@@ -227,7 +227,9 @@ riscv_status riscv_conv_partial_fast_q15(
         /* Decrement loop counter */
         k--;
       }
-
+#if defined RISCV_MATH_DSP && __RISCV_XLEN == 64
+       py += 2;
+#endif /* RISCV_MATH_DSP && __RISCV_XLEN == 64 */
       /* For the next MAC operations, the pointer py is used without SIMD
          So, py is incremented by 1 */
       py = py + 1U;

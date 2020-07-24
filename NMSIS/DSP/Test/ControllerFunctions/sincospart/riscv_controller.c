@@ -29,7 +29,6 @@ static int DSP_SIN_COS_F32(void)
     riscv_sin_cos_f32(0, &pSinVal, &pCosVal);
     BENCH_END(riscv_sin_cos_f32);
     ref_sin_cos_f32(0, &pSinVal_ref, &pCosVal_ref);
-    printf("%-20s : cycle: %d\n", "riscv_sin_cos_f32", cycle);
     if ((fabs(pSinVal - pSinVal_ref) > DELTAF32) ||
         (fabs(pCosVal - pCosVal_ref) > DELTAF32)) {
         BENCH_ERROR(riscv_sin_cos_f32);
@@ -50,7 +49,6 @@ static int DSP_SIN_COS_Q31(void)
     riscv_sin_cos_q31(0, &pSinVal, &pCosVal);
     BENCH_END(riscv_sin_cos_q31);
     ref_sin_cos_q31(0, &pSinVal_ref, &pCosVal_ref);
-    printf("%-20s : cycle: %d\n", "riscv_sin_cos_q31", cycle);
     if ((labs(pSinVal - pSinVal_ref) > DELTAQ31) ||
         (labs(pCosVal - pCosVal_ref) > DELTAQ31)) {
         BENCH_ERROR(riscv_sin_cos_q31);

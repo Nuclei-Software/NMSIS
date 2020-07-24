@@ -194,7 +194,9 @@ void riscv_conv_q31(
       /* Decrement loop counter */
       k--;
     }
-
+#if __RISCV_XLEN == 64
+    py++;
+#endif /* __RISCV_XLEN == 64 */
     /* Loop unrolling: Compute remaining outputs */
     k = count % 0x4U;
 
@@ -410,7 +412,9 @@ void riscv_conv_q31(
         /* Decrement loop counter */
         k--;
       }
-
+#if __RISCV_XLEN == 64
+    py++;
+#endif /* __RISCV_XLEN == 64 */
       /* Loop unrolling: Compute remaining outputs */
       k = srcBLen % 0x4U;
 
@@ -548,7 +552,9 @@ void riscv_conv_q31(
       /* Decrement loop counter */
       k--;
     }
-
+#if __RISCV_XLEN == 64
+    py++;
+#endif /* __RISCV_XLEN == 64 */
     /* Loop unrolling: Compute remaining outputs */
     k = blockSize3 % 0x4U;
 

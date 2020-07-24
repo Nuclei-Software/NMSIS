@@ -260,9 +260,9 @@ riscv_status riscv_conv_partial_q15(
       /* Update the inputA and inputB pointers for next MAC calculation */
       py = ++pSrc2 - 1U;
       px = pIn1;
-#if __RISCV_XLEN == 64
-      py = py - 2;
-#endif /* __RISCV_XLEN == 64 */
+// #if __RISCV_XLEN == 64
+//       py = py - 2;
+// #endif /* __RISCV_XLEN == 64 */
       /* Increment MAC count */
       count++;
 

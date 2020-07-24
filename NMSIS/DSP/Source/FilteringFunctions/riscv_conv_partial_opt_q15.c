@@ -133,7 +133,7 @@ riscv_status riscv_conv_partial_opt_q15(
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 #if __RISCV_XLEN == 64
-  pScr2 -= 4;
+  pScr2 -= 3;
 #endif /* __RISCV_XLEN == 64 */
     /* Loop unrolling: Compute 4 outputs at a time */
     k = srcBLen >> 2U;
@@ -153,7 +153,9 @@ riscv_status riscv_conv_partial_opt_q15(
       /* Decrement loop counter */
       k--;
     }
-
+#if __RISCV_XLEN == 64
+  pScr2 += 3;
+#endif /* __RISCV_XLEN == 64 */
     /* Loop unrolling: Compute remaining outputs */
     k = srcBLen % 0x4U;
 
