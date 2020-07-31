@@ -3,15 +3,10 @@
 Changelog
 =========
 
-V1.0.1-dev
+V1.0.1-RC1
 ----------
 
-This is release version ``V1.0.1-dev`` of NMSIS, which is still in development.
-
-.. warning::
-
-   * The formal release is not yet published, the code is still under development,
-     the changelog is updated due to code changes.
+This is release candidate version ``V1.0.1-RC1`` of NMSIS.
 
 
 * **NMSIS-Core**
