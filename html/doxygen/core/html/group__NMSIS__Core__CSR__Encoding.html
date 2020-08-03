@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-Core
-   &#160;<span id="projectnumber">Version 1.0.0</span>
+   &#160;<span id="projectnumber">Version 1.0.1</span>
    </div>
    <div id="projectbrief">NMSIS-Core support for Nuclei processor-based devices</div>
   </td>
@@ -314,18 +314,94 @@ Macros</h2></td></tr>
 <tr class="separator:ga92ca7b4341e5a046f312f5f0db077f44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gab4e2e4b72ec1e13b315dcdc910f5595b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#gab4e2e4b72ec1e13b315dcdc910f5595b">MIE_MEIE</a>&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__CSR__Encoding.html#gaa0b390526aa02e969ae64235b983069a">MIP_MEIP</a></td></tr>
 <tr class="separator:gab4e2e4b72ec1e13b315dcdc910f5595b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga20aa60b214851659e139accdc108f131"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga20aa60b214851659e139accdc108f131">WFE_WFE</a>&#160;&#160;&#160;0x1</td></tr>
+<tr class="memitem:ga20aa60b214851659e139accdc108f131"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga20aa60b214851659e139accdc108f131">WFE_WFE</a>&#160;&#160;&#160;(0x1)</td></tr>
 <tr class="separator:ga20aa60b214851659e139accdc108f131"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gade924168088e3928b41d450f8e3458f3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#gade924168088e3928b41d450f8e3458f3">TXEVT_TXEVT</a>&#160;&#160;&#160;(0x1)</td></tr>
+<tr class="separator:gade924168088e3928b41d450f8e3458f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1248cd9846d593036d74cfd55a582632"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga1248cd9846d593036d74cfd55a582632">SLEEPVALUE_SLEEPVALUE</a>&#160;&#160;&#160;(0x1)</td></tr>
+<tr class="separator:ga1248cd9846d593036d74cfd55a582632"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae8693a1f795a0f752391c609ce011cbf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#gae8693a1f795a0f752391c609ce011cbf">MCOUNTINHIBIT_IR</a>&#160;&#160;&#160;(1&lt;&lt;2)</td></tr>
 <tr class="separator:gae8693a1f795a0f752391c609ce011cbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga675e4d52a85bafc0a1663cf2f431583a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga675e4d52a85bafc0a1663cf2f431583a">MCOUNTINHIBIT_CY</a>&#160;&#160;&#160;(1&lt;&lt;0)</td></tr>
 <tr class="separator:ga675e4d52a85bafc0a1663cf2f431583a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga58fdda659daafb923a409a1bbe0c6655"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga58fdda659daafb923a409a1bbe0c6655">MILM_CTL_ILM_BPA</a>&#160;&#160;&#160;(((1ULL&lt;&lt;((__riscv_xlen)-10))-1)&lt;&lt;10)</td></tr>
+<tr class="separator:ga58fdda659daafb923a409a1bbe0c6655"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5c75afd05ea4349e7dc851589a2b4c60"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga5c75afd05ea4349e7dc851589a2b4c60">MILM_CTL_ILM_EN</a>&#160;&#160;&#160;(1&lt;&lt;0)</td></tr>
+<tr class="separator:ga5c75afd05ea4349e7dc851589a2b4c60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga66efca6fe008b17b3e58f55cfc3454ba"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga66efca6fe008b17b3e58f55cfc3454ba">MDLM_CTL_DLM_BPA</a>&#160;&#160;&#160;(((1ULL&lt;&lt;((__riscv_xlen)-10))-1)&lt;&lt;10)</td></tr>
+<tr class="separator:ga66efca6fe008b17b3e58f55cfc3454ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6cb4731642366eac4dfbba732abdf45c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga6cb4731642366eac4dfbba732abdf45c">MDLM_CTL_DLM_EN</a>&#160;&#160;&#160;(1&lt;&lt;0)</td></tr>
+<tr class="separator:ga6cb4731642366eac4dfbba732abdf45c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab1ea496c56aa682d757ee18f207898b2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#gab1ea496c56aa682d757ee18f207898b2">MSUBM_PTYP</a>&#160;&#160;&#160;(0x3&lt;&lt;8)</td></tr>
+<tr class="separator:gab1ea496c56aa682d757ee18f207898b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaeaa1f8b914ede4c086b0444b3a66c82d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#gaeaa1f8b914ede4c086b0444b3a66c82d">MSUBM_TYP</a>&#160;&#160;&#160;(0x3&lt;&lt;6)</td></tr>
+<tr class="separator:gaeaa1f8b914ede4c086b0444b3a66c82d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa453deb1f8a1f3f3a5838ad4965ca766"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#gaa453deb1f8a1f3f3a5838ad4965ca766">MDCAUSE_MDCAUSE</a>&#160;&#160;&#160;(0x3)</td></tr>
+<tr class="separator:gaa453deb1f8a1f3f3a5838ad4965ca766"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga247a92f76022992a457ec81a67eaed57"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga247a92f76022992a457ec81a67eaed57">MMISC_CTL_NMI_CAUSE_FFF</a>&#160;&#160;&#160;(1&lt;&lt;9)</td></tr>
 <tr class="separator:ga247a92f76022992a457ec81a67eaed57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa6533a61bdf28dab6d97eaf8ac47e15a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#gaa6533a61bdf28dab6d97eaf8ac47e15a">MMISC_CTL_MISALIGN</a>&#160;&#160;&#160;(1&lt;&lt;6)</td></tr>
 <tr class="separator:gaa6533a61bdf28dab6d97eaf8ac47e15a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac62547380ae39bae590e77751554f8cd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#gac62547380ae39bae590e77751554f8cd">MMISC_CTL_BPU</a>&#160;&#160;&#160;(1&lt;&lt;3)</td></tr>
 <tr class="separator:gac62547380ae39bae590e77751554f8cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1915bfad24b1100506412bd0f3c705e2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga1915bfad24b1100506412bd0f3c705e2">MCACHE_CTL_IC_EN</a>&#160;&#160;&#160;(1&lt;&lt;0)</td></tr>
+<tr class="separator:ga1915bfad24b1100506412bd0f3c705e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1f23cac132dc4d543a0d33a336a7d858"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga1f23cac132dc4d543a0d33a336a7d858">MCACHE_CTL_IC_SCPD_MOD</a>&#160;&#160;&#160;(1&lt;&lt;1)</td></tr>
+<tr class="separator:ga1f23cac132dc4d543a0d33a336a7d858"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae82cbfc628bf4087720024122a9c9115"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#gae82cbfc628bf4087720024122a9c9115">MCACHE_CTL_DC_EN</a>&#160;&#160;&#160;(1&lt;&lt;16)</td></tr>
+<tr class="separator:gae82cbfc628bf4087720024122a9c9115"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6065953ce222f53cb94ee8d6c336e26d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga6065953ce222f53cb94ee8d6c336e26d">MTVT2_MTVT2EN</a>&#160;&#160;&#160;(1&lt;&lt;0)</td></tr>
+<tr class="separator:ga6065953ce222f53cb94ee8d6c336e26d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2d61c1c8247bc82e209a8bbbaba1e44c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga2d61c1c8247bc82e209a8bbbaba1e44c">MTVT2_COMMON_CODE_ENTRY</a>&#160;&#160;&#160;(((1ULL&lt;&lt;((__riscv_xlen)-2))-1)&lt;&lt;2)</td></tr>
+<tr class="separator:ga2d61c1c8247bc82e209a8bbbaba1e44c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8b189b0faab8100190d9c0cb9457ab6b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga8b189b0faab8100190d9c0cb9457ab6b">MCFG_INFO_TEE</a>&#160;&#160;&#160;(1&lt;&lt;0)</td></tr>
+<tr class="separator:ga8b189b0faab8100190d9c0cb9457ab6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga378777b74ffd0f62087c10d7cc83dba9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga378777b74ffd0f62087c10d7cc83dba9">MCFG_INFO_ECC</a>&#160;&#160;&#160;(1&lt;&lt;1)</td></tr>
+<tr class="separator:ga378777b74ffd0f62087c10d7cc83dba9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8e6bfafb27d2142ee0035f76b887acca"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga8e6bfafb27d2142ee0035f76b887acca">MCFG_INFO_CLIC</a>&#160;&#160;&#160;(1&lt;&lt;2)</td></tr>
+<tr class="separator:ga8e6bfafb27d2142ee0035f76b887acca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga29b6c2971cce93a78e9605e7e5276599"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga29b6c2971cce93a78e9605e7e5276599">MCFG_INFO_PLIC</a>&#160;&#160;&#160;(1&lt;&lt;3)</td></tr>
+<tr class="separator:ga29b6c2971cce93a78e9605e7e5276599"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7987e805f4afa13b0d4f62a250cb2f34"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga7987e805f4afa13b0d4f62a250cb2f34">MCFG_INFO_FIO</a>&#160;&#160;&#160;(1&lt;&lt;4)</td></tr>
+<tr class="separator:ga7987e805f4afa13b0d4f62a250cb2f34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga486d29134dd516cf80273bc1fff243c9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga486d29134dd516cf80273bc1fff243c9">MCFG_INFO_PPI</a>&#160;&#160;&#160;(1&lt;&lt;5)</td></tr>
+<tr class="separator:ga486d29134dd516cf80273bc1fff243c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf640e24726866e9b7f06360b93bf5800"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#gaf640e24726866e9b7f06360b93bf5800">MCFG_INFO_NICE</a>&#160;&#160;&#160;(1&lt;&lt;6)</td></tr>
+<tr class="separator:gaf640e24726866e9b7f06360b93bf5800"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabcbe04e4da52ab5fbbbbb10c6629cf32"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#gabcbe04e4da52ab5fbbbbb10c6629cf32">MCFG_INFO_ILM</a>&#160;&#160;&#160;(1&lt;&lt;7)</td></tr>
+<tr class="separator:gabcbe04e4da52ab5fbbbbb10c6629cf32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga60e344b3401de3421dde506783b0f5e8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga60e344b3401de3421dde506783b0f5e8">MCFG_INFO_DLM</a>&#160;&#160;&#160;(1&lt;&lt;8)</td></tr>
+<tr class="separator:ga60e344b3401de3421dde506783b0f5e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gade204165b105fd3fdcc50965cb23b83d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#gade204165b105fd3fdcc50965cb23b83d">MCFG_INFO_ICACHE</a>&#160;&#160;&#160;(1&lt;&lt;9)</td></tr>
+<tr class="separator:gade204165b105fd3fdcc50965cb23b83d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga95afd8455685713863d0be88485f5b40"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga95afd8455685713863d0be88485f5b40">MCFG_INFO_DCACHE</a>&#160;&#160;&#160;(1&lt;&lt;10)</td></tr>
+<tr class="separator:ga95afd8455685713863d0be88485f5b40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga02f016ef1dd10d24c36ae0c691d89448"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga02f016ef1dd10d24c36ae0c691d89448">MICFG_IC_SET</a>&#160;&#160;&#160;(0xF&lt;&lt;0)</td></tr>
+<tr class="separator:ga02f016ef1dd10d24c36ae0c691d89448"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0d6540f439ca5b5c5961f987bfbe07c5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga0d6540f439ca5b5c5961f987bfbe07c5">MICFG_IC_WAY</a>&#160;&#160;&#160;(0x7&lt;&lt;4)</td></tr>
+<tr class="separator:ga0d6540f439ca5b5c5961f987bfbe07c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaea8b0d29e2f6bf87803471e8621b032f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#gaea8b0d29e2f6bf87803471e8621b032f">MICFG_IC_LSIZE</a>&#160;&#160;&#160;(0x7&lt;&lt;7)</td></tr>
+<tr class="separator:gaea8b0d29e2f6bf87803471e8621b032f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2cb78b6241c78dc469250e707df3a572"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga2cb78b6241c78dc469250e707df3a572">MICFG_ILM_SIZE</a>&#160;&#160;&#160;(0x1F&lt;&lt;16)</td></tr>
+<tr class="separator:ga2cb78b6241c78dc469250e707df3a572"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaaf286fc1a227c919d21f1d6e0e8cb3b9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#gaaf286fc1a227c919d21f1d6e0e8cb3b9">MICFG_ILM_XONLY</a>&#160;&#160;&#160;(1&lt;&lt;21)</td></tr>
+<tr class="separator:gaaf286fc1a227c919d21f1d6e0e8cb3b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabbd7c817405f28c6e06e22e4fbda509b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#gabbd7c817405f28c6e06e22e4fbda509b">MDCFG_DC_SET</a>&#160;&#160;&#160;(0xF&lt;&lt;0)</td></tr>
+<tr class="separator:gabbd7c817405f28c6e06e22e4fbda509b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6218dafc338a7ed0ad8bce7db11cbe69"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga6218dafc338a7ed0ad8bce7db11cbe69">MDCFG_DC_WAY</a>&#160;&#160;&#160;(0x7&lt;&lt;4)</td></tr>
+<tr class="separator:ga6218dafc338a7ed0ad8bce7db11cbe69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae0e3d905405aa26daa960ab7c9037093"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#gae0e3d905405aa26daa960ab7c9037093">MDCFG_DC_LSIZE</a>&#160;&#160;&#160;(0x7&lt;&lt;7)</td></tr>
+<tr class="separator:gae0e3d905405aa26daa960ab7c9037093"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab515cedfce6a4e42b1419141f392e93f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#gab515cedfce6a4e42b1419141f392e93f">MDCFG_DLM_SIZE</a>&#160;&#160;&#160;(0x1F&lt;&lt;16)</td></tr>
+<tr class="separator:gab515cedfce6a4e42b1419141f392e93f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8e5e133ea59b83012cf28984321332f8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga8e5e133ea59b83012cf28984321332f8">MPPICFG_INFO_PPI_SIZE</a>&#160;&#160;&#160;(0x1F&lt;&lt;1)</td></tr>
+<tr class="separator:ga8e5e133ea59b83012cf28984321332f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf10b969b50980388e673c8a398b74386"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#gaf10b969b50980388e673c8a398b74386">MPPICFG_INFO_PPI_BPA</a>&#160;&#160;&#160;(((1ULL&lt;&lt;((__riscv_xlen)-10))-1)&lt;&lt;10)</td></tr>
+<tr class="separator:gaf10b969b50980388e673c8a398b74386"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab04aa3cb0d2fa864efe454ecffed5a93"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#gab04aa3cb0d2fa864efe454ecffed5a93">MFIOCFG_INFO_FIO_SIZE</a>&#160;&#160;&#160;(0x1F&lt;&lt;1)</td></tr>
+<tr class="separator:gab04aa3cb0d2fa864efe454ecffed5a93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa5cb4135c597cdea3578ee7cd10953b2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#gaa5cb4135c597cdea3578ee7cd10953b2">MFIOCFG_INFO_FIO_BPA</a>&#160;&#160;&#160;(((1ULL&lt;&lt;((__riscv_xlen)-10))-1)&lt;&lt;10)</td></tr>
+<tr class="separator:gaa5cb4135c597cdea3578ee7cd10953b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gacdfe2a4376d4c9873b865b878c6d5d2e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#gacdfe2a4376d4c9873b865b878c6d5d2e">SIP_SSIP</a>&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga0bda37d26a2a610c14486b0cd367becc">MIP_SSIP</a></td></tr>
 <tr class="separator:gacdfe2a4376d4c9873b865b878c6d5d2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa32b89e7176c6d37caa3ad78a600f4a1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#gaa32b89e7176c6d37caa3ad78a600f4a1">SIP_STIP</a>&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga40a54377f1fdb317c3f7397043874cae">MIP_STIP</a></td></tr>
@@ -468,6 +544,8 @@ Macros</h2></td></tr>
 <tr class="separator:ga7f491c12bf67f388e55a6c690250f5c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga139d9c9b83b0d91eb2462be620034adb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga139d9c9b83b0d91eb2462be620034adb">DOWNLOAD_MODE_ILM</a>&#160;&#160;&#160;2</td></tr>
 <tr class="separator:ga139d9c9b83b0d91eb2462be620034adb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga210838c830a778a63d23a462f9d685d1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga210838c830a778a63d23a462f9d685d1">DOWNLOAD_MODE_DDR</a>&#160;&#160;&#160;3</td></tr>
+<tr class="separator:ga210838c830a778a63d23a462f9d685d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa0f507b2b11ba1d8f9e1675775646919"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CSR__Encoding.html#gaa0f507b2b11ba1d8f9e1675775646919">CAUSE_MISALIGNED_FETCH</a>&#160;&#160;&#160;0x0</td></tr>
 <tr class="memdesc:gaa0f507b2b11ba1d8f9e1675775646919"><td class="mdescLeft">&#160;</td><td class="mdescRight">End of Doxygen Group NMSIS_Core_CSR_Registers.  <a href="#gaa0f507b2b11ba1d8f9e1675775646919">More...</a><br/></td></tr>
 <tr class="separator:gaa0f507b2b11ba1d8f9e1675775646919"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -522,7 +600,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00531">531</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00591">591</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -536,7 +614,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00529">529</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00589">589</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -550,7 +628,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00533">533</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00593">593</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -564,7 +642,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00535">535</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00595">595</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -578,7 +656,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00538">538</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00598">598</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -592,7 +670,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00530">530</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00590">590</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -606,7 +684,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00539">539</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00599">599</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -622,7 +700,7 @@ Macros</h2></td></tr>
 
 <p>End of Doxygen Group NMSIS_Core_CSR_Registers. </p>
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00528">528</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00588">588</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -636,7 +714,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00532">532</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00592">592</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -650,7 +728,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00534">534</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00594">594</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -664,7 +742,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00537">537</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00597">597</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -678,7 +756,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00536">536</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00596">596</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -692,7 +770,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00185">185</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00236">236</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -738,7 +816,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00543">543</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00603">603</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -752,7 +830,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00542">542</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00602">602</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -766,7 +844,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00546">546</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00606">606</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -780,7 +858,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00547">547</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00607">607</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -794,7 +872,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00545">545</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00605">605</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -808,7 +886,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00550">550</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00610">610</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -822,7 +900,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00549">549</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00609">609</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1116,7 +1194,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00184">184</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00235">235</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1130,7 +1208,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00183">183</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00234">234</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1144,7 +1222,21 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00182">182</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00233">233</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga210838c830a778a63d23a462f9d685d1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DOWNLOAD_MODE_DDR&#160;&#160;&#160;3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00320">320</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1158,7 +1250,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00267">267</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00318">318</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1172,7 +1264,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00266">266</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00317">317</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1186,7 +1278,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00268">268</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00319">319</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1200,7 +1292,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00187">187</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00238">238</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1214,7 +1306,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00186">186</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00237">237</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1230,7 +1322,7 @@ Macros</h2></td></tr>
 
 <p>FPU Divide by Zero. </p>
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00213">213</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00264">264</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1246,7 +1338,7 @@ Macros</h2></td></tr>
 
 <p>FPU Invalid Operation. </p>
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00215">215</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00266">266</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1262,7 +1354,7 @@ Macros</h2></td></tr>
 
 <p>FPU Inexact. </p>
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00207">207</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00258">258</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1278,7 +1370,7 @@ Macros</h2></td></tr>
 
 <p>FPU Overflow. </p>
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00211">211</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00262">262</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1294,7 +1386,7 @@ Macros</h2></td></tr>
 
 <p>FPU Underflow. </p>
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00209">209</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00260">260</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1315,7 +1407,7 @@ Macros</h2></td></tr>
 <p>Floating Point Register f0-f31, eg. </p>
 <p>f0 -&gt; <a class="el" href="group__NMSIS__Core__CSR__Encoding.html#gab630278e8a24dd620cb6a512b51bc45f" title="Floating Point Register f0-f31, eg. ">FREG(0)</a> </p>
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00218">218</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00269">269</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1332,7 +1424,7 @@ Macros</h2></td></tr>
 <p>In instruction's rm, selects dynamic rounding mode. </p>
 <p>In Rounding Mode register, Invalid </p>
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00203">203</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00254">254</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1348,7 +1440,7 @@ Macros</h2></td></tr>
 
 <p>FPU Round Down (towards -inf) </p>
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00195">195</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00246">246</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1364,7 +1456,7 @@ Macros</h2></td></tr>
 
 <p>FPU Round to nearest, ties to Max Magnitude. </p>
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00199">199</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00250">250</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1380,7 +1472,7 @@ Macros</h2></td></tr>
 
 <p>FPU Round to Nearest, ties to Even. </p>
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00191">191</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00242">242</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1396,7 +1488,7 @@ Macros</h2></td></tr>
 
 <p>FPU Round Towards Zero. </p>
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00193">193</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00244">244</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1412,7 +1504,7 @@ Macros</h2></td></tr>
 
 <p>FPU Round Up (towards +inf) </p>
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00197">197</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00248">248</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1426,7 +1518,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00179">179</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00230">230</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1440,7 +1532,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00177">177</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00228">228</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1454,7 +1546,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00171">171</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00222">222</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1468,7 +1560,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00174">174</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00225">225</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1482,7 +1574,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00180">180</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00231">231</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1496,7 +1588,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00178">178</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00229">229</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1510,7 +1602,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00172">172</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00223">223</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1524,7 +1616,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00175">175</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00226">226</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1538,7 +1630,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00176">176</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00227">227</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1552,7 +1644,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00170">170</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00221">221</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1566,7 +1658,203 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00173">173</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00224">224</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gae82cbfc628bf4087720024122a9c9115"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MCACHE_CTL_DC_EN&#160;&#160;&#160;(1&lt;&lt;16)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00172">172</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga1915bfad24b1100506412bd0f3c705e2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MCACHE_CTL_IC_EN&#160;&#160;&#160;(1&lt;&lt;0)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00170">170</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga1f23cac132dc4d543a0d33a336a7d858"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MCACHE_CTL_IC_SCPD_MOD&#160;&#160;&#160;(1&lt;&lt;1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00171">171</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga8e6bfafb27d2142ee0035f76b887acca"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MCFG_INFO_CLIC&#160;&#160;&#160;(1&lt;&lt;2)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00179">179</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga95afd8455685713863d0be88485f5b40"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MCFG_INFO_DCACHE&#160;&#160;&#160;(1&lt;&lt;10)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00187">187</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga60e344b3401de3421dde506783b0f5e8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MCFG_INFO_DLM&#160;&#160;&#160;(1&lt;&lt;8)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00185">185</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga378777b74ffd0f62087c10d7cc83dba9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MCFG_INFO_ECC&#160;&#160;&#160;(1&lt;&lt;1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00178">178</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga7987e805f4afa13b0d4f62a250cb2f34"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MCFG_INFO_FIO&#160;&#160;&#160;(1&lt;&lt;4)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00181">181</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gade204165b105fd3fdcc50965cb23b83d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MCFG_INFO_ICACHE&#160;&#160;&#160;(1&lt;&lt;9)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00186">186</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gabcbe04e4da52ab5fbbbbb10c6629cf32"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MCFG_INFO_ILM&#160;&#160;&#160;(1&lt;&lt;7)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00184">184</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gaf640e24726866e9b7f06360b93bf5800"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MCFG_INFO_NICE&#160;&#160;&#160;(1&lt;&lt;6)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00183">183</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga29b6c2971cce93a78e9605e7e5276599"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MCFG_INFO_PLIC&#160;&#160;&#160;(1&lt;&lt;3)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00180">180</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga486d29134dd516cf80273bc1fff243c9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MCFG_INFO_PPI&#160;&#160;&#160;(1&lt;&lt;5)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00182">182</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga8b189b0faab8100190d9c0cb9457ab6b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MCFG_INFO_TEE&#160;&#160;&#160;(1&lt;&lt;0)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00177">177</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -1984,7 +2272,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00149">149</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00153">153</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 <p>Referenced by <a class="el" href="core__feature__base_8h_source.html#l00671">__disable_all_counter()</a>, <a class="el" href="core__feature__base_8h_source.html#l00631">__disable_mcycle_counter()</a>, <a class="el" href="core__feature__base_8h_source.html#l00661">__enable_all_counter()</a>, and <a class="el" href="core__feature__base_8h_source.html#l00621">__enable_mcycle_counter()</a>.</p>
 
@@ -2000,9 +2288,205 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00148">148</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00152">152</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 <p>Referenced by <a class="el" href="core__feature__base_8h_source.html#l00671">__disable_all_counter()</a>, <a class="el" href="core__feature__base_8h_source.html#l00651">__disable_minstret_counter()</a>, <a class="el" href="core__feature__base_8h_source.html#l00661">__enable_all_counter()</a>, and <a class="el" href="core__feature__base_8h_source.html#l00641">__enable_minstret_counter()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gaa453deb1f8a1f3f3a5838ad4965ca766"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MDCAUSE_MDCAUSE&#160;&#160;&#160;(0x3)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00164">164</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gae0e3d905405aa26daa960ab7c9037093"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MDCFG_DC_LSIZE&#160;&#160;&#160;(0x7&lt;&lt;7)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00197">197</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gabbd7c817405f28c6e06e22e4fbda509b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MDCFG_DC_SET&#160;&#160;&#160;(0xF&lt;&lt;0)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00195">195</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga6218dafc338a7ed0ad8bce7db11cbe69"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MDCFG_DC_WAY&#160;&#160;&#160;(0x7&lt;&lt;4)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00196">196</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gab515cedfce6a4e42b1419141f392e93f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MDCFG_DLM_SIZE&#160;&#160;&#160;(0x1F&lt;&lt;16)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00198">198</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga66efca6fe008b17b3e58f55cfc3454ba"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MDLM_CTL_DLM_BPA&#160;&#160;&#160;(((1ULL&lt;&lt;((__riscv_xlen)-10))-1)&lt;&lt;10)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00158">158</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga6cb4731642366eac4dfbba732abdf45c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MDLM_CTL_DLM_EN&#160;&#160;&#160;(1&lt;&lt;0)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00159">159</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gaa5cb4135c597cdea3578ee7cd10953b2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MFIOCFG_INFO_FIO_BPA&#160;&#160;&#160;(((1ULL&lt;&lt;((__riscv_xlen)-10))-1)&lt;&lt;10)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00204">204</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gab04aa3cb0d2fa864efe454ecffed5a93"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MFIOCFG_INFO_FIO_SIZE&#160;&#160;&#160;(0x1F&lt;&lt;1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00203">203</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gaea8b0d29e2f6bf87803471e8621b032f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MICFG_IC_LSIZE&#160;&#160;&#160;(0x7&lt;&lt;7)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00191">191</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga02f016ef1dd10d24c36ae0c691d89448"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MICFG_IC_SET&#160;&#160;&#160;(0xF&lt;&lt;0)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00189">189</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga0d6540f439ca5b5c5961f987bfbe07c5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MICFG_IC_WAY&#160;&#160;&#160;(0x7&lt;&lt;4)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00190">190</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga2cb78b6241c78dc469250e707df3a572"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MICFG_ILM_SIZE&#160;&#160;&#160;(0x1F&lt;&lt;16)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00192">192</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gaaf286fc1a227c919d21f1d6e0e8cb3b9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MICFG_ILM_XONLY&#160;&#160;&#160;(1&lt;&lt;21)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00193">193</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -2129,6 +2613,34 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00139">139</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga58fdda659daafb923a409a1bbe0c6655"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MILM_CTL_ILM_BPA&#160;&#160;&#160;(((1ULL&lt;&lt;((__riscv_xlen)-10))-1)&lt;&lt;10)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00155">155</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga5c75afd05ea4349e7dc851589a2b4c60"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MILM_CTL_ILM_EN&#160;&#160;&#160;(1&lt;&lt;0)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00156">156</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -2268,7 +2780,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00153">153</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00168">168</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -2282,7 +2794,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00152">152</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00167">167</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -2296,7 +2808,35 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00151">151</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00166">166</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gaf10b969b50980388e673c8a398b74386"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MPPICFG_INFO_PPI_BPA&#160;&#160;&#160;(((1ULL&lt;&lt;((__riscv_xlen)-10))-1)&lt;&lt;10)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00201">201</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga8e5e133ea59b83012cf28984321332f8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MPPICFG_INFO_PPI_SIZE&#160;&#160;&#160;(0x1F&lt;&lt;1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00200">200</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -2596,6 +3136,62 @@ Macros</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="gab1ea496c56aa682d757ee18f207898b2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MSUBM_PTYP&#160;&#160;&#160;(0x3&lt;&lt;8)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00161">161</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gaeaa1f8b914ede4c086b0444b3a66c82d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MSUBM_TYP&#160;&#160;&#160;(0x3&lt;&lt;6)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00162">162</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga2d61c1c8247bc82e209a8bbbaba1e44c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MTVT2_COMMON_CODE_ENTRY&#160;&#160;&#160;(((1ULL&lt;&lt;((__riscv_xlen)-2))-1)&lt;&lt;2)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00175">175</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga6065953ce222f53cb94ee8d6c336e26d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MTVT2_MTVT2EN&#160;&#160;&#160;(1&lt;&lt;0)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00174">174</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ga47df3f6548f6106ad54d3def500db71f"></a>
 <div class="memitem">
 <div class="memproto">
@@ -2606,7 +3202,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00225">225</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00276">276</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -2620,7 +3216,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00227">227</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00278">278</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -2634,7 +3230,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00228">228</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00279">279</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -2648,7 +3244,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00226">226</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00277">277</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -2662,7 +3258,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00232">232</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00283">283</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -2676,7 +3272,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00229">229</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00280">280</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -2690,7 +3286,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00222">222</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00273">273</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -2704,7 +3300,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00231">231</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00282">282</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -2718,7 +3314,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00223">223</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00274">274</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -2732,7 +3328,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00224">224</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00275">275</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -2746,7 +3342,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00160">160</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00211">211</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -2760,7 +3356,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00161">161</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00212">212</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -2774,7 +3370,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00159">159</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00210">210</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -2788,7 +3384,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00158">158</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00209">209</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -2802,7 +3398,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00241">241</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00292">292</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -2816,7 +3412,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00242">242</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00293">293</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -2830,7 +3426,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00240">240</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00291">291</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -2844,7 +3440,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00245">245</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00296">296</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -2858,7 +3454,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00236">236</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00287">287</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -2872,7 +3468,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00243">243</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00294">294</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -2890,7 +3486,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00247">247</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00298">298</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -2904,7 +3500,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00239">239</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00290">290</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -2918,7 +3514,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00235">235</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00286">286</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -2932,7 +3528,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00237">237</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00288">288</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -2946,7 +3542,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00238">238</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00289">289</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -2960,7 +3556,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00155">155</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00206">206</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -2974,7 +3570,21 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00156">156</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00207">207</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga1248cd9846d593036d74cfd55a582632"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SLEEPVALUE_SLEEPVALUE&#160;&#160;&#160;(0x1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00150">150</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -3118,6 +3728,20 @@ Macros</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="gade924168088e3928b41d450f8e3458f3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TXEVT_TXEVT&#160;&#160;&#160;(0x1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00149">149</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ga136d72c1560058c881e418d809313c4d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -3128,7 +3752,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00163">163</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00214">214</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -3142,7 +3766,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00164">164</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00215">215</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -3156,7 +3780,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00165">165</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00216">216</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -3170,7 +3794,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00166">166</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00217">217</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -3184,7 +3808,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00167">167</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00218">218</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -3198,7 +3822,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00168">168</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00219">219</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 </div>
 </div>
@@ -3207,12 +3831,12 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define WFE_WFE&#160;&#160;&#160;0x1</td>
+          <td class="memname">#define WFE_WFE&#160;&#160;&#160;(0x1)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00146">146</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
+<p>Definition at line <a class="el" href="riscv__encoding_8h_source.html#l00148">148</a> of file <a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>.</p>
 
 <p>Referenced by <a class="el" href="core__feature__base_8h_source.html#l00555">__WFE()</a>, and <a class="el" href="core__feature__base_8h_source.html#l00542">__WFI()</a>.</p>
 
@@ -3223,7 +3847,7 @@ Macros</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Mar 19 2020 06:30:02 for NMSIS-Core by
+    <li class="footer">Generated on Mon Aug 3 2020 00:57:35 for NMSIS-Core by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

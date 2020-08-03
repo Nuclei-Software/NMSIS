@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h &mdash; NMSIS 1.0.0-beta1 documentation</title>
+  <title>System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h &mdash; NMSIS 1.0.1-RC1 documentation</title>
   
 
   
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                1.0.0
+                1.0.1
               </div>
             
           
@@ -550,7 +550,37 @@ In case of additional features the function prototypes need to be added to the <
 345
 346
 347
-348</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm"> * Copyright (c) 2009-2018 Arm Limited. All rights reserved.</span>
 <span class="cm"> * Copyright (c) 2019 Nuclei Limited. All rights reserved.</span>
 <span class="cm"> *</span>
@@ -691,13 +721,13 @@ In case of additional features the function prototypes need to be added to the <
 <span class="cm"> */</span>
 <span class="cm">/** \brief Max exception handler number, don&#39;t include the NMI(0xFFF) one */</span>
 <span class="cp">#define MAX_SYSTEM_EXCEPTION_NUM        12</span>
-<span class="cm">/** </span>
+<span class="cm">/**</span>
 <span class="cm"> * \brief      Store the exception handlers for each exception ID</span>
 <span class="cm"> * \note</span>
 <span class="cm"> * - This SystemExceptionHandlers are used to store all the handlers for all</span>
 <span class="cm"> * the exception codes Nuclei N/NX core provided.</span>
 <span class="cm"> * - Exception code 0 - 11, totally 12 exceptions are mapped to SystemExceptionHandlers[0:11]</span>
-<span class="cm"> * - Exception for NMI is also re-routed to exception handling(exception code 0xFFF) in startup code configuration, the handler itself is mapped to SystemExceptionHandlers[MAX_SYSTEM_EXCEPTION_NUM] </span>
+<span class="cm"> * - Exception for NMI is also re-routed to exception handling(exception code 0xFFF) in startup code configuration, the handler itself is mapped to SystemExceptionHandlers[MAX_SYSTEM_EXCEPTION_NUM]</span>
 <span class="cm"> */</span>
 <span class="k">static</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">SystemExceptionHandlers</span><span class="p">[</span><span class="n">MAX_SYSTEM_EXCEPTION_NUM</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
 
@@ -707,7 +737,7 @@ In case of additional features the function prototypes need to be added to the <
 <span class="cm"> * This typedef is only used internal in this system_&lt;Device&gt;.c file.</span>
 <span class="cm"> * It is used to do type conversion for registered exception handler before calling it.</span>
 <span class="cm"> */</span>
-<span class="k">typedef</span>	<span class="nf">void</span> <span class="p">(</span><span class="o">*</span><span class="n">EXC_HANDLER</span><span class="p">)</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">mcause</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">sp</span><span class="p">);</span>
+<span class="k">typedef</span> <span class="nf">void</span> <span class="p">(</span><span class="o">*</span><span class="n">EXC_HANDLER</span><span class="p">)</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">mcause</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">sp</span><span class="p">);</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * \brief      System Default Exception Handler</span>
@@ -725,7 +755,7 @@ In case of additional features the function prototypes need to be added to the <
     <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="cm">/** </span>
+<span class="cm">/**</span>
 <span class="cm"> * \brief      Initialize all the default core exception handlers</span>
 <span class="cm"> * \details</span>
 <span class="cm"> * The core exception handler for each exception id will be initialized to \ref system_default_exception_handler.</span>
@@ -739,7 +769,7 @@ In case of additional features the function prototypes need to be added to the <
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="cm">/** </span>
+<span class="cm">/**</span>
 <span class="cm"> * \brief       Register an exception handler for exception code EXCn</span>
 <span class="cm"> * \details</span>
 <span class="cm"> * * For EXCn &lt; \ref MAX_SYSTEM_EXCEPTION_NUM, it will be registered into SystemExceptionHandlers[EXCn-1].</span>
@@ -756,7 +786,7 @@ In case of additional features the function prototypes need to be added to the <
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="cm">/** </span>
+<span class="cm">/**</span>
 <span class="cm"> * \brief       Get current exception handler for exception code EXCn</span>
 <span class="cm"> * \details</span>
 <span class="cm"> * * For EXCn &lt; \ref MAX_SYSTEM_EXCEPTION_NUM, it will return SystemExceptionHandlers[EXCn-1].</span>
@@ -801,7 +831,7 @@ In case of additional features the function prototypes need to be added to the <
     <span class="k">if</span> <span class="p">(</span><span class="n">exc_handler</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">exc_handler</span><span class="p">(</span><span class="n">mcause</span><span class="p">,</span> <span class="n">sp</span><span class="p">);</span>
     <span class="p">}</span>
-	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="cm">/**</span>
@@ -814,7 +844,7 @@ In case of additional features the function prototypes need to be added to the <
 <span class="kt">void</span> <span class="nf">ECLIC_Init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="cm">/* Global Configuration about MTH and NLBits.</span>
-<span class="cm">     * TODO: Please adapt it according to your system requirement. </span>
+<span class="cm">     * TODO: Please adapt it according to your system requirement.</span>
 <span class="cm">     * This function is called in _init function */</span>
     <span class="cm">/* Set CSR MTH to zero */</span>
     <span class="n">ECLIC_SetMth</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
@@ -859,10 +889,45 @@ In case of additional features the function prototypes need to be added to the <
         <span class="n">ECLIC_SetVector</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="p">(</span><span class="n">rv_csr_t</span><span class="p">)</span><span class="n">handler</span><span class="p">);</span>
     <span class="p">}</span>
     <span class="cm">/* enable interrupt */</span>
-    <span class="n">ECLIC_EnableIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">);</span> 
+    <span class="n">ECLIC_EnableIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">);</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="cm">/** @} */</span> <span class="cm">/* End of Doxygen Group NMSIS_Core_ExceptionAndNMI */</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \brief early init function before main</span>
+<span class="cm"> * \details</span>
+<span class="cm"> * This function is executed right before main function.</span>
+<span class="cm"> * For RISC-V gnu toolchain, _init function might not be called</span>
+<span class="cm"> * by __libc_init_array function, so we defined a new function</span>
+<span class="cm"> * to do initialization</span>
+<span class="cm"> */</span>
+<span class="kt">void</span> <span class="nf">_premain_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="cm">/* TODO: Add your own initialization code here, called before main  */</span>
+    <span class="c1">// TODO: Add code to set the system clock frequency value SystemCoreClock</span>
+
+    <span class="c1">// TODO: Add code to initialize necessary gpio and basic uart for debug print</span>
+
+    <span class="cm">/* Initialize exception default handlers */</span>
+    <span class="n">Exception_Init</span><span class="p">();</span>
+    <span class="cm">/* ECLIC initilization, mainly MTH and NLBIT settings */</span>
+    <span class="n">ECLIC_Init</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \brief finish function after main</span>
+<span class="cm"> * \param [in]  status     status code return from main</span>
+<span class="cm"> * \details</span>
+<span class="cm"> * This function is executed right after main function.</span>
+<span class="cm"> * For RISC-V gnu toolchain, _fini function might not be called</span>
+<span class="cm"> * by __libc_fini_array function, so we defined a new function</span>
+<span class="cm"> * to do initialization</span>
+<span class="cm"> */</span>
+<span class="kt">void</span> <span class="nf">_postmain_fini</span><span class="p">(</span><span class="kt">int</span> <span class="n">status</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="cm">/* TODO: Add your own finishing code here, called after main */</span>
+<span class="p">}</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * \brief _init function called in __libc_init_array()</span>
@@ -870,18 +935,12 @@ In case of additional features the function prototypes need to be added to the <
 <span class="cm"> * This `__libc_init_array()` function is called during startup code,</span>
 <span class="cm"> * user need to implement this function, otherwise when link it will</span>
 <span class="cm"> * error init.c:(.text.__libc_init_array+0x26): undefined reference to `_init&#39;</span>
+<span class="cm"> * \note</span>
+<span class="cm"> * Please use \ref _premain_init function now</span>
 <span class="cm"> */</span>
 <span class="kt">void</span> <span class="nf">_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="cm">/* TODO: Add your own initialization code here, called before main via __libc_init_array */</span>
-    <span class="c1">// TODO: Add code to set the system clock frequency value SystemCoreClock</span>
-    
-    <span class="c1">// TODO: Add code to initialize necessary gpio and basic uart for debug print</span>
-    
-    <span class="cm">/* Initialize exception default handlers */</span>
-    <span class="n">Exception_Init</span><span class="p">();</span>
-    <span class="cm">/* ECLIC initilization, mainly MTH and NLBIT settings */</span>
-    <span class="n">ECLIC_Init</span><span class="p">();</span>
+    <span class="cm">/* Don&#39;t put any code here, please use _premain_init now */</span>
 <span class="p">}</span>
 
 <span class="cm">/**</span>
@@ -890,11 +949,12 @@ In case of additional features the function prototypes need to be added to the <
 <span class="cm"> * This `__libc_fini_array()` function is called when exit main.</span>
 <span class="cm"> * user need to implement this function, otherwise when link it will</span>
 <span class="cm"> * error fini.c:(.text.__libc_fini_array+0x28): undefined reference to `_fini&#39;</span>
+<span class="cm"> * \note</span>
+<span class="cm"> * Please use \ref _postmain_fini function now</span>
 <span class="cm"> */</span>
 <span class="kt">void</span> <span class="nf">_fini</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="cm">/* TODO: Add your own finishing code here, called after main via __libc_fini_array */</span>
-
+    <span class="cm">/* Don&#39;t put any code here, please use _postmain_fini now */</span>
 <span class="p">}</span>
 
 <span class="cm">/** @} */</span> <span class="cm">/* End of Doxygen Group NMSIS_Core_SystemAndClock */</span>
@@ -1106,7 +1166,7 @@ In case of additional features the function prototypes need to be added to the <
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Mar 19, 2020.
+        Last updated on Aug 03, 2020.
       </span>
 
     </p>

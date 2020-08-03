@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-Core
-   &#160;<span id="projectnumber">Version 1.0.0</span>
+   &#160;<span id="projectnumber">Version 1.0.1</span>
    </div>
    <div id="projectbrief">NMSIS-Core support for Nuclei processor-based devices</div>
   </td>
@@ -142,12 +142,12 @@ Functions</h2></td></tr>
 </div><!-- fragment --><p><b>Purpose</b>:<br/>
 This pseudo instruction is an alias to <code>CSRRCI x0, ucode, 1</code> instruction. </p>
 
-<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l00641">641</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l00723">723</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
 
 <p>References <a class="el" href="nmsis__gcc_8h_source.html#l00059">__ASM</a>.</p>
-<div class="fragment"><div class="line"><a name="l00642"></a><span class="lineno">  642</span>&#160;{</div>
-<div class="line"><a name="l00643"></a><span class="lineno">  643</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;clrov &quot;</span>);</div>
-<div class="line"><a name="l00644"></a><span class="lineno">  644</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160;{</div>
+<div class="line"><a name="l00725"></a><span class="lineno">  725</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;clrov &quot;</span>);</div>
+<div class="line"><a name="l00726"></a><span class="lineno">  726</span>&#160;}</div>
 <div class="ttc" id="group__NMSIS__Core__CompilerControl_html_ga1378040bcf22428955c6e3ce9c2053cd"><div class="ttname"><a href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a></div><div class="ttdeci">#define __ASM</div><div class="ttdoc">Pass information from the compiler to the assembler. </div><div class="ttdef"><b>Definition:</b> <a href="nmsis__gcc_8h_source.html#l00059">nmsis_gcc.h:59</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -173,16 +173,16 @@ This pseudo instruction is an alias to <code>CSRRCI x0, ucode, 1</code> instruct
 <div class="fragment"><div class="line">RDOV Rd  # pseudo mnemonic</div>
 </div><!-- fragment --><p><b>Purpose</b>:<br/>
 This pseudo instruction is an alias to <code>CSRR Rd, ucode</code> instruction which maps to the real instruction of <code>CSRRS Rd, ucode, x0</code>.</p>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>value stored in unsigned long type </dd></dl>
 
-<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l06479">6479</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l06566">6566</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
 
 <p>References <a class="el" href="nmsis__gcc_8h_source.html#l00059">__ASM</a>.</p>
-<div class="fragment"><div class="line"><a name="l06480"></a><span class="lineno"> 6480</span>&#160;{</div>
-<div class="line"><a name="l06481"></a><span class="lineno"> 6481</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> result;</div>
-<div class="line"><a name="l06482"></a><span class="lineno"> 6482</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;rdov %0&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result));</div>
-<div class="line"><a name="l06483"></a><span class="lineno"> 6483</span>&#160;    <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l06484"></a><span class="lineno"> 6484</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l06567"></a><span class="lineno"> 6567</span>&#160;{</div>
+<div class="line"><a name="l06568"></a><span class="lineno"> 6568</span>&#160;    <span class="keyword">register</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> result;</div>
+<div class="line"><a name="l06569"></a><span class="lineno"> 6569</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;rdov %0&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result));</div>
+<div class="line"><a name="l06570"></a><span class="lineno"> 6570</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l06571"></a><span class="lineno"> 6571</span>&#160;}</div>
 <div class="ttc" id="group__NMSIS__Core__CompilerControl_html_ga1378040bcf22428955c6e3ce9c2053cd"><div class="ttname"><a href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a></div><div class="ttdeci">#define __ASM</div><div class="ttdoc">Pass information from the compiler to the assembler. </div><div class="ttdef"><b>Definition:</b> <a href="nmsis__gcc_8h_source.html#l00059">nmsis_gcc.h:59</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -192,7 +192,7 @@ This pseudo instruction is an alias to <code>CSRR Rd, ucode</code> instruction w
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Mar 19 2020 06:30:02 for NMSIS-Core by
+    <li class="footer">Generated on Mon Aug 3 2020 00:57:36 for NMSIS-Core by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

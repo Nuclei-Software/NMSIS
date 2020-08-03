@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-Core
-   &#160;<span id="projectnumber">Version 1.0.0</span>
+   &#160;<span id="projectnumber">Version 1.0.1</span>
    </div>
    <div id="projectbrief">NMSIS-Core support for Nuclei processor-based devices</div>
   </td>
@@ -223,21 +223,21 @@ This instruction multiplies the signed 32-bit elements of Rs1 with the signed bo
 <div class="line"><span class="keywordflow">for</span> RV64: x=1...0</div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">t</td><td></td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td></td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">t</td><td>long type of value stored in t </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>unsigned long type of value stored in a </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>unsigned long type of value stored in b </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>value stored in long type </dd></dl>
 
-<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l03437">3437</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l03521">3521</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
 
 <p>References <a class="el" href="nmsis__gcc_8h_source.html#l00059">__ASM</a>.</p>
-<div class="fragment"><div class="line"><a name="l03438"></a><span class="lineno"> 3438</span>&#160;{</div>
-<div class="line"><a name="l03439"></a><span class="lineno"> 3439</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;kmmawb %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;+r&quot;</span>(t) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
-<div class="line"><a name="l03440"></a><span class="lineno"> 3440</span>&#160;    <span class="keywordflow">return</span> t;</div>
-<div class="line"><a name="l03441"></a><span class="lineno"> 3441</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l03522"></a><span class="lineno"> 3522</span>&#160;{</div>
+<div class="line"><a name="l03523"></a><span class="lineno"> 3523</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;kmmawb %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;+r&quot;</span>(t) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
+<div class="line"><a name="l03524"></a><span class="lineno"> 3524</span>&#160;    <span class="keywordflow">return</span> t;</div>
+<div class="line"><a name="l03525"></a><span class="lineno"> 3525</span>&#160;}</div>
 <div class="ttc" id="group__NMSIS__Core__CompilerControl_html_ga1378040bcf22428955c6e3ce9c2053cd"><div class="ttname"><a href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a></div><div class="ttdeci">#define __ASM</div><div class="ttdoc">Pass information from the compiler to the assembler. </div><div class="ttdef"><b>Definition:</b> <a href="nmsis__gcc_8h_source.html#l00059">nmsis_gcc.h:59</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -307,21 +307,21 @@ This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signe
 <div class="line"><span class="keywordflow">for</span> RV64: x=1...0</div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">t</td><td></td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td></td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">t</td><td>long type of value stored in t </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>unsigned long type of value stored in a </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>unsigned long type of value stored in b </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>value stored in long type </dd></dl>
 
-<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l03567">3567</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l03651">3651</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
 
 <p>References <a class="el" href="nmsis__gcc_8h_source.html#l00059">__ASM</a>.</p>
-<div class="fragment"><div class="line"><a name="l03568"></a><span class="lineno"> 3568</span>&#160;{</div>
-<div class="line"><a name="l03569"></a><span class="lineno"> 3569</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;kmmawb2 %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;+r&quot;</span>(t) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
-<div class="line"><a name="l03570"></a><span class="lineno"> 3570</span>&#160;    <span class="keywordflow">return</span> t;</div>
-<div class="line"><a name="l03571"></a><span class="lineno"> 3571</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l03652"></a><span class="lineno"> 3652</span>&#160;{</div>
+<div class="line"><a name="l03653"></a><span class="lineno"> 3653</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;kmmawb2 %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;+r&quot;</span>(t) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
+<div class="line"><a name="l03654"></a><span class="lineno"> 3654</span>&#160;    <span class="keywordflow">return</span> t;</div>
+<div class="line"><a name="l03655"></a><span class="lineno"> 3655</span>&#160;}</div>
 <div class="ttc" id="group__NMSIS__Core__CompilerControl_html_ga1378040bcf22428955c6e3ce9c2053cd"><div class="ttname"><a href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a></div><div class="ttdeci">#define __ASM</div><div class="ttdoc">Pass information from the compiler to the assembler. </div><div class="ttdef"><b>Definition:</b> <a href="nmsis__gcc_8h_source.html#l00059">nmsis_gcc.h:59</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -391,21 +391,21 @@ This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signe
 <div class="line"><span class="keywordflow">for</span> RV64: x=1...0</div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">t</td><td></td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td></td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">t</td><td>long type of value stored in t </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>unsigned long type of value stored in a </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>unsigned long type of value stored in b </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>value stored in long type </dd></dl>
 
-<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l03635">3635</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l03719">3719</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
 
 <p>References <a class="el" href="nmsis__gcc_8h_source.html#l00059">__ASM</a>.</p>
-<div class="fragment"><div class="line"><a name="l03636"></a><span class="lineno"> 3636</span>&#160;{</div>
-<div class="line"><a name="l03637"></a><span class="lineno"> 3637</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;kmmawb2.u %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;+r&quot;</span>(t) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
-<div class="line"><a name="l03638"></a><span class="lineno"> 3638</span>&#160;    <span class="keywordflow">return</span> t;</div>
-<div class="line"><a name="l03639"></a><span class="lineno"> 3639</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l03720"></a><span class="lineno"> 3720</span>&#160;{</div>
+<div class="line"><a name="l03721"></a><span class="lineno"> 3721</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;kmmawb2.u %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;+r&quot;</span>(t) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
+<div class="line"><a name="l03722"></a><span class="lineno"> 3722</span>&#160;    <span class="keywordflow">return</span> t;</div>
+<div class="line"><a name="l03723"></a><span class="lineno"> 3723</span>&#160;}</div>
 <div class="ttc" id="group__NMSIS__Core__CompilerControl_html_ga1378040bcf22428955c6e3ce9c2053cd"><div class="ttname"><a href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a></div><div class="ttdeci">#define __ASM</div><div class="ttdoc">Pass information from the compiler to the assembler. </div><div class="ttdef"><b>Definition:</b> <a href="nmsis__gcc_8h_source.html#l00059">nmsis_gcc.h:59</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -471,21 +471,21 @@ This instruction multiplies the signed 32-bit elements of Rs1 with the signed bo
 <div class="line"><span class="keywordflow">for</span> RV64: x=1...0</div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">t</td><td></td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td></td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">t</td><td>long type of value stored in t </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>unsigned long type of value stored in a </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>unsigned long type of value stored in b </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>value stored in long type </dd></dl>
 
-<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l03499">3499</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l03583">3583</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
 
 <p>References <a class="el" href="nmsis__gcc_8h_source.html#l00059">__ASM</a>.</p>
-<div class="fragment"><div class="line"><a name="l03500"></a><span class="lineno"> 3500</span>&#160;{</div>
-<div class="line"><a name="l03501"></a><span class="lineno"> 3501</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;kmmawb.u %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;+r&quot;</span>(t) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
-<div class="line"><a name="l03502"></a><span class="lineno"> 3502</span>&#160;    <span class="keywordflow">return</span> t;</div>
-<div class="line"><a name="l03503"></a><span class="lineno"> 3503</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l03584"></a><span class="lineno"> 3584</span>&#160;{</div>
+<div class="line"><a name="l03585"></a><span class="lineno"> 3585</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;kmmawb.u %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;+r&quot;</span>(t) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
+<div class="line"><a name="l03586"></a><span class="lineno"> 3586</span>&#160;    <span class="keywordflow">return</span> t;</div>
+<div class="line"><a name="l03587"></a><span class="lineno"> 3587</span>&#160;}</div>
 <div class="ttc" id="group__NMSIS__Core__CompilerControl_html_ga1378040bcf22428955c6e3ce9c2053cd"><div class="ttname"><a href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a></div><div class="ttdeci">#define __ASM</div><div class="ttdoc">Pass information from the compiler to the assembler. </div><div class="ttdef"><b>Definition:</b> <a href="nmsis__gcc_8h_source.html#l00059">nmsis_gcc.h:59</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -551,21 +551,21 @@ This instruction multiplies the signed 32-bit elements of Rs1 with the signed to
 <div class="line"><span class="keywordflow">for</span> RV64: x=1...0</div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">t</td><td></td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td></td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">t</td><td>long type of value stored in t </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>unsigned long type of value stored in a </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>unsigned long type of value stored in b </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>value stored in long type </dd></dl>
 
-<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l03697">3697</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l03781">3781</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
 
 <p>References <a class="el" href="nmsis__gcc_8h_source.html#l00059">__ASM</a>.</p>
-<div class="fragment"><div class="line"><a name="l03698"></a><span class="lineno"> 3698</span>&#160;{</div>
-<div class="line"><a name="l03699"></a><span class="lineno"> 3699</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;kmmawt %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;+r&quot;</span>(t) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
-<div class="line"><a name="l03700"></a><span class="lineno"> 3700</span>&#160;    <span class="keywordflow">return</span> t;</div>
-<div class="line"><a name="l03701"></a><span class="lineno"> 3701</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l03782"></a><span class="lineno"> 3782</span>&#160;{</div>
+<div class="line"><a name="l03783"></a><span class="lineno"> 3783</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;kmmawt %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;+r&quot;</span>(t) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
+<div class="line"><a name="l03784"></a><span class="lineno"> 3784</span>&#160;    <span class="keywordflow">return</span> t;</div>
+<div class="line"><a name="l03785"></a><span class="lineno"> 3785</span>&#160;}</div>
 <div class="ttc" id="group__NMSIS__Core__CompilerControl_html_ga1378040bcf22428955c6e3ce9c2053cd"><div class="ttname"><a href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a></div><div class="ttdeci">#define __ASM</div><div class="ttdoc">Pass information from the compiler to the assembler. </div><div class="ttdef"><b>Definition:</b> <a href="nmsis__gcc_8h_source.html#l00059">nmsis_gcc.h:59</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -635,21 +635,21 @@ This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signe
 <div class="line"><span class="keywordflow">for</span> RV64: x=1...0</div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">t</td><td></td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td></td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">t</td><td>long type of value stored in t </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>unsigned long type of value stored in a </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>unsigned long type of value stored in b </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>value stored in long type </dd></dl>
 
-<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l03827">3827</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l03911">3911</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
 
 <p>References <a class="el" href="nmsis__gcc_8h_source.html#l00059">__ASM</a>.</p>
-<div class="fragment"><div class="line"><a name="l03828"></a><span class="lineno"> 3828</span>&#160;{</div>
-<div class="line"><a name="l03829"></a><span class="lineno"> 3829</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;kmmawt2 %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;+r&quot;</span>(t) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
-<div class="line"><a name="l03830"></a><span class="lineno"> 3830</span>&#160;    <span class="keywordflow">return</span> t;</div>
-<div class="line"><a name="l03831"></a><span class="lineno"> 3831</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l03912"></a><span class="lineno"> 3912</span>&#160;{</div>
+<div class="line"><a name="l03913"></a><span class="lineno"> 3913</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;kmmawt2 %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;+r&quot;</span>(t) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
+<div class="line"><a name="l03914"></a><span class="lineno"> 3914</span>&#160;    <span class="keywordflow">return</span> t;</div>
+<div class="line"><a name="l03915"></a><span class="lineno"> 3915</span>&#160;}</div>
 <div class="ttc" id="group__NMSIS__Core__CompilerControl_html_ga1378040bcf22428955c6e3ce9c2053cd"><div class="ttname"><a href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a></div><div class="ttdeci">#define __ASM</div><div class="ttdoc">Pass information from the compiler to the assembler. </div><div class="ttdef"><b>Definition:</b> <a href="nmsis__gcc_8h_source.html#l00059">nmsis_gcc.h:59</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -719,21 +719,21 @@ This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signe
 <div class="line"><span class="keywordflow">for</span> RV64: x=1...0</div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">t</td><td></td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td></td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">t</td><td>long type of value stored in t </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>unsigned long type of value stored in a </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>unsigned long type of value stored in b </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>value stored in long type </dd></dl>
 
-<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l03895">3895</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l03979">3979</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
 
 <p>References <a class="el" href="nmsis__gcc_8h_source.html#l00059">__ASM</a>.</p>
-<div class="fragment"><div class="line"><a name="l03896"></a><span class="lineno"> 3896</span>&#160;{</div>
-<div class="line"><a name="l03897"></a><span class="lineno"> 3897</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;kmmawt2.u %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;+r&quot;</span>(t) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
-<div class="line"><a name="l03898"></a><span class="lineno"> 3898</span>&#160;    <span class="keywordflow">return</span> t;</div>
-<div class="line"><a name="l03899"></a><span class="lineno"> 3899</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l03980"></a><span class="lineno"> 3980</span>&#160;{</div>
+<div class="line"><a name="l03981"></a><span class="lineno"> 3981</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;kmmawt2.u %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;+r&quot;</span>(t) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
+<div class="line"><a name="l03982"></a><span class="lineno"> 3982</span>&#160;    <span class="keywordflow">return</span> t;</div>
+<div class="line"><a name="l03983"></a><span class="lineno"> 3983</span>&#160;}</div>
 <div class="ttc" id="group__NMSIS__Core__CompilerControl_html_ga1378040bcf22428955c6e3ce9c2053cd"><div class="ttname"><a href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a></div><div class="ttdeci">#define __ASM</div><div class="ttdoc">Pass information from the compiler to the assembler. </div><div class="ttdef"><b>Definition:</b> <a href="nmsis__gcc_8h_source.html#l00059">nmsis_gcc.h:59</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -799,21 +799,21 @@ This instruction multiplies the signed 32-bit elements of Rs1 with the signed to
 <div class="line"><span class="keywordflow">for</span> RV64: x=1...0</div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">t</td><td></td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td></td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">t</td><td>long type of value stored in t </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>unsigned long type of value stored in a </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>unsigned long type of value stored in b </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>value stored in long type </dd></dl>
 
-<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l03759">3759</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l03843">3843</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
 
 <p>References <a class="el" href="nmsis__gcc_8h_source.html#l00059">__ASM</a>.</p>
-<div class="fragment"><div class="line"><a name="l03760"></a><span class="lineno"> 3760</span>&#160;{</div>
-<div class="line"><a name="l03761"></a><span class="lineno"> 3761</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;kmmawt.u %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;+r&quot;</span>(t) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
-<div class="line"><a name="l03762"></a><span class="lineno"> 3762</span>&#160;    <span class="keywordflow">return</span> t;</div>
-<div class="line"><a name="l03763"></a><span class="lineno"> 3763</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l03844"></a><span class="lineno"> 3844</span>&#160;{</div>
+<div class="line"><a name="l03845"></a><span class="lineno"> 3845</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;kmmawt.u %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;+r&quot;</span>(t) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
+<div class="line"><a name="l03846"></a><span class="lineno"> 3846</span>&#160;    <span class="keywordflow">return</span> t;</div>
+<div class="line"><a name="l03847"></a><span class="lineno"> 3847</span>&#160;}</div>
 <div class="ttc" id="group__NMSIS__Core__CompilerControl_html_ga1378040bcf22428955c6e3ce9c2053cd"><div class="ttname"><a href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a></div><div class="ttdeci">#define __ASM</div><div class="ttdoc">Pass information from the compiler to the assembler. </div><div class="ttdef"><b>Definition:</b> <a href="nmsis__gcc_8h_source.html#l00059">nmsis_gcc.h:59</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -870,21 +870,21 @@ This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signe
 <div class="line"><span class="keywordflow">for</span> RV64: x=1...0</div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td></td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>long type of value stored in a </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>unsigned long type of value stored in b </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>value stored in long type </dd></dl>
 
-<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l04070">4070</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l04154">4154</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
 
 <p>References <a class="el" href="nmsis__gcc_8h_source.html#l00059">__ASM</a>.</p>
-<div class="fragment"><div class="line"><a name="l04071"></a><span class="lineno"> 4071</span>&#160;{</div>
-<div class="line"><a name="l04072"></a><span class="lineno"> 4072</span>&#160;    <span class="keywordtype">long</span> result;</div>
-<div class="line"><a name="l04073"></a><span class="lineno"> 4073</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;kmmwb2 %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
-<div class="line"><a name="l04074"></a><span class="lineno"> 4074</span>&#160;    <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l04075"></a><span class="lineno"> 4075</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l04155"></a><span class="lineno"> 4155</span>&#160;{</div>
+<div class="line"><a name="l04156"></a><span class="lineno"> 4156</span>&#160;    <span class="keyword">register</span> <span class="keywordtype">long</span> result;</div>
+<div class="line"><a name="l04157"></a><span class="lineno"> 4157</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;kmmwb2 %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
+<div class="line"><a name="l04158"></a><span class="lineno"> 4158</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l04159"></a><span class="lineno"> 4159</span>&#160;}</div>
 <div class="ttc" id="group__NMSIS__Core__CompilerControl_html_ga1378040bcf22428955c6e3ce9c2053cd"><div class="ttname"><a href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a></div><div class="ttdeci">#define __ASM</div><div class="ttdoc">Pass information from the compiler to the assembler. </div><div class="ttdef"><b>Definition:</b> <a href="nmsis__gcc_8h_source.html#l00059">nmsis_gcc.h:59</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -941,21 +941,21 @@ This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signe
 <div class="line"><span class="keywordflow">for</span> RV64: x=1...0</div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td></td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>long type of value stored in a </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>unsigned long type of value stored in b </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>value stored in long type </dd></dl>
 
-<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l04126">4126</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l04210">4210</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
 
 <p>References <a class="el" href="nmsis__gcc_8h_source.html#l00059">__ASM</a>.</p>
-<div class="fragment"><div class="line"><a name="l04127"></a><span class="lineno"> 4127</span>&#160;{</div>
-<div class="line"><a name="l04128"></a><span class="lineno"> 4128</span>&#160;    <span class="keywordtype">long</span> result;</div>
-<div class="line"><a name="l04129"></a><span class="lineno"> 4129</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;kmmwb2.u %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
-<div class="line"><a name="l04130"></a><span class="lineno"> 4130</span>&#160;    <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l04131"></a><span class="lineno"> 4131</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l04211"></a><span class="lineno"> 4211</span>&#160;{</div>
+<div class="line"><a name="l04212"></a><span class="lineno"> 4212</span>&#160;    <span class="keyword">register</span> <span class="keywordtype">long</span> result;</div>
+<div class="line"><a name="l04213"></a><span class="lineno"> 4213</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;kmmwb2.u %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
+<div class="line"><a name="l04214"></a><span class="lineno"> 4214</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l04215"></a><span class="lineno"> 4215</span>&#160;}</div>
 <div class="ttc" id="group__NMSIS__Core__CompilerControl_html_ga1378040bcf22428955c6e3ce9c2053cd"><div class="ttname"><a href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a></div><div class="ttdeci">#define __ASM</div><div class="ttdoc">Pass information from the compiler to the assembler. </div><div class="ttdef"><b>Definition:</b> <a href="nmsis__gcc_8h_source.html#l00059">nmsis_gcc.h:59</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -1012,21 +1012,21 @@ This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signe
 <div class="line"><span class="keywordflow">for</span> RV64: x=1...0</div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td></td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>long type of value stored in a </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>unsigned long type of value stored in b </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>value stored in long type </dd></dl>
 
-<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l04182">4182</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l04266">4266</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
 
 <p>References <a class="el" href="nmsis__gcc_8h_source.html#l00059">__ASM</a>.</p>
-<div class="fragment"><div class="line"><a name="l04183"></a><span class="lineno"> 4183</span>&#160;{</div>
-<div class="line"><a name="l04184"></a><span class="lineno"> 4184</span>&#160;    <span class="keywordtype">long</span> result;</div>
-<div class="line"><a name="l04185"></a><span class="lineno"> 4185</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;kmmwt2 %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
-<div class="line"><a name="l04186"></a><span class="lineno"> 4186</span>&#160;    <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l04187"></a><span class="lineno"> 4187</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l04267"></a><span class="lineno"> 4267</span>&#160;{</div>
+<div class="line"><a name="l04268"></a><span class="lineno"> 4268</span>&#160;    <span class="keyword">register</span> <span class="keywordtype">long</span> result;</div>
+<div class="line"><a name="l04269"></a><span class="lineno"> 4269</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;kmmwt2 %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
+<div class="line"><a name="l04270"></a><span class="lineno"> 4270</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l04271"></a><span class="lineno"> 4271</span>&#160;}</div>
 <div class="ttc" id="group__NMSIS__Core__CompilerControl_html_ga1378040bcf22428955c6e3ce9c2053cd"><div class="ttname"><a href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a></div><div class="ttdeci">#define __ASM</div><div class="ttdoc">Pass information from the compiler to the assembler. </div><div class="ttdef"><b>Definition:</b> <a href="nmsis__gcc_8h_source.html#l00059">nmsis_gcc.h:59</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -1083,21 +1083,21 @@ This instruction multiplies the signed 32-bit Q31 elements of Rs1 with the signe
 <div class="line"><span class="keywordflow">for</span> RV64: x=1...0</div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td></td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>long type of value stored in a </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>unsigned long type of value stored in b </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>value stored in long type </dd></dl>
 
-<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l04238">4238</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l04322">4322</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
 
 <p>References <a class="el" href="nmsis__gcc_8h_source.html#l00059">__ASM</a>.</p>
-<div class="fragment"><div class="line"><a name="l04239"></a><span class="lineno"> 4239</span>&#160;{</div>
-<div class="line"><a name="l04240"></a><span class="lineno"> 4240</span>&#160;    <span class="keywordtype">long</span> result;</div>
-<div class="line"><a name="l04241"></a><span class="lineno"> 4241</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;kmmwt2.u %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
-<div class="line"><a name="l04242"></a><span class="lineno"> 4242</span>&#160;    <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l04243"></a><span class="lineno"> 4243</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l04323"></a><span class="lineno"> 4323</span>&#160;{</div>
+<div class="line"><a name="l04324"></a><span class="lineno"> 4324</span>&#160;    <span class="keyword">register</span> <span class="keywordtype">long</span> result;</div>
+<div class="line"><a name="l04325"></a><span class="lineno"> 4325</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;kmmwt2.u %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
+<div class="line"><a name="l04326"></a><span class="lineno"> 4326</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l04327"></a><span class="lineno"> 4327</span>&#160;}</div>
 <div class="ttc" id="group__NMSIS__Core__CompilerControl_html_ga1378040bcf22428955c6e3ce9c2053cd"><div class="ttname"><a href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a></div><div class="ttdeci">#define __ASM</div><div class="ttdoc">Pass information from the compiler to the assembler. </div><div class="ttdef"><b>Definition:</b> <a href="nmsis__gcc_8h_source.html#l00059">nmsis_gcc.h:59</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -1149,21 +1149,21 @@ This instruction multiplies the signed 32-bit elements of Rs1 with the signed bo
 <div class="line"><span class="keywordflow">for</span> RV64: x=1...0</div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td></td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>long type of value stored in a </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>unsigned long type of value stored in b </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>value stored in long type </dd></dl>
 
-<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l08766">8766</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l08858">8858</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
 
 <p>References <a class="el" href="nmsis__gcc_8h_source.html#l00059">__ASM</a>.</p>
-<div class="fragment"><div class="line"><a name="l08767"></a><span class="lineno"> 8767</span>&#160;{</div>
-<div class="line"><a name="l08768"></a><span class="lineno"> 8768</span>&#160;    <span class="keywordtype">long</span> result;</div>
-<div class="line"><a name="l08769"></a><span class="lineno"> 8769</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;smmwb %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
-<div class="line"><a name="l08770"></a><span class="lineno"> 8770</span>&#160;    <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l08771"></a><span class="lineno"> 8771</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l08859"></a><span class="lineno"> 8859</span>&#160;{</div>
+<div class="line"><a name="l08860"></a><span class="lineno"> 8860</span>&#160;    <span class="keyword">register</span> <span class="keywordtype">long</span> result;</div>
+<div class="line"><a name="l08861"></a><span class="lineno"> 8861</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;smmwb %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
+<div class="line"><a name="l08862"></a><span class="lineno"> 8862</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l08863"></a><span class="lineno"> 8863</span>&#160;}</div>
 <div class="ttc" id="group__NMSIS__Core__CompilerControl_html_ga1378040bcf22428955c6e3ce9c2053cd"><div class="ttname"><a href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a></div><div class="ttdeci">#define __ASM</div><div class="ttdoc">Pass information from the compiler to the assembler. </div><div class="ttdef"><b>Definition:</b> <a href="nmsis__gcc_8h_source.html#l00059">nmsis_gcc.h:59</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -1215,21 +1215,21 @@ This instruction multiplies the signed 32-bit elements of Rs1 with the signed bo
 <div class="line"><span class="keywordflow">for</span> RV64: x=1...0</div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td></td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>long type of value stored in a </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>unsigned long type of value stored in b </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>value stored in long type </dd></dl>
 
-<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l08816">8816</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l08908">8908</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
 
 <p>References <a class="el" href="nmsis__gcc_8h_source.html#l00059">__ASM</a>.</p>
-<div class="fragment"><div class="line"><a name="l08817"></a><span class="lineno"> 8817</span>&#160;{</div>
-<div class="line"><a name="l08818"></a><span class="lineno"> 8818</span>&#160;    <span class="keywordtype">long</span> result;</div>
-<div class="line"><a name="l08819"></a><span class="lineno"> 8819</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;smmwb.u %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
-<div class="line"><a name="l08820"></a><span class="lineno"> 8820</span>&#160;    <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l08821"></a><span class="lineno"> 8821</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l08909"></a><span class="lineno"> 8909</span>&#160;{</div>
+<div class="line"><a name="l08910"></a><span class="lineno"> 8910</span>&#160;    <span class="keyword">register</span> <span class="keywordtype">long</span> result;</div>
+<div class="line"><a name="l08911"></a><span class="lineno"> 8911</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;smmwb.u %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
+<div class="line"><a name="l08912"></a><span class="lineno"> 8912</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l08913"></a><span class="lineno"> 8913</span>&#160;}</div>
 <div class="ttc" id="group__NMSIS__Core__CompilerControl_html_ga1378040bcf22428955c6e3ce9c2053cd"><div class="ttname"><a href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a></div><div class="ttdeci">#define __ASM</div><div class="ttdoc">Pass information from the compiler to the assembler. </div><div class="ttdef"><b>Definition:</b> <a href="nmsis__gcc_8h_source.html#l00059">nmsis_gcc.h:59</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -1281,21 +1281,21 @@ This instruction multiplies the signed 32-bit elements of Rs1 with the top signe
 <div class="line"><span class="keywordflow">for</span> RV64: x=1...0</div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td></td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>long type of value stored in a </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>unsigned long type of value stored in b </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>value stored in long type </dd></dl>
 
-<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l08866">8866</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l08958">8958</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
 
 <p>References <a class="el" href="nmsis__gcc_8h_source.html#l00059">__ASM</a>.</p>
-<div class="fragment"><div class="line"><a name="l08867"></a><span class="lineno"> 8867</span>&#160;{</div>
-<div class="line"><a name="l08868"></a><span class="lineno"> 8868</span>&#160;    <span class="keywordtype">long</span> result;</div>
-<div class="line"><a name="l08869"></a><span class="lineno"> 8869</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;smmwt %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
-<div class="line"><a name="l08870"></a><span class="lineno"> 8870</span>&#160;    <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l08871"></a><span class="lineno"> 8871</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l08959"></a><span class="lineno"> 8959</span>&#160;{</div>
+<div class="line"><a name="l08960"></a><span class="lineno"> 8960</span>&#160;    <span class="keyword">register</span> <span class="keywordtype">long</span> result;</div>
+<div class="line"><a name="l08961"></a><span class="lineno"> 8961</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;smmwt %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
+<div class="line"><a name="l08962"></a><span class="lineno"> 8962</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l08963"></a><span class="lineno"> 8963</span>&#160;}</div>
 <div class="ttc" id="group__NMSIS__Core__CompilerControl_html_ga1378040bcf22428955c6e3ce9c2053cd"><div class="ttname"><a href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a></div><div class="ttdeci">#define __ASM</div><div class="ttdoc">Pass information from the compiler to the assembler. </div><div class="ttdef"><b>Definition:</b> <a href="nmsis__gcc_8h_source.html#l00059">nmsis_gcc.h:59</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -1347,21 +1347,21 @@ This instruction multiplies the signed 32-bit elements of Rs1 with the top signe
 <div class="line"><span class="keywordflow">for</span> RV64: x=1...0</div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td></td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>long type of value stored in a </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>unsigned long type of value stored in b </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>value stored in long type </dd></dl>
 
-<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l08916">8916</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<p>Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l09008">9008</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
 
 <p>References <a class="el" href="nmsis__gcc_8h_source.html#l00059">__ASM</a>.</p>
-<div class="fragment"><div class="line"><a name="l08917"></a><span class="lineno"> 8917</span>&#160;{</div>
-<div class="line"><a name="l08918"></a><span class="lineno"> 8918</span>&#160;    <span class="keywordtype">long</span> result;</div>
-<div class="line"><a name="l08919"></a><span class="lineno"> 8919</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;smmwt.u %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
-<div class="line"><a name="l08920"></a><span class="lineno"> 8920</span>&#160;    <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l08921"></a><span class="lineno"> 8921</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l09009"></a><span class="lineno"> 9009</span>&#160;{</div>
+<div class="line"><a name="l09010"></a><span class="lineno"> 9010</span>&#160;    <span class="keyword">register</span> <span class="keywordtype">long</span> result;</div>
+<div class="line"><a name="l09011"></a><span class="lineno"> 9011</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;smmwt.u %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
+<div class="line"><a name="l09012"></a><span class="lineno"> 9012</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l09013"></a><span class="lineno"> 9013</span>&#160;}</div>
 <div class="ttc" id="group__NMSIS__Core__CompilerControl_html_ga1378040bcf22428955c6e3ce9c2053cd"><div class="ttname"><a href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a></div><div class="ttdeci">#define __ASM</div><div class="ttdoc">Pass information from the compiler to the assembler. </div><div class="ttdef"><b>Definition:</b> <a href="nmsis__gcc_8h_source.html#l00059">nmsis_gcc.h:59</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -1371,7 +1371,7 @@ This instruction multiplies the signed 32-bit elements of Rs1 with the top signe
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Mar 19 2020 06:30:02 for NMSIS-Core by
+    <li class="footer">Generated on Mon Aug 3 2020 00:57:36 for NMSIS-Core by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

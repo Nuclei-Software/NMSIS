@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Non-SIMD Q31 saturation ALU Instructions &mdash; NMSIS 1.0.0-beta1 documentation</title>
+  <title>Non-SIMD Q31 saturation ALU Instructions &mdash; NMSIS 1.0.1-RC1 documentation</title>
   
 
   
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                1.0.0
+                1.0.1
               </div>
             
           
@@ -255,11 +255,6 @@
 
 <dl class="function">
 <dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1gada4cef0c427d339f01f153c5d750dac3"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KSLLIW(long a, unsigned int b)</code></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt>
 <span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga3a01ea385d7d505ab86f7db697567e5b"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KSLRAW(int a, int b)</code></dt>
 <dd></dd></dl>
 
@@ -283,11 +278,56 @@
 <span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1gae102902e2e1e3a606807064ab3ea763f"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UKSUBW(unsigned int a, unsigned int b)</code></dt>
 <dd></dd></dl>
 
+<dl class="macro">
+<dt id="c.__RV_KSLLIW">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1gabe1e56e815426d757f416698bcae2529"></span><code class="sig-name descname">__RV_KSLLIW</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_KSLLIW" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="group">
 <dt>
 <span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU"></span><em>group</em> <code class="sig-name descname">NMSIS_Core_DSP_Intrinsic_NON_SIMD_Q31_SAT_ALU</code></dt>
 <dd><p>Non-SIMD Q31 saturation ALU Instructions. </p>
 <p>there are Non-SIMD Q31 saturation ALU Instructions </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1gabe1e56e815426d757f416698bcae2529"></span><code class="sig-name descname">__RV_KSLLIW</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span></dt>
+<dd><p>KSLLIW (Saturating Shift Left Logical Immediate for Word) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KSLLIW</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm5u</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do logical left shift operation with saturation on a 32-bit word. The shift amount is an immediate value.</p>
+</p>
+<p><strong>Description</strong>:<p>The first word data in Rs1 is left-shifted logically. The shifted out bits are filled with zero and the shift amount is specified by the imm5u constant. Any shifted value greater than 2^31-1 is saturated to 2^31-1. Any shifted value smaller than -2^31 is saturated to -2^31. And the saturated result is sign-extended and written to Rd. If any saturation is performed, set OV bit to 1.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sa</span> <span class="o">=</span> <span class="n">imm5u</span><span class="p">;</span>
+<span class="n">res</span><span class="p">[(</span><span class="mi">31</span><span class="o">+</span><span class="n">sa</span><span class="p">):</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">sa</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">res</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">31</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">res</span> <span class="o">=</span> <span class="mh">0x7fffffff</span><span class="p">;</span> <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">res</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">2</span><span class="o">^</span><span class="mi">31</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">res</span> <span class="o">=</span> <span class="mh">0x80000000</span><span class="p">;</span> <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">Rd</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span> <span class="o">//</span> <span class="n">RV32</span>
+<span class="n">Rd</span><span class="p">[</span><span class="mi">63</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">SE</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">]);</span> <span class="o">//</span> <span class="n">RV64</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Functions</p>
 <dl class="function">
@@ -318,10 +358,10 @@
 </div>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: signed long type of value stored in a </p></li>
 </ul>
 </dd>
 </dl>
@@ -357,11 +397,11 @@
 </div>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
+<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: int type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: int type of value stored in b </p></li>
 </ul>
 </dd>
 </dl>
@@ -399,11 +439,11 @@
 </div>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
+<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned int type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
 </dl>
@@ -441,11 +481,11 @@
 </div>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
+<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned int type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
 </dl>
@@ -483,11 +523,11 @@
 </div>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
+<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned int type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
 </dl>
@@ -532,12 +572,12 @@
 </div>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
+<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">t</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">t</span></code>: long type of value stored in t </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned int type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
 </dl>
@@ -582,12 +622,12 @@
 </div>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
+<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">t</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">t</span></code>: long type of value stored in t </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned int type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
 </dl>
@@ -632,12 +672,12 @@
 </div>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
+<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">t</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">t</span></code>: long type of value stored in t </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned int type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
 </dl>
@@ -670,48 +710,11 @@
 </div>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
+<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1gada4cef0c427d339f01f153c5d750dac3"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KSLLIW(long a, unsigned int b)</code></dt>
-<dd><p>KSLLIW (Saturating Shift Left Logical Immediate for Word) </p>
-<p><strong>Type</strong>: DSP</p>
-<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KSLLIW</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm5u</span>
-</pre></div>
-</div>
-</p>
-<p><strong>Purpose</strong>:<p>Do logical left shift operation with saturation on a 32-bit word. The shift amount is an immediate value.</p>
-</p>
-<p><strong>Description</strong>:<p>The first word data in Rs1 is left-shifted logically. The shifted out bits are filled with zero and the shift amount is specified by the imm5u constant. Any shifted value greater than 2^31-1 is saturated to 2^31-1. Any shifted value smaller than -2^31 is saturated to -2^31. And the saturated result is sign-extended and written to Rd. If any saturation is performed, set OV bit to 1.</p>
-</p>
-<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sa</span> <span class="o">=</span> <span class="n">imm5u</span><span class="p">;</span>
-<span class="n">res</span><span class="p">[(</span><span class="mi">31</span><span class="o">+</span><span class="n">sa</span><span class="p">):</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">sa</span><span class="p">;</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">res</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">31</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-  <span class="n">res</span> <span class="o">=</span> <span class="mh">0x7fffffff</span><span class="p">;</span> <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">res</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">2</span><span class="o">^</span><span class="mi">31</span><span class="p">)</span> <span class="p">{</span>
-  <span class="n">res</span> <span class="o">=</span> <span class="mh">0x80000000</span><span class="p">;</span> <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="n">Rd</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span> <span class="o">//</span> <span class="n">RV32</span>
-<span class="n">Rd</span><span class="p">[</span><span class="mi">63</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">SE</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">]);</span> <span class="o">//</span> <span class="n">RV64</span>
-</pre></div>
-</div>
-</p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
 </dl>
@@ -754,11 +757,11 @@ Rd = SE64(res[31:0]); // RV64
 </div>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
+<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: int type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: int type of value stored in b </p></li>
 </ul>
 </dd>
 </dl>
@@ -802,11 +805,11 @@ Rd = SE64(rst[31:0]); // RV64
 </div>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
+<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: int type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: int type of value stored in b </p></li>
 </ul>
 </dd>
 </dl>
@@ -842,11 +845,11 @@ Rd = SE64(rst[31:0]); // RV64
 </div>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
+<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: int type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: int type of value stored in b </p></li>
 </ul>
 </dd>
 </dl>
@@ -877,11 +880,11 @@ Rd = SE64(rst[31:0]); // RV64
 </div>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned int type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
 </dl>
@@ -912,11 +915,11 @@ Rd = SE64(rst[31:0]); // RV64
 </div>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned int type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
 </dl>
@@ -950,7 +953,7 @@ Rd = SE64(rst[31:0]); // RV64
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Mar 19, 2020.
+        Last updated on Aug 03, 2020.
       </span>
 
     </p>

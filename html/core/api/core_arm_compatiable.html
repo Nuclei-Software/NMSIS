@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ARM Compatiable Functions &mdash; NMSIS 1.0.0-beta1 documentation</title>
+  <title>ARM Compatiable Functions &mdash; NMSIS 1.0.1-RC1 documentation</title>
   
 
   
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                1.0.0
+                1.0.1
               </div>
             
           
@@ -253,8 +253,40 @@
 </dd></dl>
 
 <dl class="macro">
+<dt id="c.__SSAT">
+<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga2ca2b1eeec054ee2b02a5e8cb3c88cbf"></span><code class="sig-name descname">__SSAT</code><span class="sig-paren">(</span>val, sat<span class="sig-paren">)</span> __RV_SCLIP32((val), (sat-1))<a class="headerlink" href="#c.__SSAT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Signed Saturate. </p>
+<p>Saturates a signed value. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Saturated value </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">value</span></code>: Value to be saturated </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">sat</span></code>: Bit position to saturate to (1..32) </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.__USAT">
+<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga80269b6402db8ba034a5a1b04d88fdd6"></span><code class="sig-name descname">__USAT</code><span class="sig-paren">(</span>val, sat<span class="sig-paren">)</span> __RV_UCLIP32((val), (sat-1))<a class="headerlink" href="#c.__USAT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unsigned Saturate. </p>
+<p>Saturates an unsigned value. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Saturated value </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">value</span></code>: Value to be saturated </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">sat</span></code>: Bit position to saturate to (0..31) </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="macro">
 <dt id="c.__RBIT">
-<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga0ffdc7f8b90076408f400768a7f5e372"></span><code class="sig-name descname">__RBIT</code><span class="sig-paren">(</span>value<span class="sig-paren">)</span> __RV_BITREV((value), 31)<a class="headerlink" href="#c.__RBIT" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga0ffdc7f8b90076408f400768a7f5e372"></span><code class="sig-name descname">__RBIT</code><span class="sig-paren">(</span>value<span class="sig-paren">)</span> __RV_BITREVI((value), 31)<a class="headerlink" href="#c.__RBIT" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reverse bit order of value. </p>
 <p>Reverses the bit order of the given value. <dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>Reversed value </p>
@@ -285,38 +317,6 @@
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Functions</p>
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga372c0535573dde3e37f0f08c774a3487"></span><code class="sig-name descname">__STATIC_FORCEINLINE int32_t __SSAT(int32_t val, uint32_t sat)</code></dt>
-<dd><p>Signed Saturate. </p>
-<p>Saturates a signed value. <dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>Saturated value </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">value</span></code>: Value to be saturated </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">sat</span></code>: Bit position to saturate to (1..32) </p></li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga6562dbd8182d1571e22dbca7ebdfa9bc"></span><code class="sig-name descname">__STATIC_FORCEINLINE uint32_t __USAT(int32_t val, uint32_t sat)</code></dt>
-<dd><p>Unsigned Saturate. </p>
-<p>Saturates an unsigned value. <dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>Saturated value </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">value</span></code>: Value to be saturated </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">sat</span></code>: Bit position to saturate to (0..31) </p></li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
 <dl class="function">
 <dt>
 <span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1gadb92679719950635fba8b1b954072695"></span><code class="sig-name descname">__STATIC_FORCEINLINE uint32_t __REV(uint32_t value)</code></dt>
@@ -405,7 +405,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Mar 19, 2020.
+        Last updated on Aug 03, 2020.
       </span>
 
     </p>

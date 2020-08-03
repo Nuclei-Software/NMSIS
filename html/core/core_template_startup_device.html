@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Startup File startup_&lt;device&gt;.S &mdash; NMSIS 1.0.0-beta1 documentation</title>
+  <title>Startup File startup_&lt;device&gt;.S &mdash; NMSIS 1.0.1-RC1 documentation</title>
   
 
   
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                1.0.0
+                1.0.1
               </div>
             
           
@@ -606,7 +606,16 @@ The files for other compilers can slightly differ from this version.</p>
 302
 303
 304
-305</pre></div></td><td class="code"><div class="highlight"><pre><span></span>/*
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314</pre></div></td><td class="code"><div class="highlight"><pre><span></span>/*
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -647,6 +656,7 @@ The files for other compilers can slightly differ from this version.</p>
  * flashxip: Program will to be download into flash and run directly in Flash
  * flash: Program will be download into flash, when running, program will be copied to ilm/ram and run in ilm/ram
  * ilm: Program will be download into ilm/ram and run directly in ilm/ram, program lost when poweroff
+ * ddr: Program will be download into ddr and run directly in ddr, program lost when poweroff
  */
 
 /*** Vector Table Code Section ***/
@@ -655,6 +665,7 @@ The files for other compilers can slightly differ from this version.</p>
      * This template startup code by default is for FlashXIP mode:
      * FlashXIP: .vtable
      * ILM: .vtable
+     * DDR: .vtable
      * Flash: .vtable_ilm
      */
     .section .vtable
@@ -697,7 +708,7 @@ The files for other compilers can slightly differ from this version.</p>
 
     .globl vector_base
 vector_base:
-    /* TODO: For ILM and FlashXIP download mode, please place the following two lines */
+    /* TODO: For ILM, DDR, and FlashXIP download mode, please place the following two lines */
     j _start                                                /* 0: Reserved, Jump to _start when reset for ILM/FlashXIP mode.*/
     .align LOG_REGBYTES                                     /*    Need to align 4 byte for RV32, 8 Byte for RV64 */
 
@@ -827,7 +838,7 @@ _start:
     csrw CSR_MTVEC, t0
 
     /* Set the interrupt processing mode to ECLIC mode */
-    la t0, 0x3f
+    li t0, 0x3f
     csrc CSR_MTVEC, t0
     csrs CSR_MTVEC, 0x3
 
@@ -843,6 +854,10 @@ _start:
     /* Enable mcycle and minstret counter */
     csrci CSR_MCOUNTINHIBIT, 0x5
 
+    /* Enable ICache and DCache if present */
+    li t0, 0x10001
+    csrs CSR_MCACHE_CTL, t0
+
     /*
      * Call vendor defined SystemInit to
      * initialize the micro-controller system.
@@ -854,7 +869,7 @@ _start:
 
     /* ===== Startup Stage 3 ===== */
     /*
-     * Load code section frm FLASH to ILM
+     * Load code section from FLASH to ILM
      * when code LMA is different with VMA
      */
     la a0, _ilm_lma
@@ -902,12 +917,15 @@ _start:
     /* Call C/C++ constructor start up code */
     call __libc_init_array
 
-
+    /* do pre-init steps before main */
+    call _premain_init
     /* ===== Call Main Function  ===== */
     /* argc = argv = 0 */
     li a0, 0
     li a1, 0
     call main
+    /* do post-main steps after main */
+    call _postmain_fini
 
 1:
     j 1b
@@ -938,7 +956,7 @@ _start:
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Mar 19, 2020.
+        Last updated on Aug 03, 2020.
       </span>
 
     </p>

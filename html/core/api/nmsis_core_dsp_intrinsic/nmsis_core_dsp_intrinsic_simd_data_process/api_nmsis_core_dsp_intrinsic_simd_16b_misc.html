@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>SIMD 16-bit Miscellaneous Instructions &mdash; NMSIS 1.0.0-beta1 documentation</title>
+  <title>SIMD 16-bit Miscellaneous Instructions &mdash; NMSIS 1.0.1-RC1 documentation</title>
   
 
   
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                1.0.0
+                1.0.1
               </div>
             
           
@@ -236,22 +236,12 @@
 
 <dl class="function">
 <dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__MISC_1ga4025d5f632fcaa18a002c764daa577bd"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SCLIP16(unsigned long a, unsigned int b)</code></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt>
 <span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__MISC_1ga9fefb44ce69dae8452a1f78462b36ace"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SMAX16(unsigned long a, unsigned long b)</code></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt>
 <span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__MISC_1ga5b8419c5f8c624d1a0e16c43efb798eb"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SMIN16(unsigned long a, unsigned long b)</code></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__MISC_1ga562f85675e7444c4fb1e5e6c28c3c6c7"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UCLIP16(unsigned long a, unsigned int b)</code></dt>
 <dd></dd></dl>
 
 <dl class="function">
@@ -264,11 +254,102 @@
 <span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__MISC_1gaa7c689ce557d35cb4847d43846579a40"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UMIN16(unsigned long a, unsigned long b)</code></dt>
 <dd></dd></dl>
 
+<dl class="macro">
+<dt id="c.__RV_SCLIP16">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__MISC_1gad4f98e8ffe4b82cbedafd4dc8348f863"></span><code class="sig-name descname">__RV_SCLIP16</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_SCLIP16" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.__RV_UCLIP16">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__MISC_1ga6448eaddeb437add172014662e9d52f7"></span><code class="sig-name descname">__RV_UCLIP16</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_UCLIP16" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="group">
 <dt>
 <span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__MISC"></span><em>group</em> <code class="sig-name descname">NMSIS_Core_DSP_Intrinsic_SIMD_16B_MISC</code></dt>
 <dd><p>SIMD 16-bit Miscellaneous Instructions. </p>
 <p>there are 10 SIMD 16-bit Misc instructions. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__MISC_1gad4f98e8ffe4b82cbedafd4dc8348f863"></span><code class="sig-name descname">__RV_SCLIP16</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span></dt>
+<dd><p>SCLIP16 (SIMD 16-bit Signed Clip Value) </p>
+<p><strong>Type</strong>: SIMD</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SCLIP16</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm4u</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Limit the 16-bit signed integer elements of a register into a signed range simultaneously.</p>
+</p>
+<p><strong>Description</strong>:<p>This instruction limits the 16-bit signed integer elements stored in Rs1 into a signed integer range between 2imm4u-1 and -2imm4u, and writes the limited results to Rd. For example, if imm4u is 3, the 16-bit input values should be saturated between 7 and -8. If saturation is performed, set OV bit to 1.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">src</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">src</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="n">imm4u</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">src</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="n">imm4u</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">src</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">2</span><span class="o">^</span><span class="n">imm4u</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">src</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="o">^</span><span class="n">imm4u</span><span class="p">;</span>
+  <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">Rd</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">src</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">1.</span><span class="o">..</span><span class="mi">0</span><span class="p">,</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">3.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__MISC_1ga6448eaddeb437add172014662e9d52f7"></span><code class="sig-name descname">__RV_UCLIP16</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span></dt>
+<dd><p>UCLIP16 (SIMD 16-bit Unsigned Clip Value) </p>
+<p><strong>Type</strong>: SIMD</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UCLIP16</span> <span class="n">Rt</span><span class="p">,</span> <span class="n">Ra</span><span class="p">,</span> <span class="n">imm4u</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Limit the 16-bit signed elements of a register into an unsigned range simultaneously.</p>
+</p>
+<p><strong>Description</strong>:<p>This instruction limits the 16-bit signed elements stored in Rs1 into an unsigned integer range between 2imm4u-1 and 0, and writes the limited results to Rd. For example, if imm4u is 3, the 16-bit input values should be saturated between 7 and 0. If saturation is performed, set OV bit to 1.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">src</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">src</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="n">imm4u</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">src</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="n">imm4u</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">src</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">src</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">Rd</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">src</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">1.</span><span class="o">..</span><span class="mi">0</span><span class="p">,</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">3.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Functions</p>
 <dl class="function">
@@ -300,10 +381,10 @@
 </div>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
 </ul>
 </dd>
 </dl>
@@ -339,10 +420,10 @@
 </div>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
 </ul>
 </dd>
 </dl>
@@ -378,10 +459,10 @@
 </div>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
 </ul>
 </dd>
 </dl>
@@ -415,49 +496,10 @@
 </div>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__MISC_1ga4025d5f632fcaa18a002c764daa577bd"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SCLIP16(unsigned long a, unsigned int b)</code></dt>
-<dd><p>SCLIP16 (SIMD 16-bit Signed Clip Value) </p>
-<p><strong>Type</strong>: SIMD</p>
-<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SCLIP16</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm4u</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-</p>
-<p><strong>Purpose</strong>:<p>Limit the 16-bit signed integer elements of a register into a signed range simultaneously.</p>
-</p>
-<p><strong>Description</strong>:<p>This instruction limits the 16-bit signed integer elements stored in Rs1 into a signed integer range between 2imm4u-1 and -2imm4u, and writes the limited results to Rd. For example, if imm4u is 3, the 16-bit input values should be saturated between 7 and -8. If saturation is performed, set OV bit to 1.</p>
-</p>
-<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">src</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">src</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="n">imm4u</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-  <span class="n">src</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="n">imm4u</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-  <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">src</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">2</span><span class="o">^</span><span class="n">imm4u</span><span class="p">)</span> <span class="p">{</span>
-  <span class="n">src</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="o">^</span><span class="n">imm4u</span><span class="p">;</span>
-  <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="n">Rd</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">src</span>
-<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">1.</span><span class="o">..</span><span class="mi">0</span><span class="p">,</span>
-<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">3.</span><span class="o">..</span><span class="mi">0</span>
-</pre></div>
-</div>
-</p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
 </ul>
 </dd>
 </dl>
@@ -484,11 +526,11 @@ for RV64: x=3...0
 </div>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
 </dl>
@@ -515,50 +557,11 @@ for RV64: x=3...0
 </div>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__MISC_1ga562f85675e7444c4fb1e5e6c28c3c6c7"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UCLIP16(unsigned long a, unsigned int b)</code></dt>
-<dd><p>UCLIP16 (SIMD 16-bit Unsigned Clip Value) </p>
-<p><strong>Type</strong>: SIMD</p>
-<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UCLIP16</span> <span class="n">Rt</span><span class="p">,</span> <span class="n">Ra</span><span class="p">,</span> <span class="n">imm4u</span>
-</pre></div>
-</div>
-</p>
-<p><strong>Purpose</strong>:<p>Limit the 16-bit signed elements of a register into an unsigned range simultaneously.</p>
-</p>
-<p><strong>Description</strong>:<p>This instruction limits the 16-bit signed elements stored in Rs1 into an unsigned integer range between 2imm4u-1 and 0, and writes the limited results to Rd. For example, if imm4u is 3, the 16-bit input values should be saturated between 7 and 0. If saturation is performed, set OV bit to 1.</p>
-</p>
-<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">src</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">src</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="n">imm4u</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-  <span class="n">src</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="n">imm4u</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-  <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">src</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-  <span class="n">src</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="n">Rd</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">src</span><span class="p">;</span>
-<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">1.</span><span class="o">..</span><span class="mi">0</span><span class="p">,</span>
-<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">3.</span><span class="o">..</span><span class="mi">0</span>
-</pre></div>
-</div>
-</p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
 </dl>
@@ -585,11 +588,11 @@ for RV64: x=3...0
 </div>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
 </dl>
@@ -616,11 +619,11 @@ for RV64: x=3...0
 </div>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
 </dl>
@@ -654,7 +657,7 @@ for RV64: x=3...0
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Mar 19, 2020.
+        Last updated on Aug 03, 2020.
       </span>
 
     </p>

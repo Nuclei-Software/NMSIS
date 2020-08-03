@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-Core
-   &#160;<span id="projectnumber">Version 1.0.0</span>
+   &#160;<span id="projectnumber">Version 1.0.1</span>
    </div>
    <div id="projectbrief">NMSIS-Core support for Nuclei processor-based devices</div>
   </td>
@@ -228,13 +228,13 @@ $(document).ready(function(){initNavTree('system__Device_8c_source.html','');});
 <div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;<span class="stringliteral">    if (exc_handler != NULL) {</span></div>
 <div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;<span class="stringliteral">        exc_handler(mcause, sp);</span></div>
 <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="stringliteral">    }</span></div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<span class="stringliteral">        return 0;</span></div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<span class="stringliteral">    return 0;</span></div>
 <div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<span class="stringliteral">}</span></div>
 <div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;<span class="stringliteral"></span></div>
 <div class="line"><a name="l00262"></a><span class="lineno"><a class="line" href="group__NMSIS__Core__IntExcNMI__Handling.html#ga2d2e27f47287f5d28cc26f2cb214337f">  262</a></span>&#160;<span class="stringliteral">void ECLIC_Init(void)</span></div>
 <div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;<span class="stringliteral">{</span></div>
 <div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="stringliteral">    /* Global Configuration about MTH and NLBits.</span></div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="stringliteral">     * TODO: Please adapt it according to your system requirement. </span></div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="stringliteral">     * TODO: Please adapt it according to your system requirement.</span></div>
 <div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;<span class="stringliteral">     * This function is called in _init function */</span></div>
 <div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;<span class="stringliteral">    /* Set CSR MTH to zero */</span></div>
 <div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;<span class="stringliteral">    ECLIC_SetMth(0);</span></div>
@@ -262,36 +262,45 @@ $(document).ready(function(){initNavTree('system__Device_8c_source.html','');});
 <div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;<span class="stringliteral">        ECLIC_SetVector(IRQn, (rv_csr_t)handler);</span></div>
 <div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;<span class="stringliteral">    }</span></div>
 <div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;<span class="stringliteral">    /* enable interrupt */</span></div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;<span class="stringliteral">    ECLIC_EnableIRQ(IRQn); </span></div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;<span class="stringliteral">    ECLIC_EnableIRQ(IRQn);</span></div>
 <div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;<span class="stringliteral">    return 0;</span></div>
 <div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;<span class="stringliteral">} /* End of Doxygen Group NMSIS_Core_ExceptionAndNMI */</span></div>
 <div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00322"></a><span class="lineno"><a class="line" href="group__NMSIS__Core__SystemConfig.html#gad1cbc4315ef293463e6057dfb24c8115">  322</a></span>&#160;<span class="stringliteral">void _init(void)</span></div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;<span class="stringliteral">{</span></div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;<span class="stringliteral">    /* TODO: Add your own initialization code here, called before main via __libc_init_array */</span></div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;<span class="stringliteral">    // TODO: Add code to set the system clock frequency value SystemCoreClock</span></div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;<span class="stringliteral">    </span></div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;<span class="stringliteral">    // TODO: Add code to initialize necessary gpio and basic uart for debug print</span></div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;<span class="stringliteral">    </span></div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;<span class="stringliteral">    /* Initialize exception default handlers */</span></div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;<span class="stringliteral">    Exception_Init();</span></div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;<span class="stringliteral">    /* ECLIC initilization, mainly MTH and NLBIT settings */</span></div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;<span class="stringliteral">    ECLIC_Init();</span></div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;<span class="stringliteral">}</span></div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00342"></a><span class="lineno"><a class="line" href="group__NMSIS__Core__SystemConfig.html#ga173a20f19acf36985bbac6786a02b544">  342</a></span>&#160;<span class="stringliteral">void _fini(void)</span></div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;<span class="stringliteral">{</span></div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;<span class="stringliteral">    /* TODO: Add your own finishing code here, called after main via __libc_fini_array */</span></div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;<span class="stringliteral">}</span></div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;<span class="stringliteral"> /* End of Doxygen Group NMSIS_Core_SystemAndClock */</span></div>
+<div class="line"><a name="l00323"></a><span class="lineno"><a class="line" href="group__NMSIS__Core__SystemConfig.html#gad13ba247efe59bbe2b6004d9bd0f10db">  323</a></span>&#160;<span class="stringliteral">void _premain_init(void)</span></div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;<span class="stringliteral">{</span></div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;<span class="stringliteral">    /* TODO: Add your own initialization code here, called before main  */</span></div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;<span class="stringliteral">    // TODO: Add code to set the system clock frequency value SystemCoreClock</span></div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;<span class="stringliteral">    // TODO: Add code to initialize necessary gpio and basic uart for debug print</span></div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;<span class="stringliteral">    /* Initialize exception default handlers */</span></div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;<span class="stringliteral">    Exception_Init();</span></div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;<span class="stringliteral">    /* ECLIC initilization, mainly MTH and NLBIT settings */</span></div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;<span class="stringliteral">    ECLIC_Init();</span></div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;<span class="stringliteral">}</span></div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00345"></a><span class="lineno"><a class="line" href="group__NMSIS__Core__SystemConfig.html#ga6eb76a75cf67b543443efc82ecf33713">  345</a></span>&#160;<span class="stringliteral">void _postmain_fini(int status)</span></div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;<span class="stringliteral">{</span></div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;<span class="stringliteral">    /* TODO: Add your own finishing code here, called after main */</span></div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;<span class="stringliteral">}</span></div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00359"></a><span class="lineno"><a class="line" href="group__NMSIS__Core__SystemConfig.html#gad1cbc4315ef293463e6057dfb24c8115">  359</a></span>&#160;<span class="stringliteral">void _init(void)</span></div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;<span class="stringliteral">{</span></div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;<span class="stringliteral">    /* Don&#39;t put any code here, please use _premain_init now */</span></div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;<span class="stringliteral">}</span></div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00373"></a><span class="lineno"><a class="line" href="group__NMSIS__Core__SystemConfig.html#ga173a20f19acf36985bbac6786a02b544">  373</a></span>&#160;<span class="stringliteral">void _fini(void)</span></div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;<span class="stringliteral">{</span></div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;<span class="stringliteral">    /* Don&#39;t put any code here, please use _postmain_fini now */</span></div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;<span class="stringliteral">}</span></div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;<span class="stringliteral"> /* End of Doxygen Group NMSIS_Core_SystemAndClock */</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_4c76ddfc10a27668d6c42d3412320ee0.html">Device</a></li><li class="navelem"><a class="el" href="dir_8d3ab3f70e746474ef63a3c4bb1dd6c1.html">_Template_Vendor</a></li><li class="navelem"><a class="el" href="dir_a97470792602a91291de776b607107ce.html">Vendor</a></li><li class="navelem"><a class="el" href="dir_6426ed6ac6027ba1f73d15aa5cde2718.html">Device</a></li><li class="navelem"><a class="el" href="dir_d8ea1ed2ae90ec7dcab35920f49d2afb.html">Source</a></li><li class="navelem"><b>system_Device.c</b></li>
-    <li class="footer">Generated on Thu Mar 19 2020 06:30:02 for NMSIS-Core by
+    <li class="footer">Generated on Mon Aug 3 2020 00:57:35 for NMSIS-Core by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

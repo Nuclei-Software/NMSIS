@@ -33,6 +33,7 @@ var searchData=
   ['default_5frstvec',['DEFAULT_RSTVEC',['../group__NMSIS__Core__CSR__Encoding.html#ga325a70437a7ebec841da1fc84384c14c',1,'riscv_encoding.h']]],
   ['disabledcache',['DisableDCache',['../group__NMSIS__Core__DCache.html#gab30be00d8a0583adac5d786149db433f',1,'core_feature_cache.h']]],
   ['disableicache',['DisableICache',['../group__NMSIS__Core__ICache.html#ga4a855b01222d0c42d413f168651616e5',1,'core_feature_cache.h']]],
+  ['download_5fmode_5fddr',['DOWNLOAD_MODE_DDR',['../group__NMSIS__Core__CSR__Encoding.html#ga210838c830a778a63d23a462f9d685d1',1,'riscv_encoding.h']]],
   ['download_5fmode_5fflash',['DOWNLOAD_MODE_FLASH',['../group__NMSIS__Core__CSR__Encoding.html#ga7f491c12bf67f388e55a6c690250f5c4',1,'riscv_encoding.h']]],
   ['download_5fmode_5fflashxip',['DOWNLOAD_MODE_FLASHXIP',['../group__NMSIS__Core__CSR__Encoding.html#gaf3a1b04a54d333c5db52961cc7aebadf',1,'riscv_encoding.h']]],
   ['download_5fmode_5film',['DOWNLOAD_MODE_ILM',['../group__NMSIS__Core__CSR__Encoding.html#ga139d9c9b83b0d91eb2462be620034adb',1,'riscv_encoding.h']]],

@@ -3,6 +3,16 @@
 Changelog
 =========
 
+V1.0.1
+------
+
+This is release ``V1.0.1`` version of NMSIS-DSP library.
+
+* Both Nuclei RISC-V 32 and 64 bit cores are supported now.
+* Libraries are optimized for RISC-V 32 and 64 bit DSP instructions.
+* The DSP examples are now using Nuclei SDK as running environment.
+
+
 V1.0.0
 ------
 

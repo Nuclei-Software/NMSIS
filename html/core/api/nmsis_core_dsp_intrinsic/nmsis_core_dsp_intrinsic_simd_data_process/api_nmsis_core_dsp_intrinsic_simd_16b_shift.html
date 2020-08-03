@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>SIMD 16-bit Shift Instructions &mdash; NMSIS 1.0.0-beta1 documentation</title>
+  <title>SIMD 16-bit Shift Instructions &mdash; NMSIS 1.0.1-RC1 documentation</title>
   
 
   
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                1.0.0
+                1.0.1
               </div>
             
           
@@ -221,11 +221,6 @@
 
 <dl class="function">
 <dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__SHIFT_1ga0c6a91d4acd34104ed5b47e48e910114"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KSLLI16(unsigned long a, unsigned int b)</code></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt>
 <span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__SHIFT_1gaa85a466f43c98b2a2b34dc19e9c8e9d2"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KSLRA16(unsigned long a, int b)</code></dt>
 <dd></dd></dl>
 
@@ -241,27 +236,12 @@
 
 <dl class="function">
 <dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__SHIFT_1gab06cdcffba110b801df98ee2208e4cc0"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SLLI16(unsigned long a, unsigned int b)</code></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt>
 <span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__SHIFT_1gab98c44f440802e210dd48403997977fa"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRA16(unsigned long a, unsigned long b)</code></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt>
 <span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__SHIFT_1ga044ea66eee35c4d3ae3cb3d8e7aa3aa2"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRA16_U(unsigned long a, unsigned long b)</code></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__SHIFT_1gaffe133a900a4f69acef9ba2f6cafa2b9"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRAI16(unsigned long a, unsigned long b)</code></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__SHIFT_1gacd5b381585f2c53c1c791b1ade509e59"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRAI16_U(unsigned long a, unsigned long b)</code></dt>
 <dd></dd></dl>
 
 <dl class="function">
@@ -274,14 +254,34 @@
 <span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__SHIFT_1ga9b9494b2d305f51510e789484cbfd60b"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRL16_U(unsigned long a, unsigned int b)</code></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__SHIFT_1gac7770810e1893581d9153635fc943107"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRLI16(unsigned long a, unsigned int b)</code></dt>
+<dl class="macro">
+<dt id="c.__RV_KSLLI16">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__SHIFT_1ga6926818b4df53eed570be8d922ca19ca"></span><code class="sig-name descname">__RV_KSLLI16</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_KSLLI16" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__SHIFT_1ga98ef01d7b5346045b83eaa411234d83f"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRLI16_U(unsigned long a, unsigned int b)</code></dt>
+<dl class="macro">
+<dt id="c.__RV_SLLI16">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__SHIFT_1gae64e8d3cc171a464a716e317cd0eca66"></span><code class="sig-name descname">__RV_SLLI16</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_SLLI16" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.__RV_SRAI16">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__SHIFT_1ga6fa2d780199be27817ab78209e4e234c"></span><code class="sig-name descname">__RV_SRAI16</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_SRAI16" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.__RV_SRAI16_U">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__SHIFT_1gaf1be1014728b97f6e3c5481ef7b9644e"></span><code class="sig-name descname">__RV_SRAI16_U</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_SRAI16_U" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.__RV_SRLI16">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__SHIFT_1gae990a9f2ef6b5f70f563327a56c693e0"></span><code class="sig-name descname">__RV_SRLI16</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_SRLI16" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.__RV_SRLI16_U">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__SHIFT_1ga26055d836ed9bb21a1191bbf10197636"></span><code class="sig-name descname">__RV_SRLI16_U</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_SRLI16_U" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="group">
@@ -289,6 +289,251 @@
 <span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__SHIFT"></span><em>group</em> <code class="sig-name descname">NMSIS_Core_DSP_Intrinsic_SIMD_16B_SHIFT</code></dt>
 <dd><p>SIMD 16-bit Shift Instructions. </p>
 <p>there are 14 SIMD 16-bit shift instructions. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__SHIFT_1ga6926818b4df53eed570be8d922ca19ca"></span><code class="sig-name descname">__RV_KSLLI16</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span></dt>
+<dd><p>KSLLI16 (SIMD 16-bit Saturating Shift Left Logical Immediate) </p>
+<p><strong>Type</strong>: SIMD</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KSLLI16</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm4u</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 16-bit elements logical left shift operations with saturation simultaneously. The shift amount is an immediate value.</p>
+</p>
+<p><strong>Description</strong>:<p>The 16-bit data elements in Rs1 are left-shifted logically. The shifted out bits are filled with zero and the shift amount is specified by the imm4u constant. Any shifted value greater than 2^15-1 is saturated to 2^15-1. Any shifted value smaller than -2^15 is saturated to -2^15. And the saturated results are written to Rd. If any saturation is performed, set OV bit to 1.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sa</span> <span class="o">=</span> <span class="n">imm4u</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">sa</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">res</span><span class="p">[(</span><span class="mi">15</span><span class="o">+</span><span class="n">sa</span><span class="p">):</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">sa</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">res</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">15</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="mh">0x7fff</span><span class="p">;</span> <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">res</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">2</span><span class="o">^</span><span class="mi">15</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="mh">0x8000</span><span class="p">;</span> <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">Rd</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">15</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="n">Rd</span> <span class="o">=</span> <span class="n">Rs1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">1.</span><span class="o">..</span><span class="mi">0</span><span class="p">,</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">3.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__SHIFT_1gae64e8d3cc171a464a716e317cd0eca66"></span><code class="sig-name descname">__RV_SLLI16</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span></dt>
+<dd><p>SLLI16 (SIMD 16-bit Shift Left Logical Immediate) </p>
+<p><strong>Type</strong>: SIMD</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SLLI16</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm4</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 16-bit element logical left shift operations simultaneously. The shift amount is an immediate value.</p>
+</p>
+<p><strong>Description</strong>:<p>The 16-bit elements in Rs1 are left-shifted logically. The shifted out bits are filled with zero and the shift amount is specified by the imm4[3:0] constant. And the results are written to Rd.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sa</span> <span class="o">=</span> <span class="n">imm4</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+<span class="n">Rd</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">sa</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">1.</span><span class="o">..</span><span class="mi">0</span><span class="p">,</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">3.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__SHIFT_1ga6fa2d780199be27817ab78209e4e234c"></span><code class="sig-name descname">__RV_SRAI16</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span></dt>
+<dd><p>SRAI16 (SIMD 16-bit Shift Right Arithmetic Immediate) </p>
+<p><strong>Type</strong>: SIMD</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SRAI16</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm4u</span>
+<span class="n">SRAI16</span><span class="o">.</span><span class="n">u</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm4u</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 16-bit elements arithmetic right shift operations simultaneously. The shift amount is an immediate value. The </p>
+<code class="docutils literal notranslate"><span class="pre">.u</span></code> form performs additional rounding up operations on the shifted results.</p>
+<p><strong>Description</strong>:<p>The 16-bit data elements in Rs1 are right-shifted arithmetically, that is, the shifted out bits are filled with the sign-bit of the 16-bit data elements. The shift amount is specified by the imm4u constant. For the rounding operation of the </p>
+<code class="docutils literal notranslate"><span class="pre">.u</span></code> form, a value of 1 is added to the most significant discarded bit of each 16-bit data to calculate the final results. And the results are written to Rd.</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sa = imm4u[3:0];
+if (sa &gt; 0) {
+  if (`.u` form) { // SRAI16.u
+    res[15:-1] = SE17(Rs1.H[x][15:sa-1]) + 1;
+    Rd.H[x] = res[15:0];
+  } else { // SRAI16
+    Rd.H[x] = SE16(Rs1.H[x][15:sa]);
+  }
+} else {
+  Rd = Rs1;
+}
+for RV32: x=1...0,
+for RV64: x=3...0
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__SHIFT_1gaf1be1014728b97f6e3c5481ef7b9644e"></span><code class="sig-name descname">__RV_SRAI16_U</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span></dt>
+<dd><p>SRAI16.u (SIMD 16-bit Rounding Shift Right Arithmetic Immediate) </p>
+<p><strong>Type</strong>: SIMD</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SRAI16</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm4u</span>
+<span class="n">SRAI16</span><span class="o">.</span><span class="n">u</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm4u</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 16-bit elements arithmetic right shift operations simultaneously. The shift amount is an immediate value. The </p>
+<code class="docutils literal notranslate"><span class="pre">.u</span></code> form performs additional rounding up operations on the shifted results.</p>
+<p><strong>Description</strong>:<p>The 16-bit data elements in Rs1 are right-shifted arithmetically, that is, the shifted out bits are filled with the sign-bit of the 16-bit data elements. The shift amount is specified by the imm4u constant. For the rounding operation of the </p>
+<code class="docutils literal notranslate"><span class="pre">.u</span></code> form, a value of 1 is added to the most significant discarded bit of each 16-bit data to calculate the final results. And the results are written to Rd.</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sa = imm4u[3:0];
+if (sa &gt; 0) {
+  if (`.u` form) { // SRAI16.u
+    res[15:-1] = SE17(Rs1.H[x][15:sa-1]) + 1;
+    Rd.H[x] = res[15:0];
+  } else { // SRAI16
+    Rd.H[x] = SE16(Rs1.H[x][15:sa]);
+  }
+} else {
+  Rd = Rs1;
+}
+for RV32: x=1...0,
+for RV64: x=3...0
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__SHIFT_1gae990a9f2ef6b5f70f563327a56c693e0"></span><code class="sig-name descname">__RV_SRLI16</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span></dt>
+<dd><p>SRLI16 (SIMD 16-bit Shift Right Logical Immediate) </p>
+<p><strong>Type</strong>: SIMD</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SRLI16</span> <span class="n">Rt</span><span class="p">,</span> <span class="n">Ra</span><span class="p">,</span> <span class="n">imm4u</span>
+<span class="n">SRLI16</span><span class="o">.</span><span class="n">u</span> <span class="n">Rt</span><span class="p">,</span> <span class="n">Ra</span><span class="p">,</span> <span class="n">imm4u</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 16-bit elements logical right shift operations simultaneously. The shift amount is an immediate value. The </p>
+<code class="docutils literal notranslate"><span class="pre">.u</span></code> form performs additional rounding up operations on the shifted results.</p>
+<p><strong>Description</strong>:<p>The 16-bit data elements in Rs1 are right-shifted logically, that is, the shifted out bits are filled with zero. The shift amount is specified by the imm4u constant. For the rounding operation of the </p>
+<code class="docutils literal notranslate"><span class="pre">.u</span></code> form, a value of 1 is added to the most significant discarded bit of each 16-bit data element to calculate the final results. And the results are written to Rd.</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sa = imm4u;
+if (sa &gt; 0) {
+  if (`.u` form) { // SRLI16.u
+    res[16:0] = ZE17(Rs1.H[x][15:sa-1]) + 1;
+    Rd.H[x] = res[16:1];
+  } else { // SRLI16
+    Rd.H[x] = ZE16(Rs1.H[x][15:sa]);
+  }
+} else {
+  Rd = Rs1;
+}
+for RV32: x=1...0,
+for RV64: x=3...0
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__SHIFT_1ga26055d836ed9bb21a1191bbf10197636"></span><code class="sig-name descname">__RV_SRLI16_U</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span></dt>
+<dd><p>SRLI16.u (SIMD 16-bit Rounding Shift Right Logical Immediate) </p>
+<p><strong>Type</strong>: SIMD</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SRLI16</span> <span class="n">Rt</span><span class="p">,</span> <span class="n">Ra</span><span class="p">,</span> <span class="n">imm4u</span>
+<span class="n">SRLI16</span><span class="o">.</span><span class="n">u</span> <span class="n">Rt</span><span class="p">,</span> <span class="n">Ra</span><span class="p">,</span> <span class="n">imm4u</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 16-bit elements logical right shift operations simultaneously. The shift amount is an immediate value. The </p>
+<code class="docutils literal notranslate"><span class="pre">.u</span></code> form performs additional rounding up operations on the shifted results.</p>
+<p><strong>Description</strong>:<p>The 16-bit data elements in Rs1 are right-shifted logically, that is, the shifted out bits are filled with zero. The shift amount is specified by the imm4u constant. For the rounding operation of the </p>
+<code class="docutils literal notranslate"><span class="pre">.u</span></code> form, a value of 1 is added to the most significant discarded bit of each 16-bit data element to calculate the final results. And the results are written to Rd.</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sa = imm4u;
+if (sa &gt; 0) {
+  if (`.u` form) { // SRLI16.u
+    res[16:0] = ZE17(Rs1.H[x][15:sa-1]) + 1;
+    Rd.H[x] = res[16:1];
+  } else { // SRLI16
+    Rd.H[x] = ZE16(Rs1.H[x][15:sa]);
+  }
+} else {
+  Rd = Rs1;
+}
+for RV32: x=1...0,
+for RV64: x=3...0
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Functions</p>
 <dl class="function">
@@ -322,53 +567,11 @@
 </div>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__SHIFT_1ga0c6a91d4acd34104ed5b47e48e910114"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KSLLI16(unsigned long a, unsigned int b)</code></dt>
-<dd><p>KSLLI16 (SIMD 16-bit Saturating Shift Left Logical Immediate) </p>
-<p><strong>Type</strong>: SIMD</p>
-<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KSLLI16</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm4u</span>
-</pre></div>
-</div>
-</p>
-<p><strong>Purpose</strong>:<p>Do 16-bit elements logical left shift operations with saturation simultaneously. The shift amount is an immediate value.</p>
-</p>
-<p><strong>Description</strong>:<p>The 16-bit data elements in Rs1 are left-shifted logically. The shifted out bits are filled with zero and the shift amount is specified by the imm4u constant. Any shifted value greater than 2^15-1 is saturated to 2^15-1. Any shifted value smaller than -2^15 is saturated to -2^15. And the saturated results are written to Rd. If any saturation is performed, set OV bit to 1.</p>
-</p>
-<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sa</span> <span class="o">=</span> <span class="n">imm4u</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">sa</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-  <span class="n">res</span><span class="p">[(</span><span class="mi">15</span><span class="o">+</span><span class="n">sa</span><span class="p">):</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">sa</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">res</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">15</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="mh">0x7fff</span><span class="p">;</span> <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">res</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">2</span><span class="o">^</span><span class="mi">15</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="mh">0x8000</span><span class="p">;</span> <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="n">Rd</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">15</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
-<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-  <span class="n">Rd</span> <span class="o">=</span> <span class="n">Rs1</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">1.</span><span class="o">..</span><span class="mi">0</span><span class="p">,</span>
-<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">3.</span><span class="o">..</span><span class="mi">0</span>
-</pre></div>
-</div>
-</p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
 </dl>
@@ -414,11 +617,11 @@ for RV64: x=3...0
 </div>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: int type of value stored in b </p></li>
 </ul>
 </dd>
 </dl>
@@ -464,11 +667,11 @@ for RV64: x=3...0
 </div>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: int type of value stored in b </p></li>
 </ul>
 </dd>
 </dl>
@@ -496,43 +699,11 @@ for RV64: x=3...0
 </div>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__SHIFT_1gab06cdcffba110b801df98ee2208e4cc0"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SLLI16(unsigned long a, unsigned int b)</code></dt>
-<dd><p>SLLI16 (SIMD 16-bit Shift Left Logical Immediate) </p>
-<p><strong>Type</strong>: SIMD</p>
-<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SLLI16</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm4</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-</p>
-<p><strong>Purpose</strong>:<p>Do 16-bit element logical left shift operations simultaneously. The shift amount is an immediate value.</p>
-</p>
-<p><strong>Description</strong>:<p>The 16-bit elements in Rs1 are left-shifted logically. The shifted out bits are filled with zero and the shift amount is specified by the imm4[3:0] constant. And the results are written to Rd.</p>
-</p>
-<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sa</span> <span class="o">=</span> <span class="n">imm4</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
-<span class="n">Rd</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">sa</span><span class="p">;</span>
-<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">1.</span><span class="o">..</span><span class="mi">0</span><span class="p">,</span>
-<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">3.</span><span class="o">..</span><span class="mi">0</span>
-</pre></div>
-</div>
-</p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
 </dl>
@@ -570,11 +741,11 @@ for RV64: x=3...0
 </div>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
 </dl>
@@ -612,95 +783,11 @@ for RV64: x=3...0
 </div>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__SHIFT_1gaffe133a900a4f69acef9ba2f6cafa2b9"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRAI16(unsigned long a, unsigned long b)</code></dt>
-<dd><p>SRAI16 (SIMD 16-bit Shift Right Arithmetic Immediate) </p>
-<p><strong>Type</strong>: SIMD</p>
-<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SRAI16</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm4u</span>
-<span class="n">SRAI16</span><span class="o">.</span><span class="n">u</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm4u</span>
-</pre></div>
-</div>
-</p>
-<p><strong>Purpose</strong>:<p>Do 16-bit elements arithmetic right shift operations simultaneously. The shift amount is an immediate value. The </p>
-<code class="docutils literal notranslate"><span class="pre">.u</span></code> form performs additional rounding up operations on the shifted results.</p>
-<p><strong>Description</strong>:<p>The 16-bit data elements in Rs1 are right-shifted arithmetically, that is, the shifted out bits are filled with the sign-bit of the 16-bit data elements. The shift amount is specified by the imm4u constant. For the rounding operation of the </p>
-<code class="docutils literal notranslate"><span class="pre">.u</span></code> form, a value of 1 is added to the most significant discarded bit of each 16-bit data to calculate the final results. And the results are written to Rd.</p>
-<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sa = imm4u[3:0];
-if (sa &gt; 0) {
-  if (`.u` form) { // SRAI16.u
-    res[15:-1] = SE17(Rs1.H[x][15:sa-1]) + 1;
-    Rd.H[x] = res[15:0];
-  } else { // SRAI16
-    Rd.H[x] = SE16(Rs1.H[x][15:sa]);
-  }
-} else {
-  Rd = Rs1;
-}
-for RV32: x=1...0,
-for RV64: x=3...0
-</pre></div>
-</div>
-</p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__SHIFT_1gacd5b381585f2c53c1c791b1ade509e59"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRAI16_U(unsigned long a, unsigned long b)</code></dt>
-<dd><p>SRAI16.u (SIMD 16-bit Rounding Shift Right Arithmetic Immediate) </p>
-<p><strong>Type</strong>: SIMD</p>
-<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SRAI16</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm4u</span>
-<span class="n">SRAI16</span><span class="o">.</span><span class="n">u</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm4u</span>
-</pre></div>
-</div>
-</p>
-<p><strong>Purpose</strong>:<p>Do 16-bit elements arithmetic right shift operations simultaneously. The shift amount is an immediate value. The </p>
-<code class="docutils literal notranslate"><span class="pre">.u</span></code> form performs additional rounding up operations on the shifted results.</p>
-<p><strong>Description</strong>:<p>The 16-bit data elements in Rs1 are right-shifted arithmetically, that is, the shifted out bits are filled with the sign-bit of the 16-bit data elements. The shift amount is specified by the imm4u constant. For the rounding operation of the </p>
-<code class="docutils literal notranslate"><span class="pre">.u</span></code> form, a value of 1 is added to the most significant discarded bit of each 16-bit data to calculate the final results. And the results are written to Rd.</p>
-<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sa = imm4u[3:0];
-if (sa &gt; 0) {
-  if (`.u` form) { // SRAI16.u
-    res[15:-1] = SE17(Rs1.H[x][15:sa-1]) + 1;
-    Rd.H[x] = res[15:0];
-  } else { // SRAI16
-    Rd.H[x] = SE16(Rs1.H[x][15:sa]);
-  }
-} else {
-  Rd = Rs1;
-}
-for RV32: x=1...0,
-for RV64: x=3...0
-</pre></div>
-</div>
-</p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
 </dl>
@@ -738,11 +825,11 @@ for RV64: x=3...0
 </div>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
 </dl>
@@ -780,95 +867,11 @@ for RV64: x=3...0
 </div>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__SHIFT_1gac7770810e1893581d9153635fc943107"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRLI16(unsigned long a, unsigned int b)</code></dt>
-<dd><p>SRLI16 (SIMD 16-bit Shift Right Logical Immediate) </p>
-<p><strong>Type</strong>: SIMD</p>
-<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SRLI16</span> <span class="n">Rt</span><span class="p">,</span> <span class="n">Ra</span><span class="p">,</span> <span class="n">imm4u</span>
-<span class="n">SRLI16</span><span class="o">.</span><span class="n">u</span> <span class="n">Rt</span><span class="p">,</span> <span class="n">Ra</span><span class="p">,</span> <span class="n">imm4u</span>
-</pre></div>
-</div>
-</p>
-<p><strong>Purpose</strong>:<p>Do 16-bit elements logical right shift operations simultaneously. The shift amount is an immediate value. The </p>
-<code class="docutils literal notranslate"><span class="pre">.u</span></code> form performs additional rounding up operations on the shifted results.</p>
-<p><strong>Description</strong>:<p>The 16-bit data elements in Rs1 are right-shifted logically, that is, the shifted out bits are filled with zero. The shift amount is specified by the imm4u constant. For the rounding operation of the </p>
-<code class="docutils literal notranslate"><span class="pre">.u</span></code> form, a value of 1 is added to the most significant discarded bit of each 16-bit data element to calculate the final results. And the results are written to Rd.</p>
-<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sa = imm4u;
-if (sa &gt; 0) {
-  if (`.u` form) { // SRLI16.u
-    res[16:0] = ZE17(Rs1.H[x][15:sa-1]) + 1;
-    Rd.H[x] = res[16:1];
-  } else { // SRLI16
-    Rd.H[x] = ZE16(Rs1.H[x][15:sa]);
-  }
-} else {
-  Rd = Rs1;
-}
-for RV32: x=1...0,
-for RV64: x=3...0
-</pre></div>
-</div>
-</p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__SHIFT_1ga98ef01d7b5346045b83eaa411234d83f"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRLI16_U(unsigned long a, unsigned int b)</code></dt>
-<dd><p>SRLI16.u (SIMD 16-bit Rounding Shift Right Logical Immediate) </p>
-<p><strong>Type</strong>: SIMD</p>
-<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SRLI16</span> <span class="n">Rt</span><span class="p">,</span> <span class="n">Ra</span><span class="p">,</span> <span class="n">imm4u</span>
-<span class="n">SRLI16</span><span class="o">.</span><span class="n">u</span> <span class="n">Rt</span><span class="p">,</span> <span class="n">Ra</span><span class="p">,</span> <span class="n">imm4u</span>
-</pre></div>
-</div>
-</p>
-<p><strong>Purpose</strong>:<p>Do 16-bit elements logical right shift operations simultaneously. The shift amount is an immediate value. The </p>
-<code class="docutils literal notranslate"><span class="pre">.u</span></code> form performs additional rounding up operations on the shifted results.</p>
-<p><strong>Description</strong>:<p>The 16-bit data elements in Rs1 are right-shifted logically, that is, the shifted out bits are filled with zero. The shift amount is specified by the imm4u constant. For the rounding operation of the </p>
-<code class="docutils literal notranslate"><span class="pre">.u</span></code> form, a value of 1 is added to the most significant discarded bit of each 16-bit data element to calculate the final results. And the results are written to Rd.</p>
-<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sa = imm4u;
-if (sa &gt; 0) {
-  if (`.u` form) { // SRLI16.u
-    res[16:0] = ZE17(Rs1.H[x][15:sa-1]) + 1;
-    Rd.H[x] = res[16:1];
-  } else { // SRLI16
-    Rd.H[x] = ZE16(Rs1.H[x][15:sa]);
-  }
-} else {
-  Rd = Rs1;
-}
-for RV32: x=1...0,
-for RV64: x=3...0
-</pre></div>
-</div>
-</p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p></p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
 </dl>
@@ -902,7 +905,7 @@ for RV64: x=3...0
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Mar 19, 2020.
+        Last updated on Aug 03, 2020.
       </span>
 
     </p>

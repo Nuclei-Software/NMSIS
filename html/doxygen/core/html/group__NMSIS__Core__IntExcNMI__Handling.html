@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-Core
-   &#160;<span id="projectnumber">Version 1.0.0</span>
+   &#160;<span id="projectnumber">Version 1.0.1</span>
    </div>
    <div id="projectbrief">NMSIS-Core support for Nuclei processor-based devices</div>
   </td>
@@ -238,7 +238,7 @@ Variables</h2></td></tr>
 <div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    <span class="keywordflow">if</span> (exc_handler != NULL) {</div>
 <div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;        exc_handler(mcause, sp);</div>
 <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    }</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;}</div>
 <div class="ttc" id="group__NMSIS__Core__IntExcNMI__Handling_html_ga10f1bcf88d4be44d559c79485f16dd24"><div class="ttname"><a href="group__NMSIS__Core__IntExcNMI__Handling.html#ga10f1bcf88d4be44d559c79485f16dd24">MAX_SYSTEM_EXCEPTION_NUM</a></div><div class="ttdeci">#define MAX_SYSTEM_EXCEPTION_NUM</div><div class="ttdoc">Max exception handler number, don&#39;t include the NMI(0xFFF) one. </div><div class="ttdef"><b>Definition:</b> <a href="system__Device_8c_source.html#l00141">system_Device.c:141</a></div></div>
 <div class="ttc" id="group__NMSIS__Core__IntExcNMI__Handling_html_gaedd77e0eba0ea9872a4375893480b420"><div class="ttname"><a href="group__NMSIS__Core__IntExcNMI__Handling.html#gaedd77e0eba0ea9872a4375893480b420">SystemExceptionHandlers</a></div><div class="ttdeci">static unsigned long SystemExceptionHandlers[MAX_SYSTEM_EXCEPTION_NUM+1]</div><div class="ttdoc">Store the exception handlers for each exception ID. </div><div class="ttdef"><b>Definition:</b> <a href="system__Device_8c_source.html#l00150">system_Device.c:150</a></div></div>
@@ -267,7 +267,7 @@ Variables</h2></td></tr>
 <p>Definition at line <a class="el" href="system__Device_8c_source.html#l00262">262</a> of file <a class="el" href="system__Device_8c_source.html">system_Device.c</a>.</p>
 <div class="fragment"><div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;{</div>
 <div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    <span class="comment">/* Global Configuration about MTH and NLBits.</span></div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="comment">     * TODO: Please adapt it according to your system requirement. </span></div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="comment">     * TODO: Please adapt it according to your system requirement.</span></div>
 <div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;<span class="comment">     * This function is called in _init function */</span></div>
 <div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    <span class="comment">/* Set CSR MTH to zero */</span></div>
 <div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    <a class="code" href="group__NMSIS__Core__IntExc.html#ga59e29ad3023110a58eb9163d976f44c6">ECLIC_SetMth</a>(0);</div>
@@ -367,7 +367,7 @@ Variables</h2></td></tr>
 <div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;        <a class="code" href="group__NMSIS__Core__IntExc.html#gaa7cacacc369af014a0008fe3b5705b77">ECLIC_SetVector</a>(IRQn, (<a class="code" href="group__NMSIS__Core__Registers.html#ga9fe08aae694cff694dde8758e73f4e3e">rv_csr_t</a>)handler);</div>
 <div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    }</div>
 <div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;    <span class="comment">/* enable interrupt */</span></div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    <a class="code" href="group__NMSIS__Core__IntExc.html#gaef478ada8e8906c9fe8d4dc2311a39e1">ECLIC_EnableIRQ</a>(IRQn); </div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    <a class="code" href="group__NMSIS__Core__IntExc.html#gaef478ada8e8906c9fe8d4dc2311a39e1">ECLIC_EnableIRQ</a>(IRQn);</div>
 <div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;}</div>
 <div class="ttc" id="group__NMSIS__Core__IntExc_html_gga7e1129cd8a196f4284d41db3e82ad5c8adddd70a514a83716a447d622adf17c78"><div class="ttname"><a href="group__NMSIS__Core__IntExc.html#gga7e1129cd8a196f4284d41db3e82ad5c8adddd70a514a83716a447d622adf17c78">SOC_INT_MAX</a></div><div class="ttdoc">Number of total interrupts. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__eclic_8h_source.html#l00202">core_feature_eclic.h:202</a></div></div>
@@ -596,7 +596,7 @@ Variables</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Mar 19 2020 06:30:02 for NMSIS-Core by
+    <li class="footer">Generated on Mon Aug 3 2020 00:57:37 for NMSIS-Core by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

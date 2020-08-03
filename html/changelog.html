@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Changelog &mdash; NMSIS 1.0.0-beta1 documentation</title>
+  <title>Changelog &mdash; NMSIS 1.0.1-RC1 documentation</title>
   
 
   
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                1.0.0
+                1.0.1
               </div>
             
           
@@ -95,6 +95,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dsp/index.html">NMSIS DSP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nn/index.html">NMSIS NN</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#v1-0-1-rc1">V1.0.1-RC1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v1-0-0-beta1">V1.0.0-beta1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v1-0-0-beta">V1.0.0-beta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v1-0-0-alpha-1">V1.0.0-alpha.1</a></li>
@@ -169,6 +170,44 @@
             
   <div class="section" id="changelog">
 <span id="id1"></span><h1>Changelog<a class="headerlink" href="#changelog" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="v1-0-1-rc1">
+<h2>V1.0.1-RC1<a class="headerlink" href="#v1-0-1-rc1" title="Permalink to this headline">¶</a></h2>
+<p>This is release candidate version <code class="docutils literal notranslate"><span class="pre">V1.0.1-RC1</span></code> of NMSIS.</p>
+<ul class="simple">
+<li><p><strong>NMSIS-Core</strong></p>
+<ul>
+<li><p>Add RISC-V DSP 64bit intrinsic functions in <code class="docutils literal notranslate"><span class="pre">core_feature_dsp.h</span></code></p></li>
+<li><p>Add more CSR definitions in <code class="docutils literal notranslate"><span class="pre">riscv_encoding.h</span></code></p></li>
+<li><p>Update arm compatiable functions for RISC-V dsp instruction cases in <code class="docutils literal notranslate"><span class="pre">core_compatiable.h</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>NMSIS-DSP</strong></p>
+<ul>
+<li><p>Optimize RISC-V 32bit DSP library implementation</p></li>
+<li><p>Add support for Nuclei RISC-V 64bit DSP SIMD instruction for DSP library</p></li>
+<li><p>Add test cases used for DSP library testing, mainly for internal usage</p></li>
+<li><p>Change the examples and tests to use Nuclei SDK as running environment</p></li>
+</ul>
+</li>
+<li><p><strong>NMSIS-NN</strong></p>
+<ul>
+<li><p>Add support for Nuclei RISC-V 64bit DSP SIMD instruction for NN library</p></li>
+<li><p>Change the examples and tests to use Nuclei SDK as running environment</p></li>
+</ul>
+</li>
+<li><p><strong>Device Templates</strong></p>
+<ul>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">DDR</span> <span class="pre">DOWNLOAD_MODE</span></code> in device templates</p></li>
+<li><p>Modifications to <code class="docutils literal notranslate"><span class="pre">startup_&lt;Device&gt;.S**</span> <span class="pre">files</span>
+<span class="pre">-</span> <span class="pre">``_premain_init</span></code> is added to replace <code class="docutils literal notranslate"><span class="pre">_init</span></code>
+- <code class="docutils literal notranslate"><span class="pre">_postmain_fini</span></code> is added to replace <code class="docutils literal notranslate"><span class="pre">_fini</span></code>
+- I/D Cache will be enabled by default now if present</p></li>
+<li><p>If you have implemented your functions in <code class="docutils literal notranslate"><span class="pre">_init</span></code> or <code class="docutils literal notranslate"><span class="pre">_fini</span></code>,
+please place the changes in functions defined <code class="docutils literal notranslate"><span class="pre">system_&lt;Device&gt;.c</span></code></p></li>
+</ul>
+</li>
+</ul>
+</div>
 <div class="section" id="v1-0-0-beta1">
 <h2>V1.0.0-beta1<a class="headerlink" href="#v1-0-0-beta1" title="Permalink to this headline">¶</a></h2>
 <p>Main changes in release <strong>V1.0.0-beta1</strong>.</p>
@@ -264,7 +303,7 @@ library developed to maximize the performance and minimize the memory footprint 
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Mar 19, 2020.
+        Last updated on Aug 03, 2020.
       </span>
 
     </p>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>System Device Configuration &mdash; NMSIS 1.0.0-beta1 documentation</title>
+  <title>System Device Configuration &mdash; NMSIS 1.0.1-RC1 documentation</title>
   
 
   
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                1.0.0
+                1.0.1
               </div>
             
           
@@ -232,17 +232,46 @@
 </dd></dl>
 
 <dl class="function">
+<dt id="_CPPv413_premain_initv">
+<span id="_CPPv313_premain_initv"></span><span id="_CPPv213_premain_initv"></span><span id="_premain_init__void"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1gad13ba247efe59bbe2b6004d9bd0f10db"></span>void <code class="sig-name descname">_premain_init</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413_premain_initv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>early init function before main </p>
+<p>This function is executed right before main function. For RISC-V gnu toolchain, _init function might not be called by __libc_init_array function, so we defined a new function to do initialization </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv414_postmain_finii">
+<span id="_CPPv314_postmain_finii"></span><span id="_CPPv214_postmain_finii"></span><span id="_postmain_fini__i"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga6eb76a75cf67b543443efc82ecf33713"></span>void <code class="sig-name descname">_postmain_fini</code><span class="sig-paren">(</span>int <em>status</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414_postmain_finii" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>finish function after main </p>
+<p><p>This function is executed right after main function. For RISC-V gnu toolchain, _fini function might not be called by __libc_fini_array function, so we defined a new function to do initialization </p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">status</span></code>: status code return from main</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="_CPPv45_initv">
 <span id="_CPPv35_initv"></span><span id="_CPPv25_initv"></span><span id="_init__void"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1gad1cbc4315ef293463e6057dfb24c8115"></span>void <code class="sig-name descname">_init</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv45_initv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>_init function called in __libc_init_array() </p>
-<p>This <code class="docutils literal notranslate"><span class="pre">__libc_init_array()</span></code> function is called during startup code, user need to implement this function, otherwise when link it will error init.c:(.text.__libc_init_array+0x26): undefined reference to `_init’ </p>
+<p>This <code class="docutils literal notranslate"><span class="pre">__libc_init_array()</span></code> function is called during startup code, user need to implement this function, otherwise when link it will error init.c:(.text.__libc_init_array+0x26): undefined reference to `_init’ <dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Please use <a class="reference internal" href="#group__NMSIS__Core__SystemConfig_1gad13ba247efe59bbe2b6004d9bd0f10db"><span class="std std-ref">_premain_init</span></a> function now </p>
+</dd>
+</dl>
+</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="_CPPv45_finiv">
 <span id="_CPPv35_finiv"></span><span id="_CPPv25_finiv"></span><span id="_fini__void"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga173a20f19acf36985bbac6786a02b544"></span>void <code class="sig-name descname">_fini</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv45_finiv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>_fini function called in __libc_fini_array() </p>
-<p>This <code class="docutils literal notranslate"><span class="pre">__libc_fini_array()</span></code> function is called when exit main. user need to implement this function, otherwise when link it will error fini.c:(.text.__libc_fini_array+0x28): undefined reference to `_fini’ </p>
+<p>This <code class="docutils literal notranslate"><span class="pre">__libc_fini_array()</span></code> function is called when exit main. user need to implement this function, otherwise when link it will error fini.c:(.text.__libc_fini_array+0x28): undefined reference to `_fini’ <dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Please use <a class="reference internal" href="#group__NMSIS__Core__SystemConfig_1ga6eb76a75cf67b543443efc82ecf33713"><span class="std std-ref">_postmain_fini</span></a> function now </p>
+</dd>
+</dl>
+</p>
 </dd></dl>
 
 </div>
@@ -445,7 +474,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Mar 19, 2020.
+        Last updated on Aug 03, 2020.
       </span>
 
     </p>

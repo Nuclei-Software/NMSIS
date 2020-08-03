@@ -69,6 +69,375 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
 }; /* union */
 file = {
+  file-id   = 'bench_8h';
+  file-name = 'bench.h';
+    define = {
+    define-member = {
+      define-mem-kind = 'define';
+      define-mem-id   = 'bench_8h_1a767e30f08587422580f313f37a414b1c';
+      define-mem-virt = normal;
+      define-mem-prot = public;
+      define-mem-name = 'read_csr';
+      define-mem-param  = {
+        define-mem-def-name = 'reg';
+      }; /*        define-mem-def--param */
+      define-mem-initializer = <<_EnD_oF_dEf_TeXt_
+({ \
+	unsigned int __temp;   \
+	asm volatile("csrr %0, " #reg: "=r"(__temp)); \
+	__temp;  \
+})
+_EnD_oF_dEf_TeXt_;
+      define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/bench.h';
+      define-mem-desc-line = '6';
+      define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+      define-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+    }; /* define-member */
+    define-member = {
+      define-mem-kind = 'define';
+      define-mem-id   = 'bench_8h_1a508a1b2d2b74addee819f994fe18172a';
+      define-mem-virt = normal;
+      define-mem-prot = public;
+      define-mem-name = 'READ_CYCLE';
+      define-mem-initializer = <<_EnD_oF_dEf_TeXt_
+read_cpu_cycle
+_EnD_oF_dEf_TeXt_;
+      define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/bench.h';
+      define-mem-desc-line = '57';
+      define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+      define-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+    }; /* define-member */
+    define-member = {
+      define-mem-kind = 'define';
+      define-mem-id   = 'bench_8h_1a43d4190fe4198b46dbfe869bcb4f0a57';
+      define-mem-virt = normal;
+      define-mem-prot = public;
+      define-mem-name = 'BENCH_INIT';
+      define-mem-initializer = <<_EnD_oF_dEf_TeXt_
+printf("Benchmark Initialized\n"); \
+                                start_cycle = READ_CYCLE(); \
+                                end_cycle = READ_CYCLE(); \
+                                extra_cost = end_cycle - start_cycle; \
+                                enter_cycle = READ_CYCLE();
+_EnD_oF_dEf_TeXt_;
+      define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/bench.h';
+      define-mem-desc-line = '68';
+      define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+      define-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+    }; /* define-member */
+    define-member = {
+      define-mem-kind = 'define';
+      define-mem-id   = 'bench_8h_1a6b989bfc612346400ce95c0625a77b90';
+      define-mem-virt = normal;
+      define-mem-prot = public;
+      define-mem-name = 'BENCH_START';
+      define-mem-param  = {
+        define-mem-def-name = 'func';
+      }; /*        define-mem-def--param */
+      define-mem-initializer = <<_EnD_oF_dEf_TeXt_
+bench_ercd = 0; \
+                                start_cycle = READ_CYCLE();
+_EnD_oF_dEf_TeXt_;
+      define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/bench.h';
+      define-mem-desc-line = '75';
+      define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+      define-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+    }; /* define-member */
+    define-member = {
+      define-mem-kind = 'define';
+      define-mem-id   = 'bench_8h_1a0faa5e31f00f3aeda199e73860874f7b';
+      define-mem-virt = normal;
+      define-mem-prot = public;
+      define-mem-name = 'BENCH_END';
+      define-mem-param  = {
+        define-mem-def-name = 'func';
+      }; /*        define-mem-def--param */
+      define-mem-initializer = <<_EnD_oF_dEf_TeXt_
+end_cycle = READ_CYCLE(); \
+                                cycle = end_cycle - start_cycle - extra_cost; \
+                                printf("CSV, %s, %lu\n", #func, cycle);
+_EnD_oF_dEf_TeXt_;
+      define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/bench.h';
+      define-mem-desc-line = '78';
+      define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+      define-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+    }; /* define-member */
+    define-member = {
+      define-mem-kind = 'define';
+      define-mem-id   = 'bench_8h_1ae9f0ec9e61c1c98ac10376af8ad92db1';
+      define-mem-virt = normal;
+      define-mem-prot = public;
+      define-mem-name = 'BENCH_ERROR';
+      define-mem-param  = {
+        define-mem-def-name = 'func';
+      }; /*        define-mem-def--param */
+      define-mem-initializer = <<_EnD_oF_dEf_TeXt_
+bench_ercd = 1;
+_EnD_oF_dEf_TeXt_;
+      define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/bench.h';
+      define-mem-desc-line = '82';
+      define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+      define-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+    }; /* define-member */
+    define-member = {
+      define-mem-kind = 'define';
+      define-mem-id   = 'bench_8h_1a2b458b38a7aec2b1aecad0235f87ea22';
+      define-mem-virt = normal;
+      define-mem-prot = public;
+      define-mem-name = 'BENCH_STATUS';
+      define-mem-param  = {
+        define-mem-def-name = 'func';
+      }; /*        define-mem-def--param */
+      define-mem-initializer = <<_EnD_oF_dEf_TeXt_
+if (bench_ercd) { \
+                                    printf("ERROR, %s\n", #func); \
+                                } else { \
+                                    printf("SUCCESS, %s\n", #func); \
+                                }
+_EnD_oF_dEf_TeXt_;
+      define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/bench.h';
+      define-mem-desc-line = '83';
+      define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+      define-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+    }; /* define-member */
+    define-member = {
+      define-mem-kind = 'define';
+      define-mem-id   = 'bench_8h_1a5869e22427a1da07b3d3eccaa86bad35';
+      define-mem-virt = normal;
+      define-mem-prot = public;
+      define-mem-name = 'BENCH_FINISH';
+      define-mem-initializer = <<_EnD_oF_dEf_TeXt_
+exit_cycle = READ_CYCLE(); \
+                                cycle = exit_cycle - enter_cycle - extra_cost; \
+                                printf("CSV, BENCH END, %llu\n", cycle);
+_EnD_oF_dEf_TeXt_;
+      define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/bench.h';
+      define-mem-desc-line = '89';
+      define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+      define-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+    }; /* define-member */
+    };
+    func = {
+    func-member = {
+      func-mem-kind = 'function';
+      func-mem-id   = 'bench_8h_1ab542989e3c0278eedb82e07c81987584';
+      func-mem-virt = normal;
+      func-mem-prot = public;
+      func-mem-type = <<_EnD_oF_dEf_TeXt_
+static uint64_t
+_EnD_oF_dEf_TeXt_;
+      func-mem-name = 'read_cpu_cycle';
+      func-mem-param = {
+        func-mem-param-type = <<_EnD_oF_dEf_TeXt_
+void
+_EnD_oF_dEf_TeXt_;
+      }; /*        func-mem-param--param */
+      func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/bench.h';
+      func-mem-desc-line = '42';
+      func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+      func-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+    }; /* func-member */
+    func-member = {
+      func-mem-kind = 'function';
+      func-mem-id   = 'bench_8h_1a25b5b7bb0a6941cd64ebfea8f167ae99';
+      func-mem-virt = normal;
+      func-mem-prot = public;
+      func-mem-type = <<_EnD_oF_dEf_TeXt_
+static uint64_t
+_EnD_oF_dEf_TeXt_;
+      func-mem-name = 'read_cpu_instret';
+      func-mem-param = {
+        func-mem-param-type = <<_EnD_oF_dEf_TeXt_
+void
+_EnD_oF_dEf_TeXt_;
+      }; /*        func-mem-param--param */
+      func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/bench.h';
+      func-mem-desc-line = '48';
+      func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+      func-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+    }; /* func-member */
+    };
+    var = {
+    var-member = {
+      var-mem-kind = 'variable';
+      var-mem-id   = 'bench_8h_1a1ff762c76c192462e62ff3fdf1e1e746';
+      var-mem-virt = normal;
+      var-mem-prot = public;
+      var-mem-type = <<_EnD_oF_dEf_TeXt_
+uint64_t
+_EnD_oF_dEf_TeXt_;
+      var-mem-name = 'enter_cycle';
+      var-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/bench.h';
+      var-mem-desc-line = '60';
+      var-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+      var-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+    }; /* var-member */
+    var-member = {
+      var-mem-kind = 'variable';
+      var-mem-id   = 'bench_8h_1a4145402a1e97a7b196a3970c2dc05c6e';
+      var-mem-virt = normal;
+      var-mem-prot = public;
+      var-mem-type = <<_EnD_oF_dEf_TeXt_
+uint64_t
+_EnD_oF_dEf_TeXt_;
+      var-mem-name = 'exit_cycle';
+      var-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/bench.h';
+      var-mem-desc-line = '61';
+      var-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+      var-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+    }; /* var-member */
+    var-member = {
+      var-mem-kind = 'variable';
+      var-mem-id   = 'bench_8h_1a8b3ff709bf261f8bd238253f74d670bf';
+      var-mem-virt = normal;
+      var-mem-prot = public;
+      var-mem-type = <<_EnD_oF_dEf_TeXt_
+uint64_t
+_EnD_oF_dEf_TeXt_;
+      var-mem-name = 'start_cycle';
+      var-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/bench.h';
+      var-mem-desc-line = '62';
+      var-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+      var-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+    }; /* var-member */
+    var-member = {
+      var-mem-kind = 'variable';
+      var-mem-id   = 'bench_8h_1a6e9cebde523b29879919112a8b5360cc';
+      var-mem-virt = normal;
+      var-mem-prot = public;
+      var-mem-type = <<_EnD_oF_dEf_TeXt_
+uint64_t
+_EnD_oF_dEf_TeXt_;
+      var-mem-name = 'end_cycle';
+      var-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/bench.h';
+      var-mem-desc-line = '63';
+      var-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+      var-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+    }; /* var-member */
+    var-member = {
+      var-mem-kind = 'variable';
+      var-mem-id   = 'bench_8h_1a3e53e3b1e9d9b27da1e8c0c09e474ffc';
+      var-mem-virt = normal;
+      var-mem-prot = public;
+      var-mem-type = <<_EnD_oF_dEf_TeXt_
+uint64_t
+_EnD_oF_dEf_TeXt_;
+      var-mem-name = 'cycle';
+      var-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/bench.h';
+      var-mem-desc-line = '64';
+      var-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+      var-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+    }; /* var-member */
+    var-member = {
+      var-mem-kind = 'variable';
+      var-mem-id   = 'bench_8h_1ab59423643d7527f097bc42e2a82ae9e7';
+      var-mem-virt = normal;
+      var-mem-prot = public;
+      var-mem-type = <<_EnD_oF_dEf_TeXt_
+uint64_t
+_EnD_oF_dEf_TeXt_;
+      var-mem-name = 'extra_cost';
+      var-mem-initializer = <<_EnD_oF_dEf_TeXt_
+= 0
+_EnD_oF_dEf_TeXt_;
+      var-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/bench.h';
+      var-mem-desc-line = '65';
+      var-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+      var-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+    }; /* var-member */
+    var-member = {
+      var-mem-kind = 'variable';
+      var-mem-id   = 'bench_8h_1afc2fc975e539f817de0beaa007c8a8e8';
+      var-mem-virt = normal;
+      var-mem-prot = public;
+      var-mem-type = <<_EnD_oF_dEf_TeXt_
+uint32_t
+_EnD_oF_dEf_TeXt_;
+      var-mem-name = 'bench_ercd';
+      var-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/bench.h';
+      var-mem-desc-line = '66';
+      var-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+      var-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+    }; /* var-member */
+    };
+  file-full-name  = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/bench.h';
+  file-first-line = '1';
+  file-briefdesc  = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+  file-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+}; /* file */
+file = {
   file-id   = 'image__data_8h';
   file-name = 'image_data.h';
     define = {
@@ -35270,7 +35639,7 @@ vec_buffer size: 0
  | a17 | a27 | a37 | a47 |
 
  For the left-over rows, we do 1x1 computation, so the data remains
- as its original order. 
+ as its original order.
 
  So the stored weight matrix looks like this:
 
@@ -36850,114 +37219,6 @@ file = {
     define = {
     define-member = {
       define-mem-kind = 'define';
-      define-mem-id   = 'riscv__nnexamples__cifar10_8c_1a767e30f08587422580f313f37a414b1c';
-      define-mem-virt = normal;
-      define-mem-prot = public;
-      define-mem-name = 'read_csr';
-      define-mem-param  = {
-        define-mem-def-name = 'reg';
-      }; /*        define-mem-def--param */
-      define-mem-initializer = <<_EnD_oF_dEf_TeXt_
-({ \
-	unsigned long __temp;   \
-	asm volatile("csrr %0, " #reg: "=r"(__temp)); \
-	__temp;  \
-})
-_EnD_oF_dEf_TeXt_;
-      define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/riscv_nnexamples_cifar10.c';
-      define-mem-desc-line = '108';
-      define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-      define-mem-documentation = <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-    }; /* define-member */
-    define-member = {
-      define-mem-kind = 'define';
-      define-mem-id   = 'riscv__nnexamples__cifar10_8c_1a43d4190fe4198b46dbfe869bcb4f0a57';
-      define-mem-virt = normal;
-      define-mem-prot = public;
-      define-mem-name = 'BENCH_INIT';
-      define-mem-initializer = <<_EnD_oF_dEf_TeXt_
-enter_cycle=read_cpu_cycle(); \
-                                printf("CSV, BENCH START, %llu\n", enter_cycle);
-_EnD_oF_dEf_TeXt_;
-      define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/riscv_nnexamples_cifar10.c';
-      define-mem-desc-line = '144';
-      define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-      define-mem-documentation = <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-    }; /* define-member */
-    define-member = {
-      define-mem-kind = 'define';
-      define-mem-id   = 'riscv__nnexamples__cifar10_8c_1a6b989bfc612346400ce95c0625a77b90';
-      define-mem-virt = normal;
-      define-mem-prot = public;
-      define-mem-name = 'BENCH_START';
-      define-mem-param  = {
-        define-mem-def-name = 'func';
-      }; /*        define-mem-def--param */
-      define-mem-initializer = <<_EnD_oF_dEf_TeXt_
-start_cycle=read_cpu_cycle();
-_EnD_oF_dEf_TeXt_;
-      define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/riscv_nnexamples_cifar10.c';
-      define-mem-desc-line = '147';
-      define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-      define-mem-documentation = <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-    }; /* define-member */
-    define-member = {
-      define-mem-kind = 'define';
-      define-mem-id   = 'riscv__nnexamples__cifar10_8c_1a0faa5e31f00f3aeda199e73860874f7b';
-      define-mem-virt = normal;
-      define-mem-prot = public;
-      define-mem-name = 'BENCH_END';
-      define-mem-param  = {
-        define-mem-def-name = 'func';
-      }; /*        define-mem-def--param */
-      define-mem-initializer = <<_EnD_oF_dEf_TeXt_
-end_cycle=read_cpu_cycle(); \
-                                cycle=end_cycle-start_cycle; \
-                                printf("CSV, %s, %llu\n", #func, cycle);
-_EnD_oF_dEf_TeXt_;
-      define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/riscv_nnexamples_cifar10.c';
-      define-mem-desc-line = '148';
-      define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-      define-mem-documentation = <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-    }; /* define-member */
-    define-member = {
-      define-mem-kind = 'define';
-      define-mem-id   = 'riscv__nnexamples__cifar10_8c_1a5869e22427a1da07b3d3eccaa86bad35';
-      define-mem-virt = normal;
-      define-mem-prot = public;
-      define-mem-name = 'BENCH_FINISH';
-      define-mem-initializer = <<_EnD_oF_dEf_TeXt_
-exit_cycle=read_cpu_cycle(); \
-                                cycle=exit_cycle-enter_cycle; \
-                                printf("CSV, BENCH END, %llu\n", cycle);
-_EnD_oF_dEf_TeXt_;
-      define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/riscv_nnexamples_cifar10.c';
-      define-mem-desc-line = '152';
-      define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-      define-mem-documentation = <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-    }; /* define-member */
-    define-member = {
-      define-mem-kind = 'define';
       define-mem-id   = 'riscv__nnexamples__cifar10_8c_1a59ab6d907eccdfdff8fa326e13aa813a';
       define-mem-virt = normal;
       define-mem-prot = public;
@@ -36970,7 +37231,7 @@ static uint8_t image_data[CONV1_IM_CH * CONV1_IM_DIM * CONV1_IM_DIM] = IMG_DATA_
                            const char *image_name = #img;
 _EnD_oF_dEf_TeXt_;
       define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/riscv_nnexamples_cifar10.c';
-      define-mem-desc-line = '171';
+      define-mem-desc-line = '123';
       define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -36991,7 +37252,7 @@ _EnD_oF_dEf_TeXt_;
 _DECLARE_IMAGE(img)
 _EnD_oF_dEf_TeXt_;
       define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/riscv_nnexamples_cifar10.c';
-      define-mem-desc-line = '173';
+      define-mem-desc-line = '125';
       define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -37009,7 +37270,7 @@ _EnD_oF_dEf_TeXt_;
 horse1
 _EnD_oF_dEf_TeXt_;
       define-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/riscv_nnexamples_cifar10.c';
-      define-mem-desc-line = '182';
+      define-mem-desc-line = '134';
       define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -37019,29 +37280,6 @@ _EnD_oF_dEf_TeXt_;
     }; /* define-member */
     };
     func = {
-    func-member = {
-      func-mem-kind = 'function';
-      func-mem-id   = 'riscv__nnexamples__cifar10_8c_1ab542989e3c0278eedb82e07c81987584';
-      func-mem-virt = normal;
-      func-mem-prot = public;
-      func-mem-type = <<_EnD_oF_dEf_TeXt_
-static uint64_t
-_EnD_oF_dEf_TeXt_;
-      func-mem-name = 'read_cpu_cycle';
-      func-mem-param = {
-        func-mem-param-type = <<_EnD_oF_dEf_TeXt_
-void
-_EnD_oF_dEf_TeXt_;
-      }; /*        func-mem-param--param */
-      func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/riscv_nnexamples_cifar10.c';
-      func-mem-desc-line = '130';
-      func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-      func-mem-documentation = <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-    }; /* func-member */
     func-member = {
       func-mem-kind = 'function';
       func-mem-id   = 'riscv__nnexamples__cifar10_8c_1a7ee83bdaf3135394c506fb2218ffe3bb';
@@ -37057,7 +37295,7 @@ TEST_IMAGE
 _EnD_oF_dEf_TeXt_;
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/riscv_nnexamples_cifar10.c';
-      func-mem-desc-line = '184';
+      func-mem-desc-line = '136';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -37075,7 +37313,7 @@ int
 _EnD_oF_dEf_TeXt_;
       func-mem-name = 'main';
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/riscv_nnexamples_cifar10.c';
-      func-mem-desc-line = '195';
+      func-mem-desc-line = '147';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -37085,96 +37323,6 @@ _EnD_oF_dEf_TeXt_;
     }; /* func-member */
     };
     var = {
-    var-member = {
-      var-mem-kind = 'variable';
-      var-mem-id   = 'riscv__nnexamples__cifar10_8c_1a1ff762c76c192462e62ff3fdf1e1e746';
-      var-mem-virt = normal;
-      var-mem-prot = public;
-      var-mem-type = <<_EnD_oF_dEf_TeXt_
-uint64_t
-_EnD_oF_dEf_TeXt_;
-      var-mem-name = 'enter_cycle';
-      var-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/riscv_nnexamples_cifar10.c';
-      var-mem-desc-line = '138';
-      var-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-      var-mem-documentation = <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-    }; /* var-member */
-    var-member = {
-      var-mem-kind = 'variable';
-      var-mem-id   = 'riscv__nnexamples__cifar10_8c_1a4145402a1e97a7b196a3970c2dc05c6e';
-      var-mem-virt = normal;
-      var-mem-prot = public;
-      var-mem-type = <<_EnD_oF_dEf_TeXt_
-uint64_t
-_EnD_oF_dEf_TeXt_;
-      var-mem-name = 'exit_cycle';
-      var-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/riscv_nnexamples_cifar10.c';
-      var-mem-desc-line = '139';
-      var-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-      var-mem-documentation = <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-    }; /* var-member */
-    var-member = {
-      var-mem-kind = 'variable';
-      var-mem-id   = 'riscv__nnexamples__cifar10_8c_1a8b3ff709bf261f8bd238253f74d670bf';
-      var-mem-virt = normal;
-      var-mem-prot = public;
-      var-mem-type = <<_EnD_oF_dEf_TeXt_
-uint64_t
-_EnD_oF_dEf_TeXt_;
-      var-mem-name = 'start_cycle';
-      var-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/riscv_nnexamples_cifar10.c';
-      var-mem-desc-line = '140';
-      var-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-      var-mem-documentation = <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-    }; /* var-member */
-    var-member = {
-      var-mem-kind = 'variable';
-      var-mem-id   = 'riscv__nnexamples__cifar10_8c_1a6e9cebde523b29879919112a8b5360cc';
-      var-mem-virt = normal;
-      var-mem-prot = public;
-      var-mem-type = <<_EnD_oF_dEf_TeXt_
-uint64_t
-_EnD_oF_dEf_TeXt_;
-      var-mem-name = 'end_cycle';
-      var-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/riscv_nnexamples_cifar10.c';
-      var-mem-desc-line = '141';
-      var-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-      var-mem-documentation = <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-    }; /* var-member */
-    var-member = {
-      var-mem-kind = 'variable';
-      var-mem-id   = 'riscv__nnexamples__cifar10_8c_1a3e53e3b1e9d9b27da1e8c0c09e474ffc';
-      var-mem-virt = normal;
-      var-mem-prot = public;
-      var-mem-type = <<_EnD_oF_dEf_TeXt_
-uint64_t
-_EnD_oF_dEf_TeXt_;
-      var-mem-name = 'cycle';
-      var-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/riscv_nnexamples_cifar10.c';
-      var-mem-desc-line = '142';
-      var-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-      var-mem-documentation = <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-    }; /* var-member */
     var-member = {
       var-mem-kind = 'variable';
       var-mem-id   = 'riscv__nnexamples__cifar10_8c_1a230b7412ffaaa297340ddcb49c828b4b';
@@ -37188,7 +37336,7 @@ _EnD_oF_dEf_TeXt_;
 = CONV1_WT
 _EnD_oF_dEf_TeXt_;
       var-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/riscv_nnexamples_cifar10.c';
-      var-mem-desc-line = '158';
+      var-mem-desc-line = '110';
       var-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -37209,7 +37357,7 @@ _EnD_oF_dEf_TeXt_;
 = CONV1_BIAS
 _EnD_oF_dEf_TeXt_;
       var-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/riscv_nnexamples_cifar10.c';
-      var-mem-desc-line = '159';
+      var-mem-desc-line = '111';
       var-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -37230,7 +37378,7 @@ _EnD_oF_dEf_TeXt_;
 = CONV2_WT
 _EnD_oF_dEf_TeXt_;
       var-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/riscv_nnexamples_cifar10.c';
-      var-mem-desc-line = '161';
+      var-mem-desc-line = '113';
       var-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -37251,7 +37399,7 @@ _EnD_oF_dEf_TeXt_;
 = CONV2_BIAS
 _EnD_oF_dEf_TeXt_;
       var-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/riscv_nnexamples_cifar10.c';
-      var-mem-desc-line = '162';
+      var-mem-desc-line = '114';
       var-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -37272,7 +37420,7 @@ _EnD_oF_dEf_TeXt_;
 = CONV3_WT
 _EnD_oF_dEf_TeXt_;
       var-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/riscv_nnexamples_cifar10.c';
-      var-mem-desc-line = '164';
+      var-mem-desc-line = '116';
       var-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -37293,7 +37441,7 @@ _EnD_oF_dEf_TeXt_;
 = CONV3_BIAS
 _EnD_oF_dEf_TeXt_;
       var-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/riscv_nnexamples_cifar10.c';
-      var-mem-desc-line = '165';
+      var-mem-desc-line = '117';
       var-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -37314,7 +37462,7 @@ _EnD_oF_dEf_TeXt_;
 = IP1_WT
 _EnD_oF_dEf_TeXt_;
       var-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/riscv_nnexamples_cifar10.c';
-      var-mem-desc-line = '167';
+      var-mem-desc-line = '119';
       var-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -37335,7 +37483,7 @@ _EnD_oF_dEf_TeXt_;
 = IP1_BIAS
 _EnD_oF_dEf_TeXt_;
       var-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/riscv_nnexamples_cifar10.c';
-      var-mem-desc-line = '168';
+      var-mem-desc-line = '120';
       var-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -37353,7 +37501,7 @@ q7_t
 _EnD_oF_dEf_TeXt_;
       var-mem-name = 'output_data';
       var-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/riscv_nnexamples_cifar10.c';
-      var-mem-desc-line = '186';
+      var-mem-desc-line = '138';
       var-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -37371,7 +37519,7 @@ q7_t
 _EnD_oF_dEf_TeXt_;
       var-mem-name = 'col_buffer';
       var-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/riscv_nnexamples_cifar10.c';
-      var-mem-desc-line = '189';
+      var-mem-desc-line = '141';
       var-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -37389,7 +37537,7 @@ q7_t
 _EnD_oF_dEf_TeXt_;
       var-mem-name = 'scratch_buffer';
       var-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/riscv_nnexamples_cifar10.c';
-      var-mem-desc-line = '191';
+      var-mem-desc-line = '143';
       var-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -37410,7 +37558,7 @@ _EnD_oF_dEf_TeXt_;
 = {"Plane", "Car", "Bird", "Cat", "Deer", "Dog", "Frog", "Horse", "Ship", "Truck"}
 _EnD_oF_dEf_TeXt_;
       var-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Examples/RISCV/cifar10/riscv_nnexamples_cifar10.c';
-      var-mem-desc-line = '193';
+      var-mem-desc-line = '145';
       var-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -41832,7 +41980,7 @@ vec_buffer size: 0
  | a17 | a27 | a37 | a47 |
 
  For the left-over rows, we do 1x1 computation, so the data remains
- as its original order. 
+ as its original order.
 
  So the stored weight matrix looks like this:
 
@@ -44311,7 +44459,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'Im_out';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/PoolingFunctions/riscv_pool_q7_HWC.c';
-      func-mem-desc-line = '172';
+      func-mem-desc-line = '179';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Q7 max pooling function.
 _EnD_oF_dEf_TeXt_;
@@ -44406,7 +44554,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'Im_out';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/travis/build/Nuclei-Software/NMSIS/NMSIS/NN/Source/PoolingFunctions/riscv_pool_q7_HWC.c';
-      func-mem-desc-line = '325';
+      func-mem-desc-line = '332';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Q7 average pooling function.
 _EnD_oF_dEf_TeXt_;

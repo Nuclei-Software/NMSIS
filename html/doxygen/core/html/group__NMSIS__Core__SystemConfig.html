@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-Core
-   &#160;<span id="projectnumber">Version 1.0.0</span>
+   &#160;<span id="projectnumber">Version 1.0.1</span>
    </div>
    <div id="projectbrief">NMSIS-Core support for Nuclei processor-based devices</div>
   </td>
@@ -123,6 +123,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ga93f514700ccf00d08dbdcff7f1224eb2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__SystemConfig.html#ga93f514700ccf00d08dbdcff7f1224eb2">SystemInit</a> (void)</td></tr>
 <tr class="memdesc:ga93f514700ccf00d08dbdcff7f1224eb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to Initialize the system.  <a href="#ga93f514700ccf00d08dbdcff7f1224eb2">More...</a><br/></td></tr>
 <tr class="separator:ga93f514700ccf00d08dbdcff7f1224eb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad13ba247efe59bbe2b6004d9bd0f10db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__SystemConfig.html#gad13ba247efe59bbe2b6004d9bd0f10db">_premain_init</a> (void)</td></tr>
+<tr class="memdesc:gad13ba247efe59bbe2b6004d9bd0f10db"><td class="mdescLeft">&#160;</td><td class="mdescRight">early init function before main  <a href="#gad13ba247efe59bbe2b6004d9bd0f10db">More...</a><br/></td></tr>
+<tr class="separator:gad13ba247efe59bbe2b6004d9bd0f10db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6eb76a75cf67b543443efc82ecf33713"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__SystemConfig.html#ga6eb76a75cf67b543443efc82ecf33713">_postmain_fini</a> (int status)</td></tr>
+<tr class="memdesc:ga6eb76a75cf67b543443efc82ecf33713"><td class="mdescLeft">&#160;</td><td class="mdescRight">finish function after main  <a href="#ga6eb76a75cf67b543443efc82ecf33713">More...</a><br/></td></tr>
+<tr class="separator:ga6eb76a75cf67b543443efc82ecf33713"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad1cbc4315ef293463e6057dfb24c8115"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__SystemConfig.html#gad1cbc4315ef293463e6057dfb24c8115">_init</a> (void)</td></tr>
 <tr class="memdesc:gad1cbc4315ef293463e6057dfb24c8115"><td class="mdescLeft">&#160;</td><td class="mdescRight">_init function called in __libc_init_array()  <a href="#gad1cbc4315ef293463e6057dfb24c8115">More...</a><br/></td></tr>
 <tr class="separator:gad1cbc4315ef293463e6057dfb24c8115"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -167,12 +173,12 @@ Variables</h2></td></tr>
 
 <p>_fini function called in __libc_fini_array() </p>
 <p>This <code>__libc_fini_array()</code> function is called when exit main. user need to implement this function, otherwise when link it will error fini.c:(.text.__libc_fini_array+0x28): undefined reference to `_fini' </p>
+<dl class="section note"><dt>Note</dt><dd>Please use <a class="el" href="group__NMSIS__Core__SystemConfig.html#ga6eb76a75cf67b543443efc82ecf33713">_postmain_fini</a> function now </dd></dl>
 
-<p>Definition at line <a class="el" href="system__Device_8c_source.html#l00342">342</a> of file <a class="el" href="system__Device_8c_source.html">system_Device.c</a>.</p>
-<div class="fragment"><div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;{</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;    <span class="comment">/* TODO: Add your own finishing code here, called after main via __libc_fini_array */</span></div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;}</div>
+<p>Definition at line <a class="el" href="system__Device_8c_source.html#l00373">373</a> of file <a class="el" href="system__Device_8c_source.html">system_Device.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;{</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;    <span class="comment">/* Don&#39;t put any code here, please use _postmain_fini now */</span></div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -192,19 +198,74 @@ Variables</h2></td></tr>
 
 <p>_init function called in __libc_init_array() </p>
 <p>This <code>__libc_init_array()</code> function is called during startup code, user need to implement this function, otherwise when link it will error init.c:(.text.__libc_init_array+0x26): undefined reference to `_init' </p>
+<dl class="section note"><dt>Note</dt><dd>Please use <a class="el" href="group__NMSIS__Core__SystemConfig.html#gad13ba247efe59bbe2b6004d9bd0f10db">_premain_init</a> function now </dd></dl>
 
-<p>Definition at line <a class="el" href="system__Device_8c_source.html#l00322">322</a> of file <a class="el" href="system__Device_8c_source.html">system_Device.c</a>.</p>
-<div class="fragment"><div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;{</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;    <span class="comment">/* TODO: Add your own initialization code here, called before main via __libc_init_array */</span></div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    <span class="comment">// TODO: Add code to set the system clock frequency value SystemCoreClock</span></div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    </div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    <span class="comment">// TODO: Add code to initialize necessary gpio and basic uart for debug print</span></div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;    </div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;    <span class="comment">/* Initialize exception default handlers */</span></div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;    <a class="code" href="group__NMSIS__Core__IntExcNMI__Handling.html#gab6afbaed495af51eeeb4eb7d1c5da420">Exception_Init</a>();</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;    <span class="comment">/* ECLIC initilization, mainly MTH and NLBIT settings */</span></div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;    <a class="code" href="group__NMSIS__Core__IntExcNMI__Handling.html#ga2d2e27f47287f5d28cc26f2cb214337f">ECLIC_Init</a>();</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;}</div>
+<p>Definition at line <a class="el" href="system__Device_8c_source.html#l00359">359</a> of file <a class="el" href="system__Device_8c_source.html">system_Device.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;{</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    <span class="comment">/* Don&#39;t put any code here, please use _premain_init now */</span></div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="ga6eb76a75cf67b543443efc82ecf33713"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void _postmain_fini </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>status</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>finish function after main </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">status</td><td>status code return from main</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This function is executed right after main function. For RISC-V gnu toolchain, _fini function might not be called by __libc_fini_array function, so we defined a new function to do initialization </p>
+
+<p>Definition at line <a class="el" href="system__Device_8c_source.html#l00345">345</a> of file <a class="el" href="system__Device_8c_source.html">system_Device.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;{</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;    <span class="comment">/* TODO: Add your own finishing code here, called after main */</span></div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="gad13ba247efe59bbe2b6004d9bd0f10db"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void _premain_init </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>early init function before main </p>
+<p>This function is executed right before main function. For RISC-V gnu toolchain, _init function might not be called by __libc_init_array function, so we defined a new function to do initialization </p>
+
+<p>Definition at line <a class="el" href="system__Device_8c_source.html#l00323">323</a> of file <a class="el" href="system__Device_8c_source.html">system_Device.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;{</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    <span class="comment">/* TODO: Add your own initialization code here, called before main  */</span></div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    <span class="comment">// TODO: Add code to set the system clock frequency value SystemCoreClock</span></div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;    <span class="comment">// TODO: Add code to initialize necessary gpio and basic uart for debug print</span></div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;    <span class="comment">/* Initialize exception default handlers */</span></div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;    <a class="code" href="group__NMSIS__Core__IntExcNMI__Handling.html#gab6afbaed495af51eeeb4eb7d1c5da420">Exception_Init</a>();</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;    <span class="comment">/* ECLIC initilization, mainly MTH and NLBIT settings */</span></div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;    <a class="code" href="group__NMSIS__Core__IntExcNMI__Handling.html#ga2d2e27f47287f5d28cc26f2cb214337f">ECLIC_Init</a>();</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;}</div>
 <div class="ttc" id="group__NMSIS__Core__IntExcNMI__Handling_html_ga2d2e27f47287f5d28cc26f2cb214337f"><div class="ttname"><a href="group__NMSIS__Core__IntExcNMI__Handling.html#ga2d2e27f47287f5d28cc26f2cb214337f">ECLIC_Init</a></div><div class="ttdeci">void ECLIC_Init(void)</div><div class="ttdoc">Initialize Global ECLIC Config. </div><div class="ttdef"><b>Definition:</b> <a href="system__Device_8c_source.html#l00262">system_Device.c:262</a></div></div>
 <div class="ttc" id="group__NMSIS__Core__IntExcNMI__Handling_html_gab6afbaed495af51eeeb4eb7d1c5da420"><div class="ttname"><a href="group__NMSIS__Core__IntExcNMI__Handling.html#gab6afbaed495af51eeeb4eb7d1c5da420">Exception_Init</a></div><div class="ttdeci">static void Exception_Init(void)</div><div class="ttdoc">Initialize all the default core exception handlers. </div><div class="ttdef"><b>Definition:</b> <a href="system__Device_8c_source.html#l00183">system_Device.c:183</a></div></div>
 </div><!-- fragment -->
@@ -293,7 +354,7 @@ Variables</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Mar 19 2020 06:30:02 for NMSIS-Core by
+    <li class="footer">Generated on Mon Aug 3 2020 00:57:37 for NMSIS-Core by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>
