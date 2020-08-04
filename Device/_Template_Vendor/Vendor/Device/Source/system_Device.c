@@ -323,6 +323,13 @@ int32_t ECLIC_Register_IRQ(IRQn_Type IRQn, uint8_t shv, ECLIC_TRIGGER_Type trig_
 void _premain_init(void)
 {
     /* TODO: Add your own initialization code here, called before main  */
+    /* __ICACHE_PRESENT and __DCACHE_PRESENT are defined in <Device>.h */
+#if defined(__ICACHE_PRESENT) && __ICACHE_PRESENT == 1
+    EnableICache();
+#endif
+#if defined(__DCACHE_PRESENT) && __DCACHE_PRESENT == 1
+    EnableDCache();
+#endif
     // TODO: Add code to set the system clock frequency value SystemCoreClock
 
     // TODO: Add code to initialize necessary gpio and basic uart for debug print
