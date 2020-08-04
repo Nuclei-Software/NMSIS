@@ -26,7 +26,8 @@ static int DSP_SIN_COS_F32(void)
     float32_t pCosVal, pCosVal_ref;
 
     BENCH_START(riscv_sin_cos_f32);
-    riscv_sin_cos_f32(0, &pSinVal, &pCosVal);
+    for (int i = 0; i < 1000; i++)
+        riscv_sin_cos_f32(0, &pSinVal, &pCosVal);
     BENCH_END(riscv_sin_cos_f32);
     ref_sin_cos_f32(0, &pSinVal_ref, &pCosVal_ref);
     if ((fabs(pSinVal - pSinVal_ref) > DELTAF32) ||
@@ -46,7 +47,8 @@ static int DSP_SIN_COS_Q31(void)
     q31_t pCosVal, pCosVal_ref;
 
     BENCH_START(riscv_sin_cos_q31);
-    riscv_sin_cos_q31(0, &pSinVal, &pCosVal);
+    for (int i = 0; i < 1000; i++)
+        riscv_sin_cos_q31(0, &pSinVal, &pCosVal);
     BENCH_END(riscv_sin_cos_q31);
     ref_sin_cos_q31(0, &pSinVal_ref, &pCosVal_ref);
     if ((labs(pSinVal - pSinVal_ref) > DELTAQ31) ||

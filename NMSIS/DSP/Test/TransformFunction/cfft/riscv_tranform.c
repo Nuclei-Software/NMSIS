@@ -1912,7 +1912,7 @@ static int DSP_cfft_q15(void)
     riscv_cfft_q15(&riscv_cfft_sR_q15_len512, cfft_testinput_q15_50hz_200Hz,
                  ifftFlag, doBitReverse);
     BENCH_END(riscv_cfft_q15);
-    ref_cfft_q15(&riscv_cfft_sR_q31_len512, cfft_testinput_q15_50hz_200Hz_ref,
+    ref_cfft_q15(&riscv_cfft_sR_q15_len512, cfft_testinput_q15_50hz_200Hz_ref,
                  ifftFlag, doBitReverse);
     q15_t resault, resault_ref;
     uint32_t index, index_ref;

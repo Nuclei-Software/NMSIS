@@ -27,7 +27,8 @@ static int DSP_clarke_f32_app()
     float32_t pIbeta, pIbeta_ref;
 
     BENCH_START(riscv_clarke_f32);
-    riscv_clarke_f32(Ia, Ib, &pIalpha, &pIbeta);
+    for (int i = 0; i < 1000; i++)
+        riscv_clarke_f32(Ia, Ib, &pIalpha, &pIbeta);
     BENCH_END(riscv_clarke_f32);
     pIalpha_ref = 0.500000;
     pIbeta_ref = 0.866025;
@@ -58,7 +59,8 @@ static int DSP_clarke_q31_app()
     q31_t pIbeta, pIbeta_ref;
 
     BENCH_START(riscv_clarke_q31);
-    riscv_clarke_q31(Ia1, Ib1, &pIalpha, &pIbeta);
+    for (int i = 0; i < 1000; i++)
+        riscv_clarke_q31(Ia1, Ib1, &pIalpha, &pIbeta);
     BENCH_END(riscv_clarke_q31);
     // ref_clarke_q31(Ia1, Ib1, &pIalpha_ref, &pIbeta_ref);
     pIalpha_ref = 1073741824;
@@ -81,7 +83,8 @@ static int DSP_inv_clarke_f32_app()
     float32_t pIalpha = 0.500000;
     float32_t pIbeta = 0.866025;
     BENCH_START(riscv_inv_clarke_f32);
-    riscv_inv_clarke_f32(pIalpha, pIbeta, &Ia, &Ib);
+    for (int i = 0; i < 1000; i++)
+        riscv_inv_clarke_f32(pIalpha, pIbeta, &Ia, &Ib);
     BENCH_END(riscv_inv_clarke_f32);
     // ref_inv_clarke_f32(pIalpha, pIbeta, &Ia_ref, &Ib_ref);
     Ia_ref = 0.500000;
@@ -110,7 +113,8 @@ static int DSP_inv_clarke_q31_app()
     riscv_float_to_q31(&pIalpha, &pIbeta1, 1);
 
     BENCH_START(riscv_inv_clarke_q31);
-    riscv_inv_clarke_q31(pIalpha1, pIbeta1, &Ia, &Ib);
+    for (int i = 0; i < 1000; i++)
+        riscv_inv_clarke_q31(pIalpha1, pIbeta1, &Ia, &Ib);
     BENCH_END(riscv_inv_clarke_q31);
     // ref_inv_clarke_q31(pIalpha1, pIbeta1, &Ia_ref, &Ib_ref);
     Ia_ref = 1073741824;
@@ -139,7 +143,8 @@ static int DSP_park_f32_app()
     float32_t cosVal = cos(30 * PI / 180);
 
     BENCH_START(riscv_park_f32);
-    riscv_park_f32(Ia, Ib, &pId, &pIq, sinVal, cosVal);
+    for (int i = 0; i < 1000; i++)
+        riscv_park_f32(Ia, Ib, &pId, &pIq, sinVal, cosVal);
     BENCH_END(riscv_park_f32);
     // ref_park_f32(Ia, Ib, &pId_ref, &pIq_ref, sinVal, cosVal);
     pId_ref = 0.866025;
@@ -181,7 +186,8 @@ static int DSP_park_q31_app()
     riscv_float_to_q31(&cosVal, &cosVal1, 1);
 
     BENCH_START(riscv_park_q31);
-    riscv_park_q31(Ia1, Ib1, &pId, &pIq, sinVal1, cosVal1);
+    for (int i = 0; i < 1000; i++)
+        riscv_park_q31(Ia1, Ib1, &pId, &pIq, sinVal1, cosVal1);
     BENCH_END(riscv_park_q31);
     // ref_park_q31(Ia1, Ib1, &pId_ref, &pIq_ref, sinVal1, cosVal1);
     pId_ref = 1466758400;
@@ -207,7 +213,8 @@ static int DSP_inv_park_f32_app()
     float32_t cosVal = cos(30 * PI / 180);
 
     BENCH_START(riscv_inv_park_f32);
-    riscv_inv_park_f32(Ia, Ib, &pIalpha, &pIbeta, sinVal, cosVal);
+    for (int i = 0; i < 1000; i++)
+        riscv_inv_park_f32(Ia, Ib, &pIalpha, &pIbeta, sinVal, cosVal);
     BENCH_END(riscv_inv_park_f32);
     // ref_inv_park_f32(Ia, Ib, &pIalpha_ref, &pIbeta_ref, sinVal, cosVal);
     pIalpha_ref = 0.500000;
@@ -234,7 +241,8 @@ static int DSP_inv_park_q31_app()
     q31_t cosValb = 1859775360;
 
     BENCH_START(riscv_inv_park_q31);
-    riscv_inv_park_q31(Ia1, Ib1, &pIalpha, &pIbeta, sinValb, cosValb);
+    for (int i = 0; i < 1000; i++)
+        riscv_inv_park_q31(Ia1, Ib1, &pIalpha, &pIbeta, sinValb, cosValb);
     BENCH_END(riscv_inv_park_q31);
     // ref_inv_park_q31(Ia1, Ib1, &pIalpha_ref, &pIbeta_ref, sinVal1, cosVal1);
     pIalpha_ref = 1073740990;

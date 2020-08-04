@@ -28,7 +28,8 @@ static int DSP_SQRT(void)
     q15_t q15_pOUT, q15_pOUT_ref;
     // f32_sqrt
     BENCH_START(riscv_sqrt_f32);
-    riscv_sqrt_f32(100, &f32_pOUT);
+    for (int i = 0; i < 1000; i++)
+        riscv_sqrt_f32(100, &f32_pOUT);
     BENCH_END(riscv_sqrt_f32);
     // ref_sqrt_f32(100, &f32_pOUT_ref);
     f32_pOUT_ref = 10.0f;
@@ -40,7 +41,8 @@ static int DSP_SQRT(void)
     BENCH_STATUS(riscv_sqrt_f32);
     // q31_sqrt
     BENCH_START(riscv_sqrt_q31);
-    riscv_sqrt_q31(100, &q31_pOUT);
+    for (int i = 0; i < 1000; i++)
+        riscv_sqrt_q31(100, &q31_pOUT);
     BENCH_END(riscv_sqrt_q31);
     ref_sqrt_q31(100, &q31_pOUT_ref);
     if (labs(q31_pOUT - q31_pOUT_ref) > DELTAQ31) {
@@ -51,7 +53,8 @@ static int DSP_SQRT(void)
     BENCH_STATUS(riscv_sqrt_q31);
     // q15_sqrt
     BENCH_START(riscv_sqrt_q15);
-    riscv_sqrt_q15(100, &q15_pOUT);
+    for (int i = 0; i < 1000; i++)
+        riscv_sqrt_q15(100, &q15_pOUT);
     BENCH_END(riscv_sqrt_q15);
     ref_sqrt_q15(100, &q15_pOUT_ref);
     if (abs(q15_pOUT - q15_pOUT_ref) > DELTAQ15) {

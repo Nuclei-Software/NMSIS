@@ -27,7 +27,8 @@ static int DSP_COS(void)
     float32_t f32_cosoutput, f32_cosoutput_ref;
     uint16_t i;
     BENCH_START(riscv_cos_f32);
-    f32_cosoutput = riscv_cos_f32(PI);
+    for (int i = 0; i < 1000; i++)
+        f32_cosoutput = riscv_cos_f32(PI);
     BENCH_END(riscv_cos_f32);
     f32_cosoutput_ref = ref_cos_f32(PI);
     if (fabs(f32_cosoutput - f32_cosoutput_ref) > DELTAF32) {
@@ -39,7 +40,8 @@ static int DSP_COS(void)
     // q31_cos
     q31_t q31_cosoutput, q31_cosoutput_ref;
     BENCH_START(riscv_cos_q31);
-    q31_cosoutput = riscv_cos_q31(0x7ffffff0);
+    for (int i = 0; i < 1000; i++)
+        q31_cosoutput = riscv_cos_q31(0x7ffffff0);
     BENCH_END(riscv_cos_q31);
     q31_cosoutput_ref = ref_cos_q31(0x7ffffff0);
     if (labs(q31_cosoutput - q31_cosoutput_ref) > DELTAQ31) {
@@ -51,7 +53,8 @@ static int DSP_COS(void)
     // q15_cos
     q15_t q15_cosoutput, q15_cosoutput_ref;
     BENCH_START(riscv_cos_q15);
-    q15_cosoutput = riscv_cos_q15(0x7000);
+    for (int i = 0; i < 1000; i++)
+        q15_cosoutput = riscv_cos_q15(0x7000);
     BENCH_END(riscv_cos_q15);
     q15_cosoutput_ref = ref_cos_q15(0x7000);
     if (abs(q15_cosoutput - q15_cosoutput_ref) > DELTAQ15) {
@@ -76,7 +79,8 @@ static int DSP_SIN(void)
     float32_t f32_sinoutput, f32_sinoutput_ref;
     uint16_t i;
     BENCH_START(riscv_sin_f32);
-    f32_sinoutput = riscv_sin_f32(PI);
+    for (int i = 0; i < 1000; i++)
+        f32_sinoutput = riscv_sin_f32(PI);
     BENCH_END(riscv_sin_f32);
     f32_sinoutput_ref = ref_sin_f32(PI);
     if (fabs(f32_sinoutput - f32_sinoutput_ref) > DELTAF32) {
@@ -88,7 +92,8 @@ static int DSP_SIN(void)
     // q31_sin
     q31_t q31_sinoutput, q31_sinoutput_ref;
     BENCH_START(riscv_sin_q31);
-    q31_sinoutput = riscv_sin_q31(PI);
+    for (int i = 0; i < 1000; i++)
+        q31_sinoutput = riscv_sin_q31(PI);
     BENCH_END(riscv_sin_q31);
     q31_sinoutput_ref = ref_sin_q31(PI);
     if (labs(q31_sinoutput - q31_sinoutput_ref) > DELTAQ31) {
@@ -100,7 +105,8 @@ static int DSP_SIN(void)
     // q15_sin
     q15_t q15_sinoutput, q15_sinoutput_ref;
     BENCH_START(riscv_sin_q15);
-    q15_sinoutput = riscv_sin_q15(PI);
+    for (int i = 0; i < 1000; i++)
+        q15_sinoutput = riscv_sin_q15(PI);
     BENCH_END(riscv_sin_q15);
     q15_sinoutput_ref = ref_sin_q15(PI);
     if (abs(q15_sinoutput - q15_sinoutput_ref) > DELTAQ15) {
