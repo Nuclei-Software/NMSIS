@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                1.0.1
+                1.0.1-RC1
               </div>
             
           
@@ -611,11 +611,7 @@ The files for other compilers can slightly differ from this version.</p>
 307
 308
 309
-310
-311
-312
-313
-314</pre></div></td><td class="code"><div class="highlight"><pre><span></span>/*
+310</pre></div></td><td class="code"><div class="highlight"><pre><span></span>/*
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -854,10 +850,6 @@ _start:
     /* Enable mcycle and minstret counter */
     csrci CSR_MCOUNTINHIBIT, 0x5
 
-    /* Enable ICache and DCache if present */
-    li t0, 0x10001
-    csrs CSR_MCACHE_CTL, t0
-
     /*
      * Call vendor defined SystemInit to
      * initialize the micro-controller system.
@@ -956,7 +948,7 @@ _start:
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 03, 2020.
+        Last updated on Aug 04, 2020.
       </span>
 
     </p>
