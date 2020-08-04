@@ -3,6 +3,19 @@
 Changelog
 =========
 
+V1.0.1-RC2-dev
+--------------
+
+The following changes has been maded since ``V1.0.1-RC1``.
+
+* **Device Templates**
+
+  - I/D Cache enable assemble code in startup_<Device>.S are removed now
+  - Cache control updates in System_<Device>.c
+
+    - I-Cache will be enabled if __ICACHE_PRESENT = 1 defined in <Device.h>
+    - D-Cache will be enabled if __DCACHE_PRESENT = 1 defined in <Device.h>
+
 V1.0.1-RC1
 ----------
 
@@ -30,13 +43,13 @@ This is release candidate version ``V1.0.1-RC1`` of NMSIS.
 * **Device Templates**
 
   - Add ``DDR DOWNLOAD_MODE`` in device templates
-  - Modifications to ``startup_<Device>.S** files
+  - Modifications to ``startup_<Device>.S`` files
+
     - ``_premain_init`` is added to replace ``_init``
     - ``_postmain_fini`` is added to replace ``_fini``
-    - I/D Cache will be enabled by default now if present
-  - If you have implemented your functions in ``_init`` or ``_fini``,
-    please place the changes in functions defined ``system_<Device>.c``
 
+  - If you have implemented your init or de-init functions through ``_init`` or ``_fini``,
+    please use ``_premain_init`` and ``_postmain_fini`` functions defined ``system_<Device>.c`` now
 
 V1.0.0-beta1
 ------------
@@ -52,7 +65,6 @@ Main changes in release **V1.0.0-beta1**.
   - Add missing ``SOC_INT_MAX`` enum definition in Device template
   - In ``System_<Device>.c``, ECLIC NLBits set to ``__ECLIC_INTCTLBITS``,
     which means all the bits are for level, no bits for priority
-
 
 
 V1.0.0-beta
