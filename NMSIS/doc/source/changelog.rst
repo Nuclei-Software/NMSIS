@@ -3,8 +3,10 @@
 Changelog
 =========
 
-V1.0.1-RC2-dev
---------------
+V1.0.1
+------
+
+This is the offical ``V1.0.1`` release of Nuclei MCU Software Interface Standard(NMSIS).
 
 The following changes has been maded since ``V1.0.1-RC1``.
 
@@ -15,6 +17,7 @@ The following changes has been maded since ``V1.0.1-RC1``.
 
     - I-Cache will be enabled if __ICACHE_PRESENT = 1 defined in <Device.h>
     - D-Cache will be enabled if __DCACHE_PRESENT = 1 defined in <Device.h>
+
 
 V1.0.1-RC1
 ----------
