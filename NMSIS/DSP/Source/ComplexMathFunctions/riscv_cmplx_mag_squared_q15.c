@@ -86,12 +86,12 @@ void riscv_cmplx_mag_squared_q15(
 #if __RISCV_XLEN == 64
     in64 = read_q15x4_ia ((q15_t **) &pSrc);
     acc064 = __RV_KMDA(in64, in64);
-    *pDst++ = (q15_t) (acc064 >> 17);
+    *pDst++ = (q15_t) ((q31_t)acc064 >> 17);
     *pDst++ = (q15_t) (acc064 >> 49);
 
     in64 = read_q15x4_ia ((q15_t **) &pSrc);
     acc064 = __RV_KMDA(in64, in64);
-    *pDst++ = (q15_t) (acc064 >> 17);
+    *pDst++ = (q15_t) ((q31_t)acc064 >> 17);
     *pDst++ = (q15_t) (acc064 >> 49);
     
 #else

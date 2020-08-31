@@ -70,13 +70,13 @@ q63_t in64;
     /* C[0] + jC[1] = A[0]+ j(-1)A[1] */
 #if __RISCV_XLEN == 64
     in64 = read_q31x2_ia ((q31_t **) &pSrc);
-    write_q15x4_ia (&pDst, __RV_CRAS32(0,in64));
+    write_q15x4_ia (&pDst, __RV_STSA32(0,in64));
     in64 = read_q31x2_ia ((q31_t **) &pSrc);
-    write_q15x4_ia (&pDst, __RV_CRAS32(0,in64));
+    write_q15x4_ia (&pDst, __RV_STSA32(0,in64));
     in64 = read_q31x2_ia ((q31_t **) &pSrc);
-    write_q15x4_ia (&pDst, __RV_CRAS32(0,in64));
+    write_q15x4_ia (&pDst, __RV_STSA32(0,in64));
     in64 = read_q31x2_ia ((q31_t **) &pSrc);
-    write_q15x4_ia (&pDst, __RV_CRAS32(0,in64));
+    write_q15x4_ia (&pDst, __RV_STSA32(0,in64));
 #else
     /* Calculate Complex Conjugate and store result in destination buffer. */
     *pDst++ =  *pSrc++;
