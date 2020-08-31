@@ -31,7 +31,7 @@ option(RISCV_ABI "option to select riscv abi" ilp32d)
 add_definitions(-march=${RISCV_ARCH} -mabi=${RISCV_ABI})
 add_definitions(-mcmodel=medany)
 
-add_definitions(-g -O2)
+add_definitions(-g -O2 -ffunction-sections -fdata-sections)
 if (DSP_ENABLE)
     add_definitions(-D__RISCV_FEATURE_DSP=1)
     if(LOOPUNROLL)
