@@ -320,7 +320,7 @@ Non-vector mode software handle flow show as below pciture:</p>
 19
 20
 21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// Vector interrupt handler for on-board button</span>
-<span class="n">__INTERRUPT</span> <span class="kt">void</span> <span class="nf">SOC_BUTTON_1_HANDLER</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="n">__INTERRUPT</span> <span class="kt">void</span> <span class="n">SOC_BUTTON_1_HANDLER</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="c1">// save mepc,mcause,msubm enable interrupts</span>
     <span class="n">SAVE_IRQ_CSR_CONTEXT</span><span class="p">();</span>
@@ -361,7 +361,7 @@ Non-vector mode software handle flow show as below pciture:</p>
 7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">static</span> <span class="kt">uint32_t</span> <span class="n">btn_pressed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="c1">// Vector interrupt handler for on-board button</span>
 <span class="c1">// This function is an leaf function, no function call is allowed</span>
-<span class="n">__INTERRUPT</span> <span class="kt">void</span> <span class="nf">SOC_BUTTON_1_HANDLER</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="n">__INTERRUPT</span> <span class="kt">void</span> <span class="n">SOC_BUTTON_1_HANDLER</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">btn_pressed</span> <span class="o">++</span><span class="p">;</span>
 <span class="p">}</span>
@@ -657,9 +657,9 @@ changes you may need some adaption.</p>
 <span class="p">.</span><span class="n">macro</span> <span class="n">SAVE_CONTEXT</span>
     <span class="cm">/* Allocate stack space for context saving */</span>
 <span class="cp">#ifndef __riscv_32e</span>
-    <span class="n">addi</span> <span class="n">sp</span><span class="p">,</span> <span class="n">sp</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="o">*</span><span class="n">REGBYTES</span>
+    <span class="n">addi</span> <span class="n">sp</span><span class="p">,</span> <span class="n">sp</span><span class="p">,</span> <span class="mi">-20</span><span class="o">*</span><span class="n">REGBYTES</span>
 <span class="cp">#else</span>
-    <span class="n">addi</span> <span class="n">sp</span><span class="p">,</span> <span class="n">sp</span><span class="p">,</span> <span class="o">-</span><span class="mi">14</span><span class="o">*</span><span class="n">REGBYTES</span>
+    <span class="n">addi</span> <span class="n">sp</span><span class="p">,</span> <span class="n">sp</span><span class="p">,</span> <span class="mi">-14</span><span class="o">*</span><span class="n">REGBYTES</span>
 <span class="cp">#endif </span><span class="cm">/* __riscv_32e */</span><span class="cp"></span>
 
     <span class="n">STORE</span> <span class="n">x1</span><span class="p">,</span> <span class="mi">0</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
@@ -865,7 +865,7 @@ changes you may need some adaption.</p>
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 31, 2020.
+        Last updated on Dec 10, 2020.
       </span>
 
     </p>

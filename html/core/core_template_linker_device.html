@@ -474,276 +474,276 @@
 267
 268
 269
-270</pre></div></td><td class="code"><div class="highlight"><pre><span></span>/*
- * Copyright (c) 2019 Nuclei Limited. All rights reserved.
- *
- * SPDX-License-Identifier: Apache-2.0
- *
- * Licensed under the Apache License, Version 2.0 (the License); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an AS IS BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-/******************************************************************************
- * @file     gcc_&lt;Device&gt;.ld
- * @brief    GNU Linker Script for Nuclei N/NX based device
- * @version  V1.0.0
- * @date     17. Dec 2019
- ******************************************************************************/
+270</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * Copyright (c) 2019 Nuclei Limited. All rights reserved.</span>
+<span class="cm"> *</span>
+<span class="cm"> * SPDX-License-Identifier: Apache-2.0</span>
+<span class="cm"> *</span>
+<span class="cm"> * Licensed under the Apache License, Version 2.0 (the License); you may</span>
+<span class="cm"> * not use this file except in compliance with the License.</span>
+<span class="cm"> * You may obtain a copy of the License at</span>
+<span class="cm"> *</span>
+<span class="cm"> * www.apache.org/licenses/LICENSE-2.0</span>
+<span class="cm"> *</span>
+<span class="cm"> * Unless required by applicable law or agreed to in writing, software</span>
+<span class="cm"> * distributed under the License is distributed on an AS IS BASIS, WITHOUT</span>
+<span class="cm"> * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="cm"> * See the License for the specific language governing permissions and</span>
+<span class="cm"> * limitations under the License.</span>
+<span class="cm"> */</span>
+<span class="cm">/******************************************************************************</span>
+<span class="cm"> * @file     gcc_&lt;Device&gt;.ld</span>
+<span class="cm"> * @brief    GNU Linker Script for Nuclei N/NX based device</span>
+<span class="cm"> * @version  V1.0.0</span>
+<span class="cm"> * @date     17. Dec 2019</span>
+<span class="cm"> ******************************************************************************/</span>
 
-/*********** Use Configuration Wizard in Context Menu *************************/
+<span class="cm">/*********** Use Configuration Wizard in Context Menu *************************/</span>
 
-OUTPUT_ARCH( &quot;riscv&quot; )
-/********************* Flash Configuration ************************************
- * &lt;h&gt; Flash Configuration
- * &lt;o0&gt; Flash Base Address &lt;0x0-0xFFFFFFFF:8&gt;
- * &lt;o1&gt; Flash Size (in Bytes) &lt;0x0-0xFFFFFFFF:8&gt;
- * &lt;/h&gt;
- */
-__ROM_BASE = 0x20000000;
-__ROM_SIZE = 0x00400000;
+<span class="n">OUTPUT_ARCH</span><span class="p">(</span> <span class="s">&quot;riscv&quot;</span> <span class="p">)</span>
+<span class="cm">/********************* Flash Configuration ************************************</span>
+<span class="cm"> * &lt;h&gt; Flash Configuration</span>
+<span class="cm"> * &lt;o0&gt; Flash Base Address &lt;0x0-0xFFFFFFFF:8&gt;</span>
+<span class="cm"> * &lt;o1&gt; Flash Size (in Bytes) &lt;0x0-0xFFFFFFFF:8&gt;</span>
+<span class="cm"> * &lt;/h&gt;</span>
+<span class="cm"> */</span>
+<span class="n">__ROM_BASE</span> <span class="o">=</span> <span class="mh">0x20000000</span><span class="p">;</span>
+<span class="n">__ROM_SIZE</span> <span class="o">=</span> <span class="mh">0x00400000</span><span class="p">;</span>
 
-/*--------------------- ILM RAM Configuration ---------------------------
- * &lt;h&gt; ILM RAM Configuration
- * &lt;o0&gt; ILM RAM Base Address    &lt;0x0-0xFFFFFFFF:8&gt;
- * &lt;o1&gt; ILM RAM Size (in Bytes) &lt;0x0-0xFFFFFFFF:8&gt;
- * &lt;/h&gt;
- */
-__ILM_RAM_BASE = 0x80000000;
-__ILM_RAM_SIZE = 0x00010000;
+<span class="cm">/*--------------------- ILM RAM Configuration ---------------------------</span>
+<span class="cm"> * &lt;h&gt; ILM RAM Configuration</span>
+<span class="cm"> * &lt;o0&gt; ILM RAM Base Address    &lt;0x0-0xFFFFFFFF:8&gt;</span>
+<span class="cm"> * &lt;o1&gt; ILM RAM Size (in Bytes) &lt;0x0-0xFFFFFFFF:8&gt;</span>
+<span class="cm"> * &lt;/h&gt;</span>
+<span class="cm"> */</span>
+<span class="n">__ILM_RAM_BASE</span> <span class="o">=</span> <span class="mh">0x80000000</span><span class="p">;</span>
+<span class="n">__ILM_RAM_SIZE</span> <span class="o">=</span> <span class="mh">0x00010000</span><span class="p">;</span>
 
-/*--------------------- Embedded RAM Configuration ---------------------------
- * &lt;h&gt; RAM Configuration
- * &lt;o0&gt; RAM Base Address    &lt;0x0-0xFFFFFFFF:8&gt;
- * &lt;o1&gt; RAM Size (in Bytes) &lt;0x0-0xFFFFFFFF:8&gt;
- * &lt;/h&gt;
-*/
-__RAM_BASE = 0x90000000;
-__RAM_SIZE = 0x00010000;
+<span class="cm">/*--------------------- Embedded RAM Configuration ---------------------------</span>
+<span class="cm"> * &lt;h&gt; RAM Configuration</span>
+<span class="cm"> * &lt;o0&gt; RAM Base Address    &lt;0x0-0xFFFFFFFF:8&gt;</span>
+<span class="cm"> * &lt;o1&gt; RAM Size (in Bytes) &lt;0x0-0xFFFFFFFF:8&gt;</span>
+<span class="cm"> * &lt;/h&gt;</span>
+<span class="cm">*/</span>
+<span class="n">__RAM_BASE</span> <span class="o">=</span> <span class="mh">0x90000000</span><span class="p">;</span>
+<span class="n">__RAM_SIZE</span> <span class="o">=</span> <span class="mh">0x00010000</span><span class="p">;</span>
 
-/********************* Stack / Heap Configuration ****************************
- * &lt;h&gt; Stack / Heap Configuration
- * &lt;o0&gt; Stack Size (in Bytes) &lt;0x0-0xFFFFFFFF:8&gt;
- * &lt;o1&gt; Heap Size (in Bytes) &lt;0x0-0xFFFFFFFF:8&gt;
- * &lt;/h&gt;
- */
-__STACK_SIZE = 0x00000800;
-__HEAP_SIZE  = 0x00000800;
+<span class="cm">/********************* Stack / Heap Configuration ****************************</span>
+<span class="cm"> * &lt;h&gt; Stack / Heap Configuration</span>
+<span class="cm"> * &lt;o0&gt; Stack Size (in Bytes) &lt;0x0-0xFFFFFFFF:8&gt;</span>
+<span class="cm"> * &lt;o1&gt; Heap Size (in Bytes) &lt;0x0-0xFFFFFFFF:8&gt;</span>
+<span class="cm"> * &lt;/h&gt;</span>
+<span class="cm"> */</span>
+<span class="n">__STACK_SIZE</span> <span class="o">=</span> <span class="mh">0x00000800</span><span class="p">;</span>
+<span class="n">__HEAP_SIZE</span>  <span class="o">=</span> <span class="mh">0x00000800</span><span class="p">;</span>
 
-/**************************** end of configuration section ********************/
+<span class="cm">/**************************** end of configuration section ********************/</span>
 
-/* Define base address and length of flash and ram */
-MEMORY
-{
-  flash (rxai!w) : ORIGIN = __ROM_BASE, LENGTH = __ROM_SIZE
-  ram (wxa!ri) : ORIGIN = __RAM_BASE, LENGTH = __RAM_SIZE
-}
-/* Linker script to place sections and symbol values. Should be used together
- * with other linker script that defines memory regions FLASH,ILM and RAM.
- * It references following symbols, which must be defined in code:
- *   _Start : Entry of reset handler
- *
- * It defines following symbols, which code can use without definition:
- *   _ilm_lma
- *   _ilm
- *   __etext
- *   _etext
- *   etext
- *   _eilm
- *   __preinit_array_start
- *   __preinit_array_end
- *   __init_array_start
- *   __init_array_end
- *   __fini_array_start
- *   __fini_array_end
- *   _data_lma
- *   _edata
- *   edata
- *   __data_end__
- *   __bss_start
- *   __fbss
- *   _end
- *   end
- *   __heap_end
- *   __StackLimit
- *   __StackTop
- *   __STACK_SIZE
- */
-/* Define entry label of program */
-ENTRY(_start)
-SECTIONS
-{
-  __STACK_SIZE = DEFINED(__STACK_SIZE) ? __STACK_SIZE : 2K;
+<span class="cm">/* Define base address and length of flash and ram */</span>
+<span class="n">MEMORY</span>
+<span class="p">{</span>
+  <span class="n">flash</span> <span class="p">(</span><span class="n">rxai</span><span class="o">!</span><span class="n">w</span><span class="p">)</span> <span class="o">:</span> <span class="n">ORIGIN</span> <span class="o">=</span> <span class="n">__ROM_BASE</span><span class="p">,</span> <span class="n">LENGTH</span> <span class="o">=</span> <span class="n">__ROM_SIZE</span>
+  <span class="n">ram</span> <span class="p">(</span><span class="n">wxa</span><span class="o">!</span><span class="n">ri</span><span class="p">)</span> <span class="o">:</span> <span class="n">ORIGIN</span> <span class="o">=</span> <span class="n">__RAM_BASE</span><span class="p">,</span> <span class="n">LENGTH</span> <span class="o">=</span> <span class="n">__RAM_SIZE</span>
+<span class="p">}</span>
+<span class="cm">/* Linker script to place sections and symbol values. Should be used together</span>
+<span class="cm"> * with other linker script that defines memory regions FLASH,ILM and RAM.</span>
+<span class="cm"> * It references following symbols, which must be defined in code:</span>
+<span class="cm"> *   _Start : Entry of reset handler</span>
+<span class="cm"> *</span>
+<span class="cm"> * It defines following symbols, which code can use without definition:</span>
+<span class="cm"> *   _ilm_lma</span>
+<span class="cm"> *   _ilm</span>
+<span class="cm"> *   __etext</span>
+<span class="cm"> *   _etext</span>
+<span class="cm"> *   etext</span>
+<span class="cm"> *   _eilm</span>
+<span class="cm"> *   __preinit_array_start</span>
+<span class="cm"> *   __preinit_array_end</span>
+<span class="cm"> *   __init_array_start</span>
+<span class="cm"> *   __init_array_end</span>
+<span class="cm"> *   __fini_array_start</span>
+<span class="cm"> *   __fini_array_end</span>
+<span class="cm"> *   _data_lma</span>
+<span class="cm"> *   _edata</span>
+<span class="cm"> *   edata</span>
+<span class="cm"> *   __data_end__</span>
+<span class="cm"> *   __bss_start</span>
+<span class="cm"> *   __fbss</span>
+<span class="cm"> *   _end</span>
+<span class="cm"> *   end</span>
+<span class="cm"> *   __heap_end</span>
+<span class="cm"> *   __StackLimit</span>
+<span class="cm"> *   __StackTop</span>
+<span class="cm"> *   __STACK_SIZE</span>
+<span class="cm"> */</span>
+<span class="cm">/* Define entry label of program */</span>
+<span class="n">ENTRY</span><span class="p">(</span><span class="n">_start</span><span class="p">)</span>
+<span class="n">SECTIONS</span>
+<span class="p">{</span>
+  <span class="n">__STACK_SIZE</span> <span class="o">=</span> <span class="n">DEFINED</span><span class="p">(</span><span class="n">__STACK_SIZE</span><span class="p">)</span> <span class="o">?</span> <span class="nl">__STACK_SIZE</span> <span class="p">:</span> <span class="mi">2</span><span class="n">K</span><span class="p">;</span>
 
-  .init           :
-  {
-    /* vector table locate at flash */
-    *(.vtable)
-    KEEP (*(SORT_NONE(.init)))
-  } &gt;flash AT&gt;flash
+  <span class="p">.</span><span class="nl">init</span>           <span class="p">:</span>
+  <span class="p">{</span>
+    <span class="cm">/* vector table locate at flash */</span>
+    <span class="o">*</span><span class="p">(.</span><span class="n">vtable</span><span class="p">)</span>
+    <span class="n">KEEP</span> <span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">SORT_NONE</span><span class="p">(.</span><span class="n">init</span><span class="p">)))</span>
+  <span class="p">}</span> <span class="o">&gt;</span><span class="n">flash</span> <span class="n">AT</span><span class="o">&gt;</span><span class="n">flash</span>
 
-  .ilalign         :
-  {
-    . = ALIGN(4);
-    /* Create a section label as _ilm_lma which located at flash */
-    PROVIDE( _ilm_lma = . );
-  } &gt;flash AT&gt;flash
+  <span class="p">.</span><span class="nl">ilalign</span>         <span class="p">:</span>
+  <span class="p">{</span>
+    <span class="p">.</span> <span class="o">=</span> <span class="n">ALIGN</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+    <span class="cm">/* Create a section label as _ilm_lma which located at flash */</span>
+    <span class="n">PROVIDE</span><span class="p">(</span> <span class="n">_ilm_lma</span> <span class="o">=</span> <span class="p">.</span> <span class="p">);</span>
+  <span class="p">}</span> <span class="o">&gt;</span><span class="n">flash</span> <span class="n">AT</span><span class="o">&gt;</span><span class="n">flash</span>
 
-  .ialign         :
-  {
-    /* Create a section label as _ilm which located at flash */
-    PROVIDE( _ilm = . );
-  } &gt;flash AT&gt;flash
+  <span class="p">.</span><span class="nl">ialign</span>         <span class="p">:</span>
+  <span class="p">{</span>
+    <span class="cm">/* Create a section label as _ilm which located at flash */</span>
+    <span class="n">PROVIDE</span><span class="p">(</span> <span class="n">_ilm</span> <span class="o">=</span> <span class="p">.</span> <span class="p">);</span>
+  <span class="p">}</span> <span class="o">&gt;</span><span class="n">flash</span> <span class="n">AT</span><span class="o">&gt;</span><span class="n">flash</span>
 
-  /* Code section located at flash */
-  .text           :
-  {
-    *(.text.unlikely .text.unlikely.*)
-    *(.text.startup .text.startup.*)
-    *(.text .text.*)
-    *(.gnu.linkonce.t.*)
-  } &gt;flash AT&gt;flash
+  <span class="cm">/* Code section located at flash */</span>
+  <span class="p">.</span><span class="nl">text</span>           <span class="p">:</span>
+  <span class="p">{</span>
+    <span class="o">*</span><span class="p">(.</span><span class="n">text</span><span class="p">.</span><span class="n">unlikely</span> <span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="n">unlikely</span><span class="p">.</span><span class="o">*</span><span class="p">)</span>
+    <span class="o">*</span><span class="p">(.</span><span class="n">text</span><span class="p">.</span><span class="n">startup</span> <span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="n">startup</span><span class="p">.</span><span class="o">*</span><span class="p">)</span>
+    <span class="o">*</span><span class="p">(.</span><span class="n">text</span> <span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="o">*</span><span class="p">)</span>
+    <span class="o">*</span><span class="p">(.</span><span class="n">gnu</span><span class="p">.</span><span class="n">linkonce</span><span class="p">.</span><span class="n">t</span><span class="p">.</span><span class="o">*</span><span class="p">)</span>
+  <span class="p">}</span> <span class="o">&gt;</span><span class="n">flash</span> <span class="n">AT</span><span class="o">&gt;</span><span class="n">flash</span>
 
-  .rodata : ALIGN(4)
-  {
-    . = ALIGN(4);
-    *(.rdata)
-    *(.rodata .rodata.*)
-    *(.gnu.linkonce.r.*)
-    . = ALIGN(8);
-    *(.srodata.cst16)
-    *(.srodata.cst8)
-    *(.srodata.cst4)
-    *(.srodata.cst2)
-    *(.srodata .srodata.*)
-  } &gt;flash AT&gt;flash
+  <span class="p">.</span><span class="nl">rodata</span> <span class="p">:</span> <span class="n">ALIGN</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="p">.</span> <span class="o">=</span> <span class="n">ALIGN</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+    <span class="o">*</span><span class="p">(.</span><span class="n">rdata</span><span class="p">)</span>
+    <span class="o">*</span><span class="p">(.</span><span class="n">rodata</span> <span class="p">.</span><span class="n">rodata</span><span class="p">.</span><span class="o">*</span><span class="p">)</span>
+    <span class="o">*</span><span class="p">(.</span><span class="n">gnu</span><span class="p">.</span><span class="n">linkonce</span><span class="p">.</span><span class="n">r</span><span class="p">.</span><span class="o">*</span><span class="p">)</span>
+    <span class="p">.</span> <span class="o">=</span> <span class="n">ALIGN</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+    <span class="o">*</span><span class="p">(.</span><span class="n">srodata</span><span class="p">.</span><span class="n">cst16</span><span class="p">)</span>
+    <span class="o">*</span><span class="p">(.</span><span class="n">srodata</span><span class="p">.</span><span class="n">cst8</span><span class="p">)</span>
+    <span class="o">*</span><span class="p">(.</span><span class="n">srodata</span><span class="p">.</span><span class="n">cst4</span><span class="p">)</span>
+    <span class="o">*</span><span class="p">(.</span><span class="n">srodata</span><span class="p">.</span><span class="n">cst2</span><span class="p">)</span>
+    <span class="o">*</span><span class="p">(.</span><span class="n">srodata</span> <span class="p">.</span><span class="n">srodata</span><span class="p">.</span><span class="o">*</span><span class="p">)</span>
+  <span class="p">}</span> <span class="o">&gt;</span><span class="n">flash</span> <span class="n">AT</span><span class="o">&gt;</span><span class="n">flash</span>
 
-  .fini           :
-  {
-    KEEP (*(SORT_NONE(.fini)))
-  } &gt;flash AT&gt;flash
+  <span class="p">.</span><span class="nl">fini</span>           <span class="p">:</span>
+  <span class="p">{</span>
+    <span class="n">KEEP</span> <span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">SORT_NONE</span><span class="p">(.</span><span class="n">fini</span><span class="p">)))</span>
+  <span class="p">}</span> <span class="o">&gt;</span><span class="n">flash</span> <span class="n">AT</span><span class="o">&gt;</span><span class="n">flash</span>
 
-  . = ALIGN(4);
+  <span class="p">.</span> <span class="o">=</span> <span class="n">ALIGN</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
 
-  PROVIDE (__etext = .);
-  PROVIDE (_etext = .);
-  PROVIDE (etext = .);
-  PROVIDE( _eilm = . );
+  <span class="n">PROVIDE</span> <span class="p">(</span><span class="n">__etext</span> <span class="o">=</span> <span class="p">.);</span>
+  <span class="n">PROVIDE</span> <span class="p">(</span><span class="n">_etext</span> <span class="o">=</span> <span class="p">.);</span>
+  <span class="n">PROVIDE</span> <span class="p">(</span><span class="n">etext</span> <span class="o">=</span> <span class="p">.);</span>
+  <span class="n">PROVIDE</span><span class="p">(</span> <span class="n">_eilm</span> <span class="o">=</span> <span class="p">.</span> <span class="p">);</span>
 
 
-  .preinit_array  :
-  {
-    PROVIDE_HIDDEN (__preinit_array_start = .);
-    KEEP (*(.preinit_array))
-    PROVIDE_HIDDEN (__preinit_array_end = .);
-  } &gt;flash AT&gt;flash
+  <span class="p">.</span><span class="nl">preinit_array</span>  <span class="p">:</span>
+  <span class="p">{</span>
+    <span class="n">PROVIDE_HIDDEN</span> <span class="p">(</span><span class="n">__preinit_array_start</span> <span class="o">=</span> <span class="p">.);</span>
+    <span class="n">KEEP</span> <span class="p">(</span><span class="o">*</span><span class="p">(.</span><span class="n">preinit_array</span><span class="p">))</span>
+    <span class="n">PROVIDE_HIDDEN</span> <span class="p">(</span><span class="n">__preinit_array_end</span> <span class="o">=</span> <span class="p">.);</span>
+  <span class="p">}</span> <span class="o">&gt;</span><span class="n">flash</span> <span class="n">AT</span><span class="o">&gt;</span><span class="n">flash</span>
 
-  .init_array     :
-  {
-    PROVIDE_HIDDEN (__init_array_start = .);
-    KEEP (*(SORT_BY_INIT_PRIORITY(.init_array.*) SORT_BY_INIT_PRIORITY(.ctors.*)))
-    KEEP (*(.init_array EXCLUDE_FILE (*crtbegin.o *crtbegin?.o *crtend.o *crtend?.o ) .ctors))
-    PROVIDE_HIDDEN (__init_array_end = .);
-  } &gt;flash AT&gt;flash
+  <span class="p">.</span><span class="nl">init_array</span>     <span class="p">:</span>
+  <span class="p">{</span>
+    <span class="n">PROVIDE_HIDDEN</span> <span class="p">(</span><span class="n">__init_array_start</span> <span class="o">=</span> <span class="p">.);</span>
+    <span class="n">KEEP</span> <span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">SORT_BY_INIT_PRIORITY</span><span class="p">(.</span><span class="n">init_array</span><span class="p">.</span><span class="o">*</span><span class="p">)</span> <span class="n">SORT_BY_INIT_PRIORITY</span><span class="p">(.</span><span class="n">ctors</span><span class="p">.</span><span class="o">*</span><span class="p">)))</span>
+    <span class="n">KEEP</span> <span class="p">(</span><span class="o">*</span><span class="p">(.</span><span class="n">init_array</span> <span class="n">EXCLUDE_FILE</span> <span class="p">(</span><span class="o">*</span><span class="n">crtbegin</span><span class="p">.</span><span class="n">o</span> <span class="o">*</span><span class="n">crtbegin</span><span class="o">?</span><span class="p">.</span><span class="n">o</span> <span class="o">*</span><span class="n">crtend</span><span class="p">.</span><span class="n">o</span> <span class="o">*</span><span class="n">crtend</span><span class="o">?</span><span class="p">.</span><span class="n">o</span> <span class="p">)</span> <span class="p">.</span><span class="n">ctors</span><span class="p">))</span>
+    <span class="n">PROVIDE_HIDDEN</span> <span class="p">(</span><span class="n">__init_array_end</span> <span class="o">=</span> <span class="p">.);</span>
+  <span class="p">}</span> <span class="o">&gt;</span><span class="n">flash</span> <span class="n">AT</span><span class="o">&gt;</span><span class="n">flash</span>
 
-  .fini_array     :
-  {
-    PROVIDE_HIDDEN (__fini_array_start = .);
-    KEEP (*(SORT_BY_INIT_PRIORITY(.fini_array.*) SORT_BY_INIT_PRIORITY(.dtors.*)))
-    KEEP (*(.fini_array EXCLUDE_FILE (*crtbegin.o *crtbegin?.o *crtend.o *crtend?.o ) .dtors))
-    PROVIDE_HIDDEN (__fini_array_end = .);
-  } &gt;flash AT&gt;flash
+  <span class="p">.</span><span class="nl">fini_array</span>     <span class="p">:</span>
+  <span class="p">{</span>
+    <span class="n">PROVIDE_HIDDEN</span> <span class="p">(</span><span class="n">__fini_array_start</span> <span class="o">=</span> <span class="p">.);</span>
+    <span class="n">KEEP</span> <span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">SORT_BY_INIT_PRIORITY</span><span class="p">(.</span><span class="n">fini_array</span><span class="p">.</span><span class="o">*</span><span class="p">)</span> <span class="n">SORT_BY_INIT_PRIORITY</span><span class="p">(.</span><span class="n">dtors</span><span class="p">.</span><span class="o">*</span><span class="p">)))</span>
+    <span class="n">KEEP</span> <span class="p">(</span><span class="o">*</span><span class="p">(.</span><span class="n">fini_array</span> <span class="n">EXCLUDE_FILE</span> <span class="p">(</span><span class="o">*</span><span class="n">crtbegin</span><span class="p">.</span><span class="n">o</span> <span class="o">*</span><span class="n">crtbegin</span><span class="o">?</span><span class="p">.</span><span class="n">o</span> <span class="o">*</span><span class="n">crtend</span><span class="p">.</span><span class="n">o</span> <span class="o">*</span><span class="n">crtend</span><span class="o">?</span><span class="p">.</span><span class="n">o</span> <span class="p">)</span> <span class="p">.</span><span class="n">dtors</span><span class="p">))</span>
+    <span class="n">PROVIDE_HIDDEN</span> <span class="p">(</span><span class="n">__fini_array_end</span> <span class="o">=</span> <span class="p">.);</span>
+  <span class="p">}</span> <span class="o">&gt;</span><span class="n">flash</span> <span class="n">AT</span><span class="o">&gt;</span><span class="n">flash</span>
 
-  .ctors          :
-  {
-    /* gcc uses crtbegin.o to find the start of
-     * the constructors, so we make sure it is
-     * first.  Because this is a wildcard, it
-     * doesn&#39;t matter if the user does not
-     * actually link against crtbegin.o; the
-     * linker won&#39;t look for a file to match a
-     * wildcard.  The wildcard also means that it
-     * doesn&#39;t matter which directory crtbegin.o
-     * is in.
-     */
-    KEEP (*crtbegin.o(.ctors))
-    KEEP (*crtbegin?.o(.ctors))
-    /* We don&#39;t want to include the .ctor section from
-     * the crtend.o file until after the sorted ctors.
-     * The .ctor section from the crtend file contains the
-     * end of ctors marker and it must be last
-     */
-    KEEP (*(EXCLUDE_FILE (*crtend.o *crtend?.o ) .ctors))
-    KEEP (*(SORT(.ctors.*)))
-    KEEP (*(.ctors))
-  } &gt;flash AT&gt;flash
+  <span class="p">.</span><span class="nl">ctors</span>          <span class="p">:</span>
+  <span class="p">{</span>
+    <span class="cm">/* gcc uses crtbegin.o to find the start of</span>
+<span class="cm">     * the constructors, so we make sure it is</span>
+<span class="cm">     * first.  Because this is a wildcard, it</span>
+<span class="cm">     * doesn&#39;t matter if the user does not</span>
+<span class="cm">     * actually link against crtbegin.o; the</span>
+<span class="cm">     * linker won&#39;t look for a file to match a</span>
+<span class="cm">     * wildcard.  The wildcard also means that it</span>
+<span class="cm">     * doesn&#39;t matter which directory crtbegin.o</span>
+<span class="cm">     * is in.</span>
+<span class="cm">     */</span>
+    <span class="n">KEEP</span> <span class="p">(</span><span class="o">*</span><span class="n">crtbegin</span><span class="p">.</span><span class="n">o</span><span class="p">(.</span><span class="n">ctors</span><span class="p">))</span>
+    <span class="n">KEEP</span> <span class="p">(</span><span class="o">*</span><span class="n">crtbegin</span><span class="o">?</span><span class="p">.</span><span class="n">o</span><span class="p">(.</span><span class="n">ctors</span><span class="p">))</span>
+    <span class="cm">/* We don&#39;t want to include the .ctor section from</span>
+<span class="cm">     * the crtend.o file until after the sorted ctors.</span>
+<span class="cm">     * The .ctor section from the crtend file contains the</span>
+<span class="cm">     * end of ctors marker and it must be last</span>
+<span class="cm">     */</span>
+    <span class="n">KEEP</span> <span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">EXCLUDE_FILE</span> <span class="p">(</span><span class="o">*</span><span class="n">crtend</span><span class="p">.</span><span class="n">o</span> <span class="o">*</span><span class="n">crtend</span><span class="o">?</span><span class="p">.</span><span class="n">o</span> <span class="p">)</span> <span class="p">.</span><span class="n">ctors</span><span class="p">))</span>
+    <span class="n">KEEP</span> <span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">SORT</span><span class="p">(.</span><span class="n">ctors</span><span class="p">.</span><span class="o">*</span><span class="p">)))</span>
+    <span class="n">KEEP</span> <span class="p">(</span><span class="o">*</span><span class="p">(.</span><span class="n">ctors</span><span class="p">))</span>
+  <span class="p">}</span> <span class="o">&gt;</span><span class="n">flash</span> <span class="n">AT</span><span class="o">&gt;</span><span class="n">flash</span>
 
-  .dtors          :
-  {
-    KEEP (*crtbegin.o(.dtors))
-    KEEP (*crtbegin?.o(.dtors))
-    KEEP (*(EXCLUDE_FILE (*crtend.o *crtend?.o ) .dtors))
-    KEEP (*(SORT(.dtors.*)))
-    KEEP (*(.dtors))
-  } &gt;flash AT&gt;flash
+  <span class="p">.</span><span class="nl">dtors</span>          <span class="p">:</span>
+  <span class="p">{</span>
+    <span class="n">KEEP</span> <span class="p">(</span><span class="o">*</span><span class="n">crtbegin</span><span class="p">.</span><span class="n">o</span><span class="p">(.</span><span class="n">dtors</span><span class="p">))</span>
+    <span class="n">KEEP</span> <span class="p">(</span><span class="o">*</span><span class="n">crtbegin</span><span class="o">?</span><span class="p">.</span><span class="n">o</span><span class="p">(.</span><span class="n">dtors</span><span class="p">))</span>
+    <span class="n">KEEP</span> <span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">EXCLUDE_FILE</span> <span class="p">(</span><span class="o">*</span><span class="n">crtend</span><span class="p">.</span><span class="n">o</span> <span class="o">*</span><span class="n">crtend</span><span class="o">?</span><span class="p">.</span><span class="n">o</span> <span class="p">)</span> <span class="p">.</span><span class="n">dtors</span><span class="p">))</span>
+    <span class="n">KEEP</span> <span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">SORT</span><span class="p">(.</span><span class="n">dtors</span><span class="p">.</span><span class="o">*</span><span class="p">)))</span>
+    <span class="n">KEEP</span> <span class="p">(</span><span class="o">*</span><span class="p">(.</span><span class="n">dtors</span><span class="p">))</span>
+  <span class="p">}</span> <span class="o">&gt;</span><span class="n">flash</span> <span class="n">AT</span><span class="o">&gt;</span><span class="n">flash</span>
 
-  .lalign         :
-  {
-    . = ALIGN(4);
-    PROVIDE( _data_lma = . );
-  } &gt;flash AT&gt;flash
+  <span class="p">.</span><span class="nl">lalign</span>         <span class="p">:</span>
+  <span class="p">{</span>
+    <span class="p">.</span> <span class="o">=</span> <span class="n">ALIGN</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+    <span class="n">PROVIDE</span><span class="p">(</span> <span class="n">_data_lma</span> <span class="o">=</span> <span class="p">.</span> <span class="p">);</span>
+  <span class="p">}</span> <span class="o">&gt;</span><span class="n">flash</span> <span class="n">AT</span><span class="o">&gt;</span><span class="n">flash</span>
 
-  .dalign         :
-  {
-    . = ALIGN(4);
-    PROVIDE( _data = . );
-  } &gt;ram AT&gt;flash
+  <span class="p">.</span><span class="nl">dalign</span>         <span class="p">:</span>
+  <span class="p">{</span>
+    <span class="p">.</span> <span class="o">=</span> <span class="n">ALIGN</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+    <span class="n">PROVIDE</span><span class="p">(</span> <span class="n">_data</span> <span class="o">=</span> <span class="p">.</span> <span class="p">);</span>
+  <span class="p">}</span> <span class="o">&gt;</span><span class="n">ram</span> <span class="n">AT</span><span class="o">&gt;</span><span class="n">flash</span>
 
-  /* Define data section virtual address is ram and physical address is flash */
-  .data          :
-  {
-    *(.data .data.*)
-    *(.gnu.linkonce.d.*)
-    . = ALIGN(8);
-    PROVIDE( __global_pointer$ = . + 0x800 );
-    *(.sdata .sdata.* .sdata*)
-    *(.gnu.linkonce.s.*)
-  } &gt;ram AT&gt;flash
+  <span class="cm">/* Define data section virtual address is ram and physical address is flash */</span>
+  <span class="p">.</span><span class="nl">data</span>          <span class="p">:</span>
+  <span class="p">{</span>
+    <span class="o">*</span><span class="p">(.</span><span class="n">data</span> <span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="o">*</span><span class="p">)</span>
+    <span class="o">*</span><span class="p">(.</span><span class="n">gnu</span><span class="p">.</span><span class="n">linkonce</span><span class="p">.</span><span class="n">d</span><span class="p">.</span><span class="o">*</span><span class="p">)</span>
+    <span class="p">.</span> <span class="o">=</span> <span class="n">ALIGN</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+    <span class="n">PROVIDE</span><span class="p">(</span> <span class="n">__global_pointer$</span> <span class="o">=</span> <span class="p">.</span> <span class="o">+</span> <span class="mh">0x800</span> <span class="p">);</span>
+    <span class="o">*</span><span class="p">(.</span><span class="n">sdata</span> <span class="p">.</span><span class="n">sdata</span><span class="p">.</span><span class="o">*</span> <span class="p">.</span><span class="n">sdata</span><span class="o">*</span><span class="p">)</span>
+    <span class="o">*</span><span class="p">(.</span><span class="n">gnu</span><span class="p">.</span><span class="n">linkonce</span><span class="p">.</span><span class="n">s</span><span class="p">.</span><span class="o">*</span><span class="p">)</span>
+  <span class="p">}</span> <span class="o">&gt;</span><span class="n">ram</span> <span class="n">AT</span><span class="o">&gt;</span><span class="n">flash</span>
 
-  . = ALIGN(4);
-  PROVIDE( _edata = . );
-  PROVIDE( edata = . );
+  <span class="p">.</span> <span class="o">=</span> <span class="n">ALIGN</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+  <span class="n">PROVIDE</span><span class="p">(</span> <span class="n">_edata</span> <span class="o">=</span> <span class="p">.</span> <span class="p">);</span>
+  <span class="n">PROVIDE</span><span class="p">(</span> <span class="n">edata</span> <span class="o">=</span> <span class="p">.</span> <span class="p">);</span>
 
-  PROVIDE( _fbss = . );
-  PROVIDE( __bss_start = . );
-  .bss            :
-  {
-    *(.sbss*)
-    *(.gnu.linkonce.sb.*)
-    *(.bss .bss.*)
-    *(.gnu.linkonce.b.*)
-    *(COMMON)
-    . = ALIGN(4);
-  } &gt;ram AT&gt;ram
+  <span class="n">PROVIDE</span><span class="p">(</span> <span class="n">_fbss</span> <span class="o">=</span> <span class="p">.</span> <span class="p">);</span>
+  <span class="n">PROVIDE</span><span class="p">(</span> <span class="n">__bss_start</span> <span class="o">=</span> <span class="p">.</span> <span class="p">);</span>
+  <span class="p">.</span><span class="nl">bss</span>            <span class="p">:</span>
+  <span class="p">{</span>
+    <span class="o">*</span><span class="p">(.</span><span class="n">sbss</span><span class="o">*</span><span class="p">)</span>
+    <span class="o">*</span><span class="p">(.</span><span class="n">gnu</span><span class="p">.</span><span class="n">linkonce</span><span class="p">.</span><span class="n">sb</span><span class="p">.</span><span class="o">*</span><span class="p">)</span>
+    <span class="o">*</span><span class="p">(.</span><span class="n">bss</span> <span class="p">.</span><span class="n">bss</span><span class="p">.</span><span class="o">*</span><span class="p">)</span>
+    <span class="o">*</span><span class="p">(.</span><span class="n">gnu</span><span class="p">.</span><span class="n">linkonce</span><span class="p">.</span><span class="n">b</span><span class="p">.</span><span class="o">*</span><span class="p">)</span>
+    <span class="o">*</span><span class="p">(</span><span class="n">COMMON</span><span class="p">)</span>
+    <span class="p">.</span> <span class="o">=</span> <span class="n">ALIGN</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+  <span class="p">}</span> <span class="o">&gt;</span><span class="n">ram</span> <span class="n">AT</span><span class="o">&gt;</span><span class="n">ram</span>
 
-  . = ALIGN(8);
-  PROVIDE( _end = . );
-  PROVIDE( end = . );
-  /* Define stack and head location at ram */
-  .stack ORIGIN(ram) + LENGTH(ram) - __STACK_SIZE :
-  {
-    PROVIDE( _heap_end = . );
-    . = __STACK_SIZE;
-    PROVIDE( _sp = . );
-  } &gt;ram AT&gt;ram
-}
+  <span class="p">.</span> <span class="o">=</span> <span class="n">ALIGN</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+  <span class="n">PROVIDE</span><span class="p">(</span> <span class="n">_end</span> <span class="o">=</span> <span class="p">.</span> <span class="p">);</span>
+  <span class="n">PROVIDE</span><span class="p">(</span> <span class="n">end</span> <span class="o">=</span> <span class="p">.</span> <span class="p">);</span>
+  <span class="cm">/* Define stack and head location at ram */</span>
+  <span class="p">.</span><span class="n">stack</span> <span class="n">ORIGIN</span><span class="p">(</span><span class="n">ram</span><span class="p">)</span> <span class="o">+</span> <span class="n">LENGTH</span><span class="p">(</span><span class="n">ram</span><span class="p">)</span> <span class="o">-</span> <span class="nl">__STACK_SIZE</span> <span class="p">:</span>
+  <span class="p">{</span>
+    <span class="n">PROVIDE</span><span class="p">(</span> <span class="n">_heap_end</span> <span class="o">=</span> <span class="p">.</span> <span class="p">);</span>
+    <span class="p">.</span> <span class="o">=</span> <span class="n">__STACK_SIZE</span><span class="p">;</span>
+    <span class="n">PROVIDE</span><span class="p">(</span> <span class="n">_sp</span> <span class="o">=</span> <span class="p">.</span> <span class="p">);</span>
+  <span class="p">}</span> <span class="o">&gt;</span><span class="n">ram</span> <span class="n">AT</span><span class="o">&gt;</span><span class="n">ram</span>
+<span class="p">}</span>
 </pre></div>
 </td></tr></table></div>
 </div>
@@ -771,7 +771,7 @@ SECTIONS
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 31, 2020.
+        Last updated on Dec 10, 2020.
       </span>
 
     </p>

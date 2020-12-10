@@ -560,7 +560,7 @@ The original NMSIS-Core <code class="docutils literal notranslate"><span class="
 56</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;gd32vf103.h&quot;</span><span class="cp"></span>
 
 <span class="c1">// Vector interrupt which could be nested</span>
-<span class="n">__INTERRUPT</span> <span class="kt">void</span> <span class="nf">eclic_button1_handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="n">__INTERRUPT</span> <span class="kt">void</span> <span class="n">eclic_button1_handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">SAVE_IRQ_CSR_CONTEXT</span><span class="p">();</span>                                           <span class="cm">/* save mepc,mcause,msubm enable interrupts */</span>
 
@@ -571,19 +571,19 @@ The original NMSIS-Core <code class="docutils literal notranslate"><span class="
 <span class="p">}</span>
 
 <span class="c1">// Non-vector interrupt</span>
-<span class="kt">void</span> <span class="nf">eclic_button2_handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="kt">void</span> <span class="n">eclic_button2_handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">GPIO_REG</span><span class="p">(</span><span class="n">GPIO_OUTPUT_VAL</span><span class="p">)</span> <span class="o">|=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">GREEN_LED_GPIO_OFFSET</span><span class="p">);</span>        <span class="cm">/* Green LED On */</span>
     <span class="n">GPIO_REG</span><span class="p">(</span><span class="n">GPIO_RISE_IP</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mh">0x1</span> <span class="o">&lt;&lt;</span> <span class="n">BUTTON_2_GPIO_OFFSET</span><span class="p">);</span>           <span class="cm">/* Clear the GPIO Pending interrupt by writing 1. */</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">eclic_global_initialize</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="kt">void</span> <span class="n">eclic_global_initialize</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">ECLIC_SetMth</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
     <span class="n">ECLIC_SetCfgNlbits</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="kt">int</span> <span class="nf">eclic_register_interrupt</span><span class="p">(</span><span class="n">IRQn_Type</span> <span class="n">IRQn</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">shv</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">trig_mode</span><span class="p">,</span> <span class="n">uint32</span> <span class="n">lvl</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">priority</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span> <span class="n">handler</span><span class="p">)</span>
+<span class="kt">int</span> <span class="n">eclic_register_interrupt</span><span class="p">(</span><span class="n">IRQn_Type</span> <span class="n">IRQn</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">shv</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">trig_mode</span><span class="p">,</span> <span class="n">uint32</span> <span class="n">lvl</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">priority</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span> <span class="n">handler</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">ECLIC_SetShvIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="n">shv</span><span class="p">);</span>
     <span class="n">ECLIC_SetTrigIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="n">trig_mode</span><span class="p">);</span>
@@ -594,7 +594,7 @@ The original NMSIS-Core <code class="docutils literal notranslate"><span class="
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="kt">int</span> <span class="n">main</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="kt">uint32_t</span> <span class="n">returnCode</span><span class="p">;</span>
 
@@ -2096,7 +2096,7 @@ __INTERRUPT void eclic_mtip_handler(void)
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 31, 2020.
+        Last updated on Dec 10, 2020.
       </span>
 
     </p>
