@@ -210,6 +210,6 @@ int32_t main()
   ** ------------------------------------------------------------------- */
   riscv_var_f32(testOutput, numStudents, &var);
 
-  printf("Passed");
+  printf("Passed\n");
   return 0;
 }
