@@ -126,7 +126,7 @@ typedef struct {
 typedef enum ECLIC_TRIGGER {
     ECLIC_LEVEL_TRIGGER = 0x0,          /*!< Level Triggerred, trig[0] = 0 */
     ECLIC_POSTIVE_EDGE_TRIGGER = 0x1,   /*!< Postive/Rising Edge Triggered, trig[1] = 1, trig[0] = 0 */
-    ECLIC_NEGTIVE_EDGE_TRIGGER = 0x3,   /*!< Negtive/Falling Edge Triggered, trig[1] = 1, trig[0] = 0 */
+    ECLIC_NEGTIVE_EDGE_TRIGGER = 0x3,   /*!< Negtive/Falling Edge Triggered, trig[1] = 1, trig[0] = 1 */
     ECLIC_MAX_TRIGGER = 0x3             /*!< MAX Supported Trigger Mode */
 } ECLIC_TRIGGER_Type;
 
