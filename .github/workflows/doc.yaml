@@ -51,7 +51,7 @@ jobs:
       - name: Upload generated document
         uses: actions/upload-artifact@v2.2.0
         with:
-          name: build_caching
+          name: nmsis-doc-$GITHUB_SHA
           path: |
             NMSIS/doc/build/html
 
