@@ -3,13 +3,13 @@
  * Title:        riscv_cfft_q31.c
  * Description:  Combined Radix Decimation in Frequency CFFT fixed point processing function
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,10 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/transform_functions.h"
+
+
+
 
 extern void riscv_radix4_butterfly_q31(
         q31_t * pSrc,
@@ -56,6 +59,7 @@ void riscv_cfft_radix4by2_inverse_q31(
         uint32_t fftLen,
   const q31_t * pCoef);
 
+
 /**
   @ingroup groupTransforms
  */
@@ -77,7 +81,6 @@ void riscv_cfft_radix4by2_inverse_q31(
                    - value = 1: enables bit reversal of output
   @return        none
  */
-
 void riscv_cfft_q31(
   const riscv_cfft_instance_q31 * S,
         q31_t * p1,
@@ -171,6 +174,7 @@ void riscv_cfft_radix4by2_q31(
      pSrc[2 * l]     = p0 << 1;
      pSrc[2 * l + 1] = p1 << 1;
   }
+
 
   /* first col */
   riscv_radix4_butterfly_q31 (pSrc,          n2, (q31_t*)pCoef, 2U);

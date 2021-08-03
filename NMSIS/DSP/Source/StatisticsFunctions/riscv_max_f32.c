@@ -3,13 +3,13 @@
  * Title:        riscv_max_f32.c
  * Description:  Maximum value of a floating-point vector
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,10 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
-#if defined(RISCV_MATH_NEON)
-#include <limits.h>
-#endif
+#include "dsp/statistics_functions.h"
 
 /**
   @ingroup groupStats
@@ -57,124 +54,50 @@
   @param[out]    pIndex     index of maximum value returned here
   @return        none
  */
-#if defined(RISCV_MATH_NEON)
-void riscv_max_f32(
-  const float32_t * pSrc,
-  uint32_t blockSize,
-  float32_t * pResult,
-  uint32_t * pIndex)
-{
-  float32_t maxVal1, maxVal2, out;               /* Temporary variables to store the output value. */
-  uint32_t blkCnt, outIndex, count;              /* loop counter */
 
-  float32x4_t outV, srcV;
-  float32x2_t outV2;
-
-  uint32x4_t idxV;
-  uint32x4_t maxIdx={ULONG_MAX,ULONG_MAX,ULONG_MAX,ULONG_MAX};
-  uint32x4_t index={4,5,6,7};
-  uint32x4_t delta={4,4,4,4};
-  uint32x4_t countV={0,1,2,3};
-  uint32x2_t countV2;
-
-  /* Initialise the count value. */
-  count = 0U;
-
-  /* Initialise the index value to zero. */
-  outIndex = 0U;
-
-  /* Load first input value that act as reference value for comparison */
-  if (blockSize <= 3)
-  {
-      out = *pSrc++;
-
-      blkCnt = blockSize - 1;
-
-      while (blkCnt > 0U)
-      {
-        /* Initialize maxVal to the next consecutive values one by one */
-        maxVal1 = *pSrc++;
-    
-        /* compare for the maximum value */
-        if (out < maxVal1)
-        {
-          /* Update the maximum value and it's index */
-          out = maxVal1;
-          outIndex = blockSize - blkCnt;
-        }
-    
-        /* Decrement the loop counter */
-        blkCnt--;
-      }
-  }
-  else
-  {
-      outV = vld1q_f32(pSrc);
-      pSrc += 4;
- 
-      /* Compute 4 outputs at a time */
-      blkCnt = (blockSize - 4 ) >> 2U;
-    
-      while (blkCnt > 0U)
-      {
-        srcV = vld1q_f32(pSrc);
-        pSrc += 4;
-    
-        idxV = vcgtq_f32(srcV, outV);
-        outV = vbslq_f32(idxV, srcV, outV );
-        countV = vbslq_u32(idxV, index,countV );
-    
-        index = vaddq_u32(index,delta);
-    
-        /* Decrement the loop counter */
-        blkCnt--;
-      }
-    
-      outV2 = vpmax_f32(vget_low_f32(outV),vget_high_f32(outV));
-      outV2 = vpmax_f32(outV2,outV2);
-      out = outV2[0];
-    
-      idxV = vceqq_f32(outV, vdupq_n_f32(out));
-      countV = vbslq_u32(idxV, countV,maxIdx);
-      
-      countV2 = vpmin_u32(vget_low_u32(countV),vget_high_u32(countV));
-      countV2 = vpmin_u32(countV2,countV2);
-      outIndex = countV2[0];
-    
-      /* if (blockSize - 1U) is not multiple of 4 */
-      blkCnt = (blockSize - 4 ) % 4U;
-    
-      while (blkCnt > 0U)
-      {
-        /* Initialize maxVal to the next consecutive values one by one */
-        maxVal1 = *pSrc++;
-    
-        /* compare for the maximum value */
-        if (out < maxVal1)
-        {
-          /* Update the maximum value and it's index */
-          out = maxVal1;
-          outIndex = blockSize - blkCnt ;
-        }
-    
-        /* Decrement the loop counter */
-        blkCnt--;
-      }
-    
-      
-  }
-
-  /* Store the maximum value and it's index into destination pointers */
-  *pResult = out;
-  *pIndex = outIndex;
-}
-#else
 void riscv_max_f32(
   const float32_t * pSrc,
         uint32_t blockSize,
         float32_t * pResult,
         uint32_t * pIndex)
 {
+#if defined(RISCV_VECTOR)
+    float32_t max = pSrc[0],max_temp;
+    uint32_t index = 0,index_temp = 0;
+
+    uint32_t blkCnt;
+    size_t l;
+    float32_t * inputx;
+    vfloat32m8_t v_x;
+    vfloat32m1_t v_tempa;
+
+    inputx = pSrc;
+    blkCnt = blockSize;
+    l = vsetvl_e32m1(1);
+    v_tempa = vfmv_s_f_f32m1(v_tempa, pSrc[0], l);
+    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) 
+    {
+        v_x = vle32_v_f32m8(inputx, l);
+        inputx += l;
+        max_temp = vfmv_f_s_f32m1_f32 (vfredmax_vs_f32m8_f32m1(v_tempa,v_x,v_tempa, l));
+        if (max_temp > max){
+          max = max_temp;
+          index = index_temp;
+        }
+        index_temp += l;
+    }
+    * pResult = max;
+    while(1)
+    {
+        if (pSrc[index] == max){
+          break;
+        }
+        else
+            index++;
+    }
+    * pIndex = index;
+  
+#else
         float32_t maxVal, out;                         /* Temporary variables to store the output value. */
         uint32_t blkCnt, outIndex;                     /* Loop counter */
 
@@ -265,8 +188,9 @@ void riscv_max_f32(
   /* Store the maximum value and it's index into destination pointers */
   *pResult = out;
   *pIndex = outIndex;
+#endif /* defined(RISCV_VECTOR) */
 }
-#endif /* #if defined(RISCV_MATH_NEON) */
+
 /**
   @} end of Max group
  */

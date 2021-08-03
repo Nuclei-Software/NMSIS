@@ -79,10 +79,20 @@
 void riscv_q7_to_q7_reordered_no_shift(const q7_t * pSrc, q7_t * pDst, uint32_t blockSize)
 {
     const q7_t *pIn = pSrc;     /* Src pointer */
+
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = blockSize;                              /* Loop counter */
+  size_t l;
+  vint8m8_t vx, vy;
+       
+  for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
+    vse8_v_i8m8 (pDst, vle8_v_i8m8(pIn, l), l);
+    pIn += l;
+    pDst += l;
+  }
+
+#else
     uint32_t  blkCnt;           /* loop counter */
-
-
-#ifndef RISCV_MATH_CM0_FAMILY
     q31_t     in;
     //q31_t     in1, in2;
     q31_t     out;
@@ -109,14 +119,6 @@ void riscv_q7_to_q7_reordered_no_shift(const q7_t * pSrc, q7_t * pDst, uint32_t 
      ** No loop unrolling is used. */
     blkCnt = blockSize % 0x4u;
 
-#else
-
-    /* Run the below code for RISC-V Core without DSP */
-
-    /* Loop over blockSize number of values */
-    blkCnt = blockSize;
-
-#endif  /* #ifndef RISCV_MATH_CM0_FAMILY */
 
     while (blkCnt > 0u)
     {
@@ -127,7 +129,7 @@ void riscv_q7_to_q7_reordered_no_shift(const q7_t * pSrc, q7_t * pDst, uint32_t 
         /* Decrement the loop counter */
         blkCnt--;
     }
-
+#endif /* defined(RISCV_VECTOR) */
 }
 
 /**    

@@ -3,13 +3,13 @@
  * Title:        riscv_abs_q7.c
  * Description:  Q7 vector absolute value
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/basic_math_functions.h"
 
 /**
   @ingroup groupMath
@@ -86,24 +86,9 @@ void riscv_abs_q7(
 #else
 	in = *pSrc++;
     *pDst++ = (in > 0) ? in : ((in == (q7_t) 0x80) ? (q7_t) 0x7f : -in);
-	in = *pSrc++;
-    *pDst++ = (in > 0) ? in : ((in == (q7_t) 0x80) ? (q7_t) 0x7f : -in);
-	in = *pSrc++;
-    *pDst++ = (in > 0) ? in : ((in == (q7_t) 0x80) ? (q7_t) 0x7f : -in);
-	in = *pSrc++;
-    *pDst++ = (in > 0) ? in : ((in == (q7_t) 0x80) ? (q7_t) 0x7f : -in);
-#if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
-	in = *pSrc++;
-    *pDst++ = (in > 0) ? in : ((in == (q7_t) 0x80) ? (q7_t) 0x7f : -in);
-	in = *pSrc++;
-    *pDst++ = (in > 0) ? in : ((in == (q7_t) 0x80) ? (q7_t) 0x7f : -in);
-	in = *pSrc++;
-    *pDst++ = (in > 0) ? in : ((in == (q7_t) 0x80) ? (q7_t) 0x7f : -in);
-	in = *pSrc++;
     *pDst++ = (in > 0) ? in : ((in == (q7_t) 0x80) ? (q7_t) 0x7f : -in);
 #endif /* defined (RISCV_DSP64) || (__RISCV_XLEN == 64) */
 
-#endif
     /* Decrement loop counter */
     blkCnt--;
   }

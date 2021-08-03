@@ -3,13 +3,13 @@
  * Title:        riscv_std_f32.c
  * Description:  Standard deviation of the elements of a floating-point vector
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/statistics_functions.h"
 
 /**
   @ingroup groupStats
@@ -37,7 +37,15 @@
   @defgroup STD Standard deviation
 
   Calculates the standard deviation of the elements in the input vector.
-  The underlying algorithm is used:
+
+  The float implementation is relying on riscv_var_f32 which is using a two-pass algorithm
+  to avoid problem of numerical instabilities and cancellation errors.
+
+  Fixed point versions are using the standard textbook algorithm since the fixed point
+  numerical behavior is different from the float one.
+
+  Algorithm for fixed point versions is summarized below:
+
 
   <pre>
       Result = sqrt((sumOfSquares - sum<sup>2</sup> / blockSize) / (blockSize - 1))
@@ -61,7 +69,6 @@
   @param[out]    pResult    standard deviation value returned here
   @return        none
  */
-#if defined(RISCV_MATH_NEON_EXPERIMENTAL)
 void riscv_std_f32(
   const float32_t * pSrc,
         uint32_t blockSize,
@@ -71,118 +78,6 @@ void riscv_std_f32(
   riscv_var_f32(pSrc,blockSize,&var);
   riscv_sqrt_f32(var, pResult);
 }
-#else
-void riscv_std_f32(
-  const float32_t * pSrc,
-        uint32_t blockSize,
-        float32_t * pResult)
-{
-        uint32_t blkCnt;                               /* Loop counter */
-        float32_t sum = 0.0f;                          /* Temporary result storage */
-        float32_t sumOfSquares = 0.0f;                 /* Sum of squares */
-        float32_t in;                                  /* Temporary variable to store input value */
-
-#ifndef RISCV_MATH_CM0_FAMILY
-        float32_t meanOfSquares, mean, squareOfMean;   /* Temporary variables */
-#else
-        float32_t squareOfSum;                         /* Square of Sum */
-        float32_t var;                                 /* Temporary varaince storage */
-#endif
-
-  if (blockSize <= 1U)
-  {
-    *pResult = 0;
-    return;
-  }
-
-#if defined (RISCV_MATH_LOOPUNROLL)
-
-  /* Loop unrolling: Compute 4 outputs at a time */
-  blkCnt = blockSize >> 2U;
-
-  while (blkCnt > 0U)
-  {
-    /* C = A[0] * A[0] + A[1] * A[1] + ... + A[blockSize-1] * A[blockSize-1] */
-    /* C = A[0] + A[1] + ... + A[blockSize-1] */
-
-    in = *pSrc++;
-    /* Compute sum of squares and store result in a temporary variable, sumOfSquares. */
-    sumOfSquares += in * in;
-    /* Compute sum and store result in a temporary variable, sum. */
-    sum += in;
-
-    in = *pSrc++;
-    sumOfSquares += in * in;
-    sum += in;
-
-    in = *pSrc++;
-    sumOfSquares += in * in;
-    sum += in;
-
-    in = *pSrc++;
-    sumOfSquares += in * in;
-    sum += in;
-
-    /* Decrement loop counter */
-    blkCnt--;
-  }
-
-  /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
-
-#else
-
-  /* Initialize blkCnt with number of samples */
-  blkCnt = blockSize;
-
-#endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-
-  while (blkCnt > 0U)
-  {
-    /* C = A[0] * A[0] + A[1] * A[1] + ... + A[blockSize-1] * A[blockSize-1] */
-    /* C = A[0] + A[1] + ... + A[blockSize-1] */
-
-    in = *pSrc++;
-    /* Compute sum of squares and store result in a temporary variable, sumOfSquares. */
-    sumOfSquares += ( in * in);
-    /* Compute sum and store result in a temporary variable, sum. */
-    sum += in;
-
-    /* Decrement loop counter */
-    blkCnt--;
-  }
-
-#ifndef RISCV_MATH_CM0_FAMILY
-
-  /* Compute Mean of squares and store result in a temporary variable, meanOfSquares. */
-  meanOfSquares = sumOfSquares / ((float32_t) blockSize - 1.0f);
-
-  /* Compute mean of all input values */
-  mean = sum / (float32_t) blockSize;
-
-  /* Compute square of mean */
-  squareOfMean = (mean * mean) * (((float32_t) blockSize) /
-                                  ((float32_t) blockSize - 1.0f));
-
-  /* Compute standard deviation and store result to destination */
-  riscv_sqrt_f32((meanOfSquares - squareOfMean), pResult);
-
-#else
-  /* Run the below code for RISC-V Core without DSP */
-
-  /* Compute square of sum */
-  squareOfSum = ((sum * sum) / (float32_t) blockSize);
-
-  /* Compute variance */
-  var = ((sumOfSquares - squareOfSum) / (float32_t) (blockSize - 1.0f));
-
-  /* Compute standard deviation and store result in destination */
-  riscv_sqrt_f32(var, pResult);
-
-#endif /* #ifndef RISCV_MATH_CM0_FAMILY */
-
-}
-#endif /* #if defined(RISCV_MATH_NEON) */
 
 /**
   @} end of STD group

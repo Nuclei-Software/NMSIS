@@ -3,13 +3,13 @@
  * Title:        riscv_fir_sparse_q31.c
  * Description:  Q31 sparse FIR filter processing function
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -108,7 +108,7 @@ void riscv_fir_sparse_q31(
   pOut = pDst;
 
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
 
   /* Loop unrolling: Compute 4 outputs at a time. */
   blkCnt = blockSize >> 2U;
@@ -144,7 +144,17 @@ void riscv_fir_sparse_q31(
   blkCnt = blockSize;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-
+#if defined (RISCV_VECTOR)
+    uint32_t vblkCnt = blockSize;
+    size_t l;
+    vint32m4_t vx;
+    for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle32_v_i32m4(px, l);
+      px += l;
+      vse32_v_i32m4 (pOut,vnclip_wx_i32m4(vwmul_vx_i64m8(vx, coeff, l),32, l), l);
+      pOut += l;
+    }
+#else
   while (blkCnt > 0U)
   {
     /* Perform Multiplication and store in destination buffer */
@@ -153,7 +163,7 @@ void riscv_fir_sparse_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined (RISCV_VECTOR) */
   /* Load the coefficient value and
    * increment the coefficient buffer for the next set of state values */
   coeff = *pCoeffs++;
@@ -186,7 +196,7 @@ void riscv_fir_sparse_q31(
     pOut = pDst;
 
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
 
     /* Loop unrolling: Compute 4 outputs at a time. */
     blkCnt = blockSize >> 2U;
@@ -223,7 +233,15 @@ void riscv_fir_sparse_q31(
     blkCnt = blockSize;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-
+#if defined (RISCV_VECTOR)
+    vblkCnt = blockSize;
+    for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle32_v_i32m4(px, l);
+      px += l;
+      vse32_v_i32m4 (pOut,vadd_vv_i32m4(vle32_v_i32m4(pOut, l), vnclip_wx_i32m4(vwmul_vx_i64m8(vx, coeff, l),32, l), l), l);
+      pOut += l;
+    }
+#else
     while (blkCnt > 0U)
     {
       /* Perform Multiply-Accumulate */
@@ -234,6 +252,7 @@ void riscv_fir_sparse_q31(
       /* Decrement loop counter */
       blkCnt--;
     }
+#endif /* defined (RISCV_VECTOR) */
 
     /* Load the coefficient value and
      * increment the coefficient buffer for the next set of state values */
@@ -268,7 +287,7 @@ void riscv_fir_sparse_q31(
   pOut = pDst;
 
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
 
   /* Loop unrolling: Compute 4 outputs at a time. */
   blkCnt = blockSize >> 2U;
@@ -305,7 +324,15 @@ void riscv_fir_sparse_q31(
   blkCnt = blockSize;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-
+#if defined (RISCV_VECTOR)
+    vblkCnt = blockSize;
+    for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle32_v_i32m4(px, l);
+      px += l;
+      vse32_v_i32m4 (pOut,vadd_vv_i32m4(vle32_v_i32m4(pOut, l), vnclip_wx_i32m4(vwmul_vx_i64m8(vx, coeff, l),32, l), l), l);
+      pOut += l;
+    }
+#else
   while (blkCnt > 0U)
   {
     /* Perform Multiply-Accumulate */
@@ -316,7 +343,7 @@ void riscv_fir_sparse_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined (RISCV_VECTOR) */
   /* Working output pointer is updated */
   pOut = pDst;
 

@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
-#include "riscv_nnfunctions.h"
+#include "ref_functions.h"
+#include "riscv_nnsupportfunctions.h"
 
 void riscv_relu_q7_ref(q7_t * data, uint16_t size)
 {

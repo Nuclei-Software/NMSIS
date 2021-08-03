@@ -3,13 +3,13 @@
  * Title:        riscv_mat_sub_q15.c
  * Description:  Q15 Matrix subtraction
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/matrix_functions.h"
 
 /**
   @ingroup groupMatrix
@@ -51,7 +51,6 @@
                    The function uses saturating arithmetic.
                    Results outside of the allowable Q15 range [0x8000 0x7FFF] are saturated.
  */
-
 riscv_status riscv_mat_sub_q15(
   const riscv_matrix_instance_q15 * pSrcA,
   const riscv_matrix_instance_q15 * pSrcB,
@@ -78,6 +77,24 @@ riscv_status riscv_mat_sub_q15(
   }
   else
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
+#if defined(RISCV_VECTOR)
+    /* Total number of samples in input matrix */
+  numSamples = (uint32_t) pSrcA->numRows * pSrcA->numCols;
+  blkCnt = numSamples;
+  size_t l;
+  vint16m8_t vx, vy;
+       
+  for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
+    vx = vle16_v_i16m8(pInA, l);
+    pInA += l;
+    vy = vle16_v_i16m8(pInB, l);
+    vse16_v_i16m8 (pOut, vssub_vv_i16m8(vx, vy, l), l);
+    pInB += l;
+    pOut += l;
+  }
+#else
+      /* Set status as RISCV_MATH_SUCCESS */
+    status = RISCV_MATH_SUCCESS;
 
   {
     /* Total number of samples in input matrix */
@@ -142,6 +159,7 @@ riscv_status riscv_mat_sub_q15(
 
   /* Return to application */
   return (status);
+#endif /*defined(RISCV_VECTOR)*/
 }
 
 /**

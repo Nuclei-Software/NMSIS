@@ -1,11 +1,11 @@
 //
 // Created by lujun on 19-6-21.
 //
-#include "../common.h"
 #include "riscv_math.h"
 #include <stdint.h>
 #include <stdlib.h>
 #include "array.h"
+#include "../common.h"
 
 #include "../HelperFunctions/math_helper.c"
 #include "../HelperFunctions/ref_helper.c"
@@ -27,7 +27,6 @@ int test_flag_error = 0;
 int main()
 {
     int i;
-
     float32_t f32_out, f32_out_ref;
     q7_t q7_out, q7_out_ref;
     q15_t q15_out, q15_out_ref;

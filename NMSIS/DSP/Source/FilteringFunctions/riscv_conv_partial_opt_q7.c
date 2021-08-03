@@ -3,13 +3,13 @@
  * Title:        riscv_conv_partial_opt_q7.c
  * Description:  Partial convolution of Q7 sequences
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -115,7 +115,18 @@ riscv_status riscv_conv_partial_opt_q7(
 
     /* points to smaller length sequence */
     px = pIn2 + srcBLen - 1;
-
+#if defined (RISCV_VECTOR)
+  uint32_t vblkCnt = srcBLen;                               /* Loop counter */
+  size_t l;
+  vint16m8_t vx;
+  ptrdiff_t bstride = -1;
+  for (; (l = vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
+    vx = vwadd_vx_i16m8(vlse8_v_i8m4(px, bstride, l),0, l);
+    px -= l;
+    vse16_v_i16m8(pScr2, vx, l);
+    pScr2 += l;
+  }
+#else
     /* Apply loop unrolling and do 4 Copies simultaneously. */
     k = srcBLen >> 2U;
 
@@ -150,7 +161,7 @@ riscv_status riscv_conv_partial_opt_q7(
       /* Decrement loop counter */
       k--;
     }
-
+#endif /*defined (RISCV_VECTOR)*/
     /* Initialze temporary scratch pointer */
     pScr1 = pScratch1;
 
@@ -159,7 +170,15 @@ riscv_status riscv_conv_partial_opt_q7(
 
     /* Update temporary scratch pointer */
     pScr1 += (srcBLen - 1U);
-
+#if defined (RISCV_VECTOR)
+  vblkCnt = srcALen;                               /* Loop counter */
+  for (; (l = vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
+    vx = vwadd_vx_i16m8(vle8_v_i8m4(pIn1, l),0, l);
+    pIn1 += l;
+    vse16_v_i16m8(pScr1, vx, l);
+    pScr1 += l;
+  }
+#else
     /* Copy (srcALen) samples in scratch buffer */
     /* Apply loop unrolling and do 4 Copies simultaneously. */
     k = srcALen >> 2U;
@@ -194,7 +213,7 @@ riscv_status riscv_conv_partial_opt_q7(
       /* Decrement the loop counter */
       k--;
     }
-
+#endif /*defined (RISCV_VECTOR)*/
     /* Fill (srcBLen - 1U) zeros at end of scratch buffer */
     riscv_fill_q15(0, pScr1, (srcBLen - 1U));
 
@@ -213,6 +232,41 @@ riscv_status riscv_conv_partial_opt_q7(
     pOut = pDst + firstIndex;
 
     pScratch1 += firstIndex;
+#if defined (RISCV_VECTOR)
+  blkCnt = numPoints;
+  while (blkCnt > 0)
+  {
+      /* Initialze temporary scratch pointer as scratch1 */
+      pScr1 = pScratch1;
+
+      /* Clear Accumlators */
+      acc0 = 0;
+
+    uint32_t vblkCnt = srcBLen;                               /* Loop counter */
+    size_t l;
+    vint16m4_t vx, vy;
+    vint32m1_t temp00m1;
+    l = vsetvl_e32m1(vblkCnt);
+    temp00m1 = vmv_v_x_i32m1(0, l);
+    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle16_v_i16m4(pScr1, l);
+      pScr1 += l;
+      vy = vle16_v_i16m4(pScr2, l);
+      pScr2 += l;
+      acc0 += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l));
+    }
+
+      blkCnt--;
+
+      /* Store the result in the accumulator in the destination buffer. */
+      *pOut++ = (q7_t) (__SSAT(acc0 >> 7U, 8));
+
+      /* Initialization of inputB pointer */
+      pScr2 = py;
+
+      pScratch1 += 1U;
+  }
+#else
 
     /* Actual convolution process starts here */
     blkCnt = (numPoints) >> 2;
@@ -241,29 +295,21 @@ riscv_status riscv_conv_partial_opt_q7(
         /* Read four samples from smaller buffer */
         y1 = read_q15x2_ia (&pScr2);
 
-        /* multiply and accumlate */
+        /* multiply and accumulate */
         acc0 = __SMLAD(x1, y1, acc0);
         acc2 = __SMLAD(x2, y1, acc2);
 
         /* pack input data */
-#ifndef RISCV_MATH_BIG_ENDIAN
         x3 = __PKHBT(x2, x1, 0);
-#else
-        x3 = __PKHBT(x1, x2, 0);
-#endif
 
-        /* multiply and accumlate */
+        /* multiply and accumulate */
         acc1 = __SMLADX(x3, y1, acc1);
 
         /* Read next two samples from scratch1 buffer */
         x1 = read_q15x2_ia (&pScr1);
 
         /* pack input data */
-#ifndef RISCV_MATH_BIG_ENDIAN
         x3 = __PKHBT(x1, x2, 0);
-#else
-        x3 = __PKHBT(x2, x1, 0);
-#endif
 
         acc3 = __SMLADX(x3, y1, acc3);
 
@@ -278,11 +324,7 @@ riscv_status riscv_conv_partial_opt_q7(
 
         x2 = read_q15x2_ia (&pScr1);
 
-#ifndef RISCV_MATH_BIG_ENDIAN
         x3 = __PKHBT(x2, x1, 0);
-#else
-        x3 = __PKHBT(x1, x2, 0);
-#endif
 
         acc3 = __SMLADX(x3, y1, acc3);
 
@@ -298,7 +340,7 @@ riscv_status riscv_conv_partial_opt_q7(
 
       while (tapCnt > 0U)
       {
-        /* accumlate the results */
+        /* accumulate the results */
         acc0 += (*pScr1++ * *pScr2);
         acc1 += (*pScr1++ * *pScr2);
         acc2 += (*pScr1++ * *pScr2);
@@ -360,7 +402,7 @@ riscv_status riscv_conv_partial_opt_q7(
       while (tapCnt > 0U)
       {
 
-        /* accumlate the results */
+        /* accumulate the results */
         acc0 += (*pScr1++ * *pScr2++);
 
         /* Decrement loop counter */
@@ -377,7 +419,7 @@ riscv_status riscv_conv_partial_opt_q7(
 
       pScratch1 += 1U;
     }
-
+#endif /*defined (RISCV_VECTOR)*/
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
   }

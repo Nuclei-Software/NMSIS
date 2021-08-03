@@ -16,6 +16,19 @@ void ref_max_f32(float32_t *pSrc, uint32_t blockSize, float32_t *pResult,
     *pIndex = ind;
 }
 
+void ref_max_no_idx_f32(float32_t *pSrc, uint32_t blockSize, float32_t *pResult)
+{
+    uint32_t i = 0;
+    float32_t max = -FLT_MAX;
+
+    for (i = 0; i < blockSize; i++) {
+        if (max < pSrc[i]) {
+            max = pSrc[i];
+        }
+    }
+    *pResult = max;
+}
+
 void ref_max_q31(q31_t *pSrc, uint32_t blockSize, q31_t *pResult,
                  uint32_t *pIndex)
 {

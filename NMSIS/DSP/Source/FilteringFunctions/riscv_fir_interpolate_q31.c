@@ -3,13 +3,13 @@
  * Title:        riscv_fir_interpolate_q31.c
  * Description:  Q31 FIR interpolation
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -61,7 +61,6 @@ void riscv_fir_interpolate_q31(
         q31_t * pDst,
         uint32_t blockSize)
 {
-#if (1)
 
 
         q31_t *pState = S->pState;                     /* State pointer */
@@ -73,6 +72,16 @@ void riscv_fir_interpolate_q31(
         uint32_t i, blkCnt, tapCnt;                    /* Loop counters */
         uint32_t phaseLen = S->phaseLength;            /* Length of each polyphase filter component */
         uint32_t j;
+#if defined (RISCV_VECTOR)
+        uint32_t blkCnt_v;                               /* Loop counter */
+        size_t l;
+        vint32m4_t v_x, v_y;
+        vint64m8_t v_a;
+        vint64m1_t v_temp;
+        ptrdiff_t bstride = S->L*4;
+        l = vsetvl_e64m1(1);
+        v_temp = vsub_vv_i64m1(v_temp, v_temp, l);
+#endif
 
 #if defined (RISCV_MATH_LOOPUNROLL)
         q63_t acc0, acc1, acc2, acc3;
@@ -272,7 +281,21 @@ void riscv_fir_interpolate_q31(
 
       /* Loop over the polyPhase length.
          Repeat until we've computed numTaps-(4*S->L) coefficients. */
-
+#if defined (RISCV_VECTOR)
+      tapCnt = phaseLen;
+      blkCnt_v = tapCnt;
+      l = vsetvl_e32m4(blkCnt_v);
+      v_a = vsub_vv_i64m8(v_a,v_a, l);
+      for (; (l = vsetvl_e32m4(blkCnt_v)) > 0; blkCnt_v -= l) {
+        v_x = vle32_v_i32m4(ptr1, l);
+        v_y = vlse32_v_i32m4(ptr2,bstride, l);
+        v_a = vwmacc_vv_i64m8(v_a,v_x,v_y, l);
+        ptr1 += l;
+        ptr2 += l*S->L;
+      }
+      l = vsetvl_e32m4(tapCnt);
+      sum0 = vmv_x_s_i64m1_i64 (vredsum_vs_i64m8_i64m1(v_temp,v_a,v_temp, l));
+#else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
      /* Loop unrolling: Compute 4 outputs at a time */
@@ -324,7 +347,7 @@ void riscv_fir_interpolate_q31(
         /* Decrement loop counter */
         tapCnt--;
       }
-
+#endif
       /* The result is in the accumulator, store in the destination buffer. */
       *pDst++ = (q31_t) (sum0 >> 31);
 
@@ -386,97 +409,8 @@ void riscv_fir_interpolate_q31(
     tapCnt--;
   }
 
-#else
-/* alternate version for CM0_FAMILY */
-
-        q31_t *pState = S->pState;                     /* State pointer */
-  const q31_t *pCoeffs = S->pCoeffs;                   /* Coefficient pointer */
-        q31_t *pStateCur;                              /* Points to the current sample of the state */
-        q31_t *ptr1;                                   /* Temporary pointer for state buffer */
-  const q31_t *ptr2;                                   /* Temporary pointer for coefficient buffer */
-        q63_t sum0;                                    /* Accumulators */
-        uint32_t i, blkCnt, tapCnt;                    /* Loop counters */
-        uint32_t phaseLen = S->phaseLength;            /* Length of each polyphase filter component */
-
-  /* S->pState buffer contains previous frame (phaseLen - 1) samples */
-  /* pStateCur points to the location where the new input data should be written */
-  pStateCur = S->pState + (phaseLen - 1U);
-
-  /* Total number of intput samples */
-  blkCnt = blockSize;
-
-  /* Loop over the blockSize. */
-  while (blkCnt > 0U)
-  {
-    /* Copy new input sample into the state buffer */
-    *pStateCur++ = *pSrc++;
-
-    /* Loop over the Interpolation factor. */
-    i = S->L;
-
-    while (i > 0U)
-    {
-      /* Set accumulator to zero */
-      sum0 = 0;
-
-      /* Initialize state pointer */
-      ptr1 = pState;
-
-      /* Initialize coefficient pointer */
-      ptr2 = pCoeffs + (i - 1U);
-
-      /* Loop over the polyPhase length */
-      tapCnt = phaseLen;
-
-      while (tapCnt > 0U)
-      {
-        /* Perform the multiply-accumulate */
-        sum0 += ((q63_t) *ptr1++ * *ptr2);
-
-        /* Increment the coefficient pointer by interpolation factor times. */
-        ptr2 += S->L;
-
-        /* Decrement the loop counter */
-        tapCnt--;
-      }
-
-      /* The result is in the accumulator, store in the destination buffer. */
-      *pDst++ = (q31_t) (sum0 >> 31);
-
-      /* Decrement loop counter */
-      i--;
-    }
-
-    /* Advance the state pointer by 1
-     * to process the next group of interpolation factor number samples */
-    pState = pState + 1;
-
-    /* Decrement loop counter */
-    blkCnt--;
-  }
-
-  /* Processing is complete.
-   ** Now copy the last phaseLen - 1 samples to the start of the state buffer.
-   ** This prepares the state buffer for the next function call. */
-
-  /* Points to the start of the state buffer */
-  pStateCur = S->pState;
-
-  tapCnt = phaseLen - 1U;
-
-  /* Copy data */
-  while (tapCnt > 0U)
-  {
-    *pStateCur++ = *pState++;
-
-    /* Decrement loop counter */
-    tapCnt--;
-  }
-
-#endif /* #if !defined(RISCV_MATH_CM0_FAMILY) */
 
 }
-
 /**
   @} end of FIR_Interpolate group
  */

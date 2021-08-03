@@ -3,13 +3,13 @@
  * Title:        riscv_biquad_cascade_df1_init_f32.c
  * Description:  Floating-point Biquad cascade DirectFormI(DF1) filter initialization function
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -66,7 +66,14 @@
                    The 4 state variables for stage 1 are first, then the 4 state variables for stage 2, and so on.
                    The state array has a total length of <code>4*numStages</code> values.
                    The state variables are updated after each block of data is processed; the coefficients are untouched.
+ 
+  @par             For MVE code, an additional buffer of modified coefficients is required.
+                   Its size is numStages and each element of this buffer has type riscv_biquad_mod_coef_f32.
+                   So, its total size is 32*numStages float32_t elements.
+
+                   The initialization function which must be used is riscv_biquad_cascade_df1_mve_init_f32.
  */
+
 
 void riscv_biquad_cascade_df1_init_f32(
         riscv_biquad_casd_df1_inst_f32 * S,
@@ -86,6 +93,8 @@ void riscv_biquad_cascade_df1_init_f32(
   /* Assign state pointer */
   S->pState = pState;
 }
+
+
 
 /**
   @} end of BiquadCascadeDF1 group

@@ -3,13 +3,13 @@
  * Title:        riscv_rms_f32.c
  * Description:  Root mean square value of the elements of a floating-point vector
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/statistics_functions.h"
 
 /**
   @ingroup groupStats
@@ -58,63 +58,33 @@
   @param[out]    pResult    root mean square value returned here
   @return        none
  */
-#if defined(RISCV_MATH_NEON)
-void riscv_rms_f32(
-  const float32_t * pSrc,
-  uint32_t blockSize,
-  float32_t * pResult)
-{
-  float32_t sum = 0.0f;                          /* accumulator */
-  float32_t in;                                  /* Temporary variable to store input value */
-  uint32_t blkCnt;                               /* loop counter */
 
-  float32x4_t sumV = vdupq_n_f32(0.0f);                          /* Temporary result storage */
-  float32x2_t sumV2;
-  float32x4_t inV;
-
-  blkCnt = blockSize >> 2U;
-
-  /* Compute 4 outputs at a time.
-   ** a second loop below computes the remaining 1 to 3 samples. */
-  while (blkCnt > 0U)
-  {
-    /* C = A[0] * A[0] + A[1] * A[1] + A[2] * A[2] + ... + A[blockSize-1] * A[blockSize-1] */
-    /* Compute Power and then store the result in a temporary variable, sum. */
-    inV = vld1q_f32(pSrc);
-    sumV = vmlaq_f32(sumV, inV, inV);
-    pSrc += 4;
-
-    /* Decrement the loop counter */
-    blkCnt--;
-  }
-
-  sumV2 = vpadd_f32(vget_low_f32(sumV),vget_high_f32(sumV));
-  sum = sumV2[0] + sumV2[1];
-
-  /* If the blockSize is not a multiple of 4, compute any remaining output samples here.
-   ** No loop unrolling is used. */
-  blkCnt = blockSize % 0x4U;
-
-  while (blkCnt > 0U)
-  {
-    /* C = A[0] * A[0] + A[1] * A[1] + A[2] * A[2] + ... + A[blockSize-1] * A[blockSize-1] */
-    /* compute power and then store the result in a temporary variable, sum. */
-    in = *pSrc++;
-    sum += in * in;
-
-    /* Decrement the loop counter */
-    blkCnt--;
-  }
-
-  /* Compute Rms and store the result in the destination */
-  riscv_sqrt_f32(sum / (float32_t) blockSize, pResult);
-}
-#else
 void riscv_rms_f32(
   const float32_t * pSrc,
         uint32_t blockSize,
         float32_t * pResult)
 {
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = blockSize;                               /* Loop counter */
+  size_t l;
+  float32_t sum = 0.0f;                          /* Temporary result storage */
+  const float32_t * input = pSrc;
+  float32_t * output = pResult;
+  vfloat32m8_t v_in;
+  vfloat32m8_t v_in2;
+  l = vsetvl_e32m1(1);
+  vfloat32m1_t v_sum = vfmv_s_f_f32m1(v_sum, 0.0f, l);
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) 
+  {
+    v_in = vle32_v_f32m8(input, l);
+    input +=l;
+    v_in2 = vfmul_vv_f32m8(v_in, v_in, l);
+    v_sum = vfredsum_vs_f32m8_f32m1(v_sum, v_in2, v_sum, l);
+  }
+  l = vsetvl_e32m1(1);
+  sum = vfmv_f_s_f32m1_f32(v_sum);
+  riscv_sqrt_f32(sum / (float32_t) blockSize, output);
+#else
         uint32_t blkCnt;                               /* Loop counter */
         float32_t sum = 0.0f;                          /* Temporary result storage */
         float32_t in;                                  /* Temporary variable to store input value */
@@ -169,8 +139,8 @@ void riscv_rms_f32(
 
   /* Compute Rms and store result in destination */
   riscv_sqrt_f32(sum / (float32_t) blockSize, pResult);
+#endif /* defined(RISCV_VECTOR) */
 }
-#endif /* #if defined(RISCV_MATH_NEON) */
 
 /**
   @} end of RMS group

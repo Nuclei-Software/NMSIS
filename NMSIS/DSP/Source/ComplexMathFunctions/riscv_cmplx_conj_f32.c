@@ -3,13 +3,13 @@
  * Title:        riscv_cmplx_conj_f32.c
  * Description:  Floating-point complex conjugate
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/complex_math_functions.h"
 
 /**
   @ingroup groupCmplxMath
@@ -69,43 +69,36 @@
   @return        none
  */
 
-
 void riscv_cmplx_conj_f32(
   const float32_t * pSrc,
         float32_t * pDst,
         uint32_t numSamples)
 {
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = numSamples;                               /* Loop counter */
+  size_t l;
+  l = vsetvl_e32m8(blkCnt);
+  const float32_t * input = pSrc;
+  float32_t * output = pDst;
+  ptrdiff_t bstride = 8;
+  vfloat32m8_t v_R,v_I;
+  vfloat32m8_t v0;
+  v0 = vfsub_vv_f32m8(v0, v0, l);                   /* vector 0 */
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) 
+  {
+    v_R = vlse32_v_f32m8(input, bstride, l);
+    input++;
+    vsse32_v_f32m8 (output, bstride, v_R, l);
+    output++;
+    v_I = vfsub_vv_f32m8(v0, vlse32_v_f32m8(input, bstride, l), l);
+    input += (l*2-1);
+    vsse32_v_f32m8 (output, bstride, v_I, l);
+    output += (l*2-1);
+  }
+  
+#else
         uint32_t blkCnt;                               /* Loop counter */
 
-#if defined(RISCV_MATH_NEON)
-   float32x4_t zero;
-   float32x4x2_t vec;
-
-   zero = vdupq_n_f32(0.0);
-
-   /* Compute 4 outputs at a time */
-   blkCnt = numSamples >> 2U;
-
-   while (blkCnt > 0U)
-   {
-     /* C[0]+jC[1] = A[0]+(-1)*jA[1] */
-     /* Calculate Complex Conjugate and then store the results in the destination buffer. */
-     vec = vld2q_f32(pSrc);
-     vec.val[1] = vsubq_f32(zero,vec.val[1]);
-     vst2q_f32(pDst,vec);
-
-     /* Increment pointers */
-     pSrc += 8;
-     pDst += 8;
-        
-     /* Decrement the loop counter */
-     blkCnt--;
-   }
-
-   /* Tail */
-   blkCnt = numSamples & 0x3;
-
-#else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -141,7 +134,6 @@ void riscv_cmplx_conj_f32(
   blkCnt = numSamples;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#endif /* #if defined (RISCV_MATH_NEON) */
 
   while (blkCnt > 0U)
   {
@@ -154,7 +146,7 @@ void riscv_cmplx_conj_f32(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_VECTOR) */
 }
 
 /**

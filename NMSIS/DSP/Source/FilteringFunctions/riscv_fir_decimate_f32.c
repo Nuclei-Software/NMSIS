@@ -3,13 +3,13 @@
  * Title:        riscv_fir_decimate_f32.c
  * Description:  FIR decimation for floating-point sequences
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -125,253 +125,6 @@
   @param[in]     blockSize number of samples to process
   @return        none
  */
-
-#if defined(RISCV_MATH_NEON)
-void riscv_fir_decimate_f32(
-  const riscv_fir_decimate_instance_f32 * S,
-  const float32_t * pSrc,
-  float32_t * pDst,
-  uint32_t blockSize)
-{
-  float32_t *pState = S->pState;                 /* State pointer */
-  const float32_t *pCoeffs = S->pCoeffs;         /* Coefficient pointer */
-  float32_t *pStateCurnt;                        /* Points to the current sample of the state */
-  float32_t *px;                                 /* Temporary pointer for state buffer */
-  const float32_t *pb;                           /* Temporary pointer for coefficient buffer */
-  float32_t sum0;                                /* Accumulator */
-  float32_t x0, c0;                              /* Temporary variables to hold state and coefficient values */
-  uint32_t numTaps = S->numTaps;                 /* Number of filter coefficients in the filter */
-  uint32_t i, tapCnt, blkCnt, outBlockSize = blockSize / S->M;  /* Loop counters */
-
-  uint32_t blkCntN4;
-  float32_t *px0, *px1, *px2, *px3;
-  float32_t acc0, acc1, acc2, acc3;
-  float32_t x1, x2, x3;
-
-  float32x4_t accv,acc0v,acc1v,acc2v,acc3v;
-  float32x4_t x0v, x1v, x2v, x3v;
-  float32x4_t c0v;
-  float32x2_t temp;
-  float32x4_t sum0v;
- 
-  /* S->pState buffer contains previous frame (numTaps - 1) samples */
-  /* pStateCurnt points to the location where the new input data should be written */
-  pStateCurnt = S->pState + (numTaps - 1U);
-
-  /* Total number of output samples to be computed */
-  blkCnt = outBlockSize / 4;
-  blkCntN4 = outBlockSize - (4 * blkCnt);
-
-  while (blkCnt > 0U)
-  {
-    /* Copy 4 * decimation factor number of new input samples into the state buffer */
-    i = 4 * S->M;
-
-    do
-    {
-      *pStateCurnt++ = *pSrc++;
-
-    } while (--i);
-
-    /* Set accumulators to zero */
-    acc0v = vdupq_n_f32(0.0);
-    acc1v = vdupq_n_f32(0.0);
-    acc2v = vdupq_n_f32(0.0);
-    acc3v = vdupq_n_f32(0.0);
-
-    /* Initialize state pointer for all the samples */
-    px0 = pState;
-    px1 = pState + S->M;
-    px2 = pState + 2 * S->M;
-    px3 = pState + 3 * S->M;
-
-    /* Initialize coeff pointer */
-    pb = pCoeffs;
-
-    /* Process 4 taps at a time. */
-    tapCnt = numTaps >> 2;
-
-    /* Loop over the number of taps. 
-     ** Repeat until we've computed numTaps-4 coefficients. */
-
-    while (tapCnt > 0U)
-    {
-      /* Read the b[numTaps-1] coefficient */
-      c0v = vld1q_f32(pb);
-      pb += 4;
-
-      /* Read x[n-numTaps-1] sample for acc0 */
-      x0v = vld1q_f32(px0);
-      x1v = vld1q_f32(px1);
-      x2v = vld1q_f32(px2);
-      x3v = vld1q_f32(px3);
-
-      px0 += 4;
-      px1 += 4;
-      px2 += 4;
-      px3 += 4;
-     
-      acc0v = vmlaq_f32(acc0v, x0v, c0v);
-      acc1v = vmlaq_f32(acc1v, x1v, c0v);
-      acc2v = vmlaq_f32(acc2v, x2v, c0v);
-      acc3v = vmlaq_f32(acc3v, x3v, c0v);
-
-      /* Decrement the loop counter */
-      tapCnt--;
-    }
-
-    temp = vpadd_f32(vget_low_f32(acc0v),vget_high_f32(acc0v));
-    accv[0] = temp[0] + temp[1];
-
-    temp = vpadd_f32(vget_low_f32(acc1v),vget_high_f32(acc1v));
-    accv[1] = temp[0] + temp[1];
-
-    temp = vpadd_f32(vget_low_f32(acc2v),vget_high_f32(acc2v));
-    accv[2] = temp[0] + temp[1];
-
-    temp = vpadd_f32(vget_low_f32(acc3v),vget_high_f32(acc3v));
-    accv[3] = temp[0] + temp[1];
-
-    /* If the filter length is not a multiple of 4, compute the remaining filter taps */
-    tapCnt = numTaps % 0x4U;
-
-    while (tapCnt > 0U)
-    {
-      /* Read coefficients */
-      c0 = *(pb++);
-
-      /* Fetch  state variables for acc0, acc1, acc2, acc3 */
-      x0 = *(px0++);
-      x1 = *(px1++);
-      x2 = *(px2++);
-      x3 = *(px3++);
-
-      /* Perform the multiply-accumulate */
-      accv[0] += x0 * c0;
-      accv[1] += x1 * c0;
-      accv[2] += x2 * c0;
-      accv[3] += x3 * c0;
-
-      /* Decrement the loop counter */
-      tapCnt--;
-    }
-
-    /* Advance the state pointer by the decimation factor
-     * to process the next group of decimation factor number samples */
-    pState = pState + 4 * S->M;
-
-    /* The result is in the accumulator, store in the destination buffer. */
-    vst1q_f32(pDst,accv);
-    pDst += 4;
-
-    /* Decrement the loop counter */
-    blkCnt--;
-  }
-
-  while (blkCntN4 > 0U)
-  {
-    /* Copy decimation factor number of new input samples into the state buffer */
-    i = S->M;
-
-    do
-    {
-      *pStateCurnt++ = *pSrc++;
-
-    } while (--i);
-
-    /* Set accumulator to zero */
-    sum0v =  vdupq_n_f32(0.0);
-
-    /* Initialize state pointer */
-    px = pState;
-
-    /* Initialize coeff pointer */
-    pb = pCoeffs;
-
-    /* Process 4 taps at a time. */
-    tapCnt = numTaps >> 2;
-
-    /* Loop over the number of taps.
-     ** Repeat until we've computed numTaps-4 coefficients. */
-    while (tapCnt > 0U)
-    {
-      c0v = vld1q_f32(pb);
-      pb += 4;
-
-      x0v = vld1q_f32(px);
-      px += 4;
-
-      sum0v = vmlaq_f32(sum0v, x0v, c0v);
-      
-      /* Decrement the loop counter */
-      tapCnt--;
-    }
-
-    temp = vpadd_f32(vget_low_f32(sum0v),vget_high_f32(sum0v));
-    sum0 = temp[0] + temp[1];
-
-    /* If the filter length is not a multiple of 4, compute the remaining filter taps */
-    tapCnt = numTaps % 0x4U;
-
-    while (tapCnt > 0U)
-    {
-      /* Read coefficients */
-      c0 = *(pb++);
-
-      /* Fetch 1 state variable */
-      x0 = *(px++);
-
-      /* Perform the multiply-accumulate */
-      sum0 += x0 * c0;
-
-      /* Decrement the loop counter */
-      tapCnt--;
-    }
-
-    /* Advance the state pointer by the decimation factor
-     * to process the next group of decimation factor number samples */
-    pState = pState + S->M;
-
-    /* The result is in the accumulator, store in the destination buffer. */
-    *pDst++ = sum0;
-
-    /* Decrement the loop counter */
-    blkCntN4--;
-  }
-
-  /* Processing is complete.
-   ** Now copy the last numTaps - 1 samples to the satrt of the state buffer.
-   ** This prepares the state buffer for the next function call. */
-
-  /* Points to the start of the state buffer */
-  pStateCurnt = S->pState;
-
-  i = (numTaps - 1U) >> 2;
-
-  /* Copy data */
-  while (i > 0U)
-  {
-    sum0v = vld1q_f32(pState);
-    vst1q_f32(pStateCurnt,sum0v);
-    pState += 4;
-    pStateCurnt += 4;
-
-    /* Decrement the loop counter */
-    i--;
-  }
-
-  i = (numTaps - 1U) % 0x04U;
-
-  /* Copy data */
-  while (i > 0U)
-  {
-    *pStateCurnt++ = *pState++;
-
-    /* Decrement the loop counter */
-    i--;
-  }
-}
-#else
 void riscv_fir_decimate_f32(
   const riscv_fir_decimate_instance_f32 * S,
   const float32_t * pSrc,
@@ -398,7 +151,7 @@ void riscv_fir_decimate_f32(
   /* pStateCur points to the location where the new input data should be written */
   pStateCur = S->pState + (numTaps - 1U);
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
 
     /* Loop unrolling: Compute 4 samples at a time */
   blkCnt = outBlockSize >> 2U;
@@ -553,6 +306,16 @@ void riscv_fir_decimate_f32(
   while (blkCnt > 0U)
   {
     /* Copy decimation factor number of new input samples into the state buffer */
+#if defined (RISCV_VECTOR)
+  uint32_t blkCnti = S->M;                              /* Loop counter */
+  size_t l;
+       
+  for (; (l = vsetvl_e32m8(blkCnti)) > 0; blkCnti -= l) {
+    vse32_v_f32m8 (pStateCur, vle32_v_f32m8(pSrc, l), l);
+    pSrc += l;
+    pStateCur += l;
+  }
+#else
     i = S->M;
 
     do
@@ -560,7 +323,7 @@ void riscv_fir_decimate_f32(
       *pStateCur++ = *pSrc++;
 
     } while (--i);
-
+#endif /*defined (RISCV_VECTOR)*/
     /* Set accumulator to zero */
     acc0 = 0.0f;
 
@@ -570,7 +333,7 @@ void riscv_fir_decimate_f32(
     /* Initialize coeff pointer */
     pb = pCoeffs;
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
 
     /* Loop unrolling: Compute 4 taps at a time */
     tapCnt = numTaps >> 2U;
@@ -626,7 +389,38 @@ void riscv_fir_decimate_f32(
     tapCnt = numTaps;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-
+#if defined (RISCV_VECTOR)
+    uint32_t blkCntb;
+    vfloat32m4_t va1m4,va2m4;
+    vfloat32m4_t vch00m4;
+    vfloat32m1_t vch00m1;
+    vfloat32m1_t vtemp00m1;
+    vfloat32m4_t vach00m4;
+        blkCntb = numTaps;                               /* Loop counter */
+        // q7_t temp[] = {0};
+        l = vsetvl_e32m4(blkCntb);
+        //initial array to zero
+        vach00m4 = vfmv_v_f_f32m4(0, l);
+        l = vsetvl_e32m4(1);
+        vtemp00m1 = vfmv_v_f_f32m1(0, l);
+        for (; (l = vsetvl_e32m4(blkCntb)) > 0; blkCntb -= l) {
+            va1m4 = vle32_v_f32m4(pb, l);
+            va2m4 = vle32_v_f32m4(px0, l);
+            pb += l;
+            px0 += l;
+            vch00m4 = vfmul_vv_f32m4(va1m4, va2m4, l);
+            vach00m4 = vfadd_vv_f32m4(vach00m4, vch00m4, l);
+        }
+        //Here we calculate sum of four vector
+        //set vl to max vl
+        l = vsetvl_e32m4(numTaps);
+        //calculate sum
+        vch00m1 = vfredsum_vs_f32m4_f32m1(vtemp00m1, vach00m4, vtemp00m1, l);
+        //set vl to 1
+        l = vsetvl_e32m1(1);
+        //wrfte result scalar back
+        acc0  += (float32_t)vfmv_f_s_f32m1_f32(vch00m1);
+#else
     while (tapCnt > 0U)
     {
       /* Read coefficients */
@@ -641,7 +435,7 @@ void riscv_fir_decimate_f32(
       /* Decrement loop counter */
       tapCnt--;
     }
-
+#endif /*defined (RISCV_VECTOR)*/
     /* Advance the state pointer by the decimation factor
      * to process the next group of decimation factor number samples */
     pState = pState + S->M;
@@ -660,7 +454,7 @@ void riscv_fir_decimate_f32(
   /* Points to the start of the state buffer */
   pStateCur = S->pState;
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
 
   /* Loop unrolling: Compute 4 taps at a time */
   tapCnt = (numTaps - 1U) >> 2U;
@@ -686,7 +480,16 @@ void riscv_fir_decimate_f32(
   tapCnt = (numTaps - 1U);
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-
+#if defined (RISCV_VECTOR)
+  uint32_t blkCnti = tapCnt;                              /* Loop counter */
+  size_t l;
+       
+  for (; (l = vsetvl_e32m8(blkCnti)) > 0; blkCnti -= l) {
+    vse32_v_f32m8 (pStateCur, vle32_v_f32m8(pState, l), l);
+    pState += l;
+    pStateCur += l;
+  }
+#else
   /* Copy data */
   while (tapCnt > 0U)
   {
@@ -695,9 +498,8 @@ void riscv_fir_decimate_f32(
     /* Decrement loop counter */
     tapCnt--;
   }
-
+#endif /*defined (RISCV_VECTOR)*/
 }
-#endif /* #if defined(RISCV_MATH_NEON) */
 
 /**
   @} end of FIR_decimate group

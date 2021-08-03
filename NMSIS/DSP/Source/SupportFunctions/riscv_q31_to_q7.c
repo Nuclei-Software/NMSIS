@@ -3,13 +3,13 @@
  * Title:        riscv_q31_to_q7.c
  * Description:  Converts the elements of the Q31 vector to Q7 vector
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/support_functions.h"
 
 /**
   @ingroup groupSupport
@@ -51,12 +51,26 @@
       pDst[n] = (q7_t) pSrc[n] >> 24;   0 <= n < blockSize.
   </pre>
  */
-
 void riscv_q31_to_q7(
   const q31_t * pSrc,
         q7_t * pDst,
         uint32_t blockSize)
 {
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = blockSize;                         /* Loop counter */
+  const q31_t *pIn = pSrc;                             /* Source pointer */
+  size_t l;
+  vint32m8_t v_in;
+  vint8m2_t v_out;
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) 
+  {
+    v_in = vle32_v_i32m8(pIn, l);
+    pIn += l;
+    v_out = vnclip_wx_i8m2(vnclip_wx_i16m4(v_in, 24U, l), 0U, l);
+    vse8_v_i8m2 (pDst, v_out, l);
+    pDst += l;
+  }
+#else
         uint32_t blkCnt;                               /* Loop counter */
   const q31_t *pIn = pSrc;                             /* Source pointer */
 
@@ -103,7 +117,7 @@ void riscv_q31_to_q7(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_VECTOR) */
 }
 
 /**

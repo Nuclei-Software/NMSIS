@@ -1,15 +1,22 @@
+default:
+    tags:
+        - env::native
+        - host::xls01
+
 variables:
 #  GIT_STRATEGY: fetch
     CI_SCRATCH: /home/xl_ci/ci_scratch
     NMSIS_BENCHDIR: $CI_SCRATCH/NMSIS/benchmark_release
     NUCLEI_SDK: git@gito:software/library/nuclei-sdk.git
-    SDK_BRANCH: dev_xlspike
+    SDK_BRANCH: dev_xlspike_next
     FIND_IGNORE: "! -wholename \"*build*\""
     CORES: "n205,n307,n307fd,nx600,nx600f,nx600fd"
+    VECTOR_CORES: "nx600f,nx600fd"
+
     SOC: xlspike
 
 before_script:
-    - module load nucleisys/riscv-nuclei-elf-gcc
+    - export PATH=/home/xl_ci/toolchain/nuclei_gnu/linux64/newlibc/2021.07-eng1/gcc/bin:$PATH
     - module load common
     - if [ -f Work/env.sh ] ; then source Work/env.sh ; fi
 
@@ -31,8 +38,6 @@ prepare:
         - mkdir -p Work
         - mkdir -p $NMSIS_BENCHDIR
         - echo "export NMSIS_BENCH_LOGDIR=$NMSIS_BENCHDIR/$(TZ=Asia/Shanghai date +%Y%m%d-%H%M%S)" > Work/env.sh
-    tags:
-        - software-server
 
 build_library:
     stage: build
@@ -48,8 +53,6 @@ build_library:
         - make PARELLEL=1 gen
         - echo "Strip debug information in NMSIS Library for Nuclei RISC-V Processors"
         - make strip
-    tags:
-        - software-server
 
 build_align_library:
     stage: build
@@ -65,8 +68,6 @@ build_align_library:
         - make PARELLEL=1 RISCV_ALIGN=ON gen
         - echo "Strip debug information in NMSIS Library for Nuclei RISC-V Processors"
         - make strip
-    tags:
-        - software-server
 
 test_nn_library:
     stage: test
@@ -87,19 +88,25 @@ test_nn_library:
         - cd nn_test
         - echo "Benchmark with cycles"
         - export BENCH_UNIT=cycle
-        - DSP_ENABLE=OFF nmsis_run_all_apps $CORES . 2>&1 | tee $NMSIS_LOGS/nn_test_dsp_off_cycles.log
-        - cat $NMSIS_LOGS/nn_test_dsp_off_cycles.log | grep CSV | tee $NMSIS_LOGS/nn_test_dsp_off_cycles.csv
-        - DSP_ENABLE=ON nmsis_run_all_apps $CORES . 2>&1 | tee $NMSIS_LOGS/nn_test_dsp_on_cycles.log
-        - cat $NMSIS_LOGS/nn_test_dsp_on_cycles.log | grep CSV | tee $NMSIS_LOGS/nn_test_dsp_on_cycles.csv
+        - DSP_ENABLE=OFF VECTOR_ENABLE=OFF nmsis_run_all_apps $CORES . 2>&1 | tee $NMSIS_LOGS/nn_test_dsp_off_vector_off_cycles.log
+        - cat $NMSIS_LOGS/nn_test_dsp_off_vector_off_cycles.log | grep CSV | tee $NMSIS_LOGS/nn_test_dsp_off_vector_off_cycles.csv
+        - DSP_ENABLE=ON VECTOR_ENABLE=OFF nmsis_run_all_apps $CORES . 2>&1 | tee $NMSIS_LOGS/nn_test_dsp_on_vector_off_cycles.log
+        - cat $NMSIS_LOGS/nn_test_dsp_on_vector_off_cycles.log | grep CSV | tee $NMSIS_LOGS/nn_test_dsp_on_vector_off_cycles.csv
+        - DSP_ENABLE=OFF VECTOR_ENABLE=ON nmsis_run_all_apps $VECTOR_CORES . 2>&1 | tee $NMSIS_LOGS/nn_test_dsp_off_vector_on_cycles.log
+        - cat $NMSIS_LOGS/nn_test_dsp_off_vector_on_cycles.log | grep CSV | tee $NMSIS_LOGS/nn_test_dsp_off_vector_on_cycles.csv
+        - DSP_ENABLE=ON VECTOR_ENABLE=ON nmsis_run_all_apps $VECTOR_CORES . 2>&1 | tee $NMSIS_LOGS/nn_test_dsp_on_vector_on_cycles.log
+        - cat $NMSIS_LOGS/nn_test_dsp_on_vector_on_cycles.log | grep CSV | tee $NMSIS_LOGS/nn_test_dsp_on_vector_on_cycles.csv
         - cd ../../Examples/RISCV/
-        - DSP_ENABLE=OFF nmsis_run_all_apps $CORES . 2>&1 | tee $NMSIS_LOGS/nn_examples_dsp_off_cycles.log
-        - cat $NMSIS_LOGS/nn_examples_dsp_off_cycles.log | grep CSV | tee $NMSIS_LOGS/nn_examples_dsp_off_cycles.csv
-        - DSP_ENABLE=ON nmsis_run_all_apps $CORES . 2>&1 | tee $NMSIS_LOGS/nn_examples_dsp_on_cycles.log
-        - cat $NMSIS_LOGS/nn_examples_dsp_on_cycles.log | grep CSV | tee $NMSIS_LOGS/nn_examples_dsp_on_cycles.csv
+        - DSP_ENABLE=OFF VECTOR_ENABLE=OFF nmsis_run_all_apps $CORES . 2>&1 | tee $NMSIS_LOGS/nn_examples_dsp_off_vector_off_cycles.log
+        - cat $NMSIS_LOGS/nn_examples_dsp_off_vector_off_cycles.log | grep CSV | tee $NMSIS_LOGS/nn_examples_dsp_off_vector_off_cycles.csv
+        - DSP_ENABLE=ON VECTOR_ENABLE=OFF nmsis_run_all_apps $CORES . 2>&1 | tee $NMSIS_LOGS/nn_examples_dsp_on_vector_off_cycles.log
+        - cat $NMSIS_LOGS/nn_examples_dsp_on_vector_off_cycles.log | grep CSV | tee $NMSIS_LOGS/nn_examples_dsp_on_vector_off_cycles.csv
+        - DSP_ENABLE=OFF VECTOR_ENABLE=ON nmsis_run_all_apps $VECTOR_CORES . 2>&1 | tee $NMSIS_LOGS/nn_examples_dsp_off_vector_on_cycles.log
+        - cat $NMSIS_LOGS/nn_examples_dsp_off_vector_on_cycles.log | grep CSV | tee $NMSIS_LOGS/nn_examples_dsp_off_vector_on_cycles.csv
+        - DSP_ENABLE=ON VECTOR_ENABLE=ON nmsis_run_all_apps $VECTOR_CORES . 2>&1 | tee $NMSIS_LOGS/nn_examples_dsp_on_vector_on_cycles.log
+        - cat $NMSIS_LOGS/nn_examples_dsp_on_vector_on_cycles.log | grep CSV | tee $NMSIS_LOGS/nn_examples_dsp_on_vector_on_cycles.csv
         - mkdir -p $NMSIS_BENCH_LOGDIR/NMSIS
         - cp $NMSIS_LOGS/*.csv $NMSIS_BENCH_LOGDIR/NMSIS
-    tags:
-        - software-server
     dependencies:
         - build_library
 
@@ -117,22 +124,27 @@ test_dsp_library:
         - export NMSIS_LOGS=$NUCLEI_SDK_NMSIS/Logs
         - mkdir $NMSIS_LOGS
         - source NMSIS/env.sh
-        - cd NMSIS/DSP/Examples/RISCV/
-        - DSP_ENABLE=OFF nmsis_run_all_apps $CORES . 2>&1 | tee $NMSIS_LOGS/dsp_examples_dsp_off.log
-        - DSP_ENABLE=ON nmsis_run_all_apps $CORES . 2>&1 | tee $NMSIS_LOGS/dsp_examples_dsp_on.log
+        - cd NMSIS
+        - cd DSP/Examples/RISCV
+        - DSP_ENABLE=OFF VECTOR_ENABLE=OFF nmsis_run_all_apps $CORES . 2>&1 | tee $NMSIS_LOGS/dsp_examples_dsp_off_vector_off_cycles.log
+        - DSP_ENABLE=ON VECTOR_ENABLE=OFF nmsis_run_all_apps $CORES . 2>&1 | tee $NMSIS_LOGS/dsp_examples_dsp_on_vector_off_cycles.log
+        - DSP_ENABLE=OFF VECTOR_ENABLE=ON nmsis_run_all_apps $VECTOR_CORES . 2>&1 | tee $NMSIS_LOGS/dsp_examples_dsp_off_vector_on_cycles.log
+        - DSP_ENABLE=ON VECTOR_ENABLE=ON nmsis_run_all_apps $VECTOR_CORES . 2>&1 | tee $NMSIS_LOGS/dsp_examples_dsp_on_vector_on_cycles.log
         - cd -
-        - cd NMSIS/DSP/Test
+        - cd DSP/Test
         - echo "Benchmark with cycles"
         - export BENCH_UNIT=cycle
-        - DSP_ENABLE=OFF nmsis_run_all_apps $CORES . 2>&1 | tee $NMSIS_LOGS/dsp_test_dsp_off_cycles.log
-        - cat $NMSIS_LOGS/dsp_test_dsp_off_cycles.log | grep CSV | tee $NMSIS_LOGS/dsp_test_dsp_off_cycles.csv
-        - DSP_ENABLE=ON nmsis_run_all_apps $CORES . 2>&1 | tee $NMSIS_LOGS/dsp_test_dsp_on_cycles.log
-        - cat $NMSIS_LOGS/dsp_test_dsp_on_cycles.log | grep CSV | tee $NMSIS_LOGS/dsp_test_dsp_on_cycles.csv
+        - DSP_ENABLE=OFF VECTOR_ENABLE=OFF nmsis_run_all_apps $CORES . 2>&1 | tee $NMSIS_LOGS/dsp_test_dsp_off_vector_off_cycles.log
+        - cat $NMSIS_LOGS/dsp_test_dsp_off_vector_off_cycles.log | grep CSV | tee $NMSIS_LOGS/dsp_test_dsp_off_vector_off_cycles.csv
+        - DSP_ENABLE=ON VECTOR_ENABLE=OFF nmsis_run_all_apps $CORES . 2>&1 | tee $NMSIS_LOGS/dsp_test_dsp_on_vector_off_cycles.log
+        - cat $NMSIS_LOGS/dsp_test_dsp_on_vector_off_cycles.log | grep CSV | tee $NMSIS_LOGS/dsp_test_dsp_on_vector_off_cycles.csv
+        - DSP_ENABLE=OFF VECTOR_ENABLE=ON nmsis_run_all_apps $VECTOR_CORES . 2>&1 | tee $NMSIS_LOGS/dsp_test_dsp_off_vector_on_cycles.log
+        - cat $NMSIS_LOGS/dsp_test_dsp_off_vector_on_cycles.log | grep CSV | tee $NMSIS_LOGS/dsp_test_dsp_off_vector_on_cycles.csv
+        - DSP_ENABLE=ON VECTOR_ENABLE=ON nmsis_run_all_apps $VECTOR_CORES . 2>&1 | tee $NMSIS_LOGS/dsp_test_dsp_on_vector_on_cycles.log
+        - cat $NMSIS_LOGS/dsp_test_dsp_on_vector_on_cycles.log | grep CSV | tee $NMSIS_LOGS/dsp_test_dsp_on_vector_on_cycles.csv
         - cd -
         - mkdir -p $NMSIS_BENCH_LOGDIR/NMSIS
         - cp $NMSIS_LOGS/*.csv $NMSIS_BENCH_LOGDIR/NMSIS
-    tags:
-        - software-server
     dependencies:
         - build_library
 
@@ -161,5 +173,3 @@ deploy_website:
         - cp build/latex/*.pdf build/html/
         - cd ../../
         - ./.ci/ftp_deploy.sh $FTPUSER $FTPPWD $FTPSERVER NMSIS/doc/build/html nmsis
-    tags:
-        - software-server

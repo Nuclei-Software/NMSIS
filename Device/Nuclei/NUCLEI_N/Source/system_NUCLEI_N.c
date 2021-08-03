@@ -20,8 +20,8 @@
  * @file     system_NUCLEI_N.c
  * @brief    NMSIS Nuclei Device Peripheral Access Layer Source File for
  *           Nuclei N Device
- * @version  V1.00
- * @date     18. Dec 2019
+ * @version  V1.10
+ * @date     30. July 2021
  ******************************************************************************/
 
 #include <stdint.h>
@@ -59,7 +59,7 @@
  * Thus one must assure that the variable always reflects the actual system clock speed.
  *
  * \attention
- * Be aware that a value stored to \c SystemCoreClock during low level initializaton (i.e. \c SystemInit()) might get
+ * Be aware that a value stored to \c SystemCoreClock during low level initialization (i.e. \c SystemInit()) might get
  * overwritten by C libray startup code and/or .bss section initialization.
  * Thus its highly recommended to call \ref SystemCoreClockUpdate at the beginning of the user \c main() routine.
  *
@@ -154,6 +154,7 @@ static void system_default_exception_handler(unsigned long mcause, unsigned long
     //printf("MCAUSE: 0x%lx\r\n", mcause);
     //printf("MEPC  : 0x%lx\r\n", __RV_CSR_READ(CSR_MEPC));
     //printf("MTVAL : 0x%lx\r\n", __RV_CSR_READ(CSR_MBADADDR));
+    Exception_DumpFrame(sp);
     while(1);
 }
 
@@ -169,6 +170,31 @@ static void Exception_Init(void)
     for (int i = 0; i < MAX_SYSTEM_EXCEPTION_NUM+1; i++) {
         SystemExceptionHandlers[i] = (unsigned long)system_default_exception_handler;
     }
+}
+
+/**
+ * \brief      Dump Exception Frame
+ * \details
+ * This function provided feature to dump exception frame stored in stack.
+ */
+void Exception_DumpFrame(unsigned long sp)
+{
+    EXC_Frame_Type *exc_frame = (EXC_Frame_Type *)sp;
+
+#ifndef __riscv_32e
+    printf("ra: 0x%x, tp: 0x%x, t0: 0x%x, t1: 0x%x, t2: 0x%x, t3: 0x%x, t4: 0x%x, t5: 0x%x, t6: 0x%x\n" \
+           "a0: 0x%x, a1: 0x%x, a2: 0x%x, a3: 0x%x, a4: 0x%x, a5: 0x%x, a6: 0x%x, a7: 0x%x\n" \
+           "mcause: 0x%x, mepc: 0x%x, msubm: 0x%x\n", exc_frame->ra, exc_frame->tp, exc_frame->t0, \
+           exc_frame->t1, exc_frame->t2, exc_frame->t3, exc_frame->t4, exc_frame->t5, exc_frame->t6, \
+           exc_frame->a0, exc_frame->a1, exc_frame->a2, exc_frame->a3, exc_frame->a4, exc_frame->a5, \
+           exc_frame->a6, exc_frame->a7, exc_frame->mcause, exc_frame->mepc, exc_frame->msubm);
+#else
+    printf("ra: 0x%x, tp: 0x%x, t0: 0x%x, t1: 0x%x, t2: 0x%x\n" \
+           "a0: 0x%x, a1: 0x%x, a2: 0x%x, a3: 0x%x, a4: 0x%x, a5: 0x%x\n" \
+           "mcause: 0x%x, mepc: 0x%x, msubm: 0x%x\n", exc_frame->ra, exc_frame->tp, exc_frame->t0, \
+           exc_frame->t1, exc_frame->t2, exc_frame->a0, exc_frame->a1, exc_frame->a2, exc_frame->a3, \
+           exc_frame->a4, exc_frame->a5, exc_frame->mcause, exc_frame->mepc, exc_frame->msubm);
+#endif
 }
 
 /**
@@ -315,7 +341,7 @@ void _premain_init(void)
 
     /* Initialize exception default handlers */
     Exception_Init();
-    /* ECLIC initilization, mainly MTH and NLBIT settings */
+    /* ECLIC initialization, mainly MTH and NLBIT settings */
     ECLIC_Init();
 }
 

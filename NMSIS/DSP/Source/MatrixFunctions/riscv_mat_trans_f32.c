@@ -3,13 +3,13 @@
  * Title:        riscv_mat_trans_f32.c
  * Description:  Floating-point matrix transpose
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2017 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/matrix_functions.h"
 
 /**
   @ingroup groupMatrix
@@ -55,135 +55,6 @@
                    - \ref RISCV_MATH_SUCCESS       : Operation successful
                    - \ref RISCV_MATH_SIZE_MISMATCH : Matrix size check failed
  */
-
-#if defined(RISCV_MATH_NEON)
-
-riscv_status riscv_mat_trans_f32(
-  const riscv_matrix_instance_f32 * pSrc,
-  riscv_matrix_instance_f32 * pDst)
-{
-  float32_t *pIn = pSrc->pData;                  /* input data matrix pointer */
-  float32_t *pOut = pDst->pData;                 /* output data matrix pointer */
-  float32_t *px;                                 /* Temporary output data matrix pointer */
-  uint16_t nRows = pSrc->numRows;                /* number of rows */
-  uint16_t nColumns = pSrc->numCols;             /* number of columns */
-
-  uint16_t blkCnt, rowCnt, i = 0U, row = nRows;          /* loop counters */
-  riscv_status status;                             /* status of matrix transpose  */
-
-#ifdef RISCV_MATH_MATRIX_CHECK
-
-  /* Check for matrix mismatch condition */
-  if ((pSrc->numRows != pDst->numCols) || (pSrc->numCols != pDst->numRows))
-  {
-    /* Set status as RISCV_MATH_SIZE_MISMATCH */
-    status = RISCV_MATH_SIZE_MISMATCH;
-  }
-  else
-#endif /*    #ifdef RISCV_MATH_MATRIX_CHECK    */
-
-  {
-    /* Matrix transpose by exchanging the rows with columns */
-    /* Row loop */
-    rowCnt = row >> 2;
-    while (rowCnt > 0U)
-    {
-      float32x4_t row0V,row1V,row2V,row3V;
-      float32x4x2_t ra0,ra1,rb0,rb1;
-
-      blkCnt = nColumns >> 2;
-
-      /* The pointer px is set to starting address of the column being processed */
-      px = pOut + i;
-
-      /* Compute 4 outputs at a time.
-       ** a second loop below computes the remaining 1 to 3 samples. */
-      while (blkCnt > 0U)        /* Column loop */
-      {
-        row0V = vld1q_f32(pIn);
-        row1V = vld1q_f32(pIn + 1 * nColumns);
-        row2V = vld1q_f32(pIn + 2 * nColumns);
-        row3V = vld1q_f32(pIn + 3 * nColumns);
-        pIn += 4;
-
-        ra0 = vzipq_f32(row0V,row2V);
-        ra1 = vzipq_f32(row1V,row3V);
-
-        rb0 = vzipq_f32(ra0.val[0],ra1.val[0]);
-        rb1 = vzipq_f32(ra0.val[1],ra1.val[1]);
-
-        vst1q_f32(px,rb0.val[0]);
-        px += nRows;
-
-        vst1q_f32(px,rb0.val[1]);
-        px += nRows;
-
-        vst1q_f32(px,rb1.val[0]);
-        px += nRows;
-
-        vst1q_f32(px,rb1.val[1]);
-        px += nRows;
-
-        /* Decrement the column loop counter */
-        blkCnt--;
-      }
-
-      /* Perform matrix transpose for last 3 samples here. */
-      blkCnt = nColumns % 0x4U;
-
-      while (blkCnt > 0U)
-      {
-        /* Read and store the input element in the destination */
-        *px++ = *pIn;
-        *px++ = *(pIn + 1 * nColumns);
-        *px++ = *(pIn + 2 * nColumns);
-        *px++ = *(pIn + 3 * nColumns);
-        
-        px += (nRows - 4);
-        pIn++;
-
-        /* Decrement the column loop counter */
-        blkCnt--;
-      }
-
-      i += 4;
-      pIn += 3 * nColumns;
-
-      /* Decrement the row loop counter */
-      rowCnt--;
-
-    }         /* Row loop end  */
-
-    rowCnt = row & 3;
-    while (rowCnt > 0U)
-    {
-      blkCnt = nColumns ;
-      /* The pointer px is set to starting address of the column being processed */
-      px = pOut + i;
-
-      while (blkCnt > 0U)
-      {
-        /* Read and store the input element in the destination */
-        *px = *pIn++;
-
-        /* Update the pointer px to point to the next row of the transposed matrix */
-        px += nRows;
-
-        /* Decrement the column loop counter */
-        blkCnt--;
-      }
-      i++;
-      rowCnt -- ;
-    }
-
-    /* Set status as RISCV_MATH_SUCCESS */
-    status = RISCV_MATH_SUCCESS;
-  }
-
-  /* Return to application */
-  return (status);
-}
-#else
 riscv_status riscv_mat_trans_f32(
   const riscv_matrix_instance_f32 * pSrc,
         riscv_matrix_instance_f32 * pDst)
@@ -208,7 +79,36 @@ riscv_status riscv_mat_trans_f32(
   else
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = nRows;
+  size_t l,max_l;
+  ptrdiff_t bstride = 4;  //  32bit/8bit = 4
+  ptrdiff_t col_diff = bstride * nCols;  //Control the column width of the span
+  uint16_t colnum;     //  How many rowumns are controlled
+  vfloat32m8_t v_in;
+  float32_t *pIn1;
+  // max_l = vsetvl_e32m8(32);
 
+    for(colnum = 0;colnum < nCols; colnum++)
+    { 
+      blkCnt = nRows;
+      pIn1 = pIn;
+      for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) 
+      { 
+        v_in = vlse32_v_f32m8(pIn, col_diff, l);
+        vse32_v_f32m8 (pOut, v_in, l);
+        // if(l == max_l)
+        // {
+        pIn = pIn+l*nCols;
+        // }
+        pOut = pOut+l;
+      }
+    pIn = pIn1;
+    pIn = pIn+1;
+    }
+    /* Set status as RISCV_MATH_SUCCESS */
+    status = RISCV_MATH_SUCCESS;
+#else
   {
     /* Matrix transpose by exchanging the rows with columns */
     /* row loop */
@@ -275,10 +175,12 @@ riscv_status riscv_mat_trans_f32(
     status = RISCV_MATH_SUCCESS;
   }
 
+#endif /*defined(RISCV_VECTOR)*/
+
   /* Return to application */
   return (status);
+
 }
-#endif /* #if defined(RISCV_MATH_NEON) */
 
 /**
  * @} end of MatrixTrans group

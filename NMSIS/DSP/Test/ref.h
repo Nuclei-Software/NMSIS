@@ -71,30 +71,65 @@ typedef enum {
 #define DBL_MIN 2.22507385850720138e-308
 #endif
 
-#define SCHAR_MIN (-128)
+#ifndef SCHAR_MIN
 /* mimimum value for an object of type signed char */
-#define SCHAR_MAX 127
+#define SCHAR_MIN (-128)
+#endif
+
+#ifndef SCHAR_MAX
 /* maximum value for an object of type signed char */
-#define UCHAR_MAX 255
+#define SCHAR_MAX 127
+#endif
+
+#ifndef UCHAR_MAX
 /* maximum value for an object of type unsigned char */
-#define SHRT_MIN (-0x8000)
+#define UCHAR_MAX 255
+#endif
+
+#ifndef SHRT_MIN
 /* minimum value for an object of type short int */
-#define SHRT_MAX 0x7fff
+#define SHRT_MIN (-0x8000)
+#endif
+
+#ifndef SHRT_MAX
 /* maximum value for an object of type short int */
-#define USHRT_MAX 65535
+#define SHRT_MAX 0x7fff
+#endif
+
+#ifndef USHRT_MAX
 /* maximum value for an object of type unsigned short int */
-#define INT_MIN (~0x7fffffff) /* -2147483648 and 0x80000000 are unsigned */
+#define USHRT_MAX 65535
+#endif
+
+#ifndef INT_MIN
 /* minimum value for an object of type int */
-#define INT_MAX 0x7fffffff
+#define INT_MIN (~0x7fffffff) /* -2147483648 and 0x80000000 are unsigned */
+#endif
+
+#ifndef INT_MAX
 /* maximum value for an object of type int */
-#define UINT_MAX 0xffffffffU
+#define INT_MAX 0x7fffffff
+#endif
+
+#ifndef UINT_MAX
 /* maximum value for an object of type unsigned int */
-#define LONG_MIN (~0x7fffffffL)
+#define UINT_MAX 0xffffffffU
+#endif
+
+#ifndef LONG_MIN
 /* minimum value for an object of type long int */
-#define LONG_MAX 0x7fffffffL
+#define LONG_MIN (~0x7fffffffL)
+#endif
+
+#ifndef LONG_MAX
 /* maximum value for an object of type long int */
-#define ULONG_MAX 0xffffffffUL
+#define LONG_MAX 0x7fffffffL
+#endif
+
+#ifndef ULONG_MAX
 /* maximum value for an object of type unsigned long int */
+#define ULONG_MAX 0xffffffffUL
+#endif
 
 /*
  * Ref Lib Global Variables
@@ -218,6 +253,38 @@ void ref_sub_q15(q15_t *pSrcA, q15_t *pSrcB, q15_t *pDst, uint32_t blockSize);
 
 void ref_sub_q7(q7_t *pSrcA, q7_t *pSrcB, q7_t *pDst, uint32_t blockSize);
 
+void ref_clip_f32(const float32_t * pSrc, float32_t * pDst, float32_t low, float32_t high, uint32_t numSamples);
+
+void ref_clip_q7(const q7_t * pSrc, q7_t * pDst, q7_t low, q7_t high, uint32_t numSamples);
+
+void ref_clip_q15(const q15_t * pSrc, q15_t * pDst, q15_t low, q15_t high, uint32_t numSamples);
+
+void ref_clip_q31(const q31_t * pSrc, q31_t * pDst, q31_t low, q31_t high, uint32_t numSamples);
+
+void ref_and_u16(const uint16_t * pSrcA, const uint16_t * pSrcB, uint16_t * pDst, uint32_t blockSize);
+
+void ref_and_u32(const uint32_t * pSrcA, const uint32_t * pSrcB, uint32_t * pDst, uint32_t blockSize);
+
+void ref_and_u8(const uint8_t * pSrcA, const uint8_t * pSrcB, uint8_t * pDst, uint32_t blockSize);
+
+void ref_or_u16(const uint16_t * pSrcA, const uint16_t * pSrcB, uint16_t * pDst, uint32_t blockSize);
+
+void ref_or_u32(const uint32_t * pSrcA, const uint32_t * pSrcB, uint32_t * pDst, uint32_t blockSize);
+
+void ref_or_u8(const uint8_t * pSrcA, const uint8_t * pSrcB, uint8_t * pDst, uint32_t blockSize);
+
+void ref_not_u16(const uint16_t * pSrc, uint16_t * pDst, uint32_t blockSize);
+
+void ref_not_u32(const uint32_t * pSrc, uint32_t * pDst, uint32_t blockSize);
+
+void ref_not_u8(const uint8_t * pSrc, uint8_t * pDst, uint32_t blockSize);
+
+void ref_xor_u16(const uint16_t * pSrcA, const uint16_t * pSrcB, uint16_t * pDst, uint32_t blockSize);
+
+void ref_xor_u32(const uint32_t * pSrcA, const uint32_t * pSrcB, uint32_t * pDst, uint32_t blockSize);
+
+void ref_xor_u8(const uint8_t * pSrcA, const uint8_t * pSrcB, uint8_t * pDst, uint32_t blockSize);
+
 /*
  * Complex Math Functions
  */
@@ -299,6 +366,8 @@ q15_t ref_cos_q15(q15_t x);
 riscv_status ref_sqrt_q31(q31_t in, q31_t *pOut);
 
 riscv_status ref_sqrt_q15(q15_t in, q15_t *pOut);
+
+riscv_status ref_divide_q15(q15_t numerator, q15_t denominator, q15_t *quotient, int16_t *shift);
 
 /*
  * Filtering Functions
@@ -622,6 +691,7 @@ riscv_status ref_mat_add_q15(const riscv_matrix_instance_q15 *pSrcA,
  */
 void ref_max_f32(float32_t *pSrc, uint32_t blockSize, float32_t *pResult,
                  uint32_t *pIndex);
+void ref_max_no_idx_f32(float32_t * pSrc, uint32_t blockSize, float32_t * pResult);
 
 void ref_max_q31(q31_t *pSrc, uint32_t blockSize, q31_t *pResult,
                  uint32_t *pIndex);
@@ -766,6 +836,18 @@ void ref_dct4_q31(const riscv_dct4_instance_q31 *S, q31_t *pState,
 
 void ref_dct4_q15(const riscv_dct4_instance_q15 *S, q15_t *pState,
                   q15_t *pInlineBuffer);
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
  * Intrinsics

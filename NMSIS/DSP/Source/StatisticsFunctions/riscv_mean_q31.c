@@ -3,13 +3,13 @@
  * Title:        riscv_mean_q31.c
  * Description:  Mean value of a Q31 vector
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/statistics_functions.h"
 
 /**
   @ingroup groupStats
@@ -53,12 +53,29 @@
                    full precision of intermediate result is preserved.
                    Finally, the accumulator is truncated to yield a result of 1.31 format.
  */
-
 void riscv_mean_q31(
   const q31_t * pSrc,
         uint32_t blockSize,
         q31_t * pResult)
 {
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = blockSize;                               /* Loop counter */
+  size_t l;
+  const q31_t * input = pSrc;
+  q31_t * result = pResult;
+  q63_t sum;
+  vint32m8_t v_in;
+  l = vsetvl_e64m1(1);
+  vint64m1_t v_sum = vmv_s_x_i64m1(v_sum, 0, l);                /* init v_sum data */
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+    v_in = vle32_v_i32m8(input, l);
+    input += l;
+    v_sum = vwredsum_vs_i32m8_i64m1(v_sum, v_in ,v_sum, l);
+  }
+  l = vsetvl_e64m1(1);
+  sum = vmv_x_s_i64m1_i64(v_sum);
+  * result = (q31_t) (sum / blockSize); 
+#else
         uint32_t blkCnt;                               /* Loop counter */
         q63_t sum = 0;                                 /* Temporary result storage */
 #if __RISCV_XLEN == 64
@@ -113,6 +130,7 @@ void riscv_mean_q31(
   /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) / blockSize  */
   /* Store result to destination */
   *pResult = (q31_t) (sum / blockSize);
+#endif /* defined(RISCV_VECTOR) */
 }
 
 /**

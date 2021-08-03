@@ -3,6 +3,15 @@
 Changelog
 =========
 
+V1.0.2
+------
+
+This is release ``1.0.2`` version of NMSIS-NN library.
+
+* Sync up to CMSIS NN library 3.0.0
+* Initial support for RISC-V  vector extension support
+
+
 V1.0.1
 ------
 

@@ -1,15 +1,5 @@
-/* ----------------------------------------------------------------------
- * Project:      NMSIS DSP Library
- * Title:        riscv_add_q7.c
- * Description:  Q7 vector addition
- *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
- *
- * Target Processor: RISC-V Cores
- * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +17,18 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+/* ----------------------------------------------------------------------
+ * Project:      NMSIS DSP Library
+ * Title:        riscv_add_q7.c
+ * Description:  Q7 vector addition
+ *
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
+ *
+ * Target Processor: RISC-V Cores
+ * -------------------------------------------------------------------- */
+
+#include "dsp/basic_math_functions.h"
 
 /**
   @ingroup groupMath
@@ -57,6 +58,20 @@ void riscv_add_q7(
         q7_t * pDst,
         uint32_t blockSize)
 {
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = blockSize;                              /* Loop counter */
+  size_t l;
+  vint8m8_t vx, vy;
+       
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+    vx = vle8_v_i8m8(pSrcA, l);
+    pSrcA += l;
+    vy = vle8_v_i8m8(pSrcB, l);
+    vse8_v_i8m8 (pDst, vsadd_vv_i8m8(vy, vx, l), l);
+    pSrcB += l;
+    pDst += l;
+  }
+#else
         uint32_t blkCnt;                               /* Loop counter */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
@@ -81,7 +96,7 @@ void riscv_add_q7(
     /* Add and store result in destination buffer (4 samples at a time). */
     write_q7x8_ia (&pDst, __RV_DKADD8 (read_q7x8_ia ((q7_t **) &pSrcA), read_q7x8_ia ((q7_t **) &pSrcB)));
 #else
-	  write_q7x4_ia (&pDst, __RV_QADD8 (read_q7x4_ia ((q7_t **) &pSrcA), read_q7x4_ia ((q7_t **) &pSrcB)));
+	  write_q7x4_ia (&pDst, __RV_KADD8 (read_q7x4_ia ((q7_t **) &pSrcA), read_q7x4_ia ((q7_t **) &pSrcB)));
 #endif
 #endif /* __RISCV_XLEN == 64 */
 #else
@@ -119,9 +134,8 @@ void riscv_add_q7(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_VECTOR) */
 }
-
 /**
   @} end of BasicAdd group
  */

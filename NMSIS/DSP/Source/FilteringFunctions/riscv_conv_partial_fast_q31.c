@@ -3,13 +3,13 @@
  * Title:        riscv_conv_partial_fast_q31.c
  * Description:  Fast Q31 Partial convolution
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -64,6 +64,9 @@ riscv_status riscv_conv_partial_fast_q31(
         uint32_t firstIndex,
         uint32_t numPoints)
 {
+#if defined (RISCV_VECTOR)
+return(riscv_conv_partial_q31(pSrcA, srcALen, pSrcB, srcBLen, pDst, firstIndex, numPoints));
+#else
   const q31_t *pIn1;                                   /* InputA pointer */
   const q31_t *pIn2;                                   /* InputB pointer */
         q31_t *pOut = pDst;                            /* Output pointer */
@@ -119,7 +122,7 @@ riscv_status riscv_conv_partial_fast_q31(
     blockSize3 = ((int32_t)check > (int32_t)srcALen) ? (int32_t)check - (int32_t)srcALen : 0;
     blockSize3 = ((int32_t)firstIndex > (int32_t)srcALen - 1) ? blockSize3 - (int32_t)firstIndex + (int32_t)srcALen : blockSize3;
     blockSize1 = ((int32_t) srcBLen - 1) - (int32_t) firstIndex;
-    blockSize1 = (blockSize1 > 0) ? ((check > (srcBLen - 1U)) ? blockSize1 : (int32_t) numPoints) : 0;
+    blockSize1 = (blockSize1 > 0) ? ((check > (srcBLen - 1U)) ? blockSize1 :  (int32_t)numPoints) : 0;
     blockSize2 = (int32_t) check - ((blockSize3 + blockSize1) + (int32_t) firstIndex);
     blockSize2 = (blockSize2 > 0) ? blockSize2 : 0;
 
@@ -164,7 +167,7 @@ riscv_status riscv_conv_partial_fast_q31(
      * ----------------------*/
 
     /* The first stage starts here */
-    while (blockSize1 > 0U)
+    while (blockSize1 > 0)
     {
       /* Accumulator is made zero for every iteration */
       sum = 0;
@@ -527,7 +530,14 @@ riscv_status riscv_conv_partial_fast_q31(
     count = srcBLen - 1U;
 
     /* Working pointer of inputA */
-    pSrc1 = (pIn1 + srcALen) - (srcBLen - 1U);
+    if (firstIndex > srcALen)
+    {
+       pSrc1 = (pIn1 + firstIndex) - (srcBLen - 1U);
+    }
+    else
+    {
+       pSrc1 = (pIn1 + srcALen) - (srcBLen - 1U);
+    }
     px = pSrc1;
 
     /* Working pointer of inputB */
@@ -538,7 +548,7 @@ riscv_status riscv_conv_partial_fast_q31(
      * Stage3 process
      * ------------------*/
 
-    while (blockSize3 > 0U)
+    while (blockSize3 > 0)
     {
       /* Accumulator is made zero for every iteration */
       sum = 0;
@@ -611,7 +621,7 @@ riscv_status riscv_conv_partial_fast_q31(
 
   /* Return to application */
   return (status);
-
+#endif /*defined (RISCV_VECTOR)*/
 }
 
 /**

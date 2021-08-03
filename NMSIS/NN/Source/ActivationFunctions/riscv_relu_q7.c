@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2018 Arm Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2020 Arm Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,15 +22,15 @@
  * Title:        riscv_relu_q7.c
  * Description:  Q7 version of ReLU
  *
- * $Date:        17. January 2018
- * $Revision:    V.1.0.0
+ * $Date:        09. October 2020
+ * $Revision:    V.1.0.3
  *
  * Target Processor: RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 
-#include "riscv_math.h"
 #include "riscv_nnfunctions.h"
+#include "riscv_nnsupportfunctions.h"
 
 /**
  *  @ingroup groupNN
@@ -41,26 +41,37 @@
  * @{
  */
 
-  /**
-   * @brief Q7 RELU function
-   * @param[in,out]   data        pointer to input
-   * @param[in]       size        number of elements
-   * @return none.
-   * 
-   * @details
-   *
-   * Optimized relu with QSUB instructions.
-   *
-   */
+/**
+ * @brief Q7 RELU function
+ * @param[in,out]   data        pointer to input
+ * @param[in]       size        number of elements
+ *
+ * @details
+ *
+ * Optimized relu with QSUB instructions.
+ *
+ */
 
-void riscv_relu_q7(q7_t * data, uint16_t size)
+void riscv_relu_q7(q7_t *data, uint16_t size)
 {
+#if defined(RISCV_VECTOR)
+  uint16_t blkCnt = size;                               /* Loop counter */
+  size_t l;
+  vint8m8_t vx;
+  //inital to zero
+  int8_t vy=0;
+  for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
+    vx = vle8_v_i8m8(data, l);
+    // if data >= zero, return data, else return zero
+    vse8_v_i8m8 (data, vmax_vx_i8m8(vx, vy, l), l);
+    data += l;
+  }
+#else
+#if defined(RISCV_MATH_DSP)
+    /* Run the following code for M cores with DSP extension */
 
-#if defined (RISCV_MATH_DSP)
-    /* Run the following code for RISC-V Core with DSP enabled */
-
-    q7_t     *pIn = data;
-    q7_t     *pOut = data;
+    q7_t     *input = data;
+    q7_t     *output = data;
     q31_t     in;
     q31_t     buf;
     q31_t     mask;
@@ -69,26 +80,26 @@ void riscv_relu_q7(q7_t * data, uint16_t size)
 uint16_t  i = size >> 3;
    q63_t in64;
     while (i)
-    {      
-        
-        in64 = *__SIMD64(pIn)++;
+    {
 
-        *__SIMD64(pOut)++ = __RV_SMAX8 (in64,zero);
-        
+        in64 = *__SIMD64(input)++;
+
+        *__SIMD64(output)++ = __RV_SMAX8 (in64,zero);
+
         i--;
     }
 
     i = size & 0x7;
 #else
     uint16_t  i = size >> 2;
-   
-    while (i)
-    {      
-        
-        in = *__SIMD32(pIn)++;
 
-        *__SIMD32(pOut)++ = __RV_SMAX8 (in,zero);
-        
+    while (i)
+    {
+
+        in = *__SIMD32(input)++;
+
+        *__SIMD32(output)++ = __RV_SMAX8 (in,zero);
+
         i--;
     }
 
@@ -96,27 +107,26 @@ uint16_t  i = size >> 3;
 #endif /* __RISCV_XLEN == 64 */
     while (i)
     {
-        if (*pIn < 0)
+        if (*input < 0)
         {
-            *pIn = 0;
+            *input = 0;
         }
-        pIn++;
+        input++;
         i--;
     }
 
 #else
-    /* Run the following code as reference implementation for RISC-V Core without DSP */
+    /* Run the following code as reference implementation for cores without DSP extension */
 
-    uint16_t  i;
+    uint16_t i;
 
     for (i = 0; i < size; i++)
     {
         if (data[i] < 0)
             data[i] = 0;
     }
-
-#endif                          /* RISCV_MATH_DSP */
-
+#endif
+#endif /* defined(RISCV_VECTOR) */
 }
 
 /**

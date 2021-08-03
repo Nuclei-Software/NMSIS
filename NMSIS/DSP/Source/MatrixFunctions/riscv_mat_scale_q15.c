@@ -3,13 +3,13 @@
  * Title:        riscv_mat_scale_q15.c
  * Description:  Multiplies a Q15 matrix by a scalar
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/matrix_functions.h"
 
 /**
   @ingroup groupMatrix
@@ -52,7 +52,6 @@
                    The input data <code>*pSrc</code> and <code>scaleFract</code> are in 1.15 format.
                    These are multiplied to yield a 2.30 intermediate result and this is shifted with saturation to 1.15 format.
  */
-
 riscv_status riscv_mat_scale_q15(
   const riscv_matrix_instance_q15 * pSrc,
         q15_t                     scaleFract,
@@ -87,6 +86,22 @@ riscv_status riscv_mat_scale_q15(
   else
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
+#if defined(RISCV_VECTOR)
+    /* Total number of samples in input matrix */
+  numSamples = (uint32_t) pSrc->numRows * pSrc->numCols;
+  blkCnt = numSamples;
+  size_t l;
+  vint16m4_t vx;  
+  for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l) {
+    vx = vle16_v_i16m4(pIn, l);
+    pIn += l;
+    //vse16_v_i16m4 (pOut, vnsra_wx_i16m4(vmin_vx_i32m8(vmax_vx_i32m8(vwmul_vx_i32m8(vx, scaleFract), 0xffff8000), 0x7fff), kShift));
+    vse16_v_i16m4 (pOut, vnclip_wx_i16m4(vwmul_vx_i32m8(vx, scaleFract, l), kShift, l), l);
+    pOut += l;
+  }
+      /* Set status as RISCV_MATH_SUCCESS */
+    status = RISCV_MATH_SUCCESS;
+#else
 
   {
     /* Total number of samples in input matrix */
@@ -178,6 +193,7 @@ riscv_status riscv_mat_scale_q15(
 
   /* Return to application */
   return (status);
+#endif /*defined(RISCV_VECTOR)*/
 }
 
 /**

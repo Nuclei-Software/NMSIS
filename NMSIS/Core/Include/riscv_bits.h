@@ -38,6 +38,7 @@
 
 #define REGBYTES (1 << LOG_REGBYTES)
 
+#if defined(__riscv_flen)
 #if __riscv_flen == 64
 # define FPSTORE                fsd
 # define FPLOAD                 fld
@@ -46,8 +47,9 @@
 # define FPSTORE                fsw
 # define FPLOAD                 flw
 # define LOG_FPREGBYTES         2
-#endif /* __riscv_flen */
+#endif /* __riscv_flen == 64 */
 #define FPREGBYTES              (1 << LOG_FPREGBYTES)
+#endif /* __riscv_flen */
 
 #define __rv_likely(x)          __builtin_expect((x), 1)
 #define __rv_unlikely(x)        __builtin_expect((x), 0)

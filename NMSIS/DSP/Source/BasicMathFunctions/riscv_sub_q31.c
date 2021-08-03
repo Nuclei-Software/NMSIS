@@ -3,13 +3,13 @@
  * Title:        riscv_sub_q31.c
  * Description:  Q31 vector subtraction
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/basic_math_functions.h"
 
 /**
   @ingroup groupMath
@@ -57,6 +57,20 @@ void riscv_sub_q31(
         q31_t * pDst,
         uint32_t blockSize)
 {
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = blockSize;                               /* Loop counter */
+  size_t l;
+  vint32m8_t vx, vy;
+       
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+    vx = vle32_v_i32m8(pSrcA, l);
+    pSrcA += l;
+    vy = vle32_v_i32m8(pSrcB, l);
+    vse32_v_i32m8 (pDst, vssub_vv_i32m8(vx, vy, l), l);
+    pSrcB += l;
+    pDst += l;
+  }
+#else
         uint32_t blkCnt;                               /* Loop counter */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
@@ -101,7 +115,7 @@ void riscv_sub_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_VECTOR) */
 }
 
 /**

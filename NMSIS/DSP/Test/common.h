@@ -7,6 +7,7 @@
 
 #include <stdint.h>
 #include <stdio.h>
+// #include <nuclei_sdk_soc.h>
 
 #ifdef __riscv
 
@@ -61,25 +62,14 @@ static inline uint64_t read_cpu_instret(void)
 }
 #endif
 static inline void reset_cpu_cycle(void) { ; }
+static inline void setup_vector(void) 
+{ 
+#if (defined (__RISCV_FEATURE_VECTOR) && (__RISCV_FEATURE_VECTOR == 1))
+  __RV_CSR_SET(CSR_MSTATUS, 0x200);
+#endif 
+}
 #endif /*__riscv*/
 
-#ifdef __arm__
-
-#define DWT_CR *(uint32_t *)0xE0001000
-#define DWT_CYCCNT *(uint32_t *)0xE0001004
-#define DEM_CR *(uint32_t *)0xE000EDFC
-
-#define DEM_CR_TRCENA (1 << 24)
-#define DWT_CR_CYCCNTENA (1 << 0)
-
-static inline uint32_t read_cpu_cycle(void) { return ((uint32_t)DWT_CYCCNT); }
-static inline void reset_cpu_cycle(void)
-{
-    DEM_CR |= (uint32_t)DEM_CR_TRCENA;
-    DWT_CYCCNT = (uint32_t)0u;
-    DWT_CR |= (uint32_t)DWT_CR_CYCCNTENA;
-}
-#endif
 
 #ifndef READ_CYCLE
 #define READ_CYCLE read_cpu_cycle
@@ -87,6 +77,10 @@ static inline void reset_cpu_cycle(void)
 
 #ifndef RESET_CYCLE
 #define RESET_CYCLE reset_cpu_cycle
+#endif
+
+#ifndef INIT_VECTOR
+#define INIT_VECTOR setup_vector
 #endif
 
 uint64_t enter_cycle;
@@ -101,6 +95,7 @@ uint32_t bench_ercd;
 
 #define BENCH_INIT                                                             \
     printf("Benchmark Initialized\n");                                         \
+    INIT_VECTOR();                                                             \
     BENCH_TRST                                                                 \
     start_cycle = READ_CYCLE();                                                \
     end_cycle = READ_CYCLE();                                                  \

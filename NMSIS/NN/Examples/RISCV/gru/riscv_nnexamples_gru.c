@@ -199,6 +199,9 @@ int main()
   EventRecorderInitialize (EventRecordAll, 1);  // initialize and start Event Recorder
   #endif
 
+  #if (defined (__RISCV_FEATURE_VECTOR) && (__RISCV_FEATURE_VECTOR == 1))
+    __RV_CSR_SET(CSR_MSTATUS, 0x200);
+  #endif 
   printf("Start GRU execution\n");
   int       input_size = DIM_INPUT;
   int       history_size = DIM_HISTORY;

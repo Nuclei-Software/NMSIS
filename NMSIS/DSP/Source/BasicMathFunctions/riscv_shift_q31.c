@@ -3,13 +3,13 @@
  * Title:        riscv_shift_q31.c
  * Description:  Shifts the elements of a Q31 vector by a specified number of bits
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/basic_math_functions.h"
 
 /**
   @ingroup groupMath
@@ -74,6 +74,28 @@ void riscv_shift_q31(
         q31_t * pDst,
         uint32_t blockSize)
 {
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = blockSize;                               /* Loop counter */
+  uint8_t sign = (shiftBits & 0x80);
+  size_t l;
+  vint32m4_t vx;
+       
+  for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l) {
+    vx = vle32_v_i32m4(pSrc, l);
+    pSrc += l;
+    /* If the shift value is positive then do right shift else left shift */
+    if (sign == 0U)
+    {
+      vse32_v_i32m4 (pDst, vnclip_wx_i32m4(vsll_vx_i64m8(vwadd_vx_i64m8(vx,0, l), shiftBits, l),0, l), l);
+      pDst += l;
+    }
+    else
+    {
+      vse32_v_i32m4 (pDst, vsra_vx_i32m4(vx, -shiftBits, l), l);
+      pDst += l;
+    }
+  }
+#else
         uint32_t blkCnt;                               /* Loop counter */
         uint8_t sign = (shiftBits & 0x80);             /* Sign of shiftBits */
 
@@ -92,57 +114,14 @@ void riscv_shift_q31(
     }
 #else
   /* If the shift value is positive then do right shift else left shift */
-  if (sign == 0U)
-  {
     while (blkCnt > 0U)
     {
-      /* C = A << shiftBits */
-
-      /* Shift input and store result in destination buffer. */
-      in = *pSrc++;
-      out = in << shiftBits;
-      if (in != (out >> shiftBits))
-        out = 0x7FFFFFFF ^ (in >> 31);
-      *pDst++ = out;
-
-      in = *pSrc++;
-      out = in << shiftBits;
-      if (in != (out >> shiftBits))
-        out = 0x7FFFFFFF ^ (in >> 31);
-      *pDst++ = out;
-
-      in = *pSrc++;
-      out = in << shiftBits;
-      if (in != (out >> shiftBits))
-        out = 0x7FFFFFFF ^ (in >> 31);
-      *pDst++ = out;
-
-      in = *pSrc++;
-      out = in << shiftBits;
-      if (in != (out >> shiftBits))
-        out = 0x7FFFFFFF ^ (in >> 31);
-      *pDst++ = out;
-
-      /* Decrement loop counter */
+	    *pDst++ = __RV_KSLRAW(*pSrc++, shiftBits);
+	    *pDst++ = __RV_KSLRAW(*pSrc++, shiftBits);
+	    *pDst++ = __RV_KSLRAW(*pSrc++, shiftBits);
+	    *pDst++ = __RV_KSLRAW(*pSrc++, shiftBits);
       blkCnt--;
     }
-  }
-  else
-  {
-    while (blkCnt > 0U)
-    {
-      /* C = A >> shiftBits */
-
-      /* Shift input and store results in destination buffer. */
-      *pDst++ = (*pSrc++ >> -shiftBits);
-      *pDst++ = (*pSrc++ >> -shiftBits);
-      *pDst++ = (*pSrc++ >> -shiftBits);
-      *pDst++ = (*pSrc++ >> -shiftBits);
-
-      /* Decrement loop counter */
-      blkCnt--;
-    }
-  }
 #endif /* __RISCV_XLEN == 64 */
   /* Loop unrolling: Compute remaining outputs */
   blkCnt = blockSize % 0x4U;
@@ -181,7 +160,7 @@ void riscv_shift_q31(
       blkCnt--;
     }
   }
-
+#endif /* defined(RISCV_VECTOR) */
 }
 
 /**

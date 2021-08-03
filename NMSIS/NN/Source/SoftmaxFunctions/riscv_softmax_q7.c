@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2018 Arm Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2020 Arm Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,14 +22,13 @@
  * Title:        riscv_softmax_q7.c
  * Description:  Q7 softmax function
  *
- * $Date:        20. February 2018
- * $Revision:    V.1.0.0
+ * $Date:        09. October 2020
+ * $Revision:    V.1.0.2
  *
  * Target Processor: RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 
-#include "riscv_math.h"
 #include "riscv_nnfunctions.h"
 
 /**
@@ -41,34 +40,52 @@
  * @{
  */
 
-  /**
-   * @brief Q7 softmax function
-   * @param[in]       vec_in      pointer to input vector
-   * @param[in]       dim_vec     input vector dimention
-   * @param[out]      p_out       pointer to output vector
-   * @return none.
-   *
-   * @details
-   *
-   *  Here, instead of typical natural logarithm e based softmax, we use
-   *  2-based softmax here, i.e.,:
-   * 
-   *  y_i = 2^(x_i) / sum(2^x_j)
-   *
-   *  The relative output will be different here.
-   *  But mathematically, the gradient will be the same
-   *  with a log(2) scaling factor.
-   *
-   */
+/**
+ * @brief Q7 softmax function
+ * @param[in]       vec_in      pointer to input vector
+ * @param[in]       dim_vec     input vector dimention
+ * @param[out]      p_out       pointer to output vector
+ *
+ * @details
+ *
+ *  Here, instead of typical natural logarithm e based softmax, we use
+ *  2-based softmax here, i.e.,:
+ *
+ *  y_i = 2^(x_i) / sum(2^x_j)
+ *
+ *  The relative output will be different here.
+ *  But mathematically, the gradient will be the same
+ *  with a log(2) scaling factor.
+ *
+ */
 
-void riscv_softmax_q7(const q7_t * vec_in, const uint16_t dim_vec, q7_t * p_out)
+void riscv_softmax_q7(const q7_t *vec_in, const uint16_t dim_vec, q7_t *p_out)
 {
-    q31_t     sum;
-    int16_t   i;
-    uint8_t   shift;
-    q15_t     base;
-    base = -257;
-
+    q31_t sum;
+    int16_t i;
+    uint8_t shift;
+    q15_t base;
+    base = -128;
+#if defined(RISCV_VECTOR)
+    size_t l;
+    q15_t temp_max;
+    uint32_t blkCnt;
+    ptrdiff_t bstride;
+    vint8m8_t v_x;
+    vint8m1_t vtemp;
+    l = vsetvl_e8m1(1);
+    vtemp = vmv_v_x_i8m1(base, l);
+    blkCnt = dim_vec;
+    // base = vec_in[0];
+    i = 0;
+    for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
+        v_x = vle8_v_i8m8(vec_in+i, l);
+        i += l;
+        temp_max = vmv_x_s_i8m1_i8(vredmax_vs_i8m8_i8m1(vtemp, v_x, vtemp, l));
+        if(temp_max > base) 
+            base = temp_max;
+    }
+#else
     /* We first search for the maximum */
     for (i = 0; i < dim_vec; i++)
     {
@@ -77,43 +94,32 @@ void riscv_softmax_q7(const q7_t * vec_in, const uint16_t dim_vec, q7_t * p_out)
             base = vec_in[i];
         }
     }
+#endif
 
-    /* 
-     * So the base is set to max-8, meaning 
-     * that we ignore really small values. 
+    /*
+     * So the base is set to max-8, meaning
+     * that we ignore really small values.
      * anyway, they will be 0 after shrinking to q7_t.
      */
-    base = base - 8;
+    base = base - (1 << 3);
 
     sum = 0;
 
     for (i = 0; i < dim_vec; i++)
     {
-        if (vec_in[i] > base) 
-        {
-            shift = (uint8_t)__USAT(vec_in[i] - base, 5);
-            sum += 0x1 << shift;
-        }
+        shift = (uint8_t)__USAT(vec_in[i] - base, 3);
+        sum += 0x1 << shift;
     }
 
     /* This is effectively (0x1 << 20) / sum */
-    int output_base = 0x100000 / sum;
+    int output_base = (1 << 20) / sum;
 
-    /* 
-     * Final confidence will be output_base >> ( 13 - (vec_in[i] - base) )
-     * so 128 (0x1<<7) -> 100% confidence when sum = 0x1 << 8, output_base = 0x1 << 12 
-     * and vec_in[i]-base = 8
-     */
-    for (i = 0; i < dim_vec; i++) 
+    for (i = 0; i < dim_vec; i++)
     {
-        if (vec_in[i] > base) 
-        {
-            /* Here minimum value of 13+base-vec_in[i] will be 5 */
-            shift = (uint8_t)__USAT(13+base-vec_in[i], 5);
-            p_out[i] = (q7_t) __SSAT((output_base >> shift), 8);
-        } else {
-            p_out[i] = 0;
-        }
+
+        /* Here minimum value of 13+base-vec_in[i] will be 5 */
+        shift = (uint8_t)__USAT(13 + base - vec_in[i], 5);
+        p_out[i] = (q7_t)__SSAT((output_base >> shift), 8);
     }
 }
 

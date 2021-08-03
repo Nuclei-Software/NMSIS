@@ -18,6 +18,7 @@
  */
 
 #include "ref_functions.h"
+#include "riscv_nnsupportfunctions.h"
 
 void riscv_fully_connected_mat_q7_vec_q15_opt_ref(const q15_t * pV,   // pointer to vector
                                                 const q7_t * pM,    // pointer to matrix

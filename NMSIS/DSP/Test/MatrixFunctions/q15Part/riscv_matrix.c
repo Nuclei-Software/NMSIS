@@ -5,11 +5,11 @@
 // each one has it's own function.
 // All function can be found in main function.
 // If you don't want to use it, then comment it.
-#include "../common.h"
 #include "riscv_math.h"
 #include "array.h"
 #include <stdint.h>
 #include <stdlib.h>
+#include "../common.h"
 
 #include "../HelperFunctions/math_helper.c"
 #include "../HelperFunctions/ref_helper.c"
@@ -29,9 +29,7 @@ int DSP_matrix_q15(void)
     riscv_matrix_instance_q15 q15_ref;
     riscv_matrix_instance_q15 q15_des;
     int i;
-    q15_t q15_output[ROWS * COLUMNS];
-    q15_t q15_output_back[ROWS * COLUMNS];
-    q15_t q15_output_ref[ROWS * COLUMNS];
+
     // ****************   f32   *********************
 
     riscv_mat_init_q15(&q15_A, ROWS, COLUMNS, (q15_t *)q15_a_array);
@@ -106,15 +104,15 @@ int DSP_matrix_q15(void)
         }
     BENCH_STATUS(riscv_mat_scale_q15);
     // cmplx_mult
-    riscv_mat_init_q15(&q15_A, 5, 5, (q15_t *)q15_a_array);
-    riscv_mat_init_q15(&q15_B, 5, 5, (q15_t *)q15_b_array);
-    riscv_mat_init_q15(&q15_des, 5, 5, q15_output);
-    riscv_mat_init_q15(&q15_ref, 5, 5, q15_output_ref);
+    riscv_mat_init_q15(&q15_A, 32, 32, (q15_t *)q15_a_array);
+    riscv_mat_init_q15(&q15_B, 32, 32, (q15_t *)q15_b_array);
+    riscv_mat_init_q15(&q15_des, 32, 32, q15_output);
+    riscv_mat_init_q15(&q15_ref, 32, 32, q15_output_ref);
     BENCH_START(riscv_mat_cmplx_mult_q15);
     riscv_mat_cmplx_mult_q15(&q15_A, &q15_B, &q15_des, q15_output_back);
     BENCH_END(riscv_mat_cmplx_mult_q15);
     ref_mat_cmplx_mult_q15(&q15_A, &q15_B, &q15_ref);
-    for (int i = 0; i < (5 * 5); i++)
+    for (int i = 0; i < (32 * 32); i++)
         if (abs(q15_output[i] - q15_output_ref[i]) > DELTAQ15) {
             BENCH_ERROR(riscv_mat_cmplx_mult_q15);
             printf("index: %d,expect: %x, actual: %x\n", i, q15_output_ref[i],

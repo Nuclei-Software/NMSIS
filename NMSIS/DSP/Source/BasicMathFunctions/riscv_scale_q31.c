@@ -3,13 +3,13 @@
  * Title:        riscv_scale_q31.c
  * Description:  Multiplies a Q31 vector by a scalar
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/basic_math_functions.h"
 
 /**
   @ingroup groupMath
@@ -59,6 +59,44 @@ void riscv_scale_q31(
         q31_t *pDst,
         uint32_t blockSize)
 {
+#if defined(RISCV_VECTOR)&&((__XLEN!=32)||(__FLEN!=32))
+  uint32_t blkCnt = blockSize;                               /* Loop counter */
+  q31_t in, out;                                             /* Temporary variables */
+  int8_t kShift = shift + 1;                                 /* Shift to apply after scaling */
+  int8_t sign = (kShift & 0x80);
+  size_t l;
+  vint32m4_t v_in;
+  vint32m4_t v_out;
+
+  /* C = A * scale *
+  /* Scale input and store result in destination buffer. */     
+  for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l) {
+    v_in = vle32_v_i32m4(pSrc, l);
+    pSrc += l;
+    /* If the shift value is positive then do right shift else left shiftvmin_vx_i64m8(vmax_vx_i64m8( , 0xffffffff80000000),0x7fffffff)vmerge_vvm_i32m4(vmsne_vv_i32m4_b8(v_in, v_out), vxor_vx_i32m4(vsra_vx_i32m4(v_in, 31U), 0x7FFFFFFF), */
+    if (sign == 0U)
+    {
+      v_out = vnclip_wx_i32m4(vsll_vx_i64m8(vsra_vx_i64m8(vwmul_vx_i64m8(v_in, scaleFract, l),32U, l), (uint8_t)kShift, l),0, l);
+      //if (v_in != (vsll_vx_i32m4(v_out, kShift)))
+      vse32_v_i32m4 (pDst, v_out, l);
+     /*  {
+         v_out = vxor_vx_i32m4(vsra_vx_i32m4(v_in, 31U), 0x7FFFFFFF);
+         vse32_v_i32m4 (pDst, v_out);
+      } */
+      pDst += l;
+    }
+    else
+    {
+      /* C = A * scale */
+      /* Scale input and store result in destination buffer. */
+      v_in = vnsra_wx_i32m4(vwmul_vx_i64m8(v_in, scaleFract, l), 32U, l);
+      v_out = vsra_vx_i32m4(v_in, -kShift, l);
+      vse32_v_i32m4 (pDst, v_out, l);
+      pDst += l;
+    }
+    
+  }
+#else
         uint32_t blkCnt;                               /* Loop counter */
         q31_t in, out;                                 /* Temporary variables */
         int8_t kShift = shift + 1;                     /* Shift to apply after scaling */
@@ -184,7 +222,7 @@ void riscv_scale_q31(
       blkCnt--;
     }
   }
-
+#endif /* defined(RISCV_VECTOR) */
 }
 
 /**

@@ -3,13 +3,13 @@
  * Title:        riscv_fir_q7.c
  * Description:  Q7 FIR filter processing function
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -79,7 +79,7 @@ void riscv_fir_q7(
   /* pStateCurnt points to the location where the new input data should be written */
   pStateCurnt = &(S->pState[(numTaps - 1U)]);
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
 
   /* Loop unrolling: Compute 4 output values simultaneously.
    * The variables acc0 ... acc3 hold output values that are being computed:
@@ -255,13 +255,31 @@ void riscv_fir_q7(
     pb = pCoeffs;
 
     i = numTaps;
+#if defined (RISCV_VECTOR)
+    uint32_t vblkCnt = numTaps;                               /* Loop counter */
+    size_t l;
+    vint16m8_t vx,vy;
+    vint32m1_t temp00m1,temp01m1,accm1;
+    l = vsetvl_e32m1(1);
+    temp00m1 = vmv_v_x_i32m1(0, l);
+    temp01m1 = vmv_v_x_i32m1(0, l);
 
+    for (; (l = vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vwadd_vx_i16m8(vle8_v_i8m4(px, l),0, l);
+      px += l;
+      vy = vwadd_vx_i16m8(vle8_v_i8m4(pb, l),0, l);
+      pb += l;
+      accm1 = vwredsum_vs_i16m8_i32m1 ( temp00m1,vmul_vv_i16m8(vx, vy, l), temp01m1, l);
+      acc0 +=vmv_x_s_i32m1_i32(accm1);
+    }
+#else
     /* Perform the multiply-accumulates */
-    do
+    while (i > 0U)
     {
       acc0 += (q15_t) * (px++) * (*(pb++));
       i--;
-    } while (i > 0U);
+    } 
+#endif /* defined (RISCV_VECTOR) */
 
     /* The result is in 2.14 format. Convert to 1.7
        Then store the output in the destination buffer. */

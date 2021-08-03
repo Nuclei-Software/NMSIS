@@ -192,6 +192,11 @@ float32_t snr;           /* output SNR */
 
 int32_t main(void)
 {
+/*  Enable Vector  */
+#if (defined (__RISCV_FEATURE_VECTOR) && (__RISCV_FEATURE_VECTOR == 1))
+  __RV_CSR_SET(CSR_MSTATUS, 0x200);
+#endif 
+
   riscv_status status;                           /* Status of the example */
   riscv_cfft_radix4_instance_f32 cfft_instance;  /* CFFT Structure instance */
 

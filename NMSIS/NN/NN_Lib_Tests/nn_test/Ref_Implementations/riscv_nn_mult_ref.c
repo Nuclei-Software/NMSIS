@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
-#include "riscv_nnfunctions.h"
+#include "riscv_nnsupportfunctions.h"
+#include "ref_functions.h"
 
 void      riscv_nn_mult_q7_ref(q7_t * pSrcA, 
                              q7_t * pSrcB, 

@@ -3,13 +3,13 @@
  * Title:        riscv_fir_q15.c
  * Description:  Q15 FIR filter processing function
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -57,7 +57,6 @@
   @remark
                    Refer to \ref riscv_fir_fast_q15() for a faster but less precise implementation of this function.
  */
-
 void riscv_fir_q15(
   const riscv_fir_instance_q15 * S,
   const q15_t * pSrc,
@@ -82,7 +81,7 @@ void riscv_fir_q15(
   /* pStateCurnt points to the location where the new input data should be written */
   pStateCurnt = &(S->pState[(numTaps - 1U)]);
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
 
   /* Loop unrolling: Compute 4 output values simultaneously.
    * The variables acc0 ... acc3 hold output values that are being computed:
@@ -136,11 +135,7 @@ void riscv_fir_q15(
       acc2 = __SMLALD(x2, c0, acc2);
 
       /* pack  x[n-N-1] and x[n-N-2] */
-#ifndef RISCV_MATH_BIG_ENDIAN
       x1 = __PKHBT(x2, x0, 0);
-#else
-      x1 = __PKHBT(x0, x2, 0);
-#endif
 
       /* Read state x[n-N-4], x[n-N-5] */
       x0 = read_q15x2_ia (&px);
@@ -149,11 +144,7 @@ void riscv_fir_q15(
       acc1 = __SMLALDX(x1, c0, acc1);
 
       /* pack  x[n-N-3] and x[n-N-4] */
-#ifndef RISCV_MATH_BIG_ENDIAN
       x1 = __PKHBT(x0, x2, 0);
-#else
-      x1 = __PKHBT(x2, x0, 0);
-#endif
 
       /* acc3 +=  b[N] * x[n-N-3] + b[N-1] * x[n-N-4] */
       acc3 = __SMLALDX(x1, c0, acc3);
@@ -174,11 +165,7 @@ void riscv_fir_q15(
       acc1 = __SMLALDX(x1, c0, acc1);
 
       /* pack  x[n-N-5] and x[n-N-6] */
-#ifndef RISCV_MATH_BIG_ENDIAN
       x1 = __PKHBT(x2, x0, 0);
-#else
-      x1 = __PKHBT(x0, x2, 0);
-#endif
 
       /* acc3 +=  b[N-2] * x[n-N-5] + b[N-3] * x[n-N-6] */
       acc3 = __SMLALDX(x1, c0, acc3);
@@ -199,11 +186,7 @@ void riscv_fir_q15(
       acc2 = __SMLALD(x2, c0, acc2);
 
       /* pack state variables */
-#ifndef RISCV_MATH_BIG_ENDIAN
       x1 = __PKHBT(x2, x0, 0);
-#else
-      x1 = __PKHBT(x0, x2, 0);
-#endif
 
       /* Read last state variables */
       x0 = read_q15x2 (px);
@@ -212,11 +195,7 @@ void riscv_fir_q15(
       acc1 = __SMLALDX(x1, c0, acc1);
 
       /* pack state variables */
-#ifndef RISCV_MATH_BIG_ENDIAN
       x1 = __PKHBT(x0, x2, 0);
-#else
-      x1 = __PKHBT(x2, x0, 0);
-#endif
 
       /* Perform the multiply-accumulates */
       acc3 = __SMLALDX(x1, c0, acc3);
@@ -227,13 +206,8 @@ void riscv_fir_q15(
 #if __RISCV_XLEN == 64
     write_q15x4_ia (&pDst, __RV_PKBB32(__PKHBT(__SSAT((acc2 >> 15), 16), __SSAT((acc3 >> 15), 16), 16),__PKHBT(__SSAT((acc0 >> 15), 16), __SSAT((acc1 >> 15), 16), 16)));
 #else
-#ifndef RISCV_MATH_BIG_ENDIAN
     write_q15x2_ia (&pDst, __PKHBT(__SSAT((acc0 >> 15), 16), __SSAT((acc1 >> 15), 16), 16));
     write_q15x2_ia (&pDst, __PKHBT(__SSAT((acc2 >> 15), 16), __SSAT((acc3 >> 15), 16), 16));
-#else
-    write_q15x2_ia (&pDst, __PKHBT(__SSAT((acc1 >> 15), 16), __SSAT((acc0 >> 15), 16), 16));
-    write_q15x2_ia (&pDst, __PKHBT(__SSAT((acc3 >> 15), 16), __SSAT((acc2 >> 15), 16), 16));
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 #endif /* __RISCV_XLEN == 64 */
 
     /* Advance the state pointer by 4 to process the next group of 4 samples */
@@ -264,17 +238,34 @@ void riscv_fir_q15(
     /* Use SIMD to hold states and coefficients */
     px = pState;
     pb = pCoeffs;
+#if defined (RISCV_VECTOR)
+    uint32_t vblkCnt = numTaps;                               /* Loop counter */
+    size_t l;
+    vint16m4_t vx,vy;
+    vint64m1_t temp00m1,temp01m1,accm1;
+    l = vsetvl_e64m1(1);
+    temp00m1 = vmv_v_x_i64m1(0, l);
+    temp01m1 = vmv_v_x_i64m1(0, l);
 
+    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle16_v_i16m4(px, l);
+      px += l;
+      vy = vle16_v_i16m4(pb, l);
+      pb += l;
+      accm1 = vwredsum_vs_i32m8_i64m1 ( temp00m1,vwmul_vv_i32m8(vx, vy, l), temp01m1, l);
+      acc0 +=vmv_x_s_i64m1_i64(accm1);
+    }
+#else
     tapCnt = numTaps >> 1U;
 
-    do
+    while (tapCnt > 0U)
     {
       acc0 += (q31_t) *px++ * *pb++;
-	  acc0 += (q31_t) *px++ * *pb++;
+	    acc0 += (q31_t) *px++ * *pb++;
 
       tapCnt--;
     }
-    while (tapCnt > 0U);
+#endif /* defined (RISCV_VECTOR) */
 
     /* The result is in 2.30 format. Convert to 1.15 with saturation.
        Then store the output in the destination buffer. */

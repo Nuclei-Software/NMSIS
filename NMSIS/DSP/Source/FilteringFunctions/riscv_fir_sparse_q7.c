@@ -3,13 +3,13 @@
  * Title:        riscv_fir_sparse_q7.c
  * Description:  Q7 sparse FIR filter processing function
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -114,7 +114,7 @@ void riscv_fir_sparse_q7(
   pScratchOut = pScr2;
 
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
 
   /* Loop unrolling: Compute 4 outputs at a time. */
   blkCnt = blockSize >> 2U;
@@ -140,7 +140,17 @@ void riscv_fir_sparse_q7(
   blkCnt = blockSize;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-
+#if defined (RISCV_VECTOR)
+    uint32_t vblkCnt = blockSize;                               /* Loop counter */
+    size_t l;
+    vint8m2_t vx;
+    for (; (l = vsetvl_e8m2(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle8_v_i8m2(px, l);
+      px += l;
+      vse32_v_i32m8 (pScratchOut,vwadd_vx_i32m8(vwmul_vx_i16m4(vx, coeff, l),0, l), l);
+      pScratchOut += l;
+    }
+#else
   while (blkCnt > 0U)
   {
     /* Perform Multiplication and store in the scratch buffer */
@@ -149,7 +159,7 @@ void riscv_fir_sparse_q7(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined (RISCV_VECTOR) */
   /* Load the coefficient value and
    * increment the coefficient buffer for the next set of state values */
   coeff = *pCoeffs++;
@@ -182,7 +192,7 @@ void riscv_fir_sparse_q7(
     pScratchOut = pScr2;
 
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
 
     /* Loop unrolling: Compute 4 outputs at a time. */
     blkCnt = blockSize >> 2U;
@@ -212,7 +222,15 @@ void riscv_fir_sparse_q7(
     blkCnt = blockSize;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-
+#if defined (RISCV_VECTOR)
+    vblkCnt = blockSize;                               /* Loop counter */
+    for (; (l = vsetvl_e8m2(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle8_v_i8m2(px, l);
+      px += l;
+      vse32_v_i32m8 (pScratchOut,vadd_vv_i32m8(vle32_v_i32m8(pScratchOut, l), vwadd_vx_i32m8(vwmul_vx_i16m4(vx, coeff, l),0, l), l), l);
+      pScratchOut += l;
+    }
+#else
     while (blkCnt > 0U)
     {
       /* Perform Multiply-Accumulate */
@@ -222,7 +240,7 @@ void riscv_fir_sparse_q7(
       /* Decrement loop counter */
       blkCnt--;
     }
-
+#endif /* defined (RISCV_VECTOR) */
     /* Load the coefficient value and
      * increment the coefficient buffer for the next set of state values */
     coeff = *pCoeffs++;
@@ -256,7 +274,7 @@ void riscv_fir_sparse_q7(
   pScratchOut = pScr2;
 
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
 
   /* Loop unrolling: Compute 4 outputs at a time. */
   blkCnt = blockSize >> 2U;
@@ -286,7 +304,15 @@ void riscv_fir_sparse_q7(
   blkCnt = blockSize;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-
+#if defined (RISCV_VECTOR)
+    vblkCnt = blockSize;                               /* Loop counter */
+    for (; (l = vsetvl_e8m2(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle8_v_i8m2(px, l);
+      px += l;
+      vse32_v_i32m8 (pScratchOut,vadd_vv_i32m8(vle32_v_i32m8(pScratchOut, l), vwadd_vx_i32m8(vwmul_vx_i16m4(vx, coeff, l),0, l), l), l);
+      pScratchOut += l;
+    }
+#else
   while (blkCnt > 0U)
   {
     /* Perform Multiply-Accumulate */
@@ -296,7 +322,7 @@ void riscv_fir_sparse_q7(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined (RISCV_VECTOR) */
   /* All the output values are in pScratchOut buffer.
      Convert them into 1.15 format, saturate and store in the destination buffer. */
 #if defined (RISCV_MATH_LOOPUNROLL)

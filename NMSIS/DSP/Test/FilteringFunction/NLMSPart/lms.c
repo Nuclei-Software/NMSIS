@@ -600,13 +600,6 @@ void ref_lms_norm_q15(riscv_lms_norm_instance_q15 *S, q15_t *pSrc, q15_t *pRef,
         e = d - (q15_t)acc;
         *pErr++ = e;
 
-#if 0
-    /* Calculation of e * mu value */
-    errorXmu = (q31_t) e * mu;
-
-    /* Calculation of (e * mu) /energy value */
-    acc = errorXmu / (energy + DELTA_Q15);
-#endif
 
         /* Calculation of 1/energy */
         postShift = riscv_recip_q15((q15_t)energy + DELTA_Q15, &oneByEnergy,

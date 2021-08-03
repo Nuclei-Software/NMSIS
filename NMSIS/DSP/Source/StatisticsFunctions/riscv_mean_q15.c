@@ -3,13 +3,13 @@
  * Title:        riscv_mean_q15.c
  * Description:  Mean value of a Q15 vector
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/statistics_functions.h"
 
 /**
   @ingroup groupStats
@@ -59,6 +59,24 @@ void riscv_mean_q15(
         uint32_t blockSize,
         q15_t * pResult)
 {
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = blockSize;                               /* Loop counter */
+  size_t l;
+  const q15_t * input = pSrc;
+  q15_t * result = pResult;
+  q31_t sum;
+  vint16m8_t v_in;
+  l = vsetvl_e64m1(1);
+  vint32m1_t v_sum = vmv_s_x_i32m1(v_sum, 0, l);                /* init v_sum data */
+  for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
+    v_in = vle16_v_i16m8(input, l);
+    input += l;
+    v_sum = vwredsum_vs_i16m8_i32m1(v_sum, v_in ,v_sum, l);
+  }
+  l = vsetvl_e32m1(1);
+  sum = vmv_x_s_i32m1_i32(v_sum);
+  * result = (q15_t) (sum / (int32_t) blockSize);
+#else
         uint32_t blkCnt;                               /* Loop counter */
         q31_t sum = 0;                                 /* Temporary result storage */
 
@@ -129,6 +147,7 @@ void riscv_mean_q15(
   /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) / blockSize  */
   /* Store result to destination */
   *pResult = (q15_t) (sum / (int32_t) blockSize);
+#endif /* defined(RISCV_VECTOR) */
 }
 
 /**

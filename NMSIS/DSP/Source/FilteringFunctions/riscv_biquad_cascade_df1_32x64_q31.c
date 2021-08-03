@@ -3,13 +3,13 @@
  * Title:        riscv_biquad_cascade_df1_32x64_q31.c
  * Description:  High precision Q31 Biquad cascade filter processing function
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -175,11 +175,11 @@
 
 void riscv_biquad_cas_df1_32x64_q31(
   const riscv_biquad_cas_df1_32x64_ins_q31 * S,
-        q31_t * pSrc,
+  const q31_t * pSrc,
         q31_t * pDst,
         uint32_t blockSize)
 {
-        q31_t *pIn = pSrc;                             /* input pointer initialization */
+  const q31_t *pIn = pSrc;                             /* input pointer initialization */
         q31_t *pOut = pDst;                            /* output pointer initialization */
         q63_t *pState = S->pState;                     /* state pointer initialization */
   const q31_t *pCoeffs = S->pCoeffs;                   /* coeff pointer initialization */

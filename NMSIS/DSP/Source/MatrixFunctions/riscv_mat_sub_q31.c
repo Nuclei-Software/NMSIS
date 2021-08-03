@@ -3,13 +3,13 @@
  * Title:        riscv_mat_sub_q31.c
  * Description:  Q31 matrix subtraction
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/matrix_functions.h"
 
 /**
   @ingroup groupMatrix
@@ -51,7 +51,6 @@
                    The function uses saturating arithmetic.
                    Results outside of the allowable Q31 range [0x80000000 0x7FFFFFFF] are saturated.
  */
-
 riscv_status riscv_mat_sub_q31(
   const riscv_matrix_instance_q31 * pSrcA,
   const riscv_matrix_instance_q31 * pSrcB,
@@ -79,7 +78,27 @@ riscv_status riscv_mat_sub_q31(
   else
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
-
+#if defined(RISCV_VECTOR)
+    /* Total number of samples in input matrix */
+  numSamples = (uint32_t) pSrcA->numRows * pSrcA->numCols;
+  blkCnt = numSamples;
+  size_t l;
+  vint32m4_t vx, vy, vout_fin;
+  vint64m8_t vout, vout_mm;    
+  for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l) {
+    vx = vle32_v_i32m4(pInA, l);
+    pInA += l;
+    vy = vle32_v_i32m4(pInB, l);
+    pInB += l;
+    vout = vwsub_vv_i64m8(vx, vy, l);
+    vout_mm = vmin_vx_i64m8(vmax_vx_i64m8(vout, 0xffffffff80000000, l),0x7fffffff, l);
+    vout_fin = vnclip_wx_i32m4(vout_mm, 0U, l);
+    vse32_v_i32m4 (pOut, vout_fin, l);
+    pOut += l;
+  }
+#else
+      /* Set status as RISCV_MATH_SUCCESS */
+    status = RISCV_MATH_SUCCESS;
   {
     /* Total number of samples in input matrix */
     numSamples = (uint32_t) pSrcA->numRows * pSrcA->numCols;
@@ -137,6 +156,7 @@ riscv_status riscv_mat_sub_q31(
 
   /* Return to application */
   return (status);
+#endif /*defined(RISCV_VECTOR)*/
 }
 
 /**

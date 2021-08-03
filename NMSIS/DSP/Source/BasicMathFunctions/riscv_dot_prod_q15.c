@@ -3,13 +3,13 @@
  * Title:        riscv_dot_prod_q15.c
  * Description:  Q15 dot product
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/basic_math_functions.h"
 
 /**
   @ingroup groupMath
@@ -53,13 +53,33 @@
                    there is no risk of overflow.
                    The return result is in 34.30 format.
  */
-
 void riscv_dot_prod_q15(
   const q15_t * pSrcA,
   const q15_t * pSrcB,
         uint32_t blockSize,
         q63_t * result)
 {
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = blockSize;                               /* Loop counter */
+  size_t l;
+  const q15_t * inputA = pSrcA;
+  const q15_t * inputB = pSrcB;
+  q63_t * output = result;
+  vint16m4_t v_inA;
+  vint16m4_t v_inB;
+  l = vsetvl_e64m1(1);
+  vint64m1_t v_sum = vmv_s_x_i64m1(v_sum, 0, l);
+  for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) 
+  {
+    v_inA = vle16_v_i16m4(inputA, l);
+    v_inB = vle16_v_i16m4(inputB, l);
+    inputA += l;
+    inputB += l;
+    v_sum = vwredsum_vs_i32m8_i64m1(v_sum, vwmul_vv_i32m8(v_inA, v_inB, l), v_sum, l);
+  }
+  l = vsetvl_e64m1(1);
+  vse64_v_i64m1(output, v_sum, l);
+#else
         uint32_t blkCnt;                               /* Loop counter */
         volatile q63_t sum = 0;                                 /* Temporary return variable */
 
@@ -124,6 +144,7 @@ void riscv_dot_prod_q15(
 
   /* Store result in destination buffer in 34.30 format */
   *result = sum;
+#endif /* defined(RISCV_VECTOR) */
 }
 
 /**

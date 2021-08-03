@@ -19,8 +19,8 @@
  * \file     intexc_<Device>.S
  * \brief    NMSIS Interrupt and Exception Handling Template File
  *           for Nuclei N/NX Class Device
- * \version  V1.00
- * \date     25 Dec 2019
+ * \version  V1.10
+ * \date     30. July 2021
  *
  ******************************************************************************/
 

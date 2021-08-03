@@ -3,13 +3,13 @@
  * Title:        riscv_rfft_f32.c
  * Description:  RFFT & RIFFT Floating point process function
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/transform_functions.h"
 
 /* ----------------------------------------------------------------------
  * Internal functions prototypes
@@ -79,11 +79,20 @@ void riscv_split_rifft_f32(
 
 /**
   @brief         Processing function for the floating-point RFFT/RIFFT.
+                 Source buffer is modified by this function.
+                 
   @deprecated    Do not use this function.  It has been superceded by \ref riscv_rfft_fast_f32 and will be removed in the future.
   @param[in]     S    points to an instance of the floating-point RFFT/RIFFT structure
   @param[in]     pSrc points to the input buffer
   @param[out]    pDst points to the output buffer
   @return        none
+
+  @par
+                   For the RIFFT, the source buffer must at least have length 
+                   fftLenReal + 2.
+                   The last two elements must be equal to what would be generated
+                   by the RFFT:
+                     (pSrc[0] - pSrc[1]) and 0.0f
  */
 
 void riscv_rfft_f32(

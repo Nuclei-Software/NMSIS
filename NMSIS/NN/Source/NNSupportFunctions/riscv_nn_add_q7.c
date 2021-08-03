@@ -22,14 +22,15 @@
  * Title:        riscv_nn_add_q7.c
  * Description:  Non saturating addition of elements of a q7 vector.
  *
- * $Date:        July 2019
- * $Revision:    V.1.0.0
+ * $Date:        09. October 2020
+ * $Revision:    V.1.0.1
  *
  * Target Processor: RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 
-#include "riscv_nnfunctions.h"
+#include "riscv_nn_tables.h"
+#include "riscv_nnsupportfunctions.h"
 
 /**
  * @ingroup groupSupport
@@ -44,6 +45,24 @@ void riscv_nn_add_q7(const q7_t *input, q31_t *output, uint32_t block_size)
 {
     uint32_t block_count;
     q31_t result = 0;
+#if defined (RISCV_VECTOR)
+    uint32_t blkCnt = block_size;                              /* Loop counter */
+    size_t l;
+    const q7_t *pCnt = input;
+    vint8m2_t pA_v8m2;
+    vint32m1_t temp;
+    l = vsetvl_e32m1(1);
+    temp = vsub_vv_i32m1(temp, temp, l);
+         
+    for (; (l = vsetvl_e8m2(blkCnt)) > 0; blkCnt -= l) {
+      pA_v8m2 = vle8_v_i8m2(pCnt, l);
+      pCnt += l;
+      result += (q31_t)vmv_x_s_i32m1_i32(vwredsum_vs_i16m4_i32m1(temp,vwadd_vx_i16m4(pA_v8m2,0, l),temp, l));
+    //   vsetvl_e32m1(1);
+      //lack of mf2 function 2020.11.17
+    }
+    // result += (q31_t)vmv_x_s_i32m1_i32(addRes_i32m1);
+#else
 #if defined(RISCV_MATH_DSP)
     /* Loop unrolling: Compute 4 outputs at a time */
     block_count = block_size >> 2U;
@@ -52,7 +71,7 @@ void riscv_nn_add_q7(const q7_t *input, q31_t *output, uint32_t block_size)
     {
         const int32_t mult_q15x2 = (1UL << 16) | 1UL;
         q31_t in_q7x4 = riscv_nn_read_q7x4_ia(&input);
-        q31_t temp_q15x2 = __SXTAB16(__SXTB16(in_q7x4), __ROR(in_q7x4, 8));
+        q31_t temp_q15x2 = __SXTAB16(__SXTB16(in_q7x4), __ROR((uint32_t)in_q7x4, 8));
 
         result = __SMLAD(temp_q15x2, mult_q15x2, result);
 
@@ -73,11 +92,10 @@ void riscv_nn_add_q7(const q7_t *input, q31_t *output, uint32_t block_size)
         /* Decrement loop counter */
         block_count--;
     }
-
+#endif /*defined (RISCV_VECTOR)*/
     *output = result;
 }
 
 /**
  * @} end of NNBasicMath group
  */
-

@@ -3,13 +3,13 @@
  * Title:        riscv_mat_trans_q31.c
  * Description:  Q31 matrix transpose
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/matrix_functions.h"
 
 /**
   @ingroup groupMatrix
@@ -46,7 +46,6 @@
                    - \ref RISCV_MATH_SUCCESS       : Operation successful
                    - \ref RISCV_MATH_SIZE_MISMATCH : Matrix size check failed
  */
-
 riscv_status riscv_mat_trans_q31(
   const riscv_matrix_instance_q31 * pSrc,
         riscv_matrix_instance_q31 * pDst)
@@ -71,7 +70,36 @@ riscv_status riscv_mat_trans_q31(
   else
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = nRows;
+  size_t l,max_l;
+  ptrdiff_t bstride = 4;  //  32bit/8bit = 4
+  ptrdiff_t col_diff = bstride * nCols;  //Control the column width of the span
+  uint16_t colnum;     //  How many rowumns are controlled
+  vint32m8_t v_in;
+  q31_t *pIn1;
+  // max_l = vsetvl_e32m8(32);
 
+    for(colnum = 0;colnum < nCols; colnum++)
+    { 
+      blkCnt = nRows;
+      pIn1 = pIn;
+      for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) 
+      { 
+        v_in = vlse32_v_i32m8(pIn, col_diff, l);
+        vse32_v_i32m8 (pOut, v_in, l);
+        // if(l == max_l)
+        // {
+        pIn = pIn+l*nCols;
+        // }
+        pOut = pOut+l;
+      }
+    pIn = pIn1;
+    pIn = pIn+1;
+    }
+    /* Set status as RISCV_MATH_SUCCESS */
+    status = RISCV_MATH_SUCCESS;
+#else
   {
     /* Matrix transpose by exchanging the rows with columns */
     /* row loop */
@@ -137,6 +165,8 @@ riscv_status riscv_mat_trans_q31(
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
   }
+
+#endif /*defined(RISCV_VECTOR)*/
 
   /* Return to application */
   return (status);

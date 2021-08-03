@@ -3,13 +3,13 @@
  * Title:        riscv_cmplx_mult_cmplx_q31.c
  * Description:  Q31 complex-by-complex multiplication
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/complex_math_functions.h"
 
 /**
   @ingroup groupCmplxMath
@@ -57,6 +57,33 @@ void riscv_cmplx_mult_cmplx_q31(
         q31_t * pDst,
         uint32_t numSamples)
 {
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = numSamples;                               /* Loop counter */
+  size_t l;
+  const q31_t * inputA = pSrcA;
+  const q31_t * inputB = pSrcB;
+  q31_t *output = pDst;
+  ptrdiff_t bstride = 8;
+  vint32m4_t v_R1, v_R2, v_I1, v_I2;
+  vint64m8_t v_RR, v_II, v_RI, v_IR;
+  for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l) 
+  {
+    v_R1 = vlse32_v_i32m4(inputA, bstride, l);
+    v_R2 = vlse32_v_i32m4(inputB, bstride, l);
+    inputA++; inputB++;                  /* Point to the first complex pointer */
+    v_I1 = vlse32_v_i32m4(inputA, bstride, l);
+    v_I2 = vlse32_v_i32m4(inputB, bstride, l);
+    inputA += (l*2-1); inputB += (l*2-1);
+    v_RR = vsra_vx_i64m8(vwmul_vv_i64m8(v_R1, v_R2, l), 33, l);
+    v_II = vsra_vx_i64m8(vwmul_vv_i64m8(v_I1, v_I2, l), 33, l);
+    v_RI = vsra_vx_i64m8(vwmul_vv_i64m8(v_R1, v_I2, l), 33, l);
+    v_IR = vsra_vx_i64m8(vwmul_vv_i64m8(v_I1, v_R2, l), 33, l);
+    vsse32_v_i32m4 (output, bstride, vnclip_wx_i32m4(vssub_vv_i64m8(v_RR, v_II, l),0, l), l);
+    output++;
+    vsse32_v_i32m4 (output, bstride, vnclip_wx_i32m4(vsadd_vv_i64m8(v_RI, v_IR, l),0, l), l);
+    output += (l*2-1);
+  }
+#else
         uint32_t blkCnt;                               /* Loop counter */
         q31_t a, b, c, d;                              /* Temporary variables */
 
@@ -158,7 +185,7 @@ void riscv_cmplx_mult_cmplx_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_VECTOR) */
 }
 
 /**

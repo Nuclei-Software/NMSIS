@@ -3,13 +3,13 @@
  * Title:        riscv_cfft_f32.c
  * Description:  Combined Radix Decimation in Frequency CFFT Floating point processing function
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/transform_functions.h"
 #include "riscv_common_tables.h"
 
 extern void riscv_radix8_butterfly_f32(
@@ -47,7 +47,7 @@ extern void riscv_bitreversal_32(
 
 /**
   @defgroup ComplexFFT Complex FFT Functions
- 
+
   @par
                    The Fast Fourier Transform (FFT) is an efficient algorithm for computing the
                    Discrete Fourier Transform (DFT).  The FFT can be orders of magnitude faster
@@ -65,7 +65,7 @@ extern void riscv_bitreversal_32(
                    <pre>{real[0], imag[0], real[1], imag[1], ...} </pre>
                    The FFT result will be contained in the same array and the frequency domain
                    values will have the same interleaving.
- 
+
   @par Floating-point
                    The floating-point complex FFT uses a mixed-radix algorithm.  Multiple radix-8
                    stages are performed along with a single radix-2 or radix-4 stage, as needed.
@@ -77,8 +77,13 @@ extern void riscv_bitreversal_32(
                    inverse transform includes a scale of <code>1/fftLen</code> as part of the
                    calculation and this matches the textbook definition of the inverse FFT.
   @par
-                   Pre-initialized data structures containing twiddle factors and bit reversal
-                   tables are provided and defined in <code>riscv_const_structs.h</code>.  Include
+                   For the MVE version, the new riscv_cfft_init_f32 initialization function is
+                   <b>mandatory</b>. <b>Compilation flags are available to include only the required tables for the
+                   needed FFTs.</b> Other FFT versions can continue to be initialized as
+                   explained below.
+  @par
+                   For not MVE versions, pre-initialized data structures containing twiddle factors
+                   and bit reversal tables are provided and defined in <code>riscv_const_structs.h</code>.  Include
                    this header in your function and then pass one of the constant structures as
                    an argument to riscv_cfft_f32.  For example:
   @par
@@ -128,6 +133,8 @@ extern void riscv_bitreversal_32(
                          break;
                      }
   @endcode
+  @par
+                   The new riscv_cfft_init_f32 can also be used.
   @par Q15 and Q31
                    The floating-point complex FFT uses a mixed-radix algorithm.  Multiple radix-4
                    stages are performed along with a single radix-2 stage, as needed.
@@ -190,7 +197,7 @@ extern void riscv_bitreversal_32(
                          break;
                      }
   @endcode
- 
+
  */
 
 void riscv_cfft_radix8by2_f32 (riscv_cfft_instance_f32 * S, float32_t * p1)
@@ -216,6 +223,7 @@ void riscv_cfft_radix8by2_f32 (riscv_cfft_instance_f32 * S, float32_t * p1)
   /* do two dot Fourier transform */
   for (l = L >> 2; l > 0; l-- )
   {
+// #if defined(RISCV_VECTOR)
     t1[0] = p1[0];
     t1[1] = p1[1];
     t1[2] = p1[2];

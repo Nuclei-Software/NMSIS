@@ -54,7 +54,6 @@ void riscv_float_to_q14(float *pIn, q15_t *pOut, uint32_t numSamples);
 void riscv_float_to_q29(float *pIn, q31_t *pOut, uint32_t numSamples);
 void riscv_float_to_q28(float *pIn, q31_t *pOut, uint32_t numSamples);
 void riscv_float_to_q30(float *pIn, q31_t *pOut, uint32_t numSamples);
-void riscv_clip_f32(float *pIn, uint32_t numSamples);
 uint32_t riscv_calc_guard_bits(uint32_t num_adds);
 void riscv_apply_guard_bits (float32_t * pIn, uint32_t numSamples, uint32_t guard_bits);
 uint32_t riscv_compare_fixed_q15(q15_t *pIn, q15_t * pOut, uint32_t numSamples);

@@ -3,13 +3,13 @@
  * Title:        riscv_conv_partial_fast_opt_q15.c
  * Description:  Fast Q15 Partial convolution
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -68,6 +68,9 @@ riscv_status riscv_conv_partial_fast_opt_q15(
         q15_t * pScratch1,
         q15_t * pScratch2)
 {
+#if defined (RISCV_VECTOR)
+    return(riscv_conv_partial_opt_q15(pSrcA, srcALen, pSrcB, srcBLen, pDst, firstIndex, numPoints, pScratch1, pScratch2));
+#else
         q15_t *pOut = pDst;                            /* Output pointer */
         q15_t *pScr1 = pScratch1;                      /* Temporary pointer for scratch1 */
         q15_t *pScr2 = pScratch2;                      /* Temporary pointer for scratch1 */
@@ -242,46 +245,34 @@ riscv_status riscv_conv_partial_fast_opt_q15(
         y1 = read_q15x2_ia ((q15_t **) &pIn2);
         y2 = read_q15x2_ia ((q15_t **) &pIn2);
 
-        /* multiply and accumlate */
+        /* multiply and accumulate */
         acc0 = __SMLAD(x1, y1, acc0);
         acc2 = __SMLAD(x2, y1, acc2);
 
         /* pack input data */
-#ifndef RISCV_MATH_BIG_ENDIAN
         x3 = __PKHBT(x2, x1, 0);
-#else
-        x3 = __PKHBT(x1, x2, 0);
-#endif
 
-        /* multiply and accumlate */
+        /* multiply and accumulate */
         acc1 = __SMLADX(x3, y1, acc1);
 
         /* Read next two samples from scratch1 buffer */
         x1 = read_q15x2_ia (&pScr1);
 
-        /* multiply and accumlate */
+        /* multiply and accumulate */
         acc0 = __SMLAD(x2, y2, acc0);
         acc2 = __SMLAD(x1, y2, acc2);
 
         /* pack input data */
-#ifndef RISCV_MATH_BIG_ENDIAN
         x3 = __PKHBT(x1, x2, 0);
-#else
-        x3 = __PKHBT(x2, x1, 0);
-#endif
 
         acc3 = __SMLADX(x3, y1, acc3);
         acc1 = __SMLADX(x3, y2, acc1);
 
         x2 = read_q15x2_ia (&pScr1);
 
-#ifndef RISCV_MATH_BIG_ENDIAN
         x3 = __PKHBT(x2, x1, 0);
-#else
-        x3 = __PKHBT(x1, x2, 0);
-#endif
 
-        /* multiply and accumlate */
+        /* multiply and accumulate */
         acc3 = __SMLADX(x3, y2, acc3);
 
         /* Decrement loop counter */
@@ -296,7 +287,7 @@ riscv_status riscv_conv_partial_fast_opt_q15(
 
       while (tapCnt > 0U)
       {
-        /* accumlate the results */
+        /* accumulate the results */
         acc0 += (*pScr1++ * *pIn2);
         acc1 += (*pScr1++ * *pIn2);
         acc2 += (*pScr1++ * *pIn2);
@@ -311,13 +302,8 @@ riscv_status riscv_conv_partial_fast_opt_q15(
       blkCnt--;
 
       /* Store the results in the accumulators in the destination buffer. */
-#ifndef  RISCV_MATH_BIG_ENDIAN
       write_q15x2_ia (&pOut, __PKHBT(__SSAT((acc0 >> 15), 16), __SSAT((acc1 >> 15), 16), 16));
       write_q15x2_ia (&pOut, __PKHBT(__SSAT((acc2 >> 15), 16), __SSAT((acc3 >> 15), 16), 16));
-#else
-      write_q15x2_ia (&pOut, __PKHBT(__SSAT((acc1 >> 15), 16), __SSAT((acc0 >> 15), 16), 16));
-      write_q15x2_ia (&pOut, __PKHBT(__SSAT((acc3 >> 15), 16), __SSAT((acc2 >> 15), 16), 16));
-#endif /* #ifndef  RISCV_MATH_BIG_ENDIAN */
 
       /* Initialization of inputB pointer */
       pIn2 = py;
@@ -354,7 +340,7 @@ riscv_status riscv_conv_partial_fast_opt_q15(
         /* Read two samples from smaller buffer */
         y1 = read_q15x2_ia ((q15_t **) &pIn2);
 
-        /* multiply and accumlate */
+        /* multiply and accumulate */
         acc0 = __SMLAD(x1, y1, acc0);
 
         /* Decrement loop counter */
@@ -366,7 +352,7 @@ riscv_status riscv_conv_partial_fast_opt_q15(
       /* apply same above for remaining samples of smaller length sequence */
       while (tapCnt > 0U)
       {
-        /* accumlate the results */
+        /* accumulate the results */
         acc0 += (*pScr1++ * *pIn2++);
 
         /* Decrement loop counter */
@@ -392,6 +378,7 @@ riscv_status riscv_conv_partial_fast_opt_q15(
 
   /* Return to application */
   return (status);
+#endif /*defined (RISCV_VECTOR)*/
 }
 
 /**

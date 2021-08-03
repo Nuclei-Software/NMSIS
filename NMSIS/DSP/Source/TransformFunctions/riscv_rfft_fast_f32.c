@@ -1,15 +1,15 @@
 /* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
- * Title:        riscv_rfft_f32.c
+ * Title:        riscv_rfft_fast_f32.c
  * Description:  RFFT & RIFFT Floating point process function
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,14 +27,14 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/transform_functions.h"
 
 void stage_rfft_f32(
   const riscv_rfft_fast_instance_f32 * S,
         float32_t * p,
         float32_t * pOut)
 {
-        uint32_t  k;                                /* Loop Counter */
+        int32_t  k;                                /* Loop Counter */
         float32_t twR, twI;                         /* RFFT Twiddle coefficients */
   const float32_t * pCoeff = S->pTwiddleRFFT;       /* Points to RFFT Twiddle factors */
         float32_t *pA = p;                          /* increasing pointer */
@@ -55,6 +55,7 @@ void stage_rfft_f32(
 
    twR = *pCoeff++ ;
    twI = *pCoeff++ ;
+
 
    // U1 = XA(1) + XB(1); % It is real
    t1a = xBR + xAR  ;
@@ -109,10 +110,11 @@ void stage_rfft_f32(
       *pOut++ = 0.5f * (xAR + xBR + p0 + p3 ); //xAR
       *pOut++ = 0.5f * (xAI - xBI + p1 - p2 ); //xAI
 
+
       pA += 2;
       pB -= 2;
       k--;
-   } while (k > 0U);
+   } while (k > 0);
 }
 
 /* Prepares data for inverse cfft */
@@ -121,7 +123,7 @@ void merge_rfft_f32(
         float32_t * p,
         float32_t * pOut)
 {
-        uint32_t  k;                                /* Loop Counter */
+        int32_t  k;                                /* Loop Counter */
         float32_t twR, twI;                         /* RFFT Twiddle coefficients */
   const float32_t *pCoeff = S->pTwiddleRFFT;        /* Points to RFFT Twiddle factors */
         float32_t *pA = p;                          /* increasing pointer */
@@ -142,7 +144,7 @@ void merge_rfft_f32(
    pB  =  p + 2*k ;
    pA +=  2	   ;
 
-   while (k > 0U)
+   while (k > 0)
    {
       /* G is half of the frequency complex spectrum */
       //for k = 2:N
@@ -175,6 +177,7 @@ void merge_rfft_f32(
 
 }
 
+
 /**
   @ingroup groupTransforms
 */
@@ -189,7 +192,7 @@ void merge_rfft_f32(
                    of the symmetry properties of the FFT and have a speed advantage over complex
                    algorithms of the same length.
   @par
-                   The Fast RFFT algorith relays on the mixed radix CFFT that save processor usage.
+                   The Fast RFFT algorithm relays on the mixed radix CFFT that save processor usage.
   @par
                    The real length N forward FFT of a sequence is computed using the steps shown below.
   @par
@@ -239,6 +242,8 @@ void merge_rfft_f32(
   @par
                    The complex transforms used internally include scaling to prevent fixed-point
                    overflows.  The overall scaling equals 1/(fftLen/2).
+                   Due to the use of complex transform internally, the source buffer is
+                   modified by the rfft.
   @par
                    A separate instance structure must be defined for each transform used but
                    twiddle factor and bit reversal tables can be reused.
@@ -249,17 +254,15 @@ void merge_rfft_f32(
                     - Initializes twiddle factor table and bit reversal table pointers.
                     - Initializes the internal complex FFT data structure.
   @par
-                   Use of the initialization function is optional.
-                   However, if the initialization function is used, then the instance structure
-                   cannot be placed into a const data section. To place an instance structure
-                   into a const data section, the instance structure should be manually
-                   initialized as follows:
+                   Use of the initialization function is optional **except for MVE versions where it is mandatory**.
+                   If you don't use the initialization functions, then the structures should be initialized with code
+                   similar to the one below:
   <pre>
       riscv_rfft_instance_q31 S = {fftLenReal, fftLenBy2, ifftFlagR, bitReverseFlagR, twidCoefRModifier, pTwiddleAReal, pTwiddleBReal, pCfft};
       riscv_rfft_instance_q15 S = {fftLenReal, fftLenBy2, ifftFlagR, bitReverseFlagR, twidCoefRModifier, pTwiddleAReal, pTwiddleBReal, pCfft};
   </pre>
                    where <code>fftLenReal</code> is the length of the real transform;
-                   <code>fftLenBy2</code> length of  the internal complex transform.
+                   <code>fftLenBy2</code> length of  the internal complex transform (fftLenReal/2).
                    <code>ifftFlagR</code> Selects forward (=0) or inverse (=1) transform.
                    <code>bitReverseFlagR</code> Selects bit reversed output (=0) or normal order
                    output (=1).
@@ -268,8 +271,10 @@ void merge_rfft_f32(
                    <code>pTwiddleAReal</code>points to the A array of twiddle coefficients;
                    <code>pTwiddleBReal</code>points to the B array of twiddle coefficients;
                    <code>pCfft</code> points to the CFFT Instance structure. The CFFT structure
-                   must also be initialized.  Refer to riscv_cfft_radix4_f32() for details regarding
-                   static initialization of the complex FFT instance structure.
+                   must also be initialized.  
+@par
+                   Note that with MVE versions you can't initialize instance structures directly and **must
+                   use the initialization function**.
  */
 
 /**
@@ -280,7 +285,7 @@ void merge_rfft_f32(
 /**
   @brief         Processing function for the floating-point real FFT.
   @param[in]     S         points to an riscv_rfft_fast_instance_f32 structure
-  @param[in]     p         points to input buffer
+  @param[in]     p         points to input buffer (Source buffer is modified by this function.)
   @param[in]     pOut      points to output buffer
   @param[in]     ifftFlag
                    - value = 0: RFFT
@@ -289,20 +294,18 @@ void merge_rfft_f32(
 */
 
 void riscv_rfft_fast_f32(
-  riscv_rfft_fast_instance_f32 * S,
+  const riscv_rfft_fast_instance_f32 * S,
   float32_t * p,
   float32_t * pOut,
   uint8_t ifftFlag)
 {
-   riscv_cfft_instance_f32 * Sint = &(S->Sint);
-   Sint->fftLen = S->fftLenRFFT / 2;
+   const riscv_cfft_instance_f32 * Sint = &(S->Sint);
 
    /* Calculation of Real FFT */
    if (ifftFlag)
    {
       /*  Real FFT compression */
       merge_rfft_f32(S, p, pOut);
-
       /* Complex radix-4 IFFT process */
       riscv_cfft_f32( Sint, pOut, ifftFlag, 1);
    }

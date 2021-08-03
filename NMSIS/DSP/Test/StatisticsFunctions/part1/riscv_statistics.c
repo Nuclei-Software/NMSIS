@@ -2,11 +2,11 @@
 // Created by lujun on 19-6-28.DELTAF32
 //
 
-#include "../common.h"
 #include "riscv_math.h"
 #include "array.h"
 #include <stdint.h>
 #include <stdlib.h>
+#include "../common.h"
 
 #include "../HelperFunctions/math_helper.c"
 #include "../HelperFunctions/ref_helper.c"
@@ -34,7 +34,6 @@ int main()
     q7_t q7_out, q7_out_ref;
     uint32_t index, index_ref;
 
-    float32_t f32_arr_out[ARRAY_SIZE], f32_arr_out_ref[ARRAY_SIZE];
     BENCH_INIT;
 #if defined F32 || defined ENABLE_ALL
     //*****************************   f32   *************************
@@ -50,6 +49,18 @@ int main()
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_max_f32);
+    // max_no_idx
+    BENCH_START(riscv_max_no_idx_f32);
+    riscv_max_no_idx_f32(f32_array, ARRAY_SIZE, &f32_out);
+    BENCH_END(riscv_max_no_idx_f32);
+    ref_max_no_idx_f32(f32_array, ARRAY_SIZE, &f32_out_ref);
+    if ((fabs(f32_out - f32_out_ref) > DELTAF32) ) {
+        BENCH_ERROR(riscv_max_no_idx_f32);
+        printf("value expect: %f, actual: %f\nindex expect: %f, actual: %f",
+               f32_out_ref, f32_out);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_max_no_idx_f32);
     // mean
     BENCH_START(riscv_mean_f32);
     riscv_mean_f32(f32_array, ARRAY_SIZE, &f32_out);
@@ -119,6 +130,38 @@ int main()
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_var_f32);
+    //absmax
+    BENCH_START(riscv_absmax_f32);
+    riscv_absmax_f32(f32_array, ARRAY_SIZE, &f32_out, &index);
+    BENCH_END(riscv_absmax_f32);
+    ref_absmax_f32(f32_array, ARRAY_SIZE, &f32_out_ref, &index_ref);
+    if (fabs(f32_out - f32_out_ref) > DELTAF32) {
+        BENCH_ERROR(riscv_absmax_f32);
+        printf("expect: %f, actual: %f\n", f32_out_ref, f32_out);
+        test_flag_error = 1;
+    }
+    if (fabs(index - index_ref) > DELTAF32) {
+        BENCH_ERROR(riscv_absmax_f32);
+        printf("expect: %f, actual: %f\n", index_ref, index);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_absmax_f32);
+    //absmin
+    BENCH_START(riscv_absmin_f32);
+    riscv_absmin_f32(f32_array, ARRAY_SIZE, &f32_out, &index);
+    BENCH_END(riscv_absmin_f32);
+    ref_absmin_f32(f32_array, ARRAY_SIZE, &f32_out_ref, &index_ref);
+    if (fabs(f32_out - f32_out_ref) > DELTAF32) {
+        BENCH_ERROR(riscv_absmin_f32);
+        printf("expect: %f, actual: %f\n", f32_out_ref, f32_out);
+        test_flag_error = 1;
+    }
+    if (fabs(index - index_ref) > DELTAF32) {
+        BENCH_ERROR(riscv_absmin_f32);
+        printf("expect: %d, actual: %d\n", index_ref, index);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_absmin_f32);
 #endif
 #if defined Q31 || defined ENABLE_ALL
     // ********************************* q31 *****************************
@@ -129,7 +172,7 @@ int main()
     ref_max_q31(q31_array, ARRAY_SIZE, &q31_out_ref, &index_ref);
     if ((labs(q31_out - q31_out_ref) > DELTAQ31) || (index != index_ref)) {
         BENCH_ERROR(riscv_max_q31);
-        printf("value expect: %x, actual: %x\nindex expect: %xd, actual: %d",
+        printf("value expect: %x, actual: %x\nindex expect: %x, actual: %x\n",
                q31_out_ref, q31_out, index_ref, index);
         test_flag_error = 1;
     }
@@ -201,6 +244,38 @@ int main()
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_var_q31);
+    //absmax
+    BENCH_START(riscv_absmax_q31);
+    riscv_absmax_q31(q31_array, ARRAY_SIZE, &q31_out, &index);
+    BENCH_END(riscv_absmax_q31);
+    ref_absmax_q31(q31_array, ARRAY_SIZE, &q31_out_ref, &index_ref);
+    if (fabs(q31_out - q31_out_ref) > DELTAQ31) {
+        BENCH_ERROR(riscv_absmax_q31);
+        printf("expect: %f, actual: %f\n", q31_out_ref, q31_out);
+        test_flag_error = 1;
+    }
+    if (fabs(index - index_ref) > DELTAQ31) {
+        BENCH_ERROR(riscv_absmax_q31);
+        printf("expect: %f, actual: %f\n", index_ref, index);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_absmax_q31);
+    //absmin
+    BENCH_START(riscv_absmin_q31);
+    riscv_absmin_q31(q31_array, ARRAY_SIZE, &q31_out, &index);
+    BENCH_END(riscv_absmin_q31);
+    ref_absmin_q31(q31_array, ARRAY_SIZE, &q31_out_ref, &index_ref);
+    if (fabs(q31_out - q31_out_ref) > DELTAQ31) {
+        BENCH_ERROR(riscv_absmin_q31);
+        printf("expect: %f, actual: %f\n", q31_out_ref, q31_out);
+        test_flag_error = 1;
+    }
+    if (fabs(index - index_ref) > DELTAQ31) {
+        BENCH_ERROR(riscv_absmin_q31);
+        printf("expect: %f, actual: %f\n", index_ref, index);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_absmin_q31);
 #endif
 #if defined Q15 || defined ENABLE_ALL
     // ********************************* q15 *****************************
@@ -217,16 +292,16 @@ int main()
     }
     BENCH_STATUS(riscv_max_q15);
     // mean
-    BENCH_START(BENCH_START);
+    BENCH_START(riscv_mean_q15);
     riscv_mean_q15(q15_array, ARRAY_SIZE, &q15_out);
-    BENCH_END(BENCH_START);
+    BENCH_END(riscv_mean_q15);
     ref_mean_q15(q15_array, ARRAY_SIZE, &q15_out_ref);
     if (abs(q15_out - q15_out_ref) > DELTAQ15) {
-        BENCH_ERROR(BENCH_START);
+        BENCH_ERROR(riscv_mean_q15);
         printf("expect: %x, actual: %x\n", q15_out_ref, q15_out);
         test_flag_error = 1;
     }
-    BENCH_STATUS(BENCH_START);
+    BENCH_STATUS(riscv_mean_q15);
     // min
     BENCH_START(riscv_min_q15);
     riscv_min_q15(q15_array, ARRAY_SIZE, &q15_out, &index);
@@ -283,6 +358,38 @@ int main()
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_var_q15);
+    //absmax
+    BENCH_START(riscv_absmax_q15);
+    riscv_absmax_q15(q15_array, ARRAY_SIZE, &q15_out, &index);
+    BENCH_END(riscv_absmax_q15);
+    ref_absmax_q15(q15_array, ARRAY_SIZE, &q15_out_ref, &index_ref);
+    if (fabs(q15_out - q15_out_ref) > DELTAQ15) {
+        BENCH_ERROR(riscv_absmax_q15);
+        printf("expect: %f, actual: %f\n", q15_out_ref, q15_out);
+        test_flag_error = 1;
+    }
+    if (fabs(index - index_ref) > DELTAQ15) {
+        BENCH_ERROR(riscv_absmax_q15);
+        printf("expect: %f, actual: %f\n", index_ref, index);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_absmax_q15);
+    //absmin
+    BENCH_START(riscv_absmin_q15);
+    riscv_absmin_q15(q15_array, ARRAY_SIZE, &q15_out, &index);
+    BENCH_END(riscv_absmin_q15);
+    ref_absmin_q15(q15_array, ARRAY_SIZE, &q15_out_ref, &index_ref);
+    if (fabs(q15_out - q15_out_ref) > DELTAQ15) {
+        BENCH_ERROR(riscv_absmin_q15);
+        printf("expect: %f, actual: %f\n", q15_out_ref, q15_out);
+        test_flag_error = 1;
+    }
+    if (fabs(index - index_ref) > DELTAQ15) {
+        BENCH_ERROR(riscv_absmin_q15);
+        printf("expect: %f, actual: %f\n", index_ref, index);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_absmin_q15);
 #endif
 #if defined Q7 || defined ENABLE_ALL
     // ********************************* q7 *****************************
@@ -332,6 +439,38 @@ int main()
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_power_q7);
+    //absmax
+    BENCH_START(riscv_absmax_q7);
+    riscv_absmax_q7(q7_array, ARRAY_SIZE, &q7_out, &index);
+    BENCH_END(riscv_absmax_q7);
+    ref_absmax_q7(q7_array, ARRAY_SIZE, &q7_out_ref, &index_ref);
+    if (fabs(q7_out - q7_out_ref) > DELTAQ7) {
+        BENCH_ERROR(riscv_absmax_q7);
+        printf("expect: %f, actual: %f\n", q7_out_ref, q7_out);
+        test_flag_error = 1;
+    }
+    if (fabs(index - index_ref) > DELTAQ7) {
+        BENCH_ERROR(riscv_absmax_q7);
+        printf("expect: %f, actual: %f\n", index_ref, index);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_absmax_q7);
+    //absmin
+    BENCH_START(riscv_absmin_q7);
+    riscv_absmin_q7(q7_array, ARRAY_SIZE, &q7_out, &index);
+    BENCH_END(riscv_absmin_q7);
+    ref_absmin_q7(q7_array, ARRAY_SIZE, &q7_out_ref, &index_ref);
+    if (fabs(q7_out - q7_out_ref) > DELTAQ7) {
+        BENCH_ERROR(riscv_absmin_q7);
+        printf("expect: %f, actual: %f\n", q7_out_ref, q7_out);
+        test_flag_error = 1;
+    }
+    if (fabs(index - index_ref) > DELTAQ7) {
+        BENCH_ERROR(riscv_absmin_q7);
+        printf("expect: %f, actual: %f\n", index_ref, index);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_absmin_q7);
     printf("all tests are passed,well done!\n");
 #endif
     BENCH_FINISH;

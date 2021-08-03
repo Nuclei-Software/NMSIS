@@ -3,13 +3,13 @@
  * Title:        riscv_biquad_cascade_df1_q15.c
  * Description:  Processing function for the Q15 Biquad cascade DirectFormI(DF1) filter
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -144,13 +144,8 @@ void riscv_biquad_cascade_df1_q15(
       /* x[n-N], x[n-N-1] are packed together to make state_in of type q31 */
       /* y[n-N], y[n-N-1] are packed together to make state_out of type q31 */
 
-#ifndef  RISCV_MATH_BIG_ENDIAN
       state_in  = __PKHBT(in, state_in, 16);
       state_out = __PKHBT(out, state_out, 16);
-#else
-      state_in  = __PKHBT(state_in >> 16, (in >> 16), 16);
-      state_out = __PKHBT(state_out >> 16, (out), 16);
-#endif /* #ifndef  RISCV_MATH_BIG_ENDIAN */
 
       /* out =  b0 * x[n] + 0 * 0 */
       out = __RV_KMXDA(b0, in);
@@ -172,11 +167,7 @@ void riscv_biquad_cascade_df1_q15(
       out = __SSAT(out, 16);
 
       /* Store the output in the destination buffer. */
-#ifndef  RISCV_MATH_BIG_ENDIAN
       write_q15x2_ia (&pOut, __PKHBT(state_out, out, 16));
-#else
-      write_q15x2_ia (&pOut, __PKHBT(out, state_out >> 16, 16));
-#endif /* #ifndef  RISCV_MATH_BIG_ENDIAN */
 
       /* Every time after the output is computed state should be updated. */
       /* The states should be updated as:  */
@@ -186,13 +177,8 @@ void riscv_biquad_cascade_df1_q15(
       /* Yn1 = acc */
       /* x[n-N], x[n-N-1] are packed together to make state_in of type q31 */
       /* y[n-N], y[n-N-1] are packed together to make state_out of type q31 */
-#ifndef  RISCV_MATH_BIG_ENDIAN
       state_in  = __PKHBT(in >> 16, state_in, 16);
       state_out = __PKHBT(out, state_out, 16);
-#else
-      state_in  = __PKHBT(state_in >> 16, in, 16);
-      state_out = __PKHBT(state_out >> 16, out, 16);
-#endif /* #ifndef  RISCV_MATH_BIG_ENDIAN */
 
       /* Decrement loop counter */
       sample--;
@@ -207,11 +193,7 @@ void riscv_biquad_cascade_df1_q15(
       in = *pIn++;
 
       /* out =  b0 * x[n] + 0 * 0 */
-#ifndef  RISCV_MATH_BIG_ENDIAN
       out = __RV_KMDA(b0, in);
-#else
-      out = __SMUADX(b0, in);
-#endif /* #ifndef  RISCV_MATH_BIG_ENDIAN */
 
       /* acc =  b1 * x[n-1] + b2 * x[n-2] + out */
       acc = __RV_SMALDA(out, b1, state_in);
@@ -241,13 +223,8 @@ void riscv_biquad_cascade_df1_q15(
       /* Yn1 = acc */
       /* x[n-N], x[n-N-1] are packed together to make state_in of type q31 */
       /* y[n-N], y[n-N-1] are packed together to make state_out of type q31 */
-#ifndef  RISCV_MATH_BIG_ENDIAN
       state_in = __PKHBT(in, state_in, 16);
       state_out = __PKHBT(out, state_out, 16);
-#else
-      state_in = __PKHBT(state_in >> 16, in, 16);
-      state_out = __PKHBT(state_out >> 16, out, 16);
-#endif /* #ifndef  RISCV_MATH_BIG_ENDIAN */
     }
 
     /* The first stage goes from the input wire to the output wire.  */

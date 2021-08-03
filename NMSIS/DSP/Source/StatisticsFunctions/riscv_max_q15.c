@@ -3,13 +3,13 @@
  * Title:        riscv_max_q15.c
  * Description:  Maximum value of a Q15 vector
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/statistics_functions.h"
 
 /**
   @ingroup groupStats
@@ -46,13 +46,50 @@
   @param[out]    pIndex     index of maximum value returned here
   @return        none
  */
-
 void riscv_max_q15(
   const q15_t * pSrc,
         uint32_t blockSize,
         q15_t * pResult,
         uint32_t * pIndex)
 {
+#if defined(RISCV_VECTOR)
+    int16_t max = pSrc[0],max_temp;
+    uint32_t index = 0,index_temp = 0;
+
+    uint32_t blkCnt;
+    size_t l;
+    int16_t * inputx;
+    vint16m8_t v_x;
+    vint16m1_t v_tempa;
+
+    inputx = pSrc;
+    blkCnt = blockSize;
+    l = vsetvl_e16m1(1);
+    v_tempa = vmv_s_x_i16m1(v_tempa, pSrc[0], l);
+    for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) 
+    {
+        v_x = vle16_v_i16m8(inputx, l);
+        inputx += l;
+        max_temp = vmv_x_s_i16m1_i16 (vredmax_vs_i16m8_i16m1(v_tempa,v_x,v_tempa, l));
+        if (max_temp > max){
+          max = max_temp;
+          index = index_temp;
+        }
+        index_temp += l;
+
+    }
+    * pResult = max;
+    while(1)
+    {
+        if (pSrc[index] == max){
+          break;
+        }
+        else
+            index++;
+    }
+    * pIndex = index;
+  
+#else
         q15_t maxVal, out;                             /* Temporary variables to store the output value. */
         uint32_t blkCnt, outIndex;                     /* Loop counter */
 
@@ -142,8 +179,8 @@ void riscv_max_q15(
   /* Store the maximum value and it's index into destination pointers */
   *pResult = out;
   *pIndex = outIndex;
+#endif /* defined(RISCV_VECTOR) */
 }
-
 /**
   @} end of Max group
  */

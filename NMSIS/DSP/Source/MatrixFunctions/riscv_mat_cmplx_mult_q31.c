@@ -3,13 +3,13 @@
  * Title:        riscv_mat_cmplx_mult_q31.c
  * Description:  Floating-point matrix multiplication
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/matrix_functions.h"
 
 /**
   @ingroup groupMatrix
@@ -57,7 +57,6 @@
                    to avoid overflows, as a total of numColsA additions are performed internally.
                    The 2.62 accumulator is right shifted by 31 bits and saturated to 1.31 format to yield the final result.
  */
-
 riscv_status riscv_mat_cmplx_mult_q31(
   const riscv_matrix_instance_q31 * pSrcA,
   const riscv_matrix_instance_q31 * pSrcB,
@@ -95,6 +94,74 @@ riscv_status riscv_mat_cmplx_mult_q31(
   else
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
+
+#if defined(RISCV_VECTOR)
+  q31_t *pInB = pSrcB->pData;                    /* Input data matrix pointer A */
+  uint16_t blkCnt = numColsA;  //number of matrix columns  numColsA = numrowB
+  size_t l,max_l;              // max_l is the maximum column elements at a time
+  ptrdiff_t bstride = 4;       //  32bit/8bit = 4
+  ptrdiff_t reim_diff = bstride * 2;
+  ptrdiff_t col_diff = reim_diff * numColsB;  //Control the column width of the span
+  uint16_t colnum,rownum;      //  How many rowumns and rownum are controlled
+  vint32m4_t v_inAR, v_inBR, v_inAI, v_inBI;
+  vint64m8_t v_RR, v_II, v_RI, v_IR;
+  vint64m8_t vReal, vImag;
+  l = vsetvl_e32m1(1);
+  vint64m1_t vsumReal = vmv_s_x_i64m1(vsumReal, 0, l);
+  vint64m1_t vsumImag = vmv_s_x_i64m1(vsumImag, 0, l);
+  // max_l = vsetvl_e32m4(32);
+  px = pOut;
+for(rownum = 0;rownum < numRowsA; rownum++)
+  {
+    pIn1 = pInA;       //backup pointer position
+    for(colnum = 0;colnum < numColsB; colnum++)
+    { 
+      blkCnt = numColsA;
+      pIn2 = pInB;     //backup pointer position
+      sumReal = 0; 
+      sumImag = 0; 
+      l = vsetvl_e32m1(1);
+      vsumReal = vmv_s_x_i64m1(vsumReal, 0, l);
+      vsumImag = vmv_s_x_i64m1(vsumImag, 0, l);
+      for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)   //Multiply a row by a column
+      { 
+        v_inAR = vlse32_v_i32m4(pInA, reim_diff, l);
+        v_inBR = vlse32_v_i32m4(pInB, col_diff, l);
+        pInA++; pInB++;
+        v_inAI = vlse32_v_i32m4(pInA, reim_diff, l);
+        v_inBI = vlse32_v_i32m4(pInB, col_diff, l);
+        /* c(m,n) = a(1,1) * b(1,1) + a(1,2) * b(2,1) + .... + a(m,p) * b(p,n) */
+        /* Perform multiply-accumulates */
+        v_RR = vwmul_vv_i64m8(v_inAR , v_inBR, l);
+        v_II = vwmul_vv_i64m8(v_inAI , v_inBI, l);
+        v_RI = vwmul_vv_i64m8(v_inAR , v_inBI, l);
+        v_IR = vwmul_vv_i64m8(v_inAI , v_inBR, l);
+        vReal = vssub_vv_i64m8(v_RR, v_II, l);
+        vImag = vsadd_vv_i64m8(v_RI, v_IR, l);
+        vsumReal = vredsum_vs_i64m8_i64m1(vsumReal, vReal, vsumReal, l);
+        vsumImag = vredsum_vs_i64m8_i64m1(vsumImag, vImag, vsumImag, l);
+        // if(l == max_l)
+        // {
+        pInA = pInA+l*2-1;    //Pointer to the first element of the next line
+        pInB = pInB+l*numColsB*4-1;
+        // }
+      }
+      sumReal = vmv_x_s_i64m1_i64 (vsumReal);
+      sumImag = vmv_x_s_i64m1_i64 (vsumImag);
+      *px = (q31_t) clip_q63_to_q31(sumReal >> 31);
+      px++;
+      *px = (q31_t) clip_q63_to_q31(sumImag >> 31);
+      px++;
+      pInA = pIn1; 
+      pInB = pIn2;pInB = pInB+2;    //Pointer to the first element of the next column for matrix BS
+    //printf("px=%d\n",px);
+    }
+    pInB = pSrcB->pData;
+    pInA = pIn1;pInA = pInA+numColsA*2;    //Pointer to the first element of the next row for matrix A 
+  }
+  /* Set status as RISCV_MATH_SUCCESS */
+  status = RISCV_MATH_SUCCESS;
+#else
 
   {
     /* The following loop performs the dot-product of each row in pSrcA with each column in pSrcB */
@@ -314,6 +381,7 @@ riscv_status riscv_mat_cmplx_mult_q31(
     status = RISCV_MATH_SUCCESS;
   }
 
+#endif /* defined(RISCV_VECTOR) */
   /* Return to application */
   return (status);
 }

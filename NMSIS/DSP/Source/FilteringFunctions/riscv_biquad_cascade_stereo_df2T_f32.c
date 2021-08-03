@@ -3,13 +3,13 @@
  * Title:        riscv_biquad_cascade_stereo_df2T_f32.c
  * Description:  Processing function for floating-point transposed direct form II Biquad cascade filter. 2 channels
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -46,7 +46,6 @@
   @param[in]     blockSize number of samples to process
   @return        none
  */
-
 LOW_OPTIMIZATION_ENTER
 void riscv_biquad_cascade_stereo_df2T_f32(
   const riscv_biquad_cascade_stereo_df2T_instance_f32 * S,
@@ -268,7 +267,7 @@ void riscv_biquad_cascade_stereo_df2T_f32(
 
         pState += 4U;
 
-        /* The current stage input is given as the output to the next stage */
+        /* The current stage output is given as the input to the next stage */
         pIn = pDst;
 
         /* Reset the output working pointer */
@@ -281,6 +280,7 @@ void riscv_biquad_cascade_stereo_df2T_f32(
 
 }
 LOW_OPTIMIZATION_EXIT
+
 /**
   @} end of BiquadCascadeDF2T group
  */

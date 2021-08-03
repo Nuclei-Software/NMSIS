@@ -3,13 +3,13 @@
  * Title:        riscv_rfft_q31.c
  * Description:  FFT & RIFFT Q31 process function
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/transform_functions.h"
 
 /* ----------------------------------------------------------------------
  * Internal functions prototypes
@@ -57,7 +57,7 @@ void riscv_split_rifft_q31(
 /**
   @brief         Processing function for the Q31 RFFT/RIFFT.
   @param[in]     S     points to an instance of the Q31 RFFT/RIFFT structure
-  @param[in]     pSrc  points to input buffer
+  @param[in]     pSrc  points to input buffer (Source buffer is modified by this function)
   @param[out]    pDst  points to output buffer
   @return        none
 
@@ -69,6 +69,16 @@ void riscv_split_rifft_q31(
                    \image html RFFTQ31.png "Input and Output Formats for Q31 RFFT"
   @par
                    \image html RIFFTQ31.png "Input and Output Formats for Q31 RIFFT"
+  @par
+                   If the input buffer is of length N, the output buffer must have length 2*N.
+                   The input buffer is modified by this function.
+  @par
+                   For the RIFFT, the source buffer must at least have length 
+                   fftLenReal + 2.
+                   The last two elements must be equal to what would be generated
+                   by the RFFT:
+                     (pSrc[0] - pSrc[1]) >> 1 and 0
+
  */
 
 void riscv_rfft_q31(
@@ -78,7 +88,6 @@ void riscv_rfft_q31(
 {
   const riscv_cfft_instance_q31 *S_CFFT = S->pCfft;
         uint32_t L2 = S->fftLenReal >> 1U;
-        uint32_t i;
 
   /* Calculation of RIFFT of input */
   if (S->ifftFlagR == 1U)
@@ -89,10 +98,7 @@ void riscv_rfft_q31(
      /* Complex IFFT process */
      riscv_cfft_q31 (S_CFFT, pDst, S->ifftFlagR, S->bitReverseFlagR);
 
-     for(i = 0; i < S->fftLenReal; i++)
-     {
-        pDst[i] = pDst[i] << 1U;
-     }
+     riscv_shift_q31(pDst, 1, pDst, S->fftLenReal);
   }
   else
   {
@@ -208,7 +214,6 @@ void riscv_split_rfft_q31(
   pDst[1] = 0;
 }
 
-
 /**
   @brief         Core Real IFFT process
   @param[in]     pSrc      points to input buffer
@@ -291,3 +296,4 @@ void riscv_split_rifft_q31(
   }
 
 }
+

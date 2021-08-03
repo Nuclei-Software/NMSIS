@@ -3,13 +3,13 @@
  * Title:        riscv_iir_lattice_q15.c
  * Description:  Q15 IIR Lattice filter processing function
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -159,11 +159,7 @@ void riscv_iir_lattice_q15(
 
       /* Pack gN-1(n) and gN-2(n) */
 
-#ifndef  RISCV_MATH_BIG_ENDIAN
       gnext = __PKHBT(gnext1, gnext2, 16);
-#else
-      gnext = __PKHBT(gnext2, gnext1, 16);
-#endif /* #ifndef  RISCV_MATH_BIG_ENDIAN */
 
       /* y(n) += gN-1(n) * vN-1  */
       /* process for gN-5(n) * vN-5, gN-9(n) * vN-9 ... */
@@ -201,11 +197,7 @@ void riscv_iir_lattice_q15(
       v = read_q15x2_ia (&pv);
 
       /* Pack gN-3(n) and gN-4(n) */
-#ifndef RISCV_MATH_BIG_ENDIAN
       gnext = __PKHBT(gnext1, gnext2, 16);
-#else
-      gnext = __PKHBT(gnext2, gnext1, 16);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
       /* y(n) += gN-4(n) * vN-4  */
       /* process for gN-8(n) * vN-8, gN-12(n) * vN-12 ... */

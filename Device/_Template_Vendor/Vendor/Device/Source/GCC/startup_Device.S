@@ -19,8 +19,8 @@
  * \file     startup_<Device>.S
  * \brief    NMSIS Nuclei N/NX Class Core based Core Device Startup File for
  *           Device <Device>
- * \version  V1.00
- * \date     17. Dec 2019
+ * \version  V1.10
+ * \date     30. July 2021
  *
  ******************************************************************************/
 
@@ -34,24 +34,17 @@
 #endif
 .endm
 
-/*
- * === Different Download and Running Mode ===
- * flashxip: Program will to be download into flash and run directly in Flash
- * flash: Program will be download into flash, when running, program will be copied to ilm/ram and run in ilm/ram
- * ilm: Program will be download into ilm/ram and run directly in ilm/ram, program lost when poweroff
- * ddr: Program will be download into ddr and run directly in ddr, program lost when poweroff
- */
-
-/*** Vector Table Code Section ***/
     /*
-     * TODO: Put the interrupt vectors in this section according to the run mode:
-     * This template startup code by default is for FlashXIP mode:
-     * FlashXIP: .vtable
-     * ILM: .vtable
-     * DDR: .vtable
-     * Flash: .vtable_ilm
+     * Put the interrupt vectors in this section according to vector remapped or not:
+     * .vtable: vector table's LMA and VMA are the same, it is not remapped
+     * .vtable_ilm: vector table's LMA and VMA are different, it is remapped, and
+     *              VECTOR_TABLE_REMAPPED need to be defined
      */
+#if defined(VECTOR_TABLE_REMAPPED)
+    .section .vtable_ilm
+#else
     .section .vtable
+#endif
 
     .weak  eclic_msip_handler
     .weak  eclic_mtip_handler
@@ -90,13 +83,10 @@
     .weak  eclic_irq50_handler
 
     .globl vector_base
+    .type vector_base, @object
 vector_base:
-    /* TODO: For ILM, DDR, and FlashXIP download mode, please place the following two lines */
-    j _start                                                /* 0: Reserved, Jump to _start when reset for ILM/FlashXIP mode.*/
+    j _start                                                /* 0: Reserved, Jump to _start when reset for vector table not remapped cases.*/
     .align LOG_REGBYTES                                     /*    Need to align 4 byte for RV32, 8 Byte for RV64 */
-
-    /* TODO: For Flash download mode, please comment the above two lines, and uncomment the following 1 line code */
-    //DECLARE_INT_HANDLER     default_intexc_handler        /* 0: Reserved, default handler for Flash download mode */
 
     DECLARE_INT_HANDLER     default_intexc_handler          /* 1: Reserved */
     DECLARE_INT_HANDLER     default_intexc_handler          /* 2: Reserved */
@@ -227,7 +217,7 @@ _start:
 
     /* ===== Startup Stage 2 ===== */
 
-#ifdef __riscv_flen
+#if defined(__riscv_flen) && __riscv_flen > 0
     /* Enable FPU */
     li t0, MSTATUS_FS
     csrs mstatus, t0

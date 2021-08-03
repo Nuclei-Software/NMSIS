@@ -3,13 +3,13 @@
  * Title:        riscv_rfft_q15.c
  * Description:  RFFT & RIFFT Q15 process function
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/transform_functions.h"
 
 /* ----------------------------------------------------------------------
  * Internal functions prototypes
@@ -57,7 +57,7 @@ void riscv_split_rifft_q15(
 /**
   @brief         Processing function for the Q15 RFFT/RIFFT.
   @param[in]     S     points to an instance of the Q15 RFFT/RIFFT structure
-  @param[in]     pSrc  points to input buffer
+  @param[in]     pSrc  points to input buffer (Source buffer is modified by this function.)
   @param[out]    pDst  points to output buffer
   @return        none
 
@@ -69,6 +69,15 @@ void riscv_split_rifft_q15(
                    \image html RFFTQ15.png "Input and Output Formats for Q15 RFFT"
   @par
                    \image html RIFFTQ15.png "Input and Output Formats for Q15 RIFFT"
+  @par
+                   If the input buffer is of length N, the output buffer must have length 2*N.
+                   The input buffer is modified by this function.
+  @par
+                   For the RIFFT, the source buffer must at least have length 
+                   fftLenReal + 2.
+                   The last two elements must be equal to what would be generated
+                   by the RFFT:
+                     (pSrc[0] - pSrc[1]) >> 1 and 0
  */
 
 void riscv_rfft_q15(
@@ -78,7 +87,6 @@ void riscv_rfft_q15(
 {
   const riscv_cfft_instance_q15 *S_CFFT = S->pCfft;
         uint32_t L2 = S->fftLenReal >> 1U;
-        uint32_t i;
 
   /* Calculation of RIFFT of input */
   if (S->ifftFlagR == 1U)
@@ -89,10 +97,7 @@ void riscv_rfft_q15(
      /* Complex IFFT process */
      riscv_cfft_q15 (S_CFFT, pDst, S->ifftFlagR, S->bitReverseFlagR);
 
-     for(i = 0; i < S->fftLenReal; i++)
-     {
-        pDst[i] = pDst[i] << 1U;
-     }
+     riscv_shift_q15(pDst, 1, pDst, S->fftLenReal);
   }
   else
   {
@@ -169,23 +174,14 @@ void riscv_split_rfft_q15(
          */
 
 
-#ifndef RISCV_MATH_BIG_ENDIAN
         /* pSrc[2 * i] * pATable[2 * i] - pSrc[2 * i + 1] * pATable[2 * i + 1] */
         outR = __RV_SMDRS(read_q15x2 (pSrc1), read_q15x2((q15_t *) pCoefA));
-#else
-        /* -(pSrc[2 * i + 1] * pATable[2 * i + 1] - pSrc[2 * i] * pATable[2 * i]) */
-        outR = -(__SMUSD(read_q15x2 (pSrc1), read_q15x2((q15_t *) pCoefA)));
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
         /* pSrc[2 * n - 2 * i] * pBTable[2 * i] + pSrc[2 * n - 2 * i + 1] * pBTable[2 * i + 1]) */
         outR = __RV_KMADA(outR, read_q15x2 (pSrc2), read_q15x2((q15_t *) pCoefB)) >> 16U;
 
         /* pIn[2 * n - 2 * i] * pBTable[2 * i + 1] - pIn[2 * n - 2 * i + 1] * pBTable[2 * i] */
-#ifndef RISCV_MATH_BIG_ENDIAN
         outI = __RV_SMXDS(read_q15x2((q15_t *) pCoefB), read_q15x2_da (&pSrc2));
-#else
-        outI = __SMUSDX(read_q15x2 ((q15_t *) pCoefB), read_q15x2_da (&pSrc2));
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
         /* (pIn[2 * i + 1] * pATable[2 * i] + pIn[2 * i] * pATable[2 * i + 1] */
         outI = __RV_KMAXDA(outI, read_q15x2_ia (&pSrc1), read_q15x2 ((q15_t *) pCoefA));
@@ -269,7 +265,6 @@ void riscv_split_rfft_q15(
 
 }
 
-
 /**
   @brief         Core Real IFFT process
   @param[in]     pSrc      points to input buffer
@@ -321,13 +316,8 @@ void riscv_split_rifft_q15(
 
 #if defined (RISCV_MATH_DSP)
 
-#ifndef RISCV_MATH_BIG_ENDIAN
       /* pIn[2 * n - 2 * i] * pBTable[2 * i] - pIn[2 * n - 2 * i + 1] * pBTable[2 * i + 1]) */
       outR = __RV_SMDRS(read_q15x2(pSrc2), read_q15x2((q15_t *) pCoefB));
-#else
-      /* -(-pIn[2 * n - 2 * i] * pBTable[2 * i] + pIn[2 * n - 2 * i + 1] * pBTable[2 * i + 1])) */
-      outR = -(__SMUSD(read_q15x2(pSrc2), read_q15x2((q15_t *) pCoefB)));
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
       /* pIn[2 * i] * pATable[2 * i] + pIn[2 * i + 1] * pATable[2 * i + 1] + pIn[2 * n - 2 * i] * pBTable[2 * i] */
       outR = __RV_KMADA(outR, read_q15x2(pSrc1), read_q15x2 ((q15_t *) pCoefA)) >> 16U;
@@ -336,18 +326,10 @@ void riscv_split_rifft_q15(
       outI = __RV_KMXDA(read_q15x2_da (&pSrc2), read_q15x2((q15_t *) pCoefB));
 
       /* pIn[2 * i + 1] * pATable[2 * i] - pIn[2 * i] * pATable[2 * i + 1] */
-#ifndef RISCV_MATH_BIG_ENDIAN
       outI = __SMLSDX(read_q15x2 ((q15_t *) pCoefA), read_q15x2_ia (&pSrc1), -outI);
-#else
-      outI = __SMLSDX(read_q15x2_ia (&pSrc1), read_q15x2 ((q15_t *) pCoefA), -outI);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
       /* write output */
-#ifndef RISCV_MATH_BIG_ENDIAN
       write_q15x2_ia (&pDst1, __PKHBT(outR, (outI >> 16U), 16));
-#else
-      write_q15x2_ia (&pDst1, __PKHBT((outI >> 16U), outR, 16));
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
 
 #else  /* #if defined (RISCV_MATH_DSP) */

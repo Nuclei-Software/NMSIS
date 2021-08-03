@@ -3,13 +3,13 @@
  * Title:        SupportFunctions.c
  * Description:  Combination of all support function source files.
  *
- * $Date:        18. March 2019
- * $Revision:    V1.0.0
+ * $Date:        16. March 2020
+ * $Revision:    V1.1.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2019-2020 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,6 +27,9 @@
  * limitations under the License.
  */
 
+#include "riscv_barycenter_f32.c"
+#include "riscv_bitonic_sort_f32.c"
+#include "riscv_bubble_sort_f32.c"
 #include "riscv_copy_f32.c"
 #include "riscv_copy_q15.c"
 #include "riscv_copy_q31.c"
@@ -35,6 +38,16 @@
 #include "riscv_fill_q15.c"
 #include "riscv_fill_q31.c"
 #include "riscv_fill_q7.c"
+#include "riscv_heap_sort_f32.c"
+#include "riscv_insertion_sort_f32.c"
+#include "riscv_merge_sort_f32.c"
+#include "riscv_merge_sort_init_f32.c"
+#include "riscv_quick_sort_f32.c"
+#include "riscv_selection_sort_f32.c"
+#include "riscv_sort_f32.c"
+#include "riscv_sort_init_f32.c"
+#include "riscv_weighted_sum_f32.c"
+
 #include "riscv_float_to_q15.c"
 #include "riscv_float_to_q31.c"
 #include "riscv_float_to_q7.c"

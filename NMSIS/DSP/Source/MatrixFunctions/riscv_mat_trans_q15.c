@@ -3,13 +3,13 @@
  * Title:        riscv_mat_trans_q15.c
  * Description:  Q15 matrix transpose
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/matrix_functions.h"
 
 /**
   @ingroup groupMatrix
@@ -46,7 +46,7 @@
                    - \ref RISCV_MATH_SUCCESS       : Operation successful
                    - \ref RISCV_MATH_SIZE_MISMATCH : Matrix size check failed
  */
-
+ 
 riscv_status riscv_mat_trans_q15(
   const riscv_matrix_instance_q15 * pSrc,
         riscv_matrix_instance_q15 * pDst)
@@ -78,6 +78,35 @@ riscv_status riscv_mat_trans_q15(
   else
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = nRows;
+  size_t l,max_l;
+  ptrdiff_t bstride = 2;  //  16bit/8bit = 2
+  ptrdiff_t col_diff = bstride * nCols;  //Control the column width of the span
+  uint16_t colnum;     //  How many rowumns are controlled
+  vint16m8_t v_in;
+  q15_t *pIn1;
+  // max_l = vsetvl_e16m8(32);
+    for(colnum = 0;colnum < nCols; colnum++)
+    { 
+      blkCnt = nRows;
+      pIn1 = pIn;
+      for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) 
+      { 
+        v_in = vlse16_v_i16m8(pIn, col_diff, l);
+        vse16_v_i16m8 (pOut, v_in, l);
+        // if(l == max_l)
+        // {
+        pIn = pIn+l*nCols;
+        // }
+        pOut = pOut+l;
+      }
+    pIn = pIn1;
+    pIn = pIn+1;
+    }
+    /* Set status as RISCV_MATH_SUCCESS */
+    status = RISCV_MATH_SUCCESS;
+#else
 
   {
     /* Matrix transpose by exchanging the rows with columns */
@@ -112,21 +141,13 @@ riscv_status riscv_mat_trans_q15(
         in = read_q15x2_ia ((q15_t **) &pIn);
 
         /* Unpack and store one element in  destination */
-#ifndef RISCV_MATH_BIG_ENDIAN
         *pOut = (q15_t) in;
-#else
-        *pOut = (q15_t) ((in & (q31_t) 0xffff0000) >> 16);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
         /* Update pointer pOut to point to next row of transposed matrix */
         pOut += nRows;
 
         /* Unpack and store second element in destination */
-#ifndef RISCV_MATH_BIG_ENDIAN
         *pOut = (q15_t) ((in & (q31_t) 0xffff0000) >> 16);
-#else
-        *pOut = (q15_t) in;
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
         /* Update  pointer pOut to point to next row of transposed matrix */
         pOut += nRows;
@@ -135,22 +156,13 @@ riscv_status riscv_mat_trans_q15(
         in = read_q15x2_ia ((q15_t **) &pIn);
 
         /* Unpack and store one element in destination */
-#ifndef RISCV_MATH_BIG_ENDIAN
         *pOut = (q15_t) in;
-#else
-        *pOut = (q15_t) ((in & (q31_t) 0xffff0000) >> 16);
-
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
         /* Update pointer pOut to point to next row of transposed matrix */
         pOut += nRows;
 
         /* Unpack and store second element in destination */
-#ifndef RISCV_MATH_BIG_ENDIAN
         *pOut = (q15_t) ((in & (q31_t) 0xffff0000) >> 16);
-#else
-        *pOut = (q15_t) in;
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
         /* Update pointer pOut to point to next row of transposed matrix */
         pOut += nRows;
@@ -192,8 +204,11 @@ riscv_status riscv_mat_trans_q15(
     status = RISCV_MATH_SUCCESS;
   }
 
+#endif /*defined(RISCV_VECTOR)*/
+
   /* Return to application */
   return (status);
+
 }
 
 /**

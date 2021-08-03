@@ -3,13 +3,13 @@
  * Title:        riscv_cmplx_dot_prod_f32.c
  * Description:  Floating-point complex dot product
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/complex_math_functions.h"
 
 /**
   @ingroup groupCmplxMath
@@ -82,70 +82,40 @@ void riscv_cmplx_dot_prod_f32(
         float32_t * realResult,
         float32_t * imagResult)
 {
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = numSamples;                               /* Loop counter */
+  size_t l;
+  const float32_t * inputA = pSrcA;
+  const float32_t * inputB = pSrcB;
+  ptrdiff_t bstride = 8;
+  vfloat32m8_t v_R1, v_R2, v_I1, v_I2;
+  vfloat32m8_t v_RR, v_II, v_RI, v_IR;
+  vfloat32m1_t v_dst;                      /* I don't know what the effect is  */ 
+  l = vsetvl_e32m1(1);
+  vfloat32m1_t v_real = vfmv_s_f_f32m1(v_real, 0, l);
+  vfloat32m1_t v_imag = vfmv_s_f_f32m1(v_imag, 0, l);    /* Initialize accumulated value */
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) 
+  {
+    v_R1 = vlse32_v_f32m8(inputA, bstride, l);
+    v_R2 = vlse32_v_f32m8(inputB, bstride, l);
+    inputA++; inputB++;                  /* Point to the first complex pointer */
+    v_I1 = vlse32_v_f32m8(inputA, bstride, l);
+    v_I2 = vlse32_v_f32m8(inputB, bstride, l);
+    v_RR = vfmul_vv_f32m8(v_R1, v_R2, l);
+    v_II = vfmul_vv_f32m8(v_I1, v_I2, l);
+    v_RI = vfmul_vv_f32m8(v_R1, v_I2, l);
+    v_IR = vfmul_vv_f32m8(v_I1, v_R2, l);
+    v_real = vfredsum_vs_f32m8_f32m1(v_real, vfsub_vv_f32m8(v_RR, v_II, l), v_real, l);
+    v_imag = vfredsum_vs_f32m8_f32m1(v_imag, vfadd_vv_f32m8(v_RI, v_IR, l), v_imag, l);
+    inputA += (l*2-1); inputB += (l*2-1);
+  }
+  *realResult = vfmv_f_s_f32m1_f32(v_real);
+  *imagResult = vfmv_f_s_f32m1_f32(v_imag);
+#else
         uint32_t blkCnt;                               /* Loop counter */
         float32_t real_sum = 0.0f, imag_sum = 0.0f;    /* Temporary result variables */
         float32_t a0,b0,c0,d0;
 
-#if defined(RISCV_MATH_NEON)
-    float32x4x2_t vec1,vec2,vec3,vec4;
-    float32x4_t accR,accI;
-    float32x2_t accum = vdup_n_f32(0);
-
-    accR = vdupq_n_f32(0.0);
-    accI = vdupq_n_f32(0.0);
-
-    /* Loop unrolling: Compute 8 outputs at a time */
-    blkCnt = numSamples >> 3U;
-
-    while (blkCnt > 0U)
-    {
-	/* C = (A[0]+jA[1])*(B[0]+jB[1]) + ...  */
-        /* Calculate dot product and then store the result in a temporary buffer. */
-
-	vec1 = vld2q_f32(pSrcA);
-        vec2 = vld2q_f32(pSrcB);
-
-	/* Increment pointers */
-        pSrcA += 8;
-        pSrcB += 8;
-
-	/* Re{C} = Re{A}*Re{B} - Im{A}*Im{B} */
-        accR = vmlaq_f32(accR,vec1.val[0],vec2.val[0]);
-        accR = vmlsq_f32(accR,vec1.val[1],vec2.val[1]);
-
-	/* Im{C} = Re{A}*Im{B} + Im{A}*Re{B} */
-        accI = vmlaq_f32(accI,vec1.val[1],vec2.val[0]);
-        accI = vmlaq_f32(accI,vec1.val[0],vec2.val[1]);
-
-        vec3 = vld2q_f32(pSrcA);
-        vec4 = vld2q_f32(pSrcB);
-	
-	/* Increment pointers */
-        pSrcA += 8;
-        pSrcB += 8;
-
-	/* Re{C} = Re{A}*Re{B} - Im{A}*Im{B} */
-        accR = vmlaq_f32(accR,vec3.val[0],vec4.val[0]);
-        accR = vmlsq_f32(accR,vec3.val[1],vec4.val[1]);
-
-	/* Im{C} = Re{A}*Im{B} + Im{A}*Re{B} */
-        accI = vmlaq_f32(accI,vec3.val[1],vec4.val[0]);
-        accI = vmlaq_f32(accI,vec3.val[0],vec4.val[1]);
-
-        /* Decrement the loop counter */
-        blkCnt--;
-    }
-
-    accum = vpadd_f32(vget_low_f32(accR), vget_high_f32(accR));
-    real_sum += accum[0] + accum[1];
-
-    accum = vpadd_f32(vget_low_f32(accI), vget_high_f32(accI));
-    imag_sum += accum[0] + accum[1];
-
-    /* Tail */
-    blkCnt = numSamples & 0x7;
-
-#else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -206,7 +176,6 @@ void riscv_cmplx_dot_prod_f32(
   blkCnt = numSamples;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#endif /* #if defined(RISCV_MATH_NEON) */
 
   while (blkCnt > 0U)
   {
@@ -227,6 +196,7 @@ void riscv_cmplx_dot_prod_f32(
   /* Store real and imaginary result in destination buffer. */
   *realResult = real_sum;
   *imagResult = imag_sum;
+#endif /* defined(RISCV_VECTOR) */
 }
 
 /**

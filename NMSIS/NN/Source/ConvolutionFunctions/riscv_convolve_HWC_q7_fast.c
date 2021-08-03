@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2018 Arm Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 Arm Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,15 +22,15 @@
  * Title:        riscv_convolve_HWC_q7_fast.c
  * Description:  Fast Q7 version of convolution
  *
- * $Date:        17. January 2018
- * $Revision:    V.1.0.0
+ * $Date:        January 26, 2021
+ * $Revision:    V.1.0.2
  *
  * Target Processor: RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 
-#include "riscv_math.h"
 #include "riscv_nnfunctions.h"
+#include "riscv_nnsupportfunctions.h"
 
 /**
  *  @ingroup groupNN
@@ -41,76 +41,75 @@
  * @{
  */
 
-  /**
-   * @brief Fast Q7 convolution function
-   * @param[in]       Im_in       pointer to input tensor
-   * @param[in]       dim_im_in   input tensor dimention
-   * @param[in]       ch_im_in    number of input tensor channels
-   * @param[in]       wt          pointer to kernel weights
-   * @param[in]       ch_im_out   number of filters, i.e., output tensor channels
-   * @param[in]       dim_kernel  filter kernel size
-   * @param[in]       padding     padding sizes
-   * @param[in]       stride      convolution stride
-   * @param[in]       bias        pointer to bias
-   * @param[in]       bias_shift  amount of left-shift for bias
-   * @param[in]       out_shift   amount of right-shift for output
-   * @param[in,out]   Im_out      pointer to output tensor
-   * @param[in]       dim_im_out  output tensor dimension
-   * @param[in,out]   bufferA     pointer to buffer space for input 
-   * @param[in,out]   bufferB     pointer to buffer space for output
-   * @return     The function returns either
-   * <code>RISCV_MATH_SIZE_MISMATCH</code> or <code>RISCV_MATH_SUCCESS</code> based on the outcome of size checking.
-   *
-   * @details
-   *
-   * <b>Buffer size:</b>
-   *
-   * bufferA size: 2*ch_im_in*dim_kernel*dim_kernel
-   *
-   * bufferB size: 0
-   *
-   * <b>Input dimension constraints:</b>
-   *
-   * ch_im_in is multiple of 4    ( because of the SIMD32 read and swap )
-   *
-   * ch_im_out is multipe of 2    ( bacause 2x2 mat_mult kernel )
-   *
-   * The im2col converts the Q7 tensor input into Q15 column, which is stored in
-   * bufferA. There is reordering happenning during this im2col process with
-   * riscv_q7_to_q15_reordered_no_shift. For every four elements, the second and
-   * third elements are swapped. 
-   *
-   * The computation kernel riscv_nn_mat_mult_kernel_q7_q15_reordered does the
-   * GEMM computation with the reordered columns.
-   *
-   * To speed-up the determination of the padding condition, we split the
-   * computation into 3x3 parts, i.e., {top, mid, bottom} X {left, mid, right}.
-   * This reduces the total number of boundary condition checks and improves
-   * the data copying performance.
-   */
+/**
+ * @brief Fast Q7 convolution function
+ * @param[in]       Im_in       pointer to input tensor
+ * @param[in]       dim_im_in   input tensor dimention
+ * @param[in]       ch_im_in    number of input tensor channels
+ * @param[in]       wt          pointer to kernel weights
+ * @param[in]       ch_im_out   number of filters, i.e., output tensor channels
+ * @param[in]       dim_kernel  filter kernel size
+ * @param[in]       padding     padding sizes
+ * @param[in]       stride      convolution stride
+ * @param[in]       bias        pointer to bias
+ * @param[in]       bias_shift  amount of left-shift for bias
+ * @param[in]       out_shift   amount of right-shift for output
+ * @param[in,out]   Im_out      pointer to output tensor
+ * @param[in]       dim_im_out  output tensor dimension
+ * @param[in,out]   bufferA     pointer to buffer space for input
+ * @param[in,out]   bufferB     pointer to buffer space for output
+ * @return     The function returns either
+ * <code>RISCV_MATH_SIZE_MISMATCH</code> or <code>RISCV_MATH_SUCCESS</code> based on the outcome of size checking.
+ *
+ * @details
+ *
+ * <b>Buffer size:</b>
+ *
+ * bufferA size: 2*ch_im_in*dim_kernel*dim_kernel
+ *
+ * bufferB size: 0
+ *
+ * <b>Input dimension constraints:</b>
+ *
+ * ch_im_in is multiple of 4    ( because of the SIMD32 read and swap )
+ *
+ * ch_im_out is multiple of 2    ( bacause 2x2 mat_mult kernel )
+ *
+ * The im2col converts the Q7 tensor input into Q15 column, which is stored in
+ * bufferA. There is reordering happenning during this im2col process with
+ * riscv_q7_to_q15_reordered_no_shift. For every four elements, the second and
+ * third elements are swapped.
+ *
+ * The computation kernel riscv_nn_mat_mult_kernel_q7_q15_reordered does the
+ * GEMM computation with the reordered columns.
+ *
+ * To speed-up the determination of the padding condition, we split the
+ * computation into 3x3 parts, i.e., {top, mid, bottom} X {left, mid, right}.
+ * This reduces the total number of boundary condition checks and improves
+ * the data copying performance.
+ */
 
-riscv_status
-riscv_convolve_HWC_q7_fast(const q7_t * Im_in,
-                         const uint16_t dim_im_in,
-                         const uint16_t ch_im_in,
-                         const q7_t * wt,
-                         const uint16_t ch_im_out,
-                         const uint16_t dim_kernel,
-                         const uint16_t padding,
-                         const uint16_t stride,
-                         const q7_t * bias,
-                         const uint16_t bias_shift,
-                         const uint16_t out_shift,
-                         q7_t * Im_out, 
-                         const uint16_t dim_im_out, 
-                         q15_t * bufferA, 
-                         q7_t * bufferB)
+riscv_status riscv_convolve_HWC_q7_fast(const q7_t *Im_in,
+                                    const uint16_t dim_im_in,
+                                    const uint16_t ch_im_in,
+                                    const q7_t *wt,
+                                    const uint16_t ch_im_out,
+                                    const uint16_t dim_kernel,
+                                    const uint16_t padding,
+                                    const uint16_t stride,
+                                    const q7_t *bias,
+                                    const uint16_t bias_shift,
+                                    const uint16_t out_shift,
+                                    q7_t *Im_out,
+                                    const uint16_t dim_im_out,
+                                    q15_t *bufferA,
+                                    q7_t *bufferB)
 {
-
-#if defined (RISCV_MATH_DSP)
+    (void)bufferB;
+#if defined (RISCV_MATH_DSP) || defined (RISCV_VECTOR)
     /* Run the following code for RISC-V Core with DSP enabled */
 
-    int16_t   i_out_y, i_out_x, i_ker_y, i_ker_x;
+    int16_t i_out_y, i_out_x, i_ker_y, i_ker_x;
 
     /*
      *  Here we use bufferA as q15_t internally as computation are done with q15_t level
@@ -316,12 +315,13 @@ riscv_convolve_HWC_q7_fast(const q7_t * Im_in,
     if (pBuffer != (q7_t *)bufferA)
     {
         const q7_t *pA = wt;
-        int       i;
+        int i;
 
         for (i = 0; i < ch_im_out; i++)
         {
             q31_t     sum = ((q31_t)bias[i] << bias_shift) + NN_ROUND(out_shift);
             q7_t    *pB = (q7_t *)bufferA;
+#if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
             /* basically each time it process 4 entries */
             uint16_t  colCnt = ch_im_in * dim_kernel * dim_kernel >> 3;
@@ -339,7 +339,7 @@ riscv_convolve_HWC_q7_fast(const q7_t * Im_in,
 
 #else
             /* each time it process 4 entries */
-            uint16_t  colCnt = ch_im_in * dim_kernel * dim_kernel >> 2;
+            uint16_t colCnt = ch_im_in * dim_kernel * dim_kernel >> 2;
 
             while (colCnt)
             {
@@ -351,25 +351,26 @@ riscv_convolve_HWC_q7_fast(const q7_t * Im_in,
             }
             colCnt = ch_im_in * dim_kernel * dim_kernel & 0x3;
 #endif /* __RISCV_XLEN == 64 */
+#else   
+            uint16_t  colCnt = ch_im_in * dim_kernel * dim_kernel;
+#endif
             while (colCnt)
             {
-                q7_t      inA1 = *pA++;
-                q15_t     inB1 = *pB++;
+                q7_t inA1 = *pA++;
+                q15_t inB1 = *pB++;
                 sum += inA1 * inB1;
                 colCnt--;
             }
-            *pOut = (q7_t) __SSAT((sum >> out_shift), 8);
+            *pOut = (q7_t)__SSAT((sum >> out_shift), 8);
             pOut++;
-
         }
-
     }
 #else
+    (void)bufferA;
     /* Run the following code as reference implementation for RISC-V Core without DSP */
-
-    uint16_t  i, j, k, l, m, n;
-    int       conv_out;
-    signed char in_row, in_col;
+    int i, j, k, l, m, n;
+    int conv_out;
+    int in_row, in_col;
 
     if (ch_im_in % 4 != 0 || ch_im_out % 2 != 0)
     {
@@ -395,20 +396,18 @@ riscv_convolve_HWC_q7_fast(const q7_t * Im_in,
                         {
                             for (l = 0; l < ch_im_in; l++)
                             {
-                                conv_out +=
-                                    Im_in[(in_row * dim_im_in + in_col) * ch_im_in +
-                                          l] * wt[i * ch_im_in * dim_kernel * dim_kernel + (m * dim_kernel +
-                                                                                            n) * ch_im_in + l];
+                                conv_out += Im_in[(in_row * dim_im_in + in_col) * ch_im_in + l] *
+                                    wt[i * ch_im_in * dim_kernel * dim_kernel + (m * dim_kernel + n) * ch_im_in + l];
                             }
                         }
                     }
                 }
-                Im_out[i + (j * dim_im_out + k) * ch_im_out] = (q7_t) __SSAT((conv_out >> out_shift), 8);
+                Im_out[i + (j * dim_im_out + k) * ch_im_out] = (q7_t)__SSAT((conv_out >> out_shift), 8);
             }
         }
     }
 
-#endif                          /* RISCV_MATH_DSP */
+#endif /* RISCV_MATH_DSP */
 
     /* Return to application */
     return RISCV_MATH_SUCCESS;

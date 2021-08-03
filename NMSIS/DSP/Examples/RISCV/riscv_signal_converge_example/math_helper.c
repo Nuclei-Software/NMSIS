@@ -435,33 +435,12 @@ void riscv_float_to_q28 (float *pIn, q31_t *pOut, uint32_t numSamples)
         }
     }
 }
+/*
 
-/**
- * @brief  Clip the float values to +/- 1
- * @param[in,out]  pIn           input buffer
- * @param[in]      numSamples    number of samples in the buffer
- * @return none
- * The function converts floating point values to fixed point values
- */
+Conflicting with the new clip functions in NMSIS-DSP and not used
+in the examples.
 
-void riscv_clip_f32 (float *pIn, uint32_t numSamples)
-{
-  uint32_t i;
-
-  for (i = 0; i < numSamples; i++)
-    {
-      if (pIn[i] > 1.0f)
-	  {
-	    pIn[i] = 1.0;
-	  }
-	  else if ( pIn[i] < -1.0f)
-	  {
-	    pIn[i] = -1.0;
-	  }
-
-    }
-}
-
+*/
 
 
 

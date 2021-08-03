@@ -3,13 +3,13 @@
  * Title:        riscv_q7_to_q15.c
  * Description:  Converts the elements of the Q7 vector to Q15 vector
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/support_functions.h"
 
 /**
   @ingroup groupSupport
@@ -57,6 +57,21 @@ void riscv_q7_to_q15(
         q15_t * pDst,
         uint32_t blockSize)
 {
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = blockSize;                         /* Loop counter */
+  const q7_t *pIn = pSrc;                             /* Source pointer */
+  size_t l;
+  vint8m4_t v_in;
+  vint16m8_t v_out;
+  for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) 
+  {
+    v_in = vle8_v_i8m4(pIn, l);
+    pIn += l;
+    v_out = vsll_vx_i16m8(vsext_vf2_i16m8(v_in, l), 8U, l);
+    vse16_v_i16m8 (pDst, v_out, l);
+    pDst += l;
+  }
+#else
         uint32_t blkCnt;                               /* Loop counter */
   const q7_t *pIn = pSrc;                              /* Source pointer */
 
@@ -92,13 +107,8 @@ void riscv_q7_to_q15(
     in1 = in1 & 0xFF00FF00;
     in2 = in2 & 0xFF00FF00;
 
-#ifndef RISCV_MATH_BIG_ENDIAN
     out2 = __PKHTB(in1, in2, 16);
     out1 = __PKHBT(in2, in1, 16);
-#else
-    out1 = __PKHTB(in1, in2, 16);
-    out2 = __PKHBT(in2, in1, 16);
-#endif
 
     write_q15x2_ia (&pDst, out1);
     write_q15x2_ia (&pDst, out2);
@@ -136,7 +146,7 @@ void riscv_q7_to_q15(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_VECTOR) */
 }
 
 /**

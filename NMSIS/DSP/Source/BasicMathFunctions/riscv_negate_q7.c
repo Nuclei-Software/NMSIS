@@ -3,13 +3,13 @@
  * Title:        riscv_negate_q7.c
  * Description:  Negates Q7 vectors
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/basic_math_functions.h"
 
 /**
   @ingroup groupMath
@@ -49,12 +49,24 @@
                    The function uses saturating arithmetic.
                    The Q7 value -1 (0x80) is saturated to the maximum allowable positive value 0x7F.
  */
-
 void riscv_negate_q7(
   const q7_t * pSrc,
         q7_t * pDst,
         uint32_t blockSize)
 {
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = blockSize;                               /* Loop counter */
+  size_t l;
+  l = vsetvl_e8m8(blkCnt);
+  vint8m8_t vx,vy = vmv_s_x_i8m8(vy, 0, l);
+       
+  for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
+    vx = vle8_v_i8m8(pSrc, l);
+    pSrc += l;
+    vse8_v_i8m8 (pDst, vssub_vv_i8m8(vy ,vx, l), l);
+    pDst += l;
+  }
+#else
         uint32_t blkCnt;                               /* Loop counter */
         q7_t in;                                       /* Temporary input variable */
 
@@ -151,7 +163,7 @@ void riscv_negate_q7(
     in = *pSrc++;
 
 #if defined (RISCV_MATH_DSP)
-    *pDst++ = (q7_t) __QSUB(0, in);
+    *pDst++ = (q7_t) __QSUB8(0, in);
 #else
     *pDst++ = (in == (q7_t) 0x80) ? (q7_t) 0x7f : -in;
 #endif
@@ -159,7 +171,7 @@ void riscv_negate_q7(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_VECTOR) */
 }
 
 /**

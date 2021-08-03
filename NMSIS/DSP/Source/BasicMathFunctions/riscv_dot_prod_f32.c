@@ -3,13 +3,13 @@
  * Title:        riscv_dot_prod_f32.c
  * Description:  Floating-point dot product
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/basic_math_functions.h"
 
 /**
   @ingroup groupMath
@@ -60,55 +60,35 @@
   @return        none
  */
 
+
 void riscv_dot_prod_f32(
   const float32_t * pSrcA,
   const float32_t * pSrcB,
         uint32_t blockSize,
         float32_t * result)
 {
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = blockSize;                               /* Loop counter */
+  size_t l;
+  const float32_t * inputA = pSrcA;
+  const float32_t * inputB = pSrcB;
+  vfloat32m8_t v_A, v_B;
+  l = vsetvl_e32m1(1);
+  vfloat32m1_t v_sum = vfmv_s_f_f32m1(v_sum, 0.0f, l);
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) 
+  {
+    v_A = vle32_v_f32m8(inputA, l);
+    v_B = vle32_v_f32m8(inputB, l);
+    inputA += l;
+    inputB += l;                  /* Point to the first complex pointer */
+    v_sum = vfredsum_vs_f32m8_f32m1(v_sum, vfmul_vv_f32m8(v_A, v_B, l), v_sum, l);
+  }
+  l = vsetvl_e32m1(1);
+  vse32_v_f32m1(result, v_sum, l);
+#else
         uint32_t blkCnt;                               /* Loop counter */
         float32_t sum = 0.0f;                          /* Temporary return variable */
 
-#if defined(RISCV_MATH_NEON)
-    float32x4_t vec1;
-    float32x4_t vec2;
-    float32x4_t res;
-    float32x4_t accum = vdupq_n_f32(0);    
-
-    /* Compute 4 outputs at a time */
-    blkCnt = blockSize >> 2U;
-
-    vec1 = vld1q_f32(pSrcA);
-    vec2 = vld1q_f32(pSrcB);
-
-    while (blkCnt > 0U)
-    {
-        /* C = A[0]*B[0] + A[1]*B[1] + A[2]*B[2] + ... + A[blockSize-1]*B[blockSize-1] */
-        /* Calculate dot product and then store the result in a temporary buffer. */
-        
-	accum = vmlaq_f32(accum, vec1, vec2);
-	
-        /* Increment pointers */
-        pSrcA += 4;
-        pSrcB += 4; 
-
-        vec1 = vld1q_f32(pSrcA);
-        vec2 = vld1q_f32(pSrcB);
-        
-        /* Decrement the loop counter */
-        blkCnt--;
-    }
-    
-#if __aarch64__
-    sum = vpadds_f32(vpadd_f32(vget_low_f32(accum), vget_high_f32(accum)));
-#else
-    sum = (vpadd_f32(vget_low_f32(accum), vget_high_f32(accum)))[0] + (vpadd_f32(vget_low_f32(accum), vget_high_f32(accum)))[1];
-#endif    
-
-    /* Tail */
-    blkCnt = blockSize & 0x3;
-
-#else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -142,7 +122,6 @@ void riscv_dot_prod_f32(
   blkCnt = blockSize;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#endif /* #if defined(RISCV_MATH_NEON) */
 
   while (blkCnt > 0U)
   {
@@ -157,6 +136,7 @@ void riscv_dot_prod_f32(
 
   /* Store result in destination buffer */
   *result = sum;
+#endif /* defined(RISCV_VECTOR) */
 }
 
 /**

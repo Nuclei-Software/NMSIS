@@ -2,10 +2,10 @@
 // each one has it's own function.
 // All function can be found in main function.
 // If you don't want to use it, then comment it.
-#include "../common.h"
 #include "riscv_math.h"
 #include <stdint.h>
 #include <stdlib.h>
+#include "../common.h"
 
 #include "../HelperFunctions/math_helper.c"
 #include "../HelperFunctions/ref_helper.c"
@@ -20,7 +20,6 @@ int test_flag_error = 0;
 
 static int DSP_SIN_COS_F32(void)
 {
-
     int16_t i;
     float32_t pSinVal, pSinVal_ref;
     float32_t pCosVal, pCosVal_ref;

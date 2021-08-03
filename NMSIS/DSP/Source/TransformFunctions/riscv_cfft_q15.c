@@ -3,13 +3,13 @@
  * Title:        riscv_cfft_q15.c
  * Description:  Combined Radix Decimation in Q15 Frequency CFFT processing function
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,8 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/transform_functions.h"
+
 
 extern void riscv_radix4_butterfly_q15(
         q15_t * pSrc,
@@ -180,13 +181,8 @@ void riscv_cfft_radix4by2_q15(
 
       write_q15x4_ia (&pSi, __RV_RADD16(T64, S64));
 
-#ifndef RISCV_MATH_BIG_ENDIAN
       out164 = __RV_KMDA(coeff64, R64) >> 16U;
       out264 = __RV_SMXDS(R64, coeff64);
-#else
-      out164 = __RV_SMXDS(R64, coeff64) >> 16U;
-      out264 = __RV_KMDA(coeff64, R64);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
       write_q15x4_ia (&pSl, (q63_t) (((out264) & 0xFFFF0000FFFF0000) | (out164 & 0x0000FFFF0000FFFF)));
   }
@@ -206,15 +202,10 @@ void riscv_cfft_radix4by2_q15(
 
       write_q15x2_ia (&pSi, __RV_RADD16(T, S));
 
-#ifndef RISCV_MATH_BIG_ENDIAN
       out1 = __RV_KMDA(coeff, R) >> 16U;
       out2 = __RV_SMXDS(R, coeff);
-#else
-      out1 = __RV_SMXDS(R, coeff) >> 16U;
-      out2 = __RV_KMDA(coeff, R);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
-      write_q15x2_ia (&pSl, (q31_t) ((out2) & 0xFFFF0000) | (out1 & 0x0000FFFF));
+      write_q15x2_ia (&pSl, (q31_t)__PKHBT( out1, out2, 0 ) );
   }
 #endif /* __RISCV_XLEN == 64 */
 
@@ -314,13 +305,8 @@ void riscv_cfft_radix4by2_inverse_q15(
 
       write_q15x4_ia (&pSi, __RV_RADD16(T64, S64));
 
-#ifndef RISCV_MATH_BIG_ENDIAN
       out1 = __SMUAD(coeff, R) >> 16U;
       out2 = __SMUSDX(coeff, R);
-#else
-      out164 = __RV_SMXDS(R64, coeff64) >> 16U;
-      out264 = __RV_KMDA(coeff64, R64);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
       write_q15x4_ia (&pSl, (q63_t) ((out264) & 0xFFFF0000FFFF0000) | (out164 & 0x0000FFFF0000FFFF));
   }
@@ -339,13 +325,8 @@ void riscv_cfft_radix4by2_inverse_q15(
 
       write_q15x2_ia (&pSi, __RV_RADD16(T, S));
 
-#ifndef RISCV_MATH_BIG_ENDIAN
       out1 = __SMUAD(coeff, R) >> 16U;
       out2 = __SMUSDX(coeff, R);
-#else
-      out1 = __RV_SMXDS(R, coeff) >> 16U;
-      out2 = __RV_KMDA(coeff, R);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
       write_q15x2_ia (&pSl, (q31_t) ((out2) & 0xFFFF0000) | (out1 & 0x0000FFFF));
   }
@@ -366,15 +347,10 @@ void riscv_cfft_radix4by2_inverse_q15(
 
      write_q15x2_ia (&pSi, __RV_RADD16(T, S));
 
-#ifndef RISCV_MATH_BIG_ENDIAN
      out1 = __SMUSD(coeff, R) >> 16U;
      out2 = __SMUADX(coeff, R);
-#else
-     out1 = __RV_KMXDA(R, coeff) >> 16U;
-     out2 = __RV_SMDRS(__QSUB(0, coeff), R);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
-     write_q15x2_ia (&pSl, (q31_t) ((out2) & 0xFFFF0000) | (out1 & 0x0000FFFF));
+     write_q15x2_ia (&pSl, (q31_t)__PKHBT( out1, out2, 0 ));
   }
 #endif
 #else /* #if defined (RISCV_MATH_DSP) */
@@ -426,3 +402,4 @@ void riscv_cfft_radix4by2_inverse_q15(
      pSrc[4 * i + 3] = p3;
   }
 }
+

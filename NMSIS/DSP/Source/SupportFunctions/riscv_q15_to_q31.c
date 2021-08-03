@@ -3,13 +3,13 @@
  * Title:        riscv_q15_to_q31.c
  * Description:  Converts the elements of the Q15 vector to Q31 vector
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/support_functions.h"
 
 /**
   @ingroup groupSupport
@@ -51,12 +51,26 @@
       pDst[n] = (q31_t) pSrc[n] << 16;   0 <= n < blockSize.
   </pre>
  */
-
 void riscv_q15_to_q31(
   const q15_t * pSrc,
         q31_t * pDst,
         uint32_t blockSize)
 {
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = blockSize;                         /* Loop counter */
+  const q15_t *pIn = pSrc;                             /* Source pointer */
+  size_t l;
+  vint16m4_t v_in;
+  vint32m8_t v_out;
+  for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) 
+  {
+    v_in = vle16_v_i16m4(pIn, l);
+    pIn += l;
+    v_out = vsll_vx_i32m8(vsext_vf2_i32m8(v_in, l), 16U, l);
+    vse32_v_i32m8 (pDst, v_out, l);
+    pDst += l;
+  }
+#else
         uint32_t blkCnt;                               /* Loop counter */
   const q15_t *pIn = pSrc;                             /* Source pointer */
 
@@ -78,7 +92,6 @@ void riscv_q15_to_q31(
     in1 = read_q15x2_ia ((q15_t **) &pIn);
     in2 = read_q15x2_ia ((q15_t **) &pIn);
 
-#ifndef RISCV_MATH_BIG_ENDIAN
 
     /* extract lower 16 bits to 32 bit result */
     out1 = in1 << 16U;
@@ -89,18 +102,6 @@ void riscv_q15_to_q31(
     /* extract upper 16 bits to 32 bit result */
     out4 = in2 & 0xFFFF0000;
 
-#else
-
-    /* extract upper 16 bits to 32 bit result */
-    out1 = in1 & 0xFFFF0000;
-    /* extract lower 16 bits to 32 bit result */
-    out2 = in1 << 16U;
-    /* extract upper 16 bits to 32 bit result */
-    out3 = in2 & 0xFFFF0000;
-    /* extract lower 16 bits to 32 bit result */
-    out4 = in2 << 16U;
-
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
     *pDst++ = out1;
     *pDst++ = out2;
@@ -131,7 +132,7 @@ void riscv_q15_to_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_VECTOR) */
 }
 
 /**

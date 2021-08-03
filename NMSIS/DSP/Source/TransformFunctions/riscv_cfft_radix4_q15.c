@@ -4,13 +4,13 @@
  * Description:  This file has function definition of Radix-4 FFT & IFFT function and
  *               In-place bit reversal using bit reversal table
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -28,7 +28,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/transform_functions.h"
 
 
 void riscv_radix4_butterfly_q15(
@@ -240,17 +240,10 @@ void riscv_radix4_butterfly_q15(
     /* co2 & si2 are read from SIMD Coefficient pointer */
     C2 = read_q15x2 ((q15_t *) pCoef16 + (4U * ic));
 
-#ifndef RISCV_MATH_BIG_ENDIAN
     /* xc' = (xa-xb+xc-xd)* co2 + (ya-yb+yc-yd)* (si2) */
     out1 = __SMUAD(C2, R) >> 16U;
     /* yc' = (ya-yb+yc-yd)* co2 - (xa-xb+xc-xd)* (si2) */
     out2 = __SMUSDX(C2, R);
-#else
-    /* xc' = (ya-yb+yc-yd)* co2 - (xa-xb+xc-xd)* (si2) */
-    out1 = __SMUSDX(R, C2) >> 16U;
-    /* yc' = (xa-xb+xc-xd)* co2 + (ya-yb+yc-yd)* (si2) */
-    out2 = __SMUAD(C2, R);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
     /*  Reading i0+fftLen/4 */
     /* T = packed(yb, xb) */
@@ -260,7 +253,7 @@ void riscv_radix4_butterfly_q15(
 
     /* writing the butterfly processed i0 + fftLen/4 sample */
     /* writing output(xc', yc') in little endian format */
-    write_q15x2_ia (&pSi1, (q31_t) ((out2) & 0xFFFF0000) | (out1 & 0x0000FFFF));
+    write_q15x2_ia (&pSi1, (q31_t) __PKHBT( out1, out2, 0 ));
 
     /*  Butterfly calculations */
     /* U = packed(yd, xd) */
@@ -271,55 +264,34 @@ void riscv_radix4_butterfly_q15(
     /* T = packed(yb-yd, xb-xd) */
     T = __QSUB16(T, U);
 
-#ifndef RISCV_MATH_BIG_ENDIAN
     /* R = packed((ya-yc) + (xb- xd) , (xa-xc) - (yb-yd)) */
     R = __QASX(S, T);
     /* S = packed((ya-yc) - (xb- xd),  (xa-xc) + (yb-yd)) */
     S = __QSAX(S, T);
-#else
-    /* R = packed((ya-yc) + (xb- xd) , (xa-xc) - (yb-yd)) */
-    R = __QSAX(S, T);
-    /* S = packed((ya-yc) - (xb- xd),  (xa-xc) + (yb-yd)) */
-    S = __QASX(S, T);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
     /* co1 & si1 are read from SIMD Coefficient pointer */
     C1 = read_q15x2 ((q15_t *) pCoef16 + (2U * ic));
     /*  Butterfly process for the i0+fftLen/2 sample */
 
-#ifndef RISCV_MATH_BIG_ENDIAN
     /* xb' = (xa+yb-xc-yd)* co1 + (ya-xb-yc+xd)* (si1) */
     out1 = __SMUAD(C1, S) >> 16U;
     /* yb' = (ya-xb-yc+xd)* co1 - (xa+yb-xc-yd)* (si1) */
     out2 = __SMUSDX(C1, S);
-#else
-    /* xb' = (ya-xb-yc+xd)* co1 - (xa+yb-xc-yd)* (si1) */
-    out1 = __SMUSDX(S, C1) >> 16U;
-    /* yb' = (xa+yb-xc-yd)* co1 + (ya-xb-yc+xd)* (si1) */
-    out2 = __SMUAD(C1, S);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
     /* writing output(xb', yb') in little endian format */
-    write_q15x2_ia (&pSi2, ((out2) & 0xFFFF0000) | ((out1) & 0x0000FFFF));
+    write_q15x2_ia (&pSi2, __PKHBT( out1, out2, 0 ));
 
     /* co3 & si3 are read from SIMD Coefficient pointer */
     C3 = read_q15x2 ((q15_t *) pCoef16 + (6U * ic));
     /*  Butterfly process for the i0+3fftLen/4 sample */
 
-#ifndef RISCV_MATH_BIG_ENDIAN
     /* xd' = (xa-yb-xc+yd)* co3 + (ya+xb-yc-xd)* (si3) */
     out1 = __SMUAD(C3, R) >> 16U;
     /* yd' = (ya+xb-yc-xd)* co3 - (xa-yb-xc+yd)* (si3) */
     out2 = __SMUSDX(C3, R);
-#else
-    /* xd' = (ya+xb-yc-xd)* co3 - (xa-yb-xc+yd)* (si3) */
-    out1 = __SMUSDX(R, C3) >> 16U;
-    /* yd' = (xa-yb-xc+yd)* co3 + (ya+xb-yc-xd)* (si3) */
-    out2 = __SMUAD(C3, R);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
     /* writing output(xd', yd') in little endian format */
-    write_q15x2_ia (&pSi3, ((out2) & 0xFFFF0000) | (out1 & 0x0000FFFF));
+    write_q15x2_ia (&pSi3, __PKHBT( out1, out2, 0 ));
 
     /*  Twiddle coefficients index modifier */
     ic = ic + twidCoefModifier;
@@ -396,19 +368,11 @@ void riscv_radix4_butterfly_q15(
         /* R = packed( (ya + yc) - (yb + yd), (xa + xc) - (xb + xd)) */
         R = __SHSUB16(R, T);
 
-#ifndef RISCV_MATH_BIG_ENDIAN
         /* (ya-yb+yc-yd)* (si2) + (xa-xb+xc-xd)* co2 */
         out1 = __SMUAD(C2, R) >> 16U;
 
         /* (ya-yb+yc-yd)* co2 - (xa-xb+xc-xd)* (si2) */
         out2 = __SMUSDX(C2, R);
-#else
-        /* (ya-yb+yc-yd)* co2 - (xa-xb+xc-xd)* (si2) */
-        out1 = __SMUSDX(R, C2) >> 16U;
-
-        /* (ya-yb+yc-yd)* (si2) + (xa-xb+xc-xd)* co2 */
-        out2 = __SMUAD(C2, R);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
         /*  Reading i0+3fftLen/4 */
         /* Read yb (real), xb(imag) input */
@@ -417,7 +381,7 @@ void riscv_radix4_butterfly_q15(
         /*  writing the butterfly processed i0 + fftLen/4 sample */
         /* xc' = (xa-xb+xc-xd)* co2 + (ya-yb+yc-yd)* (si2) */
         /* yc' = (ya-yb+yc-yd)* co2 - (xa-xb+xc-xd)* (si2) */
-        write_q15x2 (pSi1, ((out2) & 0xFFFF0000) | (out1 & 0x0000FFFF));
+        write_q15x2 (pSi1, __PKHBT( out1, out2, 0 ));
         pSi1 += 2 * n1;
 
         /*  Butterfly calculations */
@@ -428,7 +392,6 @@ void riscv_radix4_butterfly_q15(
         /* T = packed(yb-yd, xb-xd) */
         T = __QSUB16(T, U);
 
-#ifndef RISCV_MATH_BIG_ENDIAN
         /* R = packed((ya-yc) + (xb- xd) , (xa-xc) - (yb-yd)) */
         R = __SHASX(S, T);
 
@@ -439,37 +402,20 @@ void riscv_radix4_butterfly_q15(
         /*  Butterfly process for the i0+fftLen/2 sample */
         out1 = __SMUAD(C1, S) >> 16U;
         out2 = __SMUSDX(C1, S);
-#else
-        /* R = packed((ya-yc) + (xb- xd) , (xa-xc) - (yb-yd)) */
-        R = __SHSAX(S, T);
-
-        /* S = packed((ya-yc) - (xb- xd),  (xa-xc) + (yb-yd)) */
-        S = __SHASX(S, T);
-
-
-        /*  Butterfly process for the i0+fftLen/2 sample */
-        out1 = __SMUSDX(S, C1) >> 16U;
-        out2 = __SMUAD(C1, S);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
         /* xb' = (xa+yb-xc-yd)* co1 + (ya-xb-yc+xd)* (si1) */
         /* yb' = (ya-xb-yc+xd)* co1 - (xa+yb-xc-yd)* (si1) */
-        write_q15x2 (pSi2, ((out2) & 0xFFFF0000) | (out1 & 0x0000FFFF));
+        write_q15x2 (pSi2, __PKHBT( out1, out2, 0 ));
         pSi2 += 2 * n1;
 
         /*  Butterfly process for the i0+3fftLen/4 sample */
 
-#ifndef RISCV_MATH_BIG_ENDIAN
         out1 = __SMUAD(C3, R) >> 16U;
         out2 = __SMUSDX(C3, R);
-#else
-        out1 = __SMUSDX(R, C3) >> 16U;
-        out2 = __SMUAD(C3, R);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
         /* xd' = (xa-yb-xc+yd)* co3 + (ya+xb-yc-xd)* (si3) */
         /* yd' = (ya+xb-yc-xd)* co3 - (xa-yb-xc+yd)* (si3) */
-        write_q15x2 (pSi3, ((out2) & 0xFFFF0000) | (out1 & 0x0000FFFF));
+        write_q15x2 (pSi3, __PKHBT( out1, out2, 0 ));
         pSi3 += 2 * n1;
       }
     }
@@ -534,7 +480,6 @@ void riscv_radix4_butterfly_q15(
     /* T = packed( (yb - yd), (xb - xd))  */
     U = __QSUB16(xbyb, xdyd);
 
-#ifndef RISCV_MATH_BIG_ENDIAN
     /* xb' = (xa+yb-xc-yd) */
     /* yb' = (ya-xb-yc+xd) */
     write_q15x2_ia (&ptr1, __SHSAX(S, U));
@@ -542,15 +487,6 @@ void riscv_radix4_butterfly_q15(
     /* xd' = (xa-yb-xc+yd) */
     /* yd' = (ya+xb-yc-xd) */
     write_q15x2_ia (&ptr1, __SHASX(S, U));
-#else
-    /* xb' = (xa+yb-xc-yd) */
-    /* yb' = (ya-xb-yc+xd) */
-    write_q15x2_ia (&ptr1, __SHASX(S, U));
-
-    /* xd' = (xa-yb-xc+yd) */
-    /* yd' = (ya+xb-yc-xd) */
-    write_q15x2_ia (&ptr1, __SHSAX(S, U));
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
   } while (--j);
 
@@ -1126,17 +1062,10 @@ void riscv_radix4_butterfly_inverse_q15(
     /* co2 & si2 are read from SIMD Coefficient pointer */
     C2 = read_q15x2 ((q15_t *) pCoef16 + (4U * ic));
 
-#ifndef RISCV_MATH_BIG_ENDIAN
     /* xc' = (xa-xb+xc-xd)* co2 + (ya-yb+yc-yd)* (si2) */
     out1 = __RV_KMDA(C2, R) >> 16U;
     /* yc' = (ya-yb+yc-yd)* co2 - (xa-xb+xc-xd)* (si2) */
     out2 = __RV_KMXDA(C2, R);
-#else
-    /* xc' = (ya-yb+yc-yd)* co2 - (xa-xb+xc-xd)* (si2) */
-    out1 = __SMUSDX(R, C2) >> 16U;
-    /* yc' = (xa-xb+xc-xd)* co2 + (ya-yb+yc-yd)* (si2) */
-    out2 = __SMUAD(C2, R);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
     /*  Reading i0+fftLen/4 */
     /* T = packed(yb, xb) */
@@ -1149,7 +1078,7 @@ void riscv_radix4_butterfly_inverse_q15(
 #endif /* __RISCV_XLEN == 64 */
     /* writing the butterfly processed i0 + fftLen/4 sample */
     /* writing output(xc', yc') in little endian format */
-    write_q15x2_ia (&pSi1, (q31_t) ((out2) & 0xFFFF0000) | (out1 & 0x0000FFFF));
+    write_q15x2_ia (&pSi1, (q31_t) __PKHBT( out1, out2, 0 ));
 
     /*  Butterfly calculations */
     /* U = packed(yd, xd) */
@@ -1163,55 +1092,34 @@ void riscv_radix4_butterfly_inverse_q15(
     /* T = packed(yb-yd, xb-xd) */
     T = __RV_KSUB16(T, U);
 
-#ifndef RISCV_MATH_BIG_ENDIAN
     /* R = packed((ya-yc) + (xb- xd) , (xa-xc) - (yb-yd)) */
     R = __RV_KCRAS16(S, T);
     /* S = packed((ya-yc) - (xb- xd),  (xa-xc) + (yb-yd)) */
     S = __RV_KCRSA16(S, T);
-#else
-    /* R = packed((ya-yc) + (xb- xd) , (xa-xc) - (yb-yd)) */
-    R = __QSAX(S, T);
-    /* S = packed((ya-yc) - (xb- xd),  (xa-xc) + (yb-yd)) */
-    S = __QASX(S, T);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
     /* co1 & si1 are read from SIMD Coefficient pointer */
     C1 = read_q15x2 ((q15_t *) pCoef16 + (2U * ic));
     /*  Butterfly process for the i0+fftLen/2 sample */
 
-#ifndef RISCV_MATH_BIG_ENDIAN
     /* xb' = (xa+yb-xc-yd)* co1 + (ya-xb-yc+xd)* (si1) */
     out1 = __RV_KMDA(C1, S) >> 16U;
     /* yb' = (ya-xb-yc+xd)* co1 - (xa+yb-xc-yd)* (si1) */
     out2 = __RV_KMXDA(C1, S);
-#else
-    /* xb' = (ya-xb-yc+xd)* co1 - (xa+yb-xc-yd)* (si1) */
-    out1 = __SMUSDX(S, C1) >> 16U;
-    /* yb' = (xa+yb-xc-yd)* co1 + (ya-xb-yc+xd)* (si1) */
-    out2 = __SMUAD(C1, S);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
     /* writing output(xb', yb') in little endian format */
-    write_q15x2_ia (&pSi2, ((out2) & 0xFFFF0000) | ((out1) & 0x0000FFFF));
+    write_q15x2_ia (&pSi2, __PKHBT( out1, out2, 0 ));
 
     /* co3 & si3 are read from SIMD Coefficient pointer */
     C3 = read_q15x2 ((q15_t *) pCoef16 + (6U * ic));
     /*  Butterfly process for the i0+3fftLen/4 sample */
 
-#ifndef RISCV_MATH_BIG_ENDIAN
     /* xd' = (xa-yb-xc+yd)* co3 + (ya+xb-yc-xd)* (si3) */
     out1 = __RV_KMDA(C3, R) >> 16U;
     /* yd' = (ya+xb-yc-xd)* co3 - (xa-yb-xc+yd)* (si3) */
     out2 = __RV_KMXDA(C3, R);
-#else
-    /* xd' = (ya+xb-yc-xd)* co3 - (xa-yb-xc+yd)* (si3) */
-    out1 = __SMUSDX(R, C3) >> 16U;
-    /* yd' = (xa-yb-xc+yd)* co3 + (ya+xb-yc-xd)* (si3) */
-    out2 = __SMUAD(C3, R);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
     /* writing output(xd', yd') in little endian format */
-    write_q15x2_ia (&pSi3, ((out2) & 0xFFFF0000) | (out1 & 0x0000FFFF));
+    write_q15x2_ia (&pSi3, __PKHBT( out1, out2, 0 ));
 
     /*  Twiddle coefficients index modifier */
     ic = ic + twidCoefModifier;
@@ -1288,19 +1196,11 @@ void riscv_radix4_butterfly_inverse_q15(
         /* R = packed( (ya + yc) - (yb + yd), (xa + xc) - (xb + xd)) */
         R = __SHSUB16(R, T);
 
-#ifndef RISCV_MATH_BIG_ENDIAN
         /* (ya-yb+yc-yd)* (si2) + (xa-xb+xc-xd)* co2 */
         out1 = __RV_KMDA(C2, R) >> 16U;
 
         /* (ya-yb+yc-yd)* co2 - (xa-xb+xc-xd)* (si2) */
         out2 = __RV_KMXDA(C2, R);
-#else
-        /* (ya-yb+yc-yd)* co2 - (xa-xb+xc-xd)* (si2) */
-        out1 = __SMUADX(R, C2) >> 16U;
-
-        /* (ya-yb+yc-yd)* (si2) + (xa-xb+xc-xd)* co2 */
-        out2 = __SMUSD(__QSUB16(0, C2), R);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
         /*  Reading i0+3fftLen/4 */
         /* Read yb (real), xb(imag) input */
@@ -1309,7 +1209,7 @@ void riscv_radix4_butterfly_inverse_q15(
         /*  writing the butterfly processed i0 + fftLen/4 sample */
         /* xc' = (xa-xb+xc-xd)* co2 + (ya-yb+yc-yd)* (si2) */
         /* yc' = (ya-yb+yc-yd)* co2 - (xa-xb+xc-xd)* (si2) */
-        write_q15x2 (pSi1, ((out2) & 0xFFFF0000) | (out1 & 0x0000FFFF));
+        write_q15x2 (pSi1, __PKHBT( out1, out2, 0 ));
         pSi1 += 2 * n1;
 
         /*  Butterfly calculations */
@@ -1320,7 +1220,6 @@ void riscv_radix4_butterfly_inverse_q15(
         /* T = packed(yb-yd, xb-xd) */
         T = __RV_KSUB16(T, U);
 
-#ifndef RISCV_MATH_BIG_ENDIAN
         /* R = packed((ya-yc) + (xb- xd) , (xa-xc) - (yb-yd)) */
         R = __RV_RCRAS16(S, T);
 
@@ -1331,36 +1230,20 @@ void riscv_radix4_butterfly_inverse_q15(
         /*  Butterfly process for the i0+fftLen/2 sample */
         out1 = __RV_KMDA(C1, S) >> 16U;
         out2 = __RV_KMXDA(C1, S);
-#else
-        /* R = packed((ya-yc) + (xb- xd) , (xa-xc) - (yb-yd)) */
-        R = __SHASX(S, T);
-
-        /* S = packed((ya-yc) - (xb- xd),  (xa-xc) + (yb-yd)) */
-        S = __SHSAX(S, T);
-
-        /*  Butterfly process for the i0+fftLen/2 sample */
-        out1 = __SMUADX(S, C1) >> 16U;
-        out2 = __SMUSD(__QSUB16(0, C1), S);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
         /* xb' = (xa+yb-xc-yd)* co1 + (ya-xb-yc+xd)* (si1) */
         /* yb' = (ya-xb-yc+xd)* co1 - (xa+yb-xc-yd)* (si1) */
-        write_q15x2 (pSi2, ((out2) & 0xFFFF0000) | (out1 & 0x0000FFFF));
+        write_q15x2 (pSi2, __PKHBT( out1, out2, 0 ));
         pSi2 += 2 * n1;
 
         /*  Butterfly process for the i0+3fftLen/4 sample */
 
-#ifndef RISCV_MATH_BIG_ENDIAN
         out1 = __RV_KMDA(C3, R) >> 16U;
         out2 = __RV_KMXDA(C3, R);
-#else
-        out1 = __SMUADX(C3, R) >> 16U;
-        out2 = __SMUSD(__QSUB16(0, C3), R);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
         /* xd' = (xa-yb-xc+yd)* co3 + (ya+xb-yc-xd)* (si3) */
         /* yd' = (ya+xb-yc-xd)* co3 - (xa-yb-xc+yd)* (si3) */
-        write_q15x2 (pSi3, ((out2) & 0xFFFF0000) | (out1 & 0x0000FFFF));
+        write_q15x2 (pSi3, __PKHBT( out1, out2, 0 ));
         pSi3 += 2 * n1;
       }
     }
@@ -1424,7 +1307,6 @@ void riscv_radix4_butterfly_inverse_q15(
     /* T = packed( (yb - yd), (xb - xd))  */
     U = __RV_KSUB16(xbyb, xdyd);
 
-#ifndef RISCV_MATH_BIG_ENDIAN
     /* xb' = (xa+yb-xc-yd) */
     /* yb' = (ya-xb-yc+xd) */
     write_q15x2_ia (&ptr1, __RV_RCRSA16(S, U));
@@ -1432,15 +1314,6 @@ void riscv_radix4_butterfly_inverse_q15(
     /* xd' = (xa-yb-xc+yd) */
     /* yd' = (ya+xb-yc-xd) */
     write_q15x2_ia (&ptr1, __RV_RCRAS16(S, U));
-#else
-    /* xb' = (xa+yb-xc-yd) */
-    /* yb' = (ya-xb-yc+xd) */
-    write_q15x2_ia (&ptr1, __SHSAX(S, U));
-
-    /* xd' = (xa-yb-xc+yd) */
-    /* yd' = (ya+xb-yc-xd) */
-    write_q15x2_ia (&ptr1, __SHASX(S, U));
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
   } while (--j);
 

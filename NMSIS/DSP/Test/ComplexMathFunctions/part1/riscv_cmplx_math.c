@@ -6,10 +6,10 @@
 // has it's own function. All function can be found in main function. If you
 // don't want to use it, then comment it. contains following functions,eachone
 // includes q15,q31 and f32 versions
-#include "../common.h"
 #include "riscv_math.h"
 #include <stdint.h>
 #include "array.h"
+#include "../common.h"
 
 #include "../HelperFunctions/math_helper.c"
 #include "../HelperFunctions/ref_helper.c"

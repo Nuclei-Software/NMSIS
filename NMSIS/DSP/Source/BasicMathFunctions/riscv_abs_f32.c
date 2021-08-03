@@ -3,13 +3,13 @@
  * Title:        riscv_abs_f32.c
  * Description:  Floating-point vector absolute value
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/basic_math_functions.h"
 #include <math.h>
 
 /**
@@ -61,40 +61,23 @@
   @return        none
  */
 
+
 void riscv_abs_f32(
   const float32_t * pSrc,
         float32_t * pDst,
         uint32_t blockSize)
 {
         uint32_t blkCnt;                               /* Loop counter */
-
-#if defined(RISCV_MATH_NEON)
-    float32x4_t vec1;
-    float32x4_t res;
-
-    /* Compute 4 outputs at a time */
-    blkCnt = blockSize >> 2U;
-
-    while (blkCnt > 0U)
-    {
-        /* C = |A| */
-
-    	/* Calculate absolute values and then store the results in the destination buffer. */
-        vec1 = vld1q_f32(pSrc);
-        res = vabsq_f32(vec1);
-        vst1q_f32(pDst, res);
-
-        /* Increment pointers */
-        pSrc += 4;
-        pDst += 4;
-        
-        /* Decrement the loop counter */
-        blkCnt--;
-    }
-
-    /* Tail */
-    blkCnt = blockSize & 0x3;
-
+#if defined(RISCV_VECTOR)
+  vfloat32m8_t vx;
+  blkCnt = blockSize;
+  size_t l;
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+    vx = vle32_v_f32m8(pSrc, l);
+    vse32_v_f32m8 (pDst, vfsgnjx_vv_f32m8(vx, vx, l), l);
+    pSrc += l;
+    pDst += l;
+  }
 #else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -127,7 +110,6 @@ void riscv_abs_f32(
   blkCnt = blockSize;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#endif /* #if defined(RISCV_MATH_NEON) */
 
   while (blkCnt > 0U)
   {
@@ -139,9 +121,8 @@ void riscv_abs_f32(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif
 }
-
 /**
   @} end of BasicAbs group
  */

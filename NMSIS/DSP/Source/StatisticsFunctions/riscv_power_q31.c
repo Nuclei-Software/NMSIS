@@ -3,13 +3,13 @@
  * Title:        riscv_power_q31.c
  * Description:  Sum of the squares of the elements of a Q31 vector
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/statistics_functions.h"
 
 /**
   @ingroup groupStats
@@ -55,12 +55,30 @@
                    full precision of the intermediate multiplication is preserved.
                    Finally, the return result is in 16.48 format.
  */
-
 void riscv_power_q31(
   const q31_t * pSrc,
         uint32_t blockSize,
         q63_t * pResult)
 {
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = blockSize;                               /* Loop counter */
+  size_t l;
+  const q31_t * input = pSrc;
+  q63_t * output = pResult;
+  vint32m4_t v_in;
+  vint64m8_t v_in2;
+  l = vsetvl_e64m1(1);
+  vint64m1_t v_sum = vmv_s_x_i64m1(v_sum, 0, l);
+  for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l) 
+  {
+    v_in = vle32_v_i32m4(input, l);
+    input += l;
+    v_in2 = vsra_vx_i64m8(vwmul_vv_i64m8(v_in, v_in, l), 14, l);
+    v_sum = vredsum_vs_i64m8_i64m1(v_sum, v_in2, v_sum, l);
+  }
+  l = vsetvl_e64m1(1);
+  vse64_v_i64m1(output, v_sum, l);
+#else
         uint32_t blkCnt;                               /* Loop counter */
         q63_t sum = 0;                                 /* Temporary result storage */
         q31_t in;                                      /* Temporary variable to store input value */
@@ -125,6 +143,7 @@ void riscv_power_q31(
 
   /* Store results in 16.48 format */
   *pResult = sum;
+#endif /* defined(RISCV_VECTOR) */
 }
 
 /**

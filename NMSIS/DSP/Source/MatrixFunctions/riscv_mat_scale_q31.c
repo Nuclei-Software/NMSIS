@@ -3,13 +3,13 @@
  * Title:        riscv_mat_scale_q31.c
  * Description:  Multiplies a Q31 matrix by a scalar
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/matrix_functions.h"
 
 /**
   @ingroup groupMatrix
@@ -52,7 +52,6 @@
                    The input data <code>*pSrc</code> and <code>scaleFract</code> are in 1.31 format.
                    These are multiplied to yield a 2.62 intermediate result which is shifted with saturation to 1.31 format.
  */
-
 riscv_status riscv_mat_scale_q31(
   const riscv_matrix_instance_q31 * pSrc,
         q31_t                     scaleFract,
@@ -79,6 +78,23 @@ riscv_status riscv_mat_scale_q31(
   else
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
+#if defined(RISCV_VECTOR)
+    /* Total number of samples in input matrix */
+  numSamples = (uint32_t) pSrc->numRows * pSrc->numCols;
+  blkCnt = numSamples;
+  size_t l;
+  vint32m4_t v_in, v_out;
+    for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l) {
+    v_in = vle32_v_i32m4(pIn, l);
+    pIn += l;
+    v_in = vnsra_wx_i32m4(vwmul_vx_i64m8(v_in, scaleFract, l),32U, l);
+    v_out = vsll_vx_i32m4(v_in, (uint8_t)kShift, l);
+    vse32_v_i32m4 (pOut, v_out, l);
+    pOut += l;
+  }
+      /* Set status as RISCV_MATH_SUCCESS */
+    status = RISCV_MATH_SUCCESS;
+#else
 
   {
     /* Total number of samples in input matrix */
@@ -158,6 +174,7 @@ riscv_status riscv_mat_scale_q31(
 
   /* Return to application */
   return (status);
+#endif /*defined(RISCV_VECTOR)*/
 }
 
 /**

@@ -3,13 +3,13 @@
  * Title:        riscv_cmplx_mult_cmplx_f32.c
  * Description:  Floating-point complex-by-complex multiplication
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/complex_math_functions.h"
 
 /**
   @ingroup groupCmplxMath
@@ -75,47 +75,36 @@ void riscv_cmplx_mult_cmplx_f32(
         float32_t * pDst,
         uint32_t numSamples)
 {
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = numSamples;                               /* Loop counter */
+  size_t l;
+  const float32_t * inputA = pSrcA;
+  const float32_t * inputB = pSrcB;
+  float32_t *output = pDst;
+  ptrdiff_t bstride = 8;
+  vfloat32m8_t v_R1, v_R2, v_I1, v_I2;
+  vfloat32m8_t v_RR, v_II, v_RI, v_IR;
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) 
+  {
+    v_R1 = vlse32_v_f32m8(inputA, bstride, l);
+    v_R2 = vlse32_v_f32m8(inputB, bstride, l);
+    inputA++; inputB++;                  /* Point to the first complex pointer */
+    v_I1 = vlse32_v_f32m8(inputA, bstride, l);
+    v_I2 = vlse32_v_f32m8(inputB, bstride, l);
+    inputA += (l*2-1); inputB += (l*2-1);
+    v_RR = vfmul_vv_f32m8(v_R1, v_R2, l);
+    v_II = vfmul_vv_f32m8(v_I1, v_I2, l);
+    v_RI = vfmul_vv_f32m8(v_R1, v_I2, l);
+    v_IR = vfmul_vv_f32m8(v_I1, v_R2, l);
+    vsse32_v_f32m8 (output, bstride, vfsub_vv_f32m8(v_RR, v_II, l), l);
+    output++;
+    vsse32_v_f32m8 (output, bstride, vfadd_vv_f32m8(v_RI, v_IR, l), l);
+    output += (l*2-1);
+  }
+#else
     uint32_t blkCnt;                               /* Loop counter */
     float32_t a, b, c, d;  /* Temporary variables to store real and imaginary values */
 
-#if defined(RISCV_MATH_NEON)
-    float32x4x2_t va, vb;
-    float32x4_t real, imag;
-    float32x4x2_t outCplx;
-
-    /* Compute 4 outputs at a time */
-    blkCnt = numSamples >> 2U;
-
-    while (blkCnt > 0U)
-    {
-        va = vld2q_f32(pSrcA);  // load & separate real/imag pSrcA (de-interleave 2)
-        vb = vld2q_f32(pSrcB);  // load & separate real/imag pSrcB
-
-	/* Increment pointers */
-        pSrcA += 8;
-        pSrcB += 8;
-	
-	/* Re{C} = Re{A}*Re{B} - Im{A}*Im{B} */
-        outCplx.val[0] = vmulq_f32(va.val[0], vb.val[0]);
-        outCplx.val[0] = vmlsq_f32(outCplx.val[0], va.val[1], vb.val[1]);
-
-	/* Im{C} = Re{A}*Im{B} + Im{A}*Re{B} */
-        outCplx.val[1] = vmulq_f32(va.val[0], vb.val[1]);
-        outCplx.val[1] = vmlaq_f32(outCplx.val[1], va.val[1], vb.val[0]);
-
-        vst2q_f32(pDst, outCplx);
-
-	/* Increment pointer */
-        pDst += 8;
-
-	/* Decrement the loop counter */
-        blkCnt--;
-    }
-
-    /* Tail */
-    blkCnt = numSamples & 3;
-
-#else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -168,7 +157,6 @@ void riscv_cmplx_mult_cmplx_f32(
   blkCnt = numSamples;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#endif /* #if defined(RISCV_MATH_NEON) */
 
   while (blkCnt > 0U)
   {
@@ -187,7 +175,7 @@ void riscv_cmplx_mult_cmplx_f32(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_VECTOR) */
 }
 
 /**

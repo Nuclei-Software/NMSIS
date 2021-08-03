@@ -3,13 +3,13 @@
  * Title:        riscv_conv_partial_f32.c
  * Description:  Partial convolution of floating-point sequences
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -87,10 +87,7 @@ riscv_status riscv_conv_partial_f32(
         uint32_t firstIndex,
         uint32_t numPoints)
 {
-
-#if (1)
-
-
+#if defined (RISCV_MATH_DSP) || defined (RISCV_VECTOR)
   const float32_t *pIn1 = pSrcA;                       /* InputA pointer */
   const float32_t *pIn2 = pSrcB;                       /* InputB pointer */
         float32_t *pOut = pDst;                        /* Output pointer */
@@ -146,7 +143,7 @@ riscv_status riscv_conv_partial_f32(
     blockSize3 = ((int32_t)check > (int32_t)srcALen) ? (int32_t)check - (int32_t)srcALen : 0;
     blockSize3 = ((int32_t)firstIndex > (int32_t)srcALen - 1) ? blockSize3 - (int32_t)firstIndex + (int32_t)srcALen : blockSize3;
     blockSize1 = ((int32_t) srcBLen - 1) - (int32_t) firstIndex;
-    blockSize1 = (blockSize1 > 0) ? ((check > (srcBLen - 1U)) ? blockSize1 : (int32_t) numPoints) : 0;
+    blockSize1 = (blockSize1 > 0) ? ((check > (srcBLen - 1U)) ? blockSize1 : (int32_t)numPoints) : 0;
     blockSize2 = ((int32_t) check - blockSize3) - (blockSize1 + (int32_t) firstIndex);
     blockSize2 = (blockSize2 > 0) ? blockSize2 : 0;
 
@@ -191,12 +188,12 @@ riscv_status riscv_conv_partial_f32(
      * ----------------------*/
 
     /* The first stage starts here */
-    while (blockSize1 > 0U)
+    while (blockSize1 > 0)
     {
       /* Accumulator is made zero for every iteration */
       sum = 0.0f;
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
 
       /* Loop unrolling: Compute 4 outputs at a time */
       k = count >> 2U;
@@ -228,7 +225,22 @@ riscv_status riscv_conv_partial_f32(
       k = count;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-
+#if defined (RISCV_VECTOR)
+    uint32_t vblkCnt = count;                               /* Loop counter */
+    size_t l;
+    vfloat32m8_t vx, vy;
+    vfloat32m1_t temp00m1;
+    ptrdiff_t bstride = -4;
+    l = vsetvl_e32m1(1);
+    temp00m1 = vfmv_v_f_f32m1(0, l);
+    for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle32_v_f32m8(px, l);
+      px += l;
+      vy = vlse32_v_f32m8(py, bstride, l);
+      py -= l;
+      sum += vfmv_f_s_f32m1_f32(vfredsum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l));
+    }
+#else
       while (k > 0U)
       {
         /* Perform the multiply-accumulate */
@@ -237,7 +249,7 @@ riscv_status riscv_conv_partial_f32(
         /* Decrement loop counter */
         k--;
       }
-
+#endif /*defined (RISCV_VECTOR)*/
       /* Store the result in the accumulator in the destination buffer. */
       *pOut++ = sum;
 
@@ -283,7 +295,44 @@ riscv_status riscv_conv_partial_f32(
     /* -------------------
      * Stage2 process
      * ------------------*/
+#if defined (RISCV_VECTOR)
+    blkCnt = blockSize2;
 
+    while (blkCnt > 0U)
+    {
+      /* Accumulator is made zero for every iteration */
+      sum = 0.0f;
+
+      /* srcBLen number of MACS should be performed */
+      uint32_t vblkCnt = srcBLen;                               /* Loop counter */
+      size_t l;
+      vfloat32m8_t vx, vy;
+      vfloat32m1_t temp00m1;
+      ptrdiff_t bstride = -4;
+      l = vsetvl_e32m1(1);
+      temp00m1 = vfmv_v_f_f32m1(0, l);
+      for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
+        vx = vle32_v_f32m8(px, l);
+        px += l;
+        vy = vlse32_v_f32m8(py, bstride, l);
+        py -= l;
+        sum += vfmv_f_s_f32m1_f32(vfredsum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l));
+      }
+
+      /* Store the result in the accumulator in the destination buffer. */
+      *pOut++ = sum;
+
+      /* Increment the MAC count */
+      count++;
+
+      /* Update the inputA and inputB pointers for next MAC calculation */
+      px = pIn1 + count;
+      py = pSrc2;
+
+      /* Decrement the loop counter */
+      blkCnt--;
+    }
+#else
     /* Stage2 depends on srcBLen as in this stage srcBLen number of MACS are performed.
      * So, to loop unroll over blockSize2,
      * srcBLen should be greater than or equal to 4 */
@@ -525,7 +574,7 @@ riscv_status riscv_conv_partial_f32(
         blkCnt--;
       }
     }
-
+#endif /*defined (RISCV_VECTOR)*/
 
     /* --------------------------
      * Initializations of stage3
@@ -543,7 +592,14 @@ riscv_status riscv_conv_partial_f32(
     count = srcBLen - 1U;
 
     /* Working pointer of inputA */
-    pSrc1 = (pIn1 + srcALen) - (srcBLen - 1U);
+    if (firstIndex > srcALen)
+    {
+       pSrc1 = (pIn1 + firstIndex) - (srcBLen - 1U);
+    }
+    else
+    {
+       pSrc1 = (pIn1 + srcALen) - (srcBLen - 1U);
+    }
     px = pSrc1;
 
     /* Working pointer of inputB */
@@ -554,12 +610,12 @@ riscv_status riscv_conv_partial_f32(
      * Stage3 process
      * ------------------*/
 
-    while (blockSize3 > 0U)
+    while (blockSize3 > 0)
     {
       /* Accumulator is made zero for every iteration */
       sum = 0.0f;
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
 
       /* Loop unrolling: Compute 4 outputs at a time */
       k = count >> 2U;
@@ -591,7 +647,22 @@ riscv_status riscv_conv_partial_f32(
       k = count;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-
+#if defined (RISCV_VECTOR)
+    uint32_t vblkCnt = blockSize3;                               /* Loop counter */
+    size_t l;
+    vfloat32m8_t vx, vy;
+    vfloat32m1_t temp00m1;
+    ptrdiff_t bstride = -4;
+    l = vsetvl_e32m1(1);
+    temp00m1 = vfmv_v_f_f32m1(0, l);
+    for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle32_v_f32m8(px, l);
+      px += l;
+      vy = vlse32_v_f32m8(py, bstride, l);
+      py -= l;
+      sum += vfmv_f_s_f32m1_f32(vfredsum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l));
+    }
+#else
       while (k > 0U)
       {
         /* Perform the multiply-accumulate */
@@ -601,7 +672,7 @@ riscv_status riscv_conv_partial_f32(
         /* Decrement loop counter */
         k--;
       }
-
+#endif /*defined (RISCV_VECTOR)*/
       /* Store the result in the accumulator in the destination buffer. */
       *pOut++ = sum;
 
@@ -631,7 +702,6 @@ riscv_status riscv_conv_partial_f32(
         float32_t sum;                                 /* Accumulator */
         uint32_t i, j;                                 /* Loop counters */
         riscv_status status;                             /* Status of Partial convolution */
-
   /* Check for range of output samples to be calculated */
   if ((firstIndex + numPoints) > ((srcALen + (srcBLen - 1U))))
   {
@@ -668,8 +738,7 @@ riscv_status riscv_conv_partial_f32(
   /* Return to application */
   return (status);
 
-#endif /* #if !defined(RISCV_MATH_CM0_FAMILY) */
-
+#endif /* defined(RISCV_MATH_DSP) */
 }
 
 /**

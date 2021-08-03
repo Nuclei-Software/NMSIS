@@ -3,8 +3,8 @@
  * Title:        riscv_bitreversal2.c
  * Description:  Bitreversal functions
  *
- * $Date:        18. March 2019
- * $Revision:    V1.0.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
@@ -27,8 +27,43 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/transform_functions.h"
 #include "riscv_common_tables.h"
+
+
+/**
+  @brief         In-place 64 bit reversal function.
+  @param[in,out] pSrc        points to in-place buffer of unknown 64-bit data type
+  @param[in]     bitRevLen   bit reversal table length
+  @param[in]     pBitRevTab  points to bit reversal table
+  @return        none
+*/
+
+void riscv_bitreversal_64(
+        uint64_t *pSrc,
+  const uint16_t bitRevLen,
+  const uint16_t *pBitRevTab)
+{
+  uint64_t a, b, i, tmp;
+
+  for (i = 0; i < bitRevLen; )
+  {
+     a = pBitRevTab[i    ] >> 2;
+     b = pBitRevTab[i + 1] >> 2;
+
+     //real
+     tmp = pSrc[a];
+     pSrc[a] = pSrc[b];
+     pSrc[b] = tmp;
+
+     //complex
+     tmp = pSrc[a+1];
+     pSrc[a+1] = pSrc[b+1];
+     pSrc[b+1] = tmp;
+
+    i += 2;
+  }
+}
 
 /**
   @brief         In-place 32 bit reversal function.
@@ -39,8 +74,8 @@
 */
 
 void riscv_bitreversal_32(
-        uint32_t *pSrc, 
-  const uint16_t bitRevLen, 
+        uint32_t *pSrc,
+  const uint16_t bitRevLen,
   const uint16_t *pBitRevTab)
 {
   uint32_t a, b, i, tmp;
@@ -74,8 +109,8 @@ void riscv_bitreversal_32(
 */
 
 void riscv_bitreversal_16(
-        uint16_t *pSrc, 
-  const uint16_t bitRevLen, 
+        uint16_t *pSrc,
+  const uint16_t bitRevLen,
   const uint16_t *pBitRevTab)
 {
   uint16_t a, b, i, tmp;

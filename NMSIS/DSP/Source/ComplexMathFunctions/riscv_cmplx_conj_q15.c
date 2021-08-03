@@ -3,13 +3,13 @@
  * Title:        riscv_cmplx_conj_q15.c
  * Description:  Q15 complex conjugate
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/complex_math_functions.h"
 
 /**
   @ingroup groupCmplxMath
@@ -50,11 +50,35 @@
                    The Q15 value -1 (0x8000) is saturated to the maximum allowable positive value 0x7FFF.
  */
 
+
 void riscv_cmplx_conj_q15(
   const q15_t * pSrc,
         q15_t * pDst,
         uint32_t numSamples)
 {
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = numSamples;                               /* Loop counter */
+  size_t l;
+  l = vsetvl_e32m8(blkCnt);
+  const q15_t * input = pSrc;
+  q15_t * output = pDst;
+  ptrdiff_t bstride = 4;
+  vint16m8_t v_R,v_I;
+  vint16m8_t v0;
+  v0 = vxor_vv_i16m8(v0, v0, l);                   /* vector 0 */
+  for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) 
+  {
+    v_R = vlse16_v_i16m8(input, bstride, l);
+    input++;
+    vsse16_v_i16m8 (output, bstride, v_R, l);
+    output++;
+    v_I = vsub_vv_i16m8(v0, vlse16_v_i16m8(input, bstride, l), l);
+    input += (l*2-1);
+    vsse16_v_i16m8 (output, bstride, v_I, l);
+    output += (l*2-1);
+  }
+
+#else
         uint32_t blkCnt;                               /* Loop counter */
         q31_t in1;                                     /* Temporary input variable */
 
@@ -158,7 +182,7 @@ void riscv_cmplx_conj_q15(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_VECTOR) */
 }
 
 /**

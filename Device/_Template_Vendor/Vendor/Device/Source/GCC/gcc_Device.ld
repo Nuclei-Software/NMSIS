@@ -18,8 +18,8 @@
 /******************************************************************************
  * @file     gcc_<Device>.ld
  * @brief    GNU Linker Script for Nuclei N/NX based device
- * @version  V1.0.0
- * @date     17. Dec 2019
+ * @version  V1.1.0
+ * @date     30. July 2021
  ******************************************************************************/
 
 /*********** Use Configuration Wizard in Context Menu *************************/
@@ -72,7 +72,7 @@ MEMORY
 /* Linker script to place sections and symbol values. Should be used together
  * with other linker script that defines memory regions FLASH,ILM and RAM.
  * It references following symbols, which must be defined in code:
- *   _Start : Entry of reset handler
+ *   _start : Entry of reset handler
  *
  * It defines following symbols, which code can use without definition:
  *   _ilm_lma
@@ -264,7 +264,9 @@ SECTIONS
   .stack ORIGIN(ram) + LENGTH(ram) - __STACK_SIZE :
   {
     PROVIDE( _heap_end = . );
+    __StackLimit = .;
     . = __STACK_SIZE;
+    __StackTop = .;
     PROVIDE( _sp = . );
   } >ram AT>ram
 }

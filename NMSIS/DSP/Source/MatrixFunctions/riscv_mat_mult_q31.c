@@ -3,13 +3,13 @@
  * Title:        riscv_mat_mult_q31.c
  * Description:  Q31 matrix multiplication
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/matrix_functions.h"
 
 /**
   @ingroup groupMatrix
@@ -59,7 +59,6 @@
   @remark
                    Refer to \ref riscv_mat_mult_fast_q31() for a faster but less precise implementation of this function.
  */
-
 riscv_status riscv_mat_mult_q31(
   const riscv_matrix_instance_q31 * pSrcA,
   const riscv_matrix_instance_q31 * pSrcB,
@@ -94,6 +93,57 @@ riscv_status riscv_mat_mult_q31(
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
 
+#if defined(RISCV_VECTOR)
+  uint16_t blkCnt = numColsA;  //number of matrix columns  numColsA = numrowB
+  size_t l,max_l;              // max_l is the maximum column elements at a time
+  ptrdiff_t bstride = 4;       //  32bit/8bit = 4
+  ptrdiff_t col_diff = bstride * numColsB;  //Control the column width of the span
+  uint16_t colnum,rownum;      //  How many rowumns and rownum are controlled
+  vint32m4_t v_inA,v_inB;
+  vint64m8_t vmul;
+  l = vsetvl_e32m1(1);
+  vint64m1_t vsum = vmv_s_x_i64m1(vsum, 0, l);
+  // max_l = vsetvl_e32m4(32);
+  px = pOut;
+for(rownum = 0;rownum < numRowsA; rownum++)
+  {
+    pIn1 = pInA;       //backup pointer position
+    for(colnum = 0;colnum < numColsB; colnum++)
+    { 
+      blkCnt = numColsA;
+      pIn2 = pInB;     //backup pointer position
+      sum = 0; 
+      l = vsetvl_e32m1(1);
+      vsum = vmv_s_x_i64m1(vsum, 0, l);
+      for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)   //Multiply a row by a column
+      { 
+        v_inA = vle32_v_i32m4(pInA, l);
+        v_inB = vlse32_v_i32m4(pInB, col_diff, l);
+        /* c(m,n) = a(1,1) * b(1,1) + a(1,2) * b(2,1) + .... + a(m,p) * b(p,n) */
+        /* Perform multiply-accumulates */
+        vmul = vwmul_vv_i64m8(v_inA, v_inB, l);
+        vsum = vredsum_vs_i64m8_i64m1(vsum, vmul, vsum, l);
+        //vsum = vmin_vx_i64m1(vmax_vx_i64m1(vredsum_vs_i64m8_i64m1(vsum, vmul, vsum) , 0xffffffff80000000),0x7fffffff);
+        //sum = vmv_x_s_i64m1_i64 (vsum);
+        // if(l == max_l)
+        // {
+        pInA = pInA+l;    //Pointer to the first element of the next line
+        pInB = pInB+l*numColsB;
+        // }
+      }
+      sum = vmv_x_s_i64m1_i64 (vsum);
+      *px = (q31_t) (sum >> 31);
+      px++;
+      pInA = pIn1; 
+      pInB = pIn2;pInB = pInB+1;    //Pointer to the first element of the next column for matrix BS
+    //printf("px=%d\n",px);
+    }
+    pInB = pSrcB->pData;
+    pInA = pIn1;pInA = pInA+numColsA;    //Pointer to the first element of the next row for matrix A 
+  }
+  /* Set status as RISCV_MATH_SUCCESS */
+  status = RISCV_MATH_SUCCESS;
+#else
   {
     /* The following loop performs the dot-product of each row in pSrcA with each column in pSrcB */
     /* row loop */
@@ -194,7 +244,7 @@ riscv_status riscv_mat_mult_q31(
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
   }
-
+#endif /*defined(RISCV_VECTOR)*/
   /* Return to application */
   return (status);
 }

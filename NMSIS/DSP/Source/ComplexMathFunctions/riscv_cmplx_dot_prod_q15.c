@@ -3,13 +3,13 @@
  * Title:        riscv_cmplx_dot_prod_q15.c
  * Description:  Processing function for the Q15 Complex Dot product
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/complex_math_functions.h"
 
 /**
   @ingroup groupCmplxMath
@@ -62,6 +62,39 @@ void riscv_cmplx_dot_prod_q15(
         q31_t * realResult,
         q31_t * imagResult)
 {
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = numSamples;                               /* Loop counter */
+  size_t l;
+  const q15_t * inputA = pSrcA;
+  const q15_t * inputB = pSrcB;
+  ptrdiff_t bstride = 4;
+  vint16m4_t v_R1, v_R2, v_I1, v_I2;
+  vint32m8_t v_RR, v_II, v_RI, v_IR;
+  // vint32m1_t v_dst;                      /* I don't know what the effect is  */ 
+  l = vsetvl_e64m1(1);
+  vint64m1_t v_real = vmv_s_x_i64m1(v_real, 0, l);
+  vint64m1_t v_dst = vmv_s_x_i64m1(v_dst, 0, l);
+  vint64m1_t v_imag = vmv_s_x_i64m1(v_imag, 0, l);
+  /* Initialize accumulated value */
+  for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) 
+  {
+    v_R1 = vlse16_v_i16m4(inputA, bstride, l);
+    v_R2 = vlse16_v_i16m4(inputB, bstride, l);
+    inputA++; inputB++;                  /* Point to the first complex pointer */
+    v_I1 = vlse16_v_i16m4(inputA, bstride, l);
+    v_I2 = vlse16_v_i16m4(inputB, bstride, l);
+    v_RR = vwmul_vv_i32m8(v_R1, v_R2, l);
+    v_II = vwmul_vv_i32m8(v_I1, v_I2, l);
+    v_RI = vwmul_vv_i32m8(v_R1, v_I2, l);
+    v_IR = vwmul_vv_i32m8(v_I1, v_R2, l);
+    v_real = vwredsum_vs_i32m8_i64m1(v_dst, vssub_vv_i32m8(v_RR, v_II, l), v_real, l);
+    v_imag = vwredsum_vs_i32m8_i64m1(v_dst, vsadd_vv_i32m8(v_RI, v_IR, l), v_imag, l);
+    inputA += (l*2-1); inputB += (l*2-1);
+  }
+  vsetvl_e64m1(1);
+  *realResult = (q31_t)(vmv_x_s_i64m1_i64(v_real)>> 6);
+  *imagResult = (q31_t)(vmv_x_s_i64m1_i64(v_imag)>> 6);
+#else
         uint32_t blkCnt;                               /* Loop counter */
         q63_t real_sum = 0, imag_sum = 0;              /* Temporary result variables */
 #if __RISCV_XLEN == 64
@@ -70,7 +103,6 @@ void riscv_cmplx_dot_prod_q15(
         q15_t a0,b0,c0,d0;
 
 #if defined (RISCV_MATH_LOOPUNROLL)
-
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = numSamples >> 2U;
 
@@ -207,6 +239,7 @@ void riscv_cmplx_dot_prod_q15(
   *realResult = (q31_t) (real_sum >> 6);
   /* Convert imaginary data in 34.30 to 8.24 by 6 right shifts */
   *imagResult = (q31_t) (imag_sum >> 6);
+#endif /* defined(RISCV_VECTOR) */
 }
 
 /**

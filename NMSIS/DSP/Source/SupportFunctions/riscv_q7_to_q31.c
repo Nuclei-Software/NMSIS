@@ -3,13 +3,13 @@
  * Title:        riscv_q7_to_q31.c
  * Description:  Converts the elements of the Q7 vector to Q31 vector
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/support_functions.h"
 
 /**
   @ingroup groupSupport
@@ -51,12 +51,26 @@
       pDst[n] = (q31_t) pSrc[n] << 24;   0 <= n < blockSize.
   </pre>
  */
-
 void riscv_q7_to_q31(
   const q7_t * pSrc,
         q31_t * pDst,
         uint32_t blockSize)
 {
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = blockSize;                         /* Loop counter */
+  const q7_t *pIn = pSrc;                             /* Source pointer */
+  size_t l;
+  vint8m2_t v_in;
+  vint32m8_t v_out;
+  for (; (l = vsetvl_e8m2(blkCnt)) > 0; blkCnt -= l) 
+  {
+    v_in = vle8_v_i8m2(pIn, l);
+    pIn += l;
+    v_out = vsll_vx_i32m8(vsext_vf4_i32m8(v_in, l), 24U, l);
+    vse32_v_i32m8 (pDst, v_out, l);
+    pDst += l;
+  }
+#else
         uint32_t blkCnt;                               /* Loop counter */
   const q7_t *pIn = pSrc;                              /* Source pointer */
 
@@ -74,21 +88,12 @@ void riscv_q7_to_q31(
     /* Convert from q7 to q31 and store result in destination buffer */
     in = read_q7x4_ia ((q7_t **) &pIn);
 
-#ifndef RISCV_MATH_BIG_ENDIAN
 
     *pDst++ = (__ROR(in, 8)) & 0xFF000000;
     *pDst++ = (__ROR(in, 16)) & 0xFF000000;
     *pDst++ = (__ROR(in, 24)) & 0xFF000000;
     *pDst++ = (in & 0xFF000000);
 
-#else
-
-    *pDst++ = (in & 0xFF000000);
-    *pDst++ = (__ROR(in, 24)) & 0xFF000000;
-    *pDst++ = (__ROR(in, 16)) & 0xFF000000;
-    *pDst++ = (__ROR(in, 8)) & 0xFF000000;
-
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
     /* Decrement loop counter */
     blkCnt--;
@@ -114,7 +119,7 @@ void riscv_q7_to_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_VECTOR) */
 }
 
 /**

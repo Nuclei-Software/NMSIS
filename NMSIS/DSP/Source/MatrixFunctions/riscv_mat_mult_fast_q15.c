@@ -3,13 +3,13 @@
  * Title:        riscv_mat_mult_fast_q15.c
  * Description:  Q15 matrix multiplication (fast variant)
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/matrix_functions.h"
 
 /**
   @ingroup groupMatrix
@@ -79,10 +79,122 @@ riscv_status riscv_mat_mult_fast_q15(
         uint16_t numRowsA = pSrcA->numRows;            /* Number of rows of input matrix A */
         uint16_t numColsB = pSrcB->numCols;            /* Number of columns of input matrix B */
         uint16_t numColsA = pSrcA->numCols;            /* Number of columns of input matrix A */
-        uint16_t numRowsB = pSrcB->numRows;            /* Number of rows of input matrix A */
+        uint16_t numRowsB = pSrcB->numRows;            /* Number of rows of input matrix B */
         uint32_t col, i = 0U, row = numRowsB, colCnt;  /* Loop counters */
         riscv_status status;                             /* Status of matrix multiplication */
 
+#if defined(RISCV_VECTOR)
+        q15_t in;                                      /* Temporary variable to hold the input value */
+        q15_t inA1, inB1, inA2, inB2;
+        uint16_t blkCnt;  //number of matrix columns  numColsA = numrowB
+        size_t l;              // max_l is the maximum column elements at a time
+        ptrdiff_t bstride = 4;       //  32bit/8bit = 4
+        uint16_t colnum,rownum;      //  How many rowumns and rownum are controlled
+        vint16m4_t v_inA, v_inB;
+        vint32m8_t v_sum;
+        vint16m8_t vReal, vImag;
+        l = vsetvl_e32m1(1);
+        vint32m1_t vtemp = vsub_vv_i32m1(vtemp, vtemp, l);
+
+#ifdef RISCV_MATH_MATRIX_CHECK
+
+  /* Check for matrix mismatch condition */
+  if ((pSrcA->numCols != pSrcB->numRows) ||
+      (pSrcA->numRows != pDst->numRows)  ||
+      (pSrcB->numCols != pDst->numCols)    )
+  {
+    /* Set status as RISCV_MATH_SIZE_MISMATCH */
+    status = RISCV_MATH_SIZE_MISMATCH;
+  }
+  else
+
+#endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
+
+  {
+    /* Matrix transpose */
+    do
+    {
+      /* The pointer px is set to starting address of column being processed */
+      px = pSrcBT + i;
+
+      col = numColsB ;
+      blkCnt = col;
+      bstride = numRowsB*2;
+      for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)   //Multiply a row by a column
+      {
+        vsse16_v_i16m8(px,bstride,vle16_v_i16m8(pInB, l), l);
+        px += l*numRowsB;
+        pInB += l;
+      }
+
+      i++;
+
+      /* Decrement row loop counter */
+      row--;
+
+    } while (row > 0U);
+
+    /* Reset variables for usage in following multiplication process */
+    row = numRowsA;
+    i = 0U;
+    px = pDst->pData;
+
+    /* The following loop performs the dot-product of each row in pSrcA with each column in pSrcB */
+    /* row loop */
+    while (row > 0U)
+    {
+      /* For every row wise process, column loop counter is to be initiated */
+      col = numColsB;
+
+      /* For every row wise process, pIn2 pointer is set to starting address of transposed pSrcB data */
+      pInB = pSrcBT;
+
+      /* column loop */
+      while (col > 0U)
+      {
+        /* Set variable sum, that acts as accumulator, to zero */
+        sum = 0;
+
+        /* Initiate pointer pInA to point to starting address of column being processed */
+        pInA = pSrcA->pData + i;
+
+        /* process odd column samples */
+        colCnt = numColsA;
+
+        blkCnt = colCnt;
+        l = vsetvl_e16m4(blkCnt);
+        v_sum = vsub_vv_i32m8(v_sum,v_sum, l);
+        for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)   //Multiply a row by a column
+        {
+          v_inA = vle16_v_i16m4(pInA, l);
+          v_inB = vle16_v_i16m4(pInB, l);
+          pInA += l;
+          pInB += l;
+          v_sum = vwmacc_vv_i32m8(v_sum,v_inA,v_inB, l);
+        }
+        l = vsetvl_e16m4(colCnt);
+        sum = vmv_x_s_i32m1_i32 (vredsum_vs_i32m8_i32m1(vtemp, v_sum, vtemp, l));
+
+        /* Saturate and store result in destination buffer */
+        *px++  = (q15_t) (sum >> 15);
+
+        /* Decrement column loop counter */
+        col--;
+
+      }
+
+      i = i + numColsA;
+
+      /* Decrement row loop counter */
+      row--;
+
+    }
+    /* Set status as RISCV_MATH_SUCCESS */
+    status = RISCV_MATH_SUCCESS;
+  }
+
+
+#else
 #if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
         q63_t in64;                                      /* Temporary variable to hold the input value */
         q63_t sum64=0, sum264=0, sum364=0, sum464=0;
@@ -145,38 +257,22 @@ riscv_status riscv_mat_mult_fast_q15(
         in = read_q15x2_ia ((q15_t **) &pInB);
 
         /* Unpack and store one element in destination */
-#ifndef RISCV_MATH_BIG_ENDIAN
         *px = (q15_t) in;
-#else
-        *px = (q15_t) ((in & (q31_t) 0xffff0000) >> 16);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
         /* Update pointer px to point to next row of transposed matrix */
         px += numRowsB;
 
         /* Unpack and store second element in destination */
-#ifndef RISCV_MATH_BIG_ENDIAN
         *px = (q15_t) ((in & (q31_t) 0xffff0000) >> 16);
-#else
-        *px = (q15_t) in;
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
         /* Update pointer px to point to next row of transposed matrix */
         px += numRowsB;
 
         in = read_q15x2_ia ((q15_t **) &pInB);
-#ifndef RISCV_MATH_BIG_ENDIAN
         *px = (q15_t) in;
-#else
-        *px = (q15_t) ((in & (q31_t) 0xffff0000) >> 16);
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
         px += numRowsB;
 
-#ifndef RISCV_MATH_BIG_ENDIAN
         *px = (q15_t) ((in & (q31_t) 0xffff0000) >> 16);
-#else
-        *px = (q15_t) in;
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
         px += numRowsB;
 // #endif /* __RISCV_XLEN == 64 */
 #else /* #if defined (RISCV_MATH_DSP) */
@@ -275,7 +371,7 @@ riscv_status riscv_mat_mult_fast_q15(
         pInA2 = pInA + numColsA;
         pInB2 = pInB + numRowsB;
 
-        /* Read in two elements at once - alows dual MAC instruction */
+        /* Read in two elements at once - allows dual MAC instruction */
         colCnt = numColsA >> 1U;
 #else
         colCnt = numColsA >> 2U;
@@ -330,7 +426,7 @@ riscv_status riscv_mat_mult_fast_q15(
           /* read real and imag values from pSrcA and pSrcB buffer */
           inA1 = *pInA++;
           inB1 = *pInB++;
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sum += inA1 * inB1;
 
           inA2 = *pInA++;
@@ -534,10 +630,10 @@ riscv_status riscv_mat_mult_fast_q15(
     }
 
 #endif /* #if defined (RISCV_MATH_DSP) */
-
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
   }
+#endif
 
   /* Return to application */
   return (status);

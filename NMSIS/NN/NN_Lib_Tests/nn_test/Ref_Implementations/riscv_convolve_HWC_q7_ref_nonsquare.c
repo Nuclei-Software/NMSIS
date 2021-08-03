@@ -18,6 +18,7 @@
  */
 
 #include "ref_functions.h"
+#include "riscv_nnsupportfunctions.h"
 
 void riscv_convolve_HWC_q7_ref_nonsquare(const q7_t * Im_in,  // input image
                                        const uint16_t dim_im_in_x,  // input image dimention x
@@ -39,9 +40,9 @@ void riscv_convolve_HWC_q7_ref_nonsquare(const q7_t * Im_in,  // input image
                                        q7_t * bufferB   //buffer space for output
     )
 {
-    int       i, j, k, l, m, n;
+    int  i, j, k, l, m, n;
     int       conv_out;
-    int       in_row, in_col;
+    int in_row, in_col;
 
     for (i = 0; i < ch_im_out; i++)
     {
@@ -49,11 +50,7 @@ void riscv_convolve_HWC_q7_ref_nonsquare(const q7_t * Im_in,  // input image
         {
             for (k = 0; k < dim_im_out_x; k++)
             {
-#ifndef RISCV_NN_TRUNCATE
-                conv_out = ((q31_t) (bias[i]) << bias_shift) + (0x1 << (out_shift - 1));
-#else
-                conv_out = bias[i] << bias_shift;
-#endif
+                conv_out = ((q31_t)bias[i] << bias_shift) + NN_ROUND(out_shift);
                 for (m = 0; m < dim_kernel_y; m++)
                 {
                     for (n = 0; n < dim_kernel_x; n++)
@@ -65,9 +62,10 @@ void riscv_convolve_HWC_q7_ref_nonsquare(const q7_t * Im_in,  // input image
                         {
                             for (l = 0; l < ch_im_in; l++)
                             {
-                                conv_out += Im_in[(in_row * dim_im_in_x + in_col) * ch_im_in + l] *
-                                    wt[i * ch_im_in * dim_kernel_y * dim_kernel_x + (m * dim_kernel_x + n) * ch_im_in +
-                                       l];
+                                conv_out +=
+                                    Im_in[(in_row * dim_im_in_x + in_col) * ch_im_in + l] *
+                                         wt[i * ch_im_in * dim_kernel_y * dim_kernel_x +
+                                         (m * dim_kernel_x + n) * ch_im_in + l];
                             }
                         }
                     }

@@ -3,13 +3,13 @@
  * Title:        riscv_scale_q15.c
  * Description:  Multiplies a Q15 vector by a scalar
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/basic_math_functions.h"
 
 /**
   @ingroup groupMath
@@ -59,6 +59,19 @@ void riscv_scale_q15(
         q15_t *pDst,
         uint32_t blockSize)
 {
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = blockSize;                               /* Loop counter */
+  int8_t kShift = 15 - shift;                                /* Shift to apply after scaling */
+  size_t l;
+  vint16m4_t vx;
+       
+  for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
+    vx = vle16_v_i16m4(pSrc, l);
+    pSrc += l;
+    vse16_v_i16m4 (pDst, vnclip_wx_i16m4(vwmul_vx_i32m8(vx, scaleFract, l), kShift, l), l);
+    pDst += l;
+  }
+#else
         uint32_t blkCnt;                               /* Loop counter */
         int8_t kShift = 15 - shift;                    /* Shift to apply after scaling */
 
@@ -171,7 +184,7 @@ void riscv_scale_q15(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_VECTOR) */
 }
 
 /**

@@ -2,13 +2,13 @@ CORE ?= n307fd
 TARGET = NNREF
 TOOLCHAIN ?= GCC
 LIBIRAY_ROOT ?= ../../Library
-PARELLEL ?=
+PARALLEL ?=
 BUILD := build
 
 CORE_UPPER = $(shell echo $(CORE) | tr a-z A-Z)
 TARGET_LOWER = $(shell echo $(TARGET) | tr A-Z a-z)
 
-MAKE_PARAMS = TOOLCHAIN=$(TOOLCHAIN) PARELLEL=$(PARELLEL) LIBIRAY_ROOT=$(LIBIRAY_ROOT) BUILD=$(BUILD)
+MAKE_PARAMS = TOOLCHAIN=$(TOOLCHAIN) PARALLEL=$(PARALLEL) LIBIRAY_ROOT=$(LIBIRAY_ROOT) BUILD=$(BUILD)
 
 include ../../Makefile.core
 
@@ -29,7 +29,7 @@ ifeq ($(wildcard $(TARGET_CMAKEFILE)),)
 $(error Target CMake file $(TARGET_CMAKEFILE) doesn\'t exist, please check!)
 endif
 
-ifdef PARELLEL
+ifdef PARALLEL
 MAKE_OPT = -j
 endif
 
@@ -63,10 +63,14 @@ install_no_dsp:
 	-mkdir -p $(TARGET_LIB_ROOT)
 	cp -f $(TARGET_CMAKE_BUILD)/$(TARGET_LIB_NAME).a $(TARGET_LIB_ROOT)
 	cp -f $(TARGET_CMAKE_BUILD)/$(TARGET_LIB_NAME)p.a $(TARGET_LIB_ROOT)
+	cp -f $(TARGET_CMAKE_BUILD)/$(TARGET_LIB_NAME)v.a $(TARGET_LIB_ROOT)
+	cp -f $(TARGET_CMAKE_BUILD)/$(TARGET_LIB_NAME)pv.a $(TARGET_LIB_ROOT)
 
 ar_no_dsp:
 	cd $(TARGET_CMAKE_BUILD) ; find ./ -name "*.o" | xargs ar rcs $(TARGET_LIB_NAME).a
 	cd $(TARGET_CMAKE_BUILD) ; find ./ -name "*.o" | xargs ar rcs $(TARGET_LIB_NAME)p.a
+	cd $(TARGET_CMAKE_BUILD) ; find ./ -name "*.o" | xargs ar rcs $(TARGET_LIB_NAME)v.a
+	cd $(TARGET_CMAKE_BUILD) ; find ./ -name "*.o" | xargs ar rcs $(TARGET_LIB_NAME)pv.a
 
 $(NNREFLIB_TARGETS):
 	make $(MAKE_PARAMS) CORE=$(subst _nnreflib,,$@)

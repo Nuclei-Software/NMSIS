@@ -3,13 +3,13 @@
  * Title:        riscv_fir_decimate_fast_q15.c
  * Description:  Fast Q15 FIR Decimator
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -364,12 +364,22 @@ void riscv_fir_decimate_fast_q15(
   {
     /* Copy 2 * decimation factor number of new input samples into the state buffer */
     i = S->M * 2;
-
+#if defined (RISCV_VECTOR)
+  uint32_t blkCnti = i;                              /* Loop counter */
+  size_t l;
+       
+  for (; (l = vsetvl_e16m8(blkCnti)) > 0; blkCnti -= l) {
+    vse16_v_i16m8 (pStateCur, vle16_v_i16m8(pSrc, l), l);
+    pSrc += l;
+    pStateCur += l;
+  }
+#else
     do
     {
       *pStateCur++ = *pSrc++;
 
     } while (--i);
+#endif
 
     /* Set accumulator to zero */
     acc0 = 0;
@@ -482,13 +492,22 @@ void riscv_fir_decimate_fast_q15(
   {
     /* Copy decimation factor number of new input samples into the state buffer */
     i = S->M;
-
+#if defined (RISCV_VECTOR)
+  uint32_t blkCnti = i;                              /* Loop counter */
+  size_t l;
+       
+  for (; (l = vsetvl_e16m8(blkCnti)) > 0; blkCnti -= l) {
+    vse16_v_i16m8 (pStateCur, vle16_v_i16m8(pSrc, l), l);
+    pSrc += l;
+    pStateCur += l;
+  }
+#else
     do
     {
       *pStateCur++ = *pSrc++;
 
     } while (--i);
-
+#endif
     /* Set accumulator to zero */
     sum0 = 0;
 
@@ -588,7 +607,16 @@ void riscv_fir_decimate_fast_q15(
 
   /* Points to the start of the state buffer */
   pStateCur = S->pState;
-
+#if defined (RISCV_VECTOR)
+  uint32_t blkCnti = (numTaps - 1U);                              /* Loop counter */
+  size_t l;
+       
+  for (; (l = vsetvl_e16m8(blkCnti)) > 0; blkCnti -= l) {
+    vse16_v_i16m8 (pStateCur, vle16_v_i16m8(pSrc, l), l);
+    pSrc += l;
+    pStateCur += l;
+  }
+#else
   i = (numTaps - 1U) >> 2U;
 
   /* copy data */
@@ -613,6 +641,7 @@ void riscv_fir_decimate_fast_q15(
     /* Decrement loop counter */
     i--;
   }
+#endif
 }
 
 #endif /* #if defined (RISCV_MATH_DSP) */

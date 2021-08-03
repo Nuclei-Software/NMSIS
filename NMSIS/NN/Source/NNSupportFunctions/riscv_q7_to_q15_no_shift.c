@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2018 Arm Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2020 Arm Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_q7_to_q15_no_shift.c
  * Description:  Converts the elements of the Q7 vector to Q15 vector without left-shift
  *
- * $Date:        17. January 2018
- * $Revision:    V.1.0.0
+ * $Date:        May 29, 2020
+ * $Revision:    V.1.0.2
  *
  * Target Processor: RISC-V Cores
  *
@@ -45,7 +45,6 @@
  * @param[in]       *pSrc points to the Q7 input vector
  * @param[out]      *pDst points to the Q15 output vector
  * @param[in]       blockSize length of the input vector
- * @return none.
  *
  * \par Description:
  *
@@ -57,15 +56,27 @@
  *
  */
 
-void riscv_q7_to_q15_no_shift(const q7_t * pSrc, q15_t * pDst, uint32_t blockSize)
+void riscv_q7_to_q15_no_shift(const q7_t *pSrc, q15_t *pDst, uint32_t blockSize)
 {
     const q7_t *pIn = pSrc;
-    uint32_t  blkCnt;
 
-#if defined(RISCV_MATH_LOOPUNROLL) && defined(RISCV_MATH_DSP)
-    q31_t     in;
-    q31_t     in1, in2;
-    q31_t     out1, out2;
+#if defined (RISCV_VECTOR)
+    uint32_t blkCnt = blockSize;                              /* Loop counter */
+    size_t l;
+    q15_t *pCnt = pDst;
+    const q7_t *pV = pSrc;
+         
+    for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
+        vse16_v_i16m8 (pCnt, vwadd_vx_i16m8(vle8_v_i8m4(pV, l),0, l), l);
+        pV += l;
+        pCnt += l;
+    }
+#else
+    uint32_t  blkCnt;
+#if defined(RISCV_MATH_DSP)
+    q31_t in;
+    q31_t in1, in2;
+    q31_t out1, out2;
 
     /*loop Unrolling */
     blkCnt = blockSize >> 2u;
@@ -76,20 +87,15 @@ void riscv_q7_to_q15_no_shift(const q7_t * pSrc, q15_t * pDst, uint32_t blockSiz
         in = riscv_nn_read_q7x4_ia(&pIn);
 
         /* rotatate in by 8 and extend two q7_t values to q15_t values */
-        in1 = __SXTB16(__ROR(in, 8));
+        in1 = __SXTB16(__ROR((uint32_t)in, 8));
 
         /* extend remaining two q7_t values to q15_t values */
         in2 = __SXTB16(in);
 
-#ifndef RISCV_MATH_BIG_ENDIAN
-        out2 = __PKHTB(in1, in2, 16);
-        out1 = __PKHBT(in2, in1, 16);
-#else
-        out1 = __PKHTB(in1, in2, 16);
-        out2 = __PKHBT(in2, in1, 16);
-#endif
-        write_q15x2_ia(&pDst, out1);
-        write_q15x2_ia(&pDst, out2);
+        out2 = (int32_t)__PKHTB(in1, in2, 16);
+        out1 = (int32_t)__PKHBT(in2, in1, 16);
+        riscv_nn_write_q15x2_ia(&pDst, out1);
+        riscv_nn_write_q15x2_ia(&pDst, out2);
 
         /* Decrement the loop counter */
         blkCnt--;
@@ -116,7 +122,7 @@ void riscv_q7_to_q15_no_shift(const q7_t * pSrc, q15_t * pDst, uint32_t blockSiz
         /* Decrement the loop counter */
         blkCnt--;
     }
-
+#endif /*defined (RISCV_VECTOR)*/
 }
 
 /**

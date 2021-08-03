@@ -3,13 +3,13 @@
  * Title:        riscv_biquad_cascade_df1_q31.c
  * Description:  Processing function for the Q31 Biquad cascade filter
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -56,7 +56,6 @@
   @remark
                    Refer to \ref riscv_biquad_cascade_df1_fast_q31() for a faster but less precise implementation of this filter.
  */
-
 void riscv_biquad_cascade_df1_q31(
   const riscv_biquad_casd_df1_inst_q31 * S,
   const q31_t * pSrc,

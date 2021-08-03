@@ -3,13 +3,13 @@
  * Title:        riscv_lms_q15.c
  * Description:  Processing function for Q15 LMS filter
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -104,7 +104,7 @@ void riscv_lms_q15(
     /* Set the accumulator to zero */
     acc = 0;
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
 
     /* Loop unrolling: Compute 4 taps at a time. */
     tapCnt = numTaps >> 2U;
@@ -133,7 +133,22 @@ void riscv_lms_q15(
     tapCnt = numTaps;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-
+#if defined (RISCV_VECTOR)
+    uint32_t vblkCnt = numTaps;
+    size_t l;
+    vint16m4_t vx, vy;
+    vint64m1_t temp00m1,temp01m1,accm1;
+    l = vsetvl_e64m1(1);
+    temp00m1 = vmv_v_x_i64m1(0, l);
+    temp01m1 = vmv_v_x_i64m1(0, l);
+    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle16_v_i16m4(px, l);
+      px += l;
+      vy = vle16_v_i16m4(pb, l);
+      pb += l;
+      acc += vmv_x_s_i64m1_i64(vwredsum_vs_i32m8_i64m1 ( temp00m1,vwmul_vv_i32m8(vx, vy, l), temp01m1, l));
+    }
+#else
     while (tapCnt > 0U)
     {
       /* Perform the multiply-accumulate */
@@ -142,7 +157,7 @@ void riscv_lms_q15(
       /* Decrement the loop counter */
       tapCnt--;
     }
-
+#endif /* defined (RISCV_VECTOR) */
     /* Calc lower part of acc */
     acc_l = acc & 0xffffffff;
 
@@ -172,7 +187,7 @@ void riscv_lms_q15(
     /* Initialize coefficient pointer */
     pb = pCoeffs;
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
 
     /* Loop unrolling: Compute 4 taps at a time. */
     tapCnt = numTaps >> 2U;
@@ -203,9 +218,17 @@ void riscv_lms_q15(
 
     /* Initialize tapCnt with number of samples */
     tapCnt = numTaps;
-
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-
+#if defined (RISCV_VECTOR)
+    vblkCnt = numTaps;
+    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle16_v_i16m4(px, l);
+      px += l;
+      vy = vle16_v_i16m4(pb, l);
+      vse16_v_i16m4(pb,vnclip_wx_i16m4(vwadd_wv_i32m8(vsra_vx_i32m8(vwmul_vx_i32m8(vx, alpha, l),15, l),vy, l),0, l), l);
+      pb += l;
+    }
+#else
     while (tapCnt > 0U)
     {
       /* Perform the multiply-accumulate */
@@ -215,7 +238,7 @@ void riscv_lms_q15(
       /* Decrement loop counter */
       tapCnt--;
     }
-
+#endif /* defined (RISCV_VECTOR) */
     /* Decrement loop counter */
     blkCnt--;
   }
@@ -228,7 +251,7 @@ void riscv_lms_q15(
   pStateCurnt = S->pState;
 
   /* copy data */
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
 
   /* Loop unrolling: Compute 4 taps at a time. */
   tapCnt = (numTaps - 1U) >> 2U;
@@ -251,7 +274,15 @@ void riscv_lms_q15(
   tapCnt = (numTaps - 1U);
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-
+#if defined (RISCV_VECTOR)
+    uint32_t vblkCnt = (numTaps - 1U);
+    size_t l;
+    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vse16_v_i16m4(pStateCurnt,vle16_v_i16m4(pState, l), l);
+      pState += l;
+      pStateCurnt += l;
+    }
+#else
   while (tapCnt > 0U)
   {
     *pStateCurnt++ = *pState++;
@@ -259,7 +290,7 @@ void riscv_lms_q15(
     /* Decrement loop counter */
     tapCnt--;
   }
-
+#endif /* defined (RISCV_VECTOR) */
 }
 
 /**

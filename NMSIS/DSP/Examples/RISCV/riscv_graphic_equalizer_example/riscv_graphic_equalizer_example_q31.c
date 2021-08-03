@@ -302,6 +302,11 @@ float32_t snr;
 
 int32_t main(void)
 {
+/*  Enable Vector  */
+#if (defined (__RISCV_FEATURE_VECTOR) && (__RISCV_FEATURE_VECTOR == 1))
+  __RV_CSR_SET(CSR_MSTATUS, 0x200);
+#endif 
+
   float32_t  *inputF32, *outputF32;
   riscv_biquad_cas_df1_32x64_ins_q31 S1;
   riscv_biquad_cas_df1_32x64_ins_q31 S2;

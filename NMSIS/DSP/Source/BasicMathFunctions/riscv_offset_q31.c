@@ -3,13 +3,13 @@
  * Title:        riscv_offset_q31.c
  * Description:  Q31 vector offset
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/basic_math_functions.h"
 
 /**
   @ingroup groupMath
@@ -57,6 +57,18 @@ void riscv_offset_q31(
         q31_t * pDst,
         uint32_t blockSize)
 {
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = blockSize;                               /* Loop counter */
+  size_t l;
+  vint32m8_t vx;
+       
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+    vx = vle32_v_i32m8(pSrc, l);
+    pSrc += l;
+    vse32_v_i32m8 (pDst, vsadd_vx_i32m8(vx, offset, l), l);
+    pDst += l;
+  }
+#else
         uint32_t blkCnt;                               /* Loop counter */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
@@ -76,29 +88,14 @@ void riscv_offset_q31(
     write_q31x2_ia (&pDst, __RV_KADD32(read_q31x2_ia ((q31_t **) &pSrc), offset_all));
 #else
     /* Add offset and store result in destination buffer. */
-#if defined (RISCV_MATH_DSP)
     *pDst++ = __QADD(*pSrc++, offset);
-#else
-    *pDst++ = (q31_t) clip_q63_to_q31((q63_t) * pSrc++ + offset);
-#endif
+    
+    *pDst++ = __QADD(*pSrc++, offset);
+    
+    *pDst++ = __QADD(*pSrc++, offset);
+    
+    *pDst++ = __QADD(*pSrc++, offset);
 
-#if defined (RISCV_MATH_DSP)
-    *pDst++ = __QADD(*pSrc++, offset);
-#else
-    *pDst++ = (q31_t) clip_q63_to_q31((q63_t) * pSrc++ + offset);
-#endif
-
-#if defined (RISCV_MATH_DSP)
-    *pDst++ = __QADD(*pSrc++, offset);
-#else
-    *pDst++ = (q31_t) clip_q63_to_q31((q63_t) * pSrc++ + offset);
-#endif
-
-#if defined (RISCV_MATH_DSP)
-    *pDst++ = __QADD(*pSrc++, offset);
-#else
-    *pDst++ = (q31_t) clip_q63_to_q31((q63_t) * pSrc++ + offset);
-#endif
 #endif /* __RISCV_XLEN == 64 */
     /* Decrement loop counter */
     blkCnt--;
@@ -128,7 +125,7 @@ void riscv_offset_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /*defined(RISCV_VECTOR)*/
 }
 
 /**

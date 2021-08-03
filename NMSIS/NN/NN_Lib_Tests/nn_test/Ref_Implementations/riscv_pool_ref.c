@@ -18,6 +18,7 @@
  */
 
 #include "ref_functions.h"
+#include "riscv_nnsupportfunctions.h"
 
 void riscv_avepool_q7_HWC_ref(const q7_t * Im_in, // input image
                             const uint16_t dim_im_in,   // input image dimension

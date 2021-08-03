@@ -3,13 +3,13 @@
  * Title:        riscv_fir_q31.c
  * Description:  Q31 FIR filter processing function
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,8 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/filtering_functions.h"
+
 
 /**
   @ingroup groupFilters
@@ -56,7 +57,6 @@
  @remark
                    Refer to \ref riscv_fir_fast_q31() for a faster but less precise implementation of this filter.
  */
-
 void riscv_fir_q31(
   const riscv_fir_instance_q31 * S,
   const q31_t * pSrc,
@@ -85,7 +85,7 @@ void riscv_fir_q31(
   /* pStateCurnt points to the location where the new input data should be written */
   pStateCurnt = &(S->pState[(numTaps - 1U)]);
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
 
   /* Loop unrolling: Compute 4 output values simultaneously.
    * The variables acc0 ... acc3 hold output values that are being computed:
@@ -233,7 +233,24 @@ void riscv_fir_q31(
     pb = pCoeffs;
 
     i = numTaps;
+#if defined (RISCV_VECTOR)
+    uint32_t vblkCnt = numTaps;                               /* Loop counter */
+    size_t l;
+    vint32m4_t vx,vy;
+    vint64m1_t temp00m1,temp01m1,accm1;
+    l = vsetvl_e64m1(1);
+    temp00m1 = vmv_v_x_i64m1(0, l);
+    temp01m1 = vmv_v_x_i64m1(0, l);
 
+    for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle32_v_i32m4(px, l);
+      px += l;
+      vy = vle32_v_i32m4(pb, l);
+      pb += l;
+      accm1 = vredsum_vs_i64m8_i64m1 ( temp00m1,vwmul_vv_i64m8(vx, vy, l), temp01m1, l);
+      acc0 +=vmv_x_s_i64m1_i64(accm1);
+    }
+#else
     /* Perform the multiply-accumulates */
     do
     {
@@ -242,6 +259,7 @@ void riscv_fir_q31(
 
       i--;
     } while (i > 0U);
+#endif /* defined (RISCV_VECTOR) */
 
     /* Result is in 2.62 format. Convert to 1.31 and store in destination buffer. */
     *pDst++ = (q31_t) (acc0 >> 31U);

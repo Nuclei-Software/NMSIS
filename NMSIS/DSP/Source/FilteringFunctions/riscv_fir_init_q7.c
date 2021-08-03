@@ -3,13 +3,13 @@
  * Title:        riscv_fir_init_q7.c
  * Description:  Q7 FIR filter initialization function
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -55,6 +55,15 @@
   @par
                    <code>pState</code> points to the array of state variables.
                    <code>pState</code> is of length <code>numTaps+blockSize-1</code> samples, where <code>blockSize</code> is the number of input samples processed by each call to <code>riscv_fir_q7()</code>.
+  
+  @par          Initialization of Helium version
+                   For Helium version the array of coefficients must be a multiple of 16 (16a) even if less
+                   then 16a coefficients are defined in the FIR. The additional coefficients 
+                   (16a - numTaps) must be set to 0.
+                   numTaps is still set to its right value in the init function. It means that
+                   the implementation may require to read more coefficients due to the vectorization and
+                   to avoid having to manage too many different cases in the code.
+
  */
 
 void riscv_fir_init_q7(

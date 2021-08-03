@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2018 Arm Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 Arm Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,15 +22,15 @@
  * Title:        riscv_convolve_HWC_q15_fast.c
  * Description:  Fast Q15 version of convolution
  *
- * $Date:        17. January 2018
- * $Revision:    V.1.0.0
+ * $Date:        January 26, 2021
+ * $Revision:    V.1.0.2
  *
  * Target Processor: RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 
-#include "riscv_math.h"
 #include "riscv_nnfunctions.h"
+#include "riscv_nnsupportfunctions.h"
 
 /**
  *  @ingroup groupNN
@@ -41,66 +41,65 @@
  * @{
  */
 
-  /**
-   * @brief Fast Q15 convolution function
-   * @param[in]       Im_in       pointer to input tensor
-   * @param[in]       dim_im_in   input tensor dimention
-   * @param[in]       ch_im_in    number of input tensor channels
-   * @param[in]       wt          pointer to kernel weights
-   * @param[in]       ch_im_out   number of filters, i.e., output tensor channels
-   * @param[in]       dim_kernel  filter kernel size
-   * @param[in]       padding     padding sizes
-   * @param[in]       stride      convolution stride
-   * @param[in]       bias        pointer to bias
-   * @param[in]       bias_shift  amount of left-shift for bias
-   * @param[in]       out_shift   amount of right-shift for output
-   * @param[in,out]   Im_out      pointer to output tensor
-   * @param[in]       dim_im_out  output tensor dimension
-   * @param[in,out]   bufferA     pointer to buffer space for input 
-   * @param[in,out]   bufferB     pointer to buffer space for output
-   * @return     The function returns either
-   * <code>RISCV_MATH_SIZE_MISMATCH</code> or <code>RISCV_MATH_SUCCESS</code> based on the outcome of size checking.
-   *
-   * @details
-   *
-   * <b>Buffer size:</b>
-   *
-   * bufferA size: 2*ch_im_in*dim_kernel*dim_kernel
-   *
-   * bufferB size: 0
-   *
-   * <b>Input dimension constraints:</b>
-   *
-   * ch_im_in is multiple of 2 
-   *
-   * ch_im_out is multipe of 2
-   *
-   */
+/**
+ * @brief Fast Q15 convolution function
+ * @param[in]       Im_in       pointer to input tensor
+ * @param[in]       dim_im_in   input tensor dimention
+ * @param[in]       ch_im_in    number of input tensor channels
+ * @param[in]       wt          pointer to kernel weights
+ * @param[in]       ch_im_out   number of filters, i.e., output tensor channels
+ * @param[in]       dim_kernel  filter kernel size
+ * @param[in]       padding     padding sizes
+ * @param[in]       stride      convolution stride
+ * @param[in]       bias        pointer to bias
+ * @param[in]       bias_shift  amount of left-shift for bias
+ * @param[in]       out_shift   amount of right-shift for output
+ * @param[in,out]   Im_out      pointer to output tensor
+ * @param[in]       dim_im_out  output tensor dimension
+ * @param[in,out]   bufferA     pointer to buffer space for input
+ * @param[in,out]   bufferB     pointer to buffer space for output
+ * @return     The function returns either
+ * <code>RISCV_MATH_SIZE_MISMATCH</code> or <code>RISCV_MATH_SUCCESS</code> based on the outcome of size checking.
+ *
+ * @details
+ *
+ * <b>Buffer size:</b>
+ *
+ * bufferA size: 2*ch_im_in*dim_kernel*dim_kernel
+ *
+ * bufferB size: 0
+ *
+ * <b>Input dimension constraints:</b>
+ *
+ * ch_im_in is multiple of 2
+ *
+ * ch_im_out is multiple of 2
+ *
+ */
 
-riscv_status
-riscv_convolve_HWC_q15_fast(const q15_t * Im_in,
-                          const uint16_t dim_im_in,
-                          const uint16_t ch_im_in,
-                          const q15_t * wt,
-                          const uint16_t ch_im_out,
-                          const uint16_t dim_kernel,
-                          const uint16_t padding,
-                          const uint16_t stride,
-                          const q15_t * bias,
-                          const uint16_t bias_shift,
-                          const uint16_t out_shift,
-                          q15_t * Im_out, 
-                          const uint16_t dim_im_out, 
-                          q15_t * bufferA, 
-                          q7_t * bufferB)
+riscv_status riscv_convolve_HWC_q15_fast(const q15_t *Im_in,
+                                     const uint16_t dim_im_in,
+                                     const uint16_t ch_im_in,
+                                     const q15_t *wt,
+                                     const uint16_t ch_im_out,
+                                     const uint16_t dim_kernel,
+                                     const uint16_t padding,
+                                     const uint16_t stride,
+                                     const q15_t *bias,
+                                     const uint16_t bias_shift,
+                                     const uint16_t out_shift,
+                                     q15_t *Im_out,
+                                     const uint16_t dim_im_out,
+                                     q15_t *bufferA,
+                                     q7_t *bufferB)
 {
+    (void)bufferB;
+#if defined(RISCV_MATH_DSP)
+    int16_t i_out_y, i_out_x, i_ker_y, i_ker_x;
 
-#if defined (RISCV_MATH_DSP)
-    int16_t   i_out_y, i_out_x, i_ker_y, i_ker_x;
-
-    q15_t    *pBuffer = bufferA;
-    q15_t    *im_buffer = bufferA;
-    q15_t    *pOut = Im_out;
+    q15_t *pBuffer = bufferA;
+    q15_t *im_buffer = bufferA;
+    q15_t *pOut = Im_out;
 
     if (ch_im_in % 2 != 0 || ch_im_out % 2 != 0)
     {
@@ -134,18 +133,18 @@ riscv_convolve_HWC_q15_fast(const q15_t * Im_in,
 
             if (i_out_x & 0x1)
             {
-                int       i;
+                int i;
                 /* initialize the matrix pointers for A */
                 const q15_t *pA = wt;
 
                 /* set up the second output pointers */
-                q15_t    *pOut2 = pOut + ch_im_out;
+                q15_t *pOut2 = pOut + ch_im_out;
 
                 /* this loop over rows in A */
                 for (i = 0; i < ch_im_out; i += 2)
                 {
                     /* setup pointers for B */
-                    q15_t    *pB = im_buffer;
+                    const q15_t *pB = im_buffer;
                     const q15_t *pB2 = pB + ch_im_in * dim_kernel * dim_kernel;
 
                     /* aling the second pointer for A */
@@ -180,10 +179,10 @@ riscv_convolve_HWC_q15_fast(const q15_t * Im_in,
                     /* accumulate over the vector */
                     while (colCnt)
                     {
-                        q31_t     inA1 = *__SIMD32(pA)++;
-                        q31_t     inB1 = *__SIMD32(pB)++;
-                        q31_t     inA2 = *__SIMD32(pA2)++;
-                        q31_t     inB2 = *__SIMD32(pB2)++;
+                        q31_t inA1 = riscv_nn_read_q15x2_ia(&pA);
+                        q31_t inB1 = riscv_nn_read_q15x2_ia(&pB);
+                        q31_t inA2 = riscv_nn_read_q15x2_ia(&pA2);
+                        q31_t inB2 = riscv_nn_read_q15x2_ia(&pB2);
 
                         sum  = __RV_SMALDA(sum , inA1, inB1);
                         sum2 = __RV_SMALDA(sum2, inA1, inB2);
@@ -191,30 +190,30 @@ riscv_convolve_HWC_q15_fast(const q15_t * Im_in,
                         sum4 = __RV_SMALDA(sum4, inA2, inB2);
 
                         colCnt--;
-                    }           /* while over colCnt */
+                    } /* while over colCnt */
                     colCnt = ch_im_in * dim_kernel * dim_kernel & 0x1;
 #endif /* __RISCV_XLEN == 64 */
                     while (colCnt)
                     {
-                        q15_t     inA1 = *pA++;
-                        q15_t     inB1 = *pB++;
-                        q15_t     inA2 = *pA2++;
-                        q15_t     inB2 = *pB2++;
+                        q15_t inA1 = *pA++;
+                        q15_t inB1 = *pB++;
+                        q15_t inA2 = *pA2++;
+                        q15_t inB2 = *pB2++;
 
                         sum += inA1 * inB1;
                         sum2 += inA1 * inB2;
                         sum3 += inA2 * inB1;
                         sum4 += inA2 * inB2;
                         colCnt--;
-                    }           /* while over colCnt */
-                    *pOut++ = (q15_t) __SSAT(sum >> out_shift, 16);
-                    *pOut++ = (q15_t) __SSAT(sum3 >> out_shift, 16);
-                    *pOut2++ = (q15_t) __SSAT(sum2 >> out_shift, 16);
-                    *pOut2++ = (q15_t) __SSAT(sum4 >> out_shift, 16);
+                    } /* while over colCnt */
+                    *pOut++ = (q15_t)__SSAT(sum >> out_shift, 16);
+                    *pOut++ = (q15_t)__SSAT(sum3 >> out_shift, 16);
+                    *pOut2++ = (q15_t)__SSAT(sum2 >> out_shift, 16);
+                    *pOut2++ = (q15_t)__SSAT(sum4 >> out_shift, 16);
 
                     /* skip the row computed with A2 */
                     pA += ch_im_in * dim_kernel * dim_kernel;
-                }               /* for over ch_im_out */
+                } /* for over ch_im_out */
 
                 pOut += ch_im_out;
                 /* counter reset */
@@ -224,10 +223,11 @@ riscv_convolve_HWC_q15_fast(const q15_t * Im_in,
     }
 
 #else
+    (void)bufferA;
     /* Run the following code as reference implementation for RISC-V Core without DSP */
-    uint16_t  i, j, k, l, m, n;
-    int       conv_out;
-    signed char in_row, in_col;
+    int i, j, k, l, m, n;
+    int conv_out;
+    int in_row, in_col;
 
     if (ch_im_in % 2 != 0 || ch_im_out % 2 != 0)
     {
@@ -252,20 +252,18 @@ riscv_convolve_HWC_q15_fast(const q15_t * Im_in,
                         {
                             for (l = 0; l < ch_im_in; l++)
                             {
-                                conv_out +=
-                                    Im_in[(in_row * dim_im_in + in_col) * ch_im_in +
-                                          l] * wt[i * ch_im_in * dim_kernel * dim_kernel + (m * dim_kernel +
-                                                                                            n) * ch_im_in + l];
+                                conv_out += Im_in[(in_row * dim_im_in + in_col) * ch_im_in + l] *
+                                    wt[i * ch_im_in * dim_kernel * dim_kernel + (m * dim_kernel + n) * ch_im_in + l];
                             }
                         }
                     }
                 }
-                Im_out[i + (j * dim_im_out + k) * ch_im_out] = (q15_t) __SSAT((conv_out >> out_shift), 16);
+                Im_out[i + (j * dim_im_out + k) * ch_im_out] = (q15_t)__SSAT((conv_out >> out_shift), 16);
             }
         }
     }
 
-#endif                          /* RISCV_MATH_DSP */
+#endif /* RISCV_MATH_DSP */
 
     /* Return to application */
     return RISCV_MATH_SUCCESS;

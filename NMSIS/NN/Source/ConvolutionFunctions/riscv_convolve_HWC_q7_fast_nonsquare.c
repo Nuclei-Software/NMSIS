@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2018 Arm Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 Arm Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,15 +22,15 @@
  * Title:        riscv_convolve_HWC_q7_fast_nonsquare.c
  * Description:  Fast Q7 version of convolution (non-sqaure shape)
  *
- * $Date:        17. January 2018
- * $Revision:    V.1.0.0
+ * $Date:        January 26, 2021
+ * $Revision:    V.1.0.2
  *
  * Target Processor: RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 
-#include "riscv_math.h"
 #include "riscv_nnfunctions.h"
+#include "riscv_nnsupportfunctions.h"
 
 /**
  *  @ingroup groupNN
@@ -61,22 +61,22 @@
  * @param[in,out]   Im_out       pointer to output tensor
  * @param[in]       dim_im_out_x output tensor dimension x
  * @param[in]       dim_im_out_y output tensor dimension y
- * @param[in,out]   bufferA      pointer to buffer space for input 
+ * @param[in,out]   bufferA      pointer to buffer space for input
  * @param[in,out]   bufferB      pointer to buffer space for output
  * @return     The function returns either
  * <code>RISCV_MATH_SIZE_MISMATCH</code> or <code>RISCV_MATH_SUCCESS</code> based on the outcome of size checking.
  *
  * This function is the version with full list of optimization tricks, but with
- * some contraints:
+ * some constraints:
  *   ch_im_in is multiple of 4
  *   ch_im_out is multiple of 2
  */
 
-riscv_status riscv_convolve_HWC_q7_fast_nonsquare(const q7_t * Im_in,
+riscv_status riscv_convolve_HWC_q7_fast_nonsquare(const q7_t *Im_in,
                                               const uint16_t dim_im_in_x,
                                               const uint16_t dim_im_in_y,
                                               const uint16_t ch_im_in,
-                                              const q7_t * wt,
+                                              const q7_t *wt,
                                               const uint16_t ch_im_out,
                                               const uint16_t dim_kernel_x,
                                               const uint16_t dim_kernel_y,
@@ -84,20 +84,20 @@ riscv_status riscv_convolve_HWC_q7_fast_nonsquare(const q7_t * Im_in,
                                               const uint16_t padding_y,
                                               const uint16_t stride_x,
                                               const uint16_t stride_y,
-                                              const q7_t * bias,
+                                              const q7_t *bias,
                                               const uint16_t bias_shift,
                                               const uint16_t out_shift,
-                                              q7_t * Im_out,
+                                              q7_t *Im_out,
                                               const uint16_t dim_im_out_x,
-                                              const uint16_t dim_im_out_y, 
-                                              q15_t * bufferA, 
-                                              q7_t * bufferB)
+                                              const uint16_t dim_im_out_y,
+                                              q15_t *bufferA,
+                                              q7_t *bufferB)
 {
-
-#if defined (RISCV_MATH_DSP)
+    (void)bufferB;
+#if defined (RISCV_MATH_DSP) || defined (RISCV_VECTOR)
     /* Run the following code for RISC-V Core with DSP enabled */
 
-    int16_t   i_out_y, i_out_x, i_ker_y, i_ker_x;
+    int16_t i_out_y, i_out_x, i_ker_y, i_ker_x;
 
     /* -----------------------
      *  Here we use bufferA as q15_t internally as computation are done with q15_t level
@@ -289,11 +289,12 @@ riscv_status riscv_convolve_HWC_q7_fast_nonsquare(const q7_t * Im_in,
     if (pBuffer != (q7_t *)bufferA)
     {
         const q7_t *pA = wt;
-        int       i;
+        int i;
         for (i = 0; i < ch_im_out; i++)
         {
             q31_t     sum = ((q31_t)(bias[i]) << bias_shift) + NN_ROUND(out_shift);
             q7_t    *pB = (q7_t *)bufferA;
+#if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
             /* basically each time it process 4 entries */
             uint16_t  colCnt = ch_im_in * dim_kernel_x * dim_kernel_y >> 3;
@@ -310,7 +311,7 @@ riscv_status riscv_convolve_HWC_q7_fast_nonsquare(const q7_t * Im_in,
             colCnt = (ch_im_in * dim_kernel_y * dim_kernel_x) & 0x7;
 #else
             /* basically each time it process 4 entries */
-            uint16_t  colCnt = ch_im_in * dim_kernel_x * dim_kernel_y >> 2;
+            uint16_t colCnt = ch_im_in * dim_kernel_x * dim_kernel_y >> 2;
 
             while (colCnt)
             {
@@ -323,32 +324,34 @@ riscv_status riscv_convolve_HWC_q7_fast_nonsquare(const q7_t * Im_in,
                 /*colCnt--;
                 inB1 = *__SIMD32(pB)++;
                 sum = __SMLAD(inA1, inB1, sum);
-                inB2 = *__SIMD32(pB)++;
+                inB2 = riscv_nn_read_q15x2_ia(&pB);
                 sum = __SMLAD(inA2, inB2, sum);
                     */
                 colCnt--;
             }
             colCnt = (ch_im_in * dim_kernel_y * dim_kernel_x) & 0x3;
 #endif /* __RISCV_XLEN == 64 */
+#else
+            uint16_t  colCnt = ch_im_in * dim_kernel_x * dim_kernel_y;
+#endif /*ndef RISCV_VECTOR*/
             while (colCnt)
             {
-                q7_t      inA1 = *pA++;
-                q15_t     inB1 = *pB++;
+                q7_t inA1 = *pA++;
+                q15_t inB1 = *pB++;
                 sum += inA1 * inB1;
                 colCnt--;
             }
-            *pOut = (q7_t) __SSAT((sum >> out_shift), 8);
+            *pOut = (q7_t)__SSAT((sum >> out_shift), 8);
             pOut++;
-
         }
-
     }
 
 #else
+    (void)bufferA;
     /* Run the following code as reference implementation for RISC-V Core without DSP */
-    int       i, j, k, l, m, n;
-    int       conv_out;
-    int       in_row, in_col;
+    int i, j, k, l, m, n;
+    int conv_out;
+    int in_row, in_col;
 
     if (ch_im_in % 4 != 0 || ch_im_out % 2 != 0)
     {
@@ -375,18 +378,18 @@ riscv_status riscv_convolve_HWC_q7_fast_nonsquare(const q7_t * Im_in,
                             for (l = 0; l < ch_im_in; l++)
                             {
                                 conv_out += Im_in[(in_row * dim_im_in_x + in_col) * ch_im_in + l] *
-                                    wt[i * ch_im_in * dim_kernel_y * dim_kernel_x + (m * dim_kernel_x + n) * ch_im_in + l];      
+                                    wt[i * ch_im_in * dim_kernel_y * dim_kernel_x + (m * dim_kernel_x + n) * ch_im_in +
+                                       l];
                             }
                         }
                     }
                 }
-                Im_out[i + (j * dim_im_out_x + k) * ch_im_out] = (q7_t) __SSAT((conv_out >> out_shift), 8);
+                Im_out[i + (j * dim_im_out_x + k) * ch_im_out] = (q7_t)__SSAT((conv_out >> out_shift), 8);
             }
         }
     }
 
-
-#endif                          /* RISCV_MATH_DSP */
+#endif /* RISCV_MATH_DSP */
 
     /* Return to application */
     return RISCV_MATH_SUCCESS;

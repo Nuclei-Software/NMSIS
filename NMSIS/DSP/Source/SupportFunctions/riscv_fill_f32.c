@@ -3,13 +3,13 @@
  * Title:        riscv_fill_f32.c
  * Description:  Fills a constant value into a floating-point vector
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/support_functions.h"
 
 /**
   @ingroup groupSupport
@@ -57,53 +57,21 @@
   @param[in]     blockSize  number of samples in each vector
   @return        none
  */
-
-#if defined(RISCV_MATH_NEON_EXPERIMENTAL)
 void riscv_fill_f32(
   float32_t value,
   float32_t * pDst,
   uint32_t blockSize)
 {
-  uint32_t blkCnt;                               /* loop counter */
-
-
-  float32x4_t inV = vdupq_n_f32(value);
-
-  blkCnt = blockSize >> 2U;
-
-  /* Compute 4 outputs at a time.
-   ** a second loop below computes the remaining 1 to 3 samples. */
-  while (blkCnt > 0U)
-  {
-    /* C = value */
-    /* Fill the value in the destination buffer */
-    vst1q_f32(pDst, inV);
-    pDst += 4;
-
-    /* Decrement the loop counter */
-    blkCnt--;
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = blockSize;                               /* Loop counter */
+  size_t l;
+  vfloat32m8_t v_fill;      
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+    v_fill = vfmv_v_f_f32m8(value, l);
+    vse32_v_f32m8 (pDst, v_fill, l);
+    pDst += l;
   }
-
-  /* If the blockSize is not a multiple of 4, compute any remaining output samples here.
-   ** No loop unrolling is used. */
-  blkCnt = blockSize & 3;
-
-  while (blkCnt > 0U)
-  {
-    /* C = value */
-    /* Fill the value in the destination buffer */
-    *pDst++ = value;
-
-    /* Decrement the loop counter */
-    blkCnt--;
-  }
-}
 #else
-void riscv_fill_f32(
-  float32_t value,
-  float32_t * pDst,
-  uint32_t blockSize)
-{
   uint32_t blkCnt;                               /* Loop counter */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
@@ -145,8 +113,9 @@ void riscv_fill_f32(
     /* Decrement loop counter */
     blkCnt--;
   }
+#endif /* defined(RISCV_VECTOR) */
 }
-#endif /* #if defined(RISCV_MATH_NEON) */
+
 /**
   @} end of Fill group
  */

@@ -38,6 +38,12 @@ static inline uint64_t read_cpu_instret(void)
     val = (((uint64_t)hi) << 32) | lo;
     return val;
 }
+static inline void setup_vector(void) 
+{ 
+#if (defined (__RISCV_FEATURE_VECTOR) && (__RISCV_FEATURE_VECTOR == 1))
+  __RV_CSR_SET(CSR_MSTATUS, 0x200);
+#endif 
+}
 #else
 static inline uint64_t read_cpu_cycle(void)
 {
@@ -51,10 +57,20 @@ static inline uint64_t read_cpu_instret(void)
     val = read_csr(instret);
     return val;
 }
+static inline void setup_vector(void) 
+{ 
+#if (defined (__RISCV_FEATURE_VECTOR) && (__RISCV_FEATURE_VECTOR == 1))
+  __RV_CSR_SET(CSR_MSTATUS, 0x200);
+#endif 
+}
 #endif
 
 #ifndef READ_CYCLE
 #define READ_CYCLE              read_cpu_cycle
+#endif
+
+#ifndef INIT_VECTOR
+#define INIT_VECTOR setup_vector
 #endif
 
 uint64_t enter_cycle;
@@ -66,6 +82,7 @@ uint64_t extra_cost = 0;
 uint32_t bench_ercd;
 
 #define BENCH_INIT              printf("Benchmark Initialized\n"); \
+                                INIT_VECTOR(); \
                                 start_cycle = READ_CYCLE(); \
                                 end_cycle = READ_CYCLE(); \
                                 extra_cost = end_cycle - start_cycle; \

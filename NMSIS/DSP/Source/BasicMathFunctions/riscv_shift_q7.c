@@ -3,13 +3,13 @@
  * Title:        riscv_shift_q7.c
  * Description:  Processing function for the Q7 Shifting
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/basic_math_functions.h"
 
 /**
   @ingroup groupMath
@@ -59,6 +59,28 @@ void riscv_shift_q7(
         q7_t * pDst,
         uint32_t blockSize)
 {
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = blockSize;                               /* Loop counter */
+  uint8_t sign = (shiftBits & 0x80);
+  size_t l;
+  vint8m4_t vx;
+       
+  for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
+    vx = vle8_v_i8m4(pSrc, l);
+    pSrc += l;
+    /* If the shift value is positive then do right shift else left shift */
+    if (sign == 0U)
+    {
+      vse8_v_i8m4 (pDst, vnclip_wx_i8m4(vsll_vx_i16m8(vwadd_vx_i16m8(vx,0, l), shiftBits, l),0, l), l);
+      pDst += l;
+    }
+    else
+    {
+      vse8_v_i8m4 (pDst, vsra_vx_i8m4(vx, -shiftBits, l), l);
+      pDst += l;
+    }
+  }
+#else
         uint32_t blkCnt;                               /* Loop counter */
         uint8_t sign = (shiftBits & 0x80);             /* Sign of shiftBits */
 
@@ -196,7 +218,7 @@ void riscv_shift_q7(
       blkCnt--;
     }
   }
-
+#endif /* defined(RISCV_VECTOR) */
 }
 
 /**

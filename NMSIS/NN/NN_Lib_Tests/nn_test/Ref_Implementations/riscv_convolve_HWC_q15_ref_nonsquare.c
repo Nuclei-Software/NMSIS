@@ -18,6 +18,7 @@
  */
 
 #include "ref_functions.h"
+#include "riscv_nnsupportfunctions.h"
 
 void
 riscv_convolve_HWC_q15_nonsquare_ref(const q15_t * Im_in,

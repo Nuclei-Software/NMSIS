@@ -3,13 +3,13 @@
  * Title:        riscv_conv_q15.c
  * Description:  Convolution of Q15 sequences
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -59,7 +59,6 @@
   @remark
                    Refer to \ref riscv_conv_opt_q15() for a faster implementation of this function using scratch buffers.
  */
-
 void riscv_conv_q15(
   const q15_t * pSrcA,
         uint32_t srcALen,
@@ -68,7 +67,7 @@ void riscv_conv_q15(
         q15_t * pDst)
 {
 
-#if defined (RISCV_MATH_DSP)
+#if defined (RISCV_MATH_DSP) || defined (RISCV_VECTOR)
 
   const q15_t *pIn1;                                   /* InputA pointer */
   const q15_t *pIn2;                                   /* InputB pointer */
@@ -147,7 +146,41 @@ void riscv_conv_q15(
   /* For loop unrolling by 4, this stage is divided into two. */
   /* First part of this stage computes the MAC operations less than 4 */
   /* Second part of this stage computes the MAC operations greater than or equal to 4 */
+#if defined (RISCV_VECTOR)
+  while (blockSize1 > 0U)
+  {
+    /* Accumulator is made zero for every iteration */
+    sum = 0;
+    uint32_t vblkCnt = count;                               /* Loop counter */
+    size_t l;
+    vint16m4_t vx, vy;
+    vint32m1_t temp00m1;
+    ptrdiff_t bstride = -2;
+    l = vsetvl_e32m1(vblkCnt);
+    temp00m1 = vmv_v_x_i32m1(0, l);
+    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle16_v_i16m4(px, l);
+      px += l;
+      vy = vlse16_v_i16m4(py, bstride, l);
+      py -= l;
+      sum += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l));
+    }
 
+
+    /* Store the result in the accumulator in the destination buffer. */
+    *pOut++ = (q15_t) (__SSAT((sum >> 15), 16));
+
+    /* Update the inputA and inputB pointers for next MAC calculation */
+    py = pIn2 + (count - 1U);
+    px = pIn1;
+
+    /* Increment MAC count */
+    count++;
+
+    /* Decrement loop counter */
+    blockSize1--;
+  }
+#else
   /* The first part of the stage starts here */
   while ((count < 4U) && (blockSize1 > 0U))
   {
@@ -249,7 +282,7 @@ void riscv_conv_q15(
     /* Decrement loop counter */
     blockSize1--;
   }
-
+#endif /*defined (RISCV_VECTOR)*/
   /* --------------------------
    * Initializations of stage2
    * ------------------------*/
@@ -273,7 +306,43 @@ void riscv_conv_q15(
   /* -------------------
    * Stage2 process
    * ------------------*/
+#if defined (RISCV_VECTOR)
+    blkCnt = blockSize2;
 
+    while (blkCnt > 0U)
+    {
+      /* Accumulator is made zero for every iteration */
+      sum = 0;
+
+      uint32_t vblkCnt = srcBLen;                               /* Loop counter */
+      size_t l;
+      vint16m4_t vx, vy;
+      vint32m1_t temp00m1;
+      ptrdiff_t bstride = -2;
+      l = vsetvl_e32m1(1);
+      temp00m1 = vmv_v_x_i32m1(0, l);
+      for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+        vx = vle16_v_i16m4(px, l);
+        px += l;
+        vy = vlse16_v_i16m4(py, bstride, l);
+        py -= l;
+        sum += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l));
+      }
+
+      /* Store the result in the accumulator in the destination buffer. */
+      *pOut++ = (q15_t) (__SSAT(sum >> 15, 16));
+
+      /* Increment the MAC count */
+      count++;
+
+      /* Update the inputA and inputB pointers for next MAC calculation */
+      px = pIn1 + count;
+      py = pSrc2;
+
+      /* Decrement the loop counter */
+      blkCnt--;
+    }
+#else
   /* Stage2 depends on srcBLen as in this stage srcBLen number of MACS are performed.
    * So, to loop unroll over blockSize2,
    * srcBLen should be greater than or equal to 4 */
@@ -364,11 +433,7 @@ void riscv_conv_q15(
       {
         /* Read y[srcBLen - 5] */
         c0 = *(py + 1);
-#ifdef  RISCV_MATH_BIG_ENDIAN
-        c0 = c0 << 16U;
-#else
         c0 = c0 & 0x0000FFFF;
-#endif /* #ifdef  RISCV_MATH_BIG_ENDIAN */
 
         /* Read x[7] */
         x3 = read_q15x2 ((q15_t *) px);
@@ -418,11 +483,7 @@ void riscv_conv_q15(
         acc3 = __RV_SMALXDA(acc3, x2, c0);
 
         c0 = *(py-1);
-#ifdef  RISCV_MATH_BIG_ENDIAN
-        c0 = c0 << 16U;
-#else
         c0 = c0 & 0x0000FFFF;
-#endif /* #ifdef  RISCV_MATH_BIG_ENDIAN */
 
         /* Read x[10] */
         x3 =  read_q15x2 ((q15_t *) px + 2);
@@ -436,13 +497,8 @@ void riscv_conv_q15(
       }
 
       /* Store the result in the accumulator in the destination buffer. */
-#ifndef  RISCV_MATH_BIG_ENDIAN
       write_q15x2_ia (&pOut, __PKHBT(__SSAT((acc0 >> 15), 16), __SSAT((acc1 >> 15), 16), 16));
       write_q15x2_ia (&pOut, __PKHBT(__SSAT((acc2 >> 15), 16), __SSAT((acc3 >> 15), 16), 16));
-#else
-      write_q15x2_ia (&pOut, __PKHBT(__SSAT((acc1 >> 15), 16), __SSAT((acc0 >> 15), 16), 16));
-      write_q15x2_ia (&pOut, __PKHBT(__SSAT((acc3 >> 15), 16), __SSAT((acc2 >> 15), 16), 16));
-#endif /*      #ifndef  RISCV_MATH_BIG_ENDIAN    */
 
       /* Increment the pointer pIn1 index, count by 4 */
       count += 4U;
@@ -555,7 +611,7 @@ void riscv_conv_q15(
       blkCnt--;
     }
   }
-
+#endif /*defined (RISCV_VECTOR)*/
 
   /* --------------------------
    * Initializations of stage3
@@ -588,7 +644,39 @@ void riscv_conv_q15(
   /* For loop unrolling by 4, this stage is divided into two. */
   /* First part of this stage computes the MAC operations greater than 4 */
   /* Second part of this stage computes the MAC operations less than or equal to 4 */
+#if defined (RISCV_VECTOR)
+  while (blockSize3 > 0U)
+  {
+    /* Accumulator is made zero for every iteration */
+    sum = 0;
 
+    uint32_t vblkCnt = blockSize3;                               /* Loop counter */
+    size_t l;
+    vint16m4_t vx, vy;
+    vint32m1_t temp00m1;
+    ptrdiff_t bstride = -2;
+    l = vsetvl_e32m1(1);
+    temp00m1 = vmv_v_x_i32m1(0, l);
+    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle16_v_i16m4(px, l);
+      px += l;
+      vy = vlse16_v_i16m4(py, bstride, l);
+      py -= l;
+      sum += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l));
+    }
+
+    /* Store the result in the accumulator in the destination buffer. */
+    *pOut++ = (q15_t) (__SSAT((sum >> 15), 16));
+
+    /* Update the inputA and inputB pointers for next MAC calculation */
+    px = ++pSrc1;
+    py = pSrc2;
+
+    /* Decrement loop counter */
+    blockSize3--;
+  }
+
+#else
   /* The first part of the stage starts here */
   j = blockSize3 >> 2U;
 
@@ -689,7 +777,7 @@ void riscv_conv_q15(
     /* Decrement loop counter */
     blockSize3--;
   }
-
+#endif /*defined (RISCV_VECTOR)*/
 #else /* #if defined (RISCV_MATH_DSP) */
 
   const q15_t *pIn1 = pSrcA;                           /* InputA pointer */

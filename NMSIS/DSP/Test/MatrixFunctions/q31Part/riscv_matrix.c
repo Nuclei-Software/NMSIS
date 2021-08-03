@@ -5,11 +5,11 @@
 // each one has it's own function.
 // All function can be found in main function.
 // If you don't want to use it, then comment it.
-#include "../common.h"
 #include "riscv_math.h"
 #include "array.h"
 #include <stdint.h>
 #include <stdlib.h>
+#include "../common.h"
 
 #include "../HelperFunctions/math_helper.c"
 #include "../HelperFunctions/ref_helper.c"
@@ -29,9 +29,6 @@ int DSP_matrix_q31(void)
     riscv_matrix_instance_q31 q31_ref;
     riscv_matrix_instance_q31 q31_des;
     int i;
-    q31_t q31_output[ROWS * COLUMNS];
-    q31_t q31_output_back[ROWS * COLUMNS];
-    q31_t q31_output_ref[ROWS * COLUMNS];
     riscv_mat_init_q31(&q31_A, ROWS, COLUMNS, (q31_t *)q31_a_array);
     riscv_mat_init_q31(&q31_B, ROWS, COLUMNS, (q31_t *)q31_b_array);
     riscv_mat_init_q31(&q31_des, ROWS, COLUMNS, q31_output);
@@ -104,15 +101,15 @@ int DSP_matrix_q31(void)
         }
     BENCH_STATUS(riscv_mat_scale_q31);
     // cmplx_mult
-    riscv_mat_init_q31(&q31_A, 5, 5, (q31_t *)q31_a_array);
-    riscv_mat_init_q31(&q31_B, 5, 5, (q31_t *)q31_b_array);
-    riscv_mat_init_q31(&q31_des, 5, 5, q31_output);
-    riscv_mat_init_q31(&q31_ref, 5, 5, q31_output_ref);
+    riscv_mat_init_q31(&q31_A, 32, 32, (q31_t *)q31_a_array);
+    riscv_mat_init_q31(&q31_B, 32, 32, (q31_t *)q31_b_array);
+    riscv_mat_init_q31(&q31_des, 32, 32, q31_output);
+    riscv_mat_init_q31(&q31_ref, 32, 32, q31_output_ref);
     BENCH_START(riscv_mat_cmplx_mult_q31);
     riscv_mat_cmplx_mult_q31(&q31_A, &q31_B, &q31_des);
     BENCH_END(riscv_mat_cmplx_mult_q31);
     ref_mat_cmplx_mult_q31(&q31_A, &q31_B, &q31_ref);
-    for (int i = 0; i < (5 * 5); i++)
+    for (int i = 0; i < (32 * 32); i++)
         if (labs(q31_output[i] - q31_output_ref[i]) > DELTAQ31) {
             BENCH_ERROR(riscv_mat_cmplx_mult_q31);
             printf("index: %d,expect: %x, actual: %x\n", i, q31_output_ref[i],

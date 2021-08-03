@@ -60,8 +60,18 @@
 void riscv_q7_to_q7_no_shift(const q7_t * pSrc, q7_t * pDst, uint32_t blockSize)
 {
     const q7_t *pIn = pSrc;
+#if defined (RISCV_VECTOR)
+  uint32_t blkCnt = blockSize;                              /* Loop counter */
+  size_t l;
+  vint8m8_t vx, vy;
+       
+  for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
+    vse8_v_i8m8 (pDst, vle8_v_i8m8(pIn, l), l);
+    pIn += l;
+    pDst += l;
+  }
+#else
     uint32_t  blkCnt;
-
 #if defined(RISCV_MATH_LOOPUNROLL) && defined(RISCV_MATH_DSP)
     q31_t     in;
     q31_t     in1, in2;
@@ -102,7 +112,7 @@ void riscv_q7_to_q7_no_shift(const q7_t * pSrc, q7_t * pDst, uint32_t blockSize)
         /* Decrement the loop counter */
         blkCnt--;
     }
-
+#endif /*defined (RISCV_VECTOR)*/
 }
 
 /**

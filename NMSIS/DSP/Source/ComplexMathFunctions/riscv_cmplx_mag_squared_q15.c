@@ -3,13 +3,13 @@
  * Title:        riscv_cmplx_mag_squared_q15.c
  * Description:  Q15 complex magnitude squared
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/complex_math_functions.h"
 
 /**
   @ingroup groupCmplxMath
@@ -54,6 +54,32 @@ void riscv_cmplx_mag_squared_q15(
         q15_t * pDst,
         uint32_t numSamples)
 {
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = numSamples;                               /* Loop counter */
+  size_t l;
+  const q15_t * input = pSrc;
+  q15_t * output = pDst;
+  ptrdiff_t bstride = 4;
+  vint16m2_t v_R,v_I;
+  vint32m4_t vR2_m4, vI2_m4;
+  vint64m8_t vsum_m8;
+  vint16m2_t v_summ2;
+  for (; (l = vsetvl_e16m2(blkCnt)) > 0; blkCnt -= l) 
+  {
+    v_R = vlse16_v_i16m2(input, bstride, l);
+    input++;
+    v_I = vlse16_v_i16m2(input, bstride, l);
+    input += (l*2-1);
+    vR2_m4 = vwmul_vv_i32m4(v_R, v_R, l);
+    vI2_m4 = vwmul_vv_i32m4(v_I, v_I, l);
+    vsum_m8 = vwadd_vv_i64m8 (vR2_m4, vI2_m4, l);
+    //v_summ2 = vnclip_wx_i16m2(vnsra_wx_i32m4(vsum_m8, 17), 0); 
+    v_summ2 = vnclip_wx_i16m2(vnclip_wx_i32m4(vsum_m8, 17, l), 0, l);
+    vse16_v_i16m2 (output, v_summ2, l);
+    output += l;
+  }
+
+#else
         uint32_t blkCnt;                               /* Loop counter */
 
 #if defined (RISCV_MATH_DSP)
@@ -176,8 +202,9 @@ void riscv_cmplx_mag_squared_q15(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_VECTOR) */
 }
+
 
 /**
   @} end of cmplx_mag_squared group

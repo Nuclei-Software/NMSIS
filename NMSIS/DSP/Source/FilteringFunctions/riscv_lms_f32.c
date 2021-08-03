@@ -3,13 +3,13 @@
  * Title:        riscv_lms_f32.c
  * Description:  Processing function for the floating-point LMS filter
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -163,179 +163,6 @@
   @param[in]     blockSize  number of samples to process
   @return        none
  */
-#if defined(RISCV_MATH_NEON)
-void riscv_lms_f32(
-  const riscv_lms_instance_f32 * S,
-  const float32_t * pSrc,
-  float32_t * pRef,
-  float32_t * pOut,
-  float32_t * pErr,
-  uint32_t blockSize)
-{
-  float32_t *pState = S->pState;                 /* State pointer */
-  float32_t *pCoeffs = S->pCoeffs;               /* Coefficient pointer */
-  float32_t *pStateCurnt;                        /* Points to the current sample of the state */
-  float32_t *px, *pb;                            /* Temporary pointers for state and coefficient buffers */
-  float32_t mu = S->mu;                          /* Adaptive factor */
-  uint32_t numTaps = S->numTaps;                 /* Number of filter coefficients in the filter */
-  uint32_t tapCnt, blkCnt;                       /* Loop counters */
-  float32_t sum, e, d;                           /* accumulator, error, reference data sample */
-  float32_t w = 0.0f;                            /* weight factor */
-
-  float32x4_t tempV, sumV, xV, bV;
-  float32x2_t tempV2;
-
-  e = 0.0f;
-  d = 0.0f;
-
-  /* S->pState points to state array which contains previous frame (numTaps - 1) samples */
-  /* pStateCurnt points to the location where the new input data should be written */
-  pStateCurnt = &(S->pState[(numTaps - 1U)]);
-
-  blkCnt = blockSize;
-
-  while (blkCnt > 0U)
-  {
-    /* Copy the new input sample into the state buffer */
-    *pStateCurnt++ = *pSrc++;
-
-    /* Initialize pState pointer */
-    px = pState;
-
-    /* Initialize coeff pointer */
-    pb = (pCoeffs);
-
-    /* Set the accumulator to zero */
-    sum = 0.0f;
-    sumV = vdupq_n_f32(0.0);
-
-    /* Process 4 taps at a time. */
-    tapCnt = numTaps >> 2;
-
-    while (tapCnt > 0U)
-    {
-      /* Perform the multiply-accumulate */
-      xV = vld1q_f32(px);
-      bV = vld1q_f32(pb);
-      sumV = vmlaq_f32(sumV, xV, bV);
-
-      px += 4; 
-      pb += 4;
-
-      /* Decrement the loop counter */
-      tapCnt--;
-    }
-    tempV2 = vpadd_f32(vget_low_f32(sumV),vget_high_f32(sumV));
-    sum = tempV2[0] + tempV2[1];
-
-
-    /* If the filter length is not a multiple of 4, compute the remaining filter taps */
-    tapCnt = numTaps % 0x4U;
-
-    while (tapCnt > 0U)
-    {
-      /* Perform the multiply-accumulate */
-      sum += (*px++) * (*pb++);
-
-      /* Decrement the loop counter */
-      tapCnt--;
-    }
-
-    /* The result in the accumulator, store in the destination buffer. */
-    *pOut++ = sum;
-
-    /* Compute and store error */
-    d = (float32_t) (*pRef++);
-    e = d - sum;
-    *pErr++ = e;
-
-    /* Calculation of Weighting factor for the updating filter coefficients */
-    w = e * mu;
-
-    /* Initialize pState pointer */
-    px = pState;
-
-    /* Initialize coeff pointer */
-    pb = (pCoeffs);
-
-    /* Process 4 taps at a time. */
-    tapCnt = numTaps >> 2;
-
-    /* Update filter coefficients */
-    while (tapCnt > 0U)
-    {
-      /* Perform the multiply-accumulate */
-      xV = vld1q_f32(px);
-      bV = vld1q_f32(pb);
-      px += 4;
-      bV = vmlaq_n_f32(bV,xV,w);
-
-      vst1q_f32(pb,bV); 
-      pb += 4;
-
-
-      /* Decrement the loop counter */
-      tapCnt--;
-    }
-
-    /* If the filter length is not a multiple of 4, compute the remaining filter taps */
-    tapCnt = numTaps % 0x4U;
-
-    while (tapCnt > 0U)
-    {
-      /* Perform the multiply-accumulate */
-      *pb = *pb + (w * (*px++));
-      pb++;
-
-      /* Decrement the loop counter */
-      tapCnt--;
-    }
-
-    /* Advance state pointer by 1 for the next sample */
-    pState = pState + 1;
-
-    /* Decrement the loop counter */
-    blkCnt--;
-  }
-
-
-  /* Processing is complete. Now copy the last numTaps - 1 samples to the
-     satrt of the state buffer. This prepares the state buffer for the
-     next function call. */
-
-  /* Points to the start of the pState buffer */
-  pStateCurnt = S->pState;
-
-  /* Process 4 taps at a time for (numTaps - 1U) samples copy */
-  tapCnt = (numTaps - 1U) >> 2U;
-
-  /* copy data */
-  while (tapCnt > 0U)
-  {
-    tempV = vld1q_f32(pState);
-    vst1q_f32(pStateCurnt,tempV); 
-    pState += 4;
-    pStateCurnt += 4;
-
-    /* Decrement the loop counter */
-    tapCnt--;
-  }
-
-  /* Calculate remaining number of copies */
-  tapCnt = (numTaps - 1U) % 0x4U;
-
-  /* Copy the remaining q31_t data */
-  while (tapCnt > 0U)
-  {
-    *pStateCurnt++ = *pState++;
-
-    /* Decrement the loop counter */
-    tapCnt--;
-  }
-
-
-}
-#else
 void riscv_lms_f32(
   const riscv_lms_instance_f32 * S,
   const float32_t * pSrc,
@@ -379,7 +206,7 @@ void riscv_lms_f32(
     /* Set the accumulator to zero */
     acc = 0.0f;
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
 
     /* Loop unrolling: Compute 4 taps at a time. */
     tapCnt = numTaps >> 2U;
@@ -408,7 +235,21 @@ void riscv_lms_f32(
     tapCnt = numTaps;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-
+#if defined (RISCV_VECTOR)
+    uint32_t vblkCnt = numTaps;                               /* Loop counter */
+    size_t l;
+    vfloat32m8_t vx, vy;
+    vfloat32m1_t temp00m1;
+    l = vsetvl_e32m1(1);
+    temp00m1 = vfmv_v_f_f32m1(0, l);
+    for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle32_v_f32m8(px, l);
+      px += l;
+      vy = vle32_v_f32m8(pb, l);
+      pb += l;
+      acc += vfmv_f_s_f32m1_f32(vfredsum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l));
+    }
+#else
     while (tapCnt > 0U)
     {
       /* Perform the multiply-accumulate */
@@ -417,7 +258,7 @@ void riscv_lms_f32(
       /* Decrement the loop counter */
       tapCnt--;
     }
-
+#endif /* defined (RISCV_VECTOR) */
     /* Store the result from accumulator into the destination buffer. */
     *pOut++ = acc;
 
@@ -435,7 +276,7 @@ void riscv_lms_f32(
     /* Initialize coefficient pointer */
     pb = pCoeffs;
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
 
     /* Loop unrolling: Compute 4 taps at a time. */
     tapCnt = numTaps >> 2U;
@@ -469,7 +310,15 @@ void riscv_lms_f32(
     tapCnt = numTaps;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-
+#if defined (RISCV_VECTOR)
+    vblkCnt = numTaps;   
+    for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle32_v_f32m8(px, l);
+      px += l;
+      vse32_v_f32m8 (pb,vfadd_vv_f32m8(vfmul_vf_f32m8(vx, w, l), vle32_v_f32m8(pb, l), l) , l);
+      pb += l;
+    }
+#else
     while (tapCnt > 0U)
     {
       /* Perform the multiply-accumulate */
@@ -479,7 +328,7 @@ void riscv_lms_f32(
       /* Decrement loop counter */
       tapCnt--;
     }
-
+#endif /* defined (RISCV_VECTOR) */
     /* Decrement loop counter */
     blkCnt--;
   }
@@ -492,7 +341,7 @@ void riscv_lms_f32(
   pStateCurnt = S->pState;
 
   /* copy data */
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
 
   /* Loop unrolling: Compute 4 taps at a time. */
   tapCnt = (numTaps - 1U) >> 2U;
@@ -517,7 +366,15 @@ void riscv_lms_f32(
   tapCnt = (numTaps - 1U);
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-
+#if defined (RISCV_VECTOR)
+    uint32_t vblkCnt = (numTaps - 1U);                               /* Loop counter */
+    size_t l;
+    for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
+      vse32_v_f32m8 (pStateCurnt,vle32_v_f32m8(pState, l) , l);
+      pState += l;
+      pStateCurnt += l;
+    }
+#else
   while (tapCnt > 0U)
   {
     *pStateCurnt++ = *pState++;
@@ -525,9 +382,8 @@ void riscv_lms_f32(
     /* Decrement loop counter */
     tapCnt--;
   }
-
+#endif /* defined (RISCV_VECTOR) */
 }
-#endif /* #if defined(RISCV_MATH_NEON) */
 
 /**
   @} end of LMS group

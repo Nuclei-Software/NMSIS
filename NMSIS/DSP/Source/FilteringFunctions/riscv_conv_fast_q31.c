@@ -3,13 +3,13 @@
  * Title:        riscv_conv_fast_q31.c
  * Description:  Fast Q31 Convolution
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -68,6 +68,9 @@ void riscv_conv_fast_q31(
         uint32_t srcBLen,
         q31_t * pDst)
 {
+#if defined (RISCV_VECTOR)
+      riscv_conv_q31(pSrcA,srcALen,pSrcB,srcBLen,pDst);
+#else
   const q31_t *pIn1;                                   /* InputA pointer */
   const q31_t *pIn2;                                   /* InputB pointer */
         q31_t *pOut = pDst;                            /* Output pointer */
@@ -551,7 +554,7 @@ void riscv_conv_fast_q31(
     /* Decrement loop counter */
     blockSize3--;
   }
-
+#endif /*defined (RISCV_VECTOR)*/
 }
 
 /**

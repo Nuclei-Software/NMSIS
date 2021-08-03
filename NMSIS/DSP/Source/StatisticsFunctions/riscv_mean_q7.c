@@ -3,13 +3,13 @@
  * Title:        riscv_mean_q7.c
  * Description:  Mean value of a Q7 vector
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/statistics_functions.h"
 
 /**
   @ingroup groupStats
@@ -59,6 +59,24 @@ void riscv_mean_q7(
         uint32_t blockSize,
         q7_t * pResult)
 {
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = blockSize;                               /* Loop counter */
+  size_t l;
+  const q7_t * input = pSrc;
+  q7_t * result = pResult;
+  q15_t sum;
+  vint8m8_t v_in;
+  l = vsetvl_e16m1(1);
+  vint16m1_t v_sum = vmv_s_x_i16m1(v_sum, 0, l);                /* init v_sum data */
+  for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
+    v_in = vle8_v_i8m8(input, l);
+    input += l;
+    v_sum = vwredsum_vs_i8m8_i16m1(v_sum, v_in ,v_sum, l);
+  }
+  l = vsetvl_e16m1(1);
+  sum = vmv_x_s_i16m1_i16(v_sum);
+  * result = (q7_t) (sum / (int32_t) blockSize);
+#else
         uint32_t blkCnt;                               /* Loop counter */
         q31_t sum = 0;                                 /* Temporary result storage */
 
@@ -91,13 +109,14 @@ void riscv_mean_q7(
     sum += (q31_t)((in64 << 16U) >> 56U);
     sum += (q31_t)((in64 <<  8U) >> 56U);
     sum += (q31_t)((in64       ) >> 56U);
-#endif /* __RISCV_XLEN == 64 */
+#else
     /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) */
     in = read_q7x4_ia ((q7_t **) &pSrc);
     sum += ((in << 24U) >> 24U);
     sum += ((in << 16U) >> 24U);
     sum += ((in <<  8U) >> 24U);
     sum +=  (in >> 24U);
+#endif /* __RISCV_XLEN == 64 */
 
     /* Decrement the loop counter */
     blkCnt--;
@@ -129,6 +148,7 @@ void riscv_mean_q7(
   /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) / blockSize  */
   /* Store result to destination */
   *pResult = (q7_t) (sum / (int32_t) blockSize);
+#endif /* defined(RISCV_VECTOR) */
 }
 
 /**

@@ -3,13 +3,13 @@
  * Title:        riscv_mult_f32.c
  * Description:  Floating-point vector multiplication
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/basic_math_functions.h"
 
 /**
   @ingroup groupMath
@@ -65,39 +65,22 @@ void riscv_mult_f32(
         float32_t * pDst,
         uint32_t blockSize)
 {
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = blockSize;                               /* Loop counter */
+  size_t l;
+  vfloat32m8_t vx, vy;
+       
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+    vx = vle32_v_f32m8(pSrcA, l);
+    pSrcA += l;
+    vy = vle32_v_f32m8(pSrcB, l);
+    vse32_v_f32m8 (pDst, vfmul_vv_f32m8(vx, vy, l), l);
+    pSrcB += l;
+    pDst += l;
+  }
+#else
     uint32_t blkCnt;                               /* Loop counter */
 
-#if defined(RISCV_MATH_NEON)
-    float32x4_t vec1;
-    float32x4_t vec2;
-    float32x4_t res;
-
-    /* Compute 4 outputs at a time */
-    blkCnt = blockSize >> 2U;
-
-    while (blkCnt > 0U)
-    {
-        /* C = A * B */
-
-    	/* Multiply the inputs and then store the results in the destination buffer. */
-        vec1 = vld1q_f32(pSrcA);
-        vec2 = vld1q_f32(pSrcB);
-        res = vmulq_f32(vec1, vec2);
-        vst1q_f32(pDst, res);
-
-        /* Increment pointers */
-        pSrcA += 4;
-        pSrcB += 4; 
-        pDst += 4;
-        
-        /* Decrement the loop counter */
-        blkCnt--;
-    }
-
-    /* Tail */
-    blkCnt = blockSize & 0x3;
-
-#else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -129,7 +112,6 @@ void riscv_mult_f32(
   blkCnt = blockSize;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#endif /* #if defined(RISCV_MATH_NEON) */
 
   while (blkCnt > 0U)
   {
@@ -141,7 +123,7 @@ void riscv_mult_f32(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_VECTOR) */
 }
 
 /**

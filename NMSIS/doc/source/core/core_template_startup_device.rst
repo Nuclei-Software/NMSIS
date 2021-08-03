@@ -36,6 +36,7 @@ Stage3: Section initialization
   * Copy section, e.g. data section, text section if necessary.
   * Clear Block Started by Symbol (BSS) section
   * Call ``__libc_fini_array`` and ``__libc_init_array`` functions to do C library initialization
+  * Call ``_premain_init`` function to do initialization steps before main function
   * Jump Main
 
 
@@ -54,7 +55,7 @@ The following example shows the extension of the interrupt vector table for the 
     :linenos:
 
         .section .vtable
-    
+
         .weak  eclic_msip_handler
         .weak  eclic_mtip_handler
         .weak  eclic_pmaf_handler
@@ -66,11 +67,12 @@ The following example shows the extension of the interrupt vector table for the 
             :    :
         .weak  eclic_can1_ewmc_handler
         .weak  eclic_usbfs_handler
-    
+
         .globl vector_base
+        .type vector_base, @object
     vector_base:
         /* Run in FlashXIP download mode */
-        j _start                                                /* 0: Reserved, Jump to _start when reset for ILM/FlashXIP mode.*/
+        j _start                                                /* 0: Reserved, Jump to _start when reset for vector table not remapped cases.*/
         .align LOG_REGBYTES                                     /*    Need to align 4 byte for RV32, 8 Byte for RV64 */
         DECLARE_INT_HANDLER     default_intexc_handler          /* 1: Reserved */
         DECLARE_INT_HANDLER     default_intexc_handler          /* 2: Reserved */

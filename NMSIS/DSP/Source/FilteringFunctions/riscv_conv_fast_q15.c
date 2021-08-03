@@ -3,13 +3,13 @@
  * Title:        riscv_conv_fast_q15.c
  * Description:  Fast Q15 Convolution
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -68,6 +68,9 @@ void riscv_conv_fast_q15(
         uint32_t srcBLen,
         q15_t * pDst)
 {
+#if defined (RISCV_VECTOR)
+      riscv_conv_q15(pSrcA,srcALen,pSrcB,srcBLen,pDst);
+#else
   const q15_t *pIn1;                                   /* InputA pointer */
   const q15_t *pIn2;                                   /* InputB pointer */
         q15_t *pOut = pDst;                            /* Output pointer */
@@ -362,11 +365,7 @@ void riscv_conv_fast_q15(
         /* Read y[srcBLen - 5] */
         c0 = *(py+1);
 
-#ifdef  RISCV_MATH_BIG_ENDIAN
-        c0 = c0 << 16U;
-#else
         c0 = c0 & 0x0000FFFF;
-#endif /* #ifdef  RISCV_MATH_BIG_ENDIAN */
 
         /* Read x[7] */
         x3 = read_q15x2 ((q15_t *) px);
@@ -417,11 +416,7 @@ void riscv_conv_fast_q15(
 
         /* Read y[srcBLen - 7] */
 		c0 = *(py-1);
-#ifdef  RISCV_MATH_BIG_ENDIAN
-        c0 = c0 << 16U;
-#else
         c0 = c0 & 0x0000FFFF;
-#endif /* #ifdef  RISCV_MATH_BIG_ENDIAN */
 
         /* Read x[10] */
         x3 =  read_q15x2 ((q15_t *) px + 2);
@@ -435,13 +430,8 @@ void riscv_conv_fast_q15(
       }
 
       /* Store the result in the accumulator in the destination buffer. */
-#ifndef RISCV_MATH_BIG_ENDIAN
       write_q15x2_ia (&pOut, __PKHBT((acc0 >> 15), (acc1 >> 15), 16));
       write_q15x2_ia (&pOut, __PKHBT((acc2 >> 15), (acc3 >> 15), 16));
-#else
-      write_q15x2_ia (&pOut, __PKHBT((acc1 >> 15), (acc0 >> 15), 16));
-      write_q15x2_ia (&pOut, __PKHBT((acc3 >> 15), (acc2 >> 15), 16));
-#endif /*#ifndef  RISCV_MATH_BIG_ENDIAN*/
 
       /* Increment the pointer pIn1 index, count by 4 */
       count += 4U;
@@ -665,7 +655,7 @@ void riscv_conv_fast_q15(
     /* Decrement the loop counter */
     blockSize3--;
   }
-
+#endif /*defiend (RISCV_VECTOR)*/
 }
 
 /**

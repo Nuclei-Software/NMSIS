@@ -3,13 +3,13 @@
  * Title:        riscv_q31_to_float.c
  * Description:  Converts the elements of the Q31 vector to floating-point vector
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/support_functions.h"
 
 /**
   @ingroup groupSupport
@@ -55,60 +55,26 @@
       pDst[n] = (float32_t) pSrc[n] / 2147483648;   0 <= n < blockSize.
   </pre>
  */
-
-#if defined(RISCV_MATH_NEON_EXPERIMENTAL)
-void riscv_q31_to_float(
-  const q31_t * pSrc,
-        float32_t * pDst,
-        uint32_t blockSize)
-{
-  const q31_t *pIn = pSrc;                             /* Src pointer */
-  uint32_t blkCnt;                               /* loop counter */
-
-  int32x4_t inV;
-  float32x4_t outV;
-
-  blkCnt = blockSize >> 2U;
-
-  /* Compute 4 outputs at a time.
-   ** a second loop below computes the remaining 1 to 3 samples. */
-  while (blkCnt > 0U)
-  {
-    /* C = (float32_t) A / 2147483648 */
-    /* Convert from q31 to float and then store the results in the destination buffer */
-    inV = vld1q_s32(pIn);
-    pIn += 4;
-
-    outV = vcvtq_n_f32_s32(inV,31);
-
-    vst1q_f32(pDst, outV);
-    pDst += 4;
-
-    /* Decrement the loop counter */
-    blkCnt--;
-  }
-
-  /* If the blockSize is not a multiple of 4, compute any remaining output samples here.
-   ** No loop unrolling is used. */
-  blkCnt = blockSize & 3;
-
-
-  while (blkCnt > 0U)
-  {
-    /* C = (float32_t) A / 2147483648 */
-    /* Convert from q31 to float and then store the results in the destination buffer */
-    *pDst++ = ((float32_t) * pIn++ / 2147483648.0f);
-
-    /* Decrement the loop counter */
-    blkCnt--;
-  }
-}
-#else
 void riscv_q31_to_float(
   const q31_t * pSrc,
   float32_t * pDst,
   uint32_t blockSize)
 {
+#if defined(RISCV_VECTOR)
+  const q31_t *pIn = pSrc;                             /* Src pointer */
+  uint32_t blkCnt = blockSize;                               /* loop counter */
+  size_t l;
+  vint32m8_t v_in;
+  vfloat32m8_t v_out;
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) 
+  {
+    v_in = vle32_v_i32m8(pIn, l);
+    pIn += l;
+    v_out = vfdiv_vf_f32m8(vfcvt_f_x_v_f32m8(v_in, l), 2147483648.0f, l);
+    vse32_v_f32m8 (pDst, v_out, l);
+    pDst += l;
+  }
+#else
   const q31_t *pIn = pSrc;                             /* Src pointer */
   uint32_t blkCnt;                               /* loop counter */
 
@@ -151,9 +117,8 @@ void riscv_q31_to_float(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_VECTOR) */
 }
-#endif /* #if defined(RISCV_MATH_NEON) */
 
 /**
   @} end of q31_to_x group

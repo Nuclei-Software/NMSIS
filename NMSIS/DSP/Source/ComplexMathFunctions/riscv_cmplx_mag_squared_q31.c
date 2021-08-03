@@ -3,13 +3,13 @@
  * Title:        riscv_cmplx_mag_squared_q31.c
  * Description:  Q31 complex magnitude squared
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/complex_math_functions.h"
 
 /**
   @ingroup groupCmplxMath
@@ -55,10 +55,31 @@ void riscv_cmplx_mag_squared_q31(
         q31_t * pDst,
         uint32_t numSamples)
 {
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = numSamples;                               /* Loop counter */
+  size_t l;
+  const q31_t * input = pSrc;
+  q31_t * output = pDst;
+  ptrdiff_t bstride = 8;
+  vint32m4_t v_R,v_I;
+  vint32m4_t vR2_m4, vI2_m4;
+  vint32m4_t v_sum;
+  for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l) 
+  {
+    v_R = vlse32_v_i32m4(input, bstride, l);
+    input++;
+    v_I = vlse32_v_i32m4(input, bstride, l);
+    input += (l*2-1);
+    vR2_m4 = vnclip_wx_i32m4(vwmul_vv_i64m8(v_R, v_R, l), 33, l);
+    vI2_m4 = vnclip_wx_i32m4(vwmul_vv_i64m8(v_I, v_I, l), 33, l);
+    v_sum = vsadd_vv_i32m4(vR2_m4, vI2_m4, l);
+    vse32_v_i32m4(output, v_sum, l);
+    output += l;
+  }
+#else
         uint32_t blkCnt;                               /* Loop counter */
         q31_t real, imag;                              /* Temporary input variables */
         q31_t acc0, acc1;                              /* Accumulators */
-
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -156,8 +177,9 @@ void riscv_cmplx_mag_squared_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_VECTOR) */
 }
+
 
 /**
   @} end of cmplx_mag_squared group

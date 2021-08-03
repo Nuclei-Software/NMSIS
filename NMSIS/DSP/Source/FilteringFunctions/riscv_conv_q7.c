@@ -3,13 +3,13 @@
  * Title:        riscv_conv_q7.c
  * Description:  Convolution of Q7 sequences
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -56,7 +56,6 @@
   @remark
                    Refer to \ref riscv_conv_opt_q7() for a faster implementation of this function.
  */
-
 void riscv_conv_q7(
   const q7_t * pSrcA,
         uint32_t srcALen,
@@ -65,7 +64,6 @@ void riscv_conv_q7(
         q7_t * pDst)
 {
 
-#if (1)
 
   const q7_t *pIn1;                                    /* InputA pointer */
   const q7_t *pIn2;                                    /* InputB pointer */
@@ -160,7 +158,7 @@ void riscv_conv_q7(
     /* Accumulator is made zero for every iteration */
     sum = 0;
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (ARN_VECTOR)
 #if __RISCV_XLEN == 64
     /* Loop unrolling: Compute 4 outputs at a time */
     k = count >> 3U;
@@ -230,7 +228,22 @@ void riscv_conv_q7(
     k = count;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-
+#if defined (RISCV_VECTOR)
+    uint32_t vblkCnt = count;                               /* Loop counter */
+    size_t l;
+    vint8m4_t vx, vy;
+    vint16m1_t temp00m1;
+    ptrdiff_t bstride = -1;
+    l = vsetvl_e16m1(1);
+    temp00m1 = vmv_v_x_i16m1(0, l);
+    for (; (l = vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle8_v_i8m4(px, l);
+      px += l;
+      vy = vlse8_v_i8m4(py, bstride, l);
+      py -= l;
+      sum += vmv_x_s_i16m1_i16(vredsum_vs_i16m8_i16m1(temp00m1, vwmul_vv_i16m8(vx, vy, l), temp00m1, l));
+    }
+#else
     while (k > 0U)
     {
       /* Perform the multiply-accumulate */
@@ -239,7 +252,7 @@ void riscv_conv_q7(
       /* Decrement loop counter */
       k--;
     }
-
+#endif /*defined (RISCV_VECTOR)*/
     /* Store the result in the accumulator in the destination buffer. */
     *pOut++ = (q7_t) (__SSAT(sum >> 7U, 8));
 
@@ -277,7 +290,43 @@ void riscv_conv_q7(
   /* -------------------
    * Stage2 process
    * ------------------*/
+#if defined (RISCV_VECTOR)
+    blkCnt = blockSize2;
 
+    while (blkCnt > 0U)
+    {
+      /* Accumulator is made zero for every iteration */
+      sum = 0;
+
+      uint32_t vblkCnt = srcBLen;                               /* Loop counter */
+      size_t l;
+      vint8m4_t vx, vy;
+      vint16m1_t temp00m1;
+      ptrdiff_t bstride = -1;
+      l = vsetvl_e16m1(1);
+      temp00m1 = vmv_v_x_i16m1(0, l);
+      for (; (l = vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
+        vx = vle8_v_i8m4(px, l);
+        px += l;
+        vy = vlse8_v_i8m4(py, bstride, l);
+        py -= l;
+        sum += vmv_x_s_i16m1_i16(vredsum_vs_i16m8_i16m1(temp00m1, vwmul_vv_i16m8(vx, vy, l), temp00m1, l));
+      }
+
+      /* Store the result in the accumulator in the destination buffer. */
+      *pOut++ = (q7_t) (__SSAT(sum >> 7U, 8));
+
+      /* Increment the MAC count */
+      count++;
+
+      /* Update the inputA and inputB pointers for next MAC calculation */
+      px = pIn1 + count;
+      py = pSrc2;
+
+      /* Decrement loop counter */
+      blkCnt--;
+    }
+#else
   /* Stage2 depends on srcBLen as in this stage srcBLen number of MACS are performed.
    * So, to loop unroll over blockSize2,
    * srcBLen should be greater than or equal to 4 */
@@ -586,7 +635,7 @@ void riscv_conv_q7(
       blkCnt--;
     }
   }
-
+#endif /*defined (RISCV_VECTOR)*/
 
   /* --------------------------
    * Initializations of stage3
@@ -619,7 +668,7 @@ void riscv_conv_q7(
     /* Accumulator is made zero for every iteration */
     sum = 0;
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
 
     /* Loop unrolling: Compute 4 outputs at a time */
     k = blockSize3 >> 2U;
@@ -667,7 +716,22 @@ void riscv_conv_q7(
     k = blockSize3;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-
+#if defined (RISCV_VECTOR)
+    uint32_t vblkCnt = blockSize3;                               /* Loop counter */
+    size_t l;
+    vint8m4_t vx, vy;
+    vint16m1_t temp00m1;
+    ptrdiff_t bstride = -1;
+    l = vsetvl_e16m1(1);
+    temp00m1 = vmv_v_x_i16m1(0, l);
+    for (; (l = vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle8_v_i8m4(px, l);
+      px += l;
+      vy = vlse8_v_i8m4(py, bstride, l);
+      py -= l;
+      sum += vmv_x_s_i16m1_i16(vredsum_vs_i16m8_i16m1(temp00m1, vwmul_vv_i16m8(vx, vy, l), temp00m1, l));
+    }
+#else
     while (k > 0U)
     {
       /* Perform the multiply-accumulate */
@@ -677,7 +741,7 @@ void riscv_conv_q7(
       /* Decrement loop counter */
       k--;
     }
-
+#endif /*defined (RISCV_VECTOR)*/
     /* Store the result in the accumulator in the destination buffer. */
     *pOut++ = (q7_t) (__SSAT(sum >> 7U, 8));
 
@@ -689,36 +753,6 @@ void riscv_conv_q7(
     blockSize3--;
   }
 
-#else
-/* alternate version for CM0_FAMILY */
-
-  const q7_t *pIn1 = pSrcA;                            /* InputA pointer */
-  const q7_t *pIn2 = pSrcB;                            /* InputB pointer */
-        q31_t sum;                                     /* Accumulator */
-        uint32_t i, j;                                 /* Loop counters */
-
-  /* Loop to calculate convolution for output length number of times */
-  for (i = 0U; i < (srcALen + srcBLen - 1U); i++)
-  {
-    /* Initialize sum with zero to carry out MAC operations */
-    sum = 0;
-
-    /* Loop to perform MAC operations according to convolution equation */
-    for (j = 0U; j <= i; j++)
-    {
-      /* Check the array limitations */
-      if (((i - j) < srcBLen) && (j < srcALen))
-      {
-        /* z[i] += x[i-j] * y[j] */
-        sum += ((q15_t) pIn1[j] * pIn2[i - j]);
-      }
-    }
-
-    /* Store the output in the destination buffer */
-    pDst[i] = (q7_t) __SSAT((sum >> 7U), 8U);
-  }
-
-#endif /* #if !defined(RISCV_MATH_CM0_FAMILY) */
 
 }
 

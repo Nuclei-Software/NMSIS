@@ -3,13 +3,13 @@
  * Title:        riscv_biquad_cascade_df2T_init_f32.c
  * Description:  Initialization function for floating-point transposed direct form II Biquad cascade filter
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -88,105 +88,6 @@
                    The state variables are updated after each block of data is processed; the coefficients are untouched.
  */
 
-#if defined(RISCV_MATH_NEON) 
-/*
-
-Must be called after initializing the biquad instance.
-pCoeffs has size 5 * nbCascade
-Whereas the pCoeffs for the init has size (4*4 + 4*4)* nbCascade 
-
-So this pCoeffs is the one which would be used for the not Neon version.
-The pCoeffs passed in init is bigger than the one for the not Neon version.
-
-*/
-void riscv_biquad_cascade_df2T_compute_coefs_f32(
-  riscv_biquad_cascade_df2T_instance_f32 * S,
-  uint8_t numStages,
-  float32_t * pCoeffs)
-{
-   uint8_t cnt;
-   float32_t *pDstCoeffs;
-   float32_t b0[4],b1[4],b2[4],a1[4],a2[4];
-
-   pDstCoeffs = S->pCoeffs;
-
-   cnt = numStages >> 2; 
-   while(cnt > 0)
-   {
-      for(int i=0;i<4;i++)
-      {
-        b0[i] = pCoeffs[0];
-        b1[i] = pCoeffs[1];
-        b2[i] = pCoeffs[2];
-        a1[i] = pCoeffs[3];
-        a2[i] = pCoeffs[4];
-        pCoeffs += 5;
-      }
-
-      /* Vec 1 */
-      *pDstCoeffs++ = 0;
-      *pDstCoeffs++ = b0[1];
-      *pDstCoeffs++ = b0[2];
-      *pDstCoeffs++ = b0[3];
-
-      /* Vec 2 */
-      *pDstCoeffs++ = 0;
-      *pDstCoeffs++ = 0;
-      *pDstCoeffs++ = b0[1] * b0[2];
-      *pDstCoeffs++ = b0[2] * b0[3];
-
-      /* Vec 3 */
-      *pDstCoeffs++ = 0;
-      *pDstCoeffs++ = 0;
-      *pDstCoeffs++ = 0;
-      *pDstCoeffs++ = b0[1] * b0[2] * b0[3];
-      
-      /* Vec 4 */
-      *pDstCoeffs++ = b0[0];
-      *pDstCoeffs++ = b0[0] * b0[1];
-      *pDstCoeffs++ = b0[0] * b0[1] * b0[2];
-      *pDstCoeffs++ = b0[0] * b0[1] * b0[2] * b0[3];
-
-      /* Vec 5 */
-      *pDstCoeffs++ = b1[0];
-      *pDstCoeffs++ = b1[1];
-      *pDstCoeffs++ = b1[2];
-      *pDstCoeffs++ = b1[3];
-
-      /* Vec 6 */
-      *pDstCoeffs++ = b2[0];
-      *pDstCoeffs++ = b2[1];
-      *pDstCoeffs++ = b2[2];
-      *pDstCoeffs++ = b2[3];
-
-      /* Vec 7 */
-      *pDstCoeffs++ = a1[0];
-      *pDstCoeffs++ = a1[1];
-      *pDstCoeffs++ = a1[2];
-      *pDstCoeffs++ = a1[3];
-
-      /* Vec 8 */
-      *pDstCoeffs++ = a2[0];
-      *pDstCoeffs++ = a2[1];
-      *pDstCoeffs++ = a2[2];
-      *pDstCoeffs++ = a2[3];
-
-      cnt--;
-   }
-
-   cnt = numStages & 0x3;
-   while(cnt > 0)
-   {
-      *pDstCoeffs++ = *pCoeffs++;
-      *pDstCoeffs++ = *pCoeffs++;
-      *pDstCoeffs++ = *pCoeffs++;
-      *pDstCoeffs++ = *pCoeffs++;
-      *pDstCoeffs++ = *pCoeffs++;
-      cnt--;
-   }
-
-}
-#endif 
 
 void riscv_biquad_cascade_df2T_init_f32(
         riscv_biquad_cascade_df2T_instance_f32 * S,

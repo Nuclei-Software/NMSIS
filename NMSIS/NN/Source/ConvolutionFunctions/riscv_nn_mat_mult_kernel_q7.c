@@ -28,7 +28,7 @@
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 
-#include "riscv_math.h"
+#include "riscv_nnsupportfunctions.h"
 #include "riscv_nnfunctions.h"
 
   /**
@@ -58,11 +58,144 @@ q7_t     *riscv_nn_mat_mult_kernel_q7(const q7_t * pA,
                                         const q7_t * bias, 
                                         q7_t * pOut)
 {
-#if defined (RISCV_MATH_DSP)
+#if defined (RISCV_MATH_DSP) || defined (RISCV_VECTOR)
     /* set up the second output pointers */
     q7_t     *pOut2 = pOut + ch_im_out;
     const q7_t *pBias = bias;
+#if defined (RISCV_VECTOR) && !defined (RISCV_MATH_DSP)
+    uint16_t  rowCnt = ch_im_out >> 1;
+    /* this loop over rows in A */
+    while (rowCnt)
+    {
+        /* setup pointers for B */
+        const q7_t *pB = pInBuffer;
+        const q7_t *pB2 = pB + numCol_A;
 
+        /* align the second pointer for A */
+        const q7_t *pA2 = pA + numCol_A;
+        /* accumulate over the vector */
+        size_t l;
+        uint32_t blkCnt = numCol_A;
+        q31_t sum,sum2,sum3,sum4;
+        // q7_t temp[] = {0};
+        l = vsetvl_e8m1(blkCnt);
+        vint8m1_t va1m1,va2m1,vb1m1,vb2m1;
+        vint16m2_t vch00m2,vch01m2,vch10m2,vch11m2;
+        vint64m1_t vch00m1,vch01m1,vch10m1,vch11m1;
+        vint64m1_t vtemp00m1,vtemp01m1,vtemp10m1,vtemp11m1;
+        vint32m4_t vch00m4,vch01m4,vch10m4,vch11m4;
+        //initial array and temp sum to zero
+        vch00m4 = vmv_v_x_i32m4(0, l);
+        vch01m4 = vmv_v_x_i32m4(0, l);
+        vch10m4 = vmv_v_x_i32m4(0, l);
+        vch11m4 = vmv_v_x_i32m4(0, l);
+        vch00m1 = vmv_v_x_i64m1(0, l);
+        vch01m1 = vmv_v_x_i64m1(0, l);
+        vch10m1 = vmv_v_x_i64m1(0, l);
+        vch11m1 = vmv_v_x_i64m1(0, l);
+        vtemp00m1 = vmv_v_x_i64m1(0, l);
+        vtemp01m1 = vmv_v_x_i64m1(0, l);
+        vtemp10m1 = vmv_v_x_i64m1(0, l);
+        vtemp11m1 = vmv_v_x_i64m1(0, l);
+        for (; (l = vsetvl_e8m1(blkCnt)) > 0; blkCnt -= l) {
+            va1m1 = vle8_v_i8m1(pA , l);
+            va2m1 = vle8_v_i8m1(pA2, l);
+            vb1m1 = vle8_v_i8m1(pB , l);
+            vb2m1 = vle8_v_i8m1(pB2, l);
+            pA  += l;
+            pA2 += l;
+            pB  += l;
+            pB2 += l;
+            vch00m2= vwmul_vv_i16m2(va1m1, vb1m1, l);
+            vch01m2= vwmul_vv_i16m2(va1m1, vb2m1, l);
+            vch10m2= vwmul_vv_i16m2(va2m1, vb1m1, l);
+            vch11m2= vwmul_vv_i16m2(va2m1, vb2m1, l);
+            vch00m4 = vwadd_wv_i32m4(vch00m4, vch00m2, l);
+            vch01m4 = vwadd_wv_i32m4(vch01m4, vch01m2, l);
+            vch10m4 = vwadd_wv_i32m4(vch10m4, vch10m2, l);
+            vch11m4 = vwadd_wv_i32m4(vch11m4, vch11m2, l);
+        }
+        //set vl to max vl
+        l = vsetvl_e8m1(numCol_A);
+            //calculate sum
+            vch00m1 = vwredsum_vs_i32m4_i64m1(vtemp00m1, vch00m4, vtemp00m1, l);
+            vch01m1 = vwredsum_vs_i32m4_i64m1(vtemp01m1, vch01m4, vtemp01m1, l);
+            vch10m1 = vwredsum_vs_i32m4_i64m1(vtemp10m1, vch10m4, vtemp10m1, l);
+            vch11m1 = vwredsum_vs_i32m4_i64m1(vtemp11m1, vch11m4, vtemp11m1, l);
+        //Here we calculate sum of four vector
+        //write result scalar back
+        sum  = (q31_t)vmv_x_s_i64m1_i64(vch00m1);
+        sum2 = (q31_t)vmv_x_s_i64m1_i64(vch01m1);
+        sum3 = (q31_t)vmv_x_s_i64m1_i64(vch10m1);
+        sum4 = (q31_t)vmv_x_s_i64m1_i64(vch11m1);
+        /* init the sum with bias */
+        sum  +=  ((q31_t)(*pBias) << bias_shift) + NN_ROUND(out_shift);
+        sum2 += ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
+        sum3 += ((q31_t)(*pBias) << bias_shift) + NN_ROUND(out_shift);
+        sum4 += ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
+
+        *pOut++ = (q7_t) __SSAT((sum >> out_shift), 8);
+        *pOut++ = (q7_t) __SSAT((sum3 >> out_shift), 8);
+        *pOut2++ = (q7_t) __SSAT((sum2 >> out_shift), 8);
+        *pOut2++ = (q7_t) __SSAT((sum4 >> out_shift), 8);
+
+        /* skip the row computed with A2 */
+        pA += numCol_A;
+        rowCnt--;
+    }                           /* for over ch_im_out */
+    if (ch_im_out & 0x1)
+    {
+        /* setup pointers for B */
+        const q7_t *pB = pInBuffer;
+        const q7_t *pB2 = pB + numCol_A;
+        /* accumulate over the vector */
+        size_t l;
+        uint32_t blkCnt = numCol_A;
+        q31_t sum,sum2;
+        // q7_t temp[] = {0};
+        l = vsetvl_e8m1(blkCnt);
+        vint8m1_t va1m1,va2m1,vb1m1,vb2m1;
+        vint16m2_t vch00m2,vch01m2;
+        vint64m1_t vch00m1,vch01m1;
+        vint64m1_t vtemp00m1,vtemp01m1;
+        vint32m4_t vch00m4,vch01m4;
+        //initial array and temp sum to zero
+        vch00m4 = vmv_v_x_i32m4(0, l);
+        vch01m4 = vmv_v_x_i32m4(0, l);
+        vch00m1 = vmv_v_x_i64m1(0, l);
+        vch01m1 = vmv_v_x_i64m1(0, l);
+        vtemp00m1 = vmv_v_x_i64m1(0, l);
+        vtemp01m1 = vmv_v_x_i64m1(0, l);
+        for (; (l = vsetvl_e8m1(blkCnt)) > 0; blkCnt -= l) {
+            va1m1 = vle8_v_i8m1(pA , l);
+            vb1m1 = vle8_v_i8m1(pB , l);
+            vb2m1 = vle8_v_i8m1(pB2, l);
+            pA  += l;
+            pB  += l;
+            pB2 += l;
+            vch00m2= vwmul_vv_i16m2(va1m1, vb1m1, l);
+            vch01m2= vwmul_vv_i16m2(va1m1, vb2m1, l);
+            vch00m4 = vwadd_wv_i32m4(vch00m4, vch00m2, l);
+            vch01m4 = vwadd_wv_i32m4(vch01m4, vch01m2, l);
+        }
+        //set vl to max vl
+        l = vsetvl_e8m1(numCol_A);
+        //calculate sum
+        vch00m1 = vwredsum_vs_i32m4_i64m1(vtemp00m1, vch00m4, vtemp00m1, l);
+        vch01m1 = vwredsum_vs_i32m4_i64m1(vtemp01m1, vch01m4, vtemp01m1, l);
+        //Here we calculate sum of four vector
+        //write result scalar back
+        sum  = (q31_t)vmv_x_s_i64m1_i64(vch00m1);
+        sum2 = (q31_t)vmv_x_s_i64m1_i64(vch01m1);
+        /* init the sum with bias */
+        sum  +=  ((q31_t)(*pBias) << bias_shift) + NN_ROUND(out_shift);
+        sum2 += ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
+
+        *pOut++ = (q7_t) __SSAT((sum >> out_shift), 8);
+        *pOut2++ = (q7_t) __SSAT((sum2 >> out_shift), 8);
+        rowCnt--;
+    }
+#else
     uint16_t  rowCnt = ch_im_out >> 1;
     /* this loop over rows in A */
     while (rowCnt)
@@ -128,9 +261,9 @@ q7_t     *riscv_nn_mat_mult_kernel_q7(const q7_t * pA,
         while (colCnt)
         {
             q7_t      inA1 = *pA++;
-            q15_t     inB1 = *pB++;
+            q7_t      inB1 = *pB++;
             q7_t      inA2 = *pA2++;
-            q15_t     inB2 = *pB2++;
+            q7_t      inB2 = *pB2++;
 
             sum += inA1 * inB1;
             sum2 += inA1 * inB2;
@@ -138,6 +271,7 @@ q7_t     *riscv_nn_mat_mult_kernel_q7(const q7_t * pA,
             sum4 += inA2 * inB2;
             colCnt--;
         }                       /* while over colCnt */
+
         *pOut++ = (q7_t) __SSAT((sum >> out_shift), 8);
         *pOut++ = (q7_t) __SSAT((sum3 >> out_shift), 8);
         *pOut2++ = (q7_t) __SSAT((sum2 >> out_shift), 8);
@@ -187,7 +321,7 @@ q7_t     *riscv_nn_mat_mult_kernel_q7(const q7_t * pA,
         *pOut++ = (q7_t) __SSAT((sum >> out_shift), 8);
         *pOut2++ = (q7_t) __SSAT((sum2 >> out_shift), 8);
     }
-
+#endif /* defined (RISCV_VECTOR) */
     pOut += ch_im_out;
 
     /* return the new output pointer with offset */

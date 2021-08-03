@@ -5,19 +5,34 @@ NUCLEI_SDK_NMSIS ?= $(NUCLEI_SDK_ROOT)/NMSIS
 
 SRCDIRS = .
 
-INCDIRS = . $(NUCLEI_SDK_NMSIS)/DSP/Include
+INCDIRS = . $(NUCLEI_SDK_NMSIS)/DSP/Include \
+	$(NUCLEI_SDK_NMSIS)/DSP/PrivateInclude
 
 LIBDIRS = $(NUCLEI_SDK_NMSIS)/Library/DSP/GCC
 
 DSP_ENABLE ?= ON
 COMMON_FLAGS := -O2
+NEWLIB ?=
 
 ifeq ($(DSP_ENABLE),ON)
+ifeq ($(VECTOR_ENABLE),ON)
 $(warning "Use and link with RISC-V DSP enabled library")
-COMMON_FLAGS += -D__RISCV_FEATURE_DSP=1 -D__RISCV_FEATURE_DSP=1
-LDLIBS = -lnmsis_dsp_$(RISCV_ARCH)p -lm
+COMMON_FLAGS += -D__RISCV_FEATURE_DSP=1 -D__RISCV_FEATURE_VECTOR=1 -D__RISCV_FEATURE_VECTOR=1
 else
-LDLIBS = -lnmsis_dsp_$(RISCV_ARCH) -lm
+$(warning "Use and link with RISC-V DSP enabled library")
+COMMON_FLAGS += -D__RISCV_FEATURE_DSP=1
 endif
+else
+ifeq ($(VECTOR_ENABLE),ON)
+$(warning "Use and link with RISC-V VECTOR enabled library")
+COMMON_FLAGS += -D__RISCV_FEATURE_VECTOR=1 -D__RISCV_FEATURE_VECTOR=1
+else
+$(warning "Use and link with RISC-V DSP disabled library")
+ifeq ($(RISCV_ALIGN),ON)
+COMMON_FLAGS += -DRISCV_ALIGN_ACCESS
+endif
+endif
+endif
+LDLIBS = -lnmsis_dsp_$(RISCV_ARCH) -lm
 
 include $(NUCLEI_SDK_ROOT)/Build/Makefile.base

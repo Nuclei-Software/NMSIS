@@ -3,13 +3,13 @@
  * Title:        riscv_fir_decimate_fast_q31.c
  * Description:  Fast Q31 FIR Decimator
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -86,7 +86,7 @@ void riscv_fir_decimate_fast_q31(
   /* pStateCur points to the location where the new input data should be written */
   pStateCur = S->pState + (numTaps - 1U);
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
 
     /* Loop unrolling: Compute 4 samples at a time */
   blkCnt = outBlockSize >> 2U;
@@ -247,13 +247,22 @@ void riscv_fir_decimate_fast_q31(
   {
     /* Copy decimation factor number of new input samples into the state buffer */
     i = S->M;
-
+#if defined (RISCV_VECTOR)
+  uint32_t blkCnti = S->M;                              /* Loop counter */
+  size_t l;
+       
+  for (; (l = vsetvl_e32m8(blkCnti)) > 0; blkCnti -= l) {
+    vse32_v_i32m8 (pStateCur, vle32_v_i32m8(pSrc, l), l);
+    pSrc += l;
+    pStateCur += l;
+  }
+#else
     do
     {
       *pStateCur++ = *pSrc++;
 
     } while (--i);
-
+#endif /*defined (RISCV_VECTOR)*/
     /* Set accumulator to zero */
     acc0 = 0;
 
@@ -353,7 +362,7 @@ void riscv_fir_decimate_fast_q31(
   /* Points to the start of the state buffer */
   pStateCur = S->pState;
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
 
   /* Loop unrolling: Compute 4 taps at a time */
   tapCnt = (numTaps - 1U) >> 2U;
@@ -379,7 +388,16 @@ void riscv_fir_decimate_fast_q31(
   tapCnt = (numTaps - 1U);
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-
+#if defined (RISCV_VECTOR)
+  uint32_t blkCnti =tapCnt;                              /* Loop counter */
+  size_t l;
+       
+  for (; (l = vsetvl_e32m8(blkCnti)) > 0; blkCnti -= l) {
+    vse32_v_i32m8 (pStateCur, vle32_v_i32m8(pState, l), l);
+    pState += l;
+    pStateCur += l;
+  }
+#else
   /* Copy data */
   while (tapCnt > 0U)
   {
@@ -388,7 +406,7 @@ void riscv_fir_decimate_fast_q31(
     /* Decrement loop counter */
     tapCnt--;
   }
-
+#endif /*defined (RISCV_VECTOR)*/
 }
 
 /**

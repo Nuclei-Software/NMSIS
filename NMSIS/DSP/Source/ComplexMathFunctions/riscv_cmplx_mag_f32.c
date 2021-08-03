@@ -3,13 +3,13 @@
  * Title:        riscv_cmplx_mag_f32.c
  * Description:  Floating-point complex magnitude
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/complex_math_functions.h"
 
 /**
   @ingroup groupCmplxMath
@@ -70,61 +70,36 @@
   @return        none
  */
 
+
 void riscv_cmplx_mag_f32(
   const float32_t * pSrc,
         float32_t * pDst,
         uint32_t numSamples)
 {
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = numSamples;                               /* Loop counter */
+  size_t l;
+  const float32_t * input = pSrc;
+  float32_t * output = pDst;
+  ptrdiff_t bstride = 8;
+  vfloat32m8_t v_R,v_I;
+  vfloat32m8_t vR2_m4, vI2_m4;
+  vfloat32m8_t v_sum;
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) 
+  {
+    v_R = vlse32_v_f32m8(input, bstride, l);
+    input++;
+    v_I = vlse32_v_f32m8(input, bstride, l);
+    input += (l*2-1);
+    v_sum = vfadd_vv_f32m8(vfmul_vv_f32m8(v_R, v_R, l), vfmul_vv_f32m8(v_I, v_I, l), l);
+    vse32_v_f32m8(output, vfsqrt_v_f32m8(v_sum, l), l);
+    output += l;
+  }
+
+#else
   uint32_t blkCnt;                               /* loop counter */
   float32_t real, imag;                      /* Temporary variables to hold input values */
 
-#if defined(RISCV_MATH_NEON)
-
-  float32x4x2_t vecA;
-  float32x4_t vRealA;
-  float32x4_t vImagA;
-  float32x4_t vMagSqA;
-
-  float32x4x2_t vecB;
-  float32x4_t vRealB;
-  float32x4_t vImagB;
-  float32x4_t vMagSqB;
-
-  /* Loop unrolling: Compute 8 outputs at a time */
-  blkCnt = numSamples >> 3;
-
-  while (blkCnt > 0U)
-  {
-    /* out = sqrt((real * real) + (imag * imag)) */
-
-    vecA = vld2q_f32(pSrc);
-    pSrc += 8;
-
-    vecB = vld2q_f32(pSrc);
-    pSrc += 8;
-
-    vRealA = vmulq_f32(vecA.val[0], vecA.val[0]);
-    vImagA = vmulq_f32(vecA.val[1], vecA.val[1]);
-    vMagSqA = vaddq_f32(vRealA, vImagA);
-
-    vRealB = vmulq_f32(vecB.val[0], vecB.val[0]);
-    vImagB = vmulq_f32(vecB.val[1], vecB.val[1]);
-    vMagSqB = vaddq_f32(vRealB, vImagB);
-
-    /* Store the result in the destination buffer. */
-    vst1q_f32(pDst, __riscv_vec_sqrt_f32_neon(vMagSqA));
-    pDst += 4;
-
-    vst1q_f32(pDst, __riscv_vec_sqrt_f32_neon(vMagSqB));
-    pDst += 4;
-
-    /* Decrement the loop counter */
-    blkCnt--;
-  }
-
-  blkCnt = numSamples & 7;
-
-#else
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -166,7 +141,6 @@ void riscv_cmplx_mag_f32(
   blkCnt = numSamples;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#endif /* #if defined(RISCV_MATH_NEON) */
 
   while (blkCnt > 0U)
   {
@@ -181,7 +155,7 @@ void riscv_cmplx_mag_f32(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_VECTOR) */
 }
 
 /**

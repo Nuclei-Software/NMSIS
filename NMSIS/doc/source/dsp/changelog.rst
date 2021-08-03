@@ -3,6 +3,16 @@
 Changelog
 =========
 
+V1.0.2
+------
+
+This is release ``1.0.2`` version of NMSIS-DSP library.
+
+* Sync up to CMSIS DSP library 1.9.0
+* Adding initial support for RISC-V vector extension support
+* **Caution**: ``riscv_math.h`` is separated into several header files.
+  Extra ``PrivateInclude`` folder is included as header folder.
+
 V1.0.1
 ------
 

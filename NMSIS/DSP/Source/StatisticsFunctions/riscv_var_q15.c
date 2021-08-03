@@ -3,13 +3,13 @@
  * Title:        riscv_var_q15.c
  * Description:  Variance of an array of Q15 type
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/statistics_functions.h"
 
 /**
   @ingroup groupStats
@@ -55,12 +55,44 @@
                    Finally, the 34.30 result is truncated to 34.15 format by discarding the lower
                    15 bits, and then saturated to yield a result in 1.15 format.
  */
-
 void riscv_var_q15(
   const q15_t * pSrc,
         uint32_t blockSize,
         q15_t * pResult)
 {
+#if defined(RISCV_VECTOR)
+  uint32_t blkCnt = blockSize;                   /* Loop counter */
+  q31_t sum = 0;                                 /* Accumulator */
+  q31_t meanOfSquares, squareOfMean;             /* Square of mean and mean of square */
+  q63_t sumOfSquares = 0;                        /* Sum of squares */
+  size_t l;
+  const q15_t * input = pSrc;
+  q15_t * output = pResult;
+  vint16m4_t v_in;                               /* Temporary variable to store input value */  
+  vint32m8_t v_in2;
+  l = vsetvl_e64m1(1);
+  vint64m1_t v_sumOfSquares = vmv_s_x_i64m1(v_sumOfSquares, 0, l);
+  vint32m1_t v_sum = vmv_s_x_i32m1(v_sum, 0, l);
+  for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) 
+  {
+    v_in = vle16_v_i16m4(input, l);
+    input += l;
+    v_in2 = vwmul_vv_i32m8(v_in, v_in, l);
+    v_sum = vwredsum_vs_i16m4_i32m1(v_sum, v_in, v_sum, l);
+    v_sumOfSquares = vwredsum_vs_i32m8_i64m1(v_sumOfSquares, v_in2, v_sumOfSquares, l);
+  }
+  l = vsetvl_e64m1(1);
+  sum = vmv_x_s_i32m1_i32(v_sum);
+  sumOfSquares = vmv_x_s_i64m1_i64(v_sumOfSquares);
+  /* Compute Mean of squares and store result in a temporary variable, meanOfSquares. */
+  meanOfSquares = (q31_t) (sumOfSquares / (q63_t)(blockSize - 1U));
+
+  /* Compute square of mean */
+  squareOfMean = (q31_t) ((q63_t) sum * sum / (q63_t)(blockSize * (blockSize - 1U)));
+
+  /* mean of squares minus the square of mean. */
+  *pResult = (meanOfSquares - squareOfMean) >> 15U;
+#else
         uint32_t blkCnt;                               /* Loop counter */
         q31_t sum = 0;                                 /* Accumulator */
         q31_t meanOfSquares, squareOfMean;             /* Square of mean and mean of square */
@@ -170,6 +202,7 @@ void riscv_var_q15(
 
   /* mean of squares minus the square of mean. */
   *pResult = (meanOfSquares - squareOfMean) >> 15U;
+#endif /* defined(RISCV_VECTOR) */
 }
 
 /**

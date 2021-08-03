@@ -18,7 +18,7 @@ Here we will describe how to run the nmsis nn examples in Nuclei Spike.
 ## Build NMSIS NN Library
 
 1. cd to `<NMSIS_ROOT>/NMSIS`
-2. Build NMSIS DSP library using `make PARELLEL=1 gen_nn_lib`,
+2. Build NMSIS DSP library using `make PARALLEL=1 gen_nn_lib`,
    the libraries will be generated into `<NMSIS_ROOT>/NMSIS/Library/NN/GCC`
 3. Strip debug informations using `make strip_nn_lib` to make the generated
    library smaller.

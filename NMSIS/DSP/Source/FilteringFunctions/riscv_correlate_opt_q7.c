@@ -3,13 +3,13 @@
  * Title:        riscv_correlate_opt_q7.c
  * Description:  Correlation of Q7 sequences
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -132,7 +132,17 @@ void riscv_correlate_opt_q7(
     inc = -1;
   }
 
-
+#if defined (RISCV_VECTOR)
+  uint32_t vblkCnt = srcBLen;                               /* Loop counter */
+  size_t l;
+  vint16m8_t vx;
+  for (; (l = vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
+    vx = vwadd_vx_i16m8(vle8_v_i8m4(pIn2, l),0, l);
+    pIn2 += l;
+    vse16_v_i16m8(pScr2, vx, l);
+    pScr2 += l;
+  }
+#else
   /* Copy (srcBLen) samples in scratch buffer */
   k = srcBLen >> 2U;
 
@@ -170,13 +180,21 @@ void riscv_correlate_opt_q7(
     /* Decrement loop counter */
     k--;
   }
-
+#endif /*defined (RISCV_VECTOR)*/
   /* Fill (srcBLen - 1U) zeros in scratch buffer */
   riscv_fill_q15(0, pScr1, (srcBLen - 1U));
 
   /* Update temporary scratch pointer */
   pScr1 += (srcBLen - 1U);
-
+#if defined (RISCV_VECTOR)
+  vblkCnt = srcBLen;                               /* Loop counter */
+  for (; (l = vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
+    vx = vwadd_vx_i16m8(vle8_v_i8m4(pIn1, l),0, l);
+    pIn1 += l;
+    vse16_v_i16m8(pScr1, vx, l);
+    pScr1 += l;
+  }
+#else
   /* Copy (srcALen) samples in scratch buffer */
   /* Apply loop unrolling and do 4 Copies simultaneously. */
   k = srcALen >> 2U;
@@ -212,7 +230,7 @@ void riscv_correlate_opt_q7(
     /* Decrement the loop counter */
     k--;
   }
-
+#endif /*defined (RISCV_VECTOR)*/
   /* Fill (srcBLen - 1U) zeros at end of scratch buffer */
   riscv_fill_q15(0, pScr1, (srcBLen - 1U));
 
@@ -224,7 +242,42 @@ void riscv_correlate_opt_q7(
 
   /* Initialization of pScr2 pointer */
   pScr2 = pScratch2;
+#if defined (RISCV_VECTOR)
+  blkCnt = (srcALen + srcBLen - 1U);
+  while (blkCnt > 0)
+  {
+    /* Initialze temporary scratch pointer as scratch1 */
+    pScr1 = pScratch1;
 
+    /* Clear Accumlators */
+    acc0 = 0;
+
+    uint32_t vblkCnt = srcBLen;                               /* Loop counter */
+    size_t l;
+    vint16m4_t vx, vy;
+    vint32m1_t temp00m1;
+    l = vsetvl_e32m1(1);
+    temp00m1 = vmv_v_x_i32m1(0, l);
+    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle16_v_i16m4(pScr1, l);
+      pScr1 += l;
+      vy = vle16_v_i16m4(pScr2, l);
+      pScr2 += l;
+      acc0 += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l));
+    }
+
+    blkCnt--;
+
+    /* Store the result in the accumulator in the destination buffer. */
+    *pOut = (q7_t) (__SSAT(acc0 >> 7U, 8));
+    pOut += inc;
+
+    /* Initialization of inputB pointer */
+    pScr2 = py;
+
+    pScratch1 += 1U;
+  }
+#else
   /* Actual correlation process starts here */
   blkCnt = (srcALen + srcBLen - 1U) >> 2;
 
@@ -252,29 +305,21 @@ void riscv_correlate_opt_q7(
       /* Read four samples from smaller buffer */
       y1 = read_q15x2_ia (&pScr2);
 
-      /* multiply and accumlate */
+      /* multiply and accumulate */
       acc0 = __SMLAD(x1, y1, acc0);
       acc2 = __SMLAD(x2, y1, acc2);
 
       /* pack input data */
-#ifndef RISCV_MATH_BIG_ENDIAN
       x3 = __PKHBT(x2, x1, 0);
-#else
-      x3 = __PKHBT(x1, x2, 0);
-#endif
 
-      /* multiply and accumlate */
+      /* multiply and accumulate */
       acc1 = __SMLADX(x3, y1, acc1);
 
       /* Read next two samples from scratch1 buffer */
       x1 = read_q15x2_ia (&pScr1);
 
       /* pack input data */
-#ifndef RISCV_MATH_BIG_ENDIAN
       x3 = __PKHBT(x1, x2, 0);
-#else
-      x3 = __PKHBT(x2, x1, 0);
-#endif
 
       acc3 = __SMLADX(x3, y1, acc3);
 
@@ -289,11 +334,7 @@ void riscv_correlate_opt_q7(
 
       x2 = read_q15x2_ia (&pScr1);
 
-#ifndef RISCV_MATH_BIG_ENDIAN
       x3 = __PKHBT(x2, x1, 0);
-#else
-      x3 = __PKHBT(x1, x2, 0);
-#endif
 
       acc3 = __SMLADX(x3, y1, acc3);
 
@@ -309,7 +350,7 @@ void riscv_correlate_opt_q7(
 
     while (tapCnt > 0U)
     {
-      /* accumlate the results */
+      /* accumulate the results */
       acc0 += (*pScr1++ * *pScr2);
       acc1 += (*pScr1++ * *pScr2);
       acc2 += (*pScr1++ * *pScr2);
@@ -366,7 +407,7 @@ void riscv_correlate_opt_q7(
     /* apply same above for remaining samples of smaller length sequence */
     while (tapCnt > 0U)
     {
-      /* accumlate the results */
+      /* accumulate the results */
       acc0 += (*pScr1++ * *pScr2++);
 
       /* Decrement loop counter */
@@ -384,7 +425,7 @@ void riscv_correlate_opt_q7(
 
     pScratch1 += 1U;
   }
-
+#endif /*defined (RISCV_VECTOR)*/
 }
 
 /**

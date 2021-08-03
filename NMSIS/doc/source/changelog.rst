@@ -3,6 +3,32 @@
 Changelog
 =========
 
+V1.0.2-RC1
+----------
+
+This is the release candidate version ``V1.0.2-RC1`` release of Nuclei MCU Software Interface Standard(NMSIS).
+
+The following changes has been made since ``V1.0.1``.
+
+* **Device Templates**
+
+   - DOWNLOAD_MODE_xxx macros are removed from riscv_encoding.h, it is now defined as enum in ``<Device.h>``, and
+     can be customized by soc vendor.
+   - startup code now don't rely on DOWNLOAD_MODE macro, instead it now rely on a new macro called VECTOR_TABLE_REMAPPED,
+     when VECTOR_TABLE_REMAPPED is defined, it means the vector table's lma != vma, such as vector table need to be
+     copied from flash to ilm when boot up
+   - Add **BIT**, **BITS**, **REG**, **ADDR** related macros in ``<Device.h>``
+
+* **NMSIS-Core**
+
+   - Nuclei Cache CCM operation APIs are now introduced in core_feature_cache.h
+
+* **NMSIS-DSP/NN**
+
+   - Merged the official CMSIS 5.8.0 release, CMSIS-DSP 1.9.0, CMSIS-NN 3.0.0
+   - RISC-V Vector extension and P-extension support for DSP/NN libraries are added
+
+
 V1.0.1
 ------
 

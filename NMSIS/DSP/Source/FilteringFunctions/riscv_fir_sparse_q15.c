@@ -3,13 +3,13 @@
  * Title:        riscv_fir_sparse_q15.c
  * Description:  Q15 sparse FIR filter processing function
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -116,7 +116,7 @@ void riscv_fir_sparse_q15(
   pScratchOut = pScr2;
 
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
 
   /* Loop unrolling: Compute 4 outputs at a time. */
   blkCnt = blockSize >> 2U;
@@ -149,7 +149,17 @@ void riscv_fir_sparse_q15(
   blkCnt = blockSize;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-
+#if defined (RISCV_VECTOR)
+    uint32_t vblkCnt = blockSize;
+    size_t l;
+    vint16m4_t vx;
+    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle16_v_i16m4(px, l);
+      px += l;
+      vse32_v_i32m8 (pScratchOut,vwmul_vx_i32m8(vx, coeff, l), l);
+      pScratchOut += l;
+    }
+#else
   while (blkCnt > 0U)
   {
     /* Perform Multiplication and store in the scratch buffer */
@@ -158,7 +168,7 @@ void riscv_fir_sparse_q15(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined (RISCV_VECTOR) */
   /* Load the coefficient value and
    * increment the coefficient buffer for the next set of state values */
   coeff = *pCoeffs++;
@@ -191,7 +201,7 @@ void riscv_fir_sparse_q15(
     pScratchOut = pScr2;
 
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
 
     /* Loop unrolling: Compute 4 outputs at a time. */
     blkCnt = blockSize >> 2U;
@@ -217,7 +227,15 @@ void riscv_fir_sparse_q15(
     blkCnt = blockSize;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-
+#if defined (RISCV_VECTOR)
+    vblkCnt = blockSize;
+    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle16_v_i16m4(px, l);
+      px += l;
+      vse32_v_i32m8 (pScratchOut,vadd_vv_i32m8(vle32_v_i32m8(pScratchOut, l), vwmul_vx_i32m8(vx, coeff, l), l), l);
+      pScratchOut += l;
+    }
+#else
     while (blkCnt > 0U)
     {
       /* Perform Multiply-Accumulate */
@@ -226,6 +244,7 @@ void riscv_fir_sparse_q15(
       /* Decrement loop counter */
       blkCnt--;
     }
+#endif /* defined (RISCV_VECTOR) */
 
     /* Load the coefficient value and
      * increment the coefficient buffer for the next set of state values */
@@ -260,7 +279,7 @@ void riscv_fir_sparse_q15(
   pScratchOut = pScr2;
 
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
 
   /* Loop unrolling: Compute 4 outputs at a time. */
   blkCnt = blockSize >> 2U;
@@ -286,7 +305,15 @@ void riscv_fir_sparse_q15(
   blkCnt = blockSize;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-
+#if defined (RISCV_VECTOR)
+    vblkCnt = blockSize;
+    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle16_v_i16m4(px, l);
+      px += l;
+      vse32_v_i32m8 (pScratchOut,vadd_vv_i32m8(vle32_v_i32m8(pScratchOut, l), vwmul_vx_i32m8(vx, coeff, l), l), l);
+      pScratchOut += l;
+    }
+#else
   while (blkCnt > 0U)
   {
     /* Perform Multiply-Accumulate */
@@ -295,6 +322,7 @@ void riscv_fir_sparse_q15(
     /* Decrement loop counter */
     blkCnt--;
   }
+#endif /* defined (RISCV_VECTOR) */
 
   /* All the output values are in pScratchOut buffer.
      Convert them into 1.15 format, saturate and store in the destination buffer. */
@@ -308,20 +336,12 @@ void riscv_fir_sparse_q15(
     in1 = *pScr2++;
     in2 = *pScr2++;
 
-#ifndef RISCV_MATH_BIG_ENDIAN
     write_q15x2_ia (&pOut, __PKHBT((q15_t) __SSAT(in1 >> 15, 16), (q15_t) __SSAT(in2 >> 15, 16), 16));
-#else
-    write_q15x2_ia (&pOut, __PKHBT((q15_t) __SSAT(in2 >> 15, 16), (q15_t) __SSAT(in1 >> 15, 16), 16));
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
     in1 = *pScr2++;
     in2 = *pScr2++;
 
-#ifndef RISCV_MATH_BIG_ENDIAN
     write_q15x2_ia (&pOut, __PKHBT((q15_t) __SSAT(in1 >> 15, 16), (q15_t) __SSAT(in2 >> 15, 16), 16));
-#else
-    write_q15x2_ia (&pOut, __PKHBT((q15_t) __SSAT(in2 >> 15, 16), (q15_t) __SSAT(in1 >> 15, 16), 16));
-#endif /* #ifndef RISCV_MATH_BIG_ENDIAN */
 
     /* Decrement loop counter */
     blkCnt--;

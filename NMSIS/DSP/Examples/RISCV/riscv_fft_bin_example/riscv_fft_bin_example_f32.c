@@ -123,6 +123,10 @@ uint32_t refIndex = 213, testIndex = 0;
 
 int32_t main(void)
 {
+/*  Enable Vector  */
+#if (defined (__RISCV_FEATURE_VECTOR) && (__RISCV_FEATURE_VECTOR == 1))
+  __RV_CSR_SET(CSR_MSTATUS, 0x200);
+#endif 
 
   riscv_status status;
   float32_t maxValue;

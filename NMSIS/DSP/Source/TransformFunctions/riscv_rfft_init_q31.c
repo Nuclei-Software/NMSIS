@@ -3,13 +3,13 @@
  * Title:        riscv_rfft_init_q31.c
  * Description:  RFFT & RIFFT Q31 initialisation function
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/transform_functions.h"
 #include "riscv_common_tables.h"
 #include "riscv_const_structs.h"
 
@@ -71,8 +71,15 @@ riscv_status riscv_rfft_init_q31(
     uint32_t ifftFlagR,
     uint32_t bitReverseFlag)
 {
+     /*  Initialise the default riscv status */
+    riscv_status status = RISCV_MATH_ARGUMENT_ERROR;
+
+#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_FFT_ALLOW_TABLES)
+
+#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || defined(RISCV_TABLE_REALCOEF_Q31)
+
     /*  Initialise the default riscv status */
-    riscv_status status = RISCV_MATH_SUCCESS;
+    status = RISCV_MATH_SUCCESS;
 
     /*  Initialize the Real FFT length */
     S->fftLenReal = (uint16_t) fftLenReal;
@@ -94,56 +101,61 @@ riscv_status riscv_rfft_init_q31(
     {
 #if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_Q31_4096) && defined(RISCV_TABLE_BITREVIDX_FXT_4096))
     case 8192U:
+
+
         S->twidCoefRModifier = 1U;
-        S->pCfft = &riscv_cfft_sR_q31_len4096;
+
+           S->pCfft = &riscv_cfft_sR_q31_len4096;
         break;
 #endif
 #if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_Q31_2048) && defined(RISCV_TABLE_BITREVIDX_FXT_2048))
     case 4096U:
         S->twidCoefRModifier = 2U;
-        S->pCfft = &riscv_cfft_sR_q31_len2048;
+
+           S->pCfft = &riscv_cfft_sR_q31_len2048;
         break;
 #endif
 #if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_Q31_1024) && defined(RISCV_TABLE_BITREVIDX_FXT_1024))
     case 2048U:
         S->twidCoefRModifier = 4U;
-        S->pCfft = &riscv_cfft_sR_q31_len1024;
+
+          S->pCfft = &riscv_cfft_sR_q31_len1024;
         break;
 #endif
 #if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_Q31_512) && defined(RISCV_TABLE_BITREVIDX_FXT_512))
     case 1024U:
         S->twidCoefRModifier = 8U;
-        S->pCfft = &riscv_cfft_sR_q31_len512;
+           S->pCfft = &riscv_cfft_sR_q31_len512;
         break;
 #endif
 #if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_Q31_256) && defined(RISCV_TABLE_BITREVIDX_FXT_256))
     case 512U:
         S->twidCoefRModifier = 16U;
-        S->pCfft = &riscv_cfft_sR_q31_len256;
+           S->pCfft = &riscv_cfft_sR_q31_len256;
         break;
 #endif 
 #if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_Q31_128) && defined(RISCV_TABLE_BITREVIDX_FXT_128))
     case 256U:
         S->twidCoefRModifier = 32U;
-        S->pCfft = &riscv_cfft_sR_q31_len128;
+           S->pCfft = &riscv_cfft_sR_q31_len128;
         break;
 #endif 
 #if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_Q31_64) && defined(RISCV_TABLE_BITREVIDX_FXT_64))
     case 128U:
         S->twidCoefRModifier = 64U;
-        S->pCfft = &riscv_cfft_sR_q31_len64;
+           S->pCfft = &riscv_cfft_sR_q31_len64;
         break;
 #endif
 #if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_Q31_32) && defined(RISCV_TABLE_BITREVIDX_FXT_32))
     case 64U:
         S->twidCoefRModifier = 128U;
-        S->pCfft = &riscv_cfft_sR_q31_len32;
+           S->pCfft = &riscv_cfft_sR_q31_len32;
         break;
 #endif 
 #if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_Q31_16) && defined(RISCV_TABLE_BITREVIDX_FXT_16))
     case 32U:
         S->twidCoefRModifier = 256U;
-        S->pCfft = &riscv_cfft_sR_q31_len16;
+           S->pCfft = &riscv_cfft_sR_q31_len16;
         break;
 #endif
     default:
@@ -152,6 +164,8 @@ riscv_status riscv_rfft_init_q31(
         break;
     }
 
+#endif
+#endif
     /* return the status of RFFT Init function */
     return (status);
 }

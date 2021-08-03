@@ -3,13 +3,13 @@
  * Title:        riscv_cfft_radix4_f32.c
  * Description:  Radix-4 Decimation in Frequency CFFT & CIFFT Floating point processing function
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/transform_functions.h"
 
 extern void riscv_bitreversal_f32(
         float32_t * pSrc,
@@ -49,6 +49,8 @@ void riscv_radix4_butterfly_inverse_f32(
         float32_t onebyfftLen);
 
 
+
+
 /**
   @ingroup groupTransforms
  */
@@ -57,6 +59,7 @@ void riscv_radix4_butterfly_inverse_f32(
   @addtogroup ComplexFFT
   @{
  */
+
 
 /**
   @brief         Processing function for the floating-point Radix-4 CFFT/CIFFT.

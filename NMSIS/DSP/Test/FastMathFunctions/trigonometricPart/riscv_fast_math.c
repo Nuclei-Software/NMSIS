@@ -5,10 +5,10 @@
 // each one has it's own function.
 // All function can be found in main function.
 // If you don't want to use it, then comment it.
-#include "../common.h"
 #include "riscv_math.h"
 #include <stdint.h>
 #include <stdlib.h>
+#include "../common.h"
 
 #include "../HelperFunctions/math_helper.c"
 #include "../HelperFunctions/ref_helper.c"

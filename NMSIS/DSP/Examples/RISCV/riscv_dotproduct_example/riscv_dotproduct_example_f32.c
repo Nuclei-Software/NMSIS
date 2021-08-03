@@ -147,6 +147,11 @@ riscv_status status;   /* Status of the example */
 
 int32_t main(void)
 {
+/*  Enable Vector  */
+#if (defined (__RISCV_FEATURE_VECTOR) && (__RISCV_FEATURE_VECTOR == 1))
+  __RV_CSR_SET(CSR_MSTATUS, 0x200);
+#endif 
+
   uint32_t i;       /* Loop counter */
   float32_t diff;     /* Difference between reference and test outputs */
 

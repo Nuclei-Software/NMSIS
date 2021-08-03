@@ -3,13 +3,13 @@
  * Title:        riscv_correlate_q7.c
  * Description:  Correlation of Q7 sequences
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,7 +27,7 @@
  * limitations under the License.
  */
 
-#include "riscv_math.h"
+#include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
@@ -57,7 +57,6 @@
  @remark
                    Refer to \ref riscv_correlate_opt_q7() for a faster implementation of this function.
  */
-
 void riscv_correlate_q7(
   const q7_t * pSrcA,
         uint32_t srcALen,
@@ -66,7 +65,6 @@ void riscv_correlate_q7(
         q7_t * pDst)
 {
 
-#if (1)
 
 
   const q7_t *pIn1;                                    /* InputA pointer */
@@ -86,10 +84,10 @@ void riscv_correlate_q7(
         q31_t input1, input2;                          /* Temporary input variables */
         q15_t in1, in2;                                /* Temporary input variables */
         q7_t x0, x1, x2, x3, c0, c1;                   /* Temporary variables for holding input and coefficient values */
-#if __RISCV_XLEN == 64
-        q63_t input164, input264;                          /* Temporary input variables */
-        q63_t in164, in264;                                /* Temporary input variables */
-#endif /* __RISCV_XLEN == 64 */
+// #if __RISCV_XLEN == 64
+//         q63_t input164, input264;                          /* Temporary input variables */
+//         q63_t in164, in264;                                /* Temporary input variables */
+// #endif /* __RISCV_XLEN == 64 */
 #endif
 
   /* The algorithm implementation is based on the lengths of the inputs. */
@@ -191,24 +189,24 @@ void riscv_correlate_q7(
     /* Accumulator is made zero for every iteration */
     sum = 0;
 
-#if defined (RISCV_MATH_LOOPUNROLL)
-#if __RISCV_XLEN == 64
-    /* Loop unrolling: Compute 8 outputs at a time */
-    k = count >> 3U;
-#else
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
+// #if __RISCV_XLEN == 64
+//     /* Loop unrolling: Compute 8 outputs at a time */
+//     k = count >> 3U;
+// #else
     /* Loop unrolling: Compute 4 outputs at a time */
     k = count >> 2U;
-#endif
-#if __RISCV_XLEN == 64
-    py -= 7;
-#endif /* __RISCV_XLEN == 64 */
+// #endif
+// #if __RISCV_XLEN == 64
+//     py -= 7;
+// #endif /* __RISCV_XLEN == 64 */
     while (k > 0U)
     {
-#if __RISCV_XLEN == 64
-      in164 = read_q7x8_ia ((q7_t **) &px);
-      in264 = read_q7x8_da ((q7_t **) &py);
-      sum = __RV_SMAQA(sum, input1, input2);
-#else
+// #if __RISCV_XLEN == 64
+//       in164 = read_q7x8_ia ((q7_t **) &px);
+//       in264 = read_q7x8_da ((q7_t **) &py);
+//       sum = __RV_SMAQA(sum, input1, input2);
+// #else
       /* x[0] , x[1] */
       in1 = (q15_t) *px++;
       in2 = (q15_t) *px++;
@@ -236,27 +234,41 @@ void riscv_correlate_q7(
       /* x[2] * y[srcBLen - 2] */
       /* x[3] * y[srcBLen - 1] */
       sum = __SMLAD(input1, input2, sum);
-#endif /* __RISCV_XLEN == 64 */
+// #endif /* __RISCV_XLEN == 64 */
       /* Decrement loop counter */
       k--;
     }
-#if __RISCV_XLEN == 64
-    py += 7;
-#endif /* __RISCV_XLEN == 64 */
-#if __RISCV_XLEN == 64
-    /* Loop unrolling: Compute remaining outputs */
-    k = count % 0x8U;
-#else
+// #if __RISCV_XLEN == 64
+//     py += 7;
+// #endif /* __RISCV_XLEN == 64 */
+// #if __RISCV_XLEN == 64
+//     /* Loop unrolling: Compute remaining outputs */
+//     k = count % 0x8U;
+// #else
     /* Loop unrolling: Compute remaining outputs */
     k = count % 0x4U;
-#endif
+// #endif
 #else
 
     /* Initialize k with number of samples */
     k = count;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-
+#if defined (RISCV_VECTOR)
+    uint32_t vblkCnt = count;                               /* Loop counter */
+    size_t l;
+    vint8m4_t vx, vy;
+    vint16m1_t temp00m1;
+    l = vsetvl_e16m1(1);
+    temp00m1 = vmv_v_x_i16m1(0, l);
+    for (; (l = vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle8_v_i8m4(px, l);
+      px += l;
+      vy = vle8_v_i8m4(py, l);
+      py += l;
+      sum += vmv_x_s_i16m1_i16(vredsum_vs_i16m8_i16m1(temp00m1, vwmul_vv_i16m8(vx, vy, l), temp00m1, l));
+    }
+#else
     while (k > 0U)
     {
       /* Perform the multiply-accumulate */
@@ -266,7 +278,7 @@ void riscv_correlate_q7(
       /* Decrement loop counter */
       k--;
     }
-
+#endif /*defined (RISCV_VECTOR)*/
     /* Store the result in the accumulator in the destination buffer. */
     *pOut = (q7_t) (__SSAT(sum >> 7U, 8));
     /* Destination pointer is updated according to the address modifier, inc */
@@ -305,7 +317,44 @@ void riscv_correlate_q7(
   /* -------------------
    * Stage2 process
    * ------------------*/
+#if defined (RISCV_VECTOR)
+    blkCnt = blockSize2;
 
+    while (blkCnt > 0U)
+    {
+      /* Accumulator is made zero for every iteration */
+      sum = 0;
+
+      uint32_t vblkCnt = srcBLen;                               /* Loop counter */
+      size_t l;
+      vint8m4_t vx, vy;
+      vint16m1_t temp00m1;
+      l = vsetvl_e16m1(1);
+      temp00m1 = vmv_v_x_i16m1(0, l);
+      for (; (l = vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
+        vx = vle8_v_i8m4(px, l);
+        px += l;
+        vy = vle8_v_i8m4(py, l);
+        py += l;
+        sum += vmv_x_s_i16m1_i16(vredsum_vs_i16m8_i16m1(temp00m1, vwmul_vv_i16m8(vx, vy, l), temp00m1, l));
+      }
+
+      /* Store the result in the accumulator in the destination buffer. */
+      *pOut = (q7_t) (__SSAT(sum >> 7U, 8));
+      /* Destination pointer is updated according to the address modifier, inc */
+      pOut += inc;
+
+      /* Increment the MAC count */
+      count++;
+
+      /* Update the inputA and inputB pointers for next MAC calculation */
+      px = pIn1 + count;
+      py = pIn2;
+
+      /* Decrement loop counter */
+      blkCnt--;
+    }
+#else
   /* Stage2 depends on srcBLen as in this stage srcBLen number of MACS are performed.
    * So, to loop unroll over blockSize2,
    * srcBLen should be greater than or equal to 4 */
@@ -624,7 +673,7 @@ void riscv_correlate_q7(
       blkCnt--;
     }
   }
-
+#endif /*defined (RISCV_VECTOR)*/
 
   /* --------------------------
    * Initializations of stage3
@@ -657,7 +706,7 @@ void riscv_correlate_q7(
     /* Accumulator is made zero for every iteration */
     sum = 0;
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
 
     /* Loop unrolling: Compute 4 outputs at a time */
     k = count >> 2U;
@@ -705,7 +754,21 @@ void riscv_correlate_q7(
     k = count;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-
+#if defined (RISCV_VECTOR)
+    uint32_t vblkCnt = blockSize3;                               /* Loop counter */
+    size_t l;
+    vint8m4_t vx, vy;
+    vint16m1_t temp00m1;
+    l = vsetvl_e16m1(1);
+    temp00m1 = vmv_v_x_i16m1(0, l);
+    for (; (l = vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle8_v_i8m4(px, l);
+      px += l;
+      vy = vle8_v_i8m4(py, l);
+      py += l;
+      sum += vmv_x_s_i16m1_i16(vredsum_vs_i16m8_i16m1(temp00m1, vwmul_vv_i16m8(vx, vy, l), temp00m1, l));
+    }
+#else
     while (k > 0U)
     {
       /* Perform the multiply-accumulate */
@@ -714,7 +777,7 @@ void riscv_correlate_q7(
       /* Decrement loop counter */
       k--;
     }
-
+#endif /*defined (RISCV_VECTOR)*/
     /* Store the result in the accumulator in the destination buffer. */
     *pOut = (q7_t) (__SSAT(sum >> 7U, 8));
     /* Destination pointer is updated according to the address modifier, inc */
@@ -731,89 +794,6 @@ void riscv_correlate_q7(
     blockSize3--;
   }
 
-#else
-/* alternate version for CM0_FAMILY */
-
-  const q7_t *pIn1 = pSrcA;                            /* InputA pointer */
-  const q7_t *pIn2 = pSrcB + (srcBLen - 1U);           /* InputB pointer */
-        q31_t sum;                                     /* Accumulator */
-        uint32_t i = 0U, j;                            /* Loop counters */
-        uint32_t inv = 0U;                             /* Reverse order flag */
-        uint32_t tot = 0U;                             /* Length */
-
-  /* The algorithm implementation is based on the lengths of the inputs. */
-  /* srcB is always made to slide across srcA. */
-  /* So srcBLen is always considered as shorter or equal to srcALen */
-  /* But CORR(x, y) is reverse of CORR(y, x) */
-  /* So, when srcBLen > srcALen, output pointer is made to point to the end of the output buffer */
-  /* and a varaible, inv is set to 1 */
-  /* If lengths are not equal then zero pad has to be done to  make the two
-   * inputs of same length. But to improve the performance, we include zeroes
-   * in the output instead of zero padding either of the the inputs*/
-  /* If srcALen > srcBLen, (srcALen - srcBLen) zeroes has to included in the
-   * starting of the output buffer */
-  /* If srcALen < srcBLen, (srcALen - srcBLen) zeroes has to included in the
-   * ending of the output buffer */
-  /* Once the zero padding is done the remaining of the output is calcualted
-   * using convolution but with the shorter signal time shifted. */
-
-  /* Calculate the length of the remaining sequence */
-  tot = ((srcALen + srcBLen) - 2U);
-
-  if (srcALen > srcBLen)
-  {
-    /* Calculating the number of zeros to be padded to the output */
-    j = srcALen - srcBLen;
-
-    /* Initialise the pointer after zero padding */
-    pDst += j;
-  }
-
-  else if (srcALen < srcBLen)
-  {
-    /* Initialization to inputB pointer */
-    pIn1 = pSrcB;
-
-    /* Initialization to the end of inputA pointer */
-    pIn2 = pSrcA + (srcALen - 1U);
-
-    /* Initialisation of the pointer after zero padding */
-    pDst = pDst + tot;
-
-    /* Swapping the lengths */
-    j = srcALen;
-    srcALen = srcBLen;
-    srcBLen = j;
-
-    /* Setting the reverse flag */
-    inv = 1;
-  }
-
-  /* Loop to calculate convolution for output length number of times */
-  for (i = 0U; i <= tot; i++)
-  {
-    /* Initialize sum with zero to carry out MAC operations */
-    sum = 0;
-
-    /* Loop to perform MAC operations according to convolution equation */
-    for (j = 0U; j <= i; j++)
-    {
-      /* Check the array limitations */
-      if (((i - j) < srcBLen) && (j < srcALen))
-      {
-        /* z[i] += x[i-j] * y[j] */
-        sum += ((q15_t) pIn1[j] * pIn2[-((int32_t) i - j)]);
-      }
-    }
-
-    /* Store the output in the destination buffer */
-    if (inv == 1)
-      *pDst-- = (q7_t) __SSAT((sum >> 7U), 8U);
-    else
-      *pDst++ = (q7_t) __SSAT((sum >> 7U), 8U);
-  }
-
-#endif /* #if !defined(RISCV_MATH_CM0_FAMILY) */
 
 }
 

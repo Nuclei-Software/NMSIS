@@ -5,15 +5,16 @@ NUCLEI_SDK_NMSIS ?= $(NUCLEI_SDK_ROOT)/NMSIS
 
 SRCDIRS = .
 
-INCDIRS = . $(NUCLEI_SDK_NMSIS)/DSP/Include $(NUCLEI_SDK_NMSIS)/NN/Include \
-		  $(NUCLEI_SDK_NMSIS)/NN/NN_Lib_Tests/nn_test/Ref_Implementations
+INCDIRS = . $(NUCLEI_SDK_NMSIS)/DSP/PrivateInclude $(NUCLEI_SDK_NMSIS)/DSP/Include \
+	$(NUCLEI_SDK_NMSIS)/NN/Include $(NUCLEI_SDK_NMSIS)/NN/NN_Lib_Tests/nn_test/Ref_Implementations
 
 LIBDIRS = $(NUCLEI_SDK_NMSIS)/Library/DSP/GCC $(NUCLEI_SDK_NMSIS)/Library/NN/GCC \
 		  $(NUCLEI_SDK_NMSIS)/Library/NNREF/GCC
 
 DSP_ENABLE ?= ON
+VECTOR_ENABLE ?= OFF
 RISCV_ALIGN ?= OFF
-COMMON_FLAGS ?=
+COMMON_FLAGS ?= -O2
 NEWLIB ?=
 
 BENCH_UNIT ?=
@@ -26,10 +27,21 @@ $(warning "Benchmark by reading cpu cycle")
 endif
 
 ifeq ($(DSP_ENABLE),ON)
+ifeq ($(VECTOR_ENABLE),ON)
 $(warning "Use and link with RISC-V DSP enabled library")
-COMMON_FLAGS += -D__RISCV_FEATURE_DSP=1 -D__RISCV_FEATURE_DSP=1
-NMSIS_LIB_SUFFIX=$(RISCV_ARCH)p
+COMMON_FLAGS += -D__RISCV_FEATURE_DSP=1 -D__RISCV_FEATURE_VECTOR=1 -D__RISCV_FEATURE_VECTOR=1
+NMSIS_LIB_SUFFIX=$(RISCV_ARCH)
 else
+$(warning "Use and link with RISC-V DSP enabled library")
+COMMON_FLAGS += -D__RISCV_FEATURE_DSP=1
+NMSIS_LIB_SUFFIX=$(RISCV_ARCH)
+endif
+else
+ifeq ($(VECTOR_ENABLE),ON)
+$(warning "Use and link with RISC-V DSP enabled library")
+COMMON_FLAGS += -D__RISCV_FEATURE_VECTOR=1 -D__RISCV_FEATURE_VECTOR=1
+NMSIS_LIB_SUFFIX=$(RISCV_ARCH)
+endif
 $(warning "Use and link with RISC-V DSP disabled library")
 ifeq ($(RISCV_ALIGN),ON)
 COMMON_FLAGS += -DRISCV_ALIGN_ACCESS

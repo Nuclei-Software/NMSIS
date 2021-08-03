@@ -18,6 +18,7 @@
  */
 
 #include "ref_functions.h"
+#include "riscv_nnsupportfunctions.h"
 
 void riscv_depthwise_separable_conv_HWC_q7_ref_nonsquare(const q7_t * Im_in,  // input image
                                                        const uint16_t dim_im_in_x,  // input image dimention x
