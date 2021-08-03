@@ -1,0 +1,62 @@
+# Build documentation and deploy to gh-pages
+
+name: Documentation
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches-ignore: [ gh-pages ]
+    paths-ignore:
+    - README.md
+    - LICENSE
+    - .gitlab-ci.yml
+    - .gitignore
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    name: build documentation
+    runs-on: ubuntu-18.04
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout Source Code
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          sudo apt-get install lib32z1 dos2unix doxygen python3 python3-pip latexmk lftp \
+            texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended
+          sudo pip install --upgrade pip
+          sudo pip install -r NMSIS/doc/requirements.txt
+
+      # Build NMSIS Documentation
+      - name: Build NMSIS Documentation
+        run: |
+          cd NMSIS/doc
+          make all
+          make latexpdf
+          cp build/latex/*.pdf build/html/
+          make clean_xml
+
+      # Update generated doc attachments
+      - name: Upload generated document
+        uses: actions/upload-artifact@v2.2.0
+        with:
+          name: build_caching
+          path: |
+            NMSIS/doc/build/html
+
+      - name: Deploy documentation to gh-pages
+        uses: JamesIves/github-pages-deploy-action
+        with:
+          branch: gh-pages
+          folder: NMSIS/doc/build/html
