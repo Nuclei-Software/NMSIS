@@ -1,0 +1,463 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>DCT Type IV Functions &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="DCT Type IV Tables" href="dct4_idct4/api_dct4_idct4_table.html" />
+    <link rel="prev" title="Complex FFT Tables" href="complexfft/api_cfft_cifft.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.2-RC1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">NMSIS DSP</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupfastmath.html">Fast Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupfilters.html">Filtering Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupmatrix.html">Matrix Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api_complexfft.html">Complex FFT Functions</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">DCT Type IV Functions</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="dct4_idct4/api_dct4_idct4_table.html">DCT Type IV Tables</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="api_realfft.html">Real FFT Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupcontroller.html">Controller Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupstats.html">Statistics Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupsupport.html">Support Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupinterpolation.html">Interpolation Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
+        
+          <li><a href="../index.html">NMSIS DSP API</a> &raquo;</li>
+        
+          <li><a href="../api_grouptransforms.html">Transform Functions</a> &raquo;</li>
+        
+      <li>DCT Type IV Functions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/dsp/api/grouptransforms/api_dct4_idct4.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="dct-type-iv-functions">
+<span id="nmsis-dsp-api-dct-type-iv-functions"></span><h1>DCT Type IV Functions<a class="headerlink" href="#dct-type-iv-functions" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dct4_idct4/api_dct4_idct4_table.html">DCT Type IV Tables</a></li>
+</ul>
+</div>
+<dl class="function">
+<dt id="_CPPv414riscv_dct4_f32PK23riscv_dct4_instance_f32P9float32_tP9float32_t">
+<span id="_CPPv314riscv_dct4_f32PK23riscv_dct4_instance_f32P9float32_tP9float32_t"></span><span id="_CPPv214riscv_dct4_f32PK23riscv_dct4_instance_f32P9float32_tP9float32_t"></span><span id="riscv_dct4_f32__riscv_dct4_instance_f32CP.float32_tP.float32_tP"></span><span class="target" id="group__DCT4__IDCT4_1ga50ce68671108e95984121f7eb9e57c06"></span>void <code class="sig-name descname">riscv_dct4_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_dct4_instance_f32 *<em>S</em>, float32_t *<em>pState</em>, float32_t *<em>pInlineBuffer</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414riscv_dct4_f32PK23riscv_dct4_instance_f32P9float32_tP9float32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv419riscv_dct4_init_f32P23riscv_dct4_instance_f32P23riscv_rfft_instance_f32P30riscv_cfft_radix4_instance_f328uint16_t8uint16_t9float32_t">
+<span id="_CPPv319riscv_dct4_init_f32P23riscv_dct4_instance_f32P23riscv_rfft_instance_f32P30riscv_cfft_radix4_instance_f328uint16_t8uint16_t9float32_t"></span><span id="_CPPv219riscv_dct4_init_f32P23riscv_dct4_instance_f32P23riscv_rfft_instance_f32P30riscv_cfft_radix4_instance_f328uint16_t8uint16_t9float32_t"></span><span id="riscv_dct4_init_f32__riscv_dct4_instance_f32P.riscv_rfft_instance_f32P.riscv_cfft_radix4_instance_f32P.uint16_t.uint16_t.float32_t"></span><span class="target" id="group__DCT4__IDCT4_1gac8e0136f9dec411d05bf7c684dfc0395"></span>riscv_status <code class="sig-name descname">riscv_dct4_init_f32</code><span class="sig-paren">(</span>riscv_dct4_instance_f32 *<em>S</em>, riscv_rfft_instance_f32 *<em>S_RFFT</em>, riscv_cfft_radix4_instance_f32 *<em>S_CFFT</em>, uint16_t <em>N</em>, uint16_t <em>Nby2</em>, float32_t <em>normalize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_dct4_init_f32P23riscv_dct4_instance_f32P23riscv_rfft_instance_f32P30riscv_cfft_radix4_instance_f328uint16_t8uint16_t9float32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv419riscv_dct4_init_q15P23riscv_dct4_instance_q15P23riscv_rfft_instance_q15P30riscv_cfft_radix4_instance_q158uint16_t8uint16_t5q15_t">
+<span id="_CPPv319riscv_dct4_init_q15P23riscv_dct4_instance_q15P23riscv_rfft_instance_q15P30riscv_cfft_radix4_instance_q158uint16_t8uint16_t5q15_t"></span><span id="_CPPv219riscv_dct4_init_q15P23riscv_dct4_instance_q15P23riscv_rfft_instance_q15P30riscv_cfft_radix4_instance_q158uint16_t8uint16_t5q15_t"></span><span id="riscv_dct4_init_q15__riscv_dct4_instance_q15P.riscv_rfft_instance_q15P.riscv_cfft_radix4_instance_q15P.uint16_t.uint16_t.q15_t"></span><span class="target" id="group__DCT4__IDCT4_1gadb08ffdc26604e45aca6b713728bf167"></span>riscv_status <code class="sig-name descname">riscv_dct4_init_q15</code><span class="sig-paren">(</span>riscv_dct4_instance_q15 *<em>S</em>, riscv_rfft_instance_q15 *<em>S_RFFT</em>, riscv_cfft_radix4_instance_q15 *<em>S_CFFT</em>, uint16_t <em>N</em>, uint16_t <em>Nby2</em>, q15_t <em>normalize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_dct4_init_q15P23riscv_dct4_instance_q15P23riscv_rfft_instance_q15P30riscv_cfft_radix4_instance_q158uint16_t8uint16_t5q15_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv419riscv_dct4_init_q31P23riscv_dct4_instance_q31P23riscv_rfft_instance_q31P30riscv_cfft_radix4_instance_q318uint16_t8uint16_t5q31_t">
+<span id="_CPPv319riscv_dct4_init_q31P23riscv_dct4_instance_q31P23riscv_rfft_instance_q31P30riscv_cfft_radix4_instance_q318uint16_t8uint16_t5q31_t"></span><span id="_CPPv219riscv_dct4_init_q31P23riscv_dct4_instance_q31P23riscv_rfft_instance_q31P30riscv_cfft_radix4_instance_q318uint16_t8uint16_t5q31_t"></span><span id="riscv_dct4_init_q31__riscv_dct4_instance_q31P.riscv_rfft_instance_q31P.riscv_cfft_radix4_instance_q31P.uint16_t.uint16_t.q31_t"></span><span class="target" id="group__DCT4__IDCT4_1ga5561b5f47987be3c7e4837c4c3292500"></span>riscv_status <code class="sig-name descname">riscv_dct4_init_q31</code><span class="sig-paren">(</span>riscv_dct4_instance_q31 *<em>S</em>, riscv_rfft_instance_q31 *<em>S_RFFT</em>, riscv_cfft_radix4_instance_q31 *<em>S_CFFT</em>, uint16_t <em>N</em>, uint16_t <em>Nby2</em>, q31_t <em>normalize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_dct4_init_q31P23riscv_dct4_instance_q31P23riscv_rfft_instance_q31P30riscv_cfft_radix4_instance_q318uint16_t8uint16_t5q31_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv414riscv_dct4_q15PK23riscv_dct4_instance_q15P5q15_tP5q15_t">
+<span id="_CPPv314riscv_dct4_q15PK23riscv_dct4_instance_q15P5q15_tP5q15_t"></span><span id="_CPPv214riscv_dct4_q15PK23riscv_dct4_instance_q15P5q15_tP5q15_t"></span><span id="riscv_dct4_q15__riscv_dct4_instance_q15CP.q15_tP.q15_tP"></span><span class="target" id="group__DCT4__IDCT4_1gad26cd42b92834f519f43eca88ed88f50"></span>void <code class="sig-name descname">riscv_dct4_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_dct4_instance_q15 *<em>S</em>, q15_t *<em>pState</em>, q15_t *<em>pInlineBuffer</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414riscv_dct4_q15PK23riscv_dct4_instance_q15P5q15_tP5q15_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv414riscv_dct4_q31PK23riscv_dct4_instance_q31P5q31_tP5q31_t">
+<span id="_CPPv314riscv_dct4_q31PK23riscv_dct4_instance_q31P5q31_tP5q31_t"></span><span id="_CPPv214riscv_dct4_q31PK23riscv_dct4_instance_q31P5q31_tP5q31_t"></span><span id="riscv_dct4_q31__riscv_dct4_instance_q31CP.q31_tP.q31_tP"></span><span class="target" id="group__DCT4__IDCT4_1ga7e8a6565ae2b938959d5d844610afe82"></span>void <code class="sig-name descname">riscv_dct4_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_dct4_instance_q31 *<em>S</em>, q31_t *<em>pState</em>, q31_t *<em>pInlineBuffer</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414riscv_dct4_q31PK23riscv_dct4_instance_q31P5q31_tP5q31_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="group">
+<dt>
+<span class="target" id="group__DCT4__IDCT4"></span><em>group</em> <code class="sig-name descname">DCT4_IDCT4</code></dt>
+<dd><p>Representation of signals by minimum number of values is important for storage and transmission. The possibility of large discontinuity between the beginning and end of a period of a signal in DFT can be avoided by extending the signal so that it is even-symmetric. Discrete Cosine Transform (DCT) is constructed such that its energy is heavily concentrated in the lower part of the spectrum and is very widely used in signal and image coding applications. The family of DCTs (DCT type- 1,2,3,4) is the outcome of different combinations of homogeneous boundary conditions. DCT has an excellent energy-packing capability, hence has many applications and in data compression in particular.</p>
+<p>DCT is essentially the Discrete Fourier Transform(DFT) of an even-extended real signal. Reordering of the input data makes the computation of DCT just a problem of computing the DFT of a real signal with a few additional operations. This approach provides regular, simple, and very efficient DCT algorithms for practical hardware and software implementations.</p>
+<p>DCT type-II can be implemented using Fast fourier transform (FFT) internally, as the transform is applied on real values, Real FFT can be used. DCT4 is implemented using DCT2 as their implementations are similar except with some added pre-processing and post-processing. DCT2 implementation can be described in the following steps:<ul class="simple">
+<li><p>Re-ordering input</p></li>
+<li><p>Calculating Real FFT</p></li>
+<li><p>Multiplication of weights and Real FFT output and getting real part from the product.</p></li>
+</ul>
+</p>
+<p>This process is explained by the block diagram below: <img alt="../../../_images/DCT4.png" src="../../../_images/DCT4.png" /><dl class="simple">
+<dt><strong>Algorithm</strong></dt><dd><p>The N-point type-IV DCT is defined as a real, linear transformation by the formula: <p> where </p>
+<code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">=</span> <span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">...,</span> <span class="pre">N-1</span></code> <img alt="../../../_images/DCT4Equation.png" src="../../../_images/DCT4Equation.png" /></p>
+</dd>
+<dt><strong></strong></dt><dd><p>Its inverse is defined as follows: <p> where </p>
+<code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">...,</span> <span class="pre">N-1</span></code> <img alt="../../../_images/IDCT4Equation.png" src="../../../_images/IDCT4Equation.png" /></p>
+</dd>
+<dt><strong></strong></dt><dd><p>The DCT4 matrices become involutory (i.e. they are self-inverse) by multiplying with an overall scale factor of sqrt(2/N). The symmetry of the transform matrix indicates that the fast algorithms for the forward and inverse transform computation are identical. Note that the implementation of Inverse DCT4 and DCT4 is same, hence same process function can be used for both.</p>
+</dd>
+<dt><strong>Lengths supported by the transform:</strong></dt><dd><p>As DCT4 internally uses Real FFT, it supports all the lengths 128, 512, 2048 and 8192. The library provides separate functions for Q15, Q31, and floating-point data types.</p>
+</dd>
+<dt><strong>Instance Structure</strong></dt><dd><p>The instances for Real FFT and FFT, cosine values table and twiddle factor table are stored in an instance data structure. A separate instance structure must be defined for each transform. There are separate instance structure declarations for each of the 3 supported data types.</p>
+</dd>
+<dt><strong>Initialization Functions</strong></dt><dd><p>There is also an associated initialization function for each data type. The initialization function performs the following operations:<ul class="simple">
+<li><p>Sets the values of the internal structure fields.</p></li>
+<li><p>Initializes Real FFT as its process function is used internally in DCT4, by calling riscv_rfft_init_f32(). </p></li>
+</ul>
+</p>
+</dd>
+<dt><strong></strong></dt><dd><p>Use of the initialization function is optional. However, if the initialization function is used, then the instance structure cannot be placed into a const data section. To place an instance structure into a const data section, the instance structure must be manually initialized. Manually initialize the instance structure as follows:  where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the length of the DCT4; <code class="docutils literal notranslate"><span class="pre">Nby2</span></code> is half of the length of the DCT4; <code class="docutils literal notranslate"><span class="pre">normalize</span></code> is normalizing factor used and is equal to <code class="docutils literal notranslate"><span class="pre">sqrt(2/N)</span></code>; <code class="docutils literal notranslate"><span class="pre">pTwiddle</span></code> points to the twiddle factor table; <code class="docutils literal notranslate"><span class="pre">pCosFactor</span></code> points to the cosFactor table; <code class="docutils literal notranslate"><span class="pre">pRfft</span></code> points to the real FFT instance; <code class="docutils literal notranslate"><span class="pre">pCfft</span></code> points to the complex FFT instance; The CFFT and RFFT structures also needs to be initialized, refer to riscv_cfft_radix4_f32() and riscv_rfft_f32() respectively for details regarding static initialization.</p>
+</dd>
+<dt><strong>Fixed-Point Behavior</strong></dt><dd><p>Care must be taken when using the fixed-point versions of the DCT4 transform functions. In particular, the overflow and saturation behavior of the accumulator used in each function must be considered. Refer to the function specific documentation below for usage guidelines. </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="function">
+<dt>
+<span class="target" id="group__DCT4__IDCT4_1ga50ce68671108e95984121f7eb9e57c06"></span>void <code class="sig-name descname">riscv_dct4_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_dct4_instance_f32 *<em>S</em>, float32_t *<em>pState</em>, float32_t *<em>pInlineBuffer</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Processing function for the floating-point DCT4/IDCT4. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the floating-point DCT4/IDCT4 structure </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pState</span></code>: points to state buffer </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">pInlineBuffer</span></code>: points to the in-place input and output buffer </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__DCT4__IDCT4_1gac8e0136f9dec411d05bf7c684dfc0395"></span>riscv_status <code class="sig-name descname">riscv_dct4_init_f32</code><span class="sig-paren">(</span>riscv_dct4_instance_f32 *<em>S</em>, riscv_rfft_instance_f32 *<em>S_RFFT</em>, riscv_cfft_radix4_instance_f32 *<em>S_CFFT</em>, uint16_t <em>N</em>, uint16_t <em>Nby2</em>, float32_t <em>normalize</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization function for the floating-point DCT4/IDCT4. </p>
+<p><img alt="../../../_images/dct4NormalizingF32Table.png" src="../../../_images/dct4NormalizingF32Table.png" /><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">N</span></code> is not a supported transform length</p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Normalizing factor</strong></dt><dd><p>The normalizing factor is <code class="docutils literal notranslate"><span class="pre">sqrt(2/N)</span></code>, which depends on the size of transform <code class="docutils literal notranslate"><span class="pre">N</span></code>. Floating-point normalizing factors are mentioned in the table below for different DCT sizes:</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an instance of floating-point DCT4/IDCT4 structure </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S_RFFT</span></code>: points to an instance of floating-point RFFT/RIFFT structure </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S_CFFT</span></code>: points to an instance of floating-point CFFT/CIFFT structure </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">N</span></code>: length of the DCT4 </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">Nby2</span></code>: half of the length of the DCT4 </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">normalize</span></code>: normalizing factor. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__DCT4__IDCT4_1gadb08ffdc26604e45aca6b713728bf167"></span>riscv_status <code class="sig-name descname">riscv_dct4_init_q15</code><span class="sig-paren">(</span>riscv_dct4_instance_q15 *<em>S</em>, riscv_rfft_instance_q15 *<em>S_RFFT</em>, riscv_cfft_radix4_instance_q15 *<em>S_CFFT</em>, uint16_t <em>N</em>, uint16_t <em>Nby2</em>, q15_t <em>normalize</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization function for the Q15 DCT4/IDCT4. </p>
+<p><img alt="../../../_images/dct4NormalizingQ15Table.png" src="../../../_images/dct4NormalizingQ15Table.png" /><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">N</span></code> is not a supported transform length</p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Normalizing factor</strong></dt><dd><p>The normalizing factor is <code class="docutils literal notranslate"><span class="pre">sqrt(2/N)</span></code>, which depends on the size of transform <code class="docutils literal notranslate"><span class="pre">N</span></code>. Normalizing factors in 1.15 format are mentioned in the table below for different DCT sizes:</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an instance of Q15 DCT4/IDCT4 structure </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S_RFFT</span></code>: points to an instance of Q15 RFFT/RIFFT structure </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S_CFFT</span></code>: points to an instance of Q15 CFFT/CIFFT structure </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">N</span></code>: length of the DCT4 </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">Nby2</span></code>: half of the length of the DCT4 </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">normalize</span></code>: normalizing factor </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__DCT4__IDCT4_1ga5561b5f47987be3c7e4837c4c3292500"></span>riscv_status <code class="sig-name descname">riscv_dct4_init_q31</code><span class="sig-paren">(</span>riscv_dct4_instance_q31 *<em>S</em>, riscv_rfft_instance_q31 *<em>S_RFFT</em>, riscv_cfft_radix4_instance_q31 *<em>S_CFFT</em>, uint16_t <em>N</em>, uint16_t <em>Nby2</em>, q31_t <em>normalize</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization function for the Q31 DCT4/IDCT4. </p>
+<p><img alt="../../../_images/dct4NormalizingQ31Table.png" src="../../../_images/dct4NormalizingQ31Table.png" /><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">N</span></code> is not a supported transform length</p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Normalizing factor:</strong></dt><dd><p>The normalizing factor is <code class="docutils literal notranslate"><span class="pre">sqrt(2/N)</span></code>, which depends on the size of transform <code class="docutils literal notranslate"><span class="pre">N</span></code>. Normalizing factors in 1.31 format are mentioned in the table below for different DCT sizes:</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an instance of Q31 DCT4/IDCT4 structure. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S_RFFT</span></code>: points to an instance of Q31 RFFT/RIFFT structure </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S_CFFT</span></code>: points to an instance of Q31 CFFT/CIFFT structure </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">N</span></code>: length of the DCT4. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">Nby2</span></code>: half of the length of the DCT4. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">normalize</span></code>: normalizing factor. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__DCT4__IDCT4_1gad26cd42b92834f519f43eca88ed88f50"></span>void <code class="sig-name descname">riscv_dct4_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_dct4_instance_q15 *<em>S</em>, q15_t *<em>pState</em>, q15_t *<em>pInlineBuffer</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Processing function for the Q15 DCT4/IDCT4. </p>
+<p><img alt="../../../_images/dct4FormatsQ15Table.png" src="../../../_images/dct4FormatsQ15Table.png" /><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none</p>
+</dd>
+<dt><strong>Input an output formats</strong></dt><dd><p>Internally inputs are downscaled in the RFFT process function to avoid overflows. Number of bits downscaled, depends on the size of the transform. The input and output formats for different DCT sizes and number of bits to upscale are mentioned in the table below:</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the Q15 DCT4 structure. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pState</span></code>: points to state buffer. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">pInlineBuffer</span></code>: points to the in-place input and output buffer. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__DCT4__IDCT4_1ga7e8a6565ae2b938959d5d844610afe82"></span>void <code class="sig-name descname">riscv_dct4_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_dct4_instance_q31 *<em>S</em>, q31_t *<em>pState</em>, q31_t *<em>pInlineBuffer</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Processing function for the Q31 DCT4/IDCT4. </p>
+<p><img alt="../../../_images/dct4FormatsQ31Table.png" src="../../../_images/dct4FormatsQ31Table.png" /><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none</p>
+</dd>
+<dt><strong>Input an output formats</strong></dt><dd><p>Input samples need to be downscaled by 1 bit to avoid saturations in the Q31 DCT process, as the conversion from DCT2 to DCT4 involves one subtraction. Internally inputs are downscaled in the RFFT process function to avoid overflows. Number of bits downscaled, depends on the size of the transform. The input and output formats for different DCT sizes and number of bits to upscale are mentioned in the table below:</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the Q31 DCT4 structure. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pState</span></code>: points to state buffer. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">pInlineBuffer</span></code>: points to the in-place input and output buffer. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dct4_idct4/api_dct4_idct4_table.html" class="btn btn-neutral float-right" title="DCT Type IV Tables" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="complexfft/api_cfft_cifft.html" class="btn btn-neutral float-left" title="Complex FFT Tables" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-Present, Nuclei
+      <span class="lastupdated">
+        Last updated on Aug 03, 2021.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

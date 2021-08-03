@@ -1,0 +1,338 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Using NMSIS-DSP &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="NMSIS DSP API" href="api/index.html" />
+    <link rel="prev" title="Overview" href="overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.2-RC1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">NMSIS DSP</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Using NMSIS-DSP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#preparation">Preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tool-setup">Tool Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#build-nmsis-dsp-library">Build NMSIS DSP Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-run">How to run</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html">NMSIS DSP API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">NMSIS DSP</a> &raquo;</li>
+        
+      <li>Using NMSIS-DSP</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/dsp/get_started.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="using-nmsis-dsp">
+<span id="dsp-get-started"></span><h1>Using NMSIS-DSP<a class="headerlink" href="#using-nmsis-dsp" title="Permalink to this headline">¶</a></h1>
+<p>Here we will describe how to run the nmsis dsp examples in Nuclei Spike.</p>
+<section id="preparation">
+<h2>Preparation<a class="headerlink" href="#preparation" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Nuclei Modified Spike - <code class="docutils literal notranslate"><span class="pre">xl_spike</span></code></p></li>
+<li><p>Nuclei SDK modified for <code class="docutils literal notranslate"><span class="pre">xl_spike</span></code> branch <code class="docutils literal notranslate"><span class="pre">dev_xlspike</span></code></p></li>
+<li><p>Nuclei RISCV GNU Toolchain</p></li>
+<li><p>CMake &gt;= 3.5</p></li>
+</ul>
+</section>
+<section id="tool-setup">
+<h2>Tool Setup<a class="headerlink" href="#tool-setup" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Export <strong>PATH</strong> correctly for <cite>xl_spike</cite> and <cite>riscv-nuclei-elf-gcc</cite></p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>/path/to/xl_spike/bin:/path/to/riscv-nuclei-elf-gcc/bin/:<span class="nv">$PATH</span>
+</pre></div>
+</div>
+</section>
+<section id="build-nmsis-dsp-library">
+<h2>Build NMSIS DSP Library<a class="headerlink" href="#build-nmsis-dsp-library" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Download or clone NMSIS source code into <strong>NMSIS</strong> directory.</p></li>
+<li><p>cd to <cite>NMSIS/NMSIS/</cite> directory</p></li>
+<li><p>Build NMSIS DSP library using <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">gen_dsp_lib</span></code></p></li>
+<li><p>Strip debug informations using <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">strip_dsp_lib</span></code> to make the generated
+library smaller</p></li>
+<li><p>The dsp library will be generated into <code class="docutils literal notranslate"><span class="pre">./Library/DSP/GCC</span></code> folder</p></li>
+<li><p>The dsp libraries will be look like this:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ll Library/DSP/GCC/
+total 28604
+-rw-r--r-- 1 hqfang nucleisys 1847080 Jul 14 14:51 libnmsis_dsp_rv32imac.a
+-rw-r--r-- 1 hqfang nucleisys 2515912 Jul 14 14:51 libnmsis_dsp_rv32imacp.a
+-rw-r--r-- 1 hqfang nucleisys 1786008 Jul 14 14:51 libnmsis_dsp_rv32imafc.a
+-rw-r--r-- 1 hqfang nucleisys 2377420 Jul 14 14:51 libnmsis_dsp_rv32imafcp.a
+-rw-r--r-- 1 hqfang nucleisys 1785500 Jul 14 14:51 libnmsis_dsp_rv32imafdc.a
+-rw-r--r-- 1 hqfang nucleisys 2367840 Jul 14 14:51 libnmsis_dsp_rv32imafdcp.a
+-rw-r--r-- 1 hqfang nucleisys 2374468 Jul 14 14:51 libnmsis_dsp_rv64imac.a
+-rw-r--r-- 1 hqfang nucleisys 3369340 Jul 14 14:51 libnmsis_dsp_rv64imacp.a
+-rw-r--r-- 1 hqfang nucleisys 2276836 Jul 14 14:51 libnmsis_dsp_rv64imafc.a
+-rw-r--r-- 1 hqfang nucleisys 3151172 Jul 14 14:51 libnmsis_dsp_rv64imafcp.a
+-rw-r--r-- 1 hqfang nucleisys 2275828 Jul 14 14:51 libnmsis_dsp_rv64imafdc.a
+-rw-r--r-- 1 hqfang nucleisys 3140188 Jul 14 14:51 libnmsis_dsp_rv64imafdcp.a
+</pre></div>
+</div>
+<ol class="arabic simple" start="7">
+<li><p>library name with extra <code class="docutils literal notranslate"><span class="pre">p</span></code> is build with RISCV DSP enabled.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">libnmsis_dsp_rv32imac.a</span></code>: Build for <strong>RISCV_ARCH=rv32imac</strong> without DSP enabled.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libnmsis_dsp_rv32imacp.a</span></code>: Build for <strong>RISCV_ARCH=rv32imac</strong> with DSP enabled.</p></li>
+</ul>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>You can also directly build both DSP and NN library using <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">gen</span></code></p></li>
+<li><p>You can strip the generated DSP and NN library using <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">strip</span></code></p></li>
+</ul>
+</div>
+</section>
+<section id="how-to-run">
+<h2>How to run<a class="headerlink" href="#how-to-run" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Set environment variables <code class="docutils literal notranslate"><span class="pre">NUCLEI_SDK_ROOT</span></code> and <code class="docutils literal notranslate"><span class="pre">NUCLEI_SDK_NMSIS</span></code>,
+and set Nuclei SDK SoC to <cite>xlspike</cite></p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">NUCLEI_SDK_ROOT</span><span class="o">=</span>/path/to/nuclei_sdk
+<span class="nb">export</span> <span class="nv">NUCLEI_SDK_NMSIS</span><span class="o">=</span>/path/to/NMSIS/NMSIS
+<span class="nb">export</span> <span class="nv">SOC</span><span class="o">=</span>xlspike
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Let us take <code class="docutils literal notranslate"><span class="pre">./riscv_class_marks_example/</span></code> for example</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">./riscv_class_marks_example/</span></code></p></li>
+<li><p>Run with RISCV DSP enabled NMSIS-DSP library for CORE <code class="docutils literal notranslate"><span class="pre">n307</span></code></p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clean project</span>
+make <span class="nv">DSP_ENABLE</span><span class="o">=</span>ON <span class="nv">CORE</span><span class="o">=</span>n307 clean
+<span class="c1"># Build project</span>
+make <span class="nv">DSP_ENABLE</span><span class="o">=</span>ON <span class="nv">CORE</span><span class="o">=</span>n307 all
+<span class="c1"># Run application using xl_spike</span>
+make <span class="nv">DSP_ENABLE</span><span class="o">=</span>ON <span class="nv">CORE</span><span class="o">=</span>n307 run
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Run with RISCV DSP disabled NMSIS-DSP library for CORE <code class="docutils literal notranslate"><span class="pre">n307</span></code></p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make <span class="nv">DSP_ENABLE</span><span class="o">=</span>OFF <span class="nv">CORE</span><span class="o">=</span>n307 clean
+make <span class="nv">DSP_ENABLE</span><span class="o">=</span>OFF <span class="nv">CORE</span><span class="o">=</span>n307 all
+make <span class="nv">DSP_ENABLE</span><span class="o">=</span>OFF <span class="nv">CORE</span><span class="o">=</span>n307 run
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>You can easily run this example in your hardware,
+if you have enough memory to run it, just modify the
+<code class="docutils literal notranslate"><span class="pre">SOC</span></code> to the one your are using in step 1.</p></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api/index.html" class="btn btn-neutral float-right" title="NMSIS DSP API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="overview.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-Present, Nuclei
+      <span class="lastupdated">
+        Last updated on Aug 03, 2021.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

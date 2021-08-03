@@ -1,0 +1,691 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>SIMD 8-bit Miscellaneous Instructions &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="SIMD 8-bit Unpacking Instructions" href="api_nmsis_core_dsp_intrinsic_simd_8b_unpack.html" />
+    <link rel="prev" title="SIMD 16-bit Miscellaneous Instructions" href="api_nmsis_core_dsp_intrinsic_simd_16b_misc.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.2-RC1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">NMSIS Core</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../get_started.html">Using NMSIS in Embedded Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../core_templates.html">NMSIS-Core Device Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../register_mapping.html">Register Mapping</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">NMSIS Core API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../core_version_control.html">Version Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_compiler_control.html">Compiler Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_csr_access.html">Core CSR Register Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_csr_encoding.html">Core CSR Encoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_register_type.html">Register Define and Type Definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_intrinsics.html">CPU Intrinsic Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_simd_data_process.html">SIMD Data Processing Instructions</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_simd_16b_addsub.html">SIMD 16-bit Add/Subtract Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_simd_16b_shift.html">SIMD 16-bit Shift Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_simd_8b_shift.html">SIMD 8-bit Shift Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_simd_16b_cmp.html">SIMD 16-bit Compare Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_simd_8b_cmp.html">SIMD 8-bit Compare Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_simd_16b_multiply.html">SIMD 16-bit Multiply Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_simd_8b_multiply.html">SIMD 8-bit Multiply Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_simd_16b_misc.html">SIMD 16-bit Miscellaneous Instructions</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">SIMD 8-bit Miscellaneous Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_simd_8b_unpack.html">SIMD 8-bit Unpacking Instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_non_simd.html">Non-SIMD Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_part_simd_data_process.html">Partial-SIMD Data Processing Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_64b_profile.html">64-bit Profile Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_nuclei_custom.html">Nuclei Customized DSP Instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_periph_access.html">Peripheral Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_systick.html">Systick Timer(SysTimer)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_interrupt_exception.html">Interrupts and Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_fpu.html">FPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_pmp.html">PMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_cache.html">Cache Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_system_device.html">System Device Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_arm_compatiable.html">ARM Compatiable Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">NMSIS Core</a> &raquo;</li>
+        
+          <li><a href="../../index.html">NMSIS Core API</a> &raquo;</li>
+        
+          <li><a href="../../api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a> &raquo;</li>
+        
+          <li><a href="../api_nmsis_core_dsp_intrinsic_simd_data_process.html">SIMD Data Processing Instructions</a> &raquo;</li>
+        
+      <li>SIMD 8-bit Miscellaneous Instructions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../_sources/core/api/nmsis_core_dsp_intrinsic/nmsis_core_dsp_intrinsic_simd_data_process/api_nmsis_core_dsp_intrinsic_simd_8b_misc.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="simd-8-bit-miscellaneous-instructions">
+<span id="nmsis-core-api-simd-8-bit-miscellaneous-instructions"></span><h1>SIMD 8-bit Miscellaneous Instructions<a class="headerlink" href="#simd-8-bit-miscellaneous-instructions" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1ga439f0189dfb52d89887cd8905d4f5695"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_CLRS8(unsigned long a)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1gaf9e26b273480fb62dd48b315270fb3d1"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_CLO8(unsigned long a)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1gac034821a27f8ab322a689b24ce1257a0"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_CLZ8(unsigned long a)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1ga0316d69cb7b16fe8571d11d53af50918"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KABS8(unsigned long a)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1gafc3ca4c25f1796c6c129b0a72fdb4ddc"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SMAX8(unsigned long a, unsigned long b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1ga3b9ace3565fb4cea93a55736046498e7"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SMIN8(unsigned long a, unsigned long b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1ga83c4e6f30012da45ea00703d8aafccbe"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UMAX8(unsigned long a, unsigned long b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1gaea0e139e2e2392c423aaf9f7f18056f2"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UMIN8(unsigned long a, unsigned long b)</code></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.__RV_SCLIP8">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1gad9df33bdac33b54851414ded1a8ae0b9"></span><code class="sig-name descname">__RV_SCLIP8</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_SCLIP8" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.__RV_UCLIP8">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1gab205f3a7213d65c3fc0567e88a06b3c6"></span><code class="sig-name descname">__RV_UCLIP8</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_UCLIP8" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="group">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC"></span><em>group</em> <code class="sig-name descname">NMSIS_Core_DSP_Intrinsic_SIMD_8B_MISC</code></dt>
+<dd><p>SIMD 8-bit Miscellaneous Instructions. </p>
+<p>there are 10 SIMD 8-bit Miscellaneous instructions. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1gad9df33bdac33b54851414ded1a8ae0b9"></span><code class="sig-name descname">__RV_SCLIP8</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span></dt>
+<dd><p>SCLIP8 (SIMD 8-bit Signed Clip Value) </p>
+<p><strong>Type</strong>: SIMD</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SCLIP8</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm3u</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Limit the 8-bit signed integer elements of a register into a signed range simultaneously.</p>
+</p>
+<p><strong>Description</strong>:<p>This instruction limits the 8-bit signed integer elements stored in Rs1 into a signed integer range between 2^imm3u-1 and -2^imm3u, and writes the limited results to Rd. For example, if imm3u is 3, the 8-bit input values should be saturated between 7 and -8. If saturation is performed, set OV bit to 1.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">src</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">src</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="n">imm3u</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">src</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="n">imm3u</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">src</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">2</span><span class="o">^</span><span class="n">imm3u</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">src</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="o">^</span><span class="n">imm3u</span><span class="p">;</span>
+  <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">Rd</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">src</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">3.</span><span class="o">..</span><span class="mi">0</span><span class="p">,</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">7.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1gab205f3a7213d65c3fc0567e88a06b3c6"></span><code class="sig-name descname">__RV_UCLIP8</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span></dt>
+<dd><p>UCLIP8 (SIMD 8-bit Unsigned Clip Value) </p>
+<p><strong>Type</strong>: SIMD</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UCLIP8</span> <span class="n">Rt</span><span class="p">,</span> <span class="n">Ra</span><span class="p">,</span> <span class="n">imm3u</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Limit the 8-bit signed elements of a register into an unsigned range simultaneously.</p>
+</p>
+<p><strong>Description</strong>:<p>This instruction limits the 8-bit signed elements stored in Rs1 into an unsigned integer range between 2^imm3u-1 and 0, and writes the limited results to Rd. For example, if imm3u is 3, the 8- bit input values should be saturated between 7 and 0. If saturation is performed, set OV bit to 1.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">src</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">src</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="n">imm3u</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">src</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="n">imm3u</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">src</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">src</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">Rd</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">src</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">3.</span><span class="o">..</span><span class="mi">0</span><span class="p">,</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">7.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1ga439f0189dfb52d89887cd8905d4f5695"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_CLRS8(unsigned long a)</code></dt>
+<dd><p>CLRS8 (SIMD 8-bit Count Leading Redundant Sign) </p>
+<p><strong>Type</strong>: SIMD</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CLRS8</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Count the number of redundant sign bits of the 8-bit elements of a general register.</p>
+</p>
+<p><strong>Description</strong>:<p>Starting from the bits next to the sign bits of the 8-bit elements of Rs1, this instruction counts the number of redundant sign bits and writes the result to the corresponding 8-bit elements of Rd.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">snum</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+<span class="n">cnt</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">6</span> <span class="n">to</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">snum</span><span class="p">[</span><span class="n">x</span><span class="p">](</span><span class="n">i</span><span class="p">)</span> <span class="o">==</span> <span class="n">snum</span><span class="p">[</span><span class="n">x</span><span class="p">](</span><span class="mi">7</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">cnt</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">cnt</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">Rd</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">cnt</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">3.</span><span class="o">..</span><span class="mi">0</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">7.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1gaf9e26b273480fb62dd48b315270fb3d1"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_CLO8(unsigned long a)</code></dt>
+<dd><p>CLO8 (SIMD 8-bit Count Leading One) </p>
+<p><strong>Type</strong>: SIMD</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CLO8</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Count the number of leading one bits of the 8-bit elements of a general register.</p>
+</p>
+<p><strong>Description</strong>:<p>Starting from the most significant bits of the 8-bit elements of Rs1, this instruction counts the number of leading one bits and writes the results to the corresponding 8-bit elements of Rd.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">snum</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+<span class="n">cnt</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">7</span> <span class="n">to</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">snum</span><span class="p">[</span><span class="n">x</span><span class="p">](</span><span class="n">i</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">cnt</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">cnt</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">Rd</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">cnt</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">3.</span><span class="o">..</span><span class="mi">0</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">7.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1gac034821a27f8ab322a689b24ce1257a0"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_CLZ8(unsigned long a)</code></dt>
+<dd><p>CLZ8 (SIMD 8-bit Count Leading Zero) </p>
+<p><strong>Type</strong>: SIMD</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CLZ8</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Count the number of leading zero bits of the 8-bit elements of a general register.</p>
+</p>
+<p><strong>Description</strong>:<p>Starting from the most significant bits of the 8-bit elements of Rs1, this instruction counts the number of leading zero bits and writes the results to the corresponding 8-bit elements of Rd.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">snum</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+<span class="n">cnt</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">7</span> <span class="n">to</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">snum</span><span class="p">[</span><span class="n">x</span><span class="p">](</span><span class="n">i</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">cnt</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">cnt</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">Rd</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">cnt</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">3.</span><span class="o">..</span><span class="mi">0</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">7.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1ga0316d69cb7b16fe8571d11d53af50918"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KABS8(unsigned long a)</code></dt>
+<dd><p>KABS8 (SIMD 8-bit Saturating Absolute) </p>
+<p><strong>Type</strong>: SIMD</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KABS8</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Get the absolute value of 8-bit signed integer elements simultaneously.</p>
+</p>
+<p><strong>Description</strong>:<p>This instruction calculates the absolute value of 8-bit signed integer elements stored in Rs1 and writes the element results to Rd. If the input number is 0x80, this instruction generates 0x7f as the output and sets the OV bit to 1.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">src</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">src</span> <span class="o">==</span> <span class="mh">0x80</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">src</span> <span class="o">=</span> <span class="mh">0x7f</span><span class="p">;</span>
+  <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">src</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+  <span class="n">src</span> <span class="o">=</span> <span class="o">-</span><span class="n">src</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">Rd</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">src</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">3.</span><span class="o">..</span><span class="mi">0</span><span class="p">,</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">7.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1gafc3ca4c25f1796c6c129b0a72fdb4ddc"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SMAX8(unsigned long a, unsigned long b)</code></dt>
+<dd><p>SMAX8 (SIMD 8-bit Signed Maximum) </p>
+<p><strong>Type</strong>: SIMD</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SMAX8</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 8-bit signed integer elements finding maximum operations simultaneously.</p>
+</p>
+<p><strong>Description</strong>:<p>This instruction compares the 8-bit signed integer elements in Rs1 with the 8-bit signed integer elements in Rs2 and selects the numbers that is greater than the other one. The selected results are written to Rd.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Rd.B[x] = (Rs1.B[x] &gt; Rs2.B[x])? Rs1.B[x] : Rs2.B[x];
+for RV32: x=3...0,
+for RV64: x=7...0
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1ga3b9ace3565fb4cea93a55736046498e7"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SMIN8(unsigned long a, unsigned long b)</code></dt>
+<dd><p>SMIN8 (SIMD 8-bit Signed Minimum) </p>
+<p><strong>Type</strong>: SIMD</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SMIN8</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 8-bit signed integer elements finding minimum operations simultaneously.</p>
+</p>
+<p><strong>Description</strong>:<p>This instruction compares the 8-bit signed integer elements in Rs1 with the 8-bit signed integer elements in Rs2 and selects the numbers that is less than the other one. The selected results are written to Rd.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Rd.B[x] = (Rs1.B[x] &lt; Rs2.B[x])? Rs1.B[x] : Rs2.B[x];
+for RV32: x=3...0,
+for RV64: x=7...0
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1ga83c4e6f30012da45ea00703d8aafccbe"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UMAX8(unsigned long a, unsigned long b)</code></dt>
+<dd><p>UMAX8 (SIMD 8-bit Unsigned Maximum) </p>
+<p><strong>Type</strong>: SIMD</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UMAX8</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 8-bit unsigned integer elements finding maximum operations simultaneously.</p>
+</p>
+<p><strong>Description</strong>:<p>This instruction compares the 8-bit unsigned integer elements in Rs1 with the four 8- bit unsigned integer elements in Rs2 and selects the numbers that is greater than the other one. The two selected results are written to Rd.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Rd.B[x] = (Rs1.B[x] &gt;u Rs2.B[x])? Rs1.B[x] : Rs2.B[x];
+for RV32: x=3...0,
+for RV64: x=7...0
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC_1gaea0e139e2e2392c423aaf9f7f18056f2"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UMIN8(unsigned long a, unsigned long b)</code></dt>
+<dd><p>UMIN8 (SIMD 8-bit Unsigned Minimum) </p>
+<p><strong>Type</strong>: SIMD</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UMIN8</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 8-bit unsigned integer elements finding minimum operations simultaneously.</p>
+</p>
+<p><strong>Description</strong>:<p>This instruction compares the 8-bit unsigned integer elements in Rs1 with the 8-bit unsigned integer elements in Rs2 and selects the numbers that is less than the other one. The selected results are written to Rd.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Rd.B[x] = (Rs1.B[x] &lt;u Rs2.B[x])? Rs1.B[x] : Rs2.B[x];
+for RV32: x=3...0,
+for RV64: x=7...0
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api_nmsis_core_dsp_intrinsic_simd_8b_unpack.html" class="btn btn-neutral float-right" title="SIMD 8-bit Unpacking Instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api_nmsis_core_dsp_intrinsic_simd_16b_misc.html" class="btn btn-neutral float-left" title="SIMD 16-bit Miscellaneous Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-Present, Nuclei
+      <span class="lastupdated">
+        Last updated on Aug 03, 2021.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

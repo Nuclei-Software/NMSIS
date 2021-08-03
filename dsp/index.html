@@ -1,0 +1,268 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>NMSIS DSP &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Overview" href="overview.html" />
+    <link rel="prev" title="ARM Compatiable Functions" href="../core/api/core_arm_compatiable.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.2-RC1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">NMSIS DSP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started.html">Using NMSIS-DSP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html">NMSIS DSP API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>NMSIS DSP</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/dsp/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="nmsis-dsp">
+<span id="id1"></span><h1>NMSIS DSP<a class="headerlink" href="#nmsis-dsp" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<p><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#using-the-library">Using the Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#toolchain-support">Toolchain Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#building-the-library">Building the Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#preprocessor-macros">Preprocessor Macros</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="get_started.html">Using NMSIS-DSP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="get_started.html#preparation">Preparation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started.html#tool-setup">Tool Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started.html#build-nmsis-dsp-library">Build NMSIS DSP Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started.html#how-to-run">How to run</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">NMSIS DSP API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/api_groupmath.html">Basic Math Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/api_groupfastmath.html">Fast Math Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/api_groupcmplxmath.html">Complex Math Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/api_groupfilters.html">Filtering Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/api_groupmatrix.html">Matrix Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/api_grouptransforms.html">Transform Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/api_groupcontroller.html">Controller Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/api_groupstats.html">Statistics Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/api_groupsupport.html">Support Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/api_groupinterpolation.html">Interpolation Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/api_groupexamples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v1-0-2">V1.0.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v1-0-1">V1.0.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v1-0-0">V1.0.0</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="overview.html" class="btn btn-neutral float-right" title="Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../core/api/core_arm_compatiable.html" class="btn btn-neutral float-left" title="ARM Compatiable Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-Present, Nuclei
+      <span class="lastupdated">
+        Last updated on Aug 03, 2021.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,1328 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Device Header File &lt;device.h&gt;" href="core_template_device_header.html" />
+    <link rel="prev" title="Device Linker Script: gcc_&lt;device&gt;.ld" href="core_template_linker_device.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.2-RC1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">NMSIS Core</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started.html">Using NMSIS in Embedded Applications</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="core_templates.html">NMSIS-Core Device Templates</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="core_templates.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_templates.html#nmsis-core-processor-files">NMSIS-Core Processor Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_templates.html#device-examples">Device Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_templates.html#template-files">Template Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_templates.html#adapt-template-files-to-a-device">Adapt Template Files to a Device</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="core_templates.html#device-templates-explaination">Device Templates Explaination</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="core_template_startup_device.html">Startup File startup_&lt;device&gt;.S</a></li>
+<li class="toctree-l4"><a class="reference internal" href="core_template_intexc.html">Interrupt and Exception Handling File: intexc_&lt;device&gt;.S</a></li>
+<li class="toctree-l4"><a class="reference internal" href="core_template_linker_device.html">Device Linker Script: gcc_&lt;device&gt;.ld</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#system-device-c-template-file">system_Device.c Template File</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#system-device-h-template-file">system_Device.h Template File</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="core_template_device_header.html">Device Header File &lt;device.h&gt;</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="register_mapping.html">Register Mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html">NMSIS Core API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">NMSIS Core</a> &raquo;</li>
+        
+          <li><a href="core_templates.html">NMSIS-Core Device Templates</a> &raquo;</li>
+        
+      <li>System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/core/core_template_system_device.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="system-configuration-files-system-device-c-and-system-device-h">
+<span id="core-template-system-device"></span><h1>System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h<a class="headerlink" href="#system-configuration-files-system-device-c-and-system-device-h" title="Permalink to this headline">¶</a></h1>
+<p>The <strong>System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h</strong>
+provides as a minimum the functions described under <a class="reference internal" href="api/core_system_device.html#core-api-system-device"><span class="std std-ref">System Device Configuration</span></a>.</p>
+<p>These functions are device specific and need adaptations. In addition, the file might have
+configuration settings for the device such as XTAL frequency or PLL prescaler settings, necessary system initilization, vendor customized interrupt, exception and nmi handling code, refer to <a class="reference internal" href="api/core_system_device.html#core-api-system-device"><span class="std std-ref">System Device Configuration</span></a> for more details.</p>
+<p>For devices with external memory BUS the <code class="docutils literal notranslate"><span class="pre">system_&lt;device&gt;.c</span></code> also configures the BUS system.</p>
+<p>The silicon vendor might expose other functions (i.e. for power configuration) in the <code class="docutils literal notranslate"><span class="pre">system_&lt;device&gt;.c</span></code> file.
+In case of additional features the function prototypes need to be added to the <code class="docutils literal notranslate"><span class="pre">system_&lt;device&gt;.h</span></code> header file.</p>
+<section id="system-device-c-template-file">
+<h2>system_Device.c Template File<a class="headerlink" href="#system-device-c-template-file" title="Permalink to this headline">¶</a></h2>
+<p>Here we provided <code class="docutils literal notranslate"><span class="pre">system_Device.c</span></code> template file as below:</p>
+<div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * Copyright (c) 2009-2018 Arm Limited. All rights reserved.</span>
+<span class="cm"> * Copyright (c) 2019 Nuclei Limited. All rights reserved.</span>
+<span class="cm"> *</span>
+<span class="cm"> * SPDX-License-Identifier: Apache-2.0</span>
+<span class="cm"> *</span>
+<span class="cm"> * Licensed under the Apache License, Version 2.0 (the License); you may</span>
+<span class="cm"> * not use this file except in compliance with the License.</span>
+<span class="cm"> * You may obtain a copy of the License at</span>
+<span class="cm"> *</span>
+<span class="cm"> * www.apache.org/licenses/LICENSE-2.0</span>
+<span class="cm"> *</span>
+<span class="cm"> * Unless required by applicable law or agreed to in writing, software</span>
+<span class="cm"> * distributed under the License is distributed on an AS IS BASIS, WITHOUT</span>
+<span class="cm"> * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="cm"> * See the License for the specific language governing permissions and</span>
+<span class="cm"> * limitations under the License.</span>
+<span class="cm"> */</span>
+<span class="cm">/******************************************************************************</span>
+<span class="cm"> * @file     system_&lt;Device&gt;.c</span>
+<span class="cm"> * @brief    NMSIS Nuclei N/NX Device Peripheral Access Layer Source File for</span>
+<span class="cm"> *           Device &lt;Device&gt;</span>
+<span class="cm"> * @version  V1.10</span>
+<span class="cm"> * @date     30. July 2021</span>
+<span class="cm"> ******************************************************************************/</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;stdint.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;&lt;Device&gt;.h&quot;</span><span class="cp"></span>
+
+<span class="cm">/*----------------------------------------------------------------------------</span>
+<span class="cm">  Define clocks</span>
+<span class="cm"> *----------------------------------------------------------------------------*/</span>
+<span class="cm">/* TODO: add here your necessary defines for device initialization</span>
+<span class="cm">         following is an example for different system frequencies */</span>
+<span class="cp">#define XTAL            (12000000U)       </span><span class="cm">/* Oscillator frequency             */</span><span class="cp"></span>
+
+<span class="cp">#define SYSTEM_CLOCK    (5 * XTAL)</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \defgroup  NMSIS_Core_SystemConfig       System Device Configuration</span>
+<span class="cm"> * \brief Functions for system init, clock setup and interrupt/exception/nmi functions available in system_&lt;device&gt;.c.</span>
+<span class="cm"> * \details</span>
+<span class="cm"> * Nuclei provides a template file **system_Device.c** that must be adapted by</span>
+<span class="cm"> * the silicon vendor to match their actual device. As a &lt;b&gt;minimum requirement&lt;/b&gt;,</span>
+<span class="cm"> * this file must provide:</span>
+<span class="cm"> *  -  A device-specific system configuration function, \ref SystemInit.</span>
+<span class="cm"> *  -  A global variable that contains the system frequency, \ref SystemCoreClock.</span>
+<span class="cm"> *  -  A global eclic configuration initialization, \ref ECLIC_Init.</span>
+<span class="cm"> *  -  Global c library \ref _init and \ref _fini functions called right before calling main function.</span>
+<span class="cm"> *  -  Vendor customized interrupt, exception and nmi handling code, see \ref NMSIS_Core_IntExcNMI_Handling</span>
+<span class="cm"> *</span>
+<span class="cm"> * The file configures the device and, typically, initializes the oscillator (PLL) that is part</span>
+<span class="cm"> * of the microcontroller device. This file might export other functions or variables that provide</span>
+<span class="cm"> * a more flexible configuration of the microcontroller system.</span>
+<span class="cm"> *</span>
+<span class="cm"> * And this file also provided common interrupt, exception and NMI exception handling framework template,</span>
+<span class="cm"> * Silicon vendor can customize these template code as they want.</span>
+<span class="cm"> *</span>
+<span class="cm"> * \note Please pay special attention to the static variable \c SystemCoreClock. This variable might be</span>
+<span class="cm"> * used throughout the whole system initialization and runtime to calculate frequency/time related values.</span>
+<span class="cm"> * Thus one must assure that the variable always reflects the actual system clock speed.</span>
+<span class="cm"> *</span>
+<span class="cm"> * \attention</span>
+<span class="cm"> * Be aware that a value stored to \c SystemCoreClock during low level initialization (i.e. \c SystemInit()) might get</span>
+<span class="cm"> * overwritten by C libray startup code and/or .bss section initialization.</span>
+<span class="cm"> * Thus its highly recommended to call \ref SystemCoreClockUpdate at the beginning of the user \c main() routine.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @{</span>
+<span class="cm"> */</span>
+
+<span class="cm">/*----------------------------------------------------------------------------</span>
+<span class="cm">  System Core Clock Variable</span>
+<span class="cm"> *----------------------------------------------------------------------------*/</span>
+<span class="cm">/* TODO: initialize SystemCoreClock with the system core clock frequency value</span>
+<span class="cm">         achieved after system initialization.</span>
+<span class="cm">         This means system core clock frequency after call to SystemInit() */</span>
+<span class="cm">/**</span>
+<span class="cm"> * \brief      Variable to hold the system core clock value</span>
+<span class="cm"> * \details</span>
+<span class="cm"> * Holds the system core clock, which is the system clock frequency supplied to the SysTick</span>
+<span class="cm"> * timer and the processor core clock. This variable can be used by debuggers to query the</span>
+<span class="cm"> * frequency of the debug timer or to configure the trace clock speed.</span>
+<span class="cm"> *</span>
+<span class="cm"> * \attention</span>
+<span class="cm"> * Compilers must be configured to avoid removing this variable in case the application</span>
+<span class="cm"> * program is not using it. Debugging systems require the variable to be physically</span>
+<span class="cm"> * present in memory so that it can be examined to configure the debugger.</span>
+<span class="cm"> */</span>
+<span class="kt">uint32_t</span> <span class="n">SystemCoreClock</span> <span class="o">=</span> <span class="n">SYSTEM_CLOCK</span><span class="p">;</span>  <span class="cm">/* System Clock Frequency (Core Clock) */</span>
+
+
+<span class="cm">/*----------------------------------------------------------------------------</span>
+<span class="cm">  Clock functions</span>
+<span class="cm"> *----------------------------------------------------------------------------*/</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \brief      Function to update the variable \ref SystemCoreClock</span>
+<span class="cm"> * \details</span>
+<span class="cm"> * Updates the variable \ref SystemCoreClock and must be called whenever the core clock is changed</span>
+<span class="cm"> * during program execution. The function evaluates the clock register settings and calculates</span>
+<span class="cm"> * the current core clock.</span>
+<span class="cm"> */</span>
+<span class="kt">void</span> <span class="nf">SystemCoreClockUpdate</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>  <span class="cm">/* Get Core Clock Frequency */</span>
+<span class="p">{</span>
+    <span class="cm">/* TODO: add code to calculate the system frequency based upon the current</span>
+<span class="cm">     *    register settings.</span>
+<span class="cm">     * Note: This function can be used to retrieve the system core clock frequeny</span>
+<span class="cm">     *    after user changed register settings.</span>
+<span class="cm">     */</span>
+    <span class="n">SystemCoreClock</span> <span class="o">=</span> <span class="n">SYSTEM_CLOCK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \brief      Function to Initialize the system.</span>
+<span class="cm"> * \details</span>
+<span class="cm"> * Initializes the microcontroller system. Typically, this function configures the</span>
+<span class="cm"> * oscillator (PLL) that is part of the microcontroller device. For systems</span>
+<span class="cm"> * with a variable clock speed, it updates the variable \ref SystemCoreClock.</span>
+<span class="cm"> * SystemInit is called from the file &lt;b&gt;startup&lt;i&gt;_device&lt;/i&gt;&lt;/b&gt;.</span>
+<span class="cm"> */</span>
+<span class="kt">void</span> <span class="nf">SystemInit</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="cm">/* TODO: add code to initialize the system</span>
+<span class="cm">     * Warn: do not use global variables because this function is called before</span>
+<span class="cm">     * reaching pre-main. RW section maybe overwritten afterwards.</span>
+<span class="cm">     */</span>
+    <span class="n">SystemCoreClock</span> <span class="o">=</span> <span class="n">SYSTEM_CLOCK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \defgroup  NMSIS_Core_IntExcNMI_Handling   Interrupt and Exception and NMI Handling</span>
+<span class="cm"> * \brief Functions for interrupt, exception and nmi handle available in system_&lt;device&gt;.c.</span>
+<span class="cm"> * \details</span>
+<span class="cm"> * Nuclei provide a template for interrupt, exception and NMI handling. Silicon Vendor could adapat according</span>
+<span class="cm"> * to their requirement. Silicon vendor could implement interface for different exception code and</span>
+<span class="cm"> * replace current implementation.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @{</span>
+<span class="cm"> */</span>
+<span class="cm">/** \brief Max exception handler number, don&#39;t include the NMI(0xFFF) one */</span>
+<span class="cp">#define MAX_SYSTEM_EXCEPTION_NUM        12</span>
+<span class="cm">/**</span>
+<span class="cm"> * \brief      Store the exception handlers for each exception ID</span>
+<span class="cm"> * \note</span>
+<span class="cm"> * - This SystemExceptionHandlers are used to store all the handlers for all</span>
+<span class="cm"> * the exception codes Nuclei N/NX core provided.</span>
+<span class="cm"> * - Exception code 0 - 11, totally 12 exceptions are mapped to SystemExceptionHandlers[0:11]</span>
+<span class="cm"> * - Exception for NMI is also re-routed to exception handling(exception code 0xFFF) in startup code configuration, the handler itself is mapped to SystemExceptionHandlers[MAX_SYSTEM_EXCEPTION_NUM]</span>
+<span class="cm"> */</span>
+<span class="k">static</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">SystemExceptionHandlers</span><span class="p">[</span><span class="n">MAX_SYSTEM_EXCEPTION_NUM</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \brief      Exception Handler Function Typedef</span>
+<span class="cm"> * \note</span>
+<span class="cm"> * This typedef is only used internal in this system_&lt;Device&gt;.c file.</span>
+<span class="cm"> * It is used to do type conversion for registered exception handler before calling it.</span>
+<span class="cm"> */</span>
+<span class="k">typedef</span> <span class="nf">void</span> <span class="p">(</span><span class="o">*</span><span class="n">EXC_HANDLER</span><span class="p">)</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">mcause</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">sp</span><span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \brief      System Default Exception Handler</span>
+<span class="cm"> * \details</span>
+<span class="cm"> * This function provided a default exception and NMI handling code for all exception ids.</span>
+<span class="cm"> * By default, It will just print some information for debug, Vendor can customize it according to its requirements.</span>
+<span class="cm"> */</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">system_default_exception_handler</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">mcause</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">sp</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="cm">/* TODO: Uncomment this if you have implement printf function.</span>
+<span class="cm">     * Or you can implement your own version as you like */</span>
+    <span class="c1">//printf(&quot;MCAUSE: 0x%lx\r\n&quot;, mcause);</span>
+    <span class="c1">//printf(&quot;MEPC  : 0x%lx\r\n&quot;, __RV_CSR_READ(CSR_MEPC));</span>
+    <span class="c1">//printf(&quot;MTVAL : 0x%lx\r\n&quot;, __RV_CSR_READ(CSR_MBADADDR));</span>
+    <span class="n">Exception_DumpFrame</span><span class="p">(</span><span class="n">sp</span><span class="p">);</span>
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \brief      Initialize all the default core exception handlers</span>
+<span class="cm"> * \details</span>
+<span class="cm"> * The core exception handler for each exception id will be initialized to \ref system_default_exception_handler.</span>
+<span class="cm"> * \note</span>
+<span class="cm"> * Called in \ref _init function, used to initialize default exception handlers for all exception IDs</span>
+<span class="cm"> */</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">Exception_Init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">MAX_SYSTEM_EXCEPTION_NUM</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">SystemExceptionHandlers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)</span><span class="n">system_default_exception_handler</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \brief      Dump Exception Frame</span>
+<span class="cm"> * \details</span>
+<span class="cm"> * This function provided feature to dump exception frame stored in stack.</span>
+<span class="cm"> */</span>
+<span class="kt">void</span> <span class="nf">Exception_DumpFrame</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">sp</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">EXC_Frame_Type</span> <span class="o">*</span><span class="n">exc_frame</span> <span class="o">=</span> <span class="p">(</span><span class="n">EXC_Frame_Type</span> <span class="o">*</span><span class="p">)</span><span class="n">sp</span><span class="p">;</span>
+
+<span class="cp">#ifndef __riscv_32e</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;ra: 0x%x, tp: 0x%x, t0: 0x%x, t1: 0x%x, t2: 0x%x, t3: 0x%x, t4: 0x%x, t5: 0x%x, t6: 0x%x</span><span class="se">\n</span><span class="s">&quot;</span> \
+           <span class="s">&quot;a0: 0x%x, a1: 0x%x, a2: 0x%x, a3: 0x%x, a4: 0x%x, a5: 0x%x, a6: 0x%x, a7: 0x%x</span><span class="se">\n</span><span class="s">&quot;</span> \
+           <span class="s">&quot;mcause: 0x%x, mepc: 0x%x, msubm: 0x%x</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">ra</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">tp</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">t0</span><span class="p">,</span> \
+           <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">t1</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">t2</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">t3</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">t4</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">t5</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">t6</span><span class="p">,</span> \
+           <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">a0</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">a1</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">a2</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">a3</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">a4</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">a5</span><span class="p">,</span> \
+           <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">a6</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">a7</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">mcause</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">mepc</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">msubm</span><span class="p">);</span>
+<span class="cp">#else</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;ra: 0x%x, tp: 0x%x, t0: 0x%x, t1: 0x%x, t2: 0x%x</span><span class="se">\n</span><span class="s">&quot;</span> \
+           <span class="s">&quot;a0: 0x%x, a1: 0x%x, a2: 0x%x, a3: 0x%x, a4: 0x%x, a5: 0x%x</span><span class="se">\n</span><span class="s">&quot;</span> \
+           <span class="s">&quot;mcause: 0x%x, mepc: 0x%x, msubm: 0x%x</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">ra</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">tp</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">t0</span><span class="p">,</span> \
+           <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">t1</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">t2</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">a0</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">a1</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">a2</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">a3</span><span class="p">,</span> \
+           <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">a4</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">a5</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">mcause</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">mepc</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">msubm</span><span class="p">);</span>
+<span class="cp">#endif</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \brief       Register an exception handler for exception code EXCn</span>
+<span class="cm"> * \details</span>
+<span class="cm"> * * For EXCn &lt; \ref MAX_SYSTEM_EXCEPTION_NUM, it will be registered into SystemExceptionHandlers[EXCn-1].</span>
+<span class="cm"> * * For EXCn == NMI_EXCn, it will be registered into SystemExceptionHandlers[MAX_SYSTEM_EXCEPTION_NUM].</span>
+<span class="cm"> * \param   EXCn    See \ref EXCn_Type</span>
+<span class="cm"> * \param   exc_handler     The exception handler for this exception code EXCn</span>
+<span class="cm"> */</span>
+<span class="kt">void</span> <span class="nf">Exception_Register_EXC</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">EXCn</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">exc_handler</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">((</span><span class="n">EXCn</span> <span class="o">&lt;</span> <span class="n">MAX_SYSTEM_EXCEPTION_NUM</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">EXCn</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">SystemExceptionHandlers</span><span class="p">[</span><span class="n">EXCn</span><span class="p">]</span> <span class="o">=</span> <span class="n">exc_handler</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">EXCn</span> <span class="o">==</span> <span class="n">NMI_EXCn</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">SystemExceptionHandlers</span><span class="p">[</span><span class="n">MAX_SYSTEM_EXCEPTION_NUM</span><span class="p">]</span> <span class="o">=</span> <span class="n">exc_handler</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \brief       Get current exception handler for exception code EXCn</span>
+<span class="cm"> * \details</span>
+<span class="cm"> * * For EXCn &lt; \ref MAX_SYSTEM_EXCEPTION_NUM, it will return SystemExceptionHandlers[EXCn-1].</span>
+<span class="cm"> * * For EXCn == NMI_EXCn, it will return SystemExceptionHandlers[MAX_SYSTEM_EXCEPTION_NUM].</span>
+<span class="cm"> * \param   EXCn    See \ref EXCn_Type</span>
+<span class="cm"> * \return  Current exception handler for exception code EXCn, if not found, return 0.</span>
+<span class="cm"> */</span>
+<span class="kt">unsigned</span> <span class="kt">long</span> <span class="nf">Exception_Get_EXC</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">EXCn</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">((</span><span class="n">EXCn</span> <span class="o">&lt;</span> <span class="n">MAX_SYSTEM_EXCEPTION_NUM</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">EXCn</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">SystemExceptionHandlers</span><span class="p">[</span><span class="n">EXCn</span><span class="p">];</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">EXCn</span> <span class="o">==</span> <span class="n">NMI_EXCn</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">SystemExceptionHandlers</span><span class="p">[</span><span class="n">MAX_SYSTEM_EXCEPTION_NUM</span><span class="p">];</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \brief      Common NMI and Exception handler entry</span>
+<span class="cm"> * \details</span>
+<span class="cm"> * This function provided a command entry for NMI and exception. Silicon Vendor could modify</span>
+<span class="cm"> * this template implementation according to requirement.</span>
+<span class="cm"> * \remarks</span>
+<span class="cm"> * - RISCV provided common entry for all types of exception. This is proposed code template</span>
+<span class="cm"> *   for exception entry function, Silicon Vendor could modify the implementation.</span>
+<span class="cm"> * - For the core_exception_handler template, we provided exception register function \ref Exception_Register_EXCn</span>
+<span class="cm"> *   which can help developer to register your exception handler for specific exception number.</span>
+<span class="cm"> */</span>
+<span class="kt">uint32_t</span> <span class="nf">core_exception_handler</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">mcause</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">sp</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">uint32_t</span> <span class="n">EXCn</span> <span class="o">=</span> <span class="p">(</span><span class="kt">uint32_t</span><span class="p">)(</span><span class="n">mcause</span> <span class="o">&amp;</span> <span class="mi">0</span><span class="n">X00000fff</span><span class="p">);</span>
+    <span class="n">EXC_HANDLER</span> <span class="n">exc_handler</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">((</span><span class="n">EXCn</span> <span class="o">&lt;</span> <span class="n">MAX_SYSTEM_EXCEPTION_NUM</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">EXCn</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">exc_handler</span> <span class="o">=</span> <span class="p">(</span><span class="n">EXC_HANDLER</span><span class="p">)</span><span class="n">SystemExceptionHandlers</span><span class="p">[</span><span class="n">EXCn</span><span class="p">];</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">EXCn</span> <span class="o">==</span> <span class="n">NMI_EXCn</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">exc_handler</span> <span class="o">=</span> <span class="p">(</span><span class="n">EXC_HANDLER</span><span class="p">)</span><span class="n">SystemExceptionHandlers</span><span class="p">[</span><span class="n">MAX_SYSTEM_EXCEPTION_NUM</span><span class="p">];</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">exc_handler</span> <span class="o">=</span> <span class="p">(</span><span class="n">EXC_HANDLER</span><span class="p">)</span><span class="n">system_default_exception_handler</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">exc_handler</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">exc_handler</span><span class="p">(</span><span class="n">mcause</span><span class="p">,</span> <span class="n">sp</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \brief Initialize Global ECLIC Config</span>
+<span class="cm"> * \details</span>
+<span class="cm"> * ECLIC needs be initialized after boot up,</span>
+<span class="cm"> * Vendor could also change the initialization</span>
+<span class="cm"> * configuration.</span>
+<span class="cm"> */</span>
+<span class="kt">void</span> <span class="nf">ECLIC_Init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="cm">/* Global Configuration about MTH and NLBits.</span>
+<span class="cm">     * TODO: Please adapt it according to your system requirement.</span>
+<span class="cm">     * This function is called in _init function */</span>
+    <span class="cm">/* Set CSR MTH to zero */</span>
+    <span class="n">ECLIC_SetMth</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="cm">/* Set Nlbits to the CLICINTCTLBITS, all the bits are level bits */</span>
+    <span class="n">ECLIC_SetCfgNlbits</span><span class="p">(</span><span class="n">__ECLIC_INTCTLBITS</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \brief  Initialize a specific IRQ and register the handler</span>
+<span class="cm"> * \details</span>
+<span class="cm"> * This function set vector mode, trigger mode and polarity, interrupt level and priority,</span>
+<span class="cm"> * assign handler for specific IRQn.</span>
+<span class="cm"> * \param [in]  IRQn        NMI interrupt handler address</span>
+<span class="cm"> * \param [in]  shv         \ref ECLIC_NON_VECTOR_INTERRUPT means non-vector mode, and \ref ECLIC_VECTOR_INTERRUPT is vector mode</span>
+<span class="cm"> * \param [in]  trig_mode   see \ref ECLIC_TRIGGER_Type</span>
+<span class="cm"> * \param [in]  lvl         interupt level</span>
+<span class="cm"> * \param [in]  priority    interrupt priority</span>
+<span class="cm"> * \param [in]  handler     interrupt handler, if NULL, handler will not be installed</span>
+<span class="cm"> *</span>
+<span class="cm"> * \return       -1 means invalid input parameter. 0 means successful.</span>
+<span class="cm"> * \remarks</span>
+<span class="cm"> * - This function use to configure specific eclic interrupt and register its interrupt handler and enable its interrupt.</span>
+<span class="cm"> * - If the vector table is placed in read-only section(FLASHXIP mode), handler could not be installed</span>
+<span class="cm"> */</span>
+<span class="kt">int32_t</span> <span class="nf">ECLIC_Register_IRQ</span><span class="p">(</span><span class="n">IRQn_Type</span> <span class="n">IRQn</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">shv</span><span class="p">,</span> <span class="n">ECLIC_TRIGGER_Type</span> <span class="n">trig_mode</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">lvl</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">priority</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">handler</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">((</span><span class="n">IRQn</span> <span class="o">&gt;</span> <span class="n">SOC_INT_MAX</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">shv</span> <span class="o">&gt;</span> <span class="n">ECLIC_VECTOR_INTERRUPT</span><span class="p">)</span> \
+        <span class="o">||</span> <span class="p">(</span><span class="n">trig_mode</span> <span class="o">&gt;</span> <span class="n">ECLIC_NEGTIVE_EDGE_TRIGGER</span> <span class="p">))</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/* set interrupt vector mode */</span>
+    <span class="n">ECLIC_SetShvIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="n">shv</span><span class="p">);</span>
+    <span class="cm">/* set interrupt trigger mode and polarity */</span>
+    <span class="n">ECLIC_SetTrigIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="n">trig_mode</span><span class="p">);</span>
+    <span class="cm">/* set interrupt level */</span>
+    <span class="n">ECLIC_SetLevelIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="n">lvl</span><span class="p">);</span>
+    <span class="cm">/* set interrupt priority */</span>
+    <span class="n">ECLIC_SetPriorityIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="n">priority</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">handler</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+        <span class="cm">/* set interrupt handler entry to vector table */</span>
+        <span class="n">ECLIC_SetVector</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="p">(</span><span class="n">rv_csr_t</span><span class="p">)</span><span class="n">handler</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="cm">/* enable interrupt */</span>
+    <span class="n">ECLIC_EnableIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cm">/** @} */</span> <span class="cm">/* End of Doxygen Group NMSIS_Core_ExceptionAndNMI */</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \brief early init function before main</span>
+<span class="cm"> * \details</span>
+<span class="cm"> * This function is executed right before main function.</span>
+<span class="cm"> * For RISC-V gnu toolchain, _init function might not be called</span>
+<span class="cm"> * by __libc_init_array function, so we defined a new function</span>
+<span class="cm"> * to do initialization</span>
+<span class="cm"> */</span>
+<span class="kt">void</span> <span class="nf">_premain_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="cm">/* TODO: Add your own initialization code here, called before main  */</span>
+    <span class="cm">/* __ICACHE_PRESENT and __DCACHE_PRESENT are defined in &lt;Device&gt;.h */</span>
+<span class="cp">#if defined(__ICACHE_PRESENT) &amp;&amp; __ICACHE_PRESENT == 1</span>
+    <span class="n">EnableICache</span><span class="p">();</span>
+<span class="cp">#endif</span>
+<span class="cp">#if defined(__DCACHE_PRESENT) &amp;&amp; __DCACHE_PRESENT == 1</span>
+    <span class="n">EnableDCache</span><span class="p">();</span>
+<span class="cp">#endif</span>
+    <span class="c1">// TODO: Add code to set the system clock frequency value SystemCoreClock</span>
+
+    <span class="c1">// TODO: Add code to initialize necessary gpio and basic uart for debug print</span>
+
+    <span class="cm">/* Initialize exception default handlers */</span>
+    <span class="n">Exception_Init</span><span class="p">();</span>
+    <span class="cm">/* ECLIC initialization, mainly MTH and NLBIT settings */</span>
+    <span class="n">ECLIC_Init</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \brief finish function after main</span>
+<span class="cm"> * \param [in]  status     status code return from main</span>
+<span class="cm"> * \details</span>
+<span class="cm"> * This function is executed right after main function.</span>
+<span class="cm"> * For RISC-V gnu toolchain, _fini function might not be called</span>
+<span class="cm"> * by __libc_fini_array function, so we defined a new function</span>
+<span class="cm"> * to do initialization</span>
+<span class="cm"> */</span>
+<span class="kt">void</span> <span class="nf">_postmain_fini</span><span class="p">(</span><span class="kt">int</span> <span class="n">status</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="cm">/* TODO: Add your own finishing code here, called after main */</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \brief _init function called in __libc_init_array()</span>
+<span class="cm"> * \details</span>
+<span class="cm"> * This `__libc_init_array()` function is called during startup code,</span>
+<span class="cm"> * user need to implement this function, otherwise when link it will</span>
+<span class="cm"> * error init.c:(.text.__libc_init_array+0x26): undefined reference to `_init&#39;</span>
+<span class="cm"> * \note</span>
+<span class="cm"> * Please use \ref _premain_init function now</span>
+<span class="cm"> */</span>
+<span class="kt">void</span> <span class="nf">_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="cm">/* Don&#39;t put any code here, please use _premain_init now */</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \brief _fini function called in __libc_fini_array()</span>
+<span class="cm"> * \details</span>
+<span class="cm"> * This `__libc_fini_array()` function is called when exit main.</span>
+<span class="cm"> * user need to implement this function, otherwise when link it will</span>
+<span class="cm"> * error fini.c:(.text.__libc_fini_array+0x28): undefined reference to `_fini&#39;</span>
+<span class="cm"> * \note</span>
+<span class="cm"> * Please use \ref _postmain_fini function now</span>
+<span class="cm"> */</span>
+<span class="kt">void</span> <span class="nf">_fini</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="cm">/* Don&#39;t put any code here, please use _postmain_fini now */</span>
+<span class="p">}</span>
+
+<span class="cm">/** @} */</span> <span class="cm">/* End of Doxygen Group NMSIS_Core_SystemAndClock */</span>
+</pre></div>
+</td></tr></table></div>
+</section>
+<section id="system-device-h-template-file">
+<h2>system_Device.h Template File<a class="headerlink" href="#system-device-h-template-file" title="Permalink to this headline">¶</a></h2>
+<p>Here we provided <code class="docutils literal notranslate"><span class="pre">system_Device.h</span></code> template file as below:</p>
+<div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * Copyright (c) 2009-2018 Arm Limited. All rights reserved.</span>
+<span class="cm"> * Copyright (c) 2019 Nuclei Limited. All rights reserved.</span>
+<span class="cm"> *</span>
+<span class="cm"> * SPDX-License-Identifier: Apache-2.0</span>
+<span class="cm"> *</span>
+<span class="cm"> * Licensed under the Apache License, Version 2.0 (the License); you may</span>
+<span class="cm"> * not use this file except in compliance with the License.</span>
+<span class="cm"> * You may obtain a copy of the License at</span>
+<span class="cm"> *</span>
+<span class="cm"> * www.apache.org/licenses/LICENSE-2.0</span>
+<span class="cm"> *</span>
+<span class="cm"> * Unless required by applicable law or agreed to in writing, software</span>
+<span class="cm"> * distributed under the License is distributed on an AS IS BASIS, WITHOUT</span>
+<span class="cm"> * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="cm"> * See the License for the specific language governing permissions and</span>
+<span class="cm"> * limitations under the License.</span>
+<span class="cm"> */</span>
+<span class="cm">/*******************************************************************************</span>
+<span class="cm"> * @file     system_&lt;Device&gt;.h</span>
+<span class="cm"> * @brief    NMSIS Nuclei N/NX Device Peripheral Access Layer Header File for</span>
+<span class="cm"> *           Device &lt;Device&gt;</span>
+<span class="cm"> * @version  V1.10</span>
+<span class="cm"> * @date     30. July 2021</span>
+<span class="cm"> ******************************************************************************/</span>
+
+<span class="cp">#ifndef __SYSTEM_&lt;Device&gt;_H__   </span><span class="cm">/* TODO: replace &#39;&lt;Device&gt;&#39; with your device name */</span><span class="cp"></span>
+<span class="cp">#define __SYSTEM_&lt;Device&gt;_H__</span>
+
+<span class="cp">#ifdef __cplusplus</span>
+<span class="k">extern</span> <span class="s">&quot;C&quot;</span> <span class="p">{</span>
+<span class="cp">#endif</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;stdint.h&gt;</span><span class="cp"></span>
+
+<span class="k">extern</span> <span class="kt">uint32_t</span> <span class="n">SystemCoreClock</span><span class="p">;</span>     <span class="cm">/*!&lt; System Clock Frequency (Core Clock)  */</span>
+
+<span class="cm">/** \brief Exception frame structure store in stack */</span>
+<span class="k">typedef</span> <span class="k">struct</span> <span class="n">EXC_Frame</span> <span class="p">{</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">ra</span><span class="p">;</span>                <span class="cm">/* ra: x1, return address for jump */</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">tp</span><span class="p">;</span>                <span class="cm">/* tp: x4, thread pointer */</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">t0</span><span class="p">;</span>                <span class="cm">/* t0: x5, temporary register 0 */</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">t1</span><span class="p">;</span>                <span class="cm">/* t1: x6, temporary register 1 */</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">t2</span><span class="p">;</span>                <span class="cm">/* t2: x7, temporary register 2 */</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">a0</span><span class="p">;</span>                <span class="cm">/* a0: x10, return value or function argument 0 */</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">a1</span><span class="p">;</span>                <span class="cm">/* a1: x11, return value or function argument 1 */</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">a2</span><span class="p">;</span>                <span class="cm">/* a2: x12, function argument 2 */</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">a3</span><span class="p">;</span>                <span class="cm">/* a3: x13, function argument 3 */</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">a4</span><span class="p">;</span>                <span class="cm">/* a4: x14, function argument 4 */</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">a5</span><span class="p">;</span>                <span class="cm">/* a5: x15, function argument 5 */</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">mcause</span><span class="p">;</span>            <span class="cm">/* mcause: machine cause csr register */</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">mepc</span><span class="p">;</span>              <span class="cm">/* mepc: machine exception program counter csr register */</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">msubm</span><span class="p">;</span>             <span class="cm">/* msubm: machine sub-mode csr register, nuclei customized */</span>
+<span class="cp">#ifndef __riscv_32e</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">a6</span><span class="p">;</span>                <span class="cm">/* a6: x16, function argument 6 */</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">a7</span><span class="p">;</span>                <span class="cm">/* a7: x17, function argument 7 */</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">t3</span><span class="p">;</span>                <span class="cm">/* t3: x28, temporary register 3 */</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">t4</span><span class="p">;</span>                <span class="cm">/* t4: x29, temporary register 4 */</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">t5</span><span class="p">;</span>                <span class="cm">/* t5: x30, temporary register 5 */</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">t6</span><span class="p">;</span>                <span class="cm">/* t6: x31, temporary register 6 */</span>
+<span class="cp">#endif</span>
+<span class="p">}</span> <span class="n">EXC_Frame_Type</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \brief Setup the microcontroller system.</span>
+<span class="cm"> * \details</span>
+<span class="cm"> *  Initialize the System and update the SystemCoreClock variable.</span>
+<span class="cm"> */</span>
+<span class="k">extern</span> <span class="kt">void</span> <span class="nf">SystemInit</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \brief  Update SystemCoreClock variable.</span>
+<span class="cm"> * \details</span>
+<span class="cm"> *  Updates the SystemCoreClock with current core Clock retrieved from cpu registers.</span>
+<span class="cm"> */</span>
+<span class="k">extern</span> <span class="kt">void</span> <span class="nf">SystemCoreClockUpdate</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \brief Dump Exception Frame</span>
+<span class="cm"> */</span>
+<span class="kt">void</span> <span class="nf">Exception_DumpFrame</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">sp</span><span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \brief Register an exception handler for exception code EXCn</span>
+<span class="cm"> */</span>
+<span class="k">extern</span> <span class="kt">void</span> <span class="nf">Exception_Register_EXC</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">EXCn</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">exc_handler</span><span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \brief Get current exception handler for exception code EXCn</span>
+<span class="cm"> */</span>
+<span class="k">extern</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="nf">Exception_Get_EXC</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">EXCn</span><span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \brief Initialize eclic config</span>
+<span class="cm"> */</span>
+<span class="k">extern</span> <span class="kt">void</span> <span class="nf">ECLIC_Init</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * \brief  initialize a specific IRQ and register the handler</span>
+<span class="cm"> * \details</span>
+<span class="cm"> * This function set vector mode, trigger mode and polarity, interrupt level and priority,</span>
+<span class="cm"> * assign handler for specific IRQn.</span>
+<span class="cm"> * \param [in]  IRQn        NMI interrupt handler address</span>
+<span class="cm"> * \param [in]  shv         \ref ECLIC_NON_VECTOR_INTERRUPT means non-vector mode, and \ref ECLIC_VECTOR_INTERRUPT is vector mode</span>
+<span class="cm"> * \param [in]  trig_mode   see \ref ECLIC_TRIGGER_Type</span>
+<span class="cm"> * \param [in]  lvl         interupt level</span>
+<span class="cm"> * \param [in]  priority    interrupt priority</span>
+<span class="cm"> * \param [in]  handler     interrupt handler</span>
+<span class="cm"> * return       -1 means invalid input parameter. 0 means successful.</span>
+<span class="cm"> * \remarks</span>
+<span class="cm"> * - This function use to configure specific eclic interrupt and register its interrupt handler and enable its interrupt.</span>
+<span class="cm"> */</span>
+<span class="k">extern</span> <span class="kt">int32_t</span> <span class="nf">ECLIC_Register_IRQ</span><span class="p">(</span><span class="n">IRQn_Type</span> <span class="n">IRQn</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">shv</span><span class="p">,</span> <span class="n">ECLIC_TRIGGER_Type</span> <span class="n">trig_mode</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">lvl</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">priority</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">handler</span><span class="p">);</span>
+
+<span class="cp">#ifdef __cplusplus</span>
+<span class="p">}</span>
+<span class="cp">#endif</span>
+
+<span class="cp">#endif </span><span class="cm">/* __SYSTEM_&lt;Device&gt;_H__ */</span><span class="cp"></span>
+</pre></div>
+</td></tr></table></div>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="core_template_device_header.html" class="btn btn-neutral float-right" title="Device Header File &lt;device.h&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="core_template_linker_device.html" class="btn btn-neutral float-left" title="Device Linker Script: gcc_&lt;device&gt;.ld" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-Present, Nuclei
+      <span class="lastupdated">
+        Last updated on Aug 03, 2021.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

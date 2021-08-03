@@ -1,0 +1,809 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Device Linker Script: gcc_&lt;device&gt;.ld &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h" href="core_template_system_device.html" />
+    <link rel="prev" title="Interrupt and Exception Handling File: intexc_&lt;device&gt;.S" href="core_template_intexc.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.2-RC1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">NMSIS Core</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started.html">Using NMSIS in Embedded Applications</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="core_templates.html">NMSIS-Core Device Templates</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="core_templates.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_templates.html#nmsis-core-processor-files">NMSIS-Core Processor Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_templates.html#device-examples">Device Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_templates.html#template-files">Template Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_templates.html#adapt-template-files-to-a-device">Adapt Template Files to a Device</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="core_templates.html#device-templates-explaination">Device Templates Explaination</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="core_template_startup_device.html">Startup File startup_&lt;device&gt;.S</a></li>
+<li class="toctree-l4"><a class="reference internal" href="core_template_intexc.html">Interrupt and Exception Handling File: intexc_&lt;device&gt;.S</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Device Linker Script: gcc_&lt;device&gt;.ld</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#gcc-device-ld-template-file">gcc_Device.ld Template File</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="core_template_system_device.html">System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h</a></li>
+<li class="toctree-l4"><a class="reference internal" href="core_template_device_header.html">Device Header File &lt;device.h&gt;</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="register_mapping.html">Register Mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html">NMSIS Core API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">NMSIS Core</a> &raquo;</li>
+        
+          <li><a href="core_templates.html">NMSIS-Core Device Templates</a> &raquo;</li>
+        
+      <li>Device Linker Script: gcc_&lt;device&gt;.ld</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/core/core_template_linker_device.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="device-linker-script-gcc-device-ld">
+<span id="core-template-linker-script"></span><h1>Device Linker Script: gcc_&lt;device&gt;.ld<a class="headerlink" href="#device-linker-script-gcc-device-ld" title="Permalink to this headline">¶</a></h1>
+<dl class="simple">
+<dt>The Linker Script File <strong>gcc_&lt;device&gt;.ld</strong> contains:</dt><dd><ul class="simple">
+<li><p>Memory base address and size.</p></li>
+<li><p>Code, data section, vector table etc. location.</p></li>
+<li><p>Stack &amp; heap location and size.</p></li>
+</ul>
+</dd>
+</dl>
+<p>The file exists for each supported toolchain and is the only toolchain specific NMSIS file.</p>
+<p>To adapt the file to a new device only when you need change the memory base address, size, data and code location etc.</p>
+<section id="gcc-device-ld-template-file">
+<h2>gcc_Device.ld Template File<a class="headerlink" href="#gcc-device-ld-template-file" title="Permalink to this headline">¶</a></h2>
+<p>Here we provided <code class="docutils literal notranslate"><span class="pre">gcc_Device.ld</span></code> template file as below:</p>
+<div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272</pre></div></td><td class="code"><div class="highlight"><pre><span></span>/*
+ * Copyright (c) 2019 Nuclei Limited. All rights reserved.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * Licensed under the Apache License, Version 2.0 (the License); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/******************************************************************************
+ * @file     gcc_&lt;Device&gt;.ld
+ * @brief    GNU Linker Script for Nuclei N/NX based device
+ * @version  V1.1.0
+ * @date     30. July 2021
+ ******************************************************************************/
+
+/*********** Use Configuration Wizard in Context Menu *************************/
+
+OUTPUT_ARCH( &quot;riscv&quot; )
+/********************* Flash Configuration ************************************
+ * &lt;h&gt; Flash Configuration
+ * &lt;o0&gt; Flash Base Address &lt;0x0-0xFFFFFFFF:8&gt;
+ * &lt;o1&gt; Flash Size (in Bytes) &lt;0x0-0xFFFFFFFF:8&gt;
+ * &lt;/h&gt;
+ */
+__ROM_BASE = 0x20000000;
+__ROM_SIZE = 0x00400000;
+
+/*--------------------- ILM RAM Configuration ---------------------------
+ * &lt;h&gt; ILM RAM Configuration
+ * &lt;o0&gt; ILM RAM Base Address    &lt;0x0-0xFFFFFFFF:8&gt;
+ * &lt;o1&gt; ILM RAM Size (in Bytes) &lt;0x0-0xFFFFFFFF:8&gt;
+ * &lt;/h&gt;
+ */
+__ILM_RAM_BASE = 0x80000000;
+__ILM_RAM_SIZE = 0x00010000;
+
+/*--------------------- Embedded RAM Configuration ---------------------------
+ * &lt;h&gt; RAM Configuration
+ * &lt;o0&gt; RAM Base Address    &lt;0x0-0xFFFFFFFF:8&gt;
+ * &lt;o1&gt; RAM Size (in Bytes) &lt;0x0-0xFFFFFFFF:8&gt;
+ * &lt;/h&gt;
+*/
+__RAM_BASE = 0x90000000;
+__RAM_SIZE = 0x00010000;
+
+/********************* Stack / Heap Configuration ****************************
+ * &lt;h&gt; Stack / Heap Configuration
+ * &lt;o0&gt; Stack Size (in Bytes) &lt;0x0-0xFFFFFFFF:8&gt;
+ * &lt;o1&gt; Heap Size (in Bytes) &lt;0x0-0xFFFFFFFF:8&gt;
+ * &lt;/h&gt;
+ */
+__STACK_SIZE = 0x00000800;
+__HEAP_SIZE  = 0x00000800;
+
+/**************************** end of configuration section ********************/
+
+/* Define base address and length of flash and ram */
+MEMORY
+{
+  flash (rxai!w) : ORIGIN = __ROM_BASE, LENGTH = __ROM_SIZE
+  ram (wxa!ri) : ORIGIN = __RAM_BASE, LENGTH = __RAM_SIZE
+}
+/* Linker script to place sections and symbol values. Should be used together
+ * with other linker script that defines memory regions FLASH,ILM and RAM.
+ * It references following symbols, which must be defined in code:
+ *   _start : Entry of reset handler
+ *
+ * It defines following symbols, which code can use without definition:
+ *   _ilm_lma
+ *   _ilm
+ *   __etext
+ *   _etext
+ *   etext
+ *   _eilm
+ *   __preinit_array_start
+ *   __preinit_array_end
+ *   __init_array_start
+ *   __init_array_end
+ *   __fini_array_start
+ *   __fini_array_end
+ *   _data_lma
+ *   _edata
+ *   edata
+ *   __data_end__
+ *   __bss_start
+ *   __fbss
+ *   _end
+ *   end
+ *   __heap_end
+ *   __StackLimit
+ *   __StackTop
+ *   __STACK_SIZE
+ */
+/* Define entry label of program */
+ENTRY(_start)
+SECTIONS
+{
+  __STACK_SIZE = DEFINED(__STACK_SIZE) ? __STACK_SIZE : 2K;
+
+  .init           :
+  {
+    /* vector table locate at flash */
+    *(.vtable)
+    KEEP (*(SORT_NONE(.init)))
+  } &gt;flash AT&gt;flash
+
+  .ilalign         :
+  {
+    . = ALIGN(4);
+    /* Create a section label as _ilm_lma which located at flash */
+    PROVIDE( _ilm_lma = . );
+  } &gt;flash AT&gt;flash
+
+  .ialign         :
+  {
+    /* Create a section label as _ilm which located at flash */
+    PROVIDE( _ilm = . );
+  } &gt;flash AT&gt;flash
+
+  /* Code section located at flash */
+  .text           :
+  {
+    *(.text.unlikely .text.unlikely.*)
+    *(.text.startup .text.startup.*)
+    *(.text .text.*)
+    *(.gnu.linkonce.t.*)
+  } &gt;flash AT&gt;flash
+
+  .rodata : ALIGN(4)
+  {
+    . = ALIGN(4);
+    *(.rdata)
+    *(.rodata .rodata.*)
+    *(.gnu.linkonce.r.*)
+    . = ALIGN(8);
+    *(.srodata.cst16)
+    *(.srodata.cst8)
+    *(.srodata.cst4)
+    *(.srodata.cst2)
+    *(.srodata .srodata.*)
+  } &gt;flash AT&gt;flash
+
+  .fini           :
+  {
+    KEEP (*(SORT_NONE(.fini)))
+  } &gt;flash AT&gt;flash
+
+  . = ALIGN(4);
+
+  PROVIDE (__etext = .);
+  PROVIDE (_etext = .);
+  PROVIDE (etext = .);
+  PROVIDE( _eilm = . );
+
+
+  .preinit_array  :
+  {
+    PROVIDE_HIDDEN (__preinit_array_start = .);
+    KEEP (*(.preinit_array))
+    PROVIDE_HIDDEN (__preinit_array_end = .);
+  } &gt;flash AT&gt;flash
+
+  .init_array     :
+  {
+    PROVIDE_HIDDEN (__init_array_start = .);
+    KEEP (*(SORT_BY_INIT_PRIORITY(.init_array.*) SORT_BY_INIT_PRIORITY(.ctors.*)))
+    KEEP (*(.init_array EXCLUDE_FILE (*crtbegin.o *crtbegin?.o *crtend.o *crtend?.o ) .ctors))
+    PROVIDE_HIDDEN (__init_array_end = .);
+  } &gt;flash AT&gt;flash
+
+  .fini_array     :
+  {
+    PROVIDE_HIDDEN (__fini_array_start = .);
+    KEEP (*(SORT_BY_INIT_PRIORITY(.fini_array.*) SORT_BY_INIT_PRIORITY(.dtors.*)))
+    KEEP (*(.fini_array EXCLUDE_FILE (*crtbegin.o *crtbegin?.o *crtend.o *crtend?.o ) .dtors))
+    PROVIDE_HIDDEN (__fini_array_end = .);
+  } &gt;flash AT&gt;flash
+
+  .ctors          :
+  {
+    /* gcc uses crtbegin.o to find the start of
+     * the constructors, so we make sure it is
+     * first.  Because this is a wildcard, it
+     * doesn&#39;t matter if the user does not
+     * actually link against crtbegin.o; the
+     * linker won&#39;t look for a file to match a
+     * wildcard.  The wildcard also means that it
+     * doesn&#39;t matter which directory crtbegin.o
+     * is in.
+     */
+    KEEP (*crtbegin.o(.ctors))
+    KEEP (*crtbegin?.o(.ctors))
+    /* We don&#39;t want to include the .ctor section from
+     * the crtend.o file until after the sorted ctors.
+     * The .ctor section from the crtend file contains the
+     * end of ctors marker and it must be last
+     */
+    KEEP (*(EXCLUDE_FILE (*crtend.o *crtend?.o ) .ctors))
+    KEEP (*(SORT(.ctors.*)))
+    KEEP (*(.ctors))
+  } &gt;flash AT&gt;flash
+
+  .dtors          :
+  {
+    KEEP (*crtbegin.o(.dtors))
+    KEEP (*crtbegin?.o(.dtors))
+    KEEP (*(EXCLUDE_FILE (*crtend.o *crtend?.o ) .dtors))
+    KEEP (*(SORT(.dtors.*)))
+    KEEP (*(.dtors))
+  } &gt;flash AT&gt;flash
+
+  .lalign         :
+  {
+    . = ALIGN(4);
+    PROVIDE( _data_lma = . );
+  } &gt;flash AT&gt;flash
+
+  .dalign         :
+  {
+    . = ALIGN(4);
+    PROVIDE( _data = . );
+  } &gt;ram AT&gt;flash
+
+  /* Define data section virtual address is ram and physical address is flash */
+  .data          :
+  {
+    *(.data .data.*)
+    *(.gnu.linkonce.d.*)
+    . = ALIGN(8);
+    PROVIDE( __global_pointer$ = . + 0x800 );
+    *(.sdata .sdata.* .sdata*)
+    *(.gnu.linkonce.s.*)
+  } &gt;ram AT&gt;flash
+
+  . = ALIGN(4);
+  PROVIDE( _edata = . );
+  PROVIDE( edata = . );
+
+  PROVIDE( _fbss = . );
+  PROVIDE( __bss_start = . );
+  .bss            :
+  {
+    *(.sbss*)
+    *(.gnu.linkonce.sb.*)
+    *(.bss .bss.*)
+    *(.gnu.linkonce.b.*)
+    *(COMMON)
+    . = ALIGN(4);
+  } &gt;ram AT&gt;ram
+
+  . = ALIGN(8);
+  PROVIDE( _end = . );
+  PROVIDE( end = . );
+  /* Define stack and head location at ram */
+  .stack ORIGIN(ram) + LENGTH(ram) - __STACK_SIZE :
+  {
+    PROVIDE( _heap_end = . );
+    __StackLimit = .;
+    . = __STACK_SIZE;
+    __StackTop = .;
+    PROVIDE( _sp = . );
+  } &gt;ram AT&gt;ram
+}
+</pre></div>
+</td></tr></table></div>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="core_template_system_device.html" class="btn btn-neutral float-right" title="System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="core_template_intexc.html" class="btn btn-neutral float-left" title="Interrupt and Exception Handling File: intexc_&lt;device&gt;.S" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-Present, Nuclei
+      <span class="lastupdated">
+        Last updated on Aug 03, 2021.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

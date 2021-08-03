@@ -1,0 +1,391 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Matrix Transpose &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Transform Functions" href="../api_grouptransforms.html" />
+    <link rel="prev" title="Matrix Subtraction" href="api_matrixsub.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.2-RC1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">NMSIS DSP</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupfastmath.html">Fast Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupfilters.html">Filtering Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api_groupmatrix.html">Matrix Functions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api_matrixadd.html">Matrix Addition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_cmplxmatrixmult.html">Complex Matrix Multiplication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_matrixinit.html">Matrix Initialization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_matrixinv.html">Matrix Inverse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_matrixmult.html">Matrix Multiplication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_matrixscale.html">Matrix Scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_matrixsub.html">Matrix Subtraction</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Matrix Transpose</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupcontroller.html">Controller Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupstats.html">Statistics Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupsupport.html">Support Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupinterpolation.html">Interpolation Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
+        
+          <li><a href="../index.html">NMSIS DSP API</a> &raquo;</li>
+        
+          <li><a href="../api_groupmatrix.html">Matrix Functions</a> &raquo;</li>
+        
+      <li>Matrix Transpose</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/dsp/api/groupmatrix/api_matrixtrans.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="matrix-transpose">
+<span id="nmsis-dsp-api-matrix-transpose"></span><h1>Matrix Transpose<a class="headerlink" href="#matrix-transpose" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="_CPPv419riscv_mat_trans_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32">
+<span id="_CPPv319riscv_mat_trans_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32"></span><span id="_CPPv219riscv_mat_trans_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32"></span><span id="riscv_mat_trans_f32__riscv_matrix_instance_f32CP.riscv_matrix_instance_f32P"></span><span class="target" id="group__MatrixTrans_1gae9c3388323897b322f6bd136d52f0a64"></span>riscv_status <code class="sig-name descname">riscv_mat_trans_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_f32 *<em>pSrc</em>, riscv_matrix_instance_f32 *<em>pDst</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_mat_trans_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv419riscv_mat_trans_f64PK25riscv_matrix_instance_f64P25riscv_matrix_instance_f64">
+<span id="_CPPv319riscv_mat_trans_f64PK25riscv_matrix_instance_f64P25riscv_matrix_instance_f64"></span><span id="_CPPv219riscv_mat_trans_f64PK25riscv_matrix_instance_f64P25riscv_matrix_instance_f64"></span><span id="riscv_mat_trans_f64__riscv_matrix_instance_f64CP.riscv_matrix_instance_f64P"></span><span class="target" id="group__MatrixTrans_1ga5b66a70771bb230a4910a240410d1bc4"></span>riscv_status <code class="sig-name descname">riscv_mat_trans_f64</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_f64 *<em>pSrc</em>, riscv_matrix_instance_f64 *<em>pDst</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_mat_trans_f64PK25riscv_matrix_instance_f64P25riscv_matrix_instance_f64" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv419riscv_mat_trans_q15PK25riscv_matrix_instance_q15P25riscv_matrix_instance_q15">
+<span id="_CPPv319riscv_mat_trans_q15PK25riscv_matrix_instance_q15P25riscv_matrix_instance_q15"></span><span id="_CPPv219riscv_mat_trans_q15PK25riscv_matrix_instance_q15P25riscv_matrix_instance_q15"></span><span id="riscv_mat_trans_q15__riscv_matrix_instance_q15CP.riscv_matrix_instance_q15P"></span><span class="target" id="group__MatrixTrans_1gaf3a6e089ca08fe48cc387d987d08dfea"></span>riscv_status <code class="sig-name descname">riscv_mat_trans_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q15 *<em>pSrc</em>, riscv_matrix_instance_q15 *<em>pDst</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_mat_trans_q15PK25riscv_matrix_instance_q15P25riscv_matrix_instance_q15" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv419riscv_mat_trans_q31PK25riscv_matrix_instance_q31P25riscv_matrix_instance_q31">
+<span id="_CPPv319riscv_mat_trans_q31PK25riscv_matrix_instance_q31P25riscv_matrix_instance_q31"></span><span id="_CPPv219riscv_mat_trans_q31PK25riscv_matrix_instance_q31P25riscv_matrix_instance_q31"></span><span id="riscv_mat_trans_q31__riscv_matrix_instance_q31CP.riscv_matrix_instance_q31P"></span><span class="target" id="group__MatrixTrans_1gaf42658e8941fb98465ca722d90d452e5"></span>riscv_status <code class="sig-name descname">riscv_mat_trans_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q31 *<em>pSrc</em>, riscv_matrix_instance_q31 *<em>pDst</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_mat_trans_q31PK25riscv_matrix_instance_q31P25riscv_matrix_instance_q31" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv418riscv_mat_trans_q7PK24riscv_matrix_instance_q7P24riscv_matrix_instance_q7">
+<span id="_CPPv318riscv_mat_trans_q7PK24riscv_matrix_instance_q7P24riscv_matrix_instance_q7"></span><span id="_CPPv218riscv_mat_trans_q7PK24riscv_matrix_instance_q7P24riscv_matrix_instance_q7"></span><span id="riscv_mat_trans_q7__riscv_matrix_instance_q7CP.riscv_matrix_instance_q7P"></span><span class="target" id="group__MatrixTrans_1ga93bcd615e2bb909a03d0c1cfdc7c6415"></span>riscv_status <code class="sig-name descname">riscv_mat_trans_q7</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q7 *<em>pSrc</em>, riscv_matrix_instance_q7 *<em>pDst</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418riscv_mat_trans_q7PK24riscv_matrix_instance_q7P24riscv_matrix_instance_q7" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="group">
+<dt>
+<span class="target" id="group__MatrixTrans"></span><em>group</em> <code class="sig-name descname">MatrixTrans</code></dt>
+<dd><p>Tranposes a matrix.</p>
+<p>Transposing an <code class="docutils literal notranslate"><span class="pre">M</span> <span class="pre">x</span> <span class="pre">N</span></code> matrix flips it around the center diagonal and results in an <code class="docutils literal notranslate"><span class="pre">N</span> <span class="pre">x</span> <span class="pre">M</span></code> matrix. <img alt="../../../_images/MatrixTranspose.png" src="../../../_images/MatrixTranspose.png" /></p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="function">
+<dt>
+<span class="target" id="group__MatrixTrans_1gae9c3388323897b322f6bd136d52f0a64"></span>riscv_status <code class="sig-name descname">riscv_mat_trans_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_f32 *<em>pSrc</em>, riscv_matrix_instance_f32 *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Floating-point matrix transpose. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_SIZE_MISMATCH : Matrix size check failed </p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to input matrix </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to output matrix </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__MatrixTrans_1ga5b66a70771bb230a4910a240410d1bc4"></span>riscv_status <code class="sig-name descname">riscv_mat_trans_f64</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_f64 *<em>pSrc</em>, riscv_matrix_instance_f64 *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Floating-point matrix transpose. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_SIZE_MISMATCH : Matrix size check failed </p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to input matrix </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to output matrix </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__MatrixTrans_1gaf3a6e089ca08fe48cc387d987d08dfea"></span>riscv_status <code class="sig-name descname">riscv_mat_trans_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q15 *<em>pSrc</em>, riscv_matrix_instance_q15 *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Q15 matrix transpose. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_SIZE_MISMATCH : Matrix size check failed </p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to input matrix </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to output matrix </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__MatrixTrans_1gaf42658e8941fb98465ca722d90d452e5"></span>riscv_status <code class="sig-name descname">riscv_mat_trans_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q31 *<em>pSrc</em>, riscv_matrix_instance_q31 *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Q31 matrix transpose. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_SIZE_MISMATCH : Matrix size check failed </p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to input matrix </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to output matrix </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__MatrixTrans_1ga93bcd615e2bb909a03d0c1cfdc7c6415"></span>riscv_status <code class="sig-name descname">riscv_mat_trans_q7</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q7 *<em>pSrc</em>, riscv_matrix_instance_q7 *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Q7 matrix transpose. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_SIZE_MISMATCH : Matrix size check failed </p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to input matrix </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to output matrix </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../api_grouptransforms.html" class="btn btn-neutral float-right" title="Transform Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api_matrixsub.html" class="btn btn-neutral float-left" title="Matrix Subtraction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-Present, Nuclei
+      <span class="lastupdated">
+        Last updated on Aug 03, 2021.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

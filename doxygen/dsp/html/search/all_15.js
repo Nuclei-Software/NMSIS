@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['vector_20bitwise_20and',['Vector bitwise AND',['../group__And.html',1,'']]],
+  ['vector_20absolute_20value',['Vector Absolute Value',['../group__BasicAbs.html',1,'']]],
+  ['vector_20addition',['Vector Addition',['../group__BasicAdd.html',1,'']]],
+  ['vector_20dot_20product',['Vector Dot Product',['../group__BasicDotProd.html',1,'']]],
+  ['vector_20multiplication',['Vector Multiplication',['../group__BasicMult.html',1,'']]],
+  ['vector_20negate',['Vector Negate',['../group__BasicNegate.html',1,'']]],
+  ['vector_20offset',['Vector Offset',['../group__BasicOffset.html',1,'']]],
+  ['vector_20scale',['Vector Scale',['../group__BasicScale.html',1,'']]],
+  ['vector_20shift',['Vector Shift',['../group__BasicShift.html',1,'']]],
+  ['vector_20subtraction',['Vector Subtraction',['../group__BasicSub.html',1,'']]],
+  ['vector_20clarke_20transform',['Vector Clarke Transform',['../group__clarke.html',1,'']]],
+  ['vector_20copy',['Vector Copy',['../group__copy.html',1,'']]],
+  ['vector_20fill',['Vector Fill',['../group__Fill.html',1,'']]],
+  ['vector_20inverse_20clarke_20transform',['Vector Inverse Clarke Transform',['../group__inv__clarke.html',1,'']]],
+  ['vector_20inverse_20park_20transform',['Vector Inverse Park transform',['../group__inv__park.html',1,'']]],
+  ['vector_20bitwise_20not',['Vector bitwise NOT',['../group__Not.html',1,'']]],
+  ['vector_20bitwise_20inclusive_20or',['Vector bitwise inclusive OR',['../group__Or.html',1,'']]],
+  ['vector_20park_20transform',['Vector Park Transform',['../group__park.html',1,'']]],
+  ['vector_20sorting_20algorithms',['Vector sorting algorithms',['../group__Sorting.html',1,'']]],
+  ['variance',['Variance',['../group__variance.html',1,'']]],
+  ['variance_20example',['Variance Example',['../group__VarianceExample.html',1,'']]],
+  ['vectordimension',['vectorDimension',['../structriscv__gaussian__naive__bayes__instance__f32.html#a6540326f1a152dd513adf2088eb28ebe',1,'riscv_gaussian_naive_bayes_instance_f32::vectorDimension()'],['../structriscv__svm__linear__instance__f32.html#a4460ca85ea2146e0d0ab4fbda3e7282b',1,'riscv_svm_linear_instance_f32::vectorDimension()'],['../structriscv__svm__polynomial__instance__f32.html#a7b40cbc701031417d3fcb7bf9c479e02',1,'riscv_svm_polynomial_instance_f32::vectorDimension()'],['../structriscv__svm__rbf__instance__f32.html#abd4d801ae0c3b613657a7741650339b0',1,'riscv_svm_rbf_instance_f32::vectorDimension()'],['../structriscv__svm__sigmoid__instance__f32.html#ad70722fa926214cb89450e89812b9120',1,'riscv_svm_sigmoid_instance_f32::vectorDimension()']]],
+  ['vector_20bitwise_20exclusive_20or',['Vector bitwise exclusive OR',['../group__Xor.html',1,'']]]
+];

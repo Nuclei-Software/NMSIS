@@ -1,0 +1,431 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>NMSIS-Core Device Templates &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Startup File startup_&lt;device&gt;.S" href="core_template_startup_device.html" />
+    <link rel="prev" title="Using NMSIS in Embedded Applications" href="get_started.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.2-RC1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">NMSIS Core</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started.html">Using NMSIS in Embedded Applications</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">NMSIS-Core Device Templates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nmsis-core-processor-files">NMSIS-Core Processor Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#device-examples">Device Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#template-files">Template Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adapt-template-files-to-a-device">Adapt Template Files to a Device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#device-templates-explaination">Device Templates Explaination</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="core_template_startup_device.html">Startup File startup_&lt;device&gt;.S</a></li>
+<li class="toctree-l4"><a class="reference internal" href="core_template_intexc.html">Interrupt and Exception Handling File: intexc_&lt;device&gt;.S</a></li>
+<li class="toctree-l4"><a class="reference internal" href="core_template_linker_device.html">Device Linker Script: gcc_&lt;device&gt;.ld</a></li>
+<li class="toctree-l4"><a class="reference internal" href="core_template_system_device.html">System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h</a></li>
+<li class="toctree-l4"><a class="reference internal" href="core_template_device_header.html">Device Header File &lt;device.h&gt;</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="register_mapping.html">Register Mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html">NMSIS Core API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">NMSIS Core</a> &raquo;</li>
+        
+      <li>NMSIS-Core Device Templates</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/core/core_templates.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="nmsis-core-device-templates">
+<span id="core-device-templates"></span><h1>NMSIS-Core Device Templates<a class="headerlink" href="#nmsis-core-device-templates" title="Permalink to this headline">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Nuclei supplies NMSIS-Core device template files for the all supported Nuclei N/NX Class Processors and various compiler vendors.
+Refer to the list of <a class="reference internal" href="overview.html#core-toolchain-support"><span class="std std-ref">supported toolchain</span></a> for compliance.</p>
+<dl class="simple">
+<dt>These NMSIS-Core device template files include the following:</dt><dd><ul class="simple">
+<li><p>Register names of the Core Peripherals and names of the Core Exception/Interrupt Vectors.</p></li>
+<li><p>Functions to access core peripherals, special CPU instructions and SIMD instructions</p></li>
+<li><p>Generic startup code and system configuration code.</p></li>
+</ul>
+</dd>
+</dl>
+<p>The detailed file structure of the NMSIS-Core device templates is shown in the following picture.</p>
+<figure class="align-center" id="id1">
+<span id="figure-core-templates-1"></span><a class="reference internal image-reference" href="../_images/NMSIS_CORE_Templates.png"><img alt="NMSIS-Core Device Templates" src="../_images/NMSIS_CORE_Templates.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-text">NMSIS-Core Device Templates</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="nmsis-core-processor-files">
+<h2>NMSIS-Core Processor Files<a class="headerlink" href="#nmsis-core-processor-files" title="Permalink to this headline">¶</a></h2>
+<p>The NMSIS-Core processor files provided by Nuclei are in the directory <em>NMSIS/Core/Include</em>.</p>
+<p>These header files define all processor specific attributes do not need any modifications.</p>
+<p>The <em>nmsis_core.h</em> defines the core peripherals and provides helper functions that access the core registers.</p>
+</section>
+<section id="device-examples">
+<h2>Device Examples<a class="headerlink" href="#device-examples" title="Permalink to this headline">¶</a></h2>
+<p>The NMSIS Software Pack defines several devices that are based on the Nuclei N/NX processors.</p>
+<p>The device related NMSIS-Core files are in the directory <em>Device/Nuclei</em> and include
+NMSIS-Core processor file explained before.</p>
+<p>The following sample devices are defined as below:</p>
+<span id="table-core-template-1"></span><table class="docutils align-default" id="id2">
+<caption><span class="caption-text">Device Examples of Nuclei Processor</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 28%" />
+<col style="width: 49%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Family</strong></p></td>
+<td><p><strong>Device</strong></p></td>
+<td><p><strong>Description</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Nuclei N</p></td>
+<td><p>NUCLEI N Class</p></td>
+<td><p>Nuclei N Class based device</p></td>
+</tr>
+<tr class="row-odd"><td><p>Nuclei NX</p></td>
+<td><p>NUCLEI NX Class</p></td>
+<td><p>Nuclei NX Class based device</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="template-files">
+<h2>Template Files<a class="headerlink" href="#template-files" title="Permalink to this headline">¶</a></h2>
+<p>To simplify the creation of NMSIS-Core device files, the following template files are provided
+that should be extended by the silicon vendor to reflect the actual device and device peripherals.</p>
+<dl class="simple">
+<dt>Silicon vendors add to these template files the following information:</dt><dd><ul class="simple">
+<li><p><strong>Device Peripheral Access Layer</strong> that provides definitions for device-specific peripherals.</p></li>
+<li><p><strong>Access Functions for Peripherals</strong> (optional) that provides additional helper functions to access device-specific peripherals.</p></li>
+<li><p><strong>Interrupt vectors</strong> in the startup file that are device specific.</p></li>
+</ul>
+</dd>
+</dl>
+<span id="table-core-template-2"></span><table class="colwidths-given docutils align-default" id="id3">
+<caption><span class="caption-text">NMSIS-Core Device Template Files</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 67%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Template File</strong></p>
+<p>(Under ./Device/_Template_Vendor/Vendor/)</p>
+</td>
+<td><p><strong>Description</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Device/Source/GCC/startup_Device.S</p></td>
+<td><p>Startup file template for GNU GCC RISC-V Embedded Compiler.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Device/Source/GCC/gcc_Device.ld</p></td>
+<td><p>Link Script file template for GNU GCC RISC-V Embedded Compiler.</p></td>
+</tr>
+<tr class="row-even"><td><p>Device/Source/GCC/intexc_Device.S</p></td>
+<td><p>Exception and Interrupt handling file template</p>
+<p>for GNU GCC RISC-V Embedded Compiler.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Device/Source/system_Device.c</p></td>
+<td><p>Generic system_Device.c file for system configuration</p>
+<p>(i.e. processor clock and memory bus system).</p>
+</td>
+</tr>
+<tr class="row-even"><td><p>Device/Include/Device.h</p></td>
+<td><p>Generic device header file.</p>
+<p>Needs to be extended with the device-specific peripheral registers.</p>
+<p>Optionally functions that access the peripherals can be part of that file.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Device/Include/system_Device.h</p></td>
+<td><p>Generic system device configuration include file.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The template files for silicon vendors are placed under <em>./Device/_Template_Vendor/Vendor/</em>.</p>
+<p>Please goto that folder to find the file list in the above table.</p>
+</div>
+</section>
+<section id="adapt-template-files-to-a-device">
+<h2>Adapt Template Files to a Device<a class="headerlink" href="#adapt-template-files-to-a-device" title="Permalink to this headline">¶</a></h2>
+<p>The following steps describe how to adopt the template files to a specific device or device family.</p>
+<dl class="simple">
+<dt>Copy the complete all files in the template directory and replace:</dt><dd><ul class="simple">
+<li><p>directory name <code class="docutils literal notranslate"><span class="pre">Vendor</span></code> with the abbreviation for the device vendor  e.g.: <strong>GD</strong>.</p></li>
+<li><p>directory name <code class="docutils literal notranslate"><span class="pre">Device</span></code> with the specific device name e.g.: <strong>GD32VF103</strong>.</p></li>
+<li><p>in the file names <code class="docutils literal notranslate"><span class="pre">Device</span></code> with the specific device name e.g.: <strong>GD32VF103</strong>.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Each template file contains comments that start with <strong>TODO</strong>: that describe a required modification.</p>
+<p>The template files contain place holders:</p>
+<span id="table-core-template-3"></span><table class="docutils align-default" id="id4">
+<caption><span class="caption-text">Placeholders of Template files</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Placeholder</strong></p></td>
+<td><p><strong>Replaced with</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>&lt;Device&gt;</p></td>
+<td><p>the specific device name or device family name; i.e. GD32VF103.</p></td>
+</tr>
+<tr class="row-odd"><td><p>&lt;DeviceInterrupt&gt;</p></td>
+<td><p>a specific interrupt name of the device; i.e. TIM1 for Timer 1.</p></td>
+</tr>
+<tr class="row-even"><td><p>&lt;DeviceAbbreviation&gt;</p></td>
+<td><p>short name or abbreviation of the device family; i.e. GD32VF.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Nuclei-N#</p></td>
+<td><p>the specific Nuclei Class name; i.e. Nuclei N or Nuclei NX.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="device-templates-explaination">
+<h2>Device Templates Explaination<a class="headerlink" href="#device-templates-explaination" title="Permalink to this headline">¶</a></h2>
+<p>The device configuration of the template files is described in detail on the following pages:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core_template_startup_device.html">Startup File startup_&lt;device&gt;.S</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="core_template_startup_device.html#startup-device-s-template-file">startup_Device.S Template File</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="core_template_intexc.html">Interrupt and Exception Handling File: intexc_&lt;device&gt;.S</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="core_template_intexc.html#nmi-non-maskable-interrupt">NMI(Non-Maskable Interrupt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_template_intexc.html#exception">Exception</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_template_intexc.html#interrupt">Interrupt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_template_intexc.html#intexc-device-s-template-file">intexc_Device.S Template File</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="core_template_linker_device.html">Device Linker Script: gcc_&lt;device&gt;.ld</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="core_template_linker_device.html#gcc-device-ld-template-file">gcc_Device.ld Template File</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="core_template_system_device.html">System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="core_template_system_device.html#system-device-c-template-file">system_Device.c Template File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_template_system_device.html#system-device-h-template-file">system_Device.h Template File</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="core_template_device_header.html">Device Header File &lt;device.h&gt;</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="core_template_device_header.html#interrupt-number-definition">Interrupt Number Definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_template_device_header.html#configuration-of-the-processor-and-core-peripherals">Configuration of the Processor and Core Peripherals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_template_device_header.html#nmsis-version-and-processor-information">NMSIS Version and Processor Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_template_device_header.html#device-peripheral-access-layer">Device Peripheral Access Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_template_device_header.html#device-h-template-file">Device.h Template File</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="core_template_startup_device.html" class="btn btn-neutral float-right" title="Startup File startup_&lt;device&gt;.S" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="get_started.html" class="btn btn-neutral float-left" title="Using NMSIS in Embedded Applications" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-Present, Nuclei
+      <span class="lastupdated">
+        Last updated on Aug 03, 2021.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,285 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Convolutional Neural Network Example &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Gated Recurrent Unit Example" href="api_gruexample.html" />
+    <link rel="prev" title="Basic Math Functions for Neural Network Computation" href="api_nnbasicmath.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.2-RC1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">NMSIS NN</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started.html">Using NMSIS-NN</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">NMSIS NN API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="api_groupnn.html">Neural Network Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_nndata_convert.html">Neural Network Data Conversion Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_nnbasicmath.html">Basic Math Functions for Neural Network Computation</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Convolutional Neural Network Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_gruexample.html">Gated Recurrent Unit Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">NMSIS NN</a> &raquo;</li>
+        
+          <li><a href="index.html">NMSIS NN API</a> &raquo;</li>
+        
+      <li>Convolutional Neural Network Example</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/nn/api/api_cnnexample.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="convolutional-neural-network-example">
+<span id="nmsis-nn-api-convolutional-neural-network-example"></span><h1>Convolutional Neural Network Example<a class="headerlink" href="#convolutional-neural-network-example" title="Permalink to this headline">¶</a></h1>
+<dl class="group">
+<dt>
+<span class="target" id="group__CNNExample"></span><em>group</em> <code class="sig-name descname">CNNExample</code></dt>
+<dd><p><strong> Refer </strong> riscv_nnexamples_cifar10.cpp<img alt="../../_images/CIFAR10_CNN.png" src="../../_images/CIFAR10_CNN.png" /><dl class="simple">
+<dt><strong>Description:</strong></dt><dd><p></p>
+</dd>
+<dt><strong></strong></dt><dd><p>Demonstrates a convolutional neural network (CNN) example with the use of convolution, ReLU activation, pooling and fully-connected functions.</p>
+</dd>
+<dt><strong>Model definition:</strong></dt><dd><p></p>
+</dd>
+<dt><strong></strong></dt><dd><p>The CNN used in this example is based on CIFAR-10 example from Caffe [1]. The neural network consists of 3 convolution layers interspersed by ReLU activation and max pooling layers, followed by a fully-connected layer at the end. The input to the network is a 32x32 pixel color image, which will be classified into one of the 10 output classes. This example model implementation needs 32.3 KB to store weights, 40 KB for activations and 3.1 KB for storing the <code class="docutils literal notranslate"><span class="pre">im2col</span></code> data.</p>
+</dd>
+<dt><strong>Variables Description:</strong></dt><dd><p></p>
+</dd>
+<dt><strong></strong></dt><dd><p><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">conv1_wt</span></code>, <code class="docutils literal notranslate"><span class="pre">conv2_wt</span></code>, <code class="docutils literal notranslate"><span class="pre">conv3_wt</span></code> are convolution layer weight matrices </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conv1_bias</span></code>, <code class="docutils literal notranslate"><span class="pre">conv2_bias</span></code>, <code class="docutils literal notranslate"><span class="pre">conv3_bias</span></code> are convolution layer bias arrays </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ip1_wt</span></code>, ip1_bias point to fully-connected layer weights and biases </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">input_data</span></code> points to the input image data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">output_data</span></code> points to the classification output </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">col_buffer</span></code> is a buffer to store the <code class="docutils literal notranslate"><span class="pre">im2col</span></code> output </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scratch_buffer</span></code> is used to store the activation data (intermediate layer outputs)</p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>NMSIS DSP Software Library Functions Used:</strong></dt><dd><p></p>
+</dd>
+<dt><strong></strong></dt><dd><p><ul class="simple">
+<li><p>riscv_convolve_HWC_q7_RGB()</p></li>
+<li><p>riscv_convolve_HWC_q7_fast()</p></li>
+<li><p>riscv_relu_q7()</p></li>
+<li><p>riscv_maxpool_q7_HWC()</p></li>
+<li><p>riscv_avepool_q7_HWC()</p></li>
+<li><p>riscv_fully_connected_q7_opt()</p></li>
+<li><p>riscv_fully_connected_q7()</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>[1] https://github.com/BVLC/caffe</strong></dt><dd><p></p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api_gruexample.html" class="btn btn-neutral float-right" title="Gated Recurrent Unit Example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api_nnbasicmath.html" class="btn btn-neutral float-left" title="Basic Math Functions for Neural Network Computation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-Present, Nuclei
+      <span class="lastupdated">
+        Last updated on Aug 03, 2021.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

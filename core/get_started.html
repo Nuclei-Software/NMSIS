@@ -1,0 +1,552 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Using NMSIS in Embedded Applications &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="NMSIS-Core Device Templates" href="core_templates.html" />
+    <link rel="prev" title="Overview" href="overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.2-RC1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">NMSIS Core</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Using NMSIS in Embedded Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#basic-nmsis-example">Basic NMSIS Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-interrupt-and-exception-nmi">Using Interrupt and Exception/NMI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-nmsis-with-generic-nuclei-processors">Using NMSIS with generic Nuclei Processors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-generic-libraries-with-nmsis">Create generic Libraries with NMSIS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="core_templates.html">NMSIS-Core Device Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="register_mapping.html">Register Mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html">NMSIS Core API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">NMSIS Core</a> &raquo;</li>
+        
+      <li>Using NMSIS in Embedded Applications</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/core/get_started.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="using-nmsis-in-embedded-applications">
+<span id="core-get-started"></span><h1>Using NMSIS in Embedded Applications<a class="headerlink" href="#using-nmsis-in-embedded-applications" title="Permalink to this headline">¶</a></h1>
+<section id="introduction">
+<span id="core-get-started-intro"></span><h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>To use the <strong>NMSIS-Core</strong>, the following files are added to the embedded
+application:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="core_template_startup_device.html#core-template-startup-device-asm"><span class="std std-ref">Startup File startup_&lt;device&gt;.S</span></a>, which provided asm startup code
+and vector table.</p></li>
+<li><p><a class="reference internal" href="core_template_intexc.html#core-template-intexc-device"><span class="std std-ref">Interrupt and Exception Handling File: intexc_&lt;device&gt;.S</span></a>, which provided general exception
+handling code for non-vector interrupts and exceptions.</p></li>
+<li><p><a class="reference internal" href="core_template_linker_device.html#core-template-linker-script"><span class="std std-ref">Device Linker Script: gcc_&lt;device&gt;.ld</span></a>, which provided linker script for the device.</p></li>
+<li><p><a class="reference internal" href="core_template_system_device.html#core-template-system-device"><span class="std std-ref">System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h</span></a>, which provided general device
+configuration (i.e. for clock and BUS setup).</p></li>
+<li><p><a class="reference internal" href="core_template_device_header.html#core-template-device-header"><span class="std std-ref">Device Header File &lt;device.h&gt;</span></a> gives access to processor core and all
+peripherals.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The files <a class="reference internal" href="core_template_startup_device.html#core-template-startup-device-asm"><span class="std std-ref">Startup File startup_&lt;device&gt;.S</span></a>, <a class="reference internal" href="core_template_intexc.html#core-template-intexc-device"><span class="std std-ref">Interrupt and Exception Handling File: intexc_&lt;device&gt;.S</span></a>,
+<a class="reference internal" href="core_template_linker_device.html#core-template-linker-script"><span class="std std-ref">Device Linker Script: gcc_&lt;device&gt;.ld</span></a> and <a class="reference internal" href="core_template_system_device.html#core-template-system-device"><span class="std std-ref">System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h</span></a> may require
+application specific adaptations and therefore should be copied into
+the application project folder prior configuration.</p>
+<p>The <a class="reference internal" href="core_template_device_header.html#core-template-device-header"><span class="std std-ref">Device Header File &lt;device.h&gt;</span></a> is included in all source files that need
+device access and can be stored on a central include folder that is
+generic for all projects.</p>
+</div>
+<p>The <a class="reference internal" href="core_template_startup_device.html#core-template-startup-device-asm"><span class="std std-ref">Startup File startup_&lt;device&gt;.S</span></a> is executed right after device reset, it will do
+necessary stack pointer initialization, exception and interrupt entry configuration, then
+call <a class="reference internal" href="api/core_system_device.html#_CPPv410SystemInitv" title="SystemInit"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">SystemInit()</span></code></a>, after system initialization, will return to assemble startup code
+and do c/c++ runtime initialization which includes data, bss section initialization, c++ runtime
+initialization, then it will call <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">main()</span></code> function in the application code.</p>
+<p>In the <a class="reference internal" href="core_template_intexc.html#core-template-intexc-device"><span class="std std-ref">Interrupt and Exception Handling File: intexc_&lt;device&gt;.S</span></a>, it will contain all exception and interrupt vectors
+and implements a default function for every interrupt.
+It may also contain stack and heap configurations for the user application.</p>
+<p>The <a class="reference internal" href="core_template_system_device.html#core-template-system-device"><span class="std std-ref">System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h</span></a> performs the setup for the processor
+clock. The variable <a class="reference internal" href="api/core_system_device.html#_CPPv415SystemCoreClock" title="SystemCoreClock"><code class="xref cpp cpp-var docutils literal notranslate"><span class="pre">SystemCoreClock</span></code></a> indicates the CPU clock speed.
+<a class="reference internal" href="api/core_systick.html#core-api-systick"><span class="std std-ref">Systick Timer(SysTimer)</span></a> describes the minimum feature set. In addition
+the file may contain functions for the memory BUS setup and clock re-configuration.</p>
+<p>The <a class="reference internal" href="core_template_device_header.html#core-template-device-header"><span class="std std-ref">Device Header File &lt;device.h&gt;</span></a> is the central include file that the
+application programmer is using in the C source code. It provides the
+following features:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="api/core_periph_access.html#core-api-periph-access"><span class="std std-ref">Peripheral Access</span></a> provides a standardized register layout for all
+peripherals. Optionally functions for device-specific peripherals may
+be available.</p></li>
+<li><p><a class="reference internal" href="api/core_interrupt_exception.html#core-api-interrupt-exception"><span class="std std-ref">Interrupts and Exceptions</span></a> can be accessed with standardized
+symbols and functions for the <strong>ECLIC</strong> are provided.</p></li>
+<li><p><a class="reference internal" href="api/core_intrinsics.html#core-api-core-intrinsic"><span class="std std-ref">CPU Intrinsic Functions</span></a> allow to access special instructions,
+for example for activating sleep mode or the NOP instruction.</p></li>
+<li><p><a class="reference internal" href="api/api_nmsis_core_dsp_intrinsic.html#nmsis-core-api-intrinsic-functions-for-simd-instructions"><span class="std std-ref">Intrinsic Functions for SIMD Instructions</span></a> provide access to the DSP-oriented instructions.</p></li>
+<li><p><a class="reference internal" href="api/core_systick.html#core-api-systick"><span class="std std-ref">Systick Timer(SysTimer)</span></a> function to configure and start a periodic timer interrupt.</p></li>
+<li><p><a class="reference internal" href="api/core_csr_access.html#core-api-csr-access"><span class="std std-ref">Core CSR Register Access</span></a> function to access the core csr registers.</p></li>
+<li><p><a class="reference internal" href="api/core_cache.html#core-api-cache"><span class="std std-ref">Cache Functions</span></a> to access the I-CACHE and D-CACHE unit</p></li>
+<li><p><a class="reference internal" href="api/core_fpu.html#core-api-fpu"><span class="std std-ref">FPU Functions</span></a> to access the Floating point unit.</p></li>
+<li><p><a class="reference internal" href="api/core_pmp.html#core-api-pmp"><span class="std std-ref">PMP Functions</span></a> to access the Physical Memory Protection unit</p></li>
+<li><p><a class="reference internal" href="api/core_version_control.html#core-api-version-control"><span class="std std-ref">Version Control</span></a> which defines NMSIS release specific macros.</p></li>
+<li><p><a class="reference internal" href="api/core_compiler_control.html#core-api-compiler-control"><span class="std std-ref">Compiler Control</span></a> is compiler agnostic <cite>#define</cite> symbols for generic
+C/C++ source code</p></li>
+</ul>
+<figure class="align-center" id="id3">
+<span id="figure-get-started-1"></span><a class="reference internal image-reference" href="../_images/NMSIS_CORE_Files_user.png"><img alt="NMSIS-Core User Files" src="../_images/NMSIS_CORE_Files_user.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-text">NMSIS-Core User Files</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>The NMSIS-Core system files are device specific.</p>
+<p>In addition, the <a class="reference internal" href="core_template_startup_device.html#core-template-startup-device-asm"><span class="std std-ref">Startup File startup_&lt;device&gt;.S</span></a> is also compiler vendor specific, currently only GCC version is provided.
+The versions provided by NMSIS are only generic templates. The adopted versions for a concrete device are typically provided by the device
+vendor through the according device familiy package.</p>
+<p>For example, the following files are provided by the <strong>GD32VF103</strong> device family pack:</p>
+<span id="table-get-started-1"></span><table class="colwidths-given docutils align-default" id="id4">
+<caption><span class="caption-text">Files provided by GD32VF103 device family pack</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 58%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>File</strong></p></td>
+<td><p><strong>Description</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>./Device/Source/GCC/startup_gd32vf103.S</p></td>
+<td><div class="line-block">
+<div class="line">Startup File startup_&lt;device&gt;.S</div>
+<div class="line">for the GD32VF103 device variants.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>./Device/Source/GCC/intexc_gd32vf103.S</p></td>
+<td><div class="line-block">
+<div class="line">Exception and Interrupt Handling File</div>
+<div class="line">intexc_&lt;device&gt;.S for the GD32VF103 device variants.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>./Device/Source/GCC/gcc_gd32vf103.ld</p></td>
+<td><div class="line-block">
+<div class="line">Linker script File gcc_&lt;device&gt;.ld</div>
+<div class="line">for the GD32VF103 device variants.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>./Device/Source/system_gd32vf103.c</p></td>
+<td><div class="line-block">
+<div class="line">System Configuration File system_&lt;device&gt;.c</div>
+<div class="line">for the GD32VF103 device families</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>./Device/Include/system_gd32vf103.h</p></td>
+<td><div class="line-block">
+<div class="line">System Configuration File system_&lt;device&gt;.h</div>
+<div class="line">for the GD32VF103 device families</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>./Device/Include/gd32vf103.h</p></td>
+<td><div class="line-block">
+<div class="line">Device Header File &lt;device.h&gt;</div>
+<div class="line">for the GD32VF103 device families.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The silicon vendors create these device-specific NMSIS-Core files based on <a class="reference internal" href="core_templates.html#core-device-templates"><span class="std std-ref">NMSIS-Core Device Templates</span></a> provided by Nuclei.</p>
+</div>
+<p>Thereafter, the functions described under <a class="reference internal" href="api/index.html#nmsis-core-api"><span class="std std-ref">NMSIS Core API</span></a> can be used in the application.</p>
+</section>
+<section id="basic-nmsis-example">
+<span id="id1"></span><h2>Basic NMSIS Example<a class="headerlink" href="#basic-nmsis-example" title="Permalink to this headline">¶</a></h2>
+<p>A typical example for using the NMSIS layer is provided below. The example is based on a GD32VF103 Device.</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">gd32vf103_example.c</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;gd32vf103.h&gt;                           // File name depends on device used</span><span class="cp"></span>
+
+<span class="kt">uint32_t</span> <span class="k">volatile</span> <span class="n">msTicks</span><span class="p">;</span>                       <span class="c1">// Counter for millisecond Interval</span>
+<span class="cp">#define SysTick_Handler     eclic_mtip_handler</span>
+<span class="cp">#define CONFIG_TICKS        (SOC_TIMER_FREQ / 1000)</span>
+
+<span class="kt">void</span> <span class="nf">SysTick_Handler</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>                    <span class="c1">// SysTick Interrupt Handler</span>
+  <span class="n">SysTick_Reload</span><span class="p">(</span><span class="n">CONFIG_TICKS</span><span class="p">);</span>
+  <span class="n">msTicks</span><span class="o">++</span><span class="p">;</span>                                     <span class="c1">// Increment Counter</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">WaitForTick</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>  <span class="p">{</span>
+  <span class="kt">uint32_t</span> <span class="n">curTicks</span><span class="p">;</span>
+
+  <span class="n">curTicks</span> <span class="o">=</span> <span class="n">msTicks</span><span class="p">;</span>                            <span class="c1">// Save Current SysTick Value</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">msTicks</span> <span class="o">==</span> <span class="n">curTicks</span><span class="p">)</span>  <span class="p">{</span>                 <span class="c1">// Wait for next SysTick Interrupt</span>
+    <span class="n">__WFI</span> <span class="p">();</span>                                    <span class="c1">// Power-Down until next Event/Interrupt</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">TIMER0_UP_IRQHandler</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>               <span class="c1">// Timer Interrupt Handler</span>
+  <span class="p">;</span>                                              <span class="c1">// Add user code here</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">timer0_init</span><span class="p">(</span><span class="kt">int</span> <span class="n">frequency</span><span class="p">)</span> <span class="p">{</span>                <span class="c1">// Set up Timer (device specific)</span>
+  <span class="n">ECLIC_SetPriorityIRQ</span> <span class="p">(</span><span class="n">TIMER0_UP_IRQn</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>      <span class="c1">// Set Timer priority</span>
+  <span class="n">ECLIC_EnableIRQ</span> <span class="p">(</span><span class="n">TIMER0_UP_IRQn</span><span class="p">);</span>              <span class="c1">// Enable Timer Interrupt</span>
+<span class="p">}</span>
+
+
+<span class="kt">void</span> <span class="nf">Device_Initialization</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>  <span class="p">{</span>             <span class="c1">// Configure &amp; Initialize MCU</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">SysTick_Config</span> <span class="p">(</span><span class="n">CONFIG_TICKS</span><span class="p">))</span> <span class="p">{</span>
+       <span class="p">;</span> <span class="c1">// Handle Error</span>
+  <span class="p">}</span>
+  <span class="n">timer0_init</span> <span class="p">();</span>                                <span class="c1">// setup device-specific timer</span>
+<span class="p">}</span>
+
+<span class="c1">// The processor clock is initialized by NMSIS startup + system file</span>
+<span class="kt">void</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>                               <span class="c1">// user application starts here</span>
+  <span class="n">Device_Initialization</span> <span class="p">();</span>                      <span class="c1">// Configure &amp; Initialize MCU</span>
+  <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="p">{</span>                                   <span class="c1">// Endless Loop (the Super-Loop)</span>
+    <span class="n">__disable_irq</span> <span class="p">();</span>                            <span class="c1">// Disable all interrupts</span>
+    <span class="n">Get_InputValues</span> <span class="p">();</span>                          <span class="c1">// Read Values</span>
+    <span class="n">__enable_irq</span> <span class="p">();</span>                             <span class="c1">// Enable all interrupts</span>
+    <span class="n">Calculation_Response</span> <span class="p">();</span>                     <span class="c1">// Calculate Results</span>
+    <span class="n">Output_Response</span> <span class="p">();</span>                          <span class="c1">// Output Results</span>
+    <span class="n">WaitForTick</span> <span class="p">();</span>                              <span class="c1">// Synchronize to SysTick Timer</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</section>
+<section id="using-interrupt-and-exception-nmi">
+<span id="using-interrupt-and-exception"></span><h2>Using Interrupt and Exception/NMI<a class="headerlink" href="#using-interrupt-and-exception-nmi" title="Permalink to this headline">¶</a></h2>
+<p>Nuclei processors provide <strong>NMI(Non-Maskable Interrupt)</strong>, <strong>Exception</strong>,
+<strong>Vector Interrupt</strong> and <strong>Non-Vector Interrupt</strong> features.</p>
+</section>
+<section id="using-nmsis-with-generic-nuclei-processors">
+<span id="using-nmsis-with-general-nuclei-processors"></span><h2>Using NMSIS with generic Nuclei Processors<a class="headerlink" href="#using-nmsis-with-generic-nuclei-processors" title="Permalink to this headline">¶</a></h2>
+<p>Nuclei provides NMSIS-Core files for the supported Nuclei Processors and for various compiler vendors.
+These files can be used when standard Nuclei processors should be used in a project.
+The table below lists the folder and device names of the Nuclei processors.</p>
+<span id="table-get-started-2"></span><table class="colwidths-given docutils align-default" id="id6">
+<caption><span class="caption-text">Folder and device names of the Nuclei processors</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 14%" />
+<col style="width: 10%" />
+<col style="width: 48%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Folder</p></td>
+<td><p>Processor</p></td>
+<td><p>RISC-V</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>./Device/Nuclei/NUCLEI_N</p></td>
+<td><ul class="simple">
+<li><p>N200</p></li>
+<li><p>N300</p></li>
+<li><p>N600</p></li>
+</ul>
+</td>
+<td><p>RV32</p></td>
+<td><div class="line-block">
+<div class="line">Contains Include and Source template files configured for the</div>
+<div class="line">Nuclei N200/N300/N600 processor. The device name is NUCLEI_N</div>
+<div class="line">and the name of the Device Header File &lt;device.h&gt; is &lt;NUCLEI_N.h&gt;.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>./Device/Nuclei/NUCLEI_NX</p></td>
+<td><p>NX600</p></td>
+<td><p>RV64</p></td>
+<td><div class="line-block">
+<div class="line">Contains Include and Source template files configured for the</div>
+<div class="line">Nuclei NX600 processor. The device name is NUCLEI_NX</div>
+<div class="line">and the name of the Device Header File &lt;device.h&gt; is &lt;NUCLEI_NX.h&gt;.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="create-generic-libraries-with-nmsis">
+<span id="id2"></span><h2>Create generic Libraries with NMSIS<a class="headerlink" href="#create-generic-libraries-with-nmsis" title="Permalink to this headline">¶</a></h2>
+<p>The NMSIS Processor and Core Peripheral files allow also to create generic libraries.
+The <strong>NMSIS-DSP</strong> Libraries are an example for such a generic library.</p>
+<p>To build a generic library set the define <strong>__NMSIS_GENERIC</strong> and include the
+<em>nmsis_core.h</em> NMSIS CPU &amp; Core Access header file for the processor.</p>
+<p>The define <strong>__NMSIS_GENERIC</strong> disables device-dependent features such as the <strong>SysTick timer</strong>
+and the <strong>Interrupt System</strong>.</p>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<p>The following code section shows the usage of the <em>nmsis_core.h</em> header files to build a generic
+library for N200, N300, N600, NX600.</p>
+<p>One of these defines needs to be provided on the compiler command line.</p>
+<p>By using this header file, the source code can access the functions for <a class="reference internal" href="api/core_csr_access.html#core-api-csr-access"><span class="std std-ref">Core CSR Register Access</span></a>,
+<a class="reference internal" href="api/core_intrinsics.html#core-api-core-intrinsic"><span class="std std-ref">CPU Intrinsic Functions</span></a> and <a class="reference internal" href="api/api_nmsis_core_dsp_intrinsic.html#nmsis-core-api-intrinsic-functions-for-simd-instructions"><span class="std std-ref">Intrinsic Functions for SIMD Instructions</span></a>.</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">core_generic.h</span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
+<div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#define __NMSIS_GENERIC   </span><span class="c1">// Disable Eclic and Systick functions</span>
+<span class="cp">#include</span> <span class="cpf">&lt;nmsis_core.h&gt;</span><span class="cp"></span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="core_templates.html" class="btn btn-neutral float-right" title="NMSIS-Core Device Templates" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="overview.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-Present, Nuclei
+      <span class="lastupdated">
+        Last updated on Aug 03, 2021.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

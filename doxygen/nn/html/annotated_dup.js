@@ -1,0 +1,17 @@
+var annotated_dup =
+[
+    [ "nmsis_nn_activation", "structnmsis__nn__activation.html", "structnmsis__nn__activation" ],
+    [ "nmsis_nn_context", "structnmsis__nn__context.html", "structnmsis__nn__context" ],
+    [ "nmsis_nn_conv_params", "structnmsis__nn__conv__params.html", "structnmsis__nn__conv__params" ],
+    [ "nmsis_nn_dims", "structnmsis__nn__dims.html", "structnmsis__nn__dims" ],
+    [ "nmsis_nn_dw_conv_params", "structnmsis__nn__dw__conv__params.html", "structnmsis__nn__dw__conv__params" ],
+    [ "nmsis_nn_fc_params", "structnmsis__nn__fc__params.html", "structnmsis__nn__fc__params" ],
+    [ "nmsis_nn_per_channel_quant_params", "structnmsis__nn__per__channel__quant__params.html", "structnmsis__nn__per__channel__quant__params" ],
+    [ "nmsis_nn_per_tensor_quant_params", "structnmsis__nn__per__tensor__quant__params.html", "structnmsis__nn__per__tensor__quant__params" ],
+    [ "nmsis_nn_pool_params", "structnmsis__nn__pool__params.html", "structnmsis__nn__pool__params" ],
+    [ "nmsis_nn_svdf_params", "structnmsis__nn__svdf__params.html", "structnmsis__nn__svdf__params" ],
+    [ "nmsis_nn_tile", "structnmsis__nn__tile.html", "structnmsis__nn__tile" ],
+    [ "riscv_nn_double", "structriscv__nn__double.html", "structriscv__nn__double" ],
+    [ "riscv_nn_long_long", "unionriscv__nn__long__long.html", "unionriscv__nn__long__long" ],
+    [ "riscv_nnword", "unionriscv__nnword.html", "unionriscv__nnword" ]
+];

@@ -1,0 +1,353 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Vector Fill &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Convert 32-bit floating point value" href="api_float_to_x.html" />
+    <link rel="prev" title="Vector Copy" href="api_copy.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.2-RC1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">NMSIS DSP</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupfastmath.html">Fast Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupfilters.html">Filtering Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupmatrix.html">Matrix Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupcontroller.html">Controller Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupstats.html">Statistics Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api_groupsupport.html">Support Functions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api_copy.html">Vector Copy</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Vector Fill</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_float_to_x.html">Convert 32-bit floating point value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_q15_to_x.html">Convert 16-bit Integer value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_q31_to_x.html">Convert 32-bit Integer value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_q7_to_x.html">Convert 8-bit Integer value</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupinterpolation.html">Interpolation Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
+        
+          <li><a href="../index.html">NMSIS DSP API</a> &raquo;</li>
+        
+          <li><a href="../api_groupsupport.html">Support Functions</a> &raquo;</li>
+        
+      <li>Vector Fill</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/dsp/api/groupsupport/api_fill.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="vector-fill">
+<span id="nmsis-dsp-api-vector-fill"></span><h1>Vector Fill<a class="headerlink" href="#vector-fill" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="_CPPv414riscv_fill_f329float32_tP9float32_t8uint32_t">
+<span id="_CPPv314riscv_fill_f329float32_tP9float32_t8uint32_t"></span><span id="_CPPv214riscv_fill_f329float32_tP9float32_t8uint32_t"></span><span id="riscv_fill_f32__float32_t.float32_tP.uint32_t"></span><span class="target" id="group__Fill_1ga30d123e67c9f6d27f74dae20a4630241"></span>void <code class="sig-name descname">riscv_fill_f32</code><span class="sig-paren">(</span>float32_t <em>value</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414riscv_fill_f329float32_tP9float32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv414riscv_fill_q155q15_tP5q15_t8uint32_t">
+<span id="_CPPv314riscv_fill_q155q15_tP5q15_t8uint32_t"></span><span id="_CPPv214riscv_fill_q155q15_tP5q15_t8uint32_t"></span><span id="riscv_fill_q15__q15_t.q15_tP.uint32_t"></span><span class="target" id="group__Fill_1gad52d58e9ceff23247782b07e03bee9cb"></span>void <code class="sig-name descname">riscv_fill_q15</code><span class="sig-paren">(</span>q15_t <em>value</em>, q15_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414riscv_fill_q155q15_tP5q15_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv414riscv_fill_q315q31_tP5q31_t8uint32_t">
+<span id="_CPPv314riscv_fill_q315q31_tP5q31_t8uint32_t"></span><span id="_CPPv214riscv_fill_q315q31_tP5q31_t8uint32_t"></span><span id="riscv_fill_q31__q31_t.q31_tP.uint32_t"></span><span class="target" id="group__Fill_1gaae3243b4d552b032970c72360df35eb2"></span>void <code class="sig-name descname">riscv_fill_q31</code><span class="sig-paren">(</span>q31_t <em>value</em>, q31_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414riscv_fill_q315q31_tP5q31_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv413riscv_fill_q74q7_tP4q7_t8uint32_t">
+<span id="_CPPv313riscv_fill_q74q7_tP4q7_t8uint32_t"></span><span id="_CPPv213riscv_fill_q74q7_tP4q7_t8uint32_t"></span><span id="riscv_fill_q7__q7_t.q7_tP.uint32_t"></span><span class="target" id="group__Fill_1gac6158a496abf28d50978c2f6e8121e76"></span>void <code class="sig-name descname">riscv_fill_q7</code><span class="sig-paren">(</span>q7_t <em>value</em>, q7_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413riscv_fill_q74q7_tP4q7_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="group">
+<dt>
+<span class="target" id="group__Fill"></span><em>group</em> <code class="sig-name descname">Fill</code></dt>
+<dd><p>Fills the destination vector with a constant value.</p>
+<p></p>
+<p>There are separate functions for floating point, Q31, Q15, and Q7 data types. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="function">
+<dt>
+<span class="target" id="group__Fill_1ga30d123e67c9f6d27f74dae20a4630241"></span>void <code class="sig-name descname">riscv_fill_f32</code><span class="sig-paren">(</span>float32_t <em>value</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Fills a constant value into a floating-point vector. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">value</span></code>: input value to be filled </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to output vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples in each vector </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__Fill_1gad52d58e9ceff23247782b07e03bee9cb"></span>void <code class="sig-name descname">riscv_fill_q15</code><span class="sig-paren">(</span>q15_t <em>value</em>, q15_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Fills a constant value into a Q15 vector. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">value</span></code>: input value to be filled </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to output vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples in each vector </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__Fill_1gaae3243b4d552b032970c72360df35eb2"></span>void <code class="sig-name descname">riscv_fill_q31</code><span class="sig-paren">(</span>q31_t <em>value</em>, q31_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Fills a constant value into a Q31 vector. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">value</span></code>: input value to be filled </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to output vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples in each vector </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__Fill_1gac6158a496abf28d50978c2f6e8121e76"></span>void <code class="sig-name descname">riscv_fill_q7</code><span class="sig-paren">(</span>q7_t <em>value</em>, q7_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Fills a constant value into a Q7 vector. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">value</span></code>: input value to be filled </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to output vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples in each vector </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api_float_to_x.html" class="btn btn-neutral float-right" title="Convert 32-bit floating point value" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api_copy.html" class="btn btn-neutral float-left" title="Vector Copy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-Present, Nuclei
+      <span class="lastupdated">
+        Last updated on Aug 03, 2021.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,739 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>64-bit Addition &amp; Subtraction Instructions &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="SIMD 8-bit Addition &amp; Subtraction Instructions" href="api_nmsis_core_dsp_intrinsic_simd_8b_addsub.html" />
+    <link rel="prev" title="64-bit Profile Instructions" href="../api_nmsis_core_dsp_intrinsic_64b_profile.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.2-RC1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">NMSIS Core</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../get_started.html">Using NMSIS in Embedded Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../core_templates.html">NMSIS-Core Device Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../register_mapping.html">Register Mapping</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">NMSIS Core API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../core_version_control.html">Version Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_compiler_control.html">Compiler Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_csr_access.html">Core CSR Register Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_csr_encoding.html">Core CSR Encoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_register_type.html">Register Define and Type Definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_intrinsics.html">CPU Intrinsic Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_simd_data_process.html">SIMD Data Processing Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_non_simd.html">Non-SIMD Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_part_simd_data_process.html">Partial-SIMD Data Processing Instructions</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_64b_profile.html">64-bit Profile Instructions</a><ul class="current">
+<li class="toctree-l5 current"><a class="current reference internal" href="#">64-bit Addition &amp; Subtraction Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_simd_8b_addsub.html">SIMD 8-bit Addition &amp; Subtraction Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_signed_16b_mult_64b_addsub.html">Signed 16-bit Multiply 64-bit Add/Subtract Instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_nuclei_custom.html">Nuclei Customized DSP Instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_periph_access.html">Peripheral Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_systick.html">Systick Timer(SysTimer)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_interrupt_exception.html">Interrupts and Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_fpu.html">FPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_pmp.html">PMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_cache.html">Cache Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_system_device.html">System Device Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_arm_compatiable.html">ARM Compatiable Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">NMSIS Core</a> &raquo;</li>
+        
+          <li><a href="../../index.html">NMSIS Core API</a> &raquo;</li>
+        
+          <li><a href="../../api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a> &raquo;</li>
+        
+          <li><a href="../api_nmsis_core_dsp_intrinsic_64b_profile.html">64-bit Profile Instructions</a> &raquo;</li>
+        
+      <li>64-bit Addition &amp; Subtraction Instructions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../_sources/core/api/nmsis_core_dsp_intrinsic/nmsis_core_dsp_intrinsic_64b_profile/api_nmsis_core_dsp_intrinsic_64b_addsub.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="bit-addition-subtraction-instructions">
+<span id="nmsis-core-api-64-bit-addition-subtraction-instructions"></span><h1>64-bit Addition &amp; Subtraction Instructions<a class="headerlink" href="#bit-addition-subtraction-instructions" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__64B__ADDSUB_1ga886e1cf9d61d72c7b6028f2e58ad9f5d"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long long __RV_ADD64(unsigned long long a, unsigned long long b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__64B__ADDSUB_1gace8675089dafa59f5ba9114232ffe31d"></span><code class="sig-name descname">__STATIC_FORCEINLINE long long __RV_KADD64(long long a, long long b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__64B__ADDSUB_1gad703720a47f05b3e322caffbcc45298a"></span><code class="sig-name descname">__STATIC_FORCEINLINE long long __RV_KSUB64(long long a, long long b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__64B__ADDSUB_1ga152f18d1ef922b3104cc763d00611511"></span><code class="sig-name descname">__STATIC_FORCEINLINE long long __RV_RADD64(long long a, long long b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__64B__ADDSUB_1gafc5f4bf4b712ae2559a30356fc9773a8"></span><code class="sig-name descname">__STATIC_FORCEINLINE long long __RV_RSUB64(long long a, long long b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__64B__ADDSUB_1ga02ed3c841b85e58d5a40d78fa2f5519f"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long long __RV_SUB64(unsigned long long a, unsigned long long b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__64B__ADDSUB_1ga8f5a5ff9c41c49dfe0d7981c2e5ab139"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long long __RV_UKADD64(unsigned long long a, unsigned long long b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__64B__ADDSUB_1ga8c38b38409eba3d05396b9d09c1b8382"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long long __RV_UKSUB64(unsigned long long a, unsigned long long b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__64B__ADDSUB_1ga8458d1a5a3564b122ebe6b84115877e1"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long long __RV_URADD64(unsigned long long a, unsigned long long b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__64B__ADDSUB_1gabe20856e2f82d33c17ce4963ee2db286"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long long __RV_URSUB64(unsigned long long a, unsigned long long b)</code></dt>
+<dd></dd></dl>
+
+<dl class="group">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__64B__ADDSUB"></span><em>group</em> <code class="sig-name descname">NMSIS_Core_DSP_Intrinsic_64B_ADDSUB</code></dt>
+<dd><p>64-bit Addition &amp; Subtraction Instructions </p>
+<p>there are 10 64-bit Addition &amp; Subtraction Instructions. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__64B__ADDSUB_1ga886e1cf9d61d72c7b6028f2e58ad9f5d"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long long __RV_ADD64(unsigned long long a, unsigned long long b)</code></dt>
+<dd><p>ADD64 (64-bit Addition) </p>
+<p><strong>Type</strong>: 64-bit Profile</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ADD64</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Add two 64-bit signed or unsigned integers.</p>
+</p>
+<p><strong>RV32 Description</strong>:<p>This instruction adds the 64-bit integer of an even/odd pair of registers specified by Rs1(4,1) with the 64-bit integer of an even/odd pair of registers specified by Rs2(4,1), and then writes the 64-bit result to an even/odd pair of registers specified by Rd(4,1). Rx(4,1), i.e., value d, determines the even/odd pair group of two registers. Specifically, the register pair includes register 2d and 2d+1. The odd </p>
+<code class="docutils literal notranslate"><span class="pre">2d+1</span></code> register of the pair contains the high 32-bit of the result and the even <code class="docutils literal notranslate"><span class="pre">2d</span></code> register of the pair contains the low 32-bit of the result.</p>
+<p><strong>RV64 Description</strong>:<p>This instruction has the same behavior as the ADD instruction in RV64I.</p>
+</p>
+<p><strong>Note</strong>:<p>This instruction can be used for either signed or unsigned addition.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RV32</span><span class="p">:</span>
+ <span class="n">t_L</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rd</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); t_H = CONCAT(Rd(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+ <span class="n">a_L</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rs1</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); a_H = CONCAT(Rs1(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+ <span class="n">b_L</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rs2</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); b_H = CONCAT(Rs2(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+ <span class="n">R</span><span class="p">[</span><span class="n">t_H</span><span class="p">]</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">t_L</span><span class="p">]</span> <span class="o">=</span> <span class="n">R</span><span class="p">[</span><span class="n">a_H</span><span class="p">]</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">a_L</span><span class="p">]</span> <span class="o">+</span> <span class="n">R</span><span class="p">[</span><span class="n">b_H</span><span class="p">]</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">b_L</span><span class="p">];</span>
+<span class="n">RV64</span><span class="p">:</span>
+ <span class="n">Rd</span> <span class="o">=</span> <span class="n">Rs1</span> <span class="o">+</span> <span class="n">Rs2</span><span class="p">;</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__64B__ADDSUB_1gace8675089dafa59f5ba9114232ffe31d"></span><code class="sig-name descname">__STATIC_FORCEINLINE long long __RV_KADD64(long long a, long long b)</code></dt>
+<dd><p>KADD64 (64-bit Signed Saturating Addition) </p>
+<p><strong>Type</strong>: DSP (64-bit Profile)</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KADD64</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Add two 64-bit signed integers. The result is saturated to the Q63 range.</p>
+</p>
+<p><strong>RV32 Description</strong>:<p>This instruction adds the 64-bit signed integer of an even/odd pair of registers specified by Rs1(4,1) with the 64-bit signed integer of an even/odd pair of registers specified by Rs2(4,1). If the 64-bit result is beyond the Q63 number range (-2^63 &lt;= Q63 &lt;= 2^63-1), it is saturated to the range and the OV bit is set to 1. The saturated result is written to an even/odd pair of registers specified by Rd(4,1). Rx(4,1), i.e., value d, determines the even/odd pair group of two registers. Specifically, the register pair includes register 2d and 2d+1. The odd </p>
+<code class="docutils literal notranslate"><span class="pre">2d+1</span></code> register of the pair contains the high 32-bit of the result and the even <code class="docutils literal notranslate"><span class="pre">2d</span></code> register of the pair contains the low 32-bit of the result.</p>
+<p><strong>RV64 Description</strong>:<p>This instruction adds the 64-bit signed integer in Rs1 with the 64-bit signed integer in Rs2. If the result is beyond the Q63 number range (-2^63 &lt;= Q63 &lt;= 2^63-1), it is saturated to the range and the OV bit is set to 1. The saturated result is written to Rd.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RV32</span><span class="p">:</span>
+ <span class="n">t_L</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rd</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); t_H = CONCAT(Rd(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+ <span class="n">a_L</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rs1</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); a_H = CONCAT(Rs1(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+ <span class="n">b_L</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rs2</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); b_H = CONCAT(Rs2(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+ <span class="n">result</span> <span class="o">=</span> <span class="n">R</span><span class="p">[</span><span class="n">a_H</span><span class="p">]</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">a_L</span><span class="p">]</span> <span class="o">+</span> <span class="n">R</span><span class="p">[</span><span class="n">b_H</span><span class="p">]</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">b_L</span><span class="p">];</span>
+ <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">63</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+   <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">63</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+ <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">2</span><span class="o">^</span><span class="mi">63</span><span class="p">)</span> <span class="p">{</span>
+   <span class="n">result</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="o">^</span><span class="mi">63</span><span class="p">;</span> <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+ <span class="p">}</span>
+ <span class="n">R</span><span class="p">[</span><span class="n">t_H</span><span class="p">]</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">t_L</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">;</span>
+<span class="n">RV64</span><span class="p">:</span>
+ <span class="n">result</span> <span class="o">=</span> <span class="n">Rs1</span> <span class="o">+</span> <span class="n">Rs2</span><span class="p">;</span>
+ <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">63</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+   <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">63</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+ <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">2</span><span class="o">^</span><span class="mi">63</span><span class="p">)</span> <span class="p">{</span>
+   <span class="n">result</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="o">^</span><span class="mi">63</span><span class="p">;</span> <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+ <span class="p">}</span>
+ <span class="n">Rd</span> <span class="o">=</span> <span class="n">result</span><span class="p">;</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in long long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: long long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: long long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__64B__ADDSUB_1gad703720a47f05b3e322caffbcc45298a"></span><code class="sig-name descname">__STATIC_FORCEINLINE long long __RV_KSUB64(long long a, long long b)</code></dt>
+<dd><p>KSUB64 (64-bit Signed Saturating Subtraction) </p>
+<p><strong>Type</strong>: DSP (64-bit Profile)</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KSUB64</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Perform a 64-bit signed integer subtraction. The result is saturated to the Q63 range.</p>
+</p>
+<p><strong>RV32 Description</strong>:<p>This instruction subtracts the 64-bit signed integer of an even/odd pair of registers specified by Rs2(4,1) from the 64-bit signed integer of an even/odd pair of registers specified by Rs1(4,1). If the 64-bit result is beyond the Q63 number range (-2^63 &lt;= Q63 &lt;= 2^63-1), it is saturated to the range and the OV bit is set to 1. The saturated result is then written to an even/odd pair of registers specified by Rd(4,1). Rx(4,1), i.e., d, determines the even/odd pair group of two registers. Specifically, the register pair includes register 2d and 2d+1. The odd </p>
+<code class="docutils literal notranslate"><span class="pre">2d+1</span></code> register of the pair contains the high 32-bit of the operand and the even <code class="docutils literal notranslate"><span class="pre">2d</span></code> register of the pair contains the low 32-bit of the operand.</p>
+<p><strong>RV64 Description</strong>:<p>This instruction subtracts the 64-bit signed integer of Rs2 from the 64-bit signed integer of Rs1. If the 64-bit result is beyond the Q63 number range (-2^63 &lt;= Q63 &lt;= 2^63-1), it is saturated to the range and the OV bit is set to 1. The saturated result is then written to Rd.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RV32</span><span class="p">:</span>
+<span class="n">t_L</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rd</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); t_H = CONCAT(Rd(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+<span class="n">a_L</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rs1</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); a_H = CONCAT(Rs1(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+<span class="n">b_L</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rs2</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); b_H = CONCAT(Rs2(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">R</span><span class="p">[</span><span class="n">a_H</span><span class="p">]</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">a_L</span><span class="p">]</span> <span class="o">-</span> <span class="n">R</span><span class="p">[</span><span class="n">b_H</span><span class="p">]</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">b_L</span><span class="p">];</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">63</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">63</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">2</span><span class="o">^</span><span class="mi">63</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="o">^</span><span class="mi">63</span><span class="p">;</span> <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">R</span><span class="p">[</span><span class="n">t_H</span><span class="p">]</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">t_L</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">;</span>
+<span class="n">RV64</span><span class="p">:</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">Rs1</span> <span class="o">-</span> <span class="n">Rs2</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">63</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">63</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">2</span><span class="o">^</span><span class="mi">63</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="o">^</span><span class="mi">63</span><span class="p">;</span> <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="n">result</span><span class="p">;</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in long long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: long long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: long long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__64B__ADDSUB_1ga152f18d1ef922b3104cc763d00611511"></span><code class="sig-name descname">__STATIC_FORCEINLINE long long __RV_RADD64(long long a, long long b)</code></dt>
+<dd><p>RADD64 (64-bit Signed Halving Addition) </p>
+<p><strong>Type</strong>: DSP (64-bit Profile)</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RADD64</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Add two 64-bit signed integers. The result is halved to avoid overflow or saturation.</p>
+</p>
+<p><strong>RV32 Description</strong>:<p>This instruction adds the 64-bit signed integer of an even/odd pair of registers specified by Rs1(4,1) with the 64-bit signed integer of an even/odd pair of registers specified by Rs2(4,1). The 64-bit addition result is first arithmetically right-shifted by 1 bit and then written to an even/odd pair of registers specified by Rd(4,1). Rx(4,1), i.e., value d, determines the even/odd pair group of two registers. Specifically, the register pair includes register 2d and 2d+1. The odd </p>
+<code class="docutils literal notranslate"><span class="pre">2d+1</span></code> register of the pair contains the high 32-bit of the result and the even <code class="docutils literal notranslate"><span class="pre">2d</span></code> register of the pair contains the low 32-bit of the result.</p>
+<p><strong>RV64 Description</strong>:<p>This instruction adds the 64-bit signed integer in Rs1 with the 64-bit signed integer in Rs2. The 64-bit addition result is first arithmetically right-shifted by 1 bit and then written to Rd.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RV32</span><span class="p">:</span>
+<span class="n">t_L</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rd</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); t_H = CONCAT(Rd(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+<span class="n">a_L</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rs1</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); a_H = CONCAT(Rs1(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+<span class="n">b_L</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rs2</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); b_H = CONCAT(Rs2(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+<span class="n">R</span><span class="p">[</span><span class="n">t_H</span><span class="p">]</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">t_L</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="n">a_H</span><span class="p">]</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">a_L</span><span class="p">]</span> <span class="o">+</span> <span class="n">R</span><span class="p">[</span><span class="n">b_H</span><span class="p">]</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">b_L</span><span class="p">])</span> <span class="n">s</span><span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">RV64</span><span class="p">:</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="p">(</span><span class="n">Rs1</span> <span class="o">+</span> <span class="n">Rs2</span><span class="p">)</span> <span class="n">s</span><span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in long long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: long long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: long long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__64B__ADDSUB_1gafc5f4bf4b712ae2559a30356fc9773a8"></span><code class="sig-name descname">__STATIC_FORCEINLINE long long __RV_RSUB64(long long a, long long b)</code></dt>
+<dd><p>RSUB64 (64-bit Signed Halving Subtraction) </p>
+<p><strong>Type</strong>: DSP (64-bit Profile)</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RSUB64</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Perform a 64-bit signed integer subtraction. The result is halved to avoid overflow or saturation.</p>
+</p>
+<p><strong>RV32 Description</strong>:<p>This instruction subtracts the 64-bit signed integer of an even/odd pair of registers specified by Rb(4,1) from the 64-bit signed integer of an even/odd pair of registers specified by Ra(4,1). The subtraction result is first arithmetically right-shifted by 1 bit and then written to an even/odd pair of registers specified by Rt(4,1). Rx(4,1), i.e., value d, determines the even/odd pair group of two registers. Specifically, the register pair includes register 2d and 2d+1. The odd </p>
+<code class="docutils literal notranslate"><span class="pre">2d+1</span></code> register of the pair contains the high 32-bit of the result and the even <code class="docutils literal notranslate"><span class="pre">2d</span></code> register of the pair contains the low 32-bit of the result.</p>
+<p><strong>RV64 Description</strong>:<p>This instruction subtracts the 64-bit signed integer in Rs2 from the 64-bit signed integer in Rs1. The 64-bit subtraction result is first arithmetically right-shifted by 1 bit and then written to Rd.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RV32</span><span class="p">:</span>
+<span class="n">t_L</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rd</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); t_H = CONCAT(Rd(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+<span class="n">a_L</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rs1</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); a_H = CONCAT(Rs1(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+<span class="n">b_L</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rs2</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); b_H = CONCAT(Rs2(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+<span class="n">R</span><span class="p">[</span><span class="n">t_H</span><span class="p">]</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">t_L</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="n">a_H</span><span class="p">]</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">a_L</span><span class="p">]</span> <span class="o">-</span> <span class="n">R</span><span class="p">[</span><span class="n">b_H</span><span class="p">]</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">b_L</span><span class="p">])</span> <span class="n">s</span><span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">RV64</span><span class="p">:</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="p">(</span><span class="n">Rs1</span> <span class="o">-</span> <span class="n">Rs2</span><span class="p">)</span> <span class="n">s</span><span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in long long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: long long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: long long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__64B__ADDSUB_1ga02ed3c841b85e58d5a40d78fa2f5519f"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long long __RV_SUB64(unsigned long long a, unsigned long long b)</code></dt>
+<dd><p>SUB64 (64-bit Subtraction) </p>
+<p><strong>Type</strong>: DSP (64-bit Profile)</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SUB64</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Perform a 64-bit signed or unsigned integer subtraction.</p>
+</p>
+<p><strong>RV32 Description</strong>:<p>This instruction subtracts the 64-bit integer of an even/odd pair of registers specified by Rs2(4,1) from the 64-bit integer of an even/odd pair of registers specified by Rs1(4,1), and then writes the 64-bit result to an even/odd pair of registers specified by Rd(4,1). Rx(4,1), i.e., d, determines the even/odd pair group of two registers. Specifically, the register pair includes register 2d and 2d+1. The odd </p>
+<code class="docutils literal notranslate"><span class="pre">2d+1</span></code> register of the pair contains the high 32-bit of the operand and the even <code class="docutils literal notranslate"><span class="pre">2d</span></code> register of the pair contains the low 32-bit of the operand.</p>
+<p><strong>RV64 Description</strong>:<p>This instruction subtracts the 64-bit integer of Rs2 from the 64-bit integer of Rs1, and then writes the 64-bit result to Rd.</p>
+</p>
+<p><strong>Note</strong>:<p>This instruction can be used for either signed or unsigned subtraction.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">RV32</span><span class="p">:</span>
+<span class="n">t_L</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rd</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); t_H = CONCAT(Rd(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+<span class="n">a_L</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rs1</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); a_H = CONCAT(Rs1(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+<span class="n">b_L</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rs2</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); b_H = CONCAT(Rs2(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+<span class="n">R</span><span class="p">[</span><span class="n">t_H</span><span class="p">]</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">t_L</span><span class="p">]</span> <span class="o">=</span> <span class="n">R</span><span class="p">[</span><span class="n">a_H</span><span class="p">]</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">a_L</span><span class="p">]</span> <span class="o">-</span> <span class="n">R</span><span class="p">[</span><span class="n">b_H</span><span class="p">]</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">b_L</span><span class="p">];</span>
+<span class="o">*</span> <span class="n">RV64</span><span class="p">:</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="n">Rs1</span> <span class="o">-</span> <span class="n">Rs2</span><span class="p">;</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__64B__ADDSUB_1ga8f5a5ff9c41c49dfe0d7981c2e5ab139"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long long __RV_UKADD64(unsigned long long a, unsigned long long b)</code></dt>
+<dd><p>UKADD64 (64-bit Unsigned Saturating Addition) </p>
+<p><strong>Type</strong>: DSP (64-bit Profile)</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UKADD64</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Add two 64-bit unsigned integers. The result is saturated to the U64 range.</p>
+</p>
+<p><strong>RV32 Description</strong>:<p>This instruction adds the 64-bit unsigned integer of an even/odd pair of registers specified by Rs1(4,1) with the 64-bit unsigned integer of an even/odd pair of registers specified by Rs2(4,1). If the 64-bit result is beyond the U64 number range (0 &lt;= U64 &lt;= 2^64-1), it is saturated to the range and the OV bit is set to 1. The saturated result is written to an even/odd pair of registers specified by Rd(4,1). Rx(4,1), i.e., d, determines the even/odd pair group of two registers. Specifically, the register pair includes register 2d and 2d+1. The odd </p>
+<code class="docutils literal notranslate"><span class="pre">2d+1</span></code> register of the pair contains the high 32-bit of the result and the even <code class="docutils literal notranslate"><span class="pre">2d</span></code> register of the pair contains the low 32-bit of the result.</p>
+<p><strong>RV64 Description</strong>:<p>This instruction adds the 64-bit unsigned integer in Rs1 with the 64-bit unsigned integer in Rs2. If the 64-bit result is beyond the U64 number range (0 &lt;= U64 &lt;= 2^64-1), it is saturated to the range and the OV bit is set to 1. The saturated result is written to Rd.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">RV32</span><span class="p">:</span>
+<span class="n">t_L</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rt</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); t_H = CONCAT(Rt(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+<span class="n">a_L</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Ra</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); a_H = CONCAT(Ra(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+<span class="n">b_L</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rb</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); b_H = CONCAT(Rb(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">R</span><span class="p">[</span><span class="n">a_H</span><span class="p">]</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">a_L</span><span class="p">]</span> <span class="o">+</span> <span class="n">R</span><span class="p">[</span><span class="n">b_H</span><span class="p">]</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">b_L</span><span class="p">];</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">64</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">64</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">R</span><span class="p">[</span><span class="n">t_H</span><span class="p">]</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">t_L</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">;</span>
+<span class="o">*</span> <span class="n">RV64</span><span class="p">:</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">Rs1</span> <span class="o">+</span> <span class="n">Rs2</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">64</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">64</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="n">result</span><span class="p">;</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__64B__ADDSUB_1ga8c38b38409eba3d05396b9d09c1b8382"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long long __RV_UKSUB64(unsigned long long a, unsigned long long b)</code></dt>
+<dd><p>UKSUB64 (64-bit Unsigned Saturating Subtraction) </p>
+<p><strong>Type</strong>: DSP (64-bit Profile)</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UKSUB64</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Perform a 64-bit signed integer subtraction. The result is saturated to the U64 range.</p>
+</p>
+<p><strong>RV32 Description</strong>:<p>This instruction subtracts the 64-bit unsigned integer of an even/odd pair of registers specified by Rs2(4,1) from the 64-bit unsigned integer of an even/odd pair of registers specified by Rs1(4,1). If the 64-bit result is beyond the U64 number range (0 &lt;= U64 &lt;= 2^64-1), it is saturated to the range and the OV bit is set to 1. The saturated result is then written to an even/odd pair of registers specified by Rd(4,1). Rx(4,1), i.e., d, determines the even/odd pair group of two registers. Specifically, the register pair includes register 2d and 2d+1. The odd </p>
+<code class="docutils literal notranslate"><span class="pre">2d+1</span></code> register of the pair contains the high 32-bit of the operand and the even <code class="docutils literal notranslate"><span class="pre">2d</span></code> register of the pair contains the low 32-bit of the operand.</p>
+<p><strong>RV64 Description</strong>:<p>This instruction subtracts the 64-bit unsigned integer of Rs2 from the 64-bit unsigned integer of an even/odd pair of Rs1. If the 64-bit result is beyond the U64 number range (0 &lt;= U64 &lt;= 2^64-1), it is saturated to the range and the OV bit is set to 1. The saturated result is then written to Rd.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">RV32</span><span class="p">:</span>
+<span class="n">t_L</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rd</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); t_H = CONCAT(Rd(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+<span class="n">a_L</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rs1</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); a_H = CONCAT(Rs1(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+<span class="n">b_L</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rs2</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); b_H = CONCAT(Rs2(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">R</span><span class="p">[</span><span class="n">a_H</span><span class="p">]</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">a_L</span><span class="p">]</span> <span class="o">-</span> <span class="n">R</span><span class="p">[</span><span class="n">b_H</span><span class="p">]</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">b_L</span><span class="p">];</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">R</span><span class="p">[</span><span class="n">t_H</span><span class="p">]</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">t_L</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">;</span>
+<span class="o">*</span> <span class="n">RV64</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">Rs1</span> <span class="o">-</span> <span class="n">Rs2</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="n">result</span><span class="p">;</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__64B__ADDSUB_1ga8458d1a5a3564b122ebe6b84115877e1"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long long __RV_URADD64(unsigned long long a, unsigned long long b)</code></dt>
+<dd><p>URADD64 (64-bit Unsigned Halving Addition) </p>
+<p><strong>Type</strong>: DSP (64-bit Profile)</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">URADD64</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Add two 64-bit unsigned integers. The result is halved to avoid overflow or saturation.</p>
+</p>
+<p><strong>RV32 Description</strong>:<p>This instruction adds the 64-bit unsigned integer of an even/odd pair of registers specified by Rs1(4,1) with the 64-bit unsigned integer of an even/odd pair of registers specified by Rs2(4,1). The 64-bit addition result is first logically right-shifted by 1 bit and then written to an even/odd pair of registers specified by Rd(4,1). Rx(4,1), i.e., d, determines the even/odd pair group of two registers. Specifically, the register pair includes register 2d and 2d+1. The odd </p>
+<code class="docutils literal notranslate"><span class="pre">2d+1</span></code> register of the pair contains the high 32-bit of the result and the even <code class="docutils literal notranslate"><span class="pre">2d</span></code> register of the pair contains the low 32-bit of the result.</p>
+<p><strong>RV64 Description</strong>:<p>This instruction adds the 64-bit unsigned integer in Rs1 with the 64-bit unsigned integer Rs2. The 64-bit addition result is first logically right-shifted by 1 bit and then written to Rd.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">RV32</span><span class="p">:</span>
+<span class="n">t_L</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rt</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); t_H = CONCAT(Rt(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+<span class="n">a_L</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Ra</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); a_H = CONCAT(Ra(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+<span class="n">b_L</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rb</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); b_H = CONCAT(Rb(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+<span class="n">R</span><span class="p">[</span><span class="n">t_H</span><span class="p">]</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">t_L</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="n">a_H</span><span class="p">]</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">a_L</span><span class="p">]</span> <span class="o">+</span> <span class="n">R</span><span class="p">[</span><span class="n">b_H</span><span class="p">]</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">b_L</span><span class="p">])</span> <span class="n">u</span><span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span>
+<span class="o">*</span> <span class="n">RV64</span><span class="p">:</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="p">(</span><span class="n">Rs1</span> <span class="o">+</span> <span class="n">Rs2</span><span class="p">)</span> <span class="n">u</span><span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__64B__ADDSUB_1gabe20856e2f82d33c17ce4963ee2db286"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long long __RV_URSUB64(unsigned long long a, unsigned long long b)</code></dt>
+<dd><p>URSUB64 (64-bit Unsigned Halving Subtraction) </p>
+<p><strong>Type</strong>: DSP (64-bit Profile)</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">URSUB64</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Perform a 64-bit unsigned integer subtraction. The result is halved to avoid overflow or saturation.</p>
+</p>
+<p><strong>RV32 Description</strong>:<p>This instruction subtracts the 64-bit unsigned integer of an even/odd pair of registers specified by Rs2(4,1) from the 64-bit unsigned integer of an even/odd pair of registers specified by Rs1(4,1). The subtraction result is first logically right-shifted by 1 bit and then written to an even/odd pair of registers specified by Rd(4,1). Rx(4,1), i.e., d, determines the even/odd pair group of two registers. Specifically, the register pair includes register 2d and 2d+1. The odd </p>
+<code class="docutils literal notranslate"><span class="pre">2d+1</span></code> register of the pair contains the high 32-bit of the result and the even <code class="docutils literal notranslate"><span class="pre">2d</span></code> register of the pair contains the low 32-bit of the result.</p>
+<p><strong>RV64 Description</strong>:<p>This instruction subtracts the 64-bit unsigned integer in Rs2 from the 64-bit unsigned integer in Rs1. The subtraction result is first logically right-shifted by 1 bit and then written to Rd.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">RV32</span><span class="p">:</span>
+<span class="n">t_L</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rt</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); t_H = CONCAT(Rt(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+<span class="n">a_L</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Ra</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); a_H = CONCAT(Ra(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+<span class="n">b_L</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rb</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); b_H = CONCAT(Rb(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+<span class="n">R</span><span class="p">[</span><span class="n">t_H</span><span class="p">]</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">t_L</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="n">a_H</span><span class="p">]</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">a_L</span><span class="p">]</span> <span class="o">-</span> <span class="n">R</span><span class="p">[</span><span class="n">b_H</span><span class="p">]</span><span class="o">.</span><span class="n">R</span><span class="p">[</span><span class="n">b_L</span><span class="p">])</span> <span class="n">u</span><span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span>
+<span class="o">*</span> <span class="n">RV64</span><span class="p">:</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="p">(</span><span class="n">Rs1</span> <span class="o">-</span> <span class="n">Rs2</span><span class="p">)</span> <span class="n">u</span><span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api_nmsis_core_dsp_intrinsic_simd_8b_addsub.html" class="btn btn-neutral float-right" title="SIMD 8-bit Addition &amp; Subtraction Instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../api_nmsis_core_dsp_intrinsic_64b_profile.html" class="btn btn-neutral float-left" title="64-bit Profile Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-Present, Nuclei
+      <span class="lastupdated">
+        Last updated on Aug 03, 2021.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

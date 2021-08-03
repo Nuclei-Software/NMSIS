@@ -1,0 +1,687 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>SIMD 8-bit Addition &amp; Subtraction Instructions &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Signed 16-bit Multiply 64-bit Add/Subtract Instructions" href="api_nmsis_core_dsp_intrinsic_signed_16b_mult_64b_addsub.html" />
+    <link rel="prev" title="64-bit Addition &amp; Subtraction Instructions" href="api_nmsis_core_dsp_intrinsic_64b_addsub.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.2-RC1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">NMSIS Core</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../get_started.html">Using NMSIS in Embedded Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../core_templates.html">NMSIS-Core Device Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../register_mapping.html">Register Mapping</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">NMSIS Core API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../core_version_control.html">Version Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_compiler_control.html">Compiler Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_csr_access.html">Core CSR Register Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_csr_encoding.html">Core CSR Encoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_register_type.html">Register Define and Type Definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_intrinsics.html">CPU Intrinsic Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_simd_data_process.html">SIMD Data Processing Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_non_simd.html">Non-SIMD Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_part_simd_data_process.html">Partial-SIMD Data Processing Instructions</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_64b_profile.html">64-bit Profile Instructions</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_64b_addsub.html">64-bit Addition &amp; Subtraction Instructions</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">SIMD 8-bit Addition &amp; Subtraction Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_signed_16b_mult_64b_addsub.html">Signed 16-bit Multiply 64-bit Add/Subtract Instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_nuclei_custom.html">Nuclei Customized DSP Instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_periph_access.html">Peripheral Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_systick.html">Systick Timer(SysTimer)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_interrupt_exception.html">Interrupts and Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_fpu.html">FPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_pmp.html">PMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_cache.html">Cache Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_system_device.html">System Device Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_arm_compatiable.html">ARM Compatiable Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">NMSIS Core</a> &raquo;</li>
+        
+          <li><a href="../../index.html">NMSIS Core API</a> &raquo;</li>
+        
+          <li><a href="../../api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a> &raquo;</li>
+        
+          <li><a href="../api_nmsis_core_dsp_intrinsic_64b_profile.html">64-bit Profile Instructions</a> &raquo;</li>
+        
+      <li>SIMD 8-bit Addition &amp; Subtraction Instructions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../_sources/core/api/nmsis_core_dsp_intrinsic/nmsis_core_dsp_intrinsic_64b_profile/api_nmsis_core_dsp_intrinsic_simd_8b_addsub.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="simd-8-bit-addition-subtraction-instructions">
+<span id="nmsis-core-api-simd-8-bit-addition-subtraction-instructions"></span><h1>SIMD 8-bit Addition &amp; Subtraction Instructions<a class="headerlink" href="#simd-8-bit-addition-subtraction-instructions" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB_1ga502647bb2462e3bb724ba292a16e62ef"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_ADD8(unsigned long a, unsigned long b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB_1ga64622c4cea6b25708edcf53511ac2846"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KADD8(unsigned long a, unsigned long b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB_1ga872cc2823228c92d1004bd859af27147"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KSUB8(unsigned long a, unsigned long b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB_1ga270f185315a2f3d5da8d14e9a89e716b"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_RADD8(unsigned long a, unsigned long b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB_1gae3a2b016b3af39c178ef275c7e939bb3"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_RSUB8(unsigned long a, unsigned long b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB_1ga9c75e931e8703babf9e8d29f6dfcf280"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SUB8(unsigned long a, unsigned long b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB_1ga4b8d09eb6958b8eabea15a82ab8edef7"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UKADD8(unsigned long a, unsigned long b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB_1ga28d53441b9c0106fb6caed6dc77f89ad"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UKSUB8(unsigned long a, unsigned long b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB_1ga3024b858bfff004934d319dfa6b73102"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_URADD8(unsigned long a, unsigned long b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB_1gae016aa9f76f26a0e5ce7d3a0120e8afd"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_URSUB8(unsigned long a, unsigned long b)</code></dt>
+<dd></dd></dl>
+
+<dl class="group">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB"></span><em>group</em> <code class="sig-name descname">NMSIS_Core_DSP_Intrinsic_SIMD_8B_ADDSUB</code></dt>
+<dd><p>SIMD 8-bit Addition &amp; Subtraction Instructions. </p>
+<p>Based on the types of the four 8-bit arithmetic operations, the SIMD 8-bit add/subtract instructions can be classified into 2 main categories: Addition (four 8-bit addition), and Subtraction (four 8-bit subtraction). Based on the way of how an overflow condition is handled for singed or unsigned operation, the SIMD 8-bit add/subtract instructions can be classified into 5 groups: Wrap-around (dropping overflow), Signed Halving (keeping overflow by dropping 1 LSB bit), Unsigned Halving, Signed Saturation (clipping overflow), and Unsigned Saturation. Together, there are 10 SIMD 8-bit add/subtract instructions. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB_1ga502647bb2462e3bb724ba292a16e62ef"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_ADD8(unsigned long a, unsigned long b)</code></dt>
+<dd><p>ADD8 (SIMD 8-bit Addition) </p>
+<p><strong>Type</strong>: SIMD</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ADD8</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 8-bit integer element additions simultaneously.</p>
+</p>
+<p><strong>Description</strong>:<p>This instruction adds the 8-bit integer elements in Rs1 with the 8-bit integer elements in Rs2, and then writes the 8-bit element results to Rd.</p>
+</p>
+<p><strong>Note</strong>:<p>This instruction can be used for either signed or unsigned addition.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rd</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">3.</span><span class="o">..</span><span class="mi">0</span><span class="p">,</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">7.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB_1ga64622c4cea6b25708edcf53511ac2846"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KADD8(unsigned long a, unsigned long b)</code></dt>
+<dd><p>KADD8 (SIMD 8-bit Signed Saturating Addition) </p>
+<p><strong>Type</strong>: SIMD</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KADD8</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 8-bit signed integer element saturating additions simultaneously.</p>
+</p>
+<p><strong>Description</strong>:<p>This instruction adds the 8-bit signed integer elements in Rs1 with the 8-bit signed integer elements in Rs2. If any of the results are beyond the Q7 number range (-2^7 &lt;= Q7 &lt;= 2^7-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to Rd.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">127</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="mi">127</span><span class="p">;</span>
+  <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">128</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">128</span><span class="p">;</span>
+  <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">Rd</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">3.</span><span class="o">..</span><span class="mi">0</span><span class="p">,</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">7.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB_1ga872cc2823228c92d1004bd859af27147"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KSUB8(unsigned long a, unsigned long b)</code></dt>
+<dd><p>KSUB8 (SIMD 8-bit Signed Saturating Subtraction) </p>
+<p><strong>Type</strong>: SIMD</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KSUB8</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 8-bit signed elements saturating subtractions simultaneously.</p>
+</p>
+<p><strong>Description</strong>:<p>This instruction subtracts the 8-bit signed integer elements in Rs2 from the 8-bit signed integer elements in Rs1. If any of the results are beyond the Q7 number range (-2^7 &lt;= Q7 &lt;= 27 -1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to Rd.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">-</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">7</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">7</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">2</span><span class="o">^</span><span class="mi">7</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="o">^</span><span class="mi">7</span><span class="p">;</span>
+  <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">Rd</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">3.</span><span class="o">..</span><span class="mi">0</span><span class="p">,</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">7.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB_1ga270f185315a2f3d5da8d14e9a89e716b"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_RADD8(unsigned long a, unsigned long b)</code></dt>
+<dd><p>RADD8 (SIMD 8-bit Signed Halving Addition) </p>
+<p><strong>Type</strong>: SIMD</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RADD8</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 8-bit signed integer element additions simultaneously. The element results are halved to avoid overflow or saturation.</p>
+</p>
+<p><strong>Description</strong>:<p>This instruction adds the 8-bit signed integer elements in Rs1 with the 8-bit signed integer elements in Rs2. The results are first arithmetically right-shifted by 1 bit and then written to Rd.</p>
+</p>
+<p><strong>Examples</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Rs1</span> <span class="o">=</span> <span class="mh">0x7F</span><span class="p">,</span> <span class="n">Rs2</span> <span class="o">=</span> <span class="mh">0x7F</span><span class="p">,</span> <span class="n">Rd</span> <span class="o">=</span> <span class="mh">0x7F</span>
+<span class="o">*</span> <span class="n">Rs1</span> <span class="o">=</span> <span class="mh">0x80</span><span class="p">,</span> <span class="n">Rs2</span> <span class="o">=</span> <span class="mh">0x80</span><span class="p">,</span> <span class="n">Rd</span> <span class="o">=</span> <span class="mh">0x80</span>
+<span class="o">*</span> <span class="n">Rs1</span> <span class="o">=</span> <span class="mh">0x40</span><span class="p">,</span> <span class="n">Rs2</span> <span class="o">=</span> <span class="mh">0x80</span><span class="p">,</span> <span class="n">Rd</span> <span class="o">=</span> <span class="mh">0xE0</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rd</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">])</span> <span class="n">s</span><span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span> <span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">3.</span><span class="o">..</span><span class="mi">0</span><span class="p">,</span> <span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">7.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB_1gae3a2b016b3af39c178ef275c7e939bb3"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_RSUB8(unsigned long a, unsigned long b)</code></dt>
+<dd><p>RSUB8 (SIMD 8-bit Signed Halving Subtraction) </p>
+<p><strong>Type</strong>: SIMD</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RSUB8</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 8-bit signed integer element subtractions simultaneously. The results are halved to avoid overflow or saturation.</p>
+</p>
+<p><strong>Description</strong>:<p>This instruction subtracts the 8-bit signed integer elements in Rs2 from the 8-bit signed integer elements in Rs1. The results are first arithmetically right-shifted by 1 bit and then written to Rd.</p>
+</p>
+<p><strong>Examples</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Rs1</span> <span class="o">=</span> <span class="mh">0x7F</span><span class="p">,</span> <span class="n">Rs2</span> <span class="o">=</span> <span class="mh">0x80</span><span class="p">,</span> <span class="n">Rd</span> <span class="o">=</span> <span class="mh">0x7F</span>
+<span class="o">*</span> <span class="n">Rs1</span> <span class="o">=</span> <span class="mh">0x80</span><span class="p">,</span> <span class="n">Rs2</span> <span class="o">=</span> <span class="mh">0x7F</span><span class="p">,</span> <span class="n">Rd</span> <span class="o">=</span> <span class="mh">0x80</span>
+<span class="o">*</span> <span class="n">Rs1</span><span class="o">=</span> <span class="mh">0x80</span><span class="p">,</span> <span class="n">Rs2</span> <span class="o">=</span> <span class="mh">0x40</span><span class="p">,</span> <span class="n">Rd</span> <span class="o">=</span> <span class="mh">0xA0</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rd</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">-</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">])</span> <span class="n">s</span><span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">3.</span><span class="o">..</span><span class="mi">0</span><span class="p">,</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">7.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB_1ga9c75e931e8703babf9e8d29f6dfcf280"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SUB8(unsigned long a, unsigned long b)</code></dt>
+<dd><p>SUB8 (SIMD 8-bit Subtraction) </p>
+<p><strong>Type</strong>: SIMD</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SUB8</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 8-bit integer element subtractions simultaneously.</p>
+</p>
+<p><strong>Description</strong>:<p>This instruction subtracts the 8-bit integer elements in Rs2 from the 8-bit integer elements in Rs1, and then writes the result to Rd.</p>
+</p>
+<p><strong>Note</strong>:<p>This instruction can be used for either signed or unsigned subtraction.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rd</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">-</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">3.</span><span class="o">..</span><span class="mi">0</span><span class="p">,</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">7.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB_1ga4b8d09eb6958b8eabea15a82ab8edef7"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UKADD8(unsigned long a, unsigned long b)</code></dt>
+<dd><p>UKADD8 (SIMD 8-bit Unsigned Saturating Addition) </p>
+<p><strong>Type</strong>: SIMD</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UKADD8</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 8-bit unsigned integer element saturating additions simultaneously.</p>
+</p>
+<p><strong>Description</strong>:<p>This instruction adds the 8-bit unsigned integer elements in Rs1 with the 8-bit unsigned integer elements in Rs2. If any of the results are beyond the 8-bit unsigned number range (0 &lt;= RES &lt;= 28-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to Rd.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">8</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">8</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">Rd</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">3.</span><span class="o">..</span><span class="mi">0</span><span class="p">,</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">7.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB_1ga28d53441b9c0106fb6caed6dc77f89ad"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UKSUB8(unsigned long a, unsigned long b)</code></dt>
+<dd><p>UKSUB8 (SIMD 8-bit Unsigned Saturating Subtraction) </p>
+<p><strong>Type</strong>: SIMD</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UKSUB8</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 8-bit unsigned integer elements saturating subtractions simultaneously.</p>
+</p>
+<p><strong>Description</strong>:<p>This instruction subtracts the 8-bit unsigned integer elements in Rs2 from the 8-bit unsigned integer elements in Rs1. If any of the results are beyond the 8-bit unsigned number range (0 &lt;= RES &lt;= 28-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to Rd.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">-</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">Rd</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">3.</span><span class="o">..</span><span class="mi">0</span><span class="p">,</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">7.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB_1ga3024b858bfff004934d319dfa6b73102"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_URADD8(unsigned long a, unsigned long b)</code></dt>
+<dd><p>URADD8 (SIMD 8-bit Unsigned Halving Addition) </p>
+<p><strong>Type</strong>: SIMD</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">URADD8</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 8-bit unsigned integer element additions simultaneously. The results are halved to avoid overflow or saturation.</p>
+</p>
+<p><strong>Description</strong>:<p>This instruction adds the 8-bit unsigned integer elements in Rs1 with the 8-bit unsigned integer elements in Rs2. The results are first logically right-shifted by 1 bit and then written to Rd.</p>
+</p>
+<p><strong>Examples</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Ra</span> <span class="o">=</span> <span class="mh">0x7F</span><span class="p">,</span> <span class="n">Rb</span> <span class="o">=</span> <span class="mh">0x7F</span><span class="p">,</span> <span class="n">Rt</span> <span class="o">=</span> <span class="mh">0x7F</span>
+<span class="o">*</span> <span class="n">Ra</span> <span class="o">=</span> <span class="mh">0x80</span><span class="p">,</span> <span class="n">Rb</span> <span class="o">=</span> <span class="mh">0x80</span><span class="p">,</span> <span class="n">Rt</span> <span class="o">=</span> <span class="mh">0x80</span>
+<span class="o">*</span> <span class="n">Ra</span> <span class="o">=</span> <span class="mh">0x40</span><span class="p">,</span> <span class="n">Rb</span> <span class="o">=</span> <span class="mh">0x80</span><span class="p">,</span> <span class="n">Rt</span> <span class="o">=</span> <span class="mh">0x60</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rd</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">])</span> <span class="n">u</span><span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">3.</span><span class="o">..</span><span class="mi">0</span><span class="p">,</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">7.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__ADDSUB_1gae016aa9f76f26a0e5ce7d3a0120e8afd"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_URSUB8(unsigned long a, unsigned long b)</code></dt>
+<dd><p>URSUB8 (SIMD 8-bit Unsigned Halving Subtraction) </p>
+<p><strong>Type</strong>: SIMD</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">URSUB8</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 8-bit unsigned integer element subtractions simultaneously. The results are halved to avoid overflow or saturation.</p>
+</p>
+<p><strong>Description</strong>:<p>This instruction subtracts the 8-bit unsigned integer elements in Rs2 from the 8-bit unsigned integer elements in Rs1. The results are first logically right-shifted by 1 bit and then written to Rd.</p>
+</p>
+<p><strong>Examples</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Ra</span> <span class="o">=</span> <span class="mh">0x7F</span><span class="p">,</span> <span class="n">Rb</span> <span class="o">=</span> <span class="mh">0x80</span> <span class="n">Rt</span> <span class="o">=</span> <span class="mh">0xFF</span>
+<span class="o">*</span> <span class="n">Ra</span> <span class="o">=</span> <span class="mh">0x80</span><span class="p">,</span> <span class="n">Rb</span> <span class="o">=</span> <span class="mh">0x7F</span> <span class="n">Rt</span> <span class="o">=</span> <span class="mh">0x00</span>
+<span class="o">*</span> <span class="n">Ra</span> <span class="o">=</span> <span class="mh">0x80</span><span class="p">,</span> <span class="n">Rb</span> <span class="o">=</span> <span class="mh">0x40</span> <span class="n">Rt</span> <span class="o">=</span> <span class="mh">0x20</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rd</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">-</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">])</span> <span class="n">u</span><span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">3.</span><span class="o">..</span><span class="mi">0</span><span class="p">,</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">7.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api_nmsis_core_dsp_intrinsic_signed_16b_mult_64b_addsub.html" class="btn btn-neutral float-right" title="Signed 16-bit Multiply 64-bit Add/Subtract Instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api_nmsis_core_dsp_intrinsic_64b_addsub.html" class="btn btn-neutral float-left" title="64-bit Addition &amp; Subtraction Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-Present, Nuclei
+      <span class="lastupdated">
+        Last updated on Aug 03, 2021.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

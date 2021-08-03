@@ -1,0 +1,377 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Square Root &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Cosine" href="api_cos.html" />
+    <link rel="prev" title="Fast Math Functions" href="../api_groupfastmath.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.2-RC1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">NMSIS DSP</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api_groupfastmath.html">Fast Math Functions</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Square Root</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_cos.html">Cosine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_sin.html">Sine</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupfilters.html">Filtering Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupmatrix.html">Matrix Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupcontroller.html">Controller Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupstats.html">Statistics Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupsupport.html">Support Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupinterpolation.html">Interpolation Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
+        
+          <li><a href="../index.html">NMSIS DSP API</a> &raquo;</li>
+        
+          <li><a href="../api_groupfastmath.html">Fast Math Functions</a> &raquo;</li>
+        
+      <li>Square Root</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/dsp/api/groupfastmath/api_sqrt.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="square-root">
+<span id="nmsis-dsp-api-square-root"></span><h1>Square Root<a class="headerlink" href="#square-root" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt>
+<span class="target" id="group__SQRT_1ga195942e72ace5531f88658714db038b5"></span><code class="sig-name descname">__STATIC_FORCEINLINE riscv_status riscv_sqrt_f32(float32_t in, float32_t * pOut)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv414riscv_sqrt_q315q31_tP5q31_t">
+<span id="_CPPv314riscv_sqrt_q315q31_tP5q31_t"></span><span id="_CPPv214riscv_sqrt_q315q31_tP5q31_t"></span><span id="riscv_sqrt_q31__q31_t.q31_tP"></span><span class="target" id="group__SQRT_1ga96a93fb99ac782f0a4fbb0d10e7527a5"></span>riscv_status <code class="sig-name descname">riscv_sqrt_q31</code><span class="sig-paren">(</span>q31_t <em>in</em>, q31_t *<em>pOut</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414riscv_sqrt_q315q31_tP5q31_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv414riscv_sqrt_q155q15_tP5q15_t">
+<span id="_CPPv314riscv_sqrt_q155q15_tP5q15_t"></span><span id="_CPPv214riscv_sqrt_q155q15_tP5q15_t"></span><span id="riscv_sqrt_q15__q15_t.q15_tP"></span><span class="target" id="group__SQRT_1ga7030692f921383b08d1bfca591314105"></span>riscv_status <code class="sig-name descname">riscv_sqrt_q15</code><span class="sig-paren">(</span>q15_t <em>in</em>, q15_t *<em>pOut</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414riscv_sqrt_q155q15_tP5q15_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv415riscv_vsqrt_f32P9float32_tP9float32_t8uint16_t">
+<span id="_CPPv315riscv_vsqrt_f32P9float32_tP9float32_t8uint16_t"></span><span id="_CPPv215riscv_vsqrt_f32P9float32_tP9float32_t8uint16_t"></span><span id="riscv_vsqrt_f32__float32_tP.float32_tP.uint16_t"></span><span class="target" id="group__SQRT_1ga6c2376360963e4cef666729e1c049010"></span>void <code class="sig-name descname">riscv_vsqrt_f32</code><span class="sig-paren">(</span>float32_t *<em>pIn</em>, float32_t *<em>pOut</em>, uint16_t <em>len</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415riscv_vsqrt_f32P9float32_tP9float32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv415riscv_vsqrt_q31P5q31_tP5q31_t8uint16_t">
+<span id="_CPPv315riscv_vsqrt_q31P5q31_tP5q31_t8uint16_t"></span><span id="_CPPv215riscv_vsqrt_q31P5q31_tP5q31_t8uint16_t"></span><span id="riscv_vsqrt_q31__q31_tP.q31_tP.uint16_t"></span><span class="target" id="group__SQRT_1gab76c31ce76775045d9790c547dde10b8"></span>void <code class="sig-name descname">riscv_vsqrt_q31</code><span class="sig-paren">(</span>q31_t *<em>pIn</em>, q31_t *<em>pOut</em>, uint16_t <em>len</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415riscv_vsqrt_q31P5q31_tP5q31_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv415riscv_vsqrt_q15P5q15_tP5q15_t8uint16_t">
+<span id="_CPPv315riscv_vsqrt_q15P5q15_tP5q15_t8uint16_t"></span><span id="_CPPv215riscv_vsqrt_q15P5q15_tP5q15_t8uint16_t"></span><span id="riscv_vsqrt_q15__q15_tP.q15_tP.uint16_t"></span><span class="target" id="group__SQRT_1ga9c7433f5a63f57bf001bdad593489cab"></span>void <code class="sig-name descname">riscv_vsqrt_q15</code><span class="sig-paren">(</span>q15_t *<em>pIn</em>, q15_t *<em>pOut</em>, uint16_t <em>len</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415riscv_vsqrt_q15P5q15_tP5q15_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="group">
+<dt>
+<span class="target" id="group__SQRT"></span><em>group</em> <code class="sig-name descname">SQRT</code></dt>
+<dd><p>Computes the square root of a number. There are separate functions for Q15, Q31, and floating-point data types. The square root function is computed using the Newton-Raphson algorithm. This is an iterative algorithm of the form:  where <code class="docutils literal notranslate"><span class="pre">x1</span></code> is the current estimate, <code class="docutils literal notranslate"><span class="pre">x0</span></code> is the previous estimate, and <code class="docutils literal notranslate"><span class="pre">f'(x0)</span></code> is the derivative of <code class="docutils literal notranslate"><span class="pre">f()</span></code> evaluated at <code class="docutils literal notranslate"><span class="pre">x0</span></code>. For the square root function, the algorithm reduces to:  </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="function">
+<dt>
+<span class="target" id="group__SQRT_1ga195942e72ace5531f88658714db038b5"></span><code class="sig-name descname">__STATIC_FORCEINLINE riscv_status riscv_sqrt_f32(float32_t in, float32_t * pOut)</code></dt>
+<dd><p>Floating-point square root function. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : input value is positive</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : input value is negative; *pOut is set to 0 </p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">in</span></code>: input value </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pOut</span></code>: square root of input value </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__SQRT_1ga96a93fb99ac782f0a4fbb0d10e7527a5"></span>riscv_status <code class="sig-name descname">riscv_sqrt_q31</code><span class="sig-paren">(</span>q31_t <em>in</em>, q31_t *<em>pOut</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Q31 square root function. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : input value is positive</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : input value is negative; *pOut is set to 0 </p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">in</span></code>: input value. The range of the input value is [0 +1) or 0x00000000 to 0x7FFFFFFF </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pOut</span></code>: points to square root of input value </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__SQRT_1ga7030692f921383b08d1bfca591314105"></span>riscv_status <code class="sig-name descname">riscv_sqrt_q15</code><span class="sig-paren">(</span>q15_t <em>in</em>, q15_t *<em>pOut</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Q15 square root function. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : input value is positive</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : input value is negative; *pOut is set to 0 </p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">in</span></code>: input value. The range of the input value is [0 +1) or 0x0000 to 0x7FFF </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pOut</span></code>: points to square root of input value </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__SQRT_1ga6c2376360963e4cef666729e1c049010"></span>void <code class="sig-name descname">riscv_vsqrt_f32</code><span class="sig-paren">(</span>float32_t *<em>pIn</em>, float32_t *<em>pOut</em>, uint16_t <em>len</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Vector Floating-point square root function. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The function returns RISCV_MATH_SUCCESS if input value is positive value or RISCV_MATH_ARGUMENT_ERROR if <code class="docutils literal notranslate"><span class="pre">in</span></code> is negative value and returns zero output for negative values. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pIn</span></code>: input vector. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pOut</span></code>: vector of square roots of input elements. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">len</span></code>: length of input vector. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__SQRT_1gab76c31ce76775045d9790c547dde10b8"></span>void <code class="sig-name descname">riscv_vsqrt_q31</code><span class="sig-paren">(</span>q31_t *<em>pIn</em>, q31_t *<em>pOut</em>, uint16_t <em>len</em><span class="sig-paren">)</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__SQRT_1ga9c7433f5a63f57bf001bdad593489cab"></span>void <code class="sig-name descname">riscv_vsqrt_q15</code><span class="sig-paren">(</span>q15_t *<em>pIn</em>, q15_t *<em>pOut</em>, uint16_t <em>len</em><span class="sig-paren">)</span><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api_cos.html" class="btn btn-neutral float-right" title="Cosine" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../api_groupfastmath.html" class="btn btn-neutral float-left" title="Fast Math Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-Present, Nuclei
+      <span class="lastupdated">
+        Last updated on Aug 03, 2021.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

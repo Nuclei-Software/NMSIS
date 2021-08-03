@@ -1,0 +1,587 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Fully-connected Layer Functions &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Neural Network Pooling Functions" href="api_pooling.html" />
+    <link rel="prev" title="Neural Network Convolution Functions" href="api_nnconv.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.2-RC1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">NMSIS NN</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-NN</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS NN API</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../api_groupnn.html">Neural Network Functions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api_acti.html">Neural Network Activation Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_nnconv.html">Neural Network Convolution Functions</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Fully-connected Layer Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_pooling.html">Neural Network Pooling Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_softmax.html">Softmax Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nndata_convert.html">Neural Network Data Conversion Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nnbasicmath.html">Basic Math Functions for Neural Network Computation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_cnnexample.html">Convolutional Neural Network Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_gruexample.html">Gated Recurrent Unit Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">NMSIS NN</a> &raquo;</li>
+        
+          <li><a href="../index.html">NMSIS NN API</a> &raquo;</li>
+        
+          <li><a href="../api_groupnn.html">Neural Network Functions</a> &raquo;</li>
+        
+      <li>Fully-connected Layer Functions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/nn/api/groupnn/api_fc.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="fully-connected-layer-functions">
+<span id="nmsis-nn-api-fully-connected-layer-functions"></span><h1>Fully-connected Layer Functions<a class="headerlink" href="#fully-connected-layer-functions" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="_CPPv436riscv_fully_connected_mat_q7_vec_q15PK5q15_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP5q15_tP5q15_t">
+<span id="_CPPv336riscv_fully_connected_mat_q7_vec_q15PK5q15_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP5q15_tP5q15_t"></span><span id="_CPPv236riscv_fully_connected_mat_q7_vec_q15PK5q15_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP5q15_tP5q15_t"></span><span id="riscv_fully_connected_mat_q7_vec_q15__q15_tCP.q7_tCP.uint16_tC.uint16_tC.uint16_tC.uint16_tC.q7_tCP.q15_tP.q15_tP"></span><span class="target" id="group__FC_1gae53e7bbdcd7730c409d71d08c446d666"></span>riscv_status <code class="sig-name descname">riscv_fully_connected_mat_q7_vec_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pV</em>, <em class="property">const</em> q7_t *<em>pM</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, <em class="property">const</em> uint16_t <em>num_of_rows</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, <em class="property">const</em> q7_t *<em>bias</em>, q15_t *<em>pOut</em>, q15_t *<em>vec_buffer</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv436riscv_fully_connected_mat_q7_vec_q15PK5q15_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP5q15_tP5q15_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv440riscv_fully_connected_mat_q7_vec_q15_optPK5q15_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP5q15_tP5q15_t">
+<span id="_CPPv340riscv_fully_connected_mat_q7_vec_q15_optPK5q15_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP5q15_tP5q15_t"></span><span id="_CPPv240riscv_fully_connected_mat_q7_vec_q15_optPK5q15_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP5q15_tP5q15_t"></span><span id="riscv_fully_connected_mat_q7_vec_q15_opt__q15_tCP.q7_tCP.uint16_tC.uint16_tC.uint16_tC.uint16_tC.q7_tCP.q15_tP.q15_tP"></span><span class="target" id="group__FC_1ga73d8955ae16c57e5fe30de697459daed"></span>riscv_status <code class="sig-name descname">riscv_fully_connected_mat_q7_vec_q15_opt</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pV</em>, <em class="property">const</em> q7_t *<em>pM</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, <em class="property">const</em> uint16_t <em>num_of_rows</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, <em class="property">const</em> q7_t *<em>bias</em>, q15_t *<em>pOut</em>, q15_t *<em>vec_buffer</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv440riscv_fully_connected_mat_q7_vec_q15_optPK5q15_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP5q15_tP5q15_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv425riscv_fully_connected_q15PK5q15_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tP5q15_tP5q15_t">
+<span id="_CPPv325riscv_fully_connected_q15PK5q15_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tP5q15_tP5q15_t"></span><span id="_CPPv225riscv_fully_connected_q15PK5q15_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tP5q15_tP5q15_t"></span><span id="riscv_fully_connected_q15__q15_tCP.q15_tCP.uint16_tC.uint16_tC.uint16_tC.uint16_tC.q15_tCP.q15_tP.q15_tP"></span><span class="target" id="group__FC_1gab7871cb369396fba31f5e7037b163b89"></span>riscv_status <code class="sig-name descname">riscv_fully_connected_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pV</em>, <em class="property">const</em> q15_t *<em>pM</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, <em class="property">const</em> uint16_t <em>num_of_rows</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, <em class="property">const</em> q15_t *<em>bias</em>, q15_t *<em>pOut</em>, q15_t *<em>vec_buffer</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425riscv_fully_connected_q15PK5q15_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tP5q15_tP5q15_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv429riscv_fully_connected_q15_optPK5q15_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tP5q15_tP5q15_t">
+<span id="_CPPv329riscv_fully_connected_q15_optPK5q15_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tP5q15_tP5q15_t"></span><span id="_CPPv229riscv_fully_connected_q15_optPK5q15_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tP5q15_tP5q15_t"></span><span id="riscv_fully_connected_q15_opt__q15_tCP.q15_tCP.uint16_tC.uint16_tC.uint16_tC.uint16_tC.q15_tCP.q15_tP.q15_tP"></span><span class="target" id="group__FC_1ga7aac789b484f40bcea3ca6511f2969d1"></span>riscv_status <code class="sig-name descname">riscv_fully_connected_q15_opt</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pV</em>, <em class="property">const</em> q15_t *<em>pM</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, <em class="property">const</em> uint16_t <em>num_of_rows</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, <em class="property">const</em> q15_t *<em>bias</em>, q15_t *<em>pOut</em>, q15_t *<em>vec_buffer</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429riscv_fully_connected_q15_optPK5q15_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tP5q15_tP5q15_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv424riscv_fully_connected_q7PK4q7_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP4q7_tP5q15_t">
+<span id="_CPPv324riscv_fully_connected_q7PK4q7_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP4q7_tP5q15_t"></span><span id="_CPPv224riscv_fully_connected_q7PK4q7_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP4q7_tP5q15_t"></span><span id="riscv_fully_connected_q7__q7_tCP.q7_tCP.uint16_tC.uint16_tC.uint16_tC.uint16_tC.q7_tCP.q7_tP.q15_tP"></span><span class="target" id="group__FC_1gaabd0ddb08f10926a0cb16c780f1f1092"></span>riscv_status <code class="sig-name descname">riscv_fully_connected_q7</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>pV</em>, <em class="property">const</em> q7_t *<em>pM</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, <em class="property">const</em> uint16_t <em>num_of_rows</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, <em class="property">const</em> q7_t *<em>bias</em>, q7_t *<em>pOut</em>, q15_t *<em>vec_buffer</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424riscv_fully_connected_q7PK4q7_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP4q7_tP5q15_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv428riscv_fully_connected_q7_optPK4q7_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP4q7_tP5q15_t">
+<span id="_CPPv328riscv_fully_connected_q7_optPK4q7_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP4q7_tP5q15_t"></span><span id="_CPPv228riscv_fully_connected_q7_optPK4q7_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP4q7_tP5q15_t"></span><span id="riscv_fully_connected_q7_opt__q7_tCP.q7_tCP.uint16_tC.uint16_tC.uint16_tC.uint16_tC.q7_tCP.q7_tP.q15_tP"></span><span class="target" id="group__FC_1ga7941d995077149ea20950bb2e44f4bba"></span>riscv_status <code class="sig-name descname">riscv_fully_connected_q7_opt</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>pV</em>, <em class="property">const</em> q7_t *<em>pM</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, <em class="property">const</em> uint16_t <em>num_of_rows</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, <em class="property">const</em> q7_t *<em>bias</em>, q7_t *<em>pOut</em>, q15_t *<em>vec_buffer</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428riscv_fully_connected_q7_optPK4q7_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP4q7_tP5q15_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv424riscv_fully_connected_s8PK16nmsis_nn_contextPK18nmsis_nn_fc_paramsPK32nmsis_nn_per_tensor_quant_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK7int32_tPK13nmsis_nn_dimsP4q7_t">
+<span id="_CPPv324riscv_fully_connected_s8PK16nmsis_nn_contextPK18nmsis_nn_fc_paramsPK32nmsis_nn_per_tensor_quant_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK7int32_tPK13nmsis_nn_dimsP4q7_t"></span><span id="_CPPv224riscv_fully_connected_s8PK16nmsis_nn_contextPK18nmsis_nn_fc_paramsPK32nmsis_nn_per_tensor_quant_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK7int32_tPK13nmsis_nn_dimsP4q7_t"></span><span id="riscv_fully_connected_s8__nmsis_nn_contextCP.nmsis_nn_fc_paramsCP.nmsis_nn_per_tensor_quant_paramsCP.nmsis_nn_dimsCP.q7_tCP.nmsis_nn_dimsCP.q7_tCP.nmsis_nn_dimsCP.int32_tCP.nmsis_nn_dimsCP.q7_tP"></span><span class="target" id="group__FC_1gaee6b76ba1caa346436404498e6c022f9"></span>riscv_status <code class="sig-name descname">riscv_fully_connected_s8</code><span class="sig-paren">(</span><em class="property">const</em> nmsis_nn_context *<em>ctx</em>, <em class="property">const</em> nmsis_nn_fc_params *<em>fc_params</em>, <em class="property">const</em> nmsis_nn_per_tensor_quant_params *<em>quant_params</em>, <em class="property">const</em> nmsis_nn_dims *<em>input_dims</em>, <em class="property">const</em> q7_t *<em>input_data</em>, <em class="property">const</em> nmsis_nn_dims *<em>filter_dims</em>, <em class="property">const</em> q7_t *<em>filter_data</em>, <em class="property">const</em> nmsis_nn_dims *<em>bias_dims</em>, <em class="property">const</em> int32_t *<em>bias_data</em>, <em class="property">const</em> nmsis_nn_dims *<em>output_dims</em>, q7_t *<em>output_data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424riscv_fully_connected_s8PK16nmsis_nn_contextPK18nmsis_nn_fc_paramsPK32nmsis_nn_per_tensor_quant_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK7int32_tPK13nmsis_nn_dimsP4q7_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv440riscv_fully_connected_s8_get_buffer_sizePK13nmsis_nn_dims">
+<span id="_CPPv340riscv_fully_connected_s8_get_buffer_sizePK13nmsis_nn_dims"></span><span id="_CPPv240riscv_fully_connected_s8_get_buffer_sizePK13nmsis_nn_dims"></span><span id="riscv_fully_connected_s8_get_buffer_size__nmsis_nn_dimsCP"></span><span class="target" id="group__FC_1gad6f87a614339280578e030ff6599ec2d"></span>int32_t <code class="sig-name descname">riscv_fully_connected_s8_get_buffer_size</code><span class="sig-paren">(</span><em class="property">const</em> nmsis_nn_dims *<em>filter_dims</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv440riscv_fully_connected_s8_get_buffer_sizePK13nmsis_nn_dims" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.USE_INTRINSIC">
+<span class="target" id="group__FC_1ga710b6e009261290c6151f329cf409530"></span><code class="sig-name descname">USE_INTRINSIC</code><a class="headerlink" href="#c.USE_INTRINSIC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="group">
+<dt>
+<span class="target" id="group__FC"></span><em>group</em> <code class="sig-name descname">FC</code></dt>
+<dd><p>Collection of fully-connected and matrix multiplication functions.</p>
+<p>Fully-connected layer is basically a matrix-vector multiplication with bias. The matrix is the weights and the input/output vectors are the activation values. Supported {weight, activation} precisions include {8-bit, 8-bit}, {16-bit, 16-bit}, and {8-bit, 16-bit}.</p>
+<p>Here we have two types of kernel functions. The basic function implements the function using regular GEMV approach. The opt functions operates with weights in interleaved formats. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="macro">
+<dt>
+<span class="target" id="group__FC_1ga710b6e009261290c6151f329cf409530"></span><code class="sig-name descname">USE_INTRINSIC</code></dt>
+<dd><p>Mixed Q15-Q7 opt fully-connected layer function. </p>
+<p><strong>Buffer size:</strong><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code></p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pV</span></code>: pointer to input vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pM</span></code>: pointer to matrix weights </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_vec</span></code>: length of the vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">num_of_rows</span></code>: number of rows in weight matrix </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias_shift</span></code>: amount of left-shift for bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">out_shift</span></code>: amount of right-shift for output </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias</span></code>: pointer to bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">pOut</span></code>: pointer to output vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">vec_buffer</span></code>: pointer to buffer space for input </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>vec_buffer size: 0</p>
+<p>Q7_Q15 version of the fully connected layer</p>
+<p>Weights are in q7_t and Activations are in q15_t</p>
+<p>Limitation: x4 version requires weight reordering to work</p>
+<p>Here we use only one pointer to read 4 rows in the weight matrix. So if the original q7_t matrix looks like this:</p>
+<p>| a11 | a12 | a13 | a14 | a15 | a16 | a17 |</p>
+<p>| a21 | a22 | a23 | a24 | a25 | a26 | a27 |</p>
+<p>| a31 | a32 | a33 | a34 | a35 | a36 | a37 |</p>
+<p>| a41 | a42 | a43 | a44 | a45 | a46 | a47 |</p>
+<p>| a51 | a52 | a53 | a54 | a55 | a56 | a57 |</p>
+<p>| a61 | a62 | a63 | a64 | a65 | a66 | a67 |</p>
+<p>We operates on multiple-of-4 rows, so the first four rows becomes</p>
+<p>| a11 | a21 | a12 | a22 | a31 | a41 | a32 | a42 |</p>
+<p>| a13 | a23 | a14 | a24 | a33 | a43 | a34 | a44 |</p>
+<p>| a15 | a25 | a16 | a26 | a35 | a45 | a36 | a46 |</p>
+<p>The column left over will be in-order. which is: | a17 | a27 | a37 | a47 |</p>
+<p>For the left-over rows, we do 1x1 computation, so the data remains as its original order.</p>
+<p>So the stored weight matrix looks like this:</p>
+<p>| a11 | a21 | a12 | a22 | a31 | a41 |</p>
+<p>| a32 | a42 | a13 | a23 | a14 | a24 |</p>
+<p>| a33 | a43 | a34 | a44 | a15 | a25 |</p>
+<p>| a16 | a26 | a35 | a45 | a36 | a46 |</p>
+<p>| a17 | a27 | a37 | a47 | a51 | a52 |</p>
+<p>| a53 | a54 | a55 | a56 | a57 | a61 |</p>
+<p>| a62 | a63 | a64 | a65 | a66 | a67 | </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="function">
+<dt>
+<span class="target" id="group__FC_1gae53e7bbdcd7730c409d71d08c446d666"></span>riscv_status <code class="sig-name descname">riscv_fully_connected_mat_q7_vec_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pV</em>, <em class="property">const</em> q7_t *<em>pM</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, <em class="property">const</em> uint16_t <em>num_of_rows</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, <em class="property">const</em> q7_t *<em>bias</em>, q15_t *<em>pOut</em>, q15_t *<em>vec_buffer</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Mixed Q15-Q7 fully-connected layer function. </p>
+<p><strong>Buffer size:</strong><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code></p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pV</span></code>: pointer to input vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pM</span></code>: pointer to matrix weights </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_vec</span></code>: length of the vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">num_of_rows</span></code>: number of rows in weight matrix </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias_shift</span></code>: amount of left-shift for bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">out_shift</span></code>: amount of right-shift for output </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias</span></code>: pointer to bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">pOut</span></code>: pointer to output vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">vec_buffer</span></code>: pointer to buffer space for input </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>vec_buffer size: 0</p>
+<p>Q7_Q15 version of the fully connected layer</p>
+<p>Weights are in q7_t and Activations are in q15_t </p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__FC_1ga73d8955ae16c57e5fe30de697459daed"></span>riscv_status <code class="sig-name descname">riscv_fully_connected_mat_q7_vec_q15_opt</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pV</em>, <em class="property">const</em> q7_t *<em>pM</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, <em class="property">const</em> uint16_t <em>num_of_rows</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, <em class="property">const</em> q7_t *<em>bias</em>, q15_t *<em>pOut</em>, q15_t *<em>vec_buffer</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Mixed Q15-Q7 opt fully-connected layer function. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pV</span></code>: pointer to input vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pM</span></code>: pointer to matrix weights </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_vec</span></code>: length of the vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">num_of_rows</span></code>: number of rows in weight matrix </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias_shift</span></code>: amount of left-shift for bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">out_shift</span></code>: amount of right-shift for output </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias</span></code>: pointer to bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">pOut</span></code>: pointer to output vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">vec_buffer</span></code>: pointer to buffer space for input </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__FC_1gab7871cb369396fba31f5e7037b163b89"></span>riscv_status <code class="sig-name descname">riscv_fully_connected_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pV</em>, <em class="property">const</em> q15_t *<em>pM</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, <em class="property">const</em> uint16_t <em>num_of_rows</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, <em class="property">const</em> q15_t *<em>bias</em>, q15_t *<em>pOut</em>, q15_t *<em>vec_buffer</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Q15 opt fully-connected layer function. </p>
+<p>Q15 basic fully-connected layer function.</p>
+<p><strong>Buffer size:</strong><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code></p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pV</span></code>: pointer to input vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pM</span></code>: pointer to matrix weights </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_vec</span></code>: length of the vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">num_of_rows</span></code>: number of rows in weight matrix </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias_shift</span></code>: amount of left-shift for bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">out_shift</span></code>: amount of right-shift for output </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias</span></code>: pointer to bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">pOut</span></code>: pointer to output vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">vec_buffer</span></code>: pointer to buffer space for input </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>vec_buffer size: 0 </p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__FC_1ga7aac789b484f40bcea3ca6511f2969d1"></span>riscv_status <code class="sig-name descname">riscv_fully_connected_q15_opt</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pV</em>, <em class="property">const</em> q15_t *<em>pM</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, <em class="property">const</em> uint16_t <em>num_of_rows</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, <em class="property">const</em> q15_t *<em>bias</em>, q15_t *<em>pOut</em>, q15_t *<em>vec_buffer</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Q15 opt fully-connected layer function. </p>
+<p><strong>Buffer size:</strong><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code></p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pV</span></code>: pointer to input vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pM</span></code>: pointer to matrix weights </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_vec</span></code>: length of the vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">num_of_rows</span></code>: number of rows in weight matrix </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias_shift</span></code>: amount of left-shift for bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">out_shift</span></code>: amount of right-shift for output </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias</span></code>: pointer to bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">pOut</span></code>: pointer to output vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">vec_buffer</span></code>: pointer to buffer space for input </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>vec_buffer size: 0</p>
+<p>Here we use only one pointer to read 4 rows in the weight matrix. So if the original matrix looks like this:</p>
+<p>| a11 | a12 | a13 |</p>
+<p>| a21 | a22 | a23 |</p>
+<p>| a31 | a32 | a33 |</p>
+<p>| a41 | a42 | a43 |</p>
+<p>| a51 | a52 | a53 |</p>
+<p>| a61 | a62 | a63 |</p>
+<p>We operates on multiple-of-4 rows, so the first four rows becomes</p>
+<p>| a11 | a12 | a21 | a22 | a31 | a32 | a41 | a42 |</p>
+<p>| a13 | a23 | a33 | a43 |</p>
+<p>Remaining rows are kept the same original order.</p>
+<p>So the stored weight matrix looks like this:</p>
+<p>| a11 | a12 | a21 | a22 | a31 | a32 | a41 | a42 |</p>
+<p>| a13 | a23 | a33 | a43 | a51 | a52 | a53 | a61 |</p>
+<p>| a62 | a63 | </p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__FC_1gaabd0ddb08f10926a0cb16c780f1f1092"></span>riscv_status <code class="sig-name descname">riscv_fully_connected_q7</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>pV</em>, <em class="property">const</em> q7_t *<em>pM</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, <em class="property">const</em> uint16_t <em>num_of_rows</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, <em class="property">const</em> q7_t *<em>bias</em>, q7_t *<em>pOut</em>, q15_t *<em>vec_buffer</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Q7 basic fully-connected layer function. </p>
+<p><strong>Buffer size:</strong><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code></p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pV</span></code>: pointer to input vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pM</span></code>: pointer to matrix weights </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_vec</span></code>: length of the vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">num_of_rows</span></code>: number of rows in weight matrix </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias_shift</span></code>: amount of left-shift for bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">out_shift</span></code>: amount of right-shift for output </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias</span></code>: pointer to bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">pOut</span></code>: pointer to output vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">vec_buffer</span></code>: pointer to buffer space for input </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>vec_buffer size: dim_vec</p>
+<p>This basic function is designed to work with regular weight matrix without interleaving. </p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__FC_1ga7941d995077149ea20950bb2e44f4bba"></span>riscv_status <code class="sig-name descname">riscv_fully_connected_q7_opt</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>pV</em>, <em class="property">const</em> q7_t *<em>pM</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, <em class="property">const</em> uint16_t <em>num_of_rows</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, <em class="property">const</em> q7_t *<em>bias</em>, q7_t *<em>pOut</em>, q15_t *<em>vec_buffer</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Q7 opt fully-connected layer function. </p>
+<p><strong>Buffer size:</strong><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code></p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pV</span></code>: pointer to input vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pM</span></code>: pointer to matrix weights </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_vec</span></code>: length of the vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">num_of_rows</span></code>: number of rows in weight matrix </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias_shift</span></code>: amount of left-shift for bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">out_shift</span></code>: amount of right-shift for output </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias</span></code>: pointer to bias </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">pOut</span></code>: pointer to output vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">vec_buffer</span></code>: pointer to buffer space for input </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>vec_buffer size: dim_vec</p>
+<p>This opt function is designed to work with interleaved weight matrix. The vector input is assumed in q7_t format, we call riscv_q7_to_q15_no_shift_shuffle function to expand into q15_t format with certain weight re-ordering, refer to the function comments for more details. Here we use only one pointer to read 4 rows in the weight matrix. So if the original q7_t matrix looks like this:</p>
+<p>| a11 | a12 | a13 | a14 | a15 | a16 | a17 |</p>
+<p>| a21 | a22 | a23 | a24 | a25 | a26 | a27 |</p>
+<p>| a31 | a32 | a33 | a34 | a35 | a36 | a37 |</p>
+<p>| a41 | a42 | a43 | a44 | a45 | a46 | a47 |</p>
+<p>| a51 | a52 | a53 | a54 | a55 | a56 | a57 |</p>
+<p>| a61 | a62 | a63 | a64 | a65 | a66 | a67 |</p>
+<p>We operates on multiple-of-4 rows, so the first four rows becomes</p>
+<p>| a11 | a21 | a13 | a23 | a31 | a41 | a33 | a43 |</p>
+<p>| a12 | a22 | a14 | a24 | a32 | a42 | a34 | a44 |</p>
+<p>| a15 | a25 | a35 | a45 | a16 | a26 | a36 | a46 |</p>
+<p>So within the kernel, we first read the re-ordered vector in as:</p>
+<p>| b1 | b3 | and | b2 | b4 |</p>
+<p>the four q31_t weights will look like</p>
+<p>| a11 | a13 |, | a21 | a23 |, | a31 | a33 |, | a41 | a43 |</p>
+<p>| a12 | a14 |, | a22 | a24 |, | a32 | a34 |, | a42 | a44 |</p>
+<p>The column left over will be in-order. which is:</p>
+<p>| a17 | a27 | a37 | a47 |</p>
+<p>For the left-over rows, we do 1x1 computation, so the data remains as its original order.</p>
+<p>So the stored weight matrix looks like this:</p>
+<p>| a11 | a21 | a13 | a23 | a31 | a41 |</p>
+<p>| a33 | a43 | a12 | a22 | a14 | a24 |</p>
+<p>| a32 | a42 | a34 | a44 | a15 | a25 |</p>
+<p>| a35 | a45 | a16 | a26 | a36 | a46 |</p>
+<p>| a17 | a27 | a37 | a47 | a51 | a52 |</p>
+<p>| a53 | a54 | a55 | a56 | a57 | a61 |</p>
+<p>| a62 | a63 | a64 | a65 | a66 | a67 | </p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__FC_1gaee6b76ba1caa346436404498e6c022f9"></span>riscv_status <code class="sig-name descname">riscv_fully_connected_s8</code><span class="sig-paren">(</span><em class="property">const</em> nmsis_nn_context *<em>ctx</em>, <em class="property">const</em> nmsis_nn_fc_params *<em>fc_params</em>, <em class="property">const</em> nmsis_nn_per_tensor_quant_params *<em>quant_params</em>, <em class="property">const</em> nmsis_nn_dims *<em>input_dims</em>, <em class="property">const</em> q7_t *<em>input_data</em>, <em class="property">const</em> nmsis_nn_dims *<em>filter_dims</em>, <em class="property">const</em> q7_t *<em>filter_data</em>, <em class="property">const</em> nmsis_nn_dims *<em>bias_dims</em>, <em class="property">const</em> int32_t *<em>bias_data</em>, <em class="property">const</em> nmsis_nn_dims *<em>output_dims</em>, q7_t *<em>output_data</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Basic s8 Fully Connected function. </p>
+<p><ul class="simple">
+<li><p>Supported framework: TensorFlow Lite</p></li>
+<li><p>q7 is used as data type eventhough it is s8 data. It is done so to be consistent with existing APIs. </p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code></p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">ctx</span></code>: Function context (e.g. temporary buffer). Check the function definition file to see if an additional buffer is required. Optional function {API}_get_buffer_size() provides the buffer size if an additional buffer is required. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">fc_params</span></code>: Fully Connected layer parameters (e.g. strides, dilations, pads,…) Range of fc_params-&gt;input_offset : [-127, 128] fc_params-&gt;filter_offset : 0 Range of fc_params-&gt;output_offset : [-128, 127] </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">quant_params</span></code>: Per-tensor quantization info. It contains the multiplier and shift values to be applied to the output tensor. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">input_dims</span></code>: Input (activation) tensor dimensions. Format: [N, H, W, C_IN] Input dimension is taken as Nx(H * W * C_IN) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">input_data</span></code>: Input (activation) data pointer. Data type: int8 </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">filter_dims</span></code>: Two dimensional filter dimensions. Format: [N, C] N : accumulation depth and equals (H * W * C_IN) from input_dims C : output depth and equals C_OUT in output_dims H &amp; W : Not used </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">filter_data</span></code>: Filter data pointer. Data type: int8 </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias_dims</span></code>: Bias tensor dimensions. Format: [C_OUT] N, H, W : Not used </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bias_data</span></code>: Bias data pointer. Data type: int32 </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">output_dims</span></code>: Output tensor dimensions. Format: [N, C_OUT] N : Batches C_OUT : Output depth H &amp; W : Not used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">output_data</span></code>: Output data pointer. Data type: int8 </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__FC_1gad6f87a614339280578e030ff6599ec2d"></span>int32_t <code class="sig-name descname">riscv_fully_connected_s8_get_buffer_size</code><span class="sig-paren">(</span><em class="property">const</em> nmsis_nn_dims *<em>filter_dims</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Get the required buffer size for S8 basic fully-connected and matrix multiplication layer function for TF Lite. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The function returns required buffer size in bytes </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">filter_dims</span></code>: dimension of filter </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api_pooling.html" class="btn btn-neutral float-right" title="Neural Network Pooling Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api_nnconv.html" class="btn btn-neutral float-left" title="Neural Network Convolution Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-Present, Nuclei
+      <span class="lastupdated">
+        Last updated on Aug 03, 2021.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

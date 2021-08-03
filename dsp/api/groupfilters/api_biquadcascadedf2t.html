@@ -1,0 +1,464 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Biquad Cascade IIR Filters Using a Direct Form II Transposed Structure &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Convolution" href="api_conv.html" />
+    <link rel="prev" title="Biquad Cascade IIR Filters Using Direct Form I Structure" href="api_biquadcascadedf1.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.2-RC1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">NMSIS DSP</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupfastmath.html">Fast Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api_groupfilters.html">Filtering Functions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api_biquadcascadedf1_32x64.html">High Precision Q31 Biquad Cascade Filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_biquadcascadedf1.html">Biquad Cascade IIR Filters Using Direct Form I Structure</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Biquad Cascade IIR Filters Using a Direct Form II Transposed Structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_conv.html">Convolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_partialconv.html">Partial Convolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_corr.html">Correlation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_fir_decimate.html">Finite Impulse Response (FIR) Decimator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_fir.html">Finite Impulse Response (FIR) Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_fir_lattice.html">Finite Impulse Response (FIR) Lattice Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_fir_sparse.html">Finite Impulse Response (FIR) Sparse Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_iir_lattice.html">Infinite Impulse Response (IIR) Lattice Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_lms.html">Least Mean Square (LMS) Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_lms_norm.html">Normalized LMS Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_fir_interpolate.html">Finite Impulse Response (FIR) Interpolator</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupmatrix.html">Matrix Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupcontroller.html">Controller Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupstats.html">Statistics Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupsupport.html">Support Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupinterpolation.html">Interpolation Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
+        
+          <li><a href="../index.html">NMSIS DSP API</a> &raquo;</li>
+        
+          <li><a href="../api_groupfilters.html">Filtering Functions</a> &raquo;</li>
+        
+      <li>Biquad Cascade IIR Filters Using a Direct Form II Transposed Structure</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/dsp/api/groupfilters/api_biquadcascadedf2t.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="biquad-cascade-iir-filters-using-a-direct-form-ii-transposed-structure">
+<span id="nmsis-dsp-api-biquad-cascade-iir-filters-using-a-direct-form-ii-transposed-structure"></span><h1>Biquad Cascade IIR Filters Using a Direct Form II Transposed Structure<a class="headerlink" href="#biquad-cascade-iir-filters-using-a-direct-form-ii-transposed-structure" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt>
+<span class="target" id="group__BiquadCascadeDF2T_1ga6d3b20d95a90c0356db77883cbf50748"></span><code class="sig-name descname">LOW_OPTIMIZATION_ENTER void riscv_biquad_cascade_df2T_f32(const  riscv_biquad_cascade_df2T_instance_f32  * S, const float32_t * pSrc, float32_t * pDst, uint32_t blockSize)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__BiquadCascadeDF2T_1ga3652a129b87b80a88c31b9f5e7f5a860"></span><code class="sig-name descname">LOW_OPTIMIZATION_ENTER void riscv_biquad_cascade_df2T_f64(const  riscv_biquad_cascade_df2T_instance_f64  * S, const float64_t * pSrc, float64_t * pDst, uint32_t blockSize)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv434riscv_biquad_cascade_df2T_init_f32P38riscv_biquad_cascade_df2T_instance_f327uint8_tPK9float32_tP9float32_t">
+<span id="_CPPv334riscv_biquad_cascade_df2T_init_f32P38riscv_biquad_cascade_df2T_instance_f327uint8_tPK9float32_tP9float32_t"></span><span id="_CPPv234riscv_biquad_cascade_df2T_init_f32P38riscv_biquad_cascade_df2T_instance_f327uint8_tPK9float32_tP9float32_t"></span><span id="riscv_biquad_cascade_df2T_init_f32__riscv_biquad_cascade_df2T_instance_f32P.uint8_t.float32_tCP.float32_tP"></span><span class="target" id="group__BiquadCascadeDF2T_1ga64bded2f72748bde1621e6b27739cfbe"></span>void <code class="sig-name descname">riscv_biquad_cascade_df2T_init_f32</code><span class="sig-paren">(</span>riscv_biquad_cascade_df2T_instance_f32 *<em>S</em>, uint8_t <em>numStages</em>, <em class="property">const</em> float32_t *<em>pCoeffs</em>, float32_t *<em>pState</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv434riscv_biquad_cascade_df2T_init_f32P38riscv_biquad_cascade_df2T_instance_f327uint8_tPK9float32_tP9float32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv434riscv_biquad_cascade_df2T_init_f64P38riscv_biquad_cascade_df2T_instance_f647uint8_tPK9float64_tP9float64_t">
+<span id="_CPPv334riscv_biquad_cascade_df2T_init_f64P38riscv_biquad_cascade_df2T_instance_f647uint8_tPK9float64_tP9float64_t"></span><span id="_CPPv234riscv_biquad_cascade_df2T_init_f64P38riscv_biquad_cascade_df2T_instance_f647uint8_tPK9float64_tP9float64_t"></span><span id="riscv_biquad_cascade_df2T_init_f64__riscv_biquad_cascade_df2T_instance_f64P.uint8_t.float64_tCP.float64_tP"></span><span class="target" id="group__BiquadCascadeDF2T_1ga973af726b172e82c561ba501f445c020"></span>void <code class="sig-name descname">riscv_biquad_cascade_df2T_init_f64</code><span class="sig-paren">(</span>riscv_biquad_cascade_df2T_instance_f64 *<em>S</em>, uint8_t <em>numStages</em>, <em class="property">const</em> float64_t *<em>pCoeffs</em>, float64_t *<em>pState</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv434riscv_biquad_cascade_df2T_init_f64P38riscv_biquad_cascade_df2T_instance_f647uint8_tPK9float64_tP9float64_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__BiquadCascadeDF2T_1ga675ebfa94a2e109efb85ee35f37e88b0"></span><code class="sig-name descname">LOW_OPTIMIZATION_ENTER void riscv_biquad_cascade_stereo_df2T_f32(const  riscv_biquad_cascade_stereo_df2T_instance_f32  * S, const float32_t * pSrc, float32_t * pDst, uint32_t blockSize)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv441riscv_biquad_cascade_stereo_df2T_init_f32P45riscv_biquad_cascade_stereo_df2T_instance_f327uint8_tPK9float32_tP9float32_t">
+<span id="_CPPv341riscv_biquad_cascade_stereo_df2T_init_f32P45riscv_biquad_cascade_stereo_df2T_instance_f327uint8_tPK9float32_tP9float32_t"></span><span id="_CPPv241riscv_biquad_cascade_stereo_df2T_init_f32P45riscv_biquad_cascade_stereo_df2T_instance_f327uint8_tPK9float32_tP9float32_t"></span><span id="riscv_biquad_cascade_stereo_df2T_init_f32__riscv_biquad_cascade_stereo_df2T_instance_f32P.uint8_t.float32_tCP.float32_tP"></span><span class="target" id="group__BiquadCascadeDF2T_1ga6cf2c21b7a0772f81ecaa9f91a99f59d"></span>void <code class="sig-name descname">riscv_biquad_cascade_stereo_df2T_init_f32</code><span class="sig-paren">(</span>riscv_biquad_cascade_stereo_df2T_instance_f32 *<em>S</em>, uint8_t <em>numStages</em>, <em class="property">const</em> float32_t *<em>pCoeffs</em>, float32_t *<em>pState</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv441riscv_biquad_cascade_stereo_df2T_init_f32P45riscv_biquad_cascade_stereo_df2T_instance_f327uint8_tPK9float32_tP9float32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="group">
+<dt>
+<span class="target" id="group__BiquadCascadeDF2T"></span><em>group</em> <code class="sig-name descname">BiquadCascadeDF2T</code></dt>
+<dd><p>This set of functions implements arbitrary order recursive (IIR) filters using a transposed direct form II structure. The filters are implemented as a cascade of second order Biquad sections. These functions provide a slight memory savings as compared to the direct form I Biquad filter functions. Only floating-point data is supported.</p>
+<p>This function operate on blocks of input and output data and each call to the function processes <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> samples through the filter. <code class="docutils literal notranslate"><span class="pre">pSrc</span></code> points to the array of input data and <code class="docutils literal notranslate"><span class="pre">pDst</span></code> points to the array of output data. Both arrays contain <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> values.</p>
+<p><dl class="simple">
+<dt><strong>Algorithm</strong></dt><dd><p>Each Biquad stage implements a second order filter using the difference equation:  where d1 and d2 represent the two state values. </p>
+</dd>
+<dt><strong></strong></dt><dd><p>A Biquad filter using a transposed Direct Form II structure is shown below. <p> Coefficients </p>
+<code class="docutils literal notranslate"><span class="pre">b0,</span> <span class="pre">b1,</span> <span class="pre">and</span> <span class="pre">b2</span> </code> multiply the input signal <code class="docutils literal notranslate"><span class="pre">x[n]</span></code> and are referred to as the feedforward coefficients. Coefficients <code class="docutils literal notranslate"><span class="pre">a1</span></code> and <code class="docutils literal notranslate"><span class="pre">a2</span></code> multiply the output signal <code class="docutils literal notranslate"><span class="pre">y[n]</span></code> and are referred to as the feedback coefficients. Pay careful attention to the sign of the feedback coefficients. Some design tools flip the sign of the feedback coefficients:  In this case the feedback coefficients <code class="docutils literal notranslate"><span class="pre">a1</span></code> and <code class="docutils literal notranslate"><span class="pre">a2</span></code> must be negated when used with the NMSIS DSP Library. <img alt="../../../_images/BiquadDF2Transposed.png" src="../../../_images/BiquadDF2Transposed.png" /></p>
+</dd>
+<dt><strong></strong></dt><dd><p>Higher order filters are realized as a cascade of second order sections. <code class="docutils literal notranslate"><span class="pre">numStages</span></code> refers to the number of second order stages used. For example, an 8th order filter would be realized with <code class="docutils literal notranslate"><span class="pre">numStages=4</span></code> second order stages. A 9th order filter would be realized with <code class="docutils literal notranslate"><span class="pre">numStages=5</span></code> second order stages with the coefficients for one of the stages configured as a first order filter (<code class="docutils literal notranslate"><span class="pre">b2=0</span></code> and <code class="docutils literal notranslate"><span class="pre">a2=0</span></code>). </p>
+</dd>
+<dt><strong></strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pState</span></code> points to the state variable array. Each Biquad stage has 2 state variables <code class="docutils literal notranslate"><span class="pre">d1</span></code> and <code class="docutils literal notranslate"><span class="pre">d2</span></code>. The state variables are arranged in the <code class="docutils literal notranslate"><span class="pre">pState</span></code> array as:  where <code class="docutils literal notranslate"><span class="pre">d1x</span></code> refers to the state variables for the first Biquad and <code class="docutils literal notranslate"><span class="pre">d2x</span></code> refers to the state variables for the second Biquad. The state array has a total length of <code class="docutils literal notranslate"><span class="pre">2*numStages</span></code> values. The state variables are updated after each block of data is processed; the coefficients are untouched. </p>
+</dd>
+<dt><strong></strong></dt><dd><p>The NMSIS library contains Biquad filters in both Direct Form I and transposed Direct Form II. The advantage of the Direct Form I structure is that it is numerically more robust for fixed-point data types. That is why the Direct Form I structure supports Q15 and Q31 data types. The transposed Direct Form II structure, on the other hand, requires a wide dynamic range for the state variables <code class="docutils literal notranslate"><span class="pre">d1</span></code> and <code class="docutils literal notranslate"><span class="pre">d2</span></code>. Because of this, the NMSIS library only has a floating-point version of the Direct Form II Biquad. The advantage of the Direct Form II Biquad is that it requires half the number of state variables, 2 rather than 4, per Biquad stage.</p>
+</dd>
+<dt><strong>Instance Structure</strong></dt><dd><p>The coefficients and state variables for a filter are stored together in an instance data structure. A separate instance structure must be defined for each filter. Coefficient arrays may be shared among several instances while state variable arrays cannot be shared.</p>
+</dd>
+<dt><strong>Init Functions</strong></dt><dd><p>There is also an associated initialization function. The initialization function performs following operations:<ul class="simple">
+<li><p>Sets the values of the internal structure fields.</p></li>
+<li><p>Zeros out the values in the state buffer. To do this manually without calling the init function, assign the follow subfields of the instance structure: numStages, pCoeffs, pState. Also set all of the values in pState to zero. </p></li>
+</ul>
+</p>
+</dd>
+<dt><strong></strong></dt><dd><p>Use of the initialization function is optional. However, if the initialization function is used, then the instance structure cannot be placed into a const data section. To place an instance structure into a const data section, the instance structure must be manually initialized. Set the values in the state buffer to zeros before static initialization. For example, to statically initialize the instance structure use  where <code class="docutils literal notranslate"><span class="pre">numStages</span></code> is the number of Biquad stages in the filter; <code class="docutils literal notranslate"><span class="pre">pState</span></code> is the address of the state buffer. <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> is the address of the coefficient buffer; </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="function">
+<dt>
+<span class="target" id="group__BiquadCascadeDF2T_1ga6d3b20d95a90c0356db77883cbf50748"></span><code class="sig-name descname">LOW_OPTIMIZATION_ENTER void riscv_biquad_cascade_df2T_f32(const  riscv_biquad_cascade_df2T_instance_f32  * S, const float32_t * pSrc, float32_t * pDst, uint32_t blockSize)</code></dt>
+<dd><p>Processing function for the floating-point transposed direct form II Biquad cascade filter. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the filter data structure </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the block of output data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__BiquadCascadeDF2T_1ga3652a129b87b80a88c31b9f5e7f5a860"></span><code class="sig-name descname">LOW_OPTIMIZATION_ENTER void riscv_biquad_cascade_df2T_f64(const  riscv_biquad_cascade_df2T_instance_f64  * S, const float64_t * pSrc, float64_t * pDst, uint32_t blockSize)</code></dt>
+<dd><p>Processing function for the floating-point transposed direct form II Biquad cascade filter. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the filter data structure </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the block of output data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__BiquadCascadeDF2T_1ga64bded2f72748bde1621e6b27739cfbe"></span>void <code class="sig-name descname">riscv_biquad_cascade_df2T_init_f32</code><span class="sig-paren">(</span>riscv_biquad_cascade_df2T_instance_f32 *<em>S</em>, uint8_t <em>numStages</em>, <em class="property">const</em> float32_t *<em>pCoeffs</em>, float32_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization function for the floating-point transposed direct form II Biquad cascade filter. </p>
+<p><p>For Neon version, this array is bigger. If numstages = 4x + y, then the array has size: 32*x + 5*y and it must be initialized using the function riscv_biquad_cascade_df2T_compute_coefs_f32 which is taking the standard array coefficient as parameters.</p>
+<dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none</p>
+</dd>
+<dt><strong>Coefficient and State Ordering</strong></dt><dd><p>The coefficients are stored in the array <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> in the following order in the not Neon version. </p>
+</dd>
+<dt><strong></strong></dt><dd><p>where <code class="docutils literal notranslate"><span class="pre">b1x</span></code> and <code class="docutils literal notranslate"><span class="pre">a1x</span></code> are the coefficients for the first stage, <code class="docutils literal notranslate"><span class="pre">b2x</span></code> and <code class="docutils literal notranslate"><span class="pre">a2x</span></code> are the coefficients for the second stage, and so on. The <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> array contains a total of <code class="docutils literal notranslate"><span class="pre">5*numStages</span></code> values.</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an instance of the filter data structure. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numStages</span></code>: number of 2nd order stages in the filter. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pCoeffs</span></code>: points to the filter coefficients. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pState</span></code>: points to the state buffer. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>But, an array of 8*numstages is a good approximation.</p>
+<p>Then, the initialization can be done with: </p>
+<p><dl class="simple">
+<dt><strong>In this example, neonCoefs is a bigger array of size 8 * numStages.</strong></dt><dd><p>coefs is the standard array:</p>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong></strong></dt><dd><p>The <code class="docutils literal notranslate"><span class="pre">pState</span></code> is a pointer to state array. Each Biquad stage has 2 state variables <code class="docutils literal notranslate"><span class="pre">d1,</span></code> and <code class="docutils literal notranslate"><span class="pre">d2</span></code>. The 2 state variables for stage 1 are first, then the 2 state variables for stage 2, and so on. The state array has a total length of <code class="docutils literal notranslate"><span class="pre">2*numStages</span></code> values. The state variables are updated after each block of data is processed; the coefficients are untouched. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__BiquadCascadeDF2T_1ga973af726b172e82c561ba501f445c020"></span>void <code class="sig-name descname">riscv_biquad_cascade_df2T_init_f64</code><span class="sig-paren">(</span>riscv_biquad_cascade_df2T_instance_f64 *<em>S</em>, uint8_t <em>numStages</em>, <em class="property">const</em> float64_t *<em>pCoeffs</em>, float64_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization function for the floating-point transposed direct form II Biquad cascade filter. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none</p>
+</dd>
+<dt><strong>Coefficient and State Ordering</strong></dt><dd><p>The coefficients are stored in the array <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> in the following order:  </p>
+</dd>
+<dt><strong></strong></dt><dd><p>where <code class="docutils literal notranslate"><span class="pre">b1x</span></code> and <code class="docutils literal notranslate"><span class="pre">a1x</span></code> are the coefficients for the first stage, <code class="docutils literal notranslate"><span class="pre">b2x</span></code> and <code class="docutils literal notranslate"><span class="pre">a2x</span></code> are the coefficients for the second stage, and so on. The <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> array contains a total of <code class="docutils literal notranslate"><span class="pre">5*numStages</span></code> values. </p>
+</dd>
+<dt><strong></strong></dt><dd><p>The <code class="docutils literal notranslate"><span class="pre">pState</span></code> is a pointer to state array. Each Biquad stage has 2 state variables <code class="docutils literal notranslate"><span class="pre">d1,</span></code> and <code class="docutils literal notranslate"><span class="pre">d2</span></code>. The 2 state variables for stage 1 are first, then the 2 state variables for stage 2, and so on. The state array has a total length of <code class="docutils literal notranslate"><span class="pre">2*numStages</span></code> values. The state variables are updated after each block of data is processed; the coefficients are untouched. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an instance of the filter data structure </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numStages</span></code>: number of 2nd order stages in the filter </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pCoeffs</span></code>: points to the filter coefficients </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pState</span></code>: points to the state buffer </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__BiquadCascadeDF2T_1ga675ebfa94a2e109efb85ee35f37e88b0"></span><code class="sig-name descname">LOW_OPTIMIZATION_ENTER void riscv_biquad_cascade_stereo_df2T_f32(const  riscv_biquad_cascade_stereo_df2T_instance_f32  * S, const float32_t * pSrc, float32_t * pDst, uint32_t blockSize)</code></dt>
+<dd><p>Processing function for the floating-point transposed direct form II Biquad cascade filter. </p>
+<p>Processing function for the floating-point transposed direct form II Biquad cascade filter. 2 channels.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the filter data structure </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the block of output data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__BiquadCascadeDF2T_1ga6cf2c21b7a0772f81ecaa9f91a99f59d"></span>void <code class="sig-name descname">riscv_biquad_cascade_stereo_df2T_init_f32</code><span class="sig-paren">(</span>riscv_biquad_cascade_stereo_df2T_instance_f32 *<em>S</em>, uint8_t <em>numStages</em>, <em class="property">const</em> float32_t *<em>pCoeffs</em>, float32_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization function for the floating-point transposed direct form II Biquad cascade filter. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none</p>
+</dd>
+<dt><strong>Coefficient and State Ordering</strong></dt><dd><p>The coefficients are stored in the array <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> in the following order:  </p>
+</dd>
+<dt><strong></strong></dt><dd><p>where <code class="docutils literal notranslate"><span class="pre">b1x</span></code> and <code class="docutils literal notranslate"><span class="pre">a1x</span></code> are the coefficients for the first stage, <code class="docutils literal notranslate"><span class="pre">b2x</span></code> and <code class="docutils literal notranslate"><span class="pre">a2x</span></code> are the coefficients for the second stage, and so on. The <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> array contains a total of <code class="docutils literal notranslate"><span class="pre">5*numStages</span></code> values. </p>
+</dd>
+<dt><strong></strong></dt><dd><p>The <code class="docutils literal notranslate"><span class="pre">pState</span></code> is a pointer to state array. Each Biquad stage has 2 state variables <code class="docutils literal notranslate"><span class="pre">d1,</span></code> and <code class="docutils literal notranslate"><span class="pre">d2</span></code> for each channel. The 2 state variables for stage 1 are first, then the 2 state variables for stage 2, and so on. The state array has a total length of <code class="docutils literal notranslate"><span class="pre">2*numStages</span></code> values. The state variables are updated after each block of data is processed; the coefficients are untouched. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an instance of the filter data structure. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numStages</span></code>: number of 2nd order stages in the filter. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pCoeffs</span></code>: points to the filter coefficients. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pState</span></code>: points to the state buffer. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api_conv.html" class="btn btn-neutral float-right" title="Convolution" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api_biquadcascadedf1.html" class="btn btn-neutral float-left" title="Biquad Cascade IIR Filters Using Direct Form I Structure" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-Present, Nuclei
+      <span class="lastupdated">
+        Last updated on Aug 03, 2021.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

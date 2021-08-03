@@ -1,0 +1,479 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Normalized LMS Filters &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Finite Impulse Response (FIR) Interpolator" href="api_fir_interpolate.html" />
+    <link rel="prev" title="Least Mean Square (LMS) Filters" href="api_lms.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.2-RC1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">NMSIS DSP</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupfastmath.html">Fast Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api_groupfilters.html">Filtering Functions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api_biquadcascadedf1_32x64.html">High Precision Q31 Biquad Cascade Filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_biquadcascadedf1.html">Biquad Cascade IIR Filters Using Direct Form I Structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_biquadcascadedf2t.html">Biquad Cascade IIR Filters Using a Direct Form II Transposed Structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_conv.html">Convolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_partialconv.html">Partial Convolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_corr.html">Correlation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_fir_decimate.html">Finite Impulse Response (FIR) Decimator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_fir.html">Finite Impulse Response (FIR) Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_fir_lattice.html">Finite Impulse Response (FIR) Lattice Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_fir_sparse.html">Finite Impulse Response (FIR) Sparse Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_iir_lattice.html">Infinite Impulse Response (IIR) Lattice Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_lms.html">Least Mean Square (LMS) Filters</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Normalized LMS Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_fir_interpolate.html">Finite Impulse Response (FIR) Interpolator</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupmatrix.html">Matrix Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupcontroller.html">Controller Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupstats.html">Statistics Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupsupport.html">Support Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupinterpolation.html">Interpolation Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
+        
+          <li><a href="../index.html">NMSIS DSP API</a> &raquo;</li>
+        
+          <li><a href="../api_groupfilters.html">Filtering Functions</a> &raquo;</li>
+        
+      <li>Normalized LMS Filters</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/dsp/api/groupfilters/api_lms_norm.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="normalized-lms-filters">
+<span id="nmsis-dsp-api-normalized-lms-filters"></span><h1>Normalized LMS Filters<a class="headerlink" href="#normalized-lms-filters" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="_CPPv418riscv_lms_norm_f32P27riscv_lms_norm_instance_f32PK9float32_tP9float32_tP9float32_tP9float32_t8uint32_t">
+<span id="_CPPv318riscv_lms_norm_f32P27riscv_lms_norm_instance_f32PK9float32_tP9float32_tP9float32_tP9float32_t8uint32_t"></span><span id="_CPPv218riscv_lms_norm_f32P27riscv_lms_norm_instance_f32PK9float32_tP9float32_tP9float32_tP9float32_t8uint32_t"></span><span id="riscv_lms_norm_f32__riscv_lms_norm_instance_f32P.float32_tCP.float32_tP.float32_tP.float32_tP.uint32_t"></span><span class="target" id="group__LMS__NORM_1ga430d4faa1d3bc35f11c7161d32829b54"></span>void <code class="sig-name descname">riscv_lms_norm_f32</code><span class="sig-paren">(</span>riscv_lms_norm_instance_f32 *<em>S</em>, <em class="property">const</em> float32_t *<em>pSrc</em>, float32_t *<em>pRef</em>, float32_t *<em>pOut</em>, float32_t *<em>pErr</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418riscv_lms_norm_f32P27riscv_lms_norm_instance_f32PK9float32_tP9float32_tP9float32_tP9float32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv423riscv_lms_norm_init_f32P27riscv_lms_norm_instance_f328uint16_tP9float32_tP9float32_t9float32_t8uint32_t">
+<span id="_CPPv323riscv_lms_norm_init_f32P27riscv_lms_norm_instance_f328uint16_tP9float32_tP9float32_t9float32_t8uint32_t"></span><span id="_CPPv223riscv_lms_norm_init_f32P27riscv_lms_norm_instance_f328uint16_tP9float32_tP9float32_t9float32_t8uint32_t"></span><span id="riscv_lms_norm_init_f32__riscv_lms_norm_instance_f32P.uint16_t.float32_tP.float32_tP.float32_t.uint32_t"></span><span class="target" id="group__LMS__NORM_1ga39ba5def59568ef5db5a2da0f6632d0e"></span>void <code class="sig-name descname">riscv_lms_norm_init_f32</code><span class="sig-paren">(</span>riscv_lms_norm_instance_f32 *<em>S</em>, uint16_t <em>numTaps</em>, float32_t *<em>pCoeffs</em>, float32_t *<em>pState</em>, float32_t <em>mu</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423riscv_lms_norm_init_f32P27riscv_lms_norm_instance_f328uint16_tP9float32_tP9float32_t9float32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv423riscv_lms_norm_init_q15P27riscv_lms_norm_instance_q158uint16_tP5q15_tP5q15_t5q15_t8uint32_t7uint8_t">
+<span id="_CPPv323riscv_lms_norm_init_q15P27riscv_lms_norm_instance_q158uint16_tP5q15_tP5q15_t5q15_t8uint32_t7uint8_t"></span><span id="_CPPv223riscv_lms_norm_init_q15P27riscv_lms_norm_instance_q158uint16_tP5q15_tP5q15_t5q15_t8uint32_t7uint8_t"></span><span id="riscv_lms_norm_init_q15__riscv_lms_norm_instance_q15P.uint16_t.q15_tP.q15_tP.q15_t.uint32_t.uint8_t"></span><span class="target" id="group__LMS__NORM_1ga30c00d2a58bd561f823b89b44ae71556"></span>void <code class="sig-name descname">riscv_lms_norm_init_q15</code><span class="sig-paren">(</span>riscv_lms_norm_instance_q15 *<em>S</em>, uint16_t <em>numTaps</em>, q15_t *<em>pCoeffs</em>, q15_t *<em>pState</em>, q15_t <em>mu</em>, uint32_t <em>blockSize</em>, uint8_t <em>postShift</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423riscv_lms_norm_init_q15P27riscv_lms_norm_instance_q158uint16_tP5q15_tP5q15_t5q15_t8uint32_t7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv423riscv_lms_norm_init_q31P27riscv_lms_norm_instance_q318uint16_tP5q31_tP5q31_t5q31_t8uint32_t7uint8_t">
+<span id="_CPPv323riscv_lms_norm_init_q31P27riscv_lms_norm_instance_q318uint16_tP5q31_tP5q31_t5q31_t8uint32_t7uint8_t"></span><span id="_CPPv223riscv_lms_norm_init_q31P27riscv_lms_norm_instance_q318uint16_tP5q31_tP5q31_t5q31_t8uint32_t7uint8_t"></span><span id="riscv_lms_norm_init_q31__riscv_lms_norm_instance_q31P.uint16_t.q31_tP.q31_tP.q31_t.uint32_t.uint8_t"></span><span class="target" id="group__LMS__NORM_1ga8545ba6c1d850ed23d265dc098c6b092"></span>void <code class="sig-name descname">riscv_lms_norm_init_q31</code><span class="sig-paren">(</span>riscv_lms_norm_instance_q31 *<em>S</em>, uint16_t <em>numTaps</em>, q31_t *<em>pCoeffs</em>, q31_t *<em>pState</em>, q31_t <em>mu</em>, uint32_t <em>blockSize</em>, uint8_t <em>postShift</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423riscv_lms_norm_init_q31P27riscv_lms_norm_instance_q318uint16_tP5q31_tP5q31_t5q31_t8uint32_t7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv418riscv_lms_norm_q15P27riscv_lms_norm_instance_q15PK5q15_tP5q15_tP5q15_tP5q15_t8uint32_t">
+<span id="_CPPv318riscv_lms_norm_q15P27riscv_lms_norm_instance_q15PK5q15_tP5q15_tP5q15_tP5q15_t8uint32_t"></span><span id="_CPPv218riscv_lms_norm_q15P27riscv_lms_norm_instance_q15PK5q15_tP5q15_tP5q15_tP5q15_t8uint32_t"></span><span id="riscv_lms_norm_q15__riscv_lms_norm_instance_q15P.q15_tCP.q15_tP.q15_tP.q15_tP.uint32_t"></span><span class="target" id="group__LMS__NORM_1gaedc80687fb3a431b2f7616caebbc740c"></span>void <code class="sig-name descname">riscv_lms_norm_q15</code><span class="sig-paren">(</span>riscv_lms_norm_instance_q15 *<em>S</em>, <em class="property">const</em> q15_t *<em>pSrc</em>, q15_t *<em>pRef</em>, q15_t *<em>pOut</em>, q15_t *<em>pErr</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418riscv_lms_norm_q15P27riscv_lms_norm_instance_q15PK5q15_tP5q15_tP5q15_tP5q15_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv418riscv_lms_norm_q31P27riscv_lms_norm_instance_q31PK5q31_tP5q31_tP5q31_tP5q31_t8uint32_t">
+<span id="_CPPv318riscv_lms_norm_q31P27riscv_lms_norm_instance_q31PK5q31_tP5q31_tP5q31_tP5q31_t8uint32_t"></span><span id="_CPPv218riscv_lms_norm_q31P27riscv_lms_norm_instance_q31PK5q31_tP5q31_tP5q31_tP5q31_t8uint32_t"></span><span id="riscv_lms_norm_q31__riscv_lms_norm_instance_q31P.q31_tCP.q31_tP.q31_tP.q31_tP.uint32_t"></span><span class="target" id="group__LMS__NORM_1gad65f37ceb84e37e316875bcdad4e9be1"></span>void <code class="sig-name descname">riscv_lms_norm_q31</code><span class="sig-paren">(</span>riscv_lms_norm_instance_q31 *<em>S</em>, <em class="property">const</em> q31_t *<em>pSrc</em>, q31_t *<em>pRef</em>, q31_t *<em>pOut</em>, q31_t *<em>pErr</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418riscv_lms_norm_q31P27riscv_lms_norm_instance_q31PK5q31_tP5q31_tP5q31_tP5q31_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="group">
+<dt>
+<span class="target" id="group__LMS__NORM"></span><em>group</em> <code class="sig-name descname">LMS_NORM</code></dt>
+<dd><p>This set of functions implements a commonly used adaptive filter. It is related to the Least Mean Square (LMS) adaptive filter and includes an additional normalization factor which increases the adaptation rate of the filter. The NMSIS DSP Library contains normalized LMS filter functions that operate on Q15, Q31, and floating-point data types.</p>
+<p>A normalized least mean square (NLMS) filter consists of two components as shown below. The first component is a standard transversal or FIR filter. The second component is a coefficient update mechanism. The NLMS filter has two input signals. The “input” feeds the FIR filter while the “reference input” corresponds to the desired output of the FIR filter. That is, the FIR filter coefficients are updated so that the output of the FIR filter matches the reference input. The filter coefficient update mechanism is based on the difference between the FIR filter output and the reference input. This “error signal” tends towards zero as the filter adapts. The NLMS processing functions accept the input and reference input signals and generate the filter output and error signal. <p> The functions operate on blocks of data and each call to the function processes </p>
+<code class="docutils literal notranslate"><span class="pre">blockSize</span></code> samples through the filter. <code class="docutils literal notranslate"><span class="pre">pSrc</span></code> points to input signal, <code class="docutils literal notranslate"><span class="pre">pRef</span></code> points to reference signal, <code class="docutils literal notranslate"><span class="pre">pOut</span></code> points to output signal and <code class="docutils literal notranslate"><span class="pre">pErr</span></code> points to error signal. All arrays contain <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> values.<img alt="../../../_images/LMS.png" src="../../../_images/LMS.png" /></p>
+<p>The functions operate on a block-by-block basis. Internally, the filter coefficients <code class="docutils literal notranslate"><span class="pre">b[n]</span></code> are updated on a sample-by-sample basis. The convergence of the LMS filter is slower compared to the normalized LMS algorithm.</p>
+<p><dl class="simple">
+<dt><strong>Algorithm</strong></dt><dd><p>The output signal <code class="docutils literal notranslate"><span class="pre">y[n]</span></code> is computed by a standard FIR filter: </p>
+</dd>
+<dt><strong></strong></dt><dd><p>The error signal equals the difference between the reference signal <code class="docutils literal notranslate"><span class="pre">d[n]</span></code> and the filter output: </p>
+</dd>
+<dt><strong></strong></dt><dd><p>After each sample of the error signal is computed the instanteous energy of the filter state variables is calculated:  The filter coefficients <code class="docutils literal notranslate"><span class="pre">b[k]</span></code> are then updated on a sample-by-sample basis:  where <code class="docutils literal notranslate"><span class="pre">mu</span></code> is the step size and controls the rate of coefficient convergence. </p>
+</dd>
+<dt><strong></strong></dt><dd><p>In the APIs, <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> points to a coefficient array of size <code class="docutils literal notranslate"><span class="pre">numTaps</span></code>. Coefficients are stored in time reversed order. </p>
+</dd>
+<dt><strong></strong></dt><dd><p> </p>
+</dd>
+<dt><strong></strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pState</span></code> points to a state array of size <code class="docutils literal notranslate"><span class="pre">numTaps</span> <span class="pre">+</span> <span class="pre">blockSize</span> <span class="pre">-</span> <span class="pre">1</span></code>. Samples in the state buffer are stored in the order: </p>
+</dd>
+<dt><strong></strong></dt><dd><p> </p>
+</dd>
+<dt><strong></strong></dt><dd><p>Note that the length of the state buffer exceeds the length of the coefficient array by <code class="docutils literal notranslate"><span class="pre">blockSize-1</span></code> samples. The increased state buffer length allows circular addressing, which is traditionally used in FIR filters, to be avoided and yields a significant speed improvement. The state variables are updated after each block of data is processed.</p>
+</dd>
+<dt><strong>Instance Structure</strong></dt><dd><p>The coefficients and state variables for a filter are stored together in an instance data structure. A separate instance structure must be defined for each filter and coefficient and state arrays cannot be shared among instances. There are separate instance structure declarations for each of the 3 supported data types.</p>
+</dd>
+<dt><strong>Initialization Functions</strong></dt><dd><p>There is also an associated initialization function for each data type. The initialization function performs the following operations:<ul class="simple">
+<li><p>Sets the values of the internal structure fields.</p></li>
+<li><p>Zeros out the values in the state buffer. To do this manually without calling the init function, assign the follow subfields of the instance structure: numTaps, pCoeffs, mu, energy, x0, pState. Also set all of the values in pState to zero. For Q7, Q15, and Q31 the following fields must also be initialized; recipTable, postShift </p></li>
+</ul>
+</p>
+</dd>
+<dt><strong></strong></dt><dd><p>Instance structure cannot be placed into a const data section and it is recommended to use the initialization function. </p>
+</dd>
+<dt><strong>Fixed-Point Behavior</strong></dt><dd><p>Care must be taken when using the Q15 and Q31 versions of the normalised LMS filter. The following issues must be considered:<ul class="simple">
+<li><p>Scaling of coefficients</p></li>
+<li><p>Overflow and saturation</p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Scaling of Coefficients (fixed point versions)</strong></dt><dd><p>Filter coefficients are represented as fractional values and coefficients are restricted to lie in the range <code class="docutils literal notranslate"><span class="pre">[-1</span> <span class="pre">+1)</span></code>. The fixed-point functions have an additional scaling parameter <code class="docutils literal notranslate"><span class="pre">postShift</span></code>. At the output of the filter’s accumulator is a shift register which shifts the result by <code class="docutils literal notranslate"><span class="pre">postShift</span></code> bits. This essentially scales the filter coefficients by <code class="docutils literal notranslate"><span class="pre">2^postShift</span></code> and allows the filter coefficients to exceed the range <code class="docutils literal notranslate"><span class="pre">[+1</span> <span class="pre">-1)</span></code>. The value of <code class="docutils literal notranslate"><span class="pre">postShift</span></code> is set by the user based on the expected gain through the system being modeled.</p>
+</dd>
+<dt><strong>Overflow and Saturation (fixed point versions)</strong></dt><dd><p>Overflow and saturation behavior of the fixed-point Q15 and Q31 versions are described separately as part of the function specific documentation below. </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="function">
+<dt>
+<span class="target" id="group__LMS__NORM_1ga430d4faa1d3bc35f11c7161d32829b54"></span>void <code class="sig-name descname">riscv_lms_norm_f32</code><span class="sig-paren">(</span>riscv_lms_norm_instance_f32 *<em>S</em>, <em class="property">const</em> float32_t *<em>pSrc</em>, float32_t *<em>pRef</em>, float32_t *<em>pOut</em>, float32_t *<em>pErr</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Processing function for floating-point normalized LMS filter. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the floating-point normalized LMS filter structure </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pRef</span></code>: points to the block of reference data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pOut</span></code>: points to the block of output data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pErr</span></code>: points to the block of error data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__LMS__NORM_1ga39ba5def59568ef5db5a2da0f6632d0e"></span>void <code class="sig-name descname">riscv_lms_norm_init_f32</code><span class="sig-paren">(</span>riscv_lms_norm_instance_f32 *<em>S</em>, uint16_t <em>numTaps</em>, float32_t *<em>pCoeffs</em>, float32_t *<em>pState</em>, float32_t <em>mu</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization function for floating-point normalized LMS filter. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none</p>
+</dd>
+<dt><strong>Details</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> points to the array of filter coefficients stored in time reversed order:  The initial filter coefficients serve as a starting point for the adaptive filter. <code class="docutils literal notranslate"><span class="pre">pState</span></code> points to an array of length <code class="docutils literal notranslate"><span class="pre">numTaps+blockSize-1</span></code> samples, where <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> is the number of input samples processed by each call to <code class="docutils literal notranslate"><span class="pre">riscv_lms_norm_f32()</span></code>. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the floating-point LMS filter structure </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numTaps</span></code>: number of filter coefficients </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pCoeffs</span></code>: points to coefficient buffer </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pState</span></code>: points to state buffer </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">mu</span></code>: step size that controls filter coefficient updates </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__LMS__NORM_1ga30c00d2a58bd561f823b89b44ae71556"></span>void <code class="sig-name descname">riscv_lms_norm_init_q15</code><span class="sig-paren">(</span>riscv_lms_norm_instance_q15 *<em>S</em>, uint16_t <em>numTaps</em>, q15_t *<em>pCoeffs</em>, q15_t *<em>pState</em>, q15_t <em>mu</em>, uint32_t <em>blockSize</em>, uint8_t <em>postShift</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization function for Q15 normalized LMS filter. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none</p>
+</dd>
+<dt><strong>Details</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> points to the array of filter coefficients stored in time reversed order:  The initial filter coefficients serve as a starting point for the adaptive filter. <code class="docutils literal notranslate"><span class="pre">pState</span></code> points to the array of state variables and size of array is <code class="docutils literal notranslate"><span class="pre">numTaps+blockSize-1</span></code> samples, where <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> is the number of input samples processed by each call to <code class="docutils literal notranslate"><span class="pre">riscv_lms_norm_q15()</span></code>. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the Q15 normalized LMS filter structure. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numTaps</span></code>: number of filter coefficients. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pCoeffs</span></code>: points to coefficient buffer. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pState</span></code>: points to state buffer. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">mu</span></code>: step size that controls filter coefficient updates. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">postShift</span></code>: bit shift applied to coefficients. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__LMS__NORM_1ga8545ba6c1d850ed23d265dc098c6b092"></span>void <code class="sig-name descname">riscv_lms_norm_init_q31</code><span class="sig-paren">(</span>riscv_lms_norm_instance_q31 *<em>S</em>, uint16_t <em>numTaps</em>, q31_t *<em>pCoeffs</em>, q31_t *<em>pState</em>, q31_t <em>mu</em>, uint32_t <em>blockSize</em>, uint8_t <em>postShift</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization function for Q31 normalized LMS filter. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none</p>
+</dd>
+<dt><strong>Details</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> points to the array of filter coefficients stored in time reversed order:  The initial filter coefficients serve as a starting point for the adaptive filter. <code class="docutils literal notranslate"><span class="pre">pState</span></code> points to an array of length <code class="docutils literal notranslate"><span class="pre">numTaps+blockSize-1</span></code> samples, where <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> is the number of input samples processed by each call to <code class="docutils literal notranslate"><span class="pre">riscv_lms_norm_q31()</span></code>. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the Q31 normalized LMS filter structure. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numTaps</span></code>: number of filter coefficients. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pCoeffs</span></code>: points to coefficient buffer. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pState</span></code>: points to state buffer. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">mu</span></code>: step size that controls filter coefficient updates. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">postShift</span></code>: bit shift applied to coefficients. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__LMS__NORM_1gaedc80687fb3a431b2f7616caebbc740c"></span>void <code class="sig-name descname">riscv_lms_norm_q15</code><span class="sig-paren">(</span>riscv_lms_norm_instance_q15 *<em>S</em>, <em class="property">const</em> q15_t *<em>pSrc</em>, q15_t *<em>pRef</em>, q15_t *<em>pOut</em>, q15_t *<em>pErr</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Processing function for Q15 normalized LMS filter. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none</p>
+</dd>
+<dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The function is implemented using a 64-bit internal accumulator. Both coefficients and state variables are represented in 1.15 format and multiplications yield a 2.30 result. The 2.30 intermediate results are accumulated in a 64-bit accumulator in 34.30 format. There is no risk of internal overflow with this approach and the full precision of intermediate multiplications is preserved. After all additions have been performed, the accumulator is truncated to 34.15 format by discarding low 15 bits. Lastly, the accumulator is saturated to yield a result in 1.15 format. </p>
+</dd>
+<dt><strong></strong></dt><dd><p>In this filter, filter coefficients are updated for each sample and the updation of filter cofficients are saturted. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the Q15 normalized LMS filter structure </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pRef</span></code>: points to the block of reference data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pOut</span></code>: points to the block of output data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pErr</span></code>: points to the block of error data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__LMS__NORM_1gad65f37ceb84e37e316875bcdad4e9be1"></span>void <code class="sig-name descname">riscv_lms_norm_q31</code><span class="sig-paren">(</span>riscv_lms_norm_instance_q31 *<em>S</em>, <em class="property">const</em> q31_t *<em>pSrc</em>, q31_t *<em>pRef</em>, q31_t *<em>pOut</em>, q31_t *<em>pErr</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Processing function for Q31 normalized LMS filter. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none</p>
+</dd>
+<dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The function is implemented using an internal 64-bit accumulator. The accumulator has a 2.62 format and maintains full precision of the intermediate multiplication results but provides only a single guard bit. Thus, if the accumulator result overflows it wraps around rather than clip. In order to avoid overflows completely the input signal must be scaled down by log2(numTaps) bits. The reference signal should not be scaled down. After all multiply-accumulates are performed, the 2.62 accumulator is shifted and saturated to 1.31 format to yield the final result. The output signal and error signal are in 1.31 format. </p>
+</dd>
+<dt><strong></strong></dt><dd><p>In this filter, filter coefficients are updated for each sample and the updation of filter cofficients are saturted. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the Q31 normalized LMS filter structure </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pRef</span></code>: points to the block of reference data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pOut</span></code>: points to the block of output data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pErr</span></code>: points to the block of error data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api_fir_interpolate.html" class="btn btn-neutral float-right" title="Finite Impulse Response (FIR) Interpolator" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api_lms.html" class="btn btn-neutral float-left" title="Least Mean Square (LMS) Filters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-Present, Nuclei
+      <span class="lastupdated">
+        Last updated on Aug 03, 2021.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

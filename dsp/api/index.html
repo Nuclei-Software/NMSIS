@@ -1,0 +1,365 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>NMSIS DSP API &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Basic Math Functions" href="api_groupmath.html" />
+    <link rel="prev" title="Using NMSIS-DSP" href="../get_started.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.2-RC1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">NMSIS DSP</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started.html">Using NMSIS-DSP</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">NMSIS DSP API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api_groupmath.html">Basic Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupfastmath.html">Fast Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupcmplxmath.html">Complex Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupfilters.html">Filtering Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupmatrix.html">Matrix Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_grouptransforms.html">Transform Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupcontroller.html">Controller Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupstats.html">Statistics Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupsupport.html">Support Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupinterpolation.html">Interpolation Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupexamples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">NMSIS DSP</a> &raquo;</li>
+        
+      <li>NMSIS DSP API</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/dsp/api/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="nmsis-dsp-api">
+<span id="id1"></span><h1>NMSIS DSP API<a class="headerlink" href="#nmsis-dsp-api" title="Permalink to this headline">¶</a></h1>
+<p>If you want to access doxygen generated NMSIS DSP API,
+please click <a class="reference external" href="../../doxygen/dsp/html/modules.html">NMSIS DSP API Doxygen Documentation</a>.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api_groupmath.html">Basic Math Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupmath/api_basicabs.html">Vector Absolute Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupmath/api_basicadd.html">Vector Addition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupmath/api_basicdotprod.html">Vector Dot Product</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupmath/api_basicmult.html">Vector Multiplication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupmath/api_basicnegate.html">Vector Negate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupmath/api_basicoffset.html">Vector Offset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupmath/api_basicscale.html">Vector Scale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupmath/api_basicshift.html">Vector Shift</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupmath/api_basicsub.html">Vector Subtraction</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_groupfastmath.html">Fast Math Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupfastmath/api_sqrt.html">Square Root</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupfastmath/api_cos.html">Cosine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupfastmath/api_sin.html">Sine</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_groupcmplxmath.html">Complex Math Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupcmplxmath/api_cmplx_conj.html">Complex Conjugate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupcmplxmath/api_cmplx_dot_prod.html">Complex Dot Product</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupcmplxmath/api_cmplx_mag.html">Complex Magnitude</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupcmplxmath/api_cmplx_mag_squared.html">Complex Magnitude Squared</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupcmplxmath/api_cmplxbycmplxmult.html">Complex-by-Complex Multiplication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupcmplxmath/api_cmplxbyrealmult.html">Complex-by-Real Multiplication</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_groupfilters.html">Filtering Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupfilters/api_biquadcascadedf1_32x64.html">High Precision Q31 Biquad Cascade Filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupfilters/api_biquadcascadedf1.html">Biquad Cascade IIR Filters Using Direct Form I Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupfilters/api_biquadcascadedf2t.html">Biquad Cascade IIR Filters Using a Direct Form II Transposed Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupfilters/api_conv.html">Convolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupfilters/api_partialconv.html">Partial Convolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupfilters/api_corr.html">Correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupfilters/api_fir_decimate.html">Finite Impulse Response (FIR) Decimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupfilters/api_fir.html">Finite Impulse Response (FIR) Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupfilters/api_fir_lattice.html">Finite Impulse Response (FIR) Lattice Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupfilters/api_fir_sparse.html">Finite Impulse Response (FIR) Sparse Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupfilters/api_iir_lattice.html">Infinite Impulse Response (IIR) Lattice Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupfilters/api_lms.html">Least Mean Square (LMS) Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupfilters/api_lms_norm.html">Normalized LMS Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupfilters/api_fir_interpolate.html">Finite Impulse Response (FIR) Interpolator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_groupmatrix.html">Matrix Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_matrixadd.html">Matrix Addition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_cmplxmatrixmult.html">Complex Matrix Multiplication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_matrixinit.html">Matrix Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_matrixinv.html">Matrix Inverse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_matrixmult.html">Matrix Multiplication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_matrixscale.html">Matrix Scale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_matrixsub.html">Matrix Subtraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_matrixtrans.html">Matrix Transpose</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_grouptransforms.html">Transform Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="grouptransforms/api_complexfft.html">Complex FFT Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="grouptransforms/complexfft/api_cfft_cifft.html">Complex FFT Tables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="grouptransforms/api_dct4_idct4.html">DCT Type IV Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="grouptransforms/dct4_idct4/api_dct4_idct4_table.html">DCT Type IV Tables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="grouptransforms/api_realfft.html">Real FFT Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="grouptransforms/realfft/api_realfft_table.html">Real FFT Tables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_groupcontroller.html">Controller Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupcontroller/api_pid.html">PID Motor Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupcontroller/api_clarke.html">Vector Clarke Transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupcontroller/api_inv_clarke.html">Vector Inverse Clarke Transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupcontroller/api_park.html">Vector Park Transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupcontroller/api_inv_park.html">Vector Inverse Park transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupcontroller/api_sincos.html">Sine Cosine</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_groupstats.html">Statistics Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupstats/api_max.html">Maximum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupstats/api_mean.html">Mean</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupstats/api_min.html">Minimum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupstats/api_power.html">Power</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupstats/api_rms.html">Root mean square (RMS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupstats/api_std.html">Standard deviation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupstats/api_variance.html">Variance</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_groupsupport.html">Support Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_copy.html">Vector Copy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_fill.html">Vector Fill</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_float_to_x.html">Convert 32-bit floating point value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_q15_to_x.html">Convert 16-bit Integer value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_q31_to_x.html">Convert 32-bit Integer value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_q7_to_x.html">Convert 8-bit Integer value</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_groupinterpolation.html">Interpolation Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupinterpolation/api_linearinterpolate.html">Linear Interpolation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupinterpolation/api_bilinearinterpolate.html">Bilinear Interpolation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_groupexamples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_classmarks.html">Class Marks Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_convolutionexample.html">Convolution Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_dotproductexample.html">Dot Product Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_frequencybin.html">Frequency Bin Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_firlpf.html">FIR Lowpass Filter Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_geq5band.html">Graphic Audio Equalizer Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_linearinterpexample.html">Linear Interpolate Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_matrixexample.html">Matrix Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_signalconvergence.html">Signal Convergence Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_sincosexample.html">SineCosine Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_varianceexample.html">Variance Example</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api_groupmath.html" class="btn btn-neutral float-right" title="Basic Math Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../get_started.html" class="btn btn-neutral float-left" title="Using NMSIS-DSP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-Present, Nuclei
+      <span class="lastupdated">
+        Last updated on Aug 03, 2021.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

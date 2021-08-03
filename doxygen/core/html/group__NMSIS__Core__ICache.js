@@ -1,0 +1,26 @@
+var group__NMSIS__Core__ICache =
+[
+    [ "DisableICache", "group__NMSIS__Core__ICache.html#ga4a855b01222d0c42d413f168651616e5", null ],
+    [ "EnableICache", "group__NMSIS__Core__ICache.html#ga76dfd7aff65a6a7fa91b53dbe44f9ce5", null ],
+    [ "MInvalICache", "group__NMSIS__Core__ICache.html#gab0d916e064876aea3bf9135283814db1", null ],
+    [ "MInvalICacheLine", "group__NMSIS__Core__ICache.html#gac9500d4f13d04b2acbfd3538984514c8", null ],
+    [ "MInvalICacheLines", "group__NMSIS__Core__ICache.html#gafe47347cfa3f8c4a8829c88fa5fdec9b", null ],
+    [ "MLockICacheLine", "group__NMSIS__Core__ICache.html#gaa0ebecb33755adc5adbc597889194605", null ],
+    [ "MLockICacheLines", "group__NMSIS__Core__ICache.html#ga5d12990670c5b36de576bab8d1812d16", null ],
+    [ "MUnlockICacheLine", "group__NMSIS__Core__ICache.html#gac423a03eaa4afb1c8641c1c9e3097168", null ],
+    [ "MUnlockICacheLines", "group__NMSIS__Core__ICache.html#ga7035e12e1a3c7c7730f3211241a8fe90", null ],
+    [ "SInvalICache", "group__NMSIS__Core__ICache.html#ga25824c725ce4cfd0319c182a8a44c7e3", null ],
+    [ "SInvalICacheLine", "group__NMSIS__Core__ICache.html#ga9cfe1f7476be3aa984c926287eceecdf", null ],
+    [ "SInvalICacheLines", "group__NMSIS__Core__ICache.html#ga020ff82b548a567037dd0c916b4429d2", null ],
+    [ "SLockICacheLine", "group__NMSIS__Core__ICache.html#ga8ac672c482d15a997db8f4acfa6c51f5", null ],
+    [ "SLockICacheLines", "group__NMSIS__Core__ICache.html#gab179486d73e9a1ce8543d310aa8d1594", null ],
+    [ "SUnlockICacheLine", "group__NMSIS__Core__ICache.html#gaf43b829e002df8fb7563c5eccb4dd9eb", null ],
+    [ "SUnlockICacheLines", "group__NMSIS__Core__ICache.html#ga74e29621ab0c803fe474c648d078fe18", null ],
+    [ "UInvalICache", "group__NMSIS__Core__ICache.html#ga60a04e2fd2a444e04703dcd4a8d38e04", null ],
+    [ "UInvalICacheLine", "group__NMSIS__Core__ICache.html#ga4c202208f9f90802445600e637563f3d", null ],
+    [ "UInvalICacheLines", "group__NMSIS__Core__ICache.html#ga3f36015dbfc23a155d1ae0fa458388a2", null ],
+    [ "ULockICacheLine", "group__NMSIS__Core__ICache.html#ga84eb3cf641c1e87655219fec34e49b20", null ],
+    [ "ULockICacheLines", "group__NMSIS__Core__ICache.html#gaf4b8c625829c4c772b65e5f95f61e659", null ],
+    [ "UUnlockICacheLine", "group__NMSIS__Core__ICache.html#ga1221f6556c800e2172c0cab109a4a31f", null ],
+    [ "UUnlockICacheLines", "group__NMSIS__Core__ICache.html#ga48a1fc27f21f185f1e2bf52bf09a83a4", null ]
+];
