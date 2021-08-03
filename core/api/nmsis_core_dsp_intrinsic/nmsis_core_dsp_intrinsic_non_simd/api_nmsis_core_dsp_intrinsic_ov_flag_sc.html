@@ -1,40 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>OV (Overflow) flag Set/Clear Instructions &mdash; NMSIS 1.0.2-RC1 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="Partial-SIMD Data Processing Instructions" href="../api_nmsis_core_dsp_intrinsic_part_simd_data_process.html" />
@@ -82,6 +85,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -89,7 +93,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">NMSIS Core</a><ul class="current">
@@ -140,6 +144,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -174,11 +179,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../../index.html">NMSIS Core</a> &raquo;</li>
         
@@ -193,7 +200,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../../../_sources/core/api/nmsis_core_dsp_intrinsic/nmsis_core_dsp_intrinsic_non_simd/api_nmsis_core_dsp_intrinsic_ov_flag_sc.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -207,16 +214,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="ov-overflow-flag-set-clear-instructions">
+  <div class="section" id="ov-overflow-flag-set-clear-instructions">
 <span id="nmsis-core-api-ov-overflow-flag-set-clear-instructions"></span><h1>OV (Overflow) flag Set/Clear Instructions<a class="headerlink" href="#ov-overflow-flag-set-clear-instructions" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="cpp function">
 <dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__OV__FLAG__SC_1ga0198a8fa03f62716f0b4d0cec311dfd2"></span><code class="sig-name descname">__STATIC_FORCEINLINE void __RV_CLROV(void)</code></dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__OV__FLAG__SC_1ga0198a8fa03f62716f0b4d0cec311dfd2"></span><code class="sig-name descname">__STATIC_FORCEINLINE void __RV_CLROV (void)</code></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__OV__FLAG__SC_1gaff8e2c883c492aff917d183ae7097535"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_RDOV(void)</code></dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__OV__FLAG__SC_1gaff8e2c883c492aff917d183ae7097535"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_RDOV (void)</code></dt>
 <dd></dd></dl>
 
 <dl class="group">
@@ -225,74 +232,76 @@
 <dd><p>OV (Overflow) flag Set/Clear Instructions. </p>
 <p>The following table lists the user instructions related to Overflow (OV) flag manipulation. there are 2 OV (Overflow) flag Set/Clear Instructions </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Functions</p>
-<dl class="function">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
 <dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__OV__FLAG__SC_1ga0198a8fa03f62716f0b4d0cec311dfd2"></span><code class="sig-name descname">__STATIC_FORCEINLINE void __RV_CLROV(void)</code></dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__OV__FLAG__SC_1ga0198a8fa03f62716f0b4d0cec311dfd2"></span><code class="sig-name descname">__STATIC_FORCEINLINE void __RV_CLROV (void)</code></dt>
 <dd><p>CLROV (Clear OV flag) </p>
 <p><strong>Type</strong>: DSP</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CLROV</span> <span class="c1"># pseudo mnemonic</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>This pseudo instruction is an alias to </p>
+<p><strong>Purpose</strong><p>:</p>
+<p>This pseudo instruction is an alias to</p>
 <code class="docutils literal notranslate"><span class="pre">CSRRCI</span> <span class="pre">x0,</span> <span class="pre">ucode,</span> <span class="pre">1</span></code> instruction. </p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__OV__FLAG__SC_1gaff8e2c883c492aff917d183ae7097535"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_RDOV(void)</code></dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__OV__FLAG__SC_1gaff8e2c883c492aff917d183ae7097535"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_RDOV (void)</code></dt>
 <dd><p>RDOV (Read OV flag) </p>
 <p><strong>Type</strong>: DSP</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RDOV</span> <span class="n">Rd</span>  <span class="c1"># pseudo mnemonic</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>This pseudo instruction is an alias to </p>
+<p><strong>Purpose</strong><p>:</p>
+<p>This pseudo instruction is an alias to</p>
 <code class="docutils literal notranslate"><span class="pre">CSRR</span> <span class="pre">Rd,</span> <span class="pre">ucode</span></code> instruction which maps to the real instruction of <code class="docutils literal notranslate"><span class="pre">CSRRS</span> <span class="pre">Rd,</span> <span class="pre">ucode,</span> <span class="pre">x0</span></code>.</p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>value stored in unsigned long type </p>
 </dd>
 </dl>
-</p>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../api_nmsis_core_dsp_intrinsic_part_simd_data_process.html" class="btn btn-neutral float-right" title="Partial-SIMD Data Processing Instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="api_nmsis_core_dsp_intrinsic_32b_computation.html" class="btn btn-neutral float-left" title="32-bit Computation Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="../api_nmsis_core_dsp_intrinsic_part_simd_data_process.html" class="btn btn-neutral float-right" title="Partial-SIMD Data Processing Instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="api_nmsis_core_dsp_intrinsic_32b_computation.html" class="btn btn-neutral float-left" title="32-bit Computation Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-Present, Nuclei
+        &#169; Copyright 2019-Present, Nuclei.
       <span class="lastupdated">
         Last updated on Aug 03, 2021.
       </span>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -300,7 +309,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

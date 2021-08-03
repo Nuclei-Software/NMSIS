@@ -1,40 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Real FFT Functions &mdash; NMSIS 1.0.2-RC1 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Real FFT Tables" href="realfft/api_realfft_table.html" />
@@ -82,6 +85,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -89,7 +93,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -130,6 +134,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -164,11 +169,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
         
@@ -181,7 +188,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../../_sources/dsp/api/grouptransforms/api_realfft.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -195,99 +202,99 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="real-fft-functions">
+  <div class="section" id="real-fft-functions">
 <span id="nmsis-dsp-api-real-fft-functions"></span><h1>Real FFT Functions<a class="headerlink" href="#real-fft-functions" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="realfft/api_realfft_table.html">Real FFT Tables</a></li>
 </ul>
 </div>
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv414riscv_rfft_f32PK23riscv_rfft_instance_f32P9float32_tP9float32_t">
 <span id="_CPPv314riscv_rfft_f32PK23riscv_rfft_instance_f32P9float32_tP9float32_t"></span><span id="_CPPv214riscv_rfft_f32PK23riscv_rfft_instance_f32P9float32_tP9float32_t"></span><span id="riscv_rfft_f32__riscv_rfft_instance_f32CP.float32_tP.float32_tP"></span><span class="target" id="group__RealFFT_1ga15270da93ab349377512694e2704a324"></span>void <code class="sig-name descname">riscv_rfft_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_rfft_instance_f32 *<em>S</em>, float32_t *<em>pSrc</em>, float32_t *<em>pDst</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414riscv_rfft_f32PK23riscv_rfft_instance_f32P9float32_tP9float32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv419riscv_rfft_fast_f32PK28riscv_rfft_fast_instance_f32P9float32_tP9float32_t7uint8_t">
 <span id="_CPPv319riscv_rfft_fast_f32PK28riscv_rfft_fast_instance_f32P9float32_tP9float32_t7uint8_t"></span><span id="_CPPv219riscv_rfft_fast_f32PK28riscv_rfft_fast_instance_f32P9float32_tP9float32_t7uint8_t"></span><span id="riscv_rfft_fast_f32__riscv_rfft_fast_instance_f32CP.float32_tP.float32_tP.uint8_t"></span><span class="target" id="group__RealFFT_1ga79d52dd65555bdaae27fdd20c95f04a1"></span>void <code class="sig-name descname">riscv_rfft_fast_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_rfft_fast_instance_f32 *<em>S</em>, float32_t *<em>p</em>, float32_t *<em>pOut</em>, uint8_t <em>ifftFlag</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_rfft_fast_f32PK28riscv_rfft_fast_instance_f32P9float32_tP9float32_t7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv419riscv_rfft_fast_f64P28riscv_rfft_fast_instance_f64P9float64_tP9float64_t7uint8_t">
 <span id="_CPPv319riscv_rfft_fast_f64P28riscv_rfft_fast_instance_f64P9float64_tP9float64_t7uint8_t"></span><span id="_CPPv219riscv_rfft_fast_f64P28riscv_rfft_fast_instance_f64P9float64_tP9float64_t7uint8_t"></span><span id="riscv_rfft_fast_f64__riscv_rfft_fast_instance_f64P.float64_tP.float64_tP.uint8_t"></span><span class="target" id="group__RealFFT_1ga4f4fcfb79e7b2ae83929a5e77a9fadd1"></span>void <code class="sig-name descname">riscv_rfft_fast_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em>, float64_t *<em>p</em>, float64_t *<em>pOut</em>, uint8_t <em>ifftFlag</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_rfft_fast_f64P28riscv_rfft_fast_instance_f64P9float64_tP9float64_t7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv424riscv_rfft_fast_init_f32P28riscv_rfft_fast_instance_f328uint16_t">
 <span id="_CPPv324riscv_rfft_fast_init_f32P28riscv_rfft_fast_instance_f328uint16_t"></span><span id="_CPPv224riscv_rfft_fast_init_f32P28riscv_rfft_fast_instance_f328uint16_t"></span><span id="riscv_rfft_fast_init_f32__riscv_rfft_fast_instance_f32P.uint16_t"></span><span class="target" id="group__RealFFT_1gaa09af308fb200adedfaebdd7ca4f57cf"></span>riscv_status <code class="sig-name descname">riscv_rfft_fast_init_f32</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f32 *<em>S</em>, uint16_t <em>fftLen</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424riscv_rfft_fast_init_f32P28riscv_rfft_fast_instance_f328uint16_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv427riscv_rfft_32_fast_init_f64P28riscv_rfft_fast_instance_f64">
 <span id="_CPPv327riscv_rfft_32_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span id="_CPPv227riscv_rfft_32_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span id="riscv_rfft_32_fast_init_f64__riscv_rfft_fast_instance_f64P"></span><span class="target" id="group__RealFFT_1gaaa69574378f04e992adeef1ee315ea00"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_32_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427riscv_rfft_32_fast_init_f64P28riscv_rfft_fast_instance_f64" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv427riscv_rfft_64_fast_init_f64P28riscv_rfft_fast_instance_f64">
 <span id="_CPPv327riscv_rfft_64_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span id="_CPPv227riscv_rfft_64_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span id="riscv_rfft_64_fast_init_f64__riscv_rfft_fast_instance_f64P"></span><span class="target" id="group__RealFFT_1gaecb3e530bfc65fa33f582149640e84d4"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_64_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427riscv_rfft_64_fast_init_f64P28riscv_rfft_fast_instance_f64" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv428riscv_rfft_128_fast_init_f64P28riscv_rfft_fast_instance_f64">
 <span id="_CPPv328riscv_rfft_128_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span id="_CPPv228riscv_rfft_128_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span id="riscv_rfft_128_fast_init_f64__riscv_rfft_fast_instance_f64P"></span><span class="target" id="group__RealFFT_1gae46a7af0a232c7c8704e8709cb55df09"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_128_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428riscv_rfft_128_fast_init_f64P28riscv_rfft_fast_instance_f64" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv428riscv_rfft_256_fast_init_f64P28riscv_rfft_fast_instance_f64">
 <span id="_CPPv328riscv_rfft_256_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span id="_CPPv228riscv_rfft_256_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span id="riscv_rfft_256_fast_init_f64__riscv_rfft_fast_instance_f64P"></span><span class="target" id="group__RealFFT_1gae6c838a47052527ea2e88745cf9df9a4"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_256_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428riscv_rfft_256_fast_init_f64P28riscv_rfft_fast_instance_f64" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv428riscv_rfft_512_fast_init_f64P28riscv_rfft_fast_instance_f64">
 <span id="_CPPv328riscv_rfft_512_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span id="_CPPv228riscv_rfft_512_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span id="riscv_rfft_512_fast_init_f64__riscv_rfft_fast_instance_f64P"></span><span class="target" id="group__RealFFT_1gaf404f3eb25a80cf9ca31ec71638ef5bb"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_512_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428riscv_rfft_512_fast_init_f64P28riscv_rfft_fast_instance_f64" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv429riscv_rfft_1024_fast_init_f64P28riscv_rfft_fast_instance_f64">
 <span id="_CPPv329riscv_rfft_1024_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span id="_CPPv229riscv_rfft_1024_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span id="riscv_rfft_1024_fast_init_f64__riscv_rfft_fast_instance_f64P"></span><span class="target" id="group__RealFFT_1gad1e0f12aa02c3ecddaf1065d7937b003"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_1024_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429riscv_rfft_1024_fast_init_f64P28riscv_rfft_fast_instance_f64" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv429riscv_rfft_2048_fast_init_f64P28riscv_rfft_fast_instance_f64">
 <span id="_CPPv329riscv_rfft_2048_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span id="_CPPv229riscv_rfft_2048_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span id="riscv_rfft_2048_fast_init_f64__riscv_rfft_fast_instance_f64P"></span><span class="target" id="group__RealFFT_1ga7e60eea384ea8b6377b4b5a2c75caef6"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_2048_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429riscv_rfft_2048_fast_init_f64P28riscv_rfft_fast_instance_f64" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv429riscv_rfft_4096_fast_init_f64P28riscv_rfft_fast_instance_f64">
 <span id="_CPPv329riscv_rfft_4096_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span id="_CPPv229riscv_rfft_4096_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span id="riscv_rfft_4096_fast_init_f64__riscv_rfft_fast_instance_f64P"></span><span class="target" id="group__RealFFT_1ga104c7032353e73fcb7aea13599abea35"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_4096_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429riscv_rfft_4096_fast_init_f64P28riscv_rfft_fast_instance_f64" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv424riscv_rfft_fast_init_f64P28riscv_rfft_fast_instance_f648uint16_t">
 <span id="_CPPv324riscv_rfft_fast_init_f64P28riscv_rfft_fast_instance_f648uint16_t"></span><span id="_CPPv224riscv_rfft_fast_init_f64P28riscv_rfft_fast_instance_f648uint16_t"></span><span id="riscv_rfft_fast_init_f64__riscv_rfft_fast_instance_f64P.uint16_t"></span><span class="target" id="group__RealFFT_1gabb579b9db993b4960326a58032202bb3"></span>riscv_status <code class="sig-name descname">riscv_rfft_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em>, uint16_t <em>fftLen</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424riscv_rfft_fast_init_f64P28riscv_rfft_fast_instance_f648uint16_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv419riscv_rfft_init_f32P23riscv_rfft_instance_f32P30riscv_cfft_radix4_instance_f328uint32_t8uint32_t8uint32_t">
 <span id="_CPPv319riscv_rfft_init_f32P23riscv_rfft_instance_f32P30riscv_cfft_radix4_instance_f328uint32_t8uint32_t8uint32_t"></span><span id="_CPPv219riscv_rfft_init_f32P23riscv_rfft_instance_f32P30riscv_cfft_radix4_instance_f328uint32_t8uint32_t8uint32_t"></span><span id="riscv_rfft_init_f32__riscv_rfft_instance_f32P.riscv_cfft_radix4_instance_f32P.uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__RealFFT_1ga84650b5ce6836a7cd0f0fc9da41fb3cf"></span>riscv_status <code class="sig-name descname">riscv_rfft_init_f32</code><span class="sig-paren">(</span>riscv_rfft_instance_f32 *<em>S</em>, riscv_cfft_radix4_instance_f32 *<em>S_CFFT</em>, uint32_t <em>fftLenReal</em>, uint32_t <em>ifftFlagR</em>, uint32_t <em>bitReverseFlag</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_rfft_init_f32P23riscv_rfft_instance_f32P30riscv_cfft_radix4_instance_f328uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv419riscv_rfft_init_q15P23riscv_rfft_instance_q158uint32_t8uint32_t8uint32_t">
 <span id="_CPPv319riscv_rfft_init_q15P23riscv_rfft_instance_q158uint32_t8uint32_t8uint32_t"></span><span id="_CPPv219riscv_rfft_init_q15P23riscv_rfft_instance_q158uint32_t8uint32_t8uint32_t"></span><span id="riscv_rfft_init_q15__riscv_rfft_instance_q15P.uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__RealFFT_1gad750a06797c4caf68f66d260eb0e2c89"></span>riscv_status <code class="sig-name descname">riscv_rfft_init_q15</code><span class="sig-paren">(</span>riscv_rfft_instance_q15 *<em>S</em>, uint32_t <em>fftLenReal</em>, uint32_t <em>ifftFlagR</em>, uint32_t <em>bitReverseFlag</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_rfft_init_q15P23riscv_rfft_instance_q158uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv419riscv_rfft_init_q31P23riscv_rfft_instance_q318uint32_t8uint32_t8uint32_t">
 <span id="_CPPv319riscv_rfft_init_q31P23riscv_rfft_instance_q318uint32_t8uint32_t8uint32_t"></span><span id="_CPPv219riscv_rfft_init_q31P23riscv_rfft_instance_q318uint32_t8uint32_t8uint32_t"></span><span id="riscv_rfft_init_q31__riscv_rfft_instance_q31P.uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__RealFFT_1ga9580b4195023f20ddbad0ac8d7719154"></span>riscv_status <code class="sig-name descname">riscv_rfft_init_q31</code><span class="sig-paren">(</span>riscv_rfft_instance_q31 *<em>S</em>, uint32_t <em>fftLenReal</em>, uint32_t <em>ifftFlagR</em>, uint32_t <em>bitReverseFlag</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_rfft_init_q31P23riscv_rfft_instance_q318uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv414riscv_rfft_q15PK23riscv_rfft_instance_q15P5q15_tP5q15_t">
 <span id="_CPPv314riscv_rfft_q15PK23riscv_rfft_instance_q15P5q15_tP5q15_t"></span><span id="_CPPv214riscv_rfft_q15PK23riscv_rfft_instance_q15P5q15_tP5q15_t"></span><span id="riscv_rfft_q15__riscv_rfft_instance_q15CP.q15_tP.q15_tP"></span><span class="target" id="group__RealFFT_1gac6c836bb35dcbdd2a96d38ae9bfadd7f"></span>void <code class="sig-name descname">riscv_rfft_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_rfft_instance_q15 *<em>S</em>, q15_t *<em>pSrc</em>, q15_t *<em>pDst</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414riscv_rfft_q15PK23riscv_rfft_instance_q15P5q15_tP5q15_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv414riscv_rfft_q31PK23riscv_rfft_instance_q31P5q31_tP5q31_t">
 <span id="_CPPv314riscv_rfft_q31PK23riscv_rfft_instance_q31P5q31_tP5q31_t"></span><span id="_CPPv214riscv_rfft_q31PK23riscv_rfft_instance_q31P5q31_tP5q31_t"></span><span id="riscv_rfft_q31__riscv_rfft_instance_q31CP.q31_tP.q31_tP"></span><span class="target" id="group__RealFFT_1ga1128bf1b0b16f271b593a1d94bb9c4ff"></span>void <code class="sig-name descname">riscv_rfft_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_rfft_instance_q31 *<em>S</em>, q31_t *<em>pSrc</em>, q31_t *<em>pDst</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414riscv_rfft_q31PK23riscv_rfft_instance_q31P5q31_tP5q31_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
@@ -342,433 +349,437 @@
 </dl>
 </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Functions</p>
-<dl class="function">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__RealFFT_1ga15270da93ab349377512694e2704a324"></span>void <code class="sig-name descname">riscv_rfft_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_rfft_instance_f32 *<em>S</em>, float32_t *<em>pSrc</em>, float32_t *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the floating-point RFFT/RIFFT. Source buffer is modified by this function. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none</p>
-</dd>
+<p><dl class="xrefsect">
+<dt>
+<em>Deprecated:</em></dt>
+<dd><p>Do not use this function. It has been superceded by riscv_rfft_fast_f32 and will be removed in the future. </p>
+</dd></dl>
+
+<dl class="simple">
 <dt><strong></strong></dt><dd><p>For the RIFFT, the source buffer must at least have length fftLenReal + 2. The last two elements must be equal to what would be generated by the RFFT: (pSrc[0] - pSrc[1]) and 0.0f </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the floating-point RFFT/RIFFT structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the input buffer </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the output buffer </p></li>
-</ul>
 </dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the floating-point RFFT/RIFFT structure </p></li>
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the input buffer </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the output buffer </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__RealFFT_1ga79d52dd65555bdaae27fdd20c95f04a1"></span>void <code class="sig-name descname">riscv_rfft_fast_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_rfft_fast_instance_f32 *<em>S</em>, float32_t *<em>p</em>, float32_t *<em>pOut</em>, uint8_t <em>ifftFlag</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the floating-point real FFT. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an riscv_rfft_fast_instance_f32 structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">p</span></code>: points to input buffer (Source buffer is modified by this function.) </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pOut</span></code>: points to output buffer </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ifftFlag</span></code>: <ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an riscv_rfft_fast_instance_f32 structure </p></li>
+<li><p><strong>p</strong> – <strong>[in]</strong> points to input buffer (Source buffer is modified by this function.) </p></li>
+<li><p><strong>pOut</strong> – <strong>[in]</strong> points to output buffer </p></li>
+<li><p><strong>ifftFlag</strong> – <strong>[in]</strong> <ul>
 <li><p>value = 0: RFFT</p></li>
 <li><p>value = 1: RIFFT </p></li>
 </ul>
 </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__RealFFT_1ga4f4fcfb79e7b2ae83929a5e77a9fadd1"></span>void <code class="sig-name descname">riscv_rfft_fast_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em>, float64_t *<em>p</em>, float64_t *<em>pOut</em>, uint8_t <em>ifftFlag</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the Double Precision floating-point real FFT. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an riscv_rfft_fast_instance_f64 structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">p</span></code>: points to input buffer (Source buffer is modified by this function.) </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pOut</span></code>: points to output buffer </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ifftFlag</span></code>: <ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an riscv_rfft_fast_instance_f64 structure </p></li>
+<li><p><strong>p</strong> – <strong>[in]</strong> points to input buffer (Source buffer is modified by this function.) </p></li>
+<li><p><strong>pOut</strong> – <strong>[in]</strong> points to output buffer </p></li>
+<li><p><strong>ifftFlag</strong> – <strong>[in]</strong> <ul>
 <li><p>value = 0: RFFT</p></li>
 <li><p>value = 1: RIFFT </p></li>
 </ul>
 </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv427riscv_rfft_32_fast_init_f32P28riscv_rfft_fast_instance_f32">
 <span id="_CPPv327riscv_rfft_32_fast_init_f32P28riscv_rfft_fast_instance_f32"></span><span id="_CPPv227riscv_rfft_32_fast_init_f32P28riscv_rfft_fast_instance_f32"></span><span id="riscv_rfft_32_fast_init_f32__riscv_rfft_fast_instance_f32P"></span><span class="target" id="group__RealFFT_1ga97c5664e1560a48762dd5eab4045978f"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_32_fast_init_f32</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f32 *<em>S</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427riscv_rfft_32_fast_init_f32P28riscv_rfft_fast_instance_f32" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Initialization function for the 32pt floating-point real FFT. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f32 structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
 </ul>
 </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an riscv_rfft_fast_instance_f32 structure </p></li>
-</ul>
-</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv427riscv_rfft_64_fast_init_f32P28riscv_rfft_fast_instance_f32">
 <span id="_CPPv327riscv_rfft_64_fast_init_f32P28riscv_rfft_fast_instance_f32"></span><span id="_CPPv227riscv_rfft_64_fast_init_f32P28riscv_rfft_fast_instance_f32"></span><span id="riscv_rfft_64_fast_init_f32__riscv_rfft_fast_instance_f32P"></span><span class="target" id="group__RealFFT_1gac4c7cfcf2a9fae6da84900f7b043a8cf"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_64_fast_init_f32</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f32 *<em>S</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427riscv_rfft_64_fast_init_f32P28riscv_rfft_fast_instance_f32" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Initialization function for the 64pt floating-point real FFT. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f32 structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
 </ul>
 </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an riscv_rfft_fast_instance_f32 structure </p></li>
-</ul>
-</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv428riscv_rfft_128_fast_init_f32P28riscv_rfft_fast_instance_f32">
 <span id="_CPPv328riscv_rfft_128_fast_init_f32P28riscv_rfft_fast_instance_f32"></span><span id="_CPPv228riscv_rfft_128_fast_init_f32P28riscv_rfft_fast_instance_f32"></span><span id="riscv_rfft_128_fast_init_f32__riscv_rfft_fast_instance_f32P"></span><span class="target" id="group__RealFFT_1ga9b92ddda79695225a5f0073b181cda67"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_128_fast_init_f32</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f32 *<em>S</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428riscv_rfft_128_fast_init_f32P28riscv_rfft_fast_instance_f32" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Initialization function for the 128pt floating-point real FFT. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f32 structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
 </ul>
 </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an riscv_rfft_fast_instance_f32 structure </p></li>
-</ul>
-</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv428riscv_rfft_256_fast_init_f32P28riscv_rfft_fast_instance_f32">
 <span id="_CPPv328riscv_rfft_256_fast_init_f32P28riscv_rfft_fast_instance_f32"></span><span id="_CPPv228riscv_rfft_256_fast_init_f32P28riscv_rfft_fast_instance_f32"></span><span id="riscv_rfft_256_fast_init_f32__riscv_rfft_fast_instance_f32P"></span><span class="target" id="group__RealFFT_1gae746b0221f7f849d1986dbf92c5112c0"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_256_fast_init_f32</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f32 *<em>S</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428riscv_rfft_256_fast_init_f32P28riscv_rfft_fast_instance_f32" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Initialization function for the 256pt floating-point real FFT. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f32 structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
 </ul>
 </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an riscv_rfft_fast_instance_f32 structure </p></li>
-</ul>
-</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv428riscv_rfft_512_fast_init_f32P28riscv_rfft_fast_instance_f32">
 <span id="_CPPv328riscv_rfft_512_fast_init_f32P28riscv_rfft_fast_instance_f32"></span><span id="_CPPv228riscv_rfft_512_fast_init_f32P28riscv_rfft_fast_instance_f32"></span><span id="riscv_rfft_512_fast_init_f32__riscv_rfft_fast_instance_f32P"></span><span class="target" id="group__RealFFT_1ga8478705ca21d1afb838c77a00ac3ddca"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_512_fast_init_f32</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f32 *<em>S</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428riscv_rfft_512_fast_init_f32P28riscv_rfft_fast_instance_f32" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Initialization function for the 512pt floating-point real FFT. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f32 structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
 </ul>
 </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an riscv_rfft_fast_instance_f32 structure </p></li>
-</ul>
-</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv429riscv_rfft_1024_fast_init_f32P28riscv_rfft_fast_instance_f32">
 <span id="_CPPv329riscv_rfft_1024_fast_init_f32P28riscv_rfft_fast_instance_f32"></span><span id="_CPPv229riscv_rfft_1024_fast_init_f32P28riscv_rfft_fast_instance_f32"></span><span id="riscv_rfft_1024_fast_init_f32__riscv_rfft_fast_instance_f32P"></span><span class="target" id="group__RealFFT_1ga6e7ed7c755978ef4e6526a9e02816bba"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_1024_fast_init_f32</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f32 *<em>S</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429riscv_rfft_1024_fast_init_f32P28riscv_rfft_fast_instance_f32" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Initialization function for the 1024pt floating-point real FFT. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f32 structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
 </ul>
 </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an riscv_rfft_fast_instance_f32 structure </p></li>
-</ul>
-</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv429riscv_rfft_2048_fast_init_f32P28riscv_rfft_fast_instance_f32">
 <span id="_CPPv329riscv_rfft_2048_fast_init_f32P28riscv_rfft_fast_instance_f32"></span><span id="_CPPv229riscv_rfft_2048_fast_init_f32P28riscv_rfft_fast_instance_f32"></span><span id="riscv_rfft_2048_fast_init_f32__riscv_rfft_fast_instance_f32P"></span><span class="target" id="group__RealFFT_1ga0f3ae04c4c0cbb75d17db81113c79b1b"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_2048_fast_init_f32</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f32 *<em>S</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429riscv_rfft_2048_fast_init_f32P28riscv_rfft_fast_instance_f32" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Initialization function for the 2048pt floating-point real FFT. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f32 structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
 </ul>
 </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an riscv_rfft_fast_instance_f32 structure </p></li>
-</ul>
-</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv429riscv_rfft_4096_fast_init_f32P28riscv_rfft_fast_instance_f32">
 <span id="_CPPv329riscv_rfft_4096_fast_init_f32P28riscv_rfft_fast_instance_f32"></span><span id="_CPPv229riscv_rfft_4096_fast_init_f32P28riscv_rfft_fast_instance_f32"></span><span id="riscv_rfft_4096_fast_init_f32__riscv_rfft_fast_instance_f32P"></span><span class="target" id="group__RealFFT_1gad1264c451c14e4f19e0e618f8d345d92"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_4096_fast_init_f32</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f32 *<em>S</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429riscv_rfft_4096_fast_init_f32P28riscv_rfft_fast_instance_f32" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Initialization function for the 4096pt floating-point real FFT. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f32 structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
 </ul>
 </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an riscv_rfft_fast_instance_f32 structure </p></li>
-</ul>
-</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__RealFFT_1gaa09af308fb200adedfaebdd7ca4f57cf"></span>riscv_status <code class="sig-name descname">riscv_rfft_fast_init_f32</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f32 *<em>S</em>, uint16_t <em>fftLen</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the floating-point real FFT. </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<dt><strong>Description</strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">fftLen</span></code> specifies the length of RFFT/CIFFT process. Supported FFT Lengths are 32, 64, 128, 256, 512, 1024, 2048, 4096. </p>
+</dd>
+<dt><strong></strong></dt><dd><p>This Function also initializes Twiddle factor table pointer and Bit reversal table pointer. </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f32 structure </p></li>
+<li><p><strong>fftLen</strong> – <strong>[in]</strong> length of the Real Sequence </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLen</span></code> is not a supported length</p></li>
 </ul>
 </p>
 </dd>
-<dt><strong>Description</strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">fftLen</span></code> specifies the length of RFFT/CIFFT process. Supported FFT Lengths are 32, 64, 128, 256, 512, 1024, 2048, 4096. </p>
-</dd>
-<dt><strong></strong></dt><dd><p>This Function also initializes Twiddle factor table pointer and Bit reversal table pointer. </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an riscv_rfft_fast_instance_f32 structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">fftLen</span></code>: length of the Real Sequence </p></li>
-</ul>
-</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__RealFFT_1gaaa69574378f04e992adeef1ee315ea00"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_32_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the 32pt double precision floating-point real FFT. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f64 structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
 </ul>
 </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an riscv_rfft_fast_instance_f64 structure </p></li>
-</ul>
-</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__RealFFT_1gaecb3e530bfc65fa33f582149640e84d4"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_64_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the 64pt Double Precision floating-point real FFT. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f64 structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
 </ul>
 </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an riscv_rfft_fast_instance_f64 structure </p></li>
-</ul>
-</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__RealFFT_1gae46a7af0a232c7c8704e8709cb55df09"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_128_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the 128pt Double Precision floating-point real FFT. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f64 structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
 </ul>
 </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an riscv_rfft_fast_instance_f64 structure </p></li>
-</ul>
-</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__RealFFT_1gae6c838a47052527ea2e88745cf9df9a4"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_256_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the 256pt Double Precision floating-point real FFT. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f64 structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
 </ul>
 </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an riscv_rfft_fast_instance_f64 structure </p></li>
-</ul>
-</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__RealFFT_1gaf404f3eb25a80cf9ca31ec71638ef5bb"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_512_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the 512pt Double Precision floating-point real FFT. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f64 structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
 </ul>
 </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an riscv_rfft_fast_instance_f64 structure </p></li>
-</ul>
-</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__RealFFT_1gad1e0f12aa02c3ecddaf1065d7937b003"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_1024_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the 1024pt Double Precision floating-point real FFT. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f64 structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
 </ul>
 </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an riscv_rfft_fast_instance_f64 structure </p></li>
-</ul>
-</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__RealFFT_1ga7e60eea384ea8b6377b4b5a2c75caef6"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_2048_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the 2048pt Double Precision floating-point real FFT. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f64 structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
 </ul>
 </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an riscv_rfft_fast_instance_f64 structure </p></li>
-</ul>
-</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__RealFFT_1ga104c7032353e73fcb7aea13599abea35"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_4096_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the 4096pt Double Precision floating-point real FFT. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f64 structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
 </ul>
 </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an riscv_rfft_fast_instance_f64 structure </p></li>
-</ul>
-</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__RealFFT_1gabb579b9db993b4960326a58032202bb3"></span>riscv_status <code class="sig-name descname">riscv_rfft_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em>, uint16_t <em>fftLen</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the Double Precision floating-point real FFT. </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<dt><strong>Description</strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">fftLen</span></code> specifies the length of RFFT/CIFFT process. Supported FFT Lengths are 32, 64, 128, 256, 512, 1024, 2048, 4096. </p>
+</dd>
+<dt><strong></strong></dt><dd><p>This Function also initializes Twiddle factor table pointer and Bit reversal table pointer. </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f64 structure </p></li>
+<li><p><strong>fftLen</strong> – <strong>[in]</strong> length of the Real Sequence </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLen</span></code> is not a supported length</p></li>
 </ul>
 </p>
 </dd>
-<dt><strong>Description</strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">fftLen</span></code> specifies the length of RFFT/CIFFT process. Supported FFT Lengths are 32, 64, 128, 256, 512, 1024, 2048, 4096. </p>
-</dd>
-<dt><strong></strong></dt><dd><p>This Function also initializes Twiddle factor table pointer and Bit reversal table pointer. </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an riscv_rfft_fast_instance_f64 structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">fftLen</span></code>: length of the Real Sequence </p></li>
-</ul>
-</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__RealFFT_1ga84650b5ce6836a7cd0f0fc9da41fb3cf"></span>riscv_status <code class="sig-name descname">riscv_rfft_init_f32</code><span class="sig-paren">(</span>riscv_rfft_instance_f32 *<em>S</em>, riscv_cfft_radix4_instance_f32 *<em>S_CFFT</em>, uint32_t <em>fftLenReal</em>, uint32_t <em>ifftFlagR</em>, uint32_t <em>bitReverseFlag</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the floating-point RFFT/RIFFT. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
-<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
-<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code> is not a supported length</p></li>
-</ul>
-</p>
-</dd>
+<p><dl class="xrefsect">
+<dt>
+<em>Deprecated:</em></dt>
+<dd><p>Do not use this function. It has been superceded by riscv_rfft_fast_init_f32 and will be removed in the future. </p>
+</dd></dl>
+
+<dl class="simple">
 <dt><strong>Description</strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code>specifies length of RFFT/RIFFT Process. Supported FFT Lengths are 128, 512, 2048. </p>
 </dd>
 <dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">ifftFlagR</span></code> controls whether a forward or inverse transform is computed. Set(=1) ifftFlagR to calculate RIFFT, otherwise RFFT is calculated. </p>
@@ -777,37 +788,41 @@
 </dd>
 <dt><strong></strong></dt><dd><p>This function also initializes Twiddle factor table. </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an instance of the floating-point RFFT/RIFFT structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S_CFFT</span></code>: points to an instance of the floating-point CFFT/CIFFT structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">fftLenReal</span></code>: length of the FFT. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ifftFlagR</span></code>: flag that selects transform direction<ul>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the floating-point RFFT/RIFFT structure </p></li>
+<li><p><strong>S_CFFT</strong> – <strong>[inout]</strong> points to an instance of the floating-point CFFT/CIFFT structure </p></li>
+<li><p><strong>fftLenReal</strong> – <strong>[in]</strong> length of the FFT. </p></li>
+<li><p><strong>ifftFlagR</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
 <li><p>value = 0: forward transform</p></li>
 <li><p>value = 1: inverse transform </p></li>
 </ul>
 </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bitReverseFlag</span></code>: flag that enables / disables bit reversal of output<ul>
+<li><p><strong>bitReverseFlag</strong> – <strong>[in]</strong> flag that enables / disables bit reversal of output<ul>
 <li><p>value = 0: disables bit reversal of output</p></li>
 <li><p>value = 1: enables bit reversal of output </p></li>
 </ul>
 </p></li>
 </ul>
 </dd>
-</dl>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code> is not a supported length</p></li>
+</ul>
 </p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__RealFFT_1gad750a06797c4caf68f66d260eb0e2c89"></span>riscv_status <code class="sig-name descname">riscv_rfft_init_q15</code><span class="sig-paren">(</span>riscv_rfft_instance_q15 *<em>S</em>, uint32_t <em>fftLenReal</em>, uint32_t <em>ifftFlagR</em>, uint32_t <em>bitReverseFlag</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the Q15 RFFT/RIFFT. </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
-<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
-<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code> is not a supported length</p></li>
-</ul>
-</p>
-</dd>
 <dt><strong>Details</strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code> specifies length of RFFT/RIFFT Process. Supported FFT Lengths are 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192. </p>
 </dd>
 <dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">ifftFlagR</span></code> controls whether a forward or inverse transform is computed. Set(=1) ifftFlagR to calculate RIFFT, otherwise RFFT is calculated. </p>
@@ -816,36 +831,40 @@
 </dd>
 <dt><strong></strong></dt><dd><p>This function also initializes Twiddle factor table. </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an instance of the Q15 RFFT/RIFFT structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">fftLenReal</span></code>: length of the FFT </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ifftFlagR</span></code>: flag that selects transform direction<ul>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q15 RFFT/RIFFT structure </p></li>
+<li><p><strong>fftLenReal</strong> – <strong>[in]</strong> length of the FFT </p></li>
+<li><p><strong>ifftFlagR</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
 <li><p>value = 0: forward transform</p></li>
 <li><p>value = 1: inverse transform </p></li>
 </ul>
 </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bitReverseFlag</span></code>: flag that enables / disables bit reversal of output<ul>
+<li><p><strong>bitReverseFlag</strong> – <strong>[in]</strong> flag that enables / disables bit reversal of output<ul>
 <li><p>value = 0: disables bit reversal of output</p></li>
 <li><p>value = 1: enables bit reversal of output </p></li>
 </ul>
 </p></li>
 </ul>
 </dd>
-</dl>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code> is not a supported length</p></li>
+</ul>
 </p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__RealFFT_1ga9580b4195023f20ddbad0ac8d7719154"></span>riscv_status <code class="sig-name descname">riscv_rfft_init_q31</code><span class="sig-paren">(</span>riscv_rfft_instance_q31 *<em>S</em>, uint32_t <em>fftLenReal</em>, uint32_t <em>ifftFlagR</em>, uint32_t <em>bitReverseFlag</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the Q31 RFFT/RIFFT. </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
-<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
-<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code> is not a supported length</p></li>
-</ul>
-</p>
-</dd>
 <dt><strong>Details</strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code> specifies length of RFFT/RIFFT Process. Supported FFT Lengths are 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192. </p>
 </dd>
 <dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">ifftFlagR</span></code> controls whether a forward or inverse transform is computed. Set(=1) ifftFlagR to calculate RIFFT, otherwise RFFT is calculated. </p>
@@ -854,32 +873,40 @@
 </dd>
 <dt><strong></strong></dt><dd><p>This function also initializes Twiddle factor table. </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an instance of the Q31 RFFT/RIFFT structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">fftLenReal</span></code>: length of the FFT </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ifftFlagR</span></code>: flag that selects transform direction<ul>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q31 RFFT/RIFFT structure </p></li>
+<li><p><strong>fftLenReal</strong> – <strong>[in]</strong> length of the FFT </p></li>
+<li><p><strong>ifftFlagR</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
 <li><p>value = 0: forward transform</p></li>
 <li><p>value = 1: inverse transform </p></li>
 </ul>
 </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">bitReverseFlag</span></code>: flag that enables / disables bit reversal of output<ul>
+<li><p><strong>bitReverseFlag</strong> – <strong>[in]</strong> flag that enables / disables bit reversal of output<ul>
 <li><p>value = 0: disables bit reversal of output</p></li>
 <li><p>value = 1: enables bit reversal of output </p></li>
 </ul>
 </p></li>
 </ul>
 </dd>
-</dl>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code> is not a supported length</p></li>
+</ul>
 </p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__RealFFT_1gac6c836bb35dcbdd2a96d38ae9bfadd7f"></span>void <code class="sig-name descname">riscv_rfft_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_rfft_instance_q15 *<em>S</em>, q15_t *<em>pSrc</em>, q15_t *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the Q15 RFFT/RIFFT. </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none</p>
-</dd>
 <dt><strong>Input an output formats</strong></dt><dd><p>Internally input is downscaled by 2 for every stage to avoid saturations inside CFFT/CIFFT process. Hence the output format is different for different RFFT sizes. The input and output formats for different RFFT sizes and number of bits to upscale are mentioned in the tables below for RFFT and RIFFT: </p>
 </dd>
 <dt><strong></strong></dt><dd><p><img alt="../../../_images/RFFTQ15.png" src="../../../_images/RFFTQ15.png" /></p>
@@ -890,23 +917,27 @@
 </dd>
 <dt><strong></strong></dt><dd><p>For the RIFFT, the source buffer must at least have length fftLenReal + 2. The last two elements must be equal to what would be generated by the RFFT: (pSrc[0] - pSrc[1]) &gt;&gt; 1 and 0 </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the Q15 RFFT/RIFFT structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to input buffer (Source buffer is modified by this function.) </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to output buffer </p></li>
-</ul>
-</dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q15 RFFT/RIFFT structure </p></li>
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to input buffer (Source buffer is modified by this function.) </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to output buffer </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__RealFFT_1ga1128bf1b0b16f271b593a1d94bb9c4ff"></span>void <code class="sig-name descname">riscv_rfft_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_rfft_instance_q31 *<em>S</em>, q31_t *<em>pSrc</em>, q31_t *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the Q31 RFFT/RIFFT. </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none</p>
-</dd>
 <dt><strong>Input an output formats</strong></dt><dd><p>Internally input is downscaled by 2 for every stage to avoid saturations inside CFFT/CIFFT process. Hence the output format is different for different RFFT sizes. The input and output formats for different RFFT sizes and number of bits to upscale are mentioned in the tables below for RFFT and RIFFT: </p>
 </dd>
 <dt><strong></strong></dt><dd><p><img alt="../../../_images/RFFTQ31.png" src="../../../_images/RFFTQ31.png" /></p>
@@ -917,52 +948,58 @@
 </dd>
 <dt><strong></strong></dt><dd><p>For the RIFFT, the source buffer must at least have length fftLenReal + 2. The last two elements must be equal to what would be generated by the RFFT: (pSrc[0] - pSrc[1]) &gt;&gt; 1 and 0 </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the Q31 RFFT/RIFFT structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to input buffer (Source buffer is modified by this function) </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to output buffer </p></li>
-</ul>
-</dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q31 RFFT/RIFFT structure </p></li>
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to input buffer (Source buffer is modified by this function) </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to output buffer </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="realfft/api_realfft_table.html" class="btn btn-neutral float-right" title="Real FFT Tables" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="dct4_idct4/api_dct4_idct4_table.html" class="btn btn-neutral float-left" title="DCT Type IV Tables" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="realfft/api_realfft_table.html" class="btn btn-neutral float-right" title="Real FFT Tables" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="dct4_idct4/api_dct4_idct4_table.html" class="btn btn-neutral float-left" title="DCT Type IV Tables" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-Present, Nuclei
+        &#169; Copyright 2019-Present, Nuclei.
       <span class="lastupdated">
         Last updated on Aug 03, 2021.
       </span>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -970,7 +1007,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

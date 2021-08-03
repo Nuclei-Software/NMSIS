@@ -1,40 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Matrix Multiplication &mdash; NMSIS 1.0.2-RC1 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Matrix Scale" href="api_matrixscale.html" />
@@ -82,6 +85,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -89,7 +93,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -132,6 +136,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -166,11 +171,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
         
@@ -183,7 +190,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../../_sources/dsp/api/groupmatrix/api_matrixmult.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -197,39 +204,39 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="matrix-multiplication">
+  <div class="section" id="matrix-multiplication">
 <span id="nmsis-dsp-api-matrix-multiplication"></span><h1>Matrix Multiplication<a class="headerlink" href="#matrix-multiplication" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv418riscv_mat_mult_f32PK25riscv_matrix_instance_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32">
 <span id="_CPPv318riscv_mat_mult_f32PK25riscv_matrix_instance_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32"></span><span id="_CPPv218riscv_mat_mult_f32PK25riscv_matrix_instance_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32"></span><span id="riscv_mat_mult_f32__riscv_matrix_instance_f32CP.riscv_matrix_instance_f32CP.riscv_matrix_instance_f32P"></span><span class="target" id="group__MatrixMult_1ga0f1c7b30e1c552617b8bb6a6898e57d4"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_f32 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_f32 *<em>pSrcB</em>, riscv_matrix_instance_f32 *<em>pDst</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418riscv_mat_mult_f32PK25riscv_matrix_instance_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv418riscv_mat_mult_f64PK25riscv_matrix_instance_f64PK25riscv_matrix_instance_f64P25riscv_matrix_instance_f64">
 <span id="_CPPv318riscv_mat_mult_f64PK25riscv_matrix_instance_f64PK25riscv_matrix_instance_f64P25riscv_matrix_instance_f64"></span><span id="_CPPv218riscv_mat_mult_f64PK25riscv_matrix_instance_f64PK25riscv_matrix_instance_f64P25riscv_matrix_instance_f64"></span><span id="riscv_mat_mult_f64__riscv_matrix_instance_f64CP.riscv_matrix_instance_f64CP.riscv_matrix_instance_f64P"></span><span class="target" id="group__MatrixMult_1ga4f176f9750ae23b704106f7615e734d5"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_f64</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_f64 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_f64 *<em>pSrcB</em>, riscv_matrix_instance_f64 *<em>pDst</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418riscv_mat_mult_f64PK25riscv_matrix_instance_f64PK25riscv_matrix_instance_f64P25riscv_matrix_instance_f64" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv423riscv_mat_mult_fast_q15PK25riscv_matrix_instance_q15PK25riscv_matrix_instance_q15P25riscv_matrix_instance_q15P5q15_t">
 <span id="_CPPv323riscv_mat_mult_fast_q15PK25riscv_matrix_instance_q15PK25riscv_matrix_instance_q15P25riscv_matrix_instance_q15P5q15_t"></span><span id="_CPPv223riscv_mat_mult_fast_q15PK25riscv_matrix_instance_q15PK25riscv_matrix_instance_q15P25riscv_matrix_instance_q15P5q15_t"></span><span id="riscv_mat_mult_fast_q15__riscv_matrix_instance_q15CP.riscv_matrix_instance_q15CP.riscv_matrix_instance_q15P.q15_tP"></span><span class="target" id="group__MatrixMult_1ga39f8eb0440c425a21ae4ee04b0bdb0c1"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_fast_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q15 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_q15 *<em>pSrcB</em>, riscv_matrix_instance_q15 *<em>pDst</em>, q15_t *<em>pState</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423riscv_mat_mult_fast_q15PK25riscv_matrix_instance_q15PK25riscv_matrix_instance_q15P25riscv_matrix_instance_q15P5q15_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv423riscv_mat_mult_fast_q31PK25riscv_matrix_instance_q31PK25riscv_matrix_instance_q31P25riscv_matrix_instance_q31">
 <span id="_CPPv323riscv_mat_mult_fast_q31PK25riscv_matrix_instance_q31PK25riscv_matrix_instance_q31P25riscv_matrix_instance_q31"></span><span id="_CPPv223riscv_mat_mult_fast_q31PK25riscv_matrix_instance_q31PK25riscv_matrix_instance_q31P25riscv_matrix_instance_q31"></span><span id="riscv_mat_mult_fast_q31__riscv_matrix_instance_q31CP.riscv_matrix_instance_q31CP.riscv_matrix_instance_q31P"></span><span class="target" id="group__MatrixMult_1ga84068b1bbb318d532690735db534edf6"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_fast_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q31 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_q31 *<em>pSrcB</em>, riscv_matrix_instance_q31 *<em>pDst</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423riscv_mat_mult_fast_q31PK25riscv_matrix_instance_q31PK25riscv_matrix_instance_q31P25riscv_matrix_instance_q31" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv418riscv_mat_mult_q15PK25riscv_matrix_instance_q15PK25riscv_matrix_instance_q15P25riscv_matrix_instance_q15P5q15_t">
 <span id="_CPPv318riscv_mat_mult_q15PK25riscv_matrix_instance_q15PK25riscv_matrix_instance_q15P25riscv_matrix_instance_q15P5q15_t"></span><span id="_CPPv218riscv_mat_mult_q15PK25riscv_matrix_instance_q15PK25riscv_matrix_instance_q15P25riscv_matrix_instance_q15P5q15_t"></span><span id="riscv_mat_mult_q15__riscv_matrix_instance_q15CP.riscv_matrix_instance_q15CP.riscv_matrix_instance_q15P.q15_tP"></span><span class="target" id="group__MatrixMult_1gaccc2ce7b1bdbffa4332ae95d1151a5f7"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q15 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_q15 *<em>pSrcB</em>, riscv_matrix_instance_q15 *<em>pDst</em>, q15_t *<em>pState</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418riscv_mat_mult_q15PK25riscv_matrix_instance_q15PK25riscv_matrix_instance_q15P25riscv_matrix_instance_q15P5q15_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv418riscv_mat_mult_q31PK25riscv_matrix_instance_q31PK25riscv_matrix_instance_q31P25riscv_matrix_instance_q31">
 <span id="_CPPv318riscv_mat_mult_q31PK25riscv_matrix_instance_q31PK25riscv_matrix_instance_q31P25riscv_matrix_instance_q31"></span><span id="_CPPv218riscv_mat_mult_q31PK25riscv_matrix_instance_q31PK25riscv_matrix_instance_q31P25riscv_matrix_instance_q31"></span><span id="riscv_mat_mult_q31__riscv_matrix_instance_q31CP.riscv_matrix_instance_q31CP.riscv_matrix_instance_q31P"></span><span class="target" id="group__MatrixMult_1ga0e5d2a6760fda6dad3a1f159d8d4d45e"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q31 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_q31 *<em>pSrcB</em>, riscv_matrix_instance_q31 *<em>pDst</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418riscv_mat_mult_q31PK25riscv_matrix_instance_q31PK25riscv_matrix_instance_q31P25riscv_matrix_instance_q31" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv417riscv_mat_mult_q7PK24riscv_matrix_instance_q7PK24riscv_matrix_instance_q7P24riscv_matrix_instance_q7P4q7_t">
 <span id="_CPPv317riscv_mat_mult_q7PK24riscv_matrix_instance_q7PK24riscv_matrix_instance_q7P24riscv_matrix_instance_q7P4q7_t"></span><span id="_CPPv217riscv_mat_mult_q7PK24riscv_matrix_instance_q7PK24riscv_matrix_instance_q7P24riscv_matrix_instance_q7P4q7_t"></span><span id="riscv_mat_mult_q7__riscv_matrix_instance_q7CP.riscv_matrix_instance_q7CP.riscv_matrix_instance_q7P.q7_tP"></span><span class="target" id="group__MatrixMult_1gad9d3cdab487edf6c60617ad701b0e3ca"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_q7</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q7 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_q7 *<em>pSrcB</em>, riscv_matrix_instance_q7 *<em>pDst</em>, q7_t *<em>pState</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417riscv_mat_mult_q7PK24riscv_matrix_instance_q7PK24riscv_matrix_instance_q7P24riscv_matrix_instance_q7P4q7_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
@@ -238,211 +245,231 @@
 <dt>
 <span class="target" id="group__MatrixMult"></span><em>group</em> <code class="sig-name descname">MatrixMult</code></dt>
 <dd><p>Multiplies two matrices.</p>
-<p><p> Matrix multiplication is only defined if the number of columns of the first matrix equals the number of rows of the second matrix. Multiplying an </p>
-<code class="docutils literal notranslate"><span class="pre">M</span> <span class="pre">x</span> <span class="pre">N</span></code> matrix with an <code class="docutils literal notranslate"><span class="pre">N</span> <span class="pre">x</span> <span class="pre">P</span></code> matrix results in an <code class="docutils literal notranslate"><span class="pre">M</span> <span class="pre">x</span> <span class="pre">P</span></code> matrix. When matrix size checking is enabled, the functions check: (1) that the inner dimensions of <code class="docutils literal notranslate"><span class="pre">pSrcA</span></code> and <code class="docutils literal notranslate"><span class="pre">pSrcB</span></code> are equal; and (2) that the size of the output matrix equals the outer dimensions of <code class="docutils literal notranslate"><span class="pre">pSrcA</span></code> and <code class="docutils literal notranslate"><span class="pre">pSrcB</span></code>. <img alt="../../../_images/MatrixMultiplication.png" src="../../../_images/MatrixMultiplication.png" /></p>
+<p>
+ Matrix multiplication is only defined if the number of columns of the first matrix equals the number of rows of the second matrix. Multiplying an <code class="docutils literal notranslate"><span class="pre">M</span> <span class="pre">x</span> <span class="pre">N</span></code> matrix with an <code class="docutils literal notranslate"><span class="pre">N</span> <span class="pre">x</span> <span class="pre">P</span></code> matrix results in an <code class="docutils literal notranslate"><span class="pre">M</span> <span class="pre">x</span> <span class="pre">P</span></code> matrix. When matrix size checking is enabled, the functions check: (1) that the inner dimensions of <code class="docutils literal notranslate"><span class="pre">pSrcA</span></code> and <code class="docutils literal notranslate"><span class="pre">pSrcB</span></code> are equal; and (2) that the size of the output matrix equals the outer dimensions of <code class="docutils literal notranslate"><span class="pre">pSrcA</span></code> and <code class="docutils literal notranslate"><span class="pre">pSrcB</span></code>. <img alt="../../../_images/MatrixMultiplication.png" src="../../../_images/MatrixMultiplication.png" /></p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Functions</p>
-<dl class="function">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__MatrixMult_1ga0f1c7b30e1c552617b8bb6a6898e57d4"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_f32 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_f32 *<em>pSrcB</em>, riscv_matrix_instance_f32 *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Floating-point matrix multiplication. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>The function returns either <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SIZE_MISMATCH</span></code> or <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code> based on the outcome of size checking. </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">*pSrcA</span></code>: points to the first input matrix structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">*pSrcB</span></code>: points to the second input matrix structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">*pDst</span></code>: points to output matrix structure </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>*pSrcA</strong> – <strong>[in]</strong> points to the first input matrix structure </p></li>
+<li><p><strong>*pSrcB</strong> – <strong>[in]</strong> points to the second input matrix structure </p></li>
+<li><p><strong>*pDst</strong> – <strong>[out]</strong> points to output matrix structure </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The function returns either <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SIZE_MISMATCH</span></code> or <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code> based on the outcome of size checking. </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__MatrixMult_1ga4f176f9750ae23b704106f7615e734d5"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_f64</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_f64 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_f64 *<em>pSrcB</em>, riscv_matrix_instance_f64 *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Floating-point matrix multiplication. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>The function returns either <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SIZE_MISMATCH</span></code> or <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code> based on the outcome of size checking. </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">*pSrcA</span></code>: points to the first input matrix structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">*pSrcB</span></code>: points to the second input matrix structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">*pDst</span></code>: points to output matrix structure </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>*pSrcA</strong> – <strong>[in]</strong> points to the first input matrix structure </p></li>
+<li><p><strong>*pSrcB</strong> – <strong>[in]</strong> points to the second input matrix structure </p></li>
+<li><p><strong>*pDst</strong> – <strong>[out]</strong> points to output matrix structure </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The function returns either <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SIZE_MISMATCH</span></code> or <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code> based on the outcome of size checking. </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__MatrixMult_1ga39f8eb0440c425a21ae4ee04b0bdb0c1"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_fast_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q15 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_q15 *<em>pSrcB</em>, riscv_matrix_instance_q15 *<em>pDst</em>, q15_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q15 matrix multiplication (fast variant). </p>
 <p>Q15 matrix multiplication (fast variant) for RISC-V Core with DSP enabled.</p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
-<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
-<li><p>RISCV_MATH_SIZE_MISMATCH : Matrix size check failed</p></li>
-</ul>
-</p>
-</dd>
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The difference between the function riscv_mat_mult_q15() and this fast variant is that the fast variant use a 32-bit rather than a 64-bit accumulator. The result of each 1.15 x 1.15 multiplication is truncated to 2.30 format. These intermediate results are accumulated in a 32-bit register in 2.30 format. Finally, the accumulator is saturated and converted to a 1.15 result. </p>
 </dd>
 <dt><strong></strong></dt><dd><p>The fast version has the same overflow behavior as the standard version but provides less precision since it discards the low 16 bits of each multiplication result. In order to avoid overflows completely the input signals must be scaled down. Scale down one of the input matrices by log2(numColsA) bits to avoid overflows, as a total of numColsA additions are computed internally for each output element. </p>
 </dd>
 <dt><strong>Remark</strong></dt><dd><p>Refer to riscv_mat_mult_q15() for a slower implementation of this function which uses 64-bit accumulation to provide higher precision. </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcA</span></code>: points to the first input matrix structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcB</span></code>: points to the second input matrix structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to output matrix structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pState</span></code>: points to the array for storing intermediate results </p></li>
-</ul>
-</dd>
 </dl>
 </p>
-</dd></dl>
-
-<dl class="function">
-<dt>
-<span class="target" id="group__MatrixMult_1ga84068b1bbb318d532690735db534edf6"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_fast_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q31 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_q31 *<em>pSrcB</em>, riscv_matrix_instance_q31 *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
-<dd><p>Q31 matrix multiplication (fast variant). </p>
-<p>Q31 matrix multiplication (fast variant) for RISC-V Core with DSP enabled.</p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pSrcA</strong> – <strong>[in]</strong> points to the first input matrix structure </p></li>
+<li><p><strong>pSrcB</strong> – <strong>[in]</strong> points to the second input matrix structure </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to output matrix structure </p></li>
+<li><p><strong>pState</strong> – <strong>[in]</strong> points to the array for storing intermediate results </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_SIZE_MISMATCH : Matrix size check failed</p></li>
 </ul>
 </p>
 </dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="group__MatrixMult_1ga84068b1bbb318d532690735db534edf6"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_fast_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q31 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_q31 *<em>pSrcB</em>, riscv_matrix_instance_q31 *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Q31 matrix multiplication (fast variant). </p>
+<p>Q31 matrix multiplication (fast variant) for RISC-V Core with DSP enabled.</p>
+<p><dl class="simple">
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The difference between the function riscv_mat_mult_q31() and this fast variant is that the fast variant use a 32-bit rather than a 64-bit accumulator. The result of each 1.31 x 1.31 multiplication is truncated to 2.30 format. These intermediate results are accumulated in a 32-bit register in 2.30 format. Finally, the accumulator is saturated and converted to a 1.31 result. </p>
 </dd>
 <dt><strong></strong></dt><dd><p>The fast version has the same overflow behavior as the standard version but provides less precision since it discards the low 32 bits of each multiplication result. In order to avoid overflows completely the input signals must be scaled down. Scale down one of the input matrices by log2(numColsA) bits to avoid overflows, as a total of numColsA additions are computed internally for each output element. </p>
 </dd>
 <dt><strong>Remark</strong></dt><dd><p>Refer to riscv_mat_mult_q31() for a slower implementation of this function which uses 64-bit accumulation to provide higher precision. </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcA</span></code>: points to the first input matrix structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcB</span></code>: points to the second input matrix structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to output matrix structure </p></li>
-</ul>
-</dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pSrcA</strong> – <strong>[in]</strong> points to the first input matrix structure </p></li>
+<li><p><strong>pSrcB</strong> – <strong>[in]</strong> points to the second input matrix structure </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to output matrix structure </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_SIZE_MISMATCH : Matrix size check failed</p></li>
+</ul>
+</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__MatrixMult_1gaccc2ce7b1bdbffa4332ae95d1151a5f7"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q15 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_q15 *<em>pSrcB</em>, riscv_matrix_instance_q15 *<em>pDst</em>, q15_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q15 matrix multiplication. </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
-<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
-<li><p>RISCV_MATH_SIZE_MISMATCH : Matrix size check failed</p></li>
-</ul>
-</p>
-</dd>
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The function is implemented using an internal 64-bit accumulator. The inputs to the multiplications are in 1.15 format and multiplications yield a 2.30 result. The 2.30 intermediate results are accumulated in a 64-bit accumulator in 34.30 format. This approach provides 33 guard bits and there is no risk of overflow. The 34.30 result is then truncated to 34.15 format by discarding the low 15 bits and then saturated to 1.15 format. </p>
 </dd>
 <dt><strong></strong></dt><dd><p>Refer to riscv_mat_mult_fast_q15() for a faster but less precise version of this function. </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcA</span></code>: points to the first input matrix structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcB</span></code>: points to the second input matrix structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to output matrix structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pState</span></code>: points to the array for storing intermediate results (Unused) </p></li>
-</ul>
-</dd>
 </dl>
 </p>
-</dd></dl>
-
-<dl class="function">
-<dt>
-<span class="target" id="group__MatrixMult_1ga0e5d2a6760fda6dad3a1f159d8d4d45e"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q31 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_q31 *<em>pSrcB</em>, riscv_matrix_instance_q31 *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
-<dd><p>Q31 matrix multiplication. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pSrcA</strong> – <strong>[in]</strong> points to the first input matrix structure </p></li>
+<li><p><strong>pSrcB</strong> – <strong>[in]</strong> points to the second input matrix structure </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to output matrix structure </p></li>
+<li><p><strong>pState</strong> – <strong>[in]</strong> points to the array for storing intermediate results (Unused) </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_SIZE_MISMATCH : Matrix size check failed</p></li>
 </ul>
 </p>
 </dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="group__MatrixMult_1ga0e5d2a6760fda6dad3a1f159d8d4d45e"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q31 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_q31 *<em>pSrcB</em>, riscv_matrix_instance_q31 *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Q31 matrix multiplication. </p>
+<p><dl class="simple">
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The function is implemented using an internal 64-bit accumulator. The accumulator has a 2.62 format and maintains full precision of the intermediate multiplication results but provides only a single guard bit. There is no saturation on intermediate additions. Thus, if the accumulator overflows it wraps around and distorts the result. The input signals should be scaled down to avoid intermediate overflows. The input is thus scaled down by log2(numColsA) bits to avoid overflows, as a total of numColsA additions are performed internally. The 2.62 accumulator is right shifted by 31 bits and saturated to 1.31 format to yield the final result. </p>
 </dd>
 <dt><strong>Remark</strong></dt><dd><p>Refer to riscv_mat_mult_fast_q31() for a faster but less precise implementation of this function. </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcA</span></code>: points to the first input matrix structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcB</span></code>: points to the second input matrix structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to output matrix structure </p></li>
-</ul>
-</dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pSrcA</strong> – <strong>[in]</strong> points to the first input matrix structure </p></li>
+<li><p><strong>pSrcB</strong> – <strong>[in]</strong> points to the second input matrix structure </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to output matrix structure </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_SIZE_MISMATCH : Matrix size check failed</p></li>
+</ul>
+</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__MatrixMult_1gad9d3cdab487edf6c60617ad701b0e3ca"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_q7</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q7 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_q7 *<em>pSrcB</em>, riscv_matrix_instance_q7 *<em>pDst</em>, q7_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q7 matrix multiplication. </p>
-<p><strong>Scaling and Overflow Behavior:</strong><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>The function returns either <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SIZE_MISMATCH</span></code> or <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code> based on the outcome of size checking.</p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">*pSrcA</span></code>: points to the first input matrix structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">*pSrcB</span></code>: points to the second input matrix structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">*pDst</span></code>: points to output matrix structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">*pState</span></code>: points to the array for storing intermediate results (Unused in some versions) </p></li>
-</ul>
-</dd>
-</dl>
-</p>
+<p><strong>Scaling and Overflow Behavior:</strong></p>
 <p><dl class="simple">
 <dt><strong></strong></dt><dd><p>The function is implemented using a 32-bit internal accumulator saturated to 1.7 format. </p>
 </dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>*pSrcA</strong> – <strong>[in]</strong> points to the first input matrix structure </p></li>
+<li><p><strong>*pSrcB</strong> – <strong>[in]</strong> points to the second input matrix structure </p></li>
+<li><p><strong>*pDst</strong> – <strong>[out]</strong> points to output matrix structure </p></li>
+<li><p><strong>*pState</strong> – <strong>[in]</strong> points to the array for storing intermediate results (Unused in some versions) </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The function returns either <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SIZE_MISMATCH</span></code> or <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code> based on the outcome of size checking.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="api_matrixscale.html" class="btn btn-neutral float-right" title="Matrix Scale" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="api_matrixinv.html" class="btn btn-neutral float-left" title="Matrix Inverse" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="api_matrixscale.html" class="btn btn-neutral float-right" title="Matrix Scale" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="api_matrixinv.html" class="btn btn-neutral float-left" title="Matrix Inverse" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-Present, Nuclei
+        &#169; Copyright 2019-Present, Nuclei.
       <span class="lastupdated">
         Last updated on Aug 03, 2021.
       </span>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -450,7 +477,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

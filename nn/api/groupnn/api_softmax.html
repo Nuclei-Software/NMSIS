@@ -1,40 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Softmax Functions &mdash; NMSIS 1.0.2-RC1 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Neural Network Data Conversion Functions" href="../api_nndata_convert.html" />
@@ -82,6 +85,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -89,7 +93,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -123,6 +127,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -157,11 +162,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../index.html">NMSIS NN</a> &raquo;</li>
         
@@ -174,7 +181,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../../_sources/nn/api/groupnn/api_softmax.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -188,29 +195,29 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="softmax-functions">
+  <div class="section" id="softmax-functions">
 <span id="nmsis-nn-api-softmax-functions"></span><h1>Softmax Functions<a class="headerlink" href="#softmax-functions" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv417riscv_softmax_q15PK5q15_tK8uint16_tP5q15_t">
 <span id="_CPPv317riscv_softmax_q15PK5q15_tK8uint16_tP5q15_t"></span><span id="_CPPv217riscv_softmax_q15PK5q15_tK8uint16_tP5q15_t"></span><span id="riscv_softmax_q15__q15_tCP.uint16_tC.q15_tP"></span><span class="target" id="group__Softmax_1gaa9d0de605290176e23463cbaeb84a9ce"></span>void <code class="sig-name descname">riscv_softmax_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>vec_in</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, q15_t *<em>p_out</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417riscv_softmax_q15PK5q15_tK8uint16_tP5q15_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv416riscv_softmax_q7PK4q7_tK8uint16_tP4q7_t">
 <span id="_CPPv316riscv_softmax_q7PK4q7_tK8uint16_tP4q7_t"></span><span id="_CPPv216riscv_softmax_q7PK4q7_tK8uint16_tP4q7_t"></span><span id="riscv_softmax_q7__q7_tCP.uint16_tC.q7_tP"></span><span class="target" id="group__Softmax_1ga4c7867bb7ac62d4581deda5730dce99b"></span>void <code class="sig-name descname">riscv_softmax_q7</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>vec_in</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, q7_t *<em>p_out</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416riscv_softmax_q7PK4q7_tK8uint16_tP4q7_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv416riscv_softmax_s8PK6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tP6int8_t">
 <span id="_CPPv316riscv_softmax_s8PK6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tP6int8_t"></span><span id="_CPPv216riscv_softmax_s8PK6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tP6int8_t"></span><span id="riscv_softmax_s8__int8_tCP.int32_tC.int32_tC.int32_tC.int32_tC.int32_tC.int8_tP"></span><span class="target" id="group__Softmax_1gac9dd5c3c22158eec0237b03d50a54465"></span>void <code class="sig-name descname">riscv_softmax_s8</code><span class="sig-paren">(</span><em class="property">const</em> int8_t *<em>input</em>, <em class="property">const</em> int32_t <em>num_rows</em>, <em class="property">const</em> int32_t <em>row_size</em>, <em class="property">const</em> int32_t <em>mult</em>, <em class="property">const</em> int32_t <em>shift</em>, <em class="property">const</em> int32_t <em>diff_min</em>, int8_t *<em>output</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416riscv_softmax_s8PK6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tP6int8_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv416riscv_softmax_u8PK7uint8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tP7uint8_t">
 <span id="_CPPv316riscv_softmax_u8PK7uint8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tP7uint8_t"></span><span id="_CPPv216riscv_softmax_u8PK7uint8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tP7uint8_t"></span><span id="riscv_softmax_u8__uint8_tCP.int32_tC.int32_tC.int32_tC.int32_tC.int32_tC.uint8_tP"></span><span class="target" id="group__Softmax_1ga11a1ba75201c791d528d559432c484e3"></span>void <code class="sig-name descname">riscv_softmax_u8</code><span class="sig-paren">(</span><em class="property">const</em> uint8_t *<em>input</em>, <em class="property">const</em> int32_t <em>num_rows</em>, <em class="property">const</em> int32_t <em>row_size</em>, <em class="property">const</em> int32_t <em>mult</em>, <em class="property">const</em> int32_t <em>shift</em>, <em class="property">const</em> int32_t <em>diff_min</em>, uint8_t *<em>output</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416riscv_softmax_u8PK7uint8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tP7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv427riscv_softmax_with_batch_q7PK4q7_tK8uint16_tK8uint16_tP4q7_t">
 <span id="_CPPv327riscv_softmax_with_batch_q7PK4q7_tK8uint16_tK8uint16_tP4q7_t"></span><span id="_CPPv227riscv_softmax_with_batch_q7PK4q7_tK8uint16_tK8uint16_tP4q7_t"></span><span id="riscv_softmax_with_batch_q7__q7_tCP.uint16_tC.uint16_tC.q7_tP"></span><span class="target" id="group__Softmax_1ga898a4b60ebeb23a8faa1cd9f4b867fbe"></span>void <code class="sig-name descname">riscv_softmax_with_batch_q7</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>vec_in</em>, <em class="property">const</em> uint16_t <em>nb_batches</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, q7_t *<em>p_out</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427riscv_softmax_with_batch_q7PK4q7_tK8uint16_tK8uint16_tP4q7_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
@@ -220,140 +227,147 @@
 <span class="target" id="group__Softmax"></span><em>group</em> <code class="sig-name descname">Softmax</code></dt>
 <dd><p>EXP(2) based softmax functions. </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Functions</p>
-<dl class="function">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__Softmax_1gaa9d0de605290176e23463cbaeb84a9ce"></span>void <code class="sig-name descname">riscv_softmax_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>vec_in</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, q15_t *<em>p_out</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q15 softmax function. </p>
-<p><p>Here, instead of typical e based softmax, we use 2-based softmax, i.e.,:</p>
-<dl class="simple">
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">vec_in</span></code>: pointer to input vector </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_vec</span></code>: input vector dimention </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">p_out</span></code>: pointer to output vector</p></li>
+<p>
+Here, instead of typical e based softmax, we use 2-based softmax, i.e.,:</p>
+<p>y_i = 2^(x_i) / sum(2^x_j)</p>
+<p>The relative output will be different here. But mathematically, the gradient will be the same with a log(2) scaling factor. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vec_in</strong> – <strong>[in]</strong> pointer to input vector </p></li>
+<li><p><strong>dim_vec</strong> – <strong>[in]</strong> input vector dimention </p></li>
+<li><p><strong>p_out</strong> – <strong>[out]</strong> pointer to output vector</p></li>
 </ul>
 </dd>
 </dl>
-</p>
-<p>y_i = 2^(x_i) / sum(2^x_j)</p>
-<p>The relative output will be different here. But mathematically, the gradient will be the same with a log(2) scaling factor. </p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__Softmax_1ga4c7867bb7ac62d4581deda5730dce99b"></span>void <code class="sig-name descname">riscv_softmax_q7</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>vec_in</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, q7_t *<em>p_out</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q7 softmax function. </p>
-<p><p>Here, instead of typical natural logarithm e based softmax, we use 2-based softmax here, i.e.,:</p>
-<dl class="simple">
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">vec_in</span></code>: pointer to input vector </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_vec</span></code>: input vector dimention </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">p_out</span></code>: pointer to output vector</p></li>
+<p>
+Here, instead of typical natural logarithm e based softmax, we use 2-based softmax here, i.e.,:</p>
+<p>y_i = 2^(x_i) / sum(2^x_j)</p>
+<p>The relative output will be different here. But mathematically, the gradient will be the same with a log(2) scaling factor. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vec_in</strong> – <strong>[in]</strong> pointer to input vector </p></li>
+<li><p><strong>dim_vec</strong> – <strong>[in]</strong> input vector dimention </p></li>
+<li><p><strong>p_out</strong> – <strong>[out]</strong> pointer to output vector</p></li>
 </ul>
 </dd>
 </dl>
-</p>
-<p>y_i = 2^(x_i) / sum(2^x_j)</p>
-<p>The relative output will be different here. But mathematically, the gradient will be the same with a log(2) scaling factor. </p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__Softmax_1gac9dd5c3c22158eec0237b03d50a54465"></span>void <code class="sig-name descname">riscv_softmax_s8</code><span class="sig-paren">(</span><em class="property">const</em> int8_t *<em>input</em>, <em class="property">const</em> int32_t <em>num_rows</em>, <em class="property">const</em> int32_t <em>row_size</em>, <em class="property">const</em> int32_t <em>mult</em>, <em class="property">const</em> int32_t <em>shift</em>, <em class="property">const</em> int32_t <em>diff_min</em>, int8_t *<em>output</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>S8 softmax function. </p>
-<p><dl class="simple">
-<dt><strong>Note</strong></dt><dd><p>Supported framework: TensorFlow Lite micro (bit-accurate) </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">input</span></code>: Pointer to the input tensor </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">num_rows</span></code>: Number of rows in the input tensor </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">row_size</span></code>: Number of elements in each input row </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">mult</span></code>: Input quantization multiplier </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">shift</span></code>: Input quantization shift within the range [0, 31] </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">diff_min</span></code>: Minimum difference with max in row. Used to check if the quantized exponential operation can be performed </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">output</span></code>: Pointer to the output tensor</p></li>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Supported framework: TensorFlow Lite micro (bit-accurate) </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> – <strong>[in]</strong> Pointer to the input tensor </p></li>
+<li><p><strong>num_rows</strong> – <strong>[in]</strong> Number of rows in the input tensor </p></li>
+<li><p><strong>row_size</strong> – <strong>[in]</strong> Number of elements in each input row </p></li>
+<li><p><strong>mult</strong> – <strong>[in]</strong> Input quantization multiplier </p></li>
+<li><p><strong>shift</strong> – <strong>[in]</strong> Input quantization shift within the range [0, 31] </p></li>
+<li><p><strong>diff_min</strong> – <strong>[in]</strong> Minimum difference with max in row. Used to check if the quantized exponential operation can be performed </p></li>
+<li><p><strong>output</strong> – <strong>[out]</strong> Pointer to the output tensor</p></li>
 </ul>
 </dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__Softmax_1ga11a1ba75201c791d528d559432c484e3"></span>void <code class="sig-name descname">riscv_softmax_u8</code><span class="sig-paren">(</span><em class="property">const</em> uint8_t *<em>input</em>, <em class="property">const</em> int32_t <em>num_rows</em>, <em class="property">const</em> int32_t <em>row_size</em>, <em class="property">const</em> int32_t <em>mult</em>, <em class="property">const</em> int32_t <em>shift</em>, <em class="property">const</em> int32_t <em>diff_min</em>, uint8_t *<em>output</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>U8 softmax function. </p>
-<p><dl class="simple">
-<dt><strong>Note</strong></dt><dd><p>Supported framework: TensorFlow Lite micro (bit-accurate) </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">input</span></code>: Pointer to the input tensor </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">num_rows</span></code>: Number of rows in the input tensor </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">row_size</span></code>: Number of elements in each input row </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">mult</span></code>: Input quantization multiplier </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">shift</span></code>: Input quantization shift within the range [0, 31] </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">diff_min</span></code>: Minimum difference with max in row. Used to check if the quantized exponential operation can be performed </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">output</span></code>: Pointer to the output tensor</p></li>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Supported framework: TensorFlow Lite micro (bit-accurate) </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> – <strong>[in]</strong> Pointer to the input tensor </p></li>
+<li><p><strong>num_rows</strong> – <strong>[in]</strong> Number of rows in the input tensor </p></li>
+<li><p><strong>row_size</strong> – <strong>[in]</strong> Number of elements in each input row </p></li>
+<li><p><strong>mult</strong> – <strong>[in]</strong> Input quantization multiplier </p></li>
+<li><p><strong>shift</strong> – <strong>[in]</strong> Input quantization shift within the range [0, 31] </p></li>
+<li><p><strong>diff_min</strong> – <strong>[in]</strong> Minimum difference with max in row. Used to check if the quantized exponential operation can be performed </p></li>
+<li><p><strong>output</strong> – <strong>[out]</strong> Pointer to the output tensor</p></li>
 </ul>
 </dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__Softmax_1ga898a4b60ebeb23a8faa1cd9f4b867fbe"></span>void <code class="sig-name descname">riscv_softmax_with_batch_q7</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>vec_in</em>, <em class="property">const</em> uint16_t <em>nb_batches</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, q7_t *<em>p_out</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q7 softmax function with batch parameter. </p>
-<p><p>Here, instead of typical natural logarithm e based softmax, we use 2-based softmax here, i.e.,:</p>
-<dl class="simple">
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">vec_in</span></code>: pointer to input vector </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">nb_batches</span></code>: number of batches </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_vec</span></code>: input vector dimention </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">p_out</span></code>: pointer to output vector</p></li>
+<p>
+Here, instead of typical natural logarithm e based softmax, we use 2-based softmax here, i.e.,:</p>
+<p>y_i = 2^(x_i) / sum(2^x_j)</p>
+<p>The relative output will be different here. But mathematically, the gradient will be the same with a log(2) scaling factor. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vec_in</strong> – <strong>[in]</strong> pointer to input vector </p></li>
+<li><p><strong>nb_batches</strong> – <strong>[in]</strong> number of batches </p></li>
+<li><p><strong>dim_vec</strong> – <strong>[in]</strong> input vector dimention </p></li>
+<li><p><strong>p_out</strong> – <strong>[out]</strong> pointer to output vector</p></li>
 </ul>
 </dd>
 </dl>
-</p>
-<p>y_i = 2^(x_i) / sum(2^x_j)</p>
-<p>The relative output will be different here. But mathematically, the gradient will be the same with a log(2) scaling factor. </p>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../api_nndata_convert.html" class="btn btn-neutral float-right" title="Neural Network Data Conversion Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="api_pooling.html" class="btn btn-neutral float-left" title="Neural Network Pooling Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="../api_nndata_convert.html" class="btn btn-neutral float-right" title="Neural Network Data Conversion Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="api_pooling.html" class="btn btn-neutral float-left" title="Neural Network Pooling Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-Present, Nuclei
+        &#169; Copyright 2019-Present, Nuclei.
       <span class="lastupdated">
         Last updated on Aug 03, 2021.
       </span>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -361,7 +375,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

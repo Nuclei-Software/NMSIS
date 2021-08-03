@@ -1,40 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Device Header File &lt;device.h&gt; &mdash; NMSIS 1.0.2-RC1 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Register Mapping" href="register_mapping.html" />
@@ -82,6 +85,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -89,7 +93,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">NMSIS Core</a><ul class="current">
@@ -135,6 +139,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -169,11 +174,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="index.html">NMSIS Core</a> &raquo;</li>
         
@@ -184,7 +191,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/core/core_template_device_header.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -198,7 +205,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="device-header-file-device-h">
+  <div class="section" id="device-header-file-device-h">
 <span id="core-template-device-header"></span><h1>Device Header File &lt;device.h&gt;<a class="headerlink" href="#device-header-file-device-h" title="Permalink to this headline">¶</a></h1>
 <dl class="simple">
 <dt>The <a class="reference internal" href="#core-template-device-header"><span class="std std-ref">Device Header File &lt;device.h&gt;</span></a> contains the following sections that are device specific:</dt><dd><ul class="simple">
@@ -210,10 +217,10 @@
 </dd>
 </dl>
 <p><a class="reference internal" href="api/index.html#nmsis-core-api"><span class="std std-ref">NMSIS Core API</span></a> describes the standard features and functions of the <a class="reference internal" href="#core-template-device-header"><span class="std std-ref">Device Header File &lt;device.h&gt;</span></a> in detail.</p>
-<section id="interrupt-number-definition">
+<div class="section" id="interrupt-number-definition">
 <span id="core-interrupt-num-def"></span><h2>Interrupt Number Definition<a class="headerlink" href="#interrupt-number-definition" title="Permalink to this headline">¶</a></h2>
 <dl class="simple">
-<dt><a class="reference internal" href="#core-template-device-header"><span class="std std-ref">Device Header File &lt;device.h&gt;</span></a> contains the enumeration <code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">IRQn_Type</span></code> that defines all exceptions and interrupts of the device.</dt><dd><ul class="simple">
+<dt><a class="reference internal" href="#core-template-device-header"><span class="std std-ref">Device Header File &lt;device.h&gt;</span></a> contains the enumeration <a class="reference internal" href="api/core_interrupt_exception.html#_CPPv49IRQn_Type" title="IRQn_Type"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">IRQn_Type</span></code></a> that defines all exceptions and interrupts of the device.</dt><dd><ul class="simple">
 <li><p>Negative IRQn values represent processor core exceptions (internal interrupts).</p></li>
 <li><p>Positive IRQn values represent device-specific exceptions (external interrupts). The first device-specific interrupt has the IRQn value 0.
 The IRQn values needs extension to reflect the device-specific interrupt vector table in the <a class="reference internal" href="core_template_startup_device.html#core-template-startup-device-asm"><span class="std std-ref">Startup File startup_&lt;device&gt;.S</span></a>.</p></li>
@@ -286,14 +293,14 @@ The IRQn values needs extension to reflect the device-specific interrupt vector 
 <span class="p">}</span> <span class="n">IRQn_Type</span><span class="p">;</span>
 </pre></div>
 </td></tr></table></div>
-</section>
-<section id="configuration-of-the-processor-and-core-peripherals">
+</div>
+<div class="section" id="configuration-of-the-processor-and-core-peripherals">
 <span id="nmsis-core-configuration"></span><h2>Configuration of the Processor and Core Peripherals<a class="headerlink" href="#configuration-of-the-processor-and-core-peripherals" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference internal" href="#core-template-device-header"><span class="std std-ref">Device Header File &lt;device.h&gt;</span></a> configures the Nuclei N/NX Class Processors and the core peripherals with
 <code class="docutils literal notranslate"><span class="pre">#define</span></code> that are set prior to including the file <em>nmsis_core.h</em>.</p>
 <p>The following tables list the <code class="docutils literal notranslate"><span class="pre">#define</span></code> along with the possible values for N200, N300, N600, NX600.
 If these <code class="docutils literal notranslate"><span class="pre">#define</span></code> are missing default values are used.</p>
-<section id="nmsis-core-h">
+<div class="section" id="nmsis-core-h">
 <h3>nmsis_core.h<a class="headerlink" href="#nmsis-core-h" title="Permalink to this headline">¶</a></h3>
 <span id="table-template-device-header-1"></span><table class="colwidths-given docutils align-default" id="id1">
 <caption><span class="caption-text">Macros used in nmsis_core.h</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
@@ -408,14 +415,14 @@ If these <code class="docutils literal notranslate"><span class="pre">#define</s
 </tr>
 </tbody>
 </table>
-</section>
-</section>
-<section id="nmsis-version-and-processor-information">
+</div>
+</div>
+<div class="section" id="nmsis-version-and-processor-information">
 <h2>NMSIS Version and Processor Information<a class="headerlink" href="#nmsis-version-and-processor-information" title="Permalink to this headline">¶</a></h2>
 <p>The following shows the defines in the <em>nmsis_core.h</em> file that may be used in the
 <a class="reference internal" href="core_templates.html#core-device-templates"><span class="std std-ref">NMSIS-Core Device Templates</span></a> to verify a minimum version or ensure that the right Nuclei N/NX class is used.</p>
-</section>
-<section id="device-peripheral-access-layer">
+</div>
+<div class="section" id="device-peripheral-access-layer">
 <span id="core-device-periph-access"></span><h2>Device Peripheral Access Layer<a class="headerlink" href="#device-peripheral-access-layer" title="Permalink to this headline">¶</a></h2>
 <dl class="simple">
 <dt>The <a class="reference internal" href="#core-template-device-header"><span class="std std-ref">Device Header File &lt;device.h&gt;</span></a> contains for each peripheral:</dt><dd><ul class="simple">
@@ -426,8 +433,8 @@ If these <code class="docutils literal notranslate"><span class="pre">#define</s
 </dd>
 </dl>
 <p>The section <a class="reference internal" href="api/core_periph_access.html#core-api-periph-access"><span class="std std-ref">Peripheral Access</span></a> shows examples for peripheral definitions.</p>
-</section>
-<section id="device-h-template-file">
+</div>
+<div class="section" id="device-h-template-file">
 <h2>Device.h Template File<a class="headerlink" href="#device-h-template-file" title="Permalink to this headline">¶</a></h2>
 <p>Here we provided <code class="docutils literal notranslate"><span class="pre">Device.h</span></code> template file as below:</p>
 <div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
@@ -1029,40 +1036,40 @@ If these <code class="docutils literal notranslate"><span class="pre">#define</s
 <span class="cp">#endif  </span><span class="cm">/* __&lt;Device&gt;_H__ */</span><span class="cp"></span>
 </pre></div>
 </td></tr></table></div>
-</section>
-</section>
+</div>
+</div>
 
 
            </div>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="register_mapping.html" class="btn btn-neutral float-right" title="Register Mapping" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="core_template_system_device.html" class="btn btn-neutral float-left" title="System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="register_mapping.html" class="btn btn-neutral float-right" title="Register Mapping" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="core_template_system_device.html" class="btn btn-neutral float-left" title="System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-Present, Nuclei
+        &#169; Copyright 2019-Present, Nuclei.
       <span class="lastupdated">
         Last updated on Aug 03, 2021.
       </span>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -1070,7 +1077,6 @@ If these <code class="docutils literal notranslate"><span class="pre">#define</s
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

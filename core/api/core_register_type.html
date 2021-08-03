@@ -1,40 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Register Define and Type Definitions &mdash; NMSIS 1.0.2-RC1 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="CPU Intrinsic Functions" href="core_intrinsics.html" />
@@ -82,6 +85,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -89,7 +93,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">NMSIS Core</a><ul class="current">
@@ -132,6 +136,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -166,11 +171,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../index.html">NMSIS Core</a> &raquo;</li>
         
@@ -181,7 +188,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../_sources/core/api/core_register_type.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -195,24 +202,24 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="register-define-and-type-definitions">
+  <div class="section" id="register-define-and-type-definitions">
 <span id="core-api-register-type"></span><h1>Register Define and Type Definitions<a class="headerlink" href="#register-define-and-type-definitions" title="Permalink to this headline">¶</a></h1>
 <dl class="group">
 <dt>
 <span class="target" id="group__NMSIS__Core__Registers"></span><em>group</em> <code class="sig-name descname">NMSIS_Core_Registers</code></dt>
 <dd><p>Type definitions and defines for core registers. </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Defines</p>
-<dl class="macro">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
 <dt id="c.__RISCV_XLEN">
-<span class="target" id="group__NMSIS__Core__Registers_1ga768dc3bf3c5e4e75e117c4a053b6d0f7"></span><code class="sig-name descname">__RISCV_XLEN</code> 32<a class="headerlink" href="#c.__RISCV_XLEN" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__Registers_1ga768dc3bf3c5e4e75e117c4a053b6d0f7"></span><code class="sig-name descname">__RISCV_XLEN</code> 32<a class="headerlink" href="#c.__RISCV_XLEN" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Refer to the width of an integer register in bits(either 32 or 64) </p>
 </dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Typedefs</p>
-<dl class="type">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-typedefs">Typedefs</p>
+<dl class="cpp type">
 <dt id="_CPPv48rv_csr_t">
 <span id="_CPPv38rv_csr_t"></span><span id="_CPPv28rv_csr_t"></span><span id="rv_csr_t"></span><span class="target" id="group__NMSIS__Core__Registers_1ga9fe08aae694cff694dde8758e73f4e3e"></span><em class="property">typedef </em>uint32_t <code class="sig-name descname">rv_csr_t</code><a class="headerlink" href="#_CPPv48rv_csr_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Type of Control and Status Register(CSR), depends on the XLEN defined in RISC-V. </p>
@@ -221,176 +228,176 @@
 </div>
 </dd></dl>
 
-<section id="core">
+<div class="section" id="core">
 <h2>Core<a class="headerlink" href="#core" title="Permalink to this headline">¶</a></h2>
 <dl class="group">
 <dt>
 <span class="target" id="group__NMSIS__Core__Base__Registers"></span><em>group</em> <code class="sig-name descname">NMSIS_Core_Base_Registers</code></dt>
 <dd><p>Type definitions and defines for base core registers. </p>
-<dl class="union">
+<dl class="cpp union">
 <dt id="_CPPv413CSR_MISA_Type">
 <span id="_CPPv313CSR_MISA_Type"></span><span id="_CPPv213CSR_MISA_Type"></span><span class="target" id="unionCSR__MISA__Type"></span><em class="property">union </em><code class="sig-name descname">CSR_MISA_Type</code><a class="headerlink" href="#_CPPv413CSR_MISA_Type" title="Permalink to this definition">¶</a><br /></dt>
 <dd><em>#include &lt;core_feature_base.h&gt;</em><p>Union type to access MISA register. </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Members</p>
-<dl class="member">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
 <dt id="_CPPv4N13CSR_MISA_Type1aE">
 <span id="_CPPv3N13CSR_MISA_Type1aE"></span><span id="_CPPv2N13CSR_MISA_Type1aE"></span><span id="CSR_MISA_Type::a__rv_csr_t"></span><span class="target" id="unionCSR__MISA__Type_1a7d03318d070023b589d0493a6fc0c77c"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">a</code><a class="headerlink" href="#_CPPv4N13CSR_MISA_Type1aE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 0 Atomic extension </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N13CSR_MISA_Type1bE">
 <span id="_CPPv3N13CSR_MISA_Type1bE"></span><span id="_CPPv2N13CSR_MISA_Type1bE"></span><span id="CSR_MISA_Type::b__rv_csr_t"></span><span class="target" id="unionCSR__MISA__Type_1aa79af012ee1e6de37eae3bb515ee01ea"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">b</code><a class="headerlink" href="#_CPPv4N13CSR_MISA_Type1bE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 1 Tentatively reserved for Bit-Manipulation extension </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N13CSR_MISA_Type1cE">
 <span id="_CPPv3N13CSR_MISA_Type1cE"></span><span id="_CPPv2N13CSR_MISA_Type1cE"></span><span id="CSR_MISA_Type::c__rv_csr_t"></span><span class="target" id="unionCSR__MISA__Type_1affcb644a18834c71c22c7a3d0717d3f3"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">c</code><a class="headerlink" href="#_CPPv4N13CSR_MISA_Type1cE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 2 Compressed extension </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N13CSR_MISA_Type1dE">
 <span id="_CPPv3N13CSR_MISA_Type1dE"></span><span id="_CPPv2N13CSR_MISA_Type1dE"></span><span id="CSR_MISA_Type::d__rv_csr_t"></span><span class="target" id="unionCSR__MISA__Type_1a25171c57dba66f92acc7166020e095cd"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">d</code><a class="headerlink" href="#_CPPv4N13CSR_MISA_Type1dE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 3 Double-precision floating-point extension </p>
 <p>Type used for csr data access. </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N13CSR_MISA_Type1eE">
 <span id="_CPPv3N13CSR_MISA_Type1eE"></span><span id="_CPPv2N13CSR_MISA_Type1eE"></span><span id="CSR_MISA_Type::e__rv_csr_t"></span><span class="target" id="unionCSR__MISA__Type_1a745359a52dfafcf113c23bcd8c29ec8c"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">e</code><a class="headerlink" href="#_CPPv4N13CSR_MISA_Type1eE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 4 RV32E base ISA </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N13CSR_MISA_Type1fE">
 <span id="_CPPv3N13CSR_MISA_Type1fE"></span><span id="_CPPv2N13CSR_MISA_Type1fE"></span><span id="CSR_MISA_Type::f__rv_csr_t"></span><span class="target" id="unionCSR__MISA__Type_1a4023363711be3ef80da807a0728930ea"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">f</code><a class="headerlink" href="#_CPPv4N13CSR_MISA_Type1fE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 5 Single-precision floating-point extension </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N13CSR_MISA_Type1gE">
 <span id="_CPPv3N13CSR_MISA_Type1gE"></span><span id="_CPPv2N13CSR_MISA_Type1gE"></span><span id="CSR_MISA_Type::g__rv_csr_t"></span><span class="target" id="unionCSR__MISA__Type_1a5ffa39768567ee68ba9ddca749749094"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">g</code><a class="headerlink" href="#_CPPv4N13CSR_MISA_Type1gE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 6 Additional standard extensions present </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N13CSR_MISA_Type1hE">
 <span id="_CPPv3N13CSR_MISA_Type1hE"></span><span id="_CPPv2N13CSR_MISA_Type1hE"></span><span id="CSR_MISA_Type::h__rv_csr_t"></span><span class="target" id="unionCSR__MISA__Type_1add06ba0ef4b0e8b34c94b7d097c5b8b6"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">h</code><a class="headerlink" href="#_CPPv4N13CSR_MISA_Type1hE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 7 Hypervisor extension </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N13CSR_MISA_Type1iE">
 <span id="_CPPv3N13CSR_MISA_Type1iE"></span><span id="_CPPv2N13CSR_MISA_Type1iE"></span><span id="CSR_MISA_Type::i__rv_csr_t"></span><span class="target" id="unionCSR__MISA__Type_1a388f9e4fdb069e9c0f3853ef8f9f3a04"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">i</code><a class="headerlink" href="#_CPPv4N13CSR_MISA_Type1iE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 8 RV32I/64I/128I base ISA </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N13CSR_MISA_Type1jE">
 <span id="_CPPv3N13CSR_MISA_Type1jE"></span><span id="_CPPv2N13CSR_MISA_Type1jE"></span><span id="CSR_MISA_Type::j__rv_csr_t"></span><span class="target" id="unionCSR__MISA__Type_1a4256c5f7bf0017aa46de265af7ad2e73"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">j</code><a class="headerlink" href="#_CPPv4N13CSR_MISA_Type1jE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 9 Tentatively reserved for Dynamically Translated Languages extension </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N13CSR_MISA_Type10_reserved1E">
 <span id="_CPPv3N13CSR_MISA_Type10_reserved1E"></span><span id="_CPPv2N13CSR_MISA_Type10_reserved1E"></span><span id="CSR_MISA_Type::_reserved1__rv_csr_t"></span><span class="target" id="unionCSR__MISA__Type_1adfa269cf0add951fbec17e4ef58dfc1d"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">_reserved1</code><a class="headerlink" href="#_CPPv4N13CSR_MISA_Type10_reserved1E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 10 Reserved </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N13CSR_MISA_Type1lE">
 <span id="_CPPv3N13CSR_MISA_Type1lE"></span><span id="_CPPv2N13CSR_MISA_Type1lE"></span><span id="CSR_MISA_Type::l__rv_csr_t"></span><span class="target" id="unionCSR__MISA__Type_1ad3eee1620420ed061491fd48c9483a33"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">l</code><a class="headerlink" href="#_CPPv4N13CSR_MISA_Type1lE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 11 Tentatively reserved for Decimal Floating-Point extension </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N13CSR_MISA_Type1mE">
 <span id="_CPPv3N13CSR_MISA_Type1mE"></span><span id="_CPPv2N13CSR_MISA_Type1mE"></span><span id="CSR_MISA_Type::m__rv_csr_t"></span><span class="target" id="unionCSR__MISA__Type_1ae9efe222b556250575bbdb7754ee4df0"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">m</code><a class="headerlink" href="#_CPPv4N13CSR_MISA_Type1mE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 12 Integer Multiply/Divide extension </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N13CSR_MISA_Type1nE">
 <span id="_CPPv3N13CSR_MISA_Type1nE"></span><span id="_CPPv2N13CSR_MISA_Type1nE"></span><span id="CSR_MISA_Type::n__rv_csr_t"></span><span class="target" id="unionCSR__MISA__Type_1a08ef7ab18dc90635a062fc702a5b9839"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">n</code><a class="headerlink" href="#_CPPv4N13CSR_MISA_Type1nE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 13 User-level interrupts supported </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N13CSR_MISA_Type10_reserved2E">
 <span id="_CPPv3N13CSR_MISA_Type10_reserved2E"></span><span id="_CPPv2N13CSR_MISA_Type10_reserved2E"></span><span id="CSR_MISA_Type::_reserved2__rv_csr_t"></span><span class="target" id="unionCSR__MISA__Type_1ad74583efcf15a844c3403f2e5623b8d3"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">_reserved2</code><a class="headerlink" href="#_CPPv4N13CSR_MISA_Type10_reserved2E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 14 Reserved </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N13CSR_MISA_Type1pE">
 <span id="_CPPv3N13CSR_MISA_Type1pE"></span><span id="_CPPv2N13CSR_MISA_Type1pE"></span><span id="CSR_MISA_Type::p__rv_csr_t"></span><span class="target" id="unionCSR__MISA__Type_1a1aeda1a8f5b0920ce7fb005fd45851b1"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">p</code><a class="headerlink" href="#_CPPv4N13CSR_MISA_Type1pE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 15 Tentatively reserved for Packed-SIMD extension </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N13CSR_MISA_Type1qE">
 <span id="_CPPv3N13CSR_MISA_Type1qE"></span><span id="_CPPv2N13CSR_MISA_Type1qE"></span><span id="CSR_MISA_Type::q__rv_csr_t"></span><span class="target" id="unionCSR__MISA__Type_1a293b7c69518f3fd68f566485d50e83e2"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">q</code><a class="headerlink" href="#_CPPv4N13CSR_MISA_Type1qE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 16 Quad-precision floating-point extension </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N13CSR_MISA_Type10_resreved3E">
 <span id="_CPPv3N13CSR_MISA_Type10_resreved3E"></span><span id="_CPPv2N13CSR_MISA_Type10_resreved3E"></span><span id="CSR_MISA_Type::_resreved3__rv_csr_t"></span><span class="target" id="unionCSR__MISA__Type_1a18e3e874f5d6e2f7bdeab8cf3caf657b"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">_resreved3</code><a class="headerlink" href="#_CPPv4N13CSR_MISA_Type10_resreved3E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 17 Reserved </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N13CSR_MISA_Type1sE">
 <span id="_CPPv3N13CSR_MISA_Type1sE"></span><span id="_CPPv2N13CSR_MISA_Type1sE"></span><span id="CSR_MISA_Type::s__rv_csr_t"></span><span class="target" id="unionCSR__MISA__Type_1a79e1df39597bf8184932682bba4e59b1"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">s</code><a class="headerlink" href="#_CPPv4N13CSR_MISA_Type1sE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 18 Supervisor mode implemented </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N13CSR_MISA_Type1tE">
 <span id="_CPPv3N13CSR_MISA_Type1tE"></span><span id="_CPPv2N13CSR_MISA_Type1tE"></span><span id="CSR_MISA_Type::t__rv_csr_t"></span><span class="target" id="unionCSR__MISA__Type_1a8bf50ec00d685519fd3238a4b2222b50"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">t</code><a class="headerlink" href="#_CPPv4N13CSR_MISA_Type1tE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 19 Tentatively reserved for Transactional Memory extension </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N13CSR_MISA_Type1uE">
 <span id="_CPPv3N13CSR_MISA_Type1uE"></span><span id="_CPPv2N13CSR_MISA_Type1uE"></span><span id="CSR_MISA_Type::u__rv_csr_t"></span><span class="target" id="unionCSR__MISA__Type_1a746597b02ac481d6f16e9f10c311d85b"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">u</code><a class="headerlink" href="#_CPPv4N13CSR_MISA_Type1uE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 20 User mode implemented </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N13CSR_MISA_Type1vE">
 <span id="_CPPv3N13CSR_MISA_Type1vE"></span><span id="_CPPv2N13CSR_MISA_Type1vE"></span><span id="CSR_MISA_Type::v__rv_csr_t"></span><span class="target" id="unionCSR__MISA__Type_1a24a555a6f05561ed548f05b37ad48df9"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">v</code><a class="headerlink" href="#_CPPv4N13CSR_MISA_Type1vE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 21 Tentatively reserved for Vector extension </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N13CSR_MISA_Type10_reserved4E">
 <span id="_CPPv3N13CSR_MISA_Type10_reserved4E"></span><span id="_CPPv2N13CSR_MISA_Type10_reserved4E"></span><span id="CSR_MISA_Type::_reserved4__rv_csr_t"></span><span class="target" id="unionCSR__MISA__Type_1adc432fcf6a2a187caee977c2987f1b8c"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">_reserved4</code><a class="headerlink" href="#_CPPv4N13CSR_MISA_Type10_reserved4E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 22 Reserved </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N13CSR_MISA_Type1xE">
 <span id="_CPPv3N13CSR_MISA_Type1xE"></span><span id="_CPPv2N13CSR_MISA_Type1xE"></span><span id="CSR_MISA_Type::x__rv_csr_t"></span><span class="target" id="unionCSR__MISA__Type_1ad127ca5673c61354060d7eb77f31ecb4"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">x</code><a class="headerlink" href="#_CPPv4N13CSR_MISA_Type1xE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 23 Non-standard extensions present </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N13CSR_MISA_Type10_reserved5E">
 <span id="_CPPv3N13CSR_MISA_Type10_reserved5E"></span><span id="_CPPv2N13CSR_MISA_Type10_reserved5E"></span><span id="CSR_MISA_Type::_reserved5__rv_csr_t"></span><span class="target" id="unionCSR__MISA__Type_1a02d0ff9e6c8d54a24be971221e4cbd5a"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">_reserved5</code><a class="headerlink" href="#_CPPv4N13CSR_MISA_Type10_reserved5E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 24..29 Reserved </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N13CSR_MISA_Type3mxlE">
 <span id="_CPPv3N13CSR_MISA_Type3mxlE"></span><span id="_CPPv2N13CSR_MISA_Type3mxlE"></span><span id="CSR_MISA_Type::mxl__rv_csr_t"></span><span class="target" id="unionCSR__MISA__Type_1a6f3250a719eb460653f2f4f6f2bc76f8"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">mxl</code><a class="headerlink" href="#_CPPv4N13CSR_MISA_Type3mxlE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 30..31 Machine XLEN </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt>
 <span class="target" id="unionCSR__MISA__Type_1afba88dc0518f7881a0737fda9547ff53"></span><em class="property">struct</em> <a class="reference internal" href="#_CPPv413CSR_MISA_Type" title="CSR_MISA_Type">CSR_MISA_Type</a>::<strong>[anonymous]</strong> <code class="sig-name descname">b</code><br /></dt>
 <dd><p>Structure used for bit access. </p>
@@ -399,115 +406,115 @@
 </div>
 </dd></dl>
 
-<dl class="union">
+<dl class="cpp union">
 <dt id="_CPPv416CSR_MSTATUS_Type">
 <span id="_CPPv316CSR_MSTATUS_Type"></span><span id="_CPPv216CSR_MSTATUS_Type"></span><span class="target" id="unionCSR__MSTATUS__Type"></span><em class="property">union </em><code class="sig-name descname">CSR_MSTATUS_Type</code><a class="headerlink" href="#_CPPv416CSR_MSTATUS_Type" title="Permalink to this definition">¶</a><br /></dt>
 <dd><em>#include &lt;core_feature_base.h&gt;</em><p>Union type to access MSTATUS configure register. </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Members</p>
-<dl class="member">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
 <dt id="_CPPv4N16CSR_MSTATUS_Type10_reserved0E">
 <span id="_CPPv3N16CSR_MSTATUS_Type10_reserved0E"></span><span id="_CPPv2N16CSR_MSTATUS_Type10_reserved0E"></span><span id="CSR_MSTATUS_Type::_reserved0__rv_csr_t"></span><span class="target" id="unionCSR__MSTATUS__Type_1ae8ca70d836ff92b95d206e681d081329"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">_reserved0</code><a class="headerlink" href="#_CPPv4N16CSR_MSTATUS_Type10_reserved0E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 0 Reserved </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N16CSR_MSTATUS_Type3sieE">
 <span id="_CPPv3N16CSR_MSTATUS_Type3sieE"></span><span id="_CPPv2N16CSR_MSTATUS_Type3sieE"></span><span id="CSR_MSTATUS_Type::sie__rv_csr_t"></span><span class="target" id="unionCSR__MSTATUS__Type_1a39782c19cb5e81a9bb2ac6231b11edcd"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">sie</code><a class="headerlink" href="#_CPPv4N16CSR_MSTATUS_Type3sieE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 1 supervisor interrupt enable flag </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N16CSR_MSTATUS_Type10_reserved1E">
 <span id="_CPPv3N16CSR_MSTATUS_Type10_reserved1E"></span><span id="_CPPv2N16CSR_MSTATUS_Type10_reserved1E"></span><span id="CSR_MSTATUS_Type::_reserved1__rv_csr_t"></span><span class="target" id="unionCSR__MSTATUS__Type_1a3f2fb6067e213b937b77c8c72b5a2793"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">_reserved1</code><a class="headerlink" href="#_CPPv4N16CSR_MSTATUS_Type10_reserved1E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 2 Reserved </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N16CSR_MSTATUS_Type3mieE">
 <span id="_CPPv3N16CSR_MSTATUS_Type3mieE"></span><span id="_CPPv2N16CSR_MSTATUS_Type3mieE"></span><span id="CSR_MSTATUS_Type::mie__rv_csr_t"></span><span class="target" id="unionCSR__MSTATUS__Type_1a8fe9b86b3d0ddb66537db55e8fe1b96b"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">mie</code><a class="headerlink" href="#_CPPv4N16CSR_MSTATUS_Type3mieE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 3 Machine mode interrupt enable flag </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N16CSR_MSTATUS_Type10_reserved2E">
 <span id="_CPPv3N16CSR_MSTATUS_Type10_reserved2E"></span><span id="_CPPv2N16CSR_MSTATUS_Type10_reserved2E"></span><span id="CSR_MSTATUS_Type::_reserved2__rv_csr_t"></span><span class="target" id="unionCSR__MSTATUS__Type_1a6ec97869161f24ac6ccdf52d0d9bf2de"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">_reserved2</code><a class="headerlink" href="#_CPPv4N16CSR_MSTATUS_Type10_reserved2E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 4 Reserved </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N16CSR_MSTATUS_Type4spieE">
 <span id="_CPPv3N16CSR_MSTATUS_Type4spieE"></span><span id="_CPPv2N16CSR_MSTATUS_Type4spieE"></span><span id="CSR_MSTATUS_Type::spie__rv_csr_t"></span><span class="target" id="unionCSR__MSTATUS__Type_1a2da21bb426da143dfba005be019592b3"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">spie</code><a class="headerlink" href="#_CPPv4N16CSR_MSTATUS_Type4spieE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 3 Supervisor Privilede mode interrupt enable flag </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N16CSR_MSTATUS_Type10_reserved3E">
 <span id="_CPPv3N16CSR_MSTATUS_Type10_reserved3E"></span><span id="_CPPv2N16CSR_MSTATUS_Type10_reserved3E"></span><span id="CSR_MSTATUS_Type::_reserved3__rv_csr_t"></span><span class="target" id="unionCSR__MSTATUS__Type_1a3c5132f10bbe90eef8a8256edd1e2907"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">_reserved3</code><a class="headerlink" href="#_CPPv4N16CSR_MSTATUS_Type10_reserved3E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: Reserved </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N16CSR_MSTATUS_Type4mpieE">
 <span id="_CPPv3N16CSR_MSTATUS_Type4mpieE"></span><span id="_CPPv2N16CSR_MSTATUS_Type4mpieE"></span><span id="CSR_MSTATUS_Type::mpie__rv_csr_t"></span><span class="target" id="unionCSR__MSTATUS__Type_1a1053ed8fd8525df9fbd32c4890bcfe42"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">mpie</code><a class="headerlink" href="#_CPPv4N16CSR_MSTATUS_Type4mpieE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: mirror of MIE flag </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N16CSR_MSTATUS_Type10_reserved4E">
 <span id="_CPPv3N16CSR_MSTATUS_Type10_reserved4E"></span><span id="_CPPv2N16CSR_MSTATUS_Type10_reserved4E"></span><span id="CSR_MSTATUS_Type::_reserved4__rv_csr_t"></span><span class="target" id="unionCSR__MSTATUS__Type_1a225f2f406e336a6035544c2b718d3d7e"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">_reserved4</code><a class="headerlink" href="#_CPPv4N16CSR_MSTATUS_Type10_reserved4E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: Reserved </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N16CSR_MSTATUS_Type3mppE">
 <span id="_CPPv3N16CSR_MSTATUS_Type3mppE"></span><span id="_CPPv2N16CSR_MSTATUS_Type3mppE"></span><span id="CSR_MSTATUS_Type::mpp__rv_csr_t"></span><span class="target" id="unionCSR__MSTATUS__Type_1a54f1b11a82d0c710c8568703e006bbe8"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">mpp</code><a class="headerlink" href="#_CPPv4N16CSR_MSTATUS_Type3mppE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: mirror of Privilege Mode </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N16CSR_MSTATUS_Type2fsE">
 <span id="_CPPv3N16CSR_MSTATUS_Type2fsE"></span><span id="_CPPv2N16CSR_MSTATUS_Type2fsE"></span><span id="CSR_MSTATUS_Type::fs__rv_csr_t"></span><span class="target" id="unionCSR__MSTATUS__Type_1a0b85d89e89118380007d94c4c2adb0f2"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">fs</code><a class="headerlink" href="#_CPPv4N16CSR_MSTATUS_Type2fsE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: FS status flag </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N16CSR_MSTATUS_Type2xsE">
 <span id="_CPPv3N16CSR_MSTATUS_Type2xsE"></span><span id="_CPPv2N16CSR_MSTATUS_Type2xsE"></span><span id="CSR_MSTATUS_Type::xs__rv_csr_t"></span><span class="target" id="unionCSR__MSTATUS__Type_1ab2648a5652adc6cd1dd02e3e47d4cd87"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">xs</code><a class="headerlink" href="#_CPPv4N16CSR_MSTATUS_Type2xsE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: XS status flag </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N16CSR_MSTATUS_Type4mprvE">
 <span id="_CPPv3N16CSR_MSTATUS_Type4mprvE"></span><span id="_CPPv2N16CSR_MSTATUS_Type4mprvE"></span><span id="CSR_MSTATUS_Type::mprv__rv_csr_t"></span><span class="target" id="unionCSR__MSTATUS__Type_1a5319b79ff9ccab347d70716fc7ad5bf5"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">mprv</code><a class="headerlink" href="#_CPPv4N16CSR_MSTATUS_Type4mprvE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: Machine mode PMP </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N16CSR_MSTATUS_Type3sumE">
 <span id="_CPPv3N16CSR_MSTATUS_Type3sumE"></span><span id="_CPPv2N16CSR_MSTATUS_Type3sumE"></span><span id="CSR_MSTATUS_Type::sum__rv_csr_t"></span><span class="target" id="unionCSR__MSTATUS__Type_1aa7bf6ccb81c68ffcda46390640774413"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">sum</code><a class="headerlink" href="#_CPPv4N16CSR_MSTATUS_Type3sumE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: Supervisor Mode load and store protection </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N16CSR_MSTATUS_Type10_reserved6E">
 <span id="_CPPv3N16CSR_MSTATUS_Type10_reserved6E"></span><span id="_CPPv2N16CSR_MSTATUS_Type10_reserved6E"></span><span id="CSR_MSTATUS_Type::_reserved6__rv_csr_t"></span><span class="target" id="unionCSR__MSTATUS__Type_1a9d5d7b260d563a82fad02c6940902ef0"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">_reserved6</code><a class="headerlink" href="#_CPPv4N16CSR_MSTATUS_Type10_reserved6E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 19..30 Reserved </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N16CSR_MSTATUS_Type2sdE">
 <span id="_CPPv3N16CSR_MSTATUS_Type2sdE"></span><span id="_CPPv2N16CSR_MSTATUS_Type2sdE"></span><span id="CSR_MSTATUS_Type::sd__rv_csr_t"></span><span class="target" id="unionCSR__MSTATUS__Type_1a07006b8b4c0dc88ca1e1a2145a9bce36"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">sd</code><a class="headerlink" href="#_CPPv4N16CSR_MSTATUS_Type2sdE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: Dirty status for XS or FS </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N16CSR_MSTATUS_Type1bE">
 <span id="_CPPv3N16CSR_MSTATUS_Type1bE"></span><span id="_CPPv2N16CSR_MSTATUS_Type1bE"></span><span class="target" id="unionCSR__MSTATUS__Type_1a84e4ca04ad9e3bdb9956a2ef28d85db3"></span><em class="property">struct</em> <a class="reference internal" href="#_CPPv416CSR_MSTATUS_Type" title="CSR_MSTATUS_Type">CSR_MSTATUS_Type</a>::<strong>[anonymous]</strong> <code class="sig-name descname">b</code><a class="headerlink" href="#_CPPv4N16CSR_MSTATUS_Type1bE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Structure used for bit access. </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N16CSR_MSTATUS_Type1dE">
 <span id="_CPPv3N16CSR_MSTATUS_Type1dE"></span><span id="_CPPv2N16CSR_MSTATUS_Type1dE"></span><span id="CSR_MSTATUS_Type::d__rv_csr_t"></span><span class="target" id="unionCSR__MSTATUS__Type_1ad6ccdd78fc15b0b10a9e82e3c25dd98a"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">d</code><a class="headerlink" href="#_CPPv4N16CSR_MSTATUS_Type1dE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Type used for csr data access. </p>
@@ -516,31 +523,31 @@
 </div>
 </dd></dl>
 
-<dl class="union">
+<dl class="cpp union">
 <dt id="_CPPv414CSR_MTVEC_Type">
 <span id="_CPPv314CSR_MTVEC_Type"></span><span id="_CPPv214CSR_MTVEC_Type"></span><span class="target" id="unionCSR__MTVEC__Type"></span><em class="property">union </em><code class="sig-name descname">CSR_MTVEC_Type</code><a class="headerlink" href="#_CPPv414CSR_MTVEC_Type" title="Permalink to this definition">¶</a><br /></dt>
 <dd><em>#include &lt;core_feature_base.h&gt;</em><p>Union type to access MTVEC configure register. </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Members</p>
-<dl class="member">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
 <dt id="_CPPv4N14CSR_MTVEC_Type4modeE">
 <span id="_CPPv3N14CSR_MTVEC_Type4modeE"></span><span id="_CPPv2N14CSR_MTVEC_Type4modeE"></span><span id="CSR_MTVEC_Type::mode__rv_csr_t"></span><span class="target" id="unionCSR__MTVEC__Type_1aaedacb992928db5f3486342eadf944e8"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">mode</code><a class="headerlink" href="#_CPPv4N14CSR_MTVEC_Type4modeE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 0..5 interrupt mode control </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N14CSR_MTVEC_Type4addrE">
 <span id="_CPPv3N14CSR_MTVEC_Type4addrE"></span><span id="_CPPv2N14CSR_MTVEC_Type4addrE"></span><span id="CSR_MTVEC_Type::addr__rv_csr_t"></span><span class="target" id="unionCSR__MTVEC__Type_1a0d0fea678e6ad934c29011cfd49e9271"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">addr</code><a class="headerlink" href="#_CPPv4N14CSR_MTVEC_Type4addrE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 6..31 mtvec address </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N14CSR_MTVEC_Type1bE">
 <span id="_CPPv3N14CSR_MTVEC_Type1bE"></span><span id="_CPPv2N14CSR_MTVEC_Type1bE"></span><span class="target" id="unionCSR__MTVEC__Type_1a591e5d7c8c9db91b77e52c40686e8737"></span><em class="property">struct</em> <a class="reference internal" href="#_CPPv414CSR_MTVEC_Type" title="CSR_MTVEC_Type">CSR_MTVEC_Type</a>::<strong>[anonymous]</strong> <code class="sig-name descname">b</code><a class="headerlink" href="#_CPPv4N14CSR_MTVEC_Type1bE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Structure used for bit access. </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N14CSR_MTVEC_Type1dE">
 <span id="_CPPv3N14CSR_MTVEC_Type1dE"></span><span id="_CPPv2N14CSR_MTVEC_Type1dE"></span><span id="CSR_MTVEC_Type::d__rv_csr_t"></span><span class="target" id="unionCSR__MTVEC__Type_1a78064f13f73bd2c7367fd6dbc8cf356e"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">d</code><a class="headerlink" href="#_CPPv4N14CSR_MTVEC_Type1dE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Type used for csr data access. </p>
@@ -549,68 +556,68 @@
 </div>
 </dd></dl>
 
-<dl class="union">
+<dl class="cpp union">
 <dt id="_CPPv415CSR_MCAUSE_Type">
 <span id="_CPPv315CSR_MCAUSE_Type"></span><span id="_CPPv215CSR_MCAUSE_Type"></span><span class="target" id="unionCSR__MCAUSE__Type"></span><em class="property">union </em><code class="sig-name descname">CSR_MCAUSE_Type</code><a class="headerlink" href="#_CPPv415CSR_MCAUSE_Type" title="Permalink to this definition">¶</a><br /></dt>
 <dd><em>#include &lt;core_feature_base.h&gt;</em><p>Union type to access MCAUSE configure register. </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Members</p>
-<dl class="member">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
 <dt id="_CPPv4N15CSR_MCAUSE_Type7exccodeE">
 <span id="_CPPv3N15CSR_MCAUSE_Type7exccodeE"></span><span id="_CPPv2N15CSR_MCAUSE_Type7exccodeE"></span><span id="CSR_MCAUSE_Type::exccode__rv_csr_t"></span><span class="target" id="unionCSR__MCAUSE__Type_1a1cb072e5e7ddb5d23103e5b7ccd4754b"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">exccode</code><a class="headerlink" href="#_CPPv4N15CSR_MCAUSE_Type7exccodeE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 11..0 exception or interrupt code </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N15CSR_MCAUSE_Type10_reserved0E">
 <span id="_CPPv3N15CSR_MCAUSE_Type10_reserved0E"></span><span id="_CPPv2N15CSR_MCAUSE_Type10_reserved0E"></span><span id="CSR_MCAUSE_Type::_reserved0__rv_csr_t"></span><span class="target" id="unionCSR__MCAUSE__Type_1a219408dc82a540a8f1984de4754103c5"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">_reserved0</code><a class="headerlink" href="#_CPPv4N15CSR_MCAUSE_Type10_reserved0E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 15..12 Reserved </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N15CSR_MCAUSE_Type4mpilE">
 <span id="_CPPv3N15CSR_MCAUSE_Type4mpilE"></span><span id="_CPPv2N15CSR_MCAUSE_Type4mpilE"></span><span id="CSR_MCAUSE_Type::mpil__rv_csr_t"></span><span class="target" id="unionCSR__MCAUSE__Type_1a12e8d8f10c411011485f89d8c8096adb"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">mpil</code><a class="headerlink" href="#_CPPv4N15CSR_MCAUSE_Type4mpilE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 23..16 Previous interrupt level </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N15CSR_MCAUSE_Type10_reserved1E">
 <span id="_CPPv3N15CSR_MCAUSE_Type10_reserved1E"></span><span id="_CPPv2N15CSR_MCAUSE_Type10_reserved1E"></span><span id="CSR_MCAUSE_Type::_reserved1__rv_csr_t"></span><span class="target" id="unionCSR__MCAUSE__Type_1a71022f579628a81dc0ac558cbc513421"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">_reserved1</code><a class="headerlink" href="#_CPPv4N15CSR_MCAUSE_Type10_reserved1E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 26..24 Reserved </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N15CSR_MCAUSE_Type4mpieE">
 <span id="_CPPv3N15CSR_MCAUSE_Type4mpieE"></span><span id="_CPPv2N15CSR_MCAUSE_Type4mpieE"></span><span id="CSR_MCAUSE_Type::mpie__rv_csr_t"></span><span class="target" id="unionCSR__MCAUSE__Type_1a4c04623f4c35a7b546e42c0b39d37d5e"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">mpie</code><a class="headerlink" href="#_CPPv4N15CSR_MCAUSE_Type4mpieE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 27 Interrupt enable flag before enter interrupt </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N15CSR_MCAUSE_Type3mppE">
 <span id="_CPPv3N15CSR_MCAUSE_Type3mppE"></span><span id="_CPPv2N15CSR_MCAUSE_Type3mppE"></span><span id="CSR_MCAUSE_Type::mpp__rv_csr_t"></span><span class="target" id="unionCSR__MCAUSE__Type_1a00a27e55a870e69d2747ee2d78b5d3e6"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">mpp</code><a class="headerlink" href="#_CPPv4N15CSR_MCAUSE_Type3mppE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 29..28 Privilede mode flag before enter interrupt </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N15CSR_MCAUSE_Type5minhvE">
 <span id="_CPPv3N15CSR_MCAUSE_Type5minhvE"></span><span id="_CPPv2N15CSR_MCAUSE_Type5minhvE"></span><span id="CSR_MCAUSE_Type::minhv__rv_csr_t"></span><span class="target" id="unionCSR__MCAUSE__Type_1ab67f23d9962f57913aa683f01a8a2008"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">minhv</code><a class="headerlink" href="#_CPPv4N15CSR_MCAUSE_Type5minhvE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 30 Machine interrupt vector table </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N15CSR_MCAUSE_Type9interruptE">
 <span id="_CPPv3N15CSR_MCAUSE_Type9interruptE"></span><span id="_CPPv2N15CSR_MCAUSE_Type9interruptE"></span><span id="CSR_MCAUSE_Type::interrupt__rv_csr_t"></span><span class="target" id="unionCSR__MCAUSE__Type_1ae7500724c75e2815c3624f91df4e7e1d"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">interrupt</code><a class="headerlink" href="#_CPPv4N15CSR_MCAUSE_Type9interruptE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 31 trap type. </p>
 <p>0 means exception and 1 means interrupt </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N15CSR_MCAUSE_Type1bE">
 <span id="_CPPv3N15CSR_MCAUSE_Type1bE"></span><span id="_CPPv2N15CSR_MCAUSE_Type1bE"></span><span class="target" id="unionCSR__MCAUSE__Type_1adc306dbb0b23fc33075d68f60040b3e6"></span><em class="property">struct</em> <a class="reference internal" href="#_CPPv415CSR_MCAUSE_Type" title="CSR_MCAUSE_Type">CSR_MCAUSE_Type</a>::<strong>[anonymous]</strong> <code class="sig-name descname">b</code><a class="headerlink" href="#_CPPv4N15CSR_MCAUSE_Type1bE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Structure used for bit access. </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N15CSR_MCAUSE_Type1dE">
 <span id="_CPPv3N15CSR_MCAUSE_Type1dE"></span><span id="_CPPv2N15CSR_MCAUSE_Type1dE"></span><span id="CSR_MCAUSE_Type::d__rv_csr_t"></span><span class="target" id="unionCSR__MCAUSE__Type_1ae5bdc279496969b722055aae0c118460"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">d</code><a class="headerlink" href="#_CPPv4N15CSR_MCAUSE_Type1dE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Type used for csr data access. </p>
@@ -619,43 +626,43 @@
 </div>
 </dd></dl>
 
-<dl class="union">
+<dl class="cpp union">
 <dt id="_CPPv422CSR_MCOUNTINHIBIT_Type">
 <span id="_CPPv322CSR_MCOUNTINHIBIT_Type"></span><span id="_CPPv222CSR_MCOUNTINHIBIT_Type"></span><span class="target" id="unionCSR__MCOUNTINHIBIT__Type"></span><em class="property">union </em><code class="sig-name descname">CSR_MCOUNTINHIBIT_Type</code><a class="headerlink" href="#_CPPv422CSR_MCOUNTINHIBIT_Type" title="Permalink to this definition">¶</a><br /></dt>
 <dd><em>#include &lt;core_feature_base.h&gt;</em><p>Union type to access MCOUNTINHIBIT configure register. </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Members</p>
-<dl class="member">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
 <dt id="_CPPv4N22CSR_MCOUNTINHIBIT_Type2cyE">
 <span id="_CPPv3N22CSR_MCOUNTINHIBIT_Type2cyE"></span><span id="_CPPv2N22CSR_MCOUNTINHIBIT_Type2cyE"></span><span id="CSR_MCOUNTINHIBIT_Type::cy__rv_csr_t"></span><span class="target" id="unionCSR__MCOUNTINHIBIT__Type_1a254ee53372453cbf96ed0626ba892748"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">cy</code><a class="headerlink" href="#_CPPv4N22CSR_MCOUNTINHIBIT_Type2cyE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 0 1 means disable mcycle counter </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N22CSR_MCOUNTINHIBIT_Type10_reserved0E">
 <span id="_CPPv3N22CSR_MCOUNTINHIBIT_Type10_reserved0E"></span><span id="_CPPv2N22CSR_MCOUNTINHIBIT_Type10_reserved0E"></span><span id="CSR_MCOUNTINHIBIT_Type::_reserved0__rv_csr_t"></span><span class="target" id="unionCSR__MCOUNTINHIBIT__Type_1ac263b873022f7faf2083ef0e200ddc6e"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">_reserved0</code><a class="headerlink" href="#_CPPv4N22CSR_MCOUNTINHIBIT_Type10_reserved0E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 1 Reserved </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N22CSR_MCOUNTINHIBIT_Type2irE">
 <span id="_CPPv3N22CSR_MCOUNTINHIBIT_Type2irE"></span><span id="_CPPv2N22CSR_MCOUNTINHIBIT_Type2irE"></span><span id="CSR_MCOUNTINHIBIT_Type::ir__rv_csr_t"></span><span class="target" id="unionCSR__MCOUNTINHIBIT__Type_1aa701cdd635c06458c4a2857f709be409"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">ir</code><a class="headerlink" href="#_CPPv4N22CSR_MCOUNTINHIBIT_Type2irE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 2 1 means disable minstret counter </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N22CSR_MCOUNTINHIBIT_Type10_reserved1E">
 <span id="_CPPv3N22CSR_MCOUNTINHIBIT_Type10_reserved1E"></span><span id="_CPPv2N22CSR_MCOUNTINHIBIT_Type10_reserved1E"></span><span id="CSR_MCOUNTINHIBIT_Type::_reserved1__rv_csr_t"></span><span class="target" id="unionCSR__MCOUNTINHIBIT__Type_1aab234a4dac2d08f648cb47df509efaeb"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">_reserved1</code><a class="headerlink" href="#_CPPv4N22CSR_MCOUNTINHIBIT_Type10_reserved1E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 3..31 Reserved </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N22CSR_MCOUNTINHIBIT_Type1bE">
 <span id="_CPPv3N22CSR_MCOUNTINHIBIT_Type1bE"></span><span id="_CPPv2N22CSR_MCOUNTINHIBIT_Type1bE"></span><span class="target" id="unionCSR__MCOUNTINHIBIT__Type_1afef0c274f366f4df3527d71d51ebeed6"></span><em class="property">struct</em> <a class="reference internal" href="#_CPPv422CSR_MCOUNTINHIBIT_Type" title="CSR_MCOUNTINHIBIT_Type">CSR_MCOUNTINHIBIT_Type</a>::<strong>[anonymous]</strong> <code class="sig-name descname">b</code><a class="headerlink" href="#_CPPv4N22CSR_MCOUNTINHIBIT_Type1bE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Structure used for bit access. </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N22CSR_MCOUNTINHIBIT_Type1dE">
 <span id="_CPPv3N22CSR_MCOUNTINHIBIT_Type1dE"></span><span id="_CPPv2N22CSR_MCOUNTINHIBIT_Type1dE"></span><span id="CSR_MCOUNTINHIBIT_Type::d__rv_csr_t"></span><span class="target" id="unionCSR__MCOUNTINHIBIT__Type_1aa9ba6784709e8ba39c6e094156916dc2"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">d</code><a class="headerlink" href="#_CPPv4N22CSR_MCOUNTINHIBIT_Type1dE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Type used for csr data access. </p>
@@ -664,43 +671,43 @@
 </div>
 </dd></dl>
 
-<dl class="union">
+<dl class="cpp union">
 <dt id="_CPPv414CSR_MSUBM_Type">
 <span id="_CPPv314CSR_MSUBM_Type"></span><span id="_CPPv214CSR_MSUBM_Type"></span><span class="target" id="unionCSR__MSUBM__Type"></span><em class="property">union </em><code class="sig-name descname">CSR_MSUBM_Type</code><a class="headerlink" href="#_CPPv414CSR_MSUBM_Type" title="Permalink to this definition">¶</a><br /></dt>
 <dd><em>#include &lt;core_feature_base.h&gt;</em><p>Union type to access msubm configure register. </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Members</p>
-<dl class="member">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
 <dt id="_CPPv4N14CSR_MSUBM_Type10_reserved0E">
 <span id="_CPPv3N14CSR_MSUBM_Type10_reserved0E"></span><span id="_CPPv2N14CSR_MSUBM_Type10_reserved0E"></span><span id="CSR_MSUBM_Type::_reserved0__rv_csr_t"></span><span class="target" id="unionCSR__MSUBM__Type_1a4df7db7411e57be8ab1826f81ca37514"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">_reserved0</code><a class="headerlink" href="#_CPPv4N14CSR_MSUBM_Type10_reserved0E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 0..5 Reserved </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N14CSR_MSUBM_Type3typE">
 <span id="_CPPv3N14CSR_MSUBM_Type3typE"></span><span id="_CPPv2N14CSR_MSUBM_Type3typE"></span><span id="CSR_MSUBM_Type::typ__rv_csr_t"></span><span class="target" id="unionCSR__MSUBM__Type_1a1bea0e7308519e40a3134f8d92bca435"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">typ</code><a class="headerlink" href="#_CPPv4N14CSR_MSUBM_Type3typE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 6..7 current trap type </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N14CSR_MSUBM_Type4ptypE">
 <span id="_CPPv3N14CSR_MSUBM_Type4ptypE"></span><span id="_CPPv2N14CSR_MSUBM_Type4ptypE"></span><span id="CSR_MSUBM_Type::ptyp__rv_csr_t"></span><span class="target" id="unionCSR__MSUBM__Type_1a77220967d0a04f29fb37b9730afc8059"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">ptyp</code><a class="headerlink" href="#_CPPv4N14CSR_MSUBM_Type4ptypE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 8..9 previous trap type </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N14CSR_MSUBM_Type10_reserved1E">
 <span id="_CPPv3N14CSR_MSUBM_Type10_reserved1E"></span><span id="_CPPv2N14CSR_MSUBM_Type10_reserved1E"></span><span id="CSR_MSUBM_Type::_reserved1__rv_csr_t"></span><span class="target" id="unionCSR__MSUBM__Type_1a1d0316c0cbd4c58115811939f05334d0"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">_reserved1</code><a class="headerlink" href="#_CPPv4N14CSR_MSUBM_Type10_reserved1E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 10..31 Reserved </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N14CSR_MSUBM_Type1bE">
 <span id="_CPPv3N14CSR_MSUBM_Type1bE"></span><span id="_CPPv2N14CSR_MSUBM_Type1bE"></span><span class="target" id="unionCSR__MSUBM__Type_1a4e88749cf997c4d1429f83c411736ebd"></span><em class="property">struct</em> <a class="reference internal" href="#_CPPv414CSR_MSUBM_Type" title="CSR_MSUBM_Type">CSR_MSUBM_Type</a>::<strong>[anonymous]</strong> <code class="sig-name descname">b</code><a class="headerlink" href="#_CPPv4N14CSR_MSUBM_Type1bE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Structure used for bit access. </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N14CSR_MSUBM_Type1dE">
 <span id="_CPPv3N14CSR_MSUBM_Type1dE"></span><span id="_CPPv2N14CSR_MSUBM_Type1dE"></span><span id="CSR_MSUBM_Type::d__rv_csr_t"></span><span class="target" id="unionCSR__MSUBM__Type_1ab188dee35d91c5cd832a5295b4e21e98"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">d</code><a class="headerlink" href="#_CPPv4N14CSR_MSUBM_Type1dE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Type used for csr data access. </p>
@@ -709,61 +716,61 @@
 </div>
 </dd></dl>
 
-<dl class="union">
+<dl class="cpp union">
 <dt id="_CPPv418CSR_MMISCCTRL_Type">
 <span id="_CPPv318CSR_MMISCCTRL_Type"></span><span id="_CPPv218CSR_MMISCCTRL_Type"></span><span class="target" id="unionCSR__MMISCCTRL__Type"></span><em class="property">union </em><code class="sig-name descname">CSR_MMISCCTRL_Type</code><a class="headerlink" href="#_CPPv418CSR_MMISCCTRL_Type" title="Permalink to this definition">¶</a><br /></dt>
 <dd><em>#include &lt;core_feature_base.h&gt;</em><p>Union type to access MMISC_CTRL configure register. </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Members</p>
-<dl class="member">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
 <dt id="_CPPv4N18CSR_MMISCCTRL_Type10_reserved0E">
 <span id="_CPPv3N18CSR_MMISCCTRL_Type10_reserved0E"></span><span id="_CPPv2N18CSR_MMISCCTRL_Type10_reserved0E"></span><span id="CSR_MMISCCTRL_Type::_reserved0__rv_csr_t"></span><span class="target" id="unionCSR__MMISCCTRL__Type_1aa6e5c778c686f03d8b7f050bb6558f73"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">_reserved0</code><a class="headerlink" href="#_CPPv4N18CSR_MMISCCTRL_Type10_reserved0E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 0..2 Reserved </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N18CSR_MMISCCTRL_Type3bpuE">
 <span id="_CPPv3N18CSR_MMISCCTRL_Type3bpuE"></span><span id="_CPPv2N18CSR_MMISCCTRL_Type3bpuE"></span><span id="CSR_MMISCCTRL_Type::bpu__rv_csr_t"></span><span class="target" id="unionCSR__MMISCCTRL__Type_1ab4bb604620ef0eb2b13778e892f3b44c"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">bpu</code><a class="headerlink" href="#_CPPv4N18CSR_MMISCCTRL_Type3bpuE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 3 dynamic prediction enable flag </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N18CSR_MMISCCTRL_Type10_reserved1E">
 <span id="_CPPv3N18CSR_MMISCCTRL_Type10_reserved1E"></span><span id="_CPPv2N18CSR_MMISCCTRL_Type10_reserved1E"></span><span id="CSR_MMISCCTRL_Type::_reserved1__rv_csr_t"></span><span class="target" id="unionCSR__MMISCCTRL__Type_1a2ec8d9def938eec6f784c348308dd153"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">_reserved1</code><a class="headerlink" href="#_CPPv4N18CSR_MMISCCTRL_Type10_reserved1E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 4..5 Reserved </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N18CSR_MMISCCTRL_Type8misalignE">
 <span id="_CPPv3N18CSR_MMISCCTRL_Type8misalignE"></span><span id="_CPPv2N18CSR_MMISCCTRL_Type8misalignE"></span><span id="CSR_MMISCCTRL_Type::misalign__rv_csr_t"></span><span class="target" id="unionCSR__MMISCCTRL__Type_1abfbd87cd64cdc521f49d43ab17c7dd7a"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">misalign</code><a class="headerlink" href="#_CPPv4N18CSR_MMISCCTRL_Type8misalignE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 6 misaligned access support flag </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N18CSR_MMISCCTRL_Type10_reserved2E">
 <span id="_CPPv3N18CSR_MMISCCTRL_Type10_reserved2E"></span><span id="_CPPv2N18CSR_MMISCCTRL_Type10_reserved2E"></span><span id="CSR_MMISCCTRL_Type::_reserved2__rv_csr_t"></span><span class="target" id="unionCSR__MMISCCTRL__Type_1a7cf36aebc77aad6f2e9daaa99048d6ce"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">_reserved2</code><a class="headerlink" href="#_CPPv4N18CSR_MMISCCTRL_Type10_reserved2E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 7..8 Reserved </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N18CSR_MMISCCTRL_Type9nmi_causeE">
 <span id="_CPPv3N18CSR_MMISCCTRL_Type9nmi_causeE"></span><span id="_CPPv2N18CSR_MMISCCTRL_Type9nmi_causeE"></span><span id="CSR_MMISCCTRL_Type::nmi_cause__rv_csr_t"></span><span class="target" id="unionCSR__MMISCCTRL__Type_1ab819b8f5dc4a6ad8256834fdae9c952f"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">nmi_cause</code><a class="headerlink" href="#_CPPv4N18CSR_MMISCCTRL_Type9nmi_causeE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 9 mnvec control and nmi mcase exccode </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N18CSR_MMISCCTRL_Type10_reserved3E">
 <span id="_CPPv3N18CSR_MMISCCTRL_Type10_reserved3E"></span><span id="_CPPv2N18CSR_MMISCCTRL_Type10_reserved3E"></span><span id="CSR_MMISCCTRL_Type::_reserved3__rv_csr_t"></span><span class="target" id="unionCSR__MMISCCTRL__Type_1a22bacba1282cd1dba8e3a1b8f3ee8458"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">_reserved3</code><a class="headerlink" href="#_CPPv4N18CSR_MMISCCTRL_Type10_reserved3E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 10..31 Reserved </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N18CSR_MMISCCTRL_Type1bE">
 <span id="_CPPv3N18CSR_MMISCCTRL_Type1bE"></span><span id="_CPPv2N18CSR_MMISCCTRL_Type1bE"></span><span class="target" id="unionCSR__MMISCCTRL__Type_1a069f48df577d9ac45cf9baf66dc51041"></span><em class="property">struct</em> <a class="reference internal" href="#_CPPv418CSR_MMISCCTRL_Type" title="CSR_MMISCCTRL_Type">CSR_MMISCCTRL_Type</a>::<strong>[anonymous]</strong> <code class="sig-name descname">b</code><a class="headerlink" href="#_CPPv4N18CSR_MMISCCTRL_Type1bE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Structure used for bit access. </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N18CSR_MMISCCTRL_Type1dE">
 <span id="_CPPv3N18CSR_MMISCCTRL_Type1dE"></span><span id="_CPPv2N18CSR_MMISCCTRL_Type1dE"></span><span id="CSR_MMISCCTRL_Type::d__rv_csr_t"></span><span class="target" id="unionCSR__MMISCCTRL__Type_1a17abdfbefca3554c1cf1f8c86a5c3925"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">d</code><a class="headerlink" href="#_CPPv4N18CSR_MMISCCTRL_Type1dE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Type used for csr data access. </p>
@@ -772,73 +779,73 @@
 </div>
 </dd></dl>
 
-<dl class="union">
+<dl class="cpp union">
 <dt id="_CPPv420CSR_MSAVESTATUS_Type">
 <span id="_CPPv320CSR_MSAVESTATUS_Type"></span><span id="_CPPv220CSR_MSAVESTATUS_Type"></span><span class="target" id="unionCSR__MSAVESTATUS__Type"></span><em class="property">union </em><code class="sig-name descname">CSR_MSAVESTATUS_Type</code><a class="headerlink" href="#_CPPv420CSR_MSAVESTATUS_Type" title="Permalink to this definition">¶</a><br /></dt>
 <dd><em>#include &lt;core_feature_base.h&gt;</em><p>Union type to access MSAVESTATUS configure register. </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Members</p>
-<dl class="member">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
 <dt id="_CPPv4N20CSR_MSAVESTATUS_Type5mpie1E">
 <span id="_CPPv3N20CSR_MSAVESTATUS_Type5mpie1E"></span><span id="_CPPv2N20CSR_MSAVESTATUS_Type5mpie1E"></span><span id="CSR_MSAVESTATUS_Type::mpie1__rv_csr_t"></span><span class="target" id="unionCSR__MSAVESTATUS__Type_1aea49d991ccf84140f2871c3d2e9577a1"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">mpie1</code><a class="headerlink" href="#_CPPv4N20CSR_MSAVESTATUS_Type5mpie1E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 0 interrupt enable flag of fisrt level NMI/exception nestting </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N20CSR_MSAVESTATUS_Type4mpp1E">
 <span id="_CPPv3N20CSR_MSAVESTATUS_Type4mpp1E"></span><span id="_CPPv2N20CSR_MSAVESTATUS_Type4mpp1E"></span><span id="CSR_MSAVESTATUS_Type::mpp1__rv_csr_t"></span><span class="target" id="unionCSR__MSAVESTATUS__Type_1a5d06b2cf1ffb09a323db34953a1a1117"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">mpp1</code><a class="headerlink" href="#_CPPv4N20CSR_MSAVESTATUS_Type4mpp1E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 1..2 privilede mode of fisrt level NMI/exception nestting </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N20CSR_MSAVESTATUS_Type10_reserved0E">
 <span id="_CPPv3N20CSR_MSAVESTATUS_Type10_reserved0E"></span><span id="_CPPv2N20CSR_MSAVESTATUS_Type10_reserved0E"></span><span id="CSR_MSAVESTATUS_Type::_reserved0__rv_csr_t"></span><span class="target" id="unionCSR__MSAVESTATUS__Type_1abe13779fb93f296a38bc80cc75d7ffbc"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">_reserved0</code><a class="headerlink" href="#_CPPv4N20CSR_MSAVESTATUS_Type10_reserved0E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 3..5 Reserved </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N20CSR_MSAVESTATUS_Type5ptyp1E">
 <span id="_CPPv3N20CSR_MSAVESTATUS_Type5ptyp1E"></span><span id="_CPPv2N20CSR_MSAVESTATUS_Type5ptyp1E"></span><span id="CSR_MSAVESTATUS_Type::ptyp1__rv_csr_t"></span><span class="target" id="unionCSR__MSAVESTATUS__Type_1a71bcf16bcab565b98e2cd135054daceb"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">ptyp1</code><a class="headerlink" href="#_CPPv4N20CSR_MSAVESTATUS_Type5ptyp1E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 6..7 NMI/exception type of before first nestting </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N20CSR_MSAVESTATUS_Type5mpie2E">
 <span id="_CPPv3N20CSR_MSAVESTATUS_Type5mpie2E"></span><span id="_CPPv2N20CSR_MSAVESTATUS_Type5mpie2E"></span><span id="CSR_MSAVESTATUS_Type::mpie2__rv_csr_t"></span><span class="target" id="unionCSR__MSAVESTATUS__Type_1a3b59f01dc6696bb3861f392e12cd83a1"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">mpie2</code><a class="headerlink" href="#_CPPv4N20CSR_MSAVESTATUS_Type5mpie2E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 8 interrupt enable flag of second level NMI/exception nestting </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N20CSR_MSAVESTATUS_Type4mpp2E">
 <span id="_CPPv3N20CSR_MSAVESTATUS_Type4mpp2E"></span><span id="_CPPv2N20CSR_MSAVESTATUS_Type4mpp2E"></span><span id="CSR_MSAVESTATUS_Type::mpp2__rv_csr_t"></span><span class="target" id="unionCSR__MSAVESTATUS__Type_1a507ac66274667f23d4c1c8fb175456b0"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">mpp2</code><a class="headerlink" href="#_CPPv4N20CSR_MSAVESTATUS_Type4mpp2E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 9..10 privilede mode of second level NMI/exception nestting </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N20CSR_MSAVESTATUS_Type10_reserved1E">
 <span id="_CPPv3N20CSR_MSAVESTATUS_Type10_reserved1E"></span><span id="_CPPv2N20CSR_MSAVESTATUS_Type10_reserved1E"></span><span id="CSR_MSAVESTATUS_Type::_reserved1__rv_csr_t"></span><span class="target" id="unionCSR__MSAVESTATUS__Type_1a60c203ffddd944222ed36856c707b51c"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">_reserved1</code><a class="headerlink" href="#_CPPv4N20CSR_MSAVESTATUS_Type10_reserved1E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 11..13 Reserved </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N20CSR_MSAVESTATUS_Type5ptyp2E">
 <span id="_CPPv3N20CSR_MSAVESTATUS_Type5ptyp2E"></span><span id="_CPPv2N20CSR_MSAVESTATUS_Type5ptyp2E"></span><span id="CSR_MSAVESTATUS_Type::ptyp2__rv_csr_t"></span><span class="target" id="unionCSR__MSAVESTATUS__Type_1a98cbf02beb8dc8fc1eee27ada6ebf5a4"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">ptyp2</code><a class="headerlink" href="#_CPPv4N20CSR_MSAVESTATUS_Type5ptyp2E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 14..15 NMI/exception type of before second nestting </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N20CSR_MSAVESTATUS_Type10_reserved2E">
 <span id="_CPPv3N20CSR_MSAVESTATUS_Type10_reserved2E"></span><span id="_CPPv2N20CSR_MSAVESTATUS_Type10_reserved2E"></span><span id="CSR_MSAVESTATUS_Type::_reserved2__rv_csr_t"></span><span class="target" id="unionCSR__MSAVESTATUS__Type_1a8e050bc641728ef17037ab95a2b64293"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">_reserved2</code><a class="headerlink" href="#_CPPv4N20CSR_MSAVESTATUS_Type10_reserved2E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 16..31 Reserved </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N20CSR_MSAVESTATUS_Type1bE">
 <span id="_CPPv3N20CSR_MSAVESTATUS_Type1bE"></span><span id="_CPPv2N20CSR_MSAVESTATUS_Type1bE"></span><span class="target" id="unionCSR__MSAVESTATUS__Type_1a6f012e66a3b0298a22404cd73bf38dcf"></span><em class="property">struct</em> <a class="reference internal" href="#_CPPv420CSR_MSAVESTATUS_Type" title="CSR_MSAVESTATUS_Type">CSR_MSAVESTATUS_Type</a>::<strong>[anonymous]</strong> <code class="sig-name descname">b</code><a class="headerlink" href="#_CPPv4N20CSR_MSAVESTATUS_Type1bE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Structure used for bit access. </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N20CSR_MSAVESTATUS_Type1wE">
 <span id="_CPPv3N20CSR_MSAVESTATUS_Type1wE"></span><span id="_CPPv2N20CSR_MSAVESTATUS_Type1wE"></span><span id="CSR_MSAVESTATUS_Type::w__rv_csr_t"></span><span class="target" id="unionCSR__MSAVESTATUS__Type_1a3830cba893f489931a838102f870bb54"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t">rv_csr_t</a> <code class="sig-name descname">w</code><a class="headerlink" href="#_CPPv4N20CSR_MSAVESTATUS_Type1wE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Type used for csr data access. </p>
@@ -849,219 +856,219 @@
 
 </dd></dl>
 
-</section>
-<section id="eclic">
+</div>
+<div class="section" id="eclic">
 <h2>ECLIC<a class="headerlink" href="#eclic" title="Permalink to this headline">¶</a></h2>
 <dl class="group">
 <dt>
 <span class="target" id="group__NMSIS__Core__ECLIC__Registers"></span><em>group</em> <code class="sig-name descname">NMSIS_Core_ECLIC_Registers</code></dt>
 <dd><p>Type definitions and defines for eclic registers. </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Defines</p>
-<dl class="macro">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
 <dt id="c.CLIC_CLICCFG_NLBIT_Pos">
-<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga0ee0922b5a83b6ff92fed6c9dea63da3"></span><code class="sig-name descname">CLIC_CLICCFG_NLBIT_Pos</code> 1U<a class="headerlink" href="#c.CLIC_CLICCFG_NLBIT_Pos" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga0ee0922b5a83b6ff92fed6c9dea63da3"></span><code class="sig-name descname">CLIC_CLICCFG_NLBIT_Pos</code> 1U<a class="headerlink" href="#c.CLIC_CLICCFG_NLBIT_Pos" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>CLIC CLICCFG: NLBIT Position. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.CLIC_CLICCFG_NLBIT_Msk">
-<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga6c31823bbd3bd593dcecd6d7d5f0afbb"></span><code class="sig-name descname">CLIC_CLICCFG_NLBIT_Msk</code> (0xFUL &lt;&lt; CLIC_CLICCFG_NLBIT_Pos)<a class="headerlink" href="#c.CLIC_CLICCFG_NLBIT_Msk" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga6c31823bbd3bd593dcecd6d7d5f0afbb"></span><code class="sig-name descname">CLIC_CLICCFG_NLBIT_Msk</code> (0xFUL &lt;&lt; CLIC_CLICCFG_NLBIT_Pos)<a class="headerlink" href="#c.CLIC_CLICCFG_NLBIT_Msk" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>CLIC CLICCFG: NLBIT Mask. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.CLIC_CLICINFO_CTLBIT_Pos">
-<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gac63632ddf28ed47570b441f003ba5c5f"></span><code class="sig-name descname">CLIC_CLICINFO_CTLBIT_Pos</code> 21U<a class="headerlink" href="#c.CLIC_CLICINFO_CTLBIT_Pos" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gac63632ddf28ed47570b441f003ba5c5f"></span><code class="sig-name descname">CLIC_CLICINFO_CTLBIT_Pos</code> 21U<a class="headerlink" href="#c.CLIC_CLICINFO_CTLBIT_Pos" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>CLIC INTINFO: __ECLIC_GetInfoCtlbits() Position. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.CLIC_CLICINFO_CTLBIT_Msk">
-<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga146a1208d7982a0ec073f9c3bb77528f"></span><code class="sig-name descname">CLIC_CLICINFO_CTLBIT_Msk</code> (0xFUL &lt;&lt; CLIC_CLICINFO_CTLBIT_Pos)<a class="headerlink" href="#c.CLIC_CLICINFO_CTLBIT_Msk" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga146a1208d7982a0ec073f9c3bb77528f"></span><code class="sig-name descname">CLIC_CLICINFO_CTLBIT_Msk</code> (0xFUL &lt;&lt; CLIC_CLICINFO_CTLBIT_Pos)<a class="headerlink" href="#c.CLIC_CLICINFO_CTLBIT_Msk" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>CLIC INTINFO: __ECLIC_GetInfoCtlbits() Mask. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.CLIC_CLICINFO_VER_Pos">
-<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga3047dd362f08b827b4f3595fdee555e1"></span><code class="sig-name descname">CLIC_CLICINFO_VER_Pos</code> 13U<a class="headerlink" href="#c.CLIC_CLICINFO_VER_Pos" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga3047dd362f08b827b4f3595fdee555e1"></span><code class="sig-name descname">CLIC_CLICINFO_VER_Pos</code> 13U<a class="headerlink" href="#c.CLIC_CLICINFO_VER_Pos" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>CLIC CLICINFO: VERSION Position. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.CLIC_CLICINFO_VER_Msk">
-<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga2b40a58247f1ae1eb207ebfd224a6519"></span><code class="sig-name descname">CLIC_CLICINFO_VER_Msk</code> (0xFFUL &lt;&lt; CLIC_CLICCFG_NLBIT_Pos)<a class="headerlink" href="#c.CLIC_CLICINFO_VER_Msk" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga2b40a58247f1ae1eb207ebfd224a6519"></span><code class="sig-name descname">CLIC_CLICINFO_VER_Msk</code> (0xFFUL &lt;&lt; CLIC_CLICCFG_NLBIT_Pos)<a class="headerlink" href="#c.CLIC_CLICINFO_VER_Msk" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>CLIC CLICINFO: VERSION Mask. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.CLIC_CLICINFO_NUM_Pos">
-<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga39c37a90e1445851aede44b002a83a99"></span><code class="sig-name descname">CLIC_CLICINFO_NUM_Pos</code> 0U<a class="headerlink" href="#c.CLIC_CLICINFO_NUM_Pos" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga39c37a90e1445851aede44b002a83a99"></span><code class="sig-name descname">CLIC_CLICINFO_NUM_Pos</code> 0U<a class="headerlink" href="#c.CLIC_CLICINFO_NUM_Pos" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>CLIC CLICINFO: NUM Position. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.CLIC_CLICINFO_NUM_Msk">
-<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga7f3148e774c092b06d81b400ac6c80bb"></span><code class="sig-name descname">CLIC_CLICINFO_NUM_Msk</code> (0xFFFUL &lt;&lt; CLIC_CLICINFO_NUM_Pos)<a class="headerlink" href="#c.CLIC_CLICINFO_NUM_Msk" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga7f3148e774c092b06d81b400ac6c80bb"></span><code class="sig-name descname">CLIC_CLICINFO_NUM_Msk</code> (0xFFFUL &lt;&lt; CLIC_CLICINFO_NUM_Pos)<a class="headerlink" href="#c.CLIC_CLICINFO_NUM_Msk" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>CLIC CLICINFO: NUM Mask. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.CLIC_INTIP_IP_Pos">
-<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gab0047e9c230189453f8bca9bf0fa7061"></span><code class="sig-name descname">CLIC_INTIP_IP_Pos</code> 0U<a class="headerlink" href="#c.CLIC_INTIP_IP_Pos" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gab0047e9c230189453f8bca9bf0fa7061"></span><code class="sig-name descname">CLIC_INTIP_IP_Pos</code> 0U<a class="headerlink" href="#c.CLIC_INTIP_IP_Pos" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>CLIC INTIP: IP Position. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.CLIC_INTIP_IP_Msk">
-<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gad7395594207c3fa20c423a1c9ae26cb7"></span><code class="sig-name descname">CLIC_INTIP_IP_Msk</code> (0x1UL &lt;&lt; CLIC_INTIP_IP_Pos)<a class="headerlink" href="#c.CLIC_INTIP_IP_Msk" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gad7395594207c3fa20c423a1c9ae26cb7"></span><code class="sig-name descname">CLIC_INTIP_IP_Msk</code> (0x1UL &lt;&lt; CLIC_INTIP_IP_Pos)<a class="headerlink" href="#c.CLIC_INTIP_IP_Msk" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>CLIC INTIP: IP Mask. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.CLIC_INTIE_IE_Pos">
-<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gaa6ea033a4802f0fd1354894436706cbd"></span><code class="sig-name descname">CLIC_INTIE_IE_Pos</code> 0U<a class="headerlink" href="#c.CLIC_INTIE_IE_Pos" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gaa6ea033a4802f0fd1354894436706cbd"></span><code class="sig-name descname">CLIC_INTIE_IE_Pos</code> 0U<a class="headerlink" href="#c.CLIC_INTIE_IE_Pos" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>CLIC INTIE: IE Position. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.CLIC_INTIE_IE_Msk">
-<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga70aa615d81bc48ea8ed2b64c09c2d63f"></span><code class="sig-name descname">CLIC_INTIE_IE_Msk</code> (0x1UL &lt;&lt; CLIC_INTIE_IE_Pos)<a class="headerlink" href="#c.CLIC_INTIE_IE_Msk" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga70aa615d81bc48ea8ed2b64c09c2d63f"></span><code class="sig-name descname">CLIC_INTIE_IE_Msk</code> (0x1UL &lt;&lt; CLIC_INTIE_IE_Pos)<a class="headerlink" href="#c.CLIC_INTIE_IE_Msk" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>CLIC INTIE: IE Mask. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.CLIC_INTATTR_TRIG_Pos">
-<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gac4ec4063ec15f49408130b8a095a2a91"></span><code class="sig-name descname">CLIC_INTATTR_TRIG_Pos</code> 1U<a class="headerlink" href="#c.CLIC_INTATTR_TRIG_Pos" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gac4ec4063ec15f49408130b8a095a2a91"></span><code class="sig-name descname">CLIC_INTATTR_TRIG_Pos</code> 1U<a class="headerlink" href="#c.CLIC_INTATTR_TRIG_Pos" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>CLIC INTATTR: TRIG Position. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.CLIC_INTATTR_TRIG_Msk">
-<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga476263a60ffcbb45417ab2b6864d47b4"></span><code class="sig-name descname">CLIC_INTATTR_TRIG_Msk</code> (0x3UL &lt;&lt; CLIC_INTATTR_TRIG_Pos)<a class="headerlink" href="#c.CLIC_INTATTR_TRIG_Msk" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga476263a60ffcbb45417ab2b6864d47b4"></span><code class="sig-name descname">CLIC_INTATTR_TRIG_Msk</code> (0x3UL &lt;&lt; CLIC_INTATTR_TRIG_Pos)<a class="headerlink" href="#c.CLIC_INTATTR_TRIG_Msk" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>CLIC INTATTR: TRIG Mask. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.CLIC_INTATTR_SHV_Pos">
-<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga49ea87f8a0207a2622f0ce467b7158dc"></span><code class="sig-name descname">CLIC_INTATTR_SHV_Pos</code> 0U<a class="headerlink" href="#c.CLIC_INTATTR_SHV_Pos" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga49ea87f8a0207a2622f0ce467b7158dc"></span><code class="sig-name descname">CLIC_INTATTR_SHV_Pos</code> 0U<a class="headerlink" href="#c.CLIC_INTATTR_SHV_Pos" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>CLIC INTATTR: SHV Position. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.CLIC_INTATTR_SHV_Msk">
-<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga2b6efddec2286b358747be5985110b3a"></span><code class="sig-name descname">CLIC_INTATTR_SHV_Msk</code> (0x1UL &lt;&lt; CLIC_INTATTR_SHV_Pos)<a class="headerlink" href="#c.CLIC_INTATTR_SHV_Msk" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga2b6efddec2286b358747be5985110b3a"></span><code class="sig-name descname">CLIC_INTATTR_SHV_Msk</code> (0x1UL &lt;&lt; CLIC_INTATTR_SHV_Pos)<a class="headerlink" href="#c.CLIC_INTATTR_SHV_Msk" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>CLIC INTATTR: SHV Mask. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.ECLIC_MAX_NLBITS">
-<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga34443f8b2b2935d099e6a0119b96c712"></span><code class="sig-name descname">ECLIC_MAX_NLBITS</code> 8U<a class="headerlink" href="#c.ECLIC_MAX_NLBITS" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga34443f8b2b2935d099e6a0119b96c712"></span><code class="sig-name descname">ECLIC_MAX_NLBITS</code> 8U<a class="headerlink" href="#c.ECLIC_MAX_NLBITS" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Max nlbit of the CLICINTCTLBITS. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.ECLIC_MODE_MTVEC_Msk">
-<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga2bcc1789c000ec72b06b7d7e736aa1c3"></span><code class="sig-name descname">ECLIC_MODE_MTVEC_Msk</code> 3U<a class="headerlink" href="#c.ECLIC_MODE_MTVEC_Msk" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga2bcc1789c000ec72b06b7d7e736aa1c3"></span><code class="sig-name descname">ECLIC_MODE_MTVEC_Msk</code> 3U<a class="headerlink" href="#c.ECLIC_MODE_MTVEC_Msk" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>ECLIC Mode mask for MTVT CSR Register. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.ECLIC_NON_VECTOR_INTERRUPT">
-<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga6a01697e0ba89c691f98fee801f4a25c"></span><code class="sig-name descname">ECLIC_NON_VECTOR_INTERRUPT</code> 0x0<a class="headerlink" href="#c.ECLIC_NON_VECTOR_INTERRUPT" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga6a01697e0ba89c691f98fee801f4a25c"></span><code class="sig-name descname">ECLIC_NON_VECTOR_INTERRUPT</code> 0x0<a class="headerlink" href="#c.ECLIC_NON_VECTOR_INTERRUPT" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Non-Vector Interrupt Mode of ECLIC. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.ECLIC_VECTOR_INTERRUPT">
-<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga915384ab6567d38315e8cf5a566f4840"></span><code class="sig-name descname">ECLIC_VECTOR_INTERRUPT</code> 0x1<a class="headerlink" href="#c.ECLIC_VECTOR_INTERRUPT" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga915384ab6567d38315e8cf5a566f4840"></span><code class="sig-name descname">ECLIC_VECTOR_INTERRUPT</code> 0x1<a class="headerlink" href="#c.ECLIC_VECTOR_INTERRUPT" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Vector Interrupt Mode of ECLIC. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.ECLIC_BASE">
-<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gabc9b9f3a2d7717c1b174432bd462f33f"></span><code class="sig-name descname">ECLIC_BASE</code> __ECLIC_BASEADDR<a class="headerlink" href="#c.ECLIC_BASE" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gabc9b9f3a2d7717c1b174432bd462f33f"></span><code class="sig-name descname">ECLIC_BASE</code> __ECLIC_BASEADDR<a class="headerlink" href="#c.ECLIC_BASE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>ECLIC Base Address. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.ECLIC">
-<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gab5a72455ad01a7caea954a82c907256d"></span><code class="sig-name descname">ECLIC</code> ((CLIC_Type *) <a class="reference internal" href="#group__NMSIS__Core__ECLIC__Registers_1gabc9b9f3a2d7717c1b174432bd462f33f"><span class="std std-ref">ECLIC_BASE</span></a>)<a class="headerlink" href="#c.ECLIC" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gab5a72455ad01a7caea954a82c907256d"></span><code class="sig-name descname">ECLIC</code> ((<a class="reference internal" href="#structCLIC__Type"><span class="std std-ref">CLIC_Type</span></a> *) <a class="reference internal" href="#group__NMSIS__Core__ECLIC__Registers_1gabc9b9f3a2d7717c1b174432bd462f33f"><span class="std std-ref">ECLIC_BASE</span></a>)<a class="headerlink" href="#c.ECLIC" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>CLIC configuration struct. </p>
 </dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Enums</p>
-<dl class="enum">
-<dt id="_CPPv4N26NMSIS_Core_ECLIC_Registers18ECLIC_TRIGGER_TypeE">
-<span id="_CPPv3N26NMSIS_Core_ECLIC_Registers18ECLIC_TRIGGER_TypeE"></span><span id="_CPPv2N26NMSIS_Core_ECLIC_Registers18ECLIC_TRIGGER_TypeE"></span><span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga35f79c25d5118ccfde82872bc5946ecf"></span><em class="property">enum </em><code class="sig-name descname">ECLIC_TRIGGER_Type</code><a class="headerlink" href="#_CPPv4N26NMSIS_Core_ECLIC_Registers18ECLIC_TRIGGER_TypeE" title="Permalink to this definition">¶</a><br /></dt>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-enums">Enums</p>
+<dl class="cpp enum">
+<dt id="_CPPv418ECLIC_TRIGGER_Type">
+<span id="_CPPv318ECLIC_TRIGGER_Type"></span><span id="_CPPv218ECLIC_TRIGGER_Type"></span><span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga35f79c25d5118ccfde82872bc5946ecf"></span><em class="property">enum </em><code class="sig-name descname">ECLIC_TRIGGER_Type</code><a class="headerlink" href="#_CPPv418ECLIC_TRIGGER_Type" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>ECLIC Trigger Enum for different Trigger Type. </p>
 <p><em>Values:</em></p>
-<dl class="enumerator">
-<dt id="_CPPv4N26NMSIS_Core_ECLIC_Registers19ECLIC_LEVEL_TRIGGERE">
-<span id="_CPPv3N26NMSIS_Core_ECLIC_Registers19ECLIC_LEVEL_TRIGGERE"></span><span id="_CPPv2N26NMSIS_Core_ECLIC_Registers19ECLIC_LEVEL_TRIGGERE"></span><span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa6c8507eafc6f68410f8e5f3f5c0f4e12"></span><code class="sig-name descname">ECLIC_LEVEL_TRIGGER</code> = 0x0<a class="headerlink" href="#_CPPv4N26NMSIS_Core_ECLIC_Registers19ECLIC_LEVEL_TRIGGERE" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ECLIC_TRIGGER_Type19ECLIC_LEVEL_TRIGGERE">
+<span id="_CPPv3N18ECLIC_TRIGGER_Type19ECLIC_LEVEL_TRIGGERE"></span><span id="_CPPv2N18ECLIC_TRIGGER_Type19ECLIC_LEVEL_TRIGGERE"></span><span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa6c8507eafc6f68410f8e5f3f5c0f4e12"></span><em class="property">enumerator </em><code class="sig-name descname">ECLIC_LEVEL_TRIGGER</code><a class="headerlink" href="#_CPPv4N18ECLIC_TRIGGER_Type19ECLIC_LEVEL_TRIGGERE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Level Triggerred, trig[0] = 0. </p>
 </dd></dl>
 
-<dl class="enumerator">
-<dt id="_CPPv4N26NMSIS_Core_ECLIC_Registers26ECLIC_POSTIVE_EDGE_TRIGGERE">
-<span id="_CPPv3N26NMSIS_Core_ECLIC_Registers26ECLIC_POSTIVE_EDGE_TRIGGERE"></span><span id="_CPPv2N26NMSIS_Core_ECLIC_Registers26ECLIC_POSTIVE_EDGE_TRIGGERE"></span><span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa077bcb1671a8e81875733c437aa989db"></span><code class="sig-name descname">ECLIC_POSTIVE_EDGE_TRIGGER</code> = 0x1<a class="headerlink" href="#_CPPv4N26NMSIS_Core_ECLIC_Registers26ECLIC_POSTIVE_EDGE_TRIGGERE" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ECLIC_TRIGGER_Type26ECLIC_POSTIVE_EDGE_TRIGGERE">
+<span id="_CPPv3N18ECLIC_TRIGGER_Type26ECLIC_POSTIVE_EDGE_TRIGGERE"></span><span id="_CPPv2N18ECLIC_TRIGGER_Type26ECLIC_POSTIVE_EDGE_TRIGGERE"></span><span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa077bcb1671a8e81875733c437aa989db"></span><em class="property">enumerator </em><code class="sig-name descname">ECLIC_POSTIVE_EDGE_TRIGGER</code><a class="headerlink" href="#_CPPv4N18ECLIC_TRIGGER_Type26ECLIC_POSTIVE_EDGE_TRIGGERE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Postive/Rising Edge Triggered, trig[1] = 1, trig[0] = 0. </p>
 </dd></dl>
 
-<dl class="enumerator">
-<dt id="_CPPv4N26NMSIS_Core_ECLIC_Registers26ECLIC_NEGTIVE_EDGE_TRIGGERE">
-<span id="_CPPv3N26NMSIS_Core_ECLIC_Registers26ECLIC_NEGTIVE_EDGE_TRIGGERE"></span><span id="_CPPv2N26NMSIS_Core_ECLIC_Registers26ECLIC_NEGTIVE_EDGE_TRIGGERE"></span><span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfad5184faf1eeb1cd9f5d79f903b65297c"></span><code class="sig-name descname">ECLIC_NEGTIVE_EDGE_TRIGGER</code> = 0x3<a class="headerlink" href="#_CPPv4N26NMSIS_Core_ECLIC_Registers26ECLIC_NEGTIVE_EDGE_TRIGGERE" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ECLIC_TRIGGER_Type26ECLIC_NEGTIVE_EDGE_TRIGGERE">
+<span id="_CPPv3N18ECLIC_TRIGGER_Type26ECLIC_NEGTIVE_EDGE_TRIGGERE"></span><span id="_CPPv2N18ECLIC_TRIGGER_Type26ECLIC_NEGTIVE_EDGE_TRIGGERE"></span><span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfad5184faf1eeb1cd9f5d79f903b65297c"></span><em class="property">enumerator </em><code class="sig-name descname">ECLIC_NEGTIVE_EDGE_TRIGGER</code><a class="headerlink" href="#_CPPv4N18ECLIC_TRIGGER_Type26ECLIC_NEGTIVE_EDGE_TRIGGERE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Negtive/Falling Edge Triggered, trig[1] = 1, trig[0] = 1. </p>
 </dd></dl>
 
-<dl class="enumerator">
-<dt id="_CPPv4N26NMSIS_Core_ECLIC_Registers17ECLIC_MAX_TRIGGERE">
-<span id="_CPPv3N26NMSIS_Core_ECLIC_Registers17ECLIC_MAX_TRIGGERE"></span><span id="_CPPv2N26NMSIS_Core_ECLIC_Registers17ECLIC_MAX_TRIGGERE"></span><span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfabc630e0d61793a95a68543fb23ea6459"></span><code class="sig-name descname">ECLIC_MAX_TRIGGER</code> = 0x3<a class="headerlink" href="#_CPPv4N26NMSIS_Core_ECLIC_Registers17ECLIC_MAX_TRIGGERE" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ECLIC_TRIGGER_Type17ECLIC_MAX_TRIGGERE">
+<span id="_CPPv3N18ECLIC_TRIGGER_Type17ECLIC_MAX_TRIGGERE"></span><span id="_CPPv2N18ECLIC_TRIGGER_Type17ECLIC_MAX_TRIGGERE"></span><span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfabc630e0d61793a95a68543fb23ea6459"></span><em class="property">enumerator </em><code class="sig-name descname">ECLIC_MAX_TRIGGER</code><a class="headerlink" href="#_CPPv4N18ECLIC_TRIGGER_Type17ECLIC_MAX_TRIGGERE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>MAX Supported Trigger Mode. </p>
 </dd></dl>
 
 </dd></dl>
 
 </div>
-<dl class="union">
+<dl class="cpp union">
 <dt id="_CPPv412CLICCFG_Type">
 <span id="_CPPv312CLICCFG_Type"></span><span id="_CPPv212CLICCFG_Type"></span><span class="target" id="unionCLICCFG__Type"></span><em class="property">union </em><code class="sig-name descname">CLICCFG_Type</code><a class="headerlink" href="#_CPPv412CLICCFG_Type" title="Permalink to this definition">¶</a><br /></dt>
 <dd><em>#include &lt;core_feature_eclic.h&gt;</em><p>Union type to access CLICFG configure register. </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Members</p>
-<dl class="member">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
 <dt id="_CPPv4N12CLICCFG_Type10_reserved0E">
 <span id="_CPPv3N12CLICCFG_Type10_reserved0E"></span><span id="_CPPv2N12CLICCFG_Type10_reserved0E"></span><span id="CLICCFG_Type::_reserved0__uint8_t"></span><span class="target" id="unionCLICCFG__Type_1a468085eceb1103be6a356f4201fb7c30"></span>uint8_t <code class="sig-name descname">_reserved0</code><a class="headerlink" href="#_CPPv4N12CLICCFG_Type10_reserved0E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 0 Overflow condition code flag </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N12CLICCFG_Type6nlbitsE">
 <span id="_CPPv3N12CLICCFG_Type6nlbitsE"></span><span id="_CPPv2N12CLICCFG_Type6nlbitsE"></span><span id="CLICCFG_Type::nlbits__uint8_t"></span><span class="target" id="unionCLICCFG__Type_1ace553cff35563c1f44a257c6a1187b0c"></span>uint8_t <code class="sig-name descname">nlbits</code><a class="headerlink" href="#_CPPv4N12CLICCFG_Type6nlbitsE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 29 Carry condition code flag </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N12CLICCFG_Type10_reserved1E">
 <span id="_CPPv3N12CLICCFG_Type10_reserved1E"></span><span id="_CPPv2N12CLICCFG_Type10_reserved1E"></span><span id="CLICCFG_Type::_reserved1__uint8_t"></span><span class="target" id="unionCLICCFG__Type_1ab1e5af2ea073a59770d6475ecddafc95"></span>uint8_t <code class="sig-name descname">_reserved1</code><a class="headerlink" href="#_CPPv4N12CLICCFG_Type10_reserved1E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 30 Zero condition code flag </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N12CLICCFG_Type10_reserved2E">
 <span id="_CPPv3N12CLICCFG_Type10_reserved2E"></span><span id="_CPPv2N12CLICCFG_Type10_reserved2E"></span><span id="CLICCFG_Type::_reserved2__uint8_t"></span><span class="target" id="unionCLICCFG__Type_1af6f5ecf3e79b5bf8acfb452865ad4149"></span>uint8_t <code class="sig-name descname">_reserved2</code><a class="headerlink" href="#_CPPv4N12CLICCFG_Type10_reserved2E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 31 Negative condition code flag </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N12CLICCFG_Type1bE">
 <span id="_CPPv3N12CLICCFG_Type1bE"></span><span id="_CPPv2N12CLICCFG_Type1bE"></span><span class="target" id="unionCLICCFG__Type_1abd35f4d630426c24ef2973324bb103d6"></span><em class="property">struct</em> <a class="reference internal" href="#_CPPv412CLICCFG_Type" title="CLICCFG_Type">CLICCFG_Type</a>::<strong>[anonymous]</strong> <code class="sig-name descname">b</code><a class="headerlink" href="#_CPPv4N12CLICCFG_Type1bE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Structure used for bit access. </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N12CLICCFG_Type1wE">
 <span id="_CPPv3N12CLICCFG_Type1wE"></span><span id="_CPPv2N12CLICCFG_Type1wE"></span><span id="CLICCFG_Type::w__uint8_t"></span><span class="target" id="unionCLICCFG__Type_1ac27ac739e0794f9a8cdaf303adea6bc0"></span>uint8_t <code class="sig-name descname">w</code><a class="headerlink" href="#_CPPv4N12CLICCFG_Type1wE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Type used for byte access. </p>
@@ -1070,43 +1077,43 @@
 </div>
 </dd></dl>
 
-<dl class="union">
+<dl class="cpp union">
 <dt id="_CPPv413CLICINFO_Type">
 <span id="_CPPv313CLICINFO_Type"></span><span id="_CPPv213CLICINFO_Type"></span><span class="target" id="unionCLICINFO__Type"></span><em class="property">union </em><code class="sig-name descname">CLICINFO_Type</code><a class="headerlink" href="#_CPPv413CLICINFO_Type" title="Permalink to this definition">¶</a><br /></dt>
 <dd><em>#include &lt;core_feature_eclic.h&gt;</em><p>Union type to access CLICINFO information register. </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Members</p>
-<dl class="member">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
 <dt id="_CPPv4N13CLICINFO_Type6numintE">
 <span id="_CPPv3N13CLICINFO_Type6numintE"></span><span id="_CPPv2N13CLICINFO_Type6numintE"></span><span id="CLICINFO_Type::numint__uint32_t"></span><span class="target" id="unionCLICINFO__Type_1a274efce01348f869204b2a7dfc747a35"></span>uint32_t <code class="sig-name descname">numint</code><a class="headerlink" href="#_CPPv4N13CLICINFO_Type6numintE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 0..12 number of maximum interrupt inputs supported </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N13CLICINFO_Type7versionE">
 <span id="_CPPv3N13CLICINFO_Type7versionE"></span><span id="_CPPv2N13CLICINFO_Type7versionE"></span><span id="CLICINFO_Type::version__uint32_t"></span><span class="target" id="unionCLICINFO__Type_1a53f2d7abe7ade2b398085dba46d5a416"></span>uint32_t <code class="sig-name descname">version</code><a class="headerlink" href="#_CPPv4N13CLICINFO_Type7versionE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 13..20 20:17 for architecture version,16:13 for implementation version </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N13CLICINFO_Type10intctlbitsE">
 <span id="_CPPv3N13CLICINFO_Type10intctlbitsE"></span><span id="_CPPv2N13CLICINFO_Type10intctlbitsE"></span><span id="CLICINFO_Type::intctlbits__uint32_t"></span><span class="target" id="unionCLICINFO__Type_1a3e99199b48c2878b8cdda4fe380ce575"></span>uint32_t <code class="sig-name descname">intctlbits</code><a class="headerlink" href="#_CPPv4N13CLICINFO_Type10intctlbitsE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 21..24 specifies how many hardware bits are actually implemented in the clicintctl registers </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N13CLICINFO_Type10_reserved0E">
 <span id="_CPPv3N13CLICINFO_Type10_reserved0E"></span><span id="_CPPv2N13CLICINFO_Type10_reserved0E"></span><span id="CLICINFO_Type::_reserved0__uint32_t"></span><span class="target" id="unionCLICINFO__Type_1a8296c5a1a6dda84860646a3a7bb2d070"></span>uint32_t <code class="sig-name descname">_reserved0</code><a class="headerlink" href="#_CPPv4N13CLICINFO_Type10_reserved0E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>bit: 25..31 Reserved </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N13CLICINFO_Type1bE">
 <span id="_CPPv3N13CLICINFO_Type1bE"></span><span id="_CPPv2N13CLICINFO_Type1bE"></span><span class="target" id="unionCLICINFO__Type_1af843c14257da1d678f59acd6ac18efce"></span><em class="property">struct</em> <a class="reference internal" href="#_CPPv413CLICINFO_Type" title="CLICINFO_Type">CLICINFO_Type</a>::<strong>[anonymous]</strong> <code class="sig-name descname">b</code><a class="headerlink" href="#_CPPv4N13CLICINFO_Type1bE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Structure used for bit access. </p>
 </dd></dl>
 
-<dl class="member">
+<dl class="cpp var">
 <dt id="_CPPv4N13CLICINFO_Type1wE">
 <span id="_CPPv3N13CLICINFO_Type1wE"></span><span id="_CPPv2N13CLICINFO_Type1wE"></span><span id="CLICINFO_Type::w__uint32_t"></span><span class="target" id="unionCLICINFO__Type_1a03d1aab2ccfe2c5e61d1627c033a3e0a"></span>uint32_t <code class="sig-name descname">w</code><a class="headerlink" href="#_CPPv4N13CLICINFO_Type1wE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Type used for word access. </p>
@@ -1115,121 +1122,126 @@
 </div>
 </dd></dl>
 
-<dl class="class">
+<dl class="cpp struct">
 <dt id="_CPPv414CLIC_CTRL_Type">
 <span id="_CPPv314CLIC_CTRL_Type"></span><span id="_CPPv214CLIC_CTRL_Type"></span><span id="CLIC_CTRL_Type"></span><span class="target" id="structCLIC__CTRL__Type"></span><em class="property">struct </em><code class="sig-name descname">CLIC_CTRL_Type</code><a class="headerlink" href="#_CPPv414CLIC_CTRL_Type" title="Permalink to this definition">¶</a><br /></dt>
 <dd><em>#include &lt;core_feature_eclic.h&gt;</em><p>Access to the structure of a vector interrupt controller. </p>
 </dd></dl>
 
+<dl class="cpp struct">
+<dt id="_CPPv49CLIC_Type">
+<span id="_CPPv39CLIC_Type"></span><span id="_CPPv29CLIC_Type"></span><span id="CLIC_Type"></span><span class="target" id="structCLIC__Type"></span><em class="property">struct </em><code class="sig-name descname">CLIC_Type</code><a class="headerlink" href="#_CPPv49CLIC_Type" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;core_feature_eclic.h&gt;</em></dd></dl>
+
 </dd></dl>
 
-</section>
-<section id="systimer">
+</div>
+<div class="section" id="systimer">
 <h2>SysTimer<a class="headerlink" href="#systimer" title="Permalink to this headline">¶</a></h2>
 <dl class="group">
 <dt>
 <span class="target" id="group__NMSIS__Core__SysTimer__Registers"></span><em>group</em> <code class="sig-name descname">NMSIS_Core_SysTimer_Registers</code></dt>
 <dd><p>Type definitions and defines for system timer registers. </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Defines</p>
-<dl class="macro">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
 <dt id="c.SysTimer_MTIMECTL_TIMESTOP_Pos">
-<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga54ecde494dc735799ed978b91bf709d8"></span><code class="sig-name descname">SysTimer_MTIMECTL_TIMESTOP_Pos</code> 0U<a class="headerlink" href="#c.SysTimer_MTIMECTL_TIMESTOP_Pos" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga54ecde494dc735799ed978b91bf709d8"></span><code class="sig-name descname">SysTimer_MTIMECTL_TIMESTOP_Pos</code> 0U<a class="headerlink" href="#c.SysTimer_MTIMECTL_TIMESTOP_Pos" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>SysTick Timer MTIMECTL: TIMESTOP bit Position. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.SysTimer_MTIMECTL_TIMESTOP_Msk">
-<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1gaab93093166696848e52d055a2e139e9f"></span><code class="sig-name descname">SysTimer_MTIMECTL_TIMESTOP_Msk</code> (1UL &lt;&lt; SysTimer_MTIMECTL_TIMESTOP_Pos)<a class="headerlink" href="#c.SysTimer_MTIMECTL_TIMESTOP_Msk" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1gaab93093166696848e52d055a2e139e9f"></span><code class="sig-name descname">SysTimer_MTIMECTL_TIMESTOP_Msk</code> (1UL &lt;&lt; SysTimer_MTIMECTL_TIMESTOP_Pos)<a class="headerlink" href="#c.SysTimer_MTIMECTL_TIMESTOP_Msk" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>SysTick Timer MTIMECTL: TIMESTOP Mask. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.SysTimer_MTIMECTL_CMPCLREN_Pos">
-<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1gac0cd51358c944397328146b6f4a4a8a5"></span><code class="sig-name descname">SysTimer_MTIMECTL_CMPCLREN_Pos</code> 1U<a class="headerlink" href="#c.SysTimer_MTIMECTL_CMPCLREN_Pos" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1gac0cd51358c944397328146b6f4a4a8a5"></span><code class="sig-name descname">SysTimer_MTIMECTL_CMPCLREN_Pos</code> 1U<a class="headerlink" href="#c.SysTimer_MTIMECTL_CMPCLREN_Pos" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>SysTick Timer MTIMECTL: CMPCLREN bit Position. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.SysTimer_MTIMECTL_CMPCLREN_Msk">
-<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga5d372de2d560f90d8ed8306277068cf1"></span><code class="sig-name descname">SysTimer_MTIMECTL_CMPCLREN_Msk</code> (1UL &lt;&lt; SysTimer_MTIMECTL_CMPCLREN_Pos)<a class="headerlink" href="#c.SysTimer_MTIMECTL_CMPCLREN_Msk" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga5d372de2d560f90d8ed8306277068cf1"></span><code class="sig-name descname">SysTimer_MTIMECTL_CMPCLREN_Msk</code> (1UL &lt;&lt; SysTimer_MTIMECTL_CMPCLREN_Pos)<a class="headerlink" href="#c.SysTimer_MTIMECTL_CMPCLREN_Msk" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>SysTick Timer MTIMECTL: CMPCLREN Mask. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.SysTimer_MTIMECTL_CLKSRC_Pos">
-<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga4ee15edaeadcd48a5aaab1aa9ec20496"></span><code class="sig-name descname">SysTimer_MTIMECTL_CLKSRC_Pos</code> 2U<a class="headerlink" href="#c.SysTimer_MTIMECTL_CLKSRC_Pos" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga4ee15edaeadcd48a5aaab1aa9ec20496"></span><code class="sig-name descname">SysTimer_MTIMECTL_CLKSRC_Pos</code> 2U<a class="headerlink" href="#c.SysTimer_MTIMECTL_CLKSRC_Pos" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>SysTick Timer MTIMECTL: CLKSRC bit Position. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.SysTimer_MTIMECTL_CLKSRC_Msk">
-<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga2513c82f2ce2811952b83f6d1c8e4172"></span><code class="sig-name descname">SysTimer_MTIMECTL_CLKSRC_Msk</code> (1UL &lt;&lt; SysTimer_MTIMECTL_CLKSRC_Pos)<a class="headerlink" href="#c.SysTimer_MTIMECTL_CLKSRC_Msk" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga2513c82f2ce2811952b83f6d1c8e4172"></span><code class="sig-name descname">SysTimer_MTIMECTL_CLKSRC_Msk</code> (1UL &lt;&lt; SysTimer_MTIMECTL_CLKSRC_Pos)<a class="headerlink" href="#c.SysTimer_MTIMECTL_CLKSRC_Msk" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>SysTick Timer MTIMECTL: CLKSRC Mask. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.SysTimer_MSIP_MSIP_Pos">
-<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1gad756a0be76154b3f64f6790663581c52"></span><code class="sig-name descname">SysTimer_MSIP_MSIP_Pos</code> 0U<a class="headerlink" href="#c.SysTimer_MSIP_MSIP_Pos" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1gad756a0be76154b3f64f6790663581c52"></span><code class="sig-name descname">SysTimer_MSIP_MSIP_Pos</code> 0U<a class="headerlink" href="#c.SysTimer_MSIP_MSIP_Pos" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>SysTick Timer MSIP: MSIP bit Position. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.SysTimer_MSIP_MSIP_Msk">
-<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga62b819dc444c74f1424c50cf13fcb2a0"></span><code class="sig-name descname">SysTimer_MSIP_MSIP_Msk</code> (1UL &lt;&lt; SysTimer_MSIP_MSIP_Pos)<a class="headerlink" href="#c.SysTimer_MSIP_MSIP_Msk" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga62b819dc444c74f1424c50cf13fcb2a0"></span><code class="sig-name descname">SysTimer_MSIP_MSIP_Msk</code> (1UL &lt;&lt; SysTimer_MSIP_MSIP_Pos)<a class="headerlink" href="#c.SysTimer_MSIP_MSIP_Msk" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>SysTick Timer MSIP: MSIP Mask. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.SysTimer_MTIMER_Msk">
-<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1gacffb8ad26cdd32cef2ee67bde9ddb122"></span><code class="sig-name descname">SysTimer_MTIMER_Msk</code> (0xFFFFFFFFFFFFFFFFULL)<a class="headerlink" href="#c.SysTimer_MTIMER_Msk" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1gacffb8ad26cdd32cef2ee67bde9ddb122"></span><code class="sig-name descname">SysTimer_MTIMER_Msk</code> (0xFFFFFFFFFFFFFFFFULL)<a class="headerlink" href="#c.SysTimer_MTIMER_Msk" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>SysTick Timer MTIMER value Mask. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.SysTimer_MTIMERCMP_Msk">
-<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga0fb8a9811b2d773529fb0f7db866e5e5"></span><code class="sig-name descname">SysTimer_MTIMERCMP_Msk</code> (0xFFFFFFFFFFFFFFFFULL)<a class="headerlink" href="#c.SysTimer_MTIMERCMP_Msk" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga0fb8a9811b2d773529fb0f7db866e5e5"></span><code class="sig-name descname">SysTimer_MTIMERCMP_Msk</code> (0xFFFFFFFFFFFFFFFFULL)<a class="headerlink" href="#c.SysTimer_MTIMERCMP_Msk" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>SysTick Timer MTIMERCMP value Mask. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.SysTimer_MTIMECTL_Msk">
-<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga9b50cbd77c10af62deca85e3d2509c72"></span><code class="sig-name descname">SysTimer_MTIMECTL_Msk</code> (0xFFFFFFFFUL)<a class="headerlink" href="#c.SysTimer_MTIMECTL_Msk" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga9b50cbd77c10af62deca85e3d2509c72"></span><code class="sig-name descname">SysTimer_MTIMECTL_Msk</code> (0xFFFFFFFFUL)<a class="headerlink" href="#c.SysTimer_MTIMECTL_Msk" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>SysTick Timer MTIMECTL/MSTOP value Mask. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.SysTimer_MSIP_Msk">
-<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga40ba61e02d93e37ffbb6452b54806af6"></span><code class="sig-name descname">SysTimer_MSIP_Msk</code> (0xFFFFFFFFUL)<a class="headerlink" href="#c.SysTimer_MSIP_Msk" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga40ba61e02d93e37ffbb6452b54806af6"></span><code class="sig-name descname">SysTimer_MSIP_Msk</code> (0xFFFFFFFFUL)<a class="headerlink" href="#c.SysTimer_MSIP_Msk" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>SysTick Timer MSIP value Mask. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.SysTimer_MSFTRST_Msk">
-<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga1028d9f654728860327c082a44b9f34f"></span><code class="sig-name descname">SysTimer_MSFTRST_Msk</code> (0xFFFFFFFFUL)<a class="headerlink" href="#c.SysTimer_MSFTRST_Msk" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga1028d9f654728860327c082a44b9f34f"></span><code class="sig-name descname">SysTimer_MSFTRST_Msk</code> (0xFFFFFFFFUL)<a class="headerlink" href="#c.SysTimer_MSFTRST_Msk" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>SysTick Timer MSFTRST value Mask. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.SysTimer_MSFRST_KEY">
-<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga181dffb1870282631f8858ea23d9b8fa"></span><code class="sig-name descname">SysTimer_MSFRST_KEY</code> (0x80000A5FUL)<a class="headerlink" href="#c.SysTimer_MSFRST_KEY" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga181dffb1870282631f8858ea23d9b8fa"></span><code class="sig-name descname">SysTimer_MSFRST_KEY</code> (0x80000A5FUL)<a class="headerlink" href="#c.SysTimer_MSFRST_KEY" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>SysTick Timer Software Reset Request Key. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.SysTimer_BASE">
-<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga2107a0ae6d9deefff31edf506a6e1e91"></span><code class="sig-name descname">SysTimer_BASE</code> __SYSTIMER_BASEADDR<a class="headerlink" href="#c.SysTimer_BASE" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga2107a0ae6d9deefff31edf506a6e1e91"></span><code class="sig-name descname">SysTimer_BASE</code> __SYSTIMER_BASEADDR<a class="headerlink" href="#c.SysTimer_BASE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>SysTick Base Address. </p>
 </dd></dl>
 
-<dl class="macro">
+<dl class="cpp macro">
 <dt id="c.SysTimer">
-<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99"></span><code class="sig-name descname">SysTimer</code> ((<a class="reference internal" href="#structSysTimer__Type"><span class="std std-ref">SysTimer_Type</span></a> *) <a class="reference internal" href="#group__NMSIS__Core__SysTimer__Registers_1ga2107a0ae6d9deefff31edf506a6e1e91"><span class="std std-ref">SysTimer_BASE</span></a>)<a class="headerlink" href="#c.SysTimer" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99"></span><code class="sig-name descname">SysTimer</code> ((<a class="reference internal" href="#structSysTimer__Type"><span class="std std-ref">SysTimer_Type</span></a> *) <a class="reference internal" href="#group__NMSIS__Core__SysTimer__Registers_1ga2107a0ae6d9deefff31edf506a6e1e91"><span class="std std-ref">SysTimer_BASE</span></a>)<a class="headerlink" href="#c.SysTimer" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>SysTick configuration struct. </p>
 </dd></dl>
 
 </div>
-<dl class="class">
+<dl class="cpp struct">
 <dt id="_CPPv413SysTimer_Type">
 <span id="_CPPv313SysTimer_Type"></span><span id="_CPPv213SysTimer_Type"></span><span id="SysTimer_Type"></span><span class="target" id="structSysTimer__Type"></span><em class="property">struct </em><code class="sig-name descname">SysTimer_Type</code><a class="headerlink" href="#_CPPv413SysTimer_Type" title="Permalink to this definition">¶</a><br /></dt>
 <dd><em>#include &lt;core_feature_timer.h&gt;</em><p>Structure type to access the System Timer (SysTimer). </p>
@@ -1247,40 +1259,40 @@
 
 </dd></dl>
 
-</section>
-</section>
+</div>
+</div>
 
 
            </div>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="core_intrinsics.html" class="btn btn-neutral float-right" title="CPU Intrinsic Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="core_csr_encoding.html" class="btn btn-neutral float-left" title="Core CSR Encoding" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="core_intrinsics.html" class="btn btn-neutral float-right" title="CPU Intrinsic Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="core_csr_encoding.html" class="btn btn-neutral float-left" title="Core CSR Encoding" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-Present, Nuclei
+        &#169; Copyright 2019-Present, Nuclei.
       <span class="lastupdated">
         Last updated on Aug 03, 2021.
       </span>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -1288,7 +1300,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

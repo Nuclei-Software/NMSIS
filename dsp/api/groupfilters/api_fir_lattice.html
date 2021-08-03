@@ -1,40 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Finite Impulse Response (FIR) Lattice Filters &mdash; NMSIS 1.0.2-RC1 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Finite Impulse Response (FIR) Sparse Filters" href="api_fir_sparse.html" />
@@ -82,6 +85,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -89,7 +93,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -138,6 +142,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -172,11 +177,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
         
@@ -189,7 +196,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../../_sources/dsp/api/groupfilters/api_fir_lattice.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -203,34 +210,34 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="finite-impulse-response-fir-lattice-filters">
+  <div class="section" id="finite-impulse-response-fir-lattice-filters">
 <span id="nmsis-dsp-api-finite-impulse-response-fir-lattice-filters"></span><h1>Finite Impulse Response (FIR) Lattice Filters<a class="headerlink" href="#finite-impulse-response-fir-lattice-filters" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv421riscv_fir_lattice_f32PK30riscv_fir_lattice_instance_f32PK9float32_tP9float32_t8uint32_t">
 <span id="_CPPv321riscv_fir_lattice_f32PK30riscv_fir_lattice_instance_f32PK9float32_tP9float32_t8uint32_t"></span><span id="_CPPv221riscv_fir_lattice_f32PK30riscv_fir_lattice_instance_f32PK9float32_tP9float32_t8uint32_t"></span><span id="riscv_fir_lattice_f32__riscv_fir_lattice_instance_f32CP.float32_tCP.float32_tP.uint32_t"></span><span class="target" id="group__FIR__Lattice_1ga71be4bcdf299f23f9cc561aaf72b6a3e"></span>void <code class="sig-name descname">riscv_fir_lattice_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_lattice_instance_f32 *<em>S</em>, <em class="property">const</em> float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421riscv_fir_lattice_f32PK30riscv_fir_lattice_instance_f32PK9float32_tP9float32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv426riscv_fir_lattice_init_f32P30riscv_fir_lattice_instance_f328uint16_tPK9float32_tP9float32_t">
 <span id="_CPPv326riscv_fir_lattice_init_f32P30riscv_fir_lattice_instance_f328uint16_tPK9float32_tP9float32_t"></span><span id="_CPPv226riscv_fir_lattice_init_f32P30riscv_fir_lattice_instance_f328uint16_tPK9float32_tP9float32_t"></span><span id="riscv_fir_lattice_init_f32__riscv_fir_lattice_instance_f32P.uint16_t.float32_tCP.float32_tP"></span><span class="target" id="group__FIR__Lattice_1ga0e52d2c841a9fcacb5cfc2cdac417795"></span>void <code class="sig-name descname">riscv_fir_lattice_init_f32</code><span class="sig-paren">(</span>riscv_fir_lattice_instance_f32 *<em>S</em>, uint16_t <em>numStages</em>, <em class="property">const</em> float32_t *<em>pCoeffs</em>, float32_t *<em>pState</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426riscv_fir_lattice_init_f32P30riscv_fir_lattice_instance_f328uint16_tPK9float32_tP9float32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv426riscv_fir_lattice_init_q15P30riscv_fir_lattice_instance_q158uint16_tPK5q15_tP5q15_t">
 <span id="_CPPv326riscv_fir_lattice_init_q15P30riscv_fir_lattice_instance_q158uint16_tPK5q15_tP5q15_t"></span><span id="_CPPv226riscv_fir_lattice_init_q15P30riscv_fir_lattice_instance_q158uint16_tPK5q15_tP5q15_t"></span><span id="riscv_fir_lattice_init_q15__riscv_fir_lattice_instance_q15P.uint16_t.q15_tCP.q15_tP"></span><span class="target" id="group__FIR__Lattice_1ga0aa9f96904832a16f496f42fe87a054a"></span>void <code class="sig-name descname">riscv_fir_lattice_init_q15</code><span class="sig-paren">(</span>riscv_fir_lattice_instance_q15 *<em>S</em>, uint16_t <em>numStages</em>, <em class="property">const</em> q15_t *<em>pCoeffs</em>, q15_t *<em>pState</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426riscv_fir_lattice_init_q15P30riscv_fir_lattice_instance_q158uint16_tPK5q15_tP5q15_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv426riscv_fir_lattice_init_q31P30riscv_fir_lattice_instance_q318uint16_tPK5q31_tP5q31_t">
 <span id="_CPPv326riscv_fir_lattice_init_q31P30riscv_fir_lattice_instance_q318uint16_tPK5q31_tP5q31_t"></span><span id="_CPPv226riscv_fir_lattice_init_q31P30riscv_fir_lattice_instance_q318uint16_tPK5q31_tP5q31_t"></span><span id="riscv_fir_lattice_init_q31__riscv_fir_lattice_instance_q31P.uint16_t.q31_tCP.q31_tP"></span><span class="target" id="group__FIR__Lattice_1ga1b195a9ff98c1d5f8668e49c559740fe"></span>void <code class="sig-name descname">riscv_fir_lattice_init_q31</code><span class="sig-paren">(</span>riscv_fir_lattice_instance_q31 *<em>S</em>, uint16_t <em>numStages</em>, <em class="property">const</em> q31_t *<em>pCoeffs</em>, q31_t *<em>pState</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426riscv_fir_lattice_init_q31P30riscv_fir_lattice_instance_q318uint16_tPK5q31_tP5q31_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv421riscv_fir_lattice_q15PK30riscv_fir_lattice_instance_q15PK5q15_tP5q15_t8uint32_t">
 <span id="_CPPv321riscv_fir_lattice_q15PK30riscv_fir_lattice_instance_q15PK5q15_tP5q15_t8uint32_t"></span><span id="_CPPv221riscv_fir_lattice_q15PK30riscv_fir_lattice_instance_q15PK5q15_tP5q15_t8uint32_t"></span><span id="riscv_fir_lattice_q15__riscv_fir_lattice_instance_q15CP.q15_tCP.q15_tP.uint32_t"></span><span class="target" id="group__FIR__Lattice_1ga577c755d5ad2f887455f465d5d0b8f3e"></span>void <code class="sig-name descname">riscv_fir_lattice_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_lattice_instance_q15 *<em>S</em>, <em class="property">const</em> q15_t *<em>pSrc</em>, q15_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421riscv_fir_lattice_q15PK30riscv_fir_lattice_instance_q15PK5q15_tP5q15_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv421riscv_fir_lattice_q31PK30riscv_fir_lattice_instance_q31PK5q31_tP5q31_t8uint32_t">
 <span id="_CPPv321riscv_fir_lattice_q31PK30riscv_fir_lattice_instance_q31PK5q31_tP5q31_t8uint32_t"></span><span id="_CPPv221riscv_fir_lattice_q31PK30riscv_fir_lattice_instance_q31PK5q31_tP5q31_t8uint32_t"></span><span id="riscv_fir_lattice_q31__riscv_fir_lattice_instance_q31CP.q31_tCP.q31_tP.uint32_t"></span><span class="target" id="group__FIR__Lattice_1ga8cd880ce0b660988f86fbeb479edafe5"></span>void <code class="sig-name descname">riscv_fir_lattice_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_lattice_instance_q31 *<em>S</em>, <em class="property">const</em> q31_t *<em>pSrc</em>, q31_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421riscv_fir_lattice_q31PK30riscv_fir_lattice_instance_q31PK5q31_tP5q31_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
@@ -240,8 +247,8 @@
 <span class="target" id="group__FIR__Lattice"></span><em>group</em> <code class="sig-name descname">FIR_Lattice</code></dt>
 <dd><p>This set of functions implements Finite Impulse Response (FIR) lattice filters for Q15, Q31 and floating-point data types. Lattice filters are used in a variety of adaptive filter applications. The filter structure is feedforward and the net impulse response is finite length. The functions operate on blocks of input and output data and each call to the function processes <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> samples through the filter. <code class="docutils literal notranslate"><span class="pre">pSrc</span></code> and <code class="docutils literal notranslate"><span class="pre">pDst</span></code> point to input and output arrays containing <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> values.</p>
 <p><dl class="simple">
-<dt><strong>Algorithm</strong></dt><dd><p><p> The following difference equation is implemented: </p>
-<img alt="../../../_images/FIRLattice.png" src="../../../_images/FIRLattice.png" /></p>
+<dt><strong>Algorithm</strong></dt><dd><p>
+ The following difference equation is implemented: <img alt="../../../_images/FIRLattice.png" src="../../../_images/FIRLattice.png" /></p>
 </dd>
 <dt><strong></strong></dt><dd><p> </p>
 </dd>
@@ -268,154 +275,163 @@
 </dl>
 </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Functions</p>
-<dl class="function">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__FIR__Lattice_1ga71be4bcdf299f23f9cc561aaf72b6a3e"></span>void <code class="sig-name descname">riscv_fir_lattice_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_lattice_instance_f32 *<em>S</em>, <em class="property">const</em> float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the floating-point FIR lattice filter. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the floating-point FIR lattice structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the block of output data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the floating-point FIR lattice structure </p></li>
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__FIR__Lattice_1ga0e52d2c841a9fcacb5cfc2cdac417795"></span>void <code class="sig-name descname">riscv_fir_lattice_init_f32</code><span class="sig-paren">(</span>riscv_fir_lattice_instance_f32 *<em>S</em>, uint16_t <em>numStages</em>, <em class="property">const</em> float32_t *<em>pCoeffs</em>, float32_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the floating-point FIR lattice filter. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the floating-point FIR lattice structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numStages</span></code>: number of filter stages </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pCoeffs</span></code>: points to the coefficient buffer. The array is of length numStages </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pState</span></code>: points to the state buffer. The array is of length numStages </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the floating-point FIR lattice structure </p></li>
+<li><p><strong>numStages</strong> – <strong>[in]</strong> number of filter stages </p></li>
+<li><p><strong>pCoeffs</strong> – <strong>[in]</strong> points to the coefficient buffer. The array is of length numStages </p></li>
+<li><p><strong>pState</strong> – <strong>[in]</strong> points to the state buffer. The array is of length numStages </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__FIR__Lattice_1ga0aa9f96904832a16f496f42fe87a054a"></span>void <code class="sig-name descname">riscv_fir_lattice_init_q15</code><span class="sig-paren">(</span>riscv_fir_lattice_instance_q15 *<em>S</em>, uint16_t <em>numStages</em>, <em class="property">const</em> q15_t *<em>pCoeffs</em>, q15_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the Q15 FIR lattice filter. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the Q15 FIR lattice structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numStages</span></code>: number of filter stages </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pCoeffs</span></code>: points to the coefficient buffer. The array is of length numStages </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pState</span></code>: points to the state buffer. The array is of length numStages </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q15 FIR lattice structure </p></li>
+<li><p><strong>numStages</strong> – <strong>[in]</strong> number of filter stages </p></li>
+<li><p><strong>pCoeffs</strong> – <strong>[in]</strong> points to the coefficient buffer. The array is of length numStages </p></li>
+<li><p><strong>pState</strong> – <strong>[in]</strong> points to the state buffer. The array is of length numStages </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__FIR__Lattice_1ga1b195a9ff98c1d5f8668e49c559740fe"></span>void <code class="sig-name descname">riscv_fir_lattice_init_q31</code><span class="sig-paren">(</span>riscv_fir_lattice_instance_q31 *<em>S</em>, uint16_t <em>numStages</em>, <em class="property">const</em> q31_t *<em>pCoeffs</em>, q31_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the Q31 FIR lattice filter. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the Q31 FIR lattice structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numStages</span></code>: number of filter stages </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pCoeffs</span></code>: points to the coefficient buffer. The array is of length numStages </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pState</span></code>: points to the state buffer. The array is of length numStages </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q31 FIR lattice structure </p></li>
+<li><p><strong>numStages</strong> – <strong>[in]</strong> number of filter stages </p></li>
+<li><p><strong>pCoeffs</strong> – <strong>[in]</strong> points to the coefficient buffer. The array is of length numStages </p></li>
+<li><p><strong>pState</strong> – <strong>[in]</strong> points to the state buffer. The array is of length numStages </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__FIR__Lattice_1ga577c755d5ad2f887455f465d5d0b8f3e"></span>void <code class="sig-name descname">riscv_fir_lattice_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_lattice_instance_q15 *<em>S</em>, <em class="property">const</em> q15_t *<em>pSrc</em>, q15_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for Q15 FIR lattice filter. </p>
 <p>Processing function for the Q15 FIR lattice filter.</p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the Q15 FIR lattice structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the block of output data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q15 FIR lattice structure </p></li>
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__FIR__Lattice_1ga8cd880ce0b660988f86fbeb479edafe5"></span>void <code class="sig-name descname">riscv_fir_lattice_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_lattice_instance_q31 *<em>S</em>, <em class="property">const</em> q31_t *<em>pSrc</em>, q31_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the Q31 FIR lattice filter. </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none</p>
-</dd>
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>In order to avoid overflows the input signal must be scaled down by 2*log2(numStages) bits. </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the Q31 FIR lattice structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the block of output data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process </p></li>
-</ul>
 </dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q31 FIR lattice structure </p></li>
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="api_fir_sparse.html" class="btn btn-neutral float-right" title="Finite Impulse Response (FIR) Sparse Filters" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="api_fir.html" class="btn btn-neutral float-left" title="Finite Impulse Response (FIR) Filters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="api_fir_sparse.html" class="btn btn-neutral float-right" title="Finite Impulse Response (FIR) Sparse Filters" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="api_fir.html" class="btn btn-neutral float-left" title="Finite Impulse Response (FIR) Filters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-Present, Nuclei
+        &#169; Copyright 2019-Present, Nuclei.
       <span class="lastupdated">
         Last updated on Aug 03, 2021.
       </span>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -423,7 +439,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

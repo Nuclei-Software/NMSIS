@@ -1,40 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Linear Interpolation &mdash; NMSIS 1.0.2-RC1 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Bilinear Interpolation" href="api_bilinearinterpolate.html" />
@@ -82,6 +85,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -89,7 +93,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -126,6 +130,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -160,11 +165,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
         
@@ -177,7 +184,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../../_sources/dsp/api/groupinterpolation/api_linearinterpolate.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -191,24 +198,24 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="linear-interpolation">
+  <div class="section" id="linear-interpolation">
 <span id="nmsis-dsp-api-linear-interpolation"></span><h1>Linear Interpolation<a class="headerlink" href="#linear-interpolation" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv423riscv_linear_interp_f32P32riscv_linear_interp_instance_f329float32_t">
 <span id="_CPPv323riscv_linear_interp_f32P32riscv_linear_interp_instance_f329float32_t"></span><span id="_CPPv223riscv_linear_interp_f32P32riscv_linear_interp_instance_f329float32_t"></span><span id="riscv_linear_interp_f32__riscv_linear_interp_instance_f32P.float32_t"></span><span class="target" id="group__LinearInterpolate_1ga99fdb5f276452d1c928925e0d4463cc0"></span>float32_t <code class="sig-name descname">riscv_linear_interp_f32</code><span class="sig-paren">(</span>riscv_linear_interp_instance_f32 *<em>S</em>, float32_t <em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423riscv_linear_interp_f32P32riscv_linear_interp_instance_f329float32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv423riscv_linear_interp_q31P5q31_t5q31_t8uint32_t">
 <span id="_CPPv323riscv_linear_interp_q31P5q31_t5q31_t8uint32_t"></span><span id="_CPPv223riscv_linear_interp_q31P5q31_t5q31_t8uint32_t"></span><span id="riscv_linear_interp_q31__q31_tP.q31_t.uint32_t"></span><span class="target" id="group__LinearInterpolate_1gabf200f771b7d2908109d59d5d5a4ed5f"></span>q31_t <code class="sig-name descname">riscv_linear_interp_q31</code><span class="sig-paren">(</span>q31_t *<em>pYData</em>, q31_t <em>x</em>, uint32_t <em>nValues</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423riscv_linear_interp_q31P5q31_t5q31_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv423riscv_linear_interp_q15P5q15_t5q31_t8uint32_t">
 <span id="_CPPv323riscv_linear_interp_q15P5q15_t5q31_t8uint32_t"></span><span id="_CPPv223riscv_linear_interp_q15P5q15_t5q31_t8uint32_t"></span><span id="riscv_linear_interp_q15__q15_tP.q31_t.uint32_t"></span><span class="target" id="group__LinearInterpolate_1gac22748db662a47a1f7df981905968c80"></span>q15_t <code class="sig-name descname">riscv_linear_interp_q15</code><span class="sig-paren">(</span>q15_t *<em>pYData</em>, q31_t <em>x</em>, uint32_t <em>nValues</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423riscv_linear_interp_q15P5q15_t5q31_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv422riscv_linear_interp_q7P4q7_t5q31_t8uint32_t">
 <span id="_CPPv322riscv_linear_interp_q7P4q7_t5q31_t8uint32_t"></span><span id="_CPPv222riscv_linear_interp_q7P4q7_t5q31_t8uint32_t"></span><span id="riscv_linear_interp_q7__q7_tP.q31_t.uint32_t"></span><span class="target" id="group__LinearInterpolate_1ga8cfce13f4bb13b4e8c4ff1a02da9584b"></span>q7_t <code class="sig-name descname">riscv_linear_interp_q7</code><span class="sig-paren">(</span>q7_t *<em>pYData</em>, q31_t <em>x</em>, uint32_t <em>nValues</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422riscv_linear_interp_q7P4q7_t5q31_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
@@ -217,8 +224,8 @@
 <dt>
 <span class="target" id="group__LinearInterpolate"></span><em>group</em> <code class="sig-name descname">LinearInterpolate</code></dt>
 <dd><p>Linear interpolation is a method of curve fitting using linear polynomials. Linear interpolation works by effectively drawing a straight line between two neighboring samples and returning the appropriate point along that line</p>
-<p><p>end of SplineInterpolate group </p>
-<dl class="simple">
+<p>
+end of SplineInterpolate group <dl class="simple">
 <dt><strong></strong></dt><dd><p><img alt="../../../_images/LinearInterp.png" src="../../../_images/LinearInterp.png" /></p>
 </dd>
 <dt><strong></strong></dt><dd><p>A Linear Interpolate function calculates an output value(y), for the input(x) using linear interpolation of the input values x0, x1( nearest input values) and the output values y0 and y1(nearest output values)</p>
@@ -232,116 +239,129 @@
 </dl>
 </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Functions</p>
-<dl class="function">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__LinearInterpolate_1ga99fdb5f276452d1c928925e0d4463cc0"></span>float32_t <code class="sig-name descname">riscv_linear_interp_f32</code><span class="sig-paren">(</span>riscv_linear_interp_instance_f32 *<em>S</em>, float32_t <em>x</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Process function for the floating-point Linear Interpolation Function. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>y processed output sample. </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: is an instance of the floating-point Linear Interpolation structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">x</span></code>: input sample to process </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[inout]</strong> is an instance of the floating-point Linear Interpolation structure </p></li>
+<li><p><strong>x</strong> – <strong>[in]</strong> input sample to process </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>y processed output sample. </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__LinearInterpolate_1gabf200f771b7d2908109d59d5d5a4ed5f"></span>q31_t <code class="sig-name descname">riscv_linear_interp_q31</code><span class="sig-paren">(</span>q31_t *<em>pYData</em>, q31_t <em>x</em>, uint32_t <em>nValues</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Process function for the Q31 Linear Interpolation Function. </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>y processed output sample.</p>
-</dd>
 <dt><strong></strong></dt><dd><p>Input sample <code class="docutils literal notranslate"><span class="pre">x</span></code> is in 12.20 format which contains 12 bits for table index and 20 bits for fractional part. This function can support maximum of table size 2^12. </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pYData</span></code>: pointer to Q31 Linear Interpolation table </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">x</span></code>: input sample to process </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">nValues</span></code>: number of table values </p></li>
-</ul>
 </dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pYData</strong> – <strong>[in]</strong> pointer to Q31 Linear Interpolation table </p></li>
+<li><p><strong>x</strong> – <strong>[in]</strong> input sample to process </p></li>
+<li><p><strong>nValues</strong> – <strong>[in]</strong> number of table values </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>y processed output sample.</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__LinearInterpolate_1gac22748db662a47a1f7df981905968c80"></span>q15_t <code class="sig-name descname">riscv_linear_interp_q15</code><span class="sig-paren">(</span>q15_t *<em>pYData</em>, q31_t <em>x</em>, uint32_t <em>nValues</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Process function for the Q15 Linear Interpolation Function. </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>y processed output sample.</p>
-</dd>
 <dt><strong></strong></dt><dd><p>Input sample <code class="docutils literal notranslate"><span class="pre">x</span></code> is in 12.20 format which contains 12 bits for table index and 20 bits for fractional part. This function can support maximum of table size 2^12. </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pYData</span></code>: pointer to Q15 Linear Interpolation table </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">x</span></code>: input sample to process </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">nValues</span></code>: number of table values </p></li>
-</ul>
 </dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pYData</strong> – <strong>[in]</strong> pointer to Q15 Linear Interpolation table </p></li>
+<li><p><strong>x</strong> – <strong>[in]</strong> input sample to process </p></li>
+<li><p><strong>nValues</strong> – <strong>[in]</strong> number of table values </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>y processed output sample.</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__LinearInterpolate_1ga8cfce13f4bb13b4e8c4ff1a02da9584b"></span>q7_t <code class="sig-name descname">riscv_linear_interp_q7</code><span class="sig-paren">(</span>q7_t *<em>pYData</em>, q31_t <em>x</em>, uint32_t <em>nValues</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Process function for the Q7 Linear Interpolation Function. </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>y processed output sample.</p>
-</dd>
 <dt><strong></strong></dt><dd><p>Input sample <code class="docutils literal notranslate"><span class="pre">x</span></code> is in 12.20 format which contains 12 bits for table index and 20 bits for fractional part. This function can support maximum of table size 2^12. </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pYData</span></code>: pointer to Q7 Linear Interpolation table </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">x</span></code>: input sample to process </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">nValues</span></code>: number of table values </p></li>
-</ul>
 </dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pYData</strong> – <strong>[in]</strong> pointer to Q7 Linear Interpolation table </p></li>
+<li><p><strong>x</strong> – <strong>[in]</strong> input sample to process </p></li>
+<li><p><strong>nValues</strong> – <strong>[in]</strong> number of table values </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>y processed output sample.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="api_bilinearinterpolate.html" class="btn btn-neutral float-right" title="Bilinear Interpolation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../api_groupinterpolation.html" class="btn btn-neutral float-left" title="Interpolation Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="api_bilinearinterpolate.html" class="btn btn-neutral float-right" title="Bilinear Interpolation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../api_groupinterpolation.html" class="btn btn-neutral float-left" title="Interpolation Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-Present, Nuclei
+        &#169; Copyright 2019-Present, Nuclei.
       <span class="lastupdated">
         Last updated on Aug 03, 2021.
       </span>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -349,7 +369,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

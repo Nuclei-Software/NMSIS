@@ -1,40 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Finite Impulse Response (FIR) Interpolator &mdash; NMSIS 1.0.2-RC1 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Matrix Functions" href="../api_groupmatrix.html" />
@@ -82,6 +85,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -89,7 +93,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -138,6 +142,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -172,11 +177,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
         
@@ -189,7 +196,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../../_sources/dsp/api/groupfilters/api_fir_interpolate.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -203,34 +210,34 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="finite-impulse-response-fir-interpolator">
+  <div class="section" id="finite-impulse-response-fir-interpolator">
 <span id="nmsis-dsp-api-finite-impulse-response-fir-interpolator"></span><h1>Finite Impulse Response (FIR) Interpolator<a class="headerlink" href="#finite-impulse-response-fir-interpolator" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv425riscv_fir_interpolate_f32PK34riscv_fir_interpolate_instance_f32PK9float32_tP9float32_t8uint32_t">
 <span id="_CPPv325riscv_fir_interpolate_f32PK34riscv_fir_interpolate_instance_f32PK9float32_tP9float32_t8uint32_t"></span><span id="_CPPv225riscv_fir_interpolate_f32PK34riscv_fir_interpolate_instance_f32PK9float32_tP9float32_t8uint32_t"></span><span id="riscv_fir_interpolate_f32__riscv_fir_interpolate_instance_f32CP.float32_tCP.float32_tP.uint32_t"></span><span class="target" id="group__FIR__Interpolate_1ga069caef71ac2cb05f23b2e80b6ad905f"></span>void <code class="sig-name descname">riscv_fir_interpolate_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_interpolate_instance_f32 *<em>S</em>, <em class="property">const</em> float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425riscv_fir_interpolate_f32PK34riscv_fir_interpolate_instance_f32PK9float32_tP9float32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv430riscv_fir_interpolate_init_f32P34riscv_fir_interpolate_instance_f327uint8_t8uint16_tPK9float32_tP9float32_t8uint32_t">
 <span id="_CPPv330riscv_fir_interpolate_init_f32P34riscv_fir_interpolate_instance_f327uint8_t8uint16_tPK9float32_tP9float32_t8uint32_t"></span><span id="_CPPv230riscv_fir_interpolate_init_f32P34riscv_fir_interpolate_instance_f327uint8_t8uint16_tPK9float32_tP9float32_t8uint32_t"></span><span id="riscv_fir_interpolate_init_f32__riscv_fir_interpolate_instance_f32P.uint8_t.uint16_t.float32_tCP.float32_tP.uint32_t"></span><span class="target" id="group__FIR__Interpolate_1ga14893a7638b8a8f6383bf5a589ba6d55"></span>riscv_status <code class="sig-name descname">riscv_fir_interpolate_init_f32</code><span class="sig-paren">(</span>riscv_fir_interpolate_instance_f32 *<em>S</em>, uint8_t <em>L</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> float32_t *<em>pCoeffs</em>, float32_t *<em>pState</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430riscv_fir_interpolate_init_f32P34riscv_fir_interpolate_instance_f327uint8_t8uint16_tPK9float32_tP9float32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv430riscv_fir_interpolate_init_q15P34riscv_fir_interpolate_instance_q157uint8_t8uint16_tPK5q15_tP5q15_t8uint32_t">
 <span id="_CPPv330riscv_fir_interpolate_init_q15P34riscv_fir_interpolate_instance_q157uint8_t8uint16_tPK5q15_tP5q15_t8uint32_t"></span><span id="_CPPv230riscv_fir_interpolate_init_q15P34riscv_fir_interpolate_instance_q157uint8_t8uint16_tPK5q15_tP5q15_t8uint32_t"></span><span id="riscv_fir_interpolate_init_q15__riscv_fir_interpolate_instance_q15P.uint8_t.uint16_t.q15_tCP.q15_tP.uint32_t"></span><span class="target" id="group__FIR__Interpolate_1ga139d8f20abd891307d7612c4a644ba5c"></span>riscv_status <code class="sig-name descname">riscv_fir_interpolate_init_q15</code><span class="sig-paren">(</span>riscv_fir_interpolate_instance_q15 *<em>S</em>, uint8_t <em>L</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> q15_t *<em>pCoeffs</em>, q15_t *<em>pState</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430riscv_fir_interpolate_init_q15P34riscv_fir_interpolate_instance_q157uint8_t8uint16_tPK5q15_tP5q15_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv430riscv_fir_interpolate_init_q31P34riscv_fir_interpolate_instance_q317uint8_t8uint16_tPK5q31_tP5q31_t8uint32_t">
 <span id="_CPPv330riscv_fir_interpolate_init_q31P34riscv_fir_interpolate_instance_q317uint8_t8uint16_tPK5q31_tP5q31_t8uint32_t"></span><span id="_CPPv230riscv_fir_interpolate_init_q31P34riscv_fir_interpolate_instance_q317uint8_t8uint16_tPK5q31_tP5q31_t8uint32_t"></span><span id="riscv_fir_interpolate_init_q31__riscv_fir_interpolate_instance_q31P.uint8_t.uint16_t.q31_tCP.q31_tP.uint32_t"></span><span class="target" id="group__FIR__Interpolate_1gaa0eab8390463d568ab715ad7bd2c2b04"></span>riscv_status <code class="sig-name descname">riscv_fir_interpolate_init_q31</code><span class="sig-paren">(</span>riscv_fir_interpolate_instance_q31 *<em>S</em>, uint8_t <em>L</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> q31_t *<em>pCoeffs</em>, q31_t *<em>pState</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430riscv_fir_interpolate_init_q31P34riscv_fir_interpolate_instance_q317uint8_t8uint16_tPK5q31_tP5q31_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv425riscv_fir_interpolate_q15PK34riscv_fir_interpolate_instance_q15PK5q15_tP5q15_t8uint32_t">
 <span id="_CPPv325riscv_fir_interpolate_q15PK34riscv_fir_interpolate_instance_q15PK5q15_tP5q15_t8uint32_t"></span><span id="_CPPv225riscv_fir_interpolate_q15PK34riscv_fir_interpolate_instance_q15PK5q15_tP5q15_t8uint32_t"></span><span id="riscv_fir_interpolate_q15__riscv_fir_interpolate_instance_q15CP.q15_tCP.q15_tP.uint32_t"></span><span class="target" id="group__FIR__Interpolate_1ga8fff424b316684f02ac5aae58b1f315b"></span>void <code class="sig-name descname">riscv_fir_interpolate_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_interpolate_instance_q15 *<em>S</em>, <em class="property">const</em> q15_t *<em>pSrc</em>, q15_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425riscv_fir_interpolate_q15PK34riscv_fir_interpolate_instance_q15PK5q15_tP5q15_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv425riscv_fir_interpolate_q31PK34riscv_fir_interpolate_instance_q31PK5q31_tP5q31_t8uint32_t">
 <span id="_CPPv325riscv_fir_interpolate_q31PK34riscv_fir_interpolate_instance_q31PK5q31_tP5q31_t8uint32_t"></span><span id="_CPPv225riscv_fir_interpolate_q31PK34riscv_fir_interpolate_instance_q31PK5q31_tP5q31_t8uint32_t"></span><span id="riscv_fir_interpolate_q31__riscv_fir_interpolate_instance_q31CP.q31_tCP.q31_tP.uint32_t"></span><span class="target" id="group__FIR__Interpolate_1gab38e9dfb79024f09e685bb63f422014b"></span>void <code class="sig-name descname">riscv_fir_interpolate_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_interpolate_instance_q31 *<em>S</em>, <em class="property">const</em> q31_t *<em>pSrc</em>, q31_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425riscv_fir_interpolate_q31PK34riscv_fir_interpolate_instance_q31PK5q31_tP5q31_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
@@ -238,7 +245,8 @@
 <dl class="group">
 <dt>
 <span class="target" id="group__FIR__Interpolate"></span><em>group</em> <code class="sig-name descname">FIR_Interpolate</code></dt>
-<dd><p>These functions combine an upsampler (zero stuffer) and an FIR filter. They are used in multirate systems for increasing the sample rate of a signal without introducing high frequency images. Conceptually, the functions are equivalent to the block diagram below: <p>After upsampling by a factor of </p>
+<dd><p><p>These functions combine an upsampler (zero stuffer) and an FIR filter. They are used in multirate systems for increasing the sample rate of a signal without introducing high frequency images. Conceptually, the functions are equivalent to the block diagram below:</p>
+<p>After upsampling by a factor of</p>
 <code class="docutils literal notranslate"><span class="pre">L</span></code>, the signal should be filtered by a lowpass filter with a normalized cutoff frequency of <code class="docutils literal notranslate"><span class="pre">1/L</span></code> in order to eliminate high frequency copies of the spectrum. The user of the function is responsible for providing the filter coefficients.<img alt="../../../_images/FIRInterpolator.png" src="../../../_images/FIRInterpolator.png" /></p>
 <p>The FIR interpolator functions provided in the NMSIS DSP Library combine the upsampler and FIR filter in an efficient manner. The upsampler inserts <code class="docutils literal notranslate"><span class="pre">L-1</span></code> zeros between each sample. Instead of multiplying by these zero values, the FIR filter is designed to skip them. This leads to an efficient implementation without any wasted effort. The functions operate on blocks of input and output data. <code class="docutils literal notranslate"><span class="pre">pSrc</span></code> points to an array of <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> input values and <code class="docutils literal notranslate"><span class="pre">pDst</span></code> points to an array of <code class="docutils literal notranslate"><span class="pre">blockSize*L</span></code> output values.</p>
 <p>The library provides separate functions for Q15, Q31, and floating-point data types.</p>
@@ -269,188 +277,209 @@
 </dl>
 </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Functions</p>
-<dl class="function">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__FIR__Interpolate_1ga069caef71ac2cb05f23b2e80b6ad905f"></span>void <code class="sig-name descname">riscv_fir_interpolate_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_interpolate_instance_f32 *<em>S</em>, <em class="property">const</em> float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for floating-point FIR interpolator. </p>
 <p>Processing function for the floating-point FIR interpolator.</p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the floating-point FIR interpolator structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the block of output data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the floating-point FIR interpolator structure </p></li>
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__FIR__Interpolate_1ga14893a7638b8a8f6383bf5a589ba6d55"></span>riscv_status <code class="sig-name descname">riscv_fir_interpolate_init_f32</code><span class="sig-paren">(</span>riscv_fir_interpolate_instance_f32 *<em>S</em>, uint8_t <em>L</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> float32_t *<em>pCoeffs</em>, float32_t *<em>pState</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the floating-point FIR interpolator. </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
-<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
-<li><p>RISCV_MATH_ARGUMENT_ERROR : filter length <code class="docutils literal notranslate"><span class="pre">numTaps</span></code> is not a multiple of the interpolation factor <code class="docutils literal notranslate"><span class="pre">L</span></code></p></li>
-</ul>
-</p>
-</dd>
 <dt><strong>Details</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> points to the array of filter coefficients stored in time reversed order:  </p>
 </dd>
 <dt><strong></strong></dt><dd><p>The length of the filter <code class="docutils literal notranslate"><span class="pre">numTaps</span></code> must be a multiple of the interpolation factor <code class="docutils literal notranslate"><span class="pre">L</span></code>. </p>
 </dd>
 <dt><strong></strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pState</span></code> points to the array of state variables. <code class="docutils literal notranslate"><span class="pre">pState</span></code> is of length <code class="docutils literal notranslate"><span class="pre">(numTaps/L)+blockSize-1</span></code> words where <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> is the number of input samples processed by each call to <code class="docutils literal notranslate"><span class="pre">riscv_fir_interpolate_f32()</span></code>. </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an instance of the floating-point FIR interpolator structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">L</span></code>: upsample factor </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numTaps</span></code>: number of filter coefficients in the filter </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pCoeffs</span></code>: points to the filter coefficient buffer </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pState</span></code>: points to the state buffer </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of input samples to process per call </p></li>
-</ul>
-</dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the floating-point FIR interpolator structure </p></li>
+<li><p><strong>L</strong> – <strong>[in]</strong> upsample factor </p></li>
+<li><p><strong>numTaps</strong> – <strong>[in]</strong> number of filter coefficients in the filter </p></li>
+<li><p><strong>pCoeffs</strong> – <strong>[in]</strong> points to the filter coefficient buffer </p></li>
+<li><p><strong>pState</strong> – <strong>[in]</strong> points to the state buffer </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of input samples to process per call </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : filter length <code class="docutils literal notranslate"><span class="pre">numTaps</span></code> is not a multiple of the interpolation factor <code class="docutils literal notranslate"><span class="pre">L</span></code></p></li>
+</ul>
+</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__FIR__Interpolate_1ga139d8f20abd891307d7612c4a644ba5c"></span>riscv_status <code class="sig-name descname">riscv_fir_interpolate_init_q15</code><span class="sig-paren">(</span>riscv_fir_interpolate_instance_q15 *<em>S</em>, uint8_t <em>L</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> q15_t *<em>pCoeffs</em>, q15_t *<em>pState</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the Q15 FIR interpolator. </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
-<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
-<li><p>RISCV_MATH_ARGUMENT_ERROR : filter length <code class="docutils literal notranslate"><span class="pre">numTaps</span></code> is not a multiple of the interpolation factor <code class="docutils literal notranslate"><span class="pre">L</span></code></p></li>
-</ul>
-</p>
-</dd>
 <dt><strong>Details</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> points to the array of filter coefficients stored in time reversed order:  The length of the filter <code class="docutils literal notranslate"><span class="pre">numTaps</span></code> must be a multiple of the interpolation factor <code class="docutils literal notranslate"><span class="pre">L</span></code>. </p>
 </dd>
 <dt><strong></strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pState</span></code> points to the array of state variables. <code class="docutils literal notranslate"><span class="pre">pState</span></code> is of length <code class="docutils literal notranslate"><span class="pre">(numTaps/L)+blockSize-1</span></code> words where <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> is the number of input samples processed by each call to <code class="docutils literal notranslate"><span class="pre">riscv_fir_interpolate_q15()</span></code>. </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an instance of the Q15 FIR interpolator structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">L</span></code>: upsample factor </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numTaps</span></code>: number of filter coefficients in the filter </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pCoeffs</span></code>: points to the filter coefficient buffer </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pState</span></code>: points to the state buffer </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of input samples to process per call </p></li>
-</ul>
-</dd>
 </dl>
 </p>
-</dd></dl>
-
-<dl class="function">
-<dt>
-<span class="target" id="group__FIR__Interpolate_1gaa0eab8390463d568ab715ad7bd2c2b04"></span>riscv_status <code class="sig-name descname">riscv_fir_interpolate_init_q31</code><span class="sig-paren">(</span>riscv_fir_interpolate_instance_q31 *<em>S</em>, uint8_t <em>L</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> q31_t *<em>pCoeffs</em>, q31_t *<em>pState</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
-<dd><p>Initialization function for the Q31 FIR interpolator. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q15 FIR interpolator structure </p></li>
+<li><p><strong>L</strong> – <strong>[in]</strong> upsample factor </p></li>
+<li><p><strong>numTaps</strong> – <strong>[in]</strong> number of filter coefficients in the filter </p></li>
+<li><p><strong>pCoeffs</strong> – <strong>[in]</strong> points to the filter coefficient buffer </p></li>
+<li><p><strong>pState</strong> – <strong>[in]</strong> points to the state buffer </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of input samples to process per call </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_ARGUMENT_ERROR : filter length <code class="docutils literal notranslate"><span class="pre">numTaps</span></code> is not a multiple of the interpolation factor <code class="docutils literal notranslate"><span class="pre">L</span></code></p></li>
 </ul>
 </p>
 </dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="group__FIR__Interpolate_1gaa0eab8390463d568ab715ad7bd2c2b04"></span>riscv_status <code class="sig-name descname">riscv_fir_interpolate_init_q31</code><span class="sig-paren">(</span>riscv_fir_interpolate_instance_q31 *<em>S</em>, uint8_t <em>L</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> q31_t *<em>pCoeffs</em>, q31_t *<em>pState</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization function for the Q31 FIR interpolator. </p>
+<p><dl class="simple">
 <dt><strong>Details</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> points to the array of filter coefficients stored in time reversed order:  The length of the filter <code class="docutils literal notranslate"><span class="pre">numTaps</span></code> must be a multiple of the interpolation factor <code class="docutils literal notranslate"><span class="pre">L</span></code>. </p>
 </dd>
 <dt><strong></strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pState</span></code> points to the array of state variables. <code class="docutils literal notranslate"><span class="pre">pState</span></code> is of length <code class="docutils literal notranslate"><span class="pre">(numTaps/L)+blockSize-1</span></code> words where <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> is the number of input samples processed by each call to <code class="docutils literal notranslate"><span class="pre">riscv_fir_interpolate_q31()</span></code>. </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an instance of the Q31 FIR interpolator structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">L</span></code>: upsample factor </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numTaps</span></code>: number of filter coefficients in the filter </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pCoeffs</span></code>: points to the filter coefficient buffer </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pState</span></code>: points to the state buffer </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of input samples to process per call </p></li>
-</ul>
-</dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q31 FIR interpolator structure </p></li>
+<li><p><strong>L</strong> – <strong>[in]</strong> upsample factor </p></li>
+<li><p><strong>numTaps</strong> – <strong>[in]</strong> number of filter coefficients in the filter </p></li>
+<li><p><strong>pCoeffs</strong> – <strong>[in]</strong> points to the filter coefficient buffer </p></li>
+<li><p><strong>pState</strong> – <strong>[in]</strong> points to the state buffer </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of input samples to process per call </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : filter length <code class="docutils literal notranslate"><span class="pre">numTaps</span></code> is not a multiple of the interpolation factor <code class="docutils literal notranslate"><span class="pre">L</span></code></p></li>
+</ul>
+</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__FIR__Interpolate_1ga8fff424b316684f02ac5aae58b1f315b"></span>void <code class="sig-name descname">riscv_fir_interpolate_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_interpolate_instance_q15 *<em>S</em>, <em class="property">const</em> q15_t *<em>pSrc</em>, q15_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the Q15 FIR interpolator. </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none</p>
-</dd>
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The function is implemented using a 64-bit internal accumulator. Both coefficients and state variables are represented in 1.15 format and multiplications yield a 2.30 result. The 2.30 intermediate results are accumulated in a 64-bit accumulator in 34.30 format. There is no risk of internal overflow with this approach and the full precision of intermediate multiplications is preserved. After all additions have been performed, the accumulator is truncated to 34.15 format by discarding low 15 bits. Lastly, the accumulator is saturated to yield a result in 1.15 format. </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the Q15 FIR interpolator structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the block of output data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process </p></li>
-</ul>
 </dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q15 FIR interpolator structure </p></li>
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__FIR__Interpolate_1gab38e9dfb79024f09e685bb63f422014b"></span>void <code class="sig-name descname">riscv_fir_interpolate_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_interpolate_instance_q31 *<em>S</em>, <em class="property">const</em> q31_t *<em>pSrc</em>, q31_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the Q31 FIR interpolator. </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none</p>
-</dd>
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The function is implemented using an internal 64-bit accumulator. The accumulator has a 2.62 format and maintains full precision of the intermediate multiplication results but provides only a single guard bit. Thus, if the accumulator result overflows it wraps around rather than clip. In order to avoid overflows completely the input signal must be scaled down by <code class="docutils literal notranslate"><span class="pre">1/(numTaps/L)</span></code>. since <code class="docutils literal notranslate"><span class="pre">numTaps/L</span></code> additions occur per output sample. After all multiply-accumulates are performed, the 2.62 accumulator is truncated to 1.32 format and then saturated to 1.31 format. </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the Q31 FIR interpolator structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the block of output data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process </p></li>
-</ul>
 </dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q31 FIR interpolator structure </p></li>
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../api_groupmatrix.html" class="btn btn-neutral float-right" title="Matrix Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="api_lms_norm.html" class="btn btn-neutral float-left" title="Normalized LMS Filters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="../api_groupmatrix.html" class="btn btn-neutral float-right" title="Matrix Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="api_lms_norm.html" class="btn btn-neutral float-left" title="Normalized LMS Filters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-Present, Nuclei
+        &#169; Copyright 2019-Present, Nuclei.
       <span class="lastupdated">
         Last updated on Aug 03, 2021.
       </span>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -458,7 +487,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

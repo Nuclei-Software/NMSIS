@@ -1,40 +1,43 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Vector Dot Product &mdash; NMSIS 1.0.2-RC1 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Vector Multiplication" href="api_basicmult.html" />
@@ -82,6 +85,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -89,7 +93,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -133,6 +137,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -167,11 +172,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
         
@@ -184,7 +191,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../../_sources/dsp/api/groupmath/api_basicdotprod.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -198,24 +205,24 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="vector-dot-product">
+  <div class="section" id="vector-dot-product">
 <span id="nmsis-dsp-api-vector-dot-product"></span><h1>Vector Dot Product<a class="headerlink" href="#vector-dot-product" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv418riscv_dot_prod_f32PK9float32_tPK9float32_t8uint32_tP9float32_t">
 <span id="_CPPv318riscv_dot_prod_f32PK9float32_tPK9float32_t8uint32_tP9float32_t"></span><span id="_CPPv218riscv_dot_prod_f32PK9float32_tPK9float32_t8uint32_tP9float32_t"></span><span id="riscv_dot_prod_f32__float32_tCP.float32_tCP.uint32_t.float32_tP"></span><span class="target" id="group__BasicDotProd_1gade83dc52739721f1b3b28f1485a1d73e"></span>void <code class="sig-name descname">riscv_dot_prod_f32</code><span class="sig-paren">(</span><em class="property">const</em> float32_t *<em>pSrcA</em>, <em class="property">const</em> float32_t *<em>pSrcB</em>, uint32_t <em>blockSize</em>, float32_t *<em>result</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418riscv_dot_prod_f32PK9float32_tPK9float32_t8uint32_tP9float32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv418riscv_dot_prod_q15PK5q15_tPK5q15_t8uint32_tP5q63_t">
 <span id="_CPPv318riscv_dot_prod_q15PK5q15_tPK5q15_t8uint32_tP5q63_t"></span><span id="_CPPv218riscv_dot_prod_q15PK5q15_tPK5q15_t8uint32_tP5q63_t"></span><span id="riscv_dot_prod_q15__q15_tCP.q15_tCP.uint32_t.q63_tP"></span><span class="target" id="group__BasicDotProd_1ga96cb833c8f4589f8f2dd04319c7fc176"></span>void <code class="sig-name descname">riscv_dot_prod_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pSrcA</em>, <em class="property">const</em> q15_t *<em>pSrcB</em>, uint32_t <em>blockSize</em>, q63_t *<em>result</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418riscv_dot_prod_q15PK5q15_tPK5q15_t8uint32_tP5q63_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv418riscv_dot_prod_q31PK5q31_tPK5q31_t8uint32_tP5q63_t">
 <span id="_CPPv318riscv_dot_prod_q31PK5q31_tPK5q31_t8uint32_tP5q63_t"></span><span id="_CPPv218riscv_dot_prod_q31PK5q31_tPK5q31_t8uint32_tP5q63_t"></span><span id="riscv_dot_prod_q31__q31_tCP.q31_tCP.uint32_t.q63_tP"></span><span class="target" id="group__BasicDotProd_1ga9684c131effb1a08bc4e562ec3439513"></span>void <code class="sig-name descname">riscv_dot_prod_q31</code><span class="sig-paren">(</span><em class="property">const</em> q31_t *<em>pSrcA</em>, <em class="property">const</em> q31_t *<em>pSrcB</em>, uint32_t <em>blockSize</em>, q63_t *<em>result</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418riscv_dot_prod_q31PK5q31_tPK5q31_t8uint32_tP5q63_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt id="_CPPv417riscv_dot_prod_q7PK4q7_tPK4q7_t8uint32_tP5q31_t">
 <span id="_CPPv317riscv_dot_prod_q7PK4q7_tPK4q7_t8uint32_tP5q31_t"></span><span id="_CPPv217riscv_dot_prod_q7PK4q7_tPK4q7_t8uint32_tP5q31_t"></span><span id="riscv_dot_prod_q7__q7_tCP.q7_tCP.uint32_t.q31_tP"></span><span class="target" id="group__BasicDotProd_1ga94b781f333bbccd4c5901da6fefb6458"></span>void <code class="sig-name descname">riscv_dot_prod_q7</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>pSrcA</em>, <em class="property">const</em> q7_t *<em>pSrcB</em>, uint32_t <em>blockSize</em>, q31_t *<em>result</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417riscv_dot_prod_q7PK4q7_tPK4q7_t8uint32_tP5q31_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
@@ -227,121 +234,134 @@
 <p></p>
 <p>There are separate functions for floating-point, Q7, Q15, and Q31 data types. </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Functions</p>
-<dl class="function">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__BasicDotProd_1gade83dc52739721f1b3b28f1485a1d73e"></span>void <code class="sig-name descname">riscv_dot_prod_f32</code><span class="sig-paren">(</span><em class="property">const</em> float32_t *<em>pSrcA</em>, <em class="property">const</em> float32_t *<em>pSrcB</em>, uint32_t <em>blockSize</em>, float32_t *<em>result</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Dot product of floating-point vectors. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcA</span></code>: points to the first input vector. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcB</span></code>: points to the second input vector. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples in each vector. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">result</span></code>: output result returned here. </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pSrcA</strong> – <strong>[in]</strong> points to the first input vector. </p></li>
+<li><p><strong>pSrcB</strong> – <strong>[in]</strong> points to the second input vector. </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in each vector. </p></li>
+<li><p><strong>result</strong> – <strong>[out]</strong> output result returned here. </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__BasicDotProd_1ga96cb833c8f4589f8f2dd04319c7fc176"></span>void <code class="sig-name descname">riscv_dot_prod_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pSrcA</em>, <em class="property">const</em> q15_t *<em>pSrcB</em>, uint32_t <em>blockSize</em>, q63_t *<em>result</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Dot product of Q15 vectors. </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none</p>
-</dd>
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The intermediate multiplications are in 1.15 x 1.15 = 2.30 format and these results are added to a 64-bit accumulator in 34.30 format. Nonsaturating additions are used and given that there are 33 guard bits in the accumulator there is no risk of overflow. The return result is in 34.30 format. </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcA</span></code>: points to the first input vector </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcB</span></code>: points to the second input vector </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples in each vector </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">result</span></code>: output result returned here </p></li>
-</ul>
 </dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pSrcA</strong> – <strong>[in]</strong> points to the first input vector </p></li>
+<li><p><strong>pSrcB</strong> – <strong>[in]</strong> points to the second input vector </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in each vector </p></li>
+<li><p><strong>result</strong> – <strong>[out]</strong> output result returned here </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__BasicDotProd_1ga9684c131effb1a08bc4e562ec3439513"></span>void <code class="sig-name descname">riscv_dot_prod_q31</code><span class="sig-paren">(</span><em class="property">const</em> q31_t *<em>pSrcA</em>, <em class="property">const</em> q31_t *<em>pSrcB</em>, uint32_t <em>blockSize</em>, q63_t *<em>result</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Dot product of Q31 vectors. </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none</p>
-</dd>
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The intermediate multiplications are in 1.31 x 1.31 = 2.62 format and these are truncated to 2.48 format by discarding the lower 14 bits. The 2.48 result is then added without saturation to a 64-bit accumulator in 16.48 format. There are 15 guard bits in the accumulator and there is no risk of overflow as long as the length of the vectors is less than 2^16 elements. The return result is in 16.48 format. </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcA</span></code>: points to the first input vector. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcB</span></code>: points to the second input vector. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples in each vector. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">result</span></code>: output result returned here. </p></li>
-</ul>
 </dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pSrcA</strong> – <strong>[in]</strong> points to the first input vector. </p></li>
+<li><p><strong>pSrcB</strong> – <strong>[in]</strong> points to the second input vector. </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in each vector. </p></li>
+<li><p><strong>result</strong> – <strong>[out]</strong> output result returned here. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="cpp function">
 <dt>
 <span class="target" id="group__BasicDotProd_1ga94b781f333bbccd4c5901da6fefb6458"></span>void <code class="sig-name descname">riscv_dot_prod_q7</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>pSrcA</em>, <em class="property">const</em> q7_t *<em>pSrcB</em>, uint32_t <em>blockSize</em>, q31_t *<em>result</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Dot product of Q7 vectors. </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none</p>
-</dd>
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The intermediate multiplications are in 1.7 x 1.7 = 2.14 format and these results are added to an accumulator in 18.14 format. Nonsaturating additions are used and there is no danger of wrap around as long as the vectors are less than 2^18 elements long. The return result is in 18.14 format. </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcA</span></code>: points to the first input vector </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcB</span></code>: points to the second input vector </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples in each vector </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">result</span></code>: output result returned here </p></li>
-</ul>
 </dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pSrcA</strong> – <strong>[in]</strong> points to the first input vector </p></li>
+<li><p><strong>pSrcB</strong> – <strong>[in]</strong> points to the second input vector </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in each vector </p></li>
+<li><p><strong>result</strong> – <strong>[out]</strong> output result returned here </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="api_basicmult.html" class="btn btn-neutral float-right" title="Vector Multiplication" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="api_basicadd.html" class="btn btn-neutral float-left" title="Vector Addition" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="api_basicmult.html" class="btn btn-neutral float-right" title="Vector Multiplication" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="api_basicadd.html" class="btn btn-neutral float-left" title="Vector Addition" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-Present, Nuclei
+        &#169; Copyright 2019-Present, Nuclei.
       <span class="lastupdated">
         Last updated on Aug 03, 2021.
       </span>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -349,7 +369,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
