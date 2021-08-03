@@ -35,8 +35,8 @@ jobs:
         run: |
           sudo apt-get install lib32z1 dos2unix doxygen python3 python3-pip latexmk lftp \
             texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended
-          sudo pip install --upgrade pip
-          sudo pip install -r NMSIS/doc/requirements.txt
+          sudo pip3 install --upgrade pip
+          sudo pip3 install -r NMSIS/doc/requirements.txt
 
       # Build NMSIS Documentation
       - name: Build NMSIS Documentation
