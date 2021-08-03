@@ -57,6 +57,7 @@ jobs:
 
       - name: Deploy documentation to gh-pages
         uses: JamesIves/github-pages-deploy-action@4.1.4
+        if: ${{ github.ref == 'refs/heads/master' }}
         with:
           branch: gh-pages
           folder: NMSIS/doc/build/html
