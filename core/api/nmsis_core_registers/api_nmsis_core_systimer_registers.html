@@ -1,0 +1,456 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Register Define and Type Definitions Of System Timer &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Core CSR Register Access" href="../api_nmsis_core_csr_register_access.html" />
+    <link rel="prev" title="Register Define and Type Definitions Of ECLIC" href="api_nmsis_core_eclic_registers.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.2-RC1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">NMSIS Core</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS in Embedded Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../core_templates.html">NMSIS-Core Device Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../register_mapping.html">Register Mapping</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS CORE API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_versioncontrol.html">Version Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_compilercontrol.html">Compiler Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_periphaccess.html">Peripheral Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_csr_encoding.html">Core CSR Encodings</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api_nmsis_core_registers.html">Register Define and Type Definitions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api_nmsis_core_base_registers.html">Base Register Define and Type Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_nmsis_core_eclic_registers.html">Register Define and Type Definitions Of ECLIC</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Register Define and Type Definitions Of System Timer</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_csr_register_access.html">Core CSR Register Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_cpu_intrinsic.html">Intrinsic Functions for CPU Intructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_intexc.html">Interrupts and Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_systimer.html">SysTimer Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_fpu_functions.html">FPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_pmp_functions.html">PMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_cache.html">Cache Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_armcompatiable_functions.html">ARM Compatiable Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">NMSIS Core</a> &raquo;</li>
+        
+          <li><a href="../index.html">NMSIS CORE API</a> &raquo;</li>
+        
+          <li><a href="../api_nmsis_core_registers.html">Register Define and Type Definitions</a> &raquo;</li>
+        
+      <li>Register Define and Type Definitions Of System Timer</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/core/api/nmsis_core_registers/api_nmsis_core_systimer_registers.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="register-define-and-type-definitions-of-system-timer">
+<span id="nmsis-core-api-register-define-and-type-definitions-of-system-timer"></span><h1>Register Define and Type Definitions Of System Timer<a class="headerlink" href="#register-define-and-type-definitions-of-system-timer" title="Permalink to this headline">¶</a></h1>
+<dl class="macro">
+<dt id="c.SysTimer_MTIMECTL_TIMESTOP_Pos">
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga54ecde494dc735799ed978b91bf709d8"></span><code class="sig-name descname">SysTimer_MTIMECTL_TIMESTOP_Pos</code> 0U<a class="headerlink" href="#c.SysTimer_MTIMECTL_TIMESTOP_Pos" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.SysTimer_MTIMECTL_TIMESTOP_Msk">
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1gaab93093166696848e52d055a2e139e9f"></span><code class="sig-name descname">SysTimer_MTIMECTL_TIMESTOP_Msk</code> (1UL &lt;&lt; SysTimer_MTIMECTL_TIMESTOP_Pos)<a class="headerlink" href="#c.SysTimer_MTIMECTL_TIMESTOP_Msk" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.SysTimer_MTIMECTL_CMPCLREN_Pos">
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1gac0cd51358c944397328146b6f4a4a8a5"></span><code class="sig-name descname">SysTimer_MTIMECTL_CMPCLREN_Pos</code> 1U<a class="headerlink" href="#c.SysTimer_MTIMECTL_CMPCLREN_Pos" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.SysTimer_MTIMECTL_CMPCLREN_Msk">
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga5d372de2d560f90d8ed8306277068cf1"></span><code class="sig-name descname">SysTimer_MTIMECTL_CMPCLREN_Msk</code> (1UL &lt;&lt; SysTimer_MTIMECTL_CMPCLREN_Pos)<a class="headerlink" href="#c.SysTimer_MTIMECTL_CMPCLREN_Msk" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.SysTimer_MTIMECTL_CLKSRC_Pos">
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga4ee15edaeadcd48a5aaab1aa9ec20496"></span><code class="sig-name descname">SysTimer_MTIMECTL_CLKSRC_Pos</code> 2U<a class="headerlink" href="#c.SysTimer_MTIMECTL_CLKSRC_Pos" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.SysTimer_MTIMECTL_CLKSRC_Msk">
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga2513c82f2ce2811952b83f6d1c8e4172"></span><code class="sig-name descname">SysTimer_MTIMECTL_CLKSRC_Msk</code> (1UL &lt;&lt; SysTimer_MTIMECTL_CLKSRC_Pos)<a class="headerlink" href="#c.SysTimer_MTIMECTL_CLKSRC_Msk" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.SysTimer_MSIP_MSIP_Pos">
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1gad756a0be76154b3f64f6790663581c52"></span><code class="sig-name descname">SysTimer_MSIP_MSIP_Pos</code> 0U<a class="headerlink" href="#c.SysTimer_MSIP_MSIP_Pos" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.SysTimer_MSIP_MSIP_Msk">
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga62b819dc444c74f1424c50cf13fcb2a0"></span><code class="sig-name descname">SysTimer_MSIP_MSIP_Msk</code> (1UL &lt;&lt; SysTimer_MSIP_MSIP_Pos)<a class="headerlink" href="#c.SysTimer_MSIP_MSIP_Msk" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.SysTimer_MTIMER_Msk">
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1gacffb8ad26cdd32cef2ee67bde9ddb122"></span><code class="sig-name descname">SysTimer_MTIMER_Msk</code> (0xFFFFFFFFFFFFFFFFULL)<a class="headerlink" href="#c.SysTimer_MTIMER_Msk" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.SysTimer_MTIMERCMP_Msk">
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga0fb8a9811b2d773529fb0f7db866e5e5"></span><code class="sig-name descname">SysTimer_MTIMERCMP_Msk</code> (0xFFFFFFFFFFFFFFFFULL)<a class="headerlink" href="#c.SysTimer_MTIMERCMP_Msk" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.SysTimer_MTIMECTL_Msk">
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga9b50cbd77c10af62deca85e3d2509c72"></span><code class="sig-name descname">SysTimer_MTIMECTL_Msk</code> (0xFFFFFFFFUL)<a class="headerlink" href="#c.SysTimer_MTIMECTL_Msk" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.SysTimer_MSIP_Msk">
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga40ba61e02d93e37ffbb6452b54806af6"></span><code class="sig-name descname">SysTimer_MSIP_Msk</code> (0xFFFFFFFFUL)<a class="headerlink" href="#c.SysTimer_MSIP_Msk" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.SysTimer_MSFTRST_Msk">
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga1028d9f654728860327c082a44b9f34f"></span><code class="sig-name descname">SysTimer_MSFTRST_Msk</code> (0xFFFFFFFFUL)<a class="headerlink" href="#c.SysTimer_MSFTRST_Msk" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.SysTimer_MSFRST_KEY">
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga181dffb1870282631f8858ea23d9b8fa"></span><code class="sig-name descname">SysTimer_MSFRST_KEY</code> (0x80000A5FUL)<a class="headerlink" href="#c.SysTimer_MSFRST_KEY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.SysTimer_BASE">
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga2107a0ae6d9deefff31edf506a6e1e91"></span><code class="sig-name descname">SysTimer_BASE</code> __SYSTIMER_BASEADDR<a class="headerlink" href="#c.SysTimer_BASE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.SysTimer">
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99"></span><code class="sig-name descname">SysTimer</code> ((<a class="reference internal" href="#structSysTimer__Type"><span class="std std-ref">SysTimer_Type</span></a> *) SysTimer_BASE)<a class="headerlink" href="#c.SysTimer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="group">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers"></span><em>group</em> <code class="sig-name descname">NMSIS_Core_SysTimer_Registers</code></dt>
+<dd><p>Type definitions and defines for system timer registers. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga54ecde494dc735799ed978b91bf709d8"></span><code class="sig-name descname">SysTimer_MTIMECTL_TIMESTOP_Pos</code> 0U</dt>
+<dd><p>SysTick Timer MTIMECTL: TIMESTOP bit Position. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1gaab93093166696848e52d055a2e139e9f"></span><code class="sig-name descname">SysTimer_MTIMECTL_TIMESTOP_Msk</code> (1UL &lt;&lt; SysTimer_MTIMECTL_TIMESTOP_Pos)</dt>
+<dd><p>SysTick Timer MTIMECTL: TIMESTOP Mask. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1gac0cd51358c944397328146b6f4a4a8a5"></span><code class="sig-name descname">SysTimer_MTIMECTL_CMPCLREN_Pos</code> 1U</dt>
+<dd><p>SysTick Timer MTIMECTL: CMPCLREN bit Position. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga5d372de2d560f90d8ed8306277068cf1"></span><code class="sig-name descname">SysTimer_MTIMECTL_CMPCLREN_Msk</code> (1UL &lt;&lt; SysTimer_MTIMECTL_CMPCLREN_Pos)</dt>
+<dd><p>SysTick Timer MTIMECTL: CMPCLREN Mask. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga4ee15edaeadcd48a5aaab1aa9ec20496"></span><code class="sig-name descname">SysTimer_MTIMECTL_CLKSRC_Pos</code> 2U</dt>
+<dd><p>SysTick Timer MTIMECTL: CLKSRC bit Position. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga2513c82f2ce2811952b83f6d1c8e4172"></span><code class="sig-name descname">SysTimer_MTIMECTL_CLKSRC_Msk</code> (1UL &lt;&lt; SysTimer_MTIMECTL_CLKSRC_Pos)</dt>
+<dd><p>SysTick Timer MTIMECTL: CLKSRC Mask. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1gad756a0be76154b3f64f6790663581c52"></span><code class="sig-name descname">SysTimer_MSIP_MSIP_Pos</code> 0U</dt>
+<dd><p>SysTick Timer MSIP: MSIP bit Position. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga62b819dc444c74f1424c50cf13fcb2a0"></span><code class="sig-name descname">SysTimer_MSIP_MSIP_Msk</code> (1UL &lt;&lt; SysTimer_MSIP_MSIP_Pos)</dt>
+<dd><p>SysTick Timer MSIP: MSIP Mask. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1gacffb8ad26cdd32cef2ee67bde9ddb122"></span><code class="sig-name descname">SysTimer_MTIMER_Msk</code> (0xFFFFFFFFFFFFFFFFULL)</dt>
+<dd><p>SysTick Timer MTIMER value Mask. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga0fb8a9811b2d773529fb0f7db866e5e5"></span><code class="sig-name descname">SysTimer_MTIMERCMP_Msk</code> (0xFFFFFFFFFFFFFFFFULL)</dt>
+<dd><p>SysTick Timer MTIMERCMP value Mask. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga9b50cbd77c10af62deca85e3d2509c72"></span><code class="sig-name descname">SysTimer_MTIMECTL_Msk</code> (0xFFFFFFFFUL)</dt>
+<dd><p>SysTick Timer MTIMECTL/MSTOP value Mask. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga40ba61e02d93e37ffbb6452b54806af6"></span><code class="sig-name descname">SysTimer_MSIP_Msk</code> (0xFFFFFFFFUL)</dt>
+<dd><p>SysTick Timer MSIP value Mask. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga1028d9f654728860327c082a44b9f34f"></span><code class="sig-name descname">SysTimer_MSFTRST_Msk</code> (0xFFFFFFFFUL)</dt>
+<dd><p>SysTick Timer MSFTRST value Mask. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga181dffb1870282631f8858ea23d9b8fa"></span><code class="sig-name descname">SysTimer_MSFRST_KEY</code> (0x80000A5FUL)</dt>
+<dd><p>SysTick Timer Software Reset Request Key. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga2107a0ae6d9deefff31edf506a6e1e91"></span><code class="sig-name descname">SysTimer_BASE</code> __SYSTIMER_BASEADDR</dt>
+<dd><p>SysTick Base Address. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99"></span><code class="sig-name descname">SysTimer</code> ((<a class="reference internal" href="#structSysTimer__Type"><span class="std std-ref">SysTimer_Type</span></a> *) SysTimer_BASE)</dt>
+<dd><p>SysTick configuration struct. </p>
+</dd></dl>
+
+</div>
+<dl class="class">
+<dt id="_CPPv413SysTimer_Type">
+<span id="_CPPv313SysTimer_Type"></span><span id="_CPPv213SysTimer_Type"></span><span id="SysTimer_Type"></span><span class="target" id="structSysTimer__Type"></span><em class="property">struct </em><code class="sig-name descname">SysTimer_Type</code><a class="headerlink" href="#_CPPv413SysTimer_Type" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;core_feature_timer.h&gt;</em><p>Structure type to access the System Timer (SysTimer). </p>
+<p>Structure definition to access the system timer(SysTimer). <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p><ul class="simple">
+<li><p>MSFTRST register is introduced in Nuclei N Core version 1.3(__NUCLEI_N_REV &gt;= 0x0103)</p></li>
+<li><p>MSTOP register is renamed to MTIMECTL register in Nuclei N Core version 1.4(__NUCLEI_N_REV &gt;= 0x0104)</p></li>
+<li><p>CMPCLREN and CLKSRC bit in MTIMECTL register is introduced in Nuclei N Core version 1.4(__NUCLEI_N_REV &gt;= 0x0104) </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../api_nmsis_core_csr_register_access.html" class="btn btn-neutral float-right" title="Core CSR Register Access" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api_nmsis_core_eclic_registers.html" class="btn btn-neutral float-left" title="Register Define and Type Definitions Of ECLIC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-Present, Nuclei
+      <span class="lastupdated">
+        Last updated on Aug 05, 2021.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

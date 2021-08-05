@@ -1,5 +1,6 @@
 var group__MatrixChol =
 [
+    [ "riscv_mat_cholesky_f16", "group__MatrixChol.html#ga63e480a3c87ffed12e48600c97812276", null ],
     [ "riscv_mat_cholesky_f32", "group__MatrixChol.html#gaa5cee1a82d4bfcff5cd420e3d55e249c", null ],
     [ "riscv_mat_cholesky_f64", "group__MatrixChol.html#gaa508b78b64534f2a91be6b37c5b9e7dc", null ],
     [ "riscv_mat_ldlt_f32", "group__MatrixChol.html#ga7f974cecafa21ce74c769b2a93813dcc", null ],

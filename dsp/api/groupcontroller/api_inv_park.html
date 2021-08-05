@@ -1,46 +1,43 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
-  <meta charset="utf-8" />
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Vector Inverse Park transform &mdash; NMSIS 1.0.2-RC1 documentation</title>
   
 
   
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-
+  
   
   
 
   
-  
-
-  
-
-  
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Sine Cosine" href="api_sincos.html" />
+    <link rel="next" title="Vector Clarke Transform" href="api_clarke.html" />
     <link rel="prev" title="Vector Park Transform" href="api_park.html" /> 
 </head>
 
@@ -85,7 +82,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -93,7 +89,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -101,25 +97,29 @@
 <li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_groupfastmath.html">Fast Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupbayes.html">Bayesian estimators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_groupfilters.html">Filtering Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_groupmatrix.html">Matrix Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../api_groupcontroller.html">Controller Functions</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="api_pid.html">PID Motor Control</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_clarke.html">Vector Clarke Transform</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_inv_clarke.html">Vector Inverse Clarke Transform</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_park.html">Vector Park Transform</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Vector Inverse Park transform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_clarke.html">Vector Clarke Transform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_inv_clarke.html">Vector Inverse Clarke Transform</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_sincos.html">Sine Cosine</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupdistance.html">Distance functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupfastmath.html">Fast Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupfilters.html">Filtering Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupinterpolation.html">Interpolation Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupmatrix.html">Matrix Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupquaternionmath.html">Quaternion Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupstats.html">Statistics Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupsupport.html">Support Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_groupinterpolation.html">Interpolation Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupsvm.html">SVM Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
@@ -134,7 +134,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -169,13 +168,11 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
           <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
         
@@ -188,7 +185,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="../../../_sources/dsp/api/groupcontroller/api_inv_park.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -202,16 +199,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="vector-inverse-park-transform">
+  <section id="vector-inverse-park-transform">
 <span id="nmsis-dsp-api-vector-inverse-park-transform"></span><h1>Vector Inverse Park transform<a class="headerlink" href="#vector-inverse-park-transform" title="Permalink to this headline">¶</a></h1>
-<dl class="cpp function">
+<dl class="function">
 <dt>
-<span class="target" id="group__inv__park_1ga551373c715baaa03726ac4a008f6fff7"></span><code class="sig-name descname">__STATIC_FORCEINLINE void riscv_inv_park_f32 (float32_t Id, float32_t Iq, float32_t *pIalpha, float32_t *pIbeta, float32_t sinVal, float32_t cosVal)</code></dt>
+<span class="target" id="group__inv__park_1ga551373c715baaa03726ac4a008f6fff7"></span><code class="sig-name descname">__STATIC_FORCEINLINE void riscv_inv_park_f32(float32_t Id, float32_t Iq, float32_t * pIalpha, float32_t * pIbeta, float32_t sinVal, float32_t cosVal)</code></dt>
 <dd></dd></dl>
 
-<dl class="cpp function">
+<dl class="function">
 <dt>
-<span class="target" id="group__inv__park_1ga295798b52c3a62efeaf00091e001ee20"></span><code class="sig-name descname">__STATIC_FORCEINLINE void riscv_inv_park_q31 (q31_t Id, q31_t Iq, q31_t *pIalpha, q31_t *pIbeta, q31_t sinVal, q31_t cosVal)</code></dt>
+<span class="target" id="group__inv__park_1ga295798b52c3a62efeaf00091e001ee20"></span><code class="sig-name descname">__STATIC_FORCEINLINE void riscv_inv_park_q31(q31_t Id, q31_t Iq, q31_t * pIalpha, q31_t * pIbeta, q31_t sinVal, q31_t cosVal)</code></dt>
 <dd></dd></dl>
 
 <dl class="group">
@@ -220,98 +217,93 @@
 <dd><p>end of park group</p>
 <p>Inverse Park transform converts the input flux and torque components to two-coordinate vector.</p>
 <p>The function operates on a single sample of data and each call to the function returns the processed output. The library provides separate functions for Q31 and floating-point data types. <dl class="simple">
-<dt><strong>Algorithm</strong></dt><dd><p>
- where <code class="docutils literal notranslate"><span class="pre">pIalpha</span></code> and <code class="docutils literal notranslate"><span class="pre">pIbeta</span></code> are the stator vector components, <code class="docutils literal notranslate"><span class="pre">Id</span></code> and <code class="docutils literal notranslate"><span class="pre">Iq</span></code> are rotor vector components and <code class="docutils literal notranslate"><span class="pre">cosVal</span></code> and <code class="docutils literal notranslate"><span class="pre">sinVal</span></code> are the cosine and sine values of theta (rotor flux position). <img alt="../../../_images/parkInvFormula.png" src="../../../_images/parkInvFormula.png" /></p>
+<dt><strong>Algorithm</strong></dt><dd><p><p> where </p>
+<code class="docutils literal notranslate"><span class="pre">pIalpha</span></code> and <code class="docutils literal notranslate"><span class="pre">pIbeta</span></code> are the stator vector components, <code class="docutils literal notranslate"><span class="pre">Id</span></code> and <code class="docutils literal notranslate"><span class="pre">Iq</span></code> are rotor vector components and <code class="docutils literal notranslate"><span class="pre">cosVal</span></code> and <code class="docutils literal notranslate"><span class="pre">sinVal</span></code> are the cosine and sine values of theta (rotor flux position). <img alt="../../../_images/parkInvFormula.png" src="../../../_images/parkInvFormula.png" /></p>
 </dd>
 <dt><strong>Fixed-Point Behavior</strong></dt><dd><p>Care must be taken when using the Q31 version of the Park transform. In particular, the overflow and saturation behavior of the accumulator used must be considered. Refer to the function specific documentation below for usage guidelines. </p>
 </dd>
 </dl>
 </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
-<dl class="cpp function">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="function">
 <dt>
-<span class="target" id="group__inv__park_1ga551373c715baaa03726ac4a008f6fff7"></span><code class="sig-name descname">__STATIC_FORCEINLINE void riscv_inv_park_f32 (float32_t Id, float32_t Iq, float32_t *pIalpha, float32_t *pIbeta, float32_t sinVal, float32_t cosVal)</code></dt>
+<span class="target" id="group__inv__park_1ga551373c715baaa03726ac4a008f6fff7"></span><code class="sig-name descname">__STATIC_FORCEINLINE void riscv_inv_park_f32(float32_t Id, float32_t Iq, float32_t * pIalpha, float32_t * pIbeta, float32_t sinVal, float32_t cosVal)</code></dt>
 <dd><p>Floating-point Inverse Park transform. </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>Id</strong> – <strong>[in]</strong> input coordinate of rotor reference frame d </p></li>
-<li><p><strong>Iq</strong> – <strong>[in]</strong> input coordinate of rotor reference frame q </p></li>
-<li><p><strong>pIalpha</strong> – <strong>[out]</strong> points to output two-phase orthogonal vector axis alpha </p></li>
-<li><p><strong>pIbeta</strong> – <strong>[out]</strong> points to output two-phase orthogonal vector axis beta </p></li>
-<li><p><strong>sinVal</strong> – <strong>[in]</strong> sine value of rotation angle theta </p></li>
-<li><p><strong>cosVal</strong> – <strong>[in]</strong> cosine value of rotation angle theta </p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>none </p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt>
-<span class="target" id="group__inv__park_1ga295798b52c3a62efeaf00091e001ee20"></span><code class="sig-name descname">__STATIC_FORCEINLINE void riscv_inv_park_q31 (q31_t Id, q31_t Iq, q31_t *pIalpha, q31_t *pIbeta, q31_t sinVal, q31_t cosVal)</code></dt>
-<dd><p>Inverse Park transform for Q31 version. </p>
 <p><dl class="simple">
-<dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The function is implemented using an internal 32-bit accumulator. The accumulator maintains 1.31 format by truncating lower 31 bits of the intermediate multiplication in 2.62 format. There is saturation on the addition, hence there is no risk of overflow. </p>
+<dt><strong>Return</strong></dt><dd><p>none </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">Id</span></code>: input coordinate of rotor reference frame d </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">Iq</span></code>: input coordinate of rotor reference frame q </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pIalpha</span></code>: points to output two-phase orthogonal vector axis alpha </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pIbeta</span></code>: points to output two-phase orthogonal vector axis beta </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">sinVal</span></code>: sine value of rotation angle theta </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">cosVal</span></code>: cosine value of rotation angle theta </p></li>
+</ul>
 </dd>
 </dl>
 </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>Id</strong> – <strong>[in]</strong> input coordinate of rotor reference frame d </p></li>
-<li><p><strong>Iq</strong> – <strong>[in]</strong> input coordinate of rotor reference frame q </p></li>
-<li><p><strong>pIalpha</strong> – <strong>[out]</strong> points to output two-phase orthogonal vector axis alpha </p></li>
-<li><p><strong>pIbeta</strong> – <strong>[out]</strong> points to output two-phase orthogonal vector axis beta </p></li>
-<li><p><strong>sinVal</strong> – <strong>[in]</strong> sine value of rotation angle theta </p></li>
-<li><p><strong>cosVal</strong> – <strong>[in]</strong> cosine value of rotation angle theta </p></li>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__inv__park_1ga295798b52c3a62efeaf00091e001ee20"></span><code class="sig-name descname">__STATIC_FORCEINLINE void riscv_inv_park_q31(q31_t Id, q31_t Iq, q31_t * pIalpha, q31_t * pIbeta, q31_t sinVal, q31_t cosVal)</code></dt>
+<dd><p>Inverse Park transform for Q31 version. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none</p>
+</dd>
+<dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The function is implemented using an internal 32-bit accumulator. The accumulator maintains 1.31 format by truncating lower 31 bits of the intermediate multiplication in 2.62 format. There is saturation on the addition, hence there is no risk of overflow. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">Id</span></code>: input coordinate of rotor reference frame d </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">Iq</span></code>: input coordinate of rotor reference frame q </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pIalpha</span></code>: points to output two-phase orthogonal vector axis alpha </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pIbeta</span></code>: points to output two-phase orthogonal vector axis beta </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">sinVal</span></code>: sine value of rotation angle theta </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">cosVal</span></code>: cosine value of rotation angle theta </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>none</p>
-</dd>
 </dl>
+</p>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="api_sincos.html" class="btn btn-neutral float-right" title="Sine Cosine" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="api_park.html" class="btn btn-neutral float-left" title="Vector Park Transform" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+        <a href="api_clarke.html" class="btn btn-neutral float-right" title="Vector Clarke Transform" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api_park.html" class="btn btn-neutral float-left" title="Vector Park Transform" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2019-Present, Nuclei.
+        &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 03, 2021.
+        Last updated on Aug 05, 2021.
       </span>
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 
@@ -319,6 +311,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

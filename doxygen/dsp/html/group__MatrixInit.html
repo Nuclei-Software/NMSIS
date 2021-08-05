@@ -91,6 +91,9 @@ $(document).ready(function(){initNavTree('group__MatrixInit.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:gad12ab30d9a930a889ea5b4b8d3bbcfc6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MatrixInit.html#gad12ab30d9a930a889ea5b4b8d3bbcfc6">riscv_mat_init_f16</a> (<a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *S, uint16_t nRows, uint16_t nColumns, float16_t *pData)</td></tr>
+<tr class="memdesc:gad12ab30d9a930a889ea5b4b8d3bbcfc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Floating-point matrix initialization.  <a href="#gad12ab30d9a930a889ea5b4b8d3bbcfc6">More...</a><br /></td></tr>
+<tr class="separator:gad12ab30d9a930a889ea5b4b8d3bbcfc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gadd1996f7da2fd9f19a6e2f3e691b681f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MatrixInit.html#gadd1996f7da2fd9f19a6e2f3e691b681f">riscv_mat_init_f32</a> (<a class="el" href="structriscv__matrix__instance__f32.html">riscv_matrix_instance_f32</a> *S, uint16_t nRows, uint16_t nColumns, float32_t *pData)</td></tr>
 <tr class="memdesc:gadd1996f7da2fd9f19a6e2f3e691b681f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Floating-point matrix initialization.  <a href="#gadd1996f7da2fd9f19a6e2f3e691b681f">More...</a><br /></td></tr>
 <tr class="separator:gadd1996f7da2fd9f19a6e2f3e691b681f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -107,6 +110,58 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Initializes the underlying matrix data structure. The functions set the <code>numRows</code>, <code>numCols</code>, and <code>pData</code> fields of the matrix data structure. </p>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="gad12ab30d9a930a889ea5b4b8d3bbcfc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad12ab30d9a930a889ea5b4b8d3bbcfc6">&#9670;&nbsp;</a></span>riscv_mat_init_f16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void riscv_mat_init_f16 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *&#160;</td>
+          <td class="paramname"><em>S</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>nRows</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>nColumns</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float16_t *&#160;</td>
+          <td class="paramname"><em>pData</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Floating-point matrix initialization. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">S</td><td>points to an instance of the floating-point matrix structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nRows</td><td>number of rows in the matrix </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nColumns</td><td>number of columns in the matrix </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pData</td><td>points to the matrix data array </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
+
+</div>
+</div>
 <a id="gadd1996f7da2fd9f19a6e2f3e691b681f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gadd1996f7da2fd9f19a6e2f3e691b681f">&#9670;&nbsp;</a></span>riscv_mat_init_f32()</h2>
 
@@ -320,7 +375,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Aug 3 2021 10:26:13 for NMSIS-DSP by
+    <li class="footer">Generated on Thu Aug 5 2021 10:52:54 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

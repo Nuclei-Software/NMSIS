@@ -1,47 +1,44 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
-  <meta charset="utf-8" />
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Cosine &mdash; NMSIS 1.0.2-RC1 documentation</title>
   
 
   
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-
+  
   
   
 
   
-  
-
-  
-
-  
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Sine" href="api_sin.html" />
-    <link rel="prev" title="Square Root" href="api_sqrt.html" /> 
+    <link rel="next" title="Fixed point division" href="api_divide.html" />
+    <link rel="prev" title="Fast Math Functions" href="../api_groupfastmath.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -85,7 +82,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -93,7 +89,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -101,22 +97,27 @@
 <li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupbayes.html">Bayesian estimators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupcontroller.html">Controller Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupdistance.html">Distance functions</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../api_groupfastmath.html">Fast Math Functions</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="api_sqrt.html">Square Root</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Cosine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_divide.html">Fixed point division</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_sin.html">Sine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_sqrt.html">Square Root</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupfilters.html">Filtering Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupinterpolation.html">Interpolation Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupmatrix.html">Matrix Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_groupcontroller.html">Controller Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupquaternionmath.html">Quaternion Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupstats.html">Statistics Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupsupport.html">Support Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_groupinterpolation.html">Interpolation Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupsvm.html">SVM Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
@@ -131,7 +132,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -166,13 +166,11 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
           <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
         
@@ -185,7 +183,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="../../../_sources/dsp/api/groupfastmath/api_cos.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -199,19 +197,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="cosine">
+  <section id="cosine">
 <span id="nmsis-dsp-api-cosine"></span><h1>Cosine<a class="headerlink" href="#cosine" title="Permalink to this headline">¶</a></h1>
-<dl class="cpp function">
+<dl class="function">
 <dt id="_CPPv413riscv_cos_f329float32_t">
 <span id="_CPPv313riscv_cos_f329float32_t"></span><span id="_CPPv213riscv_cos_f329float32_t"></span><span id="riscv_cos_f32__float32_t"></span><span class="target" id="group__cos_1gaf64b27f7eb9658ef96b44a5f0fcf959e"></span>float32_t <code class="sig-name descname">riscv_cos_f32</code><span class="sig-paren">(</span>float32_t <em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413riscv_cos_f329float32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="cpp function">
+<dl class="function">
 <dt id="_CPPv413riscv_cos_q315q31_t">
 <span id="_CPPv313riscv_cos_q315q31_t"></span><span id="_CPPv213riscv_cos_q315q31_t"></span><span id="riscv_cos_q31__q31_t"></span><span class="target" id="group__cos_1gaa303d5764cfe18487ff02951a12b6e11"></span>q31_t <code class="sig-name descname">riscv_cos_q31</code><span class="sig-paren">(</span>q31_t <em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413riscv_cos_q315q31_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="cpp function">
+<dl class="function">
 <dt id="_CPPv413riscv_cos_q155q15_t">
 <span id="_CPPv313riscv_cos_q155q15_t"></span><span id="_CPPv213riscv_cos_q155q15_t"></span><span id="riscv_cos_q15__q15_t"></span><span class="target" id="group__cos_1gaa66f064ed8d2ada72e47d966081c1704"></span>q15_t <code class="sig-name descname">riscv_cos_q15</code><span class="sig-paren">(</span>q15_t <em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413riscv_cos_q155q15_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
@@ -229,107 +227,108 @@
 <p>where </p>
 <p>end of sin group </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
-<dl class="cpp function">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="function">
 <dt>
 <span class="target" id="group__cos_1gaf64b27f7eb9658ef96b44a5f0fcf959e"></span>float32_t <code class="sig-name descname">riscv_cos_f32</code><span class="sig-paren">(</span>float32_t <em>x</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Fast approximation to the trigonometric cosine function for floating-point data. </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> – <strong>[in]</strong> input value in radians. </p></li>
-<li><p><strong>x</strong> – <strong>[in]</strong> input value in radians </p></li>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>cos(x).</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>cos(x) </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">x</span></code>: input value in radians. </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>cos(x).</p>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>cos(x) </p>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">x</span></code>: input value in radians </p></li>
+</ul>
 </dd>
 </dl>
+</p>
 </dd></dl>
 
-<dl class="cpp function">
+<dl class="function">
 <dt>
 <span class="target" id="group__cos_1gaa303d5764cfe18487ff02951a12b6e11"></span>q31_t <code class="sig-name descname">riscv_cos_q31</code><span class="sig-paren">(</span>q31_t <em>x</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Fast approximation to the trigonometric cosine function for Q31 data. </p>
-<p>
-The Q31 input value is in the range [0 +0.9999] and is mapped to a radian value in the range [0 2*PI). </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> – <strong>[in]</strong> Scaled input value in radians. </p></li>
-<li><p><strong>x</strong> – <strong>[in]</strong> Scaled input value in radians </p></li>
+<p><p>The Q31 input value is in the range [0 +0.9999] and is mapped to a radian value in the range [0 2*PI). </p>
+<dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>cos(x).</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>cos(x)</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">x</span></code>: Scaled input value in radians. </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>cos(x).</p>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>cos(x)</p>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">x</span></code>: Scaled input value in radians </p></li>
+</ul>
 </dd>
 </dl>
+</p>
 </dd></dl>
 
-<dl class="cpp function">
+<dl class="function">
 <dt>
 <span class="target" id="group__cos_1gaa66f064ed8d2ada72e47d966081c1704"></span>q15_t <code class="sig-name descname">riscv_cos_q15</code><span class="sig-paren">(</span>q15_t <em>x</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Fast approximation to the trigonometric cosine function for Q15 data. </p>
-<p>
-The Q15 input value is in the range [0 +0.9999] and is mapped to a radian value in the range [0 2*PI). </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> – <strong>[in]</strong> Scaled input value in radians. </p></li>
-<li><p><strong>x</strong> – <strong>[in]</strong> Scaled input value in radians </p></li>
+<p><p>The Q15 input value is in the range [0 +0.9999] and is mapped to a radian value in the range [0 2*PI). </p>
+<dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>cos(x).</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>cos(x)</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">x</span></code>: Scaled input value in radians. </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>cos(x).</p>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>cos(x)</p>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">x</span></code>: Scaled input value in radians </p></li>
+</ul>
 </dd>
 </dl>
+</p>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="api_sin.html" class="btn btn-neutral float-right" title="Sine" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="api_sqrt.html" class="btn btn-neutral float-left" title="Square Root" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+        <a href="api_divide.html" class="btn btn-neutral float-right" title="Fixed point division" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../api_groupfastmath.html" class="btn btn-neutral float-left" title="Fast Math Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2019-Present, Nuclei.
+        &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 03, 2021.
+        Last updated on Aug 05, 2021.
       </span>
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 
@@ -337,6 +336,7 @@ The Q15 input value is in the range [0 +0.9999] and is mapped to a radian value 
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

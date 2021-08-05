@@ -1,43 +1,40 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
-  <meta charset="utf-8" />
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Interrupt and Exception Handling File: intexc_&lt;device&gt;.S &mdash; NMSIS 1.0.2-RC1 documentation</title>
   
 
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-
+  
   
   
 
   
-  
-
-  
-
-  
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Device Linker Script: gcc_&lt;device&gt;.ld" href="core_template_linker_device.html" />
@@ -85,7 +82,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -93,7 +89,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">NMSIS Core</a><ul class="current">
@@ -126,7 +122,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="register_mapping.html">Register Mapping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/index.html">NMSIS Core API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html">NMSIS CORE API</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../dsp/index.html">NMSIS DSP</a></li>
@@ -139,7 +135,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -174,13 +169,11 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="../index.html">Docs</a> &raquo;</li>
         
           <li><a href="index.html">NMSIS Core</a> &raquo;</li>
         
@@ -191,7 +184,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="../_sources/core/core_template_intexc.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -205,7 +198,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="interrupt-and-exception-handling-file-intexc-device-s">
+  <section id="interrupt-and-exception-handling-file-intexc-device-s">
 <span id="core-template-intexc-device"></span><h1>Interrupt and Exception Handling File: intexc_&lt;device&gt;.S<a class="headerlink" href="#interrupt-and-exception-handling-file-intexc-device-s" title="Permalink to this headline">¶</a></h1>
 <dl class="simple">
 <dt>The <strong>intexc File intexc_&lt;device&gt;.S</strong> contains:</dt><dd><ul class="simple">
@@ -218,24 +211,26 @@
 </dl>
 <p>Nuclei processors provide <strong>NMI(Non-Maskable Interrupt)</strong>, <strong>Exception</strong>,
 <strong>Vector Interrupt</strong> and <strong>Non-Vector Interrupt</strong> features.</p>
-<div class="section" id="nmi-non-maskable-interrupt">
+<section id="nmi-non-maskable-interrupt">
 <h2>NMI(Non-Maskable Interrupt)<a class="headerlink" href="#nmi-non-maskable-interrupt" title="Permalink to this headline">¶</a></h2>
 <p>Click <a class="reference external" href="https://doc.nucleisys.com/nuclei_spec/isa/nmi.html">NMI</a> to learn about Nuclei Processor Core NMI in Nuclei ISA Spec.</p>
 <p>NMI is used for urgent external HW error. It can’t be masked and disabled.</p>
 <p>When NMI happened, bit 9 of CSR <code class="docutils literal notranslate"><span class="pre">MMSIC_CTL</span></code> will be checked.
 If this bit value is 1, then NMI entry address will be the same as exception(CSR_MTVEC), and exception code for NMI will be 0xFFF, otherwise NMI entry will be same as reset_vector.</p>
 <p>In NMSIS-Core, the bit 9 of CSR <code class="docutils literal notranslate"><span class="pre">MMISC_CTL</span></code> is set to 1 during core startup, so NMI will be treated as Exception and handled.</p>
-</div>
-<div class="section" id="exception">
+</section>
+<section id="exception">
 <h2>Exception<a class="headerlink" href="#exception" title="Permalink to this headline">¶</a></h2>
 <p>Click <a class="reference external" href="https://doc.nucleisys.com/nuclei_spec/isa/exception.html">Exception</a> to learn about Nuclei Processor Core Exception in Nuclei ISA Spec.</p>
-<p>For CPU exception, the entry for exception will be <code class="docutils literal notranslate"><span class="pre">exc_entry</span></code>, in this entry code, it will call default exception handler <a class="reference internal" href="api/core_system_device.html#_CPPv422core_exception_handlermm" title="core_exception_handler"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">core_exception_handler()</span></code></a>.</p>
+<p>For CPU exception, the entry for exception will be <code class="docutils literal notranslate"><span class="pre">exc_entry</span></code>, in this entry code, it will call default exception handler <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">core_exception_handler()</span></code>.</p>
 <p>In the common exception routine(<code class="docutils literal notranslate"><span class="pre">exc_entry</span></code>) to get more information like exception code.
 Exception handle flow show as below picture:</p>
-<div class="figure align-center" id="id3">
+<figure class="align-center" id="id3">
 <span id="figure-template-intexc-1"></span><a class="reference internal image-reference" href="../_images/NMSIS_exception.png"><img alt="Exception Handling Flow" src="../_images/NMSIS_exception.png" style="width: 50%;" /></a>
-<p class="caption"><span class="caption-text">Exception Handling Flow</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Exception Handling Flow</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>NMI and exception could support nesting. Two levels of NMI/Exception state save stacks are supported.</p>
 <p>We support three nesting mode as below:</p>
 <ul class="simple">
@@ -243,33 +238,37 @@ Exception handle flow show as below picture:</p>
 <li><p>Exception nesting exception</p></li>
 <li><p>Exception nesting NMI</p></li>
 </ul>
-<p>For software, we have provided the common entry for NMI and exception. Silicon vendor only need adapt the interface defined in <a class="reference internal" href="api/core_system_device.html#core-api-intexc-nmi-handling"><span class="std std-ref">Interrupt Exception NMI Handling</span></a>.</p>
+<p>For software, we have provided the common entry for NMI and exception. Silicon vendor only need adapt the interface defined in <span class="xref std std-ref">core_api_intexc_nmi_handling</span>.</p>
 <p>Context save and restore have been handled by <code class="docutils literal notranslate"><span class="pre">exc_entry</span></code> interface.</p>
 <p>When exception exception return it will run the intruction which trigger the exception again. It will cause software dead loop. So in the exception handler for each exception code, we propose to set CSR <code class="docutils literal notranslate"><span class="pre">MEPC</span></code> to be <code class="docutils literal notranslate"><span class="pre">MEPC+4</span></code>, then it will start from next instruction of MEPC.</p>
-</div>
-<div class="section" id="interrupt">
+</section>
+<section id="interrupt">
 <h2>Interrupt<a class="headerlink" href="#interrupt" title="Permalink to this headline">¶</a></h2>
 <p>Click <a class="reference external" href="https://doc.nucleisys.com/nuclei_spec/isa/interrupt.html">Interrupt</a> to learn about Nuclei Processor Core Interrupt in Nuclei Spec.</p>
 <p>Interrupt could be configured as <strong>CLINT</strong> mode or <strong>ECILC</strong> mode.</p>
 <p>In NMSIS-Core, Interrupt has been configured as <strong>ECLIC</strong> mode during startup in <em>startup_&lt;Devices&gt;.S</em>, which is also recommended setting using Nuclei Processors.</p>
 <p>ECLIC managed interrupt could configured as <strong>vector</strong> and <strong>non-vector</strong> mode.</p>
 <p>Detail interrupt handling process as below picture:</p>
-<div class="figure align-center" id="id4">
+<figure class="align-center" id="id4">
 <span id="figure-template-intexc-2"></span><a class="reference internal image-reference" href="../_images/NMSIS_intexc.png"><img alt="Interrupt Handling Flow" src="../_images/NMSIS_intexc.png" style="width: 80%;" /></a>
-<p class="caption"><span class="caption-text">Interrupt Handling Flow</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Interrupt Handling Flow</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>To get highest priority interrupt we need compare the interrupt level first.If level is the same then compare the priority. High level interrupt could interrupt low level
 ISR and trigger interrupt nesting. If different priority with same level interrupt pending higher priority will be served first. Interrupt could be configured as vector mode
 and non-vector mode by vendor. For non-vector mode interrupt handler entry get from MTVT2 and exception/NMI handler entry get from MTVEC. If Vendor need set non vector mode
 interrupt handler entry from <code class="docutils literal notranslate"><span class="pre">MTVVEC</span></code> you need set <code class="docutils literal notranslate"><span class="pre">MTVT2.BIT0</span></code> as 0.</p>
-<div class="section" id="non-vector-interrupt-sw-handler">
+<section id="non-vector-interrupt-sw-handler">
 <h3>Non-Vector Interrupt SW handler<a class="headerlink" href="#non-vector-interrupt-sw-handler" title="Permalink to this headline">¶</a></h3>
 <p>For <strong>non-vector</strong> mode interrupt it will make the necessary CSR registers and context save and restore.
 Non-vector mode software handle flow show as below pciture:</p>
-<div class="figure align-center" id="id5">
+<figure class="align-center" id="id5">
 <span id="figure-template-intexc-3"></span><a class="reference internal image-reference" href="../_images/NMSIS_Interrupt_Nonvec_SW_flow.png"><img alt="Non-vector mode interrupt software handle flow" src="../_images/NMSIS_Interrupt_Nonvec_SW_flow.png" style="width: 50%;" /></a>
-<p class="caption"><span class="caption-text">Non-vector mode interrupt software handle flow</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Non-vector mode interrupt software handle flow</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p><strong>Detail description for non-vector mode interrupt handler as below steps:</strong></p>
 <ol class="arabic simple">
 <li><p>Get non-vector mode handler entry from <code class="docutils literal notranslate"><span class="pre">MTVT2</span></code> if <code class="docutils literal notranslate"><span class="pre">MTVT2.BIT0</span></code> is 1(proposed configuration).</p></li>
@@ -284,22 +283,26 @@ Non-vector mode software handle flow show as below pciture:</p>
 </ol>
 <p>For <strong>non-vector</strong> mode iterrupt it could support <strong>interrupt nesting</strong>.</p>
 <p><strong>Interrupt nesting</strong> handle flow show as below picture:</p>
-<div class="figure align-center" id="id6">
+<figure class="align-center" id="id6">
 <span id="figure-template-intexc-4"></span><a class="reference internal image-reference" href="../_images/NMSIS_Interrupt_Nonvec_Nesting_SW_flow.png"><img alt="Nesting interrupt handling flow" src="../_images/NMSIS_Interrupt_Nonvec_Nesting_SW_flow.png" style="width: 80%;" /></a>
-<p class="caption"><span class="caption-text">Nesting interrupt handling flow</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="vector-interrupt-sw-handler">
+<figcaption>
+<p><span class="caption-text">Nesting interrupt handling flow</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="vector-interrupt-sw-handler">
 <h3>Vector Interrupt SW handler<a class="headerlink" href="#vector-interrupt-sw-handler" title="Permalink to this headline">¶</a></h3>
 <p>If vector interrupt handler need support nesting or making function call Vector mode software handling flow show as below picture:</p>
-<div class="figure align-center" id="id7">
+<figure class="align-center" id="id7">
 <span id="figure-template-intexc-5"></span><a class="reference internal image-reference" href="../_images/NMSIS_Nesting_Vector_Interrupt_SW_flow.png"><img alt="Vector mode nesting interrupt handling flow" src="../_images/NMSIS_Nesting_Vector_Interrupt_SW_flow.png" style="width: 20%;" /></a>
-<p class="caption"><span class="caption-text">Vector mode nesting interrupt handling flow</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Vector mode nesting interrupt handling flow</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p><strong>Detail description for nested vector mode interrupt handler as below steps:</strong></p>
 <ol class="arabic simple">
 <li><p>Get vector mode handler from address of vector table entry <code class="docutils literal notranslate"><span class="pre">MTVT</span></code> added offset.</p></li>
-<li><p>Context save to stack for cpu registers, done in each vector interrupt handler via <a class="reference internal" href="api/core_compiler_control.html#c.__INTERRUPT" title="__INTERRUPT"><code class="xref c c-macro docutils literal notranslate"><span class="pre">__INTERRUPT</span></code></a></p></li>
+<li><p>Context save to stack for cpu registers, done in each vector interrupt handler via <a class="reference internal" href="api/api_nmsis_core_compilercontrol.html#c.__INTERRUPT" title="__INTERRUPT"><code class="xref c c-macro docutils literal notranslate"><span class="pre">__INTERRUPT</span></code></a></p></li>
 <li><p>Save CSR registers <code class="docutils literal notranslate"><span class="pre">MEPC/MCAUSE/MSUBM</span></code> to stack, done in each vector interrupt handler by read and save these CSRs into variables.</p></li>
 <li><p>Execute the interrupt handling.</p></li>
 <li><p>Restore CSR registers <code class="docutils literal notranslate"><span class="pre">MEPC/MCAUSE/MSUBM</span></code> from stack.</p></li>
@@ -375,9 +378,9 @@ Non-vector mode software handle flow show as below pciture:</p>
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></div>
-</div>
-</div>
-<div class="section" id="intexc-device-s-template-file">
+</section>
+</section>
+<section id="intexc-device-s-template-file">
 <h2>intexc_Device.S Template File<a class="headerlink" href="#intexc-device-s-template-file" title="Permalink to this headline">¶</a></h2>
 <p>The file exists for each supported toolchain and is the only toolchain specific NMSIS file.</p>
 <p>Normally this file needn’t adapt for different device. If CPU CSR registers have done some
@@ -848,40 +851,40 @@ changes you may need some adaption.</p>
     <span class="n">j</span> <span class="mi">1</span><span class="n">b</span>
 </pre></div>
 </td></tr></table></div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="core_template_linker_device.html" class="btn btn-neutral float-right" title="Device Linker Script: gcc_&lt;device&gt;.ld" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="core_template_startup_device.html" class="btn btn-neutral float-left" title="Startup File startup_&lt;device&gt;.S" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+        <a href="core_template_linker_device.html" class="btn btn-neutral float-right" title="Device Linker Script: gcc_&lt;device&gt;.ld" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="core_template_startup_device.html" class="btn btn-neutral float-left" title="Startup File startup_&lt;device&gt;.S" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2019-Present, Nuclei.
+        &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 03, 2021.
+        Last updated on Aug 05, 2021.
       </span>
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 
@@ -889,6 +892,7 @@ changes you may need some adaption.</p>
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

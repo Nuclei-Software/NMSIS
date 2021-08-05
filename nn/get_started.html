@@ -1,43 +1,40 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
-  <meta charset="utf-8" />
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Using NMSIS-NN &mdash; NMSIS 1.0.2-RC1 documentation</title>
   
 
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-
+  
   
   
 
   
-  
-
-  
-
-  
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="NMSIS NN API" href="api/index.html" />
@@ -85,7 +82,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -93,7 +89,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../core/index.html">NMSIS Core</a></li>
@@ -119,7 +115,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -154,13 +149,11 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="../index.html">Docs</a> &raquo;</li>
         
           <li><a href="index.html">NMSIS NN</a> &raquo;</li>
         
@@ -169,7 +162,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="../_sources/nn/get_started.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -183,10 +176,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="using-nmsis-nn">
+  <section id="using-nmsis-nn">
 <span id="nn-get-started"></span><h1>Using NMSIS-NN<a class="headerlink" href="#using-nmsis-nn" title="Permalink to this headline">¶</a></h1>
 <p>Here we will describe how to run the nmsis nn examples in Nuclei Spike.</p>
-<div class="section" id="preparation">
+<section id="preparation">
 <h2>Preparation<a class="headerlink" href="#preparation" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Nuclei Modified Spike - <code class="docutils literal notranslate"><span class="pre">xl_spike</span></code></p></li>
@@ -194,8 +187,8 @@
 <li><p>Nuclei RISCV GNU Toolchain</p></li>
 <li><p>CMake &gt;= 3.5</p></li>
 </ul>
-</div>
-<div class="section" id="tool-setup">
+</section>
+<section id="tool-setup">
 <h2>Tool Setup<a class="headerlink" href="#tool-setup" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li><p>Export <strong>PATH</strong> correctly for <cite>xl_spike</cite> and <cite>riscv-nuclei-elf-gcc</cite></p></li>
@@ -203,8 +196,8 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export PATH=/path/to/xl_spike/bin:/path/to/riscv-nuclei-elf-gcc/bin/:$PATH
 </pre></div>
 </div>
-</div>
-<div class="section" id="build-nmsis-nn-library">
+</section>
+<section id="build-nmsis-nn-library">
 <h2>Build NMSIS NN Library<a class="headerlink" href="#build-nmsis-nn-library" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li><p>Download or clone NMSIS source code into <strong>NMSIS</strong> directory.</p></li>
@@ -246,8 +239,8 @@ total 3000
 <li><p>You can strip the generated DSP and NN library using <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">strip</span></code></p></li>
 </ul>
 </div>
-</div>
-<div class="section" id="how-to-run">
+</section>
+<section id="how-to-run">
 <h2>How to run<a class="headerlink" href="#how-to-run" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li><p>Set environment variables <code class="docutils literal notranslate"><span class="pre">NUCLEI_SDK_ROOT</span></code> and <code class="docutils literal notranslate"><span class="pre">NUCLEI_SDK_NMSIS</span></code>,
@@ -289,40 +282,40 @@ if you have enough memory to run it, just modify the
 <code class="docutils literal notranslate"><span class="pre">SOC</span></code> to the one your are using in step 1.</p></li>
 </ul>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="api/index.html" class="btn btn-neutral float-right" title="NMSIS NN API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="overview.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+        <a href="api/index.html" class="btn btn-neutral float-right" title="NMSIS NN API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="overview.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2019-Present, Nuclei.
+        &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 03, 2021.
+        Last updated on Aug 05, 2021.
       </span>
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 
@@ -330,6 +323,7 @@ if you have enough memory to run it, just modify the
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

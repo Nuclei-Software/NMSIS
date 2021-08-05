@@ -91,6 +91,9 @@ $(document).ready(function(){initNavTree('group__BasicScale.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:ga9afe16affdc398cd1857cf66141d80e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BasicScale.html#ga9afe16affdc398cd1857cf66141d80e6">riscv_scale_f16</a> (const float16_t *pSrc, float16_t scale, float16_t *pDst, uint32_t blockSize)</td></tr>
+<tr class="memdesc:ga9afe16affdc398cd1857cf66141d80e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiplies a floating-point vector by a scalar.  <a href="#ga9afe16affdc398cd1857cf66141d80e6">More...</a><br /></td></tr>
+<tr class="separator:ga9afe16affdc398cd1857cf66141d80e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga7ca2deeac250c6fb6c6bb2796bc15ba6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BasicScale.html#ga7ca2deeac250c6fb6c6bb2796bc15ba6">riscv_scale_f32</a> (const float32_t *pSrc, float32_t scale, float32_t *pDst, uint32_t blockSize)</td></tr>
 <tr class="memdesc:ga7ca2deeac250c6fb6c6bb2796bc15ba6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiplies a floating-point vector by a scalar.  <a href="#ga7ca2deeac250c6fb6c6bb2796bc15ba6">More...</a><br /></td></tr>
 <tr class="separator:ga7ca2deeac250c6fb6c6bb2796bc15ba6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -115,6 +118,58 @@ Functions</h2></td></tr>
     scale = scaleFract * 2^shift.
 </pre><p>The functions support in-place computation allowing the source and destination pointers to reference the same memory buffer. </p>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="ga9afe16affdc398cd1857cf66141d80e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9afe16affdc398cd1857cf66141d80e6">&#9670;&nbsp;</a></span>riscv_scale_f16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void riscv_scale_f16 </td>
+          <td>(</td>
+          <td class="paramtype">const float16_t *&#160;</td>
+          <td class="paramname"><em>pSrc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float16_t&#160;</td>
+          <td class="paramname"><em>scale</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float16_t *&#160;</td>
+          <td class="paramname"><em>pDst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>blockSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Multiplies a floating-point vector by a scalar. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pSrc</td><td>points to the input vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">scale</td><td>scale factor to be applied </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pDst</td><td>points to the output vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">blockSize</td><td>number of samples in each vector </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
+
+</div>
+</div>
 <a id="ga7ca2deeac250c6fb6c6bb2796bc15ba6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga7ca2deeac250c6fb6c6bb2796bc15ba6">&#9670;&nbsp;</a></span>riscv_scale_f32()</h2>
 
@@ -352,7 +407,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Aug 3 2021 10:26:12 for NMSIS-DSP by
+    <li class="footer">Generated on Thu Aug 5 2021 10:52:54 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

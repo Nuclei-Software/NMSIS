@@ -18,6 +18,7 @@ Filtering Functions
    groupfilters/api_fir_lattice.rst
    groupfilters/api_fir_sparse.rst
    groupfilters/api_iir_lattice.rst
+   groupfilters/api_ld.rst
    groupfilters/api_lms.rst
    groupfilters/api_lms_norm.rst
    groupfilters/api_fir_interpolate.rst

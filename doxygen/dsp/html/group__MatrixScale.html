@@ -91,6 +91,9 @@ $(document).ready(function(){initNavTree('group__MatrixScale.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:gace1d94851252ad0253a8063fb8d25fda"><td class="memItemLeft" align="right" valign="top">riscv_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MatrixScale.html#gace1d94851252ad0253a8063fb8d25fda">riscv_mat_scale_f16</a> (const <a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *pSrc, float16_t scale, <a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *pDst)</td></tr>
+<tr class="memdesc:gace1d94851252ad0253a8063fb8d25fda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Floating-point matrix scaling.  <a href="#gace1d94851252ad0253a8063fb8d25fda">More...</a><br /></td></tr>
+<tr class="separator:gace1d94851252ad0253a8063fb8d25fda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad025b0b8b1424e42dd4b0b0d88db2db8"><td class="memItemLeft" align="right" valign="top">riscv_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MatrixScale.html#gad025b0b8b1424e42dd4b0b0d88db2db8">riscv_mat_scale_f32</a> (const <a class="el" href="structriscv__matrix__instance__f32.html">riscv_matrix_instance_f32</a> *pSrc, float32_t scale, <a class="el" href="structriscv__matrix__instance__f32.html">riscv_matrix_instance_f32</a> *pDst)</td></tr>
 <tr class="memdesc:gad025b0b8b1424e42dd4b0b0d88db2db8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Floating-point matrix scaling.  <a href="#gad025b0b8b1424e42dd4b0b0d88db2db8">More...</a><br /></td></tr>
 <tr class="separator:gad025b0b8b1424e42dd4b0b0d88db2db8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -110,6 +113,55 @@ Matrix Scaling of a 3 x 3 matrix</div></div>
 <p>In the fixed-point Q15 and Q31 functions, <code>scale</code> is represented by a fractional multiplication <code>scaleFract</code> and an arithmetic shift <code>shift</code>. The shift allows the gain of the scaling operation to exceed 1.0. The overall scale factor applied to the fixed-point data is </p><pre>
     scale = scaleFract * 2^shift.
 </pre> <h2 class="groupheader">Function Documentation</h2>
+<a id="gace1d94851252ad0253a8063fb8d25fda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gace1d94851252ad0253a8063fb8d25fda">&#9670;&nbsp;</a></span>riscv_mat_scale_f16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">riscv_status riscv_mat_scale_f16 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *&#160;</td>
+          <td class="paramname"><em>pSrc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float16_t&#160;</td>
+          <td class="paramname"><em>scale</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *&#160;</td>
+          <td class="paramname"><em>pDst</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Floating-point matrix scaling. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pSrc</td><td>points to input matrix </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">scale</td><td>scale factor to be applied </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pDst</td><td>points to output matrix structure </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>execution status<ul>
+<li>RISCV_MATH_SUCCESS : Operation successful</li>
+<li>RISCV_MATH_SIZE_MISMATCH : Matrix size check failed </li>
+</ul>
+</dd></dl>
+
+</div>
+</div>
 <a id="gad025b0b8b1424e42dd4b0b0d88db2db8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gad025b0b8b1424e42dd4b0b0d88db2db8">&#9670;&nbsp;</a></span>riscv_mat_scale_f32()</h2>
 
@@ -278,7 +330,7 @@ Matrix Scaling of a 3 x 3 matrix</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Aug 3 2021 10:26:13 for NMSIS-DSP by
+    <li class="footer">Generated on Thu Aug 5 2021 10:52:54 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

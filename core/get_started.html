@@ -1,43 +1,40 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
-  <meta charset="utf-8" />
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Using NMSIS in Embedded Applications &mdash; NMSIS 1.0.2-RC1 documentation</title>
   
 
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-
+  
   
   
 
   
-  
-
-  
-
-  
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="NMSIS-Core Device Templates" href="core_templates.html" />
@@ -85,7 +82,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -93,7 +89,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">NMSIS Core</a><ul class="current">
@@ -111,7 +107,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="core_templates.html">NMSIS-Core Device Templates</a></li>
 <li class="toctree-l2"><a class="reference internal" href="register_mapping.html">Register Mapping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/index.html">NMSIS Core API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html">NMSIS CORE API</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../dsp/index.html">NMSIS DSP</a></li>
@@ -124,7 +120,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -159,13 +154,11 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="../index.html">Docs</a> &raquo;</li>
         
           <li><a href="index.html">NMSIS Core</a> &raquo;</li>
         
@@ -174,7 +167,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="../_sources/core/get_started.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -188,9 +181,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="using-nmsis-in-embedded-applications">
+  <section id="using-nmsis-in-embedded-applications">
 <span id="core-get-started"></span><h1>Using NMSIS in Embedded Applications<a class="headerlink" href="#using-nmsis-in-embedded-applications" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="introduction">
+<section id="introduction">
 <span id="core-get-started-intro"></span><h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>To use the <strong>NMSIS-Core</strong>, the following files are added to the embedded
 application:</p>
@@ -217,41 +210,43 @@ generic for all projects.</p>
 </div>
 <p>The <a class="reference internal" href="core_template_startup_device.html#core-template-startup-device-asm"><span class="std std-ref">Startup File startup_&lt;device&gt;.S</span></a> is executed right after device reset, it will do
 necessary stack pointer initialization, exception and interrupt entry configuration, then
-call <a class="reference internal" href="api/core_system_device.html#_CPPv410SystemInitv" title="SystemInit"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">SystemInit()</span></code></a>, after system initialization, will return to assemble startup code
+call <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">SystemInit()</span></code>, after system initialization, will return to assemble startup code
 and do c/c++ runtime initialization which includes data, bss section initialization, c++ runtime
 initialization, then it will call <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">main()</span></code> function in the application code.</p>
 <p>In the <a class="reference internal" href="core_template_intexc.html#core-template-intexc-device"><span class="std std-ref">Interrupt and Exception Handling File: intexc_&lt;device&gt;.S</span></a>, it will contain all exception and interrupt vectors
 and implements a default function for every interrupt.
 It may also contain stack and heap configurations for the user application.</p>
 <p>The <a class="reference internal" href="core_template_system_device.html#core-template-system-device"><span class="std std-ref">System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h</span></a> performs the setup for the processor
-clock. The variable <a class="reference internal" href="api/core_system_device.html#_CPPv415SystemCoreClock" title="SystemCoreClock"><code class="xref cpp cpp-var docutils literal notranslate"><span class="pre">SystemCoreClock</span></code></a> indicates the CPU clock speed.
-<a class="reference internal" href="api/core_systick.html#core-api-systick"><span class="std std-ref">Systick Timer(SysTimer)</span></a> describes the minimum feature set. In addition
+clock. The variable <code class="xref cpp cpp-var docutils literal notranslate"><span class="pre">SystemCoreClock</span></code> indicates the CPU clock speed.
+<span class="xref std std-ref">core_api_systick</span> describes the minimum feature set. In addition
 the file may contain functions for the memory BUS setup and clock re-configuration.</p>
 <p>The <a class="reference internal" href="core_template_device_header.html#core-template-device-header"><span class="std std-ref">Device Header File &lt;device.h&gt;</span></a> is the central include file that the
 application programmer is using in the C source code. It provides the
 following features:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="api/core_periph_access.html#core-api-periph-access"><span class="std std-ref">Peripheral Access</span></a> provides a standardized register layout for all
+<li><p><span class="xref std std-ref">core_api_periph_access</span> provides a standardized register layout for all
 peripherals. Optionally functions for device-specific peripherals may
 be available.</p></li>
-<li><p><a class="reference internal" href="api/core_interrupt_exception.html#core-api-interrupt-exception"><span class="std std-ref">Interrupts and Exceptions</span></a> can be accessed with standardized
+<li><p><span class="xref std std-ref">core_api_interrupt_exception</span> can be accessed with standardized
 symbols and functions for the <strong>ECLIC</strong> are provided.</p></li>
-<li><p><a class="reference internal" href="api/core_intrinsics.html#core-api-core-intrinsic"><span class="std std-ref">CPU Intrinsic Functions</span></a> allow to access special instructions,
+<li><p><span class="xref std std-ref">core_api_core_intrinsic</span> allow to access special instructions,
 for example for activating sleep mode or the NOP instruction.</p></li>
 <li><p><a class="reference internal" href="api/api_nmsis_core_dsp_intrinsic.html#nmsis-core-api-intrinsic-functions-for-simd-instructions"><span class="std std-ref">Intrinsic Functions for SIMD Instructions</span></a> provide access to the DSP-oriented instructions.</p></li>
-<li><p><a class="reference internal" href="api/core_systick.html#core-api-systick"><span class="std std-ref">Systick Timer(SysTimer)</span></a> function to configure and start a periodic timer interrupt.</p></li>
-<li><p><a class="reference internal" href="api/core_csr_access.html#core-api-csr-access"><span class="std std-ref">Core CSR Register Access</span></a> function to access the core csr registers.</p></li>
-<li><p><a class="reference internal" href="api/core_cache.html#core-api-cache"><span class="std std-ref">Cache Functions</span></a> to access the I-CACHE and D-CACHE unit</p></li>
-<li><p><a class="reference internal" href="api/core_fpu.html#core-api-fpu"><span class="std std-ref">FPU Functions</span></a> to access the Floating point unit.</p></li>
-<li><p><a class="reference internal" href="api/core_pmp.html#core-api-pmp"><span class="std std-ref">PMP Functions</span></a> to access the Physical Memory Protection unit</p></li>
-<li><p><a class="reference internal" href="api/core_version_control.html#core-api-version-control"><span class="std std-ref">Version Control</span></a> which defines NMSIS release specific macros.</p></li>
-<li><p><a class="reference internal" href="api/core_compiler_control.html#core-api-compiler-control"><span class="std std-ref">Compiler Control</span></a> is compiler agnostic <cite>#define</cite> symbols for generic
+<li><p><span class="xref std std-ref">core_api_systick</span> function to configure and start a periodic timer interrupt.</p></li>
+<li><p><span class="xref std std-ref">core_api_csr_access</span> function to access the core csr registers.</p></li>
+<li><p><span class="xref std std-ref">core_api_cache</span> to access the I-CACHE and D-CACHE unit</p></li>
+<li><p><span class="xref std std-ref">core_api_fpu</span> to access the Floating point unit.</p></li>
+<li><p><span class="xref std std-ref">core_api_pmp</span> to access the Physical Memory Protection unit</p></li>
+<li><p><span class="xref std std-ref">core_api_version_control</span> which defines NMSIS release specific macros.</p></li>
+<li><p><span class="xref std std-ref">core_api_compiler_control</span> is compiler agnostic <cite>#define</cite> symbols for generic
 C/C++ source code</p></li>
 </ul>
-<div class="figure align-center" id="id3">
+<figure class="align-center" id="id3">
 <span id="figure-get-started-1"></span><a class="reference internal image-reference" href="../_images/NMSIS_CORE_Files_user.png"><img alt="NMSIS-Core User Files" src="../_images/NMSIS_CORE_Files_user.png" style="width: 70%;" /></a>
-<p class="caption"><span class="caption-text">NMSIS-Core User Files</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">NMSIS-Core User Files</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>The NMSIS-Core system files are device specific.</p>
 <p>In addition, the <a class="reference internal" href="core_template_startup_device.html#core-template-startup-device-asm"><span class="std std-ref">Startup File startup_&lt;device&gt;.S</span></a> is also compiler vendor specific, currently only GCC version is provided.
 The versions provided by NMSIS are only generic templates. The adopted versions for a concrete device are typically provided by the device
@@ -315,9 +310,9 @@ vendor through the according device familiy package.</p>
 <p class="admonition-title">Note</p>
 <p>The silicon vendors create these device-specific NMSIS-Core files based on <a class="reference internal" href="core_templates.html#core-device-templates"><span class="std std-ref">NMSIS-Core Device Templates</span></a> provided by Nuclei.</p>
 </div>
-<p>Thereafter, the functions described under <a class="reference internal" href="api/index.html#nmsis-core-api"><span class="std std-ref">NMSIS Core API</span></a> can be used in the application.</p>
-</div>
-<div class="section" id="basic-nmsis-example">
+<p>Thereafter, the functions described under <a class="reference internal" href="api/index.html#nmsis-core-api"><span class="std std-ref">NMSIS CORE API</span></a> can be used in the application.</p>
+</section>
+<section id="basic-nmsis-example">
 <span id="id1"></span><h2>Basic NMSIS Example<a class="headerlink" href="#basic-nmsis-example" title="Permalink to this headline">¶</a></h2>
 <p>A typical example for using the NMSIS layer is provided below. The example is based on a GD32VF103 Device.</p>
 <div class="literal-block-wrapper docutils container" id="id5">
@@ -422,13 +417,13 @@ vendor through the according device familiy package.</p>
 </pre></div>
 </td></tr></table></div>
 </div>
-</div>
-<div class="section" id="using-interrupt-and-exception-nmi">
+</section>
+<section id="using-interrupt-and-exception-nmi">
 <span id="using-interrupt-and-exception"></span><h2>Using Interrupt and Exception/NMI<a class="headerlink" href="#using-interrupt-and-exception-nmi" title="Permalink to this headline">¶</a></h2>
 <p>Nuclei processors provide <strong>NMI(Non-Maskable Interrupt)</strong>, <strong>Exception</strong>,
 <strong>Vector Interrupt</strong> and <strong>Non-Vector Interrupt</strong> features.</p>
-</div>
-<div class="section" id="using-nmsis-with-generic-nuclei-processors">
+</section>
+<section id="using-nmsis-with-generic-nuclei-processors">
 <span id="using-nmsis-with-general-nuclei-processors"></span><h2>Using NMSIS with generic Nuclei Processors<a class="headerlink" href="#using-nmsis-with-generic-nuclei-processors" title="Permalink to this headline">¶</a></h2>
 <p>Nuclei provides NMSIS-Core files for the supported Nuclei Processors and for various compiler vendors.
 These files can be used when standard Nuclei processors should be used in a project.
@@ -474,8 +469,8 @@ The table below lists the folder and device names of the Nuclei processors.</p>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="create-generic-libraries-with-nmsis">
+</section>
+<section id="create-generic-libraries-with-nmsis">
 <span id="id2"></span><h2>Create generic Libraries with NMSIS<a class="headerlink" href="#create-generic-libraries-with-nmsis" title="Permalink to this headline">¶</a></h2>
 <p>The NMSIS Processor and Core Peripheral files allow also to create generic libraries.
 The <strong>NMSIS-DSP</strong> Libraries are an example for such a generic library.</p>
@@ -483,13 +478,13 @@ The <strong>NMSIS-DSP</strong> Libraries are an example for such a generic libra
 <em>nmsis_core.h</em> NMSIS CPU &amp; Core Access header file for the processor.</p>
 <p>The define <strong>__NMSIS_GENERIC</strong> disables device-dependent features such as the <strong>SysTick timer</strong>
 and the <strong>Interrupt System</strong>.</p>
-<div class="section" id="example">
+<section id="example">
 <h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
 <p>The following code section shows the usage of the <em>nmsis_core.h</em> header files to build a generic
 library for N200, N300, N600, NX600.</p>
 <p>One of these defines needs to be provided on the compiler command line.</p>
-<p>By using this header file, the source code can access the functions for <a class="reference internal" href="api/core_csr_access.html#core-api-csr-access"><span class="std std-ref">Core CSR Register Access</span></a>,
-<a class="reference internal" href="api/core_intrinsics.html#core-api-core-intrinsic"><span class="std std-ref">CPU Intrinsic Functions</span></a> and <a class="reference internal" href="api/api_nmsis_core_dsp_intrinsic.html#nmsis-core-api-intrinsic-functions-for-simd-instructions"><span class="std std-ref">Intrinsic Functions for SIMD Instructions</span></a>.</p>
+<p>By using this header file, the source code can access the functions for <span class="xref std std-ref">core_api_csr_access</span>,
+<span class="xref std std-ref">core_api_core_intrinsic</span> and <a class="reference internal" href="api/api_nmsis_core_dsp_intrinsic.html#nmsis-core-api-intrinsic-functions-for-simd-instructions"><span class="std std-ref">Intrinsic Functions for SIMD Instructions</span></a>.</p>
 <div class="literal-block-wrapper docutils container" id="id7">
 <div class="code-block-caption"><span class="caption-text">core_generic.h</span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
 <div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -498,41 +493,41 @@ library for N200, N300, N600, NX600.</p>
 </pre></div>
 </td></tr></table></div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="core_templates.html" class="btn btn-neutral float-right" title="NMSIS-Core Device Templates" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="overview.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+        <a href="core_templates.html" class="btn btn-neutral float-right" title="NMSIS-Core Device Templates" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="overview.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2019-Present, Nuclei.
+        &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 03, 2021.
+        Last updated on Aug 05, 2021.
       </span>
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 
@@ -540,6 +535,7 @@ library for N200, N300, N600, NX600.</p>
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NMSIS-DSP: Canberra</title>
+<title>NMSIS-DSP: Canberra distance</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -85,18 +85,68 @@ $(document).ready(function(){initNavTree('group__Canberra.html','');});
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">Canberra</div>  </div>
+<div class="title">Canberra distance<div class="ingroups"><a class="el" href="group__groupDistance.html">Distance functions</a> &raquo; <a class="el" href="group__FloatDist.html">Float Distances</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:gaec1013cb0abe5004a3a36f21d3f18bd4"><td class="memItemLeft" align="right" valign="top">float16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Canberra.html#gaec1013cb0abe5004a3a36f21d3f18bd4">riscv_canberra_distance_f16</a> (const float16_t *pA, const float16_t *pB, uint32_t blockSize)</td></tr>
+<tr class="memdesc:gaec1013cb0abe5004a3a36f21d3f18bd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Canberra distance between two vectors.  <a href="#gaec1013cb0abe5004a3a36f21d3f18bd4">More...</a><br /></td></tr>
+<tr class="separator:gaec1013cb0abe5004a3a36f21d3f18bd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0028e08ba88bdbb80b5961e5a782f501"><td class="memItemLeft" align="right" valign="top">float32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Canberra.html#ga0028e08ba88bdbb80b5961e5a782f501">riscv_canberra_distance_f32</a> (const float32_t *pA, const float32_t *pB, uint32_t blockSize)</td></tr>
 <tr class="memdesc:ga0028e08ba88bdbb80b5961e5a782f501"><td class="mdescLeft">&#160;</td><td class="mdescRight">Canberra distance between two vectors.  <a href="#ga0028e08ba88bdbb80b5961e5a782f501">More...</a><br /></td></tr>
 <tr class="separator:ga0028e08ba88bdbb80b5961e5a782f501"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>Canberra distance </p>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="gaec1013cb0abe5004a3a36f21d3f18bd4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaec1013cb0abe5004a3a36f21d3f18bd4">&#9670;&nbsp;</a></span>riscv_canberra_distance_f16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float16_t riscv_canberra_distance_f16 </td>
+          <td>(</td>
+          <td class="paramtype">const float16_t *&#160;</td>
+          <td class="paramname"><em>pA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float16_t *&#160;</td>
+          <td class="paramname"><em>pB</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>blockSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Canberra distance between two vectors. </p>
+<p>This function may divide by zero when samples pA[i] and pB[i] are both zero. The result of the computation will be correct. So the division per zero may be ignored.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pA</td><td>First vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pB</td><td>Second vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">blockSize</td><td>vector length </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>distance </dd></dl>
+
+</div>
+</div>
 <a id="ga0028e08ba88bdbb80b5961e5a782f501"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga0028e08ba88bdbb80b5961e5a782f501">&#9670;&nbsp;</a></span>riscv_canberra_distance_f32()</h2>
 
@@ -148,7 +198,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Aug 3 2021 10:26:13 for NMSIS-DSP by
+    <li class="footer">Generated on Thu Aug 5 2021 10:52:54 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

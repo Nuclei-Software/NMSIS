@@ -1,7 +1,7 @@
-.. _nmsis_nn_api_neural_network_pooling_functions:
+.. _nmsis_nn_api_pooling_functions:
 
-Neural Network Pooling Functions
-================================
+Pooling Functions
+=================
 
 .. doxygengroup:: Pooling
    :project: nmsis_nn

@@ -1,0 +1,802 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Non-SIMD Miscellaneous Instructions &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Partial-SIMD Data Processing Instructions" href="../api_nmsis_core_dsp_intrinsic_part_simd_data_process.html" />
+    <link rel="prev" title="OV (Overflow) flag Set/Clear Instructions" href="api_nmsis_core_dsp_intrinsic_ov_flag_sc.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.2-RC1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">NMSIS Core</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../get_started.html">Using NMSIS in Embedded Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../core_templates.html">NMSIS-Core Device Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../register_mapping.html">Register Mapping</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">NMSIS CORE API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_versioncontrol.html">Version Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_compilercontrol.html">Compiler Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_periphaccess.html">Peripheral Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_csr_encoding.html">Core CSR Encodings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_registers.html">Register Define and Type Definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_csr_register_access.html">Core CSR Register Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_cpu_intrinsic.html">Intrinsic Functions for CPU Intructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_intexc.html">Interrupts and Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_systimer.html">SysTimer Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_fpu_functions.html">FPU Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_simd_data_process.html">SIMD Data Processing Instructions</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_non_simd.html">Non-SIMD Instructions</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_non_simd_q15_sat_alu.html">Non-SIMD Q15 saturation ALU Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_non_simd_q31_sat_alu.html">Non-SIMD Q31 saturation ALU Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_32b_computation.html">32-bit Computation Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_ov_flag_sc.html">OV (Overflow) flag Set/Clear Instructions</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Non-SIMD Miscellaneous Instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_part_simd_data_process.html">Partial-SIMD Data Processing Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_64b_profile.html">64-bit Profile Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_rv64_only.html">RV64 Only Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_nuclei_custom.html">Nuclei Customized DSP Instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_pmp_functions.html">PMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_cache.html">Cache Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_armcompatiable_functions.html">ARM Compatiable Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">NMSIS Core</a> &raquo;</li>
+        
+          <li><a href="../../index.html">NMSIS CORE API</a> &raquo;</li>
+        
+          <li><a href="../../api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a> &raquo;</li>
+        
+          <li><a href="../api_nmsis_core_dsp_intrinsic_non_simd.html">Non-SIMD Instructions</a> &raquo;</li>
+        
+      <li>Non-SIMD Miscellaneous Instructions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../_sources/core/api/nmsis_core_dsp_intrinsic/nmsis_core_dsp_intrinsic_non_simd/api_nmsis_core_dsp_intrinsic_non_simd_misc.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="non-simd-miscellaneous-instructions">
+<span id="nmsis-core-api-non-simd-miscellaneous-instructions"></span><h1>Non-SIMD Miscellaneous Instructions<a class="headerlink" href="#non-simd-miscellaneous-instructions" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1ga3a4b869f2df434f7e9f3f35e79715c6c"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_AVE(long a, long b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1ga5061e392780b3bea521580befe37556f"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_BITREV(unsigned long a, unsigned long b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1ga0e9da2de29b3f47f38a315ca8f3e5f18"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_BPICK(unsigned long a, unsigned long b, unsigned long c)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1ga1e5062cc77c31e898d6a85e7768a7b2d"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_MADDR32(unsigned long t, unsigned long a, unsigned long b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1ga8260760ab7c146507ec4507862534332"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_MSUBR32(unsigned long t, unsigned long a, unsigned long b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1gac34824012cfe56f0a6fb9baf2fb1ba33"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_SRA_U(long a, unsigned int b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1gaaea4771a7ac766be7bfec89c7bf6cda8"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SWAP8(unsigned long a)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1gadab9655b01398363507f94180fd41ba4"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SWAP16(unsigned long a)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1ga92ce02b48c9b1f373c8b7e602c6bcc5f"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_WEXT(long long a, unsigned int b)</code></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.__RV_BITREVI">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1gaf9a4bbbb2d5e33735a6a2f67ca30d1a9"></span><code class="sig-name descname">__RV_BITREVI</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_BITREVI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.__RV_INSB">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1ga04b2b789ef54ed37c3cd2371bf4748b8"></span><code class="sig-name descname">__RV_INSB</code><span class="sig-paren">(</span>t, a, b<span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_INSB" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.__RV_SRAI_U">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1ga0d2571dc1e7889b45c9a7305dce2a59f"></span><code class="sig-name descname">__RV_SRAI_U</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_SRAI_U" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.__RV_WEXTI">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1ga491f47f7a20cddb763dacb0d75309121"></span><code class="sig-name descname">__RV_WEXTI</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_WEXTI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="group">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC"></span><em>group</em> <code class="sig-name descname">NMSIS_Core_DSP_Intrinsic_NON_SIMD_MISC</code></dt>
+<dd><p>Non-SIMD Miscellaneous Instructions. </p>
+<p>There are 13 Miscellaneous Instructions here. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1gaf9a4bbbb2d5e33735a6a2f67ca30d1a9"></span><code class="sig-name descname">__RV_BITREVI</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span></dt>
+<dd><p>BITREVI (Bit Reverse Immediate) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">RV32</span><span class="p">)</span> <span class="n">BITREVI</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span>
+<span class="p">(</span><span class="n">RV64</span><span class="p">)</span> <span class="n">BITREVI</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Reverse the bit positions of the source operand within a specified width starting from bit 0. The reversed width is an immediate value.</p>
+</p>
+<p><strong>Description</strong>:<p>This instruction reverses the bit positions of the content of Rs1. The reversed bit width is calculated as imm[4:0]+1 (RV32) or imm[5:0]+1 (RV64). The upper bits beyond the reversed width are filled with zeros. After the bit reverse operation, the result is written to Rd.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">msb</span> <span class="o">=</span> <span class="n">imm</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span> <span class="p">(</span><span class="n">RV32</span><span class="p">)</span>
+<span class="n">msb</span> <span class="o">=</span> <span class="n">imm</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span> <span class="p">(</span><span class="n">RV64</span><span class="p">)</span>
+<span class="n">rev</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">msb</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="p">[</span><span class="n">msb</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="n">ZE</span><span class="p">(</span><span class="n">rev</span><span class="p">[</span><span class="n">msb</span><span class="p">:</span><span class="mi">0</span><span class="p">]);</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1ga04b2b789ef54ed37c3cd2371bf4748b8"></span><code class="sig-name descname">__RV_INSB</code><span class="sig-paren">(</span>t, a, b<span class="sig-paren">)</span></dt>
+<dd><p>INSB (Insert Byte) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">RV32</span><span class="p">)</span> <span class="n">INSB</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span>
+<span class="p">(</span><span class="n">RV64</span><span class="p">)</span> <span class="n">INSB</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Insert byte 0 of a 32-bit or 64-bit register into one of the byte elements of another register.</p>
+</p>
+<p><strong>Description</strong>:<p>This instruction inserts byte 0 of Rs1 into byte </p>
+<code class="docutils literal notranslate"><span class="pre">imm[1:0]</span></code> (RV32) or <code class="docutils literal notranslate"><span class="pre">imm[2:0]</span></code> (RV64) of Rd.</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bpos</span> <span class="o">=</span> <span class="n">imm</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span> <span class="p">(</span><span class="n">RV32</span><span class="p">)</span>
+<span class="n">bpos</span> <span class="o">=</span> <span class="n">imm</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span> <span class="p">(</span><span class="n">RV64</span><span class="p">)</span>
+<span class="n">Rd</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">bpos</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">t</span></code>: unsigned long type of value stored in t </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1ga0d2571dc1e7889b45c9a7305dce2a59f"></span><code class="sig-name descname">__RV_SRAI_U</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span></dt>
+<dd><p>SRAI.u (Rounding Shift Right Arithmetic Immediate) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SRAI</span><span class="o">.</span><span class="n">u</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm6u</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="p">(</span><span class="n">RV32</span><span class="p">)</span>
+<span class="n">SRAI</span><span class="o">.</span><span class="n">u</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm6u</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="p">(</span><span class="n">RV64</span><span class="p">)</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Perform an arithmetic right shift operation with rounding. The shift amount is an immediate value.</p>
+</p>
+<p><strong>Description</strong>:<p>This instruction right-shifts the content of Rs1 arithmetically. The shifted out bits are filled with the sign-bit and the shift amount is specified by the imm6u[4:0] (RV32) or imm6u[5:0] (RV64) constant . For the rounding operation, a value of 1 is added to the most significant discarded bit of the data to calculate the final result. And the result is written to Rd.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">RV32</span><span class="p">:</span>
+<span class="n">sa</span> <span class="o">=</span> <span class="n">imm6u</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">sa</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">res</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">SE33</span><span class="p">(</span><span class="n">Rs1</span><span class="p">[</span><span class="mi">31</span><span class="p">:(</span><span class="n">sa</span><span class="o">-</span><span class="mi">1</span><span class="p">)])</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">Rd</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="n">Rd</span> <span class="o">=</span> <span class="n">Rs1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="o">*</span> <span class="n">RV64</span><span class="p">:</span>
+<span class="n">sa</span> <span class="o">=</span> <span class="n">imm6u</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">sa</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">res</span><span class="p">[</span><span class="mi">63</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">SE65</span><span class="p">(</span><span class="n">Rs1</span><span class="p">[</span><span class="mi">63</span><span class="p">:(</span><span class="n">sa</span><span class="o">-</span><span class="mi">1</span><span class="p">)])</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">Rd</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">63</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="n">Rd</span> <span class="o">=</span> <span class="n">Rs1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1ga491f47f7a20cddb763dacb0d75309121"></span><code class="sig-name descname">__RV_WEXTI</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span></dt>
+<dd><p>WEXTI (Extract Word from 64-bit Immediate) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">WEXTI</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="c1">#LSBloc</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Extract a 32-bit word from a 64-bit value stored in an even/odd pair of registers (RV32) or a register (RV64) starting from a specified immediate LSB bit position.</p>
+</p>
+<p><strong>RV32 Description</strong>:<p>This instruction extracts a 32-bit word from a 64-bit value of an even/odd pair of registers specified by Rs1(4,1) starting from a specified immediate LSB bit position, #LSBloc. The extracted word is written to Rd. Rs1(4,1), i.e., d, determines the even/odd pair group of the two registers. Specifically, the register pair includes register 2d and 2d+1. The odd </p>
+<code class="docutils literal notranslate"><span class="pre">2d+1</span></code> register of the pair contains the high 32-bit of the 64-bit value and the even <code class="docutils literal notranslate"><span class="pre">2d</span></code> register of the pair contains the low 32-bit of the 64-bit value.</p>
+<p><strong>RV64 Description</strong>:<p>This instruction extracts a 32-bit word from a 64-bit value in Rs1 starting from a specified immediate LSB bit position, #LSBloc. The extracted word is sign-extended and written to lower 32- bit of Rd.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">RV32</span><span class="p">:</span>
+<span class="n">Idx0</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rs1</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); Idx1 = CONCAT(Rs2(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+<span class="n">src</span><span class="p">[</span><span class="mi">63</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Concat</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="n">Idx1</span><span class="p">],</span> <span class="n">R</span><span class="p">[</span><span class="n">Idx0</span><span class="p">]);</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="n">src</span><span class="p">[</span><span class="mi">31</span><span class="o">+</span><span class="n">LSBloc</span><span class="p">:</span><span class="n">LSBloc</span><span class="p">];</span>
+<span class="o">*</span> <span class="n">RV64</span><span class="p">:</span>
+<span class="n">ExtractW</span> <span class="o">=</span> <span class="n">Rs1</span><span class="p">[</span><span class="mi">31</span><span class="o">+</span><span class="n">LSBloc</span><span class="p">:</span><span class="n">LSBloc</span><span class="p">];</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="n">SE</span><span class="p">(</span><span class="n">ExtractW</span><span class="p">)</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: long long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1ga3a4b869f2df434f7e9f3f35e79715c6c"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_AVE(long a, long b)</code></dt>
+<dd><p>AVE (Average with Rounding) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AVE</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Calculate the average of the contents of two general registers.</p>
+</p>
+<p><strong>Description</strong>:<p>This instruction calculates the average value of two signed integers stored in Rs1 and Rs2, rounds up a half-integer result to the nearest integer, and writes the result to Rd.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Sum</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rs1</span><span class="p">[</span><span class="n">MSB</span><span class="p">],</span><span class="n">Rs1</span><span class="p">[</span><span class="n">MSB</span><span class="p">:</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rs2</span><span class="p">[</span><span class="n">MSB</span><span class="p">],</span><span class="n">Rs2</span><span class="p">[</span><span class="n">MSB</span><span class="p">:</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="n">Sum</span><span class="p">[(</span><span class="n">MSB</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span><span class="mi">1</span><span class="p">];</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">MSB</span><span class="o">=</span><span class="mi">31</span><span class="p">,</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">MSB</span><span class="o">=</span><span class="mi">63</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1ga5061e392780b3bea521580befe37556f"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_BITREV(unsigned long a, unsigned long b)</code></dt>
+<dd><p>BITREV (Bit Reverse) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BITREV</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Reverse the bit positions of the source operand within a specified width starting from bit 0. The reversed width is a variable from a GPR.</p>
+</p>
+<p><strong>Description</strong>:<p>This instruction reverses the bit positions of the content of Rs1. The reversed bit width is calculated as Rs2[4:0]+1 (RV32) or Rs2[5:0]+1 (RV64). The upper bits beyond the reversed width are filled with zeros. After the bit reverse operation, the result is written to Rd.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">msb</span> <span class="o">=</span> <span class="n">Rs2</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span> <span class="p">(</span><span class="k">for</span> <span class="n">RV32</span><span class="p">)</span>
+<span class="n">msb</span> <span class="o">=</span> <span class="n">Rs2</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span> <span class="p">(</span><span class="k">for</span> <span class="n">RV64</span><span class="p">)</span>
+<span class="n">rev</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">msb</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="p">[</span><span class="n">msb</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="n">ZE</span><span class="p">(</span><span class="n">rev</span><span class="p">[</span><span class="n">msb</span><span class="p">:</span><span class="mi">0</span><span class="p">]);</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1ga0e9da2de29b3f47f38a315ca8f3e5f18"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_BPICK(unsigned long a, unsigned long b, unsigned long c)</code></dt>
+<dd><p>BPICK (Bit-wise Pick) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BPICK</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span><span class="p">,</span> <span class="n">Rc</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Select from two source operands based on a bit mask in the third operand.</p>
+</p>
+<p><strong>Description</strong>:<p>This instruction selects individual bits from Rs1 or Rs2, based on the bit mask value in Rc. If a bit in Rc is 1, the corresponding bit is from Rs1; otherwise, the corresponding bit is from Rs2. The selection results are written to Rd.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Rd[x] = Rc[x]? Rs1[x] : Rs2[x];
+for RV32, x=31...0
+for RV64, x=63...0
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">c</span></code>: unsigned long type of value stored in c </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1ga1e5062cc77c31e898d6a85e7768a7b2d"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_MADDR32(unsigned long t, unsigned long a, unsigned long b)</code></dt>
+<dd><p>MADDR32 (Multiply and Add to 32-Bit Word) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MADDR32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Multiply the 32-bit contents of two registers and add the lower 32-bit multiplication result to the 32-bit content of a destination register. Write the final result back to the destination register.</p>
+</p>
+<p><strong>Description</strong>:<p>This instruction multiplies the lower 32-bit content of Rs1 with that of Rs2. It adds the lower 32-bit multiplication result to the lower 32-bit content of Rd and writes the final result (RV32) or sign-extended result (RV64) back to Rd. The contents of Rs1 and Rs2 can be either signed or unsigned integers.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RV32</span><span class="p">:</span>
+<span class="n">Mresult</span> <span class="o">=</span> <span class="n">Rs1</span> <span class="o">*</span> <span class="n">Rs2</span><span class="p">;</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="n">Rd</span> <span class="o">+</span> <span class="n">Mresult</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="n">RV64</span><span class="p">:</span>
+<span class="n">Mresult</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="n">tres</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">Mresult</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="n">SE64</span><span class="p">(</span><span class="n">tres</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">]);</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">t</span></code>: unsigned long type of value stored in t </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1ga8260760ab7c146507ec4507862534332"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_MSUBR32(unsigned long t, unsigned long a, unsigned long b)</code></dt>
+<dd><p>MSUBR32 (Multiply and Subtract from 32-Bit Word) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MSUBR32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Multiply the 32-bit contents of two registers and subtract the lower 32-bit multiplication result from the 32-bit content of a destination register. Write the final result back to the destination register.</p>
+</p>
+<p><strong>Description</strong>:<p>This instruction multiplies the lower 32-bit content of Rs1 with that of Rs2, subtracts the lower 32-bit multiplication result from the lower 32-bit content of Rd, then writes the final result (RV32) or sign-extended result (RV64) back to Rd. The contents of Rs1 and Rs2 can be either signed or unsigned integers.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RV32</span><span class="p">:</span>
+<span class="n">Mresult</span> <span class="o">=</span> <span class="n">Rs1</span> <span class="o">*</span> <span class="n">Rs2</span><span class="p">;</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="n">Rd</span> <span class="o">-</span> <span class="n">Mresult</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="n">RV64</span><span class="p">:</span>
+<span class="n">Mresult</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="n">tres</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">Mresult</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="n">SE64</span><span class="p">(</span><span class="n">tres</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">]);</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">t</span></code>: unsigned long type of value stored in t </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1gac34824012cfe56f0a6fb9baf2fb1ba33"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_SRA_U(long a, unsigned int b)</code></dt>
+<dd><p>SRA.u (Rounding Shift Right Arithmetic) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SRA</span><span class="o">.</span><span class="n">u</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Perform an arithmetic right shift operation with rounding. The shift amount is a variable from a GPR.</p>
+</p>
+<p><strong>Description</strong>:<p>This instruction right-shifts the content of Rs1 arithmetically. The shifted out bits are filled with the sign-bit and the shift amount is specified by the low-order 5-bits (RV32) or 6-bits (RV64) of the Rs2 register. For the rounding operation, a value of 1 is added to the most significant discarded bit of the data to calculate the final result. And the result is written to Rd.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">RV32</span><span class="p">:</span>
+<span class="n">sa</span> <span class="o">=</span> <span class="n">Rs2</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">sa</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">res</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">SE33</span><span class="p">(</span><span class="n">Rs1</span><span class="p">[</span><span class="mi">31</span><span class="p">:(</span><span class="n">sa</span><span class="o">-</span><span class="mi">1</span><span class="p">)])</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">Rd</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="n">Rd</span> <span class="o">=</span> <span class="n">Rs1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="o">*</span> <span class="n">RV64</span><span class="p">:</span>
+<span class="n">sa</span> <span class="o">=</span> <span class="n">Rs2</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">sa</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">res</span><span class="p">[</span><span class="mi">63</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">SE65</span><span class="p">(</span><span class="n">Rs1</span><span class="p">[</span><span class="mi">63</span><span class="p">:(</span><span class="n">sa</span><span class="o">-</span><span class="mi">1</span><span class="p">)])</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">Rd</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">63</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="n">Rd</span> <span class="o">=</span> <span class="n">Rs1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1gaaea4771a7ac766be7bfec89c7bf6cda8"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SWAP8(unsigned long a)</code></dt>
+<dd><p>SWAP8 (Swap Byte within Halfword) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SWAP8</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Swap the bytes within each halfword of a register.</p>
+</p>
+<p><strong>Description</strong>:<p>This instruction swaps the bytes within each halfword of Rs1 and writes the result to Rd.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rd</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">7</span><span class="p">:</span><span class="mi">0</span><span class="p">],</span><span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">15</span><span class="p">:</span><span class="mi">8</span><span class="p">]);</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">1.</span><span class="o">..</span><span class="mi">0</span><span class="p">,</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">3.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1gadab9655b01398363507f94180fd41ba4"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SWAP16(unsigned long a)</code></dt>
+<dd><p>SWAP16 (Swap Halfword within Word) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SWAP16</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Swap the 16-bit halfwords within each word of a register.</p>
+</p>
+<p><strong>Description</strong>:<p>This instruction swaps the 16-bit halfwords within each word of Rs1 and writes the result to Rd.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">15</span><span class="p">:</span><span class="mi">0</span><span class="p">],</span><span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">31</span><span class="p">:</span><span class="mi">16</span><span class="p">]);</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">1.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC_1ga92ce02b48c9b1f373c8b7e602c6bcc5f"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_WEXT(long long a, unsigned int b)</code></dt>
+<dd><p>WEXT (Extract Word from 64-bit) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">WEXT</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Extract a 32-bit word from a 64-bit value stored in an even/odd pair of registers (RV32) or a register (RV64) starting from a specified LSB bit position in a register.</p>
+</p>
+<p><strong>RV32 Description</strong>:<p>This instruction extracts a 32-bit word from a 64-bit value of an even/odd pair of registers specified by Rs1(4,1) starting from a specified LSB bit position, specified in Rs2[4:0]. The extracted word is written to Rd. Rs1(4,1), i.e., d, determines the even/odd pair group of the two registers. Specifically, the register pair includes register 2d and 2d+1. The odd </p>
+<code class="docutils literal notranslate"><span class="pre">2d+1</span></code> register of the pair contains the high 32-bit of the 64-bit value and the even <code class="docutils literal notranslate"><span class="pre">2d</span></code> register of the pair contains the low 32-bit of the 64-bit value.</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">RV32</span><span class="p">:</span>
+<span class="n">Idx0</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rs1</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="s1">&#39;b0); Idx1 = CONCAT(Rs1(4,1),1&#39;</span><span class="n">b1</span><span class="p">);</span>
+<span class="n">src</span><span class="p">[</span><span class="mi">63</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Concat</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="n">Idx1</span><span class="p">],</span> <span class="n">R</span><span class="p">[</span><span class="n">Idx0</span><span class="p">]);</span>
+<span class="n">LSBloc</span> <span class="o">=</span> <span class="n">Rs2</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="n">src</span><span class="p">[</span><span class="mi">31</span><span class="o">+</span><span class="n">LSBloc</span><span class="p">:</span><span class="n">LSBloc</span><span class="p">];</span>
+<span class="o">*</span> <span class="n">RV64</span><span class="p">:</span>
+<span class="n">LSBloc</span> <span class="o">=</span> <span class="n">Rs2</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+<span class="n">ExtractW</span> <span class="o">=</span> <span class="n">Rs1</span><span class="p">[</span><span class="mi">31</span><span class="o">+</span><span class="n">LSBloc</span><span class="p">:</span><span class="n">LSBloc</span><span class="p">];</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="n">SE</span><span class="p">(</span><span class="n">ExtractW</span><span class="p">)</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: long long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../api_nmsis_core_dsp_intrinsic_part_simd_data_process.html" class="btn btn-neutral float-right" title="Partial-SIMD Data Processing Instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api_nmsis_core_dsp_intrinsic_ov_flag_sc.html" class="btn btn-neutral float-left" title="OV (Overflow) flag Set/Clear Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-Present, Nuclei
+      <span class="lastupdated">
+        Last updated on Aug 05, 2021.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

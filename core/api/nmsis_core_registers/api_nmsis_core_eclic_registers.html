@@ -1,0 +1,738 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Register Define and Type Definitions Of ECLIC &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Register Define and Type Definitions Of System Timer" href="api_nmsis_core_systimer_registers.html" />
+    <link rel="prev" title="Base Register Define and Type Definitions" href="api_nmsis_core_base_registers.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.2-RC1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">NMSIS Core</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS in Embedded Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../core_templates.html">NMSIS-Core Device Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../register_mapping.html">Register Mapping</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS CORE API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_versioncontrol.html">Version Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_compilercontrol.html">Compiler Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_periphaccess.html">Peripheral Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_csr_encoding.html">Core CSR Encodings</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api_nmsis_core_registers.html">Register Define and Type Definitions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api_nmsis_core_base_registers.html">Base Register Define and Type Definitions</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Register Define and Type Definitions Of ECLIC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_nmsis_core_systimer_registers.html">Register Define and Type Definitions Of System Timer</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_csr_register_access.html">Core CSR Register Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_cpu_intrinsic.html">Intrinsic Functions for CPU Intructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_intexc.html">Interrupts and Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_systimer.html">SysTimer Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_fpu_functions.html">FPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_pmp_functions.html">PMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_cache.html">Cache Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_armcompatiable_functions.html">ARM Compatiable Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">NMSIS Core</a> &raquo;</li>
+        
+          <li><a href="../index.html">NMSIS CORE API</a> &raquo;</li>
+        
+          <li><a href="../api_nmsis_core_registers.html">Register Define and Type Definitions</a> &raquo;</li>
+        
+      <li>Register Define and Type Definitions Of ECLIC</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/core/api/nmsis_core_registers/api_nmsis_core_eclic_registers.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="register-define-and-type-definitions-of-eclic">
+<span id="nmsis-core-api-register-define-and-type-definitions-of-eclic"></span><h1>Register Define and Type Definitions Of ECLIC<a class="headerlink" href="#register-define-and-type-definitions-of-eclic" title="Permalink to this headline">¶</a></h1>
+<dl class="enum">
+<dt id="_CPPv4N26NMSIS_Core_ECLIC_Registers18ECLIC_TRIGGER_TypeE">
+<span id="_CPPv3N26NMSIS_Core_ECLIC_Registers18ECLIC_TRIGGER_TypeE"></span><span id="_CPPv2N26NMSIS_Core_ECLIC_Registers18ECLIC_TRIGGER_TypeE"></span><span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga35f79c25d5118ccfde82872bc5946ecf"></span><em class="property">enum </em><code class="sig-prename descclassname">NMSIS_Core_ECLIC_Registers<code class="sig-prename descclassname">::</code></code><code class="sig-name descname">ECLIC_TRIGGER_Type</code><a class="headerlink" href="#_CPPv4N26NMSIS_Core_ECLIC_Registers18ECLIC_TRIGGER_TypeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="enumerator">
+<dt id="_CPPv4N26NMSIS_Core_ECLIC_Registers19ECLIC_LEVEL_TRIGGERE">
+<span id="_CPPv3N26NMSIS_Core_ECLIC_Registers19ECLIC_LEVEL_TRIGGERE"></span><span id="_CPPv2N26NMSIS_Core_ECLIC_Registers19ECLIC_LEVEL_TRIGGERE"></span><span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa6c8507eafc6f68410f8e5f3f5c0f4e12"></span><code class="sig-name descname">ECLIC_LEVEL_TRIGGER</code> = 0x0<a class="headerlink" href="#_CPPv4N26NMSIS_Core_ECLIC_Registers19ECLIC_LEVEL_TRIGGERE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv4N26NMSIS_Core_ECLIC_Registers26ECLIC_POSTIVE_EDGE_TRIGGERE">
+<span id="_CPPv3N26NMSIS_Core_ECLIC_Registers26ECLIC_POSTIVE_EDGE_TRIGGERE"></span><span id="_CPPv2N26NMSIS_Core_ECLIC_Registers26ECLIC_POSTIVE_EDGE_TRIGGERE"></span><span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa077bcb1671a8e81875733c437aa989db"></span><code class="sig-name descname">ECLIC_POSTIVE_EDGE_TRIGGER</code> = 0x1<a class="headerlink" href="#_CPPv4N26NMSIS_Core_ECLIC_Registers26ECLIC_POSTIVE_EDGE_TRIGGERE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv4N26NMSIS_Core_ECLIC_Registers26ECLIC_NEGTIVE_EDGE_TRIGGERE">
+<span id="_CPPv3N26NMSIS_Core_ECLIC_Registers26ECLIC_NEGTIVE_EDGE_TRIGGERE"></span><span id="_CPPv2N26NMSIS_Core_ECLIC_Registers26ECLIC_NEGTIVE_EDGE_TRIGGERE"></span><span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfad5184faf1eeb1cd9f5d79f903b65297c"></span><code class="sig-name descname">ECLIC_NEGTIVE_EDGE_TRIGGER</code> = 0x3<a class="headerlink" href="#_CPPv4N26NMSIS_Core_ECLIC_Registers26ECLIC_NEGTIVE_EDGE_TRIGGERE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv4N26NMSIS_Core_ECLIC_Registers17ECLIC_MAX_TRIGGERE">
+<span id="_CPPv3N26NMSIS_Core_ECLIC_Registers17ECLIC_MAX_TRIGGERE"></span><span id="_CPPv2N26NMSIS_Core_ECLIC_Registers17ECLIC_MAX_TRIGGERE"></span><span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfabc630e0d61793a95a68543fb23ea6459"></span><code class="sig-name descname">ECLIC_MAX_TRIGGER</code> = 0x3<a class="headerlink" href="#_CPPv4N26NMSIS_Core_ECLIC_Registers17ECLIC_MAX_TRIGGERE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.CLIC_CLICCFG_NLBIT_Pos">
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga0ee0922b5a83b6ff92fed6c9dea63da3"></span><code class="sig-name descname">CLIC_CLICCFG_NLBIT_Pos</code> 1U<a class="headerlink" href="#c.CLIC_CLICCFG_NLBIT_Pos" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CLIC_CLICCFG_NLBIT_Msk">
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga6c31823bbd3bd593dcecd6d7d5f0afbb"></span><code class="sig-name descname">CLIC_CLICCFG_NLBIT_Msk</code> (0xFUL &lt;&lt; CLIC_CLICCFG_NLBIT_Pos)<a class="headerlink" href="#c.CLIC_CLICCFG_NLBIT_Msk" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CLIC_CLICINFO_CTLBIT_Pos">
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gac63632ddf28ed47570b441f003ba5c5f"></span><code class="sig-name descname">CLIC_CLICINFO_CTLBIT_Pos</code> 21U<a class="headerlink" href="#c.CLIC_CLICINFO_CTLBIT_Pos" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CLIC_CLICINFO_CTLBIT_Msk">
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga146a1208d7982a0ec073f9c3bb77528f"></span><code class="sig-name descname">CLIC_CLICINFO_CTLBIT_Msk</code> (0xFUL &lt;&lt; CLIC_CLICINFO_CTLBIT_Pos)<a class="headerlink" href="#c.CLIC_CLICINFO_CTLBIT_Msk" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CLIC_CLICINFO_VER_Pos">
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga3047dd362f08b827b4f3595fdee555e1"></span><code class="sig-name descname">CLIC_CLICINFO_VER_Pos</code> 13U<a class="headerlink" href="#c.CLIC_CLICINFO_VER_Pos" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CLIC_CLICINFO_VER_Msk">
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga2b40a58247f1ae1eb207ebfd224a6519"></span><code class="sig-name descname">CLIC_CLICINFO_VER_Msk</code> (0xFFUL &lt;&lt; CLIC_CLICCFG_NLBIT_Pos)<a class="headerlink" href="#c.CLIC_CLICINFO_VER_Msk" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CLIC_CLICINFO_NUM_Pos">
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga39c37a90e1445851aede44b002a83a99"></span><code class="sig-name descname">CLIC_CLICINFO_NUM_Pos</code> 0U<a class="headerlink" href="#c.CLIC_CLICINFO_NUM_Pos" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CLIC_CLICINFO_NUM_Msk">
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga7f3148e774c092b06d81b400ac6c80bb"></span><code class="sig-name descname">CLIC_CLICINFO_NUM_Msk</code> (0xFFFUL &lt;&lt; CLIC_CLICINFO_NUM_Pos)<a class="headerlink" href="#c.CLIC_CLICINFO_NUM_Msk" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CLIC_INTIP_IP_Pos">
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gab0047e9c230189453f8bca9bf0fa7061"></span><code class="sig-name descname">CLIC_INTIP_IP_Pos</code> 0U<a class="headerlink" href="#c.CLIC_INTIP_IP_Pos" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CLIC_INTIP_IP_Msk">
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gad7395594207c3fa20c423a1c9ae26cb7"></span><code class="sig-name descname">CLIC_INTIP_IP_Msk</code> (0x1UL &lt;&lt; CLIC_INTIP_IP_Pos)<a class="headerlink" href="#c.CLIC_INTIP_IP_Msk" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CLIC_INTIE_IE_Pos">
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gaa6ea033a4802f0fd1354894436706cbd"></span><code class="sig-name descname">CLIC_INTIE_IE_Pos</code> 0U<a class="headerlink" href="#c.CLIC_INTIE_IE_Pos" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CLIC_INTIE_IE_Msk">
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga70aa615d81bc48ea8ed2b64c09c2d63f"></span><code class="sig-name descname">CLIC_INTIE_IE_Msk</code> (0x1UL &lt;&lt; CLIC_INTIE_IE_Pos)<a class="headerlink" href="#c.CLIC_INTIE_IE_Msk" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CLIC_INTATTR_TRIG_Pos">
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gac4ec4063ec15f49408130b8a095a2a91"></span><code class="sig-name descname">CLIC_INTATTR_TRIG_Pos</code> 1U<a class="headerlink" href="#c.CLIC_INTATTR_TRIG_Pos" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CLIC_INTATTR_TRIG_Msk">
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga476263a60ffcbb45417ab2b6864d47b4"></span><code class="sig-name descname">CLIC_INTATTR_TRIG_Msk</code> (0x3UL &lt;&lt; CLIC_INTATTR_TRIG_Pos)<a class="headerlink" href="#c.CLIC_INTATTR_TRIG_Msk" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CLIC_INTATTR_SHV_Pos">
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga49ea87f8a0207a2622f0ce467b7158dc"></span><code class="sig-name descname">CLIC_INTATTR_SHV_Pos</code> 0U<a class="headerlink" href="#c.CLIC_INTATTR_SHV_Pos" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CLIC_INTATTR_SHV_Msk">
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga2b6efddec2286b358747be5985110b3a"></span><code class="sig-name descname">CLIC_INTATTR_SHV_Msk</code> (0x1UL &lt;&lt; CLIC_INTATTR_SHV_Pos)<a class="headerlink" href="#c.CLIC_INTATTR_SHV_Msk" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.ECLIC_MAX_NLBITS">
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga34443f8b2b2935d099e6a0119b96c712"></span><code class="sig-name descname">ECLIC_MAX_NLBITS</code> 8U<a class="headerlink" href="#c.ECLIC_MAX_NLBITS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.ECLIC_MODE_MTVEC_Msk">
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga2bcc1789c000ec72b06b7d7e736aa1c3"></span><code class="sig-name descname">ECLIC_MODE_MTVEC_Msk</code> 3U<a class="headerlink" href="#c.ECLIC_MODE_MTVEC_Msk" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.ECLIC_NON_VECTOR_INTERRUPT">
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga6a01697e0ba89c691f98fee801f4a25c"></span><code class="sig-name descname">ECLIC_NON_VECTOR_INTERRUPT</code> 0x0<a class="headerlink" href="#c.ECLIC_NON_VECTOR_INTERRUPT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.ECLIC_VECTOR_INTERRUPT">
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga915384ab6567d38315e8cf5a566f4840"></span><code class="sig-name descname">ECLIC_VECTOR_INTERRUPT</code> 0x1<a class="headerlink" href="#c.ECLIC_VECTOR_INTERRUPT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.ECLIC_BASE">
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gabc9b9f3a2d7717c1b174432bd462f33f"></span><code class="sig-name descname">ECLIC_BASE</code> __ECLIC_BASEADDR<a class="headerlink" href="#c.ECLIC_BASE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.ECLIC">
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gab5a72455ad01a7caea954a82c907256d"></span><code class="sig-name descname">ECLIC</code> ((CLIC_Type *) ECLIC_BASE)<a class="headerlink" href="#c.ECLIC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="union">
+<dt id="_CPPv412CLICCFG_Type">
+<span id="_CPPv312CLICCFG_Type"></span><span id="_CPPv212CLICCFG_Type"></span><span class="target" id="unionCLICCFG__Type"></span><em class="property">union </em><code class="sig-name descname">CLICCFG_Type</code><a class="headerlink" href="#_CPPv412CLICCFG_Type" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="member">
+<dt id="_CPPv4N12CLICCFG_Type10_reserved0E">
+<span id="_CPPv3N12CLICCFG_Type10_reserved0E"></span><span id="_CPPv2N12CLICCFG_Type10_reserved0E"></span><span id="CLICCFG_Type::_reserved0__uint8_t"></span><span class="target" id="unionCLICCFG__Type_1a468085eceb1103be6a356f4201fb7c30"></span>uint8_t <code class="sig-name descname">_reserved0</code><a class="headerlink" href="#_CPPv4N12CLICCFG_Type10_reserved0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N12CLICCFG_Type6nlbitsE">
+<span id="_CPPv3N12CLICCFG_Type6nlbitsE"></span><span id="_CPPv2N12CLICCFG_Type6nlbitsE"></span><span id="CLICCFG_Type::nlbits__uint8_t"></span><span class="target" id="unionCLICCFG__Type_1ace553cff35563c1f44a257c6a1187b0c"></span>uint8_t <code class="sig-name descname">nlbits</code><a class="headerlink" href="#_CPPv4N12CLICCFG_Type6nlbitsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N12CLICCFG_Type10_reserved1E">
+<span id="_CPPv3N12CLICCFG_Type10_reserved1E"></span><span id="_CPPv2N12CLICCFG_Type10_reserved1E"></span><span id="CLICCFG_Type::_reserved1__uint8_t"></span><span class="target" id="unionCLICCFG__Type_1ab1e5af2ea073a59770d6475ecddafc95"></span>uint8_t <code class="sig-name descname">_reserved1</code><a class="headerlink" href="#_CPPv4N12CLICCFG_Type10_reserved1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N12CLICCFG_Type10_reserved2E">
+<span id="_CPPv3N12CLICCFG_Type10_reserved2E"></span><span id="_CPPv2N12CLICCFG_Type10_reserved2E"></span><span id="CLICCFG_Type::_reserved2__uint8_t"></span><span class="target" id="unionCLICCFG__Type_1af6f5ecf3e79b5bf8acfb452865ad4149"></span>uint8_t <code class="sig-name descname">_reserved2</code><a class="headerlink" href="#_CPPv4N12CLICCFG_Type10_reserved2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N12CLICCFG_Type1bE">
+<span id="_CPPv3N12CLICCFG_Type1bE"></span><span id="_CPPv2N12CLICCFG_Type1bE"></span><span class="target" id="unionCLICCFG__Type_1abd35f4d630426c24ef2973324bb103d6"></span><em class="property">struct</em> <a class="reference internal" href="#_CPPv412CLICCFG_Type" title="CLICCFG_Type">CLICCFG_Type</a>::<strong>[anonymous]</strong> <code class="sig-name descname">b</code><a class="headerlink" href="#_CPPv4N12CLICCFG_Type1bE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N12CLICCFG_Type1wE">
+<span id="_CPPv3N12CLICCFG_Type1wE"></span><span id="_CPPv2N12CLICCFG_Type1wE"></span><span id="CLICCFG_Type::w__uint8_t"></span><span class="target" id="unionCLICCFG__Type_1ac27ac739e0794f9a8cdaf303adea6bc0"></span>uint8_t <code class="sig-name descname">w</code><a class="headerlink" href="#_CPPv4N12CLICCFG_Type1wE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="union">
+<dt id="_CPPv413CLICINFO_Type">
+<span id="_CPPv313CLICINFO_Type"></span><span id="_CPPv213CLICINFO_Type"></span><span class="target" id="unionCLICINFO__Type"></span><em class="property">union </em><code class="sig-name descname">CLICINFO_Type</code><a class="headerlink" href="#_CPPv413CLICINFO_Type" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="member">
+<dt id="_CPPv4N13CLICINFO_Type6numintE">
+<span id="_CPPv3N13CLICINFO_Type6numintE"></span><span id="_CPPv2N13CLICINFO_Type6numintE"></span><span id="CLICINFO_Type::numint__uint32_t"></span><span class="target" id="unionCLICINFO__Type_1a274efce01348f869204b2a7dfc747a35"></span>uint32_t <code class="sig-name descname">numint</code><a class="headerlink" href="#_CPPv4N13CLICINFO_Type6numintE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N13CLICINFO_Type7versionE">
+<span id="_CPPv3N13CLICINFO_Type7versionE"></span><span id="_CPPv2N13CLICINFO_Type7versionE"></span><span id="CLICINFO_Type::version__uint32_t"></span><span class="target" id="unionCLICINFO__Type_1a53f2d7abe7ade2b398085dba46d5a416"></span>uint32_t <code class="sig-name descname">version</code><a class="headerlink" href="#_CPPv4N13CLICINFO_Type7versionE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N13CLICINFO_Type10intctlbitsE">
+<span id="_CPPv3N13CLICINFO_Type10intctlbitsE"></span><span id="_CPPv2N13CLICINFO_Type10intctlbitsE"></span><span id="CLICINFO_Type::intctlbits__uint32_t"></span><span class="target" id="unionCLICINFO__Type_1a3e99199b48c2878b8cdda4fe380ce575"></span>uint32_t <code class="sig-name descname">intctlbits</code><a class="headerlink" href="#_CPPv4N13CLICINFO_Type10intctlbitsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N13CLICINFO_Type10_reserved0E">
+<span id="_CPPv3N13CLICINFO_Type10_reserved0E"></span><span id="_CPPv2N13CLICINFO_Type10_reserved0E"></span><span id="CLICINFO_Type::_reserved0__uint32_t"></span><span class="target" id="unionCLICINFO__Type_1a8296c5a1a6dda84860646a3a7bb2d070"></span>uint32_t <code class="sig-name descname">_reserved0</code><a class="headerlink" href="#_CPPv4N13CLICINFO_Type10_reserved0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N13CLICINFO_Type1bE">
+<span id="_CPPv3N13CLICINFO_Type1bE"></span><span id="_CPPv2N13CLICINFO_Type1bE"></span><span class="target" id="unionCLICINFO__Type_1af843c14257da1d678f59acd6ac18efce"></span><em class="property">struct</em> <a class="reference internal" href="#_CPPv413CLICINFO_Type" title="CLICINFO_Type">CLICINFO_Type</a>::<strong>[anonymous]</strong> <code class="sig-name descname">b</code><a class="headerlink" href="#_CPPv4N13CLICINFO_Type1bE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N13CLICINFO_Type1wE">
+<span id="_CPPv3N13CLICINFO_Type1wE"></span><span id="_CPPv2N13CLICINFO_Type1wE"></span><span id="CLICINFO_Type::w__uint32_t"></span><span class="target" id="unionCLICINFO__Type_1a03d1aab2ccfe2c5e61d1627c033a3e0a"></span>uint32_t <code class="sig-name descname">w</code><a class="headerlink" href="#_CPPv4N13CLICINFO_Type1wE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="group">
+<dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers"></span><em>group</em> <code class="sig-name descname">NMSIS_Core_ECLIC_Registers</code></dt>
+<dd><p>Type definitions and defines for eclic registers. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga0ee0922b5a83b6ff92fed6c9dea63da3"></span><code class="sig-name descname">CLIC_CLICCFG_NLBIT_Pos</code> 1U</dt>
+<dd><p>CLIC CLICCFG: NLBIT Position. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga6c31823bbd3bd593dcecd6d7d5f0afbb"></span><code class="sig-name descname">CLIC_CLICCFG_NLBIT_Msk</code> (0xFUL &lt;&lt; CLIC_CLICCFG_NLBIT_Pos)</dt>
+<dd><p>CLIC CLICCFG: NLBIT Mask. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gac63632ddf28ed47570b441f003ba5c5f"></span><code class="sig-name descname">CLIC_CLICINFO_CTLBIT_Pos</code> 21U</dt>
+<dd><p>CLIC INTINFO: __ECLIC_GetInfoCtlbits() Position. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga146a1208d7982a0ec073f9c3bb77528f"></span><code class="sig-name descname">CLIC_CLICINFO_CTLBIT_Msk</code> (0xFUL &lt;&lt; CLIC_CLICINFO_CTLBIT_Pos)</dt>
+<dd><p>CLIC INTINFO: __ECLIC_GetInfoCtlbits() Mask. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga3047dd362f08b827b4f3595fdee555e1"></span><code class="sig-name descname">CLIC_CLICINFO_VER_Pos</code> 13U</dt>
+<dd><p>CLIC CLICINFO: VERSION Position. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga2b40a58247f1ae1eb207ebfd224a6519"></span><code class="sig-name descname">CLIC_CLICINFO_VER_Msk</code> (0xFFUL &lt;&lt; CLIC_CLICCFG_NLBIT_Pos)</dt>
+<dd><p>CLIC CLICINFO: VERSION Mask. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga39c37a90e1445851aede44b002a83a99"></span><code class="sig-name descname">CLIC_CLICINFO_NUM_Pos</code> 0U</dt>
+<dd><p>CLIC CLICINFO: NUM Position. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga7f3148e774c092b06d81b400ac6c80bb"></span><code class="sig-name descname">CLIC_CLICINFO_NUM_Msk</code> (0xFFFUL &lt;&lt; CLIC_CLICINFO_NUM_Pos)</dt>
+<dd><p>CLIC CLICINFO: NUM Mask. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gab0047e9c230189453f8bca9bf0fa7061"></span><code class="sig-name descname">CLIC_INTIP_IP_Pos</code> 0U</dt>
+<dd><p>CLIC INTIP: IP Position. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gad7395594207c3fa20c423a1c9ae26cb7"></span><code class="sig-name descname">CLIC_INTIP_IP_Msk</code> (0x1UL &lt;&lt; CLIC_INTIP_IP_Pos)</dt>
+<dd><p>CLIC INTIP: IP Mask. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gaa6ea033a4802f0fd1354894436706cbd"></span><code class="sig-name descname">CLIC_INTIE_IE_Pos</code> 0U</dt>
+<dd><p>CLIC INTIE: IE Position. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga70aa615d81bc48ea8ed2b64c09c2d63f"></span><code class="sig-name descname">CLIC_INTIE_IE_Msk</code> (0x1UL &lt;&lt; CLIC_INTIE_IE_Pos)</dt>
+<dd><p>CLIC INTIE: IE Mask. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gac4ec4063ec15f49408130b8a095a2a91"></span><code class="sig-name descname">CLIC_INTATTR_TRIG_Pos</code> 1U</dt>
+<dd><p>CLIC INTATTR: TRIG Position. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga476263a60ffcbb45417ab2b6864d47b4"></span><code class="sig-name descname">CLIC_INTATTR_TRIG_Msk</code> (0x3UL &lt;&lt; CLIC_INTATTR_TRIG_Pos)</dt>
+<dd><p>CLIC INTATTR: TRIG Mask. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga49ea87f8a0207a2622f0ce467b7158dc"></span><code class="sig-name descname">CLIC_INTATTR_SHV_Pos</code> 0U</dt>
+<dd><p>CLIC INTATTR: SHV Position. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga2b6efddec2286b358747be5985110b3a"></span><code class="sig-name descname">CLIC_INTATTR_SHV_Msk</code> (0x1UL &lt;&lt; CLIC_INTATTR_SHV_Pos)</dt>
+<dd><p>CLIC INTATTR: SHV Mask. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga34443f8b2b2935d099e6a0119b96c712"></span><code class="sig-name descname">ECLIC_MAX_NLBITS</code> 8U</dt>
+<dd><p>Max nlbit of the CLICINTCTLBITS. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga2bcc1789c000ec72b06b7d7e736aa1c3"></span><code class="sig-name descname">ECLIC_MODE_MTVEC_Msk</code> 3U</dt>
+<dd><p>ECLIC Mode mask for MTVT CSR Register. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga6a01697e0ba89c691f98fee801f4a25c"></span><code class="sig-name descname">ECLIC_NON_VECTOR_INTERRUPT</code> 0x0</dt>
+<dd><p>Non-Vector Interrupt Mode of ECLIC. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga915384ab6567d38315e8cf5a566f4840"></span><code class="sig-name descname">ECLIC_VECTOR_INTERRUPT</code> 0x1</dt>
+<dd><p>Vector Interrupt Mode of ECLIC. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gabc9b9f3a2d7717c1b174432bd462f33f"></span><code class="sig-name descname">ECLIC_BASE</code> __ECLIC_BASEADDR</dt>
+<dd><p>ECLIC Base Address. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gab5a72455ad01a7caea954a82c907256d"></span><code class="sig-name descname">ECLIC</code> ((CLIC_Type *) ECLIC_BASE)</dt>
+<dd><p>CLIC configuration struct. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="enum">
+<dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga35f79c25d5118ccfde82872bc5946ecf"></span><em class="property">enum </em><code class="sig-name descname">ECLIC_TRIGGER_Type</code><br /></dt>
+<dd><p>ECLIC Trigger Enum for different Trigger Type. </p>
+<p><em>Values:</em></p>
+<dl class="enumerator">
+<dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa6c8507eafc6f68410f8e5f3f5c0f4e12"></span><code class="sig-name descname">ECLIC_LEVEL_TRIGGER</code> = 0x0<br /></dt>
+<dd><p>Level Triggerred, trig[0] = 0. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa077bcb1671a8e81875733c437aa989db"></span><code class="sig-name descname">ECLIC_POSTIVE_EDGE_TRIGGER</code> = 0x1<br /></dt>
+<dd><p>Postive/Rising Edge Triggered, trig[0] = 1, trig[1] = 0. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfad5184faf1eeb1cd9f5d79f903b65297c"></span><code class="sig-name descname">ECLIC_NEGTIVE_EDGE_TRIGGER</code> = 0x3<br /></dt>
+<dd><p>Negtive/Falling Edge Triggered, trig[0] = 1, trig[1] = 1. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfabc630e0d61793a95a68543fb23ea6459"></span><code class="sig-name descname">ECLIC_MAX_TRIGGER</code> = 0x3<br /></dt>
+<dd><p>MAX Supported Trigger Mode. </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<dl class="union">
+<dt>
+<span class="target" id="unionCLICCFG__Type"></span><em class="property">union </em><code class="sig-name descname">CLICCFG_Type</code><br /></dt>
+<dd><em>#include &lt;core_feature_eclic.h&gt;</em><p>Union type to access CLICFG configure register. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="member">
+<dt>
+<span class="target" id="unionCLICCFG__Type_1a468085eceb1103be6a356f4201fb7c30"></span>uint8_t <code class="sig-name descname">_reserved0</code><br /></dt>
+<dd><p>bit: 0 Overflow condition code flag </p>
+</dd></dl>
+
+<dl class="member">
+<dt>
+<span class="target" id="unionCLICCFG__Type_1ace553cff35563c1f44a257c6a1187b0c"></span>uint8_t <code class="sig-name descname">nlbits</code><br /></dt>
+<dd><p>bit: 29 Carry condition code flag </p>
+</dd></dl>
+
+<dl class="member">
+<dt>
+<span class="target" id="unionCLICCFG__Type_1ab1e5af2ea073a59770d6475ecddafc95"></span>uint8_t <code class="sig-name descname">_reserved1</code><br /></dt>
+<dd><p>bit: 30 Zero condition code flag </p>
+</dd></dl>
+
+<dl class="member">
+<dt>
+<span class="target" id="unionCLICCFG__Type_1af6f5ecf3e79b5bf8acfb452865ad4149"></span>uint8_t <code class="sig-name descname">_reserved2</code><br /></dt>
+<dd><p>bit: 31 Negative condition code flag </p>
+</dd></dl>
+
+<dl class="member">
+<dt>
+<span class="target" id="unionCLICCFG__Type_1abd35f4d630426c24ef2973324bb103d6"></span><em class="property">struct</em> <a class="reference internal" href="#_CPPv412CLICCFG_Type" title="CLICCFG_Type">CLICCFG_Type</a>::<strong>[anonymous]</strong> <code class="sig-name descname">b</code><br /></dt>
+<dd><p>Structure used for bit access. </p>
+</dd></dl>
+
+<dl class="member">
+<dt>
+<span class="target" id="unionCLICCFG__Type_1ac27ac739e0794f9a8cdaf303adea6bc0"></span>uint8_t <code class="sig-name descname">w</code><br /></dt>
+<dd><p>Type used for byte access. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="union">
+<dt>
+<span class="target" id="unionCLICINFO__Type"></span><em class="property">union </em><code class="sig-name descname">CLICINFO_Type</code><br /></dt>
+<dd><em>#include &lt;core_feature_eclic.h&gt;</em><p>Union type to access CLICINFO information register. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="member">
+<dt>
+<span class="target" id="unionCLICINFO__Type_1a274efce01348f869204b2a7dfc747a35"></span>uint32_t <code class="sig-name descname">numint</code><br /></dt>
+<dd><p>bit: 0..12 number of maximum interrupt inputs supported </p>
+</dd></dl>
+
+<dl class="member">
+<dt>
+<span class="target" id="unionCLICINFO__Type_1a53f2d7abe7ade2b398085dba46d5a416"></span>uint32_t <code class="sig-name descname">version</code><br /></dt>
+<dd><p>bit: 13..20 20:17 for architecture version,16:13 for implementation version </p>
+</dd></dl>
+
+<dl class="member">
+<dt>
+<span class="target" id="unionCLICINFO__Type_1a3e99199b48c2878b8cdda4fe380ce575"></span>uint32_t <code class="sig-name descname">intctlbits</code><br /></dt>
+<dd><p>bit: 21..24 specifies how many hardware bits are actually implemented in the clicintctl registers </p>
+</dd></dl>
+
+<dl class="member">
+<dt>
+<span class="target" id="unionCLICINFO__Type_1a8296c5a1a6dda84860646a3a7bb2d070"></span>uint32_t <code class="sig-name descname">_reserved0</code><br /></dt>
+<dd><p>bit: 25..31 Reserved </p>
+</dd></dl>
+
+<dl class="member">
+<dt>
+<span class="target" id="unionCLICINFO__Type_1af843c14257da1d678f59acd6ac18efce"></span><em class="property">struct</em> <a class="reference internal" href="#_CPPv413CLICINFO_Type" title="CLICINFO_Type">CLICINFO_Type</a>::<strong>[anonymous]</strong> <code class="sig-name descname">b</code><br /></dt>
+<dd><p>Structure used for bit access. </p>
+</dd></dl>
+
+<dl class="member">
+<dt>
+<span class="target" id="unionCLICINFO__Type_1a03d1aab2ccfe2c5e61d1627c033a3e0a"></span>uint32_t <code class="sig-name descname">w</code><br /></dt>
+<dd><p>Type used for word access. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="_CPPv414CLIC_CTRL_Type">
+<span id="_CPPv314CLIC_CTRL_Type"></span><span id="_CPPv214CLIC_CTRL_Type"></span><span id="CLIC_CTRL_Type"></span><span class="target" id="structCLIC__CTRL__Type"></span><em class="property">struct </em><code class="sig-name descname">CLIC_CTRL_Type</code><a class="headerlink" href="#_CPPv414CLIC_CTRL_Type" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;core_feature_eclic.h&gt;</em><p>Access to the structure of a vector interrupt controller. </p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api_nmsis_core_systimer_registers.html" class="btn btn-neutral float-right" title="Register Define and Type Definitions Of System Timer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api_nmsis_core_base_registers.html" class="btn btn-neutral float-left" title="Base Register Define and Type Definitions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-Present, Nuclei
+      <span class="lastupdated">
+        Last updated on Aug 05, 2021.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

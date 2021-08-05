@@ -1,0 +1,467 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Boolean Distances &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Fast Math Functions" href="../api_groupfastmath.html" />
+    <link rel="prev" title="Minkowski distance" href="floatdist/api_minkowski.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.2-RC1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">NMSIS DSP</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupbayes.html">Bayesian estimators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupcontroller.html">Controller Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api_groupdistance.html">Distance functions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api_floatdist.html">Float Distances</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Boolean Distances</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupfastmath.html">Fast Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupfilters.html">Filtering Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupinterpolation.html">Interpolation Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupmatrix.html">Matrix Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupquaternionmath.html">Quaternion Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupstats.html">Statistics Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupsupport.html">Support Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupsvm.html">SVM Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
+        
+          <li><a href="../index.html">NMSIS DSP API</a> &raquo;</li>
+        
+          <li><a href="../api_groupdistance.html">Distance functions</a> &raquo;</li>
+        
+      <li>Boolean Distances</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/dsp/api/groupdistance/api_booldist.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="boolean-distances">
+<span id="nmsis-dsp-api-boolean-distances"></span><h1>Boolean Distances<a class="headerlink" href="#boolean-distances" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="_CPPv419riscv_dice_distancePK8uint32_tPK8uint32_t8uint32_t">
+<span id="_CPPv319riscv_dice_distancePK8uint32_tPK8uint32_t8uint32_t"></span><span id="_CPPv219riscv_dice_distancePK8uint32_tPK8uint32_t8uint32_t"></span><span id="riscv_dice_distance__uint32_tCP.uint32_tCP.uint32_t"></span><span class="target" id="group__BoolDist_1ga1f089a2ad26c09cebf65e1ea3ed9f22a"></span>float32_t <code class="sig-name descname">riscv_dice_distance</code><span class="sig-paren">(</span><em class="property">const</em> uint32_t *<em>pA</em>, <em class="property">const</em> uint32_t *<em>pB</em>, uint32_t <em>numberOfBools</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_dice_distancePK8uint32_tPK8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv422riscv_hamming_distancePK8uint32_tPK8uint32_t8uint32_t">
+<span id="_CPPv322riscv_hamming_distancePK8uint32_tPK8uint32_t8uint32_t"></span><span id="_CPPv222riscv_hamming_distancePK8uint32_tPK8uint32_t8uint32_t"></span><span id="riscv_hamming_distance__uint32_tCP.uint32_tCP.uint32_t"></span><span class="target" id="group__BoolDist_1gafab2d88f0d36de469db8871cfe2e6145"></span>float32_t <code class="sig-name descname">riscv_hamming_distance</code><span class="sig-paren">(</span><em class="property">const</em> uint32_t *<em>pA</em>, <em class="property">const</em> uint32_t *<em>pB</em>, uint32_t <em>numberOfBools</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422riscv_hamming_distancePK8uint32_tPK8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv422riscv_jaccard_distancePK8uint32_tPK8uint32_t8uint32_t">
+<span id="_CPPv322riscv_jaccard_distancePK8uint32_tPK8uint32_t8uint32_t"></span><span id="_CPPv222riscv_jaccard_distancePK8uint32_tPK8uint32_t8uint32_t"></span><span id="riscv_jaccard_distance__uint32_tCP.uint32_tCP.uint32_t"></span><span class="target" id="group__BoolDist_1ga4498cabffec6afba97a2776163803010"></span>float32_t <code class="sig-name descname">riscv_jaccard_distance</code><span class="sig-paren">(</span><em class="property">const</em> uint32_t *<em>pA</em>, <em class="property">const</em> uint32_t *<em>pB</em>, uint32_t <em>numberOfBools</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422riscv_jaccard_distancePK8uint32_tPK8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv424riscv_kulsinski_distancePK8uint32_tPK8uint32_t8uint32_t">
+<span id="_CPPv324riscv_kulsinski_distancePK8uint32_tPK8uint32_t8uint32_t"></span><span id="_CPPv224riscv_kulsinski_distancePK8uint32_tPK8uint32_t8uint32_t"></span><span id="riscv_kulsinski_distance__uint32_tCP.uint32_tCP.uint32_t"></span><span class="target" id="group__BoolDist_1gaaf4ea62ca7702ee27de1e7d314cb1f64"></span>float32_t <code class="sig-name descname">riscv_kulsinski_distance</code><span class="sig-paren">(</span><em class="property">const</em> uint32_t *<em>pA</em>, <em class="property">const</em> uint32_t *<em>pB</em>, uint32_t <em>numberOfBools</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424riscv_kulsinski_distancePK8uint32_tPK8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv429riscv_rogerstanimoto_distancePK8uint32_tPK8uint32_t8uint32_t">
+<span id="_CPPv329riscv_rogerstanimoto_distancePK8uint32_tPK8uint32_t8uint32_t"></span><span id="_CPPv229riscv_rogerstanimoto_distancePK8uint32_tPK8uint32_t8uint32_t"></span><span id="riscv_rogerstanimoto_distance__uint32_tCP.uint32_tCP.uint32_t"></span><span class="target" id="group__BoolDist_1ga2f673535c41b65c5fcf8f104ac86b4ce"></span>float32_t <code class="sig-name descname">riscv_rogerstanimoto_distance</code><span class="sig-paren">(</span><em class="property">const</em> uint32_t *<em>pA</em>, <em class="property">const</em> uint32_t *<em>pB</em>, uint32_t <em>numberOfBools</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429riscv_rogerstanimoto_distancePK8uint32_tPK8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv425riscv_russellrao_distancePK8uint32_tPK8uint32_t8uint32_t">
+<span id="_CPPv325riscv_russellrao_distancePK8uint32_tPK8uint32_t8uint32_t"></span><span id="_CPPv225riscv_russellrao_distancePK8uint32_tPK8uint32_t8uint32_t"></span><span id="riscv_russellrao_distance__uint32_tCP.uint32_tCP.uint32_t"></span><span class="target" id="group__BoolDist_1ga75631cae40dd7e7328d11664ddc2ce81"></span>float32_t <code class="sig-name descname">riscv_russellrao_distance</code><span class="sig-paren">(</span><em class="property">const</em> uint32_t *<em>pA</em>, <em class="property">const</em> uint32_t *<em>pB</em>, uint32_t <em>numberOfBools</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425riscv_russellrao_distancePK8uint32_tPK8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv428riscv_sokalmichener_distancePK8uint32_tPK8uint32_t8uint32_t">
+<span id="_CPPv328riscv_sokalmichener_distancePK8uint32_tPK8uint32_t8uint32_t"></span><span id="_CPPv228riscv_sokalmichener_distancePK8uint32_tPK8uint32_t8uint32_t"></span><span id="riscv_sokalmichener_distance__uint32_tCP.uint32_tCP.uint32_t"></span><span class="target" id="group__BoolDist_1ga76a23b859f57ad329f8e75b520db40fc"></span>float32_t <code class="sig-name descname">riscv_sokalmichener_distance</code><span class="sig-paren">(</span><em class="property">const</em> uint32_t *<em>pA</em>, <em class="property">const</em> uint32_t *<em>pB</em>, uint32_t <em>numberOfBools</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428riscv_sokalmichener_distancePK8uint32_tPK8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv426riscv_sokalsneath_distancePK8uint32_tPK8uint32_t8uint32_t">
+<span id="_CPPv326riscv_sokalsneath_distancePK8uint32_tPK8uint32_t8uint32_t"></span><span id="_CPPv226riscv_sokalsneath_distancePK8uint32_tPK8uint32_t8uint32_t"></span><span id="riscv_sokalsneath_distance__uint32_tCP.uint32_tCP.uint32_t"></span><span class="target" id="group__BoolDist_1gab9c7080865e9bc5d0c1fda329b85484f"></span>float32_t <code class="sig-name descname">riscv_sokalsneath_distance</code><span class="sig-paren">(</span><em class="property">const</em> uint32_t *<em>pA</em>, <em class="property">const</em> uint32_t *<em>pB</em>, uint32_t <em>numberOfBools</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426riscv_sokalsneath_distancePK8uint32_tPK8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv419riscv_yule_distancePK8uint32_tPK8uint32_t8uint32_t">
+<span id="_CPPv319riscv_yule_distancePK8uint32_tPK8uint32_t8uint32_t"></span><span id="_CPPv219riscv_yule_distancePK8uint32_tPK8uint32_t8uint32_t"></span><span id="riscv_yule_distance__uint32_tCP.uint32_tCP.uint32_t"></span><span class="target" id="group__BoolDist_1ga1052fa6c06a9a172b013269f020f4fc0"></span>float32_t <code class="sig-name descname">riscv_yule_distance</code><span class="sig-paren">(</span><em class="property">const</em> uint32_t *<em>pA</em>, <em class="property">const</em> uint32_t *<em>pB</em>, uint32_t <em>numberOfBools</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_yule_distancePK8uint32_tPK8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="group">
+<dt>
+<span class="target" id="group__BoolDist"></span><em>group</em> <code class="sig-name descname">BoolDist</code></dt>
+<dd><p>Distances between two vectors of boolean values.</p>
+<p>Booleans are packed in 32 bit words. numberOfBooleans argument is the number of booleans and not the number of words.</p>
+<p>Bits are packed in big-endian mode (because of behavior of numpy packbits in in version &lt; 1.17) </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Unnamed Group</p>
+<dl class="function">
+<dt>
+<span class="target" id="group__BoolDist_1ga1f089a2ad26c09cebf65e1ea3ed9f22a"></span>float32_t <code class="sig-name descname">riscv_dice_distance</code><span class="sig-paren">(</span><em class="property">const</em> uint32_t *<em>pA</em>, <em class="property">const</em> uint32_t *<em>pB</em>, uint32_t <em>numberOfBools</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Dice distance between two vectors. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>distance </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pA</span></code>: First vector of packed booleans </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pB</span></code>: Second vector of packed booleans </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numberOfBools</span></code>: Number of booleans </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="function">
+<dt>
+<span class="target" id="group__BoolDist_1gafab2d88f0d36de469db8871cfe2e6145"></span>float32_t <code class="sig-name descname">riscv_hamming_distance</code><span class="sig-paren">(</span><em class="property">const</em> uint32_t *<em>pA</em>, <em class="property">const</em> uint32_t *<em>pB</em>, uint32_t <em>numberOfBools</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Hamming distance between two vectors. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>distance </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pA</span></code>: First vector of packed booleans </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pB</span></code>: Second vector of packed booleans </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numberOfBools</span></code>: Number of booleans </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__BoolDist_1ga4498cabffec6afba97a2776163803010"></span>float32_t <code class="sig-name descname">riscv_jaccard_distance</code><span class="sig-paren">(</span><em class="property">const</em> uint32_t *<em>pA</em>, <em class="property">const</em> uint32_t *<em>pB</em>, uint32_t <em>numberOfBools</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Jaccard distance between two vectors. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>distance </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pA</span></code>: First vector of packed booleans </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pB</span></code>: Second vector of packed booleans </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numberOfBools</span></code>: Number of booleans </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__BoolDist_1gaaf4ea62ca7702ee27de1e7d314cb1f64"></span>float32_t <code class="sig-name descname">riscv_kulsinski_distance</code><span class="sig-paren">(</span><em class="property">const</em> uint32_t *<em>pA</em>, <em class="property">const</em> uint32_t *<em>pB</em>, uint32_t <em>numberOfBools</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Kulsinski distance between two vectors. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>distance </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pA</span></code>: First vector of packed booleans </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pB</span></code>: Second vector of packed booleans </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numberOfBools</span></code>: Number of booleans </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__BoolDist_1ga2f673535c41b65c5fcf8f104ac86b4ce"></span>float32_t <code class="sig-name descname">riscv_rogerstanimoto_distance</code><span class="sig-paren">(</span><em class="property">const</em> uint32_t *<em>pA</em>, <em class="property">const</em> uint32_t *<em>pB</em>, uint32_t <em>numberOfBools</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Rogers Tanimoto distance between two vectors. </p>
+<p>Roger Stanimoto distance between two vectors.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>distance </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pA</span></code>: First vector of packed booleans </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pB</span></code>: Second vector of packed booleans </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numberOfBools</span></code>: Number of booleans </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__BoolDist_1ga75631cae40dd7e7328d11664ddc2ce81"></span>float32_t <code class="sig-name descname">riscv_russellrao_distance</code><span class="sig-paren">(</span><em class="property">const</em> uint32_t *<em>pA</em>, <em class="property">const</em> uint32_t *<em>pB</em>, uint32_t <em>numberOfBools</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Russell-Rao distance between two vectors. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>distance </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pA</span></code>: First vector of packed booleans </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pB</span></code>: Second vector of packed booleans </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numberOfBools</span></code>: Number of booleans </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__BoolDist_1ga76a23b859f57ad329f8e75b520db40fc"></span>float32_t <code class="sig-name descname">riscv_sokalmichener_distance</code><span class="sig-paren">(</span><em class="property">const</em> uint32_t *<em>pA</em>, <em class="property">const</em> uint32_t *<em>pB</em>, uint32_t <em>numberOfBools</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Sokal-Michener distance between two vectors. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>distance </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pA</span></code>: First vector of packed booleans </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pB</span></code>: Second vector of packed booleans </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numberOfBools</span></code>: Number of booleans </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__BoolDist_1gab9c7080865e9bc5d0c1fda329b85484f"></span>float32_t <code class="sig-name descname">riscv_sokalsneath_distance</code><span class="sig-paren">(</span><em class="property">const</em> uint32_t *<em>pA</em>, <em class="property">const</em> uint32_t *<em>pB</em>, uint32_t <em>numberOfBools</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Sokal-Sneath distance between two vectors. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>distance </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pA</span></code>: First vector of packed booleans </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pB</span></code>: Second vector of packed booleans </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numberOfBools</span></code>: Number of booleans </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__BoolDist_1ga1052fa6c06a9a172b013269f020f4fc0"></span>float32_t <code class="sig-name descname">riscv_yule_distance</code><span class="sig-paren">(</span><em class="property">const</em> uint32_t *<em>pA</em>, <em class="property">const</em> uint32_t *<em>pB</em>, uint32_t <em>numberOfBools</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Yule distance between two vectors. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>distance </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pA</span></code>: First vector of packed booleans </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pB</span></code>: Second vector of packed booleans </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numberOfBools</span></code>: Number of booleans </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../api_groupfastmath.html" class="btn btn-neutral float-right" title="Fast Math Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="floatdist/api_minkowski.html" class="btn btn-neutral float-left" title="Minkowski distance" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-Present, Nuclei
+      <span class="lastupdated">
+        Last updated on Aug 05, 2021.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

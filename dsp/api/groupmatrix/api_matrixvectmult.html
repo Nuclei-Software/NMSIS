@@ -1,0 +1,372 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Matrix Vector Multiplication &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Quaternion Math Functions" href="../api_groupquaternionmath.html" />
+    <link rel="prev" title="Matrix Transpose" href="api_matrixtrans.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.2-RC1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">NMSIS DSP</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupbayes.html">Bayesian estimators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupcontroller.html">Controller Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupdistance.html">Distance functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupfastmath.html">Fast Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupfilters.html">Filtering Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupinterpolation.html">Interpolation Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api_groupmatrix.html">Matrix Functions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api_matrixadd.html">Matrix Addition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_matrixchol.html">Cholesky and LDLT decompositions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_cmplxmatrixmult.html">Complex Matrix Multiplication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_matrixcomplextrans.html">Complex Matrix Transpose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_matrixinit.html">Matrix Initialization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_matrixinv.html">Matrix Inverse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_matrixmult.html">Matrix Multiplication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_matrixscale.html">Matrix Scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_matrixsub.html">Matrix Subtraction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_matrixtrans.html">Matrix Transpose</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Matrix Vector Multiplication</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupquaternionmath.html">Quaternion Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupstats.html">Statistics Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupsupport.html">Support Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupsvm.html">SVM Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
+        
+          <li><a href="../index.html">NMSIS DSP API</a> &raquo;</li>
+        
+          <li><a href="../api_groupmatrix.html">Matrix Functions</a> &raquo;</li>
+        
+      <li>Matrix Vector Multiplication</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/dsp/api/groupmatrix/api_matrixvectmult.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="matrix-vector-multiplication">
+<span id="nmsis-dsp-api-matrix-vector-multiplication"></span><h1>Matrix Vector Multiplication<a class="headerlink" href="#matrix-vector-multiplication" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="_CPPv422riscv_mat_vec_mult_f16PK25riscv_matrix_instance_f16PK9float16_tP9float16_t">
+<span id="_CPPv322riscv_mat_vec_mult_f16PK25riscv_matrix_instance_f16PK9float16_tP9float16_t"></span><span id="_CPPv222riscv_mat_vec_mult_f16PK25riscv_matrix_instance_f16PK9float16_tP9float16_t"></span><span id="riscv_mat_vec_mult_f16__riscv_matrix_instance_f16CP.float16_tCP.float16_tP"></span><span class="target" id="group__MatrixVectMult_1ga3414f545994559d3cee1e5ddce5206a1"></span>void <code class="sig-name descname">riscv_mat_vec_mult_f16</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_f16 *<em>pSrcMat</em>, <em class="property">const</em> float16_t *<em>pVec</em>, float16_t *<em>pDst</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422riscv_mat_vec_mult_f16PK25riscv_matrix_instance_f16PK9float16_tP9float16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv422riscv_mat_vec_mult_f32PK25riscv_matrix_instance_f32PK9float32_tP9float32_t">
+<span id="_CPPv322riscv_mat_vec_mult_f32PK25riscv_matrix_instance_f32PK9float32_tP9float32_t"></span><span id="_CPPv222riscv_mat_vec_mult_f32PK25riscv_matrix_instance_f32PK9float32_tP9float32_t"></span><span id="riscv_mat_vec_mult_f32__riscv_matrix_instance_f32CP.float32_tCP.float32_tP"></span><span class="target" id="group__MatrixVectMult_1ga5dfae37374571e6418cb909981335bf3"></span>void <code class="sig-name descname">riscv_mat_vec_mult_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_f32 *<em>pSrcMat</em>, <em class="property">const</em> float32_t *<em>pVec</em>, float32_t *<em>pDst</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422riscv_mat_vec_mult_f32PK25riscv_matrix_instance_f32PK9float32_tP9float32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv422riscv_mat_vec_mult_q15PK25riscv_matrix_instance_q15PK5q15_tP5q15_t">
+<span id="_CPPv322riscv_mat_vec_mult_q15PK25riscv_matrix_instance_q15PK5q15_tP5q15_t"></span><span id="_CPPv222riscv_mat_vec_mult_q15PK25riscv_matrix_instance_q15PK5q15_tP5q15_t"></span><span id="riscv_mat_vec_mult_q15__riscv_matrix_instance_q15CP.q15_tCP.q15_tP"></span><span class="target" id="group__MatrixVectMult_1ga18b12fcdd41b33a2f5e58611c14b51da"></span>void <code class="sig-name descname">riscv_mat_vec_mult_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q15 *<em>pSrcMat</em>, <em class="property">const</em> q15_t *<em>pVec</em>, q15_t *<em>pDst</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422riscv_mat_vec_mult_q15PK25riscv_matrix_instance_q15PK5q15_tP5q15_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv422riscv_mat_vec_mult_q31PK25riscv_matrix_instance_q31PK5q31_tP5q31_t">
+<span id="_CPPv322riscv_mat_vec_mult_q31PK25riscv_matrix_instance_q31PK5q31_tP5q31_t"></span><span id="_CPPv222riscv_mat_vec_mult_q31PK25riscv_matrix_instance_q31PK5q31_tP5q31_t"></span><span id="riscv_mat_vec_mult_q31__riscv_matrix_instance_q31CP.q31_tCP.q31_tP"></span><span class="target" id="group__MatrixVectMult_1ga7c7c6a85b81bc1829d193181c9e5b89b"></span>void <code class="sig-name descname">riscv_mat_vec_mult_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q31 *<em>pSrcMat</em>, <em class="property">const</em> q31_t *<em>pVec</em>, q31_t *<em>pDst</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422riscv_mat_vec_mult_q31PK25riscv_matrix_instance_q31PK5q31_tP5q31_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv421riscv_mat_vec_mult_q7PK24riscv_matrix_instance_q7PK4q7_tP4q7_t">
+<span id="_CPPv321riscv_mat_vec_mult_q7PK24riscv_matrix_instance_q7PK4q7_tP4q7_t"></span><span id="_CPPv221riscv_mat_vec_mult_q7PK24riscv_matrix_instance_q7PK4q7_tP4q7_t"></span><span id="riscv_mat_vec_mult_q7__riscv_matrix_instance_q7CP.q7_tCP.q7_tP"></span><span class="target" id="group__MatrixVectMult_1gad4bfad7aecaacf3cedbfddd029ee46df"></span>void <code class="sig-name descname">riscv_mat_vec_mult_q7</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q7 *<em>pSrcMat</em>, <em class="property">const</em> q7_t *<em>pVec</em>, q7_t *<em>pDst</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421riscv_mat_vec_mult_q7PK24riscv_matrix_instance_q7PK4q7_tP4q7_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="group">
+<dt>
+<span class="target" id="group__MatrixVectMult"></span><em>group</em> <code class="sig-name descname">MatrixVectMult</code></dt>
+<dd><p>Multiplies a matrix and a vector. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="function">
+<dt>
+<span class="target" id="group__MatrixVectMult_1ga3414f545994559d3cee1e5ddce5206a1"></span>void <code class="sig-name descname">riscv_mat_vec_mult_f16</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_f16 *<em>pSrcMat</em>, <em class="property">const</em> float16_t *<em>pVec</em>, float16_t *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Floating-point matrix and vector multiplication. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">*pSrcMat</span></code>: points to the input matrix structure </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">*pVec</span></code>: points to input vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">*pDst</span></code>: points to output vector </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__MatrixVectMult_1ga5dfae37374571e6418cb909981335bf3"></span>void <code class="sig-name descname">riscv_mat_vec_mult_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_f32 *<em>pSrcMat</em>, <em class="property">const</em> float32_t *<em>pVec</em>, float32_t *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Floating-point matrix and vector multiplication. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">*pSrcMat</span></code>: points to the input matrix structure </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">*pVec</span></code>: points to input vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">*pDst</span></code>: points to output vector </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__MatrixVectMult_1ga18b12fcdd41b33a2f5e58611c14b51da"></span>void <code class="sig-name descname">riscv_mat_vec_mult_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q15 *<em>pSrcMat</em>, <em class="property">const</em> q15_t *<em>pVec</em>, q15_t *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Q15 matrix and vector multiplication. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">*pSrcMat</span></code>: points to the input matrix structure </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">*pVec</span></code>: points to input vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">*pDst</span></code>: points to output vector </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__MatrixVectMult_1ga7c7c6a85b81bc1829d193181c9e5b89b"></span>void <code class="sig-name descname">riscv_mat_vec_mult_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q31 *<em>pSrcMat</em>, <em class="property">const</em> q31_t *<em>pVec</em>, q31_t *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Q31 matrix and vector multiplication. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">*pSrcMat</span></code>: points to the input matrix structure </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">*pVec</span></code>: points to the input vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">*pDst</span></code>: points to the output vector </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__MatrixVectMult_1gad4bfad7aecaacf3cedbfddd029ee46df"></span>void <code class="sig-name descname">riscv_mat_vec_mult_q7</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q7 *<em>pSrcMat</em>, <em class="property">const</em> q7_t *<em>pVec</em>, q7_t *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Q7 matrix and vector multiplication. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">*pSrcMat</span></code>: points to the input matrix structure </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">*pVec</span></code>: points to the input vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">*pDst</span></code>: points to the output vector </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../api_groupquaternionmath.html" class="btn btn-neutral float-right" title="Quaternion Math Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api_matrixtrans.html" class="btn btn-neutral float-left" title="Matrix Transpose" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-Present, Nuclei
+      <span class="lastupdated">
+        Last updated on Aug 05, 2021.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

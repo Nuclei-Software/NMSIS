@@ -91,6 +91,9 @@ $(document).ready(function(){initNavTree('group__CmplxMatrixMult.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:gabdfecd3f6334e45b04f8a01492d90464"><td class="memItemLeft" align="right" valign="top">riscv_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CmplxMatrixMult.html#gabdfecd3f6334e45b04f8a01492d90464">riscv_mat_cmplx_mult_f16</a> (const <a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *pSrcA, const <a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *pSrcB, <a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *pDst)</td></tr>
+<tr class="memdesc:gabdfecd3f6334e45b04f8a01492d90464"><td class="mdescLeft">&#160;</td><td class="mdescRight">Floating-point Complex matrix multiplication.  <a href="#gabdfecd3f6334e45b04f8a01492d90464">More...</a><br /></td></tr>
+<tr class="separator:gabdfecd3f6334e45b04f8a01492d90464"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaefc3c7a3dba4761e5539f212124500c5"><td class="memItemLeft" align="right" valign="top">riscv_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CmplxMatrixMult.html#gaefc3c7a3dba4761e5539f212124500c5">riscv_mat_cmplx_mult_f32</a> (const <a class="el" href="structriscv__matrix__instance__f32.html">riscv_matrix_instance_f32</a> *pSrcA, const <a class="el" href="structriscv__matrix__instance__f32.html">riscv_matrix_instance_f32</a> *pSrcB, <a class="el" href="structriscv__matrix__instance__f32.html">riscv_matrix_instance_f32</a> *pDst)</td></tr>
 <tr class="memdesc:gaefc3c7a3dba4761e5539f212124500c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Floating-point Complex matrix multiplication.  <a href="#gaefc3c7a3dba4761e5539f212124500c5">More...</a><br /></td></tr>
 <tr class="separator:gaefc3c7a3dba4761e5539f212124500c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -108,6 +111,56 @@ Functions</h2></td></tr>
 </ul>
 </dd></dl>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="gabdfecd3f6334e45b04f8a01492d90464"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabdfecd3f6334e45b04f8a01492d90464">&#9670;&nbsp;</a></span>riscv_mat_cmplx_mult_f16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">riscv_status riscv_mat_cmplx_mult_f16 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *&#160;</td>
+          <td class="paramname"><em>pSrcA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *&#160;</td>
+          <td class="paramname"><em>pSrcB</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *&#160;</td>
+          <td class="paramname"><em>pDst</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Floating-point Complex matrix multiplication. </p>
+<p>Floating-point, complex, matrix multiplication.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pSrcA</td><td>points to first input complex matrix structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pSrcB</td><td>points to second input complex matrix structure </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pDst</td><td>points to output complex matrix structure </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>execution status<ul>
+<li>RISCV_MATH_SUCCESS : Operation successful</li>
+<li>RISCV_MATH_SIZE_MISMATCH : Matrix size check failed </li>
+</ul>
+</dd></dl>
+
+</div>
+</div>
 <a id="gaefc3c7a3dba4761e5539f212124500c5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gaefc3c7a3dba4761e5539f212124500c5">&#9670;&nbsp;</a></span>riscv_mat_cmplx_mult_f32()</h2>
 
@@ -273,7 +326,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Aug 3 2021 10:26:13 for NMSIS-DSP by
+    <li class="footer">Generated on Thu Aug 5 2021 10:52:54 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

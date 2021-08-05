@@ -1,43 +1,40 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
-  <meta charset="utf-8" />
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Complex Dot Product &mdash; NMSIS 1.0.2-RC1 documentation</title>
   
 
   
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-
+  
   
   
 
   
-  
-
-  
-
-  
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Complex Magnitude" href="api_cmplx_mag.html" />
@@ -85,7 +82,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -93,7 +89,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -101,8 +97,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_groupfastmath.html">Fast Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupbayes.html">Bayesian estimators</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="api_cmplx_conj.html">Complex Conjugate</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Complex Dot Product</a></li>
@@ -112,14 +109,17 @@
 <li class="toctree-l4"><a class="reference internal" href="api_cmplxbyrealmult.html">Complex-by-Real Multiplication</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../api_groupfilters.html">Filtering Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_groupmatrix.html">Matrix Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupcontroller.html">Controller Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupdistance.html">Distance functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupfastmath.html">Fast Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupfilters.html">Filtering Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupinterpolation.html">Interpolation Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupmatrix.html">Matrix Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupquaternionmath.html">Quaternion Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupstats.html">Statistics Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupsupport.html">Support Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_groupinterpolation.html">Interpolation Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupsvm.html">SVM Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
@@ -134,7 +134,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -169,13 +168,11 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
           <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
         
@@ -188,7 +185,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="../../../_sources/dsp/api/groupcmplxmath/api_cmplx_dot_prod.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -202,19 +199,24 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="complex-dot-product">
+  <section id="complex-dot-product">
 <span id="nmsis-dsp-api-complex-dot-product"></span><h1>Complex Dot Product<a class="headerlink" href="#complex-dot-product" title="Permalink to this headline">¶</a></h1>
-<dl class="cpp function">
+<dl class="function">
+<dt id="_CPPv424riscv_cmplx_dot_prod_f16PK9float16_tPK9float16_t8uint32_tP9float16_tP9float16_t">
+<span id="_CPPv324riscv_cmplx_dot_prod_f16PK9float16_tPK9float16_t8uint32_tP9float16_tP9float16_t"></span><span id="_CPPv224riscv_cmplx_dot_prod_f16PK9float16_tPK9float16_t8uint32_tP9float16_tP9float16_t"></span><span id="riscv_cmplx_dot_prod_f16__float16_tCP.float16_tCP.uint32_t.float16_tP.float16_tP"></span><span class="target" id="group__cmplx__dot__prod_1ga2bf24dd5d52c47188d98a47a46fd579c"></span>void <code class="sig-name descname">riscv_cmplx_dot_prod_f16</code><span class="sig-paren">(</span><em class="property">const</em> float16_t *<em>pSrcA</em>, <em class="property">const</em> float16_t *<em>pSrcB</em>, uint32_t <em>numSamples</em>, float16_t *<em>realResult</em>, float16_t *<em>imagResult</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424riscv_cmplx_dot_prod_f16PK9float16_tPK9float16_t8uint32_tP9float16_tP9float16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
 <dt id="_CPPv424riscv_cmplx_dot_prod_f32PK9float32_tPK9float32_t8uint32_tP9float32_tP9float32_t">
 <span id="_CPPv324riscv_cmplx_dot_prod_f32PK9float32_tPK9float32_t8uint32_tP9float32_tP9float32_t"></span><span id="_CPPv224riscv_cmplx_dot_prod_f32PK9float32_tPK9float32_t8uint32_tP9float32_tP9float32_t"></span><span id="riscv_cmplx_dot_prod_f32__float32_tCP.float32_tCP.uint32_t.float32_tP.float32_tP"></span><span class="target" id="group__cmplx__dot__prod_1ga4a487e8090687e624d830878c50a6b72"></span>void <code class="sig-name descname">riscv_cmplx_dot_prod_f32</code><span class="sig-paren">(</span><em class="property">const</em> float32_t *<em>pSrcA</em>, <em class="property">const</em> float32_t *<em>pSrcB</em>, uint32_t <em>numSamples</em>, float32_t *<em>realResult</em>, float32_t *<em>imagResult</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424riscv_cmplx_dot_prod_f32PK9float32_tPK9float32_t8uint32_tP9float32_tP9float32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="cpp function">
+<dl class="function">
 <dt id="_CPPv424riscv_cmplx_dot_prod_q15PK5q15_tPK5q15_t8uint32_tP5q31_tP5q31_t">
 <span id="_CPPv324riscv_cmplx_dot_prod_q15PK5q15_tPK5q15_t8uint32_tP5q31_tP5q31_t"></span><span id="_CPPv224riscv_cmplx_dot_prod_q15PK5q15_tPK5q15_t8uint32_tP5q31_tP5q31_t"></span><span id="riscv_cmplx_dot_prod_q15__q15_tCP.q15_tCP.uint32_t.q31_tP.q31_tP"></span><span class="target" id="group__cmplx__dot__prod_1gab1a7915b81aef73f226859c0fe835b37"></span>void <code class="sig-name descname">riscv_cmplx_dot_prod_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pSrcA</em>, <em class="property">const</em> q15_t *<em>pSrcB</em>, uint32_t <em>numSamples</em>, q31_t *<em>realResult</em>, q31_t *<em>imagResult</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424riscv_cmplx_dot_prod_q15PK5q15_tPK5q15_t8uint32_tP5q31_tP5q31_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
-<dl class="cpp function">
+<dl class="function">
 <dt id="_CPPv424riscv_cmplx_dot_prod_q31PK5q31_tPK5q31_t8uint32_tP5q63_tP5q63_t">
 <span id="_CPPv324riscv_cmplx_dot_prod_q31PK5q31_tPK5q31_t8uint32_tP5q63_tP5q63_t"></span><span id="_CPPv224riscv_cmplx_dot_prod_q31PK5q31_tPK5q31_t8uint32_tP5q63_tP5q63_t"></span><span id="riscv_cmplx_dot_prod_q31__q31_tCP.q31_tCP.uint32_t.q63_tP.q63_tP"></span><span class="target" id="group__cmplx__dot__prod_1gae736f9f08fcf71e7a5c13ee4bbe1c33a"></span>void <code class="sig-name descname">riscv_cmplx_dot_prod_q31</code><span class="sig-paren">(</span><em class="property">const</em> q31_t *<em>pSrcA</em>, <em class="property">const</em> q31_t *<em>pSrcB</em>, uint32_t <em>numSamples</em>, q63_t *<em>realResult</em>, q63_t *<em>imagResult</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424riscv_cmplx_dot_prod_q31PK5q31_tPK5q31_t8uint32_tP5q63_tP5q63_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
@@ -228,113 +230,123 @@
 <p></p>
 <p>There are separate functions for floating-point, Q15, and Q31 data types. </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
-<dl class="cpp function">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="function">
+<dt>
+<span class="target" id="group__cmplx__dot__prod_1ga2bf24dd5d52c47188d98a47a46fd579c"></span>void <code class="sig-name descname">riscv_cmplx_dot_prod_f16</code><span class="sig-paren">(</span><em class="property">const</em> float16_t *<em>pSrcA</em>, <em class="property">const</em> float16_t *<em>pSrcB</em>, uint32_t <em>numSamples</em>, float16_t *<em>realResult</em>, float16_t *<em>imagResult</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Floating-point complex dot product. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcA</span></code>: points to the first input vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcB</span></code>: points to the second input vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numSamples</span></code>: number of samples in each vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">realResult</span></code>: real part of the result returned here </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">imagResult</span></code>: imaginary part of the result returned here </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
 <dt>
 <span class="target" id="group__cmplx__dot__prod_1ga4a487e8090687e624d830878c50a6b72"></span>void <code class="sig-name descname">riscv_cmplx_dot_prod_f32</code><span class="sig-paren">(</span><em class="property">const</em> float32_t *<em>pSrcA</em>, <em class="property">const</em> float32_t *<em>pSrcB</em>, uint32_t <em>numSamples</em>, float32_t *<em>realResult</em>, float32_t *<em>imagResult</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Floating-point complex dot product. </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>pSrcA</strong> – <strong>[in]</strong> points to the first input vector </p></li>
-<li><p><strong>pSrcB</strong> – <strong>[in]</strong> points to the second input vector </p></li>
-<li><p><strong>numSamples</strong> – <strong>[in]</strong> number of samples in each vector </p></li>
-<li><p><strong>realResult</strong> – <strong>[out]</strong> real part of the result returned here </p></li>
-<li><p><strong>imagResult</strong> – <strong>[out]</strong> imaginary part of the result returned here </p></li>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcA</span></code>: points to the first input vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcB</span></code>: points to the second input vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numSamples</span></code>: number of samples in each vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">realResult</span></code>: real part of the result returned here </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">imagResult</span></code>: imaginary part of the result returned here </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>none </p>
-</dd>
 </dl>
+</p>
 </dd></dl>
 
-<dl class="cpp function">
+<dl class="function">
 <dt>
 <span class="target" id="group__cmplx__dot__prod_1gab1a7915b81aef73f226859c0fe835b37"></span>void <code class="sig-name descname">riscv_cmplx_dot_prod_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pSrcA</em>, <em class="property">const</em> q15_t *<em>pSrcB</em>, uint32_t <em>numSamples</em>, q31_t *<em>realResult</em>, q31_t *<em>imagResult</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q15 complex dot product. </p>
 <p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none</p>
+</dd>
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The function is implemented using an internal 64-bit accumulator. The intermediate 1.15 by 1.15 multiplications are performed with full precision and yield a 2.30 result. These are accumulated in a 64-bit accumulator with 34.30 precision. As a final step, the accumulators are converted to 8.24 format. The return results <code class="docutils literal notranslate"><span class="pre">realResult</span></code> and <code class="docutils literal notranslate"><span class="pre">imagResult</span></code> are in 8.24 format. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcA</span></code>: points to the first input vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcB</span></code>: points to the second input vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numSamples</span></code>: number of samples in each vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">realResult</span></code>: real part of the result returned here </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">imagResult</span></code>: imaginary part of the result returned her </p></li>
+</ul>
 </dd>
 </dl>
 </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>pSrcA</strong> – <strong>[in]</strong> points to the first input vector </p></li>
-<li><p><strong>pSrcB</strong> – <strong>[in]</strong> points to the second input vector </p></li>
-<li><p><strong>numSamples</strong> – <strong>[in]</strong> number of samples in each vector </p></li>
-<li><p><strong>realResult</strong> – <strong>[out]</strong> real part of the result returned here </p></li>
-<li><p><strong>imagResult</strong> – <strong>[out]</strong> imaginary part of the result returned her </p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>none</p>
-</dd>
-</dl>
 </dd></dl>
 
-<dl class="cpp function">
+<dl class="function">
 <dt>
 <span class="target" id="group__cmplx__dot__prod_1gae736f9f08fcf71e7a5c13ee4bbe1c33a"></span>void <code class="sig-name descname">riscv_cmplx_dot_prod_q31</code><span class="sig-paren">(</span><em class="property">const</em> q31_t *<em>pSrcA</em>, <em class="property">const</em> q31_t *<em>pSrcB</em>, uint32_t <em>numSamples</em>, q63_t *<em>realResult</em>, q63_t *<em>imagResult</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q31 complex dot product. </p>
 <p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none</p>
+</dd>
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The function is implemented using an internal 64-bit accumulator. The intermediate 1.31 by 1.31 multiplications are performed with 64-bit precision and then shifted to 16.48 format. The internal real and imaginary accumulators are in 16.48 format and provide 15 guard bits. Additions are nonsaturating and no overflow will occur as long as <code class="docutils literal notranslate"><span class="pre">numSamples</span></code> is less than 32768. The return results <code class="docutils literal notranslate"><span class="pre">realResult</span></code> and <code class="docutils literal notranslate"><span class="pre">imagResult</span></code> are in 16.48 format. Input down scaling is not required. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcA</span></code>: points to the first input vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcB</span></code>: points to the second input vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numSamples</span></code>: number of samples in each vector </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">realResult</span></code>: real part of the result returned here </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">imagResult</span></code>: imaginary part of the result returned here </p></li>
+</ul>
 </dd>
 </dl>
 </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>pSrcA</strong> – <strong>[in]</strong> points to the first input vector </p></li>
-<li><p><strong>pSrcB</strong> – <strong>[in]</strong> points to the second input vector </p></li>
-<li><p><strong>numSamples</strong> – <strong>[in]</strong> number of samples in each vector </p></li>
-<li><p><strong>realResult</strong> – <strong>[out]</strong> real part of the result returned here </p></li>
-<li><p><strong>imagResult</strong> – <strong>[out]</strong> imaginary part of the result returned here </p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>none</p>
-</dd>
-</dl>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="api_cmplx_mag.html" class="btn btn-neutral float-right" title="Complex Magnitude" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="api_cmplx_conj.html" class="btn btn-neutral float-left" title="Complex Conjugate" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+        <a href="api_cmplx_mag.html" class="btn btn-neutral float-right" title="Complex Magnitude" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api_cmplx_conj.html" class="btn btn-neutral float-left" title="Complex Conjugate" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2019-Present, Nuclei.
+        &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 03, 2021.
+        Last updated on Aug 05, 2021.
       </span>
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 
@@ -342,6 +354,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

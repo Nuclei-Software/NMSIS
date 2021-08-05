@@ -107,6 +107,9 @@ Functions</h2></td></tr>
 <tr class="separator:gab76c31ce76775045d9790c547dde10b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga9c7433f5a63f57bf001bdad593489cab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SQRT.html#ga9c7433f5a63f57bf001bdad593489cab">riscv_vsqrt_q15</a> (q15_t *pIn, q15_t *pOut, uint16_t len)</td></tr>
 <tr class="separator:ga9c7433f5a63f57bf001bdad593489cab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaed1749d0ec7db928eb613465d24acaac"><td class="memItemLeft" align="right" valign="top">__STATIC_FORCEINLINE riscv_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SQRT.html#gaed1749d0ec7db928eb613465d24acaac">riscv_sqrt_f16</a> (float16_t in, float16_t *pOut)</td></tr>
+<tr class="memdesc:gaed1749d0ec7db928eb613465d24acaac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Floating-point square root function.  <a href="#gaed1749d0ec7db928eb613465d24acaac">More...</a><br /></td></tr>
+<tr class="separator:gaed1749d0ec7db928eb613465d24acaac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Computes the square root of a number. There are separate functions for Q15, Q31, and floating-point data types. The square root function is computed using the Newton-Raphson algorithm. This is an iterative algorithm of the form: </p><pre>
@@ -115,6 +118,48 @@ Functions</h2></td></tr>
     x0 = in/2                         [initial guess]
     x1 = 1/2 * ( x0 + in / x0)        [each iteration]
 </pre> <h2 class="groupheader">Function Documentation</h2>
+<a id="gaed1749d0ec7db928eb613465d24acaac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaed1749d0ec7db928eb613465d24acaac">&#9670;&nbsp;</a></span>riscv_sqrt_f16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__STATIC_FORCEINLINE riscv_status riscv_sqrt_f16 </td>
+          <td>(</td>
+          <td class="paramtype">float16_t&#160;</td>
+          <td class="paramname"><em>in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float16_t *&#160;</td>
+          <td class="paramname"><em>pOut</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Floating-point square root function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">in</td><td>input value </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pOut</td><td>square root of input value </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>execution status<ul>
+<li>RISCV_MATH_SUCCESS : input value is positive</li>
+<li>RISCV_MATH_ARGUMENT_ERROR : input value is negative; *pOut is set to 0 </li>
+</ul>
+</dd></dl>
+
+</div>
+</div>
 <a id="ga195942e72ace5531f88658714db038b5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga195942e72ace5531f88658714db038b5">&#9670;&nbsp;</a></span>riscv_sqrt_f32()</h2>
 
@@ -359,7 +404,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Aug 3 2021 10:26:12 for NMSIS-DSP by
+    <li class="footer">Generated on Thu Aug 5 2021 10:52:54 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

@@ -1,43 +1,40 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
-  <meta charset="utf-8" />
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>32-bit Computation Instructions &mdash; NMSIS 1.0.2-RC1 documentation</title>
   
 
   
-  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
-
+  
   
   
 
   
-  
-
-  
-
-  
-  <!--[if lt IE 9]>
-    <script src="../../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="OV (Overflow) flag Set/Clear Instructions" href="api_nmsis_core_dsp_intrinsic_ov_flag_sc.html" />
@@ -85,7 +82,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -93,7 +89,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">NMSIS Core</a><ul class="current">
@@ -101,13 +97,17 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../get_started.html">Using NMSIS in Embedded Applications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../core_templates.html">NMSIS-Core Device Templates</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../register_mapping.html">Register Mapping</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">NMSIS Core API</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../../core_version_control.html">Version Control</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../core_compiler_control.html">Compiler Control</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../core_csr_access.html">Core CSR Register Access</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../core_csr_encoding.html">Core CSR Encoding</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../core_register_type.html">Register Define and Type Definitions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../core_intrinsics.html">CPU Intrinsic Functions</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">NMSIS CORE API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_versioncontrol.html">Version Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_compilercontrol.html">Compiler Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_periphaccess.html">Peripheral Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_csr_encoding.html">Core CSR Encodings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_registers.html">Register Define and Type Definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_csr_register_access.html">Core CSR Register Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_cpu_intrinsic.html">Intrinsic Functions for CPU Intructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_intexc.html">Interrupts and Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_systimer.html">SysTimer Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_fpu_functions.html">FPU Functions</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../../api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_simd_data_process.html">SIMD Data Processing Instructions</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_non_simd.html">Non-SIMD Instructions</a><ul class="current">
@@ -115,21 +115,18 @@
 <li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_non_simd_q31_sat_alu.html">Non-SIMD Q31 saturation ALU Instructions</a></li>
 <li class="toctree-l5 current"><a class="current reference internal" href="#">32-bit Computation Instructions</a></li>
 <li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_ov_flag_sc.html">OV (Overflow) flag Set/Clear Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_non_simd_misc.html">Non-SIMD Miscellaneous Instructions</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_part_simd_data_process.html">Partial-SIMD Data Processing Instructions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_64b_profile.html">64-bit Profile Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_rv64_only.html">RV64 Only Instructions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_nuclei_custom.html">Nuclei Customized DSP Instructions</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../core_periph_access.html">Peripheral Access</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../core_systick.html">Systick Timer(SysTimer)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../core_interrupt_exception.html">Interrupts and Exceptions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../core_fpu.html">FPU Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../core_pmp.html">PMP Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../core_cache.html">Cache Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../core_system_device.html">System Device Configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../core_arm_compatiable.html">ARM Compatiable Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_pmp_functions.html">PMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_cache.html">Cache Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_armcompatiable_functions.html">ARM Compatiable Functions</a></li>
 </ul>
 </li>
 </ul>
@@ -144,7 +141,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -179,17 +175,15 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
         
           <li><a href="../../../index.html">NMSIS Core</a> &raquo;</li>
         
-          <li><a href="../../index.html">NMSIS Core API</a> &raquo;</li>
+          <li><a href="../../index.html">NMSIS CORE API</a> &raquo;</li>
         
           <li><a href="../../api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a> &raquo;</li>
         
@@ -200,7 +194,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="../../../../_sources/core/api/nmsis_core_dsp_intrinsic/nmsis_core_dsp_intrinsic_non_simd/api_nmsis_core_dsp_intrinsic_32b_computation.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -214,46 +208,46 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="bit-computation-instructions">
+  <section id="bit-computation-instructions">
 <span id="nmsis-core-api-32-bit-computation-instructions"></span><h1>32-bit Computation Instructions<a class="headerlink" href="#bit-computation-instructions" title="Permalink to this headline">¶</a></h1>
-<dl class="cpp function">
+<dl class="function">
 <dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1ga636b734793493bbcf7a61dfa55749e82"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_MAXW (int a, int b)</code></dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1ga636b734793493bbcf7a61dfa55749e82"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_MAXW(int a, int b)</code></dt>
 <dd></dd></dl>
 
-<dl class="cpp function">
+<dl class="function">
 <dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1ga60a38a5ee2cab1dd916cf4745c86a77e"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_MINW (int a, int b)</code></dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1ga60a38a5ee2cab1dd916cf4745c86a77e"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_MINW(int a, int b)</code></dt>
 <dd></dd></dl>
 
-<dl class="cpp function">
+<dl class="function">
 <dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1gab76bac5299a9c41ce034594a704a126b"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long long __RV_MULR64 (unsigned long a, unsigned long b)</code></dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1gab76bac5299a9c41ce034594a704a126b"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long long __RV_MULR64(unsigned long a, unsigned long b)</code></dt>
 <dd></dd></dl>
 
-<dl class="cpp function">
+<dl class="function">
 <dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1ga70bfdde5df211d5aa20cf406736d2ea1"></span><code class="sig-name descname">__STATIC_FORCEINLINE long long __RV_MULSR64 (long a, long b)</code></dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1ga70bfdde5df211d5aa20cf406736d2ea1"></span><code class="sig-name descname">__STATIC_FORCEINLINE long long __RV_MULSR64(long a, long b)</code></dt>
 <dd></dd></dl>
 
-<dl class="cpp function">
+<dl class="function">
 <dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1ga162b41b571bd84dcd8860437417544dd"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_RADDW (int a, int b)</code></dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1ga162b41b571bd84dcd8860437417544dd"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_RADDW(int a, int b)</code></dt>
 <dd></dd></dl>
 
-<dl class="cpp function">
+<dl class="function">
 <dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1gad19388580ce1a2cc1afee60f9d73e60c"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_RSUBW (int a, int b)</code></dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1gad19388580ce1a2cc1afee60f9d73e60c"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_RSUBW(int a, int b)</code></dt>
 <dd></dd></dl>
 
-<dl class="cpp function">
+<dl class="function">
 <dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1gad8c7e0a31ab014db941c83a0a704da8d"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_URADDW (unsigned int a, unsigned int b)</code></dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1gad8c7e0a31ab014db941c83a0a704da8d"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_URADDW(unsigned int a, unsigned int b)</code></dt>
 <dd></dd></dl>
 
-<dl class="cpp function">
+<dl class="function">
 <dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1gaf80c041da49050e0469a6e945f5df1fd"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_URSUBW (unsigned int a, unsigned int b)</code></dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1gaf80c041da49050e0469a6e945f5df1fd"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_URSUBW(unsigned int a, unsigned int b)</code></dt>
 <dd></dd></dl>
 
 <dl class="group">
@@ -262,21 +256,19 @@
 <dd><p>32-bit Computation Instructions </p>
 <p>there are 8 32-bit Computation Instructions </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
-<dl class="cpp function">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="function">
 <dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1ga636b734793493bbcf7a61dfa55749e82"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_MAXW (int a, int b)</code></dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1ga636b734793493bbcf7a61dfa55749e82"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_MAXW(int a, int b)</code></dt>
 <dd><p>MAXW (32-bit Signed Word Maximum) </p>
 <p><strong>Type</strong>: DSP</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MAXW</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong><p>:</p>
-<p>Get the larger value from the 32-bit contents of two general registers.</p>
+<p><strong>Purpose</strong>:<p>Get the larger value from the 32-bit contents of two general registers.</p>
 </p>
-<p><strong>Description</strong><p>:</p>
-<p>This instruction compares two signed 32-bit integers stored in Rs1 and Rs2, picks the larger value as the result, and writes the result to Rd.</p>
+<p><strong>Description</strong>:<p>This instruction compares two signed 32-bit integers stored in Rs1 and Rs2, picks the larger value as the result, and writes the result to Rd.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">{</span>
   <span class="n">Rd</span> <span class="o">=</span> <span class="n">SE</span><span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
@@ -286,68 +278,61 @@
 </pre></div>
 </div>
 </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>a</strong> – <strong>[in]</strong> int type of value stored in a </p></li>
-<li><p><strong>b</strong> – <strong>[in]</strong> int type of value stored in b </p></li>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: int type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: int type of value stored in b </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>value stored in long type </p>
-</dd>
 </dl>
+</p>
 </dd></dl>
 
-<dl class="cpp function">
+<dl class="function">
 <dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1ga60a38a5ee2cab1dd916cf4745c86a77e"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_MINW (int a, int b)</code></dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1ga60a38a5ee2cab1dd916cf4745c86a77e"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_MINW(int a, int b)</code></dt>
 <dd><p>MINW (32-bit Signed Word Minimum) </p>
 <p><strong>Type</strong>: DSP</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MINW</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong><p>:</p>
-<p>Get the smaller value from the 32-bit contents of two general registers.</p>
+<p><strong>Purpose</strong>:<p>Get the smaller value from the 32-bit contents of two general registers.</p>
 </p>
-<p><strong>Description</strong><p>:</p>
-<p>This instruction compares two signed 32-bit integers stored in Rs1 and Rs2, picks the smaller value as the result, and writes the result to Rd.</p>
+<p><strong>Description</strong>:<p>This instruction compares two signed 32-bit integers stored in Rs1 and Rs2, picks the smaller value as the result, and writes the result to Rd.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">{</span> <span class="n">Rd</span> <span class="o">=</span> <span class="n">SE</span><span class="p">(</span><span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span> <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="n">Rd</span> <span class="o">=</span> <span class="n">SE</span><span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span> <span class="p">}</span>
 </pre></div>
 </div>
 </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>a</strong> – <strong>[in]</strong> int type of value stored in a </p></li>
-<li><p><strong>b</strong> – <strong>[in]</strong> int type of value stored in b </p></li>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: int type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: int type of value stored in b </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>value stored in long type </p>
-</dd>
 </dl>
+</p>
 </dd></dl>
 
-<dl class="cpp function">
+<dl class="function">
 <dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1gab76bac5299a9c41ce034594a704a126b"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long long __RV_MULR64 (unsigned long a, unsigned long b)</code></dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1gab76bac5299a9c41ce034594a704a126b"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long long __RV_MULR64(unsigned long a, unsigned long b)</code></dt>
 <dd><p>MULR64 (Multiply Word Unsigned to 64-bit Data) </p>
 <p><strong>Type</strong>: DSP</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MULR64</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong><p>:</p>
-<p>Multiply the 32-bit unsigned integer contents of two registers and write the 64-bit result.</p>
+<p><strong>Purpose</strong>:<p>Multiply the 32-bit unsigned integer contents of two registers and write the 64-bit result.</p>
 </p>
-<p><strong>RV32 Description</strong><p>:</p>
-<p>This instruction multiplies the 32-bit content of Rs1 with that of Rs2 and writes the 64-bit multiplication result to an even/odd pair of registers containing Rd. Rd(4,1) index d determines the even/odd pair group of the two registers. Specifically, the register pair includes register 2d and 2d+1. The odd</p>
+<p><strong>RV32 Description</strong>:<p>This instruction multiplies the 32-bit content of Rs1 with that of Rs2 and writes the 64-bit multiplication result to an even/odd pair of registers containing Rd. Rd(4,1) index d determines the even/odd pair group of the two registers. Specifically, the register pair includes register 2d and 2d+1. The odd </p>
 <code class="docutils literal notranslate"><span class="pre">2d+1</span></code> register of the pair contains the high 32-bit of the result and the even <code class="docutils literal notranslate"><span class="pre">2d</span></code> register of the pair contains the low 32-bit of the result. The lower 32-bit contents of Rs1 and Rs2 are treated as unsigned integers.</p>
-<p><strong>RV64 Description</strong><p>:</p>
-<p>This instruction multiplies the lower 32-bit content of Rs1 with that of Rs2 and writes the 64-bit multiplication result to Rd. The lower 32-bit contents of Rs1 and Rs2 are treated as unsigned integers.</p>
+<p><strong>RV64 Description</strong>:<p>This instruction multiplies the lower 32-bit content of Rs1 with that of Rs2 and writes the 64-bit multiplication result to Rd. The lower 32-bit contents of Rs1 and Rs2 are treated as unsigned integers.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>RV32:
 Mresult = CONCAT(1`b0,Rs1) u* CONCAT(1`b0,Rs2);
@@ -359,36 +344,32 @@ Mresult = CONCAT(1`b0,Rs1.W[0]) u* CONCAT(1`b0,Rs2.W[0]);
 </pre></div>
 </div>
 </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
-<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>value stored in unsigned long long type </p>
-</dd>
 </dl>
+</p>
 </dd></dl>
 
-<dl class="cpp function">
+<dl class="function">
 <dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1ga70bfdde5df211d5aa20cf406736d2ea1"></span><code class="sig-name descname">__STATIC_FORCEINLINE long long __RV_MULSR64 (long a, long b)</code></dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1ga70bfdde5df211d5aa20cf406736d2ea1"></span><code class="sig-name descname">__STATIC_FORCEINLINE long long __RV_MULSR64(long a, long b)</code></dt>
 <dd><p>MULSR64 (Multiply Word Signed to 64-bit Data) </p>
 <p><strong>Type</strong>: DSP</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MULSR64</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong><p>:</p>
-<p>Multiply the 32-bit signed integer contents of two registers and write the 64-bit result.</p>
+<p><strong>Purpose</strong>:<p>Multiply the 32-bit signed integer contents of two registers and write the 64-bit result.</p>
 </p>
-<p><strong>RV32 Description</strong><p>:</p>
-<p>This instruction multiplies the lower 32-bit content of Rs1 with the lower 32-bit content of Rs2 and writes the 64-bit multiplication result to an even/odd pair of registers containing Rd. Rd(4,1) index d determines the even/odd pair group of the two registers. Specifically, the register pair includes register 2d and 2d+1. The odd</p>
+<p><strong>RV32 Description</strong>:<p>This instruction multiplies the lower 32-bit content of Rs1 with the lower 32-bit content of Rs2 and writes the 64-bit multiplication result to an even/odd pair of registers containing Rd. Rd(4,1) index d determines the even/odd pair group of the two registers. Specifically, the register pair includes register 2d and 2d+1. The odd </p>
 <code class="docutils literal notranslate"><span class="pre">2d+1</span></code> register of the pair contains the high 32-bit of the result and the even <code class="docutils literal notranslate"><span class="pre">2d</span></code> register of the pair contains the low 32-bit of the result. The lower 32-bit contents of Rs1 and Rs2 are treated as signed integers.</p>
-<p><strong>RV64 Description</strong><p>:</p>
-<p>This instruction multiplies the lower 32-bit content of Rs1 with the lower 32-bit content of Rs2 and writes the 64-bit multiplication result to Rd. The lower 32-bit contents of Rs1 and Rs2 are treated as signed integers.</p>
+<p><strong>RV64 Description</strong>:<p>This instruction multiplies the lower 32-bit content of Rs1 with the lower 32-bit content of Rs2 and writes the 64-bit multiplication result to Rd. The lower 32-bit contents of Rs1 and Rs2 are treated as signed integers.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RV32</span><span class="p">:</span>
 <span class="n">Mresult</span> <span class="o">=</span> <span class="n">Ra</span> <span class="n">s</span><span class="o">*</span> <span class="n">Rb</span><span class="p">;</span>
@@ -400,33 +381,30 @@ Mresult = CONCAT(1`b0,Rs1.W[0]) u* CONCAT(1`b0,Rs2.W[0]);
 </pre></div>
 </div>
 </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>a</strong> – <strong>[in]</strong> long type of value stored in a </p></li>
-<li><p><strong>b</strong> – <strong>[in]</strong> long type of value stored in b </p></li>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in long long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: long type of value stored in b </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>value stored in long long type </p>
-</dd>
 </dl>
+</p>
 </dd></dl>
 
-<dl class="cpp function">
+<dl class="function">
 <dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1ga162b41b571bd84dcd8860437417544dd"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_RADDW (int a, int b)</code></dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1ga162b41b571bd84dcd8860437417544dd"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_RADDW(int a, int b)</code></dt>
 <dd><p>RADDW (32-bit Signed Halving Addition) </p>
 <p><strong>Type</strong>: DSP</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RADDW</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong><p>:</p>
-<p>Add 32-bit signed integers and the results are halved to avoid overflow or saturation.</p>
+<p><strong>Purpose</strong>:<p>Add 32-bit signed integers and the results are halved to avoid overflow or saturation.</p>
 </p>
-<p><strong>Description</strong><p>:</p>
-<p>This instruction adds the first 32-bit signed integer in Rs1 with the first 32-bit signed integer in Rs2. The result is first arithmetically right-shifted by 1 bit and then sign-extended and written to Rd.</p>
+<p><strong>Description</strong>:<p>This instruction adds the first 32-bit signed integer in Rs1 with the first 32-bit signed integer in Rs2. The result is first arithmetically right-shifted by 1 bit and then sign-extended and written to Rd.</p>
 </p>
 <p><strong>Examples</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Rs1</span> <span class="o">=</span> <span class="mh">0x7FFFFFFF</span><span class="p">,</span> <span class="n">Rs2</span> <span class="o">=</span> <span class="mh">0x7FFFFFFF</span><span class="p">,</span> <span class="n">Rd</span> <span class="o">=</span> <span class="mh">0x7FFFFFFF</span>
 <span class="o">*</span> <span class="n">Rs1</span> <span class="o">=</span> <span class="mh">0x80000000</span><span class="p">,</span> <span class="n">Rs2</span> <span class="o">=</span> <span class="mh">0x80000000</span><span class="p">,</span> <span class="n">Rd</span> <span class="o">=</span> <span class="mh">0x80000000</span>
@@ -442,33 +420,30 @@ Mresult = CONCAT(1`b0,Rs1.W[0]) u* CONCAT(1`b0,Rs2.W[0]);
 </pre></div>
 </div>
 </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>a</strong> – <strong>[in]</strong> int type of value stored in a </p></li>
-<li><p><strong>b</strong> – <strong>[in]</strong> int type of value stored in b </p></li>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: int type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: int type of value stored in b </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>value stored in long type </p>
-</dd>
 </dl>
+</p>
 </dd></dl>
 
-<dl class="cpp function">
+<dl class="function">
 <dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1gad19388580ce1a2cc1afee60f9d73e60c"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_RSUBW (int a, int b)</code></dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1gad19388580ce1a2cc1afee60f9d73e60c"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_RSUBW(int a, int b)</code></dt>
 <dd><p>RSUBW (32-bit Signed Halving Subtraction) </p>
 <p><strong>Type</strong>: DSP</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RSUBW</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong><p>:</p>
-<p>Subtract 32-bit signed integers and the result is halved to avoid overflow or saturation.</p>
+<p><strong>Purpose</strong>:<p>Subtract 32-bit signed integers and the result is halved to avoid overflow or saturation.</p>
 </p>
-<p><strong>Description</strong><p>:</p>
-<p>This instruction subtracts the first 32-bit signed integer in Rs2 from the first 32-bit signed integer in Rs1. The result is first arithmetically right-shifted by 1 bit and then sign-extended and written to Rd.</p>
+<p><strong>Description</strong>:<p>This instruction subtracts the first 32-bit signed integer in Rs2 from the first 32-bit signed integer in Rs1. The result is first arithmetically right-shifted by 1 bit and then sign-extended and written to Rd.</p>
 </p>
 <p><strong>Examples</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Rs1</span> <span class="o">=</span> <span class="mh">0x7FFFFFFF</span><span class="p">,</span> <span class="n">Rs2</span> <span class="o">=</span> <span class="mh">0x80000000</span><span class="p">,</span> <span class="n">Rd</span> <span class="o">=</span> <span class="mh">0x7FFFFFFF</span>
 <span class="o">*</span> <span class="n">Rs1</span> <span class="o">=</span> <span class="mh">0x80000000</span><span class="p">,</span> <span class="n">Rs2</span> <span class="o">=</span> <span class="mh">0x7FFFFFFF</span><span class="p">,</span> <span class="n">Rd</span> <span class="o">=</span> <span class="mh">0x80000000</span>
@@ -484,33 +459,30 @@ Mresult = CONCAT(1`b0,Rs1.W[0]) u* CONCAT(1`b0,Rs2.W[0]);
 </pre></div>
 </div>
 </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>a</strong> – <strong>[in]</strong> int type of value stored in a </p></li>
-<li><p><strong>b</strong> – <strong>[in]</strong> int type of value stored in b </p></li>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: int type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: int type of value stored in b </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>value stored in long type </p>
-</dd>
 </dl>
+</p>
 </dd></dl>
 
-<dl class="cpp function">
+<dl class="function">
 <dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1gad8c7e0a31ab014db941c83a0a704da8d"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_URADDW (unsigned int a, unsigned int b)</code></dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1gad8c7e0a31ab014db941c83a0a704da8d"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_URADDW(unsigned int a, unsigned int b)</code></dt>
 <dd><p>URADDW (32-bit Unsigned Halving Addition) </p>
 <p><strong>Type</strong>: DSP</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">URADDW</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong><p>:</p>
-<p>Add 32-bit unsigned integers and the results are halved to avoid overflow or saturation.</p>
+<p><strong>Purpose</strong>:<p>Add 32-bit unsigned integers and the results are halved to avoid overflow or saturation.</p>
 </p>
-<p><strong>Description</strong><p>:</p>
-<p>This instruction adds the first 32-bit unsigned integer in Rs1 with the first 32-bit unsigned integer in Rs2. The result is first logically right-shifted by 1 bit and then sign-extended and written to Rd.</p>
+<p><strong>Description</strong>:<p>This instruction adds the first 32-bit unsigned integer in Rs1 with the first 32-bit unsigned integer in Rs2. The result is first logically right-shifted by 1 bit and then sign-extended and written to Rd.</p>
 </p>
 <p><strong>Examples</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Ra</span> <span class="o">=</span> <span class="mh">0x7FFFFFFF</span><span class="p">,</span> <span class="n">Rb</span> <span class="o">=</span> <span class="mh">0x7FFFFFFF</span> <span class="n">Rt</span> <span class="o">=</span> <span class="mh">0x7FFFFFFF</span>
 <span class="o">*</span> <span class="n">Ra</span> <span class="o">=</span> <span class="mh">0x80000000</span><span class="p">,</span> <span class="n">Rb</span> <span class="o">=</span> <span class="mh">0x80000000</span> <span class="n">Rt</span> <span class="o">=</span> <span class="mh">0x80000000</span>
@@ -526,33 +498,30 @@ Mresult = CONCAT(1`b0,Rs1.W[0]) u* CONCAT(1`b0,Rs2.W[0]);
 </pre></div>
 </div>
 </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>a</strong> – <strong>[in]</strong> unsigned int type of value stored in a </p></li>
-<li><p><strong>b</strong> – <strong>[in]</strong> unsigned int type of value stored in b </p></li>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned int type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>value stored in unsigned long type </p>
-</dd>
 </dl>
+</p>
 </dd></dl>
 
-<dl class="cpp function">
+<dl class="function">
 <dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1gaf80c041da49050e0469a6e945f5df1fd"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_URSUBW (unsigned int a, unsigned int b)</code></dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION_1gaf80c041da49050e0469a6e945f5df1fd"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_URSUBW(unsigned int a, unsigned int b)</code></dt>
 <dd><p>URSUBW (32-bit Unsigned Halving Subtraction) </p>
 <p><strong>Type</strong>: DSP</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">URSUBW</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong><p>:</p>
-<p>Subtract 32-bit unsigned integers and the result is halved to avoid overflow or saturation.</p>
+<p><strong>Purpose</strong>:<p>Subtract 32-bit unsigned integers and the result is halved to avoid overflow or saturation.</p>
 </p>
-<p><strong>Description</strong><p>:</p>
-<p>This instruction subtracts the first 32-bit signed integer in Rs2 from the first 32-bit signed integer in Rs1. The result is first logically right-shifted by 1 bit and then sign-extended and written to Rd.</p>
+<p><strong>Description</strong>:<p>This instruction subtracts the first 32-bit signed integer in Rs2 from the first 32-bit signed integer in Rs1. The result is first logically right-shifted by 1 bit and then sign-extended and written to Rd.</p>
 </p>
 <p><strong>Examples</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Ra</span> <span class="o">=</span> <span class="mh">0x7FFFFFFF</span><span class="p">,</span> <span class="n">Rb</span> <span class="o">=</span> <span class="mh">0x80000000</span> <span class="n">Rt</span> <span class="o">=</span> <span class="mh">0xFFFFFFFF</span>
 <span class="o">*</span> <span class="n">Ra</span> <span class="o">=</span> <span class="mh">0x80000000</span><span class="p">,</span> <span class="n">Rb</span> <span class="o">=</span> <span class="mh">0x7FFFFFFF</span> <span class="n">Rt</span> <span class="o">=</span> <span class="mh">0x00000000</span>
@@ -568,55 +537,54 @@ Mresult = CONCAT(1`b0,Rs1.W[0]) u* CONCAT(1`b0,Rs2.W[0]);
 </pre></div>
 </div>
 </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>a</strong> – <strong>[in]</strong> unsigned int type of value stored in a </p></li>
-<li><p><strong>b</strong> – <strong>[in]</strong> unsigned int type of value stored in b </p></li>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned int type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>value stored in unsigned long type </p>
-</dd>
 </dl>
+</p>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="api_nmsis_core_dsp_intrinsic_ov_flag_sc.html" class="btn btn-neutral float-right" title="OV (Overflow) flag Set/Clear Instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="api_nmsis_core_dsp_intrinsic_non_simd_q31_sat_alu.html" class="btn btn-neutral float-left" title="Non-SIMD Q31 saturation ALU Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+        <a href="api_nmsis_core_dsp_intrinsic_ov_flag_sc.html" class="btn btn-neutral float-right" title="OV (Overflow) flag Set/Clear Instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api_nmsis_core_dsp_intrinsic_non_simd_q31_sat_alu.html" class="btn btn-neutral float-left" title="Non-SIMD Q31 saturation ALU Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2019-Present, Nuclei.
+        &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 03, 2021.
+        Last updated on Aug 05, 2021.
       </span>
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 
@@ -624,6 +592,7 @@ Mresult = CONCAT(1`b0,Rs1.W[0]) u* CONCAT(1`b0,Rs2.W[0]);
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

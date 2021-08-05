@@ -91,6 +91,9 @@ $(document).ready(function(){initNavTree('group__MatrixAdd.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:ga425b13a78e1fb9206fec0b61d63ffa57"><td class="memItemLeft" align="right" valign="top">riscv_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MatrixAdd.html#ga425b13a78e1fb9206fec0b61d63ffa57">riscv_mat_add_f16</a> (const <a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *pSrcA, const <a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *pSrcB, <a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *pDst)</td></tr>
+<tr class="memdesc:ga425b13a78e1fb9206fec0b61d63ffa57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Floating-point matrix addition.  <a href="#ga425b13a78e1fb9206fec0b61d63ffa57">More...</a><br /></td></tr>
+<tr class="separator:ga425b13a78e1fb9206fec0b61d63ffa57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gabfdad4197bfca4e75133d8328e41f8fc"><td class="memItemLeft" align="right" valign="top">riscv_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MatrixAdd.html#gabfdad4197bfca4e75133d8328e41f8fc">riscv_mat_add_f32</a> (const <a class="el" href="structriscv__matrix__instance__f32.html">riscv_matrix_instance_f32</a> *pSrcA, const <a class="el" href="structriscv__matrix__instance__f32.html">riscv_matrix_instance_f32</a> *pSrcB, <a class="el" href="structriscv__matrix__instance__f32.html">riscv_matrix_instance_f32</a> *pDst)</td></tr>
 <tr class="memdesc:gabfdad4197bfca4e75133d8328e41f8fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Floating-point matrix addition.  <a href="#gabfdad4197bfca4e75133d8328e41f8fc">More...</a><br /></td></tr>
 <tr class="separator:gabfdad4197bfca4e75133d8328e41f8fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -108,6 +111,55 @@ Functions</h2></td></tr>
 Addition of two 3 x 3 matrices</div></div>
 <p> The functions check to make sure that <code>pSrcA</code>, <code>pSrcB</code>, and <code>pDst</code> have the same number of rows and columns. </p>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="ga425b13a78e1fb9206fec0b61d63ffa57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga425b13a78e1fb9206fec0b61d63ffa57">&#9670;&nbsp;</a></span>riscv_mat_add_f16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">riscv_status riscv_mat_add_f16 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *&#160;</td>
+          <td class="paramname"><em>pSrcA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *&#160;</td>
+          <td class="paramname"><em>pSrcB</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *&#160;</td>
+          <td class="paramname"><em>pDst</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Floating-point matrix addition. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pSrcA</td><td>points to first input matrix structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pSrcB</td><td>points to second input matrix structure </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pDst</td><td>points to output matrix structure </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>execution status<ul>
+<li>RISCV_MATH_SUCCESS : Operation successful</li>
+<li>RISCV_MATH_SIZE_MISMATCH : Matrix size check failed </li>
+</ul>
+</dd></dl>
+
+</div>
+</div>
 <a id="gabfdad4197bfca4e75133d8328e41f8fc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gabfdad4197bfca4e75133d8328e41f8fc">&#9670;&nbsp;</a></span>riscv_mat_add_f32()</h2>
 
@@ -262,7 +314,7 @@ Addition of two 3 x 3 matrices</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Aug 3 2021 10:26:13 for NMSIS-DSP by
+    <li class="footer">Generated on Thu Aug 5 2021 10:52:54 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

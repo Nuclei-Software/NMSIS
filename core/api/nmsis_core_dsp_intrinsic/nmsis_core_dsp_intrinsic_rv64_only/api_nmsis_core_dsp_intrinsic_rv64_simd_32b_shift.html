@@ -1,0 +1,921 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>(RV64 Only) SIMD 32-bit Shift Instructions &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="(RV64 Only) SIMD 32-bit Miscellaneous Instructions" href="api_nmsis_core_dsp_intrinsic_rv64_simd_32b_misc.html" />
+    <link rel="prev" title="(RV64 Only) SIMD 32-bit Add/Subtract Instructions" href="api_nmsis_core_dsp_intrinsic_rv64_simd_32b_addsub.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.2-RC1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">NMSIS Core</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../get_started.html">Using NMSIS in Embedded Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../core_templates.html">NMSIS-Core Device Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../register_mapping.html">Register Mapping</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">NMSIS CORE API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_versioncontrol.html">Version Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_compilercontrol.html">Compiler Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_periphaccess.html">Peripheral Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_csr_encoding.html">Core CSR Encodings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_registers.html">Register Define and Type Definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_csr_register_access.html">Core CSR Register Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_cpu_intrinsic.html">Intrinsic Functions for CPU Intructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_intexc.html">Interrupts and Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_systimer.html">SysTimer Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_fpu_functions.html">FPU Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_simd_data_process.html">SIMD Data Processing Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_non_simd.html">Non-SIMD Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_part_simd_data_process.html">Partial-SIMD Data Processing Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_64b_profile.html">64-bit Profile Instructions</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_rv64_only.html">RV64 Only Instructions</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_rv64_simd_32b_addsub.html">(RV64 Only) SIMD 32-bit Add/Subtract Instructions</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">(RV64 Only) SIMD 32-bit Shift Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_rv64_simd_32b_misc.html">(RV64 Only) SIMD 32-bit Miscellaneous Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_rv64_simd_q15_sat_mult.html">(RV64 Only) SIMD Q15 Saturating Multiply Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_rv64_32b_mult.html">(RV64 Only) 32-bit Multiply Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_rv64_32b_mult_add.html">(RV64 Only) 32-bit Multiply &amp; Add Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_rv64_32b_parallel_mac.html">(RV64 Only) 32-bit Parallel Multiply &amp; Add Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_rv64_non_simd_32b_shift.html">(RV64 Only) Non-SIMD 32-bit Shift Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_rv64_32b_pack.html">32-bit Packing Instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_nuclei_custom.html">Nuclei Customized DSP Instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_pmp_functions.html">PMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_cache.html">Cache Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_nmsis_core_armcompatiable_functions.html">ARM Compatiable Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">NMSIS Core</a> &raquo;</li>
+        
+          <li><a href="../../index.html">NMSIS CORE API</a> &raquo;</li>
+        
+          <li><a href="../../api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a> &raquo;</li>
+        
+          <li><a href="../api_nmsis_core_dsp_intrinsic_rv64_only.html">RV64 Only Instructions</a> &raquo;</li>
+        
+      <li>(RV64 Only) SIMD 32-bit Shift Instructions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../_sources/core/api/nmsis_core_dsp_intrinsic/nmsis_core_dsp_intrinsic_rv64_only/api_nmsis_core_dsp_intrinsic_rv64_simd_32b_shift.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="rv64-only-simd-32-bit-shift-instructions">
+<span id="nmsis-core-api-rv64-only-simd-32-bit-shift-instructions"></span><h1>(RV64 Only) SIMD 32-bit Shift Instructions<a class="headerlink" href="#rv64-only-simd-32-bit-shift-instructions" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__SHIFT_1ga4f3e9c4c72aaa40f0fb4b143933178ce"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KSLL32(unsigned long a, unsigned int b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__SHIFT_1ga44edf9b602fc9cdd1d679dccf979ee92"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KSLLI32(unsigned long a, unsigned int b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__SHIFT_1gaac9d8fddae94b97c09f59f93f01b81c9"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KSLRA32(unsigned long a, int b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__SHIFT_1gaf432cd440b93dcd519459b4107691173"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KSLRA32_U(unsigned long a, int b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__SHIFT_1gada1903a81ca0df7a3c28c169a85a1dab"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SLL32(unsigned long a, unsigned int b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__SHIFT_1ga989aaff6c47185a5239f55519b28e8bb"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SLLI32(unsigned long a, unsigned int b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__SHIFT_1ga0de6fada321c089b1d6eb655a5b5085d"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRA32(unsigned long a, unsigned int b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__SHIFT_1gaedf16a534575de0f435869923c6b536a"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRA32_U(unsigned long a, unsigned int b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__SHIFT_1ga1339130e1d377a8ed99ca71e2fe4d1d9"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRAI32(unsigned long a, unsigned int b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__SHIFT_1ga0ef645ccad1604a6ce8f2ab0747293c3"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRAI32_U(unsigned long a, unsigned int b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__SHIFT_1gaa527b5f65f359f77a0d667fb5e99cf73"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRL32(unsigned long a, unsigned int b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__SHIFT_1ga1f6513e3a91fab5673495cdb5cdd0a1b"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRL32_U(unsigned long a, unsigned int b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__SHIFT_1gae9dfa0e06789bbdccc6147d120392239"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRLI32(unsigned long a, unsigned int b)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__SHIFT_1gace93ecbca53aa585ef4b05b41cb11b0c"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRLI32_U(unsigned long a, unsigned int b)</code></dt>
+<dd></dd></dl>
+
+<dl class="group">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__SHIFT"></span><em>group</em> <code class="sig-name descname">NMSIS_Core_DSP_Intrinsic_RV64_SIMD_32B_SHIFT</code></dt>
+<dd><p>(RV64 Only) SIMD 32-bit Shift Instructions </p>
+<p>there are 14 (RV64 Only) SIMD 32-bit Shift Instructions </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__SHIFT_1ga4f3e9c4c72aaa40f0fb4b143933178ce"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KSLL32(unsigned long a, unsigned int b)</code></dt>
+<dd><p>KSLL32 (SIMD 32-bit Saturating Shift Left Logical) </p>
+<p><strong>Type</strong>: SIMD (RV64 Only)</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KSLL32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 32-bit elements logical left shift operations with saturation simultaneously. The shift amount is a variable from a GPR.</p>
+</p>
+<p><strong>Description</strong>:<p>The 32-bit data elements in Rs1 are left-shifted logically. The shifted out bits are filled with zero and the shift amount is specified by the low-order 5-bits of the value in the Rs2 register. Any shifted value greater than 2^31-1 is saturated to 2^31-1. Any shifted value smaller than -2^31 is saturated to -2^31. And the saturated results are written to Rd. If any saturation is performed, set OV bit to 1.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sa</span> <span class="o">=</span> <span class="n">Rs2</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">sa</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">res</span><span class="p">[(</span><span class="mi">31</span><span class="o">+</span><span class="n">sa</span><span class="p">):</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">sa</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">res</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">31</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="mh">0x7fffffff</span><span class="p">;</span> <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">res</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">2</span><span class="o">^</span><span class="mi">31</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="mh">0x80000000</span><span class="p">;</span> <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="n">Rd</span> <span class="o">=</span> <span class="n">Rs1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">1.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__SHIFT_1ga44edf9b602fc9cdd1d679dccf979ee92"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KSLLI32(unsigned long a, unsigned int b)</code></dt>
+<dd><p>KSLLI32 (SIMD 32-bit Saturating Shift Left Logical Immediate) </p>
+<p><strong>Type</strong>: SIMD (RV64 Only)</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KSLLI32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm5u</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 32-bit elements logical left shift operations with saturation simultaneously. The shift amount is an immediate value.</p>
+</p>
+<p><strong>Description</strong>:<p>The 32-bit data elements in Rs1 are left-shifted logically. The shifted out bits are filled with zero and the shift amount is specified by the imm5u constant. Any shifted value greater than 2^31-1 is saturated to 2^31-1. Any shifted value smaller than -2^31 is saturated to -2^31. And the saturated results are written to Rd. If any saturation is performed, set OV bit to 1.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sa</span> <span class="o">=</span> <span class="n">imm5u</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">sa</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">res</span><span class="p">[(</span><span class="mi">31</span><span class="o">+</span><span class="n">sa</span><span class="p">):</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">sa</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">res</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">31</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="mh">0x7fffffff</span><span class="p">;</span> <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">res</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">2</span><span class="o">^</span><span class="mi">31</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="mh">0x80000000</span><span class="p">;</span> <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="n">Rd</span> <span class="o">=</span> <span class="n">Rs1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">1.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__SHIFT_1gaac9d8fddae94b97c09f59f93f01b81c9"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KSLRA32(unsigned long a, int b)</code></dt>
+<dd><p>KSLRA32 (SIMD 32-bit Shift Left Logical with Saturation or Shift Right Arithmetic) </p>
+<p><strong>Type</strong>: SIMD (RV64 Only)</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KSLRA32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+<span class="n">KSLRA32</span><span class="o">.</span><span class="n">u</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 32-bit elements logical left (positive) or arithmetic right (negative) shift operation with Q31 saturation for the left shift. The </p>
+<code class="docutils literal notranslate"><span class="pre">.u</span></code> form performs additional rounding up operations for the right shift.</p>
+<p><strong>Description</strong>:<p>The 32-bit data elements of Rs1 are left-shifted logically or right-shifted arithmetically based on the value of Rs2[5:0]. Rs2[5:0] is in the signed range of [-25, 25-1]. A positive Rs2[5:0] means logical left shift and a negative Rs2[5:0] means arithmetic right shift. The shift amount is the absolute value of Rs2[5:0]. However, the behavior of </p>
+<code class="docutils literal notranslate"><span class="pre">Rs2[5:0]==-25</span> <span class="pre">(0x20)</span></code> is defined to be equivalent to the behavior of <code class="docutils literal notranslate"><span class="pre">Rs2[5:0]==-(25-1)</span> <span class="pre">(0x21)</span></code>. The left-shifted results are saturated to the 32-bit signed integer range of [-2^31, 2^31-1]. For the <code class="docutils literal notranslate"><span class="pre">.u</span></code> form of the instruction, the right-shifted results are added a 1 to the most significant discarded bit position for rounding effect. After the shift, saturation, or rounding, the final results are written to Rd. If any saturation happens, this instruction sets the OV flag. The value of Rs2[31:6] will not affect this instruction.</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>if (Rs2[5:0] &lt; 0) {
+  sa = -Rs2[5:0];
+  sa = (sa == 32)? 31 : sa;
+  if (`.u` form) {
+    res[31:-1] = SE33(Rs1.W[x][31:sa-1]) + 1;
+    Rd.W[x] = res[31:0];
+  } else {
+    Rd.W[x] = SE32(Rs1.W[x][31:sa]);
+  }
+} else {
+  sa = Rs2[4:0];
+  res[(31+sa):0] = Rs1.W[x] &lt;&lt;(logic) sa;
+  if (res &gt; (2^31)-1) {
+    res[31:0] = 0x7fffffff; OV = 1;
+  } else if (res &lt; -2^31) {
+    res[31:0] = 0x80000000; OV = 1;
+  }
+  Rd.W[x] = res[31:0];
+}
+for RV64: x=1...0
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: int type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__SHIFT_1gaf432cd440b93dcd519459b4107691173"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KSLRA32_U(unsigned long a, int b)</code></dt>
+<dd><p>KSLRA32.u (SIMD 32-bit Shift Left Logical with Saturation or Rounding Shift Right Arithmetic) </p>
+<p><strong>Type</strong>: SIMD (RV64 Only)</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KSLRA32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+<span class="n">KSLRA32</span><span class="o">.</span><span class="n">u</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 32-bit elements logical left (positive) or arithmetic right (negative) shift operation with Q31 saturation for the left shift. The </p>
+<code class="docutils literal notranslate"><span class="pre">.u</span></code> form performs additional rounding up operations for the right shift.</p>
+<p><strong>Description</strong>:<p>The 32-bit data elements of Rs1 are left-shifted logically or right-shifted arithmetically based on the value of Rs2[5:0]. Rs2[5:0] is in the signed range of [-25, 25-1]. A positive Rs2[5:0] means logical left shift and a negative Rs2[5:0] means arithmetic right shift. The shift amount is the absolute value of Rs2[5:0]. However, the behavior of </p>
+<code class="docutils literal notranslate"><span class="pre">Rs2[5:0]==-25</span> <span class="pre">(0x20)</span></code> is defined to be equivalent to the behavior of <code class="docutils literal notranslate"><span class="pre">Rs2[5:0]==-(25-1)</span> <span class="pre">(0x21)</span></code>. The left-shifted results are saturated to the 32-bit signed integer range of [-2^31, 2^31-1]. For the <code class="docutils literal notranslate"><span class="pre">.u</span></code> form of the instruction, the right-shifted results are added a 1 to the most significant discarded bit position for rounding effect. After the shift, saturation, or rounding, the final results are written to Rd. If any saturation happens, this instruction sets the OV flag. The value of Rs2[31:6] will not affect this instruction.</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>if (Rs2[5:0] &lt; 0) {
+  sa = -Rs2[5:0];
+  sa = (sa == 32)? 31 : sa;
+  if (`.u` form) {
+    res[31:-1] = SE33(Rs1.W[x][31:sa-1]) + 1;
+    Rd.W[x] = res[31:0];
+  } else {
+    Rd.W[x] = SE32(Rs1.W[x][31:sa]);
+  }
+} else {
+  sa = Rs2[4:0];
+  res[(31+sa):0] = Rs1.W[x] &lt;&lt;(logic) sa;
+  if (res &gt; (2^31)-1) {
+    res[31:0] = 0x7fffffff; OV = 1;
+  } else if (res &lt; -2^31) {
+    res[31:0] = 0x80000000; OV = 1;
+  }
+  Rd.W[x] = res[31:0];
+}
+for RV64: x=1...0
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: int type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__SHIFT_1gada1903a81ca0df7a3c28c169a85a1dab"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SLL32(unsigned long a, unsigned int b)</code></dt>
+<dd><p>SLL32 (SIMD 32-bit Shift Left Logical) </p>
+<p><strong>Type</strong>: SIMD (RV64 Only)</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SLL32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 32-bit elements logical left shift operations simultaneously. The shift amount is a variable from a GPR.</p>
+</p>
+<p><strong>Description</strong>:<p>The 32-bit elements in Rs1 are left-shifted logically. And the results are written to Rd. The shifted out bits are filled with zero and the shift amount is specified by the low-order 5-bits of the value in the Rs2 register.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sa</span> <span class="o">=</span> <span class="n">Rs2</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+<span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">sa</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">1.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__SHIFT_1ga989aaff6c47185a5239f55519b28e8bb"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SLLI32(unsigned long a, unsigned int b)</code></dt>
+<dd><p>SLLI32 (SIMD 32-bit Shift Left Logical Immediate) </p>
+<p><strong>Type</strong>: SIMD (RV64 Only)</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SLLI32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm5u</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 32-bit element logical left shift operations simultaneously. The shift amount is an immediate value.</p>
+</p>
+<p><strong>Description</strong>:<p>The 32-bit elements in Rs1 are left-shifted logically. The shifted out bits are filled with zero and the shift amount is specified by the imm5u[4:0] constant. And the results are written to Rd.</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sa</span> <span class="o">=</span> <span class="n">imm5u</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+<span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">sa</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">1.</span><span class="o">..</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__SHIFT_1ga0de6fada321c089b1d6eb655a5b5085d"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRA32(unsigned long a, unsigned int b)</code></dt>
+<dd><p>SRA32 (SIMD 32-bit Shift Right Arithmetic) </p>
+<p><strong>Type</strong>: SIMD (RV64 Only)</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SRA32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+<span class="n">SRA32</span><span class="o">.</span><span class="n">u</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 32-bit element arithmetic right shift operations simultaneously. The shift amount is a variable from a GPR. The </p>
+<code class="docutils literal notranslate"><span class="pre">.u</span></code> form performs additional rounding up operations on the shifted results.</p>
+<p><strong>Description</strong>:<p>The 32-bit data elements in Rs1 are right-shifted arithmetically, that is, the shifted out bits are filled with the sign-bit of the data elements. The shift amount is specified by the low-order 5-bits of the value in the Rs2 register. For the rounding operation of the </p>
+<code class="docutils literal notranslate"><span class="pre">.u</span></code> form, a value of 1 is added to the most significant discarded bit of each 32-bit data element to calculate the final results. And the results are written to Rd.</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sa = Rs2[4:0];
+if (sa &gt; 0) {
+  if (`.u` form) { // SRA32.u
+    res[31:-1] = SE33(Rs1.W[x][31:sa-1]) + 1;
+    Rd.W[x] = res[31:0];
+  else { // SRA32
+    Rd.W[x] = SE32(Rs1.W[x][31:sa])
+  }
+} else {
+  Rd = Rs1;
+}
+for RV64: x=1...0
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__SHIFT_1gaedf16a534575de0f435869923c6b536a"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRA32_U(unsigned long a, unsigned int b)</code></dt>
+<dd><p>SRA32.u (SIMD 32-bit Rounding Shift Right Arithmetic) </p>
+<p><strong>Type</strong>: SIMD (RV64 Only)</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SRA32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+<span class="n">SRA32</span><span class="o">.</span><span class="n">u</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 32-bit element arithmetic right shift operations simultaneously. The shift amount is a variable from a GPR. The </p>
+<code class="docutils literal notranslate"><span class="pre">.u</span></code> form performs additional rounding up operations on the shifted results.</p>
+<p><strong>Description</strong>:<p>The 32-bit data elements in Rs1 are right-shifted arithmetically, that is, the shifted out bits are filled with the sign-bit of the data elements. The shift amount is specified by the low-order 5-bits of the value in the Rs2 register. For the rounding operation of the </p>
+<code class="docutils literal notranslate"><span class="pre">.u</span></code> form, a value of 1 is added to the most significant discarded bit of each 32-bit data element to calculate the final results. And the results are written to Rd.</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sa = Rs2[4:0];
+if (sa &gt; 0) {
+  if (`.u` form) { // SRA32.u
+    res[31:-1] = SE33(Rs1.W[x][31:sa-1]) + 1;
+    Rd.W[x] = res[31:0];
+  else { // SRA32
+    Rd.W[x] = SE32(Rs1.W[x][31:sa])
+  }
+} else {
+  Rd = Rs1;
+}
+for RV64: x=1...0
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__SHIFT_1ga1339130e1d377a8ed99ca71e2fe4d1d9"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRAI32(unsigned long a, unsigned int b)</code></dt>
+<dd><p>SRAI32 (SIMD 32-bit Shift Right Arithmetic Immediate) </p>
+<p><strong>Type</strong>: DSP (RV64 Only)</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SRAI32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm5u</span>
+<span class="n">SRAI32</span><span class="o">.</span><span class="n">u</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm5u</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 32-bit elements arithmetic right shift operations simultaneously. The shift amount is an immediate value. The </p>
+<code class="docutils literal notranslate"><span class="pre">.u</span></code> form performs additional rounding up operations on the shifted results.</p>
+<p><strong>Description</strong>:<p>The 32-bit data elements in Rs1 are right-shifted arithmetically, that is, the shifted out bits are filled with the sign-bit of the 32-bit data elements. The shift amount is specified by the imm5u constant. For the rounding operation of the </p>
+<code class="docutils literal notranslate"><span class="pre">.u</span></code> form, a value of 1 is added to the most significant discarded bit of each 32-bit data to calculate the final results. And the results are written to Rd.</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sa = imm5u[4:0];
+  if (sa &gt; 0) {
+  if (`.u` form) { // SRAI32.u
+    res[31:-1] = SE33(Rs1.W[x][31:sa-1]) + 1;
+    Rd.W[x] = res[31:0];
+  else { // SRAI32
+    Rd.W[x] = SE32(Rs1.W[x][31:sa]);
+  }
+} else {
+  Rd = Rs1;
+}
+for RV64: x=1...0
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__SHIFT_1ga0ef645ccad1604a6ce8f2ab0747293c3"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRAI32_U(unsigned long a, unsigned int b)</code></dt>
+<dd><p>SRAI32.u (SIMD 32-bit Rounding Shift Right Arithmetic Immediate) </p>
+<p><strong>Type</strong>: DSP (RV64 Only)</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SRAI32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm5u</span>
+<span class="n">SRAI32</span><span class="o">.</span><span class="n">u</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm5u</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 32-bit elements arithmetic right shift operations simultaneously. The shift amount is an immediate value. The </p>
+<code class="docutils literal notranslate"><span class="pre">.u</span></code> form performs additional rounding up operations on the shifted results.</p>
+<p><strong>Description</strong>:<p>The 32-bit data elements in Rs1 are right-shifted arithmetically, that is, the shifted out bits are filled with the sign-bit of the 32-bit data elements. The shift amount is specified by the imm5u constant. For the rounding operation of the </p>
+<code class="docutils literal notranslate"><span class="pre">.u</span></code> form, a value of 1 is added to the most significant discarded bit of each 32-bit data to calculate the final results. And the results are written to Rd.</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sa = imm5u[4:0];
+  if (sa &gt; 0) {
+  if (`.u` form) { // SRAI32.u
+    res[31:-1] = SE33(Rs1.W[x][31:sa-1]) + 1;
+    Rd.W[x] = res[31:0];
+  else { // SRAI32
+    Rd.W[x] = SE32(Rs1.W[x][31:sa]);
+  }
+} else {
+  Rd = Rs1;
+}
+for RV64: x=1...0
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__SHIFT_1gaa527b5f65f359f77a0d667fb5e99cf73"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRL32(unsigned long a, unsigned int b)</code></dt>
+<dd><p>SRL32 (SIMD 32-bit Shift Right Logical) </p>
+<p><strong>Type</strong>: SIMD (RV64 Only)</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SRL32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+<span class="n">SRL32</span><span class="o">.</span><span class="n">u</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 32-bit element logical right shift operations simultaneously. The shift amount is a variable from a GPR. The </p>
+<code class="docutils literal notranslate"><span class="pre">.u</span></code> form performs additional rounding up operations on the shifted results.</p>
+<p><strong>Description</strong>:<p>The 32-bit data elements in Rs1 are right-shifted logically, that is, the shifted out bits are filled with zero. The shift amount is specified by the low-order 5-bits of the value in the Rs2 register. For the rounding operation of the </p>
+<code class="docutils literal notranslate"><span class="pre">.u</span></code> form, a value of 1 is added to the most significant discarded bit of each 32-bit data element to calculate the final results. And the results are written to Rd.</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sa = Rs2[4:0];
+if (sa &gt; 0) {
+  if (`.u` form) { // SRA32.u
+    res[31:-1] = ZE33(Rs1.W[x][31:sa-1]) + 1;
+    Rd.W[x] = res[31:0];
+  else { // SRA32
+    Rd.W[x] = ZE32(Rs1.W[x][31:sa])
+  }
+} else {
+  Rd = Rs1;
+}
+for RV64: x=1...0
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__SHIFT_1ga1f6513e3a91fab5673495cdb5cdd0a1b"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRL32_U(unsigned long a, unsigned int b)</code></dt>
+<dd><p>SRL32.u (SIMD 32-bit Rounding Shift Right Logical) </p>
+<p><strong>Type</strong>: SIMD (RV64 Only)</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SRL32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+<span class="n">SRL32</span><span class="o">.</span><span class="n">u</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 32-bit element logical right shift operations simultaneously. The shift amount is a variable from a GPR. The </p>
+<code class="docutils literal notranslate"><span class="pre">.u</span></code> form performs additional rounding up operations on the shifted results.</p>
+<p><strong>Description</strong>:<p>The 32-bit data elements in Rs1 are right-shifted logically, that is, the shifted out bits are filled with zero. The shift amount is specified by the low-order 5-bits of the value in the Rs2 register. For the rounding operation of the </p>
+<code class="docutils literal notranslate"><span class="pre">.u</span></code> form, a value of 1 is added to the most significant discarded bit of each 32-bit data element to calculate the final results. And the results are written to Rd.</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sa = Rs2[4:0];
+if (sa &gt; 0) {
+  if (`.u` form) { // SRA32.u
+    res[31:-1] = ZE33(Rs1.W[x][31:sa-1]) + 1;
+    Rd.W[x] = res[31:0];
+  else { // SRA32
+    Rd.W[x] = ZE32(Rs1.W[x][31:sa])
+  }
+} else {
+  Rd = Rs1;
+}
+for RV64: x=1...0
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__SHIFT_1gae9dfa0e06789bbdccc6147d120392239"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRLI32(unsigned long a, unsigned int b)</code></dt>
+<dd><p>SRLI32 (SIMD 32-bit Shift Right Logical Immediate) </p>
+<p><strong>Type</strong>: SIMD (RV64 Only)</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SRLI32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm5u</span>
+<span class="n">SRLI32</span><span class="o">.</span><span class="n">u</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm5u</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 32-bit elements logical right shift operations simultaneously. The shift amount is an immediate value. The </p>
+<code class="docutils literal notranslate"><span class="pre">.u</span></code> form performs additional rounding up operations on the shifted results.</p>
+<p><strong>Description</strong>:<p>The 32-bit data elements in Rs1 are right-shifted logically, that is, the shifted out bits are filled with zero. The shift amount is specified by the imm5u constant. For the rounding operation of the </p>
+<code class="docutils literal notranslate"><span class="pre">.u</span></code> form, a value of 1 is added to the most significant discarded bit of each 32-bit data to calculate the final results. And the results are written to Rd.</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sa = imm5u[4:0];
+if (sa &gt; 0) {
+  if (`.u` form) { // SRLI32.u
+    res[31:-1] = ZE33(Rs1.W[x][31:sa-1]) + 1;
+    Rd.W[x] = res[31:0];
+  else { // SRLI32
+    Rd.W[x] = ZE32(Rs1.W[x][31:sa]);
+  }
+} else {
+  Rd = Rs1;
+}
+for RV64: x=1...0
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__SHIFT_1gace93ecbca53aa585ef4b05b41cb11b0c"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRLI32_U(unsigned long a, unsigned int b)</code></dt>
+<dd><p>SRLI32.u (SIMD 32-bit Rounding Shift Right Logical Immediate) </p>
+<p><strong>Type</strong>: SIMD (RV64 Only)</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SRLI32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm5u</span>
+<span class="n">SRLI32</span><span class="o">.</span><span class="n">u</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm5u</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong>:<p>Do 32-bit elements logical right shift operations simultaneously. The shift amount is an immediate value. The </p>
+<code class="docutils literal notranslate"><span class="pre">.u</span></code> form performs additional rounding up operations on the shifted results.</p>
+<p><strong>Description</strong>:<p>The 32-bit data elements in Rs1 are right-shifted logically, that is, the shifted out bits are filled with zero. The shift amount is specified by the imm5u constant. For the rounding operation of the </p>
+<code class="docutils literal notranslate"><span class="pre">.u</span></code> form, a value of 1 is added to the most significant discarded bit of each 32-bit data to calculate the final results. And the results are written to Rd.</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sa = imm5u[4:0];
+if (sa &gt; 0) {
+  if (`.u` form) { // SRLI32.u
+    res[31:-1] = ZE33(Rs1.W[x][31:sa-1]) + 1;
+    Rd.W[x] = res[31:0];
+  else { // SRLI32
+    Rd.W[x] = ZE32(Rs1.W[x][31:sa]);
+  }
+} else {
+  Rd = Rs1;
+}
+for RV64: x=1...0
+</pre></div>
+</div>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api_nmsis_core_dsp_intrinsic_rv64_simd_32b_misc.html" class="btn btn-neutral float-right" title="(RV64 Only) SIMD 32-bit Miscellaneous Instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api_nmsis_core_dsp_intrinsic_rv64_simd_32b_addsub.html" class="btn btn-neutral float-left" title="(RV64 Only) SIMD 32-bit Add/Subtract Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-Present, Nuclei
+      <span class="lastupdated">
+        Last updated on Aug 05, 2021.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

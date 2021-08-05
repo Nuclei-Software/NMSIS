@@ -14,19 +14,5 @@ var modules =
     [ "Support Functions", "group__groupSupport.html", "group__groupSupport" ],
     [ "SVM Functions", "group__groupSVM.html", "group__groupSVM" ],
     [ "Transform Functions", "group__groupTransforms.html", "group__groupTransforms" ],
-    [ "Examples", "group__groupExamples.html", "group__groupExamples" ],
-    [ "Distance Functions", "group__DISTANCEF.html", "group__DISTANCEF" ],
-    [ "Braycurtis", "group__braycurtis.html", "group__braycurtis" ],
-    [ "Canberra", "group__Canberra.html", "group__Canberra" ],
-    [ "Chebyshev", "group__Chebyshev.html", "group__Chebyshev" ],
-    [ "Manhattan", "group__Manhattan.html", "group__Manhattan" ],
-    [ "Correlation", "group__Correlation.html", "group__Correlation" ],
-    [ "CosineDist", "group__CosineDist.html", "group__CosineDist" ],
-    [ "Euclidean", "group__Euclidean.html", "group__Euclidean" ],
-    [ "JensenShannon", "group__JensenShannon.html", "group__JensenShannon" ],
-    [ "Minkowski", "group__Minkowski.html", "group__Minkowski" ],
-    [ "Entropy", "group__Entropy.html", "group__Entropy" ],
-    [ "Kullback-Leibler", "group__Kullback-Leibler.html", "group__Kullback-Leibler" ],
-    [ "LogSumExp", "group__LogSumExp.html", "group__LogSumExp" ],
-    [ "Weightedsum", "group__weightedsum.html", "group__weightedsum" ]
+    [ "Examples", "group__groupExamples.html", "group__groupExamples" ]
 ];

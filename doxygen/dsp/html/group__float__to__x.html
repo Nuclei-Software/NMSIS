@@ -91,6 +91,9 @@ $(document).ready(function(){initNavTree('group__float__to__x.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:gab4afc6c0cb9fb68c91fafff83a32fa8c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__float__to__x.html#gab4afc6c0cb9fb68c91fafff83a32fa8c">riscv_float_to_f16</a> (const float32_t *pSrc, float16_t *pDst, uint32_t blockSize)</td></tr>
+<tr class="memdesc:gab4afc6c0cb9fb68c91fafff83a32fa8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the elements of the floating-point vector to f16 vector.  <a href="#gab4afc6c0cb9fb68c91fafff83a32fa8c">More...</a><br /></td></tr>
+<tr class="separator:gab4afc6c0cb9fb68c91fafff83a32fa8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5c2a33af297b10b8cc1196abe0d07a9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__float__to__x.html#ga5c2a33af297b10b8cc1196abe0d07a9e">riscv_float_to_q15</a> (const float32_t *pSrc, q15_t *pDst, uint32_t blockSize)</td></tr>
 <tr class="memdesc:ga5c2a33af297b10b8cc1196abe0d07a9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the elements of the floating-point vector to Q15 vector.  <a href="#ga5c2a33af297b10b8cc1196abe0d07a9e">More...</a><br /></td></tr>
 <tr class="separator:ga5c2a33af297b10b8cc1196abe0d07a9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -103,6 +106,52 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="gab4afc6c0cb9fb68c91fafff83a32fa8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab4afc6c0cb9fb68c91fafff83a32fa8c">&#9670;&nbsp;</a></span>riscv_float_to_f16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void riscv_float_to_f16 </td>
+          <td>(</td>
+          <td class="paramtype">const float32_t *&#160;</td>
+          <td class="paramname"><em>pSrc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float16_t *&#160;</td>
+          <td class="paramname"><em>pDst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>blockSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Converts the elements of the floating-point vector to f16 vector. </p>
+<p>Converts the elements of the floating-point vector to Q31 vector.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pSrc</td><td>points to the f32 input vector </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pDst</td><td>points to the f16 output vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">blockSize</td><td>number of samples in each vector </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
+
+</div>
+</div>
 <a id="ga5c2a33af297b10b8cc1196abe0d07a9e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga5c2a33af297b10b8cc1196abe0d07a9e">&#9670;&nbsp;</a></span>riscv_float_to_q15()</h2>
 
@@ -260,7 +309,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Aug 3 2021 10:26:13 for NMSIS-DSP by
+    <li class="footer">Generated on Thu Aug 5 2021 10:52:54 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

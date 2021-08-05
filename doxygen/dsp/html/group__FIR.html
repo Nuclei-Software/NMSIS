@@ -91,6 +91,9 @@ $(document).ready(function(){initNavTree('group__FIR.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:gaba29e8d8b0566c623aaa7ec3a830b2ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__FIR.html#gaba29e8d8b0566c623aaa7ec3a830b2ce">riscv_fir_f16</a> (const <a class="el" href="structriscv__fir__instance__f16.html">riscv_fir_instance_f16</a> *S, const float16_t *pSrc, float16_t *pDst, uint32_t blockSize)</td></tr>
+<tr class="memdesc:gaba29e8d8b0566c623aaa7ec3a830b2ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processing function for floating-point FIR filter.  <a href="#gaba29e8d8b0566c623aaa7ec3a830b2ce">More...</a><br /></td></tr>
+<tr class="separator:gaba29e8d8b0566c623aaa7ec3a830b2ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga9609646d34fdf7b619a1dd845058e495"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__FIR.html#ga9609646d34fdf7b619a1dd845058e495">riscv_fir_f32</a> (const <a class="el" href="structriscv__fir__instance__f32.html">riscv_fir_instance_f32</a> *S, const float32_t *pSrc, float32_t *pDst, uint32_t blockSize)</td></tr>
 <tr class="memdesc:ga9609646d34fdf7b619a1dd845058e495"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processing function for floating-point FIR filter.  <a href="#ga9609646d34fdf7b619a1dd845058e495">More...</a><br /></td></tr>
 <tr class="separator:ga9609646d34fdf7b619a1dd845058e495"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -100,6 +103,9 @@ Functions</h2></td></tr>
 <tr class="memitem:gaf3afcaa386694efed94fd250f07a54ad"><td class="memItemLeft" align="right" valign="top">IAR_ONLY_LOW_OPTIMIZATION_ENTER void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__FIR.html#gaf3afcaa386694efed94fd250f07a54ad">riscv_fir_fast_q31</a> (const <a class="el" href="structriscv__fir__instance__q31.html">riscv_fir_instance_q31</a> *S, const q31_t *pSrc, q31_t *pDst, uint32_t blockSize)</td></tr>
 <tr class="memdesc:gaf3afcaa386694efed94fd250f07a54ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processing function for the Q31 FIR filter (fast version).  <a href="#gaf3afcaa386694efed94fd250f07a54ad">More...</a><br /></td></tr>
 <tr class="separator:gaf3afcaa386694efed94fd250f07a54ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga765e5fe8abbbb9375bf7449a859f264f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__FIR.html#ga765e5fe8abbbb9375bf7449a859f264f">riscv_fir_init_f16</a> (<a class="el" href="structriscv__fir__instance__f16.html">riscv_fir_instance_f16</a> *S, uint16_t numTaps, const float16_t *pCoeffs, float16_t *pState, uint32_t blockSize)</td></tr>
+<tr class="memdesc:ga765e5fe8abbbb9375bf7449a859f264f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization function for the floating-point FIR filter.  <a href="#ga765e5fe8abbbb9375bf7449a859f264f">More...</a><br /></td></tr>
+<tr class="separator:ga765e5fe8abbbb9375bf7449a859f264f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gabc32b5613cbace1478d28da3654fd357"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__FIR.html#gabc32b5613cbace1478d28da3654fd357">riscv_fir_init_f32</a> (<a class="el" href="structriscv__fir__instance__f32.html">riscv_fir_instance_f32</a> *S, uint16_t numTaps, const float32_t *pCoeffs, float32_t *pState, uint32_t blockSize)</td></tr>
 <tr class="memdesc:gabc32b5613cbace1478d28da3654fd357"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization function for the floating-point FIR filter.  <a href="#gabc32b5613cbace1478d28da3654fd357">More...</a><br /></td></tr>
 <tr class="separator:gabc32b5613cbace1478d28da3654fd357"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -172,6 +178,59 @@ Finite Impulse Response filter</div></div>
 </dd></dl>
 <dl class="section user"><dt>Fixed-Point Behavior</dt><dd>Care must be taken when using the fixed-point versions of the FIR filter functions. In particular, the overflow and saturation behavior of the accumulator used in each function must be considered. Refer to the function specific documentation below for usage guidelines. </dd></dl>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="gaba29e8d8b0566c623aaa7ec3a830b2ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaba29e8d8b0566c623aaa7ec3a830b2ce">&#9670;&nbsp;</a></span>riscv_fir_f16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void riscv_fir_f16 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structriscv__fir__instance__f16.html">riscv_fir_instance_f16</a> *&#160;</td>
+          <td class="paramname"><em>S</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float16_t *&#160;</td>
+          <td class="paramname"><em>pSrc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float16_t *&#160;</td>
+          <td class="paramname"><em>pDst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>blockSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Processing function for floating-point FIR filter. </p>
+<p>Processing function for the floating-point FIR filter.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">S</td><td>points to an instance of the floating-point FIR filter structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pSrc</td><td>points to the block of input data </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pDst</td><td>points to the block of output data </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">blockSize</td><td>number of samples to process </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
+
+</div>
+</div>
 <a id="ga9609646d34fdf7b619a1dd845058e495"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga9609646d34fdf7b619a1dd845058e495">&#9670;&nbsp;</a></span>riscv_fir_f32()</h2>
 
@@ -332,6 +391,71 @@ Finite Impulse Response filter</div></div>
 <dl class="section return"><dt>Returns</dt><dd>none</dd></dl>
 <dl class="section user"><dt>Scaling and Overflow Behavior</dt><dd>This function is optimized for speed at the expense of fixed-point precision and overflow protection. The result of each 1.31 x 1.31 multiplication is truncated to 2.30 format. These intermediate results are added to a 2.30 accumulator. Finally, the accumulator is saturated and converted to a 1.31 result. The fast version has the same overflow behavior as the standard version and provides less precision since it discards the low 32 bits of each multiplication result. In order to avoid overflows completely the input signal must be scaled down by log2(numTaps) bits.</dd></dl>
 <dl class="section remark"><dt>Remarks</dt><dd>Refer to <a class="el" href="group__FIR.html#ga5ab3142de031afd37695e2ac09c880d1">riscv_fir_q31()</a> for a slower implementation of this function which uses a 64-bit accumulator to provide higher precision. Both the slow and the fast versions use the same instance structure. Use function <a class="el" href="group__FIR.html#ga20b9154a895a31aabdf745c7a98b16ea">riscv_fir_init_q31()</a> to initialize the filter structure. </dd></dl>
+
+</div>
+</div>
+<a id="ga765e5fe8abbbb9375bf7449a859f264f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga765e5fe8abbbb9375bf7449a859f264f">&#9670;&nbsp;</a></span>riscv_fir_init_f16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void riscv_fir_init_f16 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structriscv__fir__instance__f16.html">riscv_fir_instance_f16</a> *&#160;</td>
+          <td class="paramname"><em>S</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>numTaps</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float16_t *&#160;</td>
+          <td class="paramname"><em>pCoeffs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float16_t *&#160;</td>
+          <td class="paramname"><em>pState</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>blockSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialization function for the floating-point FIR filter. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">S</td><td>points to an instance of the floating-point FIR filter structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">numTaps</td><td>number of filter coefficients in the filter </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pCoeffs</td><td>points to the filter coefficients buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pState</td><td>points to the state buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">blockSize</td><td>number of samples processed per call </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>none</dd></dl>
+<dl class="section user"><dt>Details</dt><dd><code>pCoeffs</code> points to the array of filter coefficients stored in time reversed order: <pre>
+    {b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}
+</pre> </dd></dl>
+<dl class="section user"><dt></dt><dd><code>pState</code> points to the array of state variables. <code>pState</code> is of length <code>numTaps+blockSize-1</code> samples (except for Helium - see below), where <code>blockSize</code> is the number of input samples processed by each call to <code><a class="el" href="group__FIR.html#gaba29e8d8b0566c623aaa7ec3a830b2ce" title="Processing function for the floating-point FIR filter. ">riscv_fir_f16()</a></code>. </dd></dl>
+<dl class="section user"><dt>Initialization of Helium version</dt><dd>For Helium version the array of coefficients must be a multiple of 4 (4a) even if less then 4a coefficients are defined in the FIR. The additional coefficients (4a - numTaps) must be set to 0. numTaps is still set to its right value in the init function. It means that the implementation may require to read more coefficients due to the vectorization and to avoid having to manage too many different cases in the code.</dd></dl>
+<dl class="section user"><dt>Helium state buffer</dt><dd>The state buffer must contain some additional temporary data used during the computation but which is not the state of the FIR. The first 8*ceil(blockSize/8) samples are temporary data. The remaining samples are the state of the FIR filter. So the state buffer has size <code> numTaps + 8*ceil(blockSize/8) + blockSize - 1 </code> </dd></dl>
 
 </div>
 </div>
@@ -771,7 +895,7 @@ Finite Impulse Response filter</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Aug 3 2021 10:26:13 for NMSIS-DSP by
+    <li class="footer">Generated on Thu Aug 5 2021 10:52:54 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

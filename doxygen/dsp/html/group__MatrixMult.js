@@ -1,5 +1,6 @@
 var group__MatrixMult =
 [
+    [ "riscv_mat_mult_f16", "group__MatrixMult.html#ga4fd719d718c6dcf981768b6bcb51b027", null ],
     [ "riscv_mat_mult_f32", "group__MatrixMult.html#ga0f1c7b30e1c552617b8bb6a6898e57d4", null ],
     [ "riscv_mat_mult_f64", "group__MatrixMult.html#ga4f176f9750ae23b704106f7615e734d5", null ],
     [ "riscv_mat_mult_fast_q15", "group__MatrixMult.html#ga39f8eb0440c425a21ae4ee04b0bdb0c1", null ],

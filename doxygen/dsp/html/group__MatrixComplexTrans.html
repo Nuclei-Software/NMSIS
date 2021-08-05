@@ -91,6 +91,9 @@ $(document).ready(function(){initNavTree('group__MatrixComplexTrans.html','');})
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:ga3b02f6f35e5e6a12effa8d6247f66cb1"><td class="memItemLeft" align="right" valign="top">riscv_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MatrixComplexTrans.html#ga3b02f6f35e5e6a12effa8d6247f66cb1">riscv_mat_cmplx_trans_f16</a> (const <a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *pSrc, <a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *pDst)</td></tr>
+<tr class="memdesc:ga3b02f6f35e5e6a12effa8d6247f66cb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Floating-point matrix transpose.  <a href="#ga3b02f6f35e5e6a12effa8d6247f66cb1">More...</a><br /></td></tr>
+<tr class="separator:ga3b02f6f35e5e6a12effa8d6247f66cb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga7ab14a9f7aa914e86c7b33c7a0aac2ad"><td class="memItemLeft" align="right" valign="top">riscv_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MatrixComplexTrans.html#ga7ab14a9f7aa914e86c7b33c7a0aac2ad">riscv_mat_cmplx_trans_f32</a> (const <a class="el" href="structriscv__matrix__instance__f32.html">riscv_matrix_instance_f32</a> *pSrc, <a class="el" href="structriscv__matrix__instance__f32.html">riscv_matrix_instance_f32</a> *pDst)</td></tr>
 <tr class="memdesc:ga7ab14a9f7aa914e86c7b33c7a0aac2ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Floating-point matrix transpose.  <a href="#ga7ab14a9f7aa914e86c7b33c7a0aac2ad">More...</a><br /></td></tr>
 <tr class="separator:ga7ab14a9f7aa914e86c7b33c7a0aac2ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -108,6 +111,49 @@ Functions</h2></td></tr>
 <div class="caption">
 Transpose of a 3 x 3 matrix</div></div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="ga3b02f6f35e5e6a12effa8d6247f66cb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3b02f6f35e5e6a12effa8d6247f66cb1">&#9670;&nbsp;</a></span>riscv_mat_cmplx_trans_f16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">riscv_status riscv_mat_cmplx_trans_f16 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *&#160;</td>
+          <td class="paramname"><em>pSrc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *&#160;</td>
+          <td class="paramname"><em>pDst</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Floating-point matrix transpose. </p>
+<p>Floating-point complex matrix transpose.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pSrc</td><td>points to input matrix </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pDst</td><td>points to output matrix </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>execution status<ul>
+<li>RISCV_MATH_SUCCESS : Operation successful</li>
+<li>RISCV_MATH_SIZE_MISMATCH : Matrix size check failed </li>
+</ul>
+</dd></dl>
+
+</div>
+</div>
 <a id="ga7ab14a9f7aa914e86c7b33c7a0aac2ad"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga7ab14a9f7aa914e86c7b33c7a0aac2ad">&#9670;&nbsp;</a></span>riscv_mat_cmplx_trans_f32()</h2>
 
@@ -240,7 +286,7 @@ Transpose of a 3 x 3 matrix</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Aug 3 2021 10:26:13 for NMSIS-DSP by
+    <li class="footer">Generated on Thu Aug 5 2021 10:52:54 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

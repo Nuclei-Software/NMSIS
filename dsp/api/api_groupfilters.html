@@ -1,47 +1,44 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
-  <meta charset="utf-8" />
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Filtering Functions &mdash; NMSIS 1.0.2-RC1 documentation</title>
   
 
   
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-
+  
   
   
 
   
-  
-
-  
-
-  
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="High Precision Q31 Biquad Cascade Filter" href="groupfilters/api_biquadcascadedf1_32x64.html" />
-    <link rel="prev" title="Complex-by-Real Multiplication" href="groupcmplxmath/api_cmplxbyrealmult.html" /> 
+    <link rel="prev" title="Square Root" href="groupfastmath/api_sqrt.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -85,7 +82,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -93,7 +89,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../core/index.html">NMSIS Core</a></li>
@@ -101,9 +97,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../get_started.html">Using NMSIS-DSP</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="api_groupexamples.html">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupmath.html">Basic Math Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api_groupfastmath.html">Fast Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupbayes.html">Bayesian estimators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupcmplxmath.html">Complex Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupcontroller.html">Controller Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupdistance.html">Distance functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupfastmath.html">Fast Math Functions</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Filtering Functions</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="groupfilters/api_biquadcascadedf1_32x64.html">High Precision Q31 Biquad Cascade Filter</a></li>
 <li class="toctree-l4"><a class="reference internal" href="groupfilters/api_biquadcascadedf1.html">Biquad Cascade IIR Filters Using Direct Form I Structure</a></li>
@@ -116,18 +116,19 @@
 <li class="toctree-l4"><a class="reference internal" href="groupfilters/api_fir_lattice.html">Finite Impulse Response (FIR) Lattice Filters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="groupfilters/api_fir_sparse.html">Finite Impulse Response (FIR) Sparse Filters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="groupfilters/api_iir_lattice.html">Infinite Impulse Response (IIR) Lattice Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="groupfilters/api_ld.html">Levinson Durbin Algorithm</a></li>
 <li class="toctree-l4"><a class="reference internal" href="groupfilters/api_lms.html">Least Mean Square (LMS) Filters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="groupfilters/api_lms_norm.html">Normalized LMS Filters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="groupfilters/api_fir_interpolate.html">Finite Impulse Response (FIR) Interpolator</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupinterpolation.html">Interpolation Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupmatrix.html">Matrix Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api_grouptransforms.html">Transform Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api_groupcontroller.html">Controller Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupquaternionmath.html">Quaternion Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupstats.html">Statistics Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupsupport.html">Support Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api_groupinterpolation.html">Interpolation Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api_groupexamples.html">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupsvm.html">SVM Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_grouptransforms.html">Transform Functions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html">Changelog</a></li>
@@ -142,7 +143,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -177,13 +177,11 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
         
           <li><a href="../index.html">NMSIS DSP</a> &raquo;</li>
         
@@ -194,7 +192,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="../../_sources/dsp/api/api_groupfilters.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -208,7 +206,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="filtering-functions">
+  <section id="filtering-functions">
 <span id="nmsis-dsp-api-filtering-functions"></span><h1>Filtering Functions<a class="headerlink" href="#filtering-functions" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
@@ -223,6 +221,7 @@
 <li class="toctree-l1"><a class="reference internal" href="groupfilters/api_fir_lattice.html">Finite Impulse Response (FIR) Lattice Filters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="groupfilters/api_fir_sparse.html">Finite Impulse Response (FIR) Sparse Filters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="groupfilters/api_iir_lattice.html">Infinite Impulse Response (IIR) Lattice Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="groupfilters/api_ld.html">Levinson Durbin Algorithm</a></li>
 <li class="toctree-l1"><a class="reference internal" href="groupfilters/api_lms.html">Least Mean Square (LMS) Filters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="groupfilters/api_lms_norm.html">Normalized LMS Filters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="groupfilters/api_fir_interpolate.html">Finite Impulse Response (FIR) Interpolator</a></li>
@@ -233,39 +232,39 @@
 <span class="target" id="group__groupFilters"></span><em>group</em> <code class="sig-name descname">groupFilters</code></dt>
 <dd></dd></dl>
 
-</div>
+</section>
 
 
            </div>
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="groupfilters/api_biquadcascadedf1_32x64.html" class="btn btn-neutral float-right" title="High Precision Q31 Biquad Cascade Filter" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="groupcmplxmath/api_cmplxbyrealmult.html" class="btn btn-neutral float-left" title="Complex-by-Real Multiplication" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+        <a href="groupfilters/api_biquadcascadedf1_32x64.html" class="btn btn-neutral float-right" title="High Precision Q31 Biquad Cascade Filter" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="groupfastmath/api_sqrt.html" class="btn btn-neutral float-left" title="Square Root" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2019-Present, Nuclei.
+        &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 03, 2021.
+        Last updated on Aug 05, 2021.
       </span>
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 
@@ -273,6 +272,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

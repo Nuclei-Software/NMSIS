@@ -91,6 +91,9 @@ $(document).ready(function(){initNavTree('group__MatrixMult.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:ga4fd719d718c6dcf981768b6bcb51b027"><td class="memItemLeft" align="right" valign="top">riscv_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MatrixMult.html#ga4fd719d718c6dcf981768b6bcb51b027">riscv_mat_mult_f16</a> (const <a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *pSrcA, const <a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *pSrcB, <a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *pDst)</td></tr>
+<tr class="memdesc:ga4fd719d718c6dcf981768b6bcb51b027"><td class="mdescLeft">&#160;</td><td class="mdescRight">Floating-point matrix multiplication.  <a href="#ga4fd719d718c6dcf981768b6bcb51b027">More...</a><br /></td></tr>
+<tr class="separator:ga4fd719d718c6dcf981768b6bcb51b027"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0f1c7b30e1c552617b8bb6a6898e57d4"><td class="memItemLeft" align="right" valign="top">riscv_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MatrixMult.html#ga0f1c7b30e1c552617b8bb6a6898e57d4">riscv_mat_mult_f32</a> (const <a class="el" href="structriscv__matrix__instance__f32.html">riscv_matrix_instance_f32</a> *pSrcA, const <a class="el" href="structriscv__matrix__instance__f32.html">riscv_matrix_instance_f32</a> *pSrcB, <a class="el" href="structriscv__matrix__instance__f32.html">riscv_matrix_instance_f32</a> *pDst)</td></tr>
 <tr class="memdesc:ga0f1c7b30e1c552617b8bb6a6898e57d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Floating-point matrix multiplication.  <a href="#ga0f1c7b30e1c552617b8bb6a6898e57d4">More...</a><br /></td></tr>
 <tr class="separator:ga0f1c7b30e1c552617b8bb6a6898e57d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -121,6 +124,51 @@ Functions</h2></td></tr>
 Multiplication of two 3 x 3 matrices</div></div>
 <p> Matrix multiplication is only defined if the number of columns of the first matrix equals the number of rows of the second matrix. Multiplying an <code>M x N</code> matrix with an <code>N x P</code> matrix results in an <code>M x P</code> matrix. When matrix size checking is enabled, the functions check: (1) that the inner dimensions of <code>pSrcA</code> and <code>pSrcB</code> are equal; and (2) that the size of the output matrix equals the outer dimensions of <code>pSrcA</code> and <code>pSrcB</code>. </p>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="ga4fd719d718c6dcf981768b6bcb51b027"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4fd719d718c6dcf981768b6bcb51b027">&#9670;&nbsp;</a></span>riscv_mat_mult_f16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">riscv_status riscv_mat_mult_f16 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *&#160;</td>
+          <td class="paramname"><em>pSrcA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *&#160;</td>
+          <td class="paramname"><em>pSrcB</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *&#160;</td>
+          <td class="paramname"><em>pDst</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Floating-point matrix multiplication. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">*pSrcA</td><td>points to the first input matrix structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*pSrcB</td><td>points to the second input matrix structure </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">*pDst</td><td>points to output matrix structure </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The function returns either <code>RISCV_MATH_SIZE_MISMATCH</code> or <code>RISCV_MATH_SUCCESS</code> based on the outcome of size checking. </dd></dl>
+
+</div>
+</div>
 <a id="ga0f1c7b30e1c552617b8bb6a6898e57d4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga0f1c7b30e1c552617b8bb6a6898e57d4">&#9670;&nbsp;</a></span>riscv_mat_mult_f32()</h2>
 
@@ -492,7 +540,7 @@ Multiplication of two 3 x 3 matrices</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Aug 3 2021 10:26:13 for NMSIS-DSP by
+    <li class="footer">Generated on Thu Aug 5 2021 10:52:54 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

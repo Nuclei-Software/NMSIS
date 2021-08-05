@@ -91,6 +91,9 @@ $(document).ready(function(){initNavTree('group__BasicOffset.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:ga733cad1410c2006af8da2c5664a3cdcb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BasicOffset.html#ga733cad1410c2006af8da2c5664a3cdcb">riscv_offset_f16</a> (const float16_t *pSrc, float16_t offset, float16_t *pDst, uint32_t blockSize)</td></tr>
+<tr class="memdesc:ga733cad1410c2006af8da2c5664a3cdcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a constant offset to a floating-point vector.  <a href="#ga733cad1410c2006af8da2c5664a3cdcb">More...</a><br /></td></tr>
+<tr class="separator:ga733cad1410c2006af8da2c5664a3cdcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad72716bfc95d745db84d40b018dc4121"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BasicOffset.html#gad72716bfc95d745db84d40b018dc4121">riscv_offset_f32</a> (const float32_t *pSrc, float32_t offset, float32_t *pDst, uint32_t blockSize)</td></tr>
 <tr class="memdesc:gad72716bfc95d745db84d40b018dc4121"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a constant offset to a floating-point vector.  <a href="#gad72716bfc95d745db84d40b018dc4121">More...</a><br /></td></tr>
 <tr class="separator:gad72716bfc95d745db84d40b018dc4121"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -110,6 +113,58 @@ Functions</h2></td></tr>
     pDst[n] = pSrc[n] + offset,   0 &lt;= n &lt; blockSize.
 </pre><p>The functions support in-place computation allowing the source and destination pointers to reference the same memory buffer. There are separate functions for floating-point, Q7, Q15, and Q31 data types. </p>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="ga733cad1410c2006af8da2c5664a3cdcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga733cad1410c2006af8da2c5664a3cdcb">&#9670;&nbsp;</a></span>riscv_offset_f16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void riscv_offset_f16 </td>
+          <td>(</td>
+          <td class="paramtype">const float16_t *&#160;</td>
+          <td class="paramname"><em>pSrc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float16_t&#160;</td>
+          <td class="paramname"><em>offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float16_t *&#160;</td>
+          <td class="paramname"><em>pDst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>blockSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a constant offset to a floating-point vector. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pSrc</td><td>points to the input vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">offset</td><td>is the offset to be added </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pDst</td><td>points to the output vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">blockSize</td><td>number of samples in each vector </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
+
+</div>
+</div>
 <a id="gad72716bfc95d745db84d40b018dc4121"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gad72716bfc95d745db84d40b018dc4121">&#9670;&nbsp;</a></span>riscv_offset_f32()</h2>
 
@@ -326,7 +381,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Aug 3 2021 10:26:12 for NMSIS-DSP by
+    <li class="footer">Generated on Thu Aug 5 2021 10:52:54 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

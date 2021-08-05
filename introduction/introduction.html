@@ -1,43 +1,40 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
-  <meta charset="utf-8" />
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Nuclei MCU Software Interface Standard(NMSIS) &mdash; NMSIS 1.0.2-RC1 documentation</title>
   
 
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-
+  
   
   
 
   
-  
-
-  
-
-  
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="NMSIS Core" href="../core/index.html" />
@@ -85,7 +82,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -93,7 +89,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Nuclei MCU Software Interface Standard(NMSIS)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id1">About NMSIS</a></li>
@@ -116,7 +112,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -151,20 +146,18 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="../index.html">Docs</a> &raquo;</li>
         
       <li>Nuclei MCU Software Interface Standard(NMSIS)</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="../_sources/introduction/introduction.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -178,9 +171,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="nuclei-mcu-software-interface-standard-nmsis">
+  <section id="nuclei-mcu-software-interface-standard-nmsis">
 <span id="nmsis-introduction"></span><h1>Nuclei MCU Software Interface Standard(NMSIS)<a class="headerlink" href="#nuclei-mcu-software-interface-standard-nmsis" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id1">
+<section id="id1">
 <h2>About NMSIS<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>The <strong>NMSIS</strong> is a vendor-independent hardware abstraction layer for
 micro-controllers that are based on <a class="reference external" href="https://doc.nucleisys.com/nuclei_spec">Nuclei Processors</a>.</p>
@@ -189,8 +182,8 @@ device support. It provides simple software interfaces to the processor
 and the peripherals, simplifying software re-use, reducing the learning
 curve for micro-controller developers, and reducing the time to market
 for new devices.</p>
-</div>
-<div class="section" id="nmsis-components">
+</section>
+<section id="nmsis-components">
 <span id="nmsis-compoments"></span><h2>NMSIS Components<a class="headerlink" href="#nmsis-components" title="Permalink to this headline">¶</a></h2>
 <dl class="simple">
 <dt>NMSIS CORE</dt><dd><p>All Nuclei N/NX Class Processors Standardized API for the Nuclei processor core and peripherals.</p>
@@ -204,8 +197,8 @@ kernels developed to maximize the performance and minimize the memory
 footprint Nuclei processor cores.</p>
 </dd>
 </dl>
-</div>
-<div class="section" id="nmsis-design">
+</section>
+<section id="nmsis-design">
 <span id="id2"></span><h2>NMSIS Design<a class="headerlink" href="#nmsis-design" title="Permalink to this headline">¶</a></h2>
 <p><strong>NMSIS</strong> is designed to help the Nuclei N/NX Class Processors processors in
 standardization. It enables consistent software layers and device
@@ -215,10 +208,12 @@ standardize common Nuclei processor-based SOC, and it didn’t define any
 standard peripherals. The silicon industry can therefore support the
 wide variations of Nuclei processor-based devices with this common
 standard.</p>
-<div class="figure align-center" id="id3">
+<figure class="align-center" id="id3">
 <span id="figure-intro-1"></span><a class="reference internal image-reference" href="../_images/NMSIS_Overview.png"><img alt="NMSIS Design Diagram" src="../_images/NMSIS_Overview.png" style="width: 70%;" /></a>
-<p class="caption"><span class="caption-text">NMSIS Design Diagram</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">NMSIS Design Diagram</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>We can achieve the following benefits of <strong>NMSIS</strong>:</p>
 <ul class="simple">
 <li><p><strong>NMSIS</strong> reduces the learning curve, development costs, and
@@ -235,13 +230,13 @@ your choice. Thus, it is supported by mainstream compilers.</p></li>
 <li><p>It enhances program debugging with peripheral information for
 debuggers.</p></li>
 </ul>
-</div>
-<div class="section" id="how-to-access">
+</section>
+<section id="how-to-access">
 <span id="nmsis-how-to-access"></span><h2>How to Access<a class="headerlink" href="#how-to-access" title="Permalink to this headline">¶</a></h2>
 <p>If you want to access the code of <strong>NMSIS</strong>, you can visit our opensource
 <a class="reference external" href="https://github.com/Nuclei-Software/NMSIS">NMSIS Github Repository</a>.</p>
-</div>
-<div class="section" id="coding-rules">
+</section>
+<section id="coding-rules">
 <span id="nmsis-coding-rules"></span><h2>Coding Rules<a class="headerlink" href="#coding-rules" title="Permalink to this headline">¶</a></h2>
 <p>The <strong>NMSIS</strong> uses the following essential coding rules and conventions:</p>
 <ul class="simple">
@@ -273,8 +268,8 @@ Library).</p></li>
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="validation">
+</section>
+<section id="validation">
 <span id="nmsis-validation"></span><h2>Validation<a class="headerlink" href="#validation" title="Permalink to this headline">¶</a></h2>
 <p>Nuclei uses RISC-V GCC Compiler in the various tests of <strong>NMSIS</strong>, and
 if more compiler is added, it could be easily supported by following the
@@ -286,45 +281,45 @@ standards.</p>
 range of processors and devices, the scope of the run-time test coverage
 is limited. However, several components are validated using dedicated
 test suites.</p>
-</div>
-<div class="section" id="license">
+</section>
+<section id="license">
 <span id="nmsis-licence"></span><h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
 <p>This <strong>NMSIS</strong> is modified based on open-source project <strong>CMSIS</strong> to match Nuclei requirements.</p>
 <p>This <strong>NMSIS</strong> is provided free of charge by Nuclei under the <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../core/index.html" class="btn btn-neutral float-right" title="NMSIS Core" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to NMSIS’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+        <a href="../core/index.html" class="btn btn-neutral float-right" title="NMSIS Core" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to NMSIS’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2019-Present, Nuclei.
+        &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 03, 2021.
+        Last updated on Aug 05, 2021.
       </span>
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 
@@ -332,6 +327,7 @@ test suites.</p>
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

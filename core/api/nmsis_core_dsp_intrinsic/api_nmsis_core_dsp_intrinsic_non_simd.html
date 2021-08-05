@@ -1,43 +1,40 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
-  <meta charset="utf-8" />
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Non-SIMD Instructions &mdash; NMSIS 1.0.2-RC1 documentation</title>
   
 
   
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-
+  
   
   
 
   
-  
-
-  
-
-  
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Non-SIMD Q15 saturation ALU Instructions" href="nmsis_core_dsp_intrinsic_non_simd/api_nmsis_core_dsp_intrinsic_non_simd_q15_sat_alu.html" />
@@ -85,7 +82,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -93,7 +89,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html">NMSIS Core</a><ul class="current">
@@ -101,13 +97,17 @@
 <li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS in Embedded Applications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../core_templates.html">NMSIS-Core Device Templates</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../register_mapping.html">Register Mapping</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS Core API</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../core_version_control.html">Version Control</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../core_compiler_control.html">Compiler Control</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../core_csr_access.html">Core CSR Register Access</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../core_csr_encoding.html">Core CSR Encoding</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../core_register_type.html">Register Define and Type Definitions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../core_intrinsics.html">CPU Intrinsic Functions</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS CORE API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_versioncontrol.html">Version Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_compilercontrol.html">Compiler Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_periphaccess.html">Peripheral Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_csr_encoding.html">Core CSR Encodings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_registers.html">Register Define and Type Definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_csr_register_access.html">Core CSR Register Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_cpu_intrinsic.html">Intrinsic Functions for CPU Intructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_intexc.html">Interrupts and Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_systimer.html">SysTimer Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_fpu_functions.html">FPU Functions</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_simd_data_process.html">SIMD Data Processing Instructions</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Non-SIMD Instructions</a><ul>
@@ -115,21 +115,18 @@
 <li class="toctree-l5"><a class="reference internal" href="nmsis_core_dsp_intrinsic_non_simd/api_nmsis_core_dsp_intrinsic_non_simd_q31_sat_alu.html">Non-SIMD Q31 saturation ALU Instructions</a></li>
 <li class="toctree-l5"><a class="reference internal" href="nmsis_core_dsp_intrinsic_non_simd/api_nmsis_core_dsp_intrinsic_32b_computation.html">32-bit Computation Instructions</a></li>
 <li class="toctree-l5"><a class="reference internal" href="nmsis_core_dsp_intrinsic_non_simd/api_nmsis_core_dsp_intrinsic_ov_flag_sc.html">OV (Overflow) flag Set/Clear Instructions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="nmsis_core_dsp_intrinsic_non_simd/api_nmsis_core_dsp_intrinsic_non_simd_misc.html">Non-SIMD Miscellaneous Instructions</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_part_simd_data_process.html">Partial-SIMD Data Processing Instructions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_64b_profile.html">64-bit Profile Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_rv64_only.html">RV64 Only Instructions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_nuclei_custom.html">Nuclei Customized DSP Instructions</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../core_periph_access.html">Peripheral Access</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../core_systick.html">Systick Timer(SysTimer)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../core_interrupt_exception.html">Interrupts and Exceptions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../core_fpu.html">FPU Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../core_pmp.html">PMP Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../core_cache.html">Cache Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../core_system_device.html">System Device Configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../core_arm_compatiable.html">ARM Compatiable Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_pmp_functions.html">PMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_cache.html">Cache Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_armcompatiable_functions.html">ARM Compatiable Functions</a></li>
 </ul>
 </li>
 </ul>
@@ -144,7 +141,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -179,17 +175,15 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
           <li><a href="../../index.html">NMSIS Core</a> &raquo;</li>
         
-          <li><a href="../index.html">NMSIS Core API</a> &raquo;</li>
+          <li><a href="../index.html">NMSIS CORE API</a> &raquo;</li>
         
           <li><a href="../api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a> &raquo;</li>
         
@@ -198,7 +192,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="../../../_sources/core/api/nmsis_core_dsp_intrinsic/api_nmsis_core_dsp_intrinsic_non_simd.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -212,7 +206,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="non-simd-instructions">
+  <section id="non-simd-instructions">
 <span id="nmsis-core-api-non-simd-instructions"></span><h1>Non-SIMD Instructions<a class="headerlink" href="#non-simd-instructions" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
@@ -220,6 +214,7 @@
 <li class="toctree-l1"><a class="reference internal" href="nmsis_core_dsp_intrinsic_non_simd/api_nmsis_core_dsp_intrinsic_non_simd_q31_sat_alu.html">Non-SIMD Q31 saturation ALU Instructions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nmsis_core_dsp_intrinsic_non_simd/api_nmsis_core_dsp_intrinsic_32b_computation.html">32-bit Computation Instructions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nmsis_core_dsp_intrinsic_non_simd/api_nmsis_core_dsp_intrinsic_ov_flag_sc.html">OV (Overflow) flag Set/Clear Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmsis_core_dsp_intrinsic_non_simd/api_nmsis_core_dsp_intrinsic_non_simd_misc.html">Non-SIMD Miscellaneous Instructions</a></li>
 </ul>
 </div>
 <dl class="group">
@@ -228,39 +223,39 @@
 <dd><p>Non-SIMD Instructions. </p>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="nmsis_core_dsp_intrinsic_non_simd/api_nmsis_core_dsp_intrinsic_non_simd_q15_sat_alu.html" class="btn btn-neutral float-right" title="Non-SIMD Q15 saturation ALU Instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="nmsis_core_dsp_intrinsic_simd_data_process/api_nmsis_core_dsp_intrinsic_simd_8b_unpack.html" class="btn btn-neutral float-left" title="SIMD 8-bit Unpacking Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+        <a href="nmsis_core_dsp_intrinsic_non_simd/api_nmsis_core_dsp_intrinsic_non_simd_q15_sat_alu.html" class="btn btn-neutral float-right" title="Non-SIMD Q15 saturation ALU Instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="nmsis_core_dsp_intrinsic_simd_data_process/api_nmsis_core_dsp_intrinsic_simd_8b_unpack.html" class="btn btn-neutral float-left" title="SIMD 8-bit Unpacking Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2019-Present, Nuclei.
+        &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 03, 2021.
+        Last updated on Aug 05, 2021.
       </span>
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 
@@ -268,6 +263,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

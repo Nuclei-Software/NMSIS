@@ -7,6 +7,11 @@ Statistics Functions
    :maxdepth: 2
 
    
+   groupstats/api_absmax.rst
+   groupstats/api_absmin.rst
+   groupstats/api_entropy.rst
+   groupstats/api_kullback-leibler.rst
+   groupstats/api_logsumexp.rst
    groupstats/api_max.rst
    groupstats/api_mean.rst
    groupstats/api_min.rst

@@ -1,7 +1,7 @@
-.. _nmsis_nn_api_neural_network_convolution_functions:
+.. _nmsis_nn_api_convolution_functions:
 
-Neural Network Convolution Functions
-====================================
+Convolution Functions
+=====================
 
 .. doxygengroup:: NNConv
    :project: nmsis_nn

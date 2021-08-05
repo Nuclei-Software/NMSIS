@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['weightedsum',['Weightedsum',['../group__weightedsum.html',1,'']]],
+  ['weighted_20sum',['Weighted Sum',['../group__weightedsum.html',1,'']]],
   ['weights_5f128',['Weights_128',['../group__DCT4__IDCT4__Table.html#gad00f29d896d64d6da7afbbb9d3e182a4',1,'Weights_128():&#160;riscv_common_tables.c'],['../group__DCT4__IDCT4__Table.html#gad00f29d896d64d6da7afbbb9d3e182a4',1,'Weights_128():&#160;riscv_common_tables.c']]],
   ['weights_5f2048',['Weights_2048',['../group__DCT4__IDCT4__Table.html#gac3a2a00b3106dfcb5e0a582f50c65692',1,'Weights_2048():&#160;riscv_common_tables.c'],['../group__DCT4__IDCT4__Table.html#gac3a2a00b3106dfcb5e0a582f50c65692',1,'Weights_2048():&#160;riscv_common_tables.c']]],
   ['weights_5f512',['Weights_512',['../group__DCT4__IDCT4__Table.html#gaeb67b0be5b3c2139d660e02cedeed908',1,'Weights_512():&#160;riscv_common_tables.c'],['../group__DCT4__IDCT4__Table.html#gaeb67b0be5b3c2139d660e02cedeed908',1,'Weights_512():&#160;riscv_common_tables.c']]],

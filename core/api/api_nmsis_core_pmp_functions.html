@@ -1,0 +1,388 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>PMP Functions &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Cache Functions" href="api_nmsis_core_cache.html" />
+    <link rel="prev" title="Nuclei Customized DSP Instructions" href="nmsis_core_dsp_intrinsic/api_nmsis_core_dsp_intrinsic_nuclei_custom.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.2-RC1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">NMSIS Core</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started.html">Using NMSIS in Embedded Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../core_templates.html">NMSIS-Core Device Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../register_mapping.html">Register Mapping</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">NMSIS CORE API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_versioncontrol.html">Version Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_compilercontrol.html">Compiler Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_periphaccess.html">Peripheral Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_csr_encoding.html">Core CSR Encodings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_registers.html">Register Define and Type Definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_csr_register_access.html">Core CSR Register Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_cpu_intrinsic.html">Intrinsic Functions for CPU Intructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_intexc.html">Interrupts and Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_systimer.html">SysTimer Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_fpu_functions.html">FPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">PMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_cache.html">Cache Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_armcompatiable_functions.html">ARM Compatiable Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">NMSIS Core</a> &raquo;</li>
+        
+          <li><a href="index.html">NMSIS CORE API</a> &raquo;</li>
+        
+      <li>PMP Functions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/core/api/api_nmsis_core_pmp_functions.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="pmp-functions">
+<span id="nmsis-core-api-pmp-functions"></span><h1>PMP Functions<a class="headerlink" href="#pmp-functions" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1gadf37b13460f0c2c0d7d2641f31ebbf72"></span><code class="sig-name descname">__STATIC_INLINE uint8_t __get_PMPxCFG(uint32_t idx)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1gae1905cc6904d78db702c1a0b72b326f5"></span><code class="sig-name descname">__STATIC_INLINE void __set_PMPxCFG(uint32_t idx, uint8_t pmpxcfg)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1gadca32ce47cd692eb2e7fe25abf36c103"></span><code class="sig-name descname">__STATIC_INLINE rv_csr_t __get_PMPCFGx(uint32_t idx)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1gaf509ec494237545e28812695aaaa30c8"></span><code class="sig-name descname">__STATIC_INLINE void __set_PMPCFGx(uint32_t idx, rv_csr_t pmpcfg)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1ga0fc1168753b68d4105d6fc96b038b1fd"></span><code class="sig-name descname">__STATIC_INLINE rv_csr_t __get_PMPADDRx(uint32_t idx)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1ga6341b28b3c2fe7c6e697a1adee7d4dd2"></span><code class="sig-name descname">__STATIC_INLINE void __set_PMPADDRx(uint32_t idx, rv_csr_t pmpaddr)</code></dt>
+<dd></dd></dl>
+
+<dl class="group">
+<dt>
+<span class="target" id="group__NMSIS__Core__PMP__Functions"></span><em>group</em> <code class="sig-name descname">NMSIS_Core_PMP_Functions</code></dt>
+<dd><p>Functions that related to the RISCV Phyiscal Memory Protection. </p>
+<p>Optional physical memory protection (PMP) unit provides per-hart machine-mode control registers to allow physical memory access privileges (read, write, execute) to be specified for each physical memory region.</p>
+<p>The PMP can supports region access control settings as small as four bytes. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1gadf37b13460f0c2c0d7d2641f31ebbf72"></span><code class="sig-name descname">__STATIC_INLINE uint8_t __get_PMPxCFG(uint32_t idx)</code></dt>
+<dd><p>Get 8bit PMPxCFG Register by PMP entry index. </p>
+<p>Return the content of the PMPxCFG Register. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>PMPxCFG Register value </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">idx</span></code>: PMP region index(0-15) </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1gae1905cc6904d78db702c1a0b72b326f5"></span><code class="sig-name descname">__STATIC_INLINE void __set_PMPxCFG(uint32_t idx, uint8_t pmpxcfg)</code></dt>
+<dd><p>Set 8bit PMPxCFG by pmp entry index. </p>
+<p>Set the given pmpxcfg value to the PMPxCFG Register. <dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">idx</span></code>: PMPx region index(0-15) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pmpxcfg</span></code>: PMPxCFG register value to set </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1gadca32ce47cd692eb2e7fe25abf36c103"></span><code class="sig-name descname">__STATIC_INLINE rv_csr_t __get_PMPCFGx(uint32_t idx)</code></dt>
+<dd><p>Get PMPCFGx Register by index. </p>
+<p>Return the content of the PMPCFGx Register. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>PMPCFGx Register value </p>
+</dd>
+<dt><strong>Remark</strong></dt><dd><p><ul class="simple">
+<li><p>For RV64, only idx = 0 and idx = 2 is allowed. pmpcfg0 and pmpcfg2 hold the configurations for the 16 PMP entries, pmpcfg1 and pmpcfg3 are illegal</p></li>
+<li><p>For RV32, pmpcfg0–pmpcfg3, hold the configurations pmp0cfg–pmp15cfg for the 16 PMP entries </p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">idx</span></code>: PMPCFG CSR index(0-3) </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1gaf509ec494237545e28812695aaaa30c8"></span><code class="sig-name descname">__STATIC_INLINE void __set_PMPCFGx(uint32_t idx, rv_csr_t pmpcfg)</code></dt>
+<dd><p>Set PMPCFGx by index. </p>
+<p>Write the given value to the PMPCFGx Register. <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p><ul class="simple">
+<li><p>For RV64, only idx = 0 and idx = 2 is allowed. pmpcfg0 and pmpcfg2 hold the configurations for the 16 PMP entries, pmpcfg1 and pmpcfg3 are illegal</p></li>
+<li><p>For RV32, pmpcfg0–pmpcfg3, hold the configurations pmp0cfg–pmp15cfg for the 16 PMP entries </p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">idx</span></code>: PMPCFG CSR index(0-3) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pmpcfg</span></code>: PMPCFGx Register value to set </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1ga0fc1168753b68d4105d6fc96b038b1fd"></span><code class="sig-name descname">__STATIC_INLINE rv_csr_t __get_PMPADDRx(uint32_t idx)</code></dt>
+<dd><p>Get PMPADDRx Register by index. </p>
+<p>Return the content of the PMPADDRx Register. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>PMPADDRx Register value </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">idx</span></code>: PMP region index(0-15) </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1ga6341b28b3c2fe7c6e697a1adee7d4dd2"></span><code class="sig-name descname">__STATIC_INLINE void __set_PMPADDRx(uint32_t idx, rv_csr_t pmpaddr)</code></dt>
+<dd><p>Set PMPADDRx by index. </p>
+<p>Write the given value to the PMPADDRx Register. <dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">idx</span></code>: PMP region index(0-15) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pmpaddr</span></code>: PMPADDRx Register value to set </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api_nmsis_core_cache.html" class="btn btn-neutral float-right" title="Cache Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="nmsis_core_dsp_intrinsic/api_nmsis_core_dsp_intrinsic_nuclei_custom.html" class="btn btn-neutral float-left" title="Nuclei Customized DSP Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-Present, Nuclei
+      <span class="lastupdated">
+        Last updated on Aug 05, 2021.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -103,6 +103,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga8cfce13f4bb13b4e8c4ff1a02da9584b"><td class="memItemLeft" align="right" valign="top">q7_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__LinearInterpolate.html#ga8cfce13f4bb13b4e8c4ff1a02da9584b">riscv_linear_interp_q7</a> (q7_t *pYData, q31_t x, uint32_t nValues)</td></tr>
 <tr class="memdesc:ga8cfce13f4bb13b4e8c4ff1a02da9584b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process function for the Q7 Linear Interpolation Function.  <a href="#ga8cfce13f4bb13b4e8c4ff1a02da9584b">More...</a><br /></td></tr>
 <tr class="separator:ga8cfce13f4bb13b4e8c4ff1a02da9584b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga651920e71f16ca5c2932ee039cf68bbf"><td class="memItemLeft" align="right" valign="top">float16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__LinearInterpolate.html#ga651920e71f16ca5c2932ee039cf68bbf">riscv_linear_interp_f16</a> (<a class="el" href="structriscv__linear__interp__instance__f16.html">riscv_linear_interp_instance_f16</a> *S, float16_t x)</td></tr>
+<tr class="memdesc:ga651920e71f16ca5c2932ee039cf68bbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process function for the floating-point Linear Interpolation Function.  <a href="#ga651920e71f16ca5c2932ee039cf68bbf">More...</a><br /></td></tr>
+<tr class="separator:ga651920e71f16ca5c2932ee039cf68bbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Linear interpolation is a method of curve fitting using linear polynomials. Linear interpolation works by effectively drawing a straight line between two neighboring samples and returning the appropriate point along that line</p>
@@ -121,6 +124,44 @@ Linear interpolation</div></div>
 <dl class="section user"><dt></dt><dd>if x is outside of the table boundary, Linear interpolation returns first value of the table if x is below input range and returns last value of table if x is above range.</dd></dl>
 <p>end of SplineInterpolate group </p>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="ga651920e71f16ca5c2932ee039cf68bbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga651920e71f16ca5c2932ee039cf68bbf">&#9670;&nbsp;</a></span>riscv_linear_interp_f16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float16_t riscv_linear_interp_f16 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structriscv__linear__interp__instance__f16.html">riscv_linear_interp_instance_f16</a> *&#160;</td>
+          <td class="paramname"><em>S</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float16_t&#160;</td>
+          <td class="paramname"><em>x</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Process function for the floating-point Linear Interpolation Function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">S</td><td>is an instance of the floating-point Linear Interpolation structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>input sample to process </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>y processed output sample. </dd></dl>
+
+</div>
+</div>
 <a id="ga99fdb5f276452d1c928925e0d4463cc0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga99fdb5f276452d1c928925e0d4463cc0">&#9670;&nbsp;</a></span>riscv_linear_interp_f32()</h2>
 
@@ -303,7 +344,7 @@ Linear interpolation</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Aug 3 2021 10:26:13 for NMSIS-DSP by
+    <li class="footer">Generated on Thu Aug 5 2021 10:52:54 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

@@ -91,6 +91,9 @@ $(document).ready(function(){initNavTree('group__MatrixChol.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:ga63e480a3c87ffed12e48600c97812276"><td class="memItemLeft" align="right" valign="top">riscv_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MatrixChol.html#ga63e480a3c87ffed12e48600c97812276">riscv_mat_cholesky_f16</a> (const <a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *pSrc, <a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *pDst)</td></tr>
+<tr class="memdesc:ga63e480a3c87ffed12e48600c97812276"><td class="mdescLeft">&#160;</td><td class="mdescRight">Floating-point Cholesky decomposition of positive-definite matrix.  <a href="#ga63e480a3c87ffed12e48600c97812276">More...</a><br /></td></tr>
+<tr class="separator:ga63e480a3c87ffed12e48600c97812276"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa5cee1a82d4bfcff5cd420e3d55e249c"><td class="memItemLeft" align="right" valign="top">riscv_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MatrixChol.html#gaa5cee1a82d4bfcff5cd420e3d55e249c">riscv_mat_cholesky_f32</a> (const <a class="el" href="structriscv__matrix__instance__f32.html">riscv_matrix_instance_f32</a> *pSrc, <a class="el" href="structriscv__matrix__instance__f32.html">riscv_matrix_instance_f32</a> *pDst)</td></tr>
 <tr class="memdesc:gaa5cee1a82d4bfcff5cd420e3d55e249c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Floating-point Cholesky decomposition of positive-definite matrix.  <a href="#gaa5cee1a82d4bfcff5cd420e3d55e249c">More...</a><br /></td></tr>
 <tr class="separator:gaa5cee1a82d4bfcff5cd420e3d55e249c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -108,6 +111,53 @@ Functions</h2></td></tr>
 <p>Computes the Cholesky or LDL^t decomposition of a matrix.</p>
 <p>If the input matrix does not have a decomposition, then the algorithm terminates and returns error status RISCV_MATH_DECOMPOSITION_FAILURE. </p>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="ga63e480a3c87ffed12e48600c97812276"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga63e480a3c87ffed12e48600c97812276">&#9670;&nbsp;</a></span>riscv_mat_cholesky_f16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">riscv_status riscv_mat_cholesky_f16 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *&#160;</td>
+          <td class="paramname"><em>pSrc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structriscv__matrix__instance__f16.html">riscv_matrix_instance_f16</a> *&#160;</td>
+          <td class="paramname"><em>pDst</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Floating-point Cholesky decomposition of positive-definite matrix. </p>
+<p>Floating-point Cholesky decomposition of Symmetric Positive Definite Matrix.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pSrc</td><td>points to the instance of the input floating-point matrix structure. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pDst</td><td>points to the instance of the output floating-point matrix structure. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The function returns RISCV_MATH_SIZE_MISMATCH, if the dimensions do not match. </dd>
+<dd>
+execution status<ul>
+<li>RISCV_MATH_SUCCESS : Operation successful</li>
+<li>RISCV_MATH_SIZE_MISMATCH : Matrix size check failed</li>
+<li>RISCV_MATH_DECOMPOSITION_FAILURE : Input matrix cannot be decomposed </li>
+</ul>
+</dd></dl>
+<dl class="section user"><dt></dt><dd>If the matrix is ill conditioned or only semi-definite, then it is better using the LDL^t decomposition. The decomposition of A is returning a lower triangular matrix U such that A = U U^t </dd></dl>
+
+</div>
+</div>
 <a id="gaa5cee1a82d4bfcff5cd420e3d55e249c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gaa5cee1a82d4bfcff5cd420e3d55e249c">&#9670;&nbsp;</a></span>riscv_mat_cholesky_f32()</h2>
 
@@ -329,7 +379,7 @@ execution status<ul>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Aug 3 2021 10:26:13 for NMSIS-DSP by
+    <li class="footer">Generated on Thu Aug 5 2021 10:52:54 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

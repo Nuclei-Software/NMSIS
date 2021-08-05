@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NMSIS-DSP: Manhattan</title>
+<title>NMSIS-DSP: Cityblock (Manhattan) distance</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -85,18 +85,67 @@ $(document).ready(function(){initNavTree('group__Manhattan.html','');});
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">Manhattan</div>  </div>
+<div class="title">Cityblock (Manhattan) distance<div class="ingroups"><a class="el" href="group__groupDistance.html">Distance functions</a> &raquo; <a class="el" href="group__FloatDist.html">Float Distances</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:ga20fd895cbc181ac5571fc44e64aa30c8"><td class="memItemLeft" align="right" valign="top">float16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Manhattan.html#ga20fd895cbc181ac5571fc44e64aa30c8">riscv_cityblock_distance_f16</a> (const float16_t *pA, const float16_t *pB, uint32_t blockSize)</td></tr>
+<tr class="memdesc:ga20fd895cbc181ac5571fc44e64aa30c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cityblock (Manhattan) distance between two vectors.  <a href="#ga20fd895cbc181ac5571fc44e64aa30c8">More...</a><br /></td></tr>
+<tr class="separator:ga20fd895cbc181ac5571fc44e64aa30c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5c326b29c986946b6287f371c5cacf4f"><td class="memItemLeft" align="right" valign="top">float32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Manhattan.html#ga5c326b29c986946b6287f371c5cacf4f">riscv_cityblock_distance_f32</a> (const float32_t *pA, const float32_t *pB, uint32_t blockSize)</td></tr>
 <tr class="memdesc:ga5c326b29c986946b6287f371c5cacf4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cityblock (Manhattan) distance between two vectors.  <a href="#ga5c326b29c986946b6287f371c5cacf4f">More...</a><br /></td></tr>
 <tr class="separator:ga5c326b29c986946b6287f371c5cacf4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>Cityblock (Manhattan) distance </p>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="ga20fd895cbc181ac5571fc44e64aa30c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga20fd895cbc181ac5571fc44e64aa30c8">&#9670;&nbsp;</a></span>riscv_cityblock_distance_f16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float16_t riscv_cityblock_distance_f16 </td>
+          <td>(</td>
+          <td class="paramtype">const float16_t *&#160;</td>
+          <td class="paramname"><em>pA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float16_t *&#160;</td>
+          <td class="paramname"><em>pB</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>blockSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cityblock (Manhattan) distance between two vectors. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pA</td><td>First vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pB</td><td>Second vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">blockSize</td><td>vector length </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>distance </dd></dl>
+
+</div>
+</div>
 <a id="ga5c326b29c986946b6287f371c5cacf4f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga5c326b29c986946b6287f371c5cacf4f">&#9670;&nbsp;</a></span>riscv_cityblock_distance_f32()</h2>
 
@@ -147,7 +196,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Aug 3 2021 10:26:13 for NMSIS-DSP by
+    <li class="footer">Generated on Thu Aug 5 2021 10:52:54 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

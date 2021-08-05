@@ -1,7 +1,6 @@
 var searchData=
 [
   ['matrix_20functions',['Matrix Functions',['../group__groupMatrix.html',1,'']]],
-  ['manhattan',['Manhattan',['../group__Manhattan.html',1,'']]],
   ['matrix_20addition',['Matrix Addition',['../group__MatrixAdd.html',1,'']]],
   ['matrix_20example',['Matrix Example',['../group__MatrixExample.html',1,'']]],
   ['matrix_20initialization',['Matrix Initialization',['../group__MatrixInit.html',1,'']]],
@@ -14,5 +13,5 @@ var searchData=
   ['maximum',['Maximum',['../group__Max.html',1,'']]],
   ['mean',['Mean',['../group__mean.html',1,'']]],
   ['minimum',['Minimum',['../group__Min.html',1,'']]],
-  ['minkowski',['Minkowski',['../group__Minkowski.html',1,'']]]
+  ['minkowski_20distance',['Minkowski distance',['../group__Minkowski.html',1,'']]]
 ];

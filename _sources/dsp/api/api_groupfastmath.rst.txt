@@ -7,9 +7,10 @@ Fast Math Functions
    :maxdepth: 2
 
    
-   groupfastmath/api_sqrt.rst
    groupfastmath/api_cos.rst
+   groupfastmath/api_divide.rst
    groupfastmath/api_sin.rst
+   groupfastmath/api_sqrt.rst
 
 .. doxygengroup:: groupFastMath
    :project: nmsis_dsp

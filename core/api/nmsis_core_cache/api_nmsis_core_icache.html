@@ -1,0 +1,754 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>I-Cache Functions &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="D-Cache Functions" href="api_nmsis_core_dcache.html" />
+    <link rel="prev" title="Cache Functions" href="../api_nmsis_core_cache.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.2-RC1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">NMSIS Core</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS in Embedded Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../core_templates.html">NMSIS-Core Device Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../register_mapping.html">Register Mapping</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS CORE API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_versioncontrol.html">Version Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_compilercontrol.html">Compiler Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_periphaccess.html">Peripheral Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_csr_encoding.html">Core CSR Encodings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_registers.html">Register Define and Type Definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_csr_register_access.html">Core CSR Register Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_cpu_intrinsic.html">Intrinsic Functions for CPU Intructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_intexc.html">Interrupts and Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_systimer.html">SysTimer Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_fpu_functions.html">FPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_pmp_functions.html">PMP Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api_nmsis_core_cache.html">Cache Functions</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">I-Cache Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_nmsis_core_dcache.html">D-Cache Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_armcompatiable_functions.html">ARM Compatiable Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">NMSIS Core</a> &raquo;</li>
+        
+          <li><a href="../index.html">NMSIS CORE API</a> &raquo;</li>
+        
+          <li><a href="../api_nmsis_core_cache.html">Cache Functions</a> &raquo;</li>
+        
+      <li>I-Cache Functions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/core/api/nmsis_core_cache/api_nmsis_core_icache.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="i-cache-functions">
+<span id="nmsis-core-api-i-cache-functions"></span><h1>I-Cache Functions<a class="headerlink" href="#i-cache-functions" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga76dfd7aff65a6a7fa91b53dbe44f9ce5"></span><code class="sig-name descname">__STATIC_FORCEINLINE void EnableICache(void)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga4a855b01222d0c42d413f168651616e5"></span><code class="sig-name descname">__STATIC_FORCEINLINE void DisableICache(void)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1gac9500d4f13d04b2acbfd3538984514c8"></span><code class="sig-name descname">__STATIC_FORCEINLINE void MInvalICacheLine(unsigned long addr)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1gafe47347cfa3f8c4a8829c88fa5fdec9b"></span><code class="sig-name descname">__STATIC_FORCEINLINE void MInvalICacheLines(unsigned long addr, unsigned long cnt)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga9cfe1f7476be3aa984c926287eceecdf"></span><code class="sig-name descname">__STATIC_FORCEINLINE void SInvalICacheLine(unsigned long addr)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga020ff82b548a567037dd0c916b4429d2"></span><code class="sig-name descname">__STATIC_FORCEINLINE void SInvalICacheLines(unsigned long addr, unsigned long cnt)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga4c202208f9f90802445600e637563f3d"></span><code class="sig-name descname">__STATIC_FORCEINLINE void UInvalICacheLine(unsigned long addr)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga3f36015dbfc23a155d1ae0fa458388a2"></span><code class="sig-name descname">__STATIC_FORCEINLINE void UInvalICacheLines(unsigned long addr, unsigned long cnt)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1gaa0ebecb33755adc5adbc597889194605"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long MLockICacheLine(unsigned long addr)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga5d12990670c5b36de576bab8d1812d16"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long MLockICacheLines(unsigned long addr, unsigned long cnt)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga8ac672c482d15a997db8f4acfa6c51f5"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long SLockICacheLine(unsigned long addr)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1gab179486d73e9a1ce8543d310aa8d1594"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long SLockICacheLines(unsigned long addr, unsigned long cnt)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga84eb3cf641c1e87655219fec34e49b20"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long ULockICacheLine(unsigned long addr)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1gaf4b8c625829c4c772b65e5f95f61e659"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long ULockICacheLines(unsigned long addr, unsigned long cnt)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1gac423a03eaa4afb1c8641c1c9e3097168"></span><code class="sig-name descname">__STATIC_FORCEINLINE void MUnlockICacheLine(unsigned long addr)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga7035e12e1a3c7c7730f3211241a8fe90"></span><code class="sig-name descname">__STATIC_FORCEINLINE void MUnlockICacheLines(unsigned long addr, unsigned long cnt)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1gaf43b829e002df8fb7563c5eccb4dd9eb"></span><code class="sig-name descname">__STATIC_FORCEINLINE void SUnlockICacheLine(unsigned long addr)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga74e29621ab0c803fe474c648d078fe18"></span><code class="sig-name descname">__STATIC_FORCEINLINE void SUnlockICacheLines(unsigned long addr, unsigned long cnt)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga1221f6556c800e2172c0cab109a4a31f"></span><code class="sig-name descname">__STATIC_FORCEINLINE void UUnlockICacheLine(unsigned long addr)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga48a1fc27f21f185f1e2bf52bf09a83a4"></span><code class="sig-name descname">__STATIC_FORCEINLINE void UUnlockICacheLines(unsigned long addr, unsigned long cnt)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1gab0d916e064876aea3bf9135283814db1"></span><code class="sig-name descname">__STATIC_FORCEINLINE void MInvalICache(void)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga25824c725ce4cfd0319c182a8a44c7e3"></span><code class="sig-name descname">__STATIC_FORCEINLINE void SInvalICache(void)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga60a04e2fd2a444e04703dcd4a8d38e04"></span><code class="sig-name descname">__STATIC_FORCEINLINE void UInvalICache(void)</code></dt>
+<dd></dd></dl>
+
+<dl class="group">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache"></span><em>group</em> <code class="sig-name descname">NMSIS_Core_ICache</code></dt>
+<dd><p>Functions that configure Instruction Cache. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga76dfd7aff65a6a7fa91b53dbe44f9ce5"></span><code class="sig-name descname">__STATIC_FORCEINLINE void EnableICache(void)</code></dt>
+<dd><p>Enable ICache. </p>
+<p>This function enable I-Cache <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p><ul class="simple">
+<li><p>This function can be called in M-Mode only.</p></li>
+<li><p>This CSR_MCACHE_CTL register control I Cache enable. </p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><ul class="simple">
+<li><p>DisableICache </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga4a855b01222d0c42d413f168651616e5"></span><code class="sig-name descname">__STATIC_FORCEINLINE void DisableICache(void)</code></dt>
+<dd><p>Disable ICache. </p>
+<p>This function Disable I-Cache <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p><ul class="simple">
+<li><p>This function can be called in M-Mode only.</p></li>
+<li><p>This CSR_MCACHE_CTL register control I Cache enable. </p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><ul class="simple">
+<li><p>EnableICache </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1gac9500d4f13d04b2acbfd3538984514c8"></span><code class="sig-name descname">__STATIC_FORCEINLINE void MInvalICacheLine(unsigned long addr)</code></dt>
+<dd><p>Invalidate one I-Cache line specified by address in M-Mode. </p>
+<p>This function unlock and invalidate one I-Cache line specified by the address. Command CCM_IC_INVAL is written to CSR CSR_CCM_MCOMMAND. <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p>This function must be executed in M-Mode only. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">addr</span></code>: start address to be invalidated </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1gafe47347cfa3f8c4a8829c88fa5fdec9b"></span><code class="sig-name descname">__STATIC_FORCEINLINE void MInvalICacheLines(unsigned long addr, unsigned long cnt)</code></dt>
+<dd><p>Invalidate several I-Cache lines specified by address in M-Mode. </p>
+<p>This function unlock and invalidate several I-Cache lines specified by the address and line count. Command CCM_IC_INVAL is written to CSR CSR_CCM_MCOMMAND. <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p>This function must be executed in M-Mode only. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">addr</span></code>: start address to be invalidated </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">cnt</span></code>: count of cache lines to be invalidated </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga9cfe1f7476be3aa984c926287eceecdf"></span><code class="sig-name descname">__STATIC_FORCEINLINE void SInvalICacheLine(unsigned long addr)</code></dt>
+<dd><p>Invalidate one I-Cache line specified by address in S-Mode. </p>
+<p>This function unlock and invalidate one I-Cache line specified by the address. Command CCM_IC_INVAL is written to CSR CSR_CCM_SCOMMAND. <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p>This function must be executed in M/S-Mode only. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">addr</span></code>: start address to be invalidated </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga020ff82b548a567037dd0c916b4429d2"></span><code class="sig-name descname">__STATIC_FORCEINLINE void SInvalICacheLines(unsigned long addr, unsigned long cnt)</code></dt>
+<dd><p>Invalidate several I-Cache lines specified by address in S-Mode. </p>
+<p>This function unlock and invalidate several I-Cache lines specified by the address and line count. Command CCM_IC_INVAL is written to CSR CSR_CCM_SCOMMAND. <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p>This function must be executed in M/S-Mode only. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">addr</span></code>: start address to be invalidated </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">cnt</span></code>: count of cache lines to be invalidated </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga4c202208f9f90802445600e637563f3d"></span><code class="sig-name descname">__STATIC_FORCEINLINE void UInvalICacheLine(unsigned long addr)</code></dt>
+<dd><p>Invalidate one I-Cache line specified by address in U-Mode. </p>
+<p>This function unlock and invalidate one I-Cache line specified by the address. Command CCM_IC_INVAL is written to CSR CSR_CCM_UCOMMAND. <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p>This function must be executed in M/S/U-Mode only. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">addr</span></code>: start address to be invalidated </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga3f36015dbfc23a155d1ae0fa458388a2"></span><code class="sig-name descname">__STATIC_FORCEINLINE void UInvalICacheLines(unsigned long addr, unsigned long cnt)</code></dt>
+<dd><p>Invalidate several I-Cache lines specified by address in U-Mode. </p>
+<p>This function unlock and invalidate several I-Cache lines specified by the address and line count. Command CCM_IC_INVAL is written to CSR CSR_CCM_UCOMMAND. <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p>This function must be executed in M/S/U-Mode only. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">addr</span></code>: start address to be invalidated </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">cnt</span></code>: count of cache lines to be invalidated </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1gaa0ebecb33755adc5adbc597889194605"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long MLockICacheLine(unsigned long addr)</code></dt>
+<dd><p>Lock one I-Cache line specified by address in M-Mode. </p>
+<p>This function lock one I-Cache line specified by the address. Command CCM_IC_LOCK is written to CSR CSR_CCM_MCOMMAND. <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p>This function must be executed in M-Mode only. </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>result of CCM lock operation, see enum CCM_OP_FINFO </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">addr</span></code>: start address to be locked </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga5d12990670c5b36de576bab8d1812d16"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long MLockICacheLines(unsigned long addr, unsigned long cnt)</code></dt>
+<dd><p>Lock several I-Cache lines specified by address in M-Mode. </p>
+<p>This function lock several I-Cache lines specified by the address and line count. Command CCM_IC_LOCK is written to CSR CSR_CCM_MCOMMAND. <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p>This function must be executed in M-Mode only. </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>result of CCM lock operation, see enum CCM_OP_FINFO </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">addr</span></code>: start address to be locked </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">cnt</span></code>: count of cache lines to be locked </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga8ac672c482d15a997db8f4acfa6c51f5"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long SLockICacheLine(unsigned long addr)</code></dt>
+<dd><p>Lock one I-Cache line specified by address in S-Mode. </p>
+<p>This function lock one I-Cache line specified by the address. Command CCM_IC_LOCK is written to CSR CSR_CCM_SCOMMAND. <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p>This function must be executed in M/S-Mode only. </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>result of CCM lock operation, see enum CCM_OP_FINFO </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">addr</span></code>: start address to be locked </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1gab179486d73e9a1ce8543d310aa8d1594"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long SLockICacheLines(unsigned long addr, unsigned long cnt)</code></dt>
+<dd><p>Lock several I-Cache lines specified by address in S-Mode. </p>
+<p>This function lock several I-Cache lines specified by the address and line count. Command CCM_IC_LOCK is written to CSR CSR_CCM_SCOMMAND. <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p>This function must be executed in M/S-Mode only. </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>result of CCM lock operation, see enum CCM_OP_FINFO </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">addr</span></code>: start address to be locked </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">cnt</span></code>: count of cache lines to be locked </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga84eb3cf641c1e87655219fec34e49b20"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long ULockICacheLine(unsigned long addr)</code></dt>
+<dd><p>Lock one I-Cache line specified by address in U-Mode. </p>
+<p>This function lock one I-Cache line specified by the address. Command CCM_IC_LOCK is written to CSR CSR_CCM_UCOMMAND. <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p>This function must be executed in M/S/U-Mode only. </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>result of CCM lock operation, see enum CCM_OP_FINFO </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">addr</span></code>: start address to be locked </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1gaf4b8c625829c4c772b65e5f95f61e659"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long ULockICacheLines(unsigned long addr, unsigned long cnt)</code></dt>
+<dd><p>Lock several I-Cache lines specified by address in U-Mode. </p>
+<p>This function lock several I-Cache lines specified by the address and line count. Command CCM_IC_LOCK is written to CSR CSR_CCM_UCOMMAND. <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p>This function must be executed in M/S/U-Mode only. </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>result of CCM lock operation, see enum CCM_OP_FINFO </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">addr</span></code>: start address to be locked </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">cnt</span></code>: count of cache lines to be locked </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1gac423a03eaa4afb1c8641c1c9e3097168"></span><code class="sig-name descname">__STATIC_FORCEINLINE void MUnlockICacheLine(unsigned long addr)</code></dt>
+<dd><p>Unlock one I-Cache line specified by address in M-Mode. </p>
+<p>This function unlock one I-Cache line specified by the address. Command CCM_IC_UNLOCK is written to CSR CSR_CCM_MCOMMAND. <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p>This function must be executed in M-Mode only. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">addr</span></code>: start address to be unlocked </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga7035e12e1a3c7c7730f3211241a8fe90"></span><code class="sig-name descname">__STATIC_FORCEINLINE void MUnlockICacheLines(unsigned long addr, unsigned long cnt)</code></dt>
+<dd><p>Unlock several I-Cache lines specified by address in M-Mode. </p>
+<p>This function unlock several I-Cache lines specified by the address and line count. Command CCM_IC_UNLOCK is written to CSR CSR_CCM_MCOMMAND. <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p>This function must be executed in M-Mode only. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">addr</span></code>: start address to be unlocked </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">cnt</span></code>: count of cache lines to be unlocked </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1gaf43b829e002df8fb7563c5eccb4dd9eb"></span><code class="sig-name descname">__STATIC_FORCEINLINE void SUnlockICacheLine(unsigned long addr)</code></dt>
+<dd><p>Unlock one I-Cache line specified by address in S-Mode. </p>
+<p>This function unlock one I-Cache line specified by the address. Command CCM_IC_UNLOCK is written to CSR CSR_CCM_SCOMMAND. <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p>This function must be executed in M/S-Mode only. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">addr</span></code>: start address to be unlocked </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga74e29621ab0c803fe474c648d078fe18"></span><code class="sig-name descname">__STATIC_FORCEINLINE void SUnlockICacheLines(unsigned long addr, unsigned long cnt)</code></dt>
+<dd><p>Unlock several I-Cache lines specified by address in S-Mode. </p>
+<p>This function unlock several I-Cache lines specified by the address and line count. Command CCM_IC_UNLOCK is written to CSR CSR_CCM_SCOMMAND. <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p>This function must be executed in M/S-Mode only. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">addr</span></code>: start address to be unlocked </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">cnt</span></code>: count of cache lines to be unlocked </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga1221f6556c800e2172c0cab109a4a31f"></span><code class="sig-name descname">__STATIC_FORCEINLINE void UUnlockICacheLine(unsigned long addr)</code></dt>
+<dd><p>Unlock one I-Cache line specified by address in U-Mode. </p>
+<p>This function unlock one I-Cache line specified by the address. Command CCM_IC_UNLOCK is written to CSR CSR_CCM_UCOMMAND. <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p>This function must be executed in M/S/U-Mode only. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">addr</span></code>: start address to be unlocked </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga48a1fc27f21f185f1e2bf52bf09a83a4"></span><code class="sig-name descname">__STATIC_FORCEINLINE void UUnlockICacheLines(unsigned long addr, unsigned long cnt)</code></dt>
+<dd><p>Unlock several I-Cache lines specified by address in U-Mode. </p>
+<p>This function unlock several I-Cache lines specified by the address and line count. Command CCM_IC_UNLOCK is written to CSR CSR_CCM_UCOMMAND. <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p>This function must be executed in M/S/U-Mode only. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">addr</span></code>: start address to be unlocked </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">cnt</span></code>: count of cache lines to be unlocked </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1gab0d916e064876aea3bf9135283814db1"></span><code class="sig-name descname">__STATIC_FORCEINLINE void MInvalICache(void)</code></dt>
+<dd><p>Invalidate all I-Cache lines in M-Mode. </p>
+<p>This function invalidate all I-Cache lines. Command CCM_IC_INVAL_ALL is written to CSR CSR_CCM_MCOMMAND. <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p>This function must be executed in M-Mode only. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">addr</span></code>: start address to be invalidated </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga25824c725ce4cfd0319c182a8a44c7e3"></span><code class="sig-name descname">__STATIC_FORCEINLINE void SInvalICache(void)</code></dt>
+<dd><p>Invalidate all I-Cache lines in S-Mode. </p>
+<p>This function invalidate all I-Cache lines. Command CCM_IC_INVAL_ALL is written to CSR CSR_CCM_SCOMMAND. <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p>This function must be executed in M/S-Mode only. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">addr</span></code>: start address to be invalidated </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga60a04e2fd2a444e04703dcd4a8d38e04"></span><code class="sig-name descname">__STATIC_FORCEINLINE void UInvalICache(void)</code></dt>
+<dd><p>Invalidate all I-Cache lines in U-Mode. </p>
+<p>This function invalidate all I-Cache lines. Command CCM_IC_INVAL_ALL is written to CSR CSR_CCM_UCOMMAND. <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p>This function must be executed in M/S/U-Mode only. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">addr</span></code>: start address to be invalidated </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api_nmsis_core_dcache.html" class="btn btn-neutral float-right" title="D-Cache Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../api_nmsis_core_cache.html" class="btn btn-neutral float-left" title="Cache Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-Present, Nuclei
+      <span class="lastupdated">
+        Last updated on Aug 05, 2021.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['weightedsum',['Weightedsum',['../group__weightedsum.html',1,'']]]
+  ['weighted_20sum',['Weighted Sum',['../group__weightedsum.html',1,'']]]
 ];

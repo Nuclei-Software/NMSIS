@@ -1,43 +1,40 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
-  <meta charset="utf-8" />
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Startup File startup_&lt;device&gt;.S &mdash; NMSIS 1.0.2-RC1 documentation</title>
   
 
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-
+  
   
   
 
   
-  
-
-  
-
-  
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Interrupt and Exception Handling File: intexc_&lt;device&gt;.S" href="core_template_intexc.html" />
@@ -85,7 +82,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -93,7 +89,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">NMSIS Core</a><ul class="current">
@@ -119,7 +115,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="register_mapping.html">Register Mapping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/index.html">NMSIS Core API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html">NMSIS CORE API</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../dsp/index.html">NMSIS DSP</a></li>
@@ -132,7 +128,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -167,13 +162,11 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="../index.html">Docs</a> &raquo;</li>
         
           <li><a href="index.html">NMSIS Core</a> &raquo;</li>
         
@@ -184,7 +177,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="../_sources/core/core_template_startup_device.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -198,11 +191,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="startup-file-startup-device-s">
+  <section id="startup-file-startup-device-s">
 <span id="core-template-startup-device-asm"></span><h1>Startup File startup_&lt;device&gt;.S<a class="headerlink" href="#startup-file-startup-device-s" title="Permalink to this headline">¶</a></h1>
 <dl class="simple">
 <dt>The <strong>Startup File startup_&lt;device&gt;.S</strong> contains:</dt><dd><ul class="simple">
-<li><p>The reset handler which is executed after CPU reset and typically calls the <a class="reference internal" href="api/core_system_device.html#_CPPv410SystemInitv" title="SystemInit"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">SystemInit()</span></code></a> function.</p></li>
+<li><p>The reset handler which is executed after CPU reset and typically calls the <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">SystemInit()</span></code> function.</p></li>
 <li><p>The setup values for the stack pointer SP.</p></li>
 <li><p>Exception vectors of the Nuclei Processor with weak functions that implement default routines.</p></li>
 <li><p>Interrupt vectors that are device specific with weak functions that implement default routines.</p></li>
@@ -222,7 +215,7 @@
 </dd>
 <dt>Stage2: Hardware initialization</dt><dd><ul class="simple">
 <li><p>Enable FPU if necessary</p></li>
-<li><p>Call user defined <a class="reference internal" href="api/core_system_device.html#_CPPv410SystemInitv" title="SystemInit"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">SystemInit()</span></code></a> for system clock initialization.</p></li>
+<li><p>Call user defined <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">SystemInit()</span></code> for system clock initialization.</p></li>
 </ul>
 </dd>
 <dt>Stage3: Section initialization</dt><dd><ul class="simple">
@@ -238,7 +231,7 @@
 <p>To adapt the file to a new device only the interrupt vector table needs to be extended with
 the device-specific interrupt handlers.</p>
 <p>The naming convention for the interrupt handler names are <code class="docutils literal notranslate"><span class="pre">eclic_&lt;interrupt_name&gt;_handler</span></code>.</p>
-<p>This table needs to be consistent with <a class="reference internal" href="api/core_interrupt_exception.html#_CPPv49IRQn_Type" title="IRQn_Type"><code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">IRQn_Type</span></code></a> that defines all the IRQ numbers for each interrupt.</p>
+<p>This table needs to be consistent with <code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">IRQn_Type</span></code> that defines all the IRQ numbers for each interrupt.</p>
 <p>The following example shows the extension of the interrupt vector table for the GD32VF103 device family.</p>
 <div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -309,7 +302,7 @@ vector_base:
     DECLARE_INT_HANDLER     eclic_usbfs_handler             /* 86: USBFS global interrupt */
 </pre></div>
 </td></tr></table></div>
-<div class="section" id="startup-device-s-template-file">
+<section id="startup-device-s-template-file">
 <h2>startup_Device.S Template File<a class="headerlink" href="#startup-device-s-template-file" title="Permalink to this headline">¶</a></h2>
 <p>Here provided a riscv-gcc template startup assemble code template file as below.
 The files for other compilers can slightly differ from this version.</p>
@@ -914,40 +907,40 @@ _start:
     j 1b
 </pre></div>
 </td></tr></table></div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="core_template_intexc.html" class="btn btn-neutral float-right" title="Interrupt and Exception Handling File: intexc_&lt;device&gt;.S" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="core_templates.html" class="btn btn-neutral float-left" title="NMSIS-Core Device Templates" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+        <a href="core_template_intexc.html" class="btn btn-neutral float-right" title="Interrupt and Exception Handling File: intexc_&lt;device&gt;.S" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="core_templates.html" class="btn btn-neutral float-left" title="NMSIS-Core Device Templates" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2019-Present, Nuclei.
+        &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 03, 2021.
+        Last updated on Aug 05, 2021.
       </span>
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 
@@ -955,6 +948,7 @@ _start:
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

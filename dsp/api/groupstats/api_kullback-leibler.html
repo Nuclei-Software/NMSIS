@@ -1,0 +1,343 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Kullback-Leibler divergence &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="LogSumExp" href="api_logsumexp.html" />
+    <link rel="prev" title="Entropy" href="api_entropy.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.2-RC1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">NMSIS DSP</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupbayes.html">Bayesian estimators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupcontroller.html">Controller Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupdistance.html">Distance functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupfastmath.html">Fast Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupfilters.html">Filtering Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupinterpolation.html">Interpolation Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupmatrix.html">Matrix Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupquaternionmath.html">Quaternion Math Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api_groupstats.html">Statistics Functions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api_absmax.html">Absolute Maximum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_absmin.html">Absolute Minimum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_entropy.html">Entropy</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Kullback-Leibler divergence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_logsumexp.html">LogSumExp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_max.html">Maximum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_mean.html">Mean</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_min.html">Minimum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_power.html">Power</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_rms.html">Root mean square (RMS)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_std.html">Standard deviation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_variance.html">Variance</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupsupport.html">Support Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupsvm.html">SVM Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
+        
+          <li><a href="../index.html">NMSIS DSP API</a> &raquo;</li>
+        
+          <li><a href="../api_groupstats.html">Statistics Functions</a> &raquo;</li>
+        
+      <li>Kullback-Leibler divergence</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/dsp/api/groupstats/api_kullback-leibler.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="kullback-leibler-divergence">
+<span id="nmsis-dsp-api-kullback-leibler-divergence"></span><h1>Kullback-Leibler divergence<a class="headerlink" href="#kullback-leibler-divergence" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="_CPPv426riscv_kullback_leibler_f16PK9float16_tPK9float16_t8uint32_t">
+<span id="_CPPv326riscv_kullback_leibler_f16PK9float16_tPK9float16_t8uint32_t"></span><span id="_CPPv226riscv_kullback_leibler_f16PK9float16_tPK9float16_t8uint32_t"></span><span id="riscv_kullback_leibler_f16__float16_tCP.float16_tCP.uint32_t"></span><span class="target" id="group__Kullback-Leibler_1gafe8dbf7d603f3228499f09a6e09a9a54"></span>float16_t <code class="sig-name descname">riscv_kullback_leibler_f16</code><span class="sig-paren">(</span><em class="property">const</em> float16_t *<em>pSrcA</em>, <em class="property">const</em> float16_t *<em>pSrcB</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426riscv_kullback_leibler_f16PK9float16_tPK9float16_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv426riscv_kullback_leibler_f32PK9float32_tPK9float32_t8uint32_t">
+<span id="_CPPv326riscv_kullback_leibler_f32PK9float32_tPK9float32_t8uint32_t"></span><span id="_CPPv226riscv_kullback_leibler_f32PK9float32_tPK9float32_t8uint32_t"></span><span id="riscv_kullback_leibler_f32__float32_tCP.float32_tCP.uint32_t"></span><span class="target" id="group__Kullback-Leibler_1gaa47bdf413b095b4e91e5f9c582cec328"></span>float32_t <code class="sig-name descname">riscv_kullback_leibler_f32</code><span class="sig-paren">(</span><em class="property">const</em> float32_t *<em>pSrcA</em>, <em class="property">const</em> float32_t *<em>pSrcB</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426riscv_kullback_leibler_f32PK9float32_tPK9float32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv426riscv_kullback_leibler_f64PK9float64_tPK9float64_t8uint32_t">
+<span id="_CPPv326riscv_kullback_leibler_f64PK9float64_tPK9float64_t8uint32_t"></span><span id="_CPPv226riscv_kullback_leibler_f64PK9float64_tPK9float64_t8uint32_t"></span><span id="riscv_kullback_leibler_f64__float64_tCP.float64_tCP.uint32_t"></span><span class="target" id="group__Kullback-Leibler_1ga93112195a3156992ae7eb1ddad0e5c26"></span>float64_t <code class="sig-name descname">riscv_kullback_leibler_f64</code><span class="sig-paren">(</span><em class="property">const</em> float64_t *<em>pSrcA</em>, <em class="property">const</em> float64_t *<em>pSrcB</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426riscv_kullback_leibler_f64PK9float64_tPK9float64_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="group">
+<dt>
+<span class="target" id="group__Kullback-Leibler"></span><em>group</em> <code class="sig-name descname">Kullback-Leibler</code></dt>
+<dd><p>Computes the Kullback-Leibler divergence between two distributions </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="function">
+<dt>
+<span class="target" id="group__Kullback-Leibler_1gafe8dbf7d603f3228499f09a6e09a9a54"></span>float16_t <code class="sig-name descname">riscv_kullback_leibler_f16</code><span class="sig-paren">(</span><em class="property">const</em> float16_t *<em>pSrcA</em>, <em class="property">const</em> float16_t *<em>pSrcB</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Kullback-Leibler. </p>
+<p>Distribution A may contain 0 with Neon version. Result will be right but some exception flags will be set.</p>
+<p>Distribution B must not contain 0 probability.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Kullback-Leibler divergence D(A || B) </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">*pSrcA</span></code>: points to an array of input values for probaility distribution A. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">*pSrcB</span></code>: points to an array of input values for probaility distribution B. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples in the input array. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__Kullback-Leibler_1gaa47bdf413b095b4e91e5f9c582cec328"></span>float32_t <code class="sig-name descname">riscv_kullback_leibler_f32</code><span class="sig-paren">(</span><em class="property">const</em> float32_t *<em>pSrcA</em>, <em class="property">const</em> float32_t *<em>pSrcB</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Kullback-Leibler. </p>
+<p>Distribution A may contain 0 with Neon version. Result will be right but some exception flags will be set.</p>
+<p>Distribution B must not contain 0 probability.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Kullback-Leibler divergence D(A || B) </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">*pSrcA</span></code>: points to an array of input values for probaility distribution A. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">*pSrcB</span></code>: points to an array of input values for probaility distribution B. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples in the input array. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__Kullback-Leibler_1ga93112195a3156992ae7eb1ddad0e5c26"></span>float64_t <code class="sig-name descname">riscv_kullback_leibler_f64</code><span class="sig-paren">(</span><em class="property">const</em> float64_t *<em>pSrcA</em>, <em class="property">const</em> float64_t *<em>pSrcB</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Kullback-Leibler. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Kullback-Leibler divergence D(A || B) </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">*pSrcA</span></code>: points to an array of input values for probaility distribution A. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">*pSrcB</span></code>: points to an array of input values for probaility distribution B. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples in the input array. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api_logsumexp.html" class="btn btn-neutral float-right" title="LogSumExp" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api_entropy.html" class="btn btn-neutral float-left" title="Entropy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-Present, Nuclei
+      <span class="lastupdated">
+        Last updated on Aug 05, 2021.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
