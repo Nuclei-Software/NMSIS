@@ -8,10 +8,14 @@ Neural Network Functions
 
    
    groupnn/api_acti.rst
+   groupnn/api_basicmath.rst
+   groupnn/api_concatenation.rst
    groupnn/api_nnconv.rst
    groupnn/api_fc.rst
    groupnn/api_pooling.rst
+   groupnn/api_reshape.rst
    groupnn/api_softmax.rst
+   groupnn/api_svdf.rst
 
 .. doxygengroup:: groupNN
    :project: nmsis_nn

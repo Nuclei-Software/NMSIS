@@ -1,7 +1,7 @@
-.. _nmsis_nn_api_neural_network_activation_functions:
+.. _nmsis_nn_api_activation_functions:
 
-Neural Network Activation Functions
-===================================
+Activation Functions
+====================
 
 .. doxygengroup:: Acti
    :project: nmsis_nn

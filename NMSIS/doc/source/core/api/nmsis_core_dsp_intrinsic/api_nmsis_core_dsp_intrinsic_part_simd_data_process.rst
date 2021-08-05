@@ -4,7 +4,7 @@ Partial-SIMD Data Processing Instructions
 =========================================
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
 
    
    nmsis_core_dsp_intrinsic_part_simd_data_process/api_nmsis_core_dsp_intrinsic_simd_16b_pack.rst

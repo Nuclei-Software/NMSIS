@@ -3,16 +3,15 @@
 Intrinsic Functions for SIMD Instructions
 =========================================
 
-Click `Nuclei DSP Feature`_ to learn about Core DSP in Nuclei ISA Spec.
-
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
 
    
    nmsis_core_dsp_intrinsic/api_nmsis_core_dsp_intrinsic_simd_data_process.rst
    nmsis_core_dsp_intrinsic/api_nmsis_core_dsp_intrinsic_non_simd.rst
    nmsis_core_dsp_intrinsic/api_nmsis_core_dsp_intrinsic_part_simd_data_process.rst
    nmsis_core_dsp_intrinsic/api_nmsis_core_dsp_intrinsic_64b_profile.rst
+   nmsis_core_dsp_intrinsic/api_nmsis_core_dsp_intrinsic_rv64_only.rst
    nmsis_core_dsp_intrinsic/api_nmsis_core_dsp_intrinsic_nuclei_custom.rst
 
 .. doxygengroup:: NMSIS_Core_DSP_Intrinsic
@@ -22,6 +21,3 @@ Click `Nuclei DSP Feature`_ to learn about Core DSP in Nuclei ISA Spec.
 
 .. doxygengroup:: NMSIS_Core_DSP_Intrinsic
    :project: nmsis_core
-
-
-.. _Nuclei DSP Feature: https://doc.nucleisys.com/nuclei_spec/isa/dsp.html

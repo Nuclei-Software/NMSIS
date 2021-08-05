@@ -8,10 +8,10 @@ Controller Functions
 
    
    groupcontroller/api_pid.rst
-   groupcontroller/api_clarke.rst
-   groupcontroller/api_inv_clarke.rst
    groupcontroller/api_park.rst
    groupcontroller/api_inv_park.rst
+   groupcontroller/api_clarke.rst
+   groupcontroller/api_inv_clarke.rst
    groupcontroller/api_sincos.rst
 
 .. doxygengroup:: groupController

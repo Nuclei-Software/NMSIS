@@ -18,7 +18,7 @@ curve for micro-controller developers, and reducing the time to market for new d
 
     All Nuclei N/NX Class Processors DSP library collection with a lot of functions for various data types:
     fixed-point (fractional q7, q15, q31) and single precision floating-point (32-bit).
-    Implementations optimized for the Nuclei processor core which has RISC-V P/V extension instruction set.
+    Implementations optimized for the Nuclei processor core which has RISC-V SIMD instruction set.
 
 * **NMSIS NN**
 

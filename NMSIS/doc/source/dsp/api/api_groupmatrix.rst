@@ -8,13 +8,16 @@ Matrix Functions
 
    
    groupmatrix/api_matrixadd.rst
+   groupmatrix/api_matrixchol.rst
    groupmatrix/api_cmplxmatrixmult.rst
+   groupmatrix/api_matrixcomplextrans.rst
    groupmatrix/api_matrixinit.rst
    groupmatrix/api_matrixinv.rst
    groupmatrix/api_matrixmult.rst
    groupmatrix/api_matrixscale.rst
    groupmatrix/api_matrixsub.rst
    groupmatrix/api_matrixtrans.rst
+   groupmatrix/api_matrixvectmult.rst
 
 .. doxygengroup:: groupMatrix
    :project: nmsis_dsp
