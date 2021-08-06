@@ -25,4 +25,4 @@ please click `NMSIS CORE API Doxygen Documentation`_.
    api_nmsis_core_cache.rst
    api_nmsis_core_armcompatiable_functions.rst
 
-.. _NMSIS CORE API Doxygen Documentation: ../../../html/doxygen/core/html/modules.html
+.. _NMSIS CORE API Doxygen Documentation: ../../doxygen/core/html/modules.html
