@@ -16,4 +16,4 @@ please click `NMSIS NN API Doxygen Documentation`_.
    api_cnnexample.rst
    api_gruexample.rst
 
-.. _NMSIS NN API Doxygen Documentation: ../../../html/doxygen/nn/html/modules.html
+.. _NMSIS NN API Doxygen Documentation: ../../doxygen/nn/html/modules.html

@@ -26,4 +26,4 @@ please click `NMSIS DSP API Doxygen Documentation`_.
    api_groupsvm.rst
    api_grouptransforms.rst
 
-.. _NMSIS DSP API Doxygen Documentation: ../../../html/doxygen/dsp/html/modules.html
+.. _NMSIS DSP API Doxygen Documentation: ../../doxygen/dsp/html/modules.html
