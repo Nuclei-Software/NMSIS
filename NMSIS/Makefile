@@ -7,6 +7,7 @@ LIBIRAY_ROOT ?= Library
 BUILD_SELECT ?= ALL
 PARALLEL ?=
 BUILD := build
+AR := riscv-nuclei-elf-ar
 
 CORE_UPPER = $(shell echo $(CORE) | tr a-z A-Z)
 TARGET_LOWER = $(shell echo $(TARGET) | tr A-Z a-z)
@@ -183,16 +184,16 @@ install_refer:
 	cp -f $(TARGET_CMAKE_BUILD)/$(TARGET_LIB_NAME).a $(TARGET_LIB_ROOT)
 
 ar_dsp:
-	cd $(TARGET_CMAKE_BUILD) ; find ./ -name "*.o" | xargs ar rcs $(TARGET_LIB_NAME)p.a
+	cd $(TARGET_CMAKE_BUILD) ; find ./ -name "*.o" | xargs $(AR) rcs $(TARGET_LIB_NAME)p.a
 
 ar_vector:
-	cd $(TARGET_CMAKE_BUILD) ; find ./ -name "*.o" | xargs ar rcs $(TARGET_LIB_NAME)v.a
+	cd $(TARGET_CMAKE_BUILD) ; find ./ -name "*.o" | xargs $(AR) rcs $(TARGET_LIB_NAME)v.a
 
 ar_vector_dsp:
-	cd $(TARGET_CMAKE_BUILD) ; find ./ -name "*.o" | xargs ar rcs $(TARGET_LIB_NAME)pv.a
+	cd $(TARGET_CMAKE_BUILD) ; find ./ -name "*.o" | xargs $(AR) rcs $(TARGET_LIB_NAME)pv.a
 
 ar_refer:
-	cd $(TARGET_CMAKE_BUILD) ; find ./ -name "*.o" | xargs ar rcs $(TARGET_LIB_NAME).a
+	cd $(TARGET_CMAKE_BUILD) ; find ./ -name "*.o" | xargs $(AR) rcs $(TARGET_LIB_NAME).a
 
 $(DSP_NNLIB_TARGETS):
 	make $(MAKE_PARAMS) CORE=$(subst _nnlib_dsp,,$@)    TARGET=NN all

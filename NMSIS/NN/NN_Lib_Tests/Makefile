@@ -4,6 +4,7 @@ TOOLCHAIN ?= GCC
 LIBIRAY_ROOT ?= ../../Library
 PARALLEL ?=
 BUILD := build
+AR := riscv-nuclei-elf-ar
 
 CORE_UPPER = $(shell echo $(CORE) | tr a-z A-Z)
 TARGET_LOWER = $(shell echo $(TARGET) | tr A-Z a-z)
@@ -67,10 +68,10 @@ install_no_dsp:
 	cp -f $(TARGET_CMAKE_BUILD)/$(TARGET_LIB_NAME)pv.a $(TARGET_LIB_ROOT)
 
 ar_no_dsp:
-	cd $(TARGET_CMAKE_BUILD) ; find ./ -name "*.o" | xargs ar rcs $(TARGET_LIB_NAME).a
-	cd $(TARGET_CMAKE_BUILD) ; find ./ -name "*.o" | xargs ar rcs $(TARGET_LIB_NAME)p.a
-	cd $(TARGET_CMAKE_BUILD) ; find ./ -name "*.o" | xargs ar rcs $(TARGET_LIB_NAME)v.a
-	cd $(TARGET_CMAKE_BUILD) ; find ./ -name "*.o" | xargs ar rcs $(TARGET_LIB_NAME)pv.a
+	cd $(TARGET_CMAKE_BUILD) ; find ./ -name "*.o" | xargs $(AR) rcs $(TARGET_LIB_NAME).a
+	cd $(TARGET_CMAKE_BUILD) ; find ./ -name "*.o" | xargs $(AR) rcs $(TARGET_LIB_NAME)p.a
+	cd $(TARGET_CMAKE_BUILD) ; find ./ -name "*.o" | xargs $(AR) rcs $(TARGET_LIB_NAME)v.a
+	cd $(TARGET_CMAKE_BUILD) ; find ./ -name "*.o" | xargs $(AR) rcs $(TARGET_LIB_NAME)pv.a
 
 $(NNREFLIB_TARGETS):
 	make $(MAKE_PARAMS) CORE=$(subst _nnreflib,,$@)

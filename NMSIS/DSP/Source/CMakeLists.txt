@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.5)
 
 SET(CMAKE_C_COMPILER riscv-nuclei-elf-gcc)
 SET(CMAKE_CXX_COMPILER riscv-nuclei-elf-g++)
-#SET(CMAKE_C_COMPILER riscv32-unknown-elf-gcc)
-#SET(CMAKE_CXX_COMPILER riscv32-unknown-elf-g++)
+SET(CMAKE_AR riscv-nuclei-elf-ar)
+
 get_filename_component(ROOT "../.." ABSOLUTE)
 
 project(RISCV_DSP)
