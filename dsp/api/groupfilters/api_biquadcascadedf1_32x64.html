@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>High Precision Q31 Biquad Cascade Filter &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  <title>High Precision Q31 Biquad Cascade Filter &mdash; NMSIS 1.0.2-RC2 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC1
+                1.0.2-RC2
               </div>
             
           
@@ -89,7 +88,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -208,7 +207,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="high-precision-q31-biquad-cascade-filter">
+  <div class="section" id="high-precision-q31-biquad-cascade-filter">
 <span id="nmsis-dsp-api-high-precision-q31-biquad-cascade-filter"></span><h1>High Precision Q31 Biquad Cascade Filter<a class="headerlink" href="#high-precision-q31-biquad-cascade-filter" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="_CPPv435riscv_biquad_cas_df1_32x64_init_q31P34riscv_biquad_cas_df1_32x64_ins_q317uint8_tPK5q31_tP5q63_t7uint8_t">
@@ -265,8 +264,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Functions</p>
 <dl class="function">
-<dt>
-<span class="target" id="group__BiquadCascadeDF1__32x64_1ga072fc75723bc392c567554410e99bdb2"></span>void <code class="sig-name descname">riscv_biquad_cas_df1_32x64_init_q31</code><span class="sig-paren">(</span>riscv_biquad_cas_df1_32x64_ins_q31 *<em>S</em>, uint8_t <em>numStages</em>, <em class="property">const</em> q31_t *<em>pCoeffs</em>, q63_t *<em>pState</em>, uint8_t <em>postShift</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv435riscv_biquad_cas_df1_32x64_init_q31P34riscv_biquad_cas_df1_32x64_ins_q317uint8_tPK5q31_tP5q63_t7uint8_t">
+<span id="_CPPv335riscv_biquad_cas_df1_32x64_init_q31P34riscv_biquad_cas_df1_32x64_ins_q317uint8_tPK5q31_tP5q63_t7uint8_t"></span><span id="_CPPv235riscv_biquad_cas_df1_32x64_init_q31P34riscv_biquad_cas_df1_32x64_ins_q317uint8_tPK5q31_tP5q63_t7uint8_t"></span><span class="target" id="group__BiquadCascadeDF1__32x64_1ga072fc75723bc392c567554410e99bdb2"></span>void <code class="sig-name descname">riscv_biquad_cas_df1_32x64_init_q31</code><span class="sig-paren">(</span>riscv_biquad_cas_df1_32x64_ins_q31 *<em>S</em>, uint8_t <em>numStages</em>, <em class="property">const</em> q31_t *<em>pCoeffs</em>, q63_t *<em>pState</em>, uint8_t <em>postShift</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the Q31 Biquad cascade 32x64 filter. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -288,8 +287,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__BiquadCascadeDF1__32x64_1gaa4d32dbfbbb3b2e5eb0d3f3ea1acd097"></span>void <code class="sig-name descname">riscv_biquad_cas_df1_32x64_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_biquad_cas_df1_32x64_ins_q31 *<em>S</em>, <em class="property">const</em> q31_t *<em>pSrc</em>, q31_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv430riscv_biquad_cas_df1_32x64_q31PK34riscv_biquad_cas_df1_32x64_ins_q31PK5q31_tP5q31_t8uint32_t">
+<span id="_CPPv330riscv_biquad_cas_df1_32x64_q31PK34riscv_biquad_cas_df1_32x64_ins_q31PK5q31_tP5q31_t8uint32_t"></span><span id="_CPPv230riscv_biquad_cas_df1_32x64_q31PK34riscv_biquad_cas_df1_32x64_ins_q31PK5q31_tP5q31_t8uint32_t"></span><span class="target" id="group__BiquadCascadeDF1__32x64_1gaa4d32dbfbbb3b2e5eb0d3f3ea1acd097"></span>void <code class="sig-name descname">riscv_biquad_cas_df1_32x64_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_biquad_cas_df1_32x64_ins_q31 *<em>S</em>, <em class="property">const</em> q31_t *<em>pSrc</em>, q31_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the Q31 Biquad cascade 32x64 filter. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -316,7 +315,7 @@
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
@@ -340,7 +339,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 06, 2021.
+        Last updated on Aug 09, 2021.
       </span>
 
     </p>

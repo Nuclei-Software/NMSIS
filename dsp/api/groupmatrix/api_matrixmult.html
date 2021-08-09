@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Matrix Multiplication &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  <title>Matrix Multiplication &mdash; NMSIS 1.0.2-RC2 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC1
+                1.0.2-RC2
               </div>
             
           
@@ -89,7 +88,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -204,7 +203,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="matrix-multiplication">
+  <div class="section" id="matrix-multiplication">
 <span id="nmsis-dsp-api-matrix-multiplication"></span><h1>Matrix Multiplication<a class="headerlink" href="#matrix-multiplication" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="_CPPv418riscv_mat_mult_f16PK25riscv_matrix_instance_f16PK25riscv_matrix_instance_f16P25riscv_matrix_instance_f16">
@@ -255,8 +254,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Functions</p>
 <dl class="function">
-<dt>
-<span class="target" id="group__MatrixMult_1ga4fd719d718c6dcf981768b6bcb51b027"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_f16</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_f16 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_f16 *<em>pSrcB</em>, riscv_matrix_instance_f16 *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv418riscv_mat_mult_f16PK25riscv_matrix_instance_f16PK25riscv_matrix_instance_f16P25riscv_matrix_instance_f16">
+<span id="_CPPv318riscv_mat_mult_f16PK25riscv_matrix_instance_f16PK25riscv_matrix_instance_f16P25riscv_matrix_instance_f16"></span><span id="_CPPv218riscv_mat_mult_f16PK25riscv_matrix_instance_f16PK25riscv_matrix_instance_f16P25riscv_matrix_instance_f16"></span><span class="target" id="group__MatrixMult_1ga4fd719d718c6dcf981768b6bcb51b027"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_f16</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_f16 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_f16 *<em>pSrcB</em>, riscv_matrix_instance_f16 *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Floating-point matrix multiplication. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>The function returns either <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SIZE_MISMATCH</span></code> or <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code> based on the outcome of size checking. </p>
@@ -272,8 +271,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__MatrixMult_1ga0f1c7b30e1c552617b8bb6a6898e57d4"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_f32 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_f32 *<em>pSrcB</em>, riscv_matrix_instance_f32 *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv418riscv_mat_mult_f32PK25riscv_matrix_instance_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32">
+<span id="_CPPv318riscv_mat_mult_f32PK25riscv_matrix_instance_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32"></span><span id="_CPPv218riscv_mat_mult_f32PK25riscv_matrix_instance_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32"></span><span class="target" id="group__MatrixMult_1ga0f1c7b30e1c552617b8bb6a6898e57d4"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_f32 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_f32 *<em>pSrcB</em>, riscv_matrix_instance_f32 *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Floating-point matrix multiplication. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>The function returns either <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SIZE_MISMATCH</span></code> or <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code> based on the outcome of size checking. </p>
@@ -289,8 +288,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__MatrixMult_1ga4f176f9750ae23b704106f7615e734d5"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_f64</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_f64 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_f64 *<em>pSrcB</em>, riscv_matrix_instance_f64 *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv418riscv_mat_mult_f64PK25riscv_matrix_instance_f64PK25riscv_matrix_instance_f64P25riscv_matrix_instance_f64">
+<span id="_CPPv318riscv_mat_mult_f64PK25riscv_matrix_instance_f64PK25riscv_matrix_instance_f64P25riscv_matrix_instance_f64"></span><span id="_CPPv218riscv_mat_mult_f64PK25riscv_matrix_instance_f64PK25riscv_matrix_instance_f64P25riscv_matrix_instance_f64"></span><span class="target" id="group__MatrixMult_1ga4f176f9750ae23b704106f7615e734d5"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_f64</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_f64 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_f64 *<em>pSrcB</em>, riscv_matrix_instance_f64 *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Floating-point matrix multiplication. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>The function returns either <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SIZE_MISMATCH</span></code> or <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code> based on the outcome of size checking. </p>
@@ -306,8 +305,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__MatrixMult_1ga39f8eb0440c425a21ae4ee04b0bdb0c1"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_fast_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q15 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_q15 *<em>pSrcB</em>, riscv_matrix_instance_q15 *<em>pDst</em>, q15_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv423riscv_mat_mult_fast_q15PK25riscv_matrix_instance_q15PK25riscv_matrix_instance_q15P25riscv_matrix_instance_q15P5q15_t">
+<span id="_CPPv323riscv_mat_mult_fast_q15PK25riscv_matrix_instance_q15PK25riscv_matrix_instance_q15P25riscv_matrix_instance_q15P5q15_t"></span><span id="_CPPv223riscv_mat_mult_fast_q15PK25riscv_matrix_instance_q15PK25riscv_matrix_instance_q15P25riscv_matrix_instance_q15P5q15_t"></span><span class="target" id="group__MatrixMult_1ga39f8eb0440c425a21ae4ee04b0bdb0c1"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_fast_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q15 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_q15 *<em>pSrcB</em>, riscv_matrix_instance_q15 *<em>pDst</em>, q15_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q15 matrix multiplication (fast variant). </p>
 <p>Q15 matrix multiplication (fast variant) for RISC-V Core with DSP enabled.</p>
 <p><dl class="simple">
@@ -335,8 +334,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__MatrixMult_1ga84068b1bbb318d532690735db534edf6"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_fast_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q31 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_q31 *<em>pSrcB</em>, riscv_matrix_instance_q31 *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv423riscv_mat_mult_fast_q31PK25riscv_matrix_instance_q31PK25riscv_matrix_instance_q31P25riscv_matrix_instance_q31">
+<span id="_CPPv323riscv_mat_mult_fast_q31PK25riscv_matrix_instance_q31PK25riscv_matrix_instance_q31P25riscv_matrix_instance_q31"></span><span id="_CPPv223riscv_mat_mult_fast_q31PK25riscv_matrix_instance_q31PK25riscv_matrix_instance_q31P25riscv_matrix_instance_q31"></span><span class="target" id="group__MatrixMult_1ga84068b1bbb318d532690735db534edf6"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_fast_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q31 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_q31 *<em>pSrcB</em>, riscv_matrix_instance_q31 *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q31 matrix multiplication (fast variant). </p>
 <p>Q31 matrix multiplication (fast variant) for RISC-V Core with DSP enabled.</p>
 <p><dl class="simple">
@@ -363,8 +362,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__MatrixMult_1gaccc2ce7b1bdbffa4332ae95d1151a5f7"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q15 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_q15 *<em>pSrcB</em>, riscv_matrix_instance_q15 *<em>pDst</em>, q15_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv418riscv_mat_mult_q15PK25riscv_matrix_instance_q15PK25riscv_matrix_instance_q15P25riscv_matrix_instance_q15P5q15_t">
+<span id="_CPPv318riscv_mat_mult_q15PK25riscv_matrix_instance_q15PK25riscv_matrix_instance_q15P25riscv_matrix_instance_q15P5q15_t"></span><span id="_CPPv218riscv_mat_mult_q15PK25riscv_matrix_instance_q15PK25riscv_matrix_instance_q15P25riscv_matrix_instance_q15P5q15_t"></span><span class="target" id="group__MatrixMult_1gaccc2ce7b1bdbffa4332ae95d1151a5f7"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q15 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_q15 *<em>pSrcB</em>, riscv_matrix_instance_q15 *<em>pDst</em>, q15_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q15 matrix multiplication. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
@@ -389,8 +388,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__MatrixMult_1ga0e5d2a6760fda6dad3a1f159d8d4d45e"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q31 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_q31 *<em>pSrcB</em>, riscv_matrix_instance_q31 *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv418riscv_mat_mult_q31PK25riscv_matrix_instance_q31PK25riscv_matrix_instance_q31P25riscv_matrix_instance_q31">
+<span id="_CPPv318riscv_mat_mult_q31PK25riscv_matrix_instance_q31PK25riscv_matrix_instance_q31P25riscv_matrix_instance_q31"></span><span id="_CPPv218riscv_mat_mult_q31PK25riscv_matrix_instance_q31PK25riscv_matrix_instance_q31P25riscv_matrix_instance_q31"></span><span class="target" id="group__MatrixMult_1ga0e5d2a6760fda6dad3a1f159d8d4d45e"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q31 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_q31 *<em>pSrcB</em>, riscv_matrix_instance_q31 *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q31 matrix multiplication. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
@@ -414,8 +413,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__MatrixMult_1gad9d3cdab487edf6c60617ad701b0e3ca"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_q7</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q7 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_q7 *<em>pSrcB</em>, riscv_matrix_instance_q7 *<em>pDst</em>, q7_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv417riscv_mat_mult_q7PK24riscv_matrix_instance_q7PK24riscv_matrix_instance_q7P24riscv_matrix_instance_q7P4q7_t">
+<span id="_CPPv317riscv_mat_mult_q7PK24riscv_matrix_instance_q7PK24riscv_matrix_instance_q7P24riscv_matrix_instance_q7P4q7_t"></span><span id="_CPPv217riscv_mat_mult_q7PK24riscv_matrix_instance_q7PK24riscv_matrix_instance_q7P24riscv_matrix_instance_q7P4q7_t"></span><span class="target" id="group__MatrixMult_1gad9d3cdab487edf6c60617ad701b0e3ca"></span>riscv_status <code class="sig-name descname">riscv_mat_mult_q7</code><span class="sig-paren">(</span><em class="property">const</em> riscv_matrix_instance_q7 *<em>pSrcA</em>, <em class="property">const</em> riscv_matrix_instance_q7 *<em>pSrcB</em>, riscv_matrix_instance_q7 *<em>pDst</em>, q7_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q7 matrix multiplication. </p>
 <p><strong>Scaling and Overflow Behavior:</strong><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>The function returns either <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SIZE_MISMATCH</span></code> or <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code> based on the outcome of size checking.</p>
@@ -439,7 +438,7 @@
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
@@ -463,7 +462,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 06, 2021.
+        Last updated on Aug 09, 2021.
       </span>
 
     </p>

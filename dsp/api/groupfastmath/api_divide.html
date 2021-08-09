@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Fixed point division &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  <title>Fixed point division &mdash; NMSIS 1.0.2-RC2 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC1
+                1.0.2-RC2
               </div>
             
           
@@ -89,7 +88,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -197,7 +196,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="fixed-point-division">
+  <div class="section" id="fixed-point-division">
 <span id="nmsis-dsp-api-fixed-point-division"></span><h1>Fixed point division<a class="headerlink" href="#fixed-point-division" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="_CPPv416riscv_divide_q155q15_t5q15_tP5q15_tP7int16_t">
@@ -210,8 +209,8 @@
 <dd><div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Functions</p>
 <dl class="function">
-<dt>
-<span class="target" id="group__divide_1ga0ebabc0c9390b2acfbd6312cfe97142b"></span>riscv_status <code class="sig-name descname">riscv_divide_q15</code><span class="sig-paren">(</span>q15_t <em>numerator</em>, q15_t <em>denominator</em>, q15_t *<em>quotient</em>, int16_t *<em>shift</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv416riscv_divide_q155q15_t5q15_tP5q15_tP7int16_t">
+<span id="_CPPv316riscv_divide_q155q15_t5q15_tP5q15_tP7int16_t"></span><span id="_CPPv216riscv_divide_q155q15_t5q15_tP5q15_tP7int16_t"></span><span class="target" id="group__divide_1ga0ebabc0c9390b2acfbd6312cfe97142b"></span>riscv_status <code class="sig-name descname">riscv_divide_q15</code><span class="sig-paren">(</span>q15_t <em>numerator</em>, q15_t <em>denominator</em>, q15_t *<em>quotient</em>, int16_t *<em>shift</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Fixed point division. </p>
 <p><p>When dividing by 0, an error RISCV_MATH_NANINF is returned. And the quotient is forced to the saturated negative or positive value. </p>
 <dl class="simple">
@@ -231,7 +230,7 @@
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
@@ -255,7 +254,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 06, 2021.
+        Last updated on Aug 09, 2021.
       </span>
 
     </p>

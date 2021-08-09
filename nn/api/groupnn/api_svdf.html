@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>SVDF Layer Functions &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  <title>SVDF Layer Functions &mdash; NMSIS 1.0.2-RC2 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC1
+                1.0.2-RC2
               </div>
             
           
@@ -89,7 +88,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -192,7 +191,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="svdf-layer-functions">
+  <div class="section" id="svdf-layer-functions">
 <span id="nmsis-nn-api-svdf-layer-functions"></span><h1>SVDF Layer Functions<a class="headerlink" href="#svdf-layer-functions" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="_CPPv413riscv_svdf_s8PK16nmsis_nn_contextPK16nmsis_nn_contextPK20nmsis_nn_svdf_paramsPK32nmsis_nn_per_tensor_quant_paramsPK32nmsis_nn_per_tensor_quant_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsP5q15_tPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK5q15_tPK13nmsis_nn_dimsPK5q31_tPK13nmsis_nn_dimsP4q7_t">
@@ -205,8 +204,8 @@
 <dd><div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Functions</p>
 <dl class="function">
-<dt>
-<span class="target" id="group__SVDF_1ga4949cc8e4bc818a300062e8f176a0163"></span>riscv_status <code class="sig-name descname">riscv_svdf_s8</code><span class="sig-paren">(</span><em class="property">const</em> nmsis_nn_context *<em>input_ctx</em>, <em class="property">const</em> nmsis_nn_context *<em>output_ctx</em>, <em class="property">const</em> nmsis_nn_svdf_params *<em>svdf_params</em>, <em class="property">const</em> nmsis_nn_per_tensor_quant_params *<em>input_quant_params</em>, <em class="property">const</em> nmsis_nn_per_tensor_quant_params *<em>output_quant_params</em>, <em class="property">const</em> nmsis_nn_dims *<em>input_dims</em>, <em class="property">const</em> q7_t *<em>input_data</em>, <em class="property">const</em> nmsis_nn_dims *<em>state_dims</em>, q15_t *<em>state_data</em>, <em class="property">const</em> nmsis_nn_dims *<em>weights_feature_dims</em>, <em class="property">const</em> q7_t *<em>weights_feature_data</em>, <em class="property">const</em> nmsis_nn_dims *<em>weights_time_dims</em>, <em class="property">const</em> q15_t *<em>weights_time_data</em>, <em class="property">const</em> nmsis_nn_dims *<em>bias_dims</em>, <em class="property">const</em> q31_t *<em>bias_data</em>, <em class="property">const</em> nmsis_nn_dims *<em>output_dims</em>, q7_t *<em>output_data</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv413riscv_svdf_s8PK16nmsis_nn_contextPK16nmsis_nn_contextPK20nmsis_nn_svdf_paramsPK32nmsis_nn_per_tensor_quant_paramsPK32nmsis_nn_per_tensor_quant_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsP5q15_tPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK5q15_tPK13nmsis_nn_dimsPK5q31_tPK13nmsis_nn_dimsP4q7_t">
+<span id="_CPPv313riscv_svdf_s8PK16nmsis_nn_contextPK16nmsis_nn_contextPK20nmsis_nn_svdf_paramsPK32nmsis_nn_per_tensor_quant_paramsPK32nmsis_nn_per_tensor_quant_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsP5q15_tPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK5q15_tPK13nmsis_nn_dimsPK5q31_tPK13nmsis_nn_dimsP4q7_t"></span><span id="_CPPv213riscv_svdf_s8PK16nmsis_nn_contextPK16nmsis_nn_contextPK20nmsis_nn_svdf_paramsPK32nmsis_nn_per_tensor_quant_paramsPK32nmsis_nn_per_tensor_quant_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsP5q15_tPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK5q15_tPK13nmsis_nn_dimsPK5q31_tPK13nmsis_nn_dimsP4q7_t"></span><span class="target" id="group__SVDF_1ga4949cc8e4bc818a300062e8f176a0163"></span>riscv_status <code class="sig-name descname">riscv_svdf_s8</code><span class="sig-paren">(</span><em class="property">const</em> nmsis_nn_context *<em>input_ctx</em>, <em class="property">const</em> nmsis_nn_context *<em>output_ctx</em>, <em class="property">const</em> nmsis_nn_svdf_params *<em>svdf_params</em>, <em class="property">const</em> nmsis_nn_per_tensor_quant_params *<em>input_quant_params</em>, <em class="property">const</em> nmsis_nn_per_tensor_quant_params *<em>output_quant_params</em>, <em class="property">const</em> nmsis_nn_dims *<em>input_dims</em>, <em class="property">const</em> q7_t *<em>input_data</em>, <em class="property">const</em> nmsis_nn_dims *<em>state_dims</em>, q15_t *<em>state_data</em>, <em class="property">const</em> nmsis_nn_dims *<em>weights_feature_dims</em>, <em class="property">const</em> q7_t *<em>weights_feature_data</em>, <em class="property">const</em> nmsis_nn_dims *<em>weights_time_dims</em>, <em class="property">const</em> q15_t *<em>weights_time_data</em>, <em class="property">const</em> nmsis_nn_dims *<em>bias_dims</em>, <em class="property">const</em> q31_t *<em>bias_data</em>, <em class="property">const</em> nmsis_nn_dims *<em>output_dims</em>, q7_t *<em>output_data</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>s8 SVDF function </p>
 <p><ol class="arabic simple">
 <li><p>Supported framework: TensorFlow Lite micro</p></li>
@@ -242,7 +241,7 @@
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
@@ -266,7 +265,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 06, 2021.
+        Last updated on Aug 09, 2021.
       </span>
 
     </p>

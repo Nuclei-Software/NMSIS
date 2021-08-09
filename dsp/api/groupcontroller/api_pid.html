@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>PID Motor Control &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  <title>PID Motor Control &mdash; NMSIS 1.0.2-RC2 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC1
+                1.0.2-RC2
               </div>
             
           
@@ -89,7 +88,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -199,7 +198,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="pid-motor-control">
+  <div class="section" id="pid-motor-control">
 <span id="nmsis-dsp-api-pid-motor-control"></span><h1>PID Motor Control<a class="headerlink" href="#pid-motor-control" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt>
@@ -332,8 +331,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__PID_1ga88096786fde77479ae2fc7f0b4a060b1"></span>void <code class="sig-name descname">riscv_pid_init_f32</code><span class="sig-paren">(</span>riscv_pid_instance_f32 *<em>S</em>, int32_t <em>resetStateFlag</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv418riscv_pid_init_f32P22riscv_pid_instance_f327int32_t">
+<span id="_CPPv318riscv_pid_init_f32P22riscv_pid_instance_f327int32_t"></span><span id="_CPPv218riscv_pid_init_f32P22riscv_pid_instance_f327int32_t"></span><span class="target" id="group__PID_1ga88096786fde77479ae2fc7f0b4a060b1"></span>void <code class="sig-name descname">riscv_pid_init_f32</code><span class="sig-paren">(</span>riscv_pid_instance_f32 *<em>S</em>, int32_t <em>resetStateFlag</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the floating-point PID Control. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -355,8 +354,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__PID_1ga3addd5e4ea6d8aeaf4f1ecd7cf5c6c01"></span>void <code class="sig-name descname">riscv_pid_init_q15</code><span class="sig-paren">(</span>riscv_pid_instance_q15 *<em>S</em>, int32_t <em>resetStateFlag</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv418riscv_pid_init_q15P22riscv_pid_instance_q157int32_t">
+<span id="_CPPv318riscv_pid_init_q15P22riscv_pid_instance_q157int32_t"></span><span id="_CPPv218riscv_pid_init_q15P22riscv_pid_instance_q157int32_t"></span><span class="target" id="group__PID_1ga3addd5e4ea6d8aeaf4f1ecd7cf5c6c01"></span>void <code class="sig-name descname">riscv_pid_init_q15</code><span class="sig-paren">(</span>riscv_pid_instance_q15 *<em>S</em>, int32_t <em>resetStateFlag</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the Q15 PID Control. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -378,8 +377,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__PID_1ga2ca8b149095d04d8dc73e4a052be1c8c"></span>void <code class="sig-name descname">riscv_pid_init_q31</code><span class="sig-paren">(</span>riscv_pid_instance_q31 *<em>S</em>, int32_t <em>resetStateFlag</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv418riscv_pid_init_q31P22riscv_pid_instance_q317int32_t">
+<span id="_CPPv318riscv_pid_init_q31P22riscv_pid_instance_q317int32_t"></span><span id="_CPPv218riscv_pid_init_q31P22riscv_pid_instance_q317int32_t"></span><span class="target" id="group__PID_1ga2ca8b149095d04d8dc73e4a052be1c8c"></span>void <code class="sig-name descname">riscv_pid_init_q31</code><span class="sig-paren">(</span>riscv_pid_instance_q31 *<em>S</em>, int32_t <em>resetStateFlag</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the Q31 PID Control. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -401,8 +400,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__PID_1ga436fc2266fe54087bc8b203eb675087c"></span>void <code class="sig-name descname">riscv_pid_reset_f32</code><span class="sig-paren">(</span>riscv_pid_instance_f32 *<em>S</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv419riscv_pid_reset_f32P22riscv_pid_instance_f32">
+<span id="_CPPv319riscv_pid_reset_f32P22riscv_pid_instance_f32"></span><span id="_CPPv219riscv_pid_reset_f32P22riscv_pid_instance_f32"></span><span class="target" id="group__PID_1ga436fc2266fe54087bc8b203eb675087c"></span>void <code class="sig-name descname">riscv_pid_reset_f32</code><span class="sig-paren">(</span>riscv_pid_instance_f32 *<em>S</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Reset function for the floating-point PID Control. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -418,8 +417,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__PID_1gaf85e1dc20d915a787ce687e1a80f2bdc"></span>void <code class="sig-name descname">riscv_pid_reset_q15</code><span class="sig-paren">(</span>riscv_pid_instance_q15 *<em>S</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv419riscv_pid_reset_q15P22riscv_pid_instance_q15">
+<span id="_CPPv319riscv_pid_reset_q15P22riscv_pid_instance_q15"></span><span id="_CPPv219riscv_pid_reset_q15P22riscv_pid_instance_q15"></span><span class="target" id="group__PID_1gaf85e1dc20d915a787ce687e1a80f2bdc"></span>void <code class="sig-name descname">riscv_pid_reset_q15</code><span class="sig-paren">(</span>riscv_pid_instance_q15 *<em>S</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Reset function for the Q15 PID Control. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -435,8 +434,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__PID_1ga9014e1ffacd82a5ecf90f11aa626caab"></span>void <code class="sig-name descname">riscv_pid_reset_q31</code><span class="sig-paren">(</span>riscv_pid_instance_q31 *<em>S</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv419riscv_pid_reset_q31P22riscv_pid_instance_q31">
+<span id="_CPPv319riscv_pid_reset_q31P22riscv_pid_instance_q31"></span><span id="_CPPv219riscv_pid_reset_q31P22riscv_pid_instance_q31"></span><span class="target" id="group__PID_1ga9014e1ffacd82a5ecf90f11aa626caab"></span>void <code class="sig-name descname">riscv_pid_reset_q31</code><span class="sig-paren">(</span>riscv_pid_instance_q31 *<em>S</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Reset function for the Q31 PID Control. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -454,7 +453,7 @@
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
@@ -478,7 +477,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 06, 2021.
+        Last updated on Aug 09, 2021.
       </span>
 
     </p>

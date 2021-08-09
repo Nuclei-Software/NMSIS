@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>DCT Type IV Functions &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  <title>DCT Type IV Functions &mdash; NMSIS 1.0.2-RC2 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC1
+                1.0.2-RC2
               </div>
             
           
@@ -89,7 +88,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -199,7 +198,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="dct-type-iv-functions">
+  <div class="section" id="dct-type-iv-functions">
 <span id="nmsis-dsp-api-dct-type-iv-functions"></span><h1>DCT Type IV Functions<a class="headerlink" href="#dct-type-iv-functions" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
@@ -275,8 +274,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Functions</p>
 <dl class="function">
-<dt>
-<span class="target" id="group__DCT4__IDCT4_1ga50ce68671108e95984121f7eb9e57c06"></span>void <code class="sig-name descname">riscv_dct4_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_dct4_instance_f32 *<em>S</em>, float32_t *<em>pState</em>, float32_t *<em>pInlineBuffer</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv414riscv_dct4_f32PK23riscv_dct4_instance_f32P9float32_tP9float32_t">
+<span id="_CPPv314riscv_dct4_f32PK23riscv_dct4_instance_f32P9float32_tP9float32_t"></span><span id="_CPPv214riscv_dct4_f32PK23riscv_dct4_instance_f32P9float32_tP9float32_t"></span><span class="target" id="group__DCT4__IDCT4_1ga50ce68671108e95984121f7eb9e57c06"></span>void <code class="sig-name descname">riscv_dct4_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_dct4_instance_f32 *<em>S</em>, float32_t *<em>pState</em>, float32_t *<em>pInlineBuffer</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the floating-point DCT4/IDCT4. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none </p>
@@ -292,8 +291,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__DCT4__IDCT4_1gac8e0136f9dec411d05bf7c684dfc0395"></span>riscv_status <code class="sig-name descname">riscv_dct4_init_f32</code><span class="sig-paren">(</span>riscv_dct4_instance_f32 *<em>S</em>, riscv_rfft_instance_f32 *<em>S_RFFT</em>, riscv_cfft_radix4_instance_f32 *<em>S_CFFT</em>, uint16_t <em>N</em>, uint16_t <em>Nby2</em>, float32_t <em>normalize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv419riscv_dct4_init_f32P23riscv_dct4_instance_f32P23riscv_rfft_instance_f32P30riscv_cfft_radix4_instance_f328uint16_t8uint16_t9float32_t">
+<span id="_CPPv319riscv_dct4_init_f32P23riscv_dct4_instance_f32P23riscv_rfft_instance_f32P30riscv_cfft_radix4_instance_f328uint16_t8uint16_t9float32_t"></span><span id="_CPPv219riscv_dct4_init_f32P23riscv_dct4_instance_f32P23riscv_rfft_instance_f32P30riscv_cfft_radix4_instance_f328uint16_t8uint16_t9float32_t"></span><span class="target" id="group__DCT4__IDCT4_1gac8e0136f9dec411d05bf7c684dfc0395"></span>riscv_status <code class="sig-name descname">riscv_dct4_init_f32</code><span class="sig-paren">(</span>riscv_dct4_instance_f32 *<em>S</em>, riscv_rfft_instance_f32 *<em>S_RFFT</em>, riscv_cfft_radix4_instance_f32 *<em>S_CFFT</em>, uint16_t <em>N</em>, uint16_t <em>Nby2</em>, float32_t <em>normalize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the floating-point DCT4/IDCT4. </p>
 <p><img alt="../../../_images/dct4NormalizingF32Table.png" src="../../../_images/dct4NormalizingF32Table.png" /><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
@@ -318,8 +317,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__DCT4__IDCT4_1gadb08ffdc26604e45aca6b713728bf167"></span>riscv_status <code class="sig-name descname">riscv_dct4_init_q15</code><span class="sig-paren">(</span>riscv_dct4_instance_q15 *<em>S</em>, riscv_rfft_instance_q15 *<em>S_RFFT</em>, riscv_cfft_radix4_instance_q15 *<em>S_CFFT</em>, uint16_t <em>N</em>, uint16_t <em>Nby2</em>, q15_t <em>normalize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv419riscv_dct4_init_q15P23riscv_dct4_instance_q15P23riscv_rfft_instance_q15P30riscv_cfft_radix4_instance_q158uint16_t8uint16_t5q15_t">
+<span id="_CPPv319riscv_dct4_init_q15P23riscv_dct4_instance_q15P23riscv_rfft_instance_q15P30riscv_cfft_radix4_instance_q158uint16_t8uint16_t5q15_t"></span><span id="_CPPv219riscv_dct4_init_q15P23riscv_dct4_instance_q15P23riscv_rfft_instance_q15P30riscv_cfft_radix4_instance_q158uint16_t8uint16_t5q15_t"></span><span class="target" id="group__DCT4__IDCT4_1gadb08ffdc26604e45aca6b713728bf167"></span>riscv_status <code class="sig-name descname">riscv_dct4_init_q15</code><span class="sig-paren">(</span>riscv_dct4_instance_q15 *<em>S</em>, riscv_rfft_instance_q15 *<em>S_RFFT</em>, riscv_cfft_radix4_instance_q15 *<em>S_CFFT</em>, uint16_t <em>N</em>, uint16_t <em>Nby2</em>, q15_t <em>normalize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the Q15 DCT4/IDCT4. </p>
 <p><img alt="../../../_images/dct4NormalizingQ15Table.png" src="../../../_images/dct4NormalizingQ15Table.png" /><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
@@ -344,8 +343,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__DCT4__IDCT4_1ga5561b5f47987be3c7e4837c4c3292500"></span>riscv_status <code class="sig-name descname">riscv_dct4_init_q31</code><span class="sig-paren">(</span>riscv_dct4_instance_q31 *<em>S</em>, riscv_rfft_instance_q31 *<em>S_RFFT</em>, riscv_cfft_radix4_instance_q31 *<em>S_CFFT</em>, uint16_t <em>N</em>, uint16_t <em>Nby2</em>, q31_t <em>normalize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv419riscv_dct4_init_q31P23riscv_dct4_instance_q31P23riscv_rfft_instance_q31P30riscv_cfft_radix4_instance_q318uint16_t8uint16_t5q31_t">
+<span id="_CPPv319riscv_dct4_init_q31P23riscv_dct4_instance_q31P23riscv_rfft_instance_q31P30riscv_cfft_radix4_instance_q318uint16_t8uint16_t5q31_t"></span><span id="_CPPv219riscv_dct4_init_q31P23riscv_dct4_instance_q31P23riscv_rfft_instance_q31P30riscv_cfft_radix4_instance_q318uint16_t8uint16_t5q31_t"></span><span class="target" id="group__DCT4__IDCT4_1ga5561b5f47987be3c7e4837c4c3292500"></span>riscv_status <code class="sig-name descname">riscv_dct4_init_q31</code><span class="sig-paren">(</span>riscv_dct4_instance_q31 *<em>S</em>, riscv_rfft_instance_q31 *<em>S_RFFT</em>, riscv_cfft_radix4_instance_q31 *<em>S_CFFT</em>, uint16_t <em>N</em>, uint16_t <em>Nby2</em>, q31_t <em>normalize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the Q31 DCT4/IDCT4. </p>
 <p><img alt="../../../_images/dct4NormalizingQ31Table.png" src="../../../_images/dct4NormalizingQ31Table.png" /><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
@@ -370,8 +369,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__DCT4__IDCT4_1gad26cd42b92834f519f43eca88ed88f50"></span>void <code class="sig-name descname">riscv_dct4_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_dct4_instance_q15 *<em>S</em>, q15_t *<em>pState</em>, q15_t *<em>pInlineBuffer</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv414riscv_dct4_q15PK23riscv_dct4_instance_q15P5q15_tP5q15_t">
+<span id="_CPPv314riscv_dct4_q15PK23riscv_dct4_instance_q15P5q15_tP5q15_t"></span><span id="_CPPv214riscv_dct4_q15PK23riscv_dct4_instance_q15P5q15_tP5q15_t"></span><span class="target" id="group__DCT4__IDCT4_1gad26cd42b92834f519f43eca88ed88f50"></span>void <code class="sig-name descname">riscv_dct4_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_dct4_instance_q15 *<em>S</em>, q15_t *<em>pState</em>, q15_t *<em>pInlineBuffer</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the Q15 DCT4/IDCT4. </p>
 <p><img alt="../../../_images/dct4FormatsQ15Table.png" src="../../../_images/dct4FormatsQ15Table.png" /><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -389,8 +388,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__DCT4__IDCT4_1ga7e8a6565ae2b938959d5d844610afe82"></span>void <code class="sig-name descname">riscv_dct4_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_dct4_instance_q31 *<em>S</em>, q31_t *<em>pState</em>, q31_t *<em>pInlineBuffer</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv414riscv_dct4_q31PK23riscv_dct4_instance_q31P5q31_tP5q31_t">
+<span id="_CPPv314riscv_dct4_q31PK23riscv_dct4_instance_q31P5q31_tP5q31_t"></span><span id="_CPPv214riscv_dct4_q31PK23riscv_dct4_instance_q31P5q31_tP5q31_t"></span><span class="target" id="group__DCT4__IDCT4_1ga7e8a6565ae2b938959d5d844610afe82"></span>void <code class="sig-name descname">riscv_dct4_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_dct4_instance_q31 *<em>S</em>, q31_t *<em>pState</em>, q31_t *<em>pInlineBuffer</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the Q31 DCT4/IDCT4. </p>
 <p><img alt="../../../_images/dct4FormatsQ31Table.png" src="../../../_images/dct4FormatsQ31Table.png" /><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -410,7 +409,7 @@
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
@@ -434,7 +433,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 06, 2021.
+        Last updated on Aug 09, 2021.
       </span>
 
     </p>

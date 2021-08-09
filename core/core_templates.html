@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>NMSIS-Core Device Templates &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  <title>NMSIS-Core Device Templates &mdash; NMSIS 1.0.2-RC2 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC1
+                1.0.2-RC2
               </div>
             
           
@@ -89,7 +88,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">NMSIS Core</a><ul class="current">
@@ -112,7 +111,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="register_mapping.html">Register Mapping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/index.html">NMSIS CORE API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html">NMSIS Core API</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../dsp/index.html">NMSIS DSP</a></li>
@@ -186,9 +185,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="nmsis-core-device-templates">
+  <div class="section" id="nmsis-core-device-templates">
 <span id="core-device-templates"></span><h1>NMSIS-Core Device Templates<a class="headerlink" href="#nmsis-core-device-templates" title="Permalink to this headline">¶</a></h1>
-<section id="introduction">
+<div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>Nuclei supplies NMSIS-Core device template files for the all supported Nuclei N/NX Class Processors and various compiler vendors.
 Refer to the list of <a class="reference internal" href="overview.html#core-toolchain-support"><span class="std std-ref">supported toolchain</span></a> for compliance.</p>
@@ -201,20 +200,18 @@ Refer to the list of <a class="reference internal" href="overview.html#core-tool
 </dd>
 </dl>
 <p>The detailed file structure of the NMSIS-Core device templates is shown in the following picture.</p>
-<figure class="align-center" id="id1">
+<div class="figure align-center" id="id1">
 <span id="figure-core-templates-1"></span><a class="reference internal image-reference" href="../_images/NMSIS_CORE_Templates.png"><img alt="NMSIS-Core Device Templates" src="../_images/NMSIS_CORE_Templates.png" style="width: 80%;" /></a>
-<figcaption>
-<p><span class="caption-text">NMSIS-Core Device Templates</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-</section>
-<section id="nmsis-core-processor-files">
+<p class="caption"><span class="caption-text">NMSIS-Core Device Templates</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="nmsis-core-processor-files">
 <h2>NMSIS-Core Processor Files<a class="headerlink" href="#nmsis-core-processor-files" title="Permalink to this headline">¶</a></h2>
 <p>The NMSIS-Core processor files provided by Nuclei are in the directory <em>NMSIS/Core/Include</em>.</p>
 <p>These header files define all processor specific attributes do not need any modifications.</p>
 <p>The <em>nmsis_core.h</em> defines the core peripherals and provides helper functions that access the core registers.</p>
-</section>
-<section id="device-examples">
+</div>
+<div class="section" id="device-examples">
 <h2>Device Examples<a class="headerlink" href="#device-examples" title="Permalink to this headline">¶</a></h2>
 <p>The NMSIS Software Pack defines several devices that are based on the Nuclei N/NX processors.</p>
 <p>The device related NMSIS-Core files are in the directory <em>Device/Nuclei</em> and include
@@ -242,8 +239,8 @@ NMSIS-Core processor file explained before.</p>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="template-files">
+</div>
+<div class="section" id="template-files">
 <h2>Template Files<a class="headerlink" href="#template-files" title="Permalink to this headline">¶</a></h2>
 <p>To simplify the creation of NMSIS-Core device files, the following template files are provided
 that should be extended by the silicon vendor to reflect the actual device and device peripherals.</p>
@@ -299,8 +296,8 @@ that should be extended by the silicon vendor to reflect the actual device and d
 <p>The template files for silicon vendors are placed under <em>./Device/_Template_Vendor/Vendor/</em>.</p>
 <p>Please goto that folder to find the file list in the above table.</p>
 </div>
-</section>
-<section id="adapt-template-files-to-a-device">
+</div>
+<div class="section" id="adapt-template-files-to-a-device">
 <h2>Adapt Template Files to a Device<a class="headerlink" href="#adapt-template-files-to-a-device" title="Permalink to this headline">¶</a></h2>
 <p>The following steps describe how to adopt the template files to a specific device or device family.</p>
 <dl class="simple">
@@ -337,8 +334,8 @@ that should be extended by the silicon vendor to reflect the actual device and d
 </tr>
 </tbody>
 </table>
-</section>
-<section id="device-templates-explaination">
+</div>
+<div class="section" id="device-templates-explaination">
 <h2>Device Templates Explaination<a class="headerlink" href="#device-templates-explaination" title="Permalink to this headline">¶</a></h2>
 <p>The device configuration of the template files is described in detail on the following pages:</p>
 <div class="toctree-wrapper compound">
@@ -373,8 +370,8 @@ that should be extended by the silicon vendor to reflect the actual device and d
 </li>
 </ul>
 </div>
-</section>
-</section>
+</div>
+</div>
 
 
            </div>
@@ -398,7 +395,7 @@ that should be extended by the silicon vendor to reflect the actual device and d
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 06, 2021.
+        Last updated on Aug 09, 2021.
       </span>
 
     </p>

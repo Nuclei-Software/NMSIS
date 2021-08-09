@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Concatenation Functions &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  <title>Concatenation Functions &mdash; NMSIS 1.0.2-RC2 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC1
+                1.0.2-RC2
               </div>
             
           
@@ -89,7 +88,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -192,7 +191,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="concatenation-functions">
+  <div class="section" id="concatenation-functions">
 <span id="nmsis-nn-api-concatenation-functions"></span><h1>Concatenation Functions<a class="headerlink" href="#concatenation-functions" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="_CPPv424riscv_concatenation_s8_wPK6int8_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP6int8_tK8uint32_t">
@@ -220,8 +219,8 @@
 <dd><div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Functions</p>
 <dl class="function">
-<dt>
-<span class="target" id="group__Concatenation_1ga59ce48c133477f158e6bfae43414b72a"></span>void <code class="sig-name descname">riscv_concatenation_s8_w</code><span class="sig-paren">(</span><em class="property">const</em> int8_t *<em>input</em>, <em class="property">const</em> uint16_t <em>input_x</em>, <em class="property">const</em> uint16_t <em>input_y</em>, <em class="property">const</em> uint16_t <em>input_z</em>, <em class="property">const</em> uint16_t <em>input_w</em>, int8_t *<em>output</em>, <em class="property">const</em> uint32_t <em>offset_w</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv424riscv_concatenation_s8_wPK6int8_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP6int8_tK8uint32_t">
+<span id="_CPPv324riscv_concatenation_s8_wPK6int8_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP6int8_tK8uint32_t"></span><span id="_CPPv224riscv_concatenation_s8_wPK6int8_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP6int8_tK8uint32_t"></span><span class="target" id="group__Concatenation_1ga59ce48c133477f158e6bfae43414b72a"></span>void <code class="sig-name descname">riscv_concatenation_s8_w</code><span class="sig-paren">(</span><em class="property">const</em> int8_t *<em>input</em>, <em class="property">const</em> uint16_t <em>input_x</em>, <em class="property">const</em> uint16_t <em>input_y</em>, <em class="property">const</em> uint16_t <em>input_z</em>, <em class="property">const</em> uint16_t <em>input_w</em>, int8_t *<em>output</em>, <em class="property">const</em> uint32_t <em>offset_w</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>int8/uint8 concatenation function to be used for concatenating N-tensors along the W axis (Batch size) This function should be called for each input tensor to concatenate. The argument offset_w will be used to store the input tensor in the correct position in the output tensor </p>
 <p>i.e. offset_w = 0 for(i = 0 i &lt; num_input_tensors; ++i) { riscv_concatenation_s8_w(&amp;input[i], …, &amp;output, …, …, offset_w) offset_w += input_w[i] }</p>
 <p>This function assumes that the output tensor has:<ol class="arabic simple">
@@ -249,8 +248,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__Concatenation_1gafa12d1ee96f292d65d1e49468d6dc831"></span>void <code class="sig-name descname">riscv_concatenation_s8_x</code><span class="sig-paren">(</span><em class="property">const</em> int8_t *<em>input</em>, <em class="property">const</em> uint16_t <em>input_x</em>, <em class="property">const</em> uint16_t <em>input_y</em>, <em class="property">const</em> uint16_t <em>input_z</em>, <em class="property">const</em> uint16_t <em>input_w</em>, int8_t *<em>output</em>, <em class="property">const</em> uint16_t <em>output_x</em>, <em class="property">const</em> uint32_t <em>offset_x</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv424riscv_concatenation_s8_xPK6int8_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP6int8_tK8uint16_tK8uint32_t">
+<span id="_CPPv324riscv_concatenation_s8_xPK6int8_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP6int8_tK8uint16_tK8uint32_t"></span><span id="_CPPv224riscv_concatenation_s8_xPK6int8_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP6int8_tK8uint16_tK8uint32_t"></span><span class="target" id="group__Concatenation_1gafa12d1ee96f292d65d1e49468d6dc831"></span>void <code class="sig-name descname">riscv_concatenation_s8_x</code><span class="sig-paren">(</span><em class="property">const</em> int8_t *<em>input</em>, <em class="property">const</em> uint16_t <em>input_x</em>, <em class="property">const</em> uint16_t <em>input_y</em>, <em class="property">const</em> uint16_t <em>input_z</em>, <em class="property">const</em> uint16_t <em>input_w</em>, int8_t *<em>output</em>, <em class="property">const</em> uint16_t <em>output_x</em>, <em class="property">const</em> uint32_t <em>offset_x</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>int8/uint8 concatenation function to be used for concatenating N-tensors along the X axis This function should be called for each input tensor to concatenate. The argument offset_x will be used to store the input tensor in the correct position in the output tensor </p>
 <p>i.e. offset_x = 0 for(i = 0 i &lt; num_input_tensors; ++i) { riscv_concatenation_s8_x(&amp;input[i], …, &amp;output, …, …, offset_x) offset_x += input_x[i] }</p>
 <p>This function assumes that the output tensor has:<ol class="arabic simple">
@@ -279,8 +278,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__Concatenation_1ga465e5094e0cfa990768f2d1e8ed2de6f"></span>void <code class="sig-name descname">riscv_concatenation_s8_y</code><span class="sig-paren">(</span><em class="property">const</em> int8_t *<em>input</em>, <em class="property">const</em> uint16_t <em>input_x</em>, <em class="property">const</em> uint16_t <em>input_y</em>, <em class="property">const</em> uint16_t <em>input_z</em>, <em class="property">const</em> uint16_t <em>input_w</em>, int8_t *<em>output</em>, <em class="property">const</em> uint16_t <em>output_y</em>, <em class="property">const</em> uint32_t <em>offset_y</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv424riscv_concatenation_s8_yPK6int8_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP6int8_tK8uint16_tK8uint32_t">
+<span id="_CPPv324riscv_concatenation_s8_yPK6int8_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP6int8_tK8uint16_tK8uint32_t"></span><span id="_CPPv224riscv_concatenation_s8_yPK6int8_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP6int8_tK8uint16_tK8uint32_t"></span><span class="target" id="group__Concatenation_1ga465e5094e0cfa990768f2d1e8ed2de6f"></span>void <code class="sig-name descname">riscv_concatenation_s8_y</code><span class="sig-paren">(</span><em class="property">const</em> int8_t *<em>input</em>, <em class="property">const</em> uint16_t <em>input_x</em>, <em class="property">const</em> uint16_t <em>input_y</em>, <em class="property">const</em> uint16_t <em>input_z</em>, <em class="property">const</em> uint16_t <em>input_w</em>, int8_t *<em>output</em>, <em class="property">const</em> uint16_t <em>output_y</em>, <em class="property">const</em> uint32_t <em>offset_y</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>int8/uint8 concatenation function to be used for concatenating N-tensors along the Y axis This function should be called for each input tensor to concatenate. The argument offset_y will be used to store the input tensor in the correct position in the output tensor </p>
 <p>i.e. offset_y = 0 for(i = 0 i &lt; num_input_tensors; ++i) { riscv_concatenation_s8_y(&amp;input[i], …, &amp;output, …, …, offset_y) offset_y += input_y[i] }</p>
 <p>This function assumes that the output tensor has:<ol class="arabic simple">
@@ -309,8 +308,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__Concatenation_1ga31ca151014169081ff8ed1b199bba65e"></span>void <code class="sig-name descname">riscv_concatenation_s8_z</code><span class="sig-paren">(</span><em class="property">const</em> int8_t *<em>input</em>, <em class="property">const</em> uint16_t <em>input_x</em>, <em class="property">const</em> uint16_t <em>input_y</em>, <em class="property">const</em> uint16_t <em>input_z</em>, <em class="property">const</em> uint16_t <em>input_w</em>, int8_t *<em>output</em>, <em class="property">const</em> uint16_t <em>output_z</em>, <em class="property">const</em> uint32_t <em>offset_z</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv424riscv_concatenation_s8_zPK6int8_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP6int8_tK8uint16_tK8uint32_t">
+<span id="_CPPv324riscv_concatenation_s8_zPK6int8_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP6int8_tK8uint16_tK8uint32_t"></span><span id="_CPPv224riscv_concatenation_s8_zPK6int8_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP6int8_tK8uint16_tK8uint32_t"></span><span class="target" id="group__Concatenation_1ga31ca151014169081ff8ed1b199bba65e"></span>void <code class="sig-name descname">riscv_concatenation_s8_z</code><span class="sig-paren">(</span><em class="property">const</em> int8_t *<em>input</em>, <em class="property">const</em> uint16_t <em>input_x</em>, <em class="property">const</em> uint16_t <em>input_y</em>, <em class="property">const</em> uint16_t <em>input_z</em>, <em class="property">const</em> uint16_t <em>input_w</em>, int8_t *<em>output</em>, <em class="property">const</em> uint16_t <em>output_z</em>, <em class="property">const</em> uint32_t <em>offset_z</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>int8/uint8 concatenation function to be used for concatenating N-tensors along the Z axis This function should be called for each input tensor to concatenate. The argument offset_z will be used to store the input tensor in the correct position in the output tensor </p>
 <p>i.e. offset_z = 0 for(i = 0 i &lt; num_input_tensors; ++i) { riscv_concatenation_s8_z(&amp;input[i], …, &amp;output, …, …, offset_z) offset_z += input_z[i] }</p>
 <p>This function assumes that the output tensor has:<ol class="arabic simple">
@@ -341,7 +340,7 @@
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
@@ -365,7 +364,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 06, 2021.
+        Last updated on Aug 09, 2021.
       </span>
 
     </p>

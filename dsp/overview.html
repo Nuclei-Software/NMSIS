@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Overview &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  <title>Overview &mdash; NMSIS 1.0.2-RC2 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC1
+                1.0.2-RC2
               </div>
             
           
@@ -89,7 +88,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../core/index.html">NMSIS Core</a></li>
@@ -178,9 +177,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="overview">
+  <div class="section" id="overview">
 <span id="dsp-overview"></span><h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
-<section id="introduction">
+<div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>This user manual describes the NMSIS DSP software library,
 a suite of common signal processing functions for use on Nuclei N/NX Class Processors based devices.</p>
@@ -199,29 +198,29 @@ a suite of common signal processing functions for use on Nuclei N/NX Class Proce
 </ul>
 <p>The library has separate functions for operating on 8-bit integers, 16-bit integers,
 32-bit integer and 32-bit floating-point values.</p>
-</section>
-<section id="using-the-library">
+</div>
+<div class="section" id="using-the-library">
 <h2>Using the Library<a class="headerlink" href="#using-the-library" title="Permalink to this headline">¶</a></h2>
 <p>The library functions are declared in the public file <code class="docutils literal notranslate"><span class="pre">riscv_math.h</span></code> which is placed in the <em>NMSIS/DSP/Include</em> folder.</p>
 <p>Simply include this file and link the appropriate library in the application and begin calling the library functions.</p>
 <p>The Library supports single public header file <code class="docutils literal notranslate"><span class="pre">riscv_math.h</span></code> for Nuclei N/NX Class Processors cores with little endian.
 Same header file will be used for floating point unit(FPU) variants.</p>
-</section>
-<section id="examples">
+</div>
+<div class="section" id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <p>The library ships with <a class="reference internal" href="api/api_groupexamples.html#nmsis-dsp-api-examples"><span class="std std-ref">a number of examples</span></a> which demonstrate how to use the library functions.</p>
-</section>
-<section id="toolchain-support">
+</div>
+<div class="section" id="toolchain-support">
 <h2>Toolchain Support<a class="headerlink" href="#toolchain-support" title="Permalink to this headline">¶</a></h2>
 <p>The library has been developed and tested with RISCV GCC Toolchain.</p>
 <p>The library is being tested in GCC toolchain and updates on this activity will be made available shortly.</p>
-</section>
-<section id="building-the-library">
+</div>
+<div class="section" id="building-the-library">
 <h2>Building the Library<a class="headerlink" href="#building-the-library" title="Permalink to this headline">¶</a></h2>
 <p>The library installer contains a <strong>Makefile</strong> to rebuild libraries on Nuclei RISCV GCC toolchain in the <strong>NMSIS/</strong> folder.</p>
 <p>The libraries can be built by run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">gen_dsp_lib</span></code>, it will build and install DSP library into <strong>Library/DSP/GCC</strong> folder.</p>
-</section>
-<section id="preprocessor-macros">
+</div>
+<div class="section" id="preprocessor-macros">
 <h2>Preprocessor Macros<a class="headerlink" href="#preprocessor-macros" title="Permalink to this headline">¶</a></h2>
 <p>Each library project have different preprocessor macros.</p>
 <dl class="simple">
@@ -232,8 +231,8 @@ Same header file will be used for floating point unit(FPU) variants.</p>
 <dt>RISCV_MATH_LOOPUNROLL:</dt><dd><p>Define macro RISCV_MATH_LOOPUNROLL to enable manual loop unrolling in DSP functions</p>
 </dd>
 </dl>
-</section>
-</section>
+</div>
+</div>
 
 
            </div>
@@ -257,7 +256,7 @@ Same header file will be used for floating point unit(FPU) variants.</p>
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 06, 2021.
+        Last updated on Aug 09, 2021.
       </span>
 
     </p>

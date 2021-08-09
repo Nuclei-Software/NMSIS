@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Linear Interpolation &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  <title>Linear Interpolation &mdash; NMSIS 1.0.2-RC2 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC1
+                1.0.2-RC2
               </div>
             
           
@@ -89,7 +88,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -196,7 +195,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="linear-interpolation">
+  <div class="section" id="linear-interpolation">
 <span id="nmsis-dsp-api-linear-interpolation"></span><h1>Linear Interpolation<a class="headerlink" href="#linear-interpolation" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="_CPPv423riscv_linear_interp_f32P32riscv_linear_interp_instance_f329float32_t">
@@ -244,8 +243,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Functions</p>
 <dl class="function">
-<dt>
-<span class="target" id="group__LinearInterpolate_1ga99fdb5f276452d1c928925e0d4463cc0"></span>float32_t <code class="sig-name descname">riscv_linear_interp_f32</code><span class="sig-paren">(</span>riscv_linear_interp_instance_f32 *<em>S</em>, float32_t <em>x</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv423riscv_linear_interp_f32P32riscv_linear_interp_instance_f329float32_t">
+<span id="_CPPv323riscv_linear_interp_f32P32riscv_linear_interp_instance_f329float32_t"></span><span id="_CPPv223riscv_linear_interp_f32P32riscv_linear_interp_instance_f329float32_t"></span><span class="target" id="group__LinearInterpolate_1ga99fdb5f276452d1c928925e0d4463cc0"></span>float32_t <code class="sig-name descname">riscv_linear_interp_f32</code><span class="sig-paren">(</span>riscv_linear_interp_instance_f32 *<em>S</em>, float32_t <em>x</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Process function for the floating-point Linear Interpolation Function. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>y processed output sample. </p>
@@ -260,8 +259,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__LinearInterpolate_1gabf200f771b7d2908109d59d5d5a4ed5f"></span>q31_t <code class="sig-name descname">riscv_linear_interp_q31</code><span class="sig-paren">(</span>q31_t *<em>pYData</em>, q31_t <em>x</em>, uint32_t <em>nValues</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv423riscv_linear_interp_q31P5q31_t5q31_t8uint32_t">
+<span id="_CPPv323riscv_linear_interp_q31P5q31_t5q31_t8uint32_t"></span><span id="_CPPv223riscv_linear_interp_q31P5q31_t5q31_t8uint32_t"></span><span class="target" id="group__LinearInterpolate_1gabf200f771b7d2908109d59d5d5a4ed5f"></span>q31_t <code class="sig-name descname">riscv_linear_interp_q31</code><span class="sig-paren">(</span>q31_t *<em>pYData</em>, q31_t <em>x</em>, uint32_t <em>nValues</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Process function for the Q31 Linear Interpolation Function. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>y processed output sample.</p>
@@ -279,8 +278,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__LinearInterpolate_1gac22748db662a47a1f7df981905968c80"></span>q15_t <code class="sig-name descname">riscv_linear_interp_q15</code><span class="sig-paren">(</span>q15_t *<em>pYData</em>, q31_t <em>x</em>, uint32_t <em>nValues</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv423riscv_linear_interp_q15P5q15_t5q31_t8uint32_t">
+<span id="_CPPv323riscv_linear_interp_q15P5q15_t5q31_t8uint32_t"></span><span id="_CPPv223riscv_linear_interp_q15P5q15_t5q31_t8uint32_t"></span><span class="target" id="group__LinearInterpolate_1gac22748db662a47a1f7df981905968c80"></span>q15_t <code class="sig-name descname">riscv_linear_interp_q15</code><span class="sig-paren">(</span>q15_t *<em>pYData</em>, q31_t <em>x</em>, uint32_t <em>nValues</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Process function for the Q15 Linear Interpolation Function. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>y processed output sample.</p>
@@ -298,8 +297,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__LinearInterpolate_1ga8cfce13f4bb13b4e8c4ff1a02da9584b"></span>q7_t <code class="sig-name descname">riscv_linear_interp_q7</code><span class="sig-paren">(</span>q7_t *<em>pYData</em>, q31_t <em>x</em>, uint32_t <em>nValues</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv422riscv_linear_interp_q7P4q7_t5q31_t8uint32_t">
+<span id="_CPPv322riscv_linear_interp_q7P4q7_t5q31_t8uint32_t"></span><span id="_CPPv222riscv_linear_interp_q7P4q7_t5q31_t8uint32_t"></span><span class="target" id="group__LinearInterpolate_1ga8cfce13f4bb13b4e8c4ff1a02da9584b"></span>q7_t <code class="sig-name descname">riscv_linear_interp_q7</code><span class="sig-paren">(</span>q7_t *<em>pYData</em>, q31_t <em>x</em>, uint32_t <em>nValues</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Process function for the Q7 Linear Interpolation Function. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>y processed output sample.</p>
@@ -317,8 +316,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__LinearInterpolate_1ga651920e71f16ca5c2932ee039cf68bbf"></span>float16_t <code class="sig-name descname">riscv_linear_interp_f16</code><span class="sig-paren">(</span>riscv_linear_interp_instance_f16 *<em>S</em>, float16_t <em>x</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv423riscv_linear_interp_f16P32riscv_linear_interp_instance_f169float16_t">
+<span id="_CPPv323riscv_linear_interp_f16P32riscv_linear_interp_instance_f169float16_t"></span><span id="_CPPv223riscv_linear_interp_f16P32riscv_linear_interp_instance_f169float16_t"></span><span class="target" id="group__LinearInterpolate_1ga651920e71f16ca5c2932ee039cf68bbf"></span>float16_t <code class="sig-name descname">riscv_linear_interp_f16</code><span class="sig-paren">(</span>riscv_linear_interp_instance_f16 *<em>S</em>, float16_t <em>x</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Process function for the floating-point Linear Interpolation Function. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>y processed output sample. </p>
@@ -335,7 +334,7 @@
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
@@ -359,7 +358,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 06, 2021.
+        Last updated on Aug 09, 2021.
       </span>
 
     </p>

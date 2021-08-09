@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Kullback-Leibler divergence &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  <title>Kullback-Leibler divergence &mdash; NMSIS 1.0.2-RC2 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC1
+                1.0.2-RC2
               </div>
             
           
@@ -89,7 +88,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -205,7 +204,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="kullback-leibler-divergence">
+  <div class="section" id="kullback-leibler-divergence">
 <span id="nmsis-dsp-api-kullback-leibler-divergence"></span><h1>Kullback-Leibler divergence<a class="headerlink" href="#kullback-leibler-divergence" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="_CPPv426riscv_kullback_leibler_f16PK9float16_tPK9float16_t8uint32_t">
@@ -229,8 +228,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Functions</p>
 <dl class="function">
-<dt>
-<span class="target" id="group__Kullback-Leibler_1gafe8dbf7d603f3228499f09a6e09a9a54"></span>float16_t <code class="sig-name descname">riscv_kullback_leibler_f16</code><span class="sig-paren">(</span><em class="property">const</em> float16_t *<em>pSrcA</em>, <em class="property">const</em> float16_t *<em>pSrcB</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv426riscv_kullback_leibler_f16PK9float16_tPK9float16_t8uint32_t">
+<span id="_CPPv326riscv_kullback_leibler_f16PK9float16_tPK9float16_t8uint32_t"></span><span id="_CPPv226riscv_kullback_leibler_f16PK9float16_tPK9float16_t8uint32_t"></span><span class="target" id="group__Kullback-Leibler_1gafe8dbf7d603f3228499f09a6e09a9a54"></span>float16_t <code class="sig-name descname">riscv_kullback_leibler_f16</code><span class="sig-paren">(</span><em class="property">const</em> float16_t *<em>pSrcA</em>, <em class="property">const</em> float16_t *<em>pSrcB</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Kullback-Leibler. </p>
 <p>Distribution A may contain 0 with Neon version. Result will be right but some exception flags will be set.</p>
 <p>Distribution B must not contain 0 probability.</p>
@@ -248,8 +247,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__Kullback-Leibler_1gaa47bdf413b095b4e91e5f9c582cec328"></span>float32_t <code class="sig-name descname">riscv_kullback_leibler_f32</code><span class="sig-paren">(</span><em class="property">const</em> float32_t *<em>pSrcA</em>, <em class="property">const</em> float32_t *<em>pSrcB</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv426riscv_kullback_leibler_f32PK9float32_tPK9float32_t8uint32_t">
+<span id="_CPPv326riscv_kullback_leibler_f32PK9float32_tPK9float32_t8uint32_t"></span><span id="_CPPv226riscv_kullback_leibler_f32PK9float32_tPK9float32_t8uint32_t"></span><span class="target" id="group__Kullback-Leibler_1gaa47bdf413b095b4e91e5f9c582cec328"></span>float32_t <code class="sig-name descname">riscv_kullback_leibler_f32</code><span class="sig-paren">(</span><em class="property">const</em> float32_t *<em>pSrcA</em>, <em class="property">const</em> float32_t *<em>pSrcB</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Kullback-Leibler. </p>
 <p>Distribution A may contain 0 with Neon version. Result will be right but some exception flags will be set.</p>
 <p>Distribution B must not contain 0 probability.</p>
@@ -267,8 +266,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__Kullback-Leibler_1ga93112195a3156992ae7eb1ddad0e5c26"></span>float64_t <code class="sig-name descname">riscv_kullback_leibler_f64</code><span class="sig-paren">(</span><em class="property">const</em> float64_t *<em>pSrcA</em>, <em class="property">const</em> float64_t *<em>pSrcB</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv426riscv_kullback_leibler_f64PK9float64_tPK9float64_t8uint32_t">
+<span id="_CPPv326riscv_kullback_leibler_f64PK9float64_tPK9float64_t8uint32_t"></span><span id="_CPPv226riscv_kullback_leibler_f64PK9float64_tPK9float64_t8uint32_t"></span><span class="target" id="group__Kullback-Leibler_1ga93112195a3156992ae7eb1ddad0e5c26"></span>float64_t <code class="sig-name descname">riscv_kullback_leibler_f64</code><span class="sig-paren">(</span><em class="property">const</em> float64_t *<em>pSrcA</em>, <em class="property">const</em> float64_t *<em>pSrcB</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Kullback-Leibler. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>Kullback-Leibler divergence D(A || B) </p>
@@ -286,7 +285,7 @@
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
@@ -310,7 +309,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 06, 2021.
+        Last updated on Aug 09, 2021.
       </span>
 
     </p>

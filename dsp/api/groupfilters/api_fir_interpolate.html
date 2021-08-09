@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Finite Impulse Response (FIR) Interpolator &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  <title>Finite Impulse Response (FIR) Interpolator &mdash; NMSIS 1.0.2-RC2 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC1
+                1.0.2-RC2
               </div>
             
           
@@ -89,7 +88,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -208,7 +207,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="finite-impulse-response-fir-interpolator">
+  <div class="section" id="finite-impulse-response-fir-interpolator">
 <span id="nmsis-dsp-api-finite-impulse-response-fir-interpolator"></span><h1>Finite Impulse Response (FIR) Interpolator<a class="headerlink" href="#finite-impulse-response-fir-interpolator" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="_CPPv425riscv_fir_interpolate_f32PK34riscv_fir_interpolate_instance_f32PK9float32_tP9float32_t8uint32_t">
@@ -276,8 +275,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Functions</p>
 <dl class="function">
-<dt>
-<span class="target" id="group__FIR__Interpolate_1ga069caef71ac2cb05f23b2e80b6ad905f"></span>void <code class="sig-name descname">riscv_fir_interpolate_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_interpolate_instance_f32 *<em>S</em>, <em class="property">const</em> float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv425riscv_fir_interpolate_f32PK34riscv_fir_interpolate_instance_f32PK9float32_tP9float32_t8uint32_t">
+<span id="_CPPv325riscv_fir_interpolate_f32PK34riscv_fir_interpolate_instance_f32PK9float32_tP9float32_t8uint32_t"></span><span id="_CPPv225riscv_fir_interpolate_f32PK34riscv_fir_interpolate_instance_f32PK9float32_tP9float32_t8uint32_t"></span><span class="target" id="group__FIR__Interpolate_1ga069caef71ac2cb05f23b2e80b6ad905f"></span>void <code class="sig-name descname">riscv_fir_interpolate_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_interpolate_instance_f32 *<em>S</em>, <em class="property">const</em> float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for floating-point FIR interpolator. </p>
 <p>Processing function for the floating-point FIR interpolator.</p>
 <p><dl class="simple">
@@ -295,8 +294,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FIR__Interpolate_1ga14893a7638b8a8f6383bf5a589ba6d55"></span>riscv_status <code class="sig-name descname">riscv_fir_interpolate_init_f32</code><span class="sig-paren">(</span>riscv_fir_interpolate_instance_f32 *<em>S</em>, uint8_t <em>L</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> float32_t *<em>pCoeffs</em>, float32_t *<em>pState</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv430riscv_fir_interpolate_init_f32P34riscv_fir_interpolate_instance_f327uint8_t8uint16_tPK9float32_tP9float32_t8uint32_t">
+<span id="_CPPv330riscv_fir_interpolate_init_f32P34riscv_fir_interpolate_instance_f327uint8_t8uint16_tPK9float32_tP9float32_t8uint32_t"></span><span id="_CPPv230riscv_fir_interpolate_init_f32P34riscv_fir_interpolate_instance_f327uint8_t8uint16_tPK9float32_tP9float32_t8uint32_t"></span><span class="target" id="group__FIR__Interpolate_1ga14893a7638b8a8f6383bf5a589ba6d55"></span>riscv_status <code class="sig-name descname">riscv_fir_interpolate_init_f32</code><span class="sig-paren">(</span>riscv_fir_interpolate_instance_f32 *<em>S</em>, uint8_t <em>L</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> float32_t *<em>pCoeffs</em>, float32_t *<em>pState</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the floating-point FIR interpolator. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
@@ -325,8 +324,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FIR__Interpolate_1ga139d8f20abd891307d7612c4a644ba5c"></span>riscv_status <code class="sig-name descname">riscv_fir_interpolate_init_q15</code><span class="sig-paren">(</span>riscv_fir_interpolate_instance_q15 *<em>S</em>, uint8_t <em>L</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> q15_t *<em>pCoeffs</em>, q15_t *<em>pState</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv430riscv_fir_interpolate_init_q15P34riscv_fir_interpolate_instance_q157uint8_t8uint16_tPK5q15_tP5q15_t8uint32_t">
+<span id="_CPPv330riscv_fir_interpolate_init_q15P34riscv_fir_interpolate_instance_q157uint8_t8uint16_tPK5q15_tP5q15_t8uint32_t"></span><span id="_CPPv230riscv_fir_interpolate_init_q15P34riscv_fir_interpolate_instance_q157uint8_t8uint16_tPK5q15_tP5q15_t8uint32_t"></span><span class="target" id="group__FIR__Interpolate_1ga139d8f20abd891307d7612c4a644ba5c"></span>riscv_status <code class="sig-name descname">riscv_fir_interpolate_init_q15</code><span class="sig-paren">(</span>riscv_fir_interpolate_instance_q15 *<em>S</em>, uint8_t <em>L</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> q15_t *<em>pCoeffs</em>, q15_t *<em>pState</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the Q15 FIR interpolator. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
@@ -353,8 +352,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FIR__Interpolate_1gaa0eab8390463d568ab715ad7bd2c2b04"></span>riscv_status <code class="sig-name descname">riscv_fir_interpolate_init_q31</code><span class="sig-paren">(</span>riscv_fir_interpolate_instance_q31 *<em>S</em>, uint8_t <em>L</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> q31_t *<em>pCoeffs</em>, q31_t *<em>pState</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv430riscv_fir_interpolate_init_q31P34riscv_fir_interpolate_instance_q317uint8_t8uint16_tPK5q31_tP5q31_t8uint32_t">
+<span id="_CPPv330riscv_fir_interpolate_init_q31P34riscv_fir_interpolate_instance_q317uint8_t8uint16_tPK5q31_tP5q31_t8uint32_t"></span><span id="_CPPv230riscv_fir_interpolate_init_q31P34riscv_fir_interpolate_instance_q317uint8_t8uint16_tPK5q31_tP5q31_t8uint32_t"></span><span class="target" id="group__FIR__Interpolate_1gaa0eab8390463d568ab715ad7bd2c2b04"></span>riscv_status <code class="sig-name descname">riscv_fir_interpolate_init_q31</code><span class="sig-paren">(</span>riscv_fir_interpolate_instance_q31 *<em>S</em>, uint8_t <em>L</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> q31_t *<em>pCoeffs</em>, q31_t *<em>pState</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the Q31 FIR interpolator. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
@@ -381,8 +380,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FIR__Interpolate_1ga8fff424b316684f02ac5aae58b1f315b"></span>void <code class="sig-name descname">riscv_fir_interpolate_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_interpolate_instance_q15 *<em>S</em>, <em class="property">const</em> q15_t *<em>pSrc</em>, q15_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv425riscv_fir_interpolate_q15PK34riscv_fir_interpolate_instance_q15PK5q15_tP5q15_t8uint32_t">
+<span id="_CPPv325riscv_fir_interpolate_q15PK34riscv_fir_interpolate_instance_q15PK5q15_tP5q15_t8uint32_t"></span><span id="_CPPv225riscv_fir_interpolate_q15PK34riscv_fir_interpolate_instance_q15PK5q15_tP5q15_t8uint32_t"></span><span class="target" id="group__FIR__Interpolate_1ga8fff424b316684f02ac5aae58b1f315b"></span>void <code class="sig-name descname">riscv_fir_interpolate_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_interpolate_instance_q15 *<em>S</em>, <em class="property">const</em> q15_t *<em>pSrc</em>, q15_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the Q15 FIR interpolator. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -401,8 +400,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FIR__Interpolate_1gab38e9dfb79024f09e685bb63f422014b"></span>void <code class="sig-name descname">riscv_fir_interpolate_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_interpolate_instance_q31 *<em>S</em>, <em class="property">const</em> q31_t *<em>pSrc</em>, q31_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv425riscv_fir_interpolate_q31PK34riscv_fir_interpolate_instance_q31PK5q31_tP5q31_t8uint32_t">
+<span id="_CPPv325riscv_fir_interpolate_q31PK34riscv_fir_interpolate_instance_q31PK5q31_tP5q31_t8uint32_t"></span><span id="_CPPv225riscv_fir_interpolate_q31PK34riscv_fir_interpolate_instance_q31PK5q31_tP5q31_t8uint32_t"></span><span class="target" id="group__FIR__Interpolate_1gab38e9dfb79024f09e685bb63f422014b"></span>void <code class="sig-name descname">riscv_fir_interpolate_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_interpolate_instance_q31 *<em>S</em>, <em class="property">const</em> q31_t *<em>pSrc</em>, q31_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the Q31 FIR interpolator. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -423,7 +422,7 @@
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
@@ -447,7 +446,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 06, 2021.
+        Last updated on Aug 09, 2021.
       </span>
 
     </p>

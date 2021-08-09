@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Vector sorting algorithms &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  <title>Vector sorting algorithms &mdash; NMSIS 1.0.2-RC2 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC1
+                1.0.2-RC2
               </div>
             
           
@@ -89,7 +88,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -203,7 +202,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="vector-sorting-algorithms">
+  <div class="section" id="vector-sorting-algorithms">
 <span id="nmsis-dsp-api-vector-sorting-algorithms"></span><h1>Vector sorting algorithms<a class="headerlink" href="#vector-sorting-algorithms" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="_CPPv420riscv_merge_sort_f32PK29riscv_merge_sort_instance_f32P9float32_tP9float32_t8uint32_t">
@@ -305,8 +304,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__Sorting_1gaac3b45bc72df45d36ebc1fa526353231"></span>void <code class="sig-name descname">riscv_merge_sort_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_merge_sort_instance_f32 *<em>S</em>, float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv420riscv_merge_sort_f32PK29riscv_merge_sort_instance_f32P9float32_tP9float32_t8uint32_t">
+<span id="_CPPv320riscv_merge_sort_f32PK29riscv_merge_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="_CPPv220riscv_merge_sort_f32PK29riscv_merge_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span class="target" id="group__Sorting_1gaac3b45bc72df45d36ebc1fa526353231"></span>void <code class="sig-name descname">riscv_merge_sort_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_merge_sort_instance_f32 *<em>S</em>, float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong>Algorithm</strong></dt><dd><p>The merge sort algorithm is a comparison algorithm that divide the input array in sublists and merge them to produce longer sorted sublists until there is only one list remaining.</p>
 </dd>
@@ -326,8 +325,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__Sorting_1ga7b8d6cb90cabde057c400031fda73b39"></span>void <code class="sig-name descname">riscv_merge_sort_init_f32</code><span class="sig-paren">(</span>riscv_merge_sort_instance_f32 *<em>S</em>, riscv_sort_dir <em>dir</em>, float32_t *<em>buffer</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv425riscv_merge_sort_init_f32P29riscv_merge_sort_instance_f3214riscv_sort_dirP9float32_t">
+<span id="_CPPv325riscv_merge_sort_init_f32P29riscv_merge_sort_instance_f3214riscv_sort_dirP9float32_t"></span><span id="_CPPv225riscv_merge_sort_init_f32P29riscv_merge_sort_instance_f3214riscv_sort_dirP9float32_t"></span><span class="target" id="group__Sorting_1ga7b8d6cb90cabde057c400031fda73b39"></span>void <code class="sig-name descname">riscv_merge_sort_init_f32</code><span class="sig-paren">(</span>riscv_merge_sort_instance_f32 *<em>S</em>, riscv_sort_dir <em>dir</em>, float32_t *<em>buffer</em><span class="sig-paren">)</span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an instance of the sorting structure. </p></li>
@@ -380,8 +379,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__Sorting_1gad65d573af02ff8b20ac5c78fc5e65bdd"></span>void <code class="sig-name descname">riscv_sort_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_sort_instance_f32 *<em>S</em>, float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv414riscv_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t">
+<span id="_CPPv314riscv_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="_CPPv214riscv_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span class="target" id="group__Sorting_1gad65d573af02ff8b20ac5c78fc5e65bdd"></span>void <code class="sig-name descname">riscv_sort_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_sort_instance_f32 *<em>S</em>, float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Generic sorting function. </p>
 <p><dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
@@ -396,8 +395,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__Sorting_1ga9ebea621c470fed41856a446dc14cf6a"></span>void <code class="sig-name descname">riscv_sort_init_f32</code><span class="sig-paren">(</span>riscv_sort_instance_f32 *<em>S</em>, riscv_sort_alg <em>alg</em>, riscv_sort_dir <em>dir</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv419riscv_sort_init_f32P23riscv_sort_instance_f3214riscv_sort_alg14riscv_sort_dir">
+<span id="_CPPv319riscv_sort_init_f32P23riscv_sort_instance_f3214riscv_sort_alg14riscv_sort_dir"></span><span id="_CPPv219riscv_sort_init_f32P23riscv_sort_instance_f3214riscv_sort_alg14riscv_sort_dir"></span><span class="target" id="group__Sorting_1ga9ebea621c470fed41856a446dc14cf6a"></span>void <code class="sig-name descname">riscv_sort_init_f32</code><span class="sig-paren">(</span>riscv_sort_instance_f32 *<em>S</em>, riscv_sort_alg <em>alg</em>, riscv_sort_dir <em>dir</em><span class="sig-paren">)</span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an instance of the sorting structure. </p></li>
@@ -412,7 +411,7 @@
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
@@ -436,7 +435,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 06, 2021.
+        Last updated on Aug 09, 2021.
       </span>
 
     </p>

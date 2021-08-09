@@ -1,28 +1,28 @@
 .. _nmsis_core_api:
 
-NMSIS CORE API
+NMSIS Core API
 ==============
 
-If you want to access doxygen generated NMSIS CORE API,
-please click `NMSIS CORE API Doxygen Documentation`_.
+If you want to access doxygen generated NMSIS Core API,
+please click `NMSIS Core Doxygen API Documentation`_.
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
 
-   
-   api_nmsis_core_versioncontrol.rst
-   api_nmsis_core_compilercontrol.rst
-   api_nmsis_core_periphaccess.rst
-   api_nmsis_core_csr_encoding.rst
-   api_nmsis_core_registers.rst
-   api_nmsis_core_csr_register_access.rst
-   api_nmsis_core_cpu_intrinsic.rst
-   api_nmsis_core_intexc.rst
-   api_nmsis_core_systimer.rst
-   api_nmsis_core_fpu_functions.rst
+   core_version_control.rst
+   core_compiler_control.rst
+   core_csr_access.rst
+   core_csr_encoding.rst
+   core_register_type.rst
+   core_intrinsics.rst
    api_nmsis_core_dsp_intrinsic.rst
-   api_nmsis_core_pmp_functions.rst
-   api_nmsis_core_cache.rst
-   api_nmsis_core_armcompatiable_functions.rst
+   core_periph_access.rst
+   core_systick.rst
+   core_interrupt_exception.rst
+   core_fpu.rst
+   core_pmp.rst
+   core_cache.rst
+   core_system_device.rst
+   core_arm_compatiable.rst
 
-.. _NMSIS CORE API Doxygen Documentation: ../../doxygen/core/html/modules.html
+.. _NMSIS Core Doxygen API Documentation: ../../doxygen/core/html/modules.html

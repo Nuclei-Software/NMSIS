@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Basic Math Functions for Neural Network Computation &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  <title>Basic Math Functions for Neural Network Computation &mdash; NMSIS 1.0.2-RC2 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC1
+                1.0.2-RC2
               </div>
             
           
@@ -89,7 +88,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../core/index.html">NMSIS Core</a></li>
@@ -179,7 +178,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="basic-math-functions-for-neural-network-computation">
+  <div class="section" id="basic-math-functions-for-neural-network-computation">
 <span id="nmsis-nn-api-basic-math-functions-for-neural-network-computation"></span><h1>Basic Math Functions for Neural Network Computation<a class="headerlink" href="#basic-math-functions-for-neural-network-computation" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="_CPPv429riscv_nn_accumulate_q7_to_q15P5q15_tPK4q7_t8uint32_t">
@@ -248,8 +247,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Functions</p>
 <dl class="function">
-<dt>
-<span class="target" id="group__NNBasicMath_1gaaa2307380e2a7d065d4dad6a928f8abb"></span>void <code class="sig-name descname">riscv_nn_accumulate_q7_to_q15</code><span class="sig-paren">(</span>q15_t *<em>dst</em>, <em class="property">const</em> q7_t *<em>src</em>, uint32_t <em>block_size</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv429riscv_nn_accumulate_q7_to_q15P5q15_tPK4q7_t8uint32_t">
+<span id="_CPPv329riscv_nn_accumulate_q7_to_q15P5q15_tPK4q7_t8uint32_t"></span><span id="_CPPv229riscv_nn_accumulate_q7_to_q15P5q15_tPK4q7_t8uint32_t"></span><span class="target" id="group__NNBasicMath_1gaaa2307380e2a7d065d4dad6a928f8abb"></span>void <code class="sig-name descname">riscv_nn_accumulate_q7_to_q15</code><span class="sig-paren">(</span>q15_t *<em>dst</em>, <em class="property">const</em> q7_t *<em>src</em>, uint32_t <em>block_size</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Converts the elements from a q7 vector and accumulate to a q15 vector. </p>
 <p><p>The equation used for the conversion process is:</p>
 <dl class="simple">
@@ -267,8 +266,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__NNBasicMath_1ga15ed1716fbc47cb3d93503877dc2b17f"></span>void <code class="sig-name descname">riscv_nn_accumulate_q7_to_q7</code><span class="sig-paren">(</span>q7_t *<em>dst</em>, <em class="property">const</em> q7_t *<em>src</em>, uint32_t <em>block_size</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv428riscv_nn_accumulate_q7_to_q7P4q7_tPK4q7_t8uint32_t">
+<span id="_CPPv328riscv_nn_accumulate_q7_to_q7P4q7_tPK4q7_t8uint32_t"></span><span id="_CPPv228riscv_nn_accumulate_q7_to_q7P4q7_tPK4q7_t8uint32_t"></span><span class="target" id="group__NNBasicMath_1ga15ed1716fbc47cb3d93503877dc2b17f"></span>void <code class="sig-name descname">riscv_nn_accumulate_q7_to_q7</code><span class="sig-paren">(</span>q7_t *<em>dst</em>, <em class="property">const</em> q7_t *<em>src</em>, uint32_t <em>block_size</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Converts the elements from a q7 vector and accumulate to a q7 vector. </p>
 <p><p>The equation used for the conversion process is:</p>
 <dl class="simple">
@@ -286,8 +285,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__NNBasicMath_1gae72ab1e8045b992f1bf49b0bbafee3b1"></span>void <code class="sig-name descname">riscv_nn_add_q7</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>input</em>, q31_t *<em>output</em>, uint32_t <em>block_size</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv415riscv_nn_add_q7PK4q7_tP5q31_t8uint32_t">
+<span id="_CPPv315riscv_nn_add_q7PK4q7_tP5q31_t8uint32_t"></span><span id="_CPPv215riscv_nn_add_q7PK4q7_tP5q31_t8uint32_t"></span><span class="target" id="group__NNBasicMath_1gae72ab1e8045b992f1bf49b0bbafee3b1"></span>void <code class="sig-name descname">riscv_nn_add_q7</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>input</em>, q31_t *<em>output</em>, uint32_t <em>block_size</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Non-saturating addition of elements of a q7 vector. </p>
 <p><p>2^24 samples can be added without saturating the result.</p>
 <dl class="simple">
@@ -306,8 +305,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__NNBasicMath_1gafb6cf5529840ea70733e977c295f2a68"></span>q7_t *<code class="sig-name descname">riscv_nn_depthwise_conv_nt_t_padded_s8</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>lhs</em>, <em class="property">const</em> q7_t *<em>rhs</em>, <em class="property">const</em> int32_t <em>lhs_offset</em>, <em class="property">const</em> uint16_t <em>num_ch</em>, <em class="property">const</em> int32_t *<em>out_shift</em>, <em class="property">const</em> int32_t *<em>out_mult</em>, <em class="property">const</em> int32_t <em>out_offset</em>, <em class="property">const</em> int32_t <em>activation_min</em>, <em class="property">const</em> int32_t <em>activation_max</em>, <em class="property">const</em> uint16_t <em>row_x_col</em>, <em class="property">const</em> int32_t *<em class="property">const</em> <em>output_bias</em>, q7_t *<em>out</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv438riscv_nn_depthwise_conv_nt_t_padded_s8PK4q7_tPK4q7_tK7int32_tK8uint16_tPK7int32_tPK7int32_tK7int32_tK7int32_tK7int32_tK8uint16_tPCK7int32_tP4q7_t">
+<span id="_CPPv338riscv_nn_depthwise_conv_nt_t_padded_s8PK4q7_tPK4q7_tK7int32_tK8uint16_tPK7int32_tPK7int32_tK7int32_tK7int32_tK7int32_tK8uint16_tPCK7int32_tP4q7_t"></span><span id="_CPPv238riscv_nn_depthwise_conv_nt_t_padded_s8PK4q7_tPK4q7_tK7int32_tK8uint16_tPK7int32_tPK7int32_tK7int32_tK7int32_tK7int32_tK8uint16_tPCK7int32_tP4q7_t"></span><span class="target" id="group__NNBasicMath_1gafb6cf5529840ea70733e977c295f2a68"></span>q7_t *<code class="sig-name descname">riscv_nn_depthwise_conv_nt_t_padded_s8</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>lhs</em>, <em class="property">const</em> q7_t *<em>rhs</em>, <em class="property">const</em> int32_t <em>lhs_offset</em>, <em class="property">const</em> uint16_t <em>num_ch</em>, <em class="property">const</em> int32_t *<em>out_shift</em>, <em class="property">const</em> int32_t *<em>out_mult</em>, <em class="property">const</em> int32_t <em>out_offset</em>, <em class="property">const</em> int32_t <em>activation_min</em>, <em class="property">const</em> int32_t <em>activation_max</em>, <em class="property">const</em> uint16_t <em>row_x_col</em>, <em class="property">const</em> int32_t *<em class="property">const</em> <em>output_bias</em>, q7_t *<em>out</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Depthwise convolution of transposed rhs matrix with 4 lhs matrices. To be used in padded cases where the padding is -lhs_offset(Range: int8). Dimensions are the same for lhs and rhs. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>The function returns one of the two<ul class="simple">
@@ -344,8 +343,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__NNBasicMath_1ga8deb697159c0af5b9318ab595d09cf23"></span>q7_t *<code class="sig-name descname">riscv_nn_depthwise_conv_nt_t_s8</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>lhs</em>, <em class="property">const</em> q7_t *<em>rhs</em>, <em class="property">const</em> int32_t <em>lhs_offset</em>, <em class="property">const</em> uint16_t <em>num_ch</em>, <em class="property">const</em> int32_t *<em>out_shift</em>, <em class="property">const</em> int32_t *<em>out_mult</em>, <em class="property">const</em> int32_t <em>out_offset</em>, <em class="property">const</em> int32_t <em>activation_min</em>, <em class="property">const</em> int32_t <em>activation_max</em>, <em class="property">const</em> uint16_t <em>row_x_col</em>, <em class="property">const</em> int32_t *<em class="property">const</em> <em>output_bias</em>, q7_t *<em>out</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv431riscv_nn_depthwise_conv_nt_t_s8PK4q7_tPK4q7_tK7int32_tK8uint16_tPK7int32_tPK7int32_tK7int32_tK7int32_tK7int32_tK8uint16_tPCK7int32_tP4q7_t">
+<span id="_CPPv331riscv_nn_depthwise_conv_nt_t_s8PK4q7_tPK4q7_tK7int32_tK8uint16_tPK7int32_tPK7int32_tK7int32_tK7int32_tK7int32_tK8uint16_tPCK7int32_tP4q7_t"></span><span id="_CPPv231riscv_nn_depthwise_conv_nt_t_s8PK4q7_tPK4q7_tK7int32_tK8uint16_tPK7int32_tPK7int32_tK7int32_tK7int32_tK7int32_tK8uint16_tPCK7int32_tP4q7_t"></span><span class="target" id="group__NNBasicMath_1ga8deb697159c0af5b9318ab595d09cf23"></span>q7_t *<code class="sig-name descname">riscv_nn_depthwise_conv_nt_t_s8</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>lhs</em>, <em class="property">const</em> q7_t *<em>rhs</em>, <em class="property">const</em> int32_t <em>lhs_offset</em>, <em class="property">const</em> uint16_t <em>num_ch</em>, <em class="property">const</em> int32_t *<em>out_shift</em>, <em class="property">const</em> int32_t *<em>out_mult</em>, <em class="property">const</em> int32_t <em>out_offset</em>, <em class="property">const</em> int32_t <em>activation_min</em>, <em class="property">const</em> int32_t <em>activation_max</em>, <em class="property">const</em> uint16_t <em>row_x_col</em>, <em class="property">const</em> int32_t *<em class="property">const</em> <em>output_bias</em>, q7_t *<em>out</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Depthwise convolution of transposed rhs matrix with 4 lhs matrices. To be used in non-padded cases. Dimensions are the same for lhs and rhs. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>The function returns one of the two<ul class="simple">
@@ -382,8 +381,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__NNBasicMath_1gadfb338f9bd0ccfc54c942430f973962c"></span>riscv_status <code class="sig-name descname">riscv_nn_mat_mul_core_1x_s8</code><span class="sig-paren">(</span>int32_t <em>row_elements</em>, <em class="property">const</em> int8_t *<em>row_base</em>, <em class="property">const</em> int8_t *<em>col_base</em>, int32_t *<em class="property">const</em> <em>sum_col</em>, int32_t *<em class="property">const</em> <em>output</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv427riscv_nn_mat_mul_core_1x_s87int32_tPK6int8_tPK6int8_tPC7int32_tPC7int32_t">
+<span id="_CPPv327riscv_nn_mat_mul_core_1x_s87int32_tPK6int8_tPK6int8_tPC7int32_tPC7int32_t"></span><span id="_CPPv227riscv_nn_mat_mul_core_1x_s87int32_tPK6int8_tPK6int8_tPC7int32_tPC7int32_t"></span><span class="target" id="group__NNBasicMath_1gadfb338f9bd0ccfc54c942430f973962c"></span>riscv_status <code class="sig-name descname">riscv_nn_mat_mul_core_1x_s8</code><span class="sig-paren">(</span>int32_t <em>row_elements</em>, <em class="property">const</em> int8_t *<em>row_base</em>, <em class="property">const</em> int8_t *<em>col_base</em>, int32_t *<em class="property">const</em> <em>sum_col</em>, int32_t *<em class="property">const</em> <em>output</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>General Matrix-multiplication without requantization for one row &amp; one column. </p>
 <p><p>Pseudo-code *output = 0 sum_col = 0 for (i = 0; i &lt; row_elements; i++) *output += row_base[i] * col_base[i] sum_col += col_base[i] </p>
 <dl class="simple">
@@ -402,8 +401,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__NNBasicMath_1ga595da37f40cce8ad1510ec912fe0701e"></span>riscv_status <code class="sig-name descname">riscv_nn_mat_mul_core_4x_s8</code><span class="sig-paren">(</span><em class="property">const</em> int32_t <em>row_elements</em>, <em class="property">const</em> int32_t <em>offset</em>, <em class="property">const</em> int8_t *<em>row_base</em>, <em class="property">const</em> int8_t *<em>col_base</em>, int32_t *<em class="property">const</em> <em>sum_col</em>, int32_t *<em class="property">const</em> <em>output</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv427riscv_nn_mat_mul_core_4x_s8K7int32_tK7int32_tPK6int8_tPK6int8_tPC7int32_tPC7int32_t">
+<span id="_CPPv327riscv_nn_mat_mul_core_4x_s8K7int32_tK7int32_tPK6int8_tPK6int8_tPC7int32_tPC7int32_t"></span><span id="_CPPv227riscv_nn_mat_mul_core_4x_s8K7int32_tK7int32_tPK6int8_tPK6int8_tPC7int32_tPC7int32_t"></span><span class="target" id="group__NNBasicMath_1ga595da37f40cce8ad1510ec912fe0701e"></span>riscv_status <code class="sig-name descname">riscv_nn_mat_mul_core_4x_s8</code><span class="sig-paren">(</span><em class="property">const</em> int32_t <em>row_elements</em>, <em class="property">const</em> int32_t <em>offset</em>, <em class="property">const</em> int8_t *<em>row_base</em>, <em class="property">const</em> int8_t *<em>col_base</em>, int32_t *<em class="property">const</em> <em>sum_col</em>, int32_t *<em class="property">const</em> <em>output</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>General Matrix-multiplication without requantization for four rows and one column. </p>
 <p><p>Pseudo-code output[0] = 0 .. output[3] = 0 sum_col = 0 for (i = 0; i &lt; row_elements; i++) output[0] += row_base[i] * col_base[i] .. output[3] += row_base[i + (row_elements * 3)] * col_base[i] sum_col += col_base[i] </p>
 <dl class="simple">
@@ -423,8 +422,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__NNBasicMath_1ga0eee2411ea5e6df47751d6ff9d489dae"></span>riscv_status <code class="sig-name descname">riscv_nn_mat_mult_nt_t_s8</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>lhs</em>, <em class="property">const</em> q7_t *<em>rhs</em>, <em class="property">const</em> q31_t *<em>bias</em>, q7_t *<em>dst</em>, <em class="property">const</em> int32_t *<em>dst_multipliers</em>, <em class="property">const</em> int32_t *<em>dst_shifts</em>, <em class="property">const</em> int32_t <em>lhs_rows</em>, <em class="property">const</em> int32_t <em>rhs_rows</em>, <em class="property">const</em> int32_t <em>rhs_cols</em>, <em class="property">const</em> int32_t <em>lhs_offset</em>, <em class="property">const</em> int32_t <em>dst_offset</em>, <em class="property">const</em> int32_t <em>activation_min</em>, <em class="property">const</em> int32_t <em>activation_max</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv425riscv_nn_mat_mult_nt_t_s8PK4q7_tPK4q7_tPK5q31_tP4q7_tPK7int32_tPK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t">
+<span id="_CPPv325riscv_nn_mat_mult_nt_t_s8PK4q7_tPK4q7_tPK5q31_tP4q7_tPK7int32_tPK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t"></span><span id="_CPPv225riscv_nn_mat_mult_nt_t_s8PK4q7_tPK4q7_tPK5q31_tP4q7_tPK7int32_tPK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t"></span><span class="target" id="group__NNBasicMath_1ga0eee2411ea5e6df47751d6ff9d489dae"></span>riscv_status <code class="sig-name descname">riscv_nn_mat_mult_nt_t_s8</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>lhs</em>, <em class="property">const</em> q7_t *<em>rhs</em>, <em class="property">const</em> q31_t *<em>bias</em>, q7_t *<em>dst</em>, <em class="property">const</em> int32_t *<em>dst_multipliers</em>, <em class="property">const</em> int32_t *<em>dst_shifts</em>, <em class="property">const</em> int32_t <em>lhs_rows</em>, <em class="property">const</em> int32_t <em>rhs_rows</em>, <em class="property">const</em> int32_t <em>rhs_cols</em>, <em class="property">const</em> int32_t <em>lhs_offset</em>, <em class="property">const</em> int32_t <em>dst_offset</em>, <em class="property">const</em> int32_t <em>activation_min</em>, <em class="property">const</em> int32_t <em>activation_max</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>General Matrix-multiplication function with per-channel requantization. This function assumes: </p>
 <p><ul class="simple">
 <li><p>LHS input matrix NOT transposed (nt)</p></li>
@@ -457,8 +456,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__NNBasicMath_1gae785703e6b6be36f6c643de582e1bdbf"></span>void <code class="sig-name descname">riscv_nn_mult_q15</code><span class="sig-paren">(</span>q15_t *<em>pSrcA</em>, q15_t *<em>pSrcB</em>, q15_t *<em>pDst</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv417riscv_nn_mult_q15P5q15_tP5q15_tP5q15_tK8uint16_t8uint32_t">
+<span id="_CPPv317riscv_nn_mult_q15P5q15_tP5q15_tP5q15_tK8uint16_t8uint32_t"></span><span id="_CPPv217riscv_nn_mult_q15P5q15_tP5q15_tP5q15_tK8uint16_t8uint32_t"></span><span class="target" id="group__NNBasicMath_1gae785703e6b6be36f6c643de582e1bdbf"></span>void <code class="sig-name descname">riscv_nn_mult_q15</code><span class="sig-paren">(</span>q15_t *<em>pSrcA</em>, q15_t *<em>pSrcB</em>, q15_t *<em>pDst</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q7 vector multiplication with variable output shifts. </p>
 <p>q7 vector multiplication with variable output shifts</p>
 <p><strong>Scaling and Overflow Behavior:</strong> <dl class="simple">
@@ -477,8 +476,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__NNBasicMath_1ga53b69e8309dbc2e6c3f6f5bc42ea3d88"></span>void <code class="sig-name descname">riscv_nn_mult_q7</code><span class="sig-paren">(</span>q7_t *<em>pSrcA</em>, q7_t *<em>pSrcB</em>, q7_t *<em>pDst</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv416riscv_nn_mult_q7P4q7_tP4q7_tP4q7_tK8uint16_t8uint32_t">
+<span id="_CPPv316riscv_nn_mult_q7P4q7_tP4q7_tP4q7_tK8uint16_t8uint32_t"></span><span id="_CPPv216riscv_nn_mult_q7P4q7_tP4q7_tP4q7_tK8uint16_t8uint32_t"></span><span class="target" id="group__NNBasicMath_1ga53b69e8309dbc2e6c3f6f5bc42ea3d88"></span>void <code class="sig-name descname">riscv_nn_mult_q7</code><span class="sig-paren">(</span>q7_t *<em>pSrcA</em>, q7_t *<em>pSrcB</em>, q7_t *<em>pDst</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q7 vector multiplication with variable output shifts. </p>
 <p>q7 vector multiplication with variable output shifts</p>
 <p><strong>Scaling and Overflow Behavior:</strong> <dl class="simple">
@@ -497,8 +496,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__NNBasicMath_1ga534ec5b5c911e99062a17296d588d5f3"></span>riscv_status <code class="sig-name descname">riscv_nn_vec_mat_mult_t_s8</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>lhs</em>, <em class="property">const</em> q7_t *<em>rhs</em>, <em class="property">const</em> q31_t *<em>bias</em>, q7_t *<em>dst</em>, <em class="property">const</em> int32_t <em>lhs_offset</em>, <em class="property">const</em> int32_t <em>rhs_offset</em>, <em class="property">const</em> int32_t <em>dst_offset</em>, <em class="property">const</em> int32_t <em>dst_multiplier</em>, <em class="property">const</em> int32_t <em>dst_shift</em>, <em class="property">const</em> int32_t <em>rhs_cols</em>, <em class="property">const</em> int32_t <em>rhs_rows</em>, <em class="property">const</em> int32_t <em>activation_min</em>, <em class="property">const</em> int32_t <em>activation_max</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv426riscv_nn_vec_mat_mult_t_s8PK4q7_tPK4q7_tPK5q31_tP4q7_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t">
+<span id="_CPPv326riscv_nn_vec_mat_mult_t_s8PK4q7_tPK4q7_tPK5q31_tP4q7_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t"></span><span id="_CPPv226riscv_nn_vec_mat_mult_t_s8PK4q7_tPK4q7_tPK5q31_tP4q7_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t"></span><span class="target" id="group__NNBasicMath_1ga534ec5b5c911e99062a17296d588d5f3"></span>riscv_status <code class="sig-name descname">riscv_nn_vec_mat_mult_t_s8</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>lhs</em>, <em class="property">const</em> q7_t *<em>rhs</em>, <em class="property">const</em> q31_t *<em>bias</em>, q7_t *<em>dst</em>, <em class="property">const</em> int32_t <em>lhs_offset</em>, <em class="property">const</em> int32_t <em>rhs_offset</em>, <em class="property">const</em> int32_t <em>dst_offset</em>, <em class="property">const</em> int32_t <em>dst_multiplier</em>, <em class="property">const</em> int32_t <em>dst_shift</em>, <em class="property">const</em> int32_t <em>rhs_cols</em>, <em class="property">const</em> int32_t <em>rhs_rows</em>, <em class="property">const</em> int32_t <em>activation_min</em>, <em class="property">const</em> int32_t <em>activation_max</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>s8 Vector by Matrix (transposed) multiplication </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code> </p>
@@ -524,8 +523,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__NNBasicMath_1ga9db069bb9afca33647c216f8d359bf49"></span>riscv_status <code class="sig-name descname">riscv_nn_vec_mat_mult_t_svdf_s8</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>lhs</em>, <em class="property">const</em> q7_t *<em>rhs</em>, q15_t *<em>dst</em>, <em class="property">const</em> int32_t <em>lhs_offset</em>, <em class="property">const</em> int32_t <em>rhs_offset</em>, <em class="property">const</em> int32_t <em>scatter_offset</em>, <em class="property">const</em> int32_t <em>dst_multiplier</em>, <em class="property">const</em> int32_t <em>dst_shift</em>, <em class="property">const</em> int32_t <em>rhs_cols</em>, <em class="property">const</em> int32_t <em>rhs_rows</em>, <em class="property">const</em> int32_t <em>activation_min</em>, <em class="property">const</em> int32_t <em>activation_max</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv431riscv_nn_vec_mat_mult_t_svdf_s8PK4q7_tPK4q7_tP5q15_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t">
+<span id="_CPPv331riscv_nn_vec_mat_mult_t_svdf_s8PK4q7_tPK4q7_tP5q15_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t"></span><span id="_CPPv231riscv_nn_vec_mat_mult_t_svdf_s8PK4q7_tPK4q7_tP5q15_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t"></span><span class="target" id="group__NNBasicMath_1ga9db069bb9afca33647c216f8d359bf49"></span>riscv_status <code class="sig-name descname">riscv_nn_vec_mat_mult_t_svdf_s8</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>lhs</em>, <em class="property">const</em> q7_t *<em>rhs</em>, q15_t *<em>dst</em>, <em class="property">const</em> int32_t <em>lhs_offset</em>, <em class="property">const</em> int32_t <em>rhs_offset</em>, <em class="property">const</em> int32_t <em>scatter_offset</em>, <em class="property">const</em> int32_t <em>dst_multiplier</em>, <em class="property">const</em> int32_t <em>dst_shift</em>, <em class="property">const</em> int32_t <em>rhs_cols</em>, <em class="property">const</em> int32_t <em>rhs_rows</em>, <em class="property">const</em> int32_t <em>activation_min</em>, <em class="property">const</em> int32_t <em>activation_max</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>s8 Vector by Matrix (transposed) multiplication with s16 output </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code> </p>
@@ -552,7 +551,7 @@
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
@@ -576,7 +575,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 06, 2021.
+        Last updated on Aug 09, 2021.
       </span>
 
     </p>

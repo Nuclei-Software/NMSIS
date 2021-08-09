@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Rotation to Quaternion &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  <title>Rotation to Quaternion &mdash; NMSIS 1.0.2-RC2 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC1
+                1.0.2-RC2
               </div>
             
           
@@ -89,7 +88,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../core/index.html">NMSIS Core</a></li>
@@ -205,7 +204,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="rotation-to-quaternion">
+  <div class="section" id="rotation-to-quaternion">
 <span id="nmsis-dsp-api-rotation-to-quaternion"></span><h1>Rotation to Quaternion<a class="headerlink" href="#rotation-to-quaternion" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="_CPPv429riscv_rotation2quaternion_f32PK9float32_tP9float32_t8uint32_t">
@@ -219,8 +218,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Functions</p>
 <dl class="function">
-<dt>
-<span class="target" id="group__RotQuat_1gac3256e187514f60169e518a615fbb0f8"></span>void <code class="sig-name descname">riscv_rotation2quaternion_f32</code><span class="sig-paren">(</span><em class="property">const</em> float32_t *<em>pInputRotations</em>, float32_t *<em>pOutputQuaternions</em>, uint32_t <em>nbQuaternions</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv429riscv_rotation2quaternion_f32PK9float32_tP9float32_t8uint32_t">
+<span id="_CPPv329riscv_rotation2quaternion_f32PK9float32_tP9float32_t8uint32_t"></span><span id="_CPPv229riscv_rotation2quaternion_f32PK9float32_tP9float32_t8uint32_t"></span><span class="target" id="group__RotQuat_1gac3256e187514f60169e518a615fbb0f8"></span>void <code class="sig-name descname">riscv_rotation2quaternion_f32</code><span class="sig-paren">(</span><em class="property">const</em> float32_t *<em>pInputRotations</em>, float32_t *<em>pOutputQuaternions</em>, uint32_t <em>nbQuaternions</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Conversion of a rotation matrix to an equivalent quaternion. </p>
 <p>Conversion of a rotation matrix to equivalent quaternion.</p>
 <p><p>q and -q are representing the same rotation. This ambiguity must be taken into account when using the output of this function. </p>
@@ -240,7 +239,7 @@
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
@@ -264,7 +263,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 06, 2021.
+        Last updated on Aug 09, 2021.
       </span>
 
     </p>

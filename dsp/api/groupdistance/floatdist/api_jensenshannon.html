@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Jensen-Shannon distance &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  <title>Jensen-Shannon distance &mdash; NMSIS 1.0.2-RC2 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC1
+                1.0.2-RC2
               </div>
             
           
@@ -89,7 +88,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../core/index.html">NMSIS Core</a></li>
@@ -208,7 +207,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="jensen-shannon-distance">
+  <div class="section" id="jensen-shannon-distance">
 <span id="nmsis-dsp-api-jensen-shannon-distance"></span><h1>Jensen-Shannon distance<a class="headerlink" href="#jensen-shannon-distance" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="_CPPv432riscv_jensenshannon_distance_f16PK9float16_tPK9float16_t8uint32_t">
@@ -232,8 +231,8 @@
 <dd></dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__JensenShannon_1ga3c439d71fa339a233e139f34afb2ebe1"></span>float16_t <code class="sig-name descname">riscv_jensenshannon_distance_f16</code><span class="sig-paren">(</span><em class="property">const</em> float16_t *<em>pA</em>, <em class="property">const</em> float16_t *<em>pB</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv432riscv_jensenshannon_distance_f16PK9float16_tPK9float16_t8uint32_t">
+<span id="_CPPv332riscv_jensenshannon_distance_f16PK9float16_tPK9float16_t8uint32_t"></span><span id="_CPPv232riscv_jensenshannon_distance_f16PK9float16_tPK9float16_t8uint32_t"></span><span class="target" id="group__JensenShannon_1ga3c439d71fa339a233e139f34afb2ebe1"></span>float16_t <code class="sig-name descname">riscv_jensenshannon_distance_f16</code><span class="sig-paren">(</span><em class="property">const</em> float16_t *<em>pA</em>, <em class="property">const</em> float16_t *<em>pB</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Jensen-Shannon distance between two vectors. </p>
 <p>This function is assuming that elements of second vector are &gt; 0 and 0 only when the corresponding element of first vector is 0. Otherwise the result of the computation does not make sense and for speed reasons, the cases returning NaN or Infinity are not managed.</p>
 <p>When the function is computing x log (x / y) with x == 0 and y == 0, it will compute the right result (0) but a division by zero will occur and should be ignored in client code.</p>
@@ -256,8 +255,8 @@
 <dd></dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__JensenShannon_1ga7ec9cd6e8e7cc53c380e28125e4d9a55"></span>float32_t <code class="sig-name descname">riscv_jensenshannon_distance_f32</code><span class="sig-paren">(</span><em class="property">const</em> float32_t *<em>pA</em>, <em class="property">const</em> float32_t *<em>pB</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv432riscv_jensenshannon_distance_f32PK9float32_tPK9float32_t8uint32_t">
+<span id="_CPPv332riscv_jensenshannon_distance_f32PK9float32_tPK9float32_t8uint32_t"></span><span id="_CPPv232riscv_jensenshannon_distance_f32PK9float32_tPK9float32_t8uint32_t"></span><span class="target" id="group__JensenShannon_1ga7ec9cd6e8e7cc53c380e28125e4d9a55"></span>float32_t <code class="sig-name descname">riscv_jensenshannon_distance_f32</code><span class="sig-paren">(</span><em class="property">const</em> float32_t *<em>pA</em>, <em class="property">const</em> float32_t *<em>pB</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Jensen-Shannon distance between two vectors. </p>
 <p>This function is assuming that elements of second vector are &gt; 0 and 0 only when the corresponding element of first vector is 0. Otherwise the result of the computation does not make sense and for speed reasons, the cases returning NaN or Infinity are not managed.</p>
 <p>When the function is computing x log (x / y) with x == 0 and y == 0, it will compute the right result (0) but a division by zero will occur and should be ignored in client code.</p>
@@ -277,7 +276,7 @@
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
@@ -301,7 +300,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 06, 2021.
+        Last updated on Aug 09, 2021.
       </span>
 
     </p>

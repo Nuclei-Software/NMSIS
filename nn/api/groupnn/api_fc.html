@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Fully-connected Layer Functions &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  <title>Fully-connected Layer Functions &mdash; NMSIS 1.0.2-RC2 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC1
+                1.0.2-RC2
               </div>
             
           
@@ -89,7 +88,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -192,7 +191,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="fully-connected-layer-functions">
+  <div class="section" id="fully-connected-layer-functions">
 <span id="nmsis-nn-api-fully-connected-layer-functions"></span><h1>Fully-connected Layer Functions<a class="headerlink" href="#fully-connected-layer-functions" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="_CPPv436riscv_fully_connected_mat_q7_vec_q15PK5q15_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP5q15_tP5q15_t">
@@ -299,8 +298,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Functions</p>
 <dl class="function">
-<dt>
-<span class="target" id="group__FC_1gae53e7bbdcd7730c409d71d08c446d666"></span>riscv_status <code class="sig-name descname">riscv_fully_connected_mat_q7_vec_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pV</em>, <em class="property">const</em> q7_t *<em>pM</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, <em class="property">const</em> uint16_t <em>num_of_rows</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, <em class="property">const</em> q7_t *<em>bias</em>, q15_t *<em>pOut</em>, q15_t *<em>vec_buffer</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv436riscv_fully_connected_mat_q7_vec_q15PK5q15_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP5q15_tP5q15_t">
+<span id="_CPPv336riscv_fully_connected_mat_q7_vec_q15PK5q15_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP5q15_tP5q15_t"></span><span id="_CPPv236riscv_fully_connected_mat_q7_vec_q15PK5q15_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP5q15_tP5q15_t"></span><span class="target" id="group__FC_1gae53e7bbdcd7730c409d71d08c446d666"></span>riscv_status <code class="sig-name descname">riscv_fully_connected_mat_q7_vec_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pV</em>, <em class="property">const</em> q7_t *<em>pM</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, <em class="property">const</em> uint16_t <em>num_of_rows</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, <em class="property">const</em> q7_t *<em>bias</em>, q15_t *<em>pOut</em>, q15_t *<em>vec_buffer</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Mixed Q15-Q7 fully-connected layer function. </p>
 <p><strong>Buffer size:</strong><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code></p>
@@ -325,8 +324,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FC_1ga73d8955ae16c57e5fe30de697459daed"></span>riscv_status <code class="sig-name descname">riscv_fully_connected_mat_q7_vec_q15_opt</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pV</em>, <em class="property">const</em> q7_t *<em>pM</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, <em class="property">const</em> uint16_t <em>num_of_rows</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, <em class="property">const</em> q7_t *<em>bias</em>, q15_t *<em>pOut</em>, q15_t *<em>vec_buffer</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv440riscv_fully_connected_mat_q7_vec_q15_optPK5q15_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP5q15_tP5q15_t">
+<span id="_CPPv340riscv_fully_connected_mat_q7_vec_q15_optPK5q15_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP5q15_tP5q15_t"></span><span id="_CPPv240riscv_fully_connected_mat_q7_vec_q15_optPK5q15_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP5q15_tP5q15_t"></span><span class="target" id="group__FC_1ga73d8955ae16c57e5fe30de697459daed"></span>riscv_status <code class="sig-name descname">riscv_fully_connected_mat_q7_vec_q15_opt</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pV</em>, <em class="property">const</em> q7_t *<em>pM</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, <em class="property">const</em> uint16_t <em>num_of_rows</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, <em class="property">const</em> q7_t *<em>bias</em>, q15_t *<em>pOut</em>, q15_t *<em>vec_buffer</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Mixed Q15-Q7 opt fully-connected layer function. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code> </p>
@@ -348,8 +347,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FC_1gab7871cb369396fba31f5e7037b163b89"></span>riscv_status <code class="sig-name descname">riscv_fully_connected_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pV</em>, <em class="property">const</em> q15_t *<em>pM</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, <em class="property">const</em> uint16_t <em>num_of_rows</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, <em class="property">const</em> q15_t *<em>bias</em>, q15_t *<em>pOut</em>, q15_t *<em>vec_buffer</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv425riscv_fully_connected_q15PK5q15_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tP5q15_tP5q15_t">
+<span id="_CPPv325riscv_fully_connected_q15PK5q15_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tP5q15_tP5q15_t"></span><span id="_CPPv225riscv_fully_connected_q15PK5q15_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tP5q15_tP5q15_t"></span><span class="target" id="group__FC_1gab7871cb369396fba31f5e7037b163b89"></span>riscv_status <code class="sig-name descname">riscv_fully_connected_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pV</em>, <em class="property">const</em> q15_t *<em>pM</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, <em class="property">const</em> uint16_t <em>num_of_rows</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, <em class="property">const</em> q15_t *<em>bias</em>, q15_t *<em>pOut</em>, q15_t *<em>vec_buffer</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q15 opt fully-connected layer function. </p>
 <p>Q15 basic fully-connected layer function.</p>
 <p><strong>Buffer size:</strong><dl class="simple">
@@ -373,8 +372,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FC_1ga7aac789b484f40bcea3ca6511f2969d1"></span>riscv_status <code class="sig-name descname">riscv_fully_connected_q15_opt</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pV</em>, <em class="property">const</em> q15_t *<em>pM</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, <em class="property">const</em> uint16_t <em>num_of_rows</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, <em class="property">const</em> q15_t *<em>bias</em>, q15_t *<em>pOut</em>, q15_t *<em>vec_buffer</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv429riscv_fully_connected_q15_optPK5q15_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tP5q15_tP5q15_t">
+<span id="_CPPv329riscv_fully_connected_q15_optPK5q15_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tP5q15_tP5q15_t"></span><span id="_CPPv229riscv_fully_connected_q15_optPK5q15_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tP5q15_tP5q15_t"></span><span class="target" id="group__FC_1ga7aac789b484f40bcea3ca6511f2969d1"></span>riscv_status <code class="sig-name descname">riscv_fully_connected_q15_opt</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pV</em>, <em class="property">const</em> q15_t *<em>pM</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, <em class="property">const</em> uint16_t <em>num_of_rows</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, <em class="property">const</em> q15_t *<em>bias</em>, q15_t *<em>pOut</em>, q15_t *<em>vec_buffer</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q15 opt fully-connected layer function. </p>
 <p><strong>Buffer size:</strong><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code></p>
@@ -412,8 +411,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FC_1gaabd0ddb08f10926a0cb16c780f1f1092"></span>riscv_status <code class="sig-name descname">riscv_fully_connected_q7</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>pV</em>, <em class="property">const</em> q7_t *<em>pM</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, <em class="property">const</em> uint16_t <em>num_of_rows</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, <em class="property">const</em> q7_t *<em>bias</em>, q7_t *<em>pOut</em>, q15_t *<em>vec_buffer</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv424riscv_fully_connected_q7PK4q7_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP4q7_tP5q15_t">
+<span id="_CPPv324riscv_fully_connected_q7PK4q7_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP4q7_tP5q15_t"></span><span id="_CPPv224riscv_fully_connected_q7PK4q7_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP4q7_tP5q15_t"></span><span class="target" id="group__FC_1gaabd0ddb08f10926a0cb16c780f1f1092"></span>riscv_status <code class="sig-name descname">riscv_fully_connected_q7</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>pV</em>, <em class="property">const</em> q7_t *<em>pM</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, <em class="property">const</em> uint16_t <em>num_of_rows</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, <em class="property">const</em> q7_t *<em>bias</em>, q7_t *<em>pOut</em>, q15_t *<em>vec_buffer</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q7 basic fully-connected layer function. </p>
 <p><strong>Buffer size:</strong><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code></p>
@@ -437,8 +436,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FC_1ga7941d995077149ea20950bb2e44f4bba"></span>riscv_status <code class="sig-name descname">riscv_fully_connected_q7_opt</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>pV</em>, <em class="property">const</em> q7_t *<em>pM</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, <em class="property">const</em> uint16_t <em>num_of_rows</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, <em class="property">const</em> q7_t *<em>bias</em>, q7_t *<em>pOut</em>, q15_t *<em>vec_buffer</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv428riscv_fully_connected_q7_optPK4q7_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP4q7_tP5q15_t">
+<span id="_CPPv328riscv_fully_connected_q7_optPK4q7_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP4q7_tP5q15_t"></span><span id="_CPPv228riscv_fully_connected_q7_optPK4q7_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP4q7_tP5q15_t"></span><span class="target" id="group__FC_1ga7941d995077149ea20950bb2e44f4bba"></span>riscv_status <code class="sig-name descname">riscv_fully_connected_q7_opt</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>pV</em>, <em class="property">const</em> q7_t *<em>pM</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, <em class="property">const</em> uint16_t <em>num_of_rows</em>, <em class="property">const</em> uint16_t <em>bias_shift</em>, <em class="property">const</em> uint16_t <em>out_shift</em>, <em class="property">const</em> q7_t *<em>bias</em>, q7_t *<em>pOut</em>, q15_t *<em>vec_buffer</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q7 opt fully-connected layer function. </p>
 <p><strong>Buffer size:</strong><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code></p>
@@ -488,8 +487,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FC_1gaee6b76ba1caa346436404498e6c022f9"></span>riscv_status <code class="sig-name descname">riscv_fully_connected_s8</code><span class="sig-paren">(</span><em class="property">const</em> nmsis_nn_context *<em>ctx</em>, <em class="property">const</em> nmsis_nn_fc_params *<em>fc_params</em>, <em class="property">const</em> nmsis_nn_per_tensor_quant_params *<em>quant_params</em>, <em class="property">const</em> nmsis_nn_dims *<em>input_dims</em>, <em class="property">const</em> q7_t *<em>input_data</em>, <em class="property">const</em> nmsis_nn_dims *<em>filter_dims</em>, <em class="property">const</em> q7_t *<em>filter_data</em>, <em class="property">const</em> nmsis_nn_dims *<em>bias_dims</em>, <em class="property">const</em> int32_t *<em>bias_data</em>, <em class="property">const</em> nmsis_nn_dims *<em>output_dims</em>, q7_t *<em>output_data</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv424riscv_fully_connected_s8PK16nmsis_nn_contextPK18nmsis_nn_fc_paramsPK32nmsis_nn_per_tensor_quant_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK7int32_tPK13nmsis_nn_dimsP4q7_t">
+<span id="_CPPv324riscv_fully_connected_s8PK16nmsis_nn_contextPK18nmsis_nn_fc_paramsPK32nmsis_nn_per_tensor_quant_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK7int32_tPK13nmsis_nn_dimsP4q7_t"></span><span id="_CPPv224riscv_fully_connected_s8PK16nmsis_nn_contextPK18nmsis_nn_fc_paramsPK32nmsis_nn_per_tensor_quant_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK7int32_tPK13nmsis_nn_dimsP4q7_t"></span><span class="target" id="group__FC_1gaee6b76ba1caa346436404498e6c022f9"></span>riscv_status <code class="sig-name descname">riscv_fully_connected_s8</code><span class="sig-paren">(</span><em class="property">const</em> nmsis_nn_context *<em>ctx</em>, <em class="property">const</em> nmsis_nn_fc_params *<em>fc_params</em>, <em class="property">const</em> nmsis_nn_per_tensor_quant_params *<em>quant_params</em>, <em class="property">const</em> nmsis_nn_dims *<em>input_dims</em>, <em class="property">const</em> q7_t *<em>input_data</em>, <em class="property">const</em> nmsis_nn_dims *<em>filter_dims</em>, <em class="property">const</em> q7_t *<em>filter_data</em>, <em class="property">const</em> nmsis_nn_dims *<em>bias_dims</em>, <em class="property">const</em> int32_t *<em>bias_data</em>, <em class="property">const</em> nmsis_nn_dims *<em>output_dims</em>, q7_t *<em>output_data</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Basic s8 Fully Connected function. </p>
 <p><ul class="simple">
 <li><p>Supported framework: TensorFlow Lite</p></li>
@@ -517,8 +516,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FC_1gad6f87a614339280578e030ff6599ec2d"></span>int32_t <code class="sig-name descname">riscv_fully_connected_s8_get_buffer_size</code><span class="sig-paren">(</span><em class="property">const</em> nmsis_nn_dims *<em>filter_dims</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv440riscv_fully_connected_s8_get_buffer_sizePK13nmsis_nn_dims">
+<span id="_CPPv340riscv_fully_connected_s8_get_buffer_sizePK13nmsis_nn_dims"></span><span id="_CPPv240riscv_fully_connected_s8_get_buffer_sizePK13nmsis_nn_dims"></span><span class="target" id="group__FC_1gad6f87a614339280578e030ff6599ec2d"></span>int32_t <code class="sig-name descname">riscv_fully_connected_s8_get_buffer_size</code><span class="sig-paren">(</span><em class="property">const</em> nmsis_nn_dims *<em>filter_dims</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Get the required buffer size for S8 basic fully-connected and matrix multiplication layer function for TF Lite. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>The function returns required buffer size in bytes </p>
@@ -534,7 +533,7 @@
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
@@ -558,7 +557,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 06, 2021.
+        Last updated on Aug 09, 2021.
       </span>
 
     </p>

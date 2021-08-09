@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Startup File startup_&lt;device&gt;.S &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  <title>Startup File startup_&lt;device&gt;.S &mdash; NMSIS 1.0.2-RC2 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC1
+                1.0.2-RC2
               </div>
             
           
@@ -89,7 +88,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">NMSIS Core</a><ul class="current">
@@ -115,7 +114,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="register_mapping.html">Register Mapping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/index.html">NMSIS CORE API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html">NMSIS Core API</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../dsp/index.html">NMSIS DSP</a></li>
@@ -191,11 +190,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="startup-file-startup-device-s">
+  <div class="section" id="startup-file-startup-device-s">
 <span id="core-template-startup-device-asm"></span><h1>Startup File startup_&lt;device&gt;.S<a class="headerlink" href="#startup-file-startup-device-s" title="Permalink to this headline">¶</a></h1>
 <dl class="simple">
 <dt>The <strong>Startup File startup_&lt;device&gt;.S</strong> contains:</dt><dd><ul class="simple">
-<li><p>The reset handler which is executed after CPU reset and typically calls the <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">SystemInit()</span></code> function.</p></li>
+<li><p>The reset handler which is executed after CPU reset and typically calls the <a class="reference internal" href="api/core_system_device.html#_CPPv410SystemInitv" title="SystemInit"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">SystemInit()</span></code></a> function.</p></li>
 <li><p>The setup values for the stack pointer SP.</p></li>
 <li><p>Exception vectors of the Nuclei Processor with weak functions that implement default routines.</p></li>
 <li><p>Interrupt vectors that are device specific with weak functions that implement default routines.</p></li>
@@ -215,7 +214,7 @@
 </dd>
 <dt>Stage2: Hardware initialization</dt><dd><ul class="simple">
 <li><p>Enable FPU if necessary</p></li>
-<li><p>Call user defined <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">SystemInit()</span></code> for system clock initialization.</p></li>
+<li><p>Call user defined <a class="reference internal" href="api/core_system_device.html#_CPPv410SystemInitv" title="SystemInit"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">SystemInit()</span></code></a> for system clock initialization.</p></li>
 </ul>
 </dd>
 <dt>Stage3: Section initialization</dt><dd><ul class="simple">
@@ -302,7 +301,7 @@ vector_base:
     DECLARE_INT_HANDLER     eclic_usbfs_handler             /* 86: USBFS global interrupt */
 </pre></div>
 </td></tr></table></div>
-<section id="startup-device-s-template-file">
+<div class="section" id="startup-device-s-template-file">
 <h2>startup_Device.S Template File<a class="headerlink" href="#startup-device-s-template-file" title="Permalink to this headline">¶</a></h2>
 <p>Here provided a riscv-gcc template startup assemble code template file as below.
 The files for other compilers can slightly differ from this version.</p>
@@ -907,8 +906,8 @@ _start:
     j 1b
 </pre></div>
 </td></tr></table></div>
-</section>
-</section>
+</div>
+</div>
 
 
            </div>
@@ -932,7 +931,7 @@ _start:
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 06, 2021.
+        Last updated on Aug 09, 2021.
       </span>
 
     </p>

@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Biquad Cascade IIR Filters Using a Direct Form II Transposed Structure &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  <title>Biquad Cascade IIR Filters Using a Direct Form II Transposed Structure &mdash; NMSIS 1.0.2-RC2 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC1
+                1.0.2-RC2
               </div>
             
           
@@ -89,7 +88,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -208,7 +207,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="biquad-cascade-iir-filters-using-a-direct-form-ii-transposed-structure">
+  <div class="section" id="biquad-cascade-iir-filters-using-a-direct-form-ii-transposed-structure">
 <span id="nmsis-dsp-api-biquad-cascade-iir-filters-using-a-direct-form-ii-transposed-structure"></span><h1>Biquad Cascade IIR Filters Using a Direct Form II Transposed Structure<a class="headerlink" href="#biquad-cascade-iir-filters-using-a-direct-form-ii-transposed-structure" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt>
@@ -346,8 +345,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__BiquadCascadeDF2T_1ga0e5ddbe3ca3570e0d8231845cc3a0dee"></span>void <code class="sig-name descname">riscv_biquad_cascade_df2T_init_f16</code><span class="sig-paren">(</span>riscv_biquad_cascade_df2T_instance_f16 *<em>S</em>, uint8_t <em>numStages</em>, <em class="property">const</em> float16_t *<em>pCoeffs</em>, float16_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv434riscv_biquad_cascade_df2T_init_f16P38riscv_biquad_cascade_df2T_instance_f167uint8_tPK9float16_tP9float16_t">
+<span id="_CPPv334riscv_biquad_cascade_df2T_init_f16P38riscv_biquad_cascade_df2T_instance_f167uint8_tPK9float16_tP9float16_t"></span><span id="_CPPv234riscv_biquad_cascade_df2T_init_f16P38riscv_biquad_cascade_df2T_instance_f167uint8_tPK9float16_tP9float16_t"></span><span class="target" id="group__BiquadCascadeDF2T_1ga0e5ddbe3ca3570e0d8231845cc3a0dee"></span>void <code class="sig-name descname">riscv_biquad_cascade_df2T_init_f16</code><span class="sig-paren">(</span>riscv_biquad_cascade_df2T_instance_f16 *<em>S</em>, uint8_t <em>numStages</em>, <em class="property">const</em> float16_t *<em>pCoeffs</em>, float16_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the floating-point transposed direct form II Biquad cascade filter. </p>
 <p><p>For Neon version, this array is bigger. If numstages = 4x + y, then the array has size: 32*x + 5*y and it must be initialized using the function riscv_biquad_cascade_df2T_compute_coefs_f16 which is taking the standard array coefficient as parameters.</p>
 <dl class="simple">
@@ -381,8 +380,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__BiquadCascadeDF2T_1ga64bded2f72748bde1621e6b27739cfbe"></span>void <code class="sig-name descname">riscv_biquad_cascade_df2T_init_f32</code><span class="sig-paren">(</span>riscv_biquad_cascade_df2T_instance_f32 *<em>S</em>, uint8_t <em>numStages</em>, <em class="property">const</em> float32_t *<em>pCoeffs</em>, float32_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv434riscv_biquad_cascade_df2T_init_f32P38riscv_biquad_cascade_df2T_instance_f327uint8_tPK9float32_tP9float32_t">
+<span id="_CPPv334riscv_biquad_cascade_df2T_init_f32P38riscv_biquad_cascade_df2T_instance_f327uint8_tPK9float32_tP9float32_t"></span><span id="_CPPv234riscv_biquad_cascade_df2T_init_f32P38riscv_biquad_cascade_df2T_instance_f327uint8_tPK9float32_tP9float32_t"></span><span class="target" id="group__BiquadCascadeDF2T_1ga64bded2f72748bde1621e6b27739cfbe"></span>void <code class="sig-name descname">riscv_biquad_cascade_df2T_init_f32</code><span class="sig-paren">(</span>riscv_biquad_cascade_df2T_instance_f32 *<em>S</em>, uint8_t <em>numStages</em>, <em class="property">const</em> float32_t *<em>pCoeffs</em>, float32_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the floating-point transposed direct form II Biquad cascade filter. </p>
 <p><p>For Neon version, this array is bigger. If numstages = 4x + y, then the array has size: 32*x + 5*y and it must be initialized using the function riscv_biquad_cascade_df2T_compute_coefs_f32 which is taking the standard array coefficient as parameters.</p>
 <dl class="simple">
@@ -416,8 +415,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__BiquadCascadeDF2T_1ga973af726b172e82c561ba501f445c020"></span>void <code class="sig-name descname">riscv_biquad_cascade_df2T_init_f64</code><span class="sig-paren">(</span>riscv_biquad_cascade_df2T_instance_f64 *<em>S</em>, uint8_t <em>numStages</em>, <em class="property">const</em> float64_t *<em>pCoeffs</em>, float64_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv434riscv_biquad_cascade_df2T_init_f64P38riscv_biquad_cascade_df2T_instance_f647uint8_tPK9float64_tP9float64_t">
+<span id="_CPPv334riscv_biquad_cascade_df2T_init_f64P38riscv_biquad_cascade_df2T_instance_f647uint8_tPK9float64_tP9float64_t"></span><span id="_CPPv234riscv_biquad_cascade_df2T_init_f64P38riscv_biquad_cascade_df2T_instance_f647uint8_tPK9float64_tP9float64_t"></span><span class="target" id="group__BiquadCascadeDF2T_1ga973af726b172e82c561ba501f445c020"></span>void <code class="sig-name descname">riscv_biquad_cascade_df2T_init_f64</code><span class="sig-paren">(</span>riscv_biquad_cascade_df2T_instance_f64 *<em>S</em>, uint8_t <em>numStages</em>, <em class="property">const</em> float64_t *<em>pCoeffs</em>, float64_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the floating-point transposed direct form II Biquad cascade filter. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -478,8 +477,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__BiquadCascadeDF2T_1gac608abbcc1a218bc87a9f3c0410bcf4e"></span>void <code class="sig-name descname">riscv_biquad_cascade_stereo_df2T_init_f16</code><span class="sig-paren">(</span>riscv_biquad_cascade_stereo_df2T_instance_f16 *<em>S</em>, uint8_t <em>numStages</em>, <em class="property">const</em> float16_t *<em>pCoeffs</em>, float16_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv441riscv_biquad_cascade_stereo_df2T_init_f16P45riscv_biquad_cascade_stereo_df2T_instance_f167uint8_tPK9float16_tP9float16_t">
+<span id="_CPPv341riscv_biquad_cascade_stereo_df2T_init_f16P45riscv_biquad_cascade_stereo_df2T_instance_f167uint8_tPK9float16_tP9float16_t"></span><span id="_CPPv241riscv_biquad_cascade_stereo_df2T_init_f16P45riscv_biquad_cascade_stereo_df2T_instance_f167uint8_tPK9float16_tP9float16_t"></span><span class="target" id="group__BiquadCascadeDF2T_1gac608abbcc1a218bc87a9f3c0410bcf4e"></span>void <code class="sig-name descname">riscv_biquad_cascade_stereo_df2T_init_f16</code><span class="sig-paren">(</span>riscv_biquad_cascade_stereo_df2T_instance_f16 *<em>S</em>, uint8_t <em>numStages</em>, <em class="property">const</em> float16_t *<em>pCoeffs</em>, float16_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the floating-point transposed direct form II Biquad cascade filter. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -502,8 +501,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__BiquadCascadeDF2T_1ga6cf2c21b7a0772f81ecaa9f91a99f59d"></span>void <code class="sig-name descname">riscv_biquad_cascade_stereo_df2T_init_f32</code><span class="sig-paren">(</span>riscv_biquad_cascade_stereo_df2T_instance_f32 *<em>S</em>, uint8_t <em>numStages</em>, <em class="property">const</em> float32_t *<em>pCoeffs</em>, float32_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv441riscv_biquad_cascade_stereo_df2T_init_f32P45riscv_biquad_cascade_stereo_df2T_instance_f327uint8_tPK9float32_tP9float32_t">
+<span id="_CPPv341riscv_biquad_cascade_stereo_df2T_init_f32P45riscv_biquad_cascade_stereo_df2T_instance_f327uint8_tPK9float32_tP9float32_t"></span><span id="_CPPv241riscv_biquad_cascade_stereo_df2T_init_f32P45riscv_biquad_cascade_stereo_df2T_instance_f327uint8_tPK9float32_tP9float32_t"></span><span class="target" id="group__BiquadCascadeDF2T_1ga6cf2c21b7a0772f81ecaa9f91a99f59d"></span>void <code class="sig-name descname">riscv_biquad_cascade_stereo_df2T_init_f32</code><span class="sig-paren">(</span>riscv_biquad_cascade_stereo_df2T_instance_f32 *<em>S</em>, uint8_t <em>numStages</em>, <em class="property">const</em> float32_t *<em>pCoeffs</em>, float32_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the floating-point transposed direct form II Biquad cascade filter. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -528,7 +527,7 @@
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
@@ -552,7 +551,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 06, 2021.
+        Last updated on Aug 09, 2021.
       </span>
 
     </p>

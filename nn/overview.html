@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Overview &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  <title>Overview &mdash; NMSIS 1.0.2-RC2 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC1
+                1.0.2-RC2
               </div>
             
           
@@ -89,7 +88,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../core/index.html">NMSIS Core</a></li>
@@ -176,9 +175,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="overview">
+  <div class="section" id="overview">
 <span id="nn-overview"></span><h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
-<section id="introduction">
+<div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>This user manual describes the NMSIS NN software library,
 a collection of efficient neural network kernels developed to maximize the
@@ -197,25 +196,23 @@ types including 8-bit integers (q7_t) and 16-bit integers (q15_t). The descritio
 kernels are included in the function description.</p>
 <p>The implementation details are also
 described in this paper <a class="reference external" href="https://arxiv.org/abs/1801.06601">CMSIS-NN: Efficient Neural Network Kernels for Arm Cortex-M CPUs</a> .</p>
-</section>
-<section id="block-diagram">
+</div>
+<div class="section" id="block-diagram">
 <h2>Block Diagram<a class="headerlink" href="#block-diagram" title="Permalink to this headline">¶</a></h2>
-<figure class="align-center" id="id1">
+<div class="figure align-center" id="id1">
 <span id="figure-nn-overview-1"></span><a class="reference internal image-reference" href="../_images/NMSIS-NN-OVERVIEW.PNG"><img alt="NMSIS NN Block Diagram" src="../_images/NMSIS-NN-OVERVIEW.PNG" style="width: 80%;" /></a>
-<figcaption>
-<p><span class="caption-text">NMSIS NN Block Diagram</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-</section>
-<section id="examples">
+<p class="caption"><span class="caption-text">NMSIS NN Block Diagram</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <p>The library ships with a number of examples which demonstrate how to use the library functions.</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="api/api_cnnexample.html#nmsis-nn-api-convolutional-neural-network-example"><span class="std std-ref">Convolutional Neural Network Example</span></a></p></li>
 <li><p><a class="reference internal" href="api/api_gruexample.html#nmsis-nn-api-gated-recurrent-unit-example"><span class="std std-ref">Gated Recurrent Unit Example</span></a></p></li>
 </ul>
-</section>
-<section id="pre-processor-macros">
+</div>
+<div class="section" id="pre-processor-macros">
 <h2>Pre-processor Macros<a class="headerlink" href="#pre-processor-macros" title="Permalink to this headline">¶</a></h2>
 <p>Each library project have differant pre-processor macros.</p>
 <p>This library is only built for little endian targets.</p>
@@ -225,8 +222,8 @@ described in this paper <a class="reference external" href="https://arxiv.org/ab
 <dt>RISCV_NN_TRUNCATE:</dt><dd><p>Define macro RISCV_NN_TRUNCATE to use floor instead of round-to-the-nearest-int for the computation.</p>
 </dd>
 </dl>
-</section>
-</section>
+</div>
+</div>
 
 
            </div>
@@ -250,7 +247,7 @@ described in this paper <a class="reference external" href="https://arxiv.org/ab
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 06, 2021.
+        Last updated on Aug 09, 2021.
       </span>
 
     </p>

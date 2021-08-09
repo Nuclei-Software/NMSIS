@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Real FFT Functions &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  <title>Real FFT Functions &mdash; NMSIS 1.0.2-RC2 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC1
+                1.0.2-RC2
               </div>
             
           
@@ -89,7 +88,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -199,7 +198,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="real-fft-functions">
+  <div class="section" id="real-fft-functions">
 <span id="nmsis-dsp-api-real-fft-functions"></span><h1>Real FFT Functions<a class="headerlink" href="#real-fft-functions" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
@@ -401,8 +400,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Functions</p>
 <dl class="function">
-<dt>
-<span class="target" id="group__RealFFT_1ga15270da93ab349377512694e2704a324"></span>void <code class="sig-name descname">riscv_rfft_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_rfft_instance_f32 *<em>S</em>, float32_t *<em>pSrc</em>, float32_t *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv414riscv_rfft_f32PK23riscv_rfft_instance_f32P9float32_tP9float32_t">
+<span id="_CPPv314riscv_rfft_f32PK23riscv_rfft_instance_f32P9float32_tP9float32_t"></span><span id="_CPPv214riscv_rfft_f32PK23riscv_rfft_instance_f32P9float32_tP9float32_t"></span><span class="target" id="group__RealFFT_1ga15270da93ab349377512694e2704a324"></span>void <code class="sig-name descname">riscv_rfft_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_rfft_instance_f32 *<em>S</em>, float32_t *<em>pSrc</em>, float32_t *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the floating-point RFFT/RIFFT. Source buffer is modified by this function. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -420,8 +419,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__RealFFT_1ga1d961d1feb6ee5fda766d33bd4b46e66"></span>void <code class="sig-name descname">riscv_rfft_fast_f16</code><span class="sig-paren">(</span><em class="property">const</em> riscv_rfft_fast_instance_f16 *<em>S</em>, float16_t *<em>p</em>, float16_t *<em>pOut</em>, uint8_t <em>ifftFlag</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv419riscv_rfft_fast_f16PK28riscv_rfft_fast_instance_f16P9float16_tP9float16_t7uint8_t">
+<span id="_CPPv319riscv_rfft_fast_f16PK28riscv_rfft_fast_instance_f16P9float16_tP9float16_t7uint8_t"></span><span id="_CPPv219riscv_rfft_fast_f16PK28riscv_rfft_fast_instance_f16P9float16_tP9float16_t7uint8_t"></span><span class="target" id="group__RealFFT_1ga1d961d1feb6ee5fda766d33bd4b46e66"></span>void <code class="sig-name descname">riscv_rfft_fast_f16</code><span class="sig-paren">(</span><em class="property">const</em> riscv_rfft_fast_instance_f16 *<em>S</em>, float16_t *<em>p</em>, float16_t *<em>pOut</em>, uint8_t <em>ifftFlag</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the floating-point real FFT. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none </p>
@@ -442,8 +441,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__RealFFT_1ga79d52dd65555bdaae27fdd20c95f04a1"></span>void <code class="sig-name descname">riscv_rfft_fast_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_rfft_fast_instance_f32 *<em>S</em>, float32_t *<em>p</em>, float32_t *<em>pOut</em>, uint8_t <em>ifftFlag</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv419riscv_rfft_fast_f32PK28riscv_rfft_fast_instance_f32P9float32_tP9float32_t7uint8_t">
+<span id="_CPPv319riscv_rfft_fast_f32PK28riscv_rfft_fast_instance_f32P9float32_tP9float32_t7uint8_t"></span><span id="_CPPv219riscv_rfft_fast_f32PK28riscv_rfft_fast_instance_f32P9float32_tP9float32_t7uint8_t"></span><span class="target" id="group__RealFFT_1ga79d52dd65555bdaae27fdd20c95f04a1"></span>void <code class="sig-name descname">riscv_rfft_fast_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_rfft_fast_instance_f32 *<em>S</em>, float32_t *<em>p</em>, float32_t *<em>pOut</em>, uint8_t <em>ifftFlag</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the floating-point real FFT. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none </p>
@@ -464,8 +463,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__RealFFT_1ga4f4fcfb79e7b2ae83929a5e77a9fadd1"></span>void <code class="sig-name descname">riscv_rfft_fast_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em>, float64_t *<em>p</em>, float64_t *<em>pOut</em>, uint8_t <em>ifftFlag</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv419riscv_rfft_fast_f64P28riscv_rfft_fast_instance_f64P9float64_tP9float64_t7uint8_t">
+<span id="_CPPv319riscv_rfft_fast_f64P28riscv_rfft_fast_instance_f64P9float64_tP9float64_t7uint8_t"></span><span id="_CPPv219riscv_rfft_fast_f64P28riscv_rfft_fast_instance_f64P9float64_tP9float64_t7uint8_t"></span><span class="target" id="group__RealFFT_1ga4f4fcfb79e7b2ae83929a5e77a9fadd1"></span>void <code class="sig-name descname">riscv_rfft_fast_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em>, float64_t *<em>p</em>, float64_t *<em>pOut</em>, uint8_t <em>ifftFlag</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the Double Precision floating-point real FFT. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none </p>
@@ -638,8 +637,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__RealFFT_1ga4fa1ff980776c277635055574b38ae27"></span>riscv_status <code class="sig-name descname">riscv_rfft_fast_init_f16</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f16 *<em>S</em>, uint16_t <em>fftLen</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv424riscv_rfft_fast_init_f16P28riscv_rfft_fast_instance_f168uint16_t">
+<span id="_CPPv324riscv_rfft_fast_init_f16P28riscv_rfft_fast_instance_f168uint16_t"></span><span id="_CPPv224riscv_rfft_fast_init_f16P28riscv_rfft_fast_instance_f168uint16_t"></span><span class="target" id="group__RealFFT_1ga4fa1ff980776c277635055574b38ae27"></span>riscv_status <code class="sig-name descname">riscv_rfft_fast_init_f16</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f16 *<em>S</em>, uint16_t <em>fftLen</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the floating-point real FFT. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
@@ -814,8 +813,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__RealFFT_1gaa09af308fb200adedfaebdd7ca4f57cf"></span>riscv_status <code class="sig-name descname">riscv_rfft_fast_init_f32</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f32 *<em>S</em>, uint16_t <em>fftLen</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv424riscv_rfft_fast_init_f32P28riscv_rfft_fast_instance_f328uint16_t">
+<span id="_CPPv324riscv_rfft_fast_init_f32P28riscv_rfft_fast_instance_f328uint16_t"></span><span id="_CPPv224riscv_rfft_fast_init_f32P28riscv_rfft_fast_instance_f328uint16_t"></span><span class="target" id="group__RealFFT_1gaa09af308fb200adedfaebdd7ca4f57cf"></span>riscv_status <code class="sig-name descname">riscv_rfft_fast_init_f32</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f32 *<em>S</em>, uint16_t <em>fftLen</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the floating-point real FFT. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
@@ -838,8 +837,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__RealFFT_1gaaa69574378f04e992adeef1ee315ea00"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_32_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv427riscv_rfft_32_fast_init_f64P28riscv_rfft_fast_instance_f64">
+<span id="_CPPv327riscv_rfft_32_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span id="_CPPv227riscv_rfft_32_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span class="target" id="group__RealFFT_1gaaa69574378f04e992adeef1ee315ea00"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_32_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the 32pt double precision floating-point real FFT. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
@@ -857,8 +856,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__RealFFT_1gaecb3e530bfc65fa33f582149640e84d4"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_64_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv427riscv_rfft_64_fast_init_f64P28riscv_rfft_fast_instance_f64">
+<span id="_CPPv327riscv_rfft_64_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span id="_CPPv227riscv_rfft_64_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span class="target" id="group__RealFFT_1gaecb3e530bfc65fa33f582149640e84d4"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_64_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the 64pt Double Precision floating-point real FFT. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
@@ -876,8 +875,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__RealFFT_1gae46a7af0a232c7c8704e8709cb55df09"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_128_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv428riscv_rfft_128_fast_init_f64P28riscv_rfft_fast_instance_f64">
+<span id="_CPPv328riscv_rfft_128_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span id="_CPPv228riscv_rfft_128_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span class="target" id="group__RealFFT_1gae46a7af0a232c7c8704e8709cb55df09"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_128_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the 128pt Double Precision floating-point real FFT. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
@@ -895,8 +894,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__RealFFT_1gae6c838a47052527ea2e88745cf9df9a4"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_256_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv428riscv_rfft_256_fast_init_f64P28riscv_rfft_fast_instance_f64">
+<span id="_CPPv328riscv_rfft_256_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span id="_CPPv228riscv_rfft_256_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span class="target" id="group__RealFFT_1gae6c838a47052527ea2e88745cf9df9a4"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_256_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the 256pt Double Precision floating-point real FFT. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
@@ -914,8 +913,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__RealFFT_1gaf404f3eb25a80cf9ca31ec71638ef5bb"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_512_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv428riscv_rfft_512_fast_init_f64P28riscv_rfft_fast_instance_f64">
+<span id="_CPPv328riscv_rfft_512_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span id="_CPPv228riscv_rfft_512_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span class="target" id="group__RealFFT_1gaf404f3eb25a80cf9ca31ec71638ef5bb"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_512_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the 512pt Double Precision floating-point real FFT. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
@@ -933,8 +932,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__RealFFT_1gad1e0f12aa02c3ecddaf1065d7937b003"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_1024_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv429riscv_rfft_1024_fast_init_f64P28riscv_rfft_fast_instance_f64">
+<span id="_CPPv329riscv_rfft_1024_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span id="_CPPv229riscv_rfft_1024_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span class="target" id="group__RealFFT_1gad1e0f12aa02c3ecddaf1065d7937b003"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_1024_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the 1024pt Double Precision floating-point real FFT. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
@@ -952,8 +951,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__RealFFT_1ga7e60eea384ea8b6377b4b5a2c75caef6"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_2048_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv429riscv_rfft_2048_fast_init_f64P28riscv_rfft_fast_instance_f64">
+<span id="_CPPv329riscv_rfft_2048_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span id="_CPPv229riscv_rfft_2048_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span class="target" id="group__RealFFT_1ga7e60eea384ea8b6377b4b5a2c75caef6"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_2048_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the 2048pt Double Precision floating-point real FFT. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
@@ -971,8 +970,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__RealFFT_1ga104c7032353e73fcb7aea13599abea35"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_4096_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv429riscv_rfft_4096_fast_init_f64P28riscv_rfft_fast_instance_f64">
+<span id="_CPPv329riscv_rfft_4096_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span id="_CPPv229riscv_rfft_4096_fast_init_f64P28riscv_rfft_fast_instance_f64"></span><span class="target" id="group__RealFFT_1ga104c7032353e73fcb7aea13599abea35"></span><em class="property">static</em> riscv_status <code class="sig-name descname">riscv_rfft_4096_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the 4096pt Double Precision floating-point real FFT. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
@@ -990,8 +989,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__RealFFT_1gabb579b9db993b4960326a58032202bb3"></span>riscv_status <code class="sig-name descname">riscv_rfft_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em>, uint16_t <em>fftLen</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv424riscv_rfft_fast_init_f64P28riscv_rfft_fast_instance_f648uint16_t">
+<span id="_CPPv324riscv_rfft_fast_init_f64P28riscv_rfft_fast_instance_f648uint16_t"></span><span id="_CPPv224riscv_rfft_fast_init_f64P28riscv_rfft_fast_instance_f648uint16_t"></span><span class="target" id="group__RealFFT_1gabb579b9db993b4960326a58032202bb3"></span>riscv_status <code class="sig-name descname">riscv_rfft_fast_init_f64</code><span class="sig-paren">(</span>riscv_rfft_fast_instance_f64 *<em>S</em>, uint16_t <em>fftLen</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the Double Precision floating-point real FFT. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
@@ -1014,8 +1013,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__RealFFT_1ga84650b5ce6836a7cd0f0fc9da41fb3cf"></span>riscv_status <code class="sig-name descname">riscv_rfft_init_f32</code><span class="sig-paren">(</span>riscv_rfft_instance_f32 *<em>S</em>, riscv_cfft_radix4_instance_f32 *<em>S_CFFT</em>, uint32_t <em>fftLenReal</em>, uint32_t <em>ifftFlagR</em>, uint32_t <em>bitReverseFlag</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv419riscv_rfft_init_f32P23riscv_rfft_instance_f32P30riscv_cfft_radix4_instance_f328uint32_t8uint32_t8uint32_t">
+<span id="_CPPv319riscv_rfft_init_f32P23riscv_rfft_instance_f32P30riscv_cfft_radix4_instance_f328uint32_t8uint32_t8uint32_t"></span><span id="_CPPv219riscv_rfft_init_f32P23riscv_rfft_instance_f32P30riscv_cfft_radix4_instance_f328uint32_t8uint32_t8uint32_t"></span><span class="target" id="group__RealFFT_1ga84650b5ce6836a7cd0f0fc9da41fb3cf"></span>riscv_status <code class="sig-name descname">riscv_rfft_init_f32</code><span class="sig-paren">(</span>riscv_rfft_instance_f32 *<em>S</em>, riscv_cfft_radix4_instance_f32 *<em>S_CFFT</em>, uint32_t <em>fftLenReal</em>, uint32_t <em>ifftFlagR</em>, uint32_t <em>bitReverseFlag</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the floating-point RFFT/RIFFT. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
@@ -1053,8 +1052,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__RealFFT_1gad750a06797c4caf68f66d260eb0e2c89"></span>riscv_status <code class="sig-name descname">riscv_rfft_init_q15</code><span class="sig-paren">(</span>riscv_rfft_instance_q15 *<em>S</em>, uint32_t <em>fftLenReal</em>, uint32_t <em>ifftFlagR</em>, uint32_t <em>bitReverseFlag</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv419riscv_rfft_init_q15P23riscv_rfft_instance_q158uint32_t8uint32_t8uint32_t">
+<span id="_CPPv319riscv_rfft_init_q15P23riscv_rfft_instance_q158uint32_t8uint32_t8uint32_t"></span><span id="_CPPv219riscv_rfft_init_q15P23riscv_rfft_instance_q158uint32_t8uint32_t8uint32_t"></span><span class="target" id="group__RealFFT_1gad750a06797c4caf68f66d260eb0e2c89"></span>riscv_status <code class="sig-name descname">riscv_rfft_init_q15</code><span class="sig-paren">(</span>riscv_rfft_instance_q15 *<em>S</em>, uint32_t <em>fftLenReal</em>, uint32_t <em>ifftFlagR</em>, uint32_t <em>bitReverseFlag</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the Q15 RFFT/RIFFT. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
@@ -1091,8 +1090,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__RealFFT_1ga9580b4195023f20ddbad0ac8d7719154"></span>riscv_status <code class="sig-name descname">riscv_rfft_init_q31</code><span class="sig-paren">(</span>riscv_rfft_instance_q31 *<em>S</em>, uint32_t <em>fftLenReal</em>, uint32_t <em>ifftFlagR</em>, uint32_t <em>bitReverseFlag</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv419riscv_rfft_init_q31P23riscv_rfft_instance_q318uint32_t8uint32_t8uint32_t">
+<span id="_CPPv319riscv_rfft_init_q31P23riscv_rfft_instance_q318uint32_t8uint32_t8uint32_t"></span><span id="_CPPv219riscv_rfft_init_q31P23riscv_rfft_instance_q318uint32_t8uint32_t8uint32_t"></span><span class="target" id="group__RealFFT_1ga9580b4195023f20ddbad0ac8d7719154"></span>riscv_status <code class="sig-name descname">riscv_rfft_init_q31</code><span class="sig-paren">(</span>riscv_rfft_instance_q31 *<em>S</em>, uint32_t <em>fftLenReal</em>, uint32_t <em>ifftFlagR</em>, uint32_t <em>bitReverseFlag</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the Q31 RFFT/RIFFT. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
@@ -1129,8 +1128,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__RealFFT_1gac6c836bb35dcbdd2a96d38ae9bfadd7f"></span>void <code class="sig-name descname">riscv_rfft_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_rfft_instance_q15 *<em>S</em>, q15_t *<em>pSrc</em>, q15_t *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv414riscv_rfft_q15PK23riscv_rfft_instance_q15P5q15_tP5q15_t">
+<span id="_CPPv314riscv_rfft_q15PK23riscv_rfft_instance_q15P5q15_tP5q15_t"></span><span id="_CPPv214riscv_rfft_q15PK23riscv_rfft_instance_q15P5q15_tP5q15_t"></span><span class="target" id="group__RealFFT_1gac6c836bb35dcbdd2a96d38ae9bfadd7f"></span>void <code class="sig-name descname">riscv_rfft_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_rfft_instance_q15 *<em>S</em>, q15_t *<em>pSrc</em>, q15_t *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the Q15 RFFT/RIFFT. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -1156,8 +1155,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__RealFFT_1ga1128bf1b0b16f271b593a1d94bb9c4ff"></span>void <code class="sig-name descname">riscv_rfft_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_rfft_instance_q31 *<em>S</em>, q31_t *<em>pSrc</em>, q31_t *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv414riscv_rfft_q31PK23riscv_rfft_instance_q31P5q31_tP5q31_t">
+<span id="_CPPv314riscv_rfft_q31PK23riscv_rfft_instance_q31P5q31_tP5q31_t"></span><span id="_CPPv214riscv_rfft_q31PK23riscv_rfft_instance_q31P5q31_tP5q31_t"></span><span class="target" id="group__RealFFT_1ga1128bf1b0b16f271b593a1d94bb9c4ff"></span>void <code class="sig-name descname">riscv_rfft_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_rfft_instance_q31 *<em>S</em>, q31_t *<em>pSrc</em>, q31_t *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the Q31 RFFT/RIFFT. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -1185,7 +1184,7 @@
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
@@ -1209,7 +1208,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 06, 2021.
+        Last updated on Aug 09, 2021.
       </span>
 
     </p>

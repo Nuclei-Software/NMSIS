@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Complex Dot Product &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  <title>Complex Dot Product &mdash; NMSIS 1.0.2-RC2 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC1
+                1.0.2-RC2
               </div>
             
           
@@ -89,7 +88,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -199,7 +198,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="complex-dot-product">
+  <div class="section" id="complex-dot-product">
 <span id="nmsis-dsp-api-complex-dot-product"></span><h1>Complex Dot Product<a class="headerlink" href="#complex-dot-product" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="_CPPv424riscv_cmplx_dot_prod_f16PK9float16_tPK9float16_t8uint32_tP9float16_tP9float16_t">
@@ -232,8 +231,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Functions</p>
 <dl class="function">
-<dt>
-<span class="target" id="group__cmplx__dot__prod_1ga2bf24dd5d52c47188d98a47a46fd579c"></span>void <code class="sig-name descname">riscv_cmplx_dot_prod_f16</code><span class="sig-paren">(</span><em class="property">const</em> float16_t *<em>pSrcA</em>, <em class="property">const</em> float16_t *<em>pSrcB</em>, uint32_t <em>numSamples</em>, float16_t *<em>realResult</em>, float16_t *<em>imagResult</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv424riscv_cmplx_dot_prod_f16PK9float16_tPK9float16_t8uint32_tP9float16_tP9float16_t">
+<span id="_CPPv324riscv_cmplx_dot_prod_f16PK9float16_tPK9float16_t8uint32_tP9float16_tP9float16_t"></span><span id="_CPPv224riscv_cmplx_dot_prod_f16PK9float16_tPK9float16_t8uint32_tP9float16_tP9float16_t"></span><span class="target" id="group__cmplx__dot__prod_1ga2bf24dd5d52c47188d98a47a46fd579c"></span>void <code class="sig-name descname">riscv_cmplx_dot_prod_f16</code><span class="sig-paren">(</span><em class="property">const</em> float16_t *<em>pSrcA</em>, <em class="property">const</em> float16_t *<em>pSrcB</em>, uint32_t <em>numSamples</em>, float16_t *<em>realResult</em>, float16_t *<em>imagResult</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Floating-point complex dot product. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none </p>
@@ -251,8 +250,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__cmplx__dot__prod_1ga4a487e8090687e624d830878c50a6b72"></span>void <code class="sig-name descname">riscv_cmplx_dot_prod_f32</code><span class="sig-paren">(</span><em class="property">const</em> float32_t *<em>pSrcA</em>, <em class="property">const</em> float32_t *<em>pSrcB</em>, uint32_t <em>numSamples</em>, float32_t *<em>realResult</em>, float32_t *<em>imagResult</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv424riscv_cmplx_dot_prod_f32PK9float32_tPK9float32_t8uint32_tP9float32_tP9float32_t">
+<span id="_CPPv324riscv_cmplx_dot_prod_f32PK9float32_tPK9float32_t8uint32_tP9float32_tP9float32_t"></span><span id="_CPPv224riscv_cmplx_dot_prod_f32PK9float32_tPK9float32_t8uint32_tP9float32_tP9float32_t"></span><span class="target" id="group__cmplx__dot__prod_1ga4a487e8090687e624d830878c50a6b72"></span>void <code class="sig-name descname">riscv_cmplx_dot_prod_f32</code><span class="sig-paren">(</span><em class="property">const</em> float32_t *<em>pSrcA</em>, <em class="property">const</em> float32_t *<em>pSrcB</em>, uint32_t <em>numSamples</em>, float32_t *<em>realResult</em>, float32_t *<em>imagResult</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Floating-point complex dot product. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none </p>
@@ -270,8 +269,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__cmplx__dot__prod_1gab1a7915b81aef73f226859c0fe835b37"></span>void <code class="sig-name descname">riscv_cmplx_dot_prod_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pSrcA</em>, <em class="property">const</em> q15_t *<em>pSrcB</em>, uint32_t <em>numSamples</em>, q31_t *<em>realResult</em>, q31_t *<em>imagResult</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv424riscv_cmplx_dot_prod_q15PK5q15_tPK5q15_t8uint32_tP5q31_tP5q31_t">
+<span id="_CPPv324riscv_cmplx_dot_prod_q15PK5q15_tPK5q15_t8uint32_tP5q31_tP5q31_t"></span><span id="_CPPv224riscv_cmplx_dot_prod_q15PK5q15_tPK5q15_t8uint32_tP5q31_tP5q31_t"></span><span class="target" id="group__cmplx__dot__prod_1gab1a7915b81aef73f226859c0fe835b37"></span>void <code class="sig-name descname">riscv_cmplx_dot_prod_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pSrcA</em>, <em class="property">const</em> q15_t *<em>pSrcB</em>, uint32_t <em>numSamples</em>, q31_t *<em>realResult</em>, q31_t *<em>imagResult</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q15 complex dot product. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -291,8 +290,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__cmplx__dot__prod_1gae736f9f08fcf71e7a5c13ee4bbe1c33a"></span>void <code class="sig-name descname">riscv_cmplx_dot_prod_q31</code><span class="sig-paren">(</span><em class="property">const</em> q31_t *<em>pSrcA</em>, <em class="property">const</em> q31_t *<em>pSrcB</em>, uint32_t <em>numSamples</em>, q63_t *<em>realResult</em>, q63_t *<em>imagResult</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv424riscv_cmplx_dot_prod_q31PK5q31_tPK5q31_t8uint32_tP5q63_tP5q63_t">
+<span id="_CPPv324riscv_cmplx_dot_prod_q31PK5q31_tPK5q31_t8uint32_tP5q63_tP5q63_t"></span><span id="_CPPv224riscv_cmplx_dot_prod_q31PK5q31_tPK5q31_t8uint32_tP5q63_tP5q63_t"></span><span class="target" id="group__cmplx__dot__prod_1gae736f9f08fcf71e7a5c13ee4bbe1c33a"></span>void <code class="sig-name descname">riscv_cmplx_dot_prod_q31</code><span class="sig-paren">(</span><em class="property">const</em> q31_t *<em>pSrcA</em>, <em class="property">const</em> q31_t *<em>pSrcB</em>, uint32_t <em>numSamples</em>, q63_t *<em>realResult</em>, q63_t *<em>imagResult</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q31 complex dot product. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -314,7 +313,7 @@
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
@@ -338,7 +337,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 06, 2021.
+        Last updated on Aug 09, 2021.
       </span>
 
     </p>

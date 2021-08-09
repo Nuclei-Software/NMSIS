@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Finite Impulse Response (FIR) Filters &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  <title>Finite Impulse Response (FIR) Filters &mdash; NMSIS 1.0.2-RC2 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC1
+                1.0.2-RC2
               </div>
             
           
@@ -89,7 +88,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -208,7 +207,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="finite-impulse-response-fir-filters">
+  <div class="section" id="finite-impulse-response-fir-filters">
 <span id="nmsis-dsp-api-finite-impulse-response-fir-filters"></span><h1>Finite Impulse Response (FIR) Filters<a class="headerlink" href="#finite-impulse-response-fir-filters" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="_CPPv413riscv_fir_f16PK22riscv_fir_instance_f16PK9float16_tP9float16_t8uint32_t">
@@ -330,8 +329,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Functions</p>
 <dl class="function">
-<dt>
-<span class="target" id="group__FIR_1gaba29e8d8b0566c623aaa7ec3a830b2ce"></span>void <code class="sig-name descname">riscv_fir_f16</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_instance_f16 *<em>S</em>, <em class="property">const</em> float16_t *<em>pSrc</em>, float16_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv413riscv_fir_f16PK22riscv_fir_instance_f16PK9float16_tP9float16_t8uint32_t">
+<span id="_CPPv313riscv_fir_f16PK22riscv_fir_instance_f16PK9float16_tP9float16_t8uint32_t"></span><span id="_CPPv213riscv_fir_f16PK22riscv_fir_instance_f16PK9float16_tP9float16_t8uint32_t"></span><span class="target" id="group__FIR_1gaba29e8d8b0566c623aaa7ec3a830b2ce"></span>void <code class="sig-name descname">riscv_fir_f16</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_instance_f16 *<em>S</em>, <em class="property">const</em> float16_t *<em>pSrc</em>, float16_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for floating-point FIR filter. </p>
 <p>Processing function for the floating-point FIR filter.</p>
 <p><dl class="simple">
@@ -349,8 +348,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FIR_1ga9609646d34fdf7b619a1dd845058e495"></span>void <code class="sig-name descname">riscv_fir_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_instance_f32 *<em>S</em>, <em class="property">const</em> float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv413riscv_fir_f32PK22riscv_fir_instance_f32PK9float32_tP9float32_t8uint32_t">
+<span id="_CPPv313riscv_fir_f32PK22riscv_fir_instance_f32PK9float32_tP9float32_t8uint32_t"></span><span id="_CPPv213riscv_fir_f32PK22riscv_fir_instance_f32PK9float32_tP9float32_t8uint32_t"></span><span class="target" id="group__FIR_1ga9609646d34fdf7b619a1dd845058e495"></span>void <code class="sig-name descname">riscv_fir_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_instance_f32 *<em>S</em>, <em class="property">const</em> float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for floating-point FIR filter. </p>
 <p>Processing function for the floating-point FIR filter.</p>
 <p><dl class="simple">
@@ -368,8 +367,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FIR_1ga1797bd3279a9f58d181bc51ad66f06dc"></span>void <code class="sig-name descname">riscv_fir_fast_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_instance_q15 *<em>S</em>, <em class="property">const</em> q15_t *<em>pSrc</em>, q15_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv418riscv_fir_fast_q15PK22riscv_fir_instance_q15PK5q15_tP5q15_t8uint32_t">
+<span id="_CPPv318riscv_fir_fast_q15PK22riscv_fir_instance_q15PK5q15_tP5q15_t8uint32_t"></span><span id="_CPPv218riscv_fir_fast_q15PK22riscv_fir_instance_q15PK5q15_tP5q15_t8uint32_t"></span><span class="target" id="group__FIR_1ga1797bd3279a9f58d181bc51ad66f06dc"></span>void <code class="sig-name descname">riscv_fir_fast_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_instance_q15 *<em>S</em>, <em class="property">const</em> q15_t *<em>pSrc</em>, q15_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the Q15 FIR filter (fast version). </p>
 <p>Processing function for the fast Q15 FIR filter (fast version).</p>
 <p><dl class="simple">
@@ -414,8 +413,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FIR_1ga765e5fe8abbbb9375bf7449a859f264f"></span>void <code class="sig-name descname">riscv_fir_init_f16</code><span class="sig-paren">(</span>riscv_fir_instance_f16 *<em>S</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> float16_t *<em>pCoeffs</em>, float16_t *<em>pState</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv418riscv_fir_init_f16P22riscv_fir_instance_f168uint16_tPK9float16_tP9float16_t8uint32_t">
+<span id="_CPPv318riscv_fir_init_f16P22riscv_fir_instance_f168uint16_tPK9float16_tP9float16_t8uint32_t"></span><span id="_CPPv218riscv_fir_init_f16P22riscv_fir_instance_f168uint16_tPK9float16_tP9float16_t8uint32_t"></span><span class="target" id="group__FIR_1ga765e5fe8abbbb9375bf7449a859f264f"></span>void <code class="sig-name descname">riscv_fir_init_f16</code><span class="sig-paren">(</span>riscv_fir_instance_f16 *<em>S</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> float16_t *<em>pCoeffs</em>, float16_t *<em>pState</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the floating-point FIR filter. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -441,8 +440,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FIR_1gabc32b5613cbace1478d28da3654fd357"></span>void <code class="sig-name descname">riscv_fir_init_f32</code><span class="sig-paren">(</span>riscv_fir_instance_f32 *<em>S</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> float32_t *<em>pCoeffs</em>, float32_t *<em>pState</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv418riscv_fir_init_f32P22riscv_fir_instance_f328uint16_tPK9float32_tP9float32_t8uint32_t">
+<span id="_CPPv318riscv_fir_init_f32P22riscv_fir_instance_f328uint16_tPK9float32_tP9float32_t8uint32_t"></span><span id="_CPPv218riscv_fir_init_f32P22riscv_fir_instance_f328uint16_tPK9float32_tP9float32_t8uint32_t"></span><span class="target" id="group__FIR_1gabc32b5613cbace1478d28da3654fd357"></span>void <code class="sig-name descname">riscv_fir_init_f32</code><span class="sig-paren">(</span>riscv_fir_instance_f32 *<em>S</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> float32_t *<em>pCoeffs</em>, float32_t *<em>pState</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the floating-point FIR filter. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -468,8 +467,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FIR_1ga4ff373438cd370b20a26ab7d3f8a5206"></span>riscv_status <code class="sig-name descname">riscv_fir_init_q15</code><span class="sig-paren">(</span>riscv_fir_instance_q15 *<em>S</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> q15_t *<em>pCoeffs</em>, q15_t *<em>pState</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv418riscv_fir_init_q15P22riscv_fir_instance_q158uint16_tPK5q15_tP5q15_t8uint32_t">
+<span id="_CPPv318riscv_fir_init_q15P22riscv_fir_instance_q158uint16_tPK5q15_tP5q15_t8uint32_t"></span><span id="_CPPv218riscv_fir_init_q15P22riscv_fir_instance_q158uint16_tPK5q15_tP5q15_t8uint32_t"></span><span class="target" id="group__FIR_1ga4ff373438cd370b20a26ab7d3f8a5206"></span>riscv_status <code class="sig-name descname">riscv_fir_init_q15</code><span class="sig-paren">(</span>riscv_fir_instance_q15 *<em>S</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> q15_t *<em>pCoeffs</em>, q15_t *<em>pState</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the Q15 FIR filter. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
@@ -495,8 +494,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FIR_1ga20b9154a895a31aabdf745c7a98b16ea"></span>void <code class="sig-name descname">riscv_fir_init_q31</code><span class="sig-paren">(</span>riscv_fir_instance_q31 *<em>S</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> q31_t *<em>pCoeffs</em>, q31_t *<em>pState</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv418riscv_fir_init_q31P22riscv_fir_instance_q318uint16_tPK5q31_tP5q31_t8uint32_t">
+<span id="_CPPv318riscv_fir_init_q31P22riscv_fir_instance_q318uint16_tPK5q31_tP5q31_t8uint32_t"></span><span id="_CPPv218riscv_fir_init_q31P22riscv_fir_instance_q318uint16_tPK5q31_tP5q31_t8uint32_t"></span><span class="target" id="group__FIR_1ga20b9154a895a31aabdf745c7a98b16ea"></span>void <code class="sig-name descname">riscv_fir_init_q31</code><span class="sig-paren">(</span>riscv_fir_instance_q31 *<em>S</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> q31_t *<em>pCoeffs</em>, q31_t *<em>pState</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the Q31 FIR filter. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -520,8 +519,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FIR_1gae23d333a0ce67c25a40f56b14e6b4c65"></span>void <code class="sig-name descname">riscv_fir_init_q7</code><span class="sig-paren">(</span>riscv_fir_instance_q7 *<em>S</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> q7_t *<em>pCoeffs</em>, q7_t *<em>pState</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv417riscv_fir_init_q7P21riscv_fir_instance_q78uint16_tPK4q7_tP4q7_t8uint32_t">
+<span id="_CPPv317riscv_fir_init_q7P21riscv_fir_instance_q78uint16_tPK4q7_tP4q7_t8uint32_t"></span><span id="_CPPv217riscv_fir_init_q7P21riscv_fir_instance_q78uint16_tPK4q7_tP4q7_t8uint32_t"></span><span class="target" id="group__FIR_1gae23d333a0ce67c25a40f56b14e6b4c65"></span>void <code class="sig-name descname">riscv_fir_init_q7</code><span class="sig-paren">(</span>riscv_fir_instance_q7 *<em>S</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> q7_t *<em>pCoeffs</em>, q7_t *<em>pState</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the Q7 FIR filter. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -545,8 +544,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FIR_1ga8df4a826bbe755b7b0efa9615bf4df49"></span>void <code class="sig-name descname">riscv_fir_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_instance_q15 *<em>S</em>, <em class="property">const</em> q15_t *<em>pSrc</em>, q15_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv413riscv_fir_q15PK22riscv_fir_instance_q15PK5q15_tP5q15_t8uint32_t">
+<span id="_CPPv313riscv_fir_q15PK22riscv_fir_instance_q15PK5q15_tP5q15_t8uint32_t"></span><span id="_CPPv213riscv_fir_q15PK22riscv_fir_instance_q15PK5q15_tP5q15_t8uint32_t"></span><span class="target" id="group__FIR_1ga8df4a826bbe755b7b0efa9615bf4df49"></span>void <code class="sig-name descname">riscv_fir_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_instance_q15 *<em>S</em>, <em class="property">const</em> q15_t *<em>pSrc</em>, q15_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the Q15 FIR filter. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -567,8 +566,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FIR_1ga5ab3142de031afd37695e2ac09c880d1"></span>void <code class="sig-name descname">riscv_fir_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_instance_q31 *<em>S</em>, <em class="property">const</em> q31_t *<em>pSrc</em>, q31_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv413riscv_fir_q31PK22riscv_fir_instance_q31PK5q31_tP5q31_t8uint32_t">
+<span id="_CPPv313riscv_fir_q31PK22riscv_fir_instance_q31PK5q31_tP5q31_t8uint32_t"></span><span id="_CPPv213riscv_fir_q31PK22riscv_fir_instance_q31PK5q31_tP5q31_t8uint32_t"></span><span class="target" id="group__FIR_1ga5ab3142de031afd37695e2ac09c880d1"></span>void <code class="sig-name descname">riscv_fir_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_instance_q31 *<em>S</em>, <em class="property">const</em> q31_t *<em>pSrc</em>, q31_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for Q31 FIR filter. </p>
 <p>Processing function for the Q31 FIR filter.</p>
 <p><dl class="simple">
@@ -590,8 +589,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FIR_1gaaff318c4988ee737e847feee8afab3d5"></span>void <code class="sig-name descname">riscv_fir_q7</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_instance_q7 *<em>S</em>, <em class="property">const</em> q7_t *<em>pSrc</em>, q7_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv412riscv_fir_q7PK21riscv_fir_instance_q7PK4q7_tP4q7_t8uint32_t">
+<span id="_CPPv312riscv_fir_q7PK21riscv_fir_instance_q7PK4q7_tP4q7_t8uint32_t"></span><span id="_CPPv212riscv_fir_q7PK21riscv_fir_instance_q7PK4q7_tP4q7_t8uint32_t"></span><span class="target" id="group__FIR_1gaaff318c4988ee737e847feee8afab3d5"></span>void <code class="sig-name descname">riscv_fir_q7</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_instance_q7 *<em>S</em>, <em class="property">const</em> q7_t *<em>pSrc</em>, q7_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for Q7 FIR filter. </p>
 <p>Processing function for the Q7 FIR filter.</p>
 <p><dl class="simple">
@@ -613,7 +612,7 @@
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
@@ -637,7 +636,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 06, 2021.
+        Last updated on Aug 09, 2021.
       </span>
 
     </p>

@@ -1,0 +1,2834 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Core CSR Encoding &mdash; NMSIS 1.0.2-RC2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Register Define and Type Definitions" href="core_register_type.html" />
+    <link rel="prev" title="Core CSR Register Access" href="core_csr_access.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.2-RC2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">NMSIS Core</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started.html">Using NMSIS in Embedded Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../core_templates.html">NMSIS-Core Device Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../register_mapping.html">Register Mapping</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">NMSIS Core API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="core_version_control.html">Version Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_compiler_control.html">Compiler Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_csr_access.html">Core CSR Register Access</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Core CSR Encoding</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#core-csr-register-definitions">Core CSR Register Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#other-core-related-macros">Other Core Related Macros</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="core_register_type.html">Register Define and Type Definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_intrinsics.html">CPU Intrinsic Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_periph_access.html">Peripheral Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_systick.html">Systick Timer(SysTimer)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_interrupt_exception.html">Interrupts and Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_fpu.html">FPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_pmp.html">PMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_cache.html">Cache Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_system_device.html">System Device Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_arm_compatiable.html">ARM Compatiable Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NMSIS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">NMSIS Core</a> &raquo;</li>
+        
+          <li><a href="index.html">NMSIS Core API</a> &raquo;</li>
+        
+      <li>Core CSR Encoding</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/core/api/core_csr_encoding.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="core-csr-encoding">
+<span id="core-api-csr-encoding"></span><h1>Core CSR Encoding<a class="headerlink" href="#core-csr-encoding" title="Permalink to this headline">¶</a></h1>
+<p>Click <a class="reference external" href="https://doc.nucleisys.com/nuclei_spec/isa/core_csr.html">Nuclei Core CSR</a> to learn about Core CSR in Nuclei ISA Spec.</p>
+<div class="section" id="core-csr-register-definitions">
+<h2>Core CSR Register Definitions<a class="headerlink" href="#core-csr-register-definitions" title="Permalink to this headline">¶</a></h2>
+<dl class="group">
+<dt>
+<span class="target" id="group__NMSIS__Core__CSR__Registers"></span><em>group</em> <code class="sig-name descname">NMSIS_Core_CSR_Registers</code></dt>
+<dd><p>NMSIS Core CSR Register Definitions. </p>
+<p>The following macros are used for CSR Register Defintions. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="macro">
+<dt id="c.CSR_USTATUS">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gac4b67373a4569a927b19779a30c619ba"></span><code class="sig-name descname">CSR_USTATUS</code> 0x0<a class="headerlink" href="#c.CSR_USTATUS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_FFLAGS">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaf25caf1486cedbc47afdd5afd81be307"></span><code class="sig-name descname">CSR_FFLAGS</code> 0x1<a class="headerlink" href="#c.CSR_FFLAGS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_FRM">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaab22a5666b6fd37cde09583f0ca66133"></span><code class="sig-name descname">CSR_FRM</code> 0x2<a class="headerlink" href="#c.CSR_FRM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_FCSR">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gabba4da62b155cd22e3bd1a8ec402cf78"></span><code class="sig-name descname">CSR_FCSR</code> 0x3<a class="headerlink" href="#c.CSR_FCSR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_CYCLE">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga9e9434c8a5b1f157f1a7b800c26321bb"></span><code class="sig-name descname">CSR_CYCLE</code> 0xc00<a class="headerlink" href="#c.CSR_CYCLE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_TIME">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga4bbdf33e8b20f4cb020869e7394e388a"></span><code class="sig-name descname">CSR_TIME</code> 0xc01<a class="headerlink" href="#c.CSR_TIME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_INSTRET">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga053f87dc2e911eb74a904232a0db20f5"></span><code class="sig-name descname">CSR_INSTRET</code> 0xc02<a class="headerlink" href="#c.CSR_INSTRET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER3">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gabc9ec186541e531bfb831892b656c48c"></span><code class="sig-name descname">CSR_HPMCOUNTER3</code> 0xc03<a class="headerlink" href="#c.CSR_HPMCOUNTER3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER4">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga0507aee7c7c34cc39be1dc2941537b8c"></span><code class="sig-name descname">CSR_HPMCOUNTER4</code> 0xc04<a class="headerlink" href="#c.CSR_HPMCOUNTER4" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER5">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga74b3354177b841b8d40deab938f48cea"></span><code class="sig-name descname">CSR_HPMCOUNTER5</code> 0xc05<a class="headerlink" href="#c.CSR_HPMCOUNTER5" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER6">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga63284922fe78d5eb60d66785d6013ee0"></span><code class="sig-name descname">CSR_HPMCOUNTER6</code> 0xc06<a class="headerlink" href="#c.CSR_HPMCOUNTER6" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER7">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gad9388484f19dc49696c304fb854f67e1"></span><code class="sig-name descname">CSR_HPMCOUNTER7</code> 0xc07<a class="headerlink" href="#c.CSR_HPMCOUNTER7" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER8">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaef2ced79d58eb46eb505bf1ebb45e78e"></span><code class="sig-name descname">CSR_HPMCOUNTER8</code> 0xc08<a class="headerlink" href="#c.CSR_HPMCOUNTER8" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER9">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaaf606f32118480e5800c326dae3d072d"></span><code class="sig-name descname">CSR_HPMCOUNTER9</code> 0xc09<a class="headerlink" href="#c.CSR_HPMCOUNTER9" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER10">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga45c1a1c5872f41cf6b769cac61c594e8"></span><code class="sig-name descname">CSR_HPMCOUNTER10</code> 0xc0a<a class="headerlink" href="#c.CSR_HPMCOUNTER10" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER11">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gac9c87c7b00208fd2cb1accb2bb06576b"></span><code class="sig-name descname">CSR_HPMCOUNTER11</code> 0xc0b<a class="headerlink" href="#c.CSR_HPMCOUNTER11" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER12">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga1e4d4f948ba23d5e846ef9e33f548dc6"></span><code class="sig-name descname">CSR_HPMCOUNTER12</code> 0xc0c<a class="headerlink" href="#c.CSR_HPMCOUNTER12" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER13">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gad60ed530218b142c78f9392ed3b5a4b3"></span><code class="sig-name descname">CSR_HPMCOUNTER13</code> 0xc0d<a class="headerlink" href="#c.CSR_HPMCOUNTER13" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER14">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga461b98ee6107021836e54d298f73a61a"></span><code class="sig-name descname">CSR_HPMCOUNTER14</code> 0xc0e<a class="headerlink" href="#c.CSR_HPMCOUNTER14" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER15">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga2ab1318ae5514940d4bc8e7bee1e5ce8"></span><code class="sig-name descname">CSR_HPMCOUNTER15</code> 0xc0f<a class="headerlink" href="#c.CSR_HPMCOUNTER15" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER16">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gacd75f71e43371488dcb86272ad86ccd9"></span><code class="sig-name descname">CSR_HPMCOUNTER16</code> 0xc10<a class="headerlink" href="#c.CSR_HPMCOUNTER16" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER17">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gabc1c35f08df6a93f999405649e8c8430"></span><code class="sig-name descname">CSR_HPMCOUNTER17</code> 0xc11<a class="headerlink" href="#c.CSR_HPMCOUNTER17" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER18">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gab9a663a327d52d10f6290b942490d4e9"></span><code class="sig-name descname">CSR_HPMCOUNTER18</code> 0xc12<a class="headerlink" href="#c.CSR_HPMCOUNTER18" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER19">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gafee1bc538c2d2f77151d9f44c842246a"></span><code class="sig-name descname">CSR_HPMCOUNTER19</code> 0xc13<a class="headerlink" href="#c.CSR_HPMCOUNTER19" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER20">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga7cb9f35b141814b49a59211ef7277172"></span><code class="sig-name descname">CSR_HPMCOUNTER20</code> 0xc14<a class="headerlink" href="#c.CSR_HPMCOUNTER20" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER21">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga76e6ef2939cc2d66d7d2a6069a2910b1"></span><code class="sig-name descname">CSR_HPMCOUNTER21</code> 0xc15<a class="headerlink" href="#c.CSR_HPMCOUNTER21" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER22">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga9c2c0516473c50269bf9f8a5e0ba95a4"></span><code class="sig-name descname">CSR_HPMCOUNTER22</code> 0xc16<a class="headerlink" href="#c.CSR_HPMCOUNTER22" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER23">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gad3178937990f64a8da188ce408d96504"></span><code class="sig-name descname">CSR_HPMCOUNTER23</code> 0xc17<a class="headerlink" href="#c.CSR_HPMCOUNTER23" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER24">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga07ec0874b81903bed3a04ceaa90864bd"></span><code class="sig-name descname">CSR_HPMCOUNTER24</code> 0xc18<a class="headerlink" href="#c.CSR_HPMCOUNTER24" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER25">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaef51e7ffef082a9a4324ec8324af024f"></span><code class="sig-name descname">CSR_HPMCOUNTER25</code> 0xc19<a class="headerlink" href="#c.CSR_HPMCOUNTER25" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER26">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gada87ee7cd70d82c940209049f88c9875"></span><code class="sig-name descname">CSR_HPMCOUNTER26</code> 0xc1a<a class="headerlink" href="#c.CSR_HPMCOUNTER26" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER27">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gad1c6f8cf4d163939eb9483d8ce10c88e"></span><code class="sig-name descname">CSR_HPMCOUNTER27</code> 0xc1b<a class="headerlink" href="#c.CSR_HPMCOUNTER27" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER28">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga54b1bbdd4e89e1f5d2a6761dee9448fc"></span><code class="sig-name descname">CSR_HPMCOUNTER28</code> 0xc1c<a class="headerlink" href="#c.CSR_HPMCOUNTER28" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER29">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga07000fde1ab777a36de658ff34b5545e"></span><code class="sig-name descname">CSR_HPMCOUNTER29</code> 0xc1d<a class="headerlink" href="#c.CSR_HPMCOUNTER29" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER30">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga170df914640e20d349898a6bfe4adaf6"></span><code class="sig-name descname">CSR_HPMCOUNTER30</code> 0xc1e<a class="headerlink" href="#c.CSR_HPMCOUNTER30" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER31">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaac7b39ccaabe77e3f185aeb31424a13f"></span><code class="sig-name descname">CSR_HPMCOUNTER31</code> 0xc1f<a class="headerlink" href="#c.CSR_HPMCOUNTER31" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_SSTATUS">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga651e65251cc54d4a553702e4cf061ca7"></span><code class="sig-name descname">CSR_SSTATUS</code> 0x100<a class="headerlink" href="#c.CSR_SSTATUS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_SIE">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gafe9299d8a7d0f21e963ab621a6a5a5cf"></span><code class="sig-name descname">CSR_SIE</code> 0x104<a class="headerlink" href="#c.CSR_SIE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_STVEC">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gab1718f56f1c135bcd02a707b7172301b"></span><code class="sig-name descname">CSR_STVEC</code> 0x105<a class="headerlink" href="#c.CSR_STVEC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_SSCRATCH">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga545aa444d12109ef8e961ba29eb3ea54"></span><code class="sig-name descname">CSR_SSCRATCH</code> 0x140<a class="headerlink" href="#c.CSR_SSCRATCH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_SEPC">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga3981cba40ee737a2f7cf4228b2bdbb67"></span><code class="sig-name descname">CSR_SEPC</code> 0x141<a class="headerlink" href="#c.CSR_SEPC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_SCAUSE">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga49e424a4449b3192d35ca1133e8f5dc2"></span><code class="sig-name descname">CSR_SCAUSE</code> 0x142<a class="headerlink" href="#c.CSR_SCAUSE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_SBADADDR">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gac46f5b5ff617c14b42ed38307028217c"></span><code class="sig-name descname">CSR_SBADADDR</code> 0x143<a class="headerlink" href="#c.CSR_SBADADDR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_SIP">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gac79e54d601a25a8eed4e0c985fd30315"></span><code class="sig-name descname">CSR_SIP</code> 0x144<a class="headerlink" href="#c.CSR_SIP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_SPTBR">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaad33afbadb5582d0603771fda6e04e6b"></span><code class="sig-name descname">CSR_SPTBR</code> 0x180<a class="headerlink" href="#c.CSR_SPTBR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MSTATUS">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga7086e667c65affe87d2c32115193d736"></span><code class="sig-name descname">CSR_MSTATUS</code> 0x300<a class="headerlink" href="#c.CSR_MSTATUS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MISA">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaaa62902f21282250fd975372f9e5e24e"></span><code class="sig-name descname">CSR_MISA</code> 0x301<a class="headerlink" href="#c.CSR_MISA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MEDELEG">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gab3139a6af26d85bf8d30330397d4a8c0"></span><code class="sig-name descname">CSR_MEDELEG</code> 0x302<a class="headerlink" href="#c.CSR_MEDELEG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MIDELEG">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gae447b7b078204874a2606d32097e017a"></span><code class="sig-name descname">CSR_MIDELEG</code> 0x303<a class="headerlink" href="#c.CSR_MIDELEG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MIE">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gae75a38ea833c5507d942fad1c98132e1"></span><code class="sig-name descname">CSR_MIE</code> 0x304<a class="headerlink" href="#c.CSR_MIE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MTVEC">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga22f5cd17199a966b4b840dd56d151216"></span><code class="sig-name descname">CSR_MTVEC</code> 0x305<a class="headerlink" href="#c.CSR_MTVEC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MCOUNTEREN">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga0c406c25c8c80d7198f7bf457f38e21d"></span><code class="sig-name descname">CSR_MCOUNTEREN</code> 0x306<a class="headerlink" href="#c.CSR_MCOUNTEREN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MSCRATCH">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga26cdef6612f10a48ccfc34739ce70237"></span><code class="sig-name descname">CSR_MSCRATCH</code> 0x340<a class="headerlink" href="#c.CSR_MSCRATCH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MEPC">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga53d62065ed74fd3583cca895e6157c5f"></span><code class="sig-name descname">CSR_MEPC</code> 0x341<a class="headerlink" href="#c.CSR_MEPC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MCAUSE">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga2f9201d1d05c9fa66480065eda0b9e7f"></span><code class="sig-name descname">CSR_MCAUSE</code> 0x342<a class="headerlink" href="#c.CSR_MCAUSE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MBADADDR">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga0f1cc929954a8482a3e878943731a5c1"></span><code class="sig-name descname">CSR_MBADADDR</code> 0x343<a class="headerlink" href="#c.CSR_MBADADDR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MTVAL">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga7e69e2d5c3618dc9274a39e57d54de8d"></span><code class="sig-name descname">CSR_MTVAL</code> 0x343<a class="headerlink" href="#c.CSR_MTVAL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MIP">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga38c553936313dfc3d00ff68083f7c7fa"></span><code class="sig-name descname">CSR_MIP</code> 0x344<a class="headerlink" href="#c.CSR_MIP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_PMPCFG0">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga83987d4e9998a1cca46cd97cf8d809ed"></span><code class="sig-name descname">CSR_PMPCFG0</code> 0x3a0<a class="headerlink" href="#c.CSR_PMPCFG0" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_PMPCFG1">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga1a53dfb8b663fc41e8fd7c7b84471eec"></span><code class="sig-name descname">CSR_PMPCFG1</code> 0x3a1<a class="headerlink" href="#c.CSR_PMPCFG1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_PMPCFG2">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga3103e79fb7dc1bc929b55b7daed624cb"></span><code class="sig-name descname">CSR_PMPCFG2</code> 0x3a2<a class="headerlink" href="#c.CSR_PMPCFG2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_PMPCFG3">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga42e3b880f10fb42eb718446a2f3dfa5a"></span><code class="sig-name descname">CSR_PMPCFG3</code> 0x3a3<a class="headerlink" href="#c.CSR_PMPCFG3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_PMPADDR0">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gacecf7350c29d4d7b3eff9334a79eb151"></span><code class="sig-name descname">CSR_PMPADDR0</code> 0x3b0<a class="headerlink" href="#c.CSR_PMPADDR0" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_PMPADDR1">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga4b66ab86131f3f9abb77653d946fa801"></span><code class="sig-name descname">CSR_PMPADDR1</code> 0x3b1<a class="headerlink" href="#c.CSR_PMPADDR1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_PMPADDR2">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga793ce1bc309da27c6f3406e63c990ca3"></span><code class="sig-name descname">CSR_PMPADDR2</code> 0x3b2<a class="headerlink" href="#c.CSR_PMPADDR2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_PMPADDR3">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga429c14fe78dcfb064f8a2b40bcd0c6d5"></span><code class="sig-name descname">CSR_PMPADDR3</code> 0x3b3<a class="headerlink" href="#c.CSR_PMPADDR3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_PMPADDR4">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga296a8dd56db1dbc9ce8d23e04a125f1b"></span><code class="sig-name descname">CSR_PMPADDR4</code> 0x3b4<a class="headerlink" href="#c.CSR_PMPADDR4" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_PMPADDR5">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga0fdee71fe744c3a76a4fe4566b6d30f7"></span><code class="sig-name descname">CSR_PMPADDR5</code> 0x3b5<a class="headerlink" href="#c.CSR_PMPADDR5" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_PMPADDR6">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga380f61e6b334d2f76d3f995c932032ff"></span><code class="sig-name descname">CSR_PMPADDR6</code> 0x3b6<a class="headerlink" href="#c.CSR_PMPADDR6" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_PMPADDR7">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga3c32a0bfe8f5558cf3680e865853bd7d"></span><code class="sig-name descname">CSR_PMPADDR7</code> 0x3b7<a class="headerlink" href="#c.CSR_PMPADDR7" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_PMPADDR8">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gad5ca2904320156ece2d409a6203833dd"></span><code class="sig-name descname">CSR_PMPADDR8</code> 0x3b8<a class="headerlink" href="#c.CSR_PMPADDR8" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_PMPADDR9">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga37480409a10aee34f38f372686d25c63"></span><code class="sig-name descname">CSR_PMPADDR9</code> 0x3b9<a class="headerlink" href="#c.CSR_PMPADDR9" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_PMPADDR10">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gae23ceb6fb8cb498198b5dd89301527d6"></span><code class="sig-name descname">CSR_PMPADDR10</code> 0x3ba<a class="headerlink" href="#c.CSR_PMPADDR10" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_PMPADDR11">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga05cef37120eb5d71e1bb4a2eab968c1f"></span><code class="sig-name descname">CSR_PMPADDR11</code> 0x3bb<a class="headerlink" href="#c.CSR_PMPADDR11" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_PMPADDR12">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga4f95495aea52214e593217b25a2683c9"></span><code class="sig-name descname">CSR_PMPADDR12</code> 0x3bc<a class="headerlink" href="#c.CSR_PMPADDR12" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_PMPADDR13">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga782c2fb9aba26298db7123758c5932f4"></span><code class="sig-name descname">CSR_PMPADDR13</code> 0x3bd<a class="headerlink" href="#c.CSR_PMPADDR13" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_PMPADDR14">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga803fecb49fa82ceabd227df080f692c7"></span><code class="sig-name descname">CSR_PMPADDR14</code> 0x3be<a class="headerlink" href="#c.CSR_PMPADDR14" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_PMPADDR15">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga27b523f4961b4e24098ba0b24aa079bb"></span><code class="sig-name descname">CSR_PMPADDR15</code> 0x3bf<a class="headerlink" href="#c.CSR_PMPADDR15" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_TSELECT">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga6568db85f99917ea87c730935c11bbec"></span><code class="sig-name descname">CSR_TSELECT</code> 0x7a0<a class="headerlink" href="#c.CSR_TSELECT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_TDATA1">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaa19ec30b626fd32227442ef0391856a6"></span><code class="sig-name descname">CSR_TDATA1</code> 0x7a1<a class="headerlink" href="#c.CSR_TDATA1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_TDATA2">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gabbf8e2faac7cd1dbe41efea8847dd5d9"></span><code class="sig-name descname">CSR_TDATA2</code> 0x7a2<a class="headerlink" href="#c.CSR_TDATA2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_TDATA3">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga35efdf3af946e5a33573d57075a5bc08"></span><code class="sig-name descname">CSR_TDATA3</code> 0x7a3<a class="headerlink" href="#c.CSR_TDATA3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_DCSR">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaa7948071dc3cc9b5b5be073037bafad3"></span><code class="sig-name descname">CSR_DCSR</code> 0x7b0<a class="headerlink" href="#c.CSR_DCSR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_DPC">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga8266449db67493cfa5d1d247a2258239"></span><code class="sig-name descname">CSR_DPC</code> 0x7b1<a class="headerlink" href="#c.CSR_DPC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_DSCRATCH">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga307a9d79a3ab1b4f4192cffabbf38705"></span><code class="sig-name descname">CSR_DSCRATCH</code> 0x7b2<a class="headerlink" href="#c.CSR_DSCRATCH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MCYCLE">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga5a7abfd3679706088142a50995c1bdb8"></span><code class="sig-name descname">CSR_MCYCLE</code> 0xb00<a class="headerlink" href="#c.CSR_MCYCLE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MINSTRET">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga204b84adcbccada25ecd7aff3c5a31f5"></span><code class="sig-name descname">CSR_MINSTRET</code> 0xb02<a class="headerlink" href="#c.CSR_MINSTRET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER3">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gab4ecf0c0a94e6890a7f66b24a3d90570"></span><code class="sig-name descname">CSR_MHPMCOUNTER3</code> 0xb03<a class="headerlink" href="#c.CSR_MHPMCOUNTER3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER4">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaba211e449cb5c1f19d356d6aae77fed6"></span><code class="sig-name descname">CSR_MHPMCOUNTER4</code> 0xb04<a class="headerlink" href="#c.CSR_MHPMCOUNTER4" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER5">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga49744f82c2fd9ba5952bee02fee31d4c"></span><code class="sig-name descname">CSR_MHPMCOUNTER5</code> 0xb05<a class="headerlink" href="#c.CSR_MHPMCOUNTER5" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER6">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga44bebd12dfb75d1230904599bacfd084"></span><code class="sig-name descname">CSR_MHPMCOUNTER6</code> 0xb06<a class="headerlink" href="#c.CSR_MHPMCOUNTER6" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER7">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga33e5707deb3a7dc9e1de6b3f272ba482"></span><code class="sig-name descname">CSR_MHPMCOUNTER7</code> 0xb07<a class="headerlink" href="#c.CSR_MHPMCOUNTER7" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER8">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga947ebb26a8cedc08182e1dd1b12a5f52"></span><code class="sig-name descname">CSR_MHPMCOUNTER8</code> 0xb08<a class="headerlink" href="#c.CSR_MHPMCOUNTER8" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER9">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga96af9e0956e30a5c177526d32dec3da2"></span><code class="sig-name descname">CSR_MHPMCOUNTER9</code> 0xb09<a class="headerlink" href="#c.CSR_MHPMCOUNTER9" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER10">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gab595d3f65afc6cc114e9441a79a72eb5"></span><code class="sig-name descname">CSR_MHPMCOUNTER10</code> 0xb0a<a class="headerlink" href="#c.CSR_MHPMCOUNTER10" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER11">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaa6c748eba850b6d58630a718f9e01b82"></span><code class="sig-name descname">CSR_MHPMCOUNTER11</code> 0xb0b<a class="headerlink" href="#c.CSR_MHPMCOUNTER11" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER12">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga76832c0780249855bcc916fe79e420b0"></span><code class="sig-name descname">CSR_MHPMCOUNTER12</code> 0xb0c<a class="headerlink" href="#c.CSR_MHPMCOUNTER12" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER13">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gae389f784655a09fba7f6ec2899b70215"></span><code class="sig-name descname">CSR_MHPMCOUNTER13</code> 0xb0d<a class="headerlink" href="#c.CSR_MHPMCOUNTER13" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER14">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga3e2db0c2ff1141b64d8a56c1a31b77da"></span><code class="sig-name descname">CSR_MHPMCOUNTER14</code> 0xb0e<a class="headerlink" href="#c.CSR_MHPMCOUNTER14" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER15">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gadfd273016afeb9771172c9cbeb9887cb"></span><code class="sig-name descname">CSR_MHPMCOUNTER15</code> 0xb0f<a class="headerlink" href="#c.CSR_MHPMCOUNTER15" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER16">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga0b418296b63cdfe99dd9507cc778d14d"></span><code class="sig-name descname">CSR_MHPMCOUNTER16</code> 0xb10<a class="headerlink" href="#c.CSR_MHPMCOUNTER16" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER17">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaa67f519b1e39b1868822afe663f497fb"></span><code class="sig-name descname">CSR_MHPMCOUNTER17</code> 0xb11<a class="headerlink" href="#c.CSR_MHPMCOUNTER17" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER18">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gacb72065967f51ecdd5a22122d572bb43"></span><code class="sig-name descname">CSR_MHPMCOUNTER18</code> 0xb12<a class="headerlink" href="#c.CSR_MHPMCOUNTER18" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER19">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gafd2f303ac1c97e4b17b4bdb6dae67a9d"></span><code class="sig-name descname">CSR_MHPMCOUNTER19</code> 0xb13<a class="headerlink" href="#c.CSR_MHPMCOUNTER19" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER20">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga161acddb79ddb855b1656fe1df53a2c5"></span><code class="sig-name descname">CSR_MHPMCOUNTER20</code> 0xb14<a class="headerlink" href="#c.CSR_MHPMCOUNTER20" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER21">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga31a807d6ee1b32481ca97966c92e65ef"></span><code class="sig-name descname">CSR_MHPMCOUNTER21</code> 0xb15<a class="headerlink" href="#c.CSR_MHPMCOUNTER21" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER22">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gae1cb810c77b3327c2b1e779fb7124ca1"></span><code class="sig-name descname">CSR_MHPMCOUNTER22</code> 0xb16<a class="headerlink" href="#c.CSR_MHPMCOUNTER22" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER23">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gad4027543fbea60925a8176cf89d3c7cb"></span><code class="sig-name descname">CSR_MHPMCOUNTER23</code> 0xb17<a class="headerlink" href="#c.CSR_MHPMCOUNTER23" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER24">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gad7959c95f4f7ecf46f5cb51fe107f472"></span><code class="sig-name descname">CSR_MHPMCOUNTER24</code> 0xb18<a class="headerlink" href="#c.CSR_MHPMCOUNTER24" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER25">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga15fe826bd77b6a1629dbae680a88ae48"></span><code class="sig-name descname">CSR_MHPMCOUNTER25</code> 0xb19<a class="headerlink" href="#c.CSR_MHPMCOUNTER25" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER26">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga3dfea6cfc090a5e550891fdab8c0528b"></span><code class="sig-name descname">CSR_MHPMCOUNTER26</code> 0xb1a<a class="headerlink" href="#c.CSR_MHPMCOUNTER26" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER27">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaca3e84b0ed73b0953076df2f499ccb11"></span><code class="sig-name descname">CSR_MHPMCOUNTER27</code> 0xb1b<a class="headerlink" href="#c.CSR_MHPMCOUNTER27" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER28">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga18303fb4cc48e05ab7e437e44eafe039"></span><code class="sig-name descname">CSR_MHPMCOUNTER28</code> 0xb1c<a class="headerlink" href="#c.CSR_MHPMCOUNTER28" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER29">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaba156c344a498a4297a0cda3c0eba8e0"></span><code class="sig-name descname">CSR_MHPMCOUNTER29</code> 0xb1d<a class="headerlink" href="#c.CSR_MHPMCOUNTER29" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER30">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gae87e12f28b2b84e3356cf2edb4995ddd"></span><code class="sig-name descname">CSR_MHPMCOUNTER30</code> 0xb1e<a class="headerlink" href="#c.CSR_MHPMCOUNTER30" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER31">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga19cf5f645d0ecfdaddabd24f3d24fad0"></span><code class="sig-name descname">CSR_MHPMCOUNTER31</code> 0xb1f<a class="headerlink" href="#c.CSR_MHPMCOUNTER31" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MUCOUNTEREN">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga6ef2272b0c1c4d7086ed1bcef4d18f2d"></span><code class="sig-name descname">CSR_MUCOUNTEREN</code> 0x320<a class="headerlink" href="#c.CSR_MUCOUNTEREN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MSCOUNTEREN">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga42deb169fb8548705f184a6171eacf07"></span><code class="sig-name descname">CSR_MSCOUNTEREN</code> 0x321<a class="headerlink" href="#c.CSR_MSCOUNTEREN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMEVENT3">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga5c0638be852bb8fe266552e903e5d086"></span><code class="sig-name descname">CSR_MHPMEVENT3</code> 0x323<a class="headerlink" href="#c.CSR_MHPMEVENT3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMEVENT4">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga938f602cf4785d7063da6c853c051c78"></span><code class="sig-name descname">CSR_MHPMEVENT4</code> 0x324<a class="headerlink" href="#c.CSR_MHPMEVENT4" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMEVENT5">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga15162dd8d541a809e6fbeef1ed01d09a"></span><code class="sig-name descname">CSR_MHPMEVENT5</code> 0x325<a class="headerlink" href="#c.CSR_MHPMEVENT5" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMEVENT6">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga0185093eb5946c8137708e21916dc65e"></span><code class="sig-name descname">CSR_MHPMEVENT6</code> 0x326<a class="headerlink" href="#c.CSR_MHPMEVENT6" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMEVENT7">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaacfba0d92c494d8e83a7e13f183ebf2f"></span><code class="sig-name descname">CSR_MHPMEVENT7</code> 0x327<a class="headerlink" href="#c.CSR_MHPMEVENT7" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMEVENT8">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaa64bbdd12c51cc1bba742dac6dc4fd59"></span><code class="sig-name descname">CSR_MHPMEVENT8</code> 0x328<a class="headerlink" href="#c.CSR_MHPMEVENT8" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMEVENT9">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga177a9b634120f0f0eb54e0469970d9c4"></span><code class="sig-name descname">CSR_MHPMEVENT9</code> 0x329<a class="headerlink" href="#c.CSR_MHPMEVENT9" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMEVENT10">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaf45e26868117973a085e36d7eff5450e"></span><code class="sig-name descname">CSR_MHPMEVENT10</code> 0x32a<a class="headerlink" href="#c.CSR_MHPMEVENT10" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMEVENT11">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga92f0189e5bd365e0841d4e940873bb0e"></span><code class="sig-name descname">CSR_MHPMEVENT11</code> 0x32b<a class="headerlink" href="#c.CSR_MHPMEVENT11" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMEVENT12">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gac3be9181730b41f7569d3a02c0678476"></span><code class="sig-name descname">CSR_MHPMEVENT12</code> 0x32c<a class="headerlink" href="#c.CSR_MHPMEVENT12" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMEVENT13">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga1bdcead9d6986e83ca841b77f1415221"></span><code class="sig-name descname">CSR_MHPMEVENT13</code> 0x32d<a class="headerlink" href="#c.CSR_MHPMEVENT13" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMEVENT14">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga6402b2179f54e39374218708378ecb18"></span><code class="sig-name descname">CSR_MHPMEVENT14</code> 0x32e<a class="headerlink" href="#c.CSR_MHPMEVENT14" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMEVENT15">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga88a2a649e6aa85e22c858ebfd4a66c90"></span><code class="sig-name descname">CSR_MHPMEVENT15</code> 0x32f<a class="headerlink" href="#c.CSR_MHPMEVENT15" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMEVENT16">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga249efb1593f74ed9766c736e61355339"></span><code class="sig-name descname">CSR_MHPMEVENT16</code> 0x330<a class="headerlink" href="#c.CSR_MHPMEVENT16" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMEVENT17">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga09f2b4ed516486729cb6db6086dd6ba6"></span><code class="sig-name descname">CSR_MHPMEVENT17</code> 0x331<a class="headerlink" href="#c.CSR_MHPMEVENT17" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMEVENT18">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga04248ecdb3aac0efecfbc223b2825234"></span><code class="sig-name descname">CSR_MHPMEVENT18</code> 0x332<a class="headerlink" href="#c.CSR_MHPMEVENT18" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMEVENT19">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga7e9fd10959094ccdb2b39849d4f212ae"></span><code class="sig-name descname">CSR_MHPMEVENT19</code> 0x333<a class="headerlink" href="#c.CSR_MHPMEVENT19" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMEVENT20">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga13974efd9157cf121ae2120665581f85"></span><code class="sig-name descname">CSR_MHPMEVENT20</code> 0x334<a class="headerlink" href="#c.CSR_MHPMEVENT20" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMEVENT21">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga4eb02f09ac37938aa2d02d45055dbd6d"></span><code class="sig-name descname">CSR_MHPMEVENT21</code> 0x335<a class="headerlink" href="#c.CSR_MHPMEVENT21" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMEVENT22">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaef9531dd9a69b3954f4f190416e3ff3a"></span><code class="sig-name descname">CSR_MHPMEVENT22</code> 0x336<a class="headerlink" href="#c.CSR_MHPMEVENT22" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMEVENT23">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gafd99ce5c3b4ced37a6b5033ad6d122dc"></span><code class="sig-name descname">CSR_MHPMEVENT23</code> 0x337<a class="headerlink" href="#c.CSR_MHPMEVENT23" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMEVENT24">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga28b1616c2743a2f9e3aa758ddeb40ad9"></span><code class="sig-name descname">CSR_MHPMEVENT24</code> 0x338<a class="headerlink" href="#c.CSR_MHPMEVENT24" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMEVENT25">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gacd3ce65244335f6031e43511889ebb24"></span><code class="sig-name descname">CSR_MHPMEVENT25</code> 0x339<a class="headerlink" href="#c.CSR_MHPMEVENT25" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMEVENT26">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga49d6c659bd31caa0940d6bccfe6cf690"></span><code class="sig-name descname">CSR_MHPMEVENT26</code> 0x33a<a class="headerlink" href="#c.CSR_MHPMEVENT26" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMEVENT27">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga68721e96a48b16f479ed3b3d3f49f503"></span><code class="sig-name descname">CSR_MHPMEVENT27</code> 0x33b<a class="headerlink" href="#c.CSR_MHPMEVENT27" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMEVENT28">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaffa9684a64c5f062c3021c3cdbabfd51"></span><code class="sig-name descname">CSR_MHPMEVENT28</code> 0x33c<a class="headerlink" href="#c.CSR_MHPMEVENT28" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMEVENT29">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga03c74342e3b565bab5d4e9a2d24bc4c2"></span><code class="sig-name descname">CSR_MHPMEVENT29</code> 0x33d<a class="headerlink" href="#c.CSR_MHPMEVENT29" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMEVENT30">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaf2942b3e343ffa1e98ef0c4e66a5c2cb"></span><code class="sig-name descname">CSR_MHPMEVENT30</code> 0x33e<a class="headerlink" href="#c.CSR_MHPMEVENT30" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMEVENT31">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga05fceefba02c81fb7a391a39335b22b0"></span><code class="sig-name descname">CSR_MHPMEVENT31</code> 0x33f<a class="headerlink" href="#c.CSR_MHPMEVENT31" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MVENDORID">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gac3c7d7cddfa7dda613e4af9c2884fd1d"></span><code class="sig-name descname">CSR_MVENDORID</code> 0xf11<a class="headerlink" href="#c.CSR_MVENDORID" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MARCHID">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga51da92996bc910f5ac5b654c8c376945"></span><code class="sig-name descname">CSR_MARCHID</code> 0xf12<a class="headerlink" href="#c.CSR_MARCHID" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MIMPID">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga509d84168ac957db68248983ecfcc7ee"></span><code class="sig-name descname">CSR_MIMPID</code> 0xf13<a class="headerlink" href="#c.CSR_MIMPID" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHARTID">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga50cb52c60a3472620a819765e593f67e"></span><code class="sig-name descname">CSR_MHARTID</code> 0xf14<a class="headerlink" href="#c.CSR_MHARTID" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_CYCLEH">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaf68e1fabef0868e0d41d8e69ba55cce9"></span><code class="sig-name descname">CSR_CYCLEH</code> 0xc80<a class="headerlink" href="#c.CSR_CYCLEH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_TIMEH">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga2e2ce9bac3d1ad2128a4eb9438a1022d"></span><code class="sig-name descname">CSR_TIMEH</code> 0xc81<a class="headerlink" href="#c.CSR_TIMEH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_INSTRETH">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaf1e2e4353b163d307d974806a0031407"></span><code class="sig-name descname">CSR_INSTRETH</code> 0xc82<a class="headerlink" href="#c.CSR_INSTRETH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER3H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga315ee54d99aa0fbed5532e5bcf6e2d94"></span><code class="sig-name descname">CSR_HPMCOUNTER3H</code> 0xc83<a class="headerlink" href="#c.CSR_HPMCOUNTER3H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER4H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga426e2ddee52a86c29a9829c66b5c0eb5"></span><code class="sig-name descname">CSR_HPMCOUNTER4H</code> 0xc84<a class="headerlink" href="#c.CSR_HPMCOUNTER4H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER5H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gac1e9d2a6cf60d54c39002292a21af314"></span><code class="sig-name descname">CSR_HPMCOUNTER5H</code> 0xc85<a class="headerlink" href="#c.CSR_HPMCOUNTER5H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER6H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga5c7c0dc282f4787f6d7070331a3b9784"></span><code class="sig-name descname">CSR_HPMCOUNTER6H</code> 0xc86<a class="headerlink" href="#c.CSR_HPMCOUNTER6H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER7H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gacac7fd3e7f29c8a8ed9c76647f4e1622"></span><code class="sig-name descname">CSR_HPMCOUNTER7H</code> 0xc87<a class="headerlink" href="#c.CSR_HPMCOUNTER7H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER8H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gae2af5d7df5e784a4686d3cc941220cbe"></span><code class="sig-name descname">CSR_HPMCOUNTER8H</code> 0xc88<a class="headerlink" href="#c.CSR_HPMCOUNTER8H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER9H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga4bd36c6e299b2a4460240f1076d23e29"></span><code class="sig-name descname">CSR_HPMCOUNTER9H</code> 0xc89<a class="headerlink" href="#c.CSR_HPMCOUNTER9H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER10H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaf5581f64a316e30e7c3cbbb5922b1c11"></span><code class="sig-name descname">CSR_HPMCOUNTER10H</code> 0xc8a<a class="headerlink" href="#c.CSR_HPMCOUNTER10H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER11H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaea60788a08d7b4ca7b53f420f603a379"></span><code class="sig-name descname">CSR_HPMCOUNTER11H</code> 0xc8b<a class="headerlink" href="#c.CSR_HPMCOUNTER11H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER12H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga2c0f3bb461cf96900abe0cb838ecdd98"></span><code class="sig-name descname">CSR_HPMCOUNTER12H</code> 0xc8c<a class="headerlink" href="#c.CSR_HPMCOUNTER12H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER13H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gac3a0bbad16bd85e6c94ae660c3385bf3"></span><code class="sig-name descname">CSR_HPMCOUNTER13H</code> 0xc8d<a class="headerlink" href="#c.CSR_HPMCOUNTER13H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER14H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga7652fab822b65fe3a34c6d9276e79be5"></span><code class="sig-name descname">CSR_HPMCOUNTER14H</code> 0xc8e<a class="headerlink" href="#c.CSR_HPMCOUNTER14H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER15H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga24960fa447bc0b97490e89affaf12175"></span><code class="sig-name descname">CSR_HPMCOUNTER15H</code> 0xc8f<a class="headerlink" href="#c.CSR_HPMCOUNTER15H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER16H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga9f41e6d2a9a3ef8658ffb75ba556850d"></span><code class="sig-name descname">CSR_HPMCOUNTER16H</code> 0xc90<a class="headerlink" href="#c.CSR_HPMCOUNTER16H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER17H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga6085cb84939839a52d2d39a9fc3eda31"></span><code class="sig-name descname">CSR_HPMCOUNTER17H</code> 0xc91<a class="headerlink" href="#c.CSR_HPMCOUNTER17H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER18H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga6b5ff85ac4148e421faf6ddf54ac4a9c"></span><code class="sig-name descname">CSR_HPMCOUNTER18H</code> 0xc92<a class="headerlink" href="#c.CSR_HPMCOUNTER18H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER19H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga2d88e7749d8af48f14354828ef7d035b"></span><code class="sig-name descname">CSR_HPMCOUNTER19H</code> 0xc93<a class="headerlink" href="#c.CSR_HPMCOUNTER19H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER20H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaa650b0fc0f2bb0961c67fbf7b4c36600"></span><code class="sig-name descname">CSR_HPMCOUNTER20H</code> 0xc94<a class="headerlink" href="#c.CSR_HPMCOUNTER20H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER21H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga61086491d346e234d98ab1da45212282"></span><code class="sig-name descname">CSR_HPMCOUNTER21H</code> 0xc95<a class="headerlink" href="#c.CSR_HPMCOUNTER21H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER22H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga1a8800b5b3d07b8c70077cbad166f34a"></span><code class="sig-name descname">CSR_HPMCOUNTER22H</code> 0xc96<a class="headerlink" href="#c.CSR_HPMCOUNTER22H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER23H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gab328b79481e61ccfdd857bc32bb20506"></span><code class="sig-name descname">CSR_HPMCOUNTER23H</code> 0xc97<a class="headerlink" href="#c.CSR_HPMCOUNTER23H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER24H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaee69e1ac9c703f0240d254c278a1a272"></span><code class="sig-name descname">CSR_HPMCOUNTER24H</code> 0xc98<a class="headerlink" href="#c.CSR_HPMCOUNTER24H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER25H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga0d672ac0d2799f037a31d2046a06b10b"></span><code class="sig-name descname">CSR_HPMCOUNTER25H</code> 0xc99<a class="headerlink" href="#c.CSR_HPMCOUNTER25H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER26H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gace878eb3ea306cca02cfafb6bab9ecc5"></span><code class="sig-name descname">CSR_HPMCOUNTER26H</code> 0xc9a<a class="headerlink" href="#c.CSR_HPMCOUNTER26H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER27H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga5e3ecbfe883c475f932c60c31d2dd1b3"></span><code class="sig-name descname">CSR_HPMCOUNTER27H</code> 0xc9b<a class="headerlink" href="#c.CSR_HPMCOUNTER27H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER28H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga91cecca4be8b810af5f12b65e211517a"></span><code class="sig-name descname">CSR_HPMCOUNTER28H</code> 0xc9c<a class="headerlink" href="#c.CSR_HPMCOUNTER28H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER29H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaf4a8369e4bbdb699385d39809a3a48b7"></span><code class="sig-name descname">CSR_HPMCOUNTER29H</code> 0xc9d<a class="headerlink" href="#c.CSR_HPMCOUNTER29H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER30H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gab57d8fe9cde11b9b07afa537a035ae38"></span><code class="sig-name descname">CSR_HPMCOUNTER30H</code> 0xc9e<a class="headerlink" href="#c.CSR_HPMCOUNTER30H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_HPMCOUNTER31H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga5308b7cbb7e2f51f193468164cbf2204"></span><code class="sig-name descname">CSR_HPMCOUNTER31H</code> 0xc9f<a class="headerlink" href="#c.CSR_HPMCOUNTER31H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MCYCLEH">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gae3368bea588a2fcdf2e7d24707ef4dda"></span><code class="sig-name descname">CSR_MCYCLEH</code> 0xb80<a class="headerlink" href="#c.CSR_MCYCLEH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MINSTRETH">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaa59d1f570770dc3be6cd493cbb5a12e4"></span><code class="sig-name descname">CSR_MINSTRETH</code> 0xb82<a class="headerlink" href="#c.CSR_MINSTRETH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER3H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga723ef168d1e7ffe66875303075956376"></span><code class="sig-name descname">CSR_MHPMCOUNTER3H</code> 0xb83<a class="headerlink" href="#c.CSR_MHPMCOUNTER3H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER4H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gad31a1402ff7146c42b2018c35f91fff8"></span><code class="sig-name descname">CSR_MHPMCOUNTER4H</code> 0xb84<a class="headerlink" href="#c.CSR_MHPMCOUNTER4H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER5H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga60c30dce15b7a2be53a146006b555e89"></span><code class="sig-name descname">CSR_MHPMCOUNTER5H</code> 0xb85<a class="headerlink" href="#c.CSR_MHPMCOUNTER5H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER6H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga9e13742a1cdd2859c114d53e957d1479"></span><code class="sig-name descname">CSR_MHPMCOUNTER6H</code> 0xb86<a class="headerlink" href="#c.CSR_MHPMCOUNTER6H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER7H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga12c3fe1c5311dfddb62fc22f974979a5"></span><code class="sig-name descname">CSR_MHPMCOUNTER7H</code> 0xb87<a class="headerlink" href="#c.CSR_MHPMCOUNTER7H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER8H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga70fcf0b335621e50d6f717658c502ab7"></span><code class="sig-name descname">CSR_MHPMCOUNTER8H</code> 0xb88<a class="headerlink" href="#c.CSR_MHPMCOUNTER8H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER9H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga33e415199dbfe9bceb11b02fd05f05e2"></span><code class="sig-name descname">CSR_MHPMCOUNTER9H</code> 0xb89<a class="headerlink" href="#c.CSR_MHPMCOUNTER9H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER10H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga3f9e5f23fba4ba95afe9062e6d0223a7"></span><code class="sig-name descname">CSR_MHPMCOUNTER10H</code> 0xb8a<a class="headerlink" href="#c.CSR_MHPMCOUNTER10H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER11H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga4996bb6dff4a8a8fba71fbbb32b24265"></span><code class="sig-name descname">CSR_MHPMCOUNTER11H</code> 0xb8b<a class="headerlink" href="#c.CSR_MHPMCOUNTER11H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER12H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga4d7f86d7ae204e3b66e0613c62a9fc31"></span><code class="sig-name descname">CSR_MHPMCOUNTER12H</code> 0xb8c<a class="headerlink" href="#c.CSR_MHPMCOUNTER12H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER13H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gacd5ef2cf1d55e5c3fcbb52775c7cd477"></span><code class="sig-name descname">CSR_MHPMCOUNTER13H</code> 0xb8d<a class="headerlink" href="#c.CSR_MHPMCOUNTER13H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER14H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gab67d71859f9a6e6f8a5e451202c56cb2"></span><code class="sig-name descname">CSR_MHPMCOUNTER14H</code> 0xb8e<a class="headerlink" href="#c.CSR_MHPMCOUNTER14H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER15H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gab017401b380bbcdada167739e3919fcd"></span><code class="sig-name descname">CSR_MHPMCOUNTER15H</code> 0xb8f<a class="headerlink" href="#c.CSR_MHPMCOUNTER15H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER16H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaf6ea9d5fb6d713634806841349668001"></span><code class="sig-name descname">CSR_MHPMCOUNTER16H</code> 0xb90<a class="headerlink" href="#c.CSR_MHPMCOUNTER16H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER17H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga05f60a41153dd6f018f5d04d3b3b63cd"></span><code class="sig-name descname">CSR_MHPMCOUNTER17H</code> 0xb91<a class="headerlink" href="#c.CSR_MHPMCOUNTER17H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER18H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga1c58c573e08d2a34dfe351f176d06453"></span><code class="sig-name descname">CSR_MHPMCOUNTER18H</code> 0xb92<a class="headerlink" href="#c.CSR_MHPMCOUNTER18H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER19H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaf5cfdbc7dae21c267f94defc1e3a1555"></span><code class="sig-name descname">CSR_MHPMCOUNTER19H</code> 0xb93<a class="headerlink" href="#c.CSR_MHPMCOUNTER19H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER20H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga76e93d1d9471f643e3143697c6b707f1"></span><code class="sig-name descname">CSR_MHPMCOUNTER20H</code> 0xb94<a class="headerlink" href="#c.CSR_MHPMCOUNTER20H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER21H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga1e0e9a36456b7da7b88093c83dd5a034"></span><code class="sig-name descname">CSR_MHPMCOUNTER21H</code> 0xb95<a class="headerlink" href="#c.CSR_MHPMCOUNTER21H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER22H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaf39358f2113b1786aafa46fa377efe02"></span><code class="sig-name descname">CSR_MHPMCOUNTER22H</code> 0xb96<a class="headerlink" href="#c.CSR_MHPMCOUNTER22H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER23H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaa4611c3b746127c7d163c77c795a1284"></span><code class="sig-name descname">CSR_MHPMCOUNTER23H</code> 0xb97<a class="headerlink" href="#c.CSR_MHPMCOUNTER23H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER24H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga693b26559f45e12a02b4e0c3c30895f7"></span><code class="sig-name descname">CSR_MHPMCOUNTER24H</code> 0xb98<a class="headerlink" href="#c.CSR_MHPMCOUNTER24H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER25H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga553f8532cccee7b82a78ec77abc99291"></span><code class="sig-name descname">CSR_MHPMCOUNTER25H</code> 0xb99<a class="headerlink" href="#c.CSR_MHPMCOUNTER25H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER26H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga5d702fc0207d53d7b5a04c83831a1f93"></span><code class="sig-name descname">CSR_MHPMCOUNTER26H</code> 0xb9a<a class="headerlink" href="#c.CSR_MHPMCOUNTER26H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER27H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga13b74054c104d2cb7ee55257d1a812cf"></span><code class="sig-name descname">CSR_MHPMCOUNTER27H</code> 0xb9b<a class="headerlink" href="#c.CSR_MHPMCOUNTER27H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER28H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga2fab81807863c7cd55737ab7a1b525f6"></span><code class="sig-name descname">CSR_MHPMCOUNTER28H</code> 0xb9c<a class="headerlink" href="#c.CSR_MHPMCOUNTER28H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER29H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga3b046d583c1f3e2f2f55c3b4d176598a"></span><code class="sig-name descname">CSR_MHPMCOUNTER29H</code> 0xb9d<a class="headerlink" href="#c.CSR_MHPMCOUNTER29H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER30H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaf9fdd0098699ae5c0b46405a7824795a"></span><code class="sig-name descname">CSR_MHPMCOUNTER30H</code> 0xb9e<a class="headerlink" href="#c.CSR_MHPMCOUNTER30H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MHPMCOUNTER31H">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga943048489f909d6abba06c7fd38075bd"></span><code class="sig-name descname">CSR_MHPMCOUNTER31H</code> 0xb9f<a class="headerlink" href="#c.CSR_MHPMCOUNTER31H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MTVT">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga5e44edb3f3d95986c92f8efad5db0c2c"></span><code class="sig-name descname">CSR_MTVT</code> 0x307<a class="headerlink" href="#c.CSR_MTVT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MNXTI">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gacc09c434f52be7b1d5f715b9e7c87a81"></span><code class="sig-name descname">CSR_MNXTI</code> 0x345<a class="headerlink" href="#c.CSR_MNXTI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MINTSTATUS">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga45bf722f7c1099ed2861045c00003379"></span><code class="sig-name descname">CSR_MINTSTATUS</code> 0x346<a class="headerlink" href="#c.CSR_MINTSTATUS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MSCRATCHCSW">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga0e69a0c75e594c7801fce720de10fdbe"></span><code class="sig-name descname">CSR_MSCRATCHCSW</code> 0x348<a class="headerlink" href="#c.CSR_MSCRATCHCSW" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MSCRATCHCSWL">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gae205d4db7d1975b8a8accf904cb6feda"></span><code class="sig-name descname">CSR_MSCRATCHCSWL</code> 0x349<a class="headerlink" href="#c.CSR_MSCRATCHCSWL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MCLICBASE">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gafa653e51ce2be6aa201caa8d36337e0f"></span><code class="sig-name descname">CSR_MCLICBASE</code> 0x350<a class="headerlink" href="#c.CSR_MCLICBASE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_UCODE">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gae76e6d643aed4d6ea0b986dc7e0c7171"></span><code class="sig-name descname">CSR_UCODE</code> 0x801<a class="headerlink" href="#c.CSR_UCODE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MCOUNTINHIBIT">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga9643607a23d4bc6a50a562d0a1f5a8f3"></span><code class="sig-name descname">CSR_MCOUNTINHIBIT</code> 0x320<a class="headerlink" href="#c.CSR_MCOUNTINHIBIT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MILM_CTL">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga76a5574122af1a8da6e2bd68c39da922"></span><code class="sig-name descname">CSR_MILM_CTL</code> 0x7C0<a class="headerlink" href="#c.CSR_MILM_CTL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MDLM_CTL">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga4958637ace7ceaea76e4fa4467fd6cd6"></span><code class="sig-name descname">CSR_MDLM_CTL</code> 0x7C1<a class="headerlink" href="#c.CSR_MDLM_CTL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MECC_CODE">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga96f8a7b9feee05fcd5c69fbdcbec85cd"></span><code class="sig-name descname">CSR_MECC_CODE</code> 0x7C2<a class="headerlink" href="#c.CSR_MECC_CODE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MNVEC">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga13df3ff8aec804cae346b61b2643c589"></span><code class="sig-name descname">CSR_MNVEC</code> 0x7C3<a class="headerlink" href="#c.CSR_MNVEC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MSUBM">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga14e293d39955a4a033d7393c3a3ab1ef"></span><code class="sig-name descname">CSR_MSUBM</code> 0x7C4<a class="headerlink" href="#c.CSR_MSUBM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MDCAUSE">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gab4dafad459e3db3ae835b0de8053f481"></span><code class="sig-name descname">CSR_MDCAUSE</code> 0x7C9<a class="headerlink" href="#c.CSR_MDCAUSE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MCACHE_CTL">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga6e79ed96b3346ea75923126b7c4d9d67"></span><code class="sig-name descname">CSR_MCACHE_CTL</code> 0x7CA<a class="headerlink" href="#c.CSR_MCACHE_CTL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MMISC_CTL">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gabec3fb75f542861f5dcd5a1cda1df932"></span><code class="sig-name descname">CSR_MMISC_CTL</code> 0x7D0<a class="headerlink" href="#c.CSR_MMISC_CTL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MSAVESTATUS">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaf14ed5e74ef3587e1f4fb0ce13920a89"></span><code class="sig-name descname">CSR_MSAVESTATUS</code> 0x7D6<a class="headerlink" href="#c.CSR_MSAVESTATUS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MSAVEEPC1">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga32cb2c1b8fd77e4b9adea487b471f208"></span><code class="sig-name descname">CSR_MSAVEEPC1</code> 0x7D7<a class="headerlink" href="#c.CSR_MSAVEEPC1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MSAVECAUSE1">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga7b5df9537bc15eabe8f3d6ef39be8b36"></span><code class="sig-name descname">CSR_MSAVECAUSE1</code> 0x7D8<a class="headerlink" href="#c.CSR_MSAVECAUSE1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MSAVEEPC2">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gacff440cb8477cb8b00f27754ad821483"></span><code class="sig-name descname">CSR_MSAVEEPC2</code> 0x7D9<a class="headerlink" href="#c.CSR_MSAVEEPC2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MSAVECAUSE2">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga3606225699568343f04cd121aa971ede"></span><code class="sig-name descname">CSR_MSAVECAUSE2</code> 0x7DA<a class="headerlink" href="#c.CSR_MSAVECAUSE2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MSAVEDCAUSE1">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga1e4d5a334aed1b5875b26ec0f3e3d276"></span><code class="sig-name descname">CSR_MSAVEDCAUSE1</code> 0x7DB<a class="headerlink" href="#c.CSR_MSAVEDCAUSE1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MSAVEDCAUSE2">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga1f6ce77bc9e71911b53ae6e01f72436a"></span><code class="sig-name descname">CSR_MSAVEDCAUSE2</code> 0x7DC<a class="headerlink" href="#c.CSR_MSAVEDCAUSE2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MTLB_CTL">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga46a43f3b5904ab91dfbb714e819985f6"></span><code class="sig-name descname">CSR_MTLB_CTL</code> 0x7DD<a class="headerlink" href="#c.CSR_MTLB_CTL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MECC_LOCK">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga1c4771760dc892e5a41c3dd57450b9f8"></span><code class="sig-name descname">CSR_MECC_LOCK</code> 0x7DE<a class="headerlink" href="#c.CSR_MECC_LOCK" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_PUSHMSUBM">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaff94c16a48ec14f09e8b5ccd4a644c1e"></span><code class="sig-name descname">CSR_PUSHMSUBM</code> 0x7EB<a class="headerlink" href="#c.CSR_PUSHMSUBM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MTVT2">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga7d9dcb2dd7d7c764aab4b68033b383f2"></span><code class="sig-name descname">CSR_MTVT2</code> 0x7EC<a class="headerlink" href="#c.CSR_MTVT2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_JALMNXTI">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gafdc52ae6a2e10e010475ace51f98ccd6"></span><code class="sig-name descname">CSR_JALMNXTI</code> 0x7ED<a class="headerlink" href="#c.CSR_JALMNXTI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_PUSHMCAUSE">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga0f754877b0b80651f35cb6916d0bcb2f"></span><code class="sig-name descname">CSR_PUSHMCAUSE</code> 0x7EE<a class="headerlink" href="#c.CSR_PUSHMCAUSE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_PUSHMEPC">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga255f0d4104534561a35308c7b6fcd2cd"></span><code class="sig-name descname">CSR_PUSHMEPC</code> 0x7EF<a class="headerlink" href="#c.CSR_PUSHMEPC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MPPICFG_INFO">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga0982460f88e5af9a34c17c86c1db564a"></span><code class="sig-name descname">CSR_MPPICFG_INFO</code> 0x7F0<a class="headerlink" href="#c.CSR_MPPICFG_INFO" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MFIOCFG_INFO">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga48dbc3afead74482181fcbc2fad7c19c"></span><code class="sig-name descname">CSR_MFIOCFG_INFO</code> 0x7F1<a class="headerlink" href="#c.CSR_MFIOCFG_INFO" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_SLEEPVALUE">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga7ee7f2cce602b8b3e2943bc2d0ca65cb"></span><code class="sig-name descname">CSR_SLEEPVALUE</code> 0x811<a class="headerlink" href="#c.CSR_SLEEPVALUE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_TXEVT">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga730f164e5d79c6b27d2187a1e7a17e25"></span><code class="sig-name descname">CSR_TXEVT</code> 0x812<a class="headerlink" href="#c.CSR_TXEVT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_WFE">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga9852d0d6221b272f8f5290c3445ee1ba"></span><code class="sig-name descname">CSR_WFE</code> 0x810<a class="headerlink" href="#c.CSR_WFE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MICFG_INFO">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga3401036463f597de22658714115bed5b"></span><code class="sig-name descname">CSR_MICFG_INFO</code> 0xFC0<a class="headerlink" href="#c.CSR_MICFG_INFO" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MDCFG_INFO">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gacb31b31285f7ea1d527a19f4388b01bd"></span><code class="sig-name descname">CSR_MDCFG_INFO</code> 0xFC1<a class="headerlink" href="#c.CSR_MDCFG_INFO" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MCFG_INFO">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga7fd083b254f2438fe5cbf9d667468324"></span><code class="sig-name descname">CSR_MCFG_INFO</code> 0xFC2<a class="headerlink" href="#c.CSR_MCFG_INFO" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MTLBCFG_INFO">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga2cbdbf90ba3dff2b8c187d3154969aff"></span><code class="sig-name descname">CSR_MTLBCFG_INFO</code> 0xFC3<a class="headerlink" href="#c.CSR_MTLBCFG_INFO" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_CCM_MBEGINADDR">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga4faa0c15728837765ec9aaf28f14c09b"></span><code class="sig-name descname">CSR_CCM_MBEGINADDR</code> 0x7CB<a class="headerlink" href="#c.CSR_CCM_MBEGINADDR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_CCM_MCOMMAND">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga09b6c06fdc71424566c30bad5470c0c1"></span><code class="sig-name descname">CSR_CCM_MCOMMAND</code> 0x7CC<a class="headerlink" href="#c.CSR_CCM_MCOMMAND" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_CCM_MDATA">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga68f7537cd8e79434b1a191053d09d5f7"></span><code class="sig-name descname">CSR_CCM_MDATA</code> 0x7CD<a class="headerlink" href="#c.CSR_CCM_MDATA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_CCM_SUEN">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga59e75e3573eb567358b1037a7076de37"></span><code class="sig-name descname">CSR_CCM_SUEN</code> 0x7CE<a class="headerlink" href="#c.CSR_CCM_SUEN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_CCM_SBEGINADDR">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gab508f4dfbd649a25f7eaa8ac5b88a8c0"></span><code class="sig-name descname">CSR_CCM_SBEGINADDR</code> 0x5CB<a class="headerlink" href="#c.CSR_CCM_SBEGINADDR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_CCM_SCOMMAND">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga19b9cf123424b131c5ba30946c54c2fd"></span><code class="sig-name descname">CSR_CCM_SCOMMAND</code> 0x5CC<a class="headerlink" href="#c.CSR_CCM_SCOMMAND" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_CCM_SDATA">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga58c7d8ca64fe96544d85e57f4b6a3bca"></span><code class="sig-name descname">CSR_CCM_SDATA</code> 0x5CD<a class="headerlink" href="#c.CSR_CCM_SDATA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_CCM_UBEGINADDR">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaca251c4a3f81dd257831ac6407088e52"></span><code class="sig-name descname">CSR_CCM_UBEGINADDR</code> 0x4CB<a class="headerlink" href="#c.CSR_CCM_UBEGINADDR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_CCM_UCOMMAND">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga53c64245d173eed1d1622cfac509ff60"></span><code class="sig-name descname">CSR_CCM_UCOMMAND</code> 0x4CC<a class="headerlink" href="#c.CSR_CCM_UCOMMAND" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_CCM_UDATA">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gad18936febc391b50b6ba078eb605758e"></span><code class="sig-name descname">CSR_CCM_UDATA</code> 0x4CD<a class="headerlink" href="#c.CSR_CCM_UDATA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_CCM_FPIPE">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga7f214054147ffd229cc1aba320cf8405"></span><code class="sig-name descname">CSR_CCM_FPIPE</code> 0x4CF<a class="headerlink" href="#c.CSR_CCM_FPIPE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="other-core-related-macros">
+<h2>Other Core Related Macros<a class="headerlink" href="#other-core-related-macros" title="Permalink to this headline">¶</a></h2>
+<dl class="group">
+<dt>
+<span class="target" id="group__NMSIS__Core__CSR__Encoding"></span><em>group</em> <code class="sig-name descname">NMSIS_Core_CSR_Encoding</code></dt>
+<dd><p>NMSIS Core CSR Encodings. </p>
+<p>The following macros are used for CSR encodings </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="macro">
+<dt id="c.MSTATUS_UIE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga3f4df6dc4219593cb6e8bd13d636e844"></span><code class="sig-name descname">MSTATUS_UIE</code> 0x00000001<a class="headerlink" href="#c.MSTATUS_UIE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MSTATUS_SIE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga29a63dca3cfcf13877a0c354dc081505"></span><code class="sig-name descname">MSTATUS_SIE</code> 0x00000002<a class="headerlink" href="#c.MSTATUS_SIE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MSTATUS_HIE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gab549408c2d03c2e09fbfab2898683097"></span><code class="sig-name descname">MSTATUS_HIE</code> 0x00000004<a class="headerlink" href="#c.MSTATUS_HIE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MSTATUS_MIE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga225cb34e3b991318fa87f090cfc3fc5f"></span><code class="sig-name descname">MSTATUS_MIE</code> 0x00000008<a class="headerlink" href="#c.MSTATUS_MIE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MSTATUS_UPIE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga17711b78183c43687036c60962c278cb"></span><code class="sig-name descname">MSTATUS_UPIE</code> 0x00000010<a class="headerlink" href="#c.MSTATUS_UPIE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MSTATUS_SPIE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gac7fef7988d408f1f4ebe9e3849d68bb2"></span><code class="sig-name descname">MSTATUS_SPIE</code> 0x00000020<a class="headerlink" href="#c.MSTATUS_SPIE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MSTATUS_HPIE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaa0f7327c94aa1210a819f1d47d3e1700"></span><code class="sig-name descname">MSTATUS_HPIE</code> 0x00000040<a class="headerlink" href="#c.MSTATUS_HPIE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MSTATUS_MPIE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga05fc511bb3d22b5e1abe8b9ccb30e7b3"></span><code class="sig-name descname">MSTATUS_MPIE</code> 0x00000080<a class="headerlink" href="#c.MSTATUS_MPIE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MSTATUS_SPP">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gad4b09023ff5bcbb14192e845c0532944"></span><code class="sig-name descname">MSTATUS_SPP</code> 0x00000100<a class="headerlink" href="#c.MSTATUS_SPP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MSTATUS_MPP">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga2acf460f4ceda869c88c00878cb44314"></span><code class="sig-name descname">MSTATUS_MPP</code> 0x00001800<a class="headerlink" href="#c.MSTATUS_MPP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MSTATUS_FS">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gab7b9c10a700f7570d44c49f369b6fcce"></span><code class="sig-name descname">MSTATUS_FS</code> 0x00006000<a class="headerlink" href="#c.MSTATUS_FS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MSTATUS_XS">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga768db67b06c8341a4da264abcb7f3cfe"></span><code class="sig-name descname">MSTATUS_XS</code> 0x00018000<a class="headerlink" href="#c.MSTATUS_XS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MSTATUS_MPRV">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gafa733f6d7aadab5b3c0318d005745a98"></span><code class="sig-name descname">MSTATUS_MPRV</code> 0x00020000<a class="headerlink" href="#c.MSTATUS_MPRV" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MSTATUS_PUM">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga035dd52dddf83c12b5e2bf7c819e54e6"></span><code class="sig-name descname">MSTATUS_PUM</code> 0x00040000<a class="headerlink" href="#c.MSTATUS_PUM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MSTATUS_MXR">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga8f4b37cdd71162f5b7adb583010443cb"></span><code class="sig-name descname">MSTATUS_MXR</code> 0x00080000<a class="headerlink" href="#c.MSTATUS_MXR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MSTATUS_VM">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaa4bb5c6a2a139c0bfd77d4d5de00e8b6"></span><code class="sig-name descname">MSTATUS_VM</code> 0x1F000000<a class="headerlink" href="#c.MSTATUS_VM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MSTATUS32_SD">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gacca6e5c4f8af666a9b299af295f43348"></span><code class="sig-name descname">MSTATUS32_SD</code> 0x80000000<a class="headerlink" href="#c.MSTATUS32_SD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MSTATUS64_SD">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga9d7df82e40e8cf00821e97a0bb8db04e"></span><code class="sig-name descname">MSTATUS64_SD</code> 0x8000000000000000<a class="headerlink" href="#c.MSTATUS64_SD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MSTATUS_FS_INITIAL">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga95a34cc78abc173fe829cf5b0daba397"></span><code class="sig-name descname">MSTATUS_FS_INITIAL</code> 0x00002000<a class="headerlink" href="#c.MSTATUS_FS_INITIAL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MSTATUS_FS_CLEAN">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaef9ff6d95030e46ca86237a320898ca3"></span><code class="sig-name descname">MSTATUS_FS_CLEAN</code> 0x00004000<a class="headerlink" href="#c.MSTATUS_FS_CLEAN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MSTATUS_FS_DIRTY">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaa704a5aece9149a30cefae0a0f77f034"></span><code class="sig-name descname">MSTATUS_FS_DIRTY</code> 0x00006000<a class="headerlink" href="#c.MSTATUS_FS_DIRTY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.SSTATUS_UIE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga431c67f7f0e4b5dbdf2048310ad814e0"></span><code class="sig-name descname">SSTATUS_UIE</code> 0x00000001<a class="headerlink" href="#c.SSTATUS_UIE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.SSTATUS_SIE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga1c1f1da0ecfca5bc4fc4db3acadf1bc8"></span><code class="sig-name descname">SSTATUS_SIE</code> 0x00000002<a class="headerlink" href="#c.SSTATUS_SIE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.SSTATUS_UPIE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga796ad1a8b2314776082e72e13f4a30cf"></span><code class="sig-name descname">SSTATUS_UPIE</code> 0x00000010<a class="headerlink" href="#c.SSTATUS_UPIE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.SSTATUS_SPIE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga3f9373ba6db2ce5e5c7ea28c2a5b3df9"></span><code class="sig-name descname">SSTATUS_SPIE</code> 0x00000020<a class="headerlink" href="#c.SSTATUS_SPIE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.SSTATUS_SPP">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga4d0820d6a8b0c5b0fef6875a985d3370"></span><code class="sig-name descname">SSTATUS_SPP</code> 0x00000100<a class="headerlink" href="#c.SSTATUS_SPP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.SSTATUS_FS">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaff201911cccf15e446c43ba67b0f1aa7"></span><code class="sig-name descname">SSTATUS_FS</code> 0x00006000<a class="headerlink" href="#c.SSTATUS_FS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.SSTATUS_XS">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga2abef254823774927e3bf6b029fbad9d"></span><code class="sig-name descname">SSTATUS_XS</code> 0x00018000<a class="headerlink" href="#c.SSTATUS_XS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.SSTATUS_PUM">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaf95f0e6f382a6cd93ba925c62d64fe97"></span><code class="sig-name descname">SSTATUS_PUM</code> 0x00040000<a class="headerlink" href="#c.SSTATUS_PUM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.SSTATUS32_SD">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga5f2248b3f4a648ce63c0468a92132971"></span><code class="sig-name descname">SSTATUS32_SD</code> 0x80000000<a class="headerlink" href="#c.SSTATUS32_SD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.SSTATUS64_SD">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga517c9ab9421f99b99f5da4d549177f38"></span><code class="sig-name descname">SSTATUS64_SD</code> 0x8000000000000000<a class="headerlink" href="#c.SSTATUS64_SD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MCACHE_CTL_IE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga838be4fb6cc0796dfdab1d492c992e91"></span><code class="sig-name descname">CSR_MCACHE_CTL_IE</code> 0x00000001<a class="headerlink" href="#c.CSR_MCACHE_CTL_IE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CSR_MCACHE_CTL_DE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaabaff1feb67c2351eb71e1b1c97565bf"></span><code class="sig-name descname">CSR_MCACHE_CTL_DE</code> 0x00010000<a class="headerlink" href="#c.CSR_MCACHE_CTL_DE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.DCSR_XDEBUGVER">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga966a5f66e8f82245a23754d953272e26"></span><code class="sig-name descname">DCSR_XDEBUGVER</code> (3U&lt;&lt;30)<a class="headerlink" href="#c.DCSR_XDEBUGVER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.DCSR_NDRESET">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga70f0772b052aba7d37433a6abc524a05"></span><code class="sig-name descname">DCSR_NDRESET</code> (1&lt;&lt;29)<a class="headerlink" href="#c.DCSR_NDRESET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.DCSR_FULLRESET">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gae0060c3218daba2cfe6b3a74eaa8004e"></span><code class="sig-name descname">DCSR_FULLRESET</code> (1&lt;&lt;28)<a class="headerlink" href="#c.DCSR_FULLRESET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.DCSR_EBREAKM">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaee469b64e88766dd85645de42b9f2a5c"></span><code class="sig-name descname">DCSR_EBREAKM</code> (1&lt;&lt;15)<a class="headerlink" href="#c.DCSR_EBREAKM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.DCSR_EBREAKH">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga113e941ee7b34c40b794e5b39638f79c"></span><code class="sig-name descname">DCSR_EBREAKH</code> (1&lt;&lt;14)<a class="headerlink" href="#c.DCSR_EBREAKH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.DCSR_EBREAKS">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaa06fd020c5e6a4bc5e97715763eb85ff"></span><code class="sig-name descname">DCSR_EBREAKS</code> (1&lt;&lt;13)<a class="headerlink" href="#c.DCSR_EBREAKS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.DCSR_EBREAKU">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gac6c4bbab3051160066b73951e0c58e84"></span><code class="sig-name descname">DCSR_EBREAKU</code> (1&lt;&lt;12)<a class="headerlink" href="#c.DCSR_EBREAKU" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.DCSR_STOPCYCLE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga7367ccfe98195ecdf126ea1f26f85b37"></span><code class="sig-name descname">DCSR_STOPCYCLE</code> (1&lt;&lt;10)<a class="headerlink" href="#c.DCSR_STOPCYCLE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.DCSR_STOPTIME">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga8e011fbc15f29c25a9197e306eefc4bc"></span><code class="sig-name descname">DCSR_STOPTIME</code> (1&lt;&lt;9)<a class="headerlink" href="#c.DCSR_STOPTIME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.DCSR_CAUSE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga81c7d48193a62ce9c189bb0d2d104230"></span><code class="sig-name descname">DCSR_CAUSE</code> (7&lt;&lt;6)<a class="headerlink" href="#c.DCSR_CAUSE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.DCSR_DEBUGINT">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gabf604fa800bf4ef6aa8e58e662c34317"></span><code class="sig-name descname">DCSR_DEBUGINT</code> (1&lt;&lt;5)<a class="headerlink" href="#c.DCSR_DEBUGINT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.DCSR_HALT">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga1a6de95ef85a1337a6c9bbfb8588d137"></span><code class="sig-name descname">DCSR_HALT</code> (1&lt;&lt;3)<a class="headerlink" href="#c.DCSR_HALT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.DCSR_STEP">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga5136c4da715d2aa79f23dab172db4fea"></span><code class="sig-name descname">DCSR_STEP</code> (1&lt;&lt;2)<a class="headerlink" href="#c.DCSR_STEP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.DCSR_PRV">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga110f30f7c9d25c057e2dfe1477e5b742"></span><code class="sig-name descname">DCSR_PRV</code> (3&lt;&lt;0)<a class="headerlink" href="#c.DCSR_PRV" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.DCSR_CAUSE_NONE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga4cf6a474d1cc251a206f9ab512794581"></span><code class="sig-name descname">DCSR_CAUSE_NONE</code> 0<a class="headerlink" href="#c.DCSR_CAUSE_NONE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.DCSR_CAUSE_SWBP">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga0ca8d97eb41a31351ea471e87a6cb383"></span><code class="sig-name descname">DCSR_CAUSE_SWBP</code> 1<a class="headerlink" href="#c.DCSR_CAUSE_SWBP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.DCSR_CAUSE_HWBP">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga73fbd946de0ee961a37aef9cf0113c10"></span><code class="sig-name descname">DCSR_CAUSE_HWBP</code> 2<a class="headerlink" href="#c.DCSR_CAUSE_HWBP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.DCSR_CAUSE_DEBUGINT">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga28fc94b1080dd0151ad942fd38ecf04d"></span><code class="sig-name descname">DCSR_CAUSE_DEBUGINT</code> 3<a class="headerlink" href="#c.DCSR_CAUSE_DEBUGINT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.DCSR_CAUSE_STEP">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga47955acab2f0d71bde8d2dbacebc1ce1"></span><code class="sig-name descname">DCSR_CAUSE_STEP</code> 4<a class="headerlink" href="#c.DCSR_CAUSE_STEP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.DCSR_CAUSE_HALT">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gabbe672c98c7614d6346e83e80ee0df18"></span><code class="sig-name descname">DCSR_CAUSE_HALT</code> 5<a class="headerlink" href="#c.DCSR_CAUSE_HALT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCONTROL_TYPE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga4be6cc72618e21a3011b626aff83eae8"></span><code class="sig-name descname">MCONTROL_TYPE</code><span class="sig-paren">(</span>xlen<span class="sig-paren">)</span> (0xfULL&lt;&lt;((xlen)-4))<a class="headerlink" href="#c.MCONTROL_TYPE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCONTROL_DMODE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gab0c4b6681fe0b3fba6d512a084e318b2"></span><code class="sig-name descname">MCONTROL_DMODE</code><span class="sig-paren">(</span>xlen<span class="sig-paren">)</span> (1ULL&lt;&lt;((xlen)-5))<a class="headerlink" href="#c.MCONTROL_DMODE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCONTROL_MASKMAX">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga9d2d58a19b42feb156d060c4860773e3"></span><code class="sig-name descname">MCONTROL_MASKMAX</code><span class="sig-paren">(</span>xlen<span class="sig-paren">)</span> (0x3fULL&lt;&lt;((xlen)-11))<a class="headerlink" href="#c.MCONTROL_MASKMAX" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCONTROL_SELECT">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gae3271344364caa6fdeedf62cad06ec32"></span><code class="sig-name descname">MCONTROL_SELECT</code> (1&lt;&lt;19)<a class="headerlink" href="#c.MCONTROL_SELECT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCONTROL_TIMING">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga05f32197da7d4f4da6cd9ffd706f0181"></span><code class="sig-name descname">MCONTROL_TIMING</code> (1&lt;&lt;18)<a class="headerlink" href="#c.MCONTROL_TIMING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCONTROL_ACTION">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaa00ebcbad8ef4fd0b082ae955c70159a"></span><code class="sig-name descname">MCONTROL_ACTION</code> (0x3f&lt;&lt;12)<a class="headerlink" href="#c.MCONTROL_ACTION" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCONTROL_CHAIN">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga1ab44c2e81a1a31e766ec682cad96ea9"></span><code class="sig-name descname">MCONTROL_CHAIN</code> (1&lt;&lt;11)<a class="headerlink" href="#c.MCONTROL_CHAIN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCONTROL_MATCH">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga29db79af22f38eb123f1bf1c11c4c92a"></span><code class="sig-name descname">MCONTROL_MATCH</code> (0xf&lt;&lt;7)<a class="headerlink" href="#c.MCONTROL_MATCH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCONTROL_M">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga0b9146969080ec187962cbe3ee3f5aba"></span><code class="sig-name descname">MCONTROL_M</code> (1&lt;&lt;6)<a class="headerlink" href="#c.MCONTROL_M" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCONTROL_H">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga02a3db7fdab9947d0c8239c011d1274e"></span><code class="sig-name descname">MCONTROL_H</code> (1&lt;&lt;5)<a class="headerlink" href="#c.MCONTROL_H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCONTROL_S">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gac9c0ad84304e51a07e42a9a70c210c95"></span><code class="sig-name descname">MCONTROL_S</code> (1&lt;&lt;4)<a class="headerlink" href="#c.MCONTROL_S" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCONTROL_U">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga13c4a265729f4de2d9e7319e5aa29d8d"></span><code class="sig-name descname">MCONTROL_U</code> (1&lt;&lt;3)<a class="headerlink" href="#c.MCONTROL_U" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCONTROL_EXECUTE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga16ef1fd919fc1d8cce3e064aaf606a06"></span><code class="sig-name descname">MCONTROL_EXECUTE</code> (1&lt;&lt;2)<a class="headerlink" href="#c.MCONTROL_EXECUTE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCONTROL_STORE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaeddbbc18f165aa8764e3b201e57958f7"></span><code class="sig-name descname">MCONTROL_STORE</code> (1&lt;&lt;1)<a class="headerlink" href="#c.MCONTROL_STORE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCONTROL_LOAD">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga77472c8d179d5bf165e420aec140d1ad"></span><code class="sig-name descname">MCONTROL_LOAD</code> (1&lt;&lt;0)<a class="headerlink" href="#c.MCONTROL_LOAD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCONTROL_TYPE_NONE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga90057d3240f345a4c152667f336bb50f"></span><code class="sig-name descname">MCONTROL_TYPE_NONE</code> 0<a class="headerlink" href="#c.MCONTROL_TYPE_NONE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCONTROL_TYPE_MATCH">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga510525cf4b02311be0f97070a0867e8e"></span><code class="sig-name descname">MCONTROL_TYPE_MATCH</code> 2<a class="headerlink" href="#c.MCONTROL_TYPE_MATCH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCONTROL_ACTION_DEBUG_EXCEPTION">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga48f74b38a5f172d576549d6ed3c2e9b0"></span><code class="sig-name descname">MCONTROL_ACTION_DEBUG_EXCEPTION</code> 0<a class="headerlink" href="#c.MCONTROL_ACTION_DEBUG_EXCEPTION" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCONTROL_ACTION_DEBUG_MODE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga283b3199ea4bb5f6c27ccbe880d426df"></span><code class="sig-name descname">MCONTROL_ACTION_DEBUG_MODE</code> 1<a class="headerlink" href="#c.MCONTROL_ACTION_DEBUG_MODE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCONTROL_ACTION_TRACE_START">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga40674423a8d52e03f26a535f6833ebed"></span><code class="sig-name descname">MCONTROL_ACTION_TRACE_START</code> 2<a class="headerlink" href="#c.MCONTROL_ACTION_TRACE_START" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCONTROL_ACTION_TRACE_STOP">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gad3f67c74ef8b33dbfcca678a3c381e62"></span><code class="sig-name descname">MCONTROL_ACTION_TRACE_STOP</code> 3<a class="headerlink" href="#c.MCONTROL_ACTION_TRACE_STOP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCONTROL_ACTION_TRACE_EMIT">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga227b2447936cd8f134d9ca084a233fe2"></span><code class="sig-name descname">MCONTROL_ACTION_TRACE_EMIT</code> 4<a class="headerlink" href="#c.MCONTROL_ACTION_TRACE_EMIT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCONTROL_MATCH_EQUAL">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga9b67fcfd9cce0df82d2862dbf4e6e1e6"></span><code class="sig-name descname">MCONTROL_MATCH_EQUAL</code> 0<a class="headerlink" href="#c.MCONTROL_MATCH_EQUAL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCONTROL_MATCH_NAPOT">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga529552f378149e8b6a1d940f1279367b"></span><code class="sig-name descname">MCONTROL_MATCH_NAPOT</code> 1<a class="headerlink" href="#c.MCONTROL_MATCH_NAPOT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCONTROL_MATCH_GE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga161f7167c606c9e867af1bcba0cb8eab"></span><code class="sig-name descname">MCONTROL_MATCH_GE</code> 2<a class="headerlink" href="#c.MCONTROL_MATCH_GE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCONTROL_MATCH_LT">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gafd67f3e374a7f912ec48d02a40730a1d"></span><code class="sig-name descname">MCONTROL_MATCH_LT</code> 3<a class="headerlink" href="#c.MCONTROL_MATCH_LT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCONTROL_MATCH_MASK_LOW">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga9a5c571a197a84c425a54bfeeab76503"></span><code class="sig-name descname">MCONTROL_MATCH_MASK_LOW</code> 4<a class="headerlink" href="#c.MCONTROL_MATCH_MASK_LOW" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCONTROL_MATCH_MASK_HIGH">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gad53872401bc83df4c67017323ff47c29"></span><code class="sig-name descname">MCONTROL_MATCH_MASK_HIGH</code> 5<a class="headerlink" href="#c.MCONTROL_MATCH_MASK_HIGH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MIP_SSIP">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga0bda37d26a2a610c14486b0cd367becc"></span><code class="sig-name descname">MIP_SSIP</code> (1 &lt;&lt; <a class="reference internal" href="#group__NMSIS__Core__CSR__Encoding_1ga1f426d6231a15fe1801b3206c712cf76"><span class="std std-ref">IRQ_S_SOFT</span></a>)<a class="headerlink" href="#c.MIP_SSIP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MIP_HSIP">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gab8226593c790568a432eeb8ca7bb4270"></span><code class="sig-name descname">MIP_HSIP</code> (1 &lt;&lt; <a class="reference internal" href="#group__NMSIS__Core__CSR__Encoding_1gac3fe3deef5576f320abc55464c9fb980"><span class="std std-ref">IRQ_H_SOFT</span></a>)<a class="headerlink" href="#c.MIP_HSIP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MIP_MSIP">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga09c2dda94121d966560ac22fe6becdb3"></span><code class="sig-name descname">MIP_MSIP</code> (1 &lt;&lt; <a class="reference internal" href="#group__NMSIS__Core__CSR__Encoding_1ga02e2db32b33eb8cf23622150ac372200"><span class="std std-ref">IRQ_M_SOFT</span></a>)<a class="headerlink" href="#c.MIP_MSIP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MIP_STIP">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga40a54377f1fdb317c3f7397043874cae"></span><code class="sig-name descname">MIP_STIP</code> (1 &lt;&lt; <a class="reference internal" href="#group__NMSIS__Core__CSR__Encoding_1gac7acfa6b0f632b9cd762a0e0abd1df08"><span class="std std-ref">IRQ_S_TIMER</span></a>)<a class="headerlink" href="#c.MIP_STIP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MIP_HTIP">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga15a22cfcd6f41aea04b9943a71d0a2ff"></span><code class="sig-name descname">MIP_HTIP</code> (1 &lt;&lt; <a class="reference internal" href="#group__NMSIS__Core__CSR__Encoding_1ga9ea3c09e4c1dde4b1c9d1be6d7d82528"><span class="std std-ref">IRQ_H_TIMER</span></a>)<a class="headerlink" href="#c.MIP_HTIP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MIP_MTIP">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga51c044e20264a9e2a875b17482e8ff11"></span><code class="sig-name descname">MIP_MTIP</code> (1 &lt;&lt; <a class="reference internal" href="#group__NMSIS__Core__CSR__Encoding_1gaa5b87ef0a6024ad69009faff8fd6a9d5"><span class="std std-ref">IRQ_M_TIMER</span></a>)<a class="headerlink" href="#c.MIP_MTIP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MIP_SEIP">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga3fdf03c28e7d1baba8fa6bb11eae8561"></span><code class="sig-name descname">MIP_SEIP</code> (1 &lt;&lt; <a class="reference internal" href="#group__NMSIS__Core__CSR__Encoding_1gaedc582eeff2cc10dcb000c5f08dda3c3"><span class="std std-ref">IRQ_S_EXT</span></a>)<a class="headerlink" href="#c.MIP_SEIP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MIP_HEIP">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga1c1ae7b718753753a5c99292450df837"></span><code class="sig-name descname">MIP_HEIP</code> (1 &lt;&lt; <a class="reference internal" href="#group__NMSIS__Core__CSR__Encoding_1gaa09fee2ca390c169c63b0c52475e38f7"><span class="std std-ref">IRQ_H_EXT</span></a>)<a class="headerlink" href="#c.MIP_HEIP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MIP_MEIP">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaa0b390526aa02e969ae64235b983069a"></span><code class="sig-name descname">MIP_MEIP</code> (1 &lt;&lt; <a class="reference internal" href="#group__NMSIS__Core__CSR__Encoding_1ga43fba639eb8d7ee37648cc0af12cf59b"><span class="std std-ref">IRQ_M_EXT</span></a>)<a class="headerlink" href="#c.MIP_MEIP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MIE_SSIE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga581a15bf4b80b485ca87f80d3bcfe110"></span><code class="sig-name descname">MIE_SSIE</code> <a class="reference internal" href="#group__NMSIS__Core__CSR__Encoding_1ga0bda37d26a2a610c14486b0cd367becc"><span class="std std-ref">MIP_SSIP</span></a><a class="headerlink" href="#c.MIE_SSIE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MIE_HSIE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga1663572390edca9da42c5cb7bfb48162"></span><code class="sig-name descname">MIE_HSIE</code> <a class="reference internal" href="#group__NMSIS__Core__CSR__Encoding_1gab8226593c790568a432eeb8ca7bb4270"><span class="std std-ref">MIP_HSIP</span></a><a class="headerlink" href="#c.MIE_HSIE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MIE_MSIE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gacdb82cffb46911d1a236dcf651b24b05"></span><code class="sig-name descname">MIE_MSIE</code> <a class="reference internal" href="#group__NMSIS__Core__CSR__Encoding_1ga09c2dda94121d966560ac22fe6becdb3"><span class="std std-ref">MIP_MSIP</span></a><a class="headerlink" href="#c.MIE_MSIE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MIE_STIE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gac5a9c8dcdb454fa5593b61b192b06c1d"></span><code class="sig-name descname">MIE_STIE</code> <a class="reference internal" href="#group__NMSIS__Core__CSR__Encoding_1ga40a54377f1fdb317c3f7397043874cae"><span class="std std-ref">MIP_STIP</span></a><a class="headerlink" href="#c.MIE_STIE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MIE_HTIE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaf09da2388826027bf56d8b0bd4729651"></span><code class="sig-name descname">MIE_HTIE</code> <a class="reference internal" href="#group__NMSIS__Core__CSR__Encoding_1ga15a22cfcd6f41aea04b9943a71d0a2ff"><span class="std std-ref">MIP_HTIP</span></a><a class="headerlink" href="#c.MIE_HTIE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MIE_MTIE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga88f0c7a5a13f0570ecbaa43b912b0fe4"></span><code class="sig-name descname">MIE_MTIE</code> <a class="reference internal" href="#group__NMSIS__Core__CSR__Encoding_1ga51c044e20264a9e2a875b17482e8ff11"><span class="std std-ref">MIP_MTIP</span></a><a class="headerlink" href="#c.MIE_MTIE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MIE_SEIE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga25eb65aea38f4aa1feeef2bf854cea74"></span><code class="sig-name descname">MIE_SEIE</code> <a class="reference internal" href="#group__NMSIS__Core__CSR__Encoding_1ga3fdf03c28e7d1baba8fa6bb11eae8561"><span class="std std-ref">MIP_SEIP</span></a><a class="headerlink" href="#c.MIE_SEIE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MIE_HEIE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga92ca7b4341e5a046f312f5f0db077f44"></span><code class="sig-name descname">MIE_HEIE</code> <a class="reference internal" href="#group__NMSIS__Core__CSR__Encoding_1ga1c1ae7b718753753a5c99292450df837"><span class="std std-ref">MIP_HEIP</span></a><a class="headerlink" href="#c.MIE_HEIE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MIE_MEIE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gab4e2e4b72ec1e13b315dcdc910f5595b"></span><code class="sig-name descname">MIE_MEIE</code> <a class="reference internal" href="#group__NMSIS__Core__CSR__Encoding_1gaa0b390526aa02e969ae64235b983069a"><span class="std std-ref">MIP_MEIP</span></a><a class="headerlink" href="#c.MIE_MEIE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.UCODE_OV">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaf130720fd14133d4708424b7b858215e"></span><code class="sig-name descname">UCODE_OV</code> (0x1)<a class="headerlink" href="#c.UCODE_OV" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.WFE_WFE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga20aa60b214851659e139accdc108f131"></span><code class="sig-name descname">WFE_WFE</code> (0x1)<a class="headerlink" href="#c.WFE_WFE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.TXEVT_TXEVT">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gade924168088e3928b41d450f8e3458f3"></span><code class="sig-name descname">TXEVT_TXEVT</code> (0x1)<a class="headerlink" href="#c.TXEVT_TXEVT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.SLEEPVALUE_SLEEPVALUE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga1248cd9846d593036d74cfd55a582632"></span><code class="sig-name descname">SLEEPVALUE_SLEEPVALUE</code> (0x1)<a class="headerlink" href="#c.SLEEPVALUE_SLEEPVALUE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCOUNTINHIBIT_IR">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gae8693a1f795a0f752391c609ce011cbf"></span><code class="sig-name descname">MCOUNTINHIBIT_IR</code> (1&lt;&lt;2)<a class="headerlink" href="#c.MCOUNTINHIBIT_IR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCOUNTINHIBIT_CY">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga675e4d52a85bafc0a1663cf2f431583a"></span><code class="sig-name descname">MCOUNTINHIBIT_CY</code> (1&lt;&lt;0)<a class="headerlink" href="#c.MCOUNTINHIBIT_CY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MILM_CTL_ILM_BPA">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga58fdda659daafb923a409a1bbe0c6655"></span><code class="sig-name descname">MILM_CTL_ILM_BPA</code> (((1ULL&lt;&lt;((__riscv_xlen)-10))-1)&lt;&lt;10)<a class="headerlink" href="#c.MILM_CTL_ILM_BPA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MILM_CTL_ILM_RWECC">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga2abda317bca9ac8bf35368865830cd68"></span><code class="sig-name descname">MILM_CTL_ILM_RWECC</code> (1&lt;&lt;3)<a class="headerlink" href="#c.MILM_CTL_ILM_RWECC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MILM_CTL_ILM_ECC_EXCP_EN">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga27d7dbd69da032a1abe3471fbb0345c3"></span><code class="sig-name descname">MILM_CTL_ILM_ECC_EXCP_EN</code> (1&lt;&lt;2)<a class="headerlink" href="#c.MILM_CTL_ILM_ECC_EXCP_EN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MILM_CTL_ILM_ECC_EN">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga00f2ec5471765545572aef07793a676c"></span><code class="sig-name descname">MILM_CTL_ILM_ECC_EN</code> (1&lt;&lt;1)<a class="headerlink" href="#c.MILM_CTL_ILM_ECC_EN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MILM_CTL_ILM_EN">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga5c75afd05ea4349e7dc851589a2b4c60"></span><code class="sig-name descname">MILM_CTL_ILM_EN</code> (1&lt;&lt;0)<a class="headerlink" href="#c.MILM_CTL_ILM_EN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MDLM_CTL_DLM_BPA">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga66efca6fe008b17b3e58f55cfc3454ba"></span><code class="sig-name descname">MDLM_CTL_DLM_BPA</code> (((1ULL&lt;&lt;((__riscv_xlen)-10))-1)&lt;&lt;10)<a class="headerlink" href="#c.MDLM_CTL_DLM_BPA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MDLM_CTL_DLM_RWECC">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gafcceffc59d674aedf08abbe9140f2f96"></span><code class="sig-name descname">MDLM_CTL_DLM_RWECC</code> (1&lt;&lt;3)<a class="headerlink" href="#c.MDLM_CTL_DLM_RWECC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MDLM_CTL_DLM_ECC_EXCP_EN">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gade0e18fa462c3271b27acb36eae59d80"></span><code class="sig-name descname">MDLM_CTL_DLM_ECC_EXCP_EN</code> (1&lt;&lt;2)<a class="headerlink" href="#c.MDLM_CTL_DLM_ECC_EXCP_EN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MDLM_CTL_DLM_ECC_EN">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaef060f008524963c4e5556b378ab77f4"></span><code class="sig-name descname">MDLM_CTL_DLM_ECC_EN</code> (1&lt;&lt;1)<a class="headerlink" href="#c.MDLM_CTL_DLM_ECC_EN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MDLM_CTL_DLM_EN">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga6cb4731642366eac4dfbba732abdf45c"></span><code class="sig-name descname">MDLM_CTL_DLM_EN</code> (1&lt;&lt;0)<a class="headerlink" href="#c.MDLM_CTL_DLM_EN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MSUBM_PTYP">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gab1ea496c56aa682d757ee18f207898b2"></span><code class="sig-name descname">MSUBM_PTYP</code> (0x3&lt;&lt;8)<a class="headerlink" href="#c.MSUBM_PTYP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MSUBM_TYP">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaeaa1f8b914ede4c086b0444b3a66c82d"></span><code class="sig-name descname">MSUBM_TYP</code> (0x3&lt;&lt;6)<a class="headerlink" href="#c.MSUBM_TYP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MDCAUSE_MDCAUSE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaa453deb1f8a1f3f3a5838ad4965ca766"></span><code class="sig-name descname">MDCAUSE_MDCAUSE</code> (0x3)<a class="headerlink" href="#c.MDCAUSE_MDCAUSE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MMISC_CTL_NMI_CAUSE_FFF">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga247a92f76022992a457ec81a67eaed57"></span><code class="sig-name descname">MMISC_CTL_NMI_CAUSE_FFF</code> (1&lt;&lt;9)<a class="headerlink" href="#c.MMISC_CTL_NMI_CAUSE_FFF" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MMISC_CTL_MISALIGN">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaa6533a61bdf28dab6d97eaf8ac47e15a"></span><code class="sig-name descname">MMISC_CTL_MISALIGN</code> (1&lt;&lt;6)<a class="headerlink" href="#c.MMISC_CTL_MISALIGN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MMISC_CTL_BPU">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gac62547380ae39bae590e77751554f8cd"></span><code class="sig-name descname">MMISC_CTL_BPU</code> (1&lt;&lt;3)<a class="headerlink" href="#c.MMISC_CTL_BPU" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCACHE_CTL_IC_EN">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga1915bfad24b1100506412bd0f3c705e2"></span><code class="sig-name descname">MCACHE_CTL_IC_EN</code> (1&lt;&lt;0)<a class="headerlink" href="#c.MCACHE_CTL_IC_EN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCACHE_CTL_IC_SCPD_MOD">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga1f23cac132dc4d543a0d33a336a7d858"></span><code class="sig-name descname">MCACHE_CTL_IC_SCPD_MOD</code> (1&lt;&lt;1)<a class="headerlink" href="#c.MCACHE_CTL_IC_SCPD_MOD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCACHE_CTL_IC_ECC_EN">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gac212acd84f08a26197bc439bc58d5e58"></span><code class="sig-name descname">MCACHE_CTL_IC_ECC_EN</code> (1&lt;&lt;2)<a class="headerlink" href="#c.MCACHE_CTL_IC_ECC_EN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCACHE_CTL_IC_ECC_EXCP_EN">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga791603ffdcc47fbb787ac4c6ecd55f30"></span><code class="sig-name descname">MCACHE_CTL_IC_ECC_EXCP_EN</code> (1&lt;&lt;3)<a class="headerlink" href="#c.MCACHE_CTL_IC_ECC_EXCP_EN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCACHE_CTL_IC_RWTECC">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga2752ea69ebad6ee1f8c806955efc3129"></span><code class="sig-name descname">MCACHE_CTL_IC_RWTECC</code> (1&lt;&lt;4)<a class="headerlink" href="#c.MCACHE_CTL_IC_RWTECC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCACHE_CTL_IC_RWDECC">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga9a6cc1c06bc9eae80ac1f5a0fd0e7584"></span><code class="sig-name descname">MCACHE_CTL_IC_RWDECC</code> (1&lt;&lt;5)<a class="headerlink" href="#c.MCACHE_CTL_IC_RWDECC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCACHE_CTL_DC_EN">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gae82cbfc628bf4087720024122a9c9115"></span><code class="sig-name descname">MCACHE_CTL_DC_EN</code> (1&lt;&lt;16)<a class="headerlink" href="#c.MCACHE_CTL_DC_EN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCACHE_CTL_DC_ECC_EN">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga24f8fec1fe980ff09a748634ded5f3ec"></span><code class="sig-name descname">MCACHE_CTL_DC_ECC_EN</code> (1&lt;&lt;17)<a class="headerlink" href="#c.MCACHE_CTL_DC_ECC_EN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCACHE_CTL_DC_ECC_EXCP_EN">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaa812767233bc30aa4f5e215a00e10a1a"></span><code class="sig-name descname">MCACHE_CTL_DC_ECC_EXCP_EN</code> (1&lt;&lt;18)<a class="headerlink" href="#c.MCACHE_CTL_DC_ECC_EXCP_EN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCACHE_CTL_DC_RWTECC">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gae416277ff67aa4f57eab23e249fe626a"></span><code class="sig-name descname">MCACHE_CTL_DC_RWTECC</code> (1&lt;&lt;19)<a class="headerlink" href="#c.MCACHE_CTL_DC_RWTECC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCACHE_CTL_DC_RWDECC">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga5232185f012cc6338fbfe0a77dd39a34"></span><code class="sig-name descname">MCACHE_CTL_DC_RWDECC</code> (1&lt;&lt;20)<a class="headerlink" href="#c.MCACHE_CTL_DC_RWDECC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MTVT2_MTVT2EN">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga6065953ce222f53cb94ee8d6c336e26d"></span><code class="sig-name descname">MTVT2_MTVT2EN</code> (1&lt;&lt;0)<a class="headerlink" href="#c.MTVT2_MTVT2EN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MTVT2_COMMON_CODE_ENTRY">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga2d61c1c8247bc82e209a8bbbaba1e44c"></span><code class="sig-name descname">MTVT2_COMMON_CODE_ENTRY</code> (((1ULL&lt;&lt;((__riscv_xlen)-2))-1)&lt;&lt;2)<a class="headerlink" href="#c.MTVT2_COMMON_CODE_ENTRY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCFG_INFO_TEE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga8b189b0faab8100190d9c0cb9457ab6b"></span><code class="sig-name descname">MCFG_INFO_TEE</code> (1&lt;&lt;0)<a class="headerlink" href="#c.MCFG_INFO_TEE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCFG_INFO_ECC">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga378777b74ffd0f62087c10d7cc83dba9"></span><code class="sig-name descname">MCFG_INFO_ECC</code> (1&lt;&lt;1)<a class="headerlink" href="#c.MCFG_INFO_ECC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCFG_INFO_CLIC">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga8e6bfafb27d2142ee0035f76b887acca"></span><code class="sig-name descname">MCFG_INFO_CLIC</code> (1&lt;&lt;2)<a class="headerlink" href="#c.MCFG_INFO_CLIC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCFG_INFO_PLIC">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga29b6c2971cce93a78e9605e7e5276599"></span><code class="sig-name descname">MCFG_INFO_PLIC</code> (1&lt;&lt;3)<a class="headerlink" href="#c.MCFG_INFO_PLIC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCFG_INFO_FIO">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga7987e805f4afa13b0d4f62a250cb2f34"></span><code class="sig-name descname">MCFG_INFO_FIO</code> (1&lt;&lt;4)<a class="headerlink" href="#c.MCFG_INFO_FIO" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCFG_INFO_PPI">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga486d29134dd516cf80273bc1fff243c9"></span><code class="sig-name descname">MCFG_INFO_PPI</code> (1&lt;&lt;5)<a class="headerlink" href="#c.MCFG_INFO_PPI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCFG_INFO_NICE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaf640e24726866e9b7f06360b93bf5800"></span><code class="sig-name descname">MCFG_INFO_NICE</code> (1&lt;&lt;6)<a class="headerlink" href="#c.MCFG_INFO_NICE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCFG_INFO_ILM">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gabcbe04e4da52ab5fbbbbb10c6629cf32"></span><code class="sig-name descname">MCFG_INFO_ILM</code> (1&lt;&lt;7)<a class="headerlink" href="#c.MCFG_INFO_ILM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCFG_INFO_DLM">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga60e344b3401de3421dde506783b0f5e8"></span><code class="sig-name descname">MCFG_INFO_DLM</code> (1&lt;&lt;8)<a class="headerlink" href="#c.MCFG_INFO_DLM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCFG_INFO_ICACHE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gade204165b105fd3fdcc50965cb23b83d"></span><code class="sig-name descname">MCFG_INFO_ICACHE</code> (1&lt;&lt;9)<a class="headerlink" href="#c.MCFG_INFO_ICACHE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MCFG_INFO_DCACHE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga95afd8455685713863d0be88485f5b40"></span><code class="sig-name descname">MCFG_INFO_DCACHE</code> (1&lt;&lt;10)<a class="headerlink" href="#c.MCFG_INFO_DCACHE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MICFG_IC_SET">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga02f016ef1dd10d24c36ae0c691d89448"></span><code class="sig-name descname">MICFG_IC_SET</code> (0xF&lt;&lt;0)<a class="headerlink" href="#c.MICFG_IC_SET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MICFG_IC_WAY">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga0d6540f439ca5b5c5961f987bfbe07c5"></span><code class="sig-name descname">MICFG_IC_WAY</code> (0x7&lt;&lt;4)<a class="headerlink" href="#c.MICFG_IC_WAY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MICFG_IC_LSIZE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaea8b0d29e2f6bf87803471e8621b032f"></span><code class="sig-name descname">MICFG_IC_LSIZE</code> (0x7&lt;&lt;7)<a class="headerlink" href="#c.MICFG_IC_LSIZE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MICFG_IC_ECC">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga434dea16ed0b3a6e0048c7aaa6946c58"></span><code class="sig-name descname">MICFG_IC_ECC</code> (0x1&lt;&lt;10)<a class="headerlink" href="#c.MICFG_IC_ECC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MICFG_ILM_SIZE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga2cb78b6241c78dc469250e707df3a572"></span><code class="sig-name descname">MICFG_ILM_SIZE</code> (0x1F&lt;&lt;16)<a class="headerlink" href="#c.MICFG_ILM_SIZE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MICFG_ILM_XONLY">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaaf286fc1a227c919d21f1d6e0e8cb3b9"></span><code class="sig-name descname">MICFG_ILM_XONLY</code> (0x1&lt;&lt;21)<a class="headerlink" href="#c.MICFG_ILM_XONLY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MICFG_ILM_ECC">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga0f19be02a99073685c5026a2fc5e907a"></span><code class="sig-name descname">MICFG_ILM_ECC</code> (0x1&lt;&lt;22)<a class="headerlink" href="#c.MICFG_ILM_ECC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MDCFG_DC_SET">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gabbd7c817405f28c6e06e22e4fbda509b"></span><code class="sig-name descname">MDCFG_DC_SET</code> (0xF&lt;&lt;0)<a class="headerlink" href="#c.MDCFG_DC_SET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MDCFG_DC_WAY">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga6218dafc338a7ed0ad8bce7db11cbe69"></span><code class="sig-name descname">MDCFG_DC_WAY</code> (0x7&lt;&lt;4)<a class="headerlink" href="#c.MDCFG_DC_WAY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MDCFG_DC_LSIZE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gae0e3d905405aa26daa960ab7c9037093"></span><code class="sig-name descname">MDCFG_DC_LSIZE</code> (0x7&lt;&lt;7)<a class="headerlink" href="#c.MDCFG_DC_LSIZE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MDCFG_DC_ECC">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga716b71a4271e56713d384a5e4655244d"></span><code class="sig-name descname">MDCFG_DC_ECC</code> (0x1&lt;&lt;10)<a class="headerlink" href="#c.MDCFG_DC_ECC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MDCFG_DLM_SIZE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gab515cedfce6a4e42b1419141f392e93f"></span><code class="sig-name descname">MDCFG_DLM_SIZE</code> (0x1F&lt;&lt;16)<a class="headerlink" href="#c.MDCFG_DLM_SIZE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MDCFG_DLM_ECC">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga5977c9cfabcbe276dc7b124f909e138e"></span><code class="sig-name descname">MDCFG_DLM_ECC</code> (0x1&lt;&lt;21)<a class="headerlink" href="#c.MDCFG_DLM_ECC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MPPICFG_INFO_PPI_SIZE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga8e5e133ea59b83012cf28984321332f8"></span><code class="sig-name descname">MPPICFG_INFO_PPI_SIZE</code> (0x1F&lt;&lt;1)<a class="headerlink" href="#c.MPPICFG_INFO_PPI_SIZE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MPPICFG_INFO_PPI_BPA">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaf10b969b50980388e673c8a398b74386"></span><code class="sig-name descname">MPPICFG_INFO_PPI_BPA</code> (((1ULL&lt;&lt;((__riscv_xlen)-10))-1)&lt;&lt;10)<a class="headerlink" href="#c.MPPICFG_INFO_PPI_BPA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MFIOCFG_INFO_FIO_SIZE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gab04aa3cb0d2fa864efe454ecffed5a93"></span><code class="sig-name descname">MFIOCFG_INFO_FIO_SIZE</code> (0x1F&lt;&lt;1)<a class="headerlink" href="#c.MFIOCFG_INFO_FIO_SIZE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MFIOCFG_INFO_FIO_BPA">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaa5cb4135c597cdea3578ee7cd10953b2"></span><code class="sig-name descname">MFIOCFG_INFO_FIO_BPA</code> (((1ULL&lt;&lt;((__riscv_xlen)-10))-1)&lt;&lt;10)<a class="headerlink" href="#c.MFIOCFG_INFO_FIO_BPA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MECC_LOCK_ECC_LOCK">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaa19b113c0348a4971044734f19db61bf"></span><code class="sig-name descname">MECC_LOCK_ECC_LOCK</code> (0x1)<a class="headerlink" href="#c.MECC_LOCK_ECC_LOCK" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MECC_CODE_CODE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gab602b226ad42a3c2f180866eea000dc5"></span><code class="sig-name descname">MECC_CODE_CODE</code> (0x1FF)<a class="headerlink" href="#c.MECC_CODE_CODE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MECC_CODE_RAMID">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga758a640d86f2ca5fca2ef65ab9458305"></span><code class="sig-name descname">MECC_CODE_RAMID</code> (0x1F&lt;&lt;16)<a class="headerlink" href="#c.MECC_CODE_RAMID" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.MECC_CODE_SRAMID">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gab5ef9c56bb6ea7dfec131200d80f682a"></span><code class="sig-name descname">MECC_CODE_SRAMID</code> (0x1F&lt;&lt;24)<a class="headerlink" href="#c.MECC_CODE_SRAMID" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CCM_SUEN_SUEN">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaf601ce7378adc2d28a3c1eece31c4948"></span><code class="sig-name descname">CCM_SUEN_SUEN</code> (0x1&lt;&lt;0)<a class="headerlink" href="#c.CCM_SUEN_SUEN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CCM_DATA_DATA">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gae3c1b6e3fb157b511fab5ffa16ada4fe"></span><code class="sig-name descname">CCM_DATA_DATA</code> (0x7&lt;&lt;0)<a class="headerlink" href="#c.CCM_DATA_DATA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CCM_COMMAND_COMMAND">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaa5833eecca8b1a06a1fc89247919c6f7"></span><code class="sig-name descname">CCM_COMMAND_COMMAND</code> (0x1F&lt;&lt;0)<a class="headerlink" href="#c.CCM_COMMAND_COMMAND" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.SIP_SSIP">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gacdfe2a4376d4c9873b865b878c6d5d2e"></span><code class="sig-name descname">SIP_SSIP</code> <a class="reference internal" href="#group__NMSIS__Core__CSR__Encoding_1ga0bda37d26a2a610c14486b0cd367becc"><span class="std std-ref">MIP_SSIP</span></a><a class="headerlink" href="#c.SIP_SSIP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.SIP_STIP">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaa32b89e7176c6d37caa3ad78a600f4a1"></span><code class="sig-name descname">SIP_STIP</code> <a class="reference internal" href="#group__NMSIS__Core__CSR__Encoding_1ga40a54377f1fdb317c3f7397043874cae"><span class="std std-ref">MIP_STIP</span></a><a class="headerlink" href="#c.SIP_STIP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.PRV_U">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga0584431e22db30065abffb94459477c4"></span><code class="sig-name descname">PRV_U</code> 0<a class="headerlink" href="#c.PRV_U" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.PRV_S">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga3131c9addf7b5ecc1da9f7b0eff9815d"></span><code class="sig-name descname">PRV_S</code> 1<a class="headerlink" href="#c.PRV_S" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.PRV_H">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaf11d40d5f172d3095bf39a23ba714552"></span><code class="sig-name descname">PRV_H</code> 2<a class="headerlink" href="#c.PRV_H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.PRV_M">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gafee966c8a48cb4075680eb0cc08ab32e"></span><code class="sig-name descname">PRV_M</code> 3<a class="headerlink" href="#c.PRV_M" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.VM_MBARE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga136d72c1560058c881e418d809313c4d"></span><code class="sig-name descname">VM_MBARE</code> 0<a class="headerlink" href="#c.VM_MBARE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.VM_MBB">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaa14ac20603beff5cf88970ba9df3336d"></span><code class="sig-name descname">VM_MBB</code> 1<a class="headerlink" href="#c.VM_MBB" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.VM_MBBID">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga393d622a8cfcc7d8ea5343fdfcd32d07"></span><code class="sig-name descname">VM_MBBID</code> 2<a class="headerlink" href="#c.VM_MBBID" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.VM_SV32">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga7ea29e1df0e38548df1183ec9ea9da44"></span><code class="sig-name descname">VM_SV32</code> 8<a class="headerlink" href="#c.VM_SV32" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.VM_SV39">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gad246f74e1796b45a7f1675ed9aeb9ab1"></span><code class="sig-name descname">VM_SV39</code> 9<a class="headerlink" href="#c.VM_SV39" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.VM_SV48">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga0b6c1ec7c117e3a245e09c635af9994b"></span><code class="sig-name descname">VM_SV48</code> 10<a class="headerlink" href="#c.VM_SV48" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.IRQ_S_SOFT">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga1f426d6231a15fe1801b3206c712cf76"></span><code class="sig-name descname">IRQ_S_SOFT</code> 1<a class="headerlink" href="#c.IRQ_S_SOFT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.IRQ_H_SOFT">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gac3fe3deef5576f320abc55464c9fb980"></span><code class="sig-name descname">IRQ_H_SOFT</code> 2<a class="headerlink" href="#c.IRQ_H_SOFT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.IRQ_M_SOFT">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga02e2db32b33eb8cf23622150ac372200"></span><code class="sig-name descname">IRQ_M_SOFT</code> 3<a class="headerlink" href="#c.IRQ_M_SOFT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.IRQ_S_TIMER">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gac7acfa6b0f632b9cd762a0e0abd1df08"></span><code class="sig-name descname">IRQ_S_TIMER</code> 5<a class="headerlink" href="#c.IRQ_S_TIMER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.IRQ_H_TIMER">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga9ea3c09e4c1dde4b1c9d1be6d7d82528"></span><code class="sig-name descname">IRQ_H_TIMER</code> 6<a class="headerlink" href="#c.IRQ_H_TIMER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.IRQ_M_TIMER">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaa5b87ef0a6024ad69009faff8fd6a9d5"></span><code class="sig-name descname">IRQ_M_TIMER</code> 7<a class="headerlink" href="#c.IRQ_M_TIMER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.IRQ_S_EXT">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaedc582eeff2cc10dcb000c5f08dda3c3"></span><code class="sig-name descname">IRQ_S_EXT</code> 9<a class="headerlink" href="#c.IRQ_S_EXT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.IRQ_H_EXT">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaa09fee2ca390c169c63b0c52475e38f7"></span><code class="sig-name descname">IRQ_H_EXT</code> 10<a class="headerlink" href="#c.IRQ_H_EXT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.IRQ_M_EXT">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga43fba639eb8d7ee37648cc0af12cf59b"></span><code class="sig-name descname">IRQ_M_EXT</code> 11<a class="headerlink" href="#c.IRQ_M_EXT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.IRQ_COP">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga26e341b99075274d38face5be46579a6"></span><code class="sig-name descname">IRQ_COP</code> 12<a class="headerlink" href="#c.IRQ_COP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.IRQ_HOST">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gab12a3e27140376a52c9f9999404a73f6"></span><code class="sig-name descname">IRQ_HOST</code> 13<a class="headerlink" href="#c.IRQ_HOST" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.FRM_RNDMODE_RNE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga9c07e76cdec94f3adfc6acb1ac8a6e13"></span><code class="sig-name descname">FRM_RNDMODE_RNE</code> 0x0<a class="headerlink" href="#c.FRM_RNDMODE_RNE" title="Permalink to this definition">¶</a></dt>
+<dd><p>FPU Round to Nearest, ties to Even. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.FRM_RNDMODE_RTZ">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaf8f4ab4175c2a4a8904a974c6ff64c8b"></span><code class="sig-name descname">FRM_RNDMODE_RTZ</code> 0x1<a class="headerlink" href="#c.FRM_RNDMODE_RTZ" title="Permalink to this definition">¶</a></dt>
+<dd><p>FPU Round Towards Zero. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.FRM_RNDMODE_RDN">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga39034ebb32dd8119c8eba506caf5de5e"></span><code class="sig-name descname">FRM_RNDMODE_RDN</code> 0x2<a class="headerlink" href="#c.FRM_RNDMODE_RDN" title="Permalink to this definition">¶</a></dt>
+<dd><p>FPU Round Down (towards -inf) </p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.FRM_RNDMODE_RUP">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaaa602e93ffb06696ae854de4ee239a51"></span><code class="sig-name descname">FRM_RNDMODE_RUP</code> 0x3<a class="headerlink" href="#c.FRM_RNDMODE_RUP" title="Permalink to this definition">¶</a></dt>
+<dd><p>FPU Round Up (towards +inf) </p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.FRM_RNDMODE_RMM">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gad7e45e9570cf32e228c3268574925998"></span><code class="sig-name descname">FRM_RNDMODE_RMM</code> 0x4<a class="headerlink" href="#c.FRM_RNDMODE_RMM" title="Permalink to this definition">¶</a></dt>
+<dd><p>FPU Round to nearest, ties to Max Magnitude. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.FRM_RNDMODE_DYN">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga4078cf4c03a56889c27f715fc0e61261"></span><code class="sig-name descname">FRM_RNDMODE_DYN</code> 0x7<a class="headerlink" href="#c.FRM_RNDMODE_DYN" title="Permalink to this definition">¶</a></dt>
+<dd><p>In instruction’s rm, selects dynamic rounding mode. </p>
+<p>In Rounding Mode register, Invalid </p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.FFLAGS_AE_NX">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaca388fb5e681aec3e4dc0c3a22faa120"></span><code class="sig-name descname">FFLAGS_AE_NX</code> (1&lt;&lt;0)<a class="headerlink" href="#c.FFLAGS_AE_NX" title="Permalink to this definition">¶</a></dt>
+<dd><p>FPU Inexact. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.FFLAGS_AE_UF">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga226c5ea510d1ccbef712b8cb5413d99c"></span><code class="sig-name descname">FFLAGS_AE_UF</code> (1&lt;&lt;1)<a class="headerlink" href="#c.FFLAGS_AE_UF" title="Permalink to this definition">¶</a></dt>
+<dd><p>FPU Underflow. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.FFLAGS_AE_OF">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaaf36cdc10ddced9c2316bd1f96a9b0c5"></span><code class="sig-name descname">FFLAGS_AE_OF</code> (1&lt;&lt;2)<a class="headerlink" href="#c.FFLAGS_AE_OF" title="Permalink to this definition">¶</a></dt>
+<dd><p>FPU Overflow. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.FFLAGS_AE_DZ">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga3ee932ee487ef0a56d1a52c3941dd154"></span><code class="sig-name descname">FFLAGS_AE_DZ</code> (1&lt;&lt;3)<a class="headerlink" href="#c.FFLAGS_AE_DZ" title="Permalink to this definition">¶</a></dt>
+<dd><p>FPU Divide by Zero. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.FFLAGS_AE_NV">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga5aeba9c92e496d2705492d5bc6024873"></span><code class="sig-name descname">FFLAGS_AE_NV</code> (1&lt;&lt;4)<a class="headerlink" href="#c.FFLAGS_AE_NV" title="Permalink to this definition">¶</a></dt>
+<dd><p>FPU Invalid Operation. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.FREG">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gab630278e8a24dd620cb6a512b51bc45f"></span><code class="sig-name descname">FREG</code><span class="sig-paren">(</span>idx<span class="sig-paren">)</span> f##idx<a class="headerlink" href="#c.FREG" title="Permalink to this definition">¶</a></dt>
+<dd><p>Floating Point Register f0-f31, eg. </p>
+<p>f0 -&gt; <a class="reference internal" href="#group__NMSIS__Core__CSR__Encoding_1gab630278e8a24dd620cb6a512b51bc45f"><span class="std std-ref">FREG(0)</span></a> </p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.PMP_R">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga383d3ee4d5727ef3fb4437d954be3b21"></span><code class="sig-name descname">PMP_R</code> 0x01<a class="headerlink" href="#c.PMP_R" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.PMP_W">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga5f34c98b252436e69ad95e766abf8482"></span><code class="sig-name descname">PMP_W</code> 0x02<a class="headerlink" href="#c.PMP_W" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.PMP_X">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaabfce7f7dde3e93eb596074b4d107bec"></span><code class="sig-name descname">PMP_X</code> 0x04<a class="headerlink" href="#c.PMP_X" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.PMP_A">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga47df3f6548f6106ad54d3def500db71f"></span><code class="sig-name descname">PMP_A</code> 0x18<a class="headerlink" href="#c.PMP_A" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.PMP_A_TOR">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga7a8a129eac9815d251e7cc63e7358161"></span><code class="sig-name descname">PMP_A_TOR</code> 0x08<a class="headerlink" href="#c.PMP_A_TOR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.PMP_A_NA4">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaa039949a5b36847e3d96be8730d41b97"></span><code class="sig-name descname">PMP_A_NA4</code> 0x10<a class="headerlink" href="#c.PMP_A_NA4" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.PMP_A_NAPOT">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga7941f68c06a33245450a89cd3153c856"></span><code class="sig-name descname">PMP_A_NAPOT</code> 0x18<a class="headerlink" href="#c.PMP_A_NAPOT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.PMP_L">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga68f26499e9a07ee23940bcd1ff49e51d"></span><code class="sig-name descname">PMP_L</code> 0x80<a class="headerlink" href="#c.PMP_L" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.PMP_SHIFT">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaf5a33910ca1e7603b2c483a2966e2d53"></span><code class="sig-name descname">PMP_SHIFT</code> 2<a class="headerlink" href="#c.PMP_SHIFT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.PMP_COUNT">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gafa6069fc693f6fa6353611c8211c155a"></span><code class="sig-name descname">PMP_COUNT</code> 16<a class="headerlink" href="#c.PMP_COUNT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.PTE_V">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga9a3c738182007bee471e44aae04c386f"></span><code class="sig-name descname">PTE_V</code> 0x001<a class="headerlink" href="#c.PTE_V" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.PTE_R">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga3a188134a2cbd69e161521fb169ecd08"></span><code class="sig-name descname">PTE_R</code> 0x002<a class="headerlink" href="#c.PTE_R" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.PTE_W">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga058fcbcc3e1eab2c09c68b3e5221c545"></span><code class="sig-name descname">PTE_W</code> 0x004<a class="headerlink" href="#c.PTE_W" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.PTE_X">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gae20c834a93867eedc88007621c74ad55"></span><code class="sig-name descname">PTE_X</code> 0x008<a class="headerlink" href="#c.PTE_X" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.PTE_U">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gadced9836a1dc98d72849361e6ab03cda"></span><code class="sig-name descname">PTE_U</code> 0x010<a class="headerlink" href="#c.PTE_U" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.PTE_G">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga50cfccabb1927e67c7a0e3b90e8b0635"></span><code class="sig-name descname">PTE_G</code> 0x020<a class="headerlink" href="#c.PTE_G" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.PTE_A">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaf2d908a8af1d94a6aaf803ab40fe0951"></span><code class="sig-name descname">PTE_A</code> 0x040<a class="headerlink" href="#c.PTE_A" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.PTE_D">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gae80b38f12787d02087c4575c48c36d88"></span><code class="sig-name descname">PTE_D</code> 0x080<a class="headerlink" href="#c.PTE_D" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.PTE_SOFT">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga8e71d0b15291edc78a3240cc667f9ad8"></span><code class="sig-name descname">PTE_SOFT</code> 0x300<a class="headerlink" href="#c.PTE_SOFT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.PTE_PPN_SHIFT">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga5b5b713a1ec901153c786686d5962574"></span><code class="sig-name descname">PTE_PPN_SHIFT</code> 10<a class="headerlink" href="#c.PTE_PPN_SHIFT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.PTE_TABLE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaa0a707cf44e82dc9efa94304582586a6"></span><code class="sig-name descname">PTE_TABLE</code><span class="sig-paren">(</span>PTE<span class="sig-paren">)</span> (((PTE) &amp; (<a class="reference internal" href="#group__NMSIS__Core__CSR__Encoding_1ga9a3c738182007bee471e44aae04c386f"><span class="std std-ref">PTE_V</span></a> | <a class="reference internal" href="#group__NMSIS__Core__CSR__Encoding_1ga3a188134a2cbd69e161521fb169ecd08"><span class="std std-ref">PTE_R</span></a> | <a class="reference internal" href="#group__NMSIS__Core__CSR__Encoding_1ga058fcbcc3e1eab2c09c68b3e5221c545"><span class="std std-ref">PTE_W</span></a> | <a class="reference internal" href="#group__NMSIS__Core__CSR__Encoding_1gae20c834a93867eedc88007621c74ad55"><span class="std std-ref">PTE_X</span></a>)) == <a class="reference internal" href="#group__NMSIS__Core__CSR__Encoding_1ga9a3c738182007bee471e44aae04c386f"><span class="std std-ref">PTE_V</span></a>)<a class="headerlink" href="#c.PTE_TABLE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CAUSE_MISALIGNED_FETCH">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaa0f507b2b11ba1d8f9e1675775646919"></span><code class="sig-name descname">CAUSE_MISALIGNED_FETCH</code> 0x0<a class="headerlink" href="#c.CAUSE_MISALIGNED_FETCH" title="Permalink to this definition">¶</a></dt>
+<dd><p>End of Doxygen Group NMSIS_Core_CSR_Registers. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.CAUSE_FAULT_FETCH">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaba5d094c7796286978fe05ceedb89863"></span><code class="sig-name descname">CAUSE_FAULT_FETCH</code> 0x1<a class="headerlink" href="#c.CAUSE_FAULT_FETCH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CAUSE_ILLEGAL_INSTRUCTION">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga0b365435966c2ba620824668ecd09006"></span><code class="sig-name descname">CAUSE_ILLEGAL_INSTRUCTION</code> 0x2<a class="headerlink" href="#c.CAUSE_ILLEGAL_INSTRUCTION" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CAUSE_BREAKPOINT">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaabd6ef7192e2092f6914447d808f838d"></span><code class="sig-name descname">CAUSE_BREAKPOINT</code> 0x3<a class="headerlink" href="#c.CAUSE_BREAKPOINT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CAUSE_MISALIGNED_LOAD">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga12723f26b86c321bdde190c119aee4be"></span><code class="sig-name descname">CAUSE_MISALIGNED_LOAD</code> 0x4<a class="headerlink" href="#c.CAUSE_MISALIGNED_LOAD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CAUSE_FAULT_LOAD">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga1ec6d35d2f96397da81e293b82a3f06f"></span><code class="sig-name descname">CAUSE_FAULT_LOAD</code> 0x5<a class="headerlink" href="#c.CAUSE_FAULT_LOAD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CAUSE_MISALIGNED_STORE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gad9517090b55edb5b56751c969280f17d"></span><code class="sig-name descname">CAUSE_MISALIGNED_STORE</code> 0x6<a class="headerlink" href="#c.CAUSE_MISALIGNED_STORE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CAUSE_FAULT_STORE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga78208819b398959ba50a913f8bbb44f4"></span><code class="sig-name descname">CAUSE_FAULT_STORE</code> 0x7<a class="headerlink" href="#c.CAUSE_FAULT_STORE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CAUSE_USER_ECALL">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gad313934ea20c1ab3491e2d52d4ad558b"></span><code class="sig-name descname">CAUSE_USER_ECALL</code> 0x8<a class="headerlink" href="#c.CAUSE_USER_ECALL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CAUSE_SUPERVISOR_ECALL">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gac3c506d6261a143953d856b85a47b707"></span><code class="sig-name descname">CAUSE_SUPERVISOR_ECALL</code> 0x9<a class="headerlink" href="#c.CAUSE_SUPERVISOR_ECALL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CAUSE_HYPERVISOR_ECALL">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga9127266f95abeacd50926e1ac29c0885"></span><code class="sig-name descname">CAUSE_HYPERVISOR_ECALL</code> 0xa<a class="headerlink" href="#c.CAUSE_HYPERVISOR_ECALL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.CAUSE_MACHINE_ECALL">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga19461c8df4bce8af932c6bcbcdc302ea"></span><code class="sig-name descname">CAUSE_MACHINE_ECALL</code> 0xb<a class="headerlink" href="#c.CAUSE_MACHINE_ECALL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.DCAUSE_FAULT_FETCH_PMP">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gad891aa30fc0af385a8ccd22d5bb9ed49"></span><code class="sig-name descname">DCAUSE_FAULT_FETCH_PMP</code> 0x1<a class="headerlink" href="#c.DCAUSE_FAULT_FETCH_PMP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.DCAUSE_FAULT_FETCH_INST">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga5564fb5c006efb9f6e670303f3887b1b"></span><code class="sig-name descname">DCAUSE_FAULT_FETCH_INST</code> 0x2<a class="headerlink" href="#c.DCAUSE_FAULT_FETCH_INST" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.DCAUSE_FAULT_LOAD_PMP">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gad5c25083d866714730e56ea5322765fc"></span><code class="sig-name descname">DCAUSE_FAULT_LOAD_PMP</code> 0x1<a class="headerlink" href="#c.DCAUSE_FAULT_LOAD_PMP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.DCAUSE_FAULT_LOAD_INST">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gae80781100324a8152d5a9f895873fcde"></span><code class="sig-name descname">DCAUSE_FAULT_LOAD_INST</code> 0x2<a class="headerlink" href="#c.DCAUSE_FAULT_LOAD_INST" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.DCAUSE_FAULT_LOAD_NICE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga1d9ccec8b3c313f10bab146c5d71e061"></span><code class="sig-name descname">DCAUSE_FAULT_LOAD_NICE</code> 0x3<a class="headerlink" href="#c.DCAUSE_FAULT_LOAD_NICE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.DCAUSE_FAULT_STORE_PMP">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaebd23612a7b2e1c261bbdc8004fdd5d5"></span><code class="sig-name descname">DCAUSE_FAULT_STORE_PMP</code> 0x1<a class="headerlink" href="#c.DCAUSE_FAULT_STORE_PMP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.DCAUSE_FAULT_STORE_INST">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga8e47cb5b31685d6ceef0051a8bee7708"></span><code class="sig-name descname">DCAUSE_FAULT_STORE_INST</code> 0x2<a class="headerlink" href="#c.DCAUSE_FAULT_STORE_INST" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="core_register_type.html" class="btn btn-neutral float-right" title="Register Define and Type Definitions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="core_csr_access.html" class="btn btn-neutral float-left" title="Core CSR Register Access" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-Present, Nuclei
+      <span class="lastupdated">
+        Last updated on Aug 09, 2021.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Finite Impulse Response (FIR) Lattice Filters &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  <title>Finite Impulse Response (FIR) Lattice Filters &mdash; NMSIS 1.0.2-RC2 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC1
+                1.0.2-RC2
               </div>
             
           
@@ -89,7 +88,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -208,7 +207,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="finite-impulse-response-fir-lattice-filters">
+  <div class="section" id="finite-impulse-response-fir-lattice-filters">
 <span id="nmsis-dsp-api-finite-impulse-response-fir-lattice-filters"></span><h1>Finite Impulse Response (FIR) Lattice Filters<a class="headerlink" href="#finite-impulse-response-fir-lattice-filters" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="_CPPv421riscv_fir_lattice_f32PK30riscv_fir_lattice_instance_f32PK9float32_tP9float32_t8uint32_t">
@@ -275,8 +274,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Functions</p>
 <dl class="function">
-<dt>
-<span class="target" id="group__FIR__Lattice_1ga71be4bcdf299f23f9cc561aaf72b6a3e"></span>void <code class="sig-name descname">riscv_fir_lattice_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_lattice_instance_f32 *<em>S</em>, <em class="property">const</em> float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv421riscv_fir_lattice_f32PK30riscv_fir_lattice_instance_f32PK9float32_tP9float32_t8uint32_t">
+<span id="_CPPv321riscv_fir_lattice_f32PK30riscv_fir_lattice_instance_f32PK9float32_tP9float32_t8uint32_t"></span><span id="_CPPv221riscv_fir_lattice_f32PK30riscv_fir_lattice_instance_f32PK9float32_tP9float32_t8uint32_t"></span><span class="target" id="group__FIR__Lattice_1ga71be4bcdf299f23f9cc561aaf72b6a3e"></span>void <code class="sig-name descname">riscv_fir_lattice_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_lattice_instance_f32 *<em>S</em>, <em class="property">const</em> float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the floating-point FIR lattice filter. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none </p>
@@ -293,8 +292,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FIR__Lattice_1ga0e52d2c841a9fcacb5cfc2cdac417795"></span>void <code class="sig-name descname">riscv_fir_lattice_init_f32</code><span class="sig-paren">(</span>riscv_fir_lattice_instance_f32 *<em>S</em>, uint16_t <em>numStages</em>, <em class="property">const</em> float32_t *<em>pCoeffs</em>, float32_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv426riscv_fir_lattice_init_f32P30riscv_fir_lattice_instance_f328uint16_tPK9float32_tP9float32_t">
+<span id="_CPPv326riscv_fir_lattice_init_f32P30riscv_fir_lattice_instance_f328uint16_tPK9float32_tP9float32_t"></span><span id="_CPPv226riscv_fir_lattice_init_f32P30riscv_fir_lattice_instance_f328uint16_tPK9float32_tP9float32_t"></span><span class="target" id="group__FIR__Lattice_1ga0e52d2c841a9fcacb5cfc2cdac417795"></span>void <code class="sig-name descname">riscv_fir_lattice_init_f32</code><span class="sig-paren">(</span>riscv_fir_lattice_instance_f32 *<em>S</em>, uint16_t <em>numStages</em>, <em class="property">const</em> float32_t *<em>pCoeffs</em>, float32_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the floating-point FIR lattice filter. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none </p>
@@ -311,8 +310,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FIR__Lattice_1ga0aa9f96904832a16f496f42fe87a054a"></span>void <code class="sig-name descname">riscv_fir_lattice_init_q15</code><span class="sig-paren">(</span>riscv_fir_lattice_instance_q15 *<em>S</em>, uint16_t <em>numStages</em>, <em class="property">const</em> q15_t *<em>pCoeffs</em>, q15_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv426riscv_fir_lattice_init_q15P30riscv_fir_lattice_instance_q158uint16_tPK5q15_tP5q15_t">
+<span id="_CPPv326riscv_fir_lattice_init_q15P30riscv_fir_lattice_instance_q158uint16_tPK5q15_tP5q15_t"></span><span id="_CPPv226riscv_fir_lattice_init_q15P30riscv_fir_lattice_instance_q158uint16_tPK5q15_tP5q15_t"></span><span class="target" id="group__FIR__Lattice_1ga0aa9f96904832a16f496f42fe87a054a"></span>void <code class="sig-name descname">riscv_fir_lattice_init_q15</code><span class="sig-paren">(</span>riscv_fir_lattice_instance_q15 *<em>S</em>, uint16_t <em>numStages</em>, <em class="property">const</em> q15_t *<em>pCoeffs</em>, q15_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the Q15 FIR lattice filter. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none </p>
@@ -329,8 +328,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FIR__Lattice_1ga1b195a9ff98c1d5f8668e49c559740fe"></span>void <code class="sig-name descname">riscv_fir_lattice_init_q31</code><span class="sig-paren">(</span>riscv_fir_lattice_instance_q31 *<em>S</em>, uint16_t <em>numStages</em>, <em class="property">const</em> q31_t *<em>pCoeffs</em>, q31_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv426riscv_fir_lattice_init_q31P30riscv_fir_lattice_instance_q318uint16_tPK5q31_tP5q31_t">
+<span id="_CPPv326riscv_fir_lattice_init_q31P30riscv_fir_lattice_instance_q318uint16_tPK5q31_tP5q31_t"></span><span id="_CPPv226riscv_fir_lattice_init_q31P30riscv_fir_lattice_instance_q318uint16_tPK5q31_tP5q31_t"></span><span class="target" id="group__FIR__Lattice_1ga1b195a9ff98c1d5f8668e49c559740fe"></span>void <code class="sig-name descname">riscv_fir_lattice_init_q31</code><span class="sig-paren">(</span>riscv_fir_lattice_instance_q31 *<em>S</em>, uint16_t <em>numStages</em>, <em class="property">const</em> q31_t *<em>pCoeffs</em>, q31_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the Q31 FIR lattice filter. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none </p>
@@ -347,8 +346,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FIR__Lattice_1ga577c755d5ad2f887455f465d5d0b8f3e"></span>void <code class="sig-name descname">riscv_fir_lattice_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_lattice_instance_q15 *<em>S</em>, <em class="property">const</em> q15_t *<em>pSrc</em>, q15_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv421riscv_fir_lattice_q15PK30riscv_fir_lattice_instance_q15PK5q15_tP5q15_t8uint32_t">
+<span id="_CPPv321riscv_fir_lattice_q15PK30riscv_fir_lattice_instance_q15PK5q15_tP5q15_t8uint32_t"></span><span id="_CPPv221riscv_fir_lattice_q15PK30riscv_fir_lattice_instance_q15PK5q15_tP5q15_t8uint32_t"></span><span class="target" id="group__FIR__Lattice_1ga577c755d5ad2f887455f465d5d0b8f3e"></span>void <code class="sig-name descname">riscv_fir_lattice_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_lattice_instance_q15 *<em>S</em>, <em class="property">const</em> q15_t *<em>pSrc</em>, q15_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for Q15 FIR lattice filter. </p>
 <p>Processing function for the Q15 FIR lattice filter.</p>
 <p><dl class="simple">
@@ -366,8 +365,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FIR__Lattice_1ga8cd880ce0b660988f86fbeb479edafe5"></span>void <code class="sig-name descname">riscv_fir_lattice_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_lattice_instance_q31 *<em>S</em>, <em class="property">const</em> q31_t *<em>pSrc</em>, q31_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv421riscv_fir_lattice_q31PK30riscv_fir_lattice_instance_q31PK5q31_tP5q31_t8uint32_t">
+<span id="_CPPv321riscv_fir_lattice_q31PK30riscv_fir_lattice_instance_q31PK5q31_tP5q31_t8uint32_t"></span><span id="_CPPv221riscv_fir_lattice_q31PK30riscv_fir_lattice_instance_q31PK5q31_tP5q31_t8uint32_t"></span><span class="target" id="group__FIR__Lattice_1ga8cd880ce0b660988f86fbeb479edafe5"></span>void <code class="sig-name descname">riscv_fir_lattice_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_fir_lattice_instance_q31 *<em>S</em>, <em class="property">const</em> q31_t *<em>pSrc</em>, q31_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the Q31 FIR lattice filter. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -388,7 +387,7 @@
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
@@ -412,7 +411,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 06, 2021.
+        Last updated on Aug 09, 2021.
       </span>
 
     </p>

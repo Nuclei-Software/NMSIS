@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Softmax Functions &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  <title>Softmax Functions &mdash; NMSIS 1.0.2-RC2 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC1
+                1.0.2-RC2
               </div>
             
           
@@ -89,7 +88,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -192,7 +191,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="softmax-functions">
+  <div class="section" id="softmax-functions">
 <span id="nmsis-nn-api-softmax-functions"></span><h1>Softmax Functions<a class="headerlink" href="#softmax-functions" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="_CPPv417riscv_softmax_q15PK5q15_tK8uint16_tP5q15_t">
@@ -226,8 +225,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Functions</p>
 <dl class="function">
-<dt>
-<span class="target" id="group__Softmax_1gaa9d0de605290176e23463cbaeb84a9ce"></span>void <code class="sig-name descname">riscv_softmax_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>vec_in</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, q15_t *<em>p_out</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv417riscv_softmax_q15PK5q15_tK8uint16_tP5q15_t">
+<span id="_CPPv317riscv_softmax_q15PK5q15_tK8uint16_tP5q15_t"></span><span id="_CPPv217riscv_softmax_q15PK5q15_tK8uint16_tP5q15_t"></span><span class="target" id="group__Softmax_1gaa9d0de605290176e23463cbaeb84a9ce"></span>void <code class="sig-name descname">riscv_softmax_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>vec_in</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, q15_t *<em>p_out</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q15 softmax function. </p>
 <p><p>Here, instead of typical e based softmax, we use 2-based softmax, i.e.,:</p>
 <dl class="simple">
@@ -244,8 +243,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__Softmax_1ga4c7867bb7ac62d4581deda5730dce99b"></span>void <code class="sig-name descname">riscv_softmax_q7</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>vec_in</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, q7_t *<em>p_out</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv416riscv_softmax_q7PK4q7_tK8uint16_tP4q7_t">
+<span id="_CPPv316riscv_softmax_q7PK4q7_tK8uint16_tP4q7_t"></span><span id="_CPPv216riscv_softmax_q7PK4q7_tK8uint16_tP4q7_t"></span><span class="target" id="group__Softmax_1ga4c7867bb7ac62d4581deda5730dce99b"></span>void <code class="sig-name descname">riscv_softmax_q7</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>vec_in</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, q7_t *<em>p_out</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q7 softmax function. </p>
 <p><p>Here, instead of typical natural logarithm e based softmax, we use 2-based softmax here, i.e.,:</p>
 <dl class="simple">
@@ -262,8 +261,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__Softmax_1gac9dd5c3c22158eec0237b03d50a54465"></span>void <code class="sig-name descname">riscv_softmax_s8</code><span class="sig-paren">(</span><em class="property">const</em> int8_t *<em>input</em>, <em class="property">const</em> int32_t <em>num_rows</em>, <em class="property">const</em> int32_t <em>row_size</em>, <em class="property">const</em> int32_t <em>mult</em>, <em class="property">const</em> int32_t <em>shift</em>, <em class="property">const</em> int32_t <em>diff_min</em>, int8_t *<em>output</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv416riscv_softmax_s8PK6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tP6int8_t">
+<span id="_CPPv316riscv_softmax_s8PK6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tP6int8_t"></span><span id="_CPPv216riscv_softmax_s8PK6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tP6int8_t"></span><span class="target" id="group__Softmax_1gac9dd5c3c22158eec0237b03d50a54465"></span>void <code class="sig-name descname">riscv_softmax_s8</code><span class="sig-paren">(</span><em class="property">const</em> int8_t *<em>input</em>, <em class="property">const</em> int32_t <em>num_rows</em>, <em class="property">const</em> int32_t <em>row_size</em>, <em class="property">const</em> int32_t <em>mult</em>, <em class="property">const</em> int32_t <em>shift</em>, <em class="property">const</em> int32_t <em>diff_min</em>, int8_t *<em>output</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>S8 softmax function. </p>
 <p><dl class="simple">
 <dt><strong>Note</strong></dt><dd><p>Supported framework: TensorFlow Lite micro (bit-accurate) </p>
@@ -283,8 +282,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__Softmax_1ga11a1ba75201c791d528d559432c484e3"></span>void <code class="sig-name descname">riscv_softmax_u8</code><span class="sig-paren">(</span><em class="property">const</em> uint8_t *<em>input</em>, <em class="property">const</em> int32_t <em>num_rows</em>, <em class="property">const</em> int32_t <em>row_size</em>, <em class="property">const</em> int32_t <em>mult</em>, <em class="property">const</em> int32_t <em>shift</em>, <em class="property">const</em> int32_t <em>diff_min</em>, uint8_t *<em>output</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv416riscv_softmax_u8PK7uint8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tP7uint8_t">
+<span id="_CPPv316riscv_softmax_u8PK7uint8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tP7uint8_t"></span><span id="_CPPv216riscv_softmax_u8PK7uint8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tP7uint8_t"></span><span class="target" id="group__Softmax_1ga11a1ba75201c791d528d559432c484e3"></span>void <code class="sig-name descname">riscv_softmax_u8</code><span class="sig-paren">(</span><em class="property">const</em> uint8_t *<em>input</em>, <em class="property">const</em> int32_t <em>num_rows</em>, <em class="property">const</em> int32_t <em>row_size</em>, <em class="property">const</em> int32_t <em>mult</em>, <em class="property">const</em> int32_t <em>shift</em>, <em class="property">const</em> int32_t <em>diff_min</em>, uint8_t *<em>output</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>U8 softmax function. </p>
 <p><dl class="simple">
 <dt><strong>Note</strong></dt><dd><p>Supported framework: TensorFlow Lite micro (bit-accurate) </p>
@@ -304,8 +303,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__Softmax_1ga898a4b60ebeb23a8faa1cd9f4b867fbe"></span>void <code class="sig-name descname">riscv_softmax_with_batch_q7</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>vec_in</em>, <em class="property">const</em> uint16_t <em>nb_batches</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, q7_t *<em>p_out</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv427riscv_softmax_with_batch_q7PK4q7_tK8uint16_tK8uint16_tP4q7_t">
+<span id="_CPPv327riscv_softmax_with_batch_q7PK4q7_tK8uint16_tK8uint16_tP4q7_t"></span><span id="_CPPv227riscv_softmax_with_batch_q7PK4q7_tK8uint16_tK8uint16_tP4q7_t"></span><span class="target" id="group__Softmax_1ga898a4b60ebeb23a8faa1cd9f4b867fbe"></span>void <code class="sig-name descname">riscv_softmax_with_batch_q7</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>vec_in</em>, <em class="property">const</em> uint16_t <em>nb_batches</em>, <em class="property">const</em> uint16_t <em>dim_vec</em>, q7_t *<em>p_out</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q7 softmax function with batch parameter. </p>
 <p><p>Here, instead of typical natural logarithm e based softmax, we use 2-based softmax here, i.e.,:</p>
 <dl class="simple">
@@ -325,7 +324,7 @@
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
@@ -349,7 +348,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 06, 2021.
+        Last updated on Aug 09, 2021.
       </span>
 
     </p>

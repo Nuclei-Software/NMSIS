@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Finite Impulse Response (FIR) Sparse Filters &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  <title>Finite Impulse Response (FIR) Sparse Filters &mdash; NMSIS 1.0.2-RC2 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC1
+                1.0.2-RC2
               </div>
             
           
@@ -89,7 +88,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -208,7 +207,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="finite-impulse-response-fir-sparse-filters">
+  <div class="section" id="finite-impulse-response-fir-sparse-filters">
 <span id="nmsis-dsp-api-finite-impulse-response-fir-sparse-filters"></span><h1>Finite Impulse Response (FIR) Sparse Filters<a class="headerlink" href="#finite-impulse-response-fir-sparse-filters" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="_CPPv420riscv_fir_sparse_f32P29riscv_fir_sparse_instance_f32PK9float32_tP9float32_tP9float32_t8uint32_t">
@@ -279,8 +278,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Functions</p>
 <dl class="function">
-<dt>
-<span class="target" id="group__FIR__Sparse_1ga9d163e84a2e324e7c085b1b72a61986e"></span>void <code class="sig-name descname">riscv_fir_sparse_f32</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_f32 *<em>S</em>, <em class="property">const</em> float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, float32_t *<em>pScratchIn</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv420riscv_fir_sparse_f32P29riscv_fir_sparse_instance_f32PK9float32_tP9float32_tP9float32_t8uint32_t">
+<span id="_CPPv320riscv_fir_sparse_f32P29riscv_fir_sparse_instance_f32PK9float32_tP9float32_tP9float32_t8uint32_t"></span><span id="_CPPv220riscv_fir_sparse_f32P29riscv_fir_sparse_instance_f32PK9float32_tP9float32_tP9float32_t8uint32_t"></span><span class="target" id="group__FIR__Sparse_1ga9d163e84a2e324e7c085b1b72a61986e"></span>void <code class="sig-name descname">riscv_fir_sparse_f32</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_f32 *<em>S</em>, <em class="property">const</em> float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, float32_t *<em>pScratchIn</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the floating-point sparse FIR filter. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none </p>
@@ -298,8 +297,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FIR__Sparse_1gac71f6aa7bb818120207635afe90f3d7a"></span>void <code class="sig-name descname">riscv_fir_sparse_init_f32</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_f32 *<em>S</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> float32_t *<em>pCoeffs</em>, float32_t *<em>pState</em>, int32_t *<em>pTapDelay</em>, uint16_t <em>maxDelay</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv425riscv_fir_sparse_init_f32P29riscv_fir_sparse_instance_f328uint16_tPK9float32_tP9float32_tP7int32_t8uint16_t8uint32_t">
+<span id="_CPPv325riscv_fir_sparse_init_f32P29riscv_fir_sparse_instance_f328uint16_tPK9float32_tP9float32_tP7int32_t8uint16_t8uint32_t"></span><span id="_CPPv225riscv_fir_sparse_init_f32P29riscv_fir_sparse_instance_f328uint16_tPK9float32_tP9float32_tP7int32_t8uint16_t8uint32_t"></span><span class="target" id="group__FIR__Sparse_1gac71f6aa7bb818120207635afe90f3d7a"></span>void <code class="sig-name descname">riscv_fir_sparse_init_f32</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_f32 *<em>S</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> float32_t *<em>pCoeffs</em>, float32_t *<em>pState</em>, int32_t *<em>pTapDelay</em>, uint16_t <em>maxDelay</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the floating-point sparse FIR filter. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -321,8 +320,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FIR__Sparse_1gadee655d8508fa59823215e746ef467ad"></span>void <code class="sig-name descname">riscv_fir_sparse_init_q15</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_q15 *<em>S</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> q15_t *<em>pCoeffs</em>, q15_t *<em>pState</em>, int32_t *<em>pTapDelay</em>, uint16_t <em>maxDelay</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv425riscv_fir_sparse_init_q15P29riscv_fir_sparse_instance_q158uint16_tPK5q15_tP5q15_tP7int32_t8uint16_t8uint32_t">
+<span id="_CPPv325riscv_fir_sparse_init_q15P29riscv_fir_sparse_instance_q158uint16_tPK5q15_tP5q15_tP7int32_t8uint16_t8uint32_t"></span><span id="_CPPv225riscv_fir_sparse_init_q15P29riscv_fir_sparse_instance_q158uint16_tPK5q15_tP5q15_tP7int32_t8uint16_t8uint32_t"></span><span class="target" id="group__FIR__Sparse_1gadee655d8508fa59823215e746ef467ad"></span>void <code class="sig-name descname">riscv_fir_sparse_init_q15</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_q15 *<em>S</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> q15_t *<em>pCoeffs</em>, q15_t *<em>pState</em>, int32_t *<em>pTapDelay</em>, uint16_t <em>maxDelay</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the Q15 sparse FIR filter. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -344,8 +343,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FIR__Sparse_1ga23c217312f6473b3c6a765dd1bc27d5c"></span>void <code class="sig-name descname">riscv_fir_sparse_init_q31</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_q31 *<em>S</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> q31_t *<em>pCoeffs</em>, q31_t *<em>pState</em>, int32_t *<em>pTapDelay</em>, uint16_t <em>maxDelay</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv425riscv_fir_sparse_init_q31P29riscv_fir_sparse_instance_q318uint16_tPK5q31_tP5q31_tP7int32_t8uint16_t8uint32_t">
+<span id="_CPPv325riscv_fir_sparse_init_q31P29riscv_fir_sparse_instance_q318uint16_tPK5q31_tP5q31_tP7int32_t8uint16_t8uint32_t"></span><span id="_CPPv225riscv_fir_sparse_init_q31P29riscv_fir_sparse_instance_q318uint16_tPK5q31_tP5q31_tP7int32_t8uint16_t8uint32_t"></span><span class="target" id="group__FIR__Sparse_1ga23c217312f6473b3c6a765dd1bc27d5c"></span>void <code class="sig-name descname">riscv_fir_sparse_init_q31</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_q31 *<em>S</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> q31_t *<em>pCoeffs</em>, q31_t *<em>pState</em>, int32_t *<em>pTapDelay</em>, uint16_t <em>maxDelay</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the Q31 sparse FIR filter. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -367,8 +366,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FIR__Sparse_1ga5256db6ef38c820c1a12d2ba3603e073"></span>void <code class="sig-name descname">riscv_fir_sparse_init_q7</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_q7 *<em>S</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> q7_t *<em>pCoeffs</em>, q7_t *<em>pState</em>, int32_t *<em>pTapDelay</em>, uint16_t <em>maxDelay</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv424riscv_fir_sparse_init_q7P28riscv_fir_sparse_instance_q78uint16_tPK4q7_tP4q7_tP7int32_t8uint16_t8uint32_t">
+<span id="_CPPv324riscv_fir_sparse_init_q7P28riscv_fir_sparse_instance_q78uint16_tPK4q7_tP4q7_tP7int32_t8uint16_t8uint32_t"></span><span id="_CPPv224riscv_fir_sparse_init_q7P28riscv_fir_sparse_instance_q78uint16_tPK4q7_tP4q7_tP7int32_t8uint16_t8uint32_t"></span><span class="target" id="group__FIR__Sparse_1ga5256db6ef38c820c1a12d2ba3603e073"></span>void <code class="sig-name descname">riscv_fir_sparse_init_q7</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_q7 *<em>S</em>, uint16_t <em>numTaps</em>, <em class="property">const</em> q7_t *<em>pCoeffs</em>, q7_t *<em>pState</em>, int32_t *<em>pTapDelay</em>, uint16_t <em>maxDelay</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the Q7 sparse FIR filter. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -390,8 +389,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FIR__Sparse_1gad748c3c718c09152822c40c5c486668a"></span>void <code class="sig-name descname">riscv_fir_sparse_q15</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_q15 *<em>S</em>, <em class="property">const</em> q15_t *<em>pSrc</em>, q15_t *<em>pDst</em>, q15_t *<em>pScratchIn</em>, q31_t *<em>pScratchOut</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv420riscv_fir_sparse_q15P29riscv_fir_sparse_instance_q15PK5q15_tP5q15_tP5q15_tP5q31_t8uint32_t">
+<span id="_CPPv320riscv_fir_sparse_q15P29riscv_fir_sparse_instance_q15PK5q15_tP5q15_tP5q15_tP5q31_t8uint32_t"></span><span id="_CPPv220riscv_fir_sparse_q15P29riscv_fir_sparse_instance_q15PK5q15_tP5q15_tP5q15_tP5q31_t8uint32_t"></span><span class="target" id="group__FIR__Sparse_1gad748c3c718c09152822c40c5c486668a"></span>void <code class="sig-name descname">riscv_fir_sparse_q15</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_q15 *<em>S</em>, <em class="property">const</em> q15_t *<em>pSrc</em>, q15_t *<em>pDst</em>, q15_t *<em>pScratchIn</em>, q31_t *<em>pScratchOut</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the Q15 sparse FIR filter. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -412,8 +411,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FIR__Sparse_1gae092c99cb8f32e649a02948cc4a7de3a"></span>void <code class="sig-name descname">riscv_fir_sparse_q31</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_q31 *<em>S</em>, <em class="property">const</em> q31_t *<em>pSrc</em>, q31_t *<em>pDst</em>, q31_t *<em>pScratchIn</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv420riscv_fir_sparse_q31P29riscv_fir_sparse_instance_q31PK5q31_tP5q31_tP5q31_t8uint32_t">
+<span id="_CPPv320riscv_fir_sparse_q31P29riscv_fir_sparse_instance_q31PK5q31_tP5q31_tP5q31_t8uint32_t"></span><span id="_CPPv220riscv_fir_sparse_q31P29riscv_fir_sparse_instance_q31PK5q31_tP5q31_tP5q31_t8uint32_t"></span><span class="target" id="group__FIR__Sparse_1gae092c99cb8f32e649a02948cc4a7de3a"></span>void <code class="sig-name descname">riscv_fir_sparse_q31</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_q31 *<em>S</em>, <em class="property">const</em> q31_t *<em>pSrc</em>, q31_t *<em>pDst</em>, q31_t *<em>pScratchIn</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the Q31 sparse FIR filter. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -433,8 +432,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__FIR__Sparse_1ga93670e55f4a3d6c0a16ee726084a6a14"></span>void <code class="sig-name descname">riscv_fir_sparse_q7</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_q7 *<em>S</em>, <em class="property">const</em> q7_t *<em>pSrc</em>, q7_t *<em>pDst</em>, q7_t *<em>pScratchIn</em>, q31_t *<em>pScratchOut</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv419riscv_fir_sparse_q7P28riscv_fir_sparse_instance_q7PK4q7_tP4q7_tP4q7_tP5q31_t8uint32_t">
+<span id="_CPPv319riscv_fir_sparse_q7P28riscv_fir_sparse_instance_q7PK4q7_tP4q7_tP4q7_tP5q31_t8uint32_t"></span><span id="_CPPv219riscv_fir_sparse_q7P28riscv_fir_sparse_instance_q7PK4q7_tP4q7_tP4q7_tP5q31_t8uint32_t"></span><span class="target" id="group__FIR__Sparse_1ga93670e55f4a3d6c0a16ee726084a6a14"></span>void <code class="sig-name descname">riscv_fir_sparse_q7</code><span class="sig-paren">(</span>riscv_fir_sparse_instance_q7 *<em>S</em>, <em class="property">const</em> q7_t *<em>pSrc</em>, q7_t *<em>pDst</em>, q7_t *<em>pScratchIn</em>, q31_t *<em>pScratchOut</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the Q7 sparse FIR filter. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -457,7 +456,7 @@
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
@@ -481,7 +480,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 06, 2021.
+        Last updated on Aug 09, 2021.
       </span>
 
     </p>

@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Square Root &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  <title>Square Root &mdash; NMSIS 1.0.2-RC2 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC1
+                1.0.2-RC2
               </div>
             
           
@@ -89,7 +88,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -197,7 +196,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="square-root">
+  <div class="section" id="square-root">
 <span id="nmsis-dsp-api-square-root"></span><h1>Square Root<a class="headerlink" href="#square-root" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt>
@@ -261,8 +260,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__SQRT_1ga96a93fb99ac782f0a4fbb0d10e7527a5"></span>riscv_status <code class="sig-name descname">riscv_sqrt_q31</code><span class="sig-paren">(</span>q31_t <em>in</em>, q31_t *<em>pOut</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv414riscv_sqrt_q315q31_tP5q31_t">
+<span id="_CPPv314riscv_sqrt_q315q31_tP5q31_t"></span><span id="_CPPv214riscv_sqrt_q315q31_tP5q31_t"></span><span class="target" id="group__SQRT_1ga96a93fb99ac782f0a4fbb0d10e7527a5"></span>riscv_status <code class="sig-name descname">riscv_sqrt_q31</code><span class="sig-paren">(</span>q31_t <em>in</em>, q31_t *<em>pOut</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q31 square root function. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
@@ -281,8 +280,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__SQRT_1ga7030692f921383b08d1bfca591314105"></span>riscv_status <code class="sig-name descname">riscv_sqrt_q15</code><span class="sig-paren">(</span>q15_t <em>in</em>, q15_t *<em>pOut</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv414riscv_sqrt_q155q15_tP5q15_t">
+<span id="_CPPv314riscv_sqrt_q155q15_tP5q15_t"></span><span id="_CPPv214riscv_sqrt_q155q15_tP5q15_t"></span><span class="target" id="group__SQRT_1ga7030692f921383b08d1bfca591314105"></span>riscv_status <code class="sig-name descname">riscv_sqrt_q15</code><span class="sig-paren">(</span>q15_t <em>in</em>, q15_t *<em>pOut</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q15 square root function. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
@@ -301,8 +300,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__SQRT_1ga6c2376360963e4cef666729e1c049010"></span>void <code class="sig-name descname">riscv_vsqrt_f32</code><span class="sig-paren">(</span>float32_t *<em>pIn</em>, float32_t *<em>pOut</em>, uint16_t <em>len</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv415riscv_vsqrt_f32P9float32_tP9float32_t8uint16_t">
+<span id="_CPPv315riscv_vsqrt_f32P9float32_tP9float32_t8uint16_t"></span><span id="_CPPv215riscv_vsqrt_f32P9float32_tP9float32_t8uint16_t"></span><span class="target" id="group__SQRT_1ga6c2376360963e4cef666729e1c049010"></span>void <code class="sig-name descname">riscv_vsqrt_f32</code><span class="sig-paren">(</span>float32_t *<em>pIn</em>, float32_t *<em>pOut</em>, uint16_t <em>len</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Vector Floating-point square root function. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>The function returns RISCV_MATH_SUCCESS if input value is positive value or RISCV_MATH_ARGUMENT_ERROR if <code class="docutils literal notranslate"><span class="pre">in</span></code> is negative value and returns zero output for negative values. </p>
@@ -318,13 +317,13 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__SQRT_1gab76c31ce76775045d9790c547dde10b8"></span>void <code class="sig-name descname">riscv_vsqrt_q31</code><span class="sig-paren">(</span>q31_t *<em>pIn</em>, q31_t *<em>pOut</em>, uint16_t <em>len</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv415riscv_vsqrt_q31P5q31_tP5q31_t8uint16_t">
+<span id="_CPPv315riscv_vsqrt_q31P5q31_tP5q31_t8uint16_t"></span><span id="_CPPv215riscv_vsqrt_q31P5q31_tP5q31_t8uint16_t"></span><span class="target" id="group__SQRT_1gab76c31ce76775045d9790c547dde10b8"></span>void <code class="sig-name descname">riscv_vsqrt_q31</code><span class="sig-paren">(</span>q31_t *<em>pIn</em>, q31_t *<em>pOut</em>, uint16_t <em>len</em><span class="sig-paren">)</span><br /></dt>
 <dd></dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__SQRT_1ga9c7433f5a63f57bf001bdad593489cab"></span>void <code class="sig-name descname">riscv_vsqrt_q15</code><span class="sig-paren">(</span>q15_t *<em>pIn</em>, q15_t *<em>pOut</em>, uint16_t <em>len</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv415riscv_vsqrt_q15P5q15_tP5q15_t8uint16_t">
+<span id="_CPPv315riscv_vsqrt_q15P5q15_tP5q15_t8uint16_t"></span><span id="_CPPv215riscv_vsqrt_q15P5q15_tP5q15_t8uint16_t"></span><span class="target" id="group__SQRT_1ga9c7433f5a63f57bf001bdad593489cab"></span>void <code class="sig-name descname">riscv_vsqrt_q15</code><span class="sig-paren">(</span>q15_t *<em>pIn</em>, q15_t *<em>pOut</em>, uint16_t <em>len</em><span class="sig-paren">)</span><br /></dt>
 <dd></dd></dl>
 
 <dl class="function">
@@ -350,7 +349,7 @@
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
@@ -374,7 +373,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 06, 2021.
+        Last updated on Aug 09, 2021.
       </span>
 
     </p>

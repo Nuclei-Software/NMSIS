@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Least Mean Square (LMS) Filters &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  <title>Least Mean Square (LMS) Filters &mdash; NMSIS 1.0.2-RC2 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC1
+                1.0.2-RC2
               </div>
             
           
@@ -89,7 +88,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -208,7 +207,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="least-mean-square-lms-filters">
+  <div class="section" id="least-mean-square-lms-filters">
 <span id="nmsis-dsp-api-least-mean-square-lms-filters"></span><h1>Least Mean Square (LMS) Filters<a class="headerlink" href="#least-mean-square-lms-filters" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="_CPPv413riscv_lms_f32PK22riscv_lms_instance_f32PK9float32_tP9float32_tP9float32_tP9float32_t8uint32_t">
@@ -289,8 +288,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Functions</p>
 <dl class="function">
-<dt>
-<span class="target" id="group__LMS_1ga4821915faf731f785e8b9a2c787d7d5a"></span>void <code class="sig-name descname">riscv_lms_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_lms_instance_f32 *<em>S</em>, <em class="property">const</em> float32_t *<em>pSrc</em>, float32_t *<em>pRef</em>, float32_t *<em>pOut</em>, float32_t *<em>pErr</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv413riscv_lms_f32PK22riscv_lms_instance_f32PK9float32_tP9float32_tP9float32_tP9float32_t8uint32_t">
+<span id="_CPPv313riscv_lms_f32PK22riscv_lms_instance_f32PK9float32_tP9float32_tP9float32_tP9float32_t8uint32_t"></span><span id="_CPPv213riscv_lms_f32PK22riscv_lms_instance_f32PK9float32_tP9float32_tP9float32_tP9float32_t8uint32_t"></span><span class="target" id="group__LMS_1ga4821915faf731f785e8b9a2c787d7d5a"></span>void <code class="sig-name descname">riscv_lms_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_lms_instance_f32 *<em>S</em>, <em class="property">const</em> float32_t *<em>pSrc</em>, float32_t *<em>pRef</em>, float32_t *<em>pOut</em>, float32_t *<em>pErr</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for floating-point LMS filter. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none </p>
@@ -309,8 +308,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__LMS_1ga26efc85da2087e64bb20858ff58fce82"></span>void <code class="sig-name descname">riscv_lms_init_f32</code><span class="sig-paren">(</span>riscv_lms_instance_f32 *<em>S</em>, uint16_t <em>numTaps</em>, float32_t *<em>pCoeffs</em>, float32_t *<em>pState</em>, float32_t <em>mu</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv418riscv_lms_init_f32P22riscv_lms_instance_f328uint16_tP9float32_tP9float32_t9float32_t8uint32_t">
+<span id="_CPPv318riscv_lms_init_f32P22riscv_lms_instance_f328uint16_tP9float32_tP9float32_t9float32_t8uint32_t"></span><span id="_CPPv218riscv_lms_init_f32P22riscv_lms_instance_f328uint16_tP9float32_tP9float32_t9float32_t8uint32_t"></span><span class="target" id="group__LMS_1ga26efc85da2087e64bb20858ff58fce82"></span>void <code class="sig-name descname">riscv_lms_init_f32</code><span class="sig-paren">(</span>riscv_lms_instance_f32 *<em>S</em>, uint16_t <em>numTaps</em>, float32_t *<em>pCoeffs</em>, float32_t *<em>pState</em>, float32_t <em>mu</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for floating-point LMS filter. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -331,8 +330,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__LMS_1gabbc1cc876630ed6cb1d7f9abafe563ed"></span>void <code class="sig-name descname">riscv_lms_init_q15</code><span class="sig-paren">(</span>riscv_lms_instance_q15 *<em>S</em>, uint16_t <em>numTaps</em>, q15_t *<em>pCoeffs</em>, q15_t *<em>pState</em>, q15_t <em>mu</em>, uint32_t <em>blockSize</em>, uint32_t <em>postShift</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv418riscv_lms_init_q15P22riscv_lms_instance_q158uint16_tP5q15_tP5q15_t5q15_t8uint32_t8uint32_t">
+<span id="_CPPv318riscv_lms_init_q15P22riscv_lms_instance_q158uint16_tP5q15_tP5q15_t5q15_t8uint32_t8uint32_t"></span><span id="_CPPv218riscv_lms_init_q15P22riscv_lms_instance_q158uint16_tP5q15_tP5q15_t5q15_t8uint32_t8uint32_t"></span><span class="target" id="group__LMS_1gabbc1cc876630ed6cb1d7f9abafe563ed"></span>void <code class="sig-name descname">riscv_lms_init_q15</code><span class="sig-paren">(</span>riscv_lms_instance_q15 *<em>S</em>, uint16_t <em>numTaps</em>, q15_t *<em>pCoeffs</em>, q15_t *<em>pState</em>, q15_t <em>mu</em>, uint32_t <em>blockSize</em>, uint32_t <em>postShift</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the Q15 LMS filter. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -354,8 +353,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__LMS_1ga7f855feb11ee18ee8f345968acb79cfb"></span>void <code class="sig-name descname">riscv_lms_init_q31</code><span class="sig-paren">(</span>riscv_lms_instance_q31 *<em>S</em>, uint16_t <em>numTaps</em>, q31_t *<em>pCoeffs</em>, q31_t *<em>pState</em>, q31_t <em>mu</em>, uint32_t <em>blockSize</em>, uint32_t <em>postShift</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv418riscv_lms_init_q31P22riscv_lms_instance_q318uint16_tP5q31_tP5q31_t5q31_t8uint32_t8uint32_t">
+<span id="_CPPv318riscv_lms_init_q31P22riscv_lms_instance_q318uint16_tP5q31_tP5q31_t5q31_t8uint32_t8uint32_t"></span><span id="_CPPv218riscv_lms_init_q31P22riscv_lms_instance_q318uint16_tP5q31_tP5q31_t5q31_t8uint32_t8uint32_t"></span><span class="target" id="group__LMS_1ga7f855feb11ee18ee8f345968acb79cfb"></span>void <code class="sig-name descname">riscv_lms_init_q31</code><span class="sig-paren">(</span>riscv_lms_instance_q31 *<em>S</em>, uint16_t <em>numTaps</em>, q31_t *<em>pCoeffs</em>, q31_t *<em>pState</em>, q31_t <em>mu</em>, uint32_t <em>blockSize</em>, uint32_t <em>postShift</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for Q31 LMS filter. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -377,8 +376,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__LMS_1ga139f4b315354ce502f5b0bf66707c624"></span>void <code class="sig-name descname">riscv_lms_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_lms_instance_q15 *<em>S</em>, <em class="property">const</em> q15_t *<em>pSrc</em>, q15_t *<em>pRef</em>, q15_t *<em>pOut</em>, q15_t *<em>pErr</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv413riscv_lms_q15PK22riscv_lms_instance_q15PK5q15_tP5q15_tP5q15_tP5q15_t8uint32_t">
+<span id="_CPPv313riscv_lms_q15PK22riscv_lms_instance_q15PK5q15_tP5q15_tP5q15_tP5q15_t8uint32_t"></span><span id="_CPPv213riscv_lms_q15PK22riscv_lms_instance_q15PK5q15_tP5q15_tP5q15_tP5q15_t8uint32_t"></span><span class="target" id="group__LMS_1ga139f4b315354ce502f5b0bf66707c624"></span>void <code class="sig-name descname">riscv_lms_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_lms_instance_q15 *<em>S</em>, <em class="property">const</em> q15_t *<em>pSrc</em>, q15_t *<em>pRef</em>, q15_t *<em>pOut</em>, q15_t *<em>pErr</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for Q15 LMS filter. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -401,8 +400,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__LMS_1ga860b11ef001dfbfbd56f8fa353cb7ecd"></span>void <code class="sig-name descname">riscv_lms_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_lms_instance_q31 *<em>S</em>, <em class="property">const</em> q31_t *<em>pSrc</em>, q31_t *<em>pRef</em>, q31_t *<em>pOut</em>, q31_t *<em>pErr</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv413riscv_lms_q31PK22riscv_lms_instance_q31PK5q31_tP5q31_tP5q31_tP5q31_t8uint32_t">
+<span id="_CPPv313riscv_lms_q31PK22riscv_lms_instance_q31PK5q31_tP5q31_tP5q31_tP5q31_t8uint32_t"></span><span id="_CPPv213riscv_lms_q31PK22riscv_lms_instance_q31PK5q31_tP5q31_tP5q31_tP5q31_t8uint32_t"></span><span class="target" id="group__LMS_1ga860b11ef001dfbfbd56f8fa353cb7ecd"></span>void <code class="sig-name descname">riscv_lms_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_lms_instance_q31 *<em>S</em>, <em class="property">const</em> q31_t *<em>pSrc</em>, q31_t *<em>pRef</em>, q31_t *<em>pOut</em>, q31_t *<em>pErr</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for Q31 LMS filter. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none</p>
@@ -427,7 +426,7 @@
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
@@ -451,7 +450,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 06, 2021.
+        Last updated on Aug 09, 2021.
       </span>
 
     </p>

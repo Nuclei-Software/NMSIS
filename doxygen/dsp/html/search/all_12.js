@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['run_20dsp_20examples_20in_20spike',['Run DSP Examples in Spike',['../md__home_runner_work_NMSIS_NMSIS_NMSIS_DSP_Examples_RISCV_README.html',1,'']]],
+  ['readme',['README',['../md__home_runner_work_NMSIS_NMSIS_NMSIS_DSP_Examples_RISCV_README.html',1,'']]],
   ['rbf_20svm',['RBF SVM',['../group__rbfsvm.html',1,'']]],
   ['realcoefa',['realCoefA',['../group__RealFFT__Table.html#ga8b1ad947c470596674fa3364e16045c6',1,'realCoefA():&#160;riscv_common_tables.c'],['../group__RealFFT__Table.html#ga8b1ad947c470596674fa3364e16045c6',1,'realCoefA():&#160;riscv_common_tables.c']]],
   ['realcoefaq31',['realCoefAQ31',['../group__RealFFT__Table.html#gaf1592a6cf0504675205074a43c3728a2',1,'realCoefAQ31():&#160;riscv_common_tables.c'],['../group__RealFFT__Table.html#gaf1592a6cf0504675205074a43c3728a2',1,'realCoefAQ31():&#160;riscv_common_tables.c']]],

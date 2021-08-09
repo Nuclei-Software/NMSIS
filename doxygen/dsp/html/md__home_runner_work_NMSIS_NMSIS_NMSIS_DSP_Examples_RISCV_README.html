@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NMSIS-DSP: Run DSP Examples in Spike</title>
+<title>NMSIS-DSP: README</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -30,7 +30,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.0.1</span>
+   &#160;<span id="projectnumber">Version 1.0.2</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -83,52 +83,16 @@ $(document).ready(function(){initNavTree('md__home_runner_work_NMSIS_NMSIS_NMSIS
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Run DSP Examples in Spike </div>  </div>
+<div class="title">README </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Here we will describe how to run the nmsis dsp examples in Nuclei Spike.</p>
-<h2>Preparation</h2>
-<ul>
-<li>Nuclei Modified Spike - <code>xl_spike</code></li>
-<li>Nuclei SDK modified for <code>xl_spike</code> branch <code>dev_xlspike</code></li>
-<li>Nuclei RISCV GNU Toolchain</li>
-<li>CMake &gt;= 3.5</li>
-</ul>
-<h2>Tool Setup</h2>
-<ol type="1">
-<li><p class="startli">Export <b>PATH</b> correctly for <code>xl_spike</code> and <code>riscv-nuclei-elf-gcc</code></p>
-<p class="startli">~~~ export PATH=/path/to/xl_spike/bin:/path/to/riscv-nuclei-elf-gcc/bin/:$PATH ~~~</p>
-</li>
-</ol>
-<h2>Build NMSIS DSP Library</h2>
-<ol type="1">
-<li>cd to <code>&lt;NMSIS_ROOT&gt;/NMSIS</code></li>
-<li>Build NMSIS DSP library using <code>make gen_dsp_lib</code>, the libraries will be generated into <code>&lt;NMSIS_ROOT&gt;/NMSIS/Library/DSP/GCC</code></li>
-<li>Strip debug informations using <code>make strip_dsp_lib</code> to make the generated library smaller.</li>
-</ol>
-<h2>How to run</h2>
-<ol type="1">
-<li><p class="startli">Set environment variables <code>NUCLEI_SDK_ROOT</code> and <code>NUCLEI_SDK_NMSIS</code>, and set Nuclei SDK SoC to <code>xlspike</code></p>
-<p class="startli">~~~shell export NUCLEI_SDK_ROOT=/path/to/nuclei_sdk export NUCLEI_SDK_NMSIS=/path/to/NMSIS/NMSIS export SOC=xlspike ~~~</p>
-</li>
-<li>Let us take <code>./riscv_class_marks_example/</code> for example</li>
-<li><code>cd ./riscv_class_marks_example/</code></li>
-<li><p class="startli">Run with RISCV DSP enabled NMSIS-DSP library for CORE <code>n307</code></p>
-<p class="startli">~~~shell </p><h1>Clean project</h1>
-<p class="startli">make DSP_ENABLE=ON CORE=n307 clean </p><h1>Build project</h1>
-<p class="startli">make DSP_ENABLE=ON CORE=n307 all </p><h1>Run application using xl_spike</h1>
-<p class="startli">make DSP_ENABLE=ON CORE=n307 run ~~~</p>
-</li>
-<li><p class="startli">Run with RISCV DSP disabled NMSIS-DSP library for CORE <code>n307</code></p>
-<p class="startli">~~~shell make DSP_ENABLE=OFF CORE=n307 clean make DSP_ENABLE=OFF CORE=n307 all make DSP_ENABLE=OFF CORE=n307 run ~~~ </p>
-</li>
-</ol>
+<div class="textblock"><p>Please refer to <a href="../../../doc/source/dsp/get_started.rst">Using NMSIS-DSP</a>. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri Aug 6 2021 06:14:00 for NMSIS-DSP by
+    <li class="footer">Generated on Mon Aug 9 2021 06:07:20 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

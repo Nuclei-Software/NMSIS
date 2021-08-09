@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Partial-SIMD Data Processing Instructions &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  <title>Partial-SIMD Data Processing Instructions &mdash; NMSIS 1.0.2-RC2 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC1
+                1.0.2-RC2
               </div>
             
           
@@ -89,7 +88,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html">NMSIS Core</a><ul class="current">
@@ -97,17 +96,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS in Embedded Applications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../core_templates.html">NMSIS-Core Device Templates</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../register_mapping.html">Register Mapping</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS CORE API</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_versioncontrol.html">Version Control</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_compilercontrol.html">Compiler Control</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_periphaccess.html">Peripheral Access</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_csr_encoding.html">Core CSR Encodings</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_registers.html">Register Define and Type Definitions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_csr_register_access.html">Core CSR Register Access</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_cpu_intrinsic.html">Intrinsic Functions for CPU Intructions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_intexc.html">Interrupts and Exceptions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_systimer.html">SysTimer Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_fpu_functions.html">FPU Functions</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS Core API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../core_version_control.html">Version Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core_compiler_control.html">Compiler Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core_csr_access.html">Core CSR Register Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core_csr_encoding.html">Core CSR Encoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core_register_type.html">Register Define and Type Definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core_intrinsics.html">CPU Intrinsic Functions</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_simd_data_process.html">SIMD Data Processing Instructions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_non_simd.html">Non-SIMD Instructions</a></li>
@@ -125,9 +120,14 @@
 <li class="toctree-l4"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_nuclei_custom.html">Nuclei Customized DSP Instructions</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_pmp_functions.html">PMP Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_cache.html">Cache Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_nmsis_core_armcompatiable_functions.html">ARM Compatiable Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core_periph_access.html">Peripheral Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core_systick.html">Systick Timer(SysTimer)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core_interrupt_exception.html">Interrupts and Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core_fpu.html">FPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core_pmp.html">PMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core_cache.html">Cache Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core_system_device.html">System Device Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core_arm_compatiable.html">ARM Compatiable Functions</a></li>
 </ul>
 </li>
 </ul>
@@ -184,7 +184,7 @@
         
           <li><a href="../../index.html">NMSIS Core</a> &raquo;</li>
         
-          <li><a href="../index.html">NMSIS CORE API</a> &raquo;</li>
+          <li><a href="../index.html">NMSIS Core API</a> &raquo;</li>
         
           <li><a href="../api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a> &raquo;</li>
         
@@ -207,7 +207,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="partial-simd-data-processing-instructions">
+  <div class="section" id="partial-simd-data-processing-instructions">
 <span id="nmsis-core-api-partial-simd-data-processing-instructions"></span><h1>Partial-SIMD Data Processing Instructions<a class="headerlink" href="#partial-simd-data-processing-instructions" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
@@ -225,7 +225,7 @@
 <dd><p>Partial-SIMD Data Processing Instructions. </p>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
@@ -249,7 +249,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 06, 2021.
+        Last updated on Aug 09, 2021.
       </span>
 
     </p>

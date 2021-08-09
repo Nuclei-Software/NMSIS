@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['run_20nn_20examples_20in_20spike',['Run NN Examples in Spike',['../md__home_runner_work_NMSIS_NMSIS_NMSIS_NN_Examples_RISCV_README.html',1,'']]],
+  ['readme',['README',['../md__home_runner_work_NMSIS_NMSIS_NMSIS_NN_Examples_RISCV_README.html',1,'']]],
   ['rank',['rank',['../structnmsis__nn__svdf__params.html#a257ac48e9f0550777943cdd4d2c073ef',1,'nmsis_nn_svdf_params']]],
   ['reset_5fbias',['reset_bias',['../namespacepara__gen.html#a2c6d0d2efdbea88b6090a1a4c3c13a52',1,'para_gen']]],
   ['reset_5fweight',['reset_weight',['../namespacepara__gen.html#a9d940eaccbc2ec8d1da7d57dfabe7a6a',1,'para_gen']]],

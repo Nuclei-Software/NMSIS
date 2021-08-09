@@ -2,7 +2,7 @@ var NAVTREE =
 [
   [ "NMSIS-NN", "index.html", [
     [ "NMSIS NN Software Library", "index.html", null ],
-    [ "Run NN Examples in Spike", "md__home_runner_work_NMSIS_NMSIS_NMSIS_NN_Examples_RISCV_README.html", null ],
+    [ "README", "md__home_runner_work_NMSIS_NMSIS_NMSIS_NN_Examples_RISCV_README.html", null ],
     [ "Todo List", "todo.html", null ],
     [ "Modules", "modules.html", "modules" ],
     [ "Namespaces", null, [

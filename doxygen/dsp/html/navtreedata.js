@@ -5,7 +5,7 @@ var NAVTREE =
       [ "Introduction", "index.html#intro", null ],
       [ "Examples", "index.html#example", null ]
     ] ],
-    [ "Run DSP Examples in Spike", "md__home_runner_work_NMSIS_NMSIS_NMSIS_DSP_Examples_RISCV_README.html", null ],
+    [ "README", "md__home_runner_work_NMSIS_NMSIS_NMSIS_DSP_Examples_RISCV_README.html", null ],
     [ "Deprecated List", "deprecated.html", null ],
     [ "Modules", "modules.html", "modules" ],
     [ "Data Structures", "annotated.html", [

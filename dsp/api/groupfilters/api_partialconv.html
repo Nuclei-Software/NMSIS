@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Partial Convolution &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  <title>Partial Convolution &mdash; NMSIS 1.0.2-RC2 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC1
+                1.0.2-RC2
               </div>
             
           
@@ -89,7 +88,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -208,7 +207,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="partial-convolution">
+  <div class="section" id="partial-convolution">
 <span id="nmsis-dsp-api-partial-convolution"></span><h1>Partial Convolution<a class="headerlink" href="#partial-convolution" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="_CPPv422riscv_conv_partial_f32PK9float32_t8uint32_tPK9float32_t8uint32_tP9float32_t8uint32_t8uint32_t">
@@ -271,8 +270,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Functions</p>
 <dl class="function">
-<dt>
-<span class="target" id="group__PartialConv_1ga15780978d840ca15ee86a2a67dcc27cf"></span>riscv_status <code class="sig-name descname">riscv_conv_partial_f32</code><span class="sig-paren">(</span><em class="property">const</em> float32_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> float32_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, float32_t *<em>pDst</em>, uint32_t <em>firstIndex</em>, uint32_t <em>numPoints</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv422riscv_conv_partial_f32PK9float32_t8uint32_tPK9float32_t8uint32_tP9float32_t8uint32_t8uint32_t">
+<span id="_CPPv322riscv_conv_partial_f32PK9float32_t8uint32_tPK9float32_t8uint32_tP9float32_t8uint32_t8uint32_t"></span><span id="_CPPv222riscv_conv_partial_f32PK9float32_t8uint32_tPK9float32_t8uint32_tP9float32_t8uint32_t8uint32_t"></span><span class="target" id="group__PartialConv_1ga15780978d840ca15ee86a2a67dcc27cf"></span>riscv_status <code class="sig-name descname">riscv_conv_partial_f32</code><span class="sig-paren">(</span><em class="property">const</em> float32_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> float32_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, float32_t *<em>pDst</em>, uint32_t <em>firstIndex</em>, uint32_t <em>numPoints</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Partial convolution of floating-point sequences. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
@@ -296,8 +295,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__PartialConv_1ga01d75df81efc8a667cafa9e95c1275ae"></span>riscv_status <code class="sig-name descname">riscv_conv_partial_fast_opt_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q15_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q15_t *<em>pDst</em>, uint32_t <em>firstIndex</em>, uint32_t <em>numPoints</em>, q15_t *<em>pScratch1</em>, q15_t *<em>pScratch2</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv431riscv_conv_partial_fast_opt_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t8uint32_t8uint32_tP5q15_tP5q15_t">
+<span id="_CPPv331riscv_conv_partial_fast_opt_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t8uint32_t8uint32_tP5q15_tP5q15_t"></span><span id="_CPPv231riscv_conv_partial_fast_opt_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t8uint32_t8uint32_tP5q15_tP5q15_t"></span><span class="target" id="group__PartialConv_1ga01d75df81efc8a667cafa9e95c1275ae"></span>riscv_status <code class="sig-name descname">riscv_conv_partial_fast_opt_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q15_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q15_t *<em>pDst</em>, uint32_t <em>firstIndex</em>, uint32_t <em>numPoints</em>, q15_t *<em>pScratch1</em>, q15_t *<em>pScratch2</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Partial convolution of Q15 sequences (fast version). </p>
 <p>Partial convolution of Q15 sequences (fast version) for RISC-V Core with DSP enabled.</p>
 <p><dl class="simple">
@@ -326,8 +325,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__PartialConv_1ga623de40ec37e2c48bca3ff688974fc4d"></span>riscv_status <code class="sig-name descname">riscv_conv_partial_fast_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q15_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q15_t *<em>pDst</em>, uint32_t <em>firstIndex</em>, uint32_t <em>numPoints</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv427riscv_conv_partial_fast_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t8uint32_t8uint32_t">
+<span id="_CPPv327riscv_conv_partial_fast_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t8uint32_t8uint32_t"></span><span id="_CPPv227riscv_conv_partial_fast_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t8uint32_t8uint32_t"></span><span class="target" id="group__PartialConv_1ga623de40ec37e2c48bca3ff688974fc4d"></span>riscv_status <code class="sig-name descname">riscv_conv_partial_fast_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q15_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q15_t *<em>pDst</em>, uint32_t <em>firstIndex</em>, uint32_t <em>numPoints</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Partial convolution of Q15 sequences (fast version). </p>
 <p>Partial convolution of Q15 sequences (fast version) for RISC-V Core with DSP enabled.</p>
 <p><dl class="simple">
@@ -354,8 +353,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__PartialConv_1ga9f7b60498fa6b81cd8ac3db5b9cb527a"></span>riscv_status <code class="sig-name descname">riscv_conv_partial_fast_q31</code><span class="sig-paren">(</span><em class="property">const</em> q31_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q31_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q31_t *<em>pDst</em>, uint32_t <em>firstIndex</em>, uint32_t <em>numPoints</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv427riscv_conv_partial_fast_q31PK5q31_t8uint32_tPK5q31_t8uint32_tP5q31_t8uint32_t8uint32_t">
+<span id="_CPPv327riscv_conv_partial_fast_q31PK5q31_t8uint32_tPK5q31_t8uint32_tP5q31_t8uint32_t8uint32_t"></span><span id="_CPPv227riscv_conv_partial_fast_q31PK5q31_t8uint32_tPK5q31_t8uint32_tP5q31_t8uint32_t8uint32_t"></span><span class="target" id="group__PartialConv_1ga9f7b60498fa6b81cd8ac3db5b9cb527a"></span>riscv_status <code class="sig-name descname">riscv_conv_partial_fast_q31</code><span class="sig-paren">(</span><em class="property">const</em> q31_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q31_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q31_t *<em>pDst</em>, uint32_t <em>firstIndex</em>, uint32_t <em>numPoints</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Partial convolution of Q31 sequences (fast version). </p>
 <p>Partial convolution of Q31 sequences (fast version) for RISC-V Core with DSP enabled.</p>
 <p><dl class="simple">
@@ -382,8 +381,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__PartialConv_1ga8a2f1aadcf0c8cee85d1fd964918e4d0"></span>riscv_status <code class="sig-name descname">riscv_conv_partial_opt_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q15_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q15_t *<em>pDst</em>, uint32_t <em>firstIndex</em>, uint32_t <em>numPoints</em>, q15_t *<em>pScratch1</em>, q15_t *<em>pScratch2</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv426riscv_conv_partial_opt_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t8uint32_t8uint32_tP5q15_tP5q15_t">
+<span id="_CPPv326riscv_conv_partial_opt_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t8uint32_t8uint32_tP5q15_tP5q15_t"></span><span id="_CPPv226riscv_conv_partial_opt_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t8uint32_t8uint32_tP5q15_tP5q15_t"></span><span class="target" id="group__PartialConv_1ga8a2f1aadcf0c8cee85d1fd964918e4d0"></span>riscv_status <code class="sig-name descname">riscv_conv_partial_opt_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q15_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q15_t *<em>pDst</em>, uint32_t <em>firstIndex</em>, uint32_t <em>numPoints</em>, q15_t *<em>pScratch1</em>, q15_t *<em>pScratch2</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Partial convolution of Q15 sequences. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
@@ -411,8 +410,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__PartialConv_1gad5a1ab976466bca8e44b627770b5c888"></span>riscv_status <code class="sig-name descname">riscv_conv_partial_opt_q7</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q7_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q7_t *<em>pDst</em>, uint32_t <em>firstIndex</em>, uint32_t <em>numPoints</em>, q15_t *<em>pScratch1</em>, q15_t *<em>pScratch2</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv425riscv_conv_partial_opt_q7PK4q7_t8uint32_tPK4q7_t8uint32_tP4q7_t8uint32_t8uint32_tP5q15_tP5q15_t">
+<span id="_CPPv325riscv_conv_partial_opt_q7PK4q7_t8uint32_tPK4q7_t8uint32_tP4q7_t8uint32_t8uint32_tP5q15_tP5q15_t"></span><span id="_CPPv225riscv_conv_partial_opt_q7PK4q7_t8uint32_tPK4q7_t8uint32_tP4q7_t8uint32_t8uint32_tP5q15_tP5q15_t"></span><span class="target" id="group__PartialConv_1gad5a1ab976466bca8e44b627770b5c888"></span>riscv_status <code class="sig-name descname">riscv_conv_partial_opt_q7</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q7_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q7_t *<em>pDst</em>, uint32_t <em>firstIndex</em>, uint32_t <em>numPoints</em>, q15_t *<em>pScratch1</em>, q15_t *<em>pScratch2</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Partial convolution of Q7 sequences. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
@@ -438,8 +437,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__PartialConv_1ga12699a743519d30a39af236c42d680af"></span>riscv_status <code class="sig-name descname">riscv_conv_partial_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q15_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q15_t *<em>pDst</em>, uint32_t <em>firstIndex</em>, uint32_t <em>numPoints</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv422riscv_conv_partial_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t8uint32_t8uint32_t">
+<span id="_CPPv322riscv_conv_partial_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t8uint32_t8uint32_t"></span><span id="_CPPv222riscv_conv_partial_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t8uint32_t8uint32_t"></span><span class="target" id="group__PartialConv_1ga12699a743519d30a39af236c42d680af"></span>riscv_status <code class="sig-name descname">riscv_conv_partial_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q15_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q15_t *<em>pDst</em>, uint32_t <em>firstIndex</em>, uint32_t <em>numPoints</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Partial convolution of Q15 sequences. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
@@ -467,8 +466,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__PartialConv_1ga6ab09c40110ed2bdb8c9fdcc03c2fe85"></span>riscv_status <code class="sig-name descname">riscv_conv_partial_q31</code><span class="sig-paren">(</span><em class="property">const</em> q31_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q31_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q31_t *<em>pDst</em>, uint32_t <em>firstIndex</em>, uint32_t <em>numPoints</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv422riscv_conv_partial_q31PK5q31_t8uint32_tPK5q31_t8uint32_tP5q31_t8uint32_t8uint32_t">
+<span id="_CPPv322riscv_conv_partial_q31PK5q31_t8uint32_tPK5q31_t8uint32_tP5q31_t8uint32_t8uint32_t"></span><span id="_CPPv222riscv_conv_partial_q31PK5q31_t8uint32_tPK5q31_t8uint32_tP5q31_t8uint32_t8uint32_t"></span><span class="target" id="group__PartialConv_1ga6ab09c40110ed2bdb8c9fdcc03c2fe85"></span>riscv_status <code class="sig-name descname">riscv_conv_partial_q31</code><span class="sig-paren">(</span><em class="property">const</em> q31_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q31_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q31_t *<em>pDst</em>, uint32_t <em>firstIndex</em>, uint32_t <em>numPoints</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Partial convolution of Q31 sequences. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
@@ -494,8 +493,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__PartialConv_1gaba5b790326c5f36f9c3d9b3a8f8ce178"></span>riscv_status <code class="sig-name descname">riscv_conv_partial_q7</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q7_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q7_t *<em>pDst</em>, uint32_t <em>firstIndex</em>, uint32_t <em>numPoints</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv421riscv_conv_partial_q7PK4q7_t8uint32_tPK4q7_t8uint32_tP4q7_t8uint32_t8uint32_t">
+<span id="_CPPv321riscv_conv_partial_q7PK4q7_t8uint32_tPK4q7_t8uint32_tP4q7_t8uint32_t8uint32_t"></span><span id="_CPPv221riscv_conv_partial_q7PK4q7_t8uint32_tPK4q7_t8uint32_tP4q7_t8uint32_t8uint32_t"></span><span class="target" id="group__PartialConv_1gaba5b790326c5f36f9c3d9b3a8f8ce178"></span>riscv_status <code class="sig-name descname">riscv_conv_partial_q7</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q7_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q7_t *<em>pDst</em>, uint32_t <em>firstIndex</em>, uint32_t <em>numPoints</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>Partial convolution of Q7 sequences. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>execution status<ul class="simple">
@@ -523,7 +522,7 @@
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
@@ -547,7 +546,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 06, 2021.
+        Last updated on Aug 09, 2021.
       </span>
 
     </p>

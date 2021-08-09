@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>RBF SVM &mdash; NMSIS 1.0.2-RC1 documentation</title>
+  <title>RBF SVM &mdash; NMSIS 1.0.2-RC2 documentation</title>
   
 
   
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC1
+                1.0.2-RC2
               </div>
             
           
@@ -89,7 +88,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -197,7 +196,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="rbf-svm">
+  <div class="section" id="rbf-svm">
 <span id="nmsis-dsp-api-rbf-svm"></span><h1>RBF SVM<a class="headerlink" href="#rbf-svm" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="_CPPv422riscv_svm_rbf_init_f16P26riscv_svm_rbf_instance_f168uint32_t8uint32_t9float16_tPK9float16_tPK9float16_tPK7int32_t9float16_t">
@@ -226,8 +225,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Functions</p>
 <dl class="function">
-<dt>
-<span class="target" id="group__rbfsvm_1ga74ae5a1c8b7b155eb2a6c37d5cbe8c0e"></span>void <code class="sig-name descname">riscv_svm_rbf_init_f16</code><span class="sig-paren">(</span>riscv_svm_rbf_instance_f16 *<em>S</em>, uint32_t <em>nbOfSupportVectors</em>, uint32_t <em>vectorDimension</em>, float16_t <em>intercept</em>, <em class="property">const</em> float16_t *<em>dualCoefficients</em>, <em class="property">const</em> float16_t *<em>supportVectors</em>, <em class="property">const</em> int32_t *<em>classes</em>, float16_t <em>gamma</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv422riscv_svm_rbf_init_f16P26riscv_svm_rbf_instance_f168uint32_t8uint32_t9float16_tPK9float16_tPK9float16_tPK7int32_t9float16_t">
+<span id="_CPPv322riscv_svm_rbf_init_f16P26riscv_svm_rbf_instance_f168uint32_t8uint32_t9float16_tPK9float16_tPK9float16_tPK7int32_t9float16_t"></span><span id="_CPPv222riscv_svm_rbf_init_f16P26riscv_svm_rbf_instance_f168uint32_t8uint32_t9float16_tPK9float16_tPK9float16_tPK7int32_t9float16_t"></span><span class="target" id="group__rbfsvm_1ga74ae5a1c8b7b155eb2a6c37d5cbe8c0e"></span>void <code class="sig-name descname">riscv_svm_rbf_init_f16</code><span class="sig-paren">(</span>riscv_svm_rbf_instance_f16 *<em>S</em>, uint32_t <em>nbOfSupportVectors</em>, uint32_t <em>vectorDimension</em>, float16_t <em>intercept</em>, <em class="property">const</em> float16_t *<em>dualCoefficients</em>, <em class="property">const</em> float16_t *<em>supportVectors</em>, <em class="property">const</em> int32_t *<em>classes</em>, float16_t <em>gamma</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>SVM radial basis function instance init function. </p>
 <p>Classes are integer used as output of the function (instead of having -1,1 as class values).</p>
 <p><dl class="simple">
@@ -249,8 +248,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__rbfsvm_1gaa3d0e0eeffc856c1e0fe1dba581d1e18"></span>void <code class="sig-name descname">riscv_svm_rbf_init_f32</code><span class="sig-paren">(</span>riscv_svm_rbf_instance_f32 *<em>S</em>, uint32_t <em>nbOfSupportVectors</em>, uint32_t <em>vectorDimension</em>, float32_t <em>intercept</em>, <em class="property">const</em> float32_t *<em>dualCoefficients</em>, <em class="property">const</em> float32_t *<em>supportVectors</em>, <em class="property">const</em> int32_t *<em>classes</em>, float32_t <em>gamma</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv422riscv_svm_rbf_init_f32P26riscv_svm_rbf_instance_f328uint32_t8uint32_t9float32_tPK9float32_tPK9float32_tPK7int32_t9float32_t">
+<span id="_CPPv322riscv_svm_rbf_init_f32P26riscv_svm_rbf_instance_f328uint32_t8uint32_t9float32_tPK9float32_tPK9float32_tPK7int32_t9float32_t"></span><span id="_CPPv222riscv_svm_rbf_init_f32P26riscv_svm_rbf_instance_f328uint32_t8uint32_t9float32_tPK9float32_tPK9float32_tPK7int32_t9float32_t"></span><span class="target" id="group__rbfsvm_1gaa3d0e0eeffc856c1e0fe1dba581d1e18"></span>void <code class="sig-name descname">riscv_svm_rbf_init_f32</code><span class="sig-paren">(</span>riscv_svm_rbf_instance_f32 *<em>S</em>, uint32_t <em>nbOfSupportVectors</em>, uint32_t <em>vectorDimension</em>, float32_t <em>intercept</em>, <em class="property">const</em> float32_t *<em>dualCoefficients</em>, <em class="property">const</em> float32_t *<em>supportVectors</em>, <em class="property">const</em> int32_t *<em>classes</em>, float32_t <em>gamma</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>SVM radial basis function instance init function. </p>
 <p>Classes are integer used as output of the function (instead of having -1,1 as class values).</p>
 <p><dl class="simple">
@@ -272,8 +271,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__rbfsvm_1gaeb82f56d9bfd22e3a2a1d8ed9bdd9131"></span>void <code class="sig-name descname">riscv_svm_rbf_predict_f16</code><span class="sig-paren">(</span><em class="property">const</em> riscv_svm_rbf_instance_f16 *<em>S</em>, <em class="property">const</em> float16_t *<em>in</em>, int32_t *<em>pResult</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv425riscv_svm_rbf_predict_f16PK26riscv_svm_rbf_instance_f16PK9float16_tP7int32_t">
+<span id="_CPPv325riscv_svm_rbf_predict_f16PK26riscv_svm_rbf_instance_f16PK9float16_tP7int32_t"></span><span id="_CPPv225riscv_svm_rbf_predict_f16PK26riscv_svm_rbf_instance_f16PK9float16_tP7int32_t"></span><span class="target" id="group__rbfsvm_1gaeb82f56d9bfd22e3a2a1d8ed9bdd9131"></span>void <code class="sig-name descname">riscv_svm_rbf_predict_f16</code><span class="sig-paren">(</span><em class="property">const</em> riscv_svm_rbf_instance_f16 *<em>S</em>, <em class="property">const</em> float16_t *<em>in</em>, int32_t *<em>pResult</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>SVM rbf prediction. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none. </p>
@@ -289,8 +288,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt>
-<span class="target" id="group__rbfsvm_1gab560fe74f967ed86816493a824a11b81"></span>void <code class="sig-name descname">riscv_svm_rbf_predict_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_svm_rbf_instance_f32 *<em>S</em>, <em class="property">const</em> float32_t *<em>in</em>, int32_t *<em>pResult</em><span class="sig-paren">)</span><br /></dt>
+<dt id="_CPPv425riscv_svm_rbf_predict_f32PK26riscv_svm_rbf_instance_f32PK9float32_tP7int32_t">
+<span id="_CPPv325riscv_svm_rbf_predict_f32PK26riscv_svm_rbf_instance_f32PK9float32_tP7int32_t"></span><span id="_CPPv225riscv_svm_rbf_predict_f32PK26riscv_svm_rbf_instance_f32PK9float32_tP7int32_t"></span><span class="target" id="group__rbfsvm_1gab560fe74f967ed86816493a824a11b81"></span>void <code class="sig-name descname">riscv_svm_rbf_predict_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_svm_rbf_instance_f32 *<em>S</em>, <em class="property">const</em> float32_t *<em>in</em>, int32_t *<em>pResult</em><span class="sig-paren">)</span><br /></dt>
 <dd><p>SVM rbf prediction. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>none. </p>
@@ -308,7 +307,7 @@
 </div>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
@@ -332,7 +331,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 06, 2021.
+        Last updated on Aug 09, 2021.
       </span>
 
     </p>
