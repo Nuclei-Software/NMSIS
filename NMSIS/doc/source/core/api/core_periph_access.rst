@@ -1,4 +1,4 @@
-.. _nmsis_core_api_peripheral_access:
+.. _core_api_periph_access:
 
 Peripheral Access
 =================
@@ -10,3 +10,4 @@ Peripheral Access
 
 .. doxygengroup:: NMSIS_Core_PeriphAccess
    :project: nmsis_core
+

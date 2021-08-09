@@ -26,3 +26,7 @@ Appendix
 * **RISC-V MCU Community Website**: https://www.riscv-mcu.com/
 
 * **Nuclei Spec**: https://doc.nucleisys.com/nuclei_spec
+
+* **RISC-V Packed SIMD(P) Extension Spec**: https://github.com/riscv/riscv-p-spec
+
+* **RISC-V Vector(V) Extension Spec**: https://github.com/riscv/riscv-v-spec

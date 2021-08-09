@@ -9,7 +9,7 @@ please click `NMSIS NN API Doxygen Documentation`_.
 .. toctree::
    :maxdepth: 3
 
-   
+
    api_groupnn.rst
    api_nndata_convert.rst
    api_nnbasicmath.rst

@@ -1,7 +1,7 @@
-.. _nmsis_core_api_intrinsic_functions_for_cpu_intructions:
+.. _core_api_core_intrinsic:
 
-Intrinsic Functions for CPU Intructions
-=======================================
+CPU Intrinsic Functions
+=======================
 
 .. doxygengroup:: NMSIS_Core_CPU_Intrinsic
    :project: nmsis_core
@@ -10,3 +10,4 @@ Intrinsic Functions for CPU Intructions
 
 .. doxygengroup:: NMSIS_Core_CPU_Intrinsic
    :project: nmsis_core
+

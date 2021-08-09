@@ -9,7 +9,7 @@ please click `NMSIS DSP API Doxygen Documentation`_.
 .. toctree::
    :maxdepth: 3
 
-   
+
    api_groupexamples.rst
    api_groupmath.rst
    api_groupbayes.rst

@@ -10,7 +10,7 @@ Preparation
 
 * Nuclei Modified Spike - ``xl_spike``
 * Nuclei SDK modified for ``xl_spike`` branch ``dev_xlspike``
-* Nuclei RISCV GNU Toolchain
+* Nuclei RISCV GNU Toolchain, riscv gcc 10 with vector extension is required.
 * CMake >= 3.5
 
 
@@ -36,20 +36,24 @@ Build NMSIS NN Library
 
 .. code-block::
 
-    $ ll Library/NN/GCC/
-    total 3000
-    -rw-r--r-- 1 hqfang nucleisys 128482 Jul 14 14:51 libnmsis_nn_rv32imac.a
-    -rw-r--r-- 1 hqfang nucleisys 281834 Jul 14 14:51 libnmsis_nn_rv32imacp.a
-    -rw-r--r-- 1 hqfang nucleisys 128402 Jul 14 14:51 libnmsis_nn_rv32imafc.a
-    -rw-r--r-- 1 hqfang nucleisys 282750 Jul 14 14:51 libnmsis_nn_rv32imafcp.a
-    -rw-r--r-- 1 hqfang nucleisys 128650 Jul 14 14:51 libnmsis_nn_rv32imafdc.a
-    -rw-r--r-- 1 hqfang nucleisys 282978 Jul 14 14:51 libnmsis_nn_rv32imafdcp.a
-    -rw-r--r-- 1 hqfang nucleisys 183918 Jul 14 14:51 libnmsis_nn_rv64imac.a
-    -rw-r--r-- 1 hqfang nucleisys 418598 Jul 14 14:51 libnmsis_nn_rv64imacp.a
-    -rw-r--r-- 1 hqfang nucleisys 184206 Jul 14 14:51 libnmsis_nn_rv64imafc.a
-    -rw-r--r-- 1 hqfang nucleisys 418070 Jul 14 14:51 libnmsis_nn_rv64imafcp.a
-    -rw-r--r-- 1 hqfang nucleisys 184454 Jul 14 14:51 libnmsis_nn_rv64imafdc.a
-    -rw-r--r-- 1 hqfang nucleisys 419774 Jul 14 14:51 libnmsis_nn_rv64imafdcp.a
+    $ ls -lh Library/NN/GCC/
+    total 13M
+    -rw-rw-r-- 1 hqfang nucleisys 425K Aug  6 16:10 libnmsis_nn_rv32imac.a
+    -rw-rw-r-- 1 hqfang nucleisys 743K Aug  6 16:10 libnmsis_nn_rv32imacp.a
+    -rw-rw-r-- 1 hqfang nucleisys 425K Aug  6 16:10 libnmsis_nn_rv32imafc.a
+    -rw-rw-r-- 1 hqfang nucleisys 743K Aug  6 16:10 libnmsis_nn_rv32imafcp.a
+    -rw-rw-r-- 1 hqfang nucleisys 425K Aug  6 16:10 libnmsis_nn_rv32imafdc.a
+    -rw-rw-r-- 1 hqfang nucleisys 743K Aug  6 16:10 libnmsis_nn_rv32imafdcp.a
+    -rw-rw-r-- 1 hqfang nucleisys 605K Aug  6 16:10 libnmsis_nn_rv64imac.a
+    -rw-rw-r-- 1 hqfang nucleisys 1.1M Aug  6 16:10 libnmsis_nn_rv64imacp.a
+    -rw-rw-r-- 1 hqfang nucleisys 606K Aug  6 16:10 libnmsis_nn_rv64imafc.a
+    -rw-rw-r-- 1 hqfang nucleisys 1.1M Aug  6 16:10 libnmsis_nn_rv64imafcp.a
+    -rw-rw-r-- 1 hqfang nucleisys 1.1M Aug  6 16:10 libnmsis_nn_rv64imafcpv.a
+    -rw-rw-r-- 1 hqfang nucleisys 931K Aug  6 16:10 libnmsis_nn_rv64imafcv.a
+    -rw-rw-r-- 1 hqfang nucleisys 606K Aug  6 16:10 libnmsis_nn_rv64imafdc.a
+    -rw-rw-r-- 1 hqfang nucleisys 1.1M Aug  6 16:10 libnmsis_nn_rv64imafdcp.a
+    -rw-rw-r-- 1 hqfang nucleisys 1.1M Aug  6 16:10 libnmsis_nn_rv64imafdcpv.a
+    -rw-rw-r-- 1 hqfang nucleisys 932K Aug  6 16:10 libnmsis_nn_rv64imafdcv.a
 
 
 7. library name with extra ``p`` is build with RISCV DSP enabled.
@@ -57,11 +61,17 @@ Build NMSIS NN Library
    * ``libnmsis_nn_rv32imac.a``: Build for **RISCV_ARCH=rv32imac** without DSP enabled.
    * ``libnmsis_nn_rv32imacp.a``: Build for **RISCV_ARCH=rv32imac** with DSP enabled.
 
+8. library name with extra ``v`` is build with RISCV Vector enabled, only valid for RISC-V 64bit processor.
+
+   * ``libnmsis_nn_rv64imac.a``: Build for **RISCV_ARCH=rv64imac** without Vector.
+   * ``libnmsis_nn_rv64imacv.a``: Build for **RISCV_ARCH=rv64imac** with Vector enabled.
+
 .. note::
 
     * You can also directly build both DSP and NN library using ``make gen``
     * You can strip the generated DSP and NN library using ``make strip``
-
+    * DSP and Vector extension can be combined, such as ``p``, ``v`` and ``pv``
+    * Vector extension currently is only available with RISC-V 64 bit processor
 
 How to run
 ----------
@@ -79,25 +89,25 @@ How to run
 
 2. ``cd ./cifar10/``
 
-3. Run with RISCV DSP enabled NMSIS-NN library for CORE ``n307``
+3. Run with RISCV DSP enabled and Vector enabled NMSIS-NN library for CORE ``ux600``
 
 .. code-block::
 
     # Clean project
-    make DSP_ENABLE=ON CORE=n307 clean
+    make DSP_ENABLE=ON VECTOR_ENABLE=ON CORE=ux600 clean
     # Build project
-    make DSP_ENABLE=ON CORE=n307 all
+    make DSP_ENABLE=ON VECTOR_ENABLE=ON CORE=ux600 all
     # Run application using xl_spike
-    make DSP_ENABLE=ON CORE=n307 run
+    make DSP_ENABLE=ON VECTOR_ENABLE=ON CORE=ux600 run
 
 
-4. Run with RISCV DSP disabled NMSIS-NN library for CORE ``n307``
+4. Run with RISCV DSP disabled and Vector disabled NMSIS-NN library for CORE ``ux600``
 
 .. code-block:: shell
 
-    make DSP_ENABLE=OFF CORE=n307 clean
-    make DSP_ENABLE=OFF CORE=n307 all
-    make DSP_ENABLE=OFF CORE=n307 run
+    make DSP_ENABLE=OFF VECTOR_ENABLE=OFF CORE=ux600 clean
+    make DSP_ENABLE=OFF VECTOR_ENABLE=OFF CORE=ux600 all
+    make DSP_ENABLE=OFF VECTOR_ENABLE=OFF CORE=ux600 run
 
 .. note::
 

@@ -3,6 +3,17 @@
 Changelog
 =========
 
+V1.0.2-RC2
+----------
+
+This is the release candidate version ``V1.0.2-RC2`` release of Nuclei MCU Software Interface Standard(NMSIS).
+
+The following changes has been made since ``V1.0.2-RC1``.
+
+* Documentation
+
+  - Update NMSIS Core/DSP/NN related documentation
+
 V1.0.2-RC1
 ----------
 
