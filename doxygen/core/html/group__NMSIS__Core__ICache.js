@@ -2,6 +2,8 @@ var group__NMSIS__Core__ICache =
 [
     [ "DisableICache", "group__NMSIS__Core__ICache.html#ga4a855b01222d0c42d413f168651616e5", null ],
     [ "EnableICache", "group__NMSIS__Core__ICache.html#ga76dfd7aff65a6a7fa91b53dbe44f9ce5", null ],
+    [ "GetDCacheInfo", "group__NMSIS__Core__ICache.html#gacc2be57be2e95f62a5381ba1f87977b3", null ],
+    [ "GetICacheInfo", "group__NMSIS__Core__ICache.html#ga69a3a0ce8c5e4494161991074387162e", null ],
     [ "MInvalICache", "group__NMSIS__Core__ICache.html#gab0d916e064876aea3bf9135283814db1", null ],
     [ "MInvalICacheLine", "group__NMSIS__Core__ICache.html#gac9500d4f13d04b2acbfd3538984514c8", null ],
     [ "MInvalICacheLines", "group__NMSIS__Core__ICache.html#gafe47347cfa3f8c4a8829c88fa5fdec9b", null ],

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['exc_5fhandler',['EXC_HANDLER',['../group__NMSIS__Core__IntExcNMI__Handling.html#gacdea0407312bb8428c98044b5aef3e23',1,'system_Device.c']]]
+  ['csr_5fmmiscctl_5ftype',['CSR_MMISCCTL_Type',['../group__NMSIS__Core__Base__Registers.html#ga56f425a6599bc28e3921326cf5bbd040',1,'core_feature_base.h']]]
 ];

@@ -4,6 +4,7 @@ var searchData=
   ['register_20define_20and_20type_20definitions_20of_20eclic',['Register Define and Type Definitions Of ECLIC',['../group__NMSIS__Core__ECLIC__Registers.html',1,'']]],
   ['register_20define_20and_20type_20definitions',['Register Define and Type Definitions',['../group__NMSIS__Core__Registers.html',1,'']]],
   ['register_20define_20and_20type_20definitions_20of_20system_20timer',['Register Define and Type Definitions Of System Timer',['../group__NMSIS__Core__SysTimer__Registers.html',1,'']]],
+  ['ramid',['ramid',['../unionCSR__MECCCODE__Type.html#a2dece93fddce6fe3b986cae29302e028',1,'CSR_MECCCODE_Type']]],
   ['reserved0',['RESERVED0',['../structCLIC__Type.html#a9325067f5bd573505c648f30af8f4610',1,'CLIC_Type::RESERVED0()'],['../structSysTimer__Type.html#aedb1895f0e0be768277f230b4a461a24',1,'SysTimer_Type::RESERVED0()']]],
   ['reserved0_5firqn',['Reserved0_IRQn',['../group__NMSIS__Core__IntExc.html#gga7e1129cd8a196f4284d41db3e82ad5c8a2095f58b6c0de45b782b1196a0939e02',1,'core_feature_eclic.h']]],
   ['reserved1',['RESERVED1',['../structCLIC__Type.html#ad8de7f2c8f28c0bd9935739a1f4dea8d',1,'CLIC_Type::RESERVED1()'],['../structSysTimer__Type.html#a1cec32637a87c4fdd59bf526325755cb',1,'SysTimer_Type::RESERVED1()']]],

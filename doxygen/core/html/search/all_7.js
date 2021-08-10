@@ -1,6 +1,12 @@
 var searchData=
 [
-  ['d',['d',['../unionCSR__MISA__Type.html#a25171c57dba66f92acc7166020e095cd',1,'CSR_MISA_Type::d()'],['../unionCSR__MSTATUS__Type.html#ad6ccdd78fc15b0b10a9e82e3c25dd98a',1,'CSR_MSTATUS_Type::d()'],['../unionCSR__MTVEC__Type.html#a78064f13f73bd2c7367fd6dbc8cf356e',1,'CSR_MTVEC_Type::d()'],['../unionCSR__MCAUSE__Type.html#ae5bdc279496969b722055aae0c118460',1,'CSR_MCAUSE_Type::d()'],['../unionCSR__MCOUNTINHIBIT__Type.html#aa9ba6784709e8ba39c6e094156916dc2',1,'CSR_MCOUNTINHIBIT_Type::d()'],['../unionCSR__MSUBM__Type.html#ab188dee35d91c5cd832a5295b4e21e98',1,'CSR_MSUBM_Type::d()'],['../unionCSR__MMISCCTRL__Type.html#a17abdfbefca3554c1cf1f8c86a5c3925',1,'CSR_MMISCCTRL_Type::d()']]],
+  ['d',['d',['../unionCSR__MISA__Type.html#a25171c57dba66f92acc7166020e095cd',1,'CSR_MISA_Type::d()'],['../unionCSR__MSTATUS__Type.html#ad6ccdd78fc15b0b10a9e82e3c25dd98a',1,'CSR_MSTATUS_Type::d()'],['../unionCSR__MTVEC__Type.html#a78064f13f73bd2c7367fd6dbc8cf356e',1,'CSR_MTVEC_Type::d()'],['../unionCSR__MCAUSE__Type.html#ae5bdc279496969b722055aae0c118460',1,'CSR_MCAUSE_Type::d()'],['../unionCSR__MCOUNTINHIBIT__Type.html#aa9ba6784709e8ba39c6e094156916dc2',1,'CSR_MCOUNTINHIBIT_Type::d()'],['../unionCSR__MSUBM__Type.html#ab188dee35d91c5cd832a5295b4e21e98',1,'CSR_MSUBM_Type::d()'],['../unionCSR__MDCAUSE__Type.html#ad6457904e00ed5093adaf60dc65a478c',1,'CSR_MDCAUSE_Type::d()'],['../unionCSR__MMISCCTRL__Type.html#a17abdfbefca3554c1cf1f8c86a5c3925',1,'CSR_MMISCCTRL_Type::d()'],['../unionCSR__MCACHECTL__Type.html#a4b815d0133f4cd0dee7a321028800caf',1,'CSR_MCACHECTL_Type::d()'],['../unionCSR__MILMCTL__Type.html#a0568601f07d8122b6791cb832c3c43ec',1,'CSR_MILMCTL_Type::d()'],['../unionCSR__MDLMCTL__Type.html#af387f099dd532d49257a478b27123b52',1,'CSR_MDLMCTL_Type::d()'],['../unionCSR__MCFGINFO__Type.html#a50dd63592fa2d4e4540132f068cee0cd',1,'CSR_MCFGINFO_Type::d()'],['../unionCSR__MICFGINFO__Type.html#a019a0f2a482a3f2c7cf882a4295ac322',1,'CSR_MICFGINFO_Type::d()'],['../unionCSR__MDCFGINFO__Type.html#a458a2abb27aa334c0fda73efc7972aad',1,'CSR_MDCFGINFO_Type::d()'],['../unionCSR__MPPICFGINFO__Type.html#a3acaa252a892479c3374d93f3cbe136b',1,'CSR_MPPICFGINFO_Type::d()'],['../unionCSR__MFIOCFGINFO__Type.html#a5c2b9f4806e17df73af867d7e9c41d52',1,'CSR_MFIOCFGINFO_Type::d()'],['../unionCSR__MECCLOCK__Type.html#adb7a90a3e474201d9461a572240eddaf',1,'CSR_MECCLOCK_Type::d()'],['../unionCSR__MECCCODE__Type.html#a3de5a1b1edf2ca4f244fb8f949fe3467',1,'CSR_MECCCODE_Type::d()']]],
+  ['dc_5fecc_5fen',['dc_ecc_en',['../unionCSR__MCACHECTL__Type.html#ac1d1cb9764a25b7c6cdc3cc691b8cbf6',1,'CSR_MCACHECTL_Type']]],
+  ['dc_5fecc_5fexcp_5fen',['dc_ecc_excp_en',['../unionCSR__MCACHECTL__Type.html#a84b8a5a58cf75f886b21a90763ec2f86',1,'CSR_MCACHECTL_Type']]],
+  ['dc_5fen',['dc_en',['../unionCSR__MCACHECTL__Type.html#acb7d5418b6e9562883657c691d998989',1,'CSR_MCACHECTL_Type']]],
+  ['dc_5frwdecc',['dc_rwdecc',['../unionCSR__MCACHECTL__Type.html#a0ab28a3d063e3e969cf0a73ca1a2832b',1,'CSR_MCACHECTL_Type']]],
+  ['dc_5frwtecc',['dc_rwtecc',['../unionCSR__MCACHECTL__Type.html#a2ca3c9c38e7cc9afdb16ed1bdb135951',1,'CSR_MCACHECTL_Type']]],
+  ['dcache',['dcache',['../unionCSR__MCFGINFO__Type.html#abbcd95938dd7523fe44c94f88fc2772b',1,'CSR_MCFGINFO_Type']]],
   ['dcause_5ffault_5ffetch_5finst',['DCAUSE_FAULT_FETCH_INST',['../group__NMSIS__Core__CSR__Encoding.html#ga5564fb5c006efb9f6e670303f3887b1b',1,'riscv_encoding.h']]],
   ['dcause_5ffault_5ffetch_5fpmp',['DCAUSE_FAULT_FETCH_PMP',['../group__NMSIS__Core__CSR__Encoding.html#gad891aa30fc0af385a8ccd22d5bb9ed49',1,'riscv_encoding.h']]],
   ['dcause_5ffault_5fload_5finst',['DCAUSE_FAULT_LOAD_INST',['../group__NMSIS__Core__CSR__Encoding.html#gae80781100324a8152d5a9f895873fcde',1,'riscv_encoding.h']]],
@@ -31,5 +37,11 @@ var searchData=
   ['disabledcache',['DisableDCache',['../group__NMSIS__Core__DCache.html#gab30be00d8a0583adac5d786149db433f',1,'core_feature_cache.h']]],
   ['disableicache',['DisableICache',['../group__NMSIS__Core__ICache.html#ga4a855b01222d0c42d413f168651616e5',1,'core_feature_cache.h']]],
   ['disablesuccm',['DisableSUCCM',['../group__NMSIS__Core__Cache.html#ga9392351a7d8e9e80be4b87c4860be086',1,'core_feature_cache.h']]],
+  ['dlm',['dlm',['../unionCSR__MCFGINFO__Type.html#adb720ece0db9e5c82b381a6af4944fea',1,'CSR_MCFGINFO_Type']]],
+  ['dlm_5fbpa',['dlm_bpa',['../unionCSR__MDLMCTL__Type.html#a2818a047f0411e86358ee943206000c1',1,'CSR_MDLMCTL_Type']]],
+  ['dlm_5fecc_5fen',['dlm_ecc_en',['../unionCSR__MDLMCTL__Type.html#a649937c80a8243f16fdd2194d019bacb',1,'CSR_MDLMCTL_Type']]],
+  ['dlm_5fecc_5fexcp_5fen',['dlm_ecc_excp_en',['../unionCSR__MDLMCTL__Type.html#afdd466303d9baded6a1f3808aa61a115',1,'CSR_MDLMCTL_Type']]],
+  ['dlm_5fen',['dlm_en',['../unionCSR__MDLMCTL__Type.html#a18b13acd38c328d22c3dd8278bb76501',1,'CSR_MDLMCTL_Type']]],
+  ['dlm_5frwecc',['dlm_rwecc',['../unionCSR__MDLMCTL__Type.html#a32b840f5de8f452ac8ed32b2bac1b3d1',1,'CSR_MDLMCTL_Type']]],
   ['d_2dcache_20functions',['D-Cache Functions',['../group__NMSIS__Core__DCache.html',1,'']]]
 ];

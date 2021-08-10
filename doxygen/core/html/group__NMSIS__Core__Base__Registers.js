@@ -83,22 +83,45 @@ var group__NMSIS__Core__Base__Registers =
       [ "ptyp", "unionCSR__MSUBM__Type.html#a77220967d0a04f29fb37b9730afc8059", null ],
       [ "typ", "unionCSR__MSUBM__Type.html#a1bea0e7308519e40a3134f8d92bca435", null ]
     ] ],
+    [ "CSR_MDCAUSE_Type", "unionCSR__MDCAUSE__Type.html", [
+      [ "_reserved0", "unionCSR__MDCAUSE__Type.html#afb35b39064208f0ebcba3d508899178d", null ],
+      [ "b", "unionCSR__MDCAUSE__Type.html#a643ebb65143fd97377b92adc7101b2d9", null ],
+      [ "d", "unionCSR__MDCAUSE__Type.html#ad6457904e00ed5093adaf60dc65a478c", null ],
+      [ "mdcause", "unionCSR__MDCAUSE__Type.html#aea660f37d75c94912e4d9aeb883885e0", null ]
+    ] ],
     [ "CSR_MMISCCTRL_Type", "unionCSR__MMISCCTRL__Type.html", [
       [ "_reserved0", "unionCSR__MMISCCTRL__Type.html#aa6e5c778c686f03d8b7f050bb6558f73", null ],
       [ "_reserved1", "unionCSR__MMISCCTRL__Type.html#a2ec8d9def938eec6f784c348308dd153", null ],
       [ "_reserved2", "unionCSR__MMISCCTRL__Type.html#a7cf36aebc77aad6f2e9daaa99048d6ce", null ],
       [ "_reserved3", "unionCSR__MMISCCTRL__Type.html#a22bacba1282cd1dba8e3a1b8f3ee8458", null ],
-      [ "b", "unionCSR__MMISCCTRL__Type.html#a069f48df577d9ac45cf9baf66dc51041", null ],
+      [ "b", "unionCSR__MMISCCTRL__Type.html#a561bf6fa6d2ee52dea233c324aaa8d7c", null ],
       [ "bpu", "unionCSR__MMISCCTRL__Type.html#ab4bb604620ef0eb2b13778e892f3b44c", null ],
       [ "d", "unionCSR__MMISCCTRL__Type.html#a17abdfbefca3554c1cf1f8c86a5c3925", null ],
       [ "misalign", "unionCSR__MMISCCTRL__Type.html#abfbd87cd64cdc521f49d43ab17c7dd7a", null ],
       [ "nmi_cause", "unionCSR__MMISCCTRL__Type.html#ab819b8f5dc4a6ad8256834fdae9c952f", null ]
     ] ],
+    [ "CSR_MCACHECTL_Type", "unionCSR__MCACHECTL__Type.html", [
+      [ "_reserved0", "unionCSR__MCACHECTL__Type.html#a4f186396041a45e5192b2884946694c3", null ],
+      [ "_reserved1", "unionCSR__MCACHECTL__Type.html#a73cc081f5608c93a0afc796f9512a84a", null ],
+      [ "b", "unionCSR__MCACHECTL__Type.html#ad18fd132ab25895b4a2e309317afb800", null ],
+      [ "d", "unionCSR__MCACHECTL__Type.html#a4b815d0133f4cd0dee7a321028800caf", null ],
+      [ "dc_ecc_en", "unionCSR__MCACHECTL__Type.html#ac1d1cb9764a25b7c6cdc3cc691b8cbf6", null ],
+      [ "dc_ecc_excp_en", "unionCSR__MCACHECTL__Type.html#a84b8a5a58cf75f886b21a90763ec2f86", null ],
+      [ "dc_en", "unionCSR__MCACHECTL__Type.html#acb7d5418b6e9562883657c691d998989", null ],
+      [ "dc_rwdecc", "unionCSR__MCACHECTL__Type.html#a0ab28a3d063e3e969cf0a73ca1a2832b", null ],
+      [ "dc_rwtecc", "unionCSR__MCACHECTL__Type.html#a2ca3c9c38e7cc9afdb16ed1bdb135951", null ],
+      [ "ic_ecc_en", "unionCSR__MCACHECTL__Type.html#a86e99f8eeffa4d51b4947d0f2f458397", null ],
+      [ "ic_ecc_excp_en", "unionCSR__MCACHECTL__Type.html#ac62d18e3aea0b24660201b2e029cdb6c", null ],
+      [ "ic_en", "unionCSR__MCACHECTL__Type.html#a7398a02e986db63fe68ffdc03ad87cc6", null ],
+      [ "ic_rwdecc", "unionCSR__MCACHECTL__Type.html#a4a87581325e9c55c525ad1c7a179c2a4", null ],
+      [ "ic_rwtecc", "unionCSR__MCACHECTL__Type.html#a356268c2e14a2b979923b4e247cc4f7e", null ],
+      [ "ic_scpd_mod", "unionCSR__MCACHECTL__Type.html#a1b0609a9cc0d369b71cb1b444905d8b8", null ]
+    ] ],
     [ "CSR_MSAVESTATUS_Type", "unionCSR__MSAVESTATUS__Type.html", [
       [ "_reserved0", "unionCSR__MSAVESTATUS__Type.html#abe13779fb93f296a38bc80cc75d7ffbc", null ],
       [ "_reserved1", "unionCSR__MSAVESTATUS__Type.html#a60c203ffddd944222ed36856c707b51c", null ],
       [ "_reserved2", "unionCSR__MSAVESTATUS__Type.html#a8e050bc641728ef17037ab95a2b64293", null ],
-      [ "b", "unionCSR__MSAVESTATUS__Type.html#a6f012e66a3b0298a22404cd73bf38dcf", null ],
+      [ "b", "unionCSR__MSAVESTATUS__Type.html#a092be26335f488983ecd8bfa5f513e14", null ],
       [ "mpie1", "unionCSR__MSAVESTATUS__Type.html#aea49d991ccf84140f2871c3d2e9577a1", null ],
       [ "mpie2", "unionCSR__MSAVESTATUS__Type.html#a3b59f01dc6696bb3861f392e12cd83a1", null ],
       [ "mpp1", "unionCSR__MSAVESTATUS__Type.html#a5d06b2cf1ffb09a323db34953a1a1117", null ],
@@ -106,5 +129,100 @@ var group__NMSIS__Core__Base__Registers =
       [ "ptyp1", "unionCSR__MSAVESTATUS__Type.html#a71bcf16bcab565b98e2cd135054daceb", null ],
       [ "ptyp2", "unionCSR__MSAVESTATUS__Type.html#a98cbf02beb8dc8fc1eee27ada6ebf5a4", null ],
       [ "w", "unionCSR__MSAVESTATUS__Type.html#a3830cba893f489931a838102f870bb54", null ]
-    ] ]
+    ] ],
+    [ "CSR_MILMCTL_Type", "unionCSR__MILMCTL__Type.html", [
+      [ "_reserved0", "unionCSR__MILMCTL__Type.html#a31c9512c856b4285967a7a1d0bdceab2", null ],
+      [ "b", "unionCSR__MILMCTL__Type.html#a495c9c0c76641cc5dc5ba6f31bbd3c2f", null ],
+      [ "d", "unionCSR__MILMCTL__Type.html#a0568601f07d8122b6791cb832c3c43ec", null ],
+      [ "ilm_bpa", "unionCSR__MILMCTL__Type.html#af90ed19eceb2b20a7eb2974e59d0a5ae", null ],
+      [ "ilm_ecc_en", "unionCSR__MILMCTL__Type.html#a79054a48492cc7cac50cb8f125a11c3a", null ],
+      [ "ilm_ecc_excp_en", "unionCSR__MILMCTL__Type.html#a7507f7d08202fed762566b3cbd6984b1", null ],
+      [ "ilm_en", "unionCSR__MILMCTL__Type.html#ac892992420e34c4990a7e85ed034260e", null ],
+      [ "ilm_rwecc", "unionCSR__MILMCTL__Type.html#a77cb8ee0a260c92560375825903c791b", null ]
+    ] ],
+    [ "CSR_MDLMCTL_Type", "unionCSR__MDLMCTL__Type.html", [
+      [ "_reserved0", "unionCSR__MDLMCTL__Type.html#a178d709c71080cf5977c08734963c2f6", null ],
+      [ "b", "unionCSR__MDLMCTL__Type.html#afdf070de54166150108e937398b56d58", null ],
+      [ "d", "unionCSR__MDLMCTL__Type.html#af387f099dd532d49257a478b27123b52", null ],
+      [ "dlm_bpa", "unionCSR__MDLMCTL__Type.html#a2818a047f0411e86358ee943206000c1", null ],
+      [ "dlm_ecc_en", "unionCSR__MDLMCTL__Type.html#a649937c80a8243f16fdd2194d019bacb", null ],
+      [ "dlm_ecc_excp_en", "unionCSR__MDLMCTL__Type.html#afdd466303d9baded6a1f3808aa61a115", null ],
+      [ "dlm_en", "unionCSR__MDLMCTL__Type.html#a18b13acd38c328d22c3dd8278bb76501", null ],
+      [ "dlm_rwecc", "unionCSR__MDLMCTL__Type.html#a32b840f5de8f452ac8ed32b2bac1b3d1", null ]
+    ] ],
+    [ "CSR_MCFGINFO_Type", "unionCSR__MCFGINFO__Type.html", [
+      [ "_reserved0", "unionCSR__MCFGINFO__Type.html#a43cdb8bb44c25bfc5eb829a4bf3718c3", null ],
+      [ "b", "unionCSR__MCFGINFO__Type.html#afcf28c4b0d19c5903eb3cbd4618d6c7b", null ],
+      [ "clic", "unionCSR__MCFGINFO__Type.html#a73946e52a5708c7b47db9cd06d913838", null ],
+      [ "d", "unionCSR__MCFGINFO__Type.html#a50dd63592fa2d4e4540132f068cee0cd", null ],
+      [ "dcache", "unionCSR__MCFGINFO__Type.html#abbcd95938dd7523fe44c94f88fc2772b", null ],
+      [ "dlm", "unionCSR__MCFGINFO__Type.html#adb720ece0db9e5c82b381a6af4944fea", null ],
+      [ "ecc", "unionCSR__MCFGINFO__Type.html#a5b360486d7355839b07d1d19960b9fb4", null ],
+      [ "fio", "unionCSR__MCFGINFO__Type.html#aff4ecb10cddcc291ee6ab6070de0d1a6", null ],
+      [ "icache", "unionCSR__MCFGINFO__Type.html#a1a0b0e69e1a487c28babba52092e2940", null ],
+      [ "ilm", "unionCSR__MCFGINFO__Type.html#aae8758186672b5ef00e04346322e2fe9", null ],
+      [ "nice", "unionCSR__MCFGINFO__Type.html#a852a362daa1ccb36d779a07764e844e6", null ],
+      [ "plic", "unionCSR__MCFGINFO__Type.html#a63fec79c30424766b3597579b9a06f0e", null ],
+      [ "ppi", "unionCSR__MCFGINFO__Type.html#a6fbc432ae53334fb3276a2daca081d15", null ],
+      [ "tee", "unionCSR__MCFGINFO__Type.html#a0cabeec34cf8e2a11c9c59221f855164", null ]
+    ] ],
+    [ "CSR_MICFGINFO_Type", "unionCSR__MICFGINFO__Type.html", [
+      [ "_reserved0", "unionCSR__MICFGINFO__Type.html#a75f76b3f8eea0ed1ff1e358f639a8db5", null ],
+      [ "_reserved1", "unionCSR__MICFGINFO__Type.html#a95f943b3ddce6a9e910d75da888d9d23", null ],
+      [ "b", "unionCSR__MICFGINFO__Type.html#a36296b0abf3d9b0a17f7dfd8ce883796", null ],
+      [ "cache_ecc", "unionCSR__MICFGINFO__Type.html#ab8e47775ac97141dd90469564c99f598", null ],
+      [ "d", "unionCSR__MICFGINFO__Type.html#a019a0f2a482a3f2c7cf882a4295ac322", null ],
+      [ "lm_ecc", "unionCSR__MICFGINFO__Type.html#a420f1ef39fa0ce7165a4c22ab0a9696e", null ],
+      [ "lm_size", "unionCSR__MICFGINFO__Type.html#a124f5dd34305eceb2fe7444328b714c2", null ],
+      [ "lm_xonly", "unionCSR__MICFGINFO__Type.html#aeaab24911ca8c0c5dd80d2daffe88c8c", null ],
+      [ "lsize", "unionCSR__MICFGINFO__Type.html#aa4534ca8d572c6ad46ab5d36fcf4ef8b", null ],
+      [ "set", "unionCSR__MICFGINFO__Type.html#a2071a4d9337c8db3b55419e531c0f095", null ],
+      [ "way", "unionCSR__MICFGINFO__Type.html#aff94588787995de0fdbf41a2cee027a7", null ]
+    ] ],
+    [ "CSR_MDCFGINFO_Type", "unionCSR__MDCFGINFO__Type.html", [
+      [ "_reserved0", "unionCSR__MDCFGINFO__Type.html#a333717d8ebf97d34c4b16376165d75d6", null ],
+      [ "_reserved1", "unionCSR__MDCFGINFO__Type.html#a6b960e8dad7dc4765ccecd3bc39b8324", null ],
+      [ "b", "unionCSR__MDCFGINFO__Type.html#a85fbee83bac44f6c00cdfe864f96d225", null ],
+      [ "cache_ecc", "unionCSR__MDCFGINFO__Type.html#a754ba23246054e1a6eed7b15884a7b8a", null ],
+      [ "d", "unionCSR__MDCFGINFO__Type.html#a458a2abb27aa334c0fda73efc7972aad", null ],
+      [ "lm_ecc", "unionCSR__MDCFGINFO__Type.html#a21c2b66473db29a108862083aa33ee99", null ],
+      [ "lm_size", "unionCSR__MDCFGINFO__Type.html#adca07e70d18b1ff255415c6addcec359", null ],
+      [ "lm_xonly", "unionCSR__MDCFGINFO__Type.html#a03f46ebc4ad02853aeb23f6393af879f", null ],
+      [ "lsize", "unionCSR__MDCFGINFO__Type.html#ab3ce74a5f243a63facff399be7643d89", null ],
+      [ "set", "unionCSR__MDCFGINFO__Type.html#a023b173b517068119914ee656fc7a95b", null ],
+      [ "way", "unionCSR__MDCFGINFO__Type.html#af9523adb1cddd68b9ebcf3684c676373", null ]
+    ] ],
+    [ "CSR_MPPICFGINFO_Type", "unionCSR__MPPICFGINFO__Type.html", [
+      [ "_reserved0", "unionCSR__MPPICFGINFO__Type.html#a0eb2a7df3561ad735893f146d2a8486c", null ],
+      [ "_reserved1", "unionCSR__MPPICFGINFO__Type.html#a3399bfc423e7ae9922c4230aa30f1e5b", null ],
+      [ "b", "unionCSR__MPPICFGINFO__Type.html#a1b979b45cd5821bfc709d7f38cedba68", null ],
+      [ "d", "unionCSR__MPPICFGINFO__Type.html#a3acaa252a892479c3374d93f3cbe136b", null ],
+      [ "ppi_bpa", "unionCSR__MPPICFGINFO__Type.html#a0231d5290407e502a3beeae1446ada69", null ],
+      [ "ppi_size", "unionCSR__MPPICFGINFO__Type.html#a3651fb2680625f58d1f89dedcd4e4893", null ]
+    ] ],
+    [ "CSR_MFIOCFGINFO_Type", "unionCSR__MFIOCFGINFO__Type.html", [
+      [ "_reserved0", "unionCSR__MFIOCFGINFO__Type.html#a19c4f0a9343bbb22d854c96b16f8a83f", null ],
+      [ "_reserved1", "unionCSR__MFIOCFGINFO__Type.html#aa96095fc84dafdb6399212fccb2aa26e", null ],
+      [ "b", "unionCSR__MFIOCFGINFO__Type.html#aae09929ce9ba9b721613c5a06dc0a21c", null ],
+      [ "d", "unionCSR__MFIOCFGINFO__Type.html#a5c2b9f4806e17df73af867d7e9c41d52", null ],
+      [ "fio_bpa", "unionCSR__MFIOCFGINFO__Type.html#abd5dbf580d3e19843d2cbef403a4cb58", null ],
+      [ "fio_size", "unionCSR__MFIOCFGINFO__Type.html#a1f0e485583d3413b162d757e37e7cbef", null ]
+    ] ],
+    [ "CSR_MECCLOCK_Type", "unionCSR__MECCLOCK__Type.html", [
+      [ "_reserved0", "unionCSR__MECCLOCK__Type.html#a88140d21b5b24147761737d4b9cd5d85", null ],
+      [ "b", "unionCSR__MECCLOCK__Type.html#aae4db42c6cca9b74bcf2f875ebaf6fa1", null ],
+      [ "d", "unionCSR__MECCLOCK__Type.html#adb7a90a3e474201d9461a572240eddaf", null ],
+      [ "ecc_lock", "unionCSR__MECCLOCK__Type.html#a26ac4f59d6c768f1bd04bd0cb64e74fa", null ]
+    ] ],
+    [ "CSR_MECCCODE_Type", "unionCSR__MECCCODE__Type.html", [
+      [ "_reserved0", "unionCSR__MECCCODE__Type.html#ae0f74ab89c67ddddee98564a153c9b7b", null ],
+      [ "_reserved1", "unionCSR__MECCCODE__Type.html#a1405a793cf94059253bc6447436fcf66", null ],
+      [ "_reserved2", "unionCSR__MECCCODE__Type.html#a5f360471c0c32ea33589a76118b8beac", null ],
+      [ "b", "unionCSR__MECCCODE__Type.html#a9783d3cd25c6d04251e9f06e7e0d5f34", null ],
+      [ "code", "unionCSR__MECCCODE__Type.html#a8f0640f2f7cd3312e462c9692121ed22", null ],
+      [ "d", "unionCSR__MECCCODE__Type.html#a3de5a1b1edf2ca4f244fb8f949fe3467", null ],
+      [ "ramid", "unionCSR__MECCCODE__Type.html#a2dece93fddce6fe3b986cae29302e028", null ],
+      [ "sramid", "unionCSR__MECCCODE__Type.html#ae1440a1a88e3b3e63b7f8c1e27cd83af", null ]
+    ] ],
+    [ "CSR_MMISCCTL_Type", "group__NMSIS__Core__Base__Registers.html#ga56f425a6599bc28e3921326cf5bbd040", null ]
 ];

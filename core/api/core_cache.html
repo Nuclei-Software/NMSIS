@@ -521,6 +521,12 @@
 </dd></dl>
 
 </div>
+<dl class="class">
+<dt id="_CPPv414CacheInfo_Type">
+<span id="_CPPv314CacheInfo_Type"></span><span id="_CPPv214CacheInfo_Type"></span><span id="CacheInfo_Type"></span><span class="target" id="structCacheInfo__Type"></span><em class="property">struct </em><code class="sig-name descname">CacheInfo_Type</code><a class="headerlink" href="#_CPPv414CacheInfo_Type" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;core_feature_cache.h&gt;</em><p>Cache Information Type. </p>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -534,6 +540,16 @@
 <dl class="function">
 <dt>
 <span class="target" id="group__NMSIS__Core__ICache_1ga4a855b01222d0c42d413f168651616e5"></span><code class="sig-name descname">__STATIC_FORCEINLINE void DisableICache(void)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga69a3a0ce8c5e4494161991074387162e"></span><code class="sig-name descname">__STATIC_FORCEINLINE int32_t GetICacheInfo(CacheInfo_Type  * info)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1gacc2be57be2e95f62a5381ba1f87977b3"></span><code class="sig-name descname">__STATIC_FORCEINLINE int32_t GetDCacheInfo(CacheInfo_Type  * info)</code></dt>
 <dd></dd></dl>
 
 <dl class="function">
@@ -680,6 +696,46 @@
 </dd>
 <dt><strong>See</strong></dt><dd><p><ul class="simple">
 <li><p>EnableICache </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1ga69a3a0ce8c5e4494161991074387162e"></span><code class="sig-name descname">__STATIC_FORCEINLINE int32_t GetICacheInfo(CacheInfo_Type  * info)</code></dt>
+<dd><p>Get I-Cache Information. </p>
+<p>This function get I-Cache Information <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p><ul class="simple">
+<li><p>This function can be called in M-Mode only.</p></li>
+<li><p>You can use this function in combination with cache lines operations </p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><ul class="simple">
+<li><p>GetDCacheInfo </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__ICache_1gacc2be57be2e95f62a5381ba1f87977b3"></span><code class="sig-name descname">__STATIC_FORCEINLINE int32_t GetDCacheInfo(CacheInfo_Type  * info)</code></dt>
+<dd><p>Get D-Cache Information. </p>
+<p>This function get D-Cache Information <dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p><ul class="simple">
+<li><p>This function can be called in M-Mode only.</p></li>
+<li><p>You can use this function in combination with cache lines operations </p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><ul class="simple">
+<li><p>GetICacheInfo </p></li>
 </ul>
 </p>
 </dd>
@@ -1920,7 +1976,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 09, 2021.
+        Last updated on Aug 10, 2021.
       </span>
 
     </p>

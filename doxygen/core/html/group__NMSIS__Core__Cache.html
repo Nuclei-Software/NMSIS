@@ -84,6 +84,7 @@ $(document).ready(function(){initNavTree('group__NMSIS__Core__Cache.html','');})
 <div class="header">
   <div class="summary">
 <a href="#groups">Modules</a> &#124;
+<a href="#nested-classes">Data Structures</a> &#124;
 <a href="#define-members">Macros</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
@@ -102,6 +103,12 @@ Modules</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:group__NMSIS__Core__DCache"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__DCache.html">D-Cache Functions</a></td></tr>
 <tr class="memdesc:group__NMSIS__Core__DCache"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functions that configure Data Cache. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCacheInfo__Type.html">CacheInfo_Type</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cache Information Type.  <a href="structCacheInfo__Type.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -194,9 +201,9 @@ Functions</h2></td></tr>
 
 <p>CSR CCM_SUEN: SUEN Mask. </p>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00092">92</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00102">102</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="core__feature__cache_8h_source.html#l00121">DisableSUCCM()</a>, and <a class="el" href="core__feature__cache_8h_source.html#l00105">EnableSUCCM()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="core__feature__cache_8h_source.html#l00131">DisableSUCCM()</a>, and <a class="el" href="core__feature__cache_8h_source.html#l00115">EnableSUCCM()</a>.</p>
 
 </div>
 </div>
@@ -214,7 +221,7 @@ Functions</h2></td></tr>
 
 <p>CSR CCM_SUEN: SUEN bit Position. </p>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00091">91</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00101">101</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
 
 </div>
 </div>
@@ -339,12 +346,12 @@ Functions</h2></td></tr>
 </ul>
 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00121">121</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00131">131</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
 
-<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00395">__RV_CSR_CLEAR</a>, <a class="el" href="core__feature__cache_8h_source.html#l00092">CCM_SUEN_SUEN_Msk</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00618">CSR_CCM_SUEN</a>.</p>
-<div class="fragment"><div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;{</div><div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#ga14cf0513f6b576fcd1ff700b08f65543">__RV_CSR_CLEAR</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga59e75e3573eb567358b1037a7076de37">CSR_CCM_SUEN</a>, <a class="code" href="group__NMSIS__Core__Cache.html#gabf38a15eb94b31efda1bd45aca351911">CCM_SUEN_SUEN_Msk</a>);</div><div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_ga14cf0513f6b576fcd1ff700b08f65543"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#ga14cf0513f6b576fcd1ff700b08f65543">__RV_CSR_CLEAR</a></div><div class="ttdeci">#define __RV_CSR_CLEAR(csr, val)</div><div class="ttdoc">CSR operation Macro for csrc instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00395">core_feature_base.h:395</a></div></div>
-<div class="ttc" id="group__NMSIS__Core__Cache_html_gabf38a15eb94b31efda1bd45aca351911"><div class="ttname"><a href="group__NMSIS__Core__Cache.html#gabf38a15eb94b31efda1bd45aca351911">CCM_SUEN_SUEN_Msk</a></div><div class="ttdeci">#define CCM_SUEN_SUEN_Msk</div><div class="ttdoc">CSR CCM_SUEN: SUEN Mask. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__cache_8h_source.html#l00092">core_feature_cache.h:92</a></div></div>
-<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga59e75e3573eb567358b1037a7076de37"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga59e75e3573eb567358b1037a7076de37">CSR_CCM_SUEN</a></div><div class="ttdeci">#define CSR_CCM_SUEN</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00618">riscv_encoding.h:618</a></div></div>
+<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00569">__RV_CSR_CLEAR</a>, <a class="el" href="core__feature__cache_8h_source.html#l00102">CCM_SUEN_SUEN_Msk</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00649">CSR_CCM_SUEN</a>.</p>
+<div class="fragment"><div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;{</div><div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#ga14cf0513f6b576fcd1ff700b08f65543">__RV_CSR_CLEAR</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga59e75e3573eb567358b1037a7076de37">CSR_CCM_SUEN</a>, <a class="code" href="group__NMSIS__Core__Cache.html#gabf38a15eb94b31efda1bd45aca351911">CCM_SUEN_SUEN_Msk</a>);</div><div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_ga14cf0513f6b576fcd1ff700b08f65543"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#ga14cf0513f6b576fcd1ff700b08f65543">__RV_CSR_CLEAR</a></div><div class="ttdeci">#define __RV_CSR_CLEAR(csr, val)</div><div class="ttdoc">CSR operation Macro for csrc instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00569">core_feature_base.h:569</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__Cache_html_gabf38a15eb94b31efda1bd45aca351911"><div class="ttname"><a href="group__NMSIS__Core__Cache.html#gabf38a15eb94b31efda1bd45aca351911">CCM_SUEN_SUEN_Msk</a></div><div class="ttdeci">#define CCM_SUEN_SUEN_Msk</div><div class="ttdoc">CSR CCM_SUEN: SUEN Mask. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__cache_8h_source.html#l00102">core_feature_cache.h:102</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga59e75e3573eb567358b1037a7076de37"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga59e75e3573eb567358b1037a7076de37">CSR_CCM_SUEN</a></div><div class="ttdeci">#define CSR_CCM_SUEN</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00649">riscv_encoding.h:649</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -374,12 +381,12 @@ Functions</h2></td></tr>
 </ul>
 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00105">105</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00115">115</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
 
-<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00358">__RV_CSR_SET</a>, <a class="el" href="core__feature__cache_8h_source.html#l00092">CCM_SUEN_SUEN_Msk</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00618">CSR_CCM_SUEN</a>.</p>
-<div class="fragment"><div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;{</div><div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gafdbd9b5a14b44913675d0fa73ca6716f">__RV_CSR_SET</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga59e75e3573eb567358b1037a7076de37">CSR_CCM_SUEN</a>, <a class="code" href="group__NMSIS__Core__Cache.html#gabf38a15eb94b31efda1bd45aca351911">CCM_SUEN_SUEN_Msk</a>);</div><div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__Cache_html_gabf38a15eb94b31efda1bd45aca351911"><div class="ttname"><a href="group__NMSIS__Core__Cache.html#gabf38a15eb94b31efda1bd45aca351911">CCM_SUEN_SUEN_Msk</a></div><div class="ttdeci">#define CCM_SUEN_SUEN_Msk</div><div class="ttdoc">CSR CCM_SUEN: SUEN Mask. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__cache_8h_source.html#l00092">core_feature_cache.h:92</a></div></div>
-<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga59e75e3573eb567358b1037a7076de37"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga59e75e3573eb567358b1037a7076de37">CSR_CCM_SUEN</a></div><div class="ttdeci">#define CSR_CCM_SUEN</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00618">riscv_encoding.h:618</a></div></div>
-<div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_gafdbd9b5a14b44913675d0fa73ca6716f"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#gafdbd9b5a14b44913675d0fa73ca6716f">__RV_CSR_SET</a></div><div class="ttdeci">#define __RV_CSR_SET(csr, val)</div><div class="ttdoc">CSR operation Macro for csrs instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00358">core_feature_base.h:358</a></div></div>
+<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00532">__RV_CSR_SET</a>, <a class="el" href="core__feature__cache_8h_source.html#l00102">CCM_SUEN_SUEN_Msk</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00649">CSR_CCM_SUEN</a>.</p>
+<div class="fragment"><div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;{</div><div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gafdbd9b5a14b44913675d0fa73ca6716f">__RV_CSR_SET</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga59e75e3573eb567358b1037a7076de37">CSR_CCM_SUEN</a>, <a class="code" href="group__NMSIS__Core__Cache.html#gabf38a15eb94b31efda1bd45aca351911">CCM_SUEN_SUEN_Msk</a>);</div><div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__Cache_html_gabf38a15eb94b31efda1bd45aca351911"><div class="ttname"><a href="group__NMSIS__Core__Cache.html#gabf38a15eb94b31efda1bd45aca351911">CCM_SUEN_SUEN_Msk</a></div><div class="ttdeci">#define CCM_SUEN_SUEN_Msk</div><div class="ttdoc">CSR CCM_SUEN: SUEN Mask. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__cache_8h_source.html#l00102">core_feature_cache.h:102</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga59e75e3573eb567358b1037a7076de37"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga59e75e3573eb567358b1037a7076de37">CSR_CCM_SUEN</a></div><div class="ttdeci">#define CSR_CCM_SUEN</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00649">riscv_encoding.h:649</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_gafdbd9b5a14b44913675d0fa73ca6716f"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#gafdbd9b5a14b44913675d0fa73ca6716f">__RV_CSR_SET</a></div><div class="ttdeci">#define __RV_CSR_SET(csr, val)</div><div class="ttdoc">CSR operation Macro for csrs instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00532">core_feature_base.h:532</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -405,11 +412,11 @@ Functions</h2></td></tr>
 </ul>
 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00135">135</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00145">145</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
 
-<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00321">__RV_CSR_WRITE</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00625">CSR_CCM_FPIPE</a>.</p>
-<div class="fragment"><div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;{</div><div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga7f214054147ffd229cc1aba320cf8405">CSR_CCM_FPIPE</a>, 0x1);</div><div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_gaa2d43f43f3f333cfd8e5a326a2aed413"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a></div><div class="ttdeci">#define __RV_CSR_WRITE(csr, val)</div><div class="ttdoc">CSR operation Macro for csrw instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00321">core_feature_base.h:321</a></div></div>
-<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga7f214054147ffd229cc1aba320cf8405"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga7f214054147ffd229cc1aba320cf8405">CSR_CCM_FPIPE</a></div><div class="ttdeci">#define CSR_CCM_FPIPE</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00625">riscv_encoding.h:625</a></div></div>
+<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00495">__RV_CSR_WRITE</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00656">CSR_CCM_FPIPE</a>.</p>
+<div class="fragment"><div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;{</div><div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga7f214054147ffd229cc1aba320cf8405">CSR_CCM_FPIPE</a>, 0x1);</div><div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_gaa2d43f43f3f333cfd8e5a326a2aed413"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a></div><div class="ttdeci">#define __RV_CSR_WRITE(csr, val)</div><div class="ttdoc">CSR operation Macro for csrw instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00495">core_feature_base.h:495</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga7f214054147ffd229cc1aba320cf8405"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga7f214054147ffd229cc1aba320cf8405">CSR_CCM_FPIPE</a></div><div class="ttdeci">#define CSR_CCM_FPIPE</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00656">riscv_encoding.h:656</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -418,7 +425,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Aug 9 2021 06:07:19 for NMSIS-Core by
+    <li class="footer">Generated on Tue Aug 10 2021 06:03:35 for NMSIS-Core by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

@@ -2,6 +2,12 @@ var group__NMSIS__Core__Cache =
 [
     [ "I-Cache Functions", "group__NMSIS__Core__ICache.html", "group__NMSIS__Core__ICache" ],
     [ "D-Cache Functions", "group__NMSIS__Core__DCache.html", "group__NMSIS__Core__DCache" ],
+    [ "CacheInfo_Type", "structCacheInfo__Type.html", [
+      [ "linesize", "structCacheInfo__Type.html#aca857f59d80919532a355a0508a0e236", null ],
+      [ "setperway", "structCacheInfo__Type.html#a4921aea5a2a5e4527c06cd00e63e4ed5", null ],
+      [ "size", "structCacheInfo__Type.html#aead3d43e2bd952914a9b81aacb86b94e", null ],
+      [ "ways", "structCacheInfo__Type.html#a963618b4e0fa8b89df750f8170a2a8ed", null ]
+    ] ],
     [ "CCM_SUEN_SUEN_Msk", "group__NMSIS__Core__Cache.html#gabf38a15eb94b31efda1bd45aca351911", null ],
     [ "CCM_SUEN_SUEN_Pos", "group__NMSIS__Core__Cache.html#gaee848e71337bf42ea0087520fb0d0587", null ],
     [ "CCM_CMD_Type", "group__NMSIS__Core__Cache.html#ga700ee5ca80d2777b38c6d8c963e4e5a9", [

@@ -54,6 +54,7 @@ var searchData=
   ['mcontrol_5fu',['MCONTROL_U',['../group__NMSIS__Core__CSR__Encoding.html#ga13c4a265729f4de2d9e7319e5aa29d8d',1,'riscv_encoding.h']]],
   ['mcountinhibit_5fcy',['MCOUNTINHIBIT_CY',['../group__NMSIS__Core__CSR__Encoding.html#ga675e4d52a85bafc0a1663cf2f431583a',1,'riscv_encoding.h']]],
   ['mcountinhibit_5fir',['MCOUNTINHIBIT_IR',['../group__NMSIS__Core__CSR__Encoding.html#gae8693a1f795a0f752391c609ce011cbf',1,'riscv_encoding.h']]],
+  ['mdcause',['mdcause',['../unionCSR__MDCAUSE__Type.html#aea660f37d75c94912e4d9aeb883885e0',1,'CSR_MDCAUSE_Type']]],
   ['mdcause_5fmdcause',['MDCAUSE_MDCAUSE',['../group__NMSIS__Core__CSR__Encoding.html#gaa453deb1f8a1f3f3a5838ad4965ca766',1,'riscv_encoding.h']]],
   ['mdcfg_5fdc_5fecc',['MDCFG_DC_ECC',['../group__NMSIS__Core__CSR__Encoding.html#ga716b71a4271e56713d384a5e4655244d',1,'riscv_encoding.h']]],
   ['mdcfg_5fdc_5flsize',['MDCFG_DC_LSIZE',['../group__NMSIS__Core__CSR__Encoding.html#gae0e3d905405aa26daa960ab7c9037093',1,'riscv_encoding.h']]],

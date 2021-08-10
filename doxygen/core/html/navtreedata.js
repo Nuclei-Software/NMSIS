@@ -6,8 +6,8 @@ var NAVTREE =
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Fields", "functions.html", [
-        [ "All", "functions.html", null ],
-        [ "Variables", "functions_vars.html", null ]
+        [ "All", "functions.html", "functions_dup" ],
+        [ "Variables", "functions_vars.html", "functions_vars" ]
       ] ]
     ] ],
     [ "Globals", "globals.html", [
@@ -20,11 +20,12 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"group__NMSIS__Core__CSR__Encoding.html#gabf604fa800bf4ef6aa8e58e662c34317",
-"group__NMSIS__Core__CSR__Registers.html#gaab22a5666b6fd37cde09583f0ca66133",
-"group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU.html#ga836b1f78407443c88b5958a7cfb3361f",
-"group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__PACK.html#ga2d33235fc87cd78798e5824e3b84054d",
-"group__NMSIS__Core__PMP__Functions.html#gaf509ec494237545e28812695aaaa30c8"
+"group__NMSIS__Core__CSR__Encoding.html#ga9a6cc1c06bc9eae80ac1f5a0fd0e7584",
+"group__NMSIS__Core__CSR__Registers.html#ga63284922fe78d5eb60d66785d6013ee0",
+"group__NMSIS__Core__DCache.html#gad2b9184fe3f7e4d846cf472c32307aff",
+"group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X16__MAC.html#ga60e15a6243014fd5b76b7cffa7275eb4",
+"group__NMSIS__Core__IntExc.html#ga59e29ad3023110a58eb9163d976f44c6",
+"unionCSR__MDLMCTL__Type.html#a2818a047f0411e86358ee943206000c1"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
