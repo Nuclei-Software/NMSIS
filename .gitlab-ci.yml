@@ -26,6 +26,9 @@ build_doc:
     changes:
       - NMSIS/doc/source/**/**/**/*
       - .gitlab-ci.yml
+      - NMSIS/Core/
+      - NMSIS/DSP/
+      - NMSIS/NN/
   artifacts:
     name: "nmsis_doc-${CI_COMMIT_SHA::8}"
     paths:
@@ -187,6 +190,9 @@ deploy_website:
     changes:
       - NMSIS/doc/source/**/**/**/*
       - .gitlab-ci.yml
+      - NMSIS/Core/
+      - NMSIS/DSP/
+      - NMSIS/NN/
   dependencies:
     - build_doc
   tags:
