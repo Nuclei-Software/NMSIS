@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h &mdash; NMSIS 1.0.2-RC2 documentation</title>
+  <title>System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h &mdash; NMSIS 1.0.2 documentation</title>
   
 
   
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC2
+                1.0.2
               </div>
             
           
@@ -196,7 +196,9 @@
 <p>The <strong>System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h</strong>
 provides as a minimum the functions described under <a class="reference internal" href="api/core_system_device.html#core-api-system-device"><span class="std std-ref">System Device Configuration</span></a>.</p>
 <p>These functions are device specific and need adaptations. In addition, the file might have
-configuration settings for the device such as XTAL frequency or PLL prescaler settings, necessary system initilization, vendor customized interrupt, exception and nmi handling code, refer to <a class="reference internal" href="api/core_system_device.html#core-api-system-device"><span class="std std-ref">System Device Configuration</span></a> for more details.</p>
+configuration settings for the device such as XTAL frequency or PLL prescaler settings,
+necessary system initialization, vendor customized interrupt, exception and nmi handling code,
+refer to <a class="reference internal" href="api/core_system_device.html#core-api-system-device"><span class="std std-ref">System Device Configuration</span></a> for more details.</p>
 <p>For devices with external memory BUS the <code class="docutils literal notranslate"><span class="pre">system_&lt;device&gt;.c</span></code> also configures the BUS system.</p>
 <p>The silicon vendor might expose other functions (i.e. for power configuration) in the <code class="docutils literal notranslate"><span class="pre">system_&lt;device&gt;.c</span></code> file.
 In case of additional features the function prototypes need to be added to the <code class="docutils literal notranslate"><span class="pre">system_&lt;device&gt;.h</span></code> header file.</p>
@@ -613,7 +615,10 @@ In case of additional features the function prototypes need to be added to the <
 408
 409
 410
-411</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+411
+412
+413
+414</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm"> * Copyright (c) 2009-2018 Arm Limited. All rights reserved.</span>
 <span class="cm"> * Copyright (c) 2019 Nuclei Limited. All rights reserved.</span>
 <span class="cm"> *</span>
@@ -661,7 +666,7 @@ In case of additional features the function prototypes need to be added to the <
 <span class="cm"> *  -  A device-specific system configuration function, \ref SystemInit.</span>
 <span class="cm"> *  -  A global variable that contains the system frequency, \ref SystemCoreClock.</span>
 <span class="cm"> *  -  A global eclic configuration initialization, \ref ECLIC_Init.</span>
-<span class="cm"> *  -  Global c library \ref _init and \ref _fini functions called right before calling main function.</span>
+<span class="cm"> *  -  Global \ref _premain_init and \ref _postmain_fini functions called right before calling main function.</span>
 <span class="cm"> *  -  Vendor customized interrupt, exception and nmi handling code, see \ref NMSIS_Core_IntExcNMI_Handling</span>
 <span class="cm"> *</span>
 <span class="cm"> * The file configures the device and, typically, initializes the oscillator (PLL) that is part</span>
@@ -674,6 +679,9 @@ In case of additional features the function prototypes need to be added to the <
 <span class="cm"> * \note Please pay special attention to the static variable \c SystemCoreClock. This variable might be</span>
 <span class="cm"> * used throughout the whole system initialization and runtime to calculate frequency/time related values.</span>
 <span class="cm"> * Thus one must assure that the variable always reflects the actual system clock speed.</span>
+<span class="cm"> *</span>
+<span class="cm"> * \note \ref _init function and \ref _fini function are now deprecated, but still need to provide a empty implementation</span>
+<span class="cm"> * here, due to newlibc still need it. Please put your pre- and post- main steps in \ref _premain_init and \ref _postmain_fini</span>
 <span class="cm"> *</span>
 <span class="cm"> * \attention</span>
 <span class="cm"> * Be aware that a value stored to \c SystemCoreClock during low level initialization (i.e. \c SystemInit()) might get</span>
@@ -1294,7 +1302,7 @@ In case of additional features the function prototypes need to be added to the <
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 10, 2021.
+        Last updated on Aug 13, 2021.
       </span>
 
     </p>

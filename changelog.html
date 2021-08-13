@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Changelog &mdash; NMSIS 1.0.2-RC2 documentation</title>
+  <title>Changelog &mdash; NMSIS 1.0.2 documentation</title>
   
 
   
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC2
+                1.0.2
               </div>
             
           
@@ -95,6 +95,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dsp/index.html">NMSIS DSP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nn/index.html">NMSIS NN</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#v1-0-2">V1.0.2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v1-0-2-rc2">V1.0.2-RC2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v1-0-2-rc1">V1.0.2-RC1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v1-0-1">V1.0.1</a></li>
@@ -173,12 +174,53 @@
             
   <div class="section" id="changelog">
 <span id="id1"></span><h1>Changelog<a class="headerlink" href="#changelog" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="v1-0-2">
+<h2>V1.0.2<a class="headerlink" href="#v1-0-2" title="Permalink to this headline">¶</a></h2>
+<p>This is the official release version <code class="docutils literal notranslate"><span class="pre">V1.0.2</span></code> release of Nuclei MCU Software Interface Standard(NMSIS).</p>
+<p>The following changes has been made since <code class="docutils literal notranslate"><span class="pre">V1.0.1</span></code>.</p>
+<ul>
+<li><p><strong>Documentation</strong></p>
+<ul class="simple">
+<li><p>Update NMSIS Core/DSP/NN related documentation</p></li>
+</ul>
+</li>
+<li><p><strong>Device Templates</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>DOWNLOAD_MODE_xxx macros are removed from riscv_encoding.h, it is now defined as enum in <code class="docutils literal notranslate"><span class="pre">&lt;Device.h&gt;</span></code>, and
+can be customized by soc vendor.</p></li>
+<li><p>startup code now don’t rely on DOWNLOAD_MODE macro, instead it now rely on a new macro called VECTOR_TABLE_REMAPPED,
+when VECTOR_TABLE_REMAPPED is defined, it means the vector table’s lma != vma, such as vector table need to be
+copied from flash to ilm when boot up</p></li>
+<li><p>Add more customized csr of Nuclei RISC-V Core</p></li>
+<li><p>Add <strong>BIT</strong>, <strong>BITS</strong>, <strong>REG</strong>, <strong>ADDR</strong> related macros in <code class="docutils literal notranslate"><span class="pre">&lt;Device.h&gt;</span></code></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>NMSIS-Core</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Nuclei Cache CCM operation APIs are now introduced in core_feature_cache.h</p></li>
+<li><p>Update NMSIS-Core header files</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>NMSIS-DSP/NN</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Merged the official CMSIS 5.8.0 release, CMSIS-DSP 1.9.0, CMSIS-NN 3.0.0</p></li>
+<li><p>RISC-V Vector extension and P-extension support for DSP/NN libraries are added</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
 <div class="section" id="v1-0-2-rc2">
 <h2>V1.0.2-RC2<a class="headerlink" href="#v1-0-2-rc2" title="Permalink to this headline">¶</a></h2>
 <p>This is the release candidate version <code class="docutils literal notranslate"><span class="pre">V1.0.2-RC2</span></code> release of Nuclei MCU Software Interface Standard(NMSIS).</p>
 <p>The following changes has been made since <code class="docutils literal notranslate"><span class="pre">V1.0.2-RC1</span></code>.</p>
 <ul class="simple">
-<li><p>Documentation</p>
+<li><p><strong>Documentation</strong></p>
 <ul>
 <li><p>Update NMSIS Core/DSP/NN related documentation</p></li>
 </ul>
@@ -221,7 +263,7 @@ copied from flash to ilm when boot up</p></li>
 </div>
 <div class="section" id="v1-0-1">
 <h2>V1.0.1<a class="headerlink" href="#v1-0-1" title="Permalink to this headline">¶</a></h2>
-<p>This is the offical <code class="docutils literal notranslate"><span class="pre">V1.0.1</span></code> release of Nuclei MCU Software Interface Standard(NMSIS).</p>
+<p>This is the official <code class="docutils literal notranslate"><span class="pre">V1.0.1</span></code> release of Nuclei MCU Software Interface Standard(NMSIS).</p>
 <p>The following changes has been maded since <code class="docutils literal notranslate"><span class="pre">V1.0.1-RC1</span></code>.</p>
 <ul class="simple">
 <li><p><strong>Device Templates</strong></p>
@@ -372,7 +414,7 @@ library developed to maximize the performance and minimize the memory footprint 
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 10, 2021.
+        Last updated on Aug 13, 2021.
       </span>
 
     </p>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>System Device Configuration &mdash; NMSIS 1.0.2-RC2 documentation</title>
+  <title>System Device Configuration &mdash; NMSIS 1.0.2 documentation</title>
   
 
   
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC2
+                1.0.2
               </div>
             
           
@@ -202,7 +202,7 @@
 <li><p>A device-specific system configuration function, <a class="reference internal" href="#group__NMSIS__Core__SystemConfig_1ga93f514700ccf00d08dbdcff7f1224eb2"><span class="std std-ref">SystemInit</span></a>.</p></li>
 <li><p>A global variable that contains the system frequency, <a class="reference internal" href="#group__NMSIS__Core__SystemConfig_1gaa3cd3e43291e81e795d642b79b6088e6"><span class="std std-ref">SystemCoreClock</span></a>.</p></li>
 <li><p>A global eclic configuration initialization, <a class="reference internal" href="#group__NMSIS__Core__IntExcNMI__Handling_1ga2d2e27f47287f5d28cc26f2cb214337f"><span class="std std-ref">ECLIC_Init</span></a>.</p></li>
-<li><p>Global c library <a class="reference internal" href="#group__NMSIS__Core__SystemConfig_1gad1cbc4315ef293463e6057dfb24c8115"><span class="std std-ref">_init</span></a> and <a class="reference internal" href="#group__NMSIS__Core__SystemConfig_1ga173a20f19acf36985bbac6786a02b544"><span class="std std-ref">_fini</span></a> functions called right before calling main function.</p></li>
+<li><p>Global <a class="reference internal" href="#group__NMSIS__Core__SystemConfig_1gad13ba247efe59bbe2b6004d9bd0f10db"><span class="std std-ref">_premain_init</span></a> and <a class="reference internal" href="#group__NMSIS__Core__SystemConfig_1ga6eb76a75cf67b543443efc82ecf33713"><span class="std std-ref">_postmain_fini</span></a> functions called right before calling main function.</p></li>
 <li><p>Vendor customized interrupt, exception and nmi handling code, see <a class="reference internal" href="#group__NMSIS__Core__IntExcNMI__Handling"><span class="std std-ref">Interrupt and Exception and NMI Handling</span></a></p></li>
 </ul>
 </p>
@@ -210,6 +210,8 @@
 <p>And this file also provided common interrupt, exception and NMI exception handling framework template, Silicon vendor can customize these template code as they want.</p>
 <p><dl class="simple">
 <dt><strong>Note</strong></dt><dd><p>Please pay special attention to the static variable <code class="docutils literal notranslate"><span class="pre">SystemCoreClock</span></code>. This variable might be used throughout the whole system initialization and runtime to calculate frequency/time related values. Thus one must assure that the variable always reflects the actual system clock speed.</p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p><a class="reference internal" href="#group__NMSIS__Core__SystemConfig_1gad1cbc4315ef293463e6057dfb24c8115"><span class="std std-ref">_init</span></a> function and <a class="reference internal" href="#group__NMSIS__Core__SystemConfig_1ga173a20f19acf36985bbac6786a02b544"><span class="std std-ref">_fini</span></a> function are now deprecated, but still need to provide a empty implementation here, due to newlibc still need it. Please put your pre- and post- main steps in <a class="reference internal" href="#group__NMSIS__Core__SystemConfig_1gad13ba247efe59bbe2b6004d9bd0f10db"><span class="std std-ref">_premain_init</span></a> and <a class="reference internal" href="#group__NMSIS__Core__SystemConfig_1ga6eb76a75cf67b543443efc82ecf33713"><span class="std std-ref">_postmain_fini</span></a></p>
 </dd>
 <dt><strong>Attention</strong></dt><dd><p>Be aware that a value stored to <code class="docutils literal notranslate"><span class="pre">SystemCoreClock</span></code> during low level initialization (i.e. <code class="docutils literal notranslate"><a class="reference internal" href="#group__NMSIS__Core__SystemConfig_1ga93f514700ccf00d08dbdcff7f1224eb2"><span class="std std-ref"><span class="pre">SystemInit()</span></span></a></code>) might get overwritten by C libray startup code and/or .bss section initialization. Thus its highly recommended to call <a class="reference internal" href="#group__NMSIS__Core__SystemConfig_1gae0c36a9591fe6e9c45ecb21a794f0f0f"><span class="std std-ref">SystemCoreClockUpdate</span></a> at the beginning of the user <code class="docutils literal notranslate"><span class="pre">main()</span></code> routine. </p>
 </dd>
@@ -481,7 +483,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 10, 2021.
+        Last updated on Aug 13, 2021.
       </span>
 
     </p>

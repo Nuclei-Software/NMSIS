@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Interrupt and Exception Handling File: intexc_&lt;device&gt;.S &mdash; NMSIS 1.0.2-RC2 documentation</title>
+  <title>Interrupt and Exception Handling File: intexc_&lt;device&gt;.S &mdash; NMSIS 1.0.2 documentation</title>
   
 
   
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2-RC2
+                1.0.2
               </div>
             
           
@@ -215,13 +215,16 @@
 <p>Click <a class="reference external" href="https://doc.nucleisys.com/nuclei_spec/isa/nmi.html">NMI</a> to learn about Nuclei Processor Core NMI in Nuclei ISA Spec.</p>
 <p>NMI is used for urgent external HW error. It can’t be masked and disabled.</p>
 <p>When NMI happened, bit 9 of CSR <code class="docutils literal notranslate"><span class="pre">MMSIC_CTL</span></code> will be checked.
-If this bit value is 1, then NMI entry address will be the same as exception(CSR_MTVEC), and exception code for NMI will be 0xFFF, otherwise NMI entry will be same as reset_vector.</p>
-<p>In NMSIS-Core, the bit 9 of CSR <code class="docutils literal notranslate"><span class="pre">MMISC_CTL</span></code> is set to 1 during core startup, so NMI will be treated as Exception and handled.</p>
+If this bit value is 1, then NMI entry address will be the same as exception(CSR_MTVEC),
+and exception code for NMI will be 0xFFF, otherwise NMI entry will be same as reset_vector.</p>
+<p>In NMSIS-Core, the bit 9 of CSR <code class="docutils literal notranslate"><span class="pre">MMISC_CTL</span></code> is set to 1 during core startup,
+so NMI will be treated as Exception and handled.</p>
 </div>
 <div class="section" id="exception">
 <h2>Exception<a class="headerlink" href="#exception" title="Permalink to this headline">¶</a></h2>
 <p>Click <a class="reference external" href="https://doc.nucleisys.com/nuclei_spec/isa/exception.html">Exception</a> to learn about Nuclei Processor Core Exception in Nuclei ISA Spec.</p>
-<p>For CPU exception, the entry for exception will be <code class="docutils literal notranslate"><span class="pre">exc_entry</span></code>, in this entry code, it will call default exception handler <a class="reference internal" href="api/core_system_device.html#_CPPv422core_exception_handlermm" title="core_exception_handler"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">core_exception_handler()</span></code></a>.</p>
+<p>For CPU exception, the entry for exception will be <code class="docutils literal notranslate"><span class="pre">exc_entry</span></code>, in this entry code,
+it will call default exception handler <a class="reference internal" href="api/core_system_device.html#_CPPv422core_exception_handlermm" title="core_exception_handler"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">core_exception_handler()</span></code></a>.</p>
 <p>In the common exception routine(<code class="docutils literal notranslate"><span class="pre">exc_entry</span></code>) to get more information like exception code.
 Exception handle flow show as below picture:</p>
 <div class="figure align-center" id="id3">
@@ -235,24 +238,29 @@ Exception handle flow show as below picture:</p>
 <li><p>Exception nesting exception</p></li>
 <li><p>Exception nesting NMI</p></li>
 </ul>
-<p>For software, we have provided the common entry for NMI and exception. Silicon vendor only need adapt the interface defined in <a class="reference internal" href="api/core_system_device.html#core-api-intexc-nmi-handling"><span class="std std-ref">Interrupt Exception NMI Handling</span></a>.</p>
+<p>For software, we have provided the common entry for NMI and exception. Silicon vendor only need adapt
+the interface defined in <a class="reference internal" href="api/core_system_device.html#core-api-intexc-nmi-handling"><span class="std std-ref">Interrupt Exception NMI Handling</span></a>.</p>
 <p>Context save and restore have been handled by <code class="docutils literal notranslate"><span class="pre">exc_entry</span></code> interface.</p>
-<p>When exception exception return it will run the intruction which trigger the exception again. It will cause software dead loop. So in the exception handler for each exception code, we propose to set CSR <code class="docutils literal notranslate"><span class="pre">MEPC</span></code> to be <code class="docutils literal notranslate"><span class="pre">MEPC+4</span></code>, then it will start from next instruction of MEPC.</p>
+<p>When exception exception return it will run the instruction which trigger the exception again.
+It will cause software dead loop. So in the exception handler for each exception code,
+we propose to set CSR <code class="docutils literal notranslate"><span class="pre">MEPC</span></code> to be <code class="docutils literal notranslate"><span class="pre">MEPC+4</span></code>, then it will start from next instruction of MEPC.</p>
 </div>
 <div class="section" id="interrupt">
 <h2>Interrupt<a class="headerlink" href="#interrupt" title="Permalink to this headline">¶</a></h2>
 <p>Click <a class="reference external" href="https://doc.nucleisys.com/nuclei_spec/isa/interrupt.html">Interrupt</a> to learn about Nuclei Processor Core Interrupt in Nuclei Spec.</p>
 <p>Interrupt could be configured as <strong>CLINT</strong> mode or <strong>ECILC</strong> mode.</p>
-<p>In NMSIS-Core, Interrupt has been configured as <strong>ECLIC</strong> mode during startup in <em>startup_&lt;Devices&gt;.S</em>, which is also recommended setting using Nuclei Processors.</p>
+<p>In NMSIS-Core, Interrupt has been configured as <strong>ECLIC</strong> mode during startup in <em>startup_&lt;Devices&gt;.S</em>,
+which is also recommended setting using Nuclei Processors.</p>
 <p>ECLIC managed interrupt could configured as <strong>vector</strong> and <strong>non-vector</strong> mode.</p>
 <p>Detail interrupt handling process as below picture:</p>
 <div class="figure align-center" id="id4">
 <span id="figure-template-intexc-2"></span><a class="reference internal image-reference" href="../_images/NMSIS_intexc.png"><img alt="Interrupt Handling Flow" src="../_images/NMSIS_intexc.png" style="width: 80%;" /></a>
 <p class="caption"><span class="caption-text">Interrupt Handling Flow</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
-<p>To get highest priority interrupt we need compare the interrupt level first.If level is the same then compare the priority. High level interrupt could interrupt low level
-ISR and trigger interrupt nesting. If different priority with same level interrupt pending higher priority will be served first. Interrupt could be configured as vector mode
-and non-vector mode by vendor. For non-vector mode interrupt handler entry get from MTVT2 and exception/NMI handler entry get from MTVEC. If Vendor need set non vector mode
+<p>To get highest priority interrupt we need compare the interrupt level first.If level is the same then compare the priority.
+High level interrupt could interrupt low level ISR and trigger interrupt nesting. If different priority with same level
+interrupt pending higher priority will be served first. Interrupt could be configured as vector mode and non-vector mode by vendor.
+For non-vector mode interrupt handler entry get from MTVT2 and exception/NMI handler entry get from MTVEC. If Vendor need set non vector mode
 interrupt handler entry from <code class="docutils literal notranslate"><span class="pre">MTVVEC</span></code> you need set <code class="docutils literal notranslate"><span class="pre">MTVT2.BIT0</span></code> as 0.</p>
 <div class="section" id="non-vector-interrupt-sw-handler">
 <h3>Non-Vector Interrupt SW handler<a class="headerlink" href="#non-vector-interrupt-sw-handler" title="Permalink to this headline">¶</a></h3>
@@ -267,7 +275,11 @@ Non-vector mode software handle flow show as below pciture:</p>
 <li><p>Get non-vector mode handler entry from <code class="docutils literal notranslate"><span class="pre">MTVT2</span></code> if <code class="docutils literal notranslate"><span class="pre">MTVT2.BIT0</span></code> is 1(proposed configuration).</p></li>
 <li><p>Context save to stack for cpu registers.</p></li>
 <li><p>Save CSR registers <code class="docutils literal notranslate"><span class="pre">MEPC/MCAUSE/MSUBM</span></code> to stack.</p></li>
-<li><p>Run instruction <code class="docutils literal notranslate"><span class="pre">csrrw</span> <span class="pre">ra,</span> <span class="pre">CSR_JALMNXTI,</span> <span class="pre">ra</span></code>. It will enable interrupt, check interrupt pending. If interrupt is pending then get highest priority interrupt and jump to interrupt handler entry in the vector table, otherwise it will go to step 6.</p></li>
+</ol>
+<p>4. Run instruction <code class="docutils literal notranslate"><span class="pre">csrrw</span> <span class="pre">ra,</span> <span class="pre">CSR_JALMNXTI,</span> <span class="pre">ra</span></code>. It will enable interrupt, check interrupt pending.
+If interrupt is pending then get highest priority interrupt and jump to interrupt handler entry in the vector table,
+otherwise it will go to step 6.</p>
+<ol class="arabic simple" start="5">
 <li><p>Execute the interrupt handler routine, when return from isr routine it will jump to step 4.</p></li>
 <li><p>Global interrupt disable.</p></li>
 <li><p>Restore CSR registers <code class="docutils literal notranslate"><span class="pre">MEPC/MCAUSE/MSUBM</span></code>.</p></li>
@@ -865,7 +877,7 @@ changes you may need some adaption.</p>
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Aug 10, 2021.
+        Last updated on Aug 13, 2021.
       </span>
 
     </p>

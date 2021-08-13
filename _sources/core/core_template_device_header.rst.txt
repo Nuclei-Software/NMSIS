@@ -6,8 +6,11 @@ Device Header File <device.h>
 The :ref:`core_template_device_header` contains the following sections that are device specific:
   - :ref:`core_interrupt_num_def` provides interrupt numbers (IRQn) for all exceptions and interrupts of the device.
   - :ref:`nmsis_core_configuration` reflect the features of the device.
-  - :ref:`core_device_periph_access` provides definitions for the :ref:`core_api_periph_access` to all device peripherals. It contains all data structures and the address mapping for device-specific peripherals.
-  - **Access Functions for Peripherals (optional)** provide additional helper functions for peripherals that are useful for programming of these peripherals. Access Functions may be provided as inline functions or can be extern references to a device-specific library provided by the silicon vendor.
+  - :ref:`core_device_periph_access` provides definitions for the :ref:`core_api_periph_access` to all device peripherals.
+    It contains all data structures and the address mapping for device-specific peripherals.
+  - **Access Functions for Peripherals (optional)** provide additional helper functions for peripherals that are useful
+    for programming of these peripherals. Access Functions may be provided as inline functions or can be extern references
+    to a device-specific library provided by the silicon vendor.
 
 :ref:`nmsis_core_api` describes the standard features and functions of the :ref:`core_template_device_header` in detail.
 
@@ -48,7 +51,7 @@ The following example shows the extension of the interrupt vector table for the 
         Reserved14_IRQn              =  16,     /*!<  Internal reserved                        */
         HardFault_IRQn               =  17,     /*!<  Hard Fault, storage access error         */
         Reserved15_IRQn              =  18,     /*!<  Internal reserved                        */
-    
+
         /******  GD32VF103 Specific Interrupt Numbers ******************************************/
         WWDGT_IRQn                   =  19,     /*!< window watchDog timer interrupt           */
         LVD_IRQn                     =  20,     /*!< LVD through EXTI line detect interrupt    */
