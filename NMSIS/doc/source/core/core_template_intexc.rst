@@ -19,9 +19,11 @@ Click `NMI`_ to learn about Nuclei Processor Core NMI in Nuclei ISA Spec.
 NMI is used for urgent external HW error. It can't be masked and disabled.
 
 When NMI happened, bit 9 of CSR ``MMSIC_CTL`` will be checked.
-If this bit value is 1, then NMI entry address will be the same as exception(CSR_MTVEC), and exception code for NMI will be 0xFFF, otherwise NMI entry will be same as reset_vector.
+If this bit value is 1, then NMI entry address will be the same as exception(CSR_MTVEC),
+and exception code for NMI will be 0xFFF, otherwise NMI entry will be same as reset_vector.
 
-In NMSIS-Core, the bit 9 of CSR ``MMISC_CTL`` is set to 1 during core startup, so NMI will be treated as Exception and handled.
+In NMSIS-Core, the bit 9 of CSR ``MMISC_CTL`` is set to 1 during core startup,
+so NMI will be treated as Exception and handled.
 
 
 Exception
@@ -29,7 +31,8 @@ Exception
 
 Click `Exception`_ to learn about Nuclei Processor Core Exception in Nuclei ISA Spec.
 
-For CPU exception, the entry for exception will be ``exc_entry``, in this entry code, it will call default exception handler :cpp:func:`core_exception_handler`.
+For CPU exception, the entry for exception will be ``exc_entry``, in this entry code,
+it will call default exception handler :cpp:func:`core_exception_handler`.
 
 In the common exception routine(``exc_entry``) to get more information like exception code.
 Exception handle flow show as below picture:
@@ -52,11 +55,14 @@ We support three nesting mode as below:
 - Exception nesting NMI
 
 
-For software, we have provided the common entry for NMI and exception. Silicon vendor only need adapt the interface defined in :ref:`core_api_intexc_nmi_handling`.
+For software, we have provided the common entry for NMI and exception. Silicon vendor only need adapt
+the interface defined in :ref:`core_api_intexc_nmi_handling`.
 
 Context save and restore have been handled by ``exc_entry`` interface.
 
-When exception exception return it will run the intruction which trigger the exception again. It will cause software dead loop. So in the exception handler for each exception code, we propose to set CSR ``MEPC`` to be ``MEPC+4``, then it will start from next instruction of MEPC.
+When exception exception return it will run the instruction which trigger the exception again.
+It will cause software dead loop. So in the exception handler for each exception code,
+we propose to set CSR ``MEPC`` to be ``MEPC+4``, then it will start from next instruction of MEPC.
 
 Interrupt
 ---------
@@ -65,7 +71,8 @@ Click `Interrupt`_ to learn about Nuclei Processor Core Interrupt in Nuclei Spec
 
 Interrupt could be configured as **CLINT** mode or **ECILC** mode.
 
-In NMSIS-Core, Interrupt has been configured as **ECLIC** mode during startup in *startup_<Devices>.S*, which is also recommended setting using Nuclei Processors.
+In NMSIS-Core, Interrupt has been configured as **ECLIC** mode during startup in *startup_<Devices>.S*,
+which is also recommended setting using Nuclei Processors.
 
 ECLIC managed interrupt could configured as **vector** and **non-vector** mode.
 
@@ -81,9 +88,10 @@ Detail interrupt handling process as below picture:
     Interrupt Handling Flow
 
 
-To get highest priority interrupt we need compare the interrupt level first.If level is the same then compare the priority. High level interrupt could interrupt low level
-ISR and trigger interrupt nesting. If different priority with same level interrupt pending higher priority will be served first. Interrupt could be configured as vector mode 
-and non-vector mode by vendor. For non-vector mode interrupt handler entry get from MTVT2 and exception/NMI handler entry get from MTVEC. If Vendor need set non vector mode
+To get highest priority interrupt we need compare the interrupt level first.If level is the same then compare the priority.
+High level interrupt could interrupt low level ISR and trigger interrupt nesting. If different priority with same level
+interrupt pending higher priority will be served first. Interrupt could be configured as vector mode and non-vector mode by vendor.
+For non-vector mode interrupt handler entry get from MTVT2 and exception/NMI handler entry get from MTVEC. If Vendor need set non vector mode
 interrupt handler entry from ``MTVVEC`` you need set ``MTVT2.BIT0`` as 0.
 
 
@@ -110,7 +118,9 @@ Non-vector mode software handle flow show as below pciture:
 
 3. Save CSR registers ``MEPC/MCAUSE/MSUBM`` to stack.
 
-4. Run instruction ``csrrw ra, CSR_JALMNXTI, ra``. It will enable interrupt, check interrupt pending. If interrupt is pending then get highest priority interrupt and jump to interrupt handler entry in the vector table, otherwise it will go to step 6.
+4. Run instruction ``csrrw ra, CSR_JALMNXTI, ra``. It will enable interrupt, check interrupt pending.
+If interrupt is pending then get highest priority interrupt and jump to interrupt handler entry in the vector table,
+otherwise it will go to step 6.
 
 5. Execute the interrupt handler routine, when return from isr routine it will jump to step 4.
 
@@ -122,7 +132,7 @@ Non-vector mode software handle flow show as below pciture:
 
 9. Execute ``mret`` to return from handler.
 
-For **non-vector** mode iterrupt it could support **interrupt nesting**. 
+For **non-vector** mode iterrupt it could support **interrupt nesting**.
 
 **Interrupt nesting** handle flow show as below picture:
 

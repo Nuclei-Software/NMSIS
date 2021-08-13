@@ -7,7 +7,9 @@ The **System Configuration Files system_<device>.c and system_<device>.h**
 provides as a minimum the functions described under :ref:`core_api_system_device`.
 
 These functions are device specific and need adaptations. In addition, the file might have
-configuration settings for the device such as XTAL frequency or PLL prescaler settings, necessary system initilization, vendor customized interrupt, exception and nmi handling code, refer to :ref:`core_api_system_device` for more details.
+configuration settings for the device such as XTAL frequency or PLL prescaler settings,
+necessary system initialization, vendor customized interrupt, exception and nmi handling code,
+refer to :ref:`core_api_system_device` for more details.
 
 For devices with external memory BUS the ``system_<device>.c`` also configures the BUS system.
 
