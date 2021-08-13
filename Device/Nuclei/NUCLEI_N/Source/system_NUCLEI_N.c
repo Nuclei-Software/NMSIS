@@ -44,7 +44,7 @@
  *  -  A device-specific system configuration function, \ref SystemInit.
  *  -  A global variable that contains the system frequency, \ref SystemCoreClock.
  *  -  A global eclic configuration initialization, \ref ECLIC_Init.
- *  -  Global c library \ref _init and \ref _fini functions called right before calling main function.
+ *  -  Global \ref _premain_init and \ref _postmain_fini functions called right before calling main function.
  *  -  Vendor customized interrupt, exception and nmi handling code, see \ref NMSIS_Core_IntExcNMI_Handling
  *
  * The file configures the device and, typically, initializes the oscillator (PLL) that is part
@@ -57,6 +57,9 @@
  * \note Please pay special attention to the static variable \c SystemCoreClock. This variable might be
  * used throughout the whole system initialization and runtime to calculate frequency/time related values.
  * Thus one must assure that the variable always reflects the actual system clock speed.
+ *
+ * \note \ref _init function and \ref _fini function are now deprecated, but still need to provide a empty implementation
+ * here, due to newlibc still need it. Please put your pre- and post- main steps in \ref _premain_init and \ref _postmain_fini
  *
  * \attention
  * Be aware that a value stored to \c SystemCoreClock during low level initialization (i.e. \c SystemInit()) might get
