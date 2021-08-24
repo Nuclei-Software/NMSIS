@@ -59,7 +59,7 @@ build_library:
   script:
     - cd NMSIS
     - echo "Generate NMSIS Library for Nuclei RISC-V Processors"
-    - make PARELLEL=1 gen > build.log 2>&1
+    - make PARALLEL=1 gen > build.log 2>&1
     - echo "Strip debug information in NMSIS Library for Nuclei RISC-V Processors"
     - make strip
 
@@ -75,7 +75,7 @@ build_align_library:
   script:
     - cd NMSIS
     - echo "Generate NMSIS Library(Memory access without unalign R/W) for Nuclei RISC-V Processors"
-    - make PARELLEL=1 RISCV_ALIGN=ON gen > build.log 2>&1
+    - make PARALLEL=1 RISCV_ALIGN=ON gen > build.log 2>&1
     - echo "Strip debug information in NMSIS Library for Nuclei RISC-V Processors"
     - make strip
 
