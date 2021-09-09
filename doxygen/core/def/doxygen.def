@@ -4955,7 +4955,7 @@ Read the content of csr register to __v and return it
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1ga7b8025dd8eac9993066d730cee6475a0';
-        define-mem-ref-line = '737';
+        define-mem-ref-line = '731';
         define-mem-ref-name = '__ECLIC_GetVector';
     };
       define-mem-referenceby = {
@@ -4965,17 +4965,17 @@ _EnD_oF_dEf_TeXt_;
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1ga05bee6a5e41963ef1845c8a7e5a09c89';
-        define-mem-ref-line = '775';
+        define-mem-ref-line = '769';
         define-mem-ref-name = '__get_exc_entry';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gac5b9521ea1bd5260330714b8032d04d5';
-        define-mem-ref-line = '834';
+        define-mem-ref-line = '828';
         define-mem-ref-name = '__get_nmi_entry';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1ga2fe20dcdecc453c6709448944b1f5350';
-        define-mem-ref-line = '814';
+        define-mem-ref-line = '808';
         define-mem-ref-name = '__get_nonvec_entry';
     };
       define-mem-referenceby = {
@@ -5010,7 +5010,7 @@ _EnD_oF_dEf_TeXt_;
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gadbe0f14f32c5989304fd05faf0cff648';
-        define-mem-ref-line = '792';
+        define-mem-ref-line = '786';
         define-mem-ref-name = '__set_nonvec_entry';
     };
       define-mem-referenceby = {
@@ -5123,12 +5123,12 @@ Write the content of val to csr register
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gaec014abd3940e642f652b97b70d7ac8e';
-        define-mem-ref-line = '758';
+        define-mem-ref-line = '752';
         define-mem-ref-name = '__set_exc_entry';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gadbe0f14f32c5989304fd05faf0cff648';
-        define-mem-ref-line = '792';
+        define-mem-ref-line = '786';
         define-mem-ref-name = '__set_nonvec_entry';
     };
       define-mem-referenceby = {
@@ -9593,6 +9593,11 @@ _EnD_oF_dEf_TeXt_;
         func-mem-ref-id = 'riscv__encoding_8h_1ga09b6c06fdc71424566c30bad5470c0c1';
         func-mem-ref-line = '647';
         func-mem-ref-name = 'CSR_CCM_MCOMMAND';
+    };
+      func-mem-referenceby = {
+        func-mem-ref-id = 'core__feature__eclic_8h_1ga2e80049df57b285d4dd43454377c0845';
+        func-mem-ref-line = '708';
+        func-mem-ref-name = '__ECLIC_SetVector';
     };
     }; /* func-member */
     func-member = {
@@ -36638,22 +36643,22 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1ga05bee6a5e41963ef1845c8a7e5a09c89';
-        define-mem-ref-line = '775';
+        define-mem-ref-line = '769';
         define-mem-ref-name = '__get_exc_entry';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1ga2fe20dcdecc453c6709448944b1f5350';
-        define-mem-ref-line = '814';
+        define-mem-ref-line = '808';
         define-mem-ref-name = '__get_nonvec_entry';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gaec014abd3940e642f652b97b70d7ac8e';
-        define-mem-ref-line = '758';
+        define-mem-ref-line = '752';
         define-mem-ref-name = '__set_exc_entry';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gadbe0f14f32c5989304fd05faf0cff648';
-        define-mem-ref-line = '792';
+        define-mem-ref-line = '786';
         define-mem-ref-name = '__set_nonvec_entry';
     };
     }; /* define-member */
@@ -37307,7 +37312,7 @@ rv_csr_t __mcause = __RV_CSR_READ(CSR_MCAUSE);                      \
         __enable_irq();
 _EnD_oF_dEf_TeXt_;
       define-mem-desc-file = '/home/runner/work/NMSIS/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      define-mem-desc-line = '869';
+      define-mem-desc-line = '863';
       define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Save necessary CSRs into variables for vector interrupt nesting.
 _EnD_oF_dEf_TeXt_;
@@ -37353,7 +37358,7 @@ __disable_irq();                                                    \
         __RV_CSR_WRITE(CSR_MCAUSE, __mcause);
 _EnD_oF_dEf_TeXt_;
       define-mem-desc-file = '/home/runner/work/NMSIS/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      define-mem-desc-line = '884';
+      define-mem-desc-line = '878';
       define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Restore necessary CSRs from variables for vector interrupt nesting.
 _EnD_oF_dEf_TeXt_;
@@ -38547,6 +38552,11 @@ _EnD_oF_dEf_TeXt_;
         func-mem-ref-line = '598';
         func-mem-ref-name = 'CSR_MTVT';
     };
+      func-mem-referenceto = {
+        func-mem-ref-id = 'core__feature__cache_8h_1gad2b9184fe3f7e4d846cf472c32307aff';
+        func-mem-ref-line = '915';
+        func-mem-ref-name = 'MFlushInvalDCacheLine';
+    };
     }; /* func-member */
     func-member = {
       func-mem-kind = 'function';
@@ -38564,7 +38574,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'IRQn';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/runner/work/NMSIS/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      func-mem-desc-line = '737';
+      func-mem-desc-line = '731';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get Interrupt Vector of a specific interrupt.
 _EnD_oF_dEf_TeXt_;
@@ -38605,7 +38615,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'addr';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/runner/work/NMSIS/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      func-mem-desc-line = '758';
+      func-mem-desc-line = '752';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set Exception entry address.
 _EnD_oF_dEf_TeXt_;
@@ -38648,7 +38658,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/runner/work/NMSIS/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      func-mem-desc-line = '775';
+      func-mem-desc-line = '769';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get Exception entry address.
 _EnD_oF_dEf_TeXt_;
@@ -38692,7 +38702,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'addr';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/runner/work/NMSIS/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      func-mem-desc-line = '792';
+      func-mem-desc-line = '786';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set Non-vector interrupt entry address.
 _EnD_oF_dEf_TeXt_;
@@ -38746,7 +38756,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/runner/work/NMSIS/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      func-mem-desc-line = '814';
+      func-mem-desc-line = '808';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get Non-vector interrupt entry address.
 _EnD_oF_dEf_TeXt_;
@@ -38795,7 +38805,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/home/runner/work/NMSIS/NMSIS/NMSIS/Core/Include/core_feature_eclic.h';
-      func-mem-desc-line = '834';
+      func-mem-desc-line = '828';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get NMI interrupt entry from 'CSR_MNVEC'.
 _EnD_oF_dEf_TeXt_;
@@ -49149,22 +49159,22 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1ga05bee6a5e41963ef1845c8a7e5a09c89';
-        define-mem-ref-line = '775';
+        define-mem-ref-line = '769';
         define-mem-ref-name = '__get_exc_entry';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1ga2fe20dcdecc453c6709448944b1f5350';
-        define-mem-ref-line = '814';
+        define-mem-ref-line = '808';
         define-mem-ref-name = '__get_nonvec_entry';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gaec014abd3940e642f652b97b70d7ac8e';
-        define-mem-ref-line = '758';
+        define-mem-ref-line = '752';
         define-mem-ref-name = '__set_exc_entry';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gadbe0f14f32c5989304fd05faf0cff648';
-        define-mem-ref-line = '792';
+        define-mem-ref-line = '786';
         define-mem-ref-name = '__set_nonvec_entry';
     };
     }; /* define-member */
@@ -52818,7 +52828,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1ga7b8025dd8eac9993066d730cee6475a0';
-        define-mem-ref-line = '737';
+        define-mem-ref-line = '731';
         define-mem-ref-name = '__ECLIC_GetVector';
     };
       define-mem-referenceby = {
@@ -53056,7 +53066,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gac5b9521ea1bd5260330714b8032d04d5';
-        define-mem-ref-line = '834';
+        define-mem-ref-line = '828';
         define-mem-ref-name = '__get_nmi_entry';
     };
     }; /* define-member */
@@ -53387,12 +53397,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1ga2fe20dcdecc453c6709448944b1f5350';
-        define-mem-ref-line = '814';
+        define-mem-ref-line = '808';
         define-mem-ref-name = '__get_nonvec_entry';
     };
       define-mem-referenceby = {
         define-mem-ref-id = 'core__feature__eclic_8h_1gadbe0f14f32c5989304fd05faf0cff648';
-        define-mem-ref-line = '792';
+        define-mem-ref-line = '786';
         define-mem-ref-name = '__set_nonvec_entry';
     };
     }; /* define-member */
