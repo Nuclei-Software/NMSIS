@@ -293,7 +293,7 @@
 //                     col_count--;
 //                 }
 // #else
-// #if defined (RISCV_VECTOR) && ( (__XLEN != 32) || (__FLEN != 32) )
+// #if defined (RISCV_VECTOR) && ( (__riscv_xlen != 32) || (__riscv_flen != 32) )
 //                 q31_t ch_0_out_0,ch_0_out_1;
 //                 uint32_t blkCnt = (input_ch * kernel_y * kernel_x);                               /* Loop counter */
 //                 size_t l;

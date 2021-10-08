@@ -77,7 +77,7 @@ riscv_status riscv_elementwise_add_s8(const int8_t *input_1_vect,
                                   const int32_t out_activation_max,
                                   const uint32_t block_size)
 {
-#if defined(RISCV_VECTOR) && (__XLEN != 32) && (__FLEN != 32)
+#if defined(RISCV_VECTOR) && (__riscv_xlen != 32) && (__riscv_flen != 32)
   uint32_t blkCnt = block_size;                               /* Loop counter */
   size_t l;
   vint32m4_t input_1;

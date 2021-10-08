@@ -56,7 +56,7 @@
 
 void riscv_nn_mult_q15(q15_t *pSrcA, q15_t *pSrcB, q15_t *pDst, const uint16_t out_shift, uint32_t blockSize)
 {
-#if defined (RISCV_VECTOR) && ((__XLEN != 32) || (__FLEN != 32))
+#if defined (RISCV_VECTOR) && ((__riscv_xlen != 32) || (__riscv_flen != 32))
     uint32_t blkCnt = blockSize;                              /* Loop counter */
     size_t l;
     q15_t *pCnt = pDst;

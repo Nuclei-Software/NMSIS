@@ -59,7 +59,7 @@ void riscv_scale_q31(
         q31_t *pDst,
         uint32_t blockSize)
 {
-#if defined(RISCV_VECTOR)&&((__XLEN!=32)||(__FLEN!=32))
+#if defined(RISCV_VECTOR) && ((__riscv_xlen!=32) || (__riscv_flen!=32))
   uint32_t blkCnt = blockSize;                               /* Loop counter */
   q31_t in, out;                                             /* Temporary variables */
   int8_t kShift = shift + 1;                                 /* Shift to apply after scaling */
