@@ -179,7 +179,7 @@ riscv_status riscv_nn_vec_mat_mult_t_s8(const q7_t *lhs,
     }
 
 #else
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     for (int32_t rhs_rows_idx = 0; rhs_rows_idx <= (rhs_rows - 2); rhs_rows_idx += 2)
     {
         const q7_t *lhs_ptr = &lhs[0];
@@ -402,7 +402,7 @@ riscv_status riscv_nn_vec_mat_mult_t_s8(const q7_t *lhs,
         *dst++ = (q7_t)res00;
         rhs += rhs_cols;
     }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
 #endif
     return RISCV_MATH_SUCCESS;
 }

@@ -96,7 +96,7 @@ riscv_status riscv_mat_mult_f32(
   else
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint16_t blkCnt = numColsA;  //number of matrix columns  numColsA = numrowB
   size_t l,max_l;              // max_l is the maximum column elements at a time
   ptrdiff_t bstride = 4;       //  32bit/8bit = 4
@@ -112,14 +112,14 @@ for(rownum = 0;rownum < numRowsA; rownum++)
   {
     pIn1 = pInA;       //backup pointer position
     for(colnum = 0;colnum < numColsB; colnum++)
-    { 
+    {
       blkCnt = numColsA;
       pIn2 = pInB;     //backup pointer position
-      sum = 0.0f; 
+      sum = 0.0f;
       l = vsetvl_e32m1(1);
       vsum = vfmv_s_f_f32m1(vsum, 0.0f, l);
       for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)   //Multiply a row by a column
-      { 
+      {
         v_inA = vle32_v_f32m8(pInA, l);
         v_inB = vlse32_v_f32m8(pInB, col_diff, l);
         /* c(m,n) = a(1,1) * b(1,1) + a(1,2) * b(2,1) + .... + a(m,p) * b(p,n) */
@@ -135,12 +135,12 @@ for(rownum = 0;rownum < numRowsA; rownum++)
       }
       *px = sum;
       px++;
-      pInA = pIn1; 
+      pInA = pIn1;
       pInB = pIn2;pInB = pInB+1;    //Pointer to the first element of the next column for matrix BS
     //printf("px=%d\n",px);
     }
     pInB = pSrcB->pData;
-    pInA = pIn1;pInA = pInA+numColsA;    //Pointer to the first element of the next row for matrix A 
+    pInA = pIn1;pInA = pInA+numColsA;    //Pointer to the first element of the next row for matrix A
   }
   /* Set status as RISCV_MATH_SUCCESS */
   status = RISCV_MATH_SUCCESS;
@@ -241,7 +241,7 @@ for(rownum = 0;rownum < numRowsA; rownum++)
     status = RISCV_MATH_SUCCESS;
   }
 
-#endif /*defined(RISCV_VECTOR)*/
+#endif /*defined(RISCV_MATH_VECTOR)*/
   /* Return to application */
   return (status);
 }

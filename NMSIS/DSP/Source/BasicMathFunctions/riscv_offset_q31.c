@@ -57,11 +57,11 @@ void riscv_offset_q31(
         q31_t * pDst,
         uint32_t blockSize)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vint32m8_t vx;
-       
+
   for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
     vx = vle32_v_i32m8(pSrc, l);
     pSrc += l;
@@ -89,11 +89,11 @@ void riscv_offset_q31(
 #else
     /* Add offset and store result in destination buffer. */
     *pDst++ = __QADD(*pSrc++, offset);
-    
+
     *pDst++ = __QADD(*pSrc++, offset);
-    
+
     *pDst++ = __QADD(*pSrc++, offset);
-    
+
     *pDst++ = __QADD(*pSrc++, offset);
 
 #endif /* __RISCV_XLEN == 64 */
@@ -125,7 +125,7 @@ void riscv_offset_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /*defined(RISCV_VECTOR)*/
+#endif /*defined(RISCV_MATH_VECTOR)*/
 }
 
 /**

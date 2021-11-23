@@ -197,7 +197,7 @@
 //                                      out);
 //         }
 
-// #elif defined(RISCV_MATH_DSP) || defined(RISCV_VECTOR)
+// #elif defined(RISCV_MATH_DSP) || defined(RISCV_MATH_VECTOR)
 //         (void)bias_dims;
 //         int32_t i_out_y, i_out_x, i_ker_y, i_ker_x;
 
@@ -270,7 +270,7 @@
 //                 /* Point to the beginning of the im2col buffer where the input is available as a rearranged column */
 //                 const q7_t *ip_as_col = (q7_t *)buffer_a;
 
-// #if defined(RISCV_MATH_DSP) 
+// #if defined(RISCV_MATH_DSP)
 //                 /* 4 multiply and accumulates are done in one loop. */
 //                 uint16_t col_count = (input_ch * kernel_y * kernel_x) >> 2;
 
@@ -293,7 +293,7 @@
 //                     col_count--;
 //                 }
 // #else
-// #if defined (RISCV_VECTOR) && ( (__riscv_xlen != 32) || (__riscv_flen != 32) )
+// #if defined (RISCV_MATH_VECTOR) && ( (__riscv_xlen != 32) || (__riscv_flen != 32) )
 //                 q31_t ch_0_out_0,ch_0_out_1;
 //                 uint32_t blkCnt = (input_ch * kernel_y * kernel_x);                               /* Loop counter */
 //                 size_t l;
@@ -325,7 +325,7 @@
 //                     sum += ker_a1 * ip_b1;
 //                     col_count--;
 //                 }
-// #endif /*defined (RISCV_VECTOR)*/
+// #endif /*defined (RISCV_MATH_VECTOR)*/
 // #endif
 
 //                 sum = riscv_nn_requantize(sum, output_mult[i], output_shift[i]);

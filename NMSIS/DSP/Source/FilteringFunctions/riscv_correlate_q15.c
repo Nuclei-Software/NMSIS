@@ -67,7 +67,7 @@ void riscv_correlate_q15(
         q15_t * pDst)
 {
 
-#if defined (RISCV_MATH_DSP) || defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
 
   const q15_t *pIn1;                                   /* InputA pointer */
   const q15_t *pIn2;                                   /* InputB pointer */
@@ -180,7 +180,7 @@ void riscv_correlate_q15(
   {
     /* Accumulator is made zero for every iteration */
     sum = 0;
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     uint32_t vblkCnt = count;                               /* Loop counter */
     size_t l;
     vint16m4_t vx, vy;
@@ -229,7 +229,7 @@ void riscv_correlate_q15(
       /* Decrement loop counter */
       k--;
     }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
     /* Store the result in the accumulator in the destination buffer. */
     *pOut = (q15_t) (__SSAT((sum >> 15), 16));
     /* Destination pointer is updated according to the address modifier, inc */
@@ -268,7 +268,7 @@ void riscv_correlate_q15(
   /* -------------------
    * Stage2 process
    * ------------------*/
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     blkCnt = blockSize2;
 
     while (blkCnt > 0U)
@@ -582,7 +582,7 @@ void riscv_correlate_q15(
       blkCnt--;
     }
   }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
 
   /* --------------------------
    * Initializations of stage3
@@ -614,7 +614,7 @@ void riscv_correlate_q15(
   {
     /* Accumulator is made zero for every iteration */
     sum = 0;
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     uint32_t vblkCnt = count;                               /* Loop counter */
     size_t l;
     vint16m4_t vx, vy;
@@ -663,7 +663,7 @@ void riscv_correlate_q15(
       /* Decrement loop counter */
       k--;
     }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
     /* Store the result in the accumulator in the destination buffer. */
     *pOut = (q15_t) (__SSAT((sum >> 15), 16));
     /* Destination pointer is updated according to the address modifier, inc */

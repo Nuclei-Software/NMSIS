@@ -57,7 +57,7 @@ void riscv_cmplx_mult_cmplx_q31(
         q31_t * pDst,
         uint32_t numSamples)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = numSamples;                               /* Loop counter */
   size_t l;
   const q31_t * inputA = pSrcA;
@@ -66,7 +66,7 @@ void riscv_cmplx_mult_cmplx_q31(
   ptrdiff_t bstride = 8;
   vint32m4_t v_R1, v_R2, v_I1, v_I2;
   vint64m8_t v_RR, v_II, v_RI, v_IR;
-  for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l) 
+  for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)
   {
     v_R1 = vlse32_v_i32m4(inputA, bstride, l);
     v_R2 = vlse32_v_i32m4(inputB, bstride, l);
@@ -185,7 +185,7 @@ void riscv_cmplx_mult_cmplx_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

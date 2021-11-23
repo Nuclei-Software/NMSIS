@@ -48,7 +48,7 @@
 
 /**
   @brief         Compute the logical bitwise NOT of a fixed-point vector.
-  @param[in]     pSrc       points to input vector 
+  @param[in]     pSrc       points to input vector
   @param[out]    pDst       points to output vector
   @param[in]     blockSize  number of samples in each vector
   @return        none
@@ -59,11 +59,11 @@ void riscv_not_u16(
           uint16_t * pDst,
           uint32_t blockSize)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vuint16m8_t vx;
-       
+
   for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
     vx = vle16_v_u16m8(pSrc, l);
     pSrc += l;
@@ -118,7 +118,7 @@ void riscv_not_u16(
         /* Decrement the loop counter */
         blkCnt--;
     }
-#endif /* defined(RISCV_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

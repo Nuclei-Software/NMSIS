@@ -59,7 +59,7 @@ void riscv_mean_q7(
         uint32_t blockSize,
         q7_t * pResult)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   const q7_t * input = pSrc;
@@ -148,7 +148,7 @@ void riscv_mean_q7(
   /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) / blockSize  */
   /* Store result to destination */
   *pResult = (q7_t) (sum / (int32_t) blockSize);
-#endif /* defined(RISCV_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

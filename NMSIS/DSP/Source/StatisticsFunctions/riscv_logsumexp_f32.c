@@ -69,13 +69,13 @@ float32_t riscv_logsumexp_f32(const float32_t *in, uint32_t blockSize)
     const float32_t *pIn;
     uint32_t blkCnt;
     float32_t accum;
- 
+
     pIn = in;
     blkCnt = blockSize;
 
     maxVal = *pIn++;
     blkCnt--;
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
    uint32_t blkCnt_v;                               /* Loop counter */
    size_t l;
    float32_t temp_max;
@@ -115,7 +115,7 @@ float32_t riscv_logsumexp_f32(const float32_t *in, uint32_t blockSize)
        tmp = *pIn++;
        accum += expf(tmp - maxVal);
        blkCnt--;
-    
+
     }
     accum = maxVal + logf(accum);
 

@@ -65,12 +65,12 @@
  */
 
 
-void riscv_quaternion_product_f32(const float32_t *qa, 
-    const float32_t *qb, 
+void riscv_quaternion_product_f32(const float32_t *qa,
+    const float32_t *qb,
     float32_t *qr,
     uint32_t nbQuaternions)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
     uint32_t blkCnt = nbQuaternions;                               /* Loop counter */
     size_t l;
     vfloat32m8_t v_QA0, v_QA1, v_QA2, v_QA3;

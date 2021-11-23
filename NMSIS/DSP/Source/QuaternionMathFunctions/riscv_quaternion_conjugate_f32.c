@@ -53,11 +53,11 @@
   @return        none
  */
 
-void riscv_quaternion_conjugate_f32(const float32_t *pInputQuaternions, 
-    float32_t *pConjugateQuaternions, 
+void riscv_quaternion_conjugate_f32(const float32_t *pInputQuaternions,
+    float32_t *pConjugateQuaternions,
     uint32_t nbQuaternions)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
     uint32_t blkCnt = nbQuaternions;                               /* Loop counter */
     size_t l;
     vfloat32m8_t v_x, v_y;

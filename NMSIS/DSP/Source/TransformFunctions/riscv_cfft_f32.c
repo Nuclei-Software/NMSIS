@@ -223,7 +223,7 @@ void riscv_cfft_radix8by2_f32 (riscv_cfft_instance_f32 * S, float32_t * p1)
   /* do two dot Fourier transform */
   for (l = L >> 2; l > 0; l-- )
   {
-// #if defined(RISCV_VECTOR)
+// #if defined(RISCV_MATH_VECTOR)
     t1[0] = p1[0];
     t1[1] = p1[1];
     t1[2] = p1[2];

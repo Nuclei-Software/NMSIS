@@ -60,7 +60,7 @@ riscv_status riscv_mat_cholesky_f64(
 
   riscv_status status;                             /* status of matrix inverse */
 
-#if defined(RISCV_VECTOR) && (defined(__riscv_flen) && (__riscv_flen == 64))
+#if defined(RISCV_MATH_VECTOR) && (defined(__riscv_flen) && (__riscv_flen == 64))
     uint32_t blkCnt;                               /* Loop counter */
     size_t l;
     vfloat64m8_t v_x, v_y;
@@ -95,13 +95,13 @@ riscv_status riscv_mat_cholesky_f64(
 
     pA = pSrc->pData;
     pG = pDst->pData;
-    
+
 
     for(i=0 ; i < n ; i++)
     {
        for(j=i ; j < n ; j++)
        {
-#if defined(RISCV_VECTOR) && (defined(__riscv_flen) && (__riscv_flen == 64))
+#if defined(RISCV_MATH_VECTOR) && (defined(__riscv_flen) && (__riscv_flen == 64))
             if(i==0){
                 pG[j * n + i] = pA[j * n + i];
             }

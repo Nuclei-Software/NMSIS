@@ -79,7 +79,7 @@ void riscv_fir_q7(
   /* pStateCurnt points to the location where the new input data should be written */
   pStateCurnt = &(S->pState[(numTaps - 1U)]);
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
 
   /* Loop unrolling: Compute 4 output values simultaneously.
    * The variables acc0 ... acc3 hold output values that are being computed:
@@ -255,7 +255,7 @@ void riscv_fir_q7(
     pb = pCoeffs;
 
     i = numTaps;
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     uint32_t vblkCnt = numTaps;                               /* Loop counter */
     size_t l;
     vint16m8_t vx,vy;
@@ -278,8 +278,8 @@ void riscv_fir_q7(
     {
       acc0 += (q15_t) * (px++) * (*(pb++));
       i--;
-    } 
-#endif /* defined (RISCV_VECTOR) */
+    }
+#endif /* defined (RISCV_MATH_VECTOR) */
 
     /* The result is in 2.14 format. Convert to 1.7
        Then store the output in the destination buffer. */

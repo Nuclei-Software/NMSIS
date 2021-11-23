@@ -82,7 +82,7 @@ riscv_status riscv_mat_mult_fast_q31(
   uint32_t col, i = 0U, j, row = numRowsA, colCnt;  /* Loop counters */
   riscv_status status;                             /* Status of matrix multiplication */
 
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
         uint16_t blkCnt;  //number of matrix columns  numColsA = numrowB
         size_t l;              // max_l is the maximum column elements at a time
         ptrdiff_t bstride = 4;       //  32bit/8bit = 4
@@ -135,12 +135,12 @@ riscv_status riscv_mat_mult_fast_q31(
         // sum2 = 0;
         // sum3 = 0;
         // sum4 = 0;
-        
+
         /* Initiate data pointers */
         pInA = pSrcA->pData + i;
         pInB = pSrcB->pData + j;
         pInA2 = pInA + numColsA;
-        
+
         colCnt = numColsA;
 
         /* matrix multiplication */
@@ -336,12 +336,12 @@ riscv_status riscv_mat_mult_fast_q31(
         sum2 = 0;
         sum3 = 0;
         sum4 = 0;
-        
+
         /* Initiate data pointers */
         pInA = pSrcA->pData + i;
         pInB = pSrcB->pData + j;
         pInA2 = pInA + numColsA;
-        
+
         colCnt = numColsA;
 
         /* matrix multiplication */
@@ -470,7 +470,7 @@ riscv_status riscv_mat_mult_fast_q31(
           sum1 = (q31_t) ((((q63_t) sum1 << 32) + ((q63_t) *pInA++ * *pInB)) >> 32);
 #endif
           pInB += numColsB;
-          
+
           colCnt--;
         }
 

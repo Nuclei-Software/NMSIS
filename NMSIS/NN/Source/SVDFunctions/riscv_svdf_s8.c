@@ -91,7 +91,7 @@ riscv_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
     q31_t *buffer_a = (q31_t *)input_ctx->buf;
     q31_t *buffer_b = (q31_t *)output_ctx->buf;
 
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
     uint32_t blkCnt;                               /* Loop counter */
     size_t l;
     vint16m4_t v_pv1, v_pv2;
@@ -144,7 +144,7 @@ riscv_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
             {
                 *ptr_a = 0;
                 int32_t sum = 0;
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
                 blkCnt = time_batches;
                 for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
                     v_pv1 = vle16_v_i16m4(v1, l);
@@ -201,7 +201,7 @@ riscv_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
                 const q31_t *ptr_a = buffer_a + i * feature_batches;
 
                 const int32_t *bi = bias_data;
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
                 blkCnt = feature_batches;
                 pA = ptr_a;
                 pB = bi;
@@ -234,7 +234,7 @@ riscv_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
                 {
                     int32_t sum = bias_data[i];
 // May not optimise when rank is low
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
                     blkCnt = rank;
                     l = vsetvl_e32m8(blkCnt);
                     for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
@@ -265,7 +265,7 @@ riscv_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
             {
                 int32_t sum = 0;
 // May not optimise when rank is low
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
                 blkCnt = rank;
                 l = vsetvl_e32m8(blkCnt);
                 for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {

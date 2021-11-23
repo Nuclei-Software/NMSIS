@@ -52,7 +52,7 @@ float32_t riscv_braycurtis_distance_f32(const float32_t *pA,const float32_t *pB,
 {
    float32_t accumDiff=0.0f, accumSum=0.0f, tmpA, tmpB;
 
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
    uint32_t blkCnt = blockSize;                               /* Loop counter */
    size_t l;
    vfloat32m8_t v_x, v_y;

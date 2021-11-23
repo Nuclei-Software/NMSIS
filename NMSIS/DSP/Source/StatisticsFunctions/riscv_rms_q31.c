@@ -62,7 +62,7 @@ void riscv_rms_q31(
         uint32_t blockSize,
         q31_t * pResult)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   const q31_t * input = pSrc;
@@ -146,7 +146,7 @@ void riscv_rms_q31(
   /* Convert data in 2.62 to 1.31 by 31 right shifts and saturate */
   /* Compute Rms and store result in destination vector */
   riscv_sqrt_q31(clip_q63_to_q31((sum / (q63_t) blockSize) >> 31), pResult);
-#endif /* defined(RISCV_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

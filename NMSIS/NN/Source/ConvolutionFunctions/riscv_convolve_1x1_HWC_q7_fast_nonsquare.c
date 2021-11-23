@@ -101,12 +101,12 @@ riscv_status riscv_convolve_1x1_HWC_q7_fast_nonsquare(const q7_t *Im_in,
                                                   q7_t *bufferB)
 {
     (void)bufferB;
-#if defined (RISCV_MATH_DSP) || defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
     /* Run the following code for RISC-V Core with DSP enabled */
     (void)dim_im_in_y;
     int16_t   i_out_y, i_out_x;
     int16_t   i_ch_out;
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
     uint32_t blkCnt_v;
     size_t l;
     vint8m2_t v_a, v_b;
@@ -158,7 +158,7 @@ riscv_status riscv_convolve_1x1_HWC_q7_fast_nonsquare(const q7_t *Im_in,
             q31_t     sum = ((q31_t)(bias[i_ch_out]) << bias_shift) + NN_ROUND(out_shift);
             q7_t    *pB = (q7_t *)bufferA;
             /* basically each time it process 4 entries */
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
             blkCnt_v = ch_im_in * dim_kernel_y * dim_kernel_x;
             for (; (l = vsetvl_e8m2(blkCnt_v)) > 0; blkCnt_v -= l) {
                 v_a = vle8_v_i8m2(pA, l);

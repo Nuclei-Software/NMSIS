@@ -50,7 +50,7 @@ q7_t *riscv_nn_mat_mult_kernel_s8(const q7_t *input_a,
                                 const int32_t *const output_bias,
                                 q7_t *out_0)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
     /* set up the second output pointers */
     q7_t *out_1 = out_0 + output_ch;
     const int32_t *bias = output_bias;
@@ -375,5 +375,5 @@ q7_t *riscv_nn_mat_mult_kernel_s8(const q7_t *input_a,
     /* To be completed */
     return NULL;
 #endif
-#endif  /* defined(RISCV_VECTOR) */
+#endif  /* defined(RISCV_MATH_VECTOR) */
 }

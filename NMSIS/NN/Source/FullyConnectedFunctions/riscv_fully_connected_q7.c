@@ -76,7 +76,7 @@ riscv_status riscv_fully_connected_q7(const q7_t *pV,
                                   q15_t *vec_buffer)
 {
 
-#if defined (RISCV_MATH_DSP) || defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
     /* Run the following code for RISC-V Core with DSP enabled */
 
     const q7_t *pB = pM;
@@ -93,7 +93,7 @@ riscv_status riscv_fully_connected_q7(const q7_t *pV,
     {
         pA = (q7_t *)vec_buffer;
         pB2 = pB + dim_vec;
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
         /* accumulate over the vector */
         size_t l;
         uint32_t blkCnt = dim_vec;
@@ -202,7 +202,7 @@ riscv_status riscv_fully_connected_q7(const q7_t *pV,
             sum2 += inV * inM2;
             colCnt--;
         }                       /* while over colCnt */
-#endif /* defined (RISCV_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) */
         *pO++ = (q7_t) (__SSAT((sum >> out_shift), 8));
         *pO++ = (q7_t) (__SSAT((sum2 >> out_shift), 8));
 
@@ -219,7 +219,7 @@ riscv_status riscv_fully_connected_q7(const q7_t *pV,
         uint16_t  colCnt = dim_vec >> 2;
 
         pA = (q7_t *)vec_buffer;
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
         /* accumulate over the vector */
         size_t l;
         uint32_t blkCnt = dim_vec;
@@ -289,7 +289,7 @@ riscv_status riscv_fully_connected_q7(const q7_t *pV,
             sum += inV * inM;
             colCnt--;
         }
-#endif /* defined (RISCV_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) */
         *pO++ = (q7_t) (__SSAT((sum >> out_shift), 8));
 
         rowCnt--;

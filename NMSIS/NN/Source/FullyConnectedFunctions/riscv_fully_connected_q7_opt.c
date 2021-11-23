@@ -277,7 +277,7 @@ riscv_status riscv_fully_connected_q7_opt(const q7_t *pV,
     q7_t *pO = pOut;
     const q7_t *pBias = bias;
 
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
     size_t l;
     uint32_t blkCnt;
     ptrdiff_t bstridea;
@@ -299,7 +299,7 @@ riscv_status riscv_fully_connected_q7_opt(const q7_t *pV,
         uint16_t colCnt = dim_vec >> 2;
 
         pA = pV;
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
         bstridea = 4;
         bstrideb = 16;
         blkCnt = colCnt;

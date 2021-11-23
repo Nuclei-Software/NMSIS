@@ -56,7 +56,7 @@
 
 void riscv_nn_mult_q7(q7_t *pSrcA, q7_t *pSrcB, q7_t *pDst, const uint16_t out_shift, uint32_t blockSize)
 {
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     uint32_t blkCnt = blockSize;                              /* Loop counter */
     size_t l;
     q7_t *pCnt = pDst;
@@ -65,7 +65,7 @@ void riscv_nn_mult_q7(q7_t *pSrcA, q7_t *pSrcB, q7_t *pDst, const uint16_t out_s
     vint8m2_t pA_v8m2,pB_v8m2;
     vint16m4_t mulRes_i16m4;
     vint32m8_t addRes_i32m8;
-         
+
     for (; (l = vsetvl_e8m2(blkCnt)) > 0; blkCnt -= l) {
       pA_v8m2 = vle8_v_i8m2(pA, l);
       pB_v8m2 = vle8_v_i8m2(pB, l);
@@ -84,7 +84,7 @@ void riscv_nn_mult_q7(q7_t *pSrcA, q7_t *pSrcB, q7_t *pDst, const uint16_t out_s
 /* Run the below code for RISC-V Core with DSP enabled */
   q7_t out1, out2, out3, out4;                   /* Temporary variables to store the product */
   q63_t mul1;
-  q31_t inA1, inB1; 
+  q31_t inA1, inB1;
   /* loop Unrolling */
   blkCnt = blockSize >> 2U;
 
@@ -138,7 +138,7 @@ void riscv_nn_mult_q7(q7_t *pSrcA, q7_t *pSrcB, q7_t *pDst, const uint16_t out_s
         /* Decrement the blockSize loop counter */
         blkCnt--;
     }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
 }
 
 /**

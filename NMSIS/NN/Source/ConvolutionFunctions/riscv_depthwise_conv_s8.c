@@ -65,7 +65,7 @@ static void depthwise_conv_s8_mult_4(const int8_t *input,
                                      const int32_t output_activation_min,
                                      const int32_t output_activation_max)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
     size_t l;
     uint32_t blkCnt;
     vint8m1_t vkernel;
@@ -81,7 +81,7 @@ static void depthwise_conv_s8_mult_4(const int8_t *input,
                 for (int mult_tile = 0; mult_tile < ch_mult; mult_tile += 4)
                 {
                     int32_t out_buff[4];
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
                     l = vsetvl_e32m1(4);
                     vout_buff = vle32_v_i32m4(bias + out_ch + mult_tile, l);
 #else
@@ -100,7 +100,7 @@ static void depthwise_conv_s8_mult_4(const int8_t *input,
                              ++ker_w, ker_idx += output_ch)
                         {
                             int32_t in_val = input[in_idx + ker_w * input_ch] + input_offset;
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
                             l = vsetvl_e8m1(4);
                             vkernel = vle8_v_i8m1(kernel + ker_idx + mult_tile, l);
                             vout_buff = vadd_vv_i32m4(vout_buff, vmul_vx_i32m4(vsext_vf4_i32m4 (vkernel, l),in_val, l), l);
@@ -117,7 +117,7 @@ static void depthwise_conv_s8_mult_4(const int8_t *input,
                     out_buff[1] = riscv_nn_requantize(out_buff[1], output_mult[out_ch + 1 + mult_tile], output_shift[out_ch + 1 + mult_tile]);
                     out_buff[2] = riscv_nn_requantize(out_buff[2], output_mult[out_ch + 2 + mult_tile], output_shift[out_ch + 2 + mult_tile]);
                     out_buff[3] = riscv_nn_requantize(out_buff[3], output_mult[out_ch + 3 + mult_tile], output_shift[out_ch + 3 + mult_tile]);
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
                     l = vsetvl_e32m4(4);
                     vout_buff = vle32_v_i32m4(out_buff, l);
                     vout_buff = vadd_vx_i32m4(vout_buff, output_offset, l);
@@ -173,7 +173,7 @@ static void depthwise_conv_s8_generic(const q7_t *input,
                                       const int32_t output_activation_max)
 {
     (void)output_ch;
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
     size_t l;
     uint32_t blkCnt_v;
     vint8m2_t vkernel;
@@ -192,7 +192,7 @@ static void depthwise_conv_s8_generic(const q7_t *input,
                 const int16_t base_idx_x = (i_out_x * stride_x) - pad_x;
                 for (int i_input_ch = 0; i_input_ch < input_ch; i_input_ch++)
                 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
                     blkCnt_v = ch_mult;
                     int idx_out_ch = i_input_ch * ch_mult;
                     /* Condition for kernel start dimension: (base_idx_<x,y> + ker_<x,y>_start) >= 0 */
@@ -203,7 +203,7 @@ static void depthwise_conv_s8_generic(const q7_t *input,
                     const int ker_x_end = MIN(kernel_x, input_x - base_idx_x);
                     for (; (l = vsetvl_e32m8(blkCnt_v)) > 0; blkCnt_v -= l) {
                         vout_acc = vle32_v_i32m8(bias + idx_out_ch, l);
-    
+
                         for (int i_ker_y = ker_y_start; i_ker_y < ker_y_end; i_ker_y++)
                         {
                             const int32_t idx_y = base_idx_y + i_ker_y;
@@ -215,24 +215,24 @@ static void depthwise_conv_s8_generic(const q7_t *input,
                                 int32_t ker_idx_0 = (i_ker_y * kernel_x + i_ker_x) * (input_ch * ch_mult) + idx_out_ch;
                                 // bstrideb = input_ch * ch_mult;
                                 int8_t input_data = input[idx_0];
-    
+
                                 // vinput = vlse8_v_i8m2(input + idx_0,bstridea, l);
                                 vkernel = vle8_v_i8m2(kernel + ker_idx_0, l);
-    
+
                                 vout_acc = vadd_vv_i32m8(vout_acc,vmul_vx_i32m8(vsext_vf4_i32m8(vkernel, l), ((int32_t)input_data + input_offset), l), l);
                             }
                         }
-    
+
                         int32_t acc_0;
                         for(size_t i=l;i>0;i--){
                             acc_0 = vmv_x_s_i32m8_i32 (vout_acc);
-    
+
                             /* Requantize and clamp output to provided range */
                             acc_0 = riscv_nn_requantize(acc_0, output_mult[idx_out_ch], output_shift[idx_out_ch]);
                             acc_0 += output_offset;
                             acc_0 = MAX(acc_0, output_activation_min);
                             acc_0 = MIN(acc_0, output_activation_max);
-    
+
                             output[i_out++] = acc_0;
                             l = vsetvl_e32m8(l);
                             vout_acc = vslide1down_vx_i32m8(vout_acc,0, l);

@@ -53,11 +53,11 @@ void riscv_and_u32(
           uint32_t * pDst,
           uint32_t blockSize)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vuint32m8_t vx, vy;
-       
+
   for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
     vx = vle32_v_u32m8(pSrcA, l);
     pSrcA += l;
@@ -101,7 +101,7 @@ void riscv_and_u32(
         /* Decrement the loop counter */
         blkCnt--;
     }
-#endif /* defined(RISCV_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

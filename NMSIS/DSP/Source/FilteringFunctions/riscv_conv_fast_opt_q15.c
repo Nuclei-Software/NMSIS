@@ -72,7 +72,7 @@ void riscv_conv_fast_opt_q15(
         q15_t * pScratch1,
         q15_t * pScratch2)
 {
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
       riscv_conv_opt_q15(pSrcA,srcALen,pSrcB,srcBLen,pDst,pScratch1,pScratch2);
 #else
         q31_t acc0;                                    /* Accumulators */
@@ -355,7 +355,7 @@ void riscv_conv_fast_opt_q15(
 
     pScratch1 += 1U;
   }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
 }
 
 /**

@@ -59,7 +59,7 @@ void riscv_dot_prod_q15(
         uint32_t blockSize,
         q63_t * result)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   const q15_t * inputA = pSrcA;
@@ -69,7 +69,7 @@ void riscv_dot_prod_q15(
   vint16m4_t v_inB;
   l = vsetvl_e64m1(1);
   vint64m1_t v_sum = vmv_s_x_i64m1(v_sum, 0, l);
-  for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) 
+  for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
   {
     v_inA = vle16_v_i16m4(inputA, l);
     v_inB = vle16_v_i16m4(inputB, l);
@@ -144,7 +144,7 @@ void riscv_dot_prod_q15(
 
   /* Store result in destination buffer in 34.30 format */
   *result = sum;
-#endif /* defined(RISCV_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

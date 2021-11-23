@@ -148,7 +148,7 @@ void riscv_fir_interpolate_f32(
         uint32_t i, blkCnt, tapCnt;                    /* Loop counters */
         uint32_t phaseLen = S->phaseLength;            /* Length of each polyphase filter component */
         uint32_t j;
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt_v;                               /* Loop counter */
   size_t l;
   vfloat32m8_t v_x, v_y;
@@ -359,7 +359,7 @@ void riscv_fir_interpolate_f32(
          Repeat until we've computed numTaps-(4*S->L) coefficients. */
 
 
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
       tapCnt = phaseLen;
       blkCnt_v = tapCnt;
       l = vsetvl_e32m8(blkCnt_v);

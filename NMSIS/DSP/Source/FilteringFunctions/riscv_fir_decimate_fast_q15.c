@@ -364,10 +364,10 @@ void riscv_fir_decimate_fast_q15(
   {
     /* Copy 2 * decimation factor number of new input samples into the state buffer */
     i = S->M * 2;
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
   uint32_t blkCnti = i;                              /* Loop counter */
   size_t l;
-       
+
   for (; (l = vsetvl_e16m8(blkCnti)) > 0; blkCnti -= l) {
     vse16_v_i16m8 (pStateCur, vle16_v_i16m8(pSrc, l), l);
     pSrc += l;
@@ -492,10 +492,10 @@ void riscv_fir_decimate_fast_q15(
   {
     /* Copy decimation factor number of new input samples into the state buffer */
     i = S->M;
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
   uint32_t blkCnti = i;                              /* Loop counter */
   size_t l;
-       
+
   for (; (l = vsetvl_e16m8(blkCnti)) > 0; blkCnti -= l) {
     vse16_v_i16m8 (pStateCur, vle16_v_i16m8(pSrc, l), l);
     pSrc += l;
@@ -607,10 +607,10 @@ void riscv_fir_decimate_fast_q15(
 
   /* Points to the start of the state buffer */
   pStateCur = S->pState;
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
   uint32_t blkCnti = (numTaps - 1U);                              /* Loop counter */
   size_t l;
-       
+
   for (; (l = vsetvl_e16m8(blkCnti)) > 0; blkCnti -= l) {
     vse16_v_i16m8 (pStateCur, vle16_v_i16m8(pSrc, l), l);
     pSrc += l;

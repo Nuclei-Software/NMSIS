@@ -53,11 +53,11 @@ void riscv_or_u8(
           uint8_t * pDst,
           uint32_t blockSize)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vuint8m8_t vx, vy;
-       
+
   for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
     vx = vle8_v_u8m8(pSrcA, l);
     pSrcA += l;
@@ -118,7 +118,7 @@ void riscv_or_u8(
         /* Decrement the loop counter */
         blkCnt--;
     }
-#endif /* defined(RISCV_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 /**
   @} end of Or group

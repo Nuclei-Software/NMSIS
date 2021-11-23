@@ -59,7 +59,7 @@ riscv_status riscv_mat_add_q15(
         q15_t *pInA = pSrcA->pData;                    /* input data matrix pointer A */
         q15_t *pInB = pSrcB->pData;                    /* input data matrix pointer B */
         q15_t *pOut = pDst->pData;                     /* output data matrix pointer */
-        
+
         uint32_t numSamples;                           /* total number of elements in the matrix */
         uint32_t blkCnt;                               /* loop counters */
         riscv_status status;                             /* status of matrix addition */
@@ -79,13 +79,13 @@ riscv_status riscv_mat_add_q15(
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
       /* Set status as RISCV_MATH_SUCCESS */
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
     /* Total number of samples in input matrix */
   numSamples = (uint32_t) pSrcA->numRows * pSrcA->numCols;
   blkCnt = numSamples;
   size_t l;
   vint16m8_t vx, vy;
-       
+
   for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
     vx = vle16_v_i16m8(pInA, l);
     pInA += l;
@@ -163,7 +163,7 @@ riscv_status riscv_mat_add_q15(
 
   /* Return to application */
   return (status);
-#endif /*defined(RISCV_VECTOR)*/
+#endif /*defined(RISCV_MATH_VECTOR)*/
 }
 
 /**

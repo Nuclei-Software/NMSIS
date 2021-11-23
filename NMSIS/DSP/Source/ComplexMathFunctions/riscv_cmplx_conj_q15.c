@@ -56,7 +56,7 @@ void riscv_cmplx_conj_q15(
         q15_t * pDst,
         uint32_t numSamples)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = numSamples;                               /* Loop counter */
   size_t l;
   l = vsetvl_e32m8(blkCnt);
@@ -66,7 +66,7 @@ void riscv_cmplx_conj_q15(
   vint16m8_t v_R,v_I;
   vint16m8_t v0;
   v0 = vxor_vv_i16m8(v0, v0, l);                   /* vector 0 */
-  for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) 
+  for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
   {
     v_R = vlse16_v_i16m8(input, bstride, l);
     input++;
@@ -84,7 +84,7 @@ void riscv_cmplx_conj_q15(
 
 #if defined (RISCV_MATH_LOOPUNROLL) && defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
-        q63_t in641, in642, in643, in644; 
+        q63_t in641, in642, in643, in644;
 #else
         q31_t in2, in3, in4;                           /* Temporary input variables */
 #endif /* __RISCV_XLEN == 64 */
@@ -110,7 +110,7 @@ void riscv_cmplx_conj_q15(
     write_q15x4_ia (&pDst, in641);
     in641 = read_q15x4_ia ((q15_t **) &pSrc);
     in641 = __RV_KCRAS16(0, in641);
-    in641 = ((((uint64_t)in641) >> 48) << 32) | (((((uint64_t)in641) << 16) >> 48) << 48) | (((((uint64_t)in641) << 32) >> 48)) | (((((uint64_t)in641) << 48) >> 32));    
+    in641 = ((((uint64_t)in641) >> 48) << 32) | (((((uint64_t)in641) << 16) >> 48) << 48) | (((((uint64_t)in641) << 32) >> 48)) | (((((uint64_t)in641) << 48) >> 32));
     write_q15x4_ia (&pDst, in641);
 #else
     in1 = read_q15x2_ia ((q15_t **) &pSrc);
@@ -182,7 +182,7 @@ void riscv_cmplx_conj_q15(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

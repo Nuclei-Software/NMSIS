@@ -59,7 +59,7 @@ void riscv_mean_q15(
         uint32_t blockSize,
         q15_t * pResult)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   const q15_t * input = pSrc;
@@ -147,7 +147,7 @@ void riscv_mean_q15(
   /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) / blockSize  */
   /* Store result to destination */
   *pResult = (q15_t) (sum / (int32_t) blockSize);
-#endif /* defined(RISCV_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

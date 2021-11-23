@@ -60,7 +60,7 @@ riscv_status riscv_nn_mat_mult_nt_t_s8(const q7_t *lhs,
                                    const int32_t activation_min,
                                    const int32_t activation_max)
 {
-#if defined(RISCV_MATH_DSP) && !defined (RISCV_VECTOR)
+#if defined(RISCV_MATH_DSP) && !defined (RISCV_MATH_VECTOR)
     const int32_t off0 = rhs_cols - 4;
 
     for (int32_t rhs_rows_idx = 0; rhs_rows_idx <= (rhs_rows - 2); rhs_rows_idx += 2)
@@ -407,7 +407,7 @@ riscv_status riscv_nn_mat_mult_nt_t_s8(const q7_t *lhs,
             dst_ptr += rhs_rows;
         }
     }
-#elif defined (RISCV_VECTOR)
+#elif defined (RISCV_MATH_VECTOR)
     for (int32_t rhs_rows_idx = 0; rhs_rows_idx <= (rhs_rows - 2); rhs_rows_idx += 2)
     {
         const q7_t *lhs_ptr = &lhs[0];

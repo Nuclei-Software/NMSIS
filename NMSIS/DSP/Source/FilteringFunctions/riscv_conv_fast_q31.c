@@ -68,7 +68,7 @@ void riscv_conv_fast_q31(
         uint32_t srcBLen,
         q31_t * pDst)
 {
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
       riscv_conv_q31(pSrcA,srcALen,pSrcB,srcBLen,pDst);
 #else
   const q31_t *pIn1;                                   /* InputA pointer */
@@ -554,7 +554,7 @@ void riscv_conv_fast_q31(
     /* Decrement loop counter */
     blockSize3--;
   }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
 }
 
 /**

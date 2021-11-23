@@ -189,7 +189,7 @@ void riscv_correlate_q7(
     /* Accumulator is made zero for every iteration */
     sum = 0;
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
 // #if __RISCV_XLEN == 64
 //     /* Loop unrolling: Compute 8 outputs at a time */
 //     k = count >> 3U;
@@ -254,7 +254,7 @@ void riscv_correlate_q7(
     k = count;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     uint32_t vblkCnt = count;                               /* Loop counter */
     size_t l;
     vint8m4_t vx, vy;
@@ -278,7 +278,7 @@ void riscv_correlate_q7(
       /* Decrement loop counter */
       k--;
     }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
     /* Store the result in the accumulator in the destination buffer. */
     *pOut = (q7_t) (__SSAT(sum >> 7U, 8));
     /* Destination pointer is updated according to the address modifier, inc */
@@ -317,7 +317,7 @@ void riscv_correlate_q7(
   /* -------------------
    * Stage2 process
    * ------------------*/
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     blkCnt = blockSize2;
 
     while (blkCnt > 0U)
@@ -673,7 +673,7 @@ void riscv_correlate_q7(
       blkCnt--;
     }
   }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
 
   /* --------------------------
    * Initializations of stage3
@@ -706,7 +706,7 @@ void riscv_correlate_q7(
     /* Accumulator is made zero for every iteration */
     sum = 0;
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
 
     /* Loop unrolling: Compute 4 outputs at a time */
     k = count >> 2U;
@@ -754,7 +754,7 @@ void riscv_correlate_q7(
     k = count;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     uint32_t vblkCnt = blockSize3;                               /* Loop counter */
     size_t l;
     vint8m4_t vx, vy;
@@ -777,7 +777,7 @@ void riscv_correlate_q7(
       /* Decrement loop counter */
       k--;
     }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
     /* Store the result in the accumulator in the destination buffer. */
     *pOut = (q7_t) (__SSAT(sum >> 7U, 8));
     /* Destination pointer is updated according to the address modifier, inc */

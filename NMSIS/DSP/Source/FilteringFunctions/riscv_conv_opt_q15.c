@@ -117,7 +117,7 @@ void riscv_conv_opt_q15(
   /* points to smaller length sequence */
   px = pIn2;
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
 
   /* Loop unrolling: Compute 4 outputs at a time */
   k = srcBLen >> 2U;
@@ -152,7 +152,7 @@ void riscv_conv_opt_q15(
   k = srcBLen;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
   uint32_t vblkCnt = srcBLen;                               /* Loop counter */
   size_t l;
   vint16m8_t vx;
@@ -172,7 +172,7 @@ void riscv_conv_opt_q15(
     /* Decrement loop counter */
     k--;
   }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
   /* Initialze temporary scratch pointer */
   pScr1 = pScratch1;
 
@@ -205,7 +205,7 @@ void riscv_conv_opt_q15(
   /* Initialization of pIn2 pointer */
   pIn2 = py;
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
 
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = (srcALen + srcBLen - 1U) >> 2;
@@ -319,7 +319,7 @@ void riscv_conv_opt_q15(
 
     /* Clear Accumlators */
     acc0 = 0;
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     uint32_t vblkCnt = srcBLen;                               /* Loop counter */
     size_t l;
     vint16m4_t vx, vy;
@@ -360,7 +360,7 @@ void riscv_conv_opt_q15(
       /* Decrement loop counter */
       tapCnt--;
     }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
     blkCnt--;
 
     /* The result is in 2.30 format.  Convert to 1.15 with saturation.

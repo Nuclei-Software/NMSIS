@@ -108,19 +108,19 @@
                  - x is 8  for q15
                  - x is 16 for q7
 
-                 The additional coefficients 
+                 The additional coefficients
                  (x * a - numTaps) must be set to 0.
                  numTaps is still set to its right value in the init function. It means that
                  the implementation may require to read more coefficients due to the vectorization and
                  to avoid having to manage too many different cases in the code.
 
-                
+
   @par          Helium state buffer
                  The state buffer must contain some additional temporary data
                  used during the computation but which is not the state of the FIR.
                  The first A samples are temporary data.
                  The remaining samples are the state of the FIR filter.
-  @par                 
+  @par
                  So the state buffer has size <code> numTaps + A + blockSize - 1 </code> :
                  - A is blockSize for f32
                  - A is 8*ceil(blockSize/8) for f16
@@ -174,7 +174,7 @@ void riscv_fir_f32(
   /* pStateCurnt points to the location where the new input data should be written */
   pStateCurnt = &(S->pState[(numTaps - 1U)]);
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
 
   /* Loop unrolling: Compute 8 output values simultaneously.
    * The variables acc0 ... acc7 hold output values that are being computed:
@@ -455,7 +455,7 @@ void riscv_fir_f32(
     pb = pCoeffs;
 
     i = numTaps;
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     uint32_t vblkCnt = numTaps;                               /* Loop counter */
     size_t l;
     vfloat32m8_t vx, vy;
@@ -480,7 +480,7 @@ void riscv_fir_f32(
 
       i--;
     }
-#endif /* defined (RISCV_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) */
     /* Store result in destination buffer. */
     *pDst++ = acc0;
 
@@ -498,7 +498,7 @@ void riscv_fir_f32(
   /* Points to the start of the state buffer */
   pStateCurnt = S->pState;
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
 
   /* Loop unrolling: Compute 4 taps at a time */
   tapCnt = (numTaps - 1U) >> 2U;
@@ -524,7 +524,7 @@ void riscv_fir_f32(
   tapCnt = (numTaps - 1U);
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     uint32_t vblkCnt = (numTaps - 1U);                               /* Loop counter */
     size_t l;
     vfloat32m8_t vx;
@@ -543,7 +543,7 @@ void riscv_fir_f32(
     /* Decrement loop counter */
     tapCnt--;
   }
-#endif /* defined (RISCV_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) */
 
 }
 

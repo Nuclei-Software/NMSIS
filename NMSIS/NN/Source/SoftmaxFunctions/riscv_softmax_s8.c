@@ -57,7 +57,7 @@ void riscv_softmax_s8(const int8_t *input,
     int32_t col = 0;
     int32_t row_idx;
 
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
     uint32_t blkCnt_v;
     size_t l;
     vint8m8_t v_x, v_y;
@@ -72,7 +72,7 @@ void riscv_softmax_s8(const int8_t *input,
         // Find the maximum value in order to ensure numerical stability
         int8_t max = *input;
 
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
         blkCnt_v = row_size - 1;
         col = 1;
         for (; (l = vsetvl_e8m8(blkCnt_v)) > 0; blkCnt_v -= l) {

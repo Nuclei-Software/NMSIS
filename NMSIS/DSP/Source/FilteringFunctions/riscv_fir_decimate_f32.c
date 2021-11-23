@@ -151,7 +151,7 @@ void riscv_fir_decimate_f32(
   /* pStateCur points to the location where the new input data should be written */
   pStateCur = S->pState + (numTaps - 1U);
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
 
     /* Loop unrolling: Compute 4 samples at a time */
   blkCnt = outBlockSize >> 2U;
@@ -306,10 +306,10 @@ void riscv_fir_decimate_f32(
   while (blkCnt > 0U)
   {
     /* Copy decimation factor number of new input samples into the state buffer */
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
   uint32_t blkCnti = S->M;                              /* Loop counter */
   size_t l;
-       
+
   for (; (l = vsetvl_e32m8(blkCnti)) > 0; blkCnti -= l) {
     vse32_v_f32m8 (pStateCur, vle32_v_f32m8(pSrc, l), l);
     pSrc += l;
@@ -323,7 +323,7 @@ void riscv_fir_decimate_f32(
       *pStateCur++ = *pSrc++;
 
     } while (--i);
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
     /* Set accumulator to zero */
     acc0 = 0.0f;
 
@@ -333,7 +333,7 @@ void riscv_fir_decimate_f32(
     /* Initialize coeff pointer */
     pb = pCoeffs;
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
 
     /* Loop unrolling: Compute 4 taps at a time */
     tapCnt = numTaps >> 2U;
@@ -389,7 +389,7 @@ void riscv_fir_decimate_f32(
     tapCnt = numTaps;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     uint32_t blkCntb;
     vfloat32m4_t va1m4,va2m4;
     vfloat32m4_t vch00m4;
@@ -435,7 +435,7 @@ void riscv_fir_decimate_f32(
       /* Decrement loop counter */
       tapCnt--;
     }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
     /* Advance the state pointer by the decimation factor
      * to process the next group of decimation factor number samples */
     pState = pState + S->M;
@@ -454,7 +454,7 @@ void riscv_fir_decimate_f32(
   /* Points to the start of the state buffer */
   pStateCur = S->pState;
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
 
   /* Loop unrolling: Compute 4 taps at a time */
   tapCnt = (numTaps - 1U) >> 2U;
@@ -480,10 +480,10 @@ void riscv_fir_decimate_f32(
   tapCnt = (numTaps - 1U);
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
   uint32_t blkCnti = tapCnt;                              /* Loop counter */
   size_t l;
-       
+
   for (; (l = vsetvl_e32m8(blkCnti)) > 0; blkCnti -= l) {
     vse32_v_f32m8 (pStateCur, vle32_v_f32m8(pState, l), l);
     pState += l;
@@ -498,7 +498,7 @@ void riscv_fir_decimate_f32(
     /* Decrement loop counter */
     tapCnt--;
   }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
 }
 
 /**

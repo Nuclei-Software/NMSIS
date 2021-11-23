@@ -68,7 +68,7 @@ void riscv_correlate_fast_q15(
         uint32_t srcBLen,
         q15_t * pDst)
 {
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     riscv_correlate_q15(pSrcA, srcALen, pSrcB, srcBLen, pDst);
 #else
   const q15_t *pIn1;                                   /* InputA pointer */
@@ -602,7 +602,7 @@ void riscv_correlate_fast_q15(
     /* Decrement the loop counter */
     blockSize3--;
   }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
 }
 
 /**

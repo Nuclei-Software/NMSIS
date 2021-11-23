@@ -51,12 +51,12 @@ void riscv_svm_linear_predict_f32(
     const float32_t * in,
     int32_t * pResult)
 {
-#if defined(RISCV_VECTOR)
-    
+#if defined(RISCV_MATH_VECTOR)
+
     float32_t dot = 0;
     float32_t sum = S->intercept;
     const float32_t *pSupport = S->supportVectors;
-    uint32_t blkCnt = S->vectorDimension;   
+    uint32_t blkCnt = S->vectorDimension;
     uint32_t vectorBlkCnt = S->nbOfSupportVectors;
     const float32_t *pDualCoefs = S->dualCoefficients;
     size_t l;
@@ -68,9 +68,9 @@ void riscv_svm_linear_predict_f32(
     for(i=0; i < S->nbOfSupportVectors; i++)
     {
         l = vsetvl_e32m1(1);
-        blkCnt = S->vectorDimension;   
+        blkCnt = S->vectorDimension;
         v_dot = vfmv_s_f_f32m1(v_dot, 0, l);
-        in = pIn;  
+        in = pIn;
         for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
         {
             v_in = vle32_v_f32m8(in, l);
@@ -101,7 +101,7 @@ void riscv_svm_linear_predict_f32(
         sum += S->dualCoefficients[i] * dot;
     }
     *pResult=S->classes[STEP(sum)];
-#endif /* defined(RISCV_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

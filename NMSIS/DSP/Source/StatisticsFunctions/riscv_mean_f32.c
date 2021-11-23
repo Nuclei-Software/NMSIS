@@ -51,7 +51,7 @@ void riscv_mean_f32(
         uint32_t blockSize,
         float32_t * pResult)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   const float32_t * input = pSrc;
@@ -67,7 +67,7 @@ void riscv_mean_f32(
   }
   l = vsetvl_e32m1(1);
   sum = vfmv_f_s_f32m1_f32(v_sum);
-  * result = (sum / blockSize); 
+  * result = (sum / blockSize);
 #else
         uint32_t blkCnt;                               /* Loop counter */
         float32_t sum = 0.0f;                          /* Temporary result storage */
@@ -114,7 +114,7 @@ void riscv_mean_f32(
   /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) / blockSize  */
   /* Store result to destination */
   *pResult = (sum / blockSize);
-#endif /* defined(RISCV_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

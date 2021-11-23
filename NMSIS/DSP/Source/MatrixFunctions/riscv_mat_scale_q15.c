@@ -86,12 +86,12 @@ riscv_status riscv_mat_scale_q15(
   else
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
     /* Total number of samples in input matrix */
   numSamples = (uint32_t) pSrc->numRows * pSrc->numCols;
   blkCnt = numSamples;
   size_t l;
-  vint16m4_t vx;  
+  vint16m4_t vx;
   for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l) {
     vx = vle16_v_i16m4(pIn, l);
     pIn += l;
@@ -193,7 +193,7 @@ riscv_status riscv_mat_scale_q15(
 
   /* Return to application */
   return (status);
-#endif /*defined(RISCV_VECTOR)*/
+#endif /*defined(RISCV_MATH_VECTOR)*/
 }
 
 /**

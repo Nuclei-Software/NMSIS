@@ -78,13 +78,13 @@ riscv_status riscv_mat_sub_q31(
   else
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
     /* Total number of samples in input matrix */
   numSamples = (uint32_t) pSrcA->numRows * pSrcA->numCols;
   blkCnt = numSamples;
   size_t l;
   vint32m4_t vx, vy, vout_fin;
-  vint64m8_t vout, vout_mm;    
+  vint64m8_t vout, vout_mm;
   for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l) {
     vx = vle32_v_i32m4(pInA, l);
     pInA += l;
@@ -156,7 +156,7 @@ riscv_status riscv_mat_sub_q31(
 
   /* Return to application */
   return (status);
-#endif /*defined(RISCV_VECTOR)*/
+#endif /*defined(RISCV_MATH_VECTOR)*/
 }
 
 /**

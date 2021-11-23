@@ -81,7 +81,7 @@ void riscv_fir_q15(
   /* pStateCurnt points to the location where the new input data should be written */
   pStateCurnt = &(S->pState[(numTaps - 1U)]);
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
 
   /* Loop unrolling: Compute 4 output values simultaneously.
    * The variables acc0 ... acc3 hold output values that are being computed:
@@ -238,7 +238,7 @@ void riscv_fir_q15(
     /* Use SIMD to hold states and coefficients */
     px = pState;
     pb = pCoeffs;
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     uint32_t vblkCnt = numTaps;                               /* Loop counter */
     size_t l;
     vint16m4_t vx,vy;
@@ -265,7 +265,7 @@ void riscv_fir_q15(
 
       tapCnt--;
     }
-#endif /* defined (RISCV_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) */
 
     /* The result is in 2.30 format. Convert to 1.15 with saturation.
        Then store the output in the destination buffer. */

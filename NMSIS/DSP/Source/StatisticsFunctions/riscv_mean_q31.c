@@ -58,7 +58,7 @@ void riscv_mean_q31(
         uint32_t blockSize,
         q31_t * pResult)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   const q31_t * input = pSrc;
@@ -74,7 +74,7 @@ void riscv_mean_q31(
   }
   l = vsetvl_e64m1(1);
   sum = vmv_x_s_i64m1_i64(v_sum);
-  * result = (q31_t) (sum / blockSize); 
+  * result = (q31_t) (sum / blockSize);
 #else
         uint32_t blkCnt;                               /* Loop counter */
         q63_t sum = 0;                                 /* Temporary result storage */
@@ -130,7 +130,7 @@ void riscv_mean_q31(
   /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) / blockSize  */
   /* Store result to destination */
   *pResult = (q31_t) (sum / blockSize);
-#endif /* defined(RISCV_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

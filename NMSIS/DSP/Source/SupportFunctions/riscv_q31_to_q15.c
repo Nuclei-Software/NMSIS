@@ -56,13 +56,13 @@ void riscv_q31_to_q15(
         q15_t * pDst,
         uint32_t blockSize)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = blockSize;                         /* Loop counter */
   const q31_t *pIn = pSrc;                             /* Source pointer */
   size_t l;
   vint32m8_t v_in;
   vint16m4_t v_out;
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) 
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
   {
     v_in = vle32_v_i32m8(pIn, l);
     pIn += l;
@@ -136,7 +136,7 @@ void riscv_q31_to_q15(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

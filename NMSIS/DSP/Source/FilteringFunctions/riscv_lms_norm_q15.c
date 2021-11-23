@@ -121,7 +121,7 @@ void riscv_lms_norm_q15(
     /* Set the accumulator to zero */
     acc = 0;
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
 
     /* Loop unrolling: Compute 4 taps at a time. */
     tapCnt = numTaps >> 2U;
@@ -149,7 +149,7 @@ void riscv_lms_norm_q15(
     tapCnt = numTaps;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     uint32_t vblkCnt = numTaps;
     size_t l;
     vint16m4_t vx, vy;
@@ -173,7 +173,7 @@ void riscv_lms_norm_q15(
       /* Decrement the loop counter */
       tapCnt--;
     }
-#endif /* defined (RISCV_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) */
     /* Calc lower part of acc */
     acc_l = acc & 0xffffffff;
 
@@ -212,7 +212,7 @@ void riscv_lms_norm_q15(
     /* Initialize coefficient pointer */
     pb = pCoeffs;
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
 
     /* Loop unrolling: Compute 4 taps at a time. */
     tapCnt = numTaps >> 2U;
@@ -245,7 +245,7 @@ void riscv_lms_norm_q15(
     tapCnt = numTaps;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     vblkCnt = numTaps;
     for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
       vx = vle16_v_i16m4(px, l);
@@ -264,7 +264,7 @@ void riscv_lms_norm_q15(
       /* Decrement loop counter */
       tapCnt--;
     }
-#endif /* defined (RISCV_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) */
     x0 = *pState;
 
     /* Advance state pointer by 1 for the next sample */
@@ -286,7 +286,7 @@ void riscv_lms_norm_q15(
   pStateCurnt = S->pState;
 
   /* copy data */
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
 
   /* Loop unrolling: Compute 4 taps at a time. */
   tapCnt = (numTaps - 1U) >> 2U;
@@ -309,7 +309,7 @@ void riscv_lms_norm_q15(
   tapCnt = (numTaps - 1U);
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     uint32_t vblkCnt = (numTaps - 1U);
     size_t l;
     for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
@@ -325,7 +325,7 @@ void riscv_lms_norm_q15(
     /* Decrement loop counter */
     tapCnt--;
   }
-#endif /* defined (RISCV_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) */
 }
 
 /**

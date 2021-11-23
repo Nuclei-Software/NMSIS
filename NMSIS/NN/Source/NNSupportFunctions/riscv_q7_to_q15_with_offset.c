@@ -43,12 +43,12 @@
 void riscv_q7_to_q15_with_offset(const q7_t *src, q15_t *dst, uint32_t block_size, q15_t offset)
 {
     int block_cnt;
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     uint32_t blkCnt = block_size;                              /* Loop counter */
     size_t l;
     q15_t *pCnt = dst;
     const q7_t *pV = src;
-         
+
     for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
         vse16_v_i16m8 (pCnt, vadd_vx_i16m8(vwadd_vx_i16m8(vle8_v_i8m4(pV, l), 0, l), offset, l), l);
         pV += l;
@@ -94,7 +94,7 @@ void riscv_q7_to_q15_with_offset(const q7_t *src, q15_t *dst, uint32_t block_siz
         /* Decrement the loop counter */
         block_cnt--;
     }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
 }
 /**
  * @} end of nndata_convert group

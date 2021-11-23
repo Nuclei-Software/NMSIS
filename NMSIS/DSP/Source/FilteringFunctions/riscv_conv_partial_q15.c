@@ -67,7 +67,7 @@ riscv_status riscv_conv_partial_q15(
         uint32_t numPoints)
 {
 
-#if defined (RISCV_MATH_DSP) || defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
 
   const q15_t *pIn1;                                   /* InputA pointer */
   const q15_t *pIn2;                                   /* InputB pointer */
@@ -167,7 +167,7 @@ riscv_status riscv_conv_partial_q15(
     /* For loop unrolling by 4, this stage is divided into two. */
     /* First part of this stage computes the MAC operations less than 4 */
     /* Second part of this stage computes the MAC operations greater than or equal to 4 */
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
   while (blockSize1 > 0U)
   {
     /* Accumulator is made zero for every iteration */
@@ -303,7 +303,7 @@ riscv_status riscv_conv_partial_q15(
       /* Decrement loop counter */
       blockSize1--;
     }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
     /* --------------------------
      * Initializations of stage2
      * ------------------------*/
@@ -335,7 +335,7 @@ riscv_status riscv_conv_partial_q15(
     /* -------------------
      * Stage2 process
      * ------------------*/
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     blkCnt = blockSize2;
 
     while (blkCnt > 0U)
@@ -638,7 +638,7 @@ riscv_status riscv_conv_partial_q15(
         blkCnt--;
       }
     }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
 
     /* --------------------------
      * Initializations of stage3
@@ -674,7 +674,7 @@ riscv_status riscv_conv_partial_q15(
     /* -------------------
      * Stage3 process
      * ------------------*/
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
   while (blockSize3 > 0U)
   {
     /* Accumulator is made zero for every iteration */
@@ -814,7 +814,7 @@ riscv_status riscv_conv_partial_q15(
       /* Decrement the loop counter */
       blockSize3--;
     }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
 
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;

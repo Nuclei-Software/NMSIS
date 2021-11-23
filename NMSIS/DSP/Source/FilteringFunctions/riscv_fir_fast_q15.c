@@ -73,7 +73,7 @@ void riscv_fir_fast_q15(
         uint32_t numTaps = S->numTaps;                 /* Number of filter coefficients in the filter */
         uint32_t tapCnt, blkCnt;                       /* Loop counters */
 
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
         uint32_t blkCnt_v;                               /* Loop counter */
         size_t l;
         vint16m4_t v_x, v_y;
@@ -249,7 +249,7 @@ void riscv_fir_fast_q15(
     px = pState;
     pb = pCoeffs;
 
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     blkCnt_v = numTaps;
     l = vsetvl_e16m4(blkCnt_v);
     v_a = vsub_vv_i32m8(v_a,v_a, l);

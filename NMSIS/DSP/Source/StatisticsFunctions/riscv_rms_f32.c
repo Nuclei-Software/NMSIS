@@ -64,7 +64,7 @@ void riscv_rms_f32(
         uint32_t blockSize,
         float32_t * pResult)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   float32_t sum = 0.0f;                          /* Temporary result storage */
@@ -74,7 +74,7 @@ void riscv_rms_f32(
   vfloat32m8_t v_in2;
   l = vsetvl_e32m1(1);
   vfloat32m1_t v_sum = vfmv_s_f_f32m1(v_sum, 0.0f, l);
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) 
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
   {
     v_in = vle32_v_f32m8(input, l);
     input +=l;
@@ -139,7 +139,7 @@ void riscv_rms_f32(
 
   /* Compute Rms and store result in destination */
   riscv_sqrt_f32(sum / (float32_t) blockSize, pResult);
-#endif /* defined(RISCV_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

@@ -46,7 +46,7 @@
    * @details
    *
    * This function does the matrix multiplication with weight matrix
-   * and 2 columns from im2col. 
+   * and 2 columns from im2col.
    */
 
 q7_t     *riscv_nn_mat_mult_kernel_q7(const q7_t * pA,
@@ -54,15 +54,15 @@ q7_t     *riscv_nn_mat_mult_kernel_q7(const q7_t * pA,
                                         const uint16_t ch_im_out,
                                         const uint16_t numCol_A,
                                         const uint16_t bias_shift,
-                                        const uint16_t out_shift, 
-                                        const q7_t * bias, 
+                                        const uint16_t out_shift,
+                                        const q7_t * bias,
                                         q7_t * pOut)
 {
-#if defined (RISCV_MATH_DSP) || defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
     /* set up the second output pointers */
     q7_t     *pOut2 = pOut + ch_im_out;
     const q7_t *pBias = bias;
-#if defined (RISCV_VECTOR) && !defined (RISCV_MATH_DSP)
+#if defined (RISCV_MATH_VECTOR) && !defined (RISCV_MATH_DSP)
     uint16_t  rowCnt = ch_im_out >> 1;
     /* this loop over rows in A */
     while (rowCnt)
@@ -218,7 +218,7 @@ q7_t     *riscv_nn_mat_mult_kernel_q7(const q7_t * pA,
         /* accumulate over the vector */
         while (colCnt)
         {
-           
+
             q63_t     inB1 = *__SIMD64(pB)++;
             q63_t     inB2 = *__SIMD64(pB2)++;
             q63_t     inA1 = *__SIMD64(pA)++;
@@ -255,7 +255,7 @@ q7_t     *riscv_nn_mat_mult_kernel_q7(const q7_t * pA,
 
             colCnt--;
         }                       /* while over colCnt */
- 
+
         colCnt = numCol_A & 0x3;
 #endif /* __RISCV_XLEN == 64 */
         while (colCnt)
@@ -321,7 +321,7 @@ q7_t     *riscv_nn_mat_mult_kernel_q7(const q7_t * pA,
         *pOut++ = (q7_t) __SSAT((sum >> out_shift), 8);
         *pOut2++ = (q7_t) __SSAT((sum2 >> out_shift), 8);
     }
-#endif /* defined (RISCV_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) */
     pOut += ch_im_out;
 
     /* return the new output pointer with offset */

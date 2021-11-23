@@ -62,7 +62,7 @@ riscv_status riscv_elementwise_mul_s8(const int8_t *input_1_vect,
 {
 
     int32_t loop_count;
-#if defined(RISCV_VECTOR) && (__riscv_xlen != 32) && (__riscv_flen != 32)
+#if defined(RISCV_MATH_VECTOR) && (__riscv_xlen != 32) && (__riscv_flen != 32)
     uint32_t blkCnt = block_size;
   size_t l;
   vint32m4_t input_1;
@@ -70,7 +70,7 @@ riscv_status riscv_elementwise_mul_s8(const int8_t *input_1_vect,
   // vint64m8_t mul_res64;
   vint32m4_t mul_res32;
   int32_t mul_res;
-       
+
   for (; (l = vsetvl_e8m1(blkCnt)) > 0; blkCnt -= l) {
     input_1 = vadd_vx_i32m4(vwadd_vx_i32m4(vwadd_vx_i16m2(vle8_v_i8m1(input_1_vect, l), 0, l), 0, l), input_1_offset, l);
     input_1_vect += l;

@@ -77,7 +77,7 @@ riscv_status riscv_fully_connected_mat_q7_vec_q15(const q15_t *pV,
                                               q15_t *vec_buffer)
 {
     (void)vec_buffer;
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
     int       i, j;
     uint32_t blkCnt_v;
     size_t l;

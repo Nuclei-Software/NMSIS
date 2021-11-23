@@ -125,7 +125,7 @@ riscv_fully_connected_mat_q7_vec_q15_opt(const q15_t * pV,
 {
 
     (void)vec_buffer;
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
     /* Run the following code as reference implementation for RISC-V Core without DSP */
     uint16_t  rowCnt = num_of_rows >> 2;
     const q7_t *pB = pM;

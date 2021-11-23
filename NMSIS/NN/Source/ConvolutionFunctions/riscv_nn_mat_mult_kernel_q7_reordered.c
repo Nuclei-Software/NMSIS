@@ -53,13 +53,13 @@ q7_t     *riscv_nn_mat_mult_kernel_q7_reordered(const q7_t * pA,
                                                   const uint16_t ch_im_out,
                                                   const uint16_t numCol_A,
                                                   const uint16_t bias_shift,
-                                                  const uint16_t out_shift, 
-                                                  const q7_t * bias, 
+                                                  const uint16_t out_shift,
+                                                  const q7_t * bias,
                                                   q7_t * pOut)
 {
 
 
-#if defined (RISCV_MATH_DSP) || defined(RISCV_VECTOR)
+#if defined (RISCV_MATH_DSP) || defined(RISCV_MATH_VECTOR)
     /* set up the second output pointers */
     q7_t     *pOut2 = pOut + ch_im_out;
     int       i;
@@ -74,7 +74,7 @@ q7_t     *riscv_nn_mat_mult_kernel_q7_reordered(const q7_t * pA,
         /* align the second pointer for A */
         const q7_t *pA2 = pA + numCol_A;
 
-#if defined(RISCV_VECTOR) && !defined (RISCV_MATH_DSP)
+#if defined(RISCV_MATH_VECTOR) && !defined (RISCV_MATH_DSP)
         /* accumulate over the vector */
         size_t l;
         uint32_t blkCnt = numCol_A;
@@ -139,7 +139,7 @@ q7_t     *riscv_nn_mat_mult_kernel_q7_reordered(const q7_t * pA,
         /* accumulate over the vector */
         while (colCnt)
         {
-           
+
             q63_t     inB1 = *__SIMD64(pB)++;
             q63_t     inB2 = *__SIMD64(pB2)++;
             q63_t     inA1 = *__SIMD64(pA)++;
@@ -184,7 +184,7 @@ q7_t     *riscv_nn_mat_mult_kernel_q7_reordered(const q7_t * pA,
             sum3 = __SMLAD(inA22, inB1, sum3);
             sum4 = __SMLAD(inA22, inB2, sum4);
             */
-           
+
             q31_t     inB1 = *__SIMD32(pB)++;
             q31_t     inB2 = *__SIMD32(pB2)++;
 
@@ -213,7 +213,7 @@ q7_t     *riscv_nn_mat_mult_kernel_q7_reordered(const q7_t * pA,
             sum4 += inA2 * inB2;
             colCnt--;
         }                       /* while over colCnt */
-#endif /* defined(RISCV_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
         *pOut++ = (q7_t) __SSAT((sum >> out_shift), 8);
         *pOut++ = (q7_t) __SSAT((sum3 >> out_shift), 8);
         *pOut2++ = (q7_t) __SSAT((sum2 >> out_shift), 8);

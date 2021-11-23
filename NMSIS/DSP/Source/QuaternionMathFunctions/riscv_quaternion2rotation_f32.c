@@ -61,11 +61,11 @@
    @param[out]      pOutputRotations points to an array of 3x3 rotations (in row order)
    @param[in]       nbQuaternions number of quaternions in the array
    @return none.
-  
+
    @par
    Format of rotation matrix
-   
-   
+
+
    The quaternion a + ib + jc + kd is converted into rotation matrix:
    <pre>
      a^2 + b^2 - c^2 - d^2                 2bc - 2ad                 2bd + 2ac
@@ -75,11 +75,11 @@
    Rotation matrix is saved in row order : R00 R01 R02 R10 R11 R12 R20 R21 R22
  */
 
-void riscv_quaternion2rotation_f32(const float32_t *pInputQuaternions, 
-    float32_t *pOutputRotations, 
+void riscv_quaternion2rotation_f32(const float32_t *pInputQuaternions,
+    float32_t *pOutputRotations,
     uint32_t nbQuaternions)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
     uint32_t blkCnt = nbQuaternions;                               /* Loop counter */
     size_t l;
     vfloat32m8_t v_QA0, v_QA1, v_QA2, v_QA3;

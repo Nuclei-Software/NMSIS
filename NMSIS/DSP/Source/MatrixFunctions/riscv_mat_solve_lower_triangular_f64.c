@@ -54,7 +54,7 @@
   {
   riscv_status status;                             /* status of matrix inverse */
 
-#if defined(RISCV_VECTOR) && (defined(__riscv_flen) && (__riscv_flen == 64))
+#if defined(RISCV_MATH_VECTOR) && (defined(__riscv_flen) && (__riscv_flen == 64))
     uint32_t blkCnt;                               /* Loop counter */
     size_t l;
     vfloat64m8_t v_x, v_y;
@@ -86,7 +86,7 @@
           b2 c2   x2   a2
              c3   x3   a3
 
-    x3 = a3 / c3 
+    x3 = a3 / c3
     x2 = (a2 - c2 x3) / b2
 
     */
@@ -110,7 +110,7 @@
             lt_row = &pLT[n*i];
 
             float64_t tmp=a_col[i * n];
-#if defined(RISCV_VECTOR) && (defined(__riscv_flen) && (__riscv_flen == 64))
+#if defined(RISCV_MATH_VECTOR) && (defined(__riscv_flen) && (__riscv_flen == 64))
             blkCnt = i;
             pVlt_row = lt_row;
             pX_row = pX + j;

@@ -56,7 +56,7 @@
 
 void riscv_nn_mult_q15(q15_t *pSrcA, q15_t *pSrcB, q15_t *pDst, const uint16_t out_shift, uint32_t blockSize)
 {
-#if defined (RISCV_VECTOR) && ((__riscv_xlen != 32) || (__riscv_flen != 32))
+#if defined (RISCV_MATH_VECTOR) && ((__riscv_xlen != 32) || (__riscv_flen != 32))
     uint32_t blkCnt = blockSize;                              /* Loop counter */
     size_t l;
     q15_t *pCnt = pDst;
@@ -65,7 +65,7 @@ void riscv_nn_mult_q15(q15_t *pSrcA, q15_t *pSrcB, q15_t *pDst, const uint16_t o
     vint16m2_t pA_v16m2,pB_v16m2;
     vint32m4_t mulRes_i32m4;
     vint64m8_t addRes_i64m8;
-         
+
     for (; (l = vsetvl_e16m2(blkCnt)) > 0; blkCnt -= l) {
       pA_v16m2 = vle16_v_i16m2(pA, l);
       pB_v16m2 = vle16_v_i16m2(pB, l);
@@ -152,7 +152,7 @@ void riscv_nn_mult_q15(q15_t *pSrcA, q15_t *pSrcB, q15_t *pDst, const uint16_t o
         /* Decrement the blockSize loop counter */
         blkCnt--;
     }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
 }
 
 /**

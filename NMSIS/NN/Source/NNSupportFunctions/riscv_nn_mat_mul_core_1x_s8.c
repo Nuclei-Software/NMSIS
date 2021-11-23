@@ -55,7 +55,7 @@ riscv_status riscv_nn_mat_mul_core_1x_s8(int32_t row_elements,
     int32_t acc_n0 = 0;
     int32_t sum_tmp = 0;
 
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     uint32_t blkCnt = row_elements;                              /* Loop counter */
     size_t l;
     const q7_t *pCol = col_base;

@@ -62,10 +62,10 @@ void riscv_fill_f32(
   float32_t * pDst,
   uint32_t blockSize)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = blockSize;                               /* Loop counter */
   size_t l;
-  vfloat32m8_t v_fill;      
+  vfloat32m8_t v_fill;
   for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
     v_fill = vfmv_v_f_f32m8(value, l);
     vse32_v_f32m8 (pDst, v_fill, l);
@@ -113,7 +113,7 @@ void riscv_fill_f32(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

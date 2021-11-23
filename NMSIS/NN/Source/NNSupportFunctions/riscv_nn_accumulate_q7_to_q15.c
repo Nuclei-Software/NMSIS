@@ -45,12 +45,12 @@ void riscv_nn_accumulate_q7_to_q15(q15_t *pDst, const q7_t *pSrc, uint32_t lengt
 {
     q15_t *pCnt = pDst;
     const q7_t *pV = pSrc;
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     uint32_t blkCnt = length;                              /* Loop counter */
     size_t l;
     vint8m4_t pA_v8m4;
     vint16m8_t pCnt_v16m8;
-         
+
     for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
       pA_v8m4 = vle8_v_i8m4(pV, l);
       pCnt_v16m8 = vle16_v_i16m8(pCnt, l);
@@ -85,7 +85,7 @@ void riscv_nn_accumulate_q7_to_q15(q15_t *pDst, const q7_t *pSrc, uint32_t lengt
         *pCnt++ += *pV++;
         cnt--;
     }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
 }
 
 /**

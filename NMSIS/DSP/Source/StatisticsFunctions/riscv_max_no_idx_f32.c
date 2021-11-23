@@ -53,7 +53,7 @@ void riscv_max_no_idx_f32(
     uint32_t   blockSize,
     float32_t *pResult)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vfloat32m8_t v_in;
@@ -73,19 +73,19 @@ void riscv_max_no_idx_f32(
    while (blockSize > 0U)
    {
        newVal = *pSrc++;
-   
+
        /* compare for the maximum value */
        if (maxValue < newVal)
        {
            /* Update the maximum value and it's index */
            maxValue = newVal;
        }
-   
+
        blockSize --;
    }
-    
+
    *pResult = maxValue;
-#endif /* defined(RISCV_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 

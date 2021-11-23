@@ -142,7 +142,7 @@ void riscv_absmin_f32(
                                                                                                             \
   /* Store the extrema value and it's index into destination pointers */                                    \
   *pResult = out;                                                                                           \
-  *pIndex = outIndex;  
+  *pIndex = outIndex;
 }
 #else
 void riscv_absmin_f32(
@@ -154,8 +154,8 @@ void riscv_absmin_f32(
        float32_t minVal, out;                         /* Temporary variables to store the output value. */
        uint32_t blkCnt, outIndex;                     /* Loop counter */
 
-#if defined(RISCV_VECTOR)
-    blkCnt = blockSize;    
+#if defined(RISCV_MATH_VECTOR)
+    blkCnt = blockSize;
     uint32_t temp_index = 0;
     float32_t temp_min;
     size_t l;

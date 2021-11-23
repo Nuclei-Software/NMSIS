@@ -53,7 +53,7 @@
   riscv_matrix_instance_f64 * dst)
   {
 riscv_status status;                             /* status of matrix inverse */
-#if defined(RISCV_VECTOR) && (defined(__riscv_flen) && (__riscv_flen == 64))
+#if defined(RISCV_MATH_VECTOR) && (defined(__riscv_flen) && (__riscv_flen == 64))
     uint32_t blkCnt;                               /* Loop counter */
     size_t l;
     vfloat64m8_t v_x, v_y;
@@ -101,7 +101,7 @@ riscv_status status;                             /* status of matrix inverse */
             ut_row = &pUT[n*i];
 
             float64_t tmp=a_col[i * n];
-#if defined(RISCV_VECTOR) && (defined(__riscv_flen) && (__riscv_flen == 64))
+#if defined(RISCV_MATH_VECTOR) && (defined(__riscv_flen) && (__riscv_flen == 64))
             blkCnt = n-i-1;
             pVut_row = ut_row + i+1;
             pX_row = pX + n*(i+1)+j;
@@ -137,7 +137,7 @@ riscv_status status;                             /* status of matrix inverse */
 
   }
 
-  
+
   /* Return to application */
   return (status);
 }

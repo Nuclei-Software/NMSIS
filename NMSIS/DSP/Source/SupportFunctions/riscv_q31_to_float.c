@@ -60,13 +60,13 @@ void riscv_q31_to_float(
   float32_t * pDst,
   uint32_t blockSize)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   const q31_t *pIn = pSrc;                             /* Src pointer */
   uint32_t blkCnt = blockSize;                               /* loop counter */
   size_t l;
   vint32m8_t v_in;
   vfloat32m8_t v_out;
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) 
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
   {
     v_in = vle32_v_i32m8(pIn, l);
     pIn += l;
@@ -117,7 +117,7 @@ void riscv_q31_to_float(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

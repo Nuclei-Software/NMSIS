@@ -54,12 +54,12 @@
  */
 
 
-void riscv_quaternion_norm_f32(const float32_t *pInputQuaternions, 
+void riscv_quaternion_norm_f32(const float32_t *pInputQuaternions,
   float32_t *pNorms,
   uint32_t nbQuaternions)
 {
    float32_t temp;
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
     uint32_t blkCnt = nbQuaternions;                               /* Loop counter */
     size_t l;
     vfloat32m8_t v_x0, v_x1, v_x2, v_x3;

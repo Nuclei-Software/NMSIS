@@ -65,11 +65,11 @@ void riscv_add_f32(
         float32_t * pDst,
         uint32_t blockSize)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vfloat32m8_t vx, vy;
-       
+
   for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
     vx = vle32_v_f32m8(pSrcA, l);
     pSrcA += l;
@@ -121,7 +121,7 @@ void riscv_add_f32(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /*defined(RISCV_VECTOR)*/
+#endif /*defined(RISCV_MATH_VECTOR)*/
 }
 
 /**

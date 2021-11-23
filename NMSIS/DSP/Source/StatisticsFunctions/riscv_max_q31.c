@@ -52,7 +52,7 @@ void riscv_max_q31(
         q31_t * pResult,
         uint32_t * pIndex)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
     int32_t max = pSrc[0],max_temp;
     uint32_t index = 0,index_temp = 0;
 
@@ -66,7 +66,7 @@ void riscv_max_q31(
     blkCnt = blockSize;
     l = vsetvl_e32m1(1);
     v_tempa = vmv_s_x_i32m1(v_tempa, pSrc[0], l);
-    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) 
+    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
     {
         v_x = vle32_v_i32m8(inputx, l);
         inputx += l;
@@ -88,7 +88,7 @@ void riscv_max_q31(
             index++;
     }
     * pIndex = index;
-  
+
 #else
         q31_t maxVal, out;                             /* Temporary variables to store the output value. */
         uint32_t blkCnt, outIndex;                     /* Loop counter */
@@ -179,7 +179,7 @@ void riscv_max_q31(
   /* Store the maximum value and it's index into destination pointers */
   *pResult = out;
   *pIndex = outIndex;
-#endif /* defined(RISCV_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

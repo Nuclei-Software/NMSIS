@@ -67,7 +67,7 @@ void riscv_conv_q15(
         q15_t * pDst)
 {
 
-#if defined (RISCV_MATH_DSP) || defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
 
   const q15_t *pIn1;                                   /* InputA pointer */
   const q15_t *pIn2;                                   /* InputB pointer */
@@ -146,7 +146,7 @@ void riscv_conv_q15(
   /* For loop unrolling by 4, this stage is divided into two. */
   /* First part of this stage computes the MAC operations less than 4 */
   /* Second part of this stage computes the MAC operations greater than or equal to 4 */
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
   while (blockSize1 > 0U)
   {
     /* Accumulator is made zero for every iteration */
@@ -220,7 +220,7 @@ void riscv_conv_q15(
    * y[srcBLen] and y[srcBLen-1] coefficients, py is decremented by 1 */
   py = py - 1;
 #if __RISCV_XLEN == 64
-  py = py - 2; 
+  py = py - 2;
 #endif /* __RISCV_XLEN == 64 */
 
   while (blockSize1 > 0U)
@@ -282,7 +282,7 @@ void riscv_conv_q15(
     /* Decrement loop counter */
     blockSize1--;
   }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
   /* --------------------------
    * Initializations of stage2
    * ------------------------*/
@@ -306,7 +306,7 @@ void riscv_conv_q15(
   /* -------------------
    * Stage2 process
    * ------------------*/
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     blkCnt = blockSize2;
 
     while (blkCnt > 0U)
@@ -611,7 +611,7 @@ void riscv_conv_q15(
       blkCnt--;
     }
   }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
 
   /* --------------------------
    * Initializations of stage3
@@ -644,7 +644,7 @@ void riscv_conv_q15(
   /* For loop unrolling by 4, this stage is divided into two. */
   /* First part of this stage computes the MAC operations greater than 4 */
   /* Second part of this stage computes the MAC operations less than or equal to 4 */
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
   while (blockSize3 > 0U)
   {
     /* Accumulator is made zero for every iteration */
@@ -777,7 +777,7 @@ void riscv_conv_q15(
     /* Decrement loop counter */
     blockSize3--;
   }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
 #else /* #if defined (RISCV_MATH_DSP) */
 
   const q15_t *pIn1 = pSrcA;                           /* InputA pointer */

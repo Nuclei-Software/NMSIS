@@ -156,7 +156,7 @@ void riscv_fir_sparse_f32(
   pOut = pDst;
 
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
 
   /* Loop unrolling: Compute 4 outputs at a time. */
   blkCnt = blockSize >> 2U;
@@ -185,7 +185,7 @@ void riscv_fir_sparse_f32(
   blkCnt = blockSize;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     uint32_t vblkCnt = blockSize;                               /* Loop counter */
     size_t l;
     vfloat32m8_t vx, vy;
@@ -204,7 +204,7 @@ void riscv_fir_sparse_f32(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined (RISCV_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) */
 
   /* Load the coefficient value and
    * increment the coefficient buffer for the next set of state values */
@@ -238,7 +238,7 @@ void riscv_fir_sparse_f32(
     pOut = pDst;
 
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
 
     /* Loop unrolling: Compute 4 outputs at a time. */
     blkCnt = blockSize >> 2U;
@@ -267,7 +267,7 @@ void riscv_fir_sparse_f32(
     blkCnt = blockSize;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     uint32_t vblkCnt = blockSize;                               /* Loop counter */
     size_t l;
     vfloat32m8_t vx, vy;
@@ -286,7 +286,7 @@ void riscv_fir_sparse_f32(
       /* Decrement loop counter */
       blkCnt--;
     }
-#endif /* defined (RISCV_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) */
     /* Load the coefficient value and
      * increment the coefficient buffer for the next set of state values */
     coeff = *pCoeffs++;

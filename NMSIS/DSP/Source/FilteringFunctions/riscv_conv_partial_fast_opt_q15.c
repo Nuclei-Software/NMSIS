@@ -68,7 +68,7 @@ riscv_status riscv_conv_partial_fast_opt_q15(
         q15_t * pScratch1,
         q15_t * pScratch2)
 {
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     return(riscv_conv_partial_opt_q15(pSrcA, srcALen, pSrcB, srcBLen, pDst, firstIndex, numPoints, pScratch1, pScratch2));
 #else
         q15_t *pOut = pDst;                            /* Output pointer */
@@ -378,7 +378,7 @@ riscv_status riscv_conv_partial_fast_opt_q15(
 
   /* Return to application */
   return (status);
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
 }
 
 /**

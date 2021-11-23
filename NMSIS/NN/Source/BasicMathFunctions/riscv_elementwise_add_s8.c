@@ -77,13 +77,13 @@ riscv_status riscv_elementwise_add_s8(const int8_t *input_1_vect,
                                   const int32_t out_activation_max,
                                   const uint32_t block_size)
 {
-#if defined(RISCV_VECTOR) && (__riscv_xlen != 32) && (__riscv_flen != 32)
+#if defined(RISCV_MATH_VECTOR) && (__riscv_xlen != 32) && (__riscv_flen != 32)
   uint32_t blkCnt = block_size;                               /* Loop counter */
   size_t l;
   vint32m4_t input_1;
   vint32m4_t input_2;
   vint32m4_t sum;
-       
+
   for (; (l = vsetvl_e8m1(blkCnt)) > 0; blkCnt -= l) {
     input_1 = vsll_vx_i32m4(vwadd_vx_i32m4(vwadd_vx_i16m2(vle8_v_i8m1(input_1_vect, l), 0, l), input_1_offset, l), left_shift, l);
     input_1_vect += l;
@@ -225,7 +225,7 @@ riscv_status riscv_elementwise_add_s8(const int8_t *input_1_vect,
         loop_count--;
     }
 
-#endif /* defined(RISCV_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
   return (RISCV_MATH_SUCCESS);
 }
 

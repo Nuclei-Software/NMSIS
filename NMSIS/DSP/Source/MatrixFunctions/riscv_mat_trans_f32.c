@@ -79,7 +79,7 @@ riscv_status riscv_mat_trans_f32(
   else
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = nRows;
   size_t l,max_l;
   ptrdiff_t bstride = 4;  //  32bit/8bit = 4
@@ -90,11 +90,11 @@ riscv_status riscv_mat_trans_f32(
   // max_l = vsetvl_e32m8(32);
 
     for(colnum = 0;colnum < nCols; colnum++)
-    { 
+    {
       blkCnt = nRows;
       pIn1 = pIn;
-      for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) 
-      { 
+      for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+      {
         v_in = vlse32_v_f32m8(pIn, col_diff, l);
         vse32_v_f32m8 (pOut, v_in, l);
         // if(l == max_l)
@@ -175,7 +175,7 @@ riscv_status riscv_mat_trans_f32(
     status = RISCV_MATH_SUCCESS;
   }
 
-#endif /*defined(RISCV_VECTOR)*/
+#endif /*defined(RISCV_MATH_VECTOR)*/
 
   /* Return to application */
   return (status);

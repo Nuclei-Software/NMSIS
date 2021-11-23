@@ -88,7 +88,7 @@ riscv_status riscv_convolve_HWC_q7_basic_nonsquare(const q7_t *Im_in,
                                                q7_t *bufferB)
 {
     (void)bufferB;
-#if defined (RISCV_MATH_DSP) || defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
     /* Run the following code for RISC-V Core with DSP enabled */
 
     int16_t i_out_y, i_out_x, i_ker_y, i_ker_x;
@@ -199,7 +199,7 @@ riscv_status riscv_convolve_HWC_q7_basic_nonsquare(const q7_t *Im_in,
 #endif /* __RISCV_XLEN == 64 */
 #else
             uint16_t  colCnt = ch_im_in * dim_kernel_y * dim_kernel_x;
-#endif /*ndef RISCV_VECTOR*/
+#endif /*ndef RISCV_MATH_VECTOR*/
             while (colCnt)
             {
                 q7_t inA1 = *pA++;

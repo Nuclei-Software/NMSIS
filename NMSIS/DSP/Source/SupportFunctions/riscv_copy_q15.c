@@ -50,11 +50,11 @@ void riscv_copy_q15(
         q15_t * pDst,
         uint32_t blockSize)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vint16m8_t v_copy;
-       
+
   for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
     v_copy = vle16_v_i16m8(pSrc, l);
     pSrc += l;
@@ -105,7 +105,7 @@ void riscv_copy_q15(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

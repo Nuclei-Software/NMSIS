@@ -59,12 +59,12 @@ void riscv_scale_q7(
         q7_t * pDst,
         uint32_t blockSize)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = blockSize;                               /* Loop counter */
   int8_t kShift = 7 - shift;                                 /* Shift to apply after scaling */
   size_t l;
   vint8m4_t vx;
-       
+
   for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
     vx = vle8_v_i8m4(pSrc, l);
     pSrc += l;
@@ -160,7 +160,7 @@ void riscv_scale_q7(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

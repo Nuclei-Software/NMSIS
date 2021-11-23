@@ -71,7 +71,7 @@ void riscv_lms_q31(
         q31_t * pOut,
         q31_t * pErr,
         uint32_t blockSize)
-{       
+{
         q31_t *pState = S->pState;                     /* State pointer */
         q31_t *pCoeffs = S->pCoeffs;                   /* Coefficient pointer */
         q31_t *pStateCurnt;                            /* Points to the current sample of the state */
@@ -110,7 +110,7 @@ void riscv_lms_q31(
     /* Set the accumulator to zero */
     acc = 0;
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
 
     /* Loop unrolling: Compute 4 taps at a time. */
     tapCnt = numTaps >> 2U;
@@ -151,7 +151,7 @@ void riscv_lms_q31(
     tapCnt = numTaps;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     uint32_t vblkCnt = numTaps;
     size_t l;
     vint32m4_t vx, vy;
@@ -176,7 +176,7 @@ void riscv_lms_q31(
       /* Decrement the loop counter */
       tapCnt--;
     }
-#endif /* defined (RISCV_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) */
     /* Converting the result to 1.31 format */
     /* Calc lower part of acc */
     acc_l = acc & 0xffffffff;
@@ -203,7 +203,7 @@ void riscv_lms_q31(
     /* Initialize coefficient pointer */
     pb = pCoeffs;
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
 
     /* Loop unrolling: Compute 4 taps at a time. */
     tapCnt = numTaps >> 2U;
@@ -245,7 +245,7 @@ void riscv_lms_q31(
     tapCnt = numTaps;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     vblkCnt = blockSize;
     for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
       vx = vle32_v_i32m4(px, l);
@@ -264,7 +264,7 @@ void riscv_lms_q31(
       /* Decrement loop counter */
       tapCnt--;
     }
-#endif /* defined (RISCV_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) */
     /* Decrement loop counter */
     blkCnt--;
   }
@@ -277,7 +277,7 @@ void riscv_lms_q31(
   pStateCurnt = S->pState;
 
   /* copy data */
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
 
   /* Loop unrolling: Compute 4 taps at a time. */
   tapCnt = (numTaps - 1U) >> 2U;
@@ -302,7 +302,7 @@ void riscv_lms_q31(
   tapCnt = (numTaps - 1U);
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     uint32_t vblkCnt = (numTaps - 1U);
     size_t l;
     for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
@@ -318,7 +318,7 @@ void riscv_lms_q31(
     /* Decrement loop counter */
     tapCnt--;
   }
-#endif /* defined (RISCV_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) */
 }
 
 /**

@@ -104,14 +104,14 @@ riscv_status riscv_convolve_HWC_q15_fast_nonsquare(const q15_t *Im_in,
                                                q7_t *bufferB)
 {
     (void)bufferB;
-#if defined (RISCV_MATH_DSP) || defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
     int16_t   i_out_y, i_out_x, i_ker_y, i_ker_x;
 
     q15_t *pBuffer = bufferA;
     q15_t *im_buffer = bufferA;
     q15_t *pOut = Im_out;
 
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
     size_t l;
     uint32_t blkCnt;
     ptrdiff_t bstride;
@@ -177,7 +177,7 @@ riscv_status riscv_convolve_HWC_q15_fast_nonsquare(const q15_t *Im_in,
                     q31_t     sum2 = ((q31_t)bias[i] << bias_shift) + NN_ROUND(out_shift);
                     q31_t     sum3 = ((q31_t)bias[i + 1] << bias_shift) + NN_ROUND(out_shift);
                     q31_t     sum4 = ((q31_t)bias[i + 1] << bias_shift) + NN_ROUND(out_shift);
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
                     uint16_t  colCnt = ch_im_in * dim_kernel_y * dim_kernel_x;
                     blkCnt = colCnt;
                     for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {

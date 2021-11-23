@@ -61,7 +61,7 @@ void riscv_barycenter_f32(const float32_t *in, const float32_t *weights, float32
    blkCntVector = nbVectors;
    blkCntSample = vecDim;
 
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
     uint32_t blkCnt_v;                               /* Loop counter */
     size_t l;
     float32_t temp_max;
@@ -94,7 +94,7 @@ void riscv_barycenter_f32(const float32_t *in, const float32_t *weights, float32
       pOut = out;
       w = *pW++;
       accum += w;
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
       blkCnt_v = vecDim;
       l = vsetvl_e32m8(blkCnt_v);
       v_a = vfsub_vv_f32m8(v_a,v_a, l);

@@ -105,7 +105,7 @@ riscv_status riscv_fully_connected_q15_opt(const q15_t *pV,
                                        q15_t *vec_buffer)
 {
     (void)vec_buffer;
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
     /* Run the following code as reference implementation for RISC-V Core without DSP */
     uint16_t  rowCnt = num_of_rows >> 2;
     const q15_t *pB = pM;

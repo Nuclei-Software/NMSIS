@@ -96,7 +96,7 @@ riscv_status riscv_depthwise_separable_conv_HWC_q7_nonsquare(const q7_t *Im_in,
 
     (void)bufferB;
 
-#if defined (RISCV_MATH_DSP) || defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
     /* Run the following code for RISC-V Core with DSP enabled */
 
     /*
@@ -117,7 +117,7 @@ riscv_status riscv_depthwise_separable_conv_HWC_q7_nonsquare(const q7_t *Im_in,
     uint16_t rowCnt;
     uint16_t row_shift;
 
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
     size_t l;
     uint32_t blkCnt;
     ptrdiff_t bstride;
@@ -161,7 +161,7 @@ riscv_status riscv_depthwise_separable_conv_HWC_q7_nonsquare(const q7_t *Im_in,
             rowCnt = ch_im_out >> 2;
             row_shift = 0;
             pBias = bias;
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
             rowCnt = ch_im_out;
             bstride = ch_im_in;
             while (rowCnt)
@@ -276,7 +276,7 @@ riscv_status riscv_depthwise_separable_conv_HWC_q7_nonsquare(const q7_t *Im_in,
                 q7_t     *pB = colBuffer + row_shift;
                 const q7_t *pA = wt + row_shift;
                 row_shift += 4;
-#endif /*ndef RISCV_VECTOR*/
+#endif /*ndef RISCV_MATH_VECTOR*/
                 while (colCnt)
                 {
                     union riscv_nnword inA, inB;

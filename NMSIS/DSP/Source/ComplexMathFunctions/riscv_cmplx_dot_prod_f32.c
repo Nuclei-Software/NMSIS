@@ -82,7 +82,7 @@ void riscv_cmplx_dot_prod_f32(
         float32_t * realResult,
         float32_t * imagResult)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = numSamples;                               /* Loop counter */
   size_t l;
   const float32_t * inputA = pSrcA;
@@ -90,11 +90,11 @@ void riscv_cmplx_dot_prod_f32(
   ptrdiff_t bstride = 8;
   vfloat32m8_t v_R1, v_R2, v_I1, v_I2;
   vfloat32m8_t v_RR, v_II, v_RI, v_IR;
-  vfloat32m1_t v_dst;                      /* I don't know what the effect is  */ 
+  vfloat32m1_t v_dst;                      /* I don't know what the effect is  */
   l = vsetvl_e32m1(1);
   vfloat32m1_t v_real = vfmv_s_f_f32m1(v_real, 0, l);
   vfloat32m1_t v_imag = vfmv_s_f_f32m1(v_imag, 0, l);    /* Initialize accumulated value */
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) 
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
   {
     v_R1 = vlse32_v_f32m8(inputA, bstride, l);
     v_R2 = vlse32_v_f32m8(inputB, bstride, l);
@@ -196,7 +196,7 @@ void riscv_cmplx_dot_prod_f32(
   /* Store real and imaginary result in destination buffer. */
   *realResult = real_sum;
   *imagResult = imag_sum;
-#endif /* defined(RISCV_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

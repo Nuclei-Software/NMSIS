@@ -45,7 +45,7 @@ void riscv_nn_add_q7(const q7_t *input, q31_t *output, uint32_t block_size)
 {
     uint32_t block_count;
     q31_t result = 0;
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     uint32_t blkCnt = block_size;                              /* Loop counter */
     size_t l;
     const q7_t *pCnt = input;
@@ -53,7 +53,7 @@ void riscv_nn_add_q7(const q7_t *input, q31_t *output, uint32_t block_size)
     vint32m1_t temp;
     l = vsetvl_e32m1(1);
     temp = vsub_vv_i32m1(temp, temp, l);
-         
+
     for (; (l = vsetvl_e8m2(blkCnt)) > 0; blkCnt -= l) {
       pA_v8m2 = vle8_v_i8m2(pCnt, l);
       pCnt += l;
@@ -92,7 +92,7 @@ void riscv_nn_add_q7(const q7_t *input, q31_t *output, uint32_t block_size)
         /* Decrement loop counter */
         block_count--;
     }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
     *output = result;
 }
 

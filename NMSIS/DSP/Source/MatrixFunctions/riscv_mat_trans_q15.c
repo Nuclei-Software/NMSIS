@@ -46,7 +46,7 @@
                    - \ref RISCV_MATH_SUCCESS       : Operation successful
                    - \ref RISCV_MATH_SIZE_MISMATCH : Matrix size check failed
  */
- 
+
 riscv_status riscv_mat_trans_q15(
   const riscv_matrix_instance_q15 * pSrc,
         riscv_matrix_instance_q15 * pDst)
@@ -78,7 +78,7 @@ riscv_status riscv_mat_trans_q15(
   else
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = nRows;
   size_t l,max_l;
   ptrdiff_t bstride = 2;  //  16bit/8bit = 2
@@ -88,11 +88,11 @@ riscv_status riscv_mat_trans_q15(
   q15_t *pIn1;
   // max_l = vsetvl_e16m8(32);
     for(colnum = 0;colnum < nCols; colnum++)
-    { 
+    {
       blkCnt = nRows;
       pIn1 = pIn;
-      for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) 
-      { 
+      for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+      {
         v_in = vlse16_v_i16m8(pIn, col_diff, l);
         vse16_v_i16m8 (pOut, v_in, l);
         // if(l == max_l)
@@ -204,7 +204,7 @@ riscv_status riscv_mat_trans_q15(
     status = RISCV_MATH_SUCCESS;
   }
 
-#endif /*defined(RISCV_VECTOR)*/
+#endif /*defined(RISCV_MATH_VECTOR)*/
 
   /* Return to application */
   return (status);

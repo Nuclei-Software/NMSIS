@@ -50,7 +50,7 @@
 
 void riscv_relu6_s8(q7_t *data, uint16_t size)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint16_t blkCnt = size;                               /* Loop counter */
   size_t l;
   vint8m8_t vx;
@@ -73,7 +73,7 @@ void riscv_relu6_s8(q7_t *data, uint16_t size)
         ip = MAX(ip, 0);
         data[i] = MIN(ip, 6);
     }
-#endif /* defined(RISCV_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

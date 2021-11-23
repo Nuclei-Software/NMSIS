@@ -59,7 +59,7 @@ void riscv_scale_q31(
         q31_t *pDst,
         uint32_t blockSize)
 {
-#if defined(RISCV_VECTOR) && ((__riscv_xlen!=32) || (__riscv_flen!=32))
+#if defined(RISCV_MATH_VECTOR) && ((__riscv_xlen!=32) || (__riscv_flen!=32))
   uint32_t blkCnt = blockSize;                               /* Loop counter */
   q31_t in, out;                                             /* Temporary variables */
   int8_t kShift = shift + 1;                                 /* Shift to apply after scaling */
@@ -69,7 +69,7 @@ void riscv_scale_q31(
   vint32m4_t v_out;
 
   /* C = A * scale *
-  /* Scale input and store result in destination buffer. */     
+  /* Scale input and store result in destination buffer. */
   for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l) {
     v_in = vle32_v_i32m4(pSrc, l);
     pSrc += l;
@@ -94,7 +94,7 @@ void riscv_scale_q31(
       vse32_v_i32m4 (pDst, v_out, l);
       pDst += l;
     }
-    
+
   }
 #else
         uint32_t blkCnt;                               /* Loop counter */
@@ -222,7 +222,7 @@ void riscv_scale_q31(
       blkCnt--;
     }
   }
-#endif /* defined(RISCV_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

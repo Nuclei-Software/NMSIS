@@ -87,7 +87,7 @@ riscv_status riscv_conv_partial_f32(
         uint32_t firstIndex,
         uint32_t numPoints)
 {
-#if defined (RISCV_MATH_DSP) || defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
   const float32_t *pIn1 = pSrcA;                       /* InputA pointer */
   const float32_t *pIn2 = pSrcB;                       /* InputB pointer */
         float32_t *pOut = pDst;                        /* Output pointer */
@@ -193,7 +193,7 @@ riscv_status riscv_conv_partial_f32(
       /* Accumulator is made zero for every iteration */
       sum = 0.0f;
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
 
       /* Loop unrolling: Compute 4 outputs at a time */
       k = count >> 2U;
@@ -225,7 +225,7 @@ riscv_status riscv_conv_partial_f32(
       k = count;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     uint32_t vblkCnt = count;                               /* Loop counter */
     size_t l;
     vfloat32m8_t vx, vy;
@@ -249,7 +249,7 @@ riscv_status riscv_conv_partial_f32(
         /* Decrement loop counter */
         k--;
       }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
       /* Store the result in the accumulator in the destination buffer. */
       *pOut++ = sum;
 
@@ -295,7 +295,7 @@ riscv_status riscv_conv_partial_f32(
     /* -------------------
      * Stage2 process
      * ------------------*/
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     blkCnt = blockSize2;
 
     while (blkCnt > 0U)
@@ -574,7 +574,7 @@ riscv_status riscv_conv_partial_f32(
         blkCnt--;
       }
     }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
 
     /* --------------------------
      * Initializations of stage3
@@ -615,7 +615,7 @@ riscv_status riscv_conv_partial_f32(
       /* Accumulator is made zero for every iteration */
       sum = 0.0f;
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
 
       /* Loop unrolling: Compute 4 outputs at a time */
       k = count >> 2U;
@@ -647,7 +647,7 @@ riscv_status riscv_conv_partial_f32(
       k = count;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     uint32_t vblkCnt = blockSize3;                               /* Loop counter */
     size_t l;
     vfloat32m8_t vx, vy;
@@ -672,7 +672,7 @@ riscv_status riscv_conv_partial_f32(
         /* Decrement loop counter */
         k--;
       }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
       /* Store the result in the accumulator in the destination buffer. */
       *pOut++ = sum;
 

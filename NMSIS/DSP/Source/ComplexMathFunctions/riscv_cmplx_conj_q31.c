@@ -56,7 +56,7 @@ void riscv_cmplx_conj_q31(
         q31_t * pDst,
         uint32_t numSamples)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = numSamples;                               /* Loop counter */
   size_t l;
   l = vsetvl_e32m8(blkCnt);
@@ -66,7 +66,7 @@ void riscv_cmplx_conj_q31(
   vint32m8_t v_R,v_I;
   vint32m8_t v0;
   v0 = vxor_vv_i32m8(v0, v0, l);                   /* vector 0 */
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) 
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
   {
     v_R = vlse32_v_i32m8(input, bstride, l);
     input++;
@@ -77,7 +77,7 @@ void riscv_cmplx_conj_q31(
     vsse32_v_i32m8 (output, bstride, v_I, l);
     output += (l*2-1);
   }
-  
+
 #else
         uint32_t blkCnt;                               /* Loop counter */
         q31_t in;                                      /* Temporary input variable */
@@ -165,7 +165,7 @@ q63_t in64;
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

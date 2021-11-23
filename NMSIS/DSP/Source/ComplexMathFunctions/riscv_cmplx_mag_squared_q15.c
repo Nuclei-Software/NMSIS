@@ -54,7 +54,7 @@ void riscv_cmplx_mag_squared_q15(
         q15_t * pDst,
         uint32_t numSamples)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = numSamples;                               /* Loop counter */
   size_t l;
   const q15_t * input = pSrc;
@@ -64,7 +64,7 @@ void riscv_cmplx_mag_squared_q15(
   vint32m4_t vR2_m4, vI2_m4;
   vint64m8_t vsum_m8;
   vint16m2_t v_summ2;
-  for (; (l = vsetvl_e16m2(blkCnt)) > 0; blkCnt -= l) 
+  for (; (l = vsetvl_e16m2(blkCnt)) > 0; blkCnt -= l)
   {
     v_R = vlse16_v_i16m2(input, bstride, l);
     input++;
@@ -73,7 +73,7 @@ void riscv_cmplx_mag_squared_q15(
     vR2_m4 = vwmul_vv_i32m4(v_R, v_R, l);
     vI2_m4 = vwmul_vv_i32m4(v_I, v_I, l);
     vsum_m8 = vwadd_vv_i64m8 (vR2_m4, vI2_m4, l);
-    //v_summ2 = vnclip_wx_i16m2(vnsra_wx_i32m4(vsum_m8, 17), 0); 
+    //v_summ2 = vnclip_wx_i16m2(vnsra_wx_i32m4(vsum_m8, 17), 0);
     v_summ2 = vnclip_wx_i16m2(vnclip_wx_i32m4(vsum_m8, 17, l), 0, l);
     vse16_v_i16m2 (output, v_summ2, l);
     output += l;
@@ -85,12 +85,12 @@ void riscv_cmplx_mag_squared_q15(
 #if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
         q63_t in64;
-        q63_t acc064;     
+        q63_t acc064;
         q15_t real, imag;                              /* Temporary input variables */
-        q31_t acc0,acc1;    
+        q31_t acc0,acc1;
 #else
         q31_t in;
-        q31_t acc0;    
+        q31_t acc0;
         q15_t real, imag;                              /* Temporary input variables */
         q31_t acc1;                                 /* Accumulators */
 #endif /* __RISCV_XLEN == 64 */
@@ -119,7 +119,7 @@ void riscv_cmplx_mag_squared_q15(
     acc064 = __RV_KMDA(in64, in64);
     *pDst++ = (q15_t) ((q31_t)acc064 >> 17);
     *pDst++ = (q15_t) (acc064 >> 49);
-    
+
 #else
     in = read_q15x2_ia ((q15_t **) &pSrc);
     acc0 = __RV_KMDA(in, in);
@@ -202,7 +202,7 @@ void riscv_cmplx_mag_squared_q15(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 

@@ -71,7 +71,7 @@ riscv_status status;                             /* status of matrix inverse */
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
 
   {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
     uint32_t blkCnt;                               /* Loop counter */
     size_t l;
     vfloat32m8_t v_x, v_y;
@@ -103,7 +103,7 @@ riscv_status status;                             /* status of matrix inverse */
             ut_row = &pUT[n*i];
 
             float32_t tmp=a_col[i * n];
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
             blkCnt = n-i-1;
             pVut_row = ut_row + i+1;
             pX_row = pX + n*(i+1)+j;
@@ -138,7 +138,7 @@ riscv_status status;                             /* status of matrix inverse */
 
   }
 
-  
+
   /* Return to application */
   return (status);
 }

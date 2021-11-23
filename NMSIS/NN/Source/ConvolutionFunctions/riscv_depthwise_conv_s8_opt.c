@@ -485,7 +485,7 @@ riscv_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
 //         }
 //     }
 
-// #elif defined(RISCV_MATH_DSP) || defined(RISCV_VECTOR)
+// #elif defined(RISCV_MATH_DSP) || defined(RISCV_MATH_VECTOR)
 //     (void)bias_dims;
 //     /* Run the following code in cores using DSP extension */
 //     q7_t *const col_buffer_start = buffer_a;
@@ -544,13 +544,13 @@ riscv_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
 //                 // memset(&col_buffer[index], 0, (kernel_x * input_ch) * diff * sizeof(q15_t));
 //             }
 
-            
+
 //             row_shift = 0;
 //             bias = bias_start_pos;
 //             output_mult = out_mult_start_pos;
 //             output_shift = out_shift_start_pos;
 
-// #if defined(RISCV_VECTOR) && !defined (RISCV_MATH_DSP)
+// #if defined(RISCV_MATH_VECTOR) && !defined (RISCV_MATH_DSP)
 // // This is tipical read with fixed step, can not be optimized this round
 //             row_count = output_ch;
 //             size_t l;
@@ -570,7 +570,7 @@ riscv_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
 
 //                 uint32_t blkCnt = col_count;
 //                 int i = 0;
-//                 for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) 
+//                 for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
 //                 {
 //                     v_R = vlse16_v_i16m4(row_pos + i*input_ch, bstridea, l);
 //                     v_C = vwadd_vx_i16m4(vlse8_v_i8m2(col_pos + i*input_ch, bstrideb, l),0, l);
@@ -619,7 +619,7 @@ riscv_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
 
 //                     temp_1 = __RV_SMUL8(ip_a1, op_a);
 //                     temp_2 = __RV_SMUL8(ip_b1, op_b);
-                    
+
 //                     /*
 //                         Can not add temps directly, because q15 addition is not equal to q63 addition
 //                     */
@@ -726,7 +726,7 @@ riscv_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
 
 //                 row_count--;
 //             }
-// #endif /*defined(RISCV_VECTOR)*/
+// #endif /*defined(RISCV_MATH_VECTOR)*/
 //             // clear counter and pointers
 //             col_buffer = col_buffer_start;
 //         }

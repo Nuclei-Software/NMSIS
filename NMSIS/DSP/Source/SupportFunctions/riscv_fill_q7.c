@@ -50,10 +50,10 @@ void riscv_fill_q7(
   q7_t * pDst,
   uint32_t blockSize)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = blockSize;                               /* Loop counter */
   size_t l;
-  vint8m8_t v_fill;      
+  vint8m8_t v_fill;
   for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
     v_fill = vmv_v_x_i8m8(value, l);
     vse8_v_i8m8 (pDst, v_fill, l);
@@ -124,7 +124,7 @@ void riscv_fill_q7(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

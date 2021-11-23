@@ -68,7 +68,7 @@ void riscv_abs_f32(
         uint32_t blockSize)
 {
         uint32_t blkCnt;                               /* Loop counter */
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   vfloat32m8_t vx;
   blkCnt = blockSize;
   size_t l;

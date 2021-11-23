@@ -56,7 +56,7 @@ float32_t riscv_weighted_sum_f32(const float32_t *in, const float32_t *weigths, 
     const float32_t *pIn, *pW;
     uint32_t blkCnt;
 
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
     uint32_t blkCnt_v;
     size_t l;
     float32_t temp_max;
@@ -73,7 +73,7 @@ float32_t riscv_weighted_sum_f32(const float32_t *in, const float32_t *weigths, 
     accum1=0.0f;
     accum2=0.0f;
 
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
     blkCnt_v = blockSize;
     l = vsetvl_e32m8(blkCnt_v);
     v_a = vfsub_vv_f32m8(v_a,v_a, l);

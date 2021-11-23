@@ -67,7 +67,7 @@ riscv_status riscv_nn_vec_mat_mult_t_svdf_s8(const q7_t *lhs,
     }
 
     (void)rhs_offset;
-#if   defined(RISCV_MATH_DSP) && !defined(RISCV_VECTOR)
+#if   defined(RISCV_MATH_DSP) && !defined(RISCV_MATH_VECTOR)
     int32_t row_loop_cnt = rhs_rows / 2;
 
     const int16_t lhs_offset_s16 = lhs_offset;
@@ -157,7 +157,7 @@ riscv_status riscv_nn_vec_mat_mult_t_svdf_s8(const q7_t *lhs,
 
 #else
 
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
     uint32_t blkCnt;                               /* Loop counter */
     size_t l;
     vint8m2_t v_rhs0, v_rhs1, v_rhs2;
@@ -180,7 +180,7 @@ riscv_status riscv_nn_vec_mat_mult_t_svdf_s8(const q7_t *lhs,
         const q7_t *rhs_ptr_0 = &rhs[0];
         const q7_t *rhs_ptr_1 = &rhs[rhs_cols];
         const q7_t *rhs_ptr_2 = &rhs[rhs_cols * 2];
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
         blkCnt = rhs_cols;
         pRHS0 = rhs_ptr_0;
         pRHS1 = rhs_ptr_1;
@@ -261,7 +261,7 @@ riscv_status riscv_nn_vec_mat_mult_t_svdf_s8(const q7_t *lhs,
 
         q31_t res00 = 0;
 
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
         blkCnt = rhs_cols;
         pRHS0 = rhs_ptr;
         pLHS = lhs_ptr;

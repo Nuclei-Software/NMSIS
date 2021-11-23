@@ -83,7 +83,7 @@ riscv_status riscv_mat_mult_fast_q15(
         uint32_t col, i = 0U, row = numRowsB, colCnt;  /* Loop counters */
         riscv_status status;                             /* Status of matrix multiplication */
 
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
         q15_t in;                                      /* Temporary variable to hold the input value */
         q15_t inA1, inB1, inA2, inB2;
         uint16_t blkCnt;  //number of matrix columns  numColsA = numrowB
@@ -198,7 +198,7 @@ riscv_status riscv_mat_mult_fast_q15(
 #if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
         q63_t in64;                                      /* Temporary variable to hold the input value */
         q63_t sum64=0, sum264=0, sum364=0, sum464=0;
-        q63_t inA164, inA264, inB164, inB264 ;    
+        q63_t inA164, inA264, inB164, inB264 ;
 #endif /* defined RISCV_MATH_DSP || (__RISCV_XLEN == 64) */
 #if defined (RISCV_MATH_DSP)
         q31_t in;                                      /* Temporary variable to hold the input value */
@@ -599,7 +599,7 @@ riscv_status riscv_mat_mult_fast_q15(
           inB164 = read_q15x4_ia ((q15_t **) &pInB);
 
           sum64  = __RV_KMADA(sum64, inA164, inB164);
-#else      
+#else
           inA1 = read_q15x2_ia ((q15_t **) &pInA);
           inA2 = read_q15x2_ia ((q15_t **) &pInA);
           inB1 = read_q15x2_ia ((q15_t **) &pInB);

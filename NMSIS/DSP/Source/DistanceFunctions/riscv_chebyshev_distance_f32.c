@@ -58,7 +58,7 @@ float32_t riscv_chebyshev_distance_f32(const float32_t *pA,const float32_t *pB, 
    maxVal = diff;
    blockSize--;
 
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
    uint32_t blkCnt = blockSize;                               /* Loop counter */
    float32_t max_temp;
    size_t l;

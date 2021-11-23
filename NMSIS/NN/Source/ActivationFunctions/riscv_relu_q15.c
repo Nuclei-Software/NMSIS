@@ -54,7 +54,7 @@
 
 void riscv_relu_q15(q15_t *data, uint16_t size)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint16_t blkCnt = size;                               /* Loop counter */
   size_t l;
   vint16m8_t vx;
@@ -138,7 +138,7 @@ void riscv_relu_q15(q15_t *data, uint16_t size)
     }
 
 #endif /* RISCV_MATH_DSP */
-#endif /* RISCV_VECTOR */
+#endif /* RISCV_MATH_VECTOR */
 }
 
 /**

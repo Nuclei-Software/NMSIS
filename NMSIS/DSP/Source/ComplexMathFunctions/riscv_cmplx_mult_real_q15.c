@@ -56,7 +56,7 @@ void riscv_cmplx_mult_real_q15(
         q15_t * pCmplxDst,
         uint32_t numSamples)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = numSamples;                               /* Loop counter */
   size_t l;
   const q15_t * input_c = pSrcCmplx;         /* Complex pointer */
@@ -66,7 +66,7 @@ void riscv_cmplx_mult_real_q15(
   vint16m4_t v_Rc, v_Ic ,v_Rr;
   vint16m4_t vR2_m4, vI2_m4;
   vint16m4_t v_sum;
-  for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) 
+  for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
   {
     v_Rc = vlse16_v_i16m4(input_c, bstride, l);
     input_c++;
@@ -121,8 +121,8 @@ void riscv_cmplx_mult_real_q15(
 
     mul1 = __RV_SMBB16(inA1, inB1); //1,3
     mul2 = __RV_SMBT16(inB1, inA1); // 2,4
-    
-    write_q15x4_ia (&pCmplxDst, ((uint64_t)((uint16_t) __SSAT(((mul1) & 0xffffffffull) >> 15U, 16)) ) | 
+
+    write_q15x4_ia (&pCmplxDst, ((uint64_t)((uint16_t) __SSAT(((mul1) & 0xffffffffull) >> 15U, 16)) ) |
                                 ((uint64_t)((uint16_t) __SSAT(((mul2) & 0xffffffffull) >> 15U, 16)) << 16) |
                                 ((uint64_t)((uint16_t) __SSAT(((mul1) & 0xffffffff00000000ull) >> 47U, 16))<< 32) |
                                 ((uint64_t)((uint16_t) __SSAT(((mul2) & 0xffffffff00000000ull) >> 47U, 16)) << 48)
@@ -135,8 +135,8 @@ void riscv_cmplx_mult_real_q15(
 
     mul1 = __RV_SMBB16(inA1, inB1); //1,3
     mul2 = __RV_SMBT16(inB1, inA1); // 2,4
-    
-    write_q15x4_ia (&pCmplxDst, ((uint64_t)((uint16_t) __SSAT(((mul1) & 0xffffffffull) >> 15U, 16)) ) | 
+
+    write_q15x4_ia (&pCmplxDst, ((uint64_t)((uint16_t) __SSAT(((mul1) & 0xffffffffull) >> 15U, 16)) ) |
                                 ((uint64_t)((uint16_t) __SSAT(((mul2) & 0xffffffffull) >> 15U, 16)) << 16) |
                                 ((uint64_t)((uint16_t) __SSAT(((mul1) & 0xffffffff00000000ull) >> 47U, 16))<< 32) |
                                 ((uint64_t)((uint16_t) __SSAT(((mul2) & 0xffffffff00000000ull) >> 47U, 16)) << 48)
@@ -236,7 +236,7 @@ void riscv_cmplx_mult_real_q15(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

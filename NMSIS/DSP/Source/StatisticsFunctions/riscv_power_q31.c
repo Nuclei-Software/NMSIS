@@ -60,7 +60,7 @@ void riscv_power_q31(
         uint32_t blockSize,
         q63_t * pResult)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   const q31_t * input = pSrc;
@@ -69,7 +69,7 @@ void riscv_power_q31(
   vint64m8_t v_in2;
   l = vsetvl_e64m1(1);
   vint64m1_t v_sum = vmv_s_x_i64m1(v_sum, 0, l);
-  for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l) 
+  for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)
   {
     v_in = vle32_v_i32m4(input, l);
     input += l;
@@ -143,7 +143,7 @@ void riscv_power_q31(
 
   /* Store results in 16.48 format */
   *pResult = sum;
-#endif /* defined(RISCV_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

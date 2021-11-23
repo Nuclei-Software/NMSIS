@@ -70,7 +70,7 @@ void riscv_correlate_fast_opt_q15(
         q15_t * pDst,
         q15_t * pScratch)
 {
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     riscv_correlate_opt_q15(pSrcA, srcALen, pSrcB, srcBLen, pDst, pScratch);
 #else
   const q15_t *pIn1;                                   /* InputA pointer */
@@ -329,7 +329,7 @@ void riscv_correlate_fast_opt_q15(
 
     pScratch += 1U;
   }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
 }
 
 /**

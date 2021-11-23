@@ -58,7 +58,7 @@
                    Refer to \ref riscv_fir_decimate_fast_q15() for a faster but less precise implementation of this function.
  */
 
-#if defined (RISCV_MATH_DSP) && !defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_DSP) && !defined (RISCV_MATH_VECTOR)
 
 void riscv_fir_decimate_q15(
   const riscv_fir_decimate_instance_q15 * S,
@@ -295,7 +295,7 @@ void riscv_fir_decimate_q15(
   /* Points to the start of the state buffer */
   pStateCur = S->pState;
   i = (numTaps - 1U) >> 2U;
- 
+
   /* copy data */
   while (i > 0U)
   {
@@ -351,10 +351,10 @@ void riscv_fir_decimate_q15(
 
   while (blkCnt > 0U)
   {
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
   uint32_t blkCnti = S->M * 2;                              /* Loop counter */
   size_t l;
-       
+
   for (; (l = vsetvl_e32m8(blkCnti)) > 0; blkCnti -= l) {
     vse32_v_i32m8 (pStateCur, vle32_v_i32m8(pSrc, l), l);
     pSrc += l;
@@ -369,7 +369,7 @@ void riscv_fir_decimate_q15(
       *pStateCur++ = *pSrc++;
 
     } while (--i);
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
     /* Set accumulator to zero */
     acc0 = 0;
     acc1 = 0;
@@ -381,7 +381,7 @@ void riscv_fir_decimate_q15(
     /* Initialize coeff pointer */
     pb = pCoeffs;
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
 
     /* Loop unrolling: Compute 4 taps at a time */
     tapCnt = numTaps >> 2U;
@@ -445,7 +445,7 @@ void riscv_fir_decimate_q15(
     tapCnt = numTaps;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     uint32_t blkCntb;
     // size_t l;
     vint16m2_t va1m2,vb1m2,vb2m2;
@@ -502,7 +502,7 @@ void riscv_fir_decimate_q15(
       /* Decrement the loop counter */
       tapCnt--;
     }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
     /* Advance the state pointer by the decimation factor
      * to process the next group of decimation factor number samples */
     pState = pState + S->M * 2;
@@ -520,10 +520,10 @@ void riscv_fir_decimate_q15(
   while (blkCntN3 > 0U)
   {
     /* Copy decimation factor number of new input samples into the state buffer */
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
   uint32_t blkCnti = S->M * 2;                              /* Loop counter */
   size_t l;
-       
+
   for (; (l = vsetvl_e32m8(blkCnti)) > 0; blkCnti -= l) {
     vse32_v_i32m8 (pStateCur, vle32_v_i32m8(pSrc, l), l);
     pSrc += l;
@@ -536,7 +536,7 @@ void riscv_fir_decimate_q15(
       *pStateCur++ = *pSrc++;
 
     } while (--i);
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
     /* Set accumulator to zero */
     sum0 = 0;
 

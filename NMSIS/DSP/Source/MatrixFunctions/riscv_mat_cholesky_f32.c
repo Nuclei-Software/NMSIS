@@ -39,7 +39,7 @@
   Computes the Cholesky or LDL^t decomposition of a matrix.
 
 
-  If the input matrix does not have a decomposition, then the 
+  If the input matrix does not have a decomposition, then the
   algorithm terminates and returns error status RISCV_MATH_DECOMPOSITION_FAILURE.
  */
 
@@ -90,7 +90,7 @@ riscv_status riscv_mat_cholesky_f32(
     float32_t invSqrtVj;
     float32_t *pA,*pG;
 
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
     uint32_t blkCnt;                               /* Loop counter */
     size_t l;
     vfloat32m8_t v_x, v_y;
@@ -105,13 +105,13 @@ riscv_status riscv_mat_cholesky_f32(
 
     pA = pSrc->pData;
     pG = pDst->pData;
-    
+
 
     for(i=0 ; i < n ; i++)
     {
        for(j=i ; j < n ; j++)
        {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
             if(i==0){
                 pG[j * n + i] = pA[j * n + i];
             }
@@ -157,7 +157,7 @@ riscv_status riscv_mat_cholesky_f32(
 
   }
 
-  
+
   /* Return to application */
   return (status);
 }

@@ -63,7 +63,7 @@ void riscv_std_q31(
         uint32_t blockSize,
         q31_t * pResult)
 {
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = blockSize;                   /* Loop counter */
   q63_t sum = 0;                                 /* Temporary result storage */
   q63_t meanOfSquares, squareOfMean;             /* Square of mean and mean of square */
@@ -71,12 +71,12 @@ void riscv_std_q31(
   size_t l;
   const q31_t * input = pSrc;
   q31_t * output = pResult;
-  vint32m4_t v_in;                               /* Temporary variable to store input value */  
+  vint32m4_t v_in;                               /* Temporary variable to store input value */
   vint64m8_t v_in2;
   l = vsetvl_e64m1(1);
   vint64m1_t v_sumOfSquares = vmv_s_x_i64m1(v_sumOfSquares, 0, l);
   vint64m1_t v_sum = vmv_s_x_i64m1(v_sum, 0, l);
-  for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l) 
+  for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)
   {
     v_in = vsra_vx_i32m4(vle32_v_i32m4(input, l), 8U, l);
     input += l;
@@ -189,7 +189,7 @@ void riscv_std_q31(
 
   /* Compute standard deviation and store result in destination */
   riscv_sqrt_q31((meanOfSquares - squareOfMean) >> 15U, pResult);
-#endif /* defined(RISCV_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

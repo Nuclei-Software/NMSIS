@@ -76,7 +76,7 @@ riscv_status riscv_mat_cmplx_mult_q15(
         uint32_t col, i = 0U, row = numRowsB, colCnt;  /* Loop counters */
         riscv_status status;                             /* Status of matrix multiplication */
 
-#if defined (RISCV_MATH_DSP) && !defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_DSP) && !defined (RISCV_MATH_VECTOR)
 #if __RISCV_XLEN == 64
         q63_t prod164, prod264, pSourceA64, pSourceB64;
                 q15_t a, b, c, d;
@@ -101,7 +101,7 @@ riscv_status riscv_mat_cmplx_mult_q15(
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
 
-#if defined(RISCV_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
   q15_t *pIn1 = pSrcA->pData;                    /* Input data matrix pointer A */
   q15_t *pIn2 = pSrcB->pData;                    /* Input data matrix pointer B */
   uint16_t blkCnt = numColsA;  //number of matrix columns  numColsA = numrowB
@@ -123,16 +123,16 @@ for(rownum = 0;rownum < numRowsA; rownum++)
   {
     pIn1 = pInA;       //backup pointer position
     for(colnum = 0;colnum < numColsB; colnum++)
-    { 
+    {
       blkCnt = numColsA;
       pIn2 = pInB;     //backup pointer position
-      sumReal = 0; 
-      sumImag = 0; 
+      sumReal = 0;
+      sumImag = 0;
       l = vsetvl_e16m1(1);
       vsumReal = vmv_s_x_i64m1(vsumReal, 0, l);
       vsumImag = vmv_s_x_i64m1(vsumImag, 0, l);
       for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)   //Multiply a row by a column
-      { 
+      {
         v_inAR = vlse16_v_i16m4(pInA, reim_diff, l);
         v_inBR = vlse16_v_i16m4(pInB, col_diff, l);
         pInA++; pInB++;
@@ -160,12 +160,12 @@ for(rownum = 0;rownum < numRowsA; rownum++)
       px++;
       *px = (q15_t) __SSAT((sumImag >> 15), 16);
       px++;
-      pInA = pIn1; 
+      pInA = pIn1;
       pInB = pIn2;pInB = pInB+2;    //Pointer to the first element of the next column for matrix BS
     //printf("px=%d\n",px);
     }
     pInB = pSrcB->pData;
-    pInA = pIn1;pInA = pInA+numColsA*2;    //Pointer to the first element of the next row for matrix A 
+    pInA = pIn1;pInA = pInA+numColsA*2;    //Pointer to the first element of the next row for matrix A
   }
   /* Set status as RISCV_MATH_SUCCESS */
   status = RISCV_MATH_SUCCESS;
@@ -404,7 +404,7 @@ for(rownum = 0;rownum < numRowsA; rownum++)
     status = RISCV_MATH_SUCCESS;
   }
 
-#endif /*defined(RISCV_VECTOR)*/
+#endif /*defined(RISCV_MATH_VECTOR)*/
   /* Return to application */
   return (status);
 }

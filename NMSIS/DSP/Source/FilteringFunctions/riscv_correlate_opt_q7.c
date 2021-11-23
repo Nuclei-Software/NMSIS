@@ -132,7 +132,7 @@ void riscv_correlate_opt_q7(
     inc = -1;
   }
 
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
   uint32_t vblkCnt = srcBLen;                               /* Loop counter */
   size_t l;
   vint16m8_t vx;
@@ -180,13 +180,13 @@ void riscv_correlate_opt_q7(
     /* Decrement loop counter */
     k--;
   }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
   /* Fill (srcBLen - 1U) zeros in scratch buffer */
   riscv_fill_q15(0, pScr1, (srcBLen - 1U));
 
   /* Update temporary scratch pointer */
   pScr1 += (srcBLen - 1U);
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
   vblkCnt = srcBLen;                               /* Loop counter */
   for (; (l = vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
     vx = vwadd_vx_i16m8(vle8_v_i8m4(pIn1, l),0, l);
@@ -230,7 +230,7 @@ void riscv_correlate_opt_q7(
     /* Decrement the loop counter */
     k--;
   }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
   /* Fill (srcBLen - 1U) zeros at end of scratch buffer */
   riscv_fill_q15(0, pScr1, (srcBLen - 1U));
 
@@ -242,7 +242,7 @@ void riscv_correlate_opt_q7(
 
   /* Initialization of pScr2 pointer */
   pScr2 = pScratch2;
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
   blkCnt = (srcALen + srcBLen - 1U);
   while (blkCnt > 0)
   {
@@ -425,7 +425,7 @@ void riscv_correlate_opt_q7(
 
     pScratch1 += 1U;
   }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
 }
 
 /**

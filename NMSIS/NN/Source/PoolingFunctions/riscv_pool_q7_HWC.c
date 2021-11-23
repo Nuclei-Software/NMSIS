@@ -30,7 +30,7 @@
  * -------------------------------------------------------------------- */
 #include "riscv_nnfunctions.h"
 #include "riscv_nnsupportfunctions.h"
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
 static void compare_and_replace_if_larger_q7(q7_t * base,   // base data
                                              const q7_t * target,   // compare target
                                              const uint16_t length  // data length
@@ -41,7 +41,7 @@ static void compare_and_replace_if_larger_q7(q7_t * base,   // base data
     uint32_t blkCnt = length;                               /* Loop counter */
     size_t l;
     vint8m8_t valuea,valueb;
-         
+
     for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
         valuea = vle8_v_i8m8(pIn, l);
         valueb = vle8_v_i8m8(pCom, l);
@@ -97,11 +97,11 @@ static void compare_and_replace_if_larger_q7(q7_t * base,   // base data
 {
     q7_t     *pIn = base;
     const q7_t     *pCom = target;
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     uint32_t blkCnt = length;                               /* Loop counter */
     size_t l;
     vint8m8_t valuea,valueb;
-         
+
     for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
         valuea = vle8_v_i8m8(pIn, l);
         valueb = vle8_v_i8m8(pCom, l);
@@ -145,7 +145,7 @@ static void compare_and_replace_if_larger_q7(q7_t * base,   // base data
         pCom++;
         cnt--;
     }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
 }
 
 static void accumulate_q7_to_q15(q15_t *base, q7_t *target, const uint16_t length)
@@ -185,7 +185,7 @@ static void accumulate_q7_to_q15(q15_t *base, q7_t *target, const uint16_t lengt
 }
 
 #endif                          // RISCV_MATH_DSP
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
 /**
  *  @ingroup groupNN
  */
@@ -228,7 +228,7 @@ void riscv_maxpool_q7_HWC(q7_t *Im_in,
                         q7_t *Im_out)
 {
     (void)bufferA;
-#if defined (RISCV_MATH_DSP) || defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
     /* Run the following code for RISC-V Core with DSP enabled */
 
     int16_t i_x, i_y;
@@ -384,7 +384,7 @@ void riscv_avepool_q7_HWC(q7_t *Im_in,
                         q7_t *Im_out)
 {
 
-#if defined (RISCV_MATH_DSP) || defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
     /* Run the following code for RISC-V Core with DSP enabled */
 
     q15_t *buffer = (q15_t *)bufferA;

@@ -95,7 +95,7 @@ riscv_status riscv_convolve_HWC_q7_RGB(const q7_t *Im_in,
                                    q7_t *bufferB)
 {
     (void)bufferB;
-#if defined (RISCV_MATH_DSP) || defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
     /* Run the following code for RISC-V Core with DSP enabled */
     int16_t i_out_y, i_out_x, i_ker_y, i_ker_x;
 

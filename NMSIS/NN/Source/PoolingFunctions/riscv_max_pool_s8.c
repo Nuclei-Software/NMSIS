@@ -34,13 +34,13 @@
 
 static void compare_and_replace_if_larger_q7(q7_t *base, const q7_t *target, int32_t length)
 {
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     q7_t *dst = base;
     const q7_t *src = target;
     uint32_t blkCnt = length;                              /* Loop counter */
     size_t l;
     vint8m8_t vx, vy;
-         
+
     for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
         vse8_v_i8m8(dst, vmax_vv_i8m8(vle8_v_i8m8(src, l), vle8_v_i8m8(dst, l), l), l);
         src += l;
@@ -91,16 +91,16 @@ static void compare_and_replace_if_larger_q7(q7_t *base, const q7_t *target, int
         src++;
         cnt--;
     }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
 }
 
 static void clamp_output(q7_t *source, int32_t length, const int32_t act_min, const int32_t act_max)
 {
-#if defined (RISCV_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
     uint32_t blkCnt = length;                              /* Loop counter */
     size_t l;
     vint8m8_t vx, vy;
-         
+
     for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
         vse8_v_i8m8(source, vmax_vx_i8m8(vmin_vx_i8m8(vle8_v_i8m8(source, l), act_max, l),act_min, l), l);
         source += l;
@@ -135,7 +135,7 @@ static void clamp_output(q7_t *source, int32_t length, const int32_t act_min, co
         *source++ = (int8_t)comp;
         cnt--;
     }
-#endif /*defined (RISCV_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR)*/
 }
 
 /**
