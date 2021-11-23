@@ -1,0 +1,95 @@
+TARGET ?=
+RISCV_ARCH ?= rv32imac
+RISCV_ABI ?= ilp32
+RISCV_MODEL ?= medany
+TOOLCHAIN ?= GCC
+
+# Build generation
+LIBIRAY_ROOT ?= Library
+BUILD_ROOT ?= build
+LIB_PREFIX ?= riscv
+AR ?= riscv-nuclei-elf-ar
+PARALLEL ?=
+
+MAKE_INFO += RISCV_ARCH=$(RISCV_ARCH) RISCV_ABI=$(RISCV_ABI) \
+	RISCV_MODEL=$(RISCV_MODEL)
+
+CMAKE_DEFINES += $(addprefix -D, $(MAKE_INFO))
+
+CMAKE_OPTIONS := $(CMAKE_DEFINES)
+TARGET_LOWER  := $(shell echo $(TARGET) | tr A-Z a-z)
+
+TARGET_CMAKE_ROOT       := $(realpath $(TARGET)/Source)
+TARGET_CMAKE_BUILD      := $(BUILD_ROOT)/$(TARGET)/$(RISCV_ARCH)/$(RISCV_ABI)
+TARGET_CMAKEFILE        := $(TARGET_CMAKE_ROOT)/CMakeLists.txt
+TARGET_MAKEFILE         := $(TARGET_CMAKE_BUILD)/Makefile
+TARGET_LIB_NAME         := lib$(LIB_PREFIX)_$(TARGET_LOWER)_$(RISCV_ARCH)
+TARGET_LIB_ROOT         := $(LIBIRAY_ROOT)/$(TARGET)/$(TOOLCHAIN)
+BUILD_LIB_PATH          := $(TARGET_CMAKE_BUILD)/$(TARGET_LIB_NAME).a
+
+ifeq ($(wildcard $(TARGET_CMAKEFILE)),)
+$(error Target CMake file $(TARGET_CMAKEFILE) doesn\'t exist, please check!)
+endif
+
+ifdef PARALLEL
+MAKE_OPT = -j
+endif
+
+.DEFAULT_GOAL = all
+
+.PHONY: all clean info genmake build distclean strip install
+
+help:
+	@echo "Help about build and install NMSIS"
+	@echo "Command make TARGET=<target> RISCV_ARCH=<arch> RISCV_ABI=<abi> RISCV_MODEL=<model>  all    It will clean and build and install library for select target and riscv arch"
+	@echo "Here are a list of make target we supported."
+	@echo "clean         clean one build configuration"
+	@echo "distclean     clean build root directory"
+	@echo "info          show build configuration"
+	@echo "all           clean, build and install for one build configuration"
+	@echo "build         build for one build configuration"
+	@echo "install       install for one build configuration"
+	@echo "strip         strip library for selected TARGET"
+	@echo "Here are a list of make options we supported."
+	@echo "TARGET       Build target directory, eg. TARGET=DSP"
+	@echo "RISCV_ARCH   RISC-V ARCH, eg. RISCV_ARCH=rv64imafdcpv"
+	@echo "RISCV_ABI    RISC-V ABI, eg. RISCV_ARCH=lp64d"
+	@echo "RISCV_MODEL  RISC-V Model, eg. RISCV_MODEL=medany"
+	@echo "PARALLEL     Compile library in PARALLEL, enable PARALLEL by PARALLEL=1"
+	@echo "By default, the installed library will be saved into $(LIBIRAY_ROOT)"
+
+all: clean info install strip
+
+info:
+	@echo "Current build configuration is $(MAKE_INFO)"
+
+clean:
+	@echo "Clean build directory $(TARGET_CMAKE_BUILD)"
+	rm -rf $(TARGET_CMAKE_BUILD)
+
+distclean:
+	@echo "Clean full build directory $(BUILD_ROOT)"
+	rm -rf $(BUILD_ROOT)
+
+genmake: $(TARGET_MAKEFILE)
+build: $(BUILD_LIB_PATH)
+
+$(TARGET_MAKEFILE):
+	@echo "Generate Makefile for $(TARGET) library with $(RISCV_ARCH)"
+	mkdir -p $(TARGET_CMAKE_BUILD)
+	cd $(TARGET_CMAKE_BUILD); cmake $(CMAKE_OPTIONS) $(TARGET_CMAKE_ROOT)
+
+$(BUILD_LIB_PATH): $(TARGET_MAKEFILE)
+	@echo "Build $(TARGET) library for $(RISCV_ARCH)"
+	make $(MAKE_OPT) -C $(TARGET_CMAKE_BUILD)
+	cd $(TARGET_CMAKE_BUILD) ; find ./ -name "*.o" | xargs $(AR) rcs $(TARGET_LIB_NAME).a
+
+install: $(BUILD_LIB_PATH)
+	@echo "Install $(TARGET) library $(BUILD_LIB_PATH) to $(TARGET_LIB_ROOT)"
+	-mkdir -p $(TARGET_LIB_ROOT)
+	cp -f $(BUILD_LIB_PATH) $(TARGET_LIB_ROOT)
+
+strip:
+	@echo "Strip out symbols for library installed in $(TARGET_LIB_ROOT)"
+	riscv-nuclei-elf-strip -g $(TARGET_LIB_ROOT)/*.a
+

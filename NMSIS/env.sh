@@ -10,10 +10,11 @@ export DEFAULT_SUPPORTED_CORES=$(cat $MAKEFILE_CORE_FILE | grep SUPPORTED | cut 
 # This function will run selected applications with fixed core configuration
 # para 1: application directory, by default, it will be "."
 # para 2: make target, by default, it will be "run"
-# You can pass DSP_ENABLE=ON to enable dsp run and VECTOR_ENABLE=ON to enable vector
+# You can pass ARCH_EXT=p to enable dsp run or ARCH_EXT=v to enable vector
+# or ARCH_EXT=pv to enable dsp and vector
 # eg.
-# CORE=nx600f DSP_ENABLE=ON VECTOR_ENABLE=ON nmsis_run_app .
-# CORE=n307 DSP_ENABLE=OFF VECTOR_ENABLE=OFF nmsis_run_app .
+# CORE=nx600f ARCH_EXT=pv nmsis_run_app .
+# CORE=n307 ARCH_EXT= nmsis_run_app .
 ##
 function nmsis_run_app() {
     local appdir=${1:-"."}
@@ -23,7 +24,7 @@ function nmsis_run_app() {
     if [ "$appdir" == "." ] ; then
         appdirshow=$(basename $(readlink -f $appdir))
     fi
-    echo "CSV, APP=$appdirshow, CORE=$CORE, DSP_ENABLE=$DSP_ENABLE, VECTOR_ENABLE=$VECTOR_ENABLE, BENCH_UNIT=$BENCH_UNIT"
+    echo "CSV, APP=$appdirshow, CORE=$CORE, ARCH_EXT=$ARCH_EXT, BENCH_UNIT=$BENCH_UNIT"
     runcmd="timeout --foreground -s SIGKILL $NMSIS_RUNTIMEOUT make -B $MAKE_OPTIONS $target -C $appdir"
     echo $runcmd
     eval $runcmd
@@ -33,10 +34,11 @@ function nmsis_run_app() {
 # This function will run all the applications with fixed core configuration
 # para 1: application directory root, by default, it will be "."
 # para 2: make target, by default, it will be "run"
-# You can pass DSP_ENABLE=ON to enable dsp run and VECTOR_ENABLE=ON to enable vector
+# You can pass ARCH_EXT=p to enable dsp run or ARCH_EXT=v to enable vector
+# or ARCH_EXT=pv to enable dsp and vector
 # eg.
-# CORE=nx600f DSP_ENABLE=ON VECTOR_ENABLE=ON nmsis_run_apps .
-# CORE=n307 DSP_ENABLE=OFF VECTOR_ENABLE=OFF nmsis_run_apps .
+# CORE=nx600f ARCH_EXT=pv nmsis_run_apps .
+# CORE=n307 ARCH_EXT= nmsis_run_apps .
 ##
 function nmsis_run_apps() {
     local appdir=${1:-"."}
@@ -63,9 +65,9 @@ function nmsis_run_apps() {
     done
 
     echo ""
-    echo "Successfully build and run $count out of $totalcount application cases(DSP_ENABLE=$DSP_ENABLE VECTOR_ENABLE=$VECTOR_ENABLE)"
+    echo "Successfully build and run $count out of $totalcount application cases(ARCH_EXT=$ARCH_EXT)"
     if [ "$failed_cases" != "" ] ; then
-        echo "=====Failed appcases(DSP_ENABLE=$DSP_ENABLE VECTOR_ENABLE=$VECTOR_ENABLE) list as below:====="
+        echo "=====Failed appcases(ARCH_EXT=$ARCH_EXT) list as below:====="
         echo -e "$failed_cases\r\n"
         return 1
     fi
@@ -78,11 +80,12 @@ function nmsis_run_apps() {
 #         variable value of DEFAULT_SUPPORTED_CORES
 # para 2: application directory root, by default it will be "."
 # para 3: make target, by default will be "run"
-# You can pass DSP_ENABLE=ON to enable dsp run and VECTOR_ENABLE=ON to enable vector
+# You can pass ARCH_EXT=p to enable dsp run or ARCH_EXT=v to enable vector
+# or ARCH_EXT=pv to enable dsp and vector
 # Beware of the cores that vector supported
 # eg.
-# DSP_ENABLE=ON VECTOR_ENABLE=ON nmsis_run_all_apps "nx600f nx600fd"
-# DSP_ENABLE=OFF VECTOR_ENABLE=OFF nmsis_run_all_apps "n307 nx600"
+# ARCH_EXT=pv nmsis_run_all_apps "nx600f nx600fd"
+# ARCH_EXT= nmsis_run_all_apps "n307 nx600"
 ##
 function nmsis_run_all_apps () {
     local supported_cores=${1:-$DEFAULT_SUPPORTED_CORES}
@@ -97,7 +100,7 @@ function nmsis_run_all_apps () {
     local totalcount=${#supported_cores[@]}
     local failed_cases=""
     for core in ${supported_cores[@]} ; do
-        RUN_CMD="CORE=$core DSP_ENABLE=$DSP_ENABLE VECTOR_ENABLE=$VECTOR_ENABLE nmsis_run_apps $approot $target"
+        RUN_CMD="CORE=$core ARCH_EXT=$ARCH_EXT nmsis_run_apps $approot $target"
         if eval $RUN_CMD ; then
             echo "Run all applications in $approot successfully with CORE=$core"
             appval=$((count++))
@@ -108,9 +111,9 @@ function nmsis_run_all_apps () {
     done
 
     echo ""
-    echo "Successfully build and run $count out of $totalcount core configurations(DSP_ENABLE=$DSP_ENABLE VECTOR_ENABLE=$VECTOR_ENABLE)"
+    echo "Successfully build and run $count out of $totalcount core configurations(ARCH_EXT=$ARCH_EXT)"
     if [ "$failed_cases" != "" ] ; then
-        echo "=====Failed core configurations(DSP_ENABLE=$DSP_ENABLE VECTOR_ENABLE=$VECTOR_ENABLE) list as below:====="
+        echo "=====Failed core configurations(ARCH_EXT=$ARCH_EXT) list as below:====="
         echo -e "$failed_cases\r\n"
         return 1
     fi
