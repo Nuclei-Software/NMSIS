@@ -126,7 +126,7 @@ _start:
     .option push
     .option norelax
     la gp, __global_pointer$
-
+    la tp, __tls_base
     .option pop
     la sp, _sp
 
@@ -209,6 +209,8 @@ _start:
     /* Load data section */
     la a0, _data_lma
     la a1, _data
+    /* If data vma=lma, no need to copy */
+    beq a0, a1, 2f
     la a2, _edata
     bgeu a1, a2, 2f
 1:
