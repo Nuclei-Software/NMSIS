@@ -10,9 +10,10 @@ project(REF_NN)
 
 option(RISCV_ARCH "option to select riscv arch" rv32imafdc)
 option(RISCV_ABI "option to select riscv abi" ilp32d)
+option(RISCV_MODEL "option to select mcmodel" medany)
 
 add_definitions(-march=${RISCV_ARCH} -mabi=${RISCV_ABI})
-add_definitions(-mcmodel=medany)
+add_definitions(-mcmodel=${RISCV_MODEL})
 
 add_definitions(-g)
 
