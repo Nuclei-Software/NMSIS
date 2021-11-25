@@ -1,0 +1,81 @@
+{
+    "global" : {
+        "LOOPUNROLL": "ON",
+        "ROUNDING": "OFF",
+        "MATRIXCHECK": "OFF",
+        "RISCV_UNALIGN": "OFF",
+        "RISCV_MODEL": "medany"
+    },
+    "install" : {
+        "prefix": "nmsis_nn"
+    },
+    "target": {
+        "rv32imac" : {
+            "RISCV_ARCH" : "rv32imac",
+            "RISCV_ABI": "ilp32"
+        },
+        "rv32imafc" : {
+            "RISCV_ARCH" : "rv32imafc",
+            "RISCV_ABI": "ilp32f"
+        },
+        "rv32imafdc" : {
+            "RISCV_ARCH" : "rv32imafdc",
+            "RISCV_ABI": "ilp32d"
+        },
+        "rv32imacp" : {
+            "RISCV_ARCH" : "rv32imacp",
+            "RISCV_ABI": "ilp32",
+            "DSP64" : "ON"
+        },
+        "rv32imafcp" : {
+            "RISCV_ARCH" : "rv32imafcp",
+            "RISCV_ABI": "ilp32f",
+            "DSP64" : "ON"
+        },
+        "rv32imafdcp" : {
+            "RISCV_ARCH" : "rv32imafdcp",
+            "RISCV_ABI": "ilp32d",
+            "DSP64" : "ON"
+        },
+        "rv64imac" : {
+            "RISCV_ARCH" : "rv64imac",
+            "RISCV_ABI": "lp64"
+        },
+        "rv64imafc" : {
+            "RISCV_ARCH" : "rv64imafc",
+            "RISCV_ABI": "lp64f"
+        },
+        "rv64imafdc" : {
+            "RISCV_ARCH" : "rv64imafdc",
+            "RISCV_ABI": "lp64d"
+        },
+        "rv64imacp" : {
+            "RISCV_ARCH" : "rv64imacp",
+            "RISCV_ABI": "lp64"
+        },
+        "rv64imafcp" : {
+            "RISCV_ARCH" : "rv64imafcp",
+            "RISCV_ABI": "lp64f"
+        },
+        "rv64imafdcp" : {
+            "RISCV_ARCH" : "rv64imafdcp",
+            "RISCV_ABI": "lp64d"
+        },
+        "rv64imafcv" : {
+            "RISCV_ARCH" : "rv64imafcv",
+            "RISCV_ABI": "lp64f"
+        },
+        "rv64imafdcv" : {
+            "RISCV_ARCH" : "rv64imafdcv",
+            "RISCV_ABI": "lp64d"
+        },
+        "rv64imafcpv" : {
+            "RISCV_ARCH" : "rv64imafcpv",
+            "RISCV_ABI": "lp64f"
+        },
+        "rv64imafdcpv" : {
+            "RISCV_ARCH" : "rv64imafdcpv",
+            "RISCV_ABI": "lp64d"
+        }
+    }
+}

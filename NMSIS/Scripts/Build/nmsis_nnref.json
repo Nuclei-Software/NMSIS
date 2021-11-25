@@ -1,0 +1,42 @@
+{
+    "global" : {
+        "RISCV_MODEL": "medany"
+    },
+    "install" : {
+        "prefix": "nmsis_nnref"
+    },
+    "target": {
+        "rv32imac" : {
+            "RISCV_ARCH" : "rv32imac",
+            "RISCV_ABI": "ilp32"
+        },
+        "rv32imafc" : {
+            "RISCV_ARCH" : "rv32imafc",
+            "RISCV_ABI": "ilp32f"
+        },
+        "rv32imafdc" : {
+            "RISCV_ARCH" : "rv32imafdc",
+            "RISCV_ABI": "ilp32d"
+        },
+        "rv64imac" : {
+            "RISCV_ARCH" : "rv64imac",
+            "RISCV_ABI": "lp64"
+        },
+        "rv64imafc" : {
+            "RISCV_ARCH" : "rv64imafc",
+            "RISCV_ABI": "lp64f"
+        },
+        "rv64imafdc" : {
+            "RISCV_ARCH" : "rv64imafdc",
+            "RISCV_ABI": "lp64d"
+        }
+    },
+    "alias_target" : {
+        "rv32imac" : ["rv32imacp"],
+        "rv32imafc" : ["rv32imafcp"],
+        "rv32imafdc" : ["rv32imafdcp"],
+        "rv64imac" : ["rv64imacp"],
+        "rv64imafc" : ["rv64imafcp", "rv64imafcv", "rv64imafcpv"],
+        "rv64imafdc" : ["rv64imafdcp", "rv64imafdcv", "rv64imafdcpv"]
+    }
+}
