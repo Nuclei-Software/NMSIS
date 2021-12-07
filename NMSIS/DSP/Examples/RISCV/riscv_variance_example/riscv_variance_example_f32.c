@@ -140,9 +140,9 @@ float32_t  refVarianceOut = 0.903941793931839;
 int32_t main(void)
 {
 /*  Enable Vector  */
-#if (defined (__RISCV_FEATURE_VECTOR) && (__RISCV_FEATURE_VECTOR == 1))
+#if (defined(__riscv_vector))
   __RV_CSR_SET(CSR_MSTATUS, 0x200);
-#endif 
+#endif
 
   riscv_status status;
   float32_t mean, oneByBlockSize;
@@ -152,7 +152,7 @@ int32_t main(void)
   status = RISCV_MATH_SUCCESS;
 
   printf("START\n");
- 
+
   /* Calculation of mean value of input */
 
   /* x' = 1/blockSize * (x(0)* 1 + x(1) * 1 + ... + x(n-1) * 1) */
@@ -197,16 +197,16 @@ int32_t main(void)
   diff = fabsf(refVarianceOut - variance);
 
   /* Comparison of variance value with reference */
-  
+
   if (diff > DELTA)
   {
     status = RISCV_MATH_TEST_FAILURE;
   }
 
   if (status == RISCV_MATH_SUCCESS) {
-     printf("SUCCESS\n");
+     printf("Test passed\n");
   } else {
-     printf("FAILURE\n");
+     printf("Test Failed\n");
      return 1;
   }
   return 0;

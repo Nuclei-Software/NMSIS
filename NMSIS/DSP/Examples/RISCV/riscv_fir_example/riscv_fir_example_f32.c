@@ -184,9 +184,9 @@ float32_t  snr;
 int32_t main(void)
 {
 /*  Enable Vector  */
-#if (defined (__RISCV_FEATURE_VECTOR) && (__RISCV_FEATURE_VECTOR == 1))
+#if (defined(__riscv_vector))
   __RV_CSR_SET(CSR_MSTATUS, 0x200);
-#endif 
+#endif
 
   uint32_t i;
   riscv_fir_instance_f32 S;

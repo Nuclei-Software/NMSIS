@@ -96,7 +96,7 @@ extern "C"
 #endif
 
 /* evaluate RISCV Vector feature */
-#if (defined (__RISCV_FEATURE_VECTOR) && (__RISCV_FEATURE_VECTOR == 1))
+#if (defined(__riscv_vector))
   /* previous RISCV_VECTOR is replaced by RISCV_MATH_VECTOR  */
   #define RISCV_MATH_VECTOR                 1
 #endif

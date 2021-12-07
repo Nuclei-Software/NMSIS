@@ -62,11 +62,11 @@ static inline uint64_t read_cpu_instret(void)
 }
 #endif
 static inline void reset_cpu_cycle(void) { ; }
-static inline void setup_vector(void) 
-{ 
-#if (defined (__RISCV_FEATURE_VECTOR) && (__RISCV_FEATURE_VECTOR == 1))
+static inline void setup_vector(void)
+{
+#if (defined(__riscv_vector))
   __RV_CSR_SET(CSR_MSTATUS, 0x200);
-#endif 
+#endif
 }
 #endif /*__riscv*/
 

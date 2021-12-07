@@ -148,9 +148,9 @@ float32_t snr;
 int32_t main(void)
 {
 /*  Enable Vector  */
-#if (defined (__RISCV_FEATURE_VECTOR) && (__RISCV_FEATURE_VECTOR == 1))
+#if (defined(__riscv_vector))
   __RV_CSR_SET(CSR_MSTATUS, 0x200);
-#endif 
+#endif
 
   riscv_matrix_instance_f32 A;      /* Matrix A Instance */
   riscv_matrix_instance_f32 AT;     /* Matrix AT(A transpose) instance */

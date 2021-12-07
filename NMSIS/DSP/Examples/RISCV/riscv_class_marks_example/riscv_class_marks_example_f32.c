@@ -159,7 +159,7 @@ float32_t    max_marks, min_marks, mean, std, var;
 int32_t main()
 {
 /*  Enable Vector  */
-#if (defined (__RISCV_FEATURE_VECTOR) && (__RISCV_FEATURE_VECTOR == 1))
+#if (defined(__riscv_vector))
   __RV_CSR_SET(CSR_MSTATUS, 0x200);
 #endif
 

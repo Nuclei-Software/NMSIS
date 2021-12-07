@@ -63,7 +63,7 @@
 #include "riscv_math.h"
 
 #define SEMIHOSTING
-/* 
+/*
   The polynomial SVM instance containing all parameters.
   Those parameters can be generated with the python library scikit-learn.
  */
@@ -96,7 +96,7 @@ const float32_t supportVectors[NB_SUPPORT_VECTORS*VECTOR_DIMENSION]={ 1.2510991f
 /*
   Class A is identified with value 0.
   Class B is identified with value 1.
-  
+
   This array is used by the SVM functions to do a conversion and ease the comparison
   with the Python code where different values could be used.
  */
@@ -106,7 +106,7 @@ const int32_t   classes[2]={0,1};
 int32_t main(void)
 {
   /*  Enable Vector  */
-#if (defined (__RISCV_FEATURE_VECTOR) && (__RISCV_FEATURE_VECTOR == 1))
+#if (defined(__riscv_vector))
   __RV_CSR_SET(CSR_MSTATUS, 0x200);
 #endif
 
@@ -115,7 +115,7 @@ int32_t main(void)
 
   /* Result of the classifier */
   int32_t result;
-  
+
 
   /*
     Initialization of the SVM instance parameters.
@@ -155,7 +155,7 @@ int32_t main(void)
   in[1] = 0.0f;
 
   riscv_svm_polynomial_predict_f32(&params, in, &result);
-  
+
   /* Result should be 1 : Second class */
 #if defined(SEMIHOSTING)
   printf("Result = %d\n", result);
