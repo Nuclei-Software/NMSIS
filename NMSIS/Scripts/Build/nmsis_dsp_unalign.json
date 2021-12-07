@@ -1,0 +1,38 @@
+{
+    "global" : {
+        "LOOPUNROLL": "ON",
+        "ROUNDING": "OFF",
+        "MATRIXCHECK": "OFF",
+        "RISCV_UNALIGN": "ON",
+        "RISCV_MODEL": "medany"
+    },
+    "install" : {
+        "prefix": "nmsis_dsp"
+    },
+    "target": {
+        "rv32imac" : {
+            "RISCV_ARCH" : "rv32imac",
+            "RISCV_ABI": "ilp32"
+        },
+        "rv32imafc" : {
+            "RISCV_ARCH" : "rv32imafc",
+            "RISCV_ABI": "ilp32f"
+        },
+        "rv32imafdc" : {
+            "RISCV_ARCH" : "rv32imafdc",
+            "RISCV_ABI": "ilp32d"
+        },
+        "rv64imac" : {
+            "RISCV_ARCH" : "rv64imac",
+            "RISCV_ABI": "lp64"
+        },
+        "rv64imafc" : {
+            "RISCV_ARCH" : "rv64imafc",
+            "RISCV_ABI": "lp64f"
+        },
+        "rv64imafdc" : {
+            "RISCV_ARCH" : "rv64imafdc",
+            "RISCV_ABI": "lp64d"
+        }
+    }
+}

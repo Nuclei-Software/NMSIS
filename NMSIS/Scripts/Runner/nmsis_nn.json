@@ -1,0 +1,53 @@
+{
+    "run_config": {
+        "target" : "xlspike",
+        "xlspike" : {
+            "timeout": 480
+        }
+    },
+    "parallel": "-j",
+    "copy_objects": true,
+    "build_target": "clean all",
+    "build_config": {
+        "SOC": "xlspike",
+        "DOWNLOAD": "ilm"
+    },
+    "checks": {
+        "PASS": ["passed", "Passed", "SUCCESS"],
+        "FAIL": ["MEPC", "failed", "Failed", "FAILURE"]
+    },
+    "appdirs": [
+        "NN/Examples/RISCV",
+        "NN/NN_Lib_Tests/nn_test"
+    ],
+    "build_configs": {
+        "rv32imac": {"CORE": "n300", "ARCH_EXT":""},
+        "rv32imafc": {"CORE": "n300f", "ARCH_EXT":""},
+        "rv32imafdc": {"CORE": "n300fd", "ARCH_EXT":""},
+        "rv32imacp": {"CORE": "n300", "ARCH_EXT":"p"},
+        "rv32imafcp": {"CORE": "n300f", "ARCH_EXT":"p"},
+        "rv32imafdcp": {"CORE": "n300fd", "ARCH_EXT":"p"},
+        "rv64imac": {"CORE": "nx600", "ARCH_EXT":""},
+        "rv64imafc": {"CORE": "nx600f", "ARCH_EXT":""},
+        "rv64imafdc": {"CORE": "nx600fd", "ARCH_EXT":""},
+        "rv64imacp": {"CORE": "nx600", "ARCH_EXT":"p"},
+        "rv64imafcp": {"CORE": "nx600f", "ARCH_EXT":"p"},
+        "rv64imafdcp": {"CORE": "nx600fd", "ARCH_EXT":"p"},
+        "rv64imafcv": {"CORE": "nx600f", "ARCH_EXT":"v"},
+        "rv64imafdcv": {"CORE": "nx600fd", "ARCH_EXT":"v"},
+        "rv64imafcpv": {"CORE": "nx600f", "ARCH_EXT":"pv"},
+        "rv64imafdcpv": {"CORE": "nx600fd", "ARCH_EXT":"pv"}
+    },
+    "appconfig": {
+        "NN/Examples/RISCV/cifar10": {
+            "checks": {
+                "PASS": ["label 3: 45, Cat, 35.43%"]
+            }
+        },
+        "NN/Examples/RISCV/gru": {
+            "checks": {
+                "PASS": ["Complete second iteration on GRU"]
+            }
+        }
+    }
+}
