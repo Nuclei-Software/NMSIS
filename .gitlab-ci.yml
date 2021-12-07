@@ -30,6 +30,7 @@ build_doc:
       - NMSIS/DSP/
       - NMSIS/NN/
   artifacts:
+    when: always
     name: "nmsis_doc-${CI_COMMIT_SHA::8}"
     paths:
       - NMSIS/doc/build
@@ -51,6 +52,7 @@ build_library:
   stage: build
   retry: 1
   artifacts:
+    when: always
     name: "nmsis_library-${CI_COMMIT_SHA::8}"
     paths:
       - NMSIS/Library
@@ -65,6 +67,7 @@ build_align_library:
   stage: build
   retry: 1
   artifacts:
+    when: always
     name: "nmsis_align_library-${CI_COMMIT_SHA::8}"
     paths:
       - NMSIS/Library
@@ -95,6 +98,7 @@ build_align_library:
 test_nn_library:
   <<: *test_job_template_default
   artifacts:
+    when: always
     name: "nmsis_nn_test_cycles_log-${CI_COMMIT_SHA::8}"
     paths:
       - NMSIS/Logs
@@ -114,6 +118,7 @@ test_nn_library:
 test_dsp_library:
   <<: *test_job_template_default
   artifacts:
+    when: always
     name: "nmsis_dsp_test_cycles_log-${CI_COMMIT_SHA::8}"
     paths:
       - NMSIS/Logs
