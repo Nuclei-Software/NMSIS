@@ -38,11 +38,11 @@ static inline uint64_t read_cpu_instret(void)
     val = (((uint64_t)hi) << 32) | lo;
     return val;
 }
-static inline void setup_vector(void) 
-{ 
-#if (defined (__RISCV_FEATURE_VECTOR) && (__RISCV_FEATURE_VECTOR == 1))
+static inline void setup_vector(void)
+{
+#if (defined(__riscv_vector))
   __RV_CSR_SET(CSR_MSTATUS, 0x200);
-#endif 
+#endif
 }
 #else
 static inline uint64_t read_cpu_cycle(void)
@@ -57,11 +57,11 @@ static inline uint64_t read_cpu_instret(void)
     val = read_csr(instret);
     return val;
 }
-static inline void setup_vector(void) 
-{ 
-#if (defined (__RISCV_FEATURE_VECTOR) && (__RISCV_FEATURE_VECTOR == 1))
+static inline void setup_vector(void)
+{
+#if (defined(__riscv_vector))
   __RV_CSR_SET(CSR_MSTATUS, 0x200);
-#endif 
+#endif
 }
 #endif
 

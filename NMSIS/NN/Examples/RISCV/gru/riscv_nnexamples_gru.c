@@ -52,12 +52,12 @@
  * \par Model definition:
  * \par
  * GRU is a type of recurrent neural network (RNN). It contains two sigmoid gates and one hidden
- * state. 
+ * state.
  * \par
  * The computation can be summarized as:
  * <pre>z[t] = sigmoid( W_z &sdot; {h[t-1],x[t]} )
- * r[t] = sigmoid( W_r &sdot; {h[t-1],x[t]} ) 
- * n[t] = tanh( W_n &sdot; [r[t] &times; {h[t-1], x[t]} ) 
+ * r[t] = sigmoid( W_r &sdot; {h[t-1],x[t]} )
+ * n[t] = tanh( W_n &sdot; [r[t] &times; {h[t-1], x[t]} )
  * h[t] = (1 - z[t]) &times; h[t-1] + z[t] &times; n[t] </pre>
  * \image html GRU.png "Gate Recurrent Unit Diagram"
  *
@@ -78,7 +78,7 @@
  *  The ordering of the weight matrix should be adjusted accordingly.
  *
   *
- * 
+ *
  * \par NMSIS DSP Software Library Functions Used:
  * \par
  * - riscv_fully_connected_mat_q7_vec_q15_opt()
@@ -199,14 +199,14 @@ int main()
   EventRecorderInitialize (EventRecordAll, 1);  // initialize and start Event Recorder
   #endif
 
-  #if (defined (__RISCV_FEATURE_VECTOR) && (__RISCV_FEATURE_VECTOR == 1))
+  #if (defined(__riscv_vector))
     __RV_CSR_SET(CSR_MSTATUS, 0x200);
-  #endif 
+  #endif
   printf("Start GRU execution\n");
   int       input_size = DIM_INPUT;
   int       history_size = DIM_HISTORY;
 
-  // copy over the input data 
+  // copy over the input data
   riscv_copy_q15(test_input1, scratch_buffer + history_size, input_size);
   riscv_copy_q15(test_history, scratch_buffer + history_size + input_size, history_size);
 
