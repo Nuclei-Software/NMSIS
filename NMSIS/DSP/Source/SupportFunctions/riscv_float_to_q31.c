@@ -80,9 +80,9 @@ void riscv_float_to_q31(
     v_in = vle32_v_f32m4(pIn, l);
     pIn += l;
 #ifdef RISCV_MATH_ROUNDING
-    v_out = vnclip_wx_i32m4(vfcvt_x_f_v_i64m8(vfwmul_vf_f64m8(v_in, 2147483648.0f, l), l), 0U, l);
+    v_out = vfcvt_x_f_v_i32m4(vfmul_vf_f32m4(v_in, 2147483648.0f, l), l);
 #else
-    v_out = vnclip_wx_i32m4(vfcvt_rtz_x_f_v_i64m8(vfwmul_vf_f64m8(v_in, 2147483648.0f, l), l), 0U, l);
+    v_out = vfcvt_rtz_x_f_v_i32m4(vfmul_vf_f32m4(v_in, 2147483648.0f, l), l);
 #endif
     vse32_v_i32m4 (pDst, v_out, l);
     pDst += l;
