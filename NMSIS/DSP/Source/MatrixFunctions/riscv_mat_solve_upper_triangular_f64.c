@@ -116,7 +116,7 @@ riscv_status status;                             /* status of matrix inverse */
                 pX_row += l*n;
             }
             l = vsetvl_e64m8(n-i-1);
-            tmp -= vfmv_f_s_f64m1_f64(vfredsum_vs_f64m8_f64m1(v_temp,v_a,v_temp, l));
+            tmp -= vfmv_f_s_f64m1_f64(vfredusum_vs_f64m8_f64m1(v_temp,v_a,v_temp, l));
 #else
             for(k=n-1; k > i; k--)
             {

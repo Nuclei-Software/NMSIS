@@ -125,7 +125,7 @@
                 pX_row += l*n;
             }
             l = vsetvl_e32m8(i);
-            tmp -= vfmv_f_s_f32m1_f32(vfredsum_vs_f32m8_f32m1(v_temp,v_a,v_temp, l));
+            tmp -= vfmv_f_s_f32m1_f32(vfredusum_vs_f32m8_f32m1(v_temp,v_a,v_temp, l));
 #else
             for(k=0; k < i; k++)
             {

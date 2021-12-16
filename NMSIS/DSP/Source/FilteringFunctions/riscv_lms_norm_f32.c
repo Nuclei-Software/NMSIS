@@ -255,7 +255,7 @@ void riscv_lms_norm_f32(
       vy = vle32_v_f32m8(pb, l);
       pb += l;
       vx = vfmul_vv_f32m8(vx, vy, l);
-      vz = vfredsum_vs_f32m8_f32m1(temp00m1, vx, temp01m1, l);
+      vz = vfredusum_vs_f32m8_f32m1(temp00m1, vx, temp01m1, l);
       acc += vfmv_f_s_f32m1_f32(vz);
     }
 #else

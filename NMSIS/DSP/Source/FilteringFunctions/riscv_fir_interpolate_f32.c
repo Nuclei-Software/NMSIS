@@ -372,7 +372,7 @@ void riscv_fir_interpolate_f32(
         ptr2 += l;
       }
       l = vsetvl_e32m8(blockSize);
-      sum0 = vfmv_f_s_f32m1_f32 (vfredsum_vs_f32m8_f32m1(v_temp,v_a,v_temp, l));
+      sum0 = vfmv_f_s_f32m1_f32 (vfredusum_vs_f32m8_f32m1(v_temp,v_a,v_temp, l));
 #else
 #if defined (RISCV_MATH_LOOPUNROLL)
 

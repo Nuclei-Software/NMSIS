@@ -415,7 +415,7 @@ void riscv_fir_decimate_f32(
         //set vl to max vl
         l = vsetvl_e32m4(numTaps);
         //calculate sum
-        vch00m1 = vfredsum_vs_f32m4_f32m1(vtemp00m1, vach00m4, vtemp00m1, l);
+        vch00m1 = vfredusum_vs_f32m4_f32m1(vtemp00m1, vach00m4, vtemp00m1, l);
         //set vl to 1
         l = vsetvl_e32m1(1);
         //wrfte result scalar back

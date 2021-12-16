@@ -70,7 +70,7 @@ float32_t riscv_cityblock_distance_f32(const float32_t *pA,const float32_t *pB, 
       pB += l;
    }
    l = vsetvl_e32m8(blockSize);
-   accum = vfmv_f_s_f32m1_f32 (vfredsum_vs_f32m8_f32m1(v_temp,v_a,v_temp, l));
+   accum = vfmv_f_s_f32m1_f32 (vfredusum_vs_f32m8_f32m1(v_temp,v_a,v_temp, l));
 #else
    accum = 0.0f;
    while(blockSize > 0)

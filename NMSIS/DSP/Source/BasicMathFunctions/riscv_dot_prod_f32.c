@@ -81,7 +81,7 @@ void riscv_dot_prod_f32(
     v_B = vle32_v_f32m8(inputB, l);
     inputA += l;
     inputB += l;                  /* Point to the first complex pointer */
-    v_sum = vfredsum_vs_f32m8_f32m1(v_sum, vfmul_vv_f32m8(v_A, v_B, l), v_sum, l);
+    v_sum = vfredusum_vs_f32m8_f32m1(v_sum, vfmul_vv_f32m8(v_A, v_B, l), v_sum, l);
   }
   l = vsetvl_e32m1(1);
   vse32_v_f32m1(result, v_sum, l);

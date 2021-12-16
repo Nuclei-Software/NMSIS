@@ -105,8 +105,8 @@ void riscv_cmplx_dot_prod_f32(
     v_II = vfmul_vv_f32m8(v_I1, v_I2, l);
     v_RI = vfmul_vv_f32m8(v_R1, v_I2, l);
     v_IR = vfmul_vv_f32m8(v_I1, v_R2, l);
-    v_real = vfredsum_vs_f32m8_f32m1(v_real, vfsub_vv_f32m8(v_RR, v_II, l), v_real, l);
-    v_imag = vfredsum_vs_f32m8_f32m1(v_imag, vfadd_vv_f32m8(v_RI, v_IR, l), v_imag, l);
+    v_real = vfredusum_vs_f32m8_f32m1(v_real, vfsub_vv_f32m8(v_RR, v_II, l), v_real, l);
+    v_imag = vfredusum_vs_f32m8_f32m1(v_imag, vfadd_vv_f32m8(v_RI, v_IR, l), v_imag, l);
     inputA += (l*2-1); inputB += (l*2-1);
   }
   *realResult = vfmv_f_s_f32m1_f32(v_real);

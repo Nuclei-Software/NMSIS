@@ -82,7 +82,7 @@ void riscv_var_f32(
   {
     v_in = vle32_v_f32m8(input, l);
     input += l;
-    v_sum = vfredsum_vs_f32m8_f32m1(v_sum, v_in, v_sum, l);
+    v_sum = vfredusum_vs_f32m8_f32m1(v_sum, v_in, v_sum, l);
   }
   l = vsetvl_e32m1(1);
   sum = vfmv_f_s_f32m1_f32(v_sum);
@@ -94,7 +94,7 @@ void riscv_var_f32(
     v_in = vle32_v_f32m8(input, l);
     input += l;
     v_fValue = vfsub_vf_f32m8(v_in, fMean, l);
-    v_fSum = vfredsum_vs_f32m8_f32m1(v_fSum, vfmul_vv_f32m8(v_fValue, v_fValue, l), v_fSum, l);
+    v_fSum = vfredusum_vs_f32m8_f32m1(v_fSum, vfmul_vv_f32m8(v_fValue, v_fValue, l), v_fSum, l);
   }
   l = vsetvl_e32m1(1);
   fSum = vfmv_f_s_f32m1_f32(v_fSum);

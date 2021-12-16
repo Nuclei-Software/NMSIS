@@ -119,7 +119,7 @@ riscv_status riscv_mat_cholesky_f64(
                     pGY += l;
                 }
                 l = vsetvl_e64m8(i);
-                pG[j * n + i] = pA[j * n + i] - vfmv_f_s_f64m1_f64(vfredsum_vs_f64m8_f64m1(v_temp,v_a,v_temp, l));
+                pG[j * n + i] = pA[j * n + i] - vfmv_f_s_f64m1_f64(vfredusum_vs_f64m8_f64m1(v_temp,v_a,v_temp, l));
             }
 #else
             pG[j * n + i] = pA[j * n + i];

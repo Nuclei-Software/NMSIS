@@ -140,8 +140,8 @@ for(rownum = 0;rownum < numRowsA; rownum++)
         v_IR = vfmul_vv_f32m8(v_inAI , v_inBR, l);
         vReal = vfsub_vv_f32m8(v_RR, v_II, l);
         vImag = vfadd_vv_f32m8(v_RI, v_IR, l);
-        vsumReal = vfredsum_vs_f32m8_f32m1(vsumReal, vReal, vsumReal, l);
-        vsumImag = vfredsum_vs_f32m8_f32m1(vsumImag, vImag, vsumImag, l);
+        vsumReal = vfredusum_vs_f32m8_f32m1(vsumReal, vReal, vsumReal, l);
+        vsumImag = vfredusum_vs_f32m8_f32m1(vsumImag, vImag, vsumImag, l);
         // if(l == max_l)
         // {
         pInA = pInA+l*2-1;    //Pointer to the first element of the next line

@@ -204,7 +204,7 @@ void riscv_conv_f32(
       px += l;
       vy = vlse32_v_f32m8(py, bstride, l);
       py -= l;
-      sum += vfmv_f_s_f32m1_f32(vfredsum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l));
+      sum += vfmv_f_s_f32m1_f32(vfredusum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l));
     }
 #else
 #if defined (RISCV_MATH_LOOPUNROLL)
@@ -306,7 +306,7 @@ void riscv_conv_f32(
         px += l;
         vy = vlse32_v_f32m8(py, bstride, l);
         py -= l;
-        sum += vfmv_f_s_f32m1_f32(vfredsum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l));
+        sum += vfmv_f_s_f32m1_f32(vfredusum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l));
       }
 
       /* Store the result in the accumulator in the destination buffer. */
@@ -610,7 +610,7 @@ void riscv_conv_f32(
       px += l;
       vy = vlse32_v_f32m8(py, bstride, l);
       py -= l;
-      sum += vfmv_f_s_f32m1_f32(vfredsum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l));
+      sum += vfmv_f_s_f32m1_f32(vfredusum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l));
     }
 #else
 #if defined (RISCV_MATH_LOOPUNROLL)
