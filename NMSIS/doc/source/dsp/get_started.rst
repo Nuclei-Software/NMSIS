@@ -8,10 +8,11 @@ Here we will describe how to run the nmsis dsp examples in Nuclei Spike.
 Preparation
 -----------
 
-* Nuclei Modified Spike - ``xl_spike``
-* Nuclei SDK modified for ``xl_spike`` branch ``dev_xlspike``
-* Nuclei RISCV GNU Toolchain, riscv gcc 10 with vector extension is required.
+* Nuclei SDK, ``dev_xlspike_next`` branch
+* Nuclei RISCV GNU Toolchain 2021.12
+* Nuclei xl_spike
 * CMake >= 3.5
+* Python 3
 
 Tool Setup
 ----------
@@ -27,11 +28,9 @@ Build NMSIS DSP Library
 
 1. Download or clone NMSIS source code into **NMSIS** directory.
 2. cd to `NMSIS/NMSIS/` directory
-3. Build NMSIS DSP library using ``make gen_dsp_lib``
-4. Strip debug informations using ``make strip_dsp_lib`` to make the generated
-   library smaller
-5. The dsp library will be generated into ``./Library/DSP/GCC`` folder
-6. The dsp libraries will be look like this:
+3. Build NMSIS DSP library and strip debug information using ``make gen_dsp_lib``
+4. The dsp library will be generated into ``./Library/DSP/GCC`` folder
+5. The dsp libraries will be look like this:
 
 .. code-block::
 
@@ -67,7 +66,6 @@ Build NMSIS DSP Library
 .. note::
 
     * You can also directly build both DSP and NN library using ``make gen``
-    * You can strip the generated DSP and NN library using ``make strip``
     * DSP and Vector extension can be combined, such as ``p``, ``v`` and ``pv``
     * Vector extension currently is only available with RISC-V 64 bit processor
 
@@ -87,24 +85,24 @@ How to run
 
 3. ``cd ./riscv_class_marks_example/``
 
-4. Run with RISCV DSP enabled and Vector enabled NMSIS-DSP library for CORE ``ux600``
+4. Run with RISCV DSP enabled and Vector enabled NMSIS-DSP library for CORE ``ux900fd``
 
 .. code-block:: shell
 
     # Clean project
-    make DSP_ENABLE=ON VECTOR_ENABLE=ON CORE=ux600 clean
+    make ARCH_EXT=pv CORE=ux900fd clean
     # Build project
-    make DSP_ENABLE=ON VECTOR_ENABLE=ON CORE=ux600 all
+    make ARCH_EXT=pv CORE=ux900fd all
     # Run application using xl_spike
-    make DSP_ENABLE=ON VECTOR_ENABLE=ON CORE=ux600 run
+    make ARCH_EXT=pv CORE=ux900fd run
 
-5. Run with RISCV DSP disabled and Vector disabled NMSIS-DSP library for CORE ``ux600``
+5. Run with RISCV DSP disabled and Vector disabled NMSIS-DSP library for CORE ``ux900fd``
 
 .. code-block:: shell
 
-    make DSP_ENABLE=OFF VECTOR_ENABLE=OFF CORE=ux600 clean
-    make DSP_ENABLE=OFF VECTOR_ENABLE=OFF CORE=ux600 all
-    make DSP_ENABLE=OFF VECTOR_ENABLE=OFF CORE=ux600 run
+    make ARCH_EXT= CORE=ux900fd clean
+    make ARCH_EXT= CORE=ux900fd all
+    make ARCH_EXT= CORE=ux900fd run
 
 .. note::
 

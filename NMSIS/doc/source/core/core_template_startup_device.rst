@@ -24,7 +24,7 @@ Stage1: Interrupt and Exception initialization
   * Disable Interrupt
   * Initialize GP, stack
   * Initialize NMI entry and set default NMI handler
-  * Initialize Exception entry and set default exception handler
+  * Initialize exception entry to early exception entry in ``startup_<Device>.S``
   * Initialize vector table entry and set default interrupt handler
   * Initialize Interrupt mode as ECLIC mode. (ECLIC mode is proposed. Default mode is CLINT mode)
 
@@ -37,6 +37,7 @@ Stage3: Section initialization
   * Clear Block Started by Symbol (BSS) section
   * Call ``__libc_fini_array`` and ``__libc_init_array`` functions to do C library initialization
   * Call ``_premain_init`` function to do initialization steps before main function
+  * Initialize exception entry to exception entry in ``intexc_<Device>.S``
   * Jump Main
 
 

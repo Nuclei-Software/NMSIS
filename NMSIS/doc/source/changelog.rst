@@ -3,6 +3,44 @@
 Changelog
 =========
 
+V1.0.3
+------
+
+This is the official release version ``V1.0.3`` release of Nuclei MCU Software Interface Standard(NMSIS).
+
+This release is only supported by Nuclei GNU Toolchain 2021.12 and its later version,
+since it required intrinsic header files in RISC-V GCC for B/P/V extensions.
+
+The following changes has been made since ``V1.0.2``.
+
+* **Documentation**
+
+  - Update NMSIS Core/DSP/NN related documentation
+
+* **Device Templates**
+
+  - Add ``__BITMANIP_PRESENT`` and ``__VECTOR_PRESENT`` in ``<Device>.h``
+  - Add more REG/ADDR/BIT access macros in ``<Device>.h``
+  - Update linker script for ``<Device>.ld`` for Nuclei C Runtime Library
+  - Add tp register initialization and add early exception setup during startup in ``startup_<Device>.S``
+  - Adding support for Nuclei C Runtime library
+
+* **NMSIS-Core**
+
+  - Update ``core_feature_eclic.h``, ``core_feature_timer.h`` and ``core_feature_dsp.h``
+  - Added ``core_feature_vector.h`` and ``core_feature_bitmainp.h``
+  - Add more nuclei customized csr in ``riscv_encoding.h``
+
+* **NMSIS-DSP/NN**
+
+   - Add support for Nuclei GNU Toolchain 2021.12
+   - Add new build system to generate NMSIS DSP and NN library
+   - Update cmake files for both DSP and NN library
+   - No need to define ``__RISCV_FEATURE_DSP`` and ``__RISCV_FEATURE_VECTOR`` when using DSP or NN library,
+     it will be defined in ``riscv_math_types.h`` via the predefined macros in Nuclei RISC-V gcc 10.2
+   - Rename ``RISCV_VECTOR`` to ``RISCV_MATH_VECTOR``
+   - Fix FLEN and XLEN mis-usage in library
+
 V1.0.2
 ------
 

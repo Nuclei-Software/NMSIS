@@ -3,6 +3,16 @@
 Changelog
 =========
 
+V1.0.3
+------
+
+This is release ``1.0.3`` version of NMSIS-NN library.
+
+* Update build system for NMSIS-NN library
+* Rename ``RISCV_VECTOR`` to ``RISCV_MATH_VECTOR`` in header file and source code
+* Using new python script to generate NMSIS-NN library
+* Support Nuclei RISC-V GCC 10.2
+
 V1.0.2
 ------
 
