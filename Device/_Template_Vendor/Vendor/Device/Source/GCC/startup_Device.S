@@ -311,3 +311,10 @@ _start:
 
 1:
     j 1b
+
+/* Early boot exception entry before main */
+.align 6
+.global early_exc_entry
+early_exc_entry:
+    wfi
+    j early_exc_entry
