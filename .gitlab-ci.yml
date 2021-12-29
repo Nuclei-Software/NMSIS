@@ -1,10 +1,8 @@
 variables:
   NUCLEI_SDK: git@gito:software/library/nuclei-sdk.git
   SDK_BRANCH: dev_xlspike_next
-  FIND_IGNORE: '! -wholename "*build*"'
-  CORES: "n205,n307,n307fd,nx600,nx600f,nx600fd"
-  VECTOR_CORES: "nx600f,nx600fd"
   SOC: xlspike
+  RUNTARGET: qemu
   IMAGE: rego.corp.nucleisys.com/software/sdkbuild
   IMAGE_TAG: latest
 
@@ -121,7 +119,7 @@ test_nn_library:
     - export SILENT=1
     - cd NMSIS
     - make gen_nnref_lib
-    - python3 $NUCLEI_SDK_ROOT/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_nn.json --logdir $NMSIS_LOGS/nmsis_nn --parallel=-j --run_target xlspike --run
+    - python3 $NUCLEI_SDK_ROOT/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_nn.json --logdir $NMSIS_LOGS/nmsis_nn --parallel=-j --run_target $RUNTARGET --run
 
 test_dsp_library:
   <<: *test_job_template_default
@@ -140,7 +138,7 @@ test_dsp_library:
     - source NMSIS/env.sh
     - export SILENT=1
     - cd NMSIS
-    - python3 $NUCLEI_SDK_ROOT/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_dsp.json --logdir $NMSIS_LOGS/nmsis_dsp --parallel=-j --run_target xlspike --run
+    - python3 $NUCLEI_SDK_ROOT/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_dsp.json --logdir $NMSIS_LOGS/nmsis_dsp --parallel=-j --run_target $RUNTARGET --run
 
 release_benchmark:
   stage: release
