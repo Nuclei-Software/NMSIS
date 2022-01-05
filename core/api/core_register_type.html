@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Register Define and Type Definitions &mdash; NMSIS 1.0.2 documentation</title>
+  <title>Register Define and Type Definitions &mdash; NMSIS 1.0.3 documentation</title>
   
 
   
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2
+                1.0.3
               </div>
             
           
@@ -1886,6 +1886,24 @@
 </dd></dl>
 
 <dl class="macro">
+<dt id="c.SysTimer_CLINT_MSIP_OFS">
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga817932d6e04ff8eaac1433ff3e2ffdd5"></span><code class="sig-name descname">SysTimer_CLINT_MSIP_OFS</code> (0x1000UL)<a class="headerlink" href="#c.SysTimer_CLINT_MSIP_OFS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Software interrupt register offset of clint mode in SysTick Timer. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.SysTimer_CLINT_MTIMECMP_OFS">
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1gacd3c11b93de9b31480479b69955f9252"></span><code class="sig-name descname">SysTimer_CLINT_MTIMECMP_OFS</code> (0x5000UL)<a class="headerlink" href="#c.SysTimer_CLINT_MTIMECMP_OFS" title="Permalink to this definition">¶</a></dt>
+<dd><p>MTIMECMP register offset of clint mode in SysTick Timer. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.SysTimer_CLINT_MTIME_OFS">
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga0a0f230930113b939560d5712da4929f"></span><code class="sig-name descname">SysTimer_CLINT_MTIME_OFS</code> (0xCFF8UL)<a class="headerlink" href="#c.SysTimer_CLINT_MTIME_OFS" title="Permalink to this definition">¶</a></dt>
+<dd><p>MTIME register offset of clint mode in SysTick Timer. </p>
+</dd></dl>
+
+<dl class="macro">
 <dt id="c.SysTimer_BASE">
 <span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga2107a0ae6d9deefff31edf506a6e1e91"></span><code class="sig-name descname">SysTimer_BASE</code> __SYSTIMER_BASEADDR<a class="headerlink" href="#c.SysTimer_BASE" title="Permalink to this definition">¶</a></dt>
 <dd><p>SysTick Base Address. </p>
@@ -1896,6 +1914,21 @@
 <span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga55d0982631fe5ecbcfbb808913f6ad99"></span><code class="sig-name descname">SysTimer</code> ((<a class="reference internal" href="#structSysTimer__Type"><span class="std std-ref">SysTimer_Type</span></a> *) <a class="reference internal" href="#group__NMSIS__Core__SysTimer__Registers_1ga2107a0ae6d9deefff31edf506a6e1e91"><span class="std std-ref">SysTimer_BASE</span></a>)<a class="headerlink" href="#c.SysTimer" title="Permalink to this definition">¶</a></dt>
 <dd><p>SysTick configuration struct. </p>
 </dd></dl>
+
+<dl class="macro">
+<dt id="c.SysTimer_CLINT_MSIP_BASE">
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga9af174e29dc41968fffd97bd849ae2f9"></span><code class="sig-name descname">SysTimer_CLINT_MSIP_BASE</code><span class="sig-paren">(</span>hartid<span class="sig-paren">)</span> (unsigned long)((<a class="reference internal" href="#group__NMSIS__Core__SysTimer__Registers_1ga2107a0ae6d9deefff31edf506a6e1e91"><span class="std std-ref">SysTimer_BASE</span></a>) + (<a class="reference internal" href="#group__NMSIS__Core__SysTimer__Registers_1ga817932d6e04ff8eaac1433ff3e2ffdd5"><span class="std std-ref">SysTimer_CLINT_MSIP_OFS</span></a>) + ((hartid) &lt;&lt; 2))<a class="headerlink" href="#c.SysTimer_CLINT_MSIP_BASE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.SysTimer_CLINT_MTIMECMP_BASE">
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1ga4c13654a03170936aed2200ddefb239d"></span><code class="sig-name descname">SysTimer_CLINT_MTIMECMP_BASE</code><span class="sig-paren">(</span>hartid<span class="sig-paren">)</span> (unsigned long)((<a class="reference internal" href="#group__NMSIS__Core__SysTimer__Registers_1ga2107a0ae6d9deefff31edf506a6e1e91"><span class="std std-ref">SysTimer_BASE</span></a>) + (<a class="reference internal" href="#group__NMSIS__Core__SysTimer__Registers_1gacd3c11b93de9b31480479b69955f9252"><span class="std std-ref">SysTimer_CLINT_MTIMECMP_OFS</span></a>) + ((hartid) &lt;&lt; 3))<a class="headerlink" href="#c.SysTimer_CLINT_MTIMECMP_BASE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.SysTimer_CLINT_MTIME_BASE">
+<span class="target" id="group__NMSIS__Core__SysTimer__Registers_1gad17f6dfe29eb659e5b7e0ec920ab325f"></span><code class="sig-name descname">SysTimer_CLINT_MTIME_BASE</code> (unsigned long)((<a class="reference internal" href="#group__NMSIS__Core__SysTimer__Registers_1ga2107a0ae6d9deefff31edf506a6e1e91"><span class="std std-ref">SysTimer_BASE</span></a>) + (<a class="reference internal" href="#group__NMSIS__Core__SysTimer__Registers_1ga0a0f230930113b939560d5712da4929f"><span class="std std-ref">SysTimer_CLINT_MTIME_OFS</span></a>))<a class="headerlink" href="#c.SysTimer_CLINT_MTIME_BASE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </div>
 <dl class="class">
@@ -1941,7 +1974,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Sep 10, 2021.
+        Last updated on Jan 05, 2022.
       </span>
 
     </p>

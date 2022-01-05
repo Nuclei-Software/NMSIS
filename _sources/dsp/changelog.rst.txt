@@ -3,6 +3,18 @@
 Changelog
 =========
 
+V1.0.3
+------
+
+This is release ``1.0.3`` version of NMSIS-DSP library.
+
+* Update build system for NMSIS-DSP library
+* Rename ``RISCV_VECTOR`` to ``RISCV_MATH_VECTOR`` in header file and source code
+* Using new python script to generate NMSIS-DSP library
+* Fix riscv_float_to_q31 function for rv64imafcv target
+* Change vfredsum to vfredusum when using vector intrinsic function due to vector spec 1.0
+* Support Nuclei RISC-V GCC 10.2
+
 V1.0.2
 ------
 

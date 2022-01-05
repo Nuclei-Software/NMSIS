@@ -1221,6 +1221,8 @@ Functions</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l00930">930</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
 
 <p class="reference">References <a class="el" href="nmsis__gcc_8h_source.html#l00059">__ASM</a>, and <a class="el" href="nmsis__gcc_8h_source.html#l00074">__STATIC_FORCEINLINE</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="core__feature__timer_8h_source.html#l00187">SysTimer_GetCompareValue()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00129">SysTimer_GetLoadValue()</a>, and <a class="el" href="core__feature__timer_8h_source.html#l00314">SysTimer_GetMsipValue()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00931"></a><span class="lineno">  931</span>&#160;{</div><div class="line"><a name="l00932"></a><span class="lineno">  932</span>&#160;    uint32_t result;</div><div class="line"><a name="l00933"></a><span class="lineno">  933</span>&#160;</div><div class="line"><a name="l00934"></a><span class="lineno">  934</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span> (<span class="stringliteral">&quot;lw %0, 0(%1)&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span> (result) : <span class="stringliteral">&quot;r&quot;</span> (addr));</div><div class="line"><a name="l00935"></a><span class="lineno">  935</span>&#160;    <span class="keywordflow">return</span> result;</div><div class="line"><a name="l00936"></a><span class="lineno">  936</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CompilerControl_html_ga1378040bcf22428955c6e3ce9c2053cd"><div class="ttname"><a href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a></div><div class="ttdeci">#define __ASM</div><div class="ttdoc">Pass information from the compiler to the assembler. </div><div class="ttdef"><b>Definition:</b> <a href="nmsis__gcc_8h_source.html#l00059">nmsis_gcc.h:59</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -1405,6 +1407,8 @@ Functions</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l00982">982</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
 
 <p class="reference">References <a class="el" href="nmsis__gcc_8h_source.html#l00059">__ASM</a>, and <a class="el" href="nmsis__gcc_8h_source.html#l00074">__STATIC_FORCEINLINE</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="core__feature__timer_8h_source.html#l00376">SysTimer_ClearIPI()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00292">SysTimer_ClearSWIRQ()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00364">SysTimer_SendIPI()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00162">SysTimer_SetCompareValue()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00331">SysTimer_SetMsipValue()</a>, and <a class="el" href="core__feature__timer_8h_source.html#l00272">SysTimer_SetSWIRQ()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00983"></a><span class="lineno">  983</span>&#160;{</div><div class="line"><a name="l00984"></a><span class="lineno">  984</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span> (<span class="stringliteral">&quot;sw %0, 0(%1)&quot;</span> : : <span class="stringliteral">&quot;r&quot;</span> (val), <span class="stringliteral">&quot;r&quot;</span> (addr));</div><div class="line"><a name="l00985"></a><span class="lineno">  985</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CompilerControl_html_ga1378040bcf22428955c6e3ce9c2053cd"><div class="ttname"><a href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a></div><div class="ttdeci">#define __ASM</div><div class="ttdoc">Pass information from the compiler to the assembler. </div><div class="ttdef"><b>Definition:</b> <a href="nmsis__gcc_8h_source.html#l00059">nmsis_gcc.h:59</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -1503,7 +1507,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri Sep 10 2021 06:58:04 for NMSIS-Core by
+    <li class="footer">Generated on Wed Jan 5 2022 11:10:23 for NMSIS-Core by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

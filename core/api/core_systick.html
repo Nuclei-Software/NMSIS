@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Systick Timer(SysTimer) &mdash; NMSIS 1.0.2 documentation</title>
+  <title>Systick Timer(SysTimer) &mdash; NMSIS 1.0.3 documentation</title>
   
 
   
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2
+                1.0.3
               </div>
             
           
@@ -262,6 +262,16 @@
 <dl class="function">
 <dt>
 <span class="target" id="group__NMSIS__Core__SysTimer_1gac41101f6eb4776148a05d1b02b643f8e"></span><code class="sig-name descname">__STATIC_FORCEINLINE void SysTimer_SoftwareReset(void)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1ga6006f9ce9bd7e86b5ab503ffa85d2126"></span><code class="sig-name descname">__STATIC_FORCEINLINE void SysTimer_SendIPI(uint32_t hartid)</code></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1ga75378560287340bb6630fe31062a0dc9"></span><code class="sig-name descname">__STATIC_FORCEINLINE void SysTimer_ClearIPI(uint32_t hartid)</code></dt>
 <dd></dd></dl>
 
 <dl class="function">
@@ -482,6 +492,32 @@
 <li><p>The software reset is sent to SoC, SoC need to generate reset signal and send back to Core</p></li>
 <li><p>This function will not return, it will do while(1) to wait the Core reset happened </p></li>
 </ul>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1ga6006f9ce9bd7e86b5ab503ffa85d2126"></span><code class="sig-name descname">__STATIC_FORCEINLINE void SysTimer_SendIPI(uint32_t hartid)</code></dt>
+<dd><p>send ipi to target hart using Systimer Clint </p>
+<p>This function send ipi using clint timer. <dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">hart</span></code>: target hart </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1ga75378560287340bb6630fe31062a0dc9"></span><code class="sig-name descname">__STATIC_FORCEINLINE void SysTimer_ClearIPI(uint32_t hartid)</code></dt>
+<dd><p>clear ipi to target hart using Systimer Clint </p>
+<p>This function clear ipi using Systimer clint timer. <dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">hart</span></code>: target hart </p></li>
+</ul>
+</dd>
+</dl>
 </p>
 </dd></dl>
 
@@ -760,7 +796,7 @@
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Sep 10, 2021.
+        Last updated on Jan 05, 2022.
       </span>
 
     </p>

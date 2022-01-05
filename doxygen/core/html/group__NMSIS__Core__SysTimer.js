@@ -2,11 +2,13 @@ var group__NMSIS__Core__SysTimer =
 [
     [ "SysTick_Config", "group__NMSIS__Core__SysTimer.html#ga349805c25d9aa753c6fd69b3c0151126", null ],
     [ "SysTick_Reload", "group__NMSIS__Core__SysTimer.html#ga9906dae1937eac222354df5a9069945a", null ],
+    [ "SysTimer_ClearIPI", "group__NMSIS__Core__SysTimer.html#ga75378560287340bb6630fe31062a0dc9", null ],
     [ "SysTimer_ClearSWIRQ", "group__NMSIS__Core__SysTimer.html#ga57b4f64ed87262daf831573e704b12c8", null ],
     [ "SysTimer_GetCompareValue", "group__NMSIS__Core__SysTimer.html#ga515d63f4e4581430fb0bf6e864e5bca9", null ],
     [ "SysTimer_GetControlValue", "group__NMSIS__Core__SysTimer.html#gafc922423699826bc5d833ab5d08219d2", null ],
     [ "SysTimer_GetLoadValue", "group__NMSIS__Core__SysTimer.html#ga5b454e48769abd7a88c2cc65fe53ac7a", null ],
     [ "SysTimer_GetMsipValue", "group__NMSIS__Core__SysTimer.html#ga0431e3f4a44ca2265884c19096912729", null ],
+    [ "SysTimer_SendIPI", "group__NMSIS__Core__SysTimer.html#ga6006f9ce9bd7e86b5ab503ffa85d2126", null ],
     [ "SysTimer_SetCompareValue", "group__NMSIS__Core__SysTimer.html#ga52e85918789aa95fc4cd0d7238ca9b6c", null ],
     [ "SysTimer_SetControlValue", "group__NMSIS__Core__SysTimer.html#gaf0e25c3ad2965ce6cd523cd101cee16f", null ],
     [ "SysTimer_SetLoadValue", "group__NMSIS__Core__SysTimer.html#ga08c74ffae27d46218ae11321ff5e1673", null ],

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Device Header File &lt;device.h&gt; &mdash; NMSIS 1.0.2 documentation</title>
+  <title>Device Header File &lt;device.h&gt; &mdash; NMSIS 1.0.3 documentation</title>
   
 
   
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2
+                1.0.3
               </div>
             
           
@@ -385,10 +385,20 @@ If these <code class="docutils literal notranslate"><span class="pre">#define</s
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td><p>__DSP_PRESENT</p></td>
+<tr class="row-even"><td><p>__BITMANIP_PRESENT</p></td>
+<td><p>0 .. 1</p></td>
+<td><p>0</p></td>
+<td><p>Define whether Bitmainp Unit is present or not.</p></td>
+</tr>
+<tr class="row-odd"><td><p>__DSP_PRESENT</p></td>
 <td><p>0 .. 1</p></td>
 <td><p>0</p></td>
 <td><p>Define whether Digital Signal Processing Unit (DSP) is present or not.</p></td>
+</tr>
+<tr class="row-even"><td><p>__VECTOR_PRESENT</p></td>
+<td><p>0 .. 1</p></td>
+<td><p>0</p></td>
+<td><p>Define whether Vector Unit is present or not.</p></td>
 </tr>
 <tr class="row-odd"><td><p>__ICACHE_PRESENT</p></td>
 <td><p>0 .. 1</p></td>
@@ -730,7 +740,9 @@ If these <code class="docutils literal notranslate"><span class="pre">#define</s
 296
 297
 298
-299</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+299
+300
+301</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm"> * Copyright (c) 2009-2019 Arm Limited. All rights reserved.</span>
 <span class="cm"> * Copyright (c) 2019 Nuclei Limited. All rights reserved.</span>
 <span class="cm"> *</span>
@@ -864,7 +876,9 @@ If these <code class="docutils literal notranslate"><span class="pre">#define</s
 <span class="cp">#define __SYSTIMER_PRESENT        1                     </span><span class="cm">/*!&lt; Set to 1 if System Timer is present */</span><span class="cp"></span>
 <span class="cp">#define __SYSTIMER_BASEADDR       0x02000000UL          </span><span class="cm">/*!&lt; Set to SysTimer baseaddr of your device */</span><span class="cp"></span>
 <span class="cp">#define __FPU_PRESENT             1                     </span><span class="cm">/*!&lt; Set to 0, 1, or 2, 0 not present, 1 single floating point unit present, 2 double floating point unit present */</span><span class="cp"></span>
+<span class="cp">#define __BITMANIP_PRESENT        1                     </span><span class="cm">/*!&lt; Set to 1 if Bitmainpulation extension is present */</span><span class="cp"></span>
 <span class="cp">#define __DSP_PRESENT             1                     </span><span class="cm">/*!&lt; Set to 1 if DSP is present */</span><span class="cp"></span>
+<span class="cp">#define __VECTOR_PRESENT          1                     </span><span class="cm">/*!&lt; Set to 1 if Vector extension is present */</span><span class="cp"></span>
 <span class="cp">#define __PMP_PRESENT             1                     </span><span class="cm">/*!&lt; Set to 1 if PMP is present */</span><span class="cp"></span>
 <span class="cp">#define __PMP_ENTRY_NUM           16                    </span><span class="cm">/*!&lt; Set to 8 or 16, the number of PMP entries */</span><span class="cp"></span>
 <span class="cp">#define __ICACHE_PRESENT          0                     </span><span class="cm">/*!&lt; Set to 1 if I-Cache is present */</span><span class="cp"></span>
@@ -1056,7 +1070,7 @@ If these <code class="docutils literal notranslate"><span class="pre">#define</s
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Sep 10, 2021.
+        Last updated on Jan 05, 2022.
       </span>
 
     </p>

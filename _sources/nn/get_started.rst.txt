@@ -8,11 +8,11 @@ Here we will describe how to run the nmsis nn examples in Nuclei Spike.
 Preparation
 -----------
 
-* Nuclei Modified Spike - ``xl_spike``
-* Nuclei SDK modified for ``xl_spike`` branch ``dev_xlspike``
-* Nuclei RISCV GNU Toolchain, riscv gcc 10 with vector extension is required.
+* Nuclei SDK, ``dev_xlspike_next`` branch
+* Nuclei RISCV GNU Toolchain 2021.12
+* Nuclei xl_spike
 * CMake >= 3.5
-
+* Python 3
 
 Tool Setup
 ----------
@@ -28,11 +28,9 @@ Build NMSIS NN Library
 
 1. Download or clone NMSIS source code into **NMSIS** directory.
 2. cd to `NMSIS/NMSIS/` directory
-3. Build NMSIS NN library using ``make gen_nn_lib``
-4. Strip debug informations using ``make strip_nn_lib`` to make the generated
-   library smaller
-5. The nn library will be generated into ``./Library/NN/GCC`` folder
-6. The nn libraries will be look like this:
+3. Build NMSIS NN library and strip debug information using ``make gen_nn_lib``
+4. The nn library will be generated into ``./Library/NN/GCC`` folder
+5. The nn libraries will be look like this:
 
 .. code-block::
 
@@ -89,25 +87,25 @@ How to run
 
 2. ``cd ./cifar10/``
 
-3. Run with RISCV DSP enabled and Vector enabled NMSIS-NN library for CORE ``ux600``
+3. Run with RISCV DSP enabled and Vector enabled NMSIS-NN library for CORE ``ux900fd``
 
 .. code-block::
 
     # Clean project
-    make DSP_ENABLE=ON VECTOR_ENABLE=ON CORE=ux600 clean
+    make ARCH_EXT=pv CORE=ux900fd clean
     # Build project
-    make DSP_ENABLE=ON VECTOR_ENABLE=ON CORE=ux600 all
+    make ARCH_EXT=pv CORE=ux900fd all
     # Run application using xl_spike
-    make DSP_ENABLE=ON VECTOR_ENABLE=ON CORE=ux600 run
+    make ARCH_EXT=pv CORE=ux900fd run
 
 
-4. Run with RISCV DSP disabled and Vector disabled NMSIS-NN library for CORE ``ux600``
+4. Run with RISCV DSP disabled and Vector disabled NMSIS-NN library for CORE ``ux900fd``
 
 .. code-block:: shell
 
-    make DSP_ENABLE=OFF VECTOR_ENABLE=OFF CORE=ux600 clean
-    make DSP_ENABLE=OFF VECTOR_ENABLE=OFF CORE=ux600 all
-    make DSP_ENABLE=OFF VECTOR_ENABLE=OFF CORE=ux600 run
+    make ARCH_EXT= CORE=ux900fd clean
+    make ARCH_EXT= CORE=ux900fd all
+    make ARCH_EXT= CORE=ux900fd run
 
 .. note::
 

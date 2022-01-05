@@ -91,8 +91,8 @@ $(document).ready(function(){initNavTree('group__GRUExample.html','');});
 <dl class="section user"><dt>Model definition:</dt><dd></dd></dl>
 <dl class="section user"><dt></dt><dd>GRU is a type of recurrent neural network (RNN). It contains two sigmoid gates and one hidden state. </dd></dl>
 <dl class="section user"><dt></dt><dd>The computation can be summarized as: <pre>z[t] = sigmoid( W_z &sdot; {h[t-1],x[t]} )
-r[t] = sigmoid( W_r &sdot; {h[t-1],x[t]} ) 
-n[t] = tanh( W_n &sdot; [r[t] &times; {h[t-1], x[t]} ) 
+r[t] = sigmoid( W_r &sdot; {h[t-1],x[t]} )
+n[t] = tanh( W_n &sdot; [r[t] &times; {h[t-1], x[t]} )
 h[t] = (1 - z[t]) &times; h[t-1] + z[t] &times; n[t] </pre> <div class="image">
 <img src="GRU.png" alt="GRU.png"/>
 <div class="caption">
@@ -125,7 +125,7 @@ Gate Recurrent Unit Diagram</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri Sep 10 2021 07:00:32 for NMSIS-NN by
+    <li class="footer">Generated on Wed Jan 5 2022 11:12:48 for NMSIS-NN by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Startup File startup_&lt;device&gt;.S &mdash; NMSIS 1.0.2 documentation</title>
+  <title>Startup File startup_&lt;device&gt;.S &mdash; NMSIS 1.0.3 documentation</title>
   
 
   
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2
+                1.0.3
               </div>
             
           
@@ -207,7 +207,7 @@
 <li><p>Disable Interrupt</p></li>
 <li><p>Initialize GP, stack</p></li>
 <li><p>Initialize NMI entry and set default NMI handler</p></li>
-<li><p>Initialize Exception entry and set default exception handler</p></li>
+<li><p>Initialize exception entry to early exception entry in <code class="docutils literal notranslate"><span class="pre">startup_&lt;Device&gt;.S</span></code></p></li>
 <li><p>Initialize vector table entry and set default interrupt handler</p></li>
 <li><p>Initialize Interrupt mode as ECLIC mode. (ECLIC mode is proposed. Default mode is CLINT mode)</p></li>
 </ul>
@@ -222,6 +222,7 @@
 <li><p>Clear Block Started by Symbol (BSS) section</p></li>
 <li><p>Call <code class="docutils literal notranslate"><span class="pre">__libc_fini_array</span></code> and <code class="docutils literal notranslate"><span class="pre">__libc_init_array</span></code> functions to do C library initialization</p></li>
 <li><p>Call <code class="docutils literal notranslate"><span class="pre">_premain_init</span></code> function to do initialization steps before main function</p></li>
+<li><p>Initialize exception entry to exception entry in <code class="docutils literal notranslate"><span class="pre">intexc_&lt;Device&gt;.S</span></code></p></li>
 <li><p>Jump Main</p></li>
 </ul>
 </dd>
@@ -604,7 +605,32 @@ The files for other compilers can slightly differ from this version.</p>
 297
 298
 299
-300</pre></div></td><td class="code"><div class="highlight"><pre><span></span>/*
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325</pre></div></td><td class="code"><div class="highlight"><pre><span></span>/*
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -779,7 +805,7 @@ _start:
     .option push
     .option norelax
     la gp, __global_pointer$
-
+    la tp, __tls_base
     .option pop
     la sp, _sp
 
@@ -809,11 +835,13 @@ _start:
     csrs CSR_MTVT2, 0x1
 
     /*
-     * Set Exception Entry MTVEC to exc_entry
+     * Set Exception Entry MTVEC to early_exc_entry
      * Due to settings above, Exception and NMI
      * will share common entry.
+     * This early_exc_entry is only used during early
+     * boot stage before main
      */
-    la t0, exc_entry
+    la t0, early_exc_entry
     csrw CSR_MTVEC, t0
 
     /* Set the interrupt processing mode to ECLIC mode */
@@ -865,6 +893,8 @@ _start:
     /* Load data section */
     la a0, _data_lma
     la a1, _data
+    /* If data vma=lma, no need to copy */
+    beq a0, a1, 2f
     la a2, _edata
     bgeu a1, a2, 2f
 1:
@@ -894,6 +924,20 @@ _start:
 
     /* do pre-init steps before main */
     call _premain_init
+
+    /*
+     * When all initialization steps done
+     * set exception entry to correct exception
+     * entry and jump to main.
+     * And set the interrupt processing mode to
+     * ECLIC mode
+     */
+    la t0, exc_entry
+    csrw CSR_MTVEC, t0
+    li t0, 0x3f
+    csrc CSR_MTVEC, t0
+    csrs CSR_MTVEC, 0x3
+
     /* ===== Call Main Function  ===== */
     /* argc = argv = 0 */
     li a0, 0
@@ -904,6 +948,13 @@ _start:
 
 1:
     j 1b
+
+/* Early boot exception entry before main */
+.align 6
+.global early_exc_entry
+early_exc_entry:
+    wfi
+    j early_exc_entry
 </pre></div>
 </td></tr></table></div>
 </div>
@@ -931,7 +982,7 @@ _start:
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Sep 10, 2021.
+        Last updated on Jan 05, 2022.
       </span>
 
     </p>

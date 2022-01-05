@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Using NMSIS-DSP &mdash; NMSIS 1.0.2 documentation</title>
+  <title>Using NMSIS-DSP &mdash; NMSIS 1.0.3 documentation</title>
   
 
   
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2
+                1.0.3
               </div>
             
           
@@ -181,10 +181,11 @@
 <div class="section" id="preparation">
 <h2>Preparation<a class="headerlink" href="#preparation" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>Nuclei Modified Spike - <code class="docutils literal notranslate"><span class="pre">xl_spike</span></code></p></li>
-<li><p>Nuclei SDK modified for <code class="docutils literal notranslate"><span class="pre">xl_spike</span></code> branch <code class="docutils literal notranslate"><span class="pre">dev_xlspike</span></code></p></li>
-<li><p>Nuclei RISCV GNU Toolchain, riscv gcc 10 with vector extension is required.</p></li>
+<li><p>Nuclei SDK, <code class="docutils literal notranslate"><span class="pre">dev_xlspike_next</span></code> branch</p></li>
+<li><p>Nuclei RISCV GNU Toolchain 2021.12</p></li>
+<li><p>Nuclei xl_spike</p></li>
 <li><p>CMake &gt;= 3.5</p></li>
+<li><p>Python 3</p></li>
 </ul>
 </div>
 <div class="section" id="tool-setup">
@@ -201,9 +202,7 @@
 <ol class="arabic simple">
 <li><p>Download or clone NMSIS source code into <strong>NMSIS</strong> directory.</p></li>
 <li><p>cd to <cite>NMSIS/NMSIS/</cite> directory</p></li>
-<li><p>Build NMSIS DSP library using <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">gen_dsp_lib</span></code></p></li>
-<li><p>Strip debug informations using <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">strip_dsp_lib</span></code> to make the generated
-library smaller</p></li>
+<li><p>Build NMSIS DSP library and strip debug information using <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">gen_dsp_lib</span></code></p></li>
 <li><p>The dsp library will be generated into <code class="docutils literal notranslate"><span class="pre">./Library/DSP/GCC</span></code> folder</p></li>
 <li><p>The dsp libraries will be look like this:</p></li>
 </ol>
@@ -245,7 +244,6 @@ total 52M
 <p class="admonition-title">Note</p>
 <ul class="simple">
 <li><p>You can also directly build both DSP and NN library using <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">gen</span></code></p></li>
-<li><p>You can strip the generated DSP and NN library using <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">strip</span></code></p></li>
 <li><p>DSP and Vector extension can be combined, such as <code class="docutils literal notranslate"><span class="pre">p</span></code>, <code class="docutils literal notranslate"><span class="pre">v</span></code> and <code class="docutils literal notranslate"><span class="pre">pv</span></code></p></li>
 <li><p>Vector extension currently is only available with RISC-V 64 bit processor</p></li>
 </ul>
@@ -265,22 +263,22 @@ and set Nuclei SDK SoC to <cite>xlspike</cite></p></li>
 <ol class="arabic simple" start="2">
 <li><p>Let us take <code class="docutils literal notranslate"><span class="pre">./riscv_class_marks_example/</span></code> for example</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">./riscv_class_marks_example/</span></code></p></li>
-<li><p>Run with RISCV DSP enabled and Vector enabled NMSIS-DSP library for CORE <code class="docutils literal notranslate"><span class="pre">ux600</span></code></p></li>
+<li><p>Run with RISCV DSP enabled and Vector enabled NMSIS-DSP library for CORE <code class="docutils literal notranslate"><span class="pre">ux900fd</span></code></p></li>
 </ol>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clean project</span>
-make <span class="nv">DSP_ENABLE</span><span class="o">=</span>ON <span class="nv">VECTOR_ENABLE</span><span class="o">=</span>ON <span class="nv">CORE</span><span class="o">=</span>ux600 clean
+make <span class="nv">ARCH_EXT</span><span class="o">=</span>pv <span class="nv">CORE</span><span class="o">=</span>ux900fd clean
 <span class="c1"># Build project</span>
-make <span class="nv">DSP_ENABLE</span><span class="o">=</span>ON <span class="nv">VECTOR_ENABLE</span><span class="o">=</span>ON <span class="nv">CORE</span><span class="o">=</span>ux600 all
+make <span class="nv">ARCH_EXT</span><span class="o">=</span>pv <span class="nv">CORE</span><span class="o">=</span>ux900fd all
 <span class="c1"># Run application using xl_spike</span>
-make <span class="nv">DSP_ENABLE</span><span class="o">=</span>ON <span class="nv">VECTOR_ENABLE</span><span class="o">=</span>ON <span class="nv">CORE</span><span class="o">=</span>ux600 run
+make <span class="nv">ARCH_EXT</span><span class="o">=</span>pv <span class="nv">CORE</span><span class="o">=</span>ux900fd run
 </pre></div>
 </div>
 <ol class="arabic simple" start="5">
-<li><p>Run with RISCV DSP disabled and Vector disabled NMSIS-DSP library for CORE <code class="docutils literal notranslate"><span class="pre">ux600</span></code></p></li>
+<li><p>Run with RISCV DSP disabled and Vector disabled NMSIS-DSP library for CORE <code class="docutils literal notranslate"><span class="pre">ux900fd</span></code></p></li>
 </ol>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make <span class="nv">DSP_ENABLE</span><span class="o">=</span>OFF <span class="nv">VECTOR_ENABLE</span><span class="o">=</span>OFF <span class="nv">CORE</span><span class="o">=</span>ux600 clean
-make <span class="nv">DSP_ENABLE</span><span class="o">=</span>OFF <span class="nv">VECTOR_ENABLE</span><span class="o">=</span>OFF <span class="nv">CORE</span><span class="o">=</span>ux600 all
-make <span class="nv">DSP_ENABLE</span><span class="o">=</span>OFF <span class="nv">VECTOR_ENABLE</span><span class="o">=</span>OFF <span class="nv">CORE</span><span class="o">=</span>ux600 run
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make <span class="nv">ARCH_EXT</span><span class="o">=</span> <span class="nv">CORE</span><span class="o">=</span>ux900fd clean
+make <span class="nv">ARCH_EXT</span><span class="o">=</span> <span class="nv">CORE</span><span class="o">=</span>ux900fd all
+make <span class="nv">ARCH_EXT</span><span class="o">=</span> <span class="nv">CORE</span><span class="o">=</span>ux900fd run
 </pre></div>
 </div>
 <div class="admonition note">
@@ -316,7 +314,7 @@ if you have enough memory to run it, just modify the
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Sep 10, 2021.
+        Last updated on Jan 05, 2022.
       </span>
 
     </p>
