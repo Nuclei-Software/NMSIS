@@ -1,6 +1,5 @@
 var NAVTREEINDEX4 =
 {
-"group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X16__MAC.html#ga60e15a6243014fd5b76b7cffa7275eb4":[1,10,2,2,5],
 "group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X16__MAC.html#ga6385e945e25b69987eb34e8e9e862bcf":[1,10,2,2,3],
 "group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X16__MAC.html#ga75f579bae285694b96c319bd0c0daffa":[1,10,2,2,15],
 "group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X16__MAC.html#ga92298c74bc685e608de8c743f4348940":[1,10,2,2,14],
@@ -249,5 +248,6 @@ var NAVTREEINDEX4 =
 "group__NMSIS__Core__IntExc.html#ga36108f1b6b9e2545727701d856a63c6e":[1,7,38],
 "group__NMSIS__Core__IntExc.html#ga38900ce869dd78e9b432ac90d8006082":[1,7,44],
 "group__NMSIS__Core__IntExc.html#ga44797af8a09e6b798cc7cb2bc3b9602b":[1,7,17],
-"group__NMSIS__Core__IntExc.html#ga47f628da4dcf09a2fc43bfb7c8de1528":[1,7,3]
+"group__NMSIS__Core__IntExc.html#ga47f628da4dcf09a2fc43bfb7c8de1528":[1,7,3],
+"group__NMSIS__Core__IntExc.html#ga59e29ad3023110a58eb9163d976f44c6":[1,7,19]
 };

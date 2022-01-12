@@ -9,7 +9,6 @@ var group__NMSIS__Core__Cache =
       [ "ways", "structCacheInfo__Type.html#a963618b4e0fa8b89df750f8170a2a8ed", null ]
     ] ],
     [ "CCM_SUEN_SUEN_Msk", "group__NMSIS__Core__Cache.html#gabf38a15eb94b31efda1bd45aca351911", null ],
-    [ "CCM_SUEN_SUEN_Pos", "group__NMSIS__Core__Cache.html#gaee848e71337bf42ea0087520fb0d0587", null ],
     [ "CCM_CMD_Type", "group__NMSIS__Core__Cache.html#ga700ee5ca80d2777b38c6d8c963e4e5a9", [
       [ "CCM_DC_INVAL", "group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a1a132c4125ce2c5028ab7e8d1226cc37", null ],
       [ "CCM_DC_WB", "group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a0d26a5a595c08481572223f9cec83b78", null ],

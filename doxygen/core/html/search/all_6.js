@@ -38,7 +38,6 @@ var searchData=
   ['ccm_5fop_5fsuccess',['CCM_OP_SUCCESS',['../group__NMSIS__Core__Cache.html#gga0a94b900668f476abc0587b061b7afcaa59b7659ff9fdd6d34f5bd24138b4363f',1,'core_feature_cache.h']]],
   ['ccm_5fsuen_5fsuen',['CCM_SUEN_SUEN',['../group__NMSIS__Core__CSR__Encoding.html#gaf601ce7378adc2d28a3c1eece31c4948',1,'riscv_encoding.h']]],
   ['ccm_5fsuen_5fsuen_5fmsk',['CCM_SUEN_SUEN_Msk',['../group__NMSIS__Core__Cache.html#gabf38a15eb94b31efda1bd45aca351911',1,'core_feature_cache.h']]],
-  ['ccm_5fsuen_5fsuen_5fpos',['CCM_SUEN_SUEN_Pos',['../group__NMSIS__Core__Cache.html#gaee848e71337bf42ea0087520fb0d0587',1,'core_feature_cache.h']]],
   ['cfg',['CFG',['../structCLIC__Type.html#a9fd72fa34c705b1555a830e3563d29c4',1,'CLIC_Type']]],
   ['clic',['clic',['../unionCSR__MCFGINFO__Type.html#a73946e52a5708c7b47db9cd06d913838',1,'CSR_MCFGINFO_Type']]],
   ['clic_5fcliccfg_5fnlbit_5fmsk',['CLIC_CLICCFG_NLBIT_Msk',['../group__NMSIS__Core__ECLIC__Registers.html#ga6c31823bbd3bd593dcecd6d7d5f0afbb',1,'core_feature_eclic.h']]],
