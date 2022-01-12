@@ -56,6 +56,8 @@ build_library:
       - NMSIS/Library
       - NMSIS/build.log
     expire_in: 2 day
+  variables:
+    PARALLEL_OPTS: "-j4"
   script:
     - apt update
     - apt install -y python3 python3-pip
