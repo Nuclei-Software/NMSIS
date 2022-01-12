@@ -56,7 +56,7 @@ class nl_build(object):
         buildlog = os.path.join(builddir, "build.log")
         return builddir, cmakelog, buildlog
 
-    def build(self, target:str, target_alias:list, config:dict, installdir:str, parallel=True):
+    def build(self, target:str, target_alias:list, config:dict, installdir:str, parallel="-j"):
         if isinstance(config, dict) == False:
             return False
         cmakefile = os.path.join(self.nl_src, "CMakeLists.txt")
@@ -77,8 +77,9 @@ class nl_build(object):
             print("Makefile for project %s is not generated" % (self.nl_src))
             return False
         make_cmd = "make"
-        if parallel:
-            make_cmd += " -j "
+        parallel = parallel.strip()
+        if parallel.startswith("-j"):
+            make_cmd += " %s " % (parallel)
         make_cmd += " -C %s  2>&1 | tee %s" % (nl_buildir, nl_buildlog)
         print("Build project %s for target %s, log record in %s" % (self.nl_src, target, nl_buildlog))
         ret = run_command(make_cmd)
@@ -144,7 +145,7 @@ def strip_library(libroot):
     run_command(strip_cmd)
     pass
 
-def install_library(libsrc, buildcfgs:dict, aliascfgs:dict, libprefix, libroot, target:str="all", strip=True, parallel=True, ignore_fail=False):
+def install_library(libsrc, buildcfgs:dict, aliascfgs:dict, libprefix, libroot, target:str="all", strip=True, parallel="-j", ignore_fail=False):
     if isinstance(buildcfgs, dict) == False:
         print("No build configuration found")
         return False
@@ -198,7 +199,7 @@ if __name__ == '__main__':
     parser.add_argument('--lib_root', default="Library/DSP/GCC", help="Library built and generate to")
     parser.add_argument('--strip', action='store_true', help="If specified, the installed library will strip out debug symbols")
     parser.add_argument('--target', default="all", help="if target = all, it means run all the targets defined in config")
-    parser.add_argument('--no_parallel', action='store_true', help="If specified, will build library in non-parallel mode")
+    parser.add_argument('--parallel', default="-j4", help="parallel build library, default -j4")
     parser.add_argument('--ignore_fail', action='store_true', help="If specified, will ignore fail even any build configuration failed")
 
     args = parser.parse_args()
@@ -210,7 +211,7 @@ if __name__ == '__main__':
         sys.exit(1)
     buildcfgs = get_buildcfgs(jsoncfg)
     aliascfgs = get_aliascfgs(jsoncfg)
-    runrst = install_library(args.lib_src, buildcfgs, aliascfgs, args.lib_prefix, args.lib_root, args.target, args.strip, (not args.no_parallel), args.ignore_fail)
+    runrst = install_library(args.lib_src, buildcfgs, aliascfgs, args.lib_prefix, args.lib_root, args.target, args.strip, args.parallel, args.ignore_fail)
     print("Build Library %s with config %s, generated into %s status: %s" %(args.lib_src, args.config, args.lib_root, runrst))
     if runrst:
         sys.exit(0)
