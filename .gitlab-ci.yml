@@ -86,6 +86,8 @@ build_align_library:
 
 .test_job_template: &test_job_template_default
   stage: test
+  timeout: 4h
+  interruptible: true
   before_script:
     # prepare for docker ssh environment
     ## https://docs.gitlab.com/ee/ci/ssh_keys/#ssh-keys-when-using-the-docker-executor
