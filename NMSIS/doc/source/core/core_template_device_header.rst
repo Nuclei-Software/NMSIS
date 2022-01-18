@@ -121,6 +121,8 @@ nmsis_core.h
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
    | __DCACHE_PRESENT       | 0 .. 1      | 0          | Define whether D-Cache Unit is present or not.                                                                |
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __INC_INTRINSIC_API    | 0 .. 1      | 0          | Define whether toolchain provided intrinsic api headers are included or not.                                  |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
    | __Vendor_SysTickConfig | 0 .. 1      | 0          | If __SYSTIMER_PRESENT is 1, then the __Vendor_SysTickConfig can be set to 0, otherwise it can only set to 1.  |
    |                        |             |            |                                                                                                               |
    |                        |             |            | If this define is set to 1, then the default SysTick_Config and SysTick_Reload function is excluded.          |

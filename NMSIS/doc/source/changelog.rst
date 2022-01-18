@@ -8,7 +8,7 @@ V1.0.3
 
 This is the official release version ``V1.0.3`` release of Nuclei MCU Software Interface Standard(NMSIS).
 
-This release is only supported by Nuclei GNU Toolchain 2021.12 and its later version,
+This release is only supported by Nuclei GNU Toolchain 2022.01 and its later version,
 since it required intrinsic header files in RISC-V GCC for B/P/V extensions.
 
 The following changes has been made since ``V1.0.2``.
@@ -19,7 +19,7 @@ The following changes has been made since ``V1.0.2``.
 
 * **Device Templates**
 
-  - Add ``__BITMANIP_PRESENT`` and ``__VECTOR_PRESENT`` in ``<Device>.h``
+  - Add ``__INC_INTRINSIC_API``, ``__BITMANIP_PRESENT`` and ``__VECTOR_PRESENT`` in ``<Device>.h``
   - Add more REG/ADDR/BIT access macros in ``<Device>.h``
   - Update linker script for ``<Device>.ld`` for Nuclei C Runtime Library
   - Add tp register initialization and add early exception setup during startup in ``startup_<Device>.S``
@@ -30,6 +30,7 @@ The following changes has been made since ``V1.0.2``.
   - Update ``core_feature_eclic.h``, ``core_feature_timer.h`` and ``core_feature_dsp.h``
   - Added ``core_feature_vector.h`` and ``core_feature_bitmainp.h``
   - Add more nuclei customized csr in ``riscv_encoding.h``
+  - Include rvb/rvp/rvv header files when __INC_INTRINSIC_API = 1
 
 * **NMSIS-DSP/NN**
 
