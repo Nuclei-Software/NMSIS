@@ -139,6 +139,7 @@ typedef enum EXCn {
 #define __PMP_ENTRY_NUM           16                    /*!< Set to 8 or 16, the number of PMP entries */
 #define __ICACHE_PRESENT          0                     /*!< Set to 1 if I-Cache is present */
 #define __DCACHE_PRESENT          0                     /*!< Set to 1 if D-Cache is present */
+#define __INC_INTRINSIC_API       0                     /*!< Set to 1 if intrinsic api header files need to be included */
 #define __Vendor_SysTickConfig    0                     /*!< Set to 1 if different SysTick Config is used */
 
 /** @} */ /* End of group Configuration_of_NMSIS */
