@@ -178,7 +178,7 @@
 <div class="section" id="v1-0-3">
 <h2>V1.0.3<a class="headerlink" href="#v1-0-3" title="Permalink to this headline">¶</a></h2>
 <p>This is the official release version <code class="docutils literal notranslate"><span class="pre">V1.0.3</span></code> release of Nuclei MCU Software Interface Standard(NMSIS).</p>
-<p>This release is only supported by Nuclei GNU Toolchain 2021.12 and its later version,
+<p>This release is only supported by Nuclei GNU Toolchain 2022.01 and its later version,
 since it required intrinsic header files in RISC-V GCC for B/P/V extensions.</p>
 <p>The following changes has been made since <code class="docutils literal notranslate"><span class="pre">V1.0.2</span></code>.</p>
 <ul>
@@ -189,7 +189,7 @@ since it required intrinsic header files in RISC-V GCC for B/P/V extensions.</p>
 </li>
 <li><p><strong>Device Templates</strong></p>
 <ul class="simple">
-<li><p>Add <code class="docutils literal notranslate"><span class="pre">__BITMANIP_PRESENT</span></code> and <code class="docutils literal notranslate"><span class="pre">__VECTOR_PRESENT</span></code> in <code class="docutils literal notranslate"><span class="pre">&lt;Device&gt;.h</span></code></p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">__INC_INTRINSIC_API</span></code>, <code class="docutils literal notranslate"><span class="pre">__BITMANIP_PRESENT</span></code> and <code class="docutils literal notranslate"><span class="pre">__VECTOR_PRESENT</span></code> in <code class="docutils literal notranslate"><span class="pre">&lt;Device&gt;.h</span></code></p></li>
 <li><p>Add more REG/ADDR/BIT access macros in <code class="docutils literal notranslate"><span class="pre">&lt;Device&gt;.h</span></code></p></li>
 <li><p>Update linker script for <code class="docutils literal notranslate"><span class="pre">&lt;Device&gt;.ld</span></code> for Nuclei C Runtime Library</p></li>
 <li><p>Add tp register initialization and add early exception setup during startup in <code class="docutils literal notranslate"><span class="pre">startup_&lt;Device&gt;.S</span></code></p></li>
@@ -201,6 +201,7 @@ since it required intrinsic header files in RISC-V GCC for B/P/V extensions.</p>
 <li><p>Update <code class="docutils literal notranslate"><span class="pre">core_feature_eclic.h</span></code>, <code class="docutils literal notranslate"><span class="pre">core_feature_timer.h</span></code> and <code class="docutils literal notranslate"><span class="pre">core_feature_dsp.h</span></code></p></li>
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">core_feature_vector.h</span></code> and <code class="docutils literal notranslate"><span class="pre">core_feature_bitmainp.h</span></code></p></li>
 <li><p>Add more nuclei customized csr in <code class="docutils literal notranslate"><span class="pre">riscv_encoding.h</span></code></p></li>
+<li><p>Include rvb/rvp/rvv header files when __INC_INTRINSIC_API = 1</p></li>
 </ul>
 </li>
 <li><p><strong>NMSIS-DSP/NN</strong></p>
@@ -458,7 +459,7 @@ library developed to maximize the performance and minimize the memory footprint 
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Jan 12, 2022.
+        Last updated on Jan 18, 2022.
       </span>
 
     </p>

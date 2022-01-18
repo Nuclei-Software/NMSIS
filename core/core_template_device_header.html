@@ -410,7 +410,12 @@ If these <code class="docutils literal notranslate"><span class="pre">#define</s
 <td><p>0</p></td>
 <td><p>Define whether D-Cache Unit is present or not.</p></td>
 </tr>
-<tr class="row-odd"><td><p>__Vendor_SysTickConfig</p></td>
+<tr class="row-odd"><td><p>__INC_INTRINSIC_API</p></td>
+<td><p>0 .. 1</p></td>
+<td><p>0</p></td>
+<td><p>Define whether toolchain provided intrinsic api headers are included or not.</p></td>
+</tr>
+<tr class="row-even"><td><p>__Vendor_SysTickConfig</p></td>
 <td><p>0 .. 1</p></td>
 <td><p>0</p></td>
 <td><p>If __SYSTIMER_PRESENT is 1, then the __Vendor_SysTickConfig can be set to 0, otherwise it can only set to 1.</p>
@@ -742,7 +747,8 @@ If these <code class="docutils literal notranslate"><span class="pre">#define</s
 298
 299
 300
-301</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+301
+302</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm"> * Copyright (c) 2009-2019 Arm Limited. All rights reserved.</span>
 <span class="cm"> * Copyright (c) 2019 Nuclei Limited. All rights reserved.</span>
 <span class="cm"> *</span>
@@ -883,6 +889,7 @@ If these <code class="docutils literal notranslate"><span class="pre">#define</s
 <span class="cp">#define __PMP_ENTRY_NUM           16                    </span><span class="cm">/*!&lt; Set to 8 or 16, the number of PMP entries */</span><span class="cp"></span>
 <span class="cp">#define __ICACHE_PRESENT          0                     </span><span class="cm">/*!&lt; Set to 1 if I-Cache is present */</span><span class="cp"></span>
 <span class="cp">#define __DCACHE_PRESENT          0                     </span><span class="cm">/*!&lt; Set to 1 if D-Cache is present */</span><span class="cp"></span>
+<span class="cp">#define __INC_INTRINSIC_API       0                     </span><span class="cm">/*!&lt; Set to 1 if intrinsic api header files need to be included */</span><span class="cp"></span>
 <span class="cp">#define __Vendor_SysTickConfig    0                     </span><span class="cm">/*!&lt; Set to 1 if different SysTick Config is used */</span><span class="cp"></span>
 
 <span class="cm">/** @} */</span> <span class="cm">/* End of group Configuration_of_NMSIS */</span>
@@ -1070,7 +1077,7 @@ If these <code class="docutils literal notranslate"><span class="pre">#define</s
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Jan 12, 2022.
+        Last updated on Jan 18, 2022.
       </span>
 
     </p>

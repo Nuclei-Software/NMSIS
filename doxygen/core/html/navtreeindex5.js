@@ -1,5 +1,10 @@
 var NAVTREEINDEX5 =
 {
+"group__NMSIS__Core__IntExc.html#ga36108f1b6b9e2545727701d856a63c6e":[1,7,38],
+"group__NMSIS__Core__IntExc.html#ga38900ce869dd78e9b432ac90d8006082":[1,7,44],
+"group__NMSIS__Core__IntExc.html#ga44797af8a09e6b798cc7cb2bc3b9602b":[1,7,17],
+"group__NMSIS__Core__IntExc.html#ga47f628da4dcf09a2fc43bfb7c8de1528":[1,7,3],
+"group__NMSIS__Core__IntExc.html#ga59e29ad3023110a58eb9163d976f44c6":[1,7,19],
 "group__NMSIS__Core__IntExc.html#ga5d8158db12cd1bdfe0bfc82667eeffc5":[1,7,8],
 "group__NMSIS__Core__IntExc.html#ga5e47fae9a66b286f1d0df6799e5a244c":[1,7,40],
 "group__NMSIS__Core__IntExc.html#ga6308d1600c92e3f9dc67c7837c68f854":[1,7,7],
@@ -144,8 +149,8 @@ var NAVTREEINDEX5 =
 "group__NMSIS__Core__VersionControl.html#gab04e403f865e54d51a172e7b930e9450":[1,0,2],
 "group__NMSIS__Core__VersionControl.html#gab5a0b348cd079c5b07a64ea593e67b29":[1,0,1],
 "group__NMSIS__Core__VersionControl.html#gabbb55762c8f33bff41889171e1e81fed":[1,0,6],
-"index.html":[],
 "index.html":[0],
+"index.html":[],
 "modules.html":[1],
 "pages.html":[],
 "structCLIC__CTRL__Type.html":[1,4,1,2],
@@ -244,10 +249,5 @@ var NAVTREEINDEX5 =
 "unionCSR__MDCAUSE__Type.html#afb35b39064208f0ebcba3d508899178d":[1,4,0,6,0],
 "unionCSR__MDCFGINFO__Type.html":[1,4,0,14],
 "unionCSR__MDCFGINFO__Type.html#a023b173b517068119914ee656fc7a95b":[1,4,0,14,9],
-"unionCSR__MDCFGINFO__Type.html#a03f46ebc4ad02853aeb23f6393af879f":[1,4,0,14,7],
-"unionCSR__MDCFGINFO__Type.html#a21c2b66473db29a108862083aa33ee99":[1,4,0,14,5],
-"unionCSR__MDCFGINFO__Type.html#a333717d8ebf97d34c4b16376165d75d6":[1,4,0,14,0],
-"unionCSR__MDCFGINFO__Type.html#a458a2abb27aa334c0fda73efc7972aad":[1,4,0,14,4],
-"unionCSR__MDCFGINFO__Type.html#a6b960e8dad7dc4765ccecd3bc39b8324":[1,4,0,14,1],
-"unionCSR__MDCFGINFO__Type.html#a754ba23246054e1a6eed7b15884a7b8a":[1,4,0,14,3]
+"unionCSR__MDCFGINFO__Type.html#a03f46ebc4ad02853aeb23f6393af879f":[1,4,0,14,7]
 };

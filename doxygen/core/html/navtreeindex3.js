@@ -1,5 +1,10 @@
 var NAVTREEINDEX3 =
 {
+"group__NMSIS__Core__DCache.html#gac5233b35e7e33e42e5e45fe1dbdac8c8":[1,12,1,30],
+"group__NMSIS__Core__DCache.html#gac616f2d955d1e1db8699f70304057199":[1,12,1,36],
+"group__NMSIS__Core__DCache.html#gad04a1564bd90165809036011a2039762":[1,12,1,24],
+"group__NMSIS__Core__DCache.html#gad20886a44092fc702c46eb569039c724":[1,12,1,37],
+"group__NMSIS__Core__DCache.html#gad2b9184fe3f7e4d846cf472c32307aff":[1,12,1,6],
 "group__NMSIS__Core__DCache.html#gad9b649b63f1853da9d45000de84d9abc":[1,12,1,8],
 "group__NMSIS__Core__DCache.html#gad9e62828c92a3f299da5468bdd09ab16":[1,12,1,34],
 "group__NMSIS__Core__DCache.html#gae44d70b1250ef92db399f46119d783a4":[1,12,1,39],
@@ -221,12 +226,12 @@ var NAVTREEINDEX3 =
 "group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB.html":[1,10,3,2],
 "group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB.html#ga18e89f90f0b3e3d8c34ceb33b671a61b":[1,10,2,4,7],
 "group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB.html#ga18e89f90f0b3e3d8c34ceb33b671a61b":[1,10,3,2,7],
-"group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB.html#ga39331e38421eb5f882a615941cf00444":[1,10,3,2,6],
 "group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB.html#ga39331e38421eb5f882a615941cf00444":[1,10,2,4,6],
+"group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB.html#ga39331e38421eb5f882a615941cf00444":[1,10,3,2,6],
 "group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB.html#ga4161cf3c9857cbef8d23b6a8e09b49d2":[1,10,3,2,0],
 "group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB.html#ga4161cf3c9857cbef8d23b6a8e09b49d2":[1,10,2,4,0],
-"group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB.html#ga68b7e1927e142a46a1e3132a7e04b777":[1,10,3,2,5],
 "group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB.html#ga68b7e1927e142a46a1e3132a7e04b777":[1,10,2,4,5],
+"group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB.html#ga68b7e1927e142a46a1e3132a7e04b777":[1,10,3,2,5],
 "group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB.html#ga74fe212140384150726143f2f43c900f":[1,10,2,4,2],
 "group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB.html#ga74fe212140384150726143f2f43c900f":[1,10,3,2,2],
 "group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB.html#ga8320e2679cb96ee46fcaf761925b8708":[1,10,2,4,3],
@@ -235,8 +240,8 @@ var NAVTREEINDEX3 =
 "group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB.html#ga9e334955371767a38c1e7069a42025c8":[1,10,2,4,4],
 "group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB.html#gac49482a84d29e662acb7438c5821cc8b":[1,10,2,4,9],
 "group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB.html#gac49482a84d29e662acb7438c5821cc8b":[1,10,3,2,9],
-"group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB.html#gaceb791bc1a33f08f2abc7c5ec16c1a8f":[1,10,2,4,1],
 "group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB.html#gaceb791bc1a33f08f2abc7c5ec16c1a8f":[1,10,3,2,1],
+"group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB.html#gaceb791bc1a33f08f2abc7c5ec16c1a8f":[1,10,2,4,1],
 "group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB.html#gad6cb1fab36698a107205e10b5ae71436":[1,10,2,4,10],
 "group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB.html#gad6cb1fab36698a107205e10b5ae71436":[1,10,3,2,10],
 "group__NMSIS__Core__DSP__Intrinsic__SIGNED__16B__MULT__64B__ADDSUB.html#gaf31ec8bdff7f1f55254aaeb13979c70c":[1,10,2,4,8],
@@ -244,10 +249,5 @@ var NAVTREEINDEX3 =
 "group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X16__MAC.html":[1,10,2,2],
 "group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X16__MAC.html#ga10e2d0cb6ee70c6e603ce425a74a9b8a":[1,10,2,2,0],
 "group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X16__MAC.html#ga19bd50c2b77b1749c9c63c64c1f5bb44":[1,10,2,2,1],
-"group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X16__MAC.html#ga1d59336d9cabde5ac5a646abcc0b25c9":[1,10,2,2,11],
-"group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X16__MAC.html#ga30aa2050f5f50a26aedc28dfce398db8":[1,10,2,2,6],
-"group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X16__MAC.html#ga447a6dd6e573595ce930f8ba1ab135ca":[1,10,2,2,4],
-"group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X16__MAC.html#ga480bf71de56eefe132ae06a9bdeaf203":[1,10,2,2,7],
-"group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X16__MAC.html#ga4b7617e39d73f38ac27a24644008aacd":[1,10,2,2,13],
-"group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X16__MAC.html#ga60e15a6243014fd5b76b7cffa7275eb4":[1,10,2,2,5]
+"group__NMSIS__Core__DSP__Intrinsic__SIGNED__MSW__32X16__MAC.html#ga1d59336d9cabde5ac5a646abcc0b25c9":[1,10,2,2,11]
 };
