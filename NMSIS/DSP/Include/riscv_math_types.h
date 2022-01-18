@@ -80,6 +80,10 @@ extern "C"
     #define __RISCV_FEATURE_VECTOR 1
 #endif
 
+/* Include intrinisc header files for rvb/rvp/rvv */
+#undef __INC_INTRINSIC_API
+#define __INC_INTRINSIC_API   1
+
 #include "nmsis_core.h"
 #undef __NMSIS_GENERIC
 
