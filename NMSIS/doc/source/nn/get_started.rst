@@ -3,25 +3,25 @@
 Using NMSIS-NN
 ==============
 
-Here we will describe how to run the nmsis nn examples in Nuclei Spike.
+Here we will describe how to run the nmsis nn examples in Nuclei QEMU.
 
 Preparation
 -----------
 
-* Nuclei SDK, ``dev_xlspike_next`` branch
-* Nuclei RISCV GNU Toolchain 2021.12
-* Nuclei xl_spike
+* Nuclei SDK, ``master`` branch(>= 0.3.5 release)
+* Nuclei RISCV GNU Toolchain 2022.01
+* Nuclei QEMU 2022.01
 * CMake >= 3.5
 * Python 3
 
 Tool Setup
 ----------
 
-1. Export **PATH** correctly for `xl_spike` and `riscv-nuclei-elf-gcc`
+1. Export **PATH** correctly for ``qemu`` and ``riscv-nuclei-elf-gcc``
 
 .. code-block::
 
-    export PATH=/path/to/xl_spike/bin:/path/to/riscv-nuclei-elf-gcc/bin/:$PATH
+    export PATH=/path/to/qemu/bin:/path/to/riscv-nuclei-elf-gcc/bin/:$PATH
 
 Build NMSIS NN Library
 ----------------------
@@ -75,37 +75,55 @@ How to run
 ----------
 
 1. Set environment variables ``NUCLEI_SDK_ROOT`` and ``NUCLEI_SDK_NMSIS``,
-   and set Nuclei SDK SoC to `xlspike`
+   and set Nuclei SDK SoC to `demosoc`
 
 .. code-block:: shell
 
     export NUCLEI_SDK_ROOT=/path/to/nuclei_sdk
     export NUCLEI_SDK_NMSIS=/path/to/NMSIS/NMSIS
-    export SOC=xlspike
+    export SOC=demosoc
 
-2. Let us take ``./cifar10/`` for example
+2. Due to many of the examples could not be placed in 64K ILM and 64K DLM, and
+   we are running using qemu, the ILM/DLM size in it are set to be 32MB, so we can
+   change ilm/dlm to 512K/512K in the link script
+   ``$NUCLEI_SDK_ROOT/SoC/demosoc/Board/nuclei_fpga_eval/Source/GCC/gcc_demosoc_ilm.ld``
 
-2. ``cd ./cifar10/``
+.. code-block:: diff
 
-3. Run with RISCV DSP enabled and Vector enabled NMSIS-NN library for CORE ``ux900fd``
+    --- a/SoC/demosoc/Board/nuclei_fpga_eval/Source/GCC/gcc_demosoc_ilm.ld
+    +++ b/SoC/demosoc/Board/nuclei_fpga_eval/Source/GCC/gcc_demosoc_ilm.ld
+    @@ -30,8 +30,8 @@ __HEAP_SIZE  = 2K;
+    
+    MEMORY
+    {
+    -  ilm (rxa!w) : ORIGIN = 0x80000000, LENGTH = 64K
+    -  ram (wxa!r) : ORIGIN = 0x90000000, LENGTH = 64K
+    +  ilm (rxa!w) : ORIGIN = 0x80000000, LENGTH = 512K
+    +  ram (wxa!r) : ORIGIN = 0x90000000, LENGTH = 512K
+    }
+
+3. Let us take ``cifar10`` for example,
+  ``cd $NUCLEI_SDK_NMSIS/NN/Examples/RISCV/cifar10/`` to first
+
+3. Run with RISCV DSP enabled and Vector enabled NMSIS-NN library for CORE ``nx900fd``
 
 .. code-block::
 
     # Clean project
-    make ARCH_EXT=pv CORE=ux900fd clean
+    make ARCH_EXT=pv CORE=nx900fd clean
     # Build project
-    make ARCH_EXT=pv CORE=ux900fd all
-    # Run application using xl_spike
-    make ARCH_EXT=pv CORE=ux900fd run
+    make ARCH_EXT=pv CORE=nx900fd all
+    # Run application using qemu
+    make ARCH_EXT=pv CORE=nx900fd run_qemu
 
 
-4. Run with RISCV DSP disabled and Vector disabled NMSIS-NN library for CORE ``ux900fd``
+4. Run with RISCV DSP disabled and Vector disabled NMSIS-NN library for CORE ``nx900fd``
 
 .. code-block:: shell
 
-    make ARCH_EXT= CORE=ux900fd clean
-    make ARCH_EXT= CORE=ux900fd all
-    make ARCH_EXT= CORE=ux900fd run
+    make ARCH_EXT= CORE=nx900fd clean
+    make ARCH_EXT= CORE=nx900fd all
+    make ARCH_EXT= CORE=nx900fd run_qemu
 
 .. note::
 
