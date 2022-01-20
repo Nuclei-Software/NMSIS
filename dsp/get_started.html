@@ -177,13 +177,13 @@
             
   <div class="section" id="using-nmsis-dsp">
 <span id="dsp-get-started"></span><h1>Using NMSIS-DSP<a class="headerlink" href="#using-nmsis-dsp" title="Permalink to this headline">¶</a></h1>
-<p>Here we will describe how to run the nmsis dsp examples in Nuclei Spike.</p>
+<p>Here we will describe how to run the nmsis dsp examples in Nuclei QEMU.</p>
 <div class="section" id="preparation">
 <h2>Preparation<a class="headerlink" href="#preparation" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>Nuclei SDK, <code class="docutils literal notranslate"><span class="pre">dev_xlspike_next</span></code> branch</p></li>
-<li><p>Nuclei RISCV GNU Toolchain 2021.12</p></li>
-<li><p>Nuclei xl_spike</p></li>
+<li><p>Nuclei SDK, <code class="docutils literal notranslate"><span class="pre">master</span></code> branch(&gt;= 0.3.5 release)</p></li>
+<li><p>Nuclei RISCV GNU Toolchain 2022.01</p></li>
+<li><p>Nuclei QEMU 2022.01</p></li>
 <li><p>CMake &gt;= 3.5</p></li>
 <li><p>Python 3</p></li>
 </ul>
@@ -191,9 +191,9 @@
 <div class="section" id="tool-setup">
 <h2>Tool Setup<a class="headerlink" href="#tool-setup" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li><p>Export <strong>PATH</strong> correctly for <cite>xl_spike</cite> and <cite>riscv-nuclei-elf-gcc</cite></p></li>
+<li><p>Export <strong>PATH</strong> correctly for <code class="docutils literal notranslate"><span class="pre">qemu</span></code> and <code class="docutils literal notranslate"><span class="pre">riscv-nuclei-elf-gcc</span></code></p></li>
 </ol>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>/path/to/xl_spike/bin:/path/to/riscv-nuclei-elf-gcc/bin/:<span class="nv">$PATH</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>/path/to/qemu/bin:/path/to/riscv-nuclei-elf-gcc/bin/:<span class="nv">$PATH</span>
 </pre></div>
 </div>
 </div>
@@ -253,32 +253,55 @@ total 52M
 <h2>How to run<a class="headerlink" href="#how-to-run" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li><p>Set environment variables <code class="docutils literal notranslate"><span class="pre">NUCLEI_SDK_ROOT</span></code> and <code class="docutils literal notranslate"><span class="pre">NUCLEI_SDK_NMSIS</span></code>,
-and set Nuclei SDK SoC to <cite>xlspike</cite></p></li>
+and set Nuclei SDK SoC to <cite>demosoc</cite></p></li>
 </ol>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">NUCLEI_SDK_ROOT</span><span class="o">=</span>/path/to/nuclei_sdk
 <span class="nb">export</span> <span class="nv">NUCLEI_SDK_NMSIS</span><span class="o">=</span>/path/to/NMSIS/NMSIS
-<span class="nb">export</span> <span class="nv">SOC</span><span class="o">=</span>xlspike
+<span class="nb">export</span> <span class="nv">SOC</span><span class="o">=</span>demosoc
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
-<li><p>Let us take <code class="docutils literal notranslate"><span class="pre">./riscv_class_marks_example/</span></code> for example</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">./riscv_class_marks_example/</span></code></p></li>
-<li><p>Run with RISCV DSP enabled and Vector enabled NMSIS-DSP library for CORE <code class="docutils literal notranslate"><span class="pre">ux900fd</span></code></p></li>
+<li><p>Due to many of the examples could not be placed in 64K ILM and 64K DLM, and
+we are running using qemu, the ILM/DLM size in it are set to be 32MB, so we can
+change ilm/dlm to 512K/512K in the link script
+<code class="docutils literal notranslate"><span class="pre">$NUCLEI_SDK_ROOT/SoC/demosoc/Board/nuclei_fpga_eval/Source/GCC/gcc_demosoc_ilm.ld</span></code></p></li>
+</ol>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="gd">--- a/SoC/demosoc/Board/nuclei_fpga_eval/Source/GCC/gcc_demosoc_ilm.ld</span>
+<span class="gi">+++ b/SoC/demosoc/Board/nuclei_fpga_eval/Source/GCC/gcc_demosoc_ilm.ld</span>
+<span class="gu">@@ -30,8 +30,8 @@ __HEAP_SIZE  = 2K;</span>
+
+MEMORY
+{
+<span class="gd">-  ilm (rxa!w) : ORIGIN = 0x80000000, LENGTH = 64K</span>
+<span class="gd">-  ram (wxa!r) : ORIGIN = 0x90000000, LENGTH = 64K</span>
+<span class="gi">+  ilm (rxa!w) : ORIGIN = 0x80000000, LENGTH = 512K</span>
+<span class="gi">+  ram (wxa!r) : ORIGIN = 0x90000000, LENGTH = 512K</span>
+}
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Let us take <code class="docutils literal notranslate"><span class="pre">riscv_class_marks_example</span></code> for example,</p></li>
+</ol>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">$NUCLEI_SDK_NMSIS/DSP/Examples/RISCV/riscv_class_marks_example</span></code> to first</p>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li><p>Run with RISCV DSP enabled and Vector enabled NMSIS-DSP library for CORE <code class="docutils literal notranslate"><span class="pre">nx900fd</span></code></p></li>
 </ol>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clean project</span>
-make <span class="nv">ARCH_EXT</span><span class="o">=</span>pv <span class="nv">CORE</span><span class="o">=</span>ux900fd clean
+make <span class="nv">ARCH_EXT</span><span class="o">=</span>pv <span class="nv">CORE</span><span class="o">=</span>nx900fd clean
 <span class="c1"># Build project</span>
-make <span class="nv">ARCH_EXT</span><span class="o">=</span>pv <span class="nv">CORE</span><span class="o">=</span>ux900fd all
-<span class="c1"># Run application using xl_spike</span>
-make <span class="nv">ARCH_EXT</span><span class="o">=</span>pv <span class="nv">CORE</span><span class="o">=</span>ux900fd run
+make <span class="nv">ARCH_EXT</span><span class="o">=</span>pv <span class="nv">CORE</span><span class="o">=</span>nx900fd all
+<span class="c1"># Run application using qemu</span>
+make <span class="nv">ARCH_EXT</span><span class="o">=</span>pv <span class="nv">CORE</span><span class="o">=</span>nx900fd run_qemu
 </pre></div>
 </div>
 <ol class="arabic simple" start="5">
-<li><p>Run with RISCV DSP disabled and Vector disabled NMSIS-DSP library for CORE <code class="docutils literal notranslate"><span class="pre">ux900fd</span></code></p></li>
+<li><p>Run with RISCV DSP disabled and Vector disabled NMSIS-DSP library for CORE <code class="docutils literal notranslate"><span class="pre">nx900fd</span></code></p></li>
 </ol>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make <span class="nv">ARCH_EXT</span><span class="o">=</span> <span class="nv">CORE</span><span class="o">=</span>ux900fd clean
-make <span class="nv">ARCH_EXT</span><span class="o">=</span> <span class="nv">CORE</span><span class="o">=</span>ux900fd all
-make <span class="nv">ARCH_EXT</span><span class="o">=</span> <span class="nv">CORE</span><span class="o">=</span>ux900fd run
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make <span class="nv">ARCH_EXT</span><span class="o">=</span> <span class="nv">CORE</span><span class="o">=</span>nx900fd clean
+make <span class="nv">ARCH_EXT</span><span class="o">=</span> <span class="nv">CORE</span><span class="o">=</span>nx900fd all
+make <span class="nv">ARCH_EXT</span><span class="o">=</span> <span class="nv">CORE</span><span class="o">=</span>nx900fd run_qemu
 </pre></div>
 </div>
 <div class="admonition note">
