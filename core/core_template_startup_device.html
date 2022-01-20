@@ -623,14 +623,7 @@ The files for other compilers can slightly differ from this version.</p>
 315
 316
 317
-318
-319
-320
-321
-322
-323
-324
-325</pre></div></td><td class="code"><div class="highlight"><pre><span></span>/*
+318</pre></div></td><td class="code"><div class="highlight"><pre><span></span>/*
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -667,16 +660,9 @@ The files for other compilers can slightly differ from this version.</p>
 .endm
 
     /*
-     * Put the interrupt vectors in this section according to vector remapped or not:
-     * .vtable: vector table&#39;s LMA and VMA are the same, it is not remapped
-     * .vtable_ilm: vector table&#39;s LMA and VMA are different, it is remapped, and
-     *              VECTOR_TABLE_REMAPPED need to be defined
+     * Put the interrupt vectors in this .vtable section
      */
-#if defined(VECTOR_TABLE_REMAPPED)
-    .section .vtable_ilm
-#else
     .section .vtable
-#endif
 
     .weak  eclic_msip_handler
     .weak  eclic_mtip_handler
@@ -982,7 +968,7 @@ early_exc_entry:
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Jan 18, 2022.
+        Last updated on Jan 20, 2022.
       </span>
 
     </p>
