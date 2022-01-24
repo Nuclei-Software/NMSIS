@@ -33,7 +33,7 @@ extern "C" {
 
 #include <stdint.h>
 
-extern uint32_t SystemCoreClock;     /*!< System Clock Frequency (Core Clock)  */
+extern volatile uint32_t SystemCoreClock;     /*!< System Clock Frequency (Core Clock)  */
 
 /** \brief Exception frame structure store in stack */
 typedef struct EXC_Frame {
