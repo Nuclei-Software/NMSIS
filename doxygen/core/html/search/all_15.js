@@ -65,7 +65,7 @@ var searchData=
   ['sunlockicacheline',['SUnlockICacheLine',['../group__NMSIS__Core__ICache.html#gaf43b829e002df8fb7563c5eccb4dd9eb',1,'core_feature_cache.h']]],
   ['sunlockicachelines',['SUnlockICacheLines',['../group__NMSIS__Core__ICache.html#ga74e29621ab0c803fe474c648d078fe18',1,'core_feature_cache.h']]],
   ['system_5fdefault_5fexception_5fhandler',['system_default_exception_handler',['../group__NMSIS__Core__IntExcNMI__Handling.html#ga97971400b10d2cdd33f0d1fb59f9d0c8',1,'system_Device.c']]],
-  ['systemcoreclock',['SystemCoreClock',['../group__NMSIS__Core__SystemConfig.html#gaa3cd3e43291e81e795d642b79b6088e6',1,'system_Device.c']]],
+  ['systemcoreclock',['SystemCoreClock',['../group__NMSIS__Core__SystemConfig.html#ga0814e683179ebb031663c192f7e9b579',1,'system_Device.c']]],
   ['systemcoreclockupdate',['SystemCoreClockUpdate',['../group__NMSIS__Core__SystemConfig.html#gae0c36a9591fe6e9c45ecb21a794f0f0f',1,'system_Device.c']]],
   ['systemexceptionhandlers',['SystemExceptionHandlers',['../group__NMSIS__Core__IntExcNMI__Handling.html#gaedd77e0eba0ea9872a4375893480b420',1,'system_Device.c']]],
   ['systeminit',['SystemInit',['../group__NMSIS__Core__SystemConfig.html#ga93f514700ccf00d08dbdcff7f1224eb2',1,'system_Device.c']]],

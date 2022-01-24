@@ -9,6 +9,6 @@ var searchData=
   ['spie',['spie',['../unionCSR__MSTATUS__Type.html#a2da21bb426da143dfba005be019592b3',1,'CSR_MSTATUS_Type']]],
   ['sramid',['sramid',['../unionCSR__MECCCODE__Type.html#ae1440a1a88e3b3e63b7f8c1e27cd83af',1,'CSR_MECCCODE_Type']]],
   ['sum',['sum',['../unionCSR__MSTATUS__Type.html#aa7bf6ccb81c68ffcda46390640774413',1,'CSR_MSTATUS_Type']]],
-  ['systemcoreclock',['SystemCoreClock',['../group__NMSIS__Core__SystemConfig.html#gaa3cd3e43291e81e795d642b79b6088e6',1,'system_Device.c']]],
+  ['systemcoreclock',['SystemCoreClock',['../group__NMSIS__Core__SystemConfig.html#ga0814e683179ebb031663c192f7e9b579',1,'system_Device.c']]],
   ['systemexceptionhandlers',['SystemExceptionHandlers',['../group__NMSIS__Core__IntExcNMI__Handling.html#gaedd77e0eba0ea9872a4375893480b420',1,'system_Device.c']]]
 ];

@@ -103,7 +103,7 @@ Modules</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:gae0c36a9591fe6e9c45ecb21a794f0f0f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__SystemConfig.html#gae0c36a9591fe6e9c45ecb21a794f0f0f">SystemCoreClockUpdate</a> (void)</td></tr>
-<tr class="memdesc:gae0c36a9591fe6e9c45ecb21a794f0f0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to update the variable <a class="el" href="group__NMSIS__Core__SystemConfig.html#gaa3cd3e43291e81e795d642b79b6088e6">SystemCoreClock</a>.  <a href="#gae0c36a9591fe6e9c45ecb21a794f0f0f">More...</a><br /></td></tr>
+<tr class="memdesc:gae0c36a9591fe6e9c45ecb21a794f0f0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to update the variable <a class="el" href="group__NMSIS__Core__SystemConfig.html#ga0814e683179ebb031663c192f7e9b579">SystemCoreClock</a>.  <a href="#gae0c36a9591fe6e9c45ecb21a794f0f0f">More...</a><br /></td></tr>
 <tr class="separator:gae0c36a9591fe6e9c45ecb21a794f0f0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga93f514700ccf00d08dbdcff7f1224eb2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__SystemConfig.html#ga93f514700ccf00d08dbdcff7f1224eb2">SystemInit</a> (void)</td></tr>
 <tr class="memdesc:ga93f514700ccf00d08dbdcff7f1224eb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to Initialize the system.  <a href="#ga93f514700ccf00d08dbdcff7f1224eb2">More...</a><br /></td></tr>
@@ -123,15 +123,15 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:gaa3cd3e43291e81e795d642b79b6088e6"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__SystemConfig.html#gaa3cd3e43291e81e795d642b79b6088e6">SystemCoreClock</a> = SYSTEM_CLOCK</td></tr>
-<tr class="memdesc:gaa3cd3e43291e81e795d642b79b6088e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable to hold the system core clock value.  <a href="#gaa3cd3e43291e81e795d642b79b6088e6">More...</a><br /></td></tr>
-<tr class="separator:gaa3cd3e43291e81e795d642b79b6088e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0814e683179ebb031663c192f7e9b579"><td class="memItemLeft" align="right" valign="top">volatile uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__SystemConfig.html#ga0814e683179ebb031663c192f7e9b579">SystemCoreClock</a> = SYSTEM_CLOCK</td></tr>
+<tr class="memdesc:ga0814e683179ebb031663c192f7e9b579"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable to hold the system core clock value.  <a href="#ga0814e683179ebb031663c192f7e9b579">More...</a><br /></td></tr>
+<tr class="separator:ga0814e683179ebb031663c192f7e9b579"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Functions for system init, clock setup and interrupt/exception/nmi functions available in system_&lt;device&gt;.c. </p>
 <p>Nuclei provides a template file <b><a class="el" href="system__Device_8c_source.html">system_Device.c</a></b> that must be adapted by the silicon vendor to match their actual device. As a <b>minimum requirement</b>, this file must provide:</p><ul>
 <li>A device-specific system configuration function, <a class="el" href="group__NMSIS__Core__SystemConfig.html#ga93f514700ccf00d08dbdcff7f1224eb2">SystemInit</a>.</li>
-<li>A global variable that contains the system frequency, <a class="el" href="group__NMSIS__Core__SystemConfig.html#gaa3cd3e43291e81e795d642b79b6088e6">SystemCoreClock</a>.</li>
+<li>A global variable that contains the system frequency, <a class="el" href="group__NMSIS__Core__SystemConfig.html#ga0814e683179ebb031663c192f7e9b579">SystemCoreClock</a>.</li>
 <li>A global eclic configuration initialization, <a class="el" href="group__NMSIS__Core__IntExcNMI__Handling.html#ga2d2e27f47287f5d28cc26f2cb214337f">ECLIC_Init</a>.</li>
 <li>Global <a class="el" href="group__NMSIS__Core__SystemConfig.html#gad13ba247efe59bbe2b6004d9bd0f10db">_premain_init</a> and <a class="el" href="group__NMSIS__Core__SystemConfig.html#ga6eb76a75cf67b543443efc82ecf33713">_postmain_fini</a> functions called right before calling main function.</li>
 <li>Vendor customized interrupt, exception and nmi handling code, see <a class="el" href="group__NMSIS__Core__IntExcNMI__Handling.html">Interrupt and Exception and NMI Handling</a></li>
@@ -261,11 +261,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Function to update the variable <a class="el" href="group__NMSIS__Core__SystemConfig.html#gaa3cd3e43291e81e795d642b79b6088e6">SystemCoreClock</a>. </p>
-<p>Updates the variable <a class="el" href="group__NMSIS__Core__SystemConfig.html#gaa3cd3e43291e81e795d642b79b6088e6">SystemCoreClock</a> and must be called whenever the core clock is changed during program execution. The function evaluates the clock register settings and calculates the current core clock. </p>
+<p>Function to update the variable <a class="el" href="group__NMSIS__Core__SystemConfig.html#ga0814e683179ebb031663c192f7e9b579">SystemCoreClock</a>. </p>
+<p>Updates the variable <a class="el" href="group__NMSIS__Core__SystemConfig.html#ga0814e683179ebb031663c192f7e9b579">SystemCoreClock</a> and must be called whenever the core clock is changed during program execution. The function evaluates the clock register settings and calculates the current core clock. </p>
 
 <p class="definition">Definition at line <a class="el" href="system__Device_8c_source.html#l00106">106</a> of file <a class="el" href="system__Device_8c_source.html">system_Device.c</a>.</p>
-<div class="fragment"><div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;{</div><div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="comment">/* TODO: add code to calculate the system frequency based upon the current</span></div><div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment">     *    register settings.</span></div><div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">     * Note: This function can be used to retrieve the system core clock frequeny</span></div><div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">     *    after user changed register settings.</span></div><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">     */</span></div><div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <a class="code" href="group__NMSIS__Core__SystemConfig.html#gaa3cd3e43291e81e795d642b79b6088e6">SystemCoreClock</a> = SYSTEM_CLOCK;</div><div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__SystemConfig_html_gaa3cd3e43291e81e795d642b79b6088e6"><div class="ttname"><a href="group__NMSIS__Core__SystemConfig.html#gaa3cd3e43291e81e795d642b79b6088e6">SystemCoreClock</a></div><div class="ttdeci">uint32_t SystemCoreClock</div><div class="ttdoc">Variable to hold the system core clock value. </div><div class="ttdef"><b>Definition:</b> <a href="system__Device_8c_source.html#l00092">system_Device.c:92</a></div></div>
+<div class="fragment"><div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;{</div><div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="comment">/* TODO: add code to calculate the system frequency based upon the current</span></div><div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment">     *    register settings.</span></div><div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">     * Note: This function can be used to retrieve the system core clock frequeny</span></div><div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">     *    after user changed register settings.</span></div><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">     */</span></div><div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <a class="code" href="group__NMSIS__Core__SystemConfig.html#ga0814e683179ebb031663c192f7e9b579">SystemCoreClock</a> = SYSTEM_CLOCK;</div><div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__SystemConfig_html_ga0814e683179ebb031663c192f7e9b579"><div class="ttname"><a href="group__NMSIS__Core__SystemConfig.html#ga0814e683179ebb031663c192f7e9b579">SystemCoreClock</a></div><div class="ttdeci">volatile uint32_t SystemCoreClock</div><div class="ttdoc">Variable to hold the system core clock value. </div><div class="ttdef"><b>Definition:</b> <a href="system__Device_8c_source.html#l00092">system_Device.c:92</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -286,22 +286,22 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Function to Initialize the system. </p>
-<p>Initializes the microcontroller system. Typically, this function configures the oscillator (PLL) that is part of the microcontroller device. For systems with a variable clock speed, it updates the variable <a class="el" href="group__NMSIS__Core__SystemConfig.html#gaa3cd3e43291e81e795d642b79b6088e6">SystemCoreClock</a>. SystemInit is called from the file <b>startup<em>_device</em></b>. </p>
+<p>Initializes the microcontroller system. Typically, this function configures the oscillator (PLL) that is part of the microcontroller device. For systems with a variable clock speed, it updates the variable <a class="el" href="group__NMSIS__Core__SystemConfig.html#ga0814e683179ebb031663c192f7e9b579">SystemCoreClock</a>. SystemInit is called from the file <b>startup<em>_device</em></b>. </p>
 
 <p class="definition">Definition at line <a class="el" href="system__Device_8c_source.html#l00124">124</a> of file <a class="el" href="system__Device_8c_source.html">system_Device.c</a>.</p>
-<div class="fragment"><div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;{</div><div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="comment">/* TODO: add code to initialize the system</span></div><div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment">     * Warn: do not use global variables because this function is called before</span></div><div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment">     * reaching pre-main. RW section maybe overwritten afterwards.</span></div><div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment">     */</span></div><div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <a class="code" href="group__NMSIS__Core__SystemConfig.html#gaa3cd3e43291e81e795d642b79b6088e6">SystemCoreClock</a> = SYSTEM_CLOCK;</div><div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__SystemConfig_html_gaa3cd3e43291e81e795d642b79b6088e6"><div class="ttname"><a href="group__NMSIS__Core__SystemConfig.html#gaa3cd3e43291e81e795d642b79b6088e6">SystemCoreClock</a></div><div class="ttdeci">uint32_t SystemCoreClock</div><div class="ttdoc">Variable to hold the system core clock value. </div><div class="ttdef"><b>Definition:</b> <a href="system__Device_8c_source.html#l00092">system_Device.c:92</a></div></div>
+<div class="fragment"><div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;{</div><div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="comment">/* TODO: add code to initialize the system</span></div><div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment">     * Warn: do not use global variables because this function is called before</span></div><div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment">     * reaching pre-main. RW section maybe overwritten afterwards.</span></div><div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment">     */</span></div><div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <a class="code" href="group__NMSIS__Core__SystemConfig.html#ga0814e683179ebb031663c192f7e9b579">SystemCoreClock</a> = SYSTEM_CLOCK;</div><div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__SystemConfig_html_ga0814e683179ebb031663c192f7e9b579"><div class="ttname"><a href="group__NMSIS__Core__SystemConfig.html#ga0814e683179ebb031663c192f7e9b579">SystemCoreClock</a></div><div class="ttdeci">volatile uint32_t SystemCoreClock</div><div class="ttdoc">Variable to hold the system core clock value. </div><div class="ttdef"><b>Definition:</b> <a href="system__Device_8c_source.html#l00092">system_Device.c:92</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="gaa3cd3e43291e81e795d642b79b6088e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaa3cd3e43291e81e795d642b79b6088e6">&#9670;&nbsp;</a></span>SystemCoreClock</h2>
+<a id="ga0814e683179ebb031663c192f7e9b579"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0814e683179ebb031663c192f7e9b579">&#9670;&nbsp;</a></span>SystemCoreClock</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint32_t SystemCoreClock = SYSTEM_CLOCK</td>
+          <td class="memname">volatile uint32_t SystemCoreClock = SYSTEM_CLOCK</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -319,7 +319,7 @@ Variables</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Jan 20 2022 04:53:35 for NMSIS-Core by
+    <li class="footer">Generated on Mon Jan 24 2022 02:09:17 for NMSIS-Core by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>
