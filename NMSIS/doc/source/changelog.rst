@@ -3,6 +3,21 @@
 Changelog
 =========
 
+V1.0.4-dev
+----------
+
+This is the version ``V1.0.4-dev`` release of Nuclei MCU Software Interface Standard(NMSIS), which is still in development.
+
+* **NMSIS-Core**
+
+  - add ``__CCM_PRESENT`` macro in NMSIS-Core, if CCM hardware unit is present in your CPU,
+    ``__CCM_PRESENT`` macro need to be set to 1 in ``<Device>.h``
+  - Fixed mtvec related api comment in ``core_feature_eclic.h``
+  - Add safely write mtime/mtimecmp register for 32bit risc-v processor
+  - rearrage #include header files for all NMSIS Core header files
+  - removed some not good #pragma gcc diagnostic lines in ``nmsis_gcc.h``
+
+
 V1.0.3
 ------
 
