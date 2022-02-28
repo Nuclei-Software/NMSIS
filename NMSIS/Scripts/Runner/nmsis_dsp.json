@@ -1,15 +1,18 @@
 {
     "run_config": {
-        "target" : "xlspike",
+        "target" : "qemu",
         "xlspike" : {
             "timeout": 480
+        },
+        "qemu" : {
+            "timeout": 240
         }
     },
     "parallel": "-j",
     "copy_objects": true,
     "build_target": "clean all",
     "build_config": {
-        "SOC": "xlspike",
+        "SOC": "demosoc",
         "DOWNLOAD": "ilm"
     },
     "checks": {

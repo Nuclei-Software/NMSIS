@@ -1,7 +1,7 @@
 variables:
   NUCLEI_SDK: git@gito:software/library/nuclei-sdk.git
-  SDK_BRANCH: dev_xlspike_next
-  SOC: xlspike
+  SDK_BRANCH: master
+  SOC: demosoc
   RUNTARGET: qemu
   IMAGE: rego.corp.nucleisys.com/software/sdkbuild
   IMAGE_TAG: latest
@@ -118,12 +118,14 @@ test_nn_library:
     - export NUCLEI_SDK_ROOT=$(readlink -f NMSIS/nuclei_sdk)
     - export NUCLEI_SDK_NMSIS=$(readlink -f NMSIS)
     - export NMSIS_LOGS=$NUCLEI_SDK_NMSIS/Logs
+    # change ilm/dlm size from 64K to 512K for demosoc
+    - sed -i "s/64K/512K/g" $NUCLEI_SDK_ROOT/SoC/demosoc/Board/nuclei_fpga_eval/Source/GCC/gcc_demosoc_ilm.ld
     - mkdir $NMSIS_LOGS
     - source NMSIS/env.sh
     - export SILENT=1
     - cd NMSIS
     - make gen_nnref_lib
-    - python3 $NUCLEI_SDK_ROOT/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_nn.json --logdir $NMSIS_LOGS/nmsis_nn --parallel=-j --run_target $RUNTARGET --run
+    - python3 $NUCLEI_SDK_ROOT/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_nn.json --logdir $NMSIS_LOGS/nmsis_nn --parallel=-j --make_options "SIMU=$RUNTARGET" --run_target $RUNTARGET --run
 
 test_dsp_library:
   <<: *test_job_template_default
@@ -138,11 +140,13 @@ test_dsp_library:
     - export NUCLEI_SDK_ROOT=$(readlink -f NMSIS/nuclei_sdk)
     - export NUCLEI_SDK_NMSIS=$(readlink -f NMSIS)
     - export NMSIS_LOGS=$NUCLEI_SDK_NMSIS/Logs
+    # change ilm/dlm size from 64K to 512K for demosoc
+    - sed -i "s/64K/512K/g" $NUCLEI_SDK_ROOT/SoC/demosoc/Board/nuclei_fpga_eval/Source/GCC/gcc_demosoc_ilm.ld
     - mkdir $NMSIS_LOGS
     - source NMSIS/env.sh
     - export SILENT=1
     - cd NMSIS
-    - python3 $NUCLEI_SDK_ROOT/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_dsp.json --logdir $NMSIS_LOGS/nmsis_dsp --parallel=-j --run_target $RUNTARGET --run
+    - python3 $NUCLEI_SDK_ROOT/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_dsp.json --logdir $NMSIS_LOGS/nmsis_dsp --parallel=-j --make_options "SIMU=$RUNTARGET" --run_target $RUNTARGET --run
 
 release_benchmark:
   stage: release
