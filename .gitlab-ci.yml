@@ -133,8 +133,8 @@ test_nn_library:
     - export NUCLEI_SDK_ROOT=$(readlink -f NMSIS/nuclei_sdk)
     - export NUCLEI_SDK_NMSIS=$(readlink -f NMSIS)
     - export NMSIS_LOGS=$NUCLEI_SDK_NMSIS/Logs
-    # change ilm/dlm size from 64K to 512K for demosoc
-    - sed -i "s/64K/512K/g" $NUCLEI_SDK_ROOT/SoC/demosoc/Board/nuclei_fpga_eval/Source/GCC/gcc_demosoc_ilm.ld
+    # change ilm/dlm size from 64K to 1M for demosoc
+    - sed -i "s/64K/1M/g" $NUCLEI_SDK_ROOT/SoC/demosoc/Board/nuclei_fpga_eval/Source/GCC/gcc_demosoc_ilm.ld
     - mkdir $NMSIS_LOGS
     - source NMSIS/env.sh
     - export SILENT=1
@@ -155,8 +155,8 @@ test_dsp_library:
     - export NUCLEI_SDK_ROOT=$(readlink -f NMSIS/nuclei_sdk)
     - export NUCLEI_SDK_NMSIS=$(readlink -f NMSIS)
     - export NMSIS_LOGS=$NUCLEI_SDK_NMSIS/Logs
-    # change ilm/dlm size from 64K to 512K for demosoc
-    - sed -i "s/64K/512K/g" $NUCLEI_SDK_ROOT/SoC/demosoc/Board/nuclei_fpga_eval/Source/GCC/gcc_demosoc_ilm.ld
+    # change ilm/dlm size from 64K to 1M for demosoc
+    - sed -i "s/64K/1M/g" $NUCLEI_SDK_ROOT/SoC/demosoc/Board/nuclei_fpga_eval/Source/GCC/gcc_demosoc_ilm.ld
     - mkdir $NMSIS_LOGS
     - source NMSIS/env.sh
     - export SILENT=1
