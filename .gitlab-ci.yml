@@ -21,6 +21,9 @@ build_doc:
   stage: build
   retry: 1
   only:
+    refs:
+      - master
+      - develop
     changes:
       - NMSIS/doc/source/**/**/**/*
       - .gitlab-ci.yml
@@ -49,6 +52,10 @@ build_doc:
 build_library:
   stage: build
   retry: 1
+  only:
+    refs:
+      - master
+      - develop
   artifacts:
     when: always
     name: "nmsis_library-${CI_COMMIT_SHA::8}"
@@ -69,6 +76,10 @@ build_library:
 build_align_library:
   stage: build
   retry: 1
+  only:
+    refs:
+      - master
+      - develop
   artifacts:
     when: always
     name: "nmsis_align_library-${CI_COMMIT_SHA::8}"
@@ -88,6 +99,10 @@ build_align_library:
   stage: test
   timeout: 4h
   interruptible: true
+  only:
+    refs:
+      - master
+      - develop
   before_script:
     # prepare for docker ssh environment
     ## https://docs.gitlab.com/ee/ci/ssh_keys/#ssh-keys-when-using-the-docker-executor
@@ -150,6 +165,10 @@ test_dsp_library:
 
 release_benchmark:
   stage: release
+  only:
+    refs:
+      - master
+      - develop
   artifacts:
     name: "nmsis_test_log-${CI_COMMIT_SHA::8}"
     paths:
