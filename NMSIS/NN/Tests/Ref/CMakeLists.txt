@@ -26,7 +26,7 @@ add_definitions(-g)
 SET(NN ${ROOT}/NN)
 SET(DSP ${ROOT}/DSP)
 SET(CORE ${ROOT}/Core)
-SET(REF_NN ${NN}/NN_Lib_Tests/nn_test)
+SET(REF_NN ${NN}/Tests/Ref)
 
 INCLUDE_DIRECTORIES(${CORE}/Include)
 
@@ -34,8 +34,8 @@ list(APPEND CMAKE_MODULE_PATH ${REF_NN})
 
 add_library(REF_NN INTERFACE)
 
-add_subdirectory(Ref_Implementations)
+add_subdirectory(Source)
 target_link_libraries(REF_NN INTERFACE REF_NN_IMP)
 
 ### Includes
-target_include_directories(REF_NN INTERFACE "${REF_ROOT}/Ref_Implementations")
+target_include_directories(REF_NN INTERFACE "${REF_NN}/Source")
