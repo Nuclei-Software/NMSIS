@@ -101,6 +101,11 @@ extern "C"
   #define RISCV_MATH_VECTOR                 1
 #endif
 
+/* evaluate RISCV Bitmanip feature */
+#if (defined(__riscv_bitmainp))
+  #define RISCV_MATH_BITMANIP               1
+#endif
+
 #if   defined ( __GNUC__ )
   #define LOW_OPTIMIZATION_ENTER \
        __attribute__(( optimize("-O1") ))
