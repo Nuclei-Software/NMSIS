@@ -11,7 +11,7 @@ Preparation
 * Nuclei SDK, ``dev_xlspike_next`` branch
 * Nuclei RISCV GNU Toolchain 2021.12
 * Nuclei xl_spike
-* CMake >= 3.5
+* CMake >= 3.14
 * Python 3
 
 Tool Setup
