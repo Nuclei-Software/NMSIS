@@ -124,6 +124,7 @@ SECTIONS
 
   .ialign         :
   {
+    . = ALIGN(4);
     /* Create a section label as _ilm which located at flash */
     PROVIDE( _ilm = . );
   } >flash AT>flash
@@ -169,13 +170,6 @@ SECTIONS
   {
     KEEP (*(SORT_NONE(.fini)))
   } >flash AT>flash
-
-  . = ALIGN(4);
-
-  PROVIDE (__etext = .);
-  PROVIDE (_etext = .);
-  PROVIDE (etext = .);
-  PROVIDE( _eilm = . );
 
   .preinit_array  :
   {
@@ -233,6 +227,11 @@ SECTIONS
     KEEP (*(.dtors))
   } >flash AT>flash
 
+  PROVIDE (__etext = .);
+  PROVIDE (_etext = .);
+  PROVIDE (etext = .);
+  PROVIDE (_eilm = .);
+
   .lalign         :
   {
     . = ALIGN(4);
@@ -267,8 +266,6 @@ SECTIONS
   PROVIDE( _edata = . );
   PROVIDE( edata = . );
 
-  . = ALIGN(8);
-
   PROVIDE( _fbss = . );
   PROVIDE( __bss_start = . );
 
@@ -279,7 +276,12 @@ SECTIONS
     PROVIDE( __tls_end = . );
   } >ram AT>ram
 
-  .bss (NOLOAD)   :
+  .tbss_space (NOLOAD) : ALIGN(8)
+  {
+    . = . + SIZEOF(.tbss);
+  } >ram AT>ram
+
+  .bss (NOLOAD)   : ALIGN(8)
   {
     *(.sbss*)
     *(.gnu.linkonce.sb.*)
@@ -289,7 +291,6 @@ SECTIONS
     . = ALIGN(4);
   } >ram AT>ram
 
-  . = ALIGN(16);
   PROVIDE( _end = . );
   PROVIDE( end = . );
 
@@ -298,7 +299,7 @@ SECTIONS
    * 2. __heap_start and __heap_end symbol need to be defined
    * 3. reserved at least __HEAP_SIZE space for heap
    */
-  .heap (NOLOAD)   :
+  .heap (NOLOAD)   : ALIGN(16)
   {
     . = ALIGN(16);
     PROVIDE( __heap_start = . );
