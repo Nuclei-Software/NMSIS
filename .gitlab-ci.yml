@@ -39,6 +39,7 @@ build_doc:
   before_script:
     - apt update
     - apt install -y doxygen python3 make latexmk texlive-base texlive-latex-extra python3-pip
+    - pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
     - pip3 install -r NMSIS/doc/requirements.txt
   script:
     - cd NMSIS/doc
