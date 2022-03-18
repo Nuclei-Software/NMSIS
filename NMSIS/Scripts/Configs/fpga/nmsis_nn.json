@@ -1,0 +1,32 @@
+{
+    "run_config": {
+        "target" : "hardware",
+        "hardware" : {
+            "timeout": 480
+        },
+        "qemu" : {
+            "timeout": 240
+        }
+    },
+    "parallel": "-j",
+    "copy_objects": true,
+    "build_target": "clean all",
+    "build_config": {
+        "SOC": "demosoc"
+    },
+    "checks": {
+        "PASS": ["passed", "Passed"],
+        "FAIL": ["MEPC", "failed", "Failed", "FAILURE", "ERROR", "test error apprears"]
+    },
+    "appdirs": [
+        "NN/Examples/RISCV/cifar10",
+        "NN/Tests/Cases/"
+    ],
+    "appconfig": {
+        "NN/Examples/RISCV/cifar10": {
+            "checks": {
+                "PASS": ["label 3: 45, Cat, 35.43%"]
+            }
+        }
+    }
+}

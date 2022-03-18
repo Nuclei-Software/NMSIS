@@ -1,0 +1,72 @@
+runcfg:
+    runner: fpga
+
+environment:
+    fpgaloc: Scripts/Configs/fpga
+    ncycmloc: Scripts/Configs/fpga
+    cfgloc: Scripts/Configs/fpga
+
+# fpga runners
+fpga_runners:
+    ddr200t_1:
+        # ddr200t/mcu200t/ku060/vcu118
+        board_type: ddr200t
+        # serial number, such as Digilent/210308AC59C6
+        fpga_serial: Digilent/210251A08870
+        # ftdi_serial number, such as FT4JUVF6
+        ftdi_serial: FT4JUVF6
+        # serial_port number, such as /dev/ttyUSB1
+        serial_port: /dev/ttyUSB1
+    ku060_1:
+        # ddr200t/mcu200t/ku060/vcu118
+        board_type: ku060
+        # serial number, such as Digilent/210308AC59C6
+        fpga_serial: Xilinx/13724327082c01
+        # ftdi_serial number, such as FT4JUVF6
+        ftdi_serial: FT6JGAXS
+        # serial_port number, such as /dev/ttyUSB1
+        serial_port: /dev/ttyUSB4
+
+ncycm_runners:
+    n200:
+        model: n200_software_best_config_cymodel
+    n300:
+        model: n300_software_best_config_cymodel
+    n900:
+        model: n900_software_best_config_cymodel
+    ux900:
+        model: ux900_software_best_config_cymodel
+
+# configs
+configs:
+    n200:
+        fpga: ddr200t
+        # bitstream path related to this yaml's loc or abs path
+        bitstream: n200_software_best_config_ddr200t_16M.bit
+        ncycm: n200
+        openocd_cfg: SoC/demosoc/Board/nuclei_fpga_eval/openocd_demosoc.cfg
+        appcfg: nmsis_nn.json
+        hwcfg: n200.json
+    # cpu core name
+    n300:
+        fpga: ddr200t
+        bitstream: n300_software_best_config_ddr200t_16M.bit
+        ncycm: n300
+        openocd_cfg: SoC/demosoc/Board/nuclei_fpga_eval/openocd_demosoc.cfg
+        appcfg: nmsis_nn.json
+        hwcfg: n300.json
+    # cpu core name
+    n900:
+        fpga: ku060
+        bitstream: n900_software_best_config_ku060_16M.bit
+        ncycm: n900
+        openocd_cfg: SoC/demosoc/Board/nuclei_fpga_eval/openocd_demosoc.cfg
+        appcfg: nmsis_nn.json
+        hwcfg: n900.json
+    ux900:
+        fpga: ku060
+        bitstream: ux900_software_best_config_ku060_16M.bit
+        ncycm: ux900
+        openocd_cfg: SoC/demosoc/Board/nuclei_fpga_eval/openocd_demosoc.cfg
+        appcfg: nmsis_nn.json
+        hwcfg: ux900.json
