@@ -74,17 +74,17 @@ static void buffer_scale_back_q15_to_q7(q15_t *buffer, q7_t *target, uint16_t le
 // TODO: to be optimized in RVV
 static void accumulate_q7_to_q15(q15_t *base, q7_t *target, const uint16_t length)
 {
-    q15_t *pCnt = base;
-    q7_t *pV = target;
-    q31_t v1, v2, vo1, vo2;
-//    uint16_t cnt = length >> 2;
-    uint16_t cnt = length;
-    q31_t in;
+    vint8m4_t tval;
+    vint16m8_t dval;
+    size_t l;
+    uint32_t cnt = length;
 
-    while (cnt > 0u)
-    {
-        *pCnt++ += *pV++;
-        cnt--;
+    for (; (l = vsetvl_e16m8(cnt)) > 0; cnt -= l) {
+        tval = vle8_v_i8m4(target, l);
+        dval = vle16_v_i16m8(base, l);
+        vse16_v_i16m8(base, vwadd_wv_i16m8(dval, tval, l), l);
+        target += l;
+        base += l;
     }
 }
 
