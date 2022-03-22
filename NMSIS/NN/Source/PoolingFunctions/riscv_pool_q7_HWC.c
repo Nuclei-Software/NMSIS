@@ -61,6 +61,33 @@ static void buffer_scale_back_q7_to_q7(q7_t * buffer, q7_t * target, uint16_t le
     }
 }
 
+static void buffer_scale_back_q15_to_q7(q15_t *buffer, q7_t *target, uint16_t length, uint16_t scale)
+{
+    int i;
+
+    for (i = 0; i < length; i++)
+    {
+        target[i] = (q7_t)(buffer[i] / scale);
+    }
+}
+
+// TODO: to be optimized in RVV
+static void accumulate_q7_to_q15(q15_t *base, q7_t *target, const uint16_t length)
+{
+    q15_t *pCnt = base;
+    q7_t *pV = target;
+    q31_t v1, v2, vo1, vo2;
+//    uint16_t cnt = length >> 2;
+    uint16_t cnt = length;
+    q31_t in;
+
+    while (cnt > 0u)
+    {
+        *pCnt++ += *pV++;
+        cnt--;
+    }
+}
+
 #else
 #if defined (RISCV_MATH_DSP)
 
@@ -420,17 +447,20 @@ void riscv_avepool_q7_HWC(q7_t *Im_in,
             }
 
             /* first step is to copy over initial data */
-            riscv_q7_to_q7_no_shift(win_start, (q7_t *)buffer, ch_im_in);
+            //riscv_q7_to_q7_no_shift(win_start, (q7_t *)buffer, ch_im_in);
+            riscv_q7_to_q15_no_shift(win_start, buffer, ch_im_in);
             count = 1;
 
             /* start the max operation from the second part */
             win_start += ch_im_in;
             for (; win_start < win_stop; win_start += ch_im_in)
             {
-                riscv_nn_accumulate_q7_to_q7((q7_t *)buffer, win_start, ch_im_in);
+                //riscv_nn_accumulate_q7_to_q7((q7_t *)buffer, win_start, ch_im_in);
+                accumulate_q7_to_q15(buffer, win_start, ch_im_in);
                 count++;
             }
-            buffer_scale_back_q7_to_q7(buffer, target, ch_im_in, count);
+            //buffer_scale_back_q7_to_q7(buffer, target, ch_im_in, count);
+            buffer_scale_back_q15_to_q7(buffer, target, ch_im_in, count);
             // riscv_scale_q7((q7_t *)buffer,(1/ch_im_in),0,target,count);
         }
     }
@@ -462,7 +492,8 @@ void riscv_avepool_q7_HWC(q7_t *Im_in,
         }
 
         /* copy over the first row */
-        riscv_q7_to_q7_no_shift(row_start, (q7_t *)buffer, dim_im_out * ch_im_in);
+        riscv_q7_to_q15_no_shift(row_start, buffer, dim_im_out * ch_im_in);
+        //riscv_q7_to_q7_no_shift(row_start, (q7_t *)buffer, dim_im_out * ch_im_in);
         count = 1;
 
         /* move over to next row */
@@ -470,10 +501,12 @@ void riscv_avepool_q7_HWC(q7_t *Im_in,
 
         for (; row_start < row_end; row_start += dim_im_in * ch_im_in)
         {
-            riscv_nn_accumulate_q7_to_q7((q7_t *)buffer, row_start, dim_im_out * ch_im_in);
+            accumulate_q7_to_q15(buffer, row_start, dim_im_out * ch_im_in);
+            //riscv_nn_accumulate_q7_to_q7((q7_t *)buffer, row_start, dim_im_out * ch_im_in);
             count++;
         }
-        buffer_scale_back_q7_to_q7(buffer, target, dim_im_out * ch_im_in, count);
+        buffer_scale_back_q15_to_q7(buffer, target, dim_im_out * ch_im_in, count);
+        //buffer_scale_back_q7_to_q7(buffer, target, dim_im_out * ch_im_in, count);
         // riscv_scale_q7((q7_t *)buffer,ch_im_in,0,target,count);
     }
 
