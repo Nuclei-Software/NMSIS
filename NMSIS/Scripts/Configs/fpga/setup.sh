@@ -1,6 +1,6 @@
 #!/bin/env bash
 SCRIPTDIR=$(dirname $(readlink -f $BASH_SOURCE))
-NSDK_ROOT=${NSDK_ROOT:-${SCRIPTDIR}/../../../../../../nuclei-sdk}
+NSDK_ROOT=${NSDK_ROOT:-${SCRIPTDIR}/../../../../../nuclei-sdk}
 NMSIS_ROOT=${NMSIS_ROOT:-${SCRIPTDIR}/../../../}
 
 NSDK_ROOT=$(readlink -f ${NSDK_ROOT})

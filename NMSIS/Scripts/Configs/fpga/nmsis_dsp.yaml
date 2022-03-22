@@ -36,6 +36,10 @@ ncycm_runners:
         model: n900_software_best_config_cymodel
     ux900:
         model: ux900_software_best_config_cymodel
+    n600:
+        model: n600_software_best_config_cymodel
+    ux600:
+        model: ux600_software_best_config_cymodel
 
 # configs
 configs:
@@ -55,6 +59,21 @@ configs:
         openocd_cfg: SoC/demosoc/Board/nuclei_fpga_eval/openocd_demosoc.cfg
         appcfg: nmsis_dsp.json
         hwcfg: n300.json
+    # cpu core name
+    n600:
+        fpga: ku060
+        bitstream: n600_software_best_config_ku060_16M.bit
+        ncycm: n600
+        openocd_cfg: SoC/demosoc/Board/nuclei_fpga_eval/openocd_demosoc.cfg
+        appcfg: nmsis_dsp.json
+        hwcfg: n600.json
+    ux600:
+        fpga: ku060
+        bitstream: ux600_software_best_config_ku060_16M.bit
+        ncycm: ux600
+        openocd_cfg: SoC/demosoc/Board/nuclei_fpga_eval/openocd_demosoc.cfg
+        appcfg: nmsis_dsp.json
+        hwcfg: ux600.json
     # cpu core name
     n900:
         fpga: ku060
