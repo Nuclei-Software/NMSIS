@@ -1035,6 +1035,11 @@ int main()
     q7_t     *pool_out_ref = test3;
     q7_t     *pool_out_opt = test3 + POOL_IM_DIM * POOL_IM_DIM * POOL_IM_CH / 2;
     
+    srand(__RV_CSR_READ(mcycle));
+    for (int i = 0; i < POOL_IM_DIM * POOL_IM_DIM * POOL_IM_CH; i++)
+    { 
+        test1[i] = rand();
+    }
     // copy over the img input
     for (int i = 0; i < POOL_IM_DIM * POOL_IM_DIM * POOL_IM_CH; i++)
     {
@@ -1083,7 +1088,7 @@ int main()
     riscv_avepool_q7_HWC(img_in, POOL_IM_DIM, POOL_IM_CH, 3, 0, 2, POOL_IM_DIM / 2, (q7_t *) test2, pool_out_opt);
     BENCH_END(riscv_avepool_q7_HWC);
 
-     verify_results_q7(pool_out_ref, pool_out_opt, POOL_IM_DIM / 2 * POOL_IM_DIM / 2 * POOL_IM_CH);
+    verify_results_q7(pool_out_ref, pool_out_opt, POOL_IM_DIM / 2 * POOL_IM_DIM / 2 * POOL_IM_CH);
 
     delete[]test1;
     delete[]test2;
@@ -1193,7 +1198,8 @@ int main()
 #ifdef TEST_SVD
 #define SVD_SIZE 2048
     test1 = new q7_t[SVD_SIZE*2];
-    test2 = new q15_t[SVD_SIZE*2];
+    q15_t *test2_ref = new q15_t[SVD_SIZE*3];
+    q15_t *test2_opt = new q15_t[SVD_SIZE*3];
     test3 = new q7_t[SVD_SIZE*2];
 
     q7_t     *test20;
@@ -1205,6 +1211,7 @@ int main()
     q31_t     *test22;
     test22 = new q31_t[SVD_SIZE*2];
 
+    srand(__RV_CSR_READ(mcycle));
     for (int i=0;i<SVD_SIZE*2;i++) {
         test1[i] = (rand() % 256 - 128);
         test20[i] = (rand() % 256 - 128);
@@ -1226,26 +1233,31 @@ int main()
     nmsis_nn_dims SVD_output_dims={20,32,32,1};
     nmsis_nn_dims SVD_bias_dims={20,32,32,1};
 
+    for (int i = 0; i < SVD_SIZE*3; i ++) {
+        test2_ref[i] = (rand() % 65535 - 32767);
+        test2_opt[i] = (rand() % 65535 - 32767);
+    }
 
     printf("Start ref SVD implementation\n");
 
     BENCH_START(ref_svdf_s8);
     ref_svdf_s8(&SVD_input_ctx, &SVD_output_ctx_ref, &SVD_svdf_params, &SVD_input_quant_params,
                        &SVD_output_quant_params, &SVD_input_dims, test1+SVD_SIZE, &SVD_state_dims, 
-                       test2, &SVD_weights_feature_dims, test21, &SVD_weights_time_dims,
-                       test2+SVD_SIZE, &SVD_bias_dims, test22, &SVD_output_dims, test3);
+                       test2_ref, &SVD_weights_feature_dims, test21, &SVD_weights_time_dims,
+                       test2_ref+SVD_SIZE, &SVD_bias_dims, test22, &SVD_output_dims, test3);
     BENCH_END(ref_svdf_s8);
 
     printf("Start opt SVD implementation\n");
 
     BENCH_START(riscv_svdf_s8);
-    riscv_svdf_s8(&SVD_input_ctx, &SVD_output_ctx_ref, &SVD_svdf_params, &SVD_input_quant_params,
+    riscv_svdf_s8(&SVD_input_ctx, &SVD_output_ctx_opt, &SVD_svdf_params, &SVD_input_quant_params,
                        &SVD_output_quant_params, &SVD_input_dims, test1+SVD_SIZE, &SVD_state_dims, 
-                       test2, &SVD_weights_feature_dims, test21, &SVD_weights_time_dims,
-                       test2+SVD_SIZE, &SVD_bias_dims, test22, &SVD_output_dims, test3+SVD_SIZE);
+                       test2_opt, &SVD_weights_feature_dims, test21, &SVD_weights_time_dims,
+                       test2_opt+SVD_SIZE, &SVD_bias_dims, test22, &SVD_output_dims, test3+SVD_SIZE);
     BENCH_END(riscv_svdf_s8);
 
     verify_results_q7(test3, test3 + SVD_SIZE, SVD_SIZE);
+
 
 #endif
 
@@ -1685,7 +1697,7 @@ int main()
 
     test1 = new q7_t[POOL_IM_DIM * POOL_IM_DIM * POOL_IM_CH * 2];
     test2 = new q15_t[POOL_IM_DIM * POOL_IM_CH];
-    test3 = new q7_t[POOL_IM_DIM * POOL_IM_DIM * POOL_IM_CH];
+    test3 = new q7_t[POOL_IM_DIM * POOL_IM_DIM * POOL_IM_CH * 2];
 
     for (int i = 0; i < POOL_IM_DIM * POOL_IM_DIM * POOL_IM_CH; i++)
     {
@@ -1694,7 +1706,7 @@ int main()
 
     q7_t     *img_in = test1 + POOL_IM_DIM * POOL_IM_DIM * POOL_IM_CH;
     q7_t     *pool_out_ref = test3;
-    q7_t     *pool_out_opt = test3 + POOL_IM_DIM * POOL_IM_DIM * POOL_IM_CH / 2;
+    q7_t     *pool_out_opt = test3 + POOL_IM_DIM * POOL_IM_DIM * POOL_IM_CH;
 
     for (int i = 0; i < POOL_IM_DIM * POOL_IM_DIM * POOL_IM_CH; i++)
     {
@@ -1730,19 +1742,14 @@ int main()
     verify_results_q7(pool_out_ref, pool_out_opt, POOL_IM_DIM / 2 * POOL_IM_DIM / 2 * POOL_IM_CH);
 
     // copy over the img input
+    srand(__RV_CSR_READ(mcycle));
     for (int i = 0; i < POOL_IM_DIM * POOL_IM_DIM * POOL_IM_CH; i++)
     {
-        img_in[i] = test1[i];
-    }
-
-    // copy over the img input
-    for (int i = 0; i < POOL_IM_DIM * POOL_IM_DIM * POOL_IM_CH; i++)
-    {
+        test1[i] = rand();
         img_in[i] = test1[i];
     }
 
     printf("Start avepool ref implementation\n");
-
     BENCH_START(riscv_avepool_q7_HWC_ref);
     riscv_avepool_q7_HWC_ref(img_in, POOL_IM_DIM, POOL_IM_CH, 3, 0, 2, POOL_IM_DIM / 2, (q7_t *) test2, pool_out_ref);
     BENCH_END(riscv_avepool_q7_HWC_ref);
