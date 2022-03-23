@@ -127,7 +127,7 @@ void riscv_cmplx_mult_cmplx_q15(
     d = *pSrcB++;
 
     /* store result in 3.13 format in destination buffer. */
-#if defined(RISCV_MATH_DSP)
+#if defined(RISCV_MATH_DSP) && __RISCV_XLEN == 32
 	*pDst++ = (q15_t) ( (__SMBB16(a, c) >> 17) - (__SMBB16(b, d) >> 17) );
 	*pDst++ = (q15_t) ( (__SMBB16(a, d) >> 17) + (__SMBB16(b, c) >> 17) );
 #else
@@ -140,7 +140,7 @@ void riscv_cmplx_mult_cmplx_q15(
     c = *pSrcB++;
     d = *pSrcB++;
 
-#if defined(RISCV_MATH_DSP)
+#if defined(RISCV_MATH_DSP) && __RISCV_XLEN == 32
 	*pDst++ = (q15_t) ( (__SMBB16(a, c) >> 17) - (__SMBB16(b, d) >> 17) );
 	*pDst++ = (q15_t) ( (__SMBB16(a, d) >> 17) + (__SMBB16(b, c) >> 17) );
 #else
@@ -153,7 +153,7 @@ void riscv_cmplx_mult_cmplx_q15(
     c = *pSrcB++;
     d = *pSrcB++;
 
-#if defined(RISCV_MATH_DSP)
+#if defined(RISCV_MATH_DSP) && __RISCV_XLEN == 32
 	*pDst++ = (q15_t) ( (__SMBB16(a, c) >> 17) - (__SMBB16(b, d) >> 17) );
 	*pDst++ = (q15_t) ( (__SMBB16(a, d) >> 17) + (__SMBB16(b, c) >> 17) );
 #else
@@ -166,7 +166,7 @@ void riscv_cmplx_mult_cmplx_q15(
     c = *pSrcB++;
     d = *pSrcB++;
 
-#if defined(RISCV_MATH_DSP)
+#if defined(RISCV_MATH_DSP) && __RISCV_XLEN == 32
 	*pDst++ = (q15_t) ( (__SMBB16(a, c) >> 17) - (__SMBB16(b, d) >> 17) );
 	*pDst++ = (q15_t) ( (__SMBB16(a, d) >> 17) + (__SMBB16(b, c) >> 17) );
 #else
@@ -200,7 +200,7 @@ void riscv_cmplx_mult_cmplx_q15(
     d = *pSrcB++;
 
     /* store result in 3.13 format in destination buffer. */
-#if defined(RISCV_MATH_DSP)
+#if defined(RISCV_MATH_DSP) && __RISCV_XLEN == 32
 	*pDst++ = (q15_t) ( (__SMBB16(a, c) >> 17) - (__SMBB16(b, d) >> 17) );
 	*pDst++ = (q15_t) ( (__SMBB16(a, d) >> 17) + (__SMBB16(b, c) >> 17) );
 #else
