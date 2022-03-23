@@ -70,15 +70,26 @@ extern "C"
 
 #define __NMSIS_GENERIC
 #if (defined (__riscv_dsp))
+    #undef __DSP_PRESENT
     #define __DSP_PRESENT       1
     #undef __RISCV_FEATURE_DSP
     #define __RISCV_FEATURE_DSP 1
 #endif
 #if (defined (__riscv_vector))
+    #undef __VECTOR_PRESENT
     #define __VECTOR_PRESENT       1
     #undef __RISCV_FEATURE_VECTOR
     #define __RISCV_FEATURE_VECTOR 1
 #endif
+
+#if (defined (__riscv_bitmainp))
+    #define __BITMANIP_PRESENT      1
+    #undef __RISCV_FEATURE_BITMANIP
+    #define __RISCV_FEATURE_BITMANIP 1
+#endif
+
+#undef __INC_INTRINSIC_API
+#define __INC_INTRINSIC_API     1
 
 #include "nmsis_core.h"
 #undef __NMSIS_GENERIC
