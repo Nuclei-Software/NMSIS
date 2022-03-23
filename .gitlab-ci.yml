@@ -24,7 +24,7 @@ build_doc:
   only:
     refs:
       - master
-      - hqfang/nsdk_runner
+      - develop
     changes:
       - NMSIS/doc/source/**/**/**/*
       - .gitlab-ci.yml
@@ -58,7 +58,7 @@ build_library:
   only:
     refs:
       - master
-      - hqfang/nsdk_runner
+      - develop
   artifacts:
     when: always
     name: "nmsis_library-${CI_COMMIT_SHA::8}"
@@ -83,7 +83,7 @@ build_align_library:
   only:
     refs:
       - master
-      - hqfang/nsdk_runner
+      - develop
   artifacts:
     when: always
     name: "nmsis_align_library-${CI_COMMIT_SHA::8}"
@@ -106,7 +106,7 @@ build_align_library:
   only:
     refs:
       - master
-      - hqfang/nsdk_runner
+      - develop
   before_script:
     # prepare for docker ssh environment
     ## https://docs.gitlab.com/ee/ci/ssh_keys/#ssh-keys-when-using-the-docker-executor
@@ -178,7 +178,7 @@ release_benchmark:
   only:
     refs:
       - master
-      - hqfang/nsdk_runner
+      - develop
   artifacts:
     name: "nmsis_test_log-${CI_COMMIT_SHA::8}"
     paths:
