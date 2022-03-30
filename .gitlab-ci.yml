@@ -190,6 +190,30 @@ release_benchmark:
   script:
     - ls -lh NMSIS/Logs
 
+release_nmsis:
+  stage: release
+  interruptible: true
+  only:
+    refs:
+      - master
+      - develop
+  artifacts:
+    name: "nmsis_release-${CI_COMMIT_SHA::8}"
+    paths:
+      - NMSIS/Core
+      - NMSIS/DSP/Include
+      - NMSIS/DSP/PrivateInclude
+      - NMSIS/NN/Include
+      - NMSIS/Library
+      - NMSIS/npk.yml
+      - NMSIS/build.mk
+    expire_in: 2 day
+  dependencies:
+    - build_library
+  script:
+    - ls -lh NMSIS/Library
+    - cat NMSIS/npk.yml
+
 deploy_website:
   stage: release
   only:
