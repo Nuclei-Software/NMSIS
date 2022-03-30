@@ -3,10 +3,10 @@
 Changelog
 =========
 
-V1.0.4-dev
-----------
+V1.0.4
+------
 
-This is the version ``V1.0.4-dev`` release of Nuclei MCU Software Interface Standard(NMSIS), which is still in development.
+This is the version ``V1.0.4`` release of Nuclei MCU Software Interface Standard(NMSIS).
 
 * **NMSIS-Core**
 
