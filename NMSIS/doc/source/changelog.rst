@@ -17,6 +17,34 @@ This is the version ``V1.0.4-dev`` release of Nuclei MCU Software Interface Stan
   - rearrage #include header files for all NMSIS Core header files
   - removed some not good #pragma gcc diagnostic lines in ``nmsis_gcc.h``
 
+* **NMSIS-DSP**
+
+  - Add initial bitmainp extension support
+  - Fix bug in riscv_cmplx_mult_cmplx_q15 function when XLEN=64
+
+* **NMSIS-NN**
+
+  - Add initial bitmainp extension support
+  - Change riscv_maxpool_q7_HWC implementation for rvv
+  - Re-org NN_Lib_Tests to Tests
+
+* **Build System**
+   
+  - Change minimal version of cmake to 3.14
+  - Add REBUILD=0 to reuse previous generated Makefile
+
+* **Device Tempates**
+
+  - Fix bss section lma and vma not aligned and tbss space not reserved
+
+* **CI**
+
+  - Change NMSIS to use Nuclei SDK demosoc as ci run target 
+  - only run ci on master/develop branch
+
+* **Documentation**
+
+  - Update get started guide for dsp/nn library
 
 V1.0.3
 ------

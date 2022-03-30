@@ -8,9 +8,9 @@ Here we will describe how to run the nmsis nn examples in Nuclei Spike.
 Preparation
 -----------
 
-* Nuclei SDK, ``dev_xlspike_next`` branch
-* Nuclei RISCV GNU Toolchain 2021.12
-* Nuclei xl_spike
+* Nuclei SDK, ``develop`` branch
+* Nuclei RISCV GNU Toolchain 2022.04
+* Nuclei xl_spike or qemu
 * CMake >= 3.14
 * Python 3
 
@@ -75,37 +75,46 @@ How to run
 ----------
 
 1. Set environment variables ``NUCLEI_SDK_ROOT`` and ``NUCLEI_SDK_NMSIS``,
-   and set Nuclei SDK SoC to `xlspike`
+   and set Nuclei SDK SoC to `demosoc`, and change ilm/dlm size from 64K to 512K
 
 .. code-block:: shell
 
     export NUCLEI_SDK_ROOT=/path/to/nuclei_sdk
     export NUCLEI_SDK_NMSIS=/path/to/NMSIS/NMSIS
-    export SOC=xlspike
+    # Setup SDK development environment
+    cd $NUCLEI_SDK_ROOT
+    source setup.sh
+    cd -
+    # !!!!Take Care!!!!
+    # change this link script will make compiled example can only run on bitstream which has 512K ILM/DLM
+    sed -i "s/64K/512K/g" $NUCLEI_SDK_ROOT/SoC/demosoc/Board/nuclei_fpga_eval/Source/GCC/gcc_demosoc_ilm.ld
+    export SOC=demosoc
 
 2. Let us take ``./cifar10/`` for example
 
 2. ``cd ./cifar10/``
 
-3. Run with RISCV DSP enabled and Vector enabled NMSIS-NN library for CORE ``ux900fd``
+3. Run with RISCV DSP enabled and Vector enabled NMSIS-NN library for CORE ``nx900fd``
 
 .. code-block::
 
     # Clean project
-    make ARCH_EXT=pv CORE=ux900fd clean
+    make ARCH_EXT=pv CORE=nx900fd clean
     # Build project
-    make ARCH_EXT=pv CORE=ux900fd all
+    make ARCH_EXT=pv CORE=nx900fd all
     # Run application using xl_spike
-    make ARCH_EXT=pv CORE=ux900fd run
+    make ARCH_EXT=pv CORE=nx900fd run_xlspike
+    # Run application using qemu
+    make ARCH_EXT=pv CORE=nx900fd run_qemu
 
 
-4. Run with RISCV DSP disabled and Vector disabled NMSIS-NN library for CORE ``ux900fd``
+4. Run with RISCV DSP disabled and Vector disabled NMSIS-NN library for CORE ``nx900fd``
 
 .. code-block:: shell
 
-    make ARCH_EXT= CORE=ux900fd clean
-    make ARCH_EXT= CORE=ux900fd all
-    make ARCH_EXT= CORE=ux900fd run
+    make ARCH_EXT= CORE=nx900fd clean
+    make ARCH_EXT= CORE=nx900fd all
+    make ARCH_EXT= CORE=nx900fd run
 
 .. note::
 
