@@ -43,7 +43,6 @@ var searchData=
   ['eclic_5fvector_5finterrupt',['ECLIC_VECTOR_INTERRUPT',['../group__NMSIS__Core__ECLIC__Registers.html#ga915384ab6567d38315e8cf5a566f4840',1,'core_feature_eclic.h']]],
   ['enabledcache',['EnableDCache',['../group__NMSIS__Core__DCache.html#gaf90783ed69b3589cde6fe7dbabeb17c0',1,'core_feature_cache.h']]],
   ['enableicache',['EnableICache',['../group__NMSIS__Core__ICache.html#ga76dfd7aff65a6a7fa91b53dbe44f9ce5',1,'core_feature_cache.h']]],
-  ['enablesuccm',['EnableSUCCM',['../group__NMSIS__Core__Cache.html#gae688fd9a26b86cd4bd8b78242b3f2e43',1,'core_feature_cache.h']]],
   ['exc_5fhandler',['EXC_HANDLER',['../group__NMSIS__Core__IntExcNMI__Handling.html#gacdea0407312bb8428c98044b5aef3e23',1,'system_Device.c']]],
   ['exccode',['exccode',['../unionCSR__MCAUSE__Type.html#a1cb072e5e7ddb5d23103e5b7ccd4754b',1,'CSR_MCAUSE_Type']]],
   ['exception_5fdumpframe',['Exception_DumpFrame',['../group__NMSIS__Core__IntExcNMI__Handling.html#gab5562a5efa39f9027a6c580f950e2157',1,'system_Device.c']]],

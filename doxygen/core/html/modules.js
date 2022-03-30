@@ -12,7 +12,8 @@ var modules =
     [ "FPU Functions", "group__NMSIS__Core__FPU__Functions.html", "group__NMSIS__Core__FPU__Functions" ],
     [ "Intrinsic Functions for SIMD Instructions", "group__NMSIS__Core__DSP__Intrinsic.html", "group__NMSIS__Core__DSP__Intrinsic" ],
     [ "PMP Functions", "group__NMSIS__Core__PMP__Functions.html", "group__NMSIS__Core__PMP__Functions" ],
-    [ "Cache Functions", "group__NMSIS__Core__Cache.html", "group__NMSIS__Core__Cache" ],
+    [ "I-Cache Functions", "group__NMSIS__Core__ICache.html", "group__NMSIS__Core__ICache" ],
+    [ "D-Cache Functions", "group__NMSIS__Core__DCache.html", "group__NMSIS__Core__DCache" ],
     [ "ARM Compatiable Functions", "group__NMSIS__Core__ARMCompatiable__Functions.html", "group__NMSIS__Core__ARMCompatiable__Functions" ],
     [ "System Device Configuration", "group__NMSIS__Core__SystemConfig.html", "group__NMSIS__Core__SystemConfig" ]
 ];

@@ -10,7 +10,6 @@ var searchData=
   ['fio_5fbpa',['fio_bpa',['../unionCSR__MFIOCFGINFO__Type.html#abd5dbf580d3e19843d2cbef403a4cb58',1,'CSR_MFIOCFGINFO_Type']]],
   ['fio_5fsize',['fio_size',['../unionCSR__MFIOCFGINFO__Type.html#a1f0e485583d3413b162d757e37e7cbef',1,'CSR_MFIOCFGINFO_Type']]],
   ['firstdevicespecificinterrupt_5firqn',['FirstDeviceSpecificInterrupt_IRQn',['../group__NMSIS__Core__IntExc.html#gga7e1129cd8a196f4284d41db3e82ad5c8abf73d47e24ab97a72266dd22fd05d7c4',1,'core_feature_eclic.h']]],
-  ['flushpipeccm',['FlushPipeCCM',['../group__NMSIS__Core__Cache.html#ga5fb9682e1f64a554b42c5fe7cf6f5aca',1,'core_feature_cache.h']]],
   ['freg',['FREG',['../group__NMSIS__Core__CSR__Encoding.html#gab630278e8a24dd620cb6a512b51bc45f',1,'riscv_encoding.h']]],
   ['frm_5frndmode_5fdyn',['FRM_RNDMODE_DYN',['../group__NMSIS__Core__CSR__Encoding.html#ga4078cf4c03a56889c27f715fc0e61261',1,'riscv_encoding.h']]],
   ['frm_5frndmode_5frdn',['FRM_RNDMODE_RDN',['../group__NMSIS__Core__CSR__Encoding.html#ga39034ebb32dd8119c8eba506caf5de5e',1,'riscv_encoding.h']]],

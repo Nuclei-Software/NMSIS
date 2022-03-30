@@ -36,7 +36,6 @@ var searchData=
   ['dcsr_5fxdebugver',['DCSR_XDEBUGVER',['../group__NMSIS__Core__CSR__Encoding.html#ga966a5f66e8f82245a23754d953272e26',1,'riscv_encoding.h']]],
   ['disabledcache',['DisableDCache',['../group__NMSIS__Core__DCache.html#gab30be00d8a0583adac5d786149db433f',1,'core_feature_cache.h']]],
   ['disableicache',['DisableICache',['../group__NMSIS__Core__ICache.html#ga4a855b01222d0c42d413f168651616e5',1,'core_feature_cache.h']]],
-  ['disablesuccm',['DisableSUCCM',['../group__NMSIS__Core__Cache.html#ga9392351a7d8e9e80be4b87c4860be086',1,'core_feature_cache.h']]],
   ['dlm',['dlm',['../unionCSR__MCFGINFO__Type.html#adb720ece0db9e5c82b381a6af4944fea',1,'CSR_MCFGINFO_Type']]],
   ['dlm_5fbpa',['dlm_bpa',['../unionCSR__MDLMCTL__Type.html#a2818a047f0411e86358ee943206000c1',1,'CSR_MDLMCTL_Type']]],
   ['dlm_5fecc_5fen',['dlm_ecc_en',['../unionCSR__MDLMCTL__Type.html#a649937c80a8243f16fdd2194d019bacb',1,'CSR_MDLMCTL_Type']]],

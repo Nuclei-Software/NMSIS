@@ -1,6 +1,5 @@
 var annotated_dup =
 [
-    [ "CacheInfo_Type", "structCacheInfo__Type.html", "structCacheInfo__Type" ],
     [ "CLIC_CTRL_Type", "structCLIC__CTRL__Type.html", "structCLIC__CTRL__Type" ],
     [ "CLIC_Type", "structCLIC__Type.html", "structCLIC__Type" ],
     [ "CLICCFG_Type", "unionCLICCFG__Type.html", "unionCLICCFG__Type" ],

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Changelog &mdash; NMSIS 1.0.3 documentation</title>
+  <title>Changelog &mdash; NMSIS 1.0.4 documentation</title>
   
 
   
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                1.0.3
+                1.0.4
               </div>
             
           
@@ -95,6 +95,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dsp/index.html">NMSIS DSP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nn/index.html">NMSIS NN</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#v1-0-4">V1.0.4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v1-0-3">V1.0.3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v1-0-2">V1.0.2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v1-0-2-rc2">V1.0.2-RC2</a></li>
@@ -175,6 +176,57 @@
             
   <div class="section" id="changelog">
 <span id="id1"></span><h1>Changelog<a class="headerlink" href="#changelog" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="v1-0-4">
+<h2>V1.0.4<a class="headerlink" href="#v1-0-4" title="Permalink to this headline">¶</a></h2>
+<p>This is the version <code class="docutils literal notranslate"><span class="pre">V1.0.4</span></code> release of Nuclei MCU Software Interface Standard(NMSIS).</p>
+<ul class="simple">
+<li><p><strong>NMSIS-Core</strong></p>
+<ul>
+<li><p>add <code class="docutils literal notranslate"><span class="pre">__CCM_PRESENT</span></code> macro in NMSIS-Core, if CCM hardware unit is present in your CPU,
+<code class="docutils literal notranslate"><span class="pre">__CCM_PRESENT</span></code> macro need to be set to 1 in <code class="docutils literal notranslate"><span class="pre">&lt;Device&gt;.h</span></code></p></li>
+<li><p>Fixed mtvec related api comment in <code class="docutils literal notranslate"><span class="pre">core_feature_eclic.h</span></code></p></li>
+<li><p>Add safely write mtime/mtimecmp register for 32bit risc-v processor</p></li>
+<li><p>rearrage #include header files for all NMSIS Core header files</p></li>
+<li><p>removed some not good #pragma gcc diagnostic lines in <code class="docutils literal notranslate"><span class="pre">nmsis_gcc.h</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>NMSIS-DSP</strong></p>
+<ul>
+<li><p>Add initial bitmainp extension support</p></li>
+<li><p>Fix bug in riscv_cmplx_mult_cmplx_q15 function when XLEN=64</p></li>
+</ul>
+</li>
+<li><p><strong>NMSIS-NN</strong></p>
+<ul>
+<li><p>Add initial bitmainp extension support</p></li>
+<li><p>Change riscv_maxpool_q7_HWC implementation for rvv</p></li>
+<li><p>Re-org NN_Lib_Tests to Tests</p></li>
+</ul>
+</li>
+<li><p><strong>Build System</strong></p>
+<ul>
+<li><p>Change minimal version of cmake to 3.14</p></li>
+<li><p>Add REBUILD=0 to reuse previous generated Makefile</p></li>
+</ul>
+</li>
+<li><p><strong>Device Tempates</strong></p>
+<ul>
+<li><p>Fix bss section lma and vma not aligned and tbss space not reserved</p></li>
+</ul>
+</li>
+<li><p><strong>CI</strong></p>
+<ul>
+<li><p>Change NMSIS to use Nuclei SDK demosoc as ci run target</p></li>
+<li><p>only run ci on master/develop branch</p></li>
+</ul>
+</li>
+<li><p><strong>Documentation</strong></p>
+<ul>
+<li><p>Update get started guide for dsp/nn library</p></li>
+</ul>
+</li>
+</ul>
+</div>
 <div class="section" id="v1-0-3">
 <h2>V1.0.3<a class="headerlink" href="#v1-0-3" title="Permalink to this headline">¶</a></h2>
 <p>This is the official release version <code class="docutils literal notranslate"><span class="pre">V1.0.3</span></code> release of Nuclei MCU Software Interface Standard(NMSIS).</p>
@@ -459,7 +511,7 @@ library developed to maximize the performance and minimize the memory footprint 
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Jan 24, 2022.
+        Last updated on Mar 30, 2022.
       </span>
 
     </p>

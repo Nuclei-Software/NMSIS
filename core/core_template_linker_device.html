@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Device Linker Script: gcc_&lt;device&gt;.ld &mdash; NMSIS 1.0.3 documentation</title>
+  <title>Device Linker Script: gcc_&lt;device&gt;.ld &mdash; NMSIS 1.0.4 documentation</title>
   
 
   
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                1.0.3
+                1.0.4
               </div>
             
           
@@ -526,7 +526,8 @@
 319
 320
 321
-322</pre></div></td><td class="code"><div class="highlight"><pre><span></span>/*
+322
+323</pre></div></td><td class="code"><div class="highlight"><pre><span></span>/*
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -652,6 +653,7 @@ SECTIONS
 
   .ialign         :
   {
+    . = ALIGN(4);
     /* Create a section label as _ilm which located at flash */
     PROVIDE( _ilm = . );
   } &gt;flash AT&gt;flash
@@ -697,13 +699,6 @@ SECTIONS
   {
     KEEP (*(SORT_NONE(.fini)))
   } &gt;flash AT&gt;flash
-
-  . = ALIGN(4);
-
-  PROVIDE (__etext = .);
-  PROVIDE (_etext = .);
-  PROVIDE (etext = .);
-  PROVIDE( _eilm = . );
 
   .preinit_array  :
   {
@@ -761,6 +756,11 @@ SECTIONS
     KEEP (*(.dtors))
   } &gt;flash AT&gt;flash
 
+  PROVIDE (__etext = .);
+  PROVIDE (_etext = .);
+  PROVIDE (etext = .);
+  PROVIDE (_eilm = .);
+
   .lalign         :
   {
     . = ALIGN(4);
@@ -795,8 +795,6 @@ SECTIONS
   PROVIDE( _edata = . );
   PROVIDE( edata = . );
 
-  . = ALIGN(8);
-
   PROVIDE( _fbss = . );
   PROVIDE( __bss_start = . );
 
@@ -807,7 +805,12 @@ SECTIONS
     PROVIDE( __tls_end = . );
   } &gt;ram AT&gt;ram
 
-  .bss (NOLOAD)   :
+  .tbss_space (NOLOAD) : ALIGN(8)
+  {
+    . = . + SIZEOF(.tbss);
+  } &gt;ram AT&gt;ram
+
+  .bss (NOLOAD)   : ALIGN(8)
   {
     *(.sbss*)
     *(.gnu.linkonce.sb.*)
@@ -817,7 +820,6 @@ SECTIONS
     . = ALIGN(4);
   } &gt;ram AT&gt;ram
 
-  . = ALIGN(16);
   PROVIDE( _end = . );
   PROVIDE( end = . );
 
@@ -826,7 +828,7 @@ SECTIONS
    * 2. __heap_start and __heap_end symbol need to be defined
    * 3. reserved at least __HEAP_SIZE space for heap
    */
-  .heap (NOLOAD)   :
+  .heap (NOLOAD)   : ALIGN(16)
   {
     . = ALIGN(16);
     PROVIDE( __heap_start = . );
@@ -875,7 +877,7 @@ SECTIONS
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Jan 24, 2022.
+        Last updated on Mar 30, 2022.
       </span>
 
     </p>

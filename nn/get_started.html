@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Using NMSIS-NN &mdash; NMSIS 1.0.3 documentation</title>
+  <title>Using NMSIS-NN &mdash; NMSIS 1.0.4 documentation</title>
   
 
   
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                1.0.3
+                1.0.4
               </div>
             
           
@@ -181,10 +181,10 @@
 <div class="section" id="preparation">
 <h2>Preparation<a class="headerlink" href="#preparation" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>Nuclei SDK, <code class="docutils literal notranslate"><span class="pre">master</span></code> branch(&gt;= 0.3.5 release)</p></li>
-<li><p>Nuclei RISCV GNU Toolchain 2022.01</p></li>
-<li><p>Nuclei QEMU 2022.01</p></li>
-<li><p>CMake &gt;= 3.5</p></li>
+<li><p>Nuclei SDK, <code class="docutils literal notranslate"><span class="pre">master</span></code> branch(&gt;= 0.3.7 release)</p></li>
+<li><p>Nuclei RISCV GNU Toolchain 2022.04</p></li>
+<li><p>Nuclei QEMU 2022.04</p></li>
+<li><p>CMake &gt;= 3.14</p></li>
 <li><p>Python 3</p></li>
 </ul>
 </div>
@@ -254,10 +254,17 @@ total 13M
 <h2>How to run<a class="headerlink" href="#how-to-run" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li><p>Set environment variables <code class="docutils literal notranslate"><span class="pre">NUCLEI_SDK_ROOT</span></code> and <code class="docutils literal notranslate"><span class="pre">NUCLEI_SDK_NMSIS</span></code>,
-and set Nuclei SDK SoC to <cite>demosoc</cite></p></li>
+and set Nuclei SDK SoC to <cite>demosoc</cite>, and change ilm/dlm size from 64K to 512K.</p></li>
 </ol>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">NUCLEI_SDK_ROOT</span><span class="o">=</span>/path/to/nuclei_sdk
 <span class="nb">export</span> <span class="nv">NUCLEI_SDK_NMSIS</span><span class="o">=</span>/path/to/NMSIS/NMSIS
+<span class="c1"># Setup SDK development environment</span>
+<span class="nb">cd</span> <span class="nv">$NUCLEI_SDK_ROOT</span>
+<span class="nb">source</span> setup.sh
+<span class="nb">cd</span> -
+<span class="c1"># !!!!Take Care!!!!</span>
+<span class="c1"># change this link script will make compiled example can only run on bitstream which has 512K ILM/DLM</span>
+sed -i <span class="s2">&quot;s/64K/512K/g&quot;</span> <span class="nv">$NUCLEI_SDK_ROOT</span>/SoC/demosoc/Board/nuclei_fpga_eval/Source/GCC/gcc_demosoc_ilm.ld
 <span class="nb">export</span> <span class="nv">SOC</span><span class="o">=</span>demosoc
 </pre></div>
 </div>
@@ -286,7 +293,7 @@ MEMORY
 <blockquote>
 <div><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">$NUCLEI_SDK_NMSIS/NN/Examples/RISCV/cifar10/</span></code> to first</p>
 </div></blockquote>
-<ol class="arabic simple" start="3">
+<ol class="arabic simple" start="4">
 <li><p>Run with RISCV DSP enabled and Vector enabled NMSIS-NN library for CORE <code class="docutils literal notranslate"><span class="pre">nx900fd</span></code></p></li>
 </ol>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clean project</span>
@@ -297,7 +304,7 @@ MEMORY
 <span class="n">make</span> <span class="n">ARCH_EXT</span><span class="o">=</span><span class="n">pv</span> <span class="n">CORE</span><span class="o">=</span><span class="n">nx900fd</span> <span class="n">run_qemu</span>
 </pre></div>
 </div>
-<ol class="arabic simple" start="4">
+<ol class="arabic simple" start="5">
 <li><p>Run with RISCV DSP disabled and Vector disabled NMSIS-NN library for CORE <code class="docutils literal notranslate"><span class="pre">nx900fd</span></code></p></li>
 </ol>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make <span class="nv">ARCH_EXT</span><span class="o">=</span> <span class="nv">CORE</span><span class="o">=</span>nx900fd clean
@@ -338,7 +345,7 @@ if you have enough memory to run it, just modify the
     <p>
         &copy; Copyright 2019-Present, Nuclei
       <span class="lastupdated">
-        Last updated on Jan 24, 2022.
+        Last updated on Mar 30, 2022.
       </span>
 
     </p>
