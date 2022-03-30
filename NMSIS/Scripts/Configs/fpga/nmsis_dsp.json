@@ -1,0 +1,25 @@
+{
+    "run_config": {
+        "target": "hardware",
+        "hardware": {
+            "timeout": 480
+        },
+        "qemu": {
+            "timeout": 240
+        }
+    },
+    "parallel": "-j",
+    "copy_objects": true,
+    "build_target": "clean all",
+    "build_config": {
+        "SOC": "demosoc"
+    },
+    "checks": {
+        "PASS": ["passed", "Passed"],
+        "FAIL": ["MEPC", "failed", "Failed", "FAILURE", "ERROR", "test error apprears"]
+    },
+    "appdirs": [
+        "DSP/Examples/RISCV",
+        "DSP/Test"
+    ]
+}

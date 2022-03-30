@@ -36,6 +36,8 @@
  extern "C" {
 #endif
 
+#include "core_feature_base.h"
+
 #if defined(__ECLIC_PRESENT) && (__ECLIC_PRESENT == 1)
 /**
  * \defgroup NMSIS_Core_ECLIC_Registers     Register Define and Type Definitions Of ECLIC
@@ -712,10 +714,16 @@ __STATIC_FORCEINLINE void __ECLIC_SetVector(IRQn_Type IRQn, rv_csr_t vector)
     vec_base += ((unsigned long)IRQn) * sizeof(unsigned long);
     (* (unsigned long *) vec_base) = vector;
 #if (defined(__DCACHE_PRESENT) && (__DCACHE_PRESENT == 1))
+#if (defined(__CCM_PRESENT) && (__CCM_PRESENT == 1))
     MFlushDCacheLine((unsigned long)vec_base);
 #endif
+#endif
 #if (defined(__ICACHE_PRESENT) && (__ICACHE_PRESENT == 1))
+#if (defined(__CCM_PRESENT) && (__CCM_PRESENT == 1))
     MInvalICacheLine((unsigned long)vec_base);
+#else
+    __FENCE_I();
+#endif
 #endif
 }
 
@@ -748,7 +756,8 @@ __STATIC_FORCEINLINE rv_csr_t __ECLIC_GetVector(IRQn_Type IRQn)
  * This function set exception handler address to 'CSR_MTVEC'.
  * \param [in]      addr  Exception handler address
  * \remarks
- * - This function use to set exception handler address to 'CSR_MTVEC'. Address is 4 bytes align.
+ * - This function use to set exception handler address to 'CSR_MTVEC'.
+ *   Address need to be aligned to 64 bytes.
  * \sa
  * - \ref __get_exc_entry
  */
@@ -765,7 +774,8 @@ __STATIC_FORCEINLINE void __set_exc_entry(rv_csr_t addr)
  * This function get exception handler address from 'CSR_MTVEC'.
  * \return       Exception handler address
  * \remarks
- * - This function use to get exception handler address from 'CSR_MTVEC'. Address is 4 bytes align
+ * - This function use to get exception handler address from 'CSR_MTVEC'.
+ *   Address need to be aligned to 64 bytes.
  * \sa
  * - \ref __set_exc_entry
  */

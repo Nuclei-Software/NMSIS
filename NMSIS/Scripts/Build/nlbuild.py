@@ -56,7 +56,7 @@ class nl_build(object):
         buildlog = os.path.join(builddir, "build.log")
         return builddir, cmakelog, buildlog
 
-    def build(self, target:str, target_alias:list, config:dict, installdir:str, parallel="-j"):
+    def build(self, target:str, target_alias:list, config:dict, installdir:str, parallel="-j", norebuild=False):
         if isinstance(config, dict) == False:
             return False
         cmakefile = os.path.join(self.nl_src, "CMakeLists.txt")
@@ -68,11 +68,19 @@ class nl_build(object):
         for key in config:
             cmakeopts += "-D%s=%s " % (key, config[key])
         nl_buildir, nl_cmakelog, nl_buildlog = self.get_build_artifacts(target)
-        mkdirs(nl_buildir, True)
-        cmake_cmd = "cmake %s -S %s -B %s 2>&1 | tee %s" % (cmakeopts, abs_nlsrc, nl_buildir, nl_cmakelog)
-        print("Configure project %s for target %s, log record in %s" % (self.nl_src, target, nl_cmakelog))
-        run_command(cmake_cmd)
         makefile = os.path.join(nl_buildir, "Makefile")
+        genmake = False
+        if (os.path.isfile(makefile) == False):
+            genmake = True
+        elif norebuild == False:
+            genmake = True
+        if genmake == True:
+            mkdirs(nl_buildir, True)
+            print("Configure project %s for target %s, log record in %s" % (self.nl_src, target, nl_cmakelog))
+            cmake_cmd = "cmake %s -S %s -B %s 2>&1 | tee %s" % (cmakeopts, abs_nlsrc, nl_buildir, nl_cmakelog)
+            run_command(cmake_cmd)
+        else:
+            print("Reuse previous generated Makefile configured by cmake!")
         if os.path.isfile(makefile) == False:
             print("Makefile for project %s is not generated" % (self.nl_src))
             return False
@@ -145,7 +153,7 @@ def strip_library(libroot):
     run_command(strip_cmd)
     pass
 
-def install_library(libsrc, buildcfgs:dict, aliascfgs:dict, libprefix, libroot, target:str="all", strip=True, parallel="-j", ignore_fail=False):
+def install_library(libsrc, buildcfgs:dict, aliascfgs:dict, libprefix, libroot, target:str="all", strip=True, parallel="-j", ignore_fail=False, norebuild=False):
     if isinstance(buildcfgs, dict) == False:
         print("No build configuration found")
         return False
@@ -160,7 +168,7 @@ def install_library(libsrc, buildcfgs:dict, aliascfgs:dict, libprefix, libroot, 
             print(">>> Build and install %s library for config %s" % (libsrc, key))
             _, _, buildlog = nlb.get_build_artifacts(key)
             target_alias = aliascfgs.get(key, [])
-            ret = nlb.build(key, target_alias, buildcfgs[key], libroot, parallel)
+            ret = nlb.build(key, target_alias, buildcfgs[key], libroot, parallel, norebuild)
 
             cost_time = round(time.time() - start_time, 2)
             rst_table.add_row([key, ret, cost_time, buildlog])
@@ -175,7 +183,7 @@ def install_library(libsrc, buildcfgs:dict, aliascfgs:dict, libprefix, libroot, 
             start_time = time.time()
             print(">>> Build and install %s library for config %s" % (libsrc, target))
             _, _, buildlog = nlb.get_build_artifacts(target)
-            ret = nlb.build(target, buildcfgs[target], libroot, parallel)
+            ret = nlb.build(target, buildcfgs[target], libroot, parallel, norebuild)
             cost_time = round(time.time() - start_time, 2)
             rst_table.add_row([target, ret, cost_time, buildlog])
             if ret == False:
@@ -197,6 +205,7 @@ if __name__ == '__main__':
     parser.add_argument('--lib_src', default="DSP/Source", help="Where library source code's cmakefile located")
     parser.add_argument('--lib_prefix', default="nmsis_dsp", help="Library prefix")
     parser.add_argument('--lib_root', default="Library/DSP/GCC", help="Library built and generate to")
+    parser.add_argument('--norebuild', action='store_true', help="Don't clean build directories, and rebuild it, just reuse previous build objects for faster build")
     parser.add_argument('--strip', action='store_true', help="If specified, the installed library will strip out debug symbols")
     parser.add_argument('--target', default="all", help="if target = all, it means run all the targets defined in config")
     parser.add_argument('--parallel', default="-j4", help="parallel build library, default -j4")
@@ -211,8 +220,10 @@ if __name__ == '__main__':
         sys.exit(1)
     buildcfgs = get_buildcfgs(jsoncfg)
     aliascfgs = get_aliascfgs(jsoncfg)
-    runrst = install_library(args.lib_src, buildcfgs, aliascfgs, args.lib_prefix, args.lib_root, args.target, args.strip, args.parallel, args.ignore_fail)
+    runrst = install_library(args.lib_src, buildcfgs, aliascfgs, args.lib_prefix, args.lib_root, args.target, args.strip, args.parallel, args.ignore_fail, args.norebuild)
     print("Build Library %s with config %s, generated into %s status: %s" %(args.lib_src, args.config, args.lib_root, runrst))
+    if args.norebuild:
+        print("!!!Use Caution: This build is not fully rebuilt, please take care!!!!")
     if runrst:
         sys.exit(0)
     else:

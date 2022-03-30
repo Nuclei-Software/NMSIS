@@ -41,19 +41,7 @@
 
     .weak  eclic_msip_handler
     .weak  eclic_mtip_handler
-    .weak  eclic_irq19_handler
-    .weak  eclic_irq20_handler
-    .weak  eclic_irq21_handler
-    .weak  eclic_irq22_handler
-    .weak  eclic_irq23_handler
-    .weak  eclic_irq24_handler
-    .weak  eclic_irq25_handler
-    .weak  eclic_irq26_handler
-    .weak  eclic_irq27_handler
-    .weak  eclic_irq28_handler
-    .weak  eclic_irq29_handler
-    .weak  eclic_irq30_handler
-    .weak  eclic_irq31_handler
+    /* TODO: add vendor interrupt handlers */
 
     .globl vector_base
     .type vector_base, @object
@@ -83,22 +71,23 @@ vector_base:
     DECLARE_INT_HANDLER     default_intexc_handler          /* 16: Reserved */
     DECLARE_INT_HANDLER     default_intexc_handler          /* 17: Reserved */
     DECLARE_INT_HANDLER     default_intexc_handler          /* 18: Reserved */
-    DECLARE_INT_HANDLER     eclic_irq19_handler             /* 19: Interrupt 19 */
+    /* TODO: Adjust Vendor Defined External Interrupts */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 19: Interrupt 19 */
 
-    DECLARE_INT_HANDLER     eclic_irq20_handler             /* 20: Interrupt 20 */
-    DECLARE_INT_HANDLER     eclic_irq21_handler             /* 21: Interrupt 21 */
-    DECLARE_INT_HANDLER     eclic_irq22_handler             /* 22: Interrupt 22 */
-    DECLARE_INT_HANDLER     eclic_irq23_handler             /* 23: Interrupt 23 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 20: Interrupt 20 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 21: Interrupt 21 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 22: Interrupt 22 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 23: Interrupt 23 */
 
-    DECLARE_INT_HANDLER     eclic_irq24_handler             /* 24: Interrupt 24 */
-    DECLARE_INT_HANDLER     eclic_irq25_handler             /* 25: Interrupt 25 */
-    DECLARE_INT_HANDLER     eclic_irq26_handler             /* 26: Interrupt 26 */
-    DECLARE_INT_HANDLER     eclic_irq27_handler             /* 27: Interrupt 27 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 24: Interrupt 24 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 25: Interrupt 25 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 26: Interrupt 26 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 27: Interrupt 27 */
 
-    DECLARE_INT_HANDLER     eclic_irq28_handler             /* 28: Interrupt 28 */
-    DECLARE_INT_HANDLER     eclic_irq29_handler             /* 29: Interrupt 29 */
-    DECLARE_INT_HANDLER     eclic_irq30_handler             /* 30: Interrupt 30 */
-    DECLARE_INT_HANDLER     eclic_irq31_handler             /* 31: Interrupt 31 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 28: Interrupt 28 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 29: Interrupt 29 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 30: Interrupt 30 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 31: Interrupt 31 */
 
 
 /*** Startup Code Section ***/

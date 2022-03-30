@@ -23,11 +23,12 @@
  * @brief    NMSIS compiler GCC header file
  */
 #include <stdint.h>
-#include "riscv_encoding.h"
 
 #ifdef __cplusplus
  extern "C" {
 #endif
+
+#include "riscv_encoding.h"
 
 /* #########################  Startup and Lowlevel Init  ######################## */
 /**
@@ -42,11 +43,6 @@
  * The header file <b>nmsis_compiler.h</b> is also included by each Device Header File <device.h> so that these definitions are available.
  *   @{
  */
-/* ignore some GCC warnings */
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wsign-conversion"
-#pragma GCC diagnostic ignored "-Wconversion"
-#pragma GCC diagnostic ignored "-Wunused-parameter"
 
 /* Fallback for __has_builtin */
 #ifndef __has_builtin

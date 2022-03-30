@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.14)
 
 SET(CMAKE_C_COMPILER riscv-nuclei-elf-gcc)
 SET(CMAKE_CXX_COMPILER riscv-nuclei-elf-g++)
