@@ -193,6 +193,7 @@ def install_library(libsrc, buildcfgs:dict, aliascfgs:dict, libprefix, libroot, 
             runstatus = False
             print(">>> ERROR: config %s not found" % (target))
     if strip:
+        print("Strip libraries located in %s" % (libroot))
         strip_library(libroot)
     print("All generated library could be found in %s" % (libroot))
     print("Show build status of all the configurations")
