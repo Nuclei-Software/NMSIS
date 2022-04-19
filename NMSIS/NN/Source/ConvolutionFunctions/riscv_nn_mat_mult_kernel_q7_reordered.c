@@ -74,65 +74,41 @@ q7_t     *riscv_nn_mat_mult_kernel_q7_reordered(const q7_t * pA,
         /* align the second pointer for A */
         const q7_t *pA2 = pA + numCol_A;
 
+        /* init the sum with bias */
+        q31_t     sum =  ((q31_t)(bias[i]) << bias_shift) + NN_ROUND(out_shift);
+        q31_t     sum2 = sum;
+        q31_t     sum3 = ((q31_t)(bias[i + 1]) << bias_shift) + NN_ROUND(out_shift);
+        q31_t     sum4 = sum3;
+
 #if defined(RISCV_MATH_VECTOR) && !defined (RISCV_MATH_DSP)
         /* accumulate over the vector */
         size_t l;
-        uint32_t blkCnt = numCol_A;
-        q31_t sum,sum2,sum3,sum4;
-        // q7_t temp[] = {0};
-        l = vsetvl_e8m1(blkCnt);
-        vint8m1_t va1m1,va2m1,vb1m1,vb2m1;
-        vint16m2_t vch00m2,vch01m2,vch10m2,vch11m2;
-        vint64m1_t vch00m1,vch01m1,vch10m1,vch11m1;
-        vint64m1_t vtemp00m1,vtemp01m1,vtemp10m1,vtemp11m1;
-        vint32m4_t vch00m4,vch01m4,vch10m4,vch11m4;
-        //initial array and temp sum to zero
-        vch00m4 = vmv_v_x_i32m4(0, l);
-        vch01m4 = vmv_v_x_i32m4(0, l);
-        vch10m4 = vmv_v_x_i32m4(0, l);
-        vch11m4 = vmv_v_x_i32m4(0, l);
-        vtemp00m1 = vmv_v_x_i64m1(0, l);
-        for (; (l = vsetvl_e8m1(blkCnt)) > 0; blkCnt -= l) {
-            va1m1 = vle8_v_i8m1(pA , l);
-            va2m1 = vle8_v_i8m1(pA2, l);
-            vb1m1 = vle8_v_i8m1(pB , l);
-            vb2m1 = vle8_v_i8m1(pB2, l);
+        uint16_t  colCnt = numCol_A & 0xFFF0;
+
+        vint8m4_t va1m4,va2m4,vb1m4,vb2m4;
+        vint32m1_t vtemp00m1;
+
+        l = vsetvl_e32m1(1);
+        vtemp00m1 = vmv_v_x_i32m1(0, l);
+
+        for (; (l = vsetvl_e8m4(colCnt)) > 0; colCnt -= l) {
+            va1m4 = vle8_v_i8m4(pA , l);
+            va2m4 = vle8_v_i8m4(pA2, l);
+            vb1m4 = vle8_v_i8m4(pB , l);
+            vb2m4 = vle8_v_i8m4(pB2, l);
+
             pA  += l;
             pA2 += l;
             pB  += l;
             pB2 += l;
-            vch00m2= vwmul_vv_i16m2(va1m1, vb1m1, l);
-            vch01m2= vwmul_vv_i16m2(va1m1, vb2m1, l);
-            vch10m2= vwmul_vv_i16m2(va2m1, vb1m1, l);
-            vch11m2= vwmul_vv_i16m2(va2m1, vb2m1, l);
-            vch00m4 = vwadd_wv_i32m4(vch00m4, vch00m2, l);
-            vch01m4 = vwadd_wv_i32m4(vch01m4, vch01m2, l);
-            vch10m4 = vwadd_wv_i32m4(vch10m4, vch10m2, l);
-            vch11m4 = vwadd_wv_i32m4(vch11m4, vch11m2, l);
+
+            sum  += (q31_t)vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(vtemp00m1, vwmul_vv_i16m8(va1m4, vb1m4, l), vtemp00m1, l));
+            sum2 += (q31_t)vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(vtemp00m1, vwmul_vv_i16m8(va1m4, vb2m4, l), vtemp00m1, l));
+            sum3 += (q31_t)vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(vtemp00m1, vwmul_vv_i16m8(va2m4, vb1m4, l), vtemp00m1, l));
+            sum4 += (q31_t)vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(vtemp00m1, vwmul_vv_i16m8(va2m4, vb2m4, l), vtemp00m1, l));
         }
-        //set vl to max vl
-        l = vsetvl_e8m1(numCol_A);
-            vch00m1 = vwredsum_vs_i32m4_i64m1(vtemp00m1, vch00m4, vtemp00m1, l);
-            vch01m1 = vwredsum_vs_i32m4_i64m1(vtemp00m1, vch01m4, vtemp00m1, l);
-            vch10m1 = vwredsum_vs_i32m4_i64m1(vtemp00m1, vch10m4, vtemp00m1, l);
-            vch11m1 = vwredsum_vs_i32m4_i64m1(vtemp00m1, vch11m4, vtemp00m1, l);
-        //Here we calculate sum of four vector
-        //write result scalar back
-        sum  = (q31_t)vmv_x_s_i64m1_i64(vch00m1);
-        sum2 = (q31_t)vmv_x_s_i64m1_i64(vch01m1);
-        sum3 = (q31_t)vmv_x_s_i64m1_i64(vch10m1);
-        sum4 = (q31_t)vmv_x_s_i64m1_i64(vch11m1);
-        /* init the sum with bias */
-        sum  += ((q31_t)(bias[i]) << bias_shift) + NN_ROUND(out_shift);
-        sum2 += ((q31_t)(bias[i]) << bias_shift) + NN_ROUND(out_shift);
-        sum3 += ((q31_t)(bias[i + 1]) << bias_shift) + NN_ROUND(out_shift);
-        sum4 += ((q31_t)(bias[i + 1]) << bias_shift) + NN_ROUND(out_shift);
+        colCnt = numCol_A & 0xF;
 #else
-        /* init the sum with bias */
-        q31_t     sum =  ((q31_t)(bias[i]) << bias_shift) + NN_ROUND(out_shift);
-        q31_t     sum2 = ((q31_t)(bias[i]) << bias_shift) + NN_ROUND(out_shift);
-        q31_t     sum3 = ((q31_t)(bias[i + 1]) << bias_shift) + NN_ROUND(out_shift);
-        q31_t     sum4 = ((q31_t)(bias[i + 1]) << bias_shift) + NN_ROUND(out_shift);
 #if __RISCV_XLEN == 64
         uint16_t  colCnt = numCol_A >> 3;
         q63_t sum64 = 0, sum642 = 0, sum643 = 0, sum644 = 0;
@@ -200,6 +176,7 @@ q7_t     *riscv_nn_mat_mult_kernel_q7_reordered(const q7_t * pA,
         }                       /* while over colCnt */
         colCnt = numCol_A & 0x3;
 #endif /* __RISCV_XLEN == 64 */
+#endif /* defined(RISCV_MATH_VECTOR) */
         while (colCnt)
         {
             q7_t      inA1 = *pA++;
@@ -212,8 +189,7 @@ q7_t     *riscv_nn_mat_mult_kernel_q7_reordered(const q7_t * pA,
             sum3 += inA2 * inB1;
             sum4 += inA2 * inB2;
             colCnt--;
-        }                       /* while over colCnt */
-#endif /* defined(RISCV_MATH_VECTOR) */
+        }  
         *pOut++ = (q7_t) __SSAT((sum >> out_shift), 8);
         *pOut++ = (q7_t) __SSAT((sum3 >> out_shift), 8);
         *pOut2++ = (q7_t) __SSAT((sum2 >> out_shift), 8);

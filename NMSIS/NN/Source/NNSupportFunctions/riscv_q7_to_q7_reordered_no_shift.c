@@ -81,7 +81,7 @@ void riscv_q7_to_q7_reordered_no_shift(const q7_t * pSrc, q7_t * pDst, uint32_t 
     const q7_t *pIn = pSrc;     /* Src pointer */
 
 #if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = blockSize;                              /* Loop counter */
+  uint32_t blkCnt = blockSize & 0xFFF0;                              /* Loop counter */
   size_t l;
   vint8m8_t vx, vy;
 
@@ -90,7 +90,7 @@ void riscv_q7_to_q7_reordered_no_shift(const q7_t * pSrc, q7_t * pDst, uint32_t 
     pIn += l;
     pDst += l;
   }
-
+  blkCnt = blockSize & 0xF;
 #else
     uint32_t  blkCnt;           /* loop counter */
     q31_t     in;
@@ -117,9 +117,9 @@ void riscv_q7_to_q7_reordered_no_shift(const q7_t * pSrc, q7_t * pDst, uint32_t 
 
     /* If the blockSize is not a multiple of 4, compute any remaining output samples here.
      ** No loop unrolling is used. */
-    blkCnt = blockSize % 0x4u;
+    blkCnt = blockSize & 0x3u;
 
-
+#endif /* defined(RISCV_MATH_VECTOR) */
     while (blkCnt > 0u)
     {
         /* C = (q15_t) A << 8 */
@@ -129,7 +129,6 @@ void riscv_q7_to_q7_reordered_no_shift(const q7_t * pSrc, q7_t * pDst, uint32_t 
         /* Decrement the loop counter */
         blkCnt--;
     }
-#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

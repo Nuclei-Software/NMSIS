@@ -50,39 +50,39 @@ void riscv_fill_q7(
   q7_t * pDst,
   uint32_t blockSize)
 {
+
 #if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = blockSize;                               /* Loop counter */
+  uint32_t blkCnt = blockSize & 0xFFF0;                               /* Loop counter */
   size_t l;
-  vint8m8_t v_fill;
   for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
-    v_fill = vmv_v_x_i8m8(value, l);
-    vse8_v_i8m8 (pDst, v_fill, l);
+    vse8_v_i8m8 (pDst, vmv_v_x_i8m8(value, l), l);
     pDst += l;
   }
+  blkCnt = blockSize & 0xF;
 #else
-  uint32_t blkCnt;                               /* Loop counter */
+  uint32_t blkCnt = blockSize;                               /* Loop counter */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
   q31_t packedValue;                             /* value packed to 32 bits */
+
 #if __RISCV_XLEN == 64
   q63_t packedValue64;                             /* value packed to 32 bits */
+
+  /* Loop unrolling: Compute 8 outputs at a time */
+  blkCnt = blockSize >> 3U;
 
   packedValue = __PACKq7(value, value, value, value);
   packedValue64 = __RV_PKBB32(packedValue,packedValue);
 #else
+  /* Loop unrolling: Compute 4 outputs at a time */
+  blkCnt = blockSize >> 2U;
+
   #ifdef RISCV_DSP64
   packedValue = __PACKq7(value, value, value, value);
   // packedValue = __RV_EXPD80(value);
   #else
   packedValue = __PACKq7(value, value, value, value);
   #endif
-#endif /* __RISCV_XLEN == 64 */
-#if __RISCV_XLEN == 64
-  /* Loop unrolling: Compute 8 outputs at a time */
-  blkCnt = blockSize >> 3U;
-#else
-  /* Loop unrolling: Compute 4 outputs at a time */
-  blkCnt = blockSize >> 2U;
 #endif /* __RISCV_XLEN == 64 */
 
   while (blkCnt > 0U)
@@ -101,19 +101,13 @@ void riscv_fill_q7(
   }
 #if __RISCV_XLEN == 64
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x8U;
+  blkCnt = blockSize & 0x7U;
 #else
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 #endif /* __RISCV_XLEN == 64 */
-
-#else
-
-  /* Initialize blkCnt with number of samples */
-  blkCnt = blockSize;
-
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-
+#endif /* defined(RISCV_MATH_VECTOR) */
   while (blkCnt > 0U)
   {
     /* C = value */
@@ -124,7 +118,6 @@ void riscv_fill_q7(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**
