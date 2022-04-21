@@ -178,63 +178,45 @@ riscv_status riscv_nn_vec_mat_mult_t_s8(const q7_t *lhs,
         *dst++ = (q7_t)acc_0;
     }
 
-#else
-#if defined (RISCV_MATH_VECTOR)
+#elif defined (RISCV_MATH_VECTOR)
     for (int32_t rhs_rows_idx = 0; rhs_rows_idx <= (rhs_rows - 2); rhs_rows_idx += 2)
     {
         const q7_t *lhs_ptr = &lhs[0];
         const q7_t *rhs_ptr = &rhs[0];
 
-       /* accumulate over the vector */
+        q31_t res00 = *bias++;
+        q31_t res01 = *bias++;
+
+        uint32_t vblkCnt = rhs_cols;    /* Loop counter */
         size_t l;
-        uint32_t blkCnt = rhs_cols;
-        q31_t res00,res01;
-        // q7_t temp[] = {0};
-        l = vsetvl_e8m1(blkCnt);
-        vint8m1_t va1m1,vb1m1,vb2m1;
-        vint16m2_t vch00m2,vch01m2;
-        vint64m1_t vch00m1,vch01m1;
-        vint64m1_t vtemp00m1,vtemp01m1;
-        vint32m4_t vch00m4,vch01m4;
-        //initial array and temp sum to zero
-        vch00m4 = vmv_v_x_i32m4(0, l);
-        vch01m4 = vmv_v_x_i32m4(0, l);
-        vch00m1 = vmv_v_x_i64m1(0, l);
-        vch01m1 = vmv_v_x_i64m1(0, l);
-        vtemp00m1 = vmv_v_x_i64m1(0, l);
-        vtemp01m1 = vmv_v_x_i64m1(0, l);
-        for (; (l = vsetvl_e8m1(blkCnt)) > 0; blkCnt -= l) {
-            va1m1 = vle8_v_i8m1(lhs_ptr + lhs_offset, l);
-            vb1m1 = vle8_v_i8m1(rhs_ptr + rhs_offset, l);
-            vb2m1 = vle8_v_i8m1(rhs_ptr + rhs_offset + rhs_cols, l);
-            lhs_ptr  += l;
-            rhs_ptr  += l;
-            vch00m2= vwmul_vv_i16m2(va1m1, vb1m1, l);
-            vch01m2= vwmul_vv_i16m2(va1m1, vb2m1, l);
-            vch00m4 = vwadd_wv_i32m4(vch00m4, vch00m2, l);
-            vch01m4 = vwadd_wv_i32m4(vch01m4, vch01m2, l);
-        }
-        //set vl to max vl
-        l = vsetvl_e8m1(rhs_rows - 2);
-            //calculate sum
-            vch00m1 = vwredsum_vs_i32m4_i64m1(vtemp00m1, vch00m4, vtemp00m1, l);
-            vch01m1 = vwredsum_vs_i32m4_i64m1(vtemp01m1, vch01m4, vtemp01m1, l);
-        //set vl to 1
+        vint8m2_t vx, vy, vz;
+        vint32m8_t rhs_value0, rhs_value1, lhs_value;
+        vint32m1_t temp00m1;
+        const q7_t *px = rhs_ptr;
+        const q7_t *py = rhs_ptr + rhs_cols;
+        const q7_t *pz = lhs_ptr;
+
         l = vsetvl_e32m1(1);
-            vch00m1 = vmin_vx_i64m1(vmax_vx_i64m1(vch00m1, 0xffffffff80000000ULL, l), 0x000000007fffffffULL, l);
-            vch01m1 = vmin_vx_i64m1(vmax_vx_i64m1(vch01m1, 0xffffffff80000000ULL, l), 0x000000007fffffffULL, l);
-        //Here we calculate sum of four vector
-        //write result scalar back
-        res00 = (q31_t)vmv_x_s_i64m1_i64(vch00m1);
-        res01 = (q31_t)vmv_x_s_i64m1_i64(vch01m1);
-        /* init the sum with bias */
-        res00 += *bias++;
-        res01 += *bias++;
+        temp00m1 = vmv_v_x_i32m1(0, l);
+        for (; (l = vsetvl_e8m2(vblkCnt)) > 0; vblkCnt -= l) {
+            vx = vle8_v_i8m2(px, l);
+            px += l;
+            vy = vle8_v_i8m2(py, l);
+            py += l;
+            vz = vle8_v_i8m2(pz, l);
+            pz += l;
+
+            rhs_value0 = vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vx, 0, l), 0, l), rhs_offset, l);
+            rhs_value1 = vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vy, 0, l), 0, l), rhs_offset, l);
+            lhs_value = vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vz, 0, l), 0, l), lhs_offset, l);
+
+            res00 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vmul_vv_i32m8(lhs_value, rhs_value0, l), temp00m1, l));
+            res01 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vmul_vv_i32m8(lhs_value, rhs_value1, l), temp00m1, l));
+        }
 
         // Quantize down
         res00 = riscv_nn_requantize(res00, dst_multiplier, dst_shift);
         res01 = riscv_nn_requantize(res01, dst_multiplier, dst_shift);
-
         // Add offset
         res00 += dst_offset;
         res01 += dst_offset;
@@ -248,49 +230,37 @@ riscv_status riscv_nn_vec_mat_mult_t_s8(const q7_t *lhs,
         *dst++ = (q7_t)res00;
         *dst++ = (q7_t)res01;
 
-        rhs += rhs_cols;
+        rhs += 2 * rhs_cols;
     }
 
-    if (rhs_rows % 2)
+    if (rhs_rows & 0x1)
     {
         const q7_t *lhs_ptr = &lhs[0];
         const q7_t *rhs_ptr = &rhs[0];
 
-       /* accumulate over the vector */
+        q31_t res00 = *bias++;
+
+        uint32_t vblkCnt = rhs_cols;    /* Loop counter */
         size_t l;
-        uint32_t blkCnt = rhs_cols;
-        q31_t res00;
-        // q7_t temp[] = {0};
-        l = vsetvl_e8m1(blkCnt);
-        vint8m1_t va1m1,vb1m1;
-        vint16m2_t vch00m2;
-        vint64m1_t vch00m1;
-        vint64m1_t vtemp00m1;
-        vint32m4_t vch00m4;
-        //initial array and temp sum to zero
-        vch00m4 = vmv_v_x_i32m4(0, l);
-        vch00m1 = vmv_v_x_i64m1(0, l);
-        vtemp00m1 = vmv_v_x_i64m1(0, l);
-        for (; (l = vsetvl_e8m1(blkCnt)) > 0; blkCnt -= l) {
-            va1m1 = vle8_v_i8m1(lhs_ptr + lhs_offset, l);
-            vb1m1 = vle8_v_i8m1(rhs_ptr + rhs_offset, l);
-            lhs_ptr  += l;
-            rhs_ptr  += l;
-            vch00m2= vwmul_vv_i16m2(va1m1, vb1m1, l);
-            vch00m4 = vwadd_wv_i32m4(vch00m4, vch00m2, l);
+        vint8m2_t vx, vz;
+        vint32m8_t rhs_value0, lhs_value;
+        vint32m1_t temp00m1;
+        const q7_t *px = rhs_ptr;
+        const q7_t *pz = lhs_ptr;
+
+        l = vsetvl_e32m1(1);
+        temp00m1 = vmv_v_x_i32m1(0, l);
+        for (; (l = vsetvl_e8m2(vblkCnt)) > 0; vblkCnt -= l) {
+            vx = vle8_v_i8m2(px, l);
+            px += l;
+            vz = vle8_v_i8m2(pz, l);
+            pz += l;
+
+            rhs_value0 = vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vx, 0, l), 0, l), rhs_offset, l);
+            lhs_value = vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vz, 0, l), 0, l), lhs_offset, l);
+
+            res00 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vmul_vv_i32m8(lhs_value, rhs_value0, l), temp00m1, l));
         }
-        //set vl to max vl
-        l = vsetvl_e8m1(rhs_cols);
-            //calculate sum
-            vch00m1 = vwredsum_vs_i32m4_i64m1(vtemp00m1, vch00m4, vtemp00m1, l);
-        //set vl to 1
-        vsetvl_e32m1(1);
-            vch00m1 = vmin_vx_i64m1(vmax_vx_i64m1(vch00m1, 0xffffffff80000000ULL, l), 0x000000007fffffffULL, l);
-        //Here we calculate sum of four vector
-        //write result scalar back
-        res00 = (q31_t)vmv_x_s_i64m1_i64(vch00m1);
-        /* init the sum with bias */
-        res00 += *bias++;
 
         // Quantize down
         res00 = riscv_nn_requantize(res00, dst_multiplier, dst_shift);
@@ -403,7 +373,7 @@ riscv_status riscv_nn_vec_mat_mult_t_s8(const q7_t *lhs,
         rhs += rhs_cols;
     }
 #endif /*defined (RISCV_MATH_VECTOR)*/
-#endif
+
     return RISCV_MATH_SUCCESS;
 }
 
