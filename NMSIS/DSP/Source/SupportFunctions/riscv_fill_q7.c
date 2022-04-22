@@ -52,7 +52,7 @@ void riscv_fill_q7(
 {
 
 #if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = blockSize & 0xFFF0;                               /* Loop counter */
+  uint32_t blkCnt = blockSize & 0xFFFFFFF0;                  /* Loop counter */
   size_t l;
   for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
     vse8_v_i8m8 (pDst, vmv_v_x_i8m8(value, l), l);

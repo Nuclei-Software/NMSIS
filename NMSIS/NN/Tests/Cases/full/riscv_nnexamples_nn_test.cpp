@@ -922,17 +922,23 @@ int main()
 
     verify_results_q15(ip_out_q15_ref, ip_out_q15_opt, IP_ROW_DIM);
 
-    int32_t fc_multiplier = 1;
-    int32_t fc_shift = 0;
+    int32_t fc_multiplier = 0x80000000;
+    int32_t fc_shift = 1;
     test1 = new q7_t[320*2];
     test3 = new q7_t[320*2];
+    for (int i = 0; i < 320 * 2; i++) {
+        test1[i] = rand() % 10;
+    }
     q7_t *fc_temp_buffer = new q7_t[320];
-    int32_t *fc_test12 = new int32_t[320];
+    int32_t *fc_bias_data = new int32_t[320];
+    for (int i = 0; i < 320; i++) {
+        fc_bias_data[i] = rand() % 10;
+    }
     nmsis_nn_context fc_ctx = {fc_temp_buffer, 10};
     nmsis_nn_tile fc_stride = {2,2};
 	nmsis_nn_tile fc_padding = {2,2};
 	nmsis_nn_tile fc_dilation = {2,2};
-    nmsis_nn_activation fc_activation = {-100, 100};
+    nmsis_nn_activation fc_activation = {-1280, 1270};
     nmsis_nn_conv_params fc_conv_params = {1, 1, fc_stride, fc_padding, fc_dilation, fc_activation};
     nmsis_nn_per_tensor_quant_params  fc_quant_params = {fc_multiplier, fc_shift};
     nmsis_nn_dims fc_input_dims = {20, 2, 4, 2};
@@ -944,13 +950,13 @@ int main()
     printf("Start ref opt s8 implementation\n");
 
     BENCH_START(riscv_fully_connected_s8_ref);
-    riscv_fully_connected_s8_ref(&fc_ctx,&fc_fc_params,&fc_quant_params,&fc_input_dims,test1,&fc_filter_dims,test1 + 320,&fc_bias_dims,fc_test12,&fc_output_dims,test3);
+    riscv_fully_connected_s8_ref(&fc_ctx,&fc_fc_params,&fc_quant_params,&fc_input_dims,test1,&fc_filter_dims,test1 + 320,&fc_bias_dims,fc_bias_data,&fc_output_dims,test3);
     BENCH_END(riscv_fully_connected_s8_ref);
 
     printf("Start opt s8 implementation\n");
 
     BENCH_START(riscv_fully_connected_s8);
-    riscv_fully_connected_s8(&fc_ctx,&fc_fc_params,&fc_quant_params,&fc_input_dims,test1,&fc_filter_dims,test1 + 320,&fc_bias_dims,fc_test12,&fc_output_dims,test3+ 320);
+    riscv_fully_connected_s8(&fc_ctx,&fc_fc_params,&fc_quant_params,&fc_input_dims,test1,&fc_filter_dims,test1 + 320,&fc_bias_dims,fc_bias_data,&fc_output_dims,test3 + 320);
     BENCH_END(riscv_fully_connected_s8);
 
     verify_results_q7(test3, test3 + 320, 40);
@@ -960,7 +966,7 @@ int main()
     delete[]test3;
     delete[]test4;
     // delete[]fc_temp_buffer;
-    // delete[]fc_test12;
+    // delete[]fc_bias_data;
 
 #endif
 
