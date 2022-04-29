@@ -21,11 +21,17 @@
 #define DELTAQ15 (1)
 #define DELTAQ7 (1)
 
+#define FFT_DOT 1024
+// #define DEBUG_PRINT
+
 int test_flag_error = 0;
 
 uint32_t fftSize = 1024;
 uint32_t ifftFlag = 0;
 uint32_t doBitReverse = 1;
+
+extern uint16_t bitrevIndexGrp [FFT_DOT] __attribute__((aligned(16)));
+
 
 static int DSP_cfft_radix2_q15(void)
 {
@@ -76,16 +82,47 @@ static int DSP_cfft_radix2_q31(void)
     }
     BENCH_STATUS(riscv_cfft_radix2_q31);
 }
+
+// index: 		FFT dot index
+// totalLayer:	FFT total layer number
+static uint32_t reverseBits(uint32_t index,uint8_t totalLayer) {
+    uint32_t rev = 0;
+    for (int i = 0; i < totalLayer && index > 0; ++i) {
+        rev |= (index & 1) << (totalLayer - 1 - i);
+        index >>= 1;
+    }
+    return rev;
+}
+
+
+static void init_bitrev (uint16_t *bitrevIndexGrp, int fftSize)
+{
+	for(uint32_t i = 0;i < fftSize;i++)
+	{
+        //bit reverse index
+        bitrevIndexGrp[i] = reverseBits(i, (int)log2((double)fftSize));
+        #ifdef DEBUG_PRINT
+        printf("rev[%d]:%d\r\n",i,bitrevIndexGrp[i]);
+        #endif
+        //index for index load
+        bitrevIndexGrp[i] = 4 * 2 * bitrevIndexGrp[i];
+	}
+}
+
+
 static int DSP_cfft_radix2_f32(void)
 {
     uint16_t i;
     fftSize = 512;
     riscv_cfft_radix2_instance_f32 S;
     uint8_t ifftFlag = 0, doBitReverse = 1;
-    riscv_cfft_radix2_init_f32(&S, 512, ifftFlag, doBitReverse);
+    riscv_cfft_radix2_init_f32(&S, fftSize, ifftFlag, doBitReverse);
+    init_bitrev(bitrevIndexGrp, fftSize);       //generate bit reverse index group
+
     BENCH_START(riscv_cfft_radix2_f32);
     riscv_cfft_radix2_f32(&S, cfft_testinput_f32_50hz_200Hz);
     BENCH_END(riscv_cfft_radix2_f32);
+    
     ref_cfft_radix2_f32(&S, cfft_testinput_f32_50hz_200Hz_ref);
     float32_t resault, resault_ref;
     uint32_t index, index_ref;
@@ -97,15 +134,19 @@ static int DSP_cfft_radix2_f32(void)
         printf("expect: %d, actual: %d\n", index_ref, index);
         test_flag_error = 1;
     }
+
+    memcpy(cfft_testinput_f32_50hz_200Hz,cfft_testinput_f32_50hz_200Hz_ori,sizeof(cfft_testinput_f32_50hz_200Hz));
+    memcpy(cfft_testinput_f32_50hz_200Hz_ref,cfft_testinput_f32_50hz_200Hz_ori,sizeof(cfft_testinput_f32_50hz_200Hz_ref));
     BENCH_STATUS(riscv_cfft_radix2_f32);
 }
 
 int main()
 {
     BENCH_INIT;
-    DSP_cfft_radix2_q15();
-    DSP_cfft_radix2_q31();
     DSP_cfft_radix2_f32();
+    DSP_cfft_radix2_q15(); 
+    DSP_cfft_radix2_q31();
+
     BENCH_FINISH;
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");
