@@ -25,6 +25,7 @@ build_doc:
     refs:
       - master
       - develop
+      - feature/5.9.0
     changes:
       - NMSIS/doc/source/**/**/**/*
       - .gitlab-ci.yml
@@ -59,6 +60,7 @@ build_library:
     refs:
       - master
       - develop
+      - feature/5.9.0
   artifacts:
     when: always
     name: "nmsis_library-${CI_COMMIT_SHA::8}"
@@ -84,6 +86,7 @@ build_align_library:
     refs:
       - master
       - develop
+      - feature/5.9.0
   artifacts:
     when: always
     name: "nmsis_align_library-${CI_COMMIT_SHA::8}"
@@ -107,6 +110,7 @@ build_align_library:
     refs:
       - master
       - develop
+      - feature/5.9.0
   before_script:
     # prepare for docker ssh environment
     ## https://docs.gitlab.com/ee/ci/ssh_keys/#ssh-keys-when-using-the-docker-executor
@@ -179,6 +183,7 @@ release_benchmark:
     refs:
       - master
       - develop
+      - feature/5.9.0
   artifacts:
     name: "nmsis_test_log-${CI_COMMIT_SHA::8}"
     paths:
@@ -197,6 +202,7 @@ release_nmsis:
     refs:
       - master
       - develop
+      - feature/5.9.0
   artifacts:
     name: "nmsis_release-${CI_COMMIT_SHA::8}"
     paths:
