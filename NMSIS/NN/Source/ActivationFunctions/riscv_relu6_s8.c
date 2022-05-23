@@ -50,30 +50,34 @@
 
 void riscv_relu6_s8(q7_t *data, uint16_t size)
 {
-#if defined(RISCV_MATH_VECTOR)
-  uint16_t blkCnt = size;                               /* Loop counter */
-  size_t l;
-  vint8m8_t vx;
-  //inital to zero
-  int8_t vy1=0,vy2=6;
-  for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
-    vx = vle8_v_i8m8(data, l);
-    // if data >= zero, return data, else return zero
-    vse8_v_i8m8 (data, vmax_vx_i8m8(vx, vy1, l), l);
-    vse8_v_i8m8 (data, vmin_vx_i8m8(vx, vy2, l), l);
-    data += l;
-  }
-#else
-    int32_t i;
+	uint16_t i;
 
-    for (i = 0; i < size; i++)
+#if defined(RISCV_MATH_VECTOR)
+    uint16_t blkCnt = size & (~RVV_OPT_THRESHOLD);                               /* Loop counter */
+    uint16_t tmp_i = blkCnt;
+    size_t l;
+    vint8m8_t vx;
+    q7_t *px = data;
+    // inital to zero
+    int8_t vy1 = 0, vy2 = 6;
+    for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
+        vx = vle8_v_i8m8(px, l);
+        // if data >= zero, return data, else return zero
+        vse8_v_i8m8(px, vmin_vx_i8m8(vmax_vx_i8m8(vx, vy1, l), vy2, l), l);
+        px += l;
+    }
+    i = tmp_i;
+#else
+    i = 0;
+#endif
+
+    for (; i < size; i++)
     {
         int32_t ip = data[i];
 
         ip = MAX(ip, 0);
         data[i] = MIN(ip, 6);
     }
-#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

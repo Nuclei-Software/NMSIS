@@ -94,7 +94,6 @@ q7_t *riscv_nn_mat_mult_kernel_q7_q15(const q7_t *pA,
             sum3 = __SMLAD(inA22, inB1, sum3);
             sum4 = __SMLAD(inA22, inB2, sum4);
 
-           // printf("sum = %x\n", sum);
             colCnt--;
         } /* while over colCnt */
         colCnt = numCol_A & 0x3;

@@ -59,21 +59,19 @@
 void riscv_q7_to_q15_no_shift(const q7_t *pSrc, q15_t *pDst, uint32_t blockSize)
 {
     const q7_t *pIn = pSrc;
+    uint32_t  blkCnt;
 
 #if defined (RISCV_MATH_VECTOR)
-    uint32_t blkCnt = blockSize;                              /* Loop counter */
-    size_t l;
-    q15_t *pCnt = pDst;
-    const q7_t *pV = pSrc;
+	blkCnt = blockSize & (~RVV_OPT_THRESHOLD);                              /* Loop counter */
+	size_t l;
 
-    for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
-        vse16_v_i16m8 (pCnt, vwadd_vx_i16m8(vle8_v_i8m4(pV, l),0, l), l);
-        pV += l;
-        pCnt += l;
-    }
-#else
-    uint32_t  blkCnt;
-#if defined(RISCV_MATH_DSP)
+	for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
+		vse16_v_i16m8(pDst, vwadd_vx_i16m8(vle8_v_i8m4(pIn, l), 0, l), l);
+		pIn += l;
+		pDst += l;
+	}
+	blkCnt = blockSize & RVV_OPT_THRESHOLD;
+#elif defined(RISCV_MATH_DSP)
     q31_t in;
     q31_t in1, in2;
     q31_t out1, out2;
@@ -112,7 +110,7 @@ void riscv_q7_to_q15_no_shift(const q7_t *pSrc, q15_t *pDst, uint32_t blockSize)
     /* Loop over blockSize number of values */
     blkCnt = blockSize;
 
-#endif
+#endif /*defined (RISCV_MATH_VECTOR)*/
 
     while (blkCnt > 0u)
     {
@@ -122,7 +120,6 @@ void riscv_q7_to_q15_no_shift(const q7_t *pSrc, q15_t *pDst, uint32_t blockSize)
         /* Decrement the loop counter */
         blkCnt--;
     }
-#endif /*defined (RISCV_MATH_VECTOR)*/
 }
 
 /**

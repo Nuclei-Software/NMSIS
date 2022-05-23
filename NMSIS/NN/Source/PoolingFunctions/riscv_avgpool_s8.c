@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2020 Arm Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 Arm Limited or its affiliates.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -42,6 +42,13 @@ static void scale_q31_to_q7_and_clamp(const q31_t *buffer,
                                       const int act_max)
 {
     const int half_count = count / 2;
+
+    // Prevent static code issue DIVIDE_BY_ZERO.
+    if (count == 0)
+    {
+        return;
+    }
+
     for (int i = 0; i < length; i++)
     {
         int32_t sum = buffer[i] > 0 ? (buffer[i] + half_count) : (buffer[i] - half_count);
@@ -91,6 +98,11 @@ riscv_status riscv_avgpool_s8(const nmsis_nn_context *ctx,
     const int32_t act_min = pool_params->activation.min;
     const int32_t act_max = pool_params->activation.max;
     const int32_t ch_src = input_dims->c;
+
+    if (ctx->buf == NULL && riscv_avgpool_s8_get_buffer_size(output_dims->w, input_dims->c))
+    {
+        return RISCV_MATH_ARGUMENT_ERROR;
+    }
     q31_t *buffer = (q31_t *)ctx->buf;
 
 #if defined(RISCV_MATH_DSP)

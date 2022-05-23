@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2020 Arm Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2022 Arm Limited or its affiliates.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -20,10 +20,10 @@
 /* ----------------------------------------------------------------------
  * Project:      NMSIS NN Library
  * Title:        riscv_elementwise_add_s8
- * Description:  Element wise add
+ * Description:  Elementwise add
  *
- * $Date:        01. March 2021
- * $Revision:    V.2.5.3
+ * $Date:        3 Februari 2022
+ * $Revision:    V.2.6.0
  *
  * Target Processor: RISC-V Cores
  *
@@ -31,16 +31,6 @@
 
 #include "riscv_nnfunctions.h"
 #include "riscv_nnsupportfunctions.h"
-
-
-/**
- * @note The *_no_sat API does not mean that the input not saturated, Since
- *       __MULT is a positive integer, it is saturated. The API definition
- *       has more info about it.
- */
-#define SAT_INPUT(__INPUT, __MULT, __SHIFT)                                                                            \
-    __INPUT = riscv_nn_doubling_high_mult_no_sat(__INPUT, __MULT);                                                       \
-    __INPUT = riscv_nn_divide_by_power_of_two(__INPUT, -__SHIFT);
 
 /**
  *  @ingroup groupNN
@@ -52,7 +42,7 @@
  */
 
 /*
- * s8 element wise add
+ * s8 elementwise add
  *
  * Refer header file for details.
  *
@@ -75,39 +65,49 @@ riscv_status riscv_elementwise_add_s8(const int8_t *input_1_vect,
                                   const int32_t out_shift,
                                   const int32_t out_activation_min,
                                   const int32_t out_activation_max,
-                                  const uint32_t block_size)
+                                  const int32_t block_size)
 {
-#if defined(RISCV_MATH_VECTOR) && (__riscv_xlen != 32) && (__riscv_flen != 32)
-  uint32_t blkCnt = block_size;                               /* Loop counter */
-  size_t l;
-  vint32m4_t input_1;
-  vint32m4_t input_2;
-  vint32m4_t sum;
+    int32_t loop_count;
+    int32_t input_1;
+    int32_t input_2;
+    int32_t sum;
 
-  for (; (l = vsetvl_e8m1(blkCnt)) > 0; blkCnt -= l) {
-    input_1 = vsll_vx_i32m4(vwadd_vx_i32m4(vwadd_vx_i16m2(vle8_v_i8m1(input_1_vect, l), 0, l), input_1_offset, l), left_shift, l);
-    input_1_vect += l;
-    input_2 = vsll_vx_i32m4(vwadd_vx_i32m4(vwadd_vx_i16m2(vle8_v_i8m1(input_2_vect, l), 0, l), input_2_offset, l), left_shift, l);
-    input_2_vect += l;
+#if defined(RISCV_MATH_VECTOR)
+    int32_t blkCnt = block_size & (~RVV_OPT_THRESHOLD);                               /* Loop counter */
+    size_t l;
+    vint32m8_t input_1_m8;
+    vint32m8_t input_2_m8;
+    vint32m8_t sum0m8;
 
-    input_1 = vsra_vx_i32m4(vsmul_vx_i32m4(input_1, input_1_mult, l), -input_1_shift, l);
-    input_2 = vsra_vx_i32m4(vsmul_vx_i32m4(input_2, input_2_mult, l), -input_2_shift, l);
+    for (; (l = vsetvl_e8m2(blkCnt)) > 0; blkCnt -= l) {
+        input_1_m8 = vsll_vx_i32m8(vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vle8_v_i8m2(input_1_vect, l), 0, l), 0, l), input_1_offset, l), left_shift, l);
+        input_1_vect += l;
+        input_2_m8 = vsll_vx_i32m8(vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vle8_v_i8m2(input_2_vect, l), 0, l), 0, l), input_2_offset, l), left_shift, l);
+        input_2_vect += l;
+        if (input_1_shift < 0) {
+            input_1_m8 = vsra_vx_i32m8(vsmul_vx_i32m8(input_1_m8, input_1_mult, l), -input_1_shift, l);
+        } else {
+            input_1_m8 = vsll_vx_i32m8(vsmul_vx_i32m8(input_1_m8, input_1_mult, l), input_1_shift, l);
+        }
+        if (input_2_shift < 0) {
+            input_2_m8 = vsra_vx_i32m8(vsmul_vx_i32m8(input_2_m8, input_2_mult, l), -input_2_shift, l);
+        } else {
+            input_2_m8 = vsll_vx_i32m8(vsmul_vx_i32m8(input_2_m8, input_2_mult, l), input_2_shift, l);
+        }
+        sum0m8 = vadd_vv_i32m8(input_1_m8, input_2_m8, l);
+        if (out_shift < 0) {
+            sum0m8 = vadd_vx_i32m8(vsra_vx_i32m8(vsmul_vx_i32m8(sum0m8, out_mult, l), -out_shift, l), out_offset, l);
+        } else {
+            sum0m8 = vadd_vx_i32m8(vsll_vx_i32m8(vsmul_vx_i32m8(sum0m8, out_mult, l), out_shift, l), out_offset, l);
+        }
 
-    sum = vadd_vv_i32m4(input_1, input_2, l);
-    sum = vadd_vx_i32m4(vsra_vx_i32m4(vnclip_wx_i32m4(vsra_vx_i64m8(vadd_vx_i64m8(vwmul_vx_i64m8(sum, out_mult, l),0x8000,l),31,l),0,l), -out_shift, l), out_offset, l);
-
-    sum = vmax_vx_i32m4(sum, out_activation_min, l);
-    sum = vmin_vx_i32m4(sum, out_activation_max, l);
-    vse8_v_i8m1(output, vnsra_wx_i8m1(vnsra_wx_i16m2(sum, 0, l), 0, l), l);
-    output += l;
-  }
-#else
-  uint32_t loop_count;
-  int32_t input_1;
-  int32_t input_2;
-  int32_t sum;
-
-#if defined(RISCV_MATH_DSP)
+        sum0m8 = vmax_vx_i32m8(sum0m8, out_activation_min, l);
+        sum0m8 = vmin_vx_i32m8(sum0m8, out_activation_max, l);
+        vse8_v_i8m2(output, vnsra_wx_i8m2(vnsra_wx_i16m4(sum0m8, 0, l), 0, l), l);
+        output += l;
+    }
+    loop_count = block_size & RVV_OPT_THRESHOLD;
+#elif defined(RISCV_MATH_DSP)
     int32_t a_1, b_1, a_2, b_2;
 
     int32_t offset_1_packed, offset_2_packed;
@@ -119,7 +119,7 @@ riscv_status riscv_elementwise_add_s8(const int8_t *input_1_vect,
 
     loop_count = block_size >> 2;
 
-    while (loop_count > 0U)
+    while (loop_count > 0)
     {
         /* 4 outputs are calculated in one loop. The order of calculation is follows the order of output sign extension
            intrinsic */
@@ -135,13 +135,13 @@ riscv_status riscv_elementwise_add_s8(const int8_t *input_1_vect,
         /* Sum 1 */
         input_1 = (b_1 & 0x0FFFF) << left_shift;
 
-        SAT_INPUT(input_1, input_1_mult, input_1_shift);
+        input_1 = riscv_nn_requantize(input_1, input_1_mult, input_1_shift);
 
         input_2 = (b_2 & 0x0FFFF) << left_shift;
-        SAT_INPUT(input_2, input_2_mult, input_2_shift);
+        input_2 = riscv_nn_requantize(input_2, input_2_mult, input_2_shift);
 
         sum = input_1 + input_2;
-        SAT_INPUT(sum, out_mult, out_shift);
+        sum = riscv_nn_requantize(sum, out_mult, out_shift);
         sum += out_offset;
         sum = MAX(sum, out_activation_min);
         sum = MIN(sum, out_activation_max);
@@ -149,13 +149,13 @@ riscv_status riscv_elementwise_add_s8(const int8_t *input_1_vect,
 
         /* Sum 3 */
         input_1 = ((b_1 >> 16) & 0x0FFFF) << left_shift;
-        SAT_INPUT(input_1, input_1_mult, input_1_shift);
+        input_1 = riscv_nn_requantize(input_1, input_1_mult, input_1_shift);
 
         input_2 = ((b_2 >> 16) & 0x0FFFF) << left_shift;
-        SAT_INPUT(input_2, input_2_mult, input_2_shift);
+        input_2 = riscv_nn_requantize(input_2, input_2_mult, input_2_shift);
 
         sum = input_1 + input_2;
-        SAT_INPUT(sum, out_mult, out_shift);
+        sum = riscv_nn_requantize(sum, out_mult, out_shift);
         sum += out_offset;
         sum = MAX(sum, out_activation_min);
         sum = MIN(sum, out_activation_max);
@@ -163,13 +163,13 @@ riscv_status riscv_elementwise_add_s8(const int8_t *input_1_vect,
 
         /* Sum 2 */
         input_1 = (a_1 & 0x0FFFF) << left_shift;
-        SAT_INPUT(input_1, input_1_mult, input_1_shift);
+        input_1 = riscv_nn_requantize(input_1, input_1_mult, input_1_shift);
 
         input_2 = (a_2 & 0x0FFFF) << left_shift;
-        SAT_INPUT(input_2, input_2_mult, input_2_shift);
+        input_2 = riscv_nn_requantize(input_2, input_2_mult, input_2_shift);
 
         sum = input_1 + input_2;
-        SAT_INPUT(sum, out_mult, out_shift);
+        sum = riscv_nn_requantize(sum, out_mult, out_shift);
         sum += out_offset;
         sum = MAX(sum, out_activation_min);
         sum = MIN(sum, out_activation_max);
@@ -177,13 +177,13 @@ riscv_status riscv_elementwise_add_s8(const int8_t *input_1_vect,
 
         /* Sum 4 */
         input_1 = ((a_1 >> 16) & 0x0FFFF) << left_shift;
-        SAT_INPUT(input_1, input_1_mult, input_1_shift);
+        input_1 = riscv_nn_requantize(input_1, input_1_mult, input_1_shift);
 
         input_2 = ((a_2 >> 16) & 0x0FFFF) << left_shift;
-        SAT_INPUT(input_2, input_2_mult, input_2_shift);
+        input_2 = riscv_nn_requantize(input_2, input_2_mult, input_2_shift);
 
         sum = input_1 + input_2;
-        SAT_INPUT(sum, out_mult, out_shift);
+        sum = riscv_nn_requantize(sum, out_mult, out_shift);
         sum += out_offset;
         sum = MAX(sum, out_activation_min);
         sum = MIN(sum, out_activation_max);
@@ -199,21 +199,18 @@ riscv_status riscv_elementwise_add_s8(const int8_t *input_1_vect,
     loop_count = block_size;
 #endif
 
-    while (loop_count > 0U)
+    while (loop_count > 0)
     {
         /* C = A + B */
 
         input_1 = (*input_1_vect++ + input_1_offset) << left_shift;
         input_2 = (*input_2_vect++ + input_2_offset) << left_shift;
 
-        input_1 = riscv_nn_doubling_high_mult(input_1, input_1_mult);
-        input_1 = riscv_nn_divide_by_power_of_two(input_1, -input_1_shift);
-
-        input_2 = riscv_nn_doubling_high_mult(input_2, input_2_mult);
-        input_2 = riscv_nn_divide_by_power_of_two(input_2, -input_2_shift);
+        input_1 = riscv_nn_requantize(input_1, input_1_mult, input_1_shift);
+        input_2 = riscv_nn_requantize(input_2, input_2_mult, input_2_shift);
 
         sum = input_1 + input_2;
-        SAT_INPUT(sum, out_mult, out_shift);
+        sum = riscv_nn_requantize(sum, out_mult, out_shift);
         sum += out_offset;
 
         sum = MAX(sum, out_activation_min);
@@ -225,8 +222,8 @@ riscv_status riscv_elementwise_add_s8(const int8_t *input_1_vect,
         loop_count--;
     }
 
-#endif /* defined(RISCV_MATH_VECTOR) */
-  return (RISCV_MATH_SUCCESS);
+
+    return (RISCV_MATH_SUCCESS);
 }
 
 /**

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2020 Arm Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 Arm Limited or its affiliates.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_nn_mat_mult_s8.c
  * Description:  General Matrix-multiplication function
  *
- * $Date:        09. October 2020
- * $Revision:    V.2.0.5
+ * $Date:        27. October 2021
+ * $Revision:    V.2.0.6
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */

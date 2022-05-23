@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2021 Arm Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2022 Arm Limited or its affiliates.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_fully_connected_s8
  * Description:  Fully connected function compatible with TF Lite.
  *
- * $Date:        19. March 2021
- * $Revision:    V.3.0.0
+ * $Date:        8 April 2022
+ * $Revision:    V.3.1.0
  *
  * Target Processor: RISC-V Cores
  *
@@ -80,7 +80,8 @@ riscv_status riscv_fully_connected_s8(const nmsis_nn_context *ctx,
                                  filter_dims->n, /* col_dim or accum_depth */
                                  output_dims->c, /* row_dim or output_depth */
                                  fc_params->activation.min,
-                                 fc_params->activation.max);
+                                 fc_params->activation.max,
+                                 1L);
         input += filter_dims->n;
         output += output_dims->c;
         batch_cnt--;

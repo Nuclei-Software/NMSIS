@@ -22,8 +22,8 @@
  * Title:        riscv_depthwise_separable_conv_HWC_q7_nonsquare.c
  * Description:  Q7 depthwise separable convolution function (non-square shape)
  *
- * $Date:        January 26, 2021
- * $Revision:    V.1.0.2
+ * $Date:        July 20, 2021
+ * $Revision:    V.1.1.2
  *
  * Target Processor: RISC-V Cores
  *
@@ -117,16 +117,6 @@ riscv_status riscv_depthwise_separable_conv_HWC_q7_nonsquare(const q7_t *Im_in,
     uint16_t rowCnt;
     uint16_t row_shift;
 
-#if defined(RISCV_MATH_VECTOR)
-    size_t l;
-    uint32_t blkCnt;
-    ptrdiff_t bstride;
-    vint8m2_t vam2,vbm2;
-    vint32m1_t vtemp;
-    l = vsetvl_e32m1(1);
-    vtemp = vsub_vv_i32m1(vtemp,vtemp, l);
-#endif
-
     /* do some checking here, basically ch_im_in == ch_im_out */
     if (ch_im_in != ch_im_out)
     {
@@ -162,11 +152,18 @@ riscv_status riscv_depthwise_separable_conv_HWC_q7_nonsquare(const q7_t *Im_in,
             row_shift = 0;
             pBias = bias;
 #if defined(RISCV_MATH_VECTOR)
+            size_t l;
+            uint32_t blkCnt;
+            ptrdiff_t bstride;
+            vint8m4_t vam4, vbm4;
+            vint32m1_t vtemp;
+            l = vsetvl_e32m1(1);
+            vtemp = vsub_vv_i32m1(vtemp,vtemp, l);
             rowCnt = ch_im_out;
             bstride = ch_im_in;
             while (rowCnt)
             {
-                q7_t     *pB = colBuffer + row_shift;
+                const q7_t *pB = colBuffer + row_shift;
                 const q7_t *pA = wt + row_shift;
                 q31_t     sum = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
                 uint16_t  colCnt = (dim_kernel_x * dim_kernel_y);
@@ -174,25 +171,23 @@ riscv_status riscv_depthwise_separable_conv_HWC_q7_nonsquare(const q7_t *Im_in,
                 row_shift += 1;
 
                 blkCnt = colCnt;
-                for (; (l = vsetvl_e8m2(blkCnt)) > 0; blkCnt -= l) {
-                    vam2 = vlse8_v_i8m2(pA,bstride, l);
-                    vbm2 = vlse8_v_i8m2(pB,bstride, l);
-                    pA += l*ch_im_in;
-                    pB += l*ch_im_in;
-                    l = vsetvl_e8m2(blkCnt);
-                    sum += vmv_x_s_i32m1_i32(vwredsum_vs_i16m4_i32m1(vtemp, vwmul_vv_i16m4(vam2, vbm2, l), vtemp, l));
+                for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
+                    vam4 = vlse8_v_i8m4(pA,bstride, l);
+                    vbm4 = vlse8_v_i8m4(pB,bstride, l);
+                    pA += l * ch_im_in;
+                    pB += l * ch_im_in;
+                    sum += vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(vtemp, vwmul_vv_i16m8(vam4, vbm4, l), vtemp, l));
                 }
                 *pOut++ = (q7_t) __SSAT((sum >> out_shift), 8);
                 rowCnt--;
             }
-#else
+#elif defined (RISCV_MATH_DSP)
             while (rowCnt)
             {
                 q31_t     sum =  ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
                 q31_t     sum2 = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
                 q31_t     sum3 = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
                 q31_t     sum4 = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
-#if defined (RISCV_MATH_DSP)
                 uint16_t  colCnt = (dim_kernel_x * dim_kernel_y) >> 2;
                 q7_t     *pB = colBuffer + row_shift;
                 const q7_t *pA = wt + row_shift;
@@ -271,12 +266,6 @@ riscv_status riscv_depthwise_separable_conv_HWC_q7_nonsquare(const q7_t *Im_in,
 
 
                 colCnt = (dim_kernel_x * dim_kernel_y) & 0x3;
-#else
-                uint16_t  colCnt = (dim_kernel_x * dim_kernel_y);
-                q7_t     *pB = colBuffer + row_shift;
-                const q7_t *pA = wt + row_shift;
-                row_shift += 4;
-#endif /*ndef RISCV_MATH_VECTOR*/
                 while (colCnt)
                 {
                     union riscv_nnword inA, inB;

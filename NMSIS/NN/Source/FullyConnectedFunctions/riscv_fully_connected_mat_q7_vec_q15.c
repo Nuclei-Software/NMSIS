@@ -22,8 +22,8 @@
  * Title:        riscv_fully_connected_mat_q7_vec_q15.c
  * Description:  Mixed Q15-Q7 fully-connected layer function
  *
- * $Date:        09. October 2020
- * $Revision:    V.1.0.1
+ * $Date:        20. July 2021
+ * $Revision:    V.1.1.1
  *
  * Target Processor: RISC-V Cores
  *
@@ -78,35 +78,85 @@ riscv_status riscv_fully_connected_mat_q7_vec_q15(const q15_t *pV,
 {
     (void)vec_buffer;
 #if defined(RISCV_MATH_VECTOR)
-    int       i, j;
-    uint32_t blkCnt_v;
-    size_t l;
-    vint16m4_t v_x, v_y;
-    vint32m8_t v_a;
-    vint64m1_t v_temp;
-    l = vsetvl_e64m1(1);
-    v_temp = vsub_vv_i64m1(v_temp, v_temp, l);
-    /* Run the following code as reference implementation for RISC-V Core without DSP */
-    for (i = 0; i < num_of_rows; i++)
-    {
-        int       ip_out = ((q31_t)(bias[i]) << bias_shift) + NN_ROUND(out_shift);
+    (void)vec_buffer;
+    int i, j;
+    uint16_t rowCnt = num_of_rows / 0x3;
+    q15_t *pO = pOut;
 
-        blkCnt_v = dim_vec;
-        j = 0;
-        l = vsetvl_e32m8(blkCnt_v);
-        v_a = vsub_vv_i32m8(v_a,v_a, l);
-        for (; (l = vsetvl_e16m4(blkCnt_v)) > 0; blkCnt_v -= l) {
-            v_x = vle16_v_i16m4(pV+j, l);
-            v_y = vwadd_vx_i16m4(vle8_v_i8m2(pM+i * dim_vec + j, l),0, l);
-            v_a = vwmacc_vv_i32m8(v_a,v_x,v_y, l);
-            j += l;
+    q31_t sum, sum2, sum3;
+    const q15_t *pA;
+    const q7_t *pB, *pB2, *pB3;
+    int32_t blkCnt;
+    vint16m4_t a16m4, b16m4, c16m4, d16m4;
+
+    vint32m1_t v_temp;
+    size_t l;
+    l = vsetvl_e32m1(1);
+    v_temp = vsub_vv_i32m1(v_temp, v_temp, l);
+
+    pA = pV;
+    pB = pM;
+    pB3 = pB;
+    for (i = 0; i < rowCnt; i++)
+    {
+        sum = ((q31_t)(*bias++) << bias_shift) + NN_ROUND(out_shift);
+        sum2 = ((q31_t)(*bias++) << bias_shift) + NN_ROUND(out_shift);
+        sum3 = ((q31_t)(*bias++) << bias_shift) + NN_ROUND(out_shift);
+        pA = pV;
+        pB = pB3;
+        pB2 = pB + dim_vec;
+        pB3 = pB2 + dim_vec;
+        blkCnt = dim_vec & (~RVV_OPT_THRESHOLD);                             /* Loop counter */
+        for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
+        {
+            a16m4 = vle16_v_i16m4(pA, l);
+            b16m4 = vwadd_vx_i16m4(vle8_v_i8m2(pB, l), 0, l);
+            c16m4 = vwadd_vx_i16m4(vle8_v_i8m2(pB2, l), 0, l);
+            d16m4 = vwadd_vx_i16m4(vle8_v_i8m2(pB3, l), 0, l);
+            sum += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, vwmul_vv_i32m8(a16m4, b16m4, l), v_temp, l));
+            sum2 += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, vwmul_vv_i32m8(a16m4, c16m4, l), v_temp, l));
+            sum3 += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, vwmul_vv_i32m8(a16m4, d16m4, l), v_temp, l));
+            pA += l;
+            pB += l;
+            pB2 += l;
+            pB3 += l;
         }
-        l = vsetvl_e32m8(dim_vec);
-        ip_out += (q31_t)vmv_x_s_i64m1_i64 (vwredsum_vs_i32m8_i64m1(v_temp,v_a,v_temp, l));
-        pOut[i] = (q15_t) __SSAT((ip_out >> out_shift), 16);
+        j = dim_vec & RVV_OPT_THRESHOLD;
+        while (j--)
+        {
+            sum += *pA * *(pB++);
+            sum2 += *pA * *(pB2++);
+            sum3 += *pA * *(pB3++);
+            pA++;
+        }
+        *pO++ = (q15_t)__SSAT((sum >> out_shift), 16);
+        *pO++ = (q15_t)__SSAT((sum2 >> out_shift), 16);
+        *pO++ = (q15_t)__SSAT((sum3 >> out_shift), 16);
     }
-#else
-#if defined (RISCV_MATH_DSP)
+
+    rowCnt = num_of_rows % 0x3;
+    while (rowCnt) {
+        sum = ((q31_t)(*bias++) << bias_shift) + NN_ROUND(out_shift);
+        pA = pV;
+        blkCnt = dim_vec & (~RVV_OPT_THRESHOLD);                               /* Loop counter */
+        for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
+        {
+            a16m4 = vle16_v_i16m4(pA, l);
+            b16m4 = vwadd_vx_i16m4(vle8_v_i8m2(pB3, l), 0, l);
+            sum += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, vwmul_vv_i32m8(a16m4, b16m4, l), v_temp, l));
+            pA += l;
+            pB3 += l;
+        }
+        j = dim_vec & RVV_OPT_THRESHOLD;
+        while (j--)
+        {
+            sum += *(pA++) * *(pB3++);
+        }
+        *pO++ = (q15_t)__SSAT((sum >> out_shift), 16);
+
+        rowCnt--;
+    }
+#elif defined (RISCV_MATH_DSP)
     /* Run the following code for RISC-V Core with DSP enabled */
 
     const q7_t *pB = pM;
@@ -168,10 +218,10 @@ riscv_status riscv_fully_connected_mat_q7_vec_q15(const q15_t *pV,
 
     while (rowCnt)
     {
+        q31_t sum = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
+        uint16_t colCnt = dim_vec >> 2;
 
         pA = pV;
-        q31_t     sum = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
-        uint16_t  colCnt = dim_vec >> 2;
 #if __RISCV_XLEN == 64
         q63_t sum64 = 0;
         while (colCnt)
@@ -222,7 +272,7 @@ riscv_status riscv_fully_connected_mat_q7_vec_q15(const q15_t *pV,
             colCnt--;
         }
 
-        *pO++ = (q15_t) (__SSAT(((uint64_t)sum >> out_shift), 16));
+        *pO++ = (q15_t)(__SSAT((sum >> out_shift), 16));
 
         rowCnt--;
     }
@@ -240,8 +290,8 @@ riscv_status riscv_fully_connected_mat_q7_vec_q15(const q15_t *pV,
         pOut[i] = (q15_t)__SSAT((ip_out >> out_shift), 16);
     }
 
-#endif                          /* RISCV_MATH_DSP */
-#endif
+#endif /* RISCV_MATH_DSP */
+
     /* Return to RISCV_MATH_SUCCESS */
     return (RISCV_MATH_SUCCESS);
 }

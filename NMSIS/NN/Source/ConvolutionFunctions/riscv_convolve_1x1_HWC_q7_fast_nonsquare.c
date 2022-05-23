@@ -22,8 +22,8 @@
  * Title:        riscv_convolve_1x1_HWC_q7_fast_nonsquare.c
  * Description:  Fast Q7 version of 1x1 convolution (non-square shape)
  *
- * $Date:        January 26, 2021
- * $Revision:    V.1.0.2
+ * $Date:        July 20, 2021
+ * $Revision:    V.1.1.2
  *
  * Target Processor: RISC-V Cores
  *
@@ -101,27 +101,19 @@ riscv_status riscv_convolve_1x1_HWC_q7_fast_nonsquare(const q7_t *Im_in,
                                                   q7_t *bufferB)
 {
     (void)bufferB;
-#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_DSP)  || defined (RISCV_MATH_VECTOR)
     /* Run the following code for RISC-V Core with DSP enabled */
     (void)dim_im_in_y;
-    int16_t   i_out_y, i_out_x;
-    int16_t   i_ch_out;
-#if defined(RISCV_MATH_VECTOR)
-    uint32_t blkCnt_v;
-    size_t l;
-    vint8m2_t v_a, v_b;
-    int32_t i_a;
-    vint32m1_t v_temp;
-    l = vsetvl_e32m1(1);
-    v_temp = vsub_vv_i32m1(v_temp, v_temp, l);
-#endif
+    int16_t i_out_y, i_out_x;
+    int16_t i_ch_out;
+
     /* -----------------------
      *  Here we use bufferA as q15_t internally as computation are done with q15_t level
      *  im2col are done to output in q15_t format from q7_t input
      */
 
-    q7_t    *pBuffer = (q7_t *)bufferA;
-    q7_t     *pOut = Im_out;
+    q7_t *pBuffer = (q7_t *)bufferA;
+    q7_t *pOut = Im_out;
 
     if (ch_im_in % 4 != 0 || ch_im_out % 2 != 0 || dim_kernel_x != 1 || dim_kernel_y != 1 || padding_x != 0 ||
         padding_y != 0 || stride_x != 1 || stride_y != 1)
@@ -135,14 +127,14 @@ riscv_status riscv_convolve_1x1_HWC_q7_fast_nonsquare(const q7_t *Im_in,
         for (i_out_x = 0; i_out_x < dim_im_out_x; i_out_x++)
         {
             /* This part implements the im2col function */
-            riscv_q7_to_q7_reordered_no_shift((q7_t *) Im_in + (i_out_y * dim_im_in_x + i_out_x) * ch_im_in, pBuffer,
-                                             ch_im_in);
+            riscv_q7_to_q7_reordered_no_shift(
+                (q7_t *)Im_in + (i_out_y * dim_im_in_x + i_out_x) * ch_im_in, pBuffer, ch_im_in);
             pBuffer += ch_im_in;
 
             if (pBuffer == (q7_t *)bufferA + 2 * ch_im_in * dim_kernel_x * dim_kernel_y)
             {
-                pOut =
-                    riscv_nn_mat_mult_kernel_q7_reordered(wt, (q7_t *)bufferA, ch_im_out, ch_im_in, bias_shift, out_shift, bias, pOut);
+                pOut = riscv_nn_mat_mult_kernel_q7_reordered(
+                    wt, (q7_t *)bufferA, ch_im_out, ch_im_in, bias_shift, out_shift, bias, pOut);
                 /* counter reset */
                 pBuffer = (q7_t *)bufferA;
             }
@@ -155,22 +147,31 @@ riscv_status riscv_convolve_1x1_HWC_q7_fast_nonsquare(const q7_t *Im_in,
         const q7_t *pA = wt;
         for (i_ch_out = 0; i_ch_out < ch_im_out; i_ch_out++)
         {
-            q31_t     sum = ((q31_t)(bias[i_ch_out]) << bias_shift) + NN_ROUND(out_shift);
-            q7_t    *pB = (q7_t *)bufferA;
+            q31_t sum = ((q31_t)(bias[i_ch_out]) << bias_shift) + NN_ROUND(out_shift);
+            const q7_t *pB = (q7_t *)bufferA;
             /* basically each time it process 4 entries */
+            uint16_t  colCnt = ch_im_in * dim_kernel_x * dim_kernel_y;
 #if defined(RISCV_MATH_VECTOR)
-            blkCnt_v = ch_im_in * dim_kernel_y * dim_kernel_x;
-            for (; (l = vsetvl_e8m2(blkCnt_v)) > 0; blkCnt_v -= l) {
-                v_a = vle8_v_i8m2(pA, l);
-                v_b = vle8_v_i8m2(pB, l);
-                pA += l;
-                pB += l;
-                sum += vmv_x_s_i32m1_i32 (vwredsum_vs_i16m4_i32m1(v_temp,vwmul_vv_i16m4(v_a,v_b, l),v_temp, l));
-            }
-#else
-#if defined (RISCV_MATH_DSP)
+                int32_t blkCnt;
+                vint8m4_t a8m4, b8m4;
+
+                vint32m1_t v_temp;
+                size_t l;
+                l = vsetvl_e32m1(1);
+                v_temp = vsub_vv_i32m1(v_temp, v_temp, l);
+                blkCnt = colCnt & (~RVV_OPT_THRESHOLD);                               /* Loop counter */
+                for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l)
+                {
+                    a8m4 = vle8_v_i8m4(pA, l);
+                    b8m4 = vle8_v_i8m4(pB, l);
+                    sum += vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(v_temp, vwmul_vv_i16m8(a8m4, b8m4, l), v_temp, l));
+                    pA += l;
+                    pB += l;
+                }
+                colCnt = colCnt & RVV_OPT_THRESHOLD;
+#elif defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
-            uint16_t  colCnt = ch_im_in * dim_kernel_x * dim_kernel_y >> 3;
+            uint16_t colCnt1 = colCnt >> 3;
             q63_t sum64 = 0;
             while (colCnt)
             {
@@ -181,10 +182,10 @@ riscv_status riscv_convolve_1x1_HWC_q7_fast_nonsquare(const q7_t *Im_in,
                 colCnt--;
             }
             sum = sum + (q31_t)(sum64 & 0xFFFFFFFF) + (q31_t)((sum64 & 0xFFFFFFFF00000000)>>32);
-            colCnt = ch_im_in * dim_kernel_y * dim_kernel_x & 0x7;
+            colCnt = colCnt & 0x7;
 
 #else
-            uint16_t  colCnt = ch_im_in * dim_kernel_x * dim_kernel_y >> 2;
+            uint16_t colCnt1 = colCnt >> 2;
 
             while (colCnt)
             {
@@ -194,11 +195,8 @@ riscv_status riscv_convolve_1x1_HWC_q7_fast_nonsquare(const q7_t *Im_in,
 
                 colCnt--;
             }
-            colCnt = ch_im_in * dim_kernel_y * dim_kernel_x & 0x3;
+            colCnt = colCnt & 0x3;
 #endif /* __RISCV_XLEN == 64 */
-#else
-            uint16_t  colCnt = ch_im_in * dim_kernel_y * dim_kernel_x;
-#endif /* defined (RISCV_MATH_DSP) */
             while (colCnt)
             {
                 q7_t inA1 = *pA++;

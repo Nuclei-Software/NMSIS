@@ -22,8 +22,8 @@
  * Title:        riscv_convolve_HWC_q15_basic.c
  * Description:  Q15 version of convolution
  *
- * $Date:        January 26, 2021
- * $Revision:    V.1.0.2
+ * $Date:        July 20, 2021
+ * $Revision:    V.1.1.2
  *
  * Target Processor: RISC-V Cores
  *

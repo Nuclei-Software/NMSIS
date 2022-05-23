@@ -81,16 +81,15 @@ void riscv_q7_to_q7_reordered_no_shift(const q7_t * pSrc, q7_t * pDst, uint32_t 
     const q7_t *pIn = pSrc;     /* Src pointer */
 
 #if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = blockSize & 0xFFFFFFF0;        /* Loop counter */
-  size_t l;
-  vint8m8_t vx, vy;
+    uint32_t blkCnt = blockSize & (~RVV_OPT_THRESHOLD);        /* Loop counter */
+    size_t l;
 
-  for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
-    vse8_v_i8m8 (pDst, vle8_v_i8m8(pIn, l), l);
+    for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
+    vse8_v_i8m8(pDst, vle8_v_i8m8(pIn, l), l);
     pIn += l;
     pDst += l;
-  }
-  blkCnt = blockSize & 0xF;
+    }
+    blkCnt = blockSize & RVV_OPT_THRESHOLD;
 #else
     uint32_t  blkCnt;           /* loop counter */
     q31_t     in;

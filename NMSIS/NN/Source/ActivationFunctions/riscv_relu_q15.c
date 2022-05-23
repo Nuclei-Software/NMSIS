@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2020 Arm Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 Arm Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,7 +22,7 @@
  * Title:        riscv_relu_q15.c
  * Description:  Q15 version of ReLU
  *
- * $Date:        09. October 2020
+ * $Date:        20. July 2021
  * $Revision:    V.1.0.2
  *
  * Target Processor: RISC-V Cores
@@ -54,19 +54,23 @@
 
 void riscv_relu_q15(q15_t *data, uint16_t size)
 {
+    uint16_t i;
+
 #if defined(RISCV_MATH_VECTOR)
-  uint16_t blkCnt = size;                               /* Loop counter */
-  size_t l;
-  vint16m8_t vx;
-  int16_t vy = 0;
-  for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
-    vx = vle16_v_i16m8(data, l);
-    // if data >= zero, return data, else return zero
-    vse16_v_i16m8 (data, vmax_vx_i16m8(vx, vy, l), l);
-    data += l;
-  }
-#else
-#if defined(RISCV_MATH_DSP)
+    uint16_t blkCnt = size & (~RVV_OPT_THRESHOLD);                               /* Loop counter */
+    uint16_t tmp_i = blkCnt;
+    size_t l;
+    vint16m8_t vx;
+    int16_t zero = 0;
+
+    for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
+        vx = vle16_v_i16m8(data, l);
+        // if data >= zero, return data, else return zero
+        vse16_v_i16m8(data, vmax_vx_i16m8(vx, zero, l), l);
+        data += l;
+    }
+    i = tmp_i;
+#elif defined(RISCV_MATH_DSP)
     /* Run the following code for M cores with DSP extension */
 
     q15_t    *input = data;
@@ -76,28 +80,21 @@ void riscv_relu_q15(q15_t *data, uint16_t size)
     q31_t     mask;
     q31_t      zero;
 #if __RISCV_XLEN == 64
-    uint16_t  i = size >> 2;
+    i = size >> 2;
+    uint16_t tmp_i = i;
     q63_t in64;
     while (i)
     {
         in64 = *__SIMD64(input)++;
 
-        *__SIMD64(output)++ = __RV_SMAX16 (in64,zero);
+        *__SIMD64(output)++ = __RV_SMAX16 (in64, zero);
 
         i--;
     }
-    i = size & 0x3;
-    while (i)
-    {
-        if (*input < 0)
-        {
-            *input = 0;
-        }
-        input++;
-        i--;
-    }
+    i = tmp_i;
 #else
-    uint16_t  i = size >> 1;
+    i = size >> 1;
+    uint16_t tmp_i = i;
     while (i)
     {
 
@@ -113,32 +110,24 @@ void riscv_relu_q15(q15_t *data, uint16_t size)
 
         /* if MSB=1, mask will be 0xFF, 0x0 otherwise */
        // mask = __QSUB16(0x00000000, buf);
-        *__SIMD32(output)++ = __RV_SMAX16 (in,zero);
+        *__SIMD32(output)++ = __RV_SMAX16 (in, zero);
        // *__SIMD32(output)++ = in & (~mask);
         i--;
     }
 
-    if (size & 0x1)
-    {
-        if (*input < 0)
-        {
-            *input = 0;
-        }
-        input++;
-    }
+    i = tmp_i;
 #endif /* __RISCV_XLEN == 64 */
 #else
+	i = 0;
+#endif
     /* Run the following code as reference implementation for M cores without DSP extension */
-    uint16_t i;
 
-    for (i = 0; i < size; i++)
+    for (; i < size; i++)
     {
         if (data[i] < 0)
             data[i] = 0;
     }
 
-#endif /* RISCV_MATH_DSP */
-#endif /* RISCV_MATH_VECTOR */
 }
 
 /**

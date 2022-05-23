@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020-2021 Arm Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2020-2022 Arm Limited or its affiliates.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_nn_vec_mat_mult_t_s8
  * Description:  s8 vector by matrix (transposed) multiplication
  *
- * $Date:        02. May 2021
- * $Revision:    V.2.5.0
+ * $Date:        28 April 2022
+ * $Revision:    V.3.0.1
  *
  * Target Processor: RISC-V Cores
  *
@@ -58,14 +58,117 @@ riscv_status riscv_nn_vec_mat_mult_t_s8(const q7_t *lhs,
                                     const int32_t rhs_cols,
                                     const int32_t rhs_rows,
                                     const int32_t activation_min,
-                                    const int32_t activation_max)
+                                    const int32_t activation_max,
+                                    const int32_t address_offset)
 {
     (void)rhs_offset;
-#if   defined(RISCV_MATH_DSP)
-    int32_t row_loop_cnt = rhs_rows / 2;
+#if defined (RISCV_MATH_VECTOR)
+	for (int32_t rhs_rows_idx = 0; rhs_rows_idx < rhs_rows; rhs_rows_idx += 2)
+	{
+		const q7_t *lhs_ptr = lhs;
+		const q7_t *rhs_ptr = rhs;
 
+		q31_t res00 = 0;
+		q31_t res01 = 0;
+
+		if (bias)
+		{
+			res00 = *bias++;
+			res01 = *bias++;
+		}
+
+		int32_t vblkCnt = rhs_cols;    /* Loop counter */
+		size_t l;
+		vint8m2_t vx, vy, vz;
+		vint32m8_t rhs_value0, rhs_value1, lhs_value;
+		vint32m1_t temp00m1;
+		const q7_t *px = rhs_ptr;
+		const q7_t *py = rhs_ptr + rhs_cols;
+		const q7_t *pz = lhs_ptr;
+
+		l = vsetvl_e32m1(1);
+		temp00m1 = vmv_v_x_i32m1(0, l);
+		for (; (l = vsetvl_e8m2(vblkCnt)) > 0; vblkCnt -= l) {
+			vx = vle8_v_i8m2(px, l);
+			px += l;
+			vy = vle8_v_i8m2(py, l);
+			py += l;
+			vz = vle8_v_i8m2(pz, l);
+			pz += l;
+
+			rhs_value0 = vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vx, 0, l), 0, l), rhs_offset, l);
+			rhs_value1 = vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vy, 0, l), 0, l), rhs_offset, l);
+			lhs_value = vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vz, 0, l), 0, l), lhs_offset, l);
+
+			res00 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vmul_vv_i32m8(lhs_value, rhs_value0, l), temp00m1, l));
+			res01 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vmul_vv_i32m8(lhs_value, rhs_value1, l), temp00m1, l));
+		}
+
+		// Quantize down
+		res00 = riscv_nn_requantize(res00, dst_multiplier, dst_shift);
+		res01 = riscv_nn_requantize(res01, dst_multiplier, dst_shift);
+		// Add offset
+		res00 += dst_offset;
+		res01 += dst_offset;
+
+		// Clamp the result
+		res00 = CLAMP(res00, activation_max, activation_min);
+		res01 = CLAMP(res01, activation_max, activation_min);
+		*dst = (int8_t)res00;
+		*(dst + address_offset) = (int8_t)res01;
+		dst += 2 * address_offset;
+		rhs += 2 * rhs_cols;
+	}
+
+	if (rhs_rows & 0x1)
+	{
+		const q7_t *lhs_ptr = lhs;
+		const q7_t *rhs_ptr = rhs;
+
+		q31_t res00 = 0;
+		if (bias)
+		{
+			res00 = *bias++;
+		}
+
+		uint32_t vblkCnt = rhs_cols;    /* Loop counter */
+		size_t l;
+		vint8m2_t vx, vz;
+		vint32m8_t rhs_value0, lhs_value;
+		vint32m1_t temp00m1;
+		const q7_t *px = rhs_ptr;
+		const q7_t *pz = lhs_ptr;
+
+		l = vsetvl_e32m1(1);
+		temp00m1 = vmv_v_x_i32m1(0, l);
+		for (; (l = vsetvl_e8m2(vblkCnt)) > 0; vblkCnt -= l) {
+			vx = vle8_v_i8m2(px, l);
+			px += l;
+			vz = vle8_v_i8m2(pz, l);
+			pz += l;
+
+			rhs_value0 = vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vx, 0, l), 0, l), rhs_offset, l);
+			lhs_value = vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vz, 0, l), 0, l), lhs_offset, l);
+
+			res00 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vmul_vv_i32m8(lhs_value, rhs_value0, l), temp00m1, l));
+		}
+
+		// Quantize down
+		res00 = riscv_nn_requantize(res00, dst_multiplier, dst_shift);
+
+		// Add offset
+		res00 += dst_offset;
+
+		// Clamp the result
+		res00 = CLAMP(res00, activation_max, activation_min);
+
+		*dst = (int8_t)res00;
+		dst += address_offset;
+	}
+
+#elif defined(RISCV_MATH_DSP)
+    const int32_t row_loop_cnt = rhs_rows / 2;
     const int16_t lhs_offset_s16 = (int16_t)lhs_offset;
-
     const uint32_t lhs_offset_s16x2 = __PKHBT(lhs_offset_s16, lhs_offset_s16, 16);
 
     for (int32_t i = 0; i < row_loop_cnt; i++)
@@ -128,9 +231,9 @@ riscv_status riscv_nn_vec_mat_mult_t_s8(const q7_t *lhs,
         acc_0 = MIN(acc_0, activation_max);
         acc_1 = MAX(acc_1, activation_min);
         acc_1 = MIN(acc_1, activation_max);
-
-        *dst++ = (q7_t)acc_0;
-        *dst++ = (q7_t)acc_1;
+        *dst = (int8_t)acc_0;
+        *(dst + address_offset) = (int8_t)acc_1;
+        dst += 2 * address_offset;
     }
 
     if (rhs_rows & 0x1)
@@ -174,109 +277,13 @@ riscv_status riscv_nn_vec_mat_mult_t_s8(const q7_t *lhs,
         // Clamp the result
         acc_0 = MAX(acc_0, activation_min);
         acc_0 = MIN(acc_0, activation_max);
-
-        *dst++ = (q7_t)acc_0;
-    }
-
-#elif defined (RISCV_MATH_VECTOR)
-    for (int32_t rhs_rows_idx = 0; rhs_rows_idx <= (rhs_rows - 2); rhs_rows_idx += 2)
-    {
-        const q7_t *lhs_ptr = &lhs[0];
-        const q7_t *rhs_ptr = &rhs[0];
-
-        q31_t res00 = *bias++;
-        q31_t res01 = *bias++;
-
-        uint32_t vblkCnt = rhs_cols;    /* Loop counter */
-        size_t l;
-        vint8m2_t vx, vy, vz;
-        vint32m8_t rhs_value0, rhs_value1, lhs_value;
-        vint32m1_t temp00m1;
-        const q7_t *px = rhs_ptr;
-        const q7_t *py = rhs_ptr + rhs_cols;
-        const q7_t *pz = lhs_ptr;
-
-        l = vsetvl_e32m1(1);
-        temp00m1 = vmv_v_x_i32m1(0, l);
-        for (; (l = vsetvl_e8m2(vblkCnt)) > 0; vblkCnt -= l) {
-            vx = vle8_v_i8m2(px, l);
-            px += l;
-            vy = vle8_v_i8m2(py, l);
-            py += l;
-            vz = vle8_v_i8m2(pz, l);
-            pz += l;
-
-            rhs_value0 = vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vx, 0, l), 0, l), rhs_offset, l);
-            rhs_value1 = vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vy, 0, l), 0, l), rhs_offset, l);
-            lhs_value = vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vz, 0, l), 0, l), lhs_offset, l);
-
-            res00 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vmul_vv_i32m8(lhs_value, rhs_value0, l), temp00m1, l));
-            res01 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vmul_vv_i32m8(lhs_value, rhs_value1, l), temp00m1, l));
-        }
-
-        // Quantize down
-        res00 = riscv_nn_requantize(res00, dst_multiplier, dst_shift);
-        res01 = riscv_nn_requantize(res01, dst_multiplier, dst_shift);
-        // Add offset
-        res00 += dst_offset;
-        res01 += dst_offset;
-
-        // Clamp the result
-        res00 = MAX(res00, activation_min);
-        res00 = MIN(res00, activation_max);
-        res01 = MAX(res01, activation_min);
-        res01 = MIN(res01, activation_max);
-
-        *dst++ = (q7_t)res00;
-        *dst++ = (q7_t)res01;
-
-        rhs += 2 * rhs_cols;
-    }
-
-    if (rhs_rows & 0x1)
-    {
-        const q7_t *lhs_ptr = &lhs[0];
-        const q7_t *rhs_ptr = &rhs[0];
-
-        q31_t res00 = *bias++;
-
-        uint32_t vblkCnt = rhs_cols;    /* Loop counter */
-        size_t l;
-        vint8m2_t vx, vz;
-        vint32m8_t rhs_value0, lhs_value;
-        vint32m1_t temp00m1;
-        const q7_t *px = rhs_ptr;
-        const q7_t *pz = lhs_ptr;
-
-        l = vsetvl_e32m1(1);
-        temp00m1 = vmv_v_x_i32m1(0, l);
-        for (; (l = vsetvl_e8m2(vblkCnt)) > 0; vblkCnt -= l) {
-            vx = vle8_v_i8m2(px, l);
-            px += l;
-            vz = vle8_v_i8m2(pz, l);
-            pz += l;
-
-            rhs_value0 = vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vx, 0, l), 0, l), rhs_offset, l);
-            lhs_value = vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vz, 0, l), 0, l), lhs_offset, l);
-
-            res00 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vmul_vv_i32m8(lhs_value, rhs_value0, l), temp00m1, l));
-        }
-
-        // Quantize down
-        res00 = riscv_nn_requantize(res00, dst_multiplier, dst_shift);
-
-        // Add offset
-        res00 += dst_offset;
-
-        // Clamp the result
-        res00 = MAX(res00, activation_min);
-        res00 = MIN(res00, activation_max);
-
-        *dst = (q7_t)res00;
+        *dst = (int8_t)acc_0;
+        dst += address_offset;
     }
 
 #else
-    int32_t row_loop_cnt = rhs_rows / 3;
+
+    const int32_t row_loop_cnt = rhs_rows / 3;
 
     for (int i_row_loop_cnt = 0; i_row_loop_cnt < row_loop_cnt; i_row_loop_cnt++)
     {
@@ -328,9 +335,10 @@ riscv_status riscv_nn_vec_mat_mult_t_s8(const q7_t *lhs,
         res02 = MAX(res02, activation_min);
         res02 = MIN(res02, activation_max);
 
-        *dst++ = (q7_t)res00;
-        *dst++ = (q7_t)res01;
-        *dst++ = (q7_t)res02;
+        *dst = (q7_t)res00;
+        *(dst + address_offset) = (q7_t)res01;
+        *(dst + 2 * address_offset) = (q7_t)res02;
+        dst += 3 * address_offset;
 
         rhs += 3 * rhs_cols;
     }
@@ -350,7 +358,7 @@ riscv_status riscv_nn_vec_mat_mult_t_s8(const q7_t *lhs,
 
         for (int32_t rhs_cols_idx = 0; rhs_cols_idx < rhs_cols; ++rhs_cols_idx)
         {
-            q31_t rhs_value0 = (int8_t)rhs_ptr[0] + rhs_offset;
+            q31_t rhs_value0 = (int8_t)rhs_ptr[0];
             q31_t lhs_value = (int8_t)lhs_ptr[0] + lhs_offset;
 
             res00 += lhs_value * rhs_value0;
@@ -369,11 +377,11 @@ riscv_status riscv_nn_vec_mat_mult_t_s8(const q7_t *lhs,
         res00 = MAX(res00, activation_min);
         res00 = MIN(res00, activation_max);
 
-        *dst++ = (q7_t)res00;
+        *dst = (int8_t)res00;
+        dst += address_offset;
         rhs += rhs_cols;
     }
-#endif /*defined (RISCV_MATH_VECTOR)*/
-
+#endif
     return RISCV_MATH_SUCCESS;
 }
 

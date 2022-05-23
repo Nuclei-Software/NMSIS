@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2018 Arm Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 Arm Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,74 +22,17 @@
  * Title:        riscv_pool_q7_HWC.c
  * Description:  Pooling function implementations
  *
- * $Date:        09. October 2020
- * $Revision:    V.1.0.1
+ * $Date:        20. July 2021
+ * $Revision:    V.1.1.1
  *
  * Target Processor: RISC-V Cores
  *
  * -------------------------------------------------------------------- */
+
 #include "riscv_nnfunctions.h"
 #include "riscv_nnsupportfunctions.h"
-#if defined (RISCV_MATH_VECTOR)
-static void compare_and_replace_if_larger_q7(q7_t * base,   // base data
-                                             const q7_t * target,   // compare target
-                                             const uint16_t length  // data length
-    )
-{
-    q7_t     *pIn = base;
-    const q7_t     *pCom = target;
-    uint32_t blkCnt = length;                               /* Loop counter */
-    size_t l;
-    vint8m8_t valuea,valueb;
 
-    for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
-        valuea = vle8_v_i8m8(pIn, l);
-        valueb = vle8_v_i8m8(pCom, l);
-        vse8_v_i8m8 (pIn, vmax_vv_i8m8(valuea, valueb, l), l);
-        pIn += l;
-        pCom += l;
-    }
-}
-
-static void buffer_scale_back_q7_to_q7(q7_t * buffer, q7_t * target, uint16_t length, uint16_t scale)
-{
-    int       i;
-
-    for (i = 0; i < length; i++)
-    {
-        target[i] = (q7_t) (buffer[i] / scale);
-    }
-}
-
-static void buffer_scale_back_q15_to_q7(q15_t *buffer, q7_t *target, uint16_t length, uint16_t scale)
-{
-    int i;
-
-    for (i = 0; i < length; i++)
-    {
-        target[i] = (q7_t)(buffer[i] / scale);
-    }
-}
-
-// TODO: to be optimized in RVV
-static void accumulate_q7_to_q15(q15_t *base, q7_t *target, const uint16_t length)
-{
-    vint8m4_t tval;
-    vint16m8_t dval;
-    size_t l;
-    uint32_t cnt = length;
-
-    for (; (l = vsetvl_e16m8(cnt)) > 0; cnt -= l) {
-        tval = vle8_v_i8m4(target, l);
-        dval = vle16_v_i16m8(base, l);
-        vse16_v_i16m8(base, vwadd_wv_i16m8(dval, tval, l), l);
-        target += l;
-        base += l;
-    }
-}
-
-#else
-#if defined (RISCV_MATH_DSP)
+#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
 
 /**
  * @brief A few utility functions used by pooling functions
@@ -101,45 +44,56 @@ static void buffer_scale_back_q15_to_q7(q15_t *buffer, q7_t *target, uint16_t le
 {
     int i;
 
-    for (i = 0; i < length; i++)
+#if defined (RISCV_MATH_VECTOR)
+    uint16_t blkCnt = length & (~RVV_OPT_THRESHOLD);                               /* Loop counter */
+    uint16_t tmp_i = blkCnt;
+    size_t l;
+    q15_t *pA = buffer;
+    q7_t *pOut = target;
+
+    for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
+        vse8_v_i8m4(pOut, vnclip_wx_i8m4(vdiv_vx_i16m8(vle16_v_i16m8(pA, l), scale, l), 0, l), l);
+        pA += l;
+        pOut += l;
+    }
+	i = tmp_i;
+#else
+	i = 0;
+#endif
+
+    for (; i < length; i++)
     {
         target[i] = (q7_t)(buffer[i] / scale);
     }
 }
 
-static void buffer_scale_back_q7_to_q7(q7_t * buffer, q7_t * target, uint16_t length, uint16_t scale)
-{
-    int       i;
-
-    for (i = 0; i < length; i++)
-    {
-        target[i] = (q7_t) (buffer[i] / scale);
-    }
-}
 
 static void compare_and_replace_if_larger_q7(q7_t * base,   // base data
                                              const q7_t * target,   // compare target
                                              const uint16_t length  // data length
     )
 {
-    q7_t     *pIn = base;
-    const q7_t     *pCom = target;
+    q7_t *pIn = base;
+    const q7_t *pCom = target;
+    uint16_t cnt;
+
 #if defined (RISCV_MATH_VECTOR)
-    uint32_t blkCnt = length;                               /* Loop counter */
+    uint16_t blkCnt = length & (~RVV_OPT_THRESHOLD);                               /* Loop counter */
     size_t l;
-    vint8m8_t valuea,valueb;
+    vint8m8_t a0m8, b0m8;
 
     for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
-        valuea = vle8_v_i8m8(pIn, l);
-        valueb = vle8_v_i8m8(pCom, l);
-        vse8_v_i8m8 (pIn, vmax_vv_i8m8(valuea, valueb, l), l);
-        pIn += l;
+        a0m8 = vle8_v_i8m8(pCom, l);
+        b0m8 = vle8_v_i8m8(pIn, l);
+        vse8_v_i8m8(pIn, vmax_vv_i8m8(a0m8, b0m8, l), l);
         pCom += l;
+        pIn += l;
     }
-#else
+    cnt = length & RVV_OPT_THRESHOLD;
+#elif defined (RISCV_MATH_DSP)
     union riscv_nnword in;
     union riscv_nnword com;
-    uint16_t cnt = length >> 2;
+    cnt = length >> 2;
 
     while (cnt > 0u)
     {
@@ -162,6 +116,9 @@ static void compare_and_replace_if_larger_q7(q7_t * base,   // base data
     }
 
     cnt = length & 0x3;
+#else
+	cnt = length;
+#endif /*defined (RISCV_MATH_VECTOR)*/
     while (cnt > 0u)
     {
         if (*pCom > *pIn)
@@ -172,7 +129,7 @@ static void compare_and_replace_if_larger_q7(q7_t * base,   // base data
         pCom++;
         cnt--;
     }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+
 }
 
 static void accumulate_q7_to_q15(q15_t *base, q7_t *target, const uint16_t length)
@@ -180,13 +137,29 @@ static void accumulate_q7_to_q15(q15_t *base, q7_t *target, const uint16_t lengt
     q15_t *pCnt = base;
     q7_t *pV = target;
     q31_t v1, v2, vo1, vo2;
-    uint16_t cnt = length >> 2;
+    uint16_t cnt;
     q31_t in;
 
+#if defined (RISCV_MATH_VECTOR)
+    uint32_t blkCnt = length & (~RVV_OPT_THRESHOLD);                               /* Loop counter */
+    size_t l;
+	vint8m4_t a0m4;
+	vint16m8_t b0m8;
+
+    for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
+        a0m4 = vle8_v_i8m4(pV, l);
+        b0m8 = vle16_v_i16m8(pCnt, l);
+        vse16_v_i16m8(pCnt, vwadd_wv_i16m8(b0m8, a0m4, l), l);
+        pV += l;
+        pCnt += l;
+    }
+	cnt = length & RVV_OPT_THRESHOLD;
+#elif defined (RISCV_MATH_DSP)
+	cnt = length >> 2;
     while (cnt > 0u)
     {
 
-        q31_t     value = *__SIMD32(pV)++;
+        q31_t  value = *__SIMD32(pV)++;
         v1 = __SXTB16(__ROR(value, 8));
         v2 = __SXTB16(value);
 
@@ -204,6 +177,9 @@ static void accumulate_q7_to_q15(q15_t *base, q7_t *target, const uint16_t lengt
         cnt--;
     }
     cnt = length & 0x3;
+#else
+	cnt = length;
+#endif
     while (cnt > 0u)
     {
         *pCnt++ += *pV++;
@@ -211,8 +187,8 @@ static void accumulate_q7_to_q15(q15_t *base, q7_t *target, const uint16_t lengt
     }
 }
 
-#endif                          // RISCV_MATH_DSP
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif
+
 /**
  *  @ingroup groupNN
  */
@@ -447,7 +423,6 @@ void riscv_avepool_q7_HWC(q7_t *Im_in,
             }
 
             /* first step is to copy over initial data */
-            //riscv_q7_to_q7_no_shift(win_start, (q7_t *)buffer, ch_im_in);
             riscv_q7_to_q15_no_shift(win_start, buffer, ch_im_in);
             count = 1;
 
@@ -455,13 +430,10 @@ void riscv_avepool_q7_HWC(q7_t *Im_in,
             win_start += ch_im_in;
             for (; win_start < win_stop; win_start += ch_im_in)
             {
-                //riscv_nn_accumulate_q7_to_q7((q7_t *)buffer, win_start, ch_im_in);
                 accumulate_q7_to_q15(buffer, win_start, ch_im_in);
                 count++;
             }
-            //buffer_scale_back_q7_to_q7(buffer, target, ch_im_in, count);
             buffer_scale_back_q15_to_q7(buffer, target, ch_im_in, count);
-            // riscv_scale_q7((q7_t *)buffer,(1/ch_im_in),0,target,count);
         }
     }
 
@@ -493,7 +465,6 @@ void riscv_avepool_q7_HWC(q7_t *Im_in,
 
         /* copy over the first row */
         riscv_q7_to_q15_no_shift(row_start, buffer, dim_im_out * ch_im_in);
-        //riscv_q7_to_q7_no_shift(row_start, (q7_t *)buffer, dim_im_out * ch_im_in);
         count = 1;
 
         /* move over to next row */
@@ -502,12 +473,9 @@ void riscv_avepool_q7_HWC(q7_t *Im_in,
         for (; row_start < row_end; row_start += dim_im_in * ch_im_in)
         {
             accumulate_q7_to_q15(buffer, row_start, dim_im_out * ch_im_in);
-            //riscv_nn_accumulate_q7_to_q7((q7_t *)buffer, row_start, dim_im_out * ch_im_in);
             count++;
         }
         buffer_scale_back_q15_to_q7(buffer, target, dim_im_out * ch_im_in, count);
-        //buffer_scale_back_q7_to_q7(buffer, target, dim_im_out * ch_im_in, count);
-        // riscv_scale_q7((q7_t *)buffer,ch_im_in,0,target,count);
     }
 
 #else

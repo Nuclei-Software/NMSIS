@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2021 Arm Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2022 Arm Limited or its affiliates.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_svdf_s8.c
  * Description:  S8 basic SVDF layer function
  *
- * $Date:        15. April 2021
- * $Revision:    V.1.5.0
+ * $Date:        28 April 2022
+ * $Revision:    V.3.0.1
  *
  * Target Processor: RISC-V Cores
  *
@@ -42,7 +42,7 @@
  */
 
 /*
- * S8 SVDF layer function for TensorFlow Lite
+ * S8 SVDF layer function for TensorFlow Lite with 8 bit state tensor
  *
  * Refer to header file for details.
  *
@@ -56,11 +56,11 @@ riscv_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
                        const nmsis_nn_dims *input_dims,
                        const q7_t *input_data,
                        const nmsis_nn_dims *state_dims,
-                       q15_t *state_data,
+                       q7_t *state_data,
                        const nmsis_nn_dims *weights_feature_dims,
                        const q7_t *weights_feature_data,
                        const nmsis_nn_dims *weights_time_dims,
-                       const q15_t *weights_time_data,
+                       const q7_t *weights_time_data,
                        const nmsis_nn_dims *bias_dims,
                        const q31_t *bias_data,
                        const nmsis_nn_dims *output_dims,
@@ -88,14 +88,24 @@ riscv_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
     const int32_t time_batches = weights_time_dims->h;
     const int32_t unit_count = feature_batches / rank;
 
+    if (input_ctx->buf == NULL)
+    {
+        return RISCV_MATH_ARGUMENT_ERROR;
+    }
     q31_t *buffer_a = (q31_t *)input_ctx->buf;
+
+    if (output_ctx->buf == NULL)
+    {
+        return RISCV_MATH_ARGUMENT_ERROR;
+    }
     q31_t *buffer_b = (q31_t *)output_ctx->buf;
 
 #if defined(RISCV_MATH_VECTOR)
     uint32_t blkCnt;                               /* Loop counter */
     size_t l;
-    vint16m4_t v_pv1, v_pv2;
-    vint32m8_t v_a, v_b;
+    vint8m4_t a8m4, b8m4;
+    vint32m4_t a32m4, b32m4;
+    vint32m8_t a32m8, b32m8;
     vint32m1_t v_temp;
     const q31_t *pA;
     const q31_t *pB;
@@ -103,29 +113,32 @@ riscv_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
     l = vsetvl_e32m1(1);
     v_temp = vsub_vv_i32m1(v_temp, v_temp, l);
 #endif
+    // Left shift state
+    memmove((int8_t *)state_data,
+            (int8_t *)state_data + 1,
+            (size_t)((input_batches * feature_batches * time_batches - 1) * (int32_t)sizeof(int8_t)));
 
-    memmove((q15_t *)state_data,
-            (q15_t *)state_data + 1,
-            (size_t)(input_batches * feature_batches * time_batches * (int32_t)sizeof(int16_t)));
-
+    // Matrix multiplication input * feature weight
     for (int i_batch = 0; i_batch < input_batches; i_batch++)
     {
-        q15_t *res_ptr = state_data + (time_batches * i_batch * feature_batches) + (time_batches - 1);
+        q7_t *res_ptr = state_data + (time_batches * i_batch * feature_batches) + (time_batches - 1);
         const q7_t *weight = weights_feature_data;
         const q7_t *input = input_data + i_batch * input_height;
 
-        riscv_status res = riscv_nn_vec_mat_mult_t_svdf_s8(input,
-                                                       weight,
-                                                       res_ptr,
-                                                       -zp_in,
-                                                       0,
-                                                       time_batches,
-                                                       multiplier_in,
-                                                       shift_in,
-                                                       input_height,
-                                                       feature_batches,
-                                                       in_activation_min,
-                                                       in_activation_max);
+        riscv_status res = riscv_nn_vec_mat_mult_t_s8(input,
+                                                  weight,
+                                                  NULL,
+                                                  res_ptr,
+                                                  -zp_in,
+                                                  0,
+                                                  0,
+                                                  multiplier_in,
+                                                  shift_in,
+                                                  input_height,
+                                                  feature_batches,
+                                                  in_activation_min,
+                                                  in_activation_max,
+                                                  time_batches);
 
         if (res != RISCV_MATH_SUCCESS)
         {
@@ -133,57 +146,51 @@ riscv_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
         }
     }
 
+    // Matrix multiplicate time weight * state tensors
     {
         q31_t *ptr_a = buffer_a;
-        const q15_t *v2 = state_data;
+        const int8_t *v2 = state_data;
         for (int i_batch = 0; i_batch < input_batches; i_batch++)
         {
-            const q15_t *v1 = weights_time_data;
+            const int8_t *v1 = weights_time_data;
 
             for (int i_feature_batch = 0; i_feature_batch < feature_batches; i_feature_batch++)
             {
                 *ptr_a = 0;
                 int32_t sum = 0;
+				int j;
 #if defined(RISCV_MATH_VECTOR)
-                blkCnt = time_batches;
-                for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
-                    v_pv1 = vle16_v_i16m4(v1, l);
-                    v_pv2 = vle16_v_i16m4(v2, l);
-                    v_a = vwmul_vv_i32m8(v_pv1,v_pv2, l);
+                blkCnt = time_batches & (~RVV_OPT_THRESHOLD);
+                int tmp_j = blkCnt;
+                for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
+                    a8m4 = vle8_v_i8m4(v1, l);
+                    b8m4 = vle8_v_i8m4(v2, l);
 
-                    sum += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp,v_a,v_temp, l));
+                    sum += vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(v_temp, vwmul_vv_i16m8(a8m4, b8m4, l), v_temp, l));
                     v1 += l;
                     v2 += l;
                 }
-#else
-#if defined(RISCV_MATH_DSP)
-                int j = 0;
-                int32_t block_count = time_batches >> 1;
+                j = tmp_j;
+
+#elif defined(RISCV_MATH_DSP)
+                j = 0;
+                int32_t block_count = time_batches >> 2;
                 for (int i = 0; i < block_count; i++)
                 {
-                    j += 2;
-                    q31_t r1 = riscv_nn_read_q15x2_ia(&v1);
-                    q31_t r2 = riscv_nn_read_q15x2_ia(&v2);
-
-                    sum = __SMLAD(r1, r2, sum);
+                    j += 4;
+                    q31_t r1 = *__SIMD32(v1)++;
+                    q31_t r2 = *__SIMD32(v2)++;
+                    sum  = __RV_SMAQA(sum , r1, r2);
                 }
-
-                // Process the remaining data
+#else
+                j = 0;
+#endif
                 for (; j < time_batches; j++)
                 {
                     sum += *v1 * *v2;
                     v1++;
                     v2++;
                 }
-#else
-                for (int j = 0; j < time_batches; j++)
-                {
-                    sum += *v1 * *v2;
-                    v1++;
-                    v2++;
-                }
-#endif
-#endif
 
                 *ptr_a = sum;
                 ptr_a++;
@@ -201,26 +208,31 @@ riscv_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
                 const q31_t *ptr_a = buffer_a + i * feature_batches;
 
                 const int32_t *bi = bias_data;
+                int j;
 #if defined(RISCV_MATH_VECTOR)
-                blkCnt = feature_batches;
+                blkCnt = feature_batches & (~RVV_OPT_THRESHOLD);
+				int tmp_j = blkCnt;
                 pA = ptr_a;
                 pB = bi;
                 pOUT = output_temp;
                 for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-                    v_a = vle32_v_i32m8(pA, l);
-                    v_b = vle32_v_i32m8(pB, l);
-                    vse32_v_i32m8(pOUT,vadd_vv_i32m8(v_a,v_b, l), l);
+                    a32m8 = vle32_v_i32m8(pA, l);
+                    b32m8 = vle32_v_i32m8(pB, l);
+                    vse32_v_i32m8(pOUT, vadd_vv_i32m8(a32m8, b32m8, l), l);
 
                     pA += l;
                     pB += l;
                     pOUT += l;
                 }
+                j = tmp_j;
 #else
-                for (int j = 0; j < feature_batches; j++)
+                j = 0;
+#endif
+                for (; j < feature_batches; j++)
                 {
                     output_temp[j] = ptr_a[j] + bi[j];
                 }
-#endif
+
             }
         }
         else
@@ -233,22 +245,25 @@ riscv_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
                 for (int i = 0; i < unit_count; i++)
                 {
                     int32_t sum = bias_data[i];
-// May not optimise when rank is low
+                    int j;
 #if defined(RISCV_MATH_VECTOR)
-                    blkCnt = rank;
-                    l = vsetvl_e32m8(blkCnt);
+                    blkCnt = rank & (~RVV_OPT_THRESHOLD);
+                    int tmp_j = blkCnt;
                     for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-                        v_b = vle32_v_i32m8(ptr_a, l);
-                        sum += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp,v_b,v_temp, l));
+                        a32m8 = vle32_v_i32m8(ptr_a, l);
+                        sum += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, a32m8, v_temp, l));
                         ptr_a += l;
                     }
+                    j = tmp_j;
 #else
-                    for (int j = 0; j < rank; j++)
+                    j = 0;
+#endif
+                    for (; j < rank; j++)
                     {
                         sum += *ptr_a;
                         ptr_a++;
                     }
-#endif
+
                     output_data_temp[i] = sum;
                 }
             }
@@ -264,28 +279,54 @@ riscv_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
             for (int i = 0; i < unit_count; i++)
             {
                 int32_t sum = 0;
-// May not optimise when rank is low
+                int j;
 #if defined(RISCV_MATH_VECTOR)
-                blkCnt = rank;
-                l = vsetvl_e32m8(blkCnt);
+                blkCnt = rank & (~RVV_OPT_THRESHOLD);
+                int tmp_j = blkCnt;
                 for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-                    v_b = vle32_v_i32m8(ptr_a, l);
-                    sum += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp,v_b,v_temp, l));
+                    a32m8 = vle32_v_i32m8(ptr_a, l);
+                    sum += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, a32m8, v_temp, l));
                     ptr_a += l;
                 }
+                j = tmp_j;
 #else
-                for (int j = 0; j < rank; j++)
+                j = 0;
+#endif
+                for (; j < rank; j++)
                 {
                     sum += *ptr_a;
                     ptr_a++;
                 }
-#endif
+
                 output_data_temp[i] = sum;
             }
         }
     }
 
-    for (int i = 0; i < input_batches * unit_count; i++)
+	int32_t num_elements = input_batches * unit_count;
+	int i;
+#if defined(RISCV_MATH_VECTOR)
+    blkCnt = num_elements & (~RVV_OPT_THRESHOLD);
+	int tmp_i = blkCnt;
+	pA = buffer_b;
+	q7_t *pOutput = output_data;
+    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+        a32m8 = vle32_v_i32m8(pA, l);
+        if (shift_2 < 0) {
+            a32m8 = vadd_vx_i32m8(vsra_vx_i32m8(vsmul_vx_i32m8(a32m8, multiplier_out, l), -shift_2, l), zp_out, l);
+        } else {
+            a32m8 = vadd_vx_i32m8(vsll_vx_i32m8(vsmul_vx_i32m8(a32m8, multiplier_out, l), shift_2, l), zp_out, l);
+        }
+        b32m8 = vmin_vx_i32m8(vmax_vx_i32m8(a32m8, out_activation_min, l), out_activation_max, l);
+        vse8_v_i8m2(pOutput, vnclip_wx_i8m2(vnclip_wx_i16m4(b32m8, 0, l), 0, l), l);
+        pA += l;
+        pOutput += l;
+    }
+    i = tmp_i;
+#else
+    i = 0;
+#endif
+    for (; i < num_elements; i++)
     {
         output_data[i] = (q7_t)CLAMP(
             riscv_nn_requantize(buffer_b[i], multiplier_out, shift_2) + zp_out, out_activation_max, out_activation_min);

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2020 Arm Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 Arm Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_q7_to_q15_reordered_no_shift.c
  * Description:  Converts the elements of the Q7 vector to reordered Q15 vector without left-shift
  *
- * $Date:        May 29, 2020
- * $Revision:    V.1.0.1
+ * $Date:        July 20, 2021
+ * $Revision:    V.1.1.1
  *
  * Target Processor: RISC-V Cores
  *
@@ -80,6 +80,7 @@ void riscv_q7_to_q15_reordered_no_shift(const q7_t *pSrc, q15_t *pDst, uint32_t 
     const q7_t *pIn = pSrc; /* Src pointer */
     uint32_t blkCnt;        /* loop counter */
 
+#if defined(RISCV_MATH_DSP)
     q31_t in;
     q31_t in1, in2;
 
@@ -102,8 +103,8 @@ void riscv_q7_to_q15_reordered_no_shift(const q7_t *pSrc, q15_t *pDst, uint32_t 
         /* extend remainig two q7_t values to q15_t values */
         in2 = __SXTB16(in);
 
-        *__SIMD32(pDst)++ = in2;
-        *__SIMD32(pDst)++ = in1;
+        riscv_nn_write_q7x4_ia((q7_t **)&pDst, in2);
+        riscv_nn_write_q7x4_ia((q7_t **)&pDst, in1);
 
         /* Decrement the loop counter */
         blkCnt--;
@@ -113,6 +114,14 @@ void riscv_q7_to_q15_reordered_no_shift(const q7_t *pSrc, q15_t *pDst, uint32_t 
      ** No loop unrolling is used. */
     blkCnt = blockSize % 0x4u;
 
+#else
+
+    /* Run the below code for RISC-V Core without DSP */
+
+    /* Loop over blockSize number of values */
+    blkCnt = blockSize;
+
+#endif /* #ifndef RISCV_MATH_CM0_FAMILY */
 
     while (blkCnt > 0u)
     {

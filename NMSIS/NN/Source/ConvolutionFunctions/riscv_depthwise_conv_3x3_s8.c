@@ -82,17 +82,6 @@ riscv_status riscv_depthwise_conv_3x3_s8(const nmsis_nn_context *ctx,
     const int32_t output_activation_min = dw_conv_params->activation.min;
     const int32_t output_activation_max = dw_conv_params->activation.max;
 
-#if defined(RISCV_MATH_VECTOR)
-    uint32_t blkCnt_v;
-    size_t l;
-    vint8m1_t v_in, v_ker;
-    vint32m4_t v_buff;
-    vint8m1_t v_a, v_b;
-    vfloat32m1_t v_temp;
-    l = vsetvl_e32m1(1);
-    v_temp = vfsub_vv_f32m1(v_temp, v_temp, l);
-#endif
-
     /* Check input constraints input_ch == output_ch */
     if (input_ch != output_ch)
     {
@@ -113,17 +102,10 @@ riscv_status riscv_depthwise_conv_3x3_s8(const nmsis_nn_context *ctx,
 
             for (; in_ch <= (input_ch - 4); in_ch += 4)
             {
-#if defined(RISCV_MATH_VECTOR)
-                int32_t out_buff0, out_buff1, out_buff2, out_buff3;
-                blkCnt_v = 4;
-                l = vsetvl_e32m4(blkCnt_v);
-                v_buff = vle32_v_i32m4(bias+in_ch, l);
-#else
                 int32_t out_buff0 = bias[in_ch + 0];
                 int32_t out_buff1 = bias[in_ch + 1];
                 int32_t out_buff2 = bias[in_ch + 2];
                 int32_t out_buff3 = bias[in_ch + 3];
-#endif
 
                 const int8_t *input_ptr = input + (in_h + ker_h_start) * (input_ch * input_x) + in_w * input_ch + in_ch;
                 const int8_t *kernel_ptr = kernel + ker_h_start * (input_ch * 3) + in_ch;
@@ -132,16 +114,9 @@ riscv_status riscv_depthwise_conv_3x3_s8(const nmsis_nn_context *ctx,
                 {
                     int32_t in_val = 0;
                     int32_t ker_val = 0;
+
                     if (ker_w_start == 0)
                     {
-#if defined(RISCV_MATH_VECTOR)
-                        l = vsetvl_e8m1(blkCnt_v);
-                        v_a = vsub_vv_i8m1(v_a,v_a, l);
-                        v_in = vle8_v_i8m1(input_ptr, l);
-                        v_ker = vle8_v_i8m1(kernel_ptr, l);
-                        v_a = vadd_vx_i8m1(v_in,input_offset, l);
-                        v_buff = vwadd_wv_i32m4(v_buff,vwmul_vv_i16m2(v_a,v_ker, l), l);
-#else
                         in_val = riscv_nn_read_q7x4(input_ptr);
                         ker_val = riscv_nn_read_q7x4(kernel_ptr);
 
@@ -149,16 +124,8 @@ riscv_status riscv_depthwise_conv_3x3_s8(const nmsis_nn_context *ctx,
                         out_buff1 += ((int8_t)(in_val >> 8) + input_offset) * (int8_t)(ker_val >> 8);
                         out_buff2 += ((int8_t)(in_val >> 16) + input_offset) * (int8_t)(ker_val >> 16);
                         out_buff3 += ((int8_t)(in_val >> 24) + input_offset) * (int8_t)(ker_val >> 24);
-#endif
                     }
-#if defined(RISCV_MATH_VECTOR)
-                    l = vsetvl_e8m1(blkCnt_v);
-                    v_a = vsub_vv_i8m1(v_a,v_a, l);
-                    v_in = vle8_v_i8m1(input_ptr + input_ch, l);
-                    v_ker = vle8_v_i8m1(kernel_ptr + input_ch, l);
-                    v_a = vadd_vx_i8m1(v_in,input_offset, l);
-                    v_buff = vwadd_wv_i32m4(v_buff,vwmul_vv_i16m2(v_a,v_ker, l), l);
-#else
+
                     in_val = riscv_nn_read_q7x4(input_ptr + input_ch);
                     ker_val = riscv_nn_read_q7x4(kernel_ptr + input_ch);
 
@@ -166,17 +133,9 @@ riscv_status riscv_depthwise_conv_3x3_s8(const nmsis_nn_context *ctx,
                     out_buff1 += ((int8_t)(in_val >> 8) + input_offset) * (int8_t)(ker_val >> 8);
                     out_buff2 += ((int8_t)(in_val >> 16) + input_offset) * (int8_t)(ker_val >> 16);
                     out_buff3 += ((int8_t)(in_val >> 24) + input_offset) * (int8_t)(ker_val >> 24);
-#endif
+
                     if ((input_x - in_w) >= 3)
                     {
-#if defined(RISCV_MATH_VECTOR)
-                        l = vsetvl_e8m1(blkCnt_v);
-                        v_a = vsub_vv_i8m1(v_a,v_a, l);
-                        v_in = vle8_v_i8m1(input_ptr + (input_ch << 1), l);
-                        v_ker = vle8_v_i8m1(kernel_ptr + (input_ch << 1), l);
-                        v_a = vadd_vx_i8m1(v_in,input_offset, l);
-                        v_buff = vwadd_wv_i32m4(v_buff,vwmul_vv_i16m2(v_a,v_ker, l), l);
-#else
                         in_val = riscv_nn_read_q7x4(input_ptr + (input_ch << 1));
                         ker_val = riscv_nn_read_q7x4(kernel_ptr + (input_ch << 1));
 
@@ -184,22 +143,12 @@ riscv_status riscv_depthwise_conv_3x3_s8(const nmsis_nn_context *ctx,
                         out_buff1 += ((int8_t)(in_val >> 8) + input_offset) * (int8_t)(ker_val >> 8);
                         out_buff2 += ((int8_t)(in_val >> 16) + input_offset) * (int8_t)(ker_val >> 16);
                         out_buff3 += ((int8_t)(in_val >> 24) + input_offset) * (int8_t)(ker_val >> 24);
-#endif
                     }
 
                     input_ptr += (input_ch * input_x);
                     kernel_ptr += (input_ch * 3);
                 }
-#if defined(RISCV_MATH_VECTOR)
-                l = vsetvl_e8m1(blkCnt_v);
-                out_buff0 = vmv_x_s_i32m4_i32(v_buff);
-                vslide1down_vx_i32m4(v_buff,0, l);
-                out_buff1 = vmv_x_s_i32m4_i32(v_buff);
-                vslide1down_vx_i32m4(v_buff,0, l);
-                out_buff2 = vmv_x_s_i32m4_i32(v_buff);
-                vslide1down_vx_i32m4(v_buff,0, l);
-                out_buff3 = vmv_x_s_i32m4_i32(v_buff);
-#endif
+
                 out_buff0 = riscv_nn_requantize(out_buff0, output_mult[in_ch + 0], output_shift[in_ch + 0]);
                 out_buff1 = riscv_nn_requantize(out_buff1, output_mult[in_ch + 1], output_shift[in_ch + 1]);
                 out_buff2 = riscv_nn_requantize(out_buff2, output_mult[in_ch + 2], output_shift[in_ch + 2]);

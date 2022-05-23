@@ -30,6 +30,7 @@
  * -------------------------------------------------------------------- */
 
 #include "riscv_nnfunctions.h"
+#include "riscv_nnsupportfunctions.h"
 
 /**
  *  @ingroup groupNN
@@ -67,34 +68,34 @@ void riscv_softmax_q7(const q7_t *vec_in, const uint16_t dim_vec, q7_t *p_out)
     q15_t base;
     base = -128;
 #if defined(RISCV_MATH_VECTOR)
+    q7_t temp_max;
+    uint16_t blkCnt = dim_vec & (~RVV_OPT_THRESHOLD);
+    int16_t tmp_i = blkCnt;
     size_t l;
-    q15_t temp_max;
-    uint32_t blkCnt;
-    ptrdiff_t bstride;
+    const q7_t *px = vec_in;
     vint8m8_t v_x;
     vint8m1_t vtemp;
     l = vsetvl_e8m1(1);
     vtemp = vmv_v_x_i8m1(base, l);
-    blkCnt = dim_vec;
-    // base = vec_in[0];
-    i = 0;
     for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
-        v_x = vle8_v_i8m8(vec_in+i, l);
-        i += l;
+        v_x = vle8_v_i8m8(px, l);
+        px += l;
         temp_max = vmv_x_s_i8m1_i8(vredmax_vs_i8m8_i8m1(vtemp, v_x, vtemp, l));
-        if(temp_max > base)
+        if (temp_max > base)
             base = temp_max;
     }
+	i = tmp_i;
 #else
+	i = 0;
+#endif
     /* We first search for the maximum */
-    for (i = 0; i < dim_vec; i++)
+    for (; i < dim_vec; i++)
     {
         if (vec_in[i] > base)
         {
             base = vec_in[i];
         }
     }
-#endif
 
     /*
      * So the base is set to max-8, meaning

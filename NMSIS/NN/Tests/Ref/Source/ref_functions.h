@@ -778,7 +778,8 @@ riscv_status riscv_nn_vec_mat_mult_t_s8_ref(const q7_t *lhs,
                                         const int32_t rhs_cols,
                                         const int32_t rhs_rows,
                                         const int32_t activation_min,
-                                        const int32_t activation_max);
+                                        const int32_t activation_max,
+                                        const int32_t address_offset);
 void riscv_q7_to_q7_no_shift_ref(const q7_t * pSrc, q7_t * pDst, uint32_t blockSize);
 void riscv_q7_to_q7_reordered_no_shift_ref(const q7_t * pSrc, q7_t * pDst, uint32_t blockSize);
 void riscv_q7_to_q15_no_shift_ref(const q7_t * pSrc, q15_t * pDst, uint32_t blockSize);
@@ -1008,11 +1009,11 @@ riscv_status ref_svdf_s8(const nmsis_nn_context *input_ctx,
                        const nmsis_nn_dims *input_dims,
                        const q7_t *input_data,
                        const nmsis_nn_dims *state_dims,
-                       q15_t *state_data,
+                       q7_t *state_data,
                        const nmsis_nn_dims *weights_feature_dims,
                        const q7_t *weights_feature_data,
                        const nmsis_nn_dims *weights_time_dims,
-                       const q15_t *weights_time_data,
+                       const q7_t *weights_time_data,
                        const nmsis_nn_dims *bias_dims,
                        const q31_t *bias_data,
                        const nmsis_nn_dims *output_dims,

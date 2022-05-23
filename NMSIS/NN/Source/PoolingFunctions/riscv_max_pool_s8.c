@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2020 Arm Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 Arm Limited or its affiliates.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_max_pool_s8.c
  * Description:  Pooling function implementations
  *
- * $Date:        19. Februari 2021
- * $Revision:    V.2.0.2
+ * $Date:        20. July 2021
+ * $Revision:    V.2.0.3
  *
  * Target Processor: RISC-V Cores
  *
@@ -34,24 +34,24 @@
 
 static void compare_and_replace_if_larger_q7(q7_t *base, const q7_t *target, int32_t length)
 {
-#if defined (RISCV_MATH_VECTOR)
     q7_t *dst = base;
     const q7_t *src = target;
-    uint32_t blkCnt = length;                              /* Loop counter */
+    int32_t cnt;
+
+#if defined (RISCV_MATH_VECTOR)
+    uint32_t blkCnt = length & (~RVV_OPT_THRESHOLD);  /* Loop counter */
     size_t l;
-    vint8m8_t vx, vy;
 
     for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
         vse8_v_i8m8(dst, vmax_vv_i8m8(vle8_v_i8m8(src, l), vle8_v_i8m8(dst, l), l), l);
         src += l;
         dst += l;
     }
-#else
-    q7_t *dst = base;
-    const q7_t *src = target;
+    cnt = length & RVV_OPT_THRESHOLD;
+#elif defined(RISCV_MATH_DSP)
     union riscv_nnword ref_max;
     union riscv_nnword comp_max;
-    int32_t cnt = length >> 2;
+    cnt = length >> 2;
 
     while (cnt > 0l)
     {
@@ -81,6 +81,9 @@ static void compare_and_replace_if_larger_q7(q7_t *base, const q7_t *target, int
     }
 
     cnt = length & 0x3;
+#else
+    cnt = length;
+#endif /* defined (RISCV_MATH_VECTOR) */
     while (cnt > 0l)
     {
         if (*src > *dst)
@@ -91,23 +94,26 @@ static void compare_and_replace_if_larger_q7(q7_t *base, const q7_t *target, int
         src++;
         cnt--;
     }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+
 }
 
 static void clamp_output(q7_t *source, int32_t length, const int32_t act_min, const int32_t act_max)
 {
+    int32_t cnt;
+
 #if defined (RISCV_MATH_VECTOR)
-    uint32_t blkCnt = length;                              /* Loop counter */
+    uint32_t blkCnt = length & (~RVV_OPT_THRESHOLD);                              /* Loop counter */
     size_t l;
-    vint8m8_t vx, vy;
 
     for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
-        vse8_v_i8m8(source, vmax_vx_i8m8(vmin_vx_i8m8(vle8_v_i8m8(source, l), act_max, l),act_min, l), l);
+        vse8_v_i8m8(source, vmax_vx_i8m8(vmin_vx_i8m8(vle8_v_i8m8(source, l), act_max, l), act_min, l), l);
         source += l;
     }
-#else
+    cnt = length & RVV_OPT_THRESHOLD;
+
+#elif defined(RISCV_MATH_DSP)
     union riscv_nnword in;
-    int32_t cnt = length >> 2;
+    cnt = length >> 2;
 
     while (cnt > 0l)
     {
@@ -127,6 +133,9 @@ static void clamp_output(q7_t *source, int32_t length, const int32_t act_min, co
     }
 
     cnt = length & 0x3;
+#else
+    cnt = length;
+#endif /*defined (RISCV_MATH_VECTOR)*/
     while (cnt > 0l)
     {
         int32_t comp = *source;
@@ -135,7 +144,6 @@ static void clamp_output(q7_t *source, int32_t length, const int32_t act_min, co
         *source++ = (int8_t)comp;
         cnt--;
     }
-#endif /*defined (RISCV_MATH_VECTOR)*/
 }
 
 /**
@@ -200,7 +208,7 @@ riscv_status riscv_max_pool_s8(const nmsis_nn_context *ctx,
 
                     if (count == 0)
                     {
-                        memcpy(dst, start, channel_in);
+                        riscv_memcpy_q7(dst, start, channel_in);
                         count++;
                     }
                     else

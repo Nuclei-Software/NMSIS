@@ -55,37 +55,35 @@ void riscv_softmax_u8(const uint8_t *input,
     int32_t col = 0;
     int32_t row_idx;
 
-#if defined(RISCV_MATH_VECTOR)
-    uint32_t blkCnt_v;
-    size_t l;
-    vuint8m8_t v_x, v_y;
-    int32_t i_a;
-    vuint8m1_t v_temp;
-    l = vsetvl_e8m1(1);
-    v_temp = vsub_vv_u8m1(v_temp, v_temp, l);
-#endif
-
-    for(row_idx = 0; row_idx < num_rows; ++row_idx)
+    for (row_idx = 0; row_idx < num_rows; ++row_idx)
     {
         // Find the maximum value in order to ensure numerical stability
         uint8_t max = *input;
 
 #if defined(RISCV_MATH_VECTOR)
-        blkCnt_v = row_size - 1;
+        uint32_t blkCnt_v;
+        size_t l;
+        uint8_t i_a;
+        vuint8m8_t v_x;
+        vuint8m1_t v_temp;
+        l = vsetvl_e8m1(1);
+        v_temp = vsub_vv_u8m1(v_temp, v_temp, l);
+        blkCnt_v = (row_size - 1) & (~RVV_OPT_THRESHOLD);
         col = 1;
         for (; (l = vsetvl_e8m8(blkCnt_v)) > 0; blkCnt_v -= l) {
             v_x = vle8_v_u8m8(input + col, l);
-            i_a = vmv_x_s_u8m1_u8 (vredmaxu_vs_u8m8_u8m1(v_temp,v_x,v_temp, l));
-            if(i_a > max)
+            i_a = vmv_x_s_u8m1_u8(vredmaxu_vs_u8m8_u8m1(v_temp, v_x, v_temp, l));
+            if (i_a > max)
                 max = i_a;
             col += l;
         }
 #else
-        for (col = 1; col < row_size; ++col)
+        col = 1;
+#endif
+        for (; col < row_size; ++col)
         {
             max = MAX(max, input[col]);
         }
-#endif
 
         int32_t diff = 0;
         int32_t sum = 0;
@@ -121,7 +119,6 @@ void riscv_softmax_u8(const uint8_t *input,
         output += row_size;
     }
 }
-
 /**
  * @} end of Softmax group
  */

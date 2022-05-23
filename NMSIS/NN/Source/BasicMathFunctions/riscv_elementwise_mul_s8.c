@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2021 Arm Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2022 Arm Limited or its affiliates.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_elementwise_mul_s8
  * Description:  Element wise multiplication
  *
- * $Date:        January 26, 2021
- * $Revision:    V.1.0.5
+ * $Date:        3 Februari 2022
+ * $Revision:    V.1.1.0
  *
  * Target Processor: RISC-V Cores
  *
@@ -58,51 +58,39 @@ riscv_status riscv_elementwise_mul_s8(const int8_t *input_1_vect,
                                   const int32_t out_shift,
                                   const int32_t out_activation_min,
                                   const int32_t out_activation_max,
-                                  const uint32_t block_size)
+                                  const int32_t block_size)
 {
 
     int32_t loop_count;
-#if defined(RISCV_MATH_VECTOR) && (__riscv_xlen != 32) && (__riscv_flen != 32)
-    uint32_t blkCnt = block_size;
-  size_t l;
-  vint32m4_t input_1;
-  vint32m4_t input_2;
-  // vint64m8_t mul_res64;
-  vint32m4_t mul_res32;
-  int32_t mul_res;
+    int32_t input_1;
+    int32_t input_2;
+    int32_t mul_res;
+#if defined(RISCV_MATH_VECTOR)
+    int32_t blkCnt = block_size & (~RVV_OPT_THRESHOLD);                               /* Loop counter */
+    size_t l;
+    vint32m8_t input_1_m8;
+    vint32m8_t input_2_m8;
+    vint32m8_t sum0m8;
 
-  for (; (l = vsetvl_e8m1(blkCnt)) > 0; blkCnt -= l) {
-    input_1 = vadd_vx_i32m4(vwadd_vx_i32m4(vwadd_vx_i16m2(vle8_v_i8m1(input_1_vect, l), 0, l), 0, l), input_1_offset, l);
-    input_1_vect += l;
-    input_2 = vadd_vx_i32m4(vwadd_vx_i32m4(vwadd_vx_i16m2(vle8_v_i8m1(input_2_vect, l), 0, l), 0, l), input_2_offset, l);
-    input_2_vect += l;
-
-    mul_res32 = vmul_vv_i32m4(input_1, input_2, l);
-    for(size_t i =0;i<l;i++){
-      mul_res = vmv_x_s_i32m4_i32(mul_res32);
-      l = vsetvl_e32m4(l);
-      mul_res32 = vslide1down_vx_i32m4(mul_res32,0, l);
-      mul_res = riscv_nn_requantize(mul_res, out_mult, out_shift) + out_offset;
-
-      mul_res = MAX(mul_res, out_activation_min);
-      mul_res = MIN(mul_res, out_activation_max);
-
-      *output++ = (q7_t)mul_res;
+    for (; (l = vsetvl_e8m2(blkCnt)) > 0; blkCnt -= l) {
+        input_1_m8 = vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vle8_v_i8m2(input_1_vect, l), 0, l), 0, l), input_1_offset, l);
+        input_1_vect += l;
+        input_2_m8 = vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vle8_v_i8m2(input_2_vect, l), 0, l), 0, l), input_2_offset, l);
+        input_2_vect += l;
+        sum0m8 = vmul_vv_i32m8(input_1_m8, input_2_m8, l);
+        if (out_shift < 0) {
+            sum0m8 = vadd_vx_i32m8(vsra_vx_i32m8(vsmul_vx_i32m8(sum0m8, out_mult, l), -out_shift, l), out_offset, l);
+        } else {
+            sum0m8 = vadd_vx_i32m8(vsll_vx_i32m8(vsmul_vx_i32m8(sum0m8, out_mult, l), out_shift, l), out_offset, l);
+        }
+        sum0m8 = vmax_vx_i32m8(sum0m8, out_activation_min, l);
+        sum0m8 = vmin_vx_i32m8(sum0m8, out_activation_max, l);
+        vse8_v_i8m2(output, vnsra_wx_i8m2(vnsra_wx_i16m4(sum0m8, 0, l), 0, l), l);
+        output += l;
     }
-    // mul_res32 = vadd_vx_i32m4(vdiv_vx_i32m4(vsmul_vx_i32m4(vmul_vx_i32m4(mul_res32,(1 << LEFT_SHIFT(out_shift)),l), out_mult, l), (1 << out_shift), l), out_offset, l);
+    loop_count = block_size & RVV_OPT_THRESHOLD;
 
-    // mul_res32 = vmax_vx_i32m4(mul_res32, out_activation_min, l);
-    // mul_res32 = vmin_vx_i32m4(mul_res32, out_activation_max, l);
-
-    // vse8_v_i8m1(output, vnclip_wx_i8m1(vnclip_wx_i16m2(mul_res32, 0, l), 0, l), l);
-    // output += l;
-  }
-#else
-  int32_t input_1;
-  int32_t input_2;
-  int32_t mul_res;
-
-#if defined(RISCV_MATH_DSP)
+#elif defined(RISCV_MATH_DSP)
     int32_t a_1, b_1, a_2, b_2;
 
     int32_t offset_1_packed, offset_2_packed;
@@ -196,8 +184,7 @@ riscv_status riscv_elementwise_mul_s8(const int8_t *input_1_vect,
         /* Decrement loop counter */
         loop_count--;
     }
-#endif
-  return RISCV_MATH_SUCCESS;
+    return RISCV_MATH_SUCCESS;
 }
 
 /**

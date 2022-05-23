@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2019 Arm Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 Arm Limited or its affiliates.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -30,6 +30,7 @@
  * -------------------------------------------------------------------- */
 
 #include "riscv_nnfunctions.h"
+#include "riscv_nnsupportfunctions.h"
 
 /**
  *  @ingroup groupNN
@@ -49,7 +50,7 @@
 
 void riscv_reshape_s8(const int8_t *input, int8_t *output, const uint32_t total_size)
 {
-    memcpy(output, input, total_size);
+    riscv_memcpy_q7(output, input, total_size);
 }
 
 /**

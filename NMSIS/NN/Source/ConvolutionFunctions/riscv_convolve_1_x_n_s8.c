@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2021 Arm Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 Arm Limited or its affiliates.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_convolve_1_x_n_s8.c
  * Description:  s8 version of 1xN convolution using symmetric quantization.
  *
- * $Date:        January 26, 2021
- * $Revision:    V.2.0.3
+ * $Date:        December 14, 2021
+ * $Revision:    V.2.1.0
  *
  * Target Processor: RISC-V Cores
  *
@@ -87,13 +87,7 @@ out:
 
 int32_t riscv_convolve_1_x_n_s8_get_buffer_size(const nmsis_nn_dims *input_dims, const nmsis_nn_dims *filter_dims)
 {
-#if defined(RISCV_MATH_DSP)
     return (2 * input_dims->c * filter_dims->w * filter_dims->h) * sizeof(int16_t);
-#else
-    (void)input_dims;
-    (void)filter_dims;
-    return 0;
-#endif
 }
 
 /**

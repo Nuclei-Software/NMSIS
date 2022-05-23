@@ -22,8 +22,8 @@
  * Title:        riscv_nn_add_q7.c
  * Description:  Non saturating addition of elements of a q7 vector.
  *
- * $Date:        09. October 2020
- * $Revision:    V.1.0.1
+ * $Date:        20. July 2021
+ * $Revision:    V.1.1.1
  *
  * Target Processor: RISC-V Cores
  *
@@ -45,25 +45,23 @@ void riscv_nn_add_q7(const q7_t *input, q31_t *output, uint32_t block_size)
 {
     uint32_t block_count;
     q31_t result = 0;
-#if defined (RISCV_MATH_VECTOR)
-    uint32_t blkCnt = block_size;                              /* Loop counter */
-    size_t l;
-    const q7_t *pCnt = input;
-    vint8m2_t pA_v8m2;
-    vint32m1_t temp;
-    l = vsetvl_e32m1(1);
-    temp = vsub_vv_i32m1(temp, temp, l);
 
-    for (; (l = vsetvl_e8m2(blkCnt)) > 0; blkCnt -= l) {
-      pA_v8m2 = vle8_v_i8m2(pCnt, l);
-      pCnt += l;
-      result += (q31_t)vmv_x_s_i32m1_i32(vwredsum_vs_i16m4_i32m1(temp,vwadd_vx_i16m4(pA_v8m2,0, l),temp, l));
-    //   vsetvl_e32m1(1);
-      //lack of mf2 function 2020.11.17
+#if defined (RISCV_MATH_VECTOR)
+    uint32_t blkCnt = block_size & (~RVV_OPT_THRESHOLD);                              /* Loop counter */
+    size_t l;
+    vint8m4_t a0m4;
+    vint32m1_t temp;
+
+    l = vsetvl_e32m1(1);
+    temp = vmv_v_x_i32m1(0, l);
+    for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
+        a0m4 = vle8_v_i8m4(input, l);
+        input += l;
+        result += vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(temp, vwadd_vx_i16m8(a0m4, 0, l), temp, l));
     }
-    // result += (q31_t)vmv_x_s_i32m1_i32(addRes_i32m1);
-#else
-#if defined(RISCV_MATH_DSP)
+    block_count = block_size & RVV_OPT_THRESHOLD;
+
+#elif defined(RISCV_MATH_DSP)
     /* Loop unrolling: Compute 4 outputs at a time */
     block_count = block_size >> 2U;
 
@@ -92,7 +90,7 @@ void riscv_nn_add_q7(const q7_t *input, q31_t *output, uint32_t block_size)
         /* Decrement loop counter */
         block_count--;
     }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+
     *output = result;
 }
 

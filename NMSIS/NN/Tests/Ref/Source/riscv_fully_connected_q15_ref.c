@@ -26,7 +26,8 @@ void riscv_fully_connected_q15_ref(const q15_t * pV,  // pointer to vector
                                  const uint16_t num_of_rows,    // numCol of A
                                  const uint16_t bias_shift, // amount of left-shift for bias
                                  const uint16_t out_shift,  // amount of right-shift for output
-                                 const q15_t * bias, q15_t * pOut,  // output operand
+                                 const q15_t * bias,
+                                 q15_t * pOut,  // output operand
                                  q15_t * vec_buffer)
 {
     for (int i = 0; i < num_of_rows; i++)

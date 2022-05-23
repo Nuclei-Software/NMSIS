@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2020 Arm Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 Arm Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_nn_mat_mult_kernel_s8_s16.c
  * Description:  Matrix-multiplication function for convolution
  *
- * $Date:        09. October 2020
- * $Revision:    V.1.0.3
+ * $Date:        14. December 2021
+ * $Revision:    V.1.1.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
@@ -50,7 +50,6 @@ q7_t *riscv_nn_mat_mult_kernel_s8_s16(const q7_t *input_a,
                                     const int32_t *const output_bias,
                                     q7_t *out_0)
 {
-#if   defined(RISCV_MATH_DSP)
     /* set up the second output pointers */
     q7_t *out_1 = out_0 + output_ch;
     const int32_t *bias = output_bias;
@@ -67,12 +66,47 @@ q7_t *riscv_nn_mat_mult_kernel_s8_s16(const q7_t *input_a,
         /* align the second pointer for A */
         const q7_t *ip_a1 = ip_a0 + num_col_a;
 
+        q31_t ch_0_out_0 = 0;
+        q31_t ch_0_out_1 = 0;
+        q31_t ch_1_out_0 = 0;
+        q31_t ch_1_out_1 = 0;
         /* Init accumulator with bias for channel N and N + 1 */
-        q31_t ch_0_out_0 = *bias;
-        q31_t ch_0_out_1 = *bias++;
-        q31_t ch_1_out_0 = *bias;
-        q31_t ch_1_out_1 = *bias++;
+        if (bias)
+        {
+            ch_0_out_0 = *bias;
+            ch_0_out_1 = *bias++;
+            ch_1_out_0 = *bias;
+            ch_1_out_1 = *bias++;
+        }
+#if defined(RISCV_MATH_VECTOR)
+        /* accumulate over the vector */
+        size_t l;
+        uint16_t col_count = num_col_a & (~RVV_OPT_THRESHOLD);
 
+        vint16m4_t va0m4, va1m4, vb0m4, vb1m4;
+        vint32m1_t vtemp00m1;
+
+        l = vsetvl_e32m1(1);
+        vtemp00m1 = vmv_v_x_i32m1(0, l);
+
+        for (; (l = vsetvl_e8m2(col_count)) > 0; col_count -= l) {
+            va0m4 = vwadd_vx_i16m4(vle8_v_i8m2(ip_a0 , l), 0, l);
+            va1m4 = vwadd_vx_i16m4(vle8_v_i8m2(ip_a1 , l), 0, l);
+            vb0m4 = vle16_v_i16m4(ip_b0 , l);
+            vb1m4 = vle16_v_i16m4(ip_b1, l);
+
+            ip_a0 += l;
+            ip_a1 += l;
+            ip_b0 += l;
+            ip_b1 += l;
+
+            ch_0_out_0  += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(vtemp00m1, vwmul_vv_i32m8(va0m4, vb0m4, l), vtemp00m1, l));
+            ch_0_out_1 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(vtemp00m1, vwmul_vv_i32m8(va0m4, vb1m4, l), vtemp00m1, l));
+            ch_1_out_0 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(vtemp00m1, vwmul_vv_i32m8(va1m4, vb0m4, l), vtemp00m1, l));
+            ch_1_out_1 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(vtemp00m1, vwmul_vv_i32m8(va1m4, vb1m4, l), vtemp00m1, l));
+        }
+        col_count = num_col_a & RVV_OPT_THRESHOLD;
+#elif defined(RISCV_MATH_DSP)
         uint16_t col_count = num_col_a / 4;
         /* accumulate over the vector */
         while (col_count)
@@ -106,6 +140,9 @@ q7_t *riscv_nn_mat_mult_kernel_s8_s16(const q7_t *input_a,
             col_count--;
         } /* while over col_count */
         col_count = num_col_a & 0x3;
+#else
+        uint16_t col_count = num_col_a;
+#endif
         while (col_count)
         {
             q7_t a0 = *ip_a0++;
@@ -160,10 +197,41 @@ q7_t *riscv_nn_mat_mult_kernel_s8_s16(const q7_t *input_a,
         const q15_t *ip_b0 = input_b;
         const q15_t *ip_b1 = ip_b0 + num_col_a;
 
-        /* load the bias */
-        q31_t ch_0_out_0 = *bias;
-        q31_t ch_0_out_1 = *bias++;
+        q31_t ch_0_out_0 = 0;
+        q31_t ch_0_out_1 = 0;
 
+        /* load the bias */
+        if (bias)
+        {
+            ch_0_out_0 = *bias;
+            ch_0_out_1 = *bias++;
+        }
+
+#if defined(RISCV_MATH_VECTOR)
+        /* accumulate over the vector */
+        size_t l;
+        uint16_t col_count = num_col_a & (~RVV_OPT_THRESHOLD);
+
+        vint16m4_t va0m4, vb0m4, vb1m4;
+        vint32m1_t vtemp00m1;
+
+        l = vsetvl_e32m1(1);
+        vtemp00m1 = vmv_v_x_i32m1(0, l);
+
+        for (; (l = vsetvl_e8m2(col_count)) > 0; col_count -= l) {
+            va0m4 = vwadd_vx_i16m4(vle8_v_i8m2(ip_a0 , l), 0, l);
+            vb0m4 = vle16_v_i16m4(ip_b0 , l);
+            vb1m4 = vle16_v_i16m4(ip_b1, l);
+
+            ip_a0 += l;
+            ip_b0 += l;
+            ip_b1 += l;
+
+            ch_0_out_0  += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(vtemp00m1, vwmul_vv_i32m8(va0m4, vb0m4, l), vtemp00m1, l));
+            ch_0_out_1 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(vtemp00m1, vwmul_vv_i32m8(va0m4, vb1m4, l), vtemp00m1, l));
+        }
+        col_count = num_col_a & RVV_OPT_THRESHOLD;
+#elif defined(RISCV_MATH_DSP)
         uint16_t col_count = num_col_a >> 2;
         while (col_count)
         {
@@ -187,6 +255,9 @@ q7_t *riscv_nn_mat_mult_kernel_s8_s16(const q7_t *input_a,
             col_count--;
         }
         col_count = num_col_a & 0x3;
+#else
+        uint16_t col_count = num_col_a;
+#endif
         while (col_count)
         {
             q7_t a0 = *ip_a0++;
@@ -216,19 +287,4 @@ q7_t *riscv_nn_mat_mult_kernel_s8_s16(const q7_t *input_a,
 
     /* return the new output pointer with offset */
     return out_0;
-#else
-    (void)input_a;
-    (void)input_b;
-    (void)output_ch;
-    (void)out_shift;
-    (void)out_mult;
-    (void)out_offset;
-    (void)activation_min;
-    (void)activation_max;
-    (void)num_col_a;
-    (void)output_bias;
-    (void)out_0;
-    /* To be completed */
-    return NULL;
-#endif
 }

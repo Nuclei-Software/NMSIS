@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2020 Arm Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 Arm Limited or its affiliates.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -23,8 +23,8 @@
  * Description:  Wrapper API to select appropriate depthwise conv API based
  *               on dimensions.
  *
- * $Date:        11. May 2021
- * $Revision:    V.1.0.3
+ * $Date:        20. Dec 2021
+ * $Revision:    V.1.4.0
  *
  * Target Processor: RISC-V Cores
  *
@@ -60,9 +60,11 @@ riscv_status riscv_depthwise_conv_wrapper_s8(const nmsis_nn_context *ctx,
                                          q7_t *output)
 {
     riscv_status status = RISCV_MATH_SUCCESS;
-    if (1 == dw_conv_params->ch_mult && input_dims->n == 1)
+    if (1 == dw_conv_params->ch_mult && input_dims->n == 1 && dw_conv_params->dilation.w == 1 &&
+        dw_conv_params->dilation.h == 1)
     {
-        if ((filter_dims->w == 3) && (filter_dims->h == 3) && (dw_conv_params->padding.h <= 1))
+        if ((filter_dims->w == 3) && (filter_dims->h == 3) && (dw_conv_params->padding.h <= 1) &&
+            (dw_conv_params->padding.w <= 1))
         {
             status = riscv_depthwise_conv_3x3_s8(ctx,
                                                dw_conv_params,
@@ -118,7 +120,8 @@ int32_t riscv_depthwise_conv_wrapper_s8_get_buffer_size(const nmsis_nn_dw_conv_p
     (void)dw_conv_params;
     int32_t size = 0;
 
-    if (input_dims->c == output_dims->c && input_dims->n == 1)
+    if (input_dims->c == output_dims->c && input_dims->n == 1 && dw_conv_params->dilation.w == 1 &&
+        dw_conv_params->dilation.h == 1)
     {
         size = riscv_depthwise_conv_s8_opt_get_buffer_size(input_dims, filter_dims);
     }

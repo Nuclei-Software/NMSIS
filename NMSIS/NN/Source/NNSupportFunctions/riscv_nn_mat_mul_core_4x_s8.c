@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2020 Arm Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2022 Arm Limited or its affiliates.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,14 +22,13 @@
  * Title:        riscv_nn_mat_mul_core_4x_s8.c
  * Description:  General matrix multiplication function for MVE extension
  *
- * $Date:        09. October 2020
- * $Revision:    V.2.0.1
+ * $Date:        19. April 2022
+ * $Revision:    V.3.0.1
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
-
+#include "riscv_nn_types.h"
 #include "riscv_nnsupportfunctions.h"
-
 /**
  * @ingroup groupSupport
  */
@@ -45,41 +44,28 @@
  * Refer header file for details.
  *
  */
-riscv_status riscv_nn_mat_mul_core_4x_s8(const int32_t row_elements,
-                                     const int32_t offset,
-                                     const int8_t *row_base,
-                                     const int8_t *col_base,
-                                     int32_t *const sum_col,
-                                     int32_t *const output)
+
+int8_t *riscv_nn_mat_mul_core_4x_s8(const int32_t row_elements,
+                                  const int32_t offset,
+                                  const int8_t *row_base,
+                                  const int8_t *col_base_ref,
+                                  const int32_t out_ch,
+                                  const nmsis_nn_conv_params *conv_params,
+                                  const nmsis_nn_per_channel_quant_params *quant_params,
+                                  const int32_t *bias,
+                                  int8_t *output)
 {
-    int32_t acc_n0 = 0;
-    int32_t acc_n1 = 0;
-    int32_t acc_n2 = 0;
-    int32_t acc_n3 = 0;
 
-    const int8_t *ip_row_0 = row_base;
-    const int8_t *ip_row_1 = row_base + offset;
-    const int8_t *ip_row_2 = row_base + (2 * offset);
-    const int8_t *ip_row_3 = row_base + (3 * offset);
-    int32_t sum_tmp = 0;
-
-    for (int i = 0; i < row_elements; i++)
-    {
-        int32_t col = col_base[i];
-        sum_tmp += col;
-        acc_n0 += ip_row_0[i] * col;
-        acc_n1 += ip_row_1[i] * col;
-        acc_n2 += ip_row_2[i] * col;
-        acc_n3 += ip_row_3[i] * col;
-    }
-    output[0] = acc_n0;
-    output[1] = acc_n1;
-    output[2] = acc_n2;
-    output[3] = acc_n3;
-
-    *sum_col = sum_tmp;
-
-    return RISCV_MATH_SUCCESS;
+    (void)row_elements;
+    (void)offset;
+    (void)row_base;
+    (void)col_base_ref;
+    (void)out_ch;
+    (void)conv_params;
+    (void)quant_params;
+    (void)bias;
+    (void)output;
+    return NULL;
 }
 
 /**

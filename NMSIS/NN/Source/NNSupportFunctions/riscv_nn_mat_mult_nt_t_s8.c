@@ -60,7 +60,185 @@ riscv_status riscv_nn_mat_mult_nt_t_s8(const q7_t *lhs,
                                    const int32_t activation_min,
                                    const int32_t activation_max)
 {
-#if defined(RISCV_MATH_DSP) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
+    for (int32_t rhs_rows_idx = 0; rhs_rows_idx <= (rhs_rows - 2); rhs_rows_idx += 2)
+    {
+        const q7_t *lhs_ptr = lhs;
+        q7_t       *dst_ptr = dst;
+
+        q31_t lhs_offset_contribution0 = 0;
+        q31_t lhs_offset_contribution1 = 0;
+
+        for (int32_t x = 0; x < rhs_cols; ++x)
+        {
+            lhs_offset_contribution0 += rhs[x];
+            lhs_offset_contribution1 += rhs[x + rhs_cols];
+        }
+
+        lhs_offset_contribution0 *= lhs_offset;
+        lhs_offset_contribution1 *= lhs_offset;
+        if (bias)
+        {
+            lhs_offset_contribution0 += bias[rhs_rows_idx];
+            lhs_offset_contribution1 += bias[rhs_rows_idx + 1];
+        }
+
+        int32_t lhs_rows_idx = lhs_rows >> 1;
+
+        // Left-over rows
+        while (lhs_rows_idx)
+        {
+            const q7_t *rhs_ptr = &rhs[0];
+
+            q31_t res00 = lhs_offset_contribution0;
+            q31_t res01 = lhs_offset_contribution1;
+            q31_t res10 = lhs_offset_contribution0;
+            q31_t res11 = lhs_offset_contribution1;
+            size_t l;
+            uint32_t blkCnt = rhs_cols;
+            vint8m4_t rhs_value0, rhs_value1, lhs_value0, lhs_value1;
+            vint32m1_t temp00m1;
+            l = vsetvl_e32m1(1);
+		    temp00m1 = vmv_v_x_i32m1(0, l);
+            for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
+                rhs_value0 = vle8_v_i8m4(rhs_ptr, l);
+                rhs_value1 = vle8_v_i8m4(rhs_ptr + rhs_cols, l);
+                lhs_value0  = vle8_v_i8m4(lhs_ptr, l);
+                lhs_value1  = vle8_v_i8m4(lhs_ptr + rhs_cols, l);
+
+                res00 += (q31_t)vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(temp00m1, vwmul_vv_i16m8(lhs_value0, rhs_value0, l), temp00m1, l));
+		        res01 += (q31_t)vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(temp00m1, vwmul_vv_i16m8(lhs_value0, rhs_value1, l), temp00m1, l));
+
+                res10 += (q31_t)vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(temp00m1, vwmul_vv_i16m8(lhs_value1, rhs_value0, l), temp00m1, l));
+		        res11 += (q31_t)vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(temp00m1, vwmul_vv_i16m8(lhs_value1, rhs_value1, l), temp00m1, l));
+
+                rhs_ptr += l;
+                lhs_ptr += l;
+            }
+
+            // Quantize down
+            res00 = riscv_nn_requantize(res00, dst_multipliers[rhs_rows_idx], dst_shifts[rhs_rows_idx]);
+            res01 = riscv_nn_requantize(res01, dst_multipliers[rhs_rows_idx + 1], dst_shifts[rhs_rows_idx + 1]);
+            res10 = riscv_nn_requantize(res10, dst_multipliers[rhs_rows_idx], dst_shifts[rhs_rows_idx]);
+            res11 = riscv_nn_requantize(res11, dst_multipliers[rhs_rows_idx + 1], dst_shifts[rhs_rows_idx + 1]);
+
+            // Add offset
+            res00 += dst_offset;
+            res01 += dst_offset;
+            res10 += dst_offset;
+            res11 += dst_offset;
+
+            // Clamp the result
+            res00 = MAX(res00, activation_min);
+            res00 = MIN(res00, activation_max);
+            res01 = MAX(res01, activation_min);
+            res01 = MIN(res01, activation_max);
+            res10 = MAX(res10, activation_min);
+            res10 = MIN(res10, activation_max);
+            res11 = MAX(res11, activation_min);
+            res11 = MIN(res11, activation_max);
+
+            dst_ptr[0] = (q7_t)res00;
+            dst_ptr[1] = (q7_t)res01;
+            dst_ptr += rhs_rows;
+            dst_ptr[0] = (q7_t)res10;
+            dst_ptr[1] = (q7_t)res11;
+            dst_ptr += rhs_rows;
+
+            lhs_ptr += rhs_cols;
+
+            lhs_rows_idx--;
+        }
+
+        // Left-over rows
+        if (lhs_rows % 2)
+        {
+            const q7_t *rhs_ptr = &rhs[0];
+
+            q31_t res00 = lhs_offset_contribution0;
+            q31_t res01 = lhs_offset_contribution1;
+
+            size_t l;
+            uint32_t blkCnt = rhs_cols;
+            vint8m4_t rhs_value0, rhs_value1, lhs_value0;
+            vint32m1_t temp00m1;
+            l = vsetvl_e32m1(1);
+		    temp00m1 = vmv_v_x_i32m1(0, l);
+            for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
+                rhs_value0 = vle8_v_i8m4(rhs_ptr, l);
+                rhs_value1 = vle8_v_i8m4(rhs_ptr + rhs_cols, l);
+                lhs_value0  = vle8_v_i8m4(lhs_ptr, l);
+
+                res00 += (q31_t)vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(temp00m1, vwmul_vv_i16m8(lhs_value0, rhs_value0, l), temp00m1, l));
+		        res01 += (q31_t)vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(temp00m1, vwmul_vv_i16m8(lhs_value0, rhs_value1, l), temp00m1, l));
+                rhs_ptr += l;
+                lhs_ptr += l;
+            }
+
+            // Quantize down
+            res00 = riscv_nn_requantize(res00, dst_multipliers[rhs_rows_idx], dst_shifts[rhs_rows_idx]);
+            res01 = riscv_nn_requantize(res01, dst_multipliers[rhs_rows_idx + 1], dst_shifts[rhs_rows_idx + 1]);
+
+            // Add offset
+            res00 += dst_offset;
+            res01 += dst_offset;
+
+            // Clamp the result
+            res00 = MAX(res00, activation_min);
+            res00 = MIN(res00, activation_max);
+            res01 = MAX(res01, activation_min);
+            res01 = MIN(res01, activation_max);
+
+            dst_ptr[0] = (q7_t)res00;
+            dst_ptr[1] = (q7_t)res01;
+        }
+
+        rhs += 2 * rhs_cols;
+        dst += 2;
+    }
+
+    if (rhs_rows % 2)
+    {
+        const q7_t *lhs_ptr = &lhs[0];
+        q7_t *dst_ptr = &dst[0];
+
+        for (int32_t lhs_rows_idx = 0; lhs_rows_idx < lhs_rows; ++lhs_rows_idx)
+        {
+            const q7_t *rhs_ptr = &rhs[0];
+            q31_t res00 = 0;
+            if (bias)
+            {
+                res00 = bias[rhs_rows - 1];
+            }
+            size_t l;
+            uint32_t blkCnt = rhs_cols;
+            vint32m8_t rhs_value0, lhs_value0;
+            vint32m1_t temp00m1;
+            l = vsetvl_e32m1(1);
+		    temp00m1 = vmv_v_x_i32m1(0, l);
+            for (; (l = vsetvl_e8m2(blkCnt)) > 0; blkCnt -= l) {
+                rhs_value0 = vwadd_vx_i32m8(vwadd_vx_i16m4(vle8_v_i8m2(rhs_ptr, l), 0, l), 0, l);
+                lhs_value0 = vwadd_vx_i32m8(vwadd_vx_i16m4(vle8_v_i8m2(lhs_ptr, l), 0, l), lhs_offset, l);
+
+                res00 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vmul_vv_i32m8(lhs_value0, rhs_value0, l), temp00m1, l));
+                rhs_ptr += l;
+                lhs_ptr += l;
+            }
+            // Quantize down
+            res00 = riscv_nn_requantize(res00, dst_multipliers[rhs_rows - 1], dst_shifts[rhs_rows - 1]);
+
+            // Add offset
+            res00 += dst_offset;
+
+            // Clamp the result
+            res00 = MAX(res00, activation_min);
+            res00 = MIN(res00, activation_max);
+
+            dst_ptr[0] = (q7_t)res00;
+            dst_ptr += rhs_rows;
+        }
+    }
+#elif defined(RISCV_MATH_DSP)
     const int32_t off0 = rhs_cols - 4;
 
     for (int32_t rhs_rows_idx = 0; rhs_rows_idx <= (rhs_rows - 2); rhs_rows_idx += 2)
@@ -407,206 +585,6 @@ riscv_status riscv_nn_mat_mult_nt_t_s8(const q7_t *lhs,
             dst_ptr += rhs_rows;
         }
     }
-#elif defined (RISCV_MATH_VECTOR)
-    for (int32_t rhs_rows_idx = 0; rhs_rows_idx <= (rhs_rows - 2); rhs_rows_idx += 2)
-    {
-        const q7_t *lhs_ptr = &lhs[0];
-        q7_t       *dst_ptr = &dst[0];
-
-        q31_t lhs_offset_contribution0 = 0;
-        q31_t lhs_offset_contribution1 = 0;
-
-        for (int32_t x = 0; x < rhs_cols; ++x)
-        {
-            lhs_offset_contribution0 += rhs[x];
-            lhs_offset_contribution1 += rhs[x + rhs_cols];
-        }
-
-        lhs_offset_contribution0 *= lhs_offset;
-        lhs_offset_contribution1 *= lhs_offset;
-        if (bias)
-        {
-            lhs_offset_contribution0 += bias[rhs_rows_idx];
-            lhs_offset_contribution1 += bias[rhs_rows_idx + 1];
-        }
-
-        int32_t lhs_rows_idx = lhs_rows >> 1;
-
-        // Left-over rows
-        while (lhs_rows_idx)
-        {
-            const q7_t *rhs_ptr = &rhs[0];
-
-            q31_t res00 = lhs_offset_contribution0;
-            q31_t res01 = lhs_offset_contribution1;
-            q31_t res10 = lhs_offset_contribution0;
-            q31_t res11 = lhs_offset_contribution1;
-            size_t l;
-            uint32_t blkCnt = rhs_cols;
-            l = vsetvl_e8m1(blkCnt);
-            vint8m1_t rhs_value0,rhs_value1,lhs_value;
-            vint32m4_t vch00m4,vch01m4,vch10m4,vch11m4;
-            vint32m1_t vch00m1,vch01m1,vch10m1,vch11m1;
-            vint32m1_t vtemp00m1;
-            vch00m4 = vsub_vv_i32m4(vch00m4, vch00m4, l);
-            vch01m4 = vsub_vv_i32m4(vch01m4, vch01m4, l);
-            vch10m4 = vsub_vv_i32m4(vch10m4, vch10m4, l);
-            vch11m4 = vsub_vv_i32m4(vch11m4, vch11m4, l);
-            vtemp00m1 = vmv_v_x_i32m1(0, l);
-            for (; (l = vsetvl_e8m1(blkCnt)) > 0; blkCnt -= l) {
-                rhs_value0 = vle8_v_i8m1(rhs_ptr, l);
-                rhs_value1 = vle8_v_i8m1(rhs_ptr + rhs_cols, l);
-                lhs_value  = vle8_v_i8m1(lhs_ptr, l);
-                vch00m4= vwadd_wv_i32m4(vch00m4, vwmul_vv_i16m2(lhs_value, rhs_value0, l), l);
-                vch01m4= vwadd_wv_i32m4(vch01m4, vwmul_vv_i16m2(lhs_value, rhs_value1, l), l);
-                lhs_value  = vle8_v_i8m1(lhs_ptr + rhs_cols, l);
-                vch10m4= vwadd_wv_i32m4(vch10m4, vwmul_vv_i16m2(lhs_value, rhs_value0, l), l);
-                vch11m4= vwadd_wv_i32m4(vch11m4, vwmul_vv_i16m2(lhs_value, rhs_value1, l), l);
-                rhs_ptr += l;
-                lhs_ptr += l;
-            }
-            l = vsetvl_e8m1(rhs_cols);
-            vch00m1 = vredsum_vs_i32m4_i32m1(vtemp00m1, vch00m4, vtemp00m1, l);
-            vch01m1 = vredsum_vs_i32m4_i32m1(vtemp00m1, vch01m4, vtemp00m1, l);
-            vch10m1 = vredsum_vs_i32m4_i32m1(vtemp00m1, vch10m4, vtemp00m1, l);
-            vch11m1 = vredsum_vs_i32m4_i32m1(vtemp00m1, vch11m4, vtemp00m1, l);
-            res00 += (q31_t)vmv_x_s_i32m1_i32(vch00m1);
-            res01 += (q31_t)vmv_x_s_i32m1_i32(vch01m1);
-            res10 += (q31_t)vmv_x_s_i32m1_i32(vch10m1);
-            res11 += (q31_t)vmv_x_s_i32m1_i32(vch11m1);
-
-            // Quantize down
-            res00 = riscv_nn_requantize(res00, dst_multipliers[rhs_rows_idx], dst_shifts[rhs_rows_idx]);
-            res01 = riscv_nn_requantize(res01, dst_multipliers[rhs_rows_idx + 1], dst_shifts[rhs_rows_idx + 1]);
-            res10 = riscv_nn_requantize(res10, dst_multipliers[rhs_rows_idx], dst_shifts[rhs_rows_idx]);
-            res11 = riscv_nn_requantize(res11, dst_multipliers[rhs_rows_idx + 1], dst_shifts[rhs_rows_idx + 1]);
-
-            // Add offset
-            res00 += dst_offset;
-            res01 += dst_offset;
-            res10 += dst_offset;
-            res11 += dst_offset;
-
-            // Clamp the result
-            res00 = MAX(res00, activation_min);
-            res00 = MIN(res00, activation_max);
-            res01 = MAX(res01, activation_min);
-            res01 = MIN(res01, activation_max);
-            res10 = MAX(res10, activation_min);
-            res10 = MIN(res10, activation_max);
-            res11 = MAX(res11, activation_min);
-            res11 = MIN(res11, activation_max);
-
-            dst_ptr[0] = (q7_t)res00;
-            dst_ptr[1] = (q7_t)res01;
-            dst_ptr += rhs_rows;
-            dst_ptr[0] = (q7_t)res10;
-            dst_ptr[1] = (q7_t)res11;
-            dst_ptr += rhs_rows;
-
-            lhs_ptr += rhs_cols;
-
-            lhs_rows_idx--;
-        }
-
-        // Left-over rows
-        if (lhs_rows % 2)
-        {
-            const q7_t *rhs_ptr = &rhs[0];
-
-            q31_t res00 = lhs_offset_contribution0;
-            q31_t res01 = lhs_offset_contribution1;
-
-            size_t l;
-            uint32_t blkCnt = rhs_cols;
-            l = vsetvl_e8m1(blkCnt);
-            vint8m1_t rhs_value0,rhs_value1,lhs_value;
-            vint32m4_t vch00m4,vch01m4;
-            vint32m1_t vch00m1,vch01m1;
-            vint32m1_t vtemp00m1;
-            vch00m4 = vsub_vv_i32m4(vch00m4, vch00m4, l);
-            vch01m4 = vsub_vv_i32m4(vch01m4, vch01m4, l);
-            vtemp00m1 = vmv_v_x_i32m1(0, l);
-            for (; (l = vsetvl_e8m1(blkCnt)) > 0; blkCnt -= l) {
-                rhs_value0 = vle8_v_i8m1(rhs_ptr, l);
-                rhs_value1 = vle8_v_i8m1(rhs_ptr + rhs_cols, l);
-                lhs_value  = vle8_v_i8m1(lhs_ptr, l);
-                vch00m4= vwadd_wv_i32m4(vch00m4, vwmul_vv_i16m2(lhs_value, rhs_value0, l), l);
-                vch01m4= vwadd_wv_i32m4(vch01m4, vwmul_vv_i16m2(lhs_value, rhs_value1, l), l);
-                rhs_ptr += l;
-                lhs_ptr += l;
-            }
-            l = vsetvl_e8m1(rhs_cols);
-            vch00m1 = vredsum_vs_i32m4_i32m1(vtemp00m1, vch00m4, vtemp00m1, l);
-            vch01m1 = vredsum_vs_i32m4_i32m1(vtemp00m1, vch01m4, vtemp00m1, l);
-
-            res00 += (q31_t)vmv_x_s_i32m1_i32(vch00m1);
-            res01 += (q31_t)vmv_x_s_i32m1_i32(vch01m1);
-
-
-            // Quantize down
-            res00 = riscv_nn_requantize(res00, dst_multipliers[rhs_rows_idx], dst_shifts[rhs_rows_idx]);
-            res01 = riscv_nn_requantize(res01, dst_multipliers[rhs_rows_idx + 1], dst_shifts[rhs_rows_idx + 1]);
-
-            // Add offset
-            res00 += dst_offset;
-            res01 += dst_offset;
-
-            // Clamp the result
-            res00 = MAX(res00, activation_min);
-            res00 = MIN(res00, activation_max);
-            res01 = MAX(res01, activation_min);
-            res01 = MIN(res01, activation_max);
-
-            dst_ptr[0] = (q7_t)res00;
-            dst_ptr[1] = (q7_t)res01;
-        }
-
-
-        rhs += 2 * rhs_cols;
-        dst += 2;
-    }
-
-    if (rhs_rows % 2)
-    {
-        const q7_t *lhs_ptr = &lhs[0];
-        q7_t *dst_ptr = &dst[0];
-
-        for (int32_t lhs_rows_idx = 0; lhs_rows_idx < lhs_rows; ++lhs_rows_idx)
-        {
-            const q7_t *rhs_ptr = &rhs[0];
-            q31_t res00 = 0;
-            if (bias)
-            {
-                res00 = bias[rhs_rows - 1];
-            }
-
-            for (int32_t rhs_cols_idx = 0; rhs_cols_idx < rhs_cols; ++rhs_cols_idx)
-            {
-                q31_t rhs_value = rhs_ptr[0];
-                q31_t lhs_value = lhs_ptr[0] + lhs_offset;
-
-                res00 += lhs_value * rhs_value;
-
-                ++rhs_ptr;
-                ++lhs_ptr;
-            }
-
-            // Quantize down
-            res00 = riscv_nn_requantize(res00, dst_multipliers[rhs_rows - 1], dst_shifts[rhs_rows - 1]);
-
-            // Add offset
-            res00 += dst_offset;
-
-            // Clamp the result
-            res00 = MAX(res00, activation_min);
-            res00 = MIN(res00, activation_max);
-
-            dst_ptr[0] = (q7_t)res00;
-            dst_ptr += rhs_rows;
-        }
-    }
-
 #else
     for (int32_t rhs_rows_idx = 0; rhs_rows_idx <= (rhs_rows - 2); rhs_rows_idx += 2)
     {

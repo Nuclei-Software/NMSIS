@@ -22,8 +22,8 @@
  * Title:        riscv_convolve_HWC_q15_fast.c
  * Description:  Fast Q15 version of convolution
  *
- * $Date:        January 26, 2021
- * $Revision:    V.1.0.2
+ * $Date:        July 20, 2021
+ * $Revision:    V.1.1.2
  *
  * Target Processor: RISC-V Cores
  *
@@ -111,16 +111,6 @@ riscv_status riscv_convolve_HWC_q15_fast_nonsquare(const q15_t *Im_in,
     q15_t *im_buffer = bufferA;
     q15_t *pOut = Im_out;
 
-#if defined(RISCV_MATH_VECTOR)
-    size_t l;
-    uint32_t blkCnt;
-    ptrdiff_t bstride;
-    vint16m4_t va1m4,vb1m4,va2m4,vb2m4;
-    vint64m1_t vtemp;
-    l = vsetvl_e64m1(1);
-    vtemp = vsub_vv_i64m1(vtemp,vtemp, l);
-#endif
-
     if (ch_im_in % 2 != 0 || ch_im_out % 2 != 0)
     {
         /* check if the input dimension meets the constraints */
@@ -144,7 +134,8 @@ riscv_status riscv_convolve_HWC_q15_fast_nonsquare(const q15_t *Im_in,
                     {
                         riscv_fill_q15(0, pBuffer, ch_im_in);
                         /* memset(pBuffer, 0, sizeof(q15_t)*ch_im_in); */
-                    } else
+                    }
+                    else
                     {
                         riscv_copy_q15((q15_t *) Im_in + (i_ker_y * dim_im_in_x + i_ker_x) * ch_im_in, pBuffer, ch_im_in);
                         /* memcpy(pBuffer, (q15_t *) Im_in + (i_ker_y * dim_im_in_x + i_ker_x) * ch_im_in, sizeof(q15_t)*ch_im_in); */
@@ -173,13 +164,20 @@ riscv_status riscv_convolve_HWC_q15_fast_nonsquare(const q15_t *Im_in,
                     const q15_t *pA2 = pA + ch_im_in * dim_kernel_y * dim_kernel_x;
 
                     /* init the sum with bias */
-                    q31_t     sum =  ((q31_t)bias[i] << bias_shift) + NN_ROUND(out_shift);
-                    q31_t     sum2 = ((q31_t)bias[i] << bias_shift) + NN_ROUND(out_shift);
-                    q31_t     sum3 = ((q31_t)bias[i + 1] << bias_shift) + NN_ROUND(out_shift);
-                    q31_t     sum4 = ((q31_t)bias[i + 1] << bias_shift) + NN_ROUND(out_shift);
-#if defined(RISCV_MATH_VECTOR)
+                    q31_t sum = ((q31_t)bias[i] << bias_shift) + NN_ROUND(out_shift);
+                    q31_t sum2 = ((q31_t)bias[i] << bias_shift) + NN_ROUND(out_shift);
+                    q31_t sum3 = ((q31_t)bias[i + 1] << bias_shift) + NN_ROUND(out_shift);
+                    q31_t sum4 = ((q31_t)bias[i + 1] << bias_shift) + NN_ROUND(out_shift);
+
                     uint16_t  colCnt = ch_im_in * dim_kernel_y * dim_kernel_x;
-                    blkCnt = colCnt;
+#if defined(RISCV_MATH_VECTOR)
+                    size_t l;
+                    uint32_t blkCnt;
+                    vint16m4_t va1m4, vb1m4, va2m4, vb2m4;
+                    vint32m1_t vtemp;
+                    l = vsetvl_e32m1(1);
+                    vtemp = vsub_vv_i32m1(vtemp, vtemp, l);
+                    blkCnt = colCnt & (~RVV_OPT_THRESHOLD);
                     for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
                         va1m4 = vle16_v_i16m4(pA, l);
                         vb1m4 = vle16_v_i16m4(pB, l);
@@ -189,33 +187,22 @@ riscv_status riscv_convolve_HWC_q15_fast_nonsquare(const q15_t *Im_in,
                         pB  += l;
                         pA2 += l;
                         pB2 += l;
-                        l = vsetvl_e16m4(blkCnt);
-                        sum  += (q31_t)vmv_x_s_i64m1_i64(vwredsum_vs_i32m8_i64m1(vtemp, vwmul_vv_i32m8(va1m4, vb1m4, l), vtemp, l));
-                        l = vsetvl_e16m4(blkCnt);
-                        sum2 += (q31_t)vmv_x_s_i64m1_i64(vwredsum_vs_i32m8_i64m1(vtemp, vwmul_vv_i32m8(va1m4, vb2m4, l), vtemp, l));
-                        l = vsetvl_e16m4(blkCnt);
-                        sum3 += (q31_t)vmv_x_s_i64m1_i64(vwredsum_vs_i32m8_i64m1(vtemp, vwmul_vv_i32m8(va2m4, vb1m4, l), vtemp, l));
-                        l = vsetvl_e16m4(blkCnt);
-                        sum4 += (q31_t)vmv_x_s_i64m1_i64(vwredsum_vs_i32m8_i64m1(vtemp, vwmul_vv_i32m8(va2m4, vb2m4, l), vtemp, l));
+                        sum  += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(vtemp, vwmul_vv_i32m8(va1m4, vb1m4, l), vtemp, l));
+                        sum2 += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(vtemp, vwmul_vv_i32m8(va1m4, vb2m4, l), vtemp, l));
+                        sum3 += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(vtemp, vwmul_vv_i32m8(va2m4, vb1m4, l), vtemp, l));
+                        sum4 += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(vtemp, vwmul_vv_i32m8(va2m4, vb2m4, l), vtemp, l));
                     }
-                    *pOut++ = (q15_t) __SSAT(sum >> out_shift, 16);
-                    *pOut++ = (q15_t) __SSAT(sum3 >> out_shift, 16);
-                    *pOut2++ = (q15_t) __SSAT(sum2 >> out_shift, 16);
-                    *pOut2++ = (q15_t) __SSAT(sum4 >> out_shift, 16);
-                    /* skip the row computed with A2 */
-                    pA += ch_im_in * dim_kernel_y * dim_kernel_x;
-                }
-#else
-#if defined (RISCV_MATH_DSP)
+                    colCnt = colCnt & RVV_OPT_THRESHOLD;
+#elif defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
-                    uint16_t  colCnt = ch_im_in * dim_kernel_y * dim_kernel_x >> 2;
+                    colCnt = ch_im_in * dim_kernel_y * dim_kernel_x >> 2;
                     /* accumulate over the vector */
                     while (colCnt)
                     {
-                        q63_t     inA1 = *__SIMD64(pA)++;
-                        q63_t     inB1 = *__SIMD64(pB)++;
-                        q63_t     inA2 = *__SIMD64(pA2)++;
-                        q63_t     inB2 = *__SIMD64(pB2)++;
+                        q63_t inA1 = *__SIMD64(pA)++;
+                        q63_t inB1 = *__SIMD64(pB)++;
+                        q63_t inA2 = *__SIMD64(pA2)++;
+                        q63_t inB2 = *__SIMD64(pB2)++;
 
                         sum  = __RV_SMALDA(sum , inA1, inB1);
                         sum2 = __RV_SMALDA(sum2, inA1, inB2);
@@ -227,7 +214,7 @@ riscv_status riscv_convolve_HWC_q15_fast_nonsquare(const q15_t *Im_in,
                     colCnt = ch_im_in * dim_kernel_y * dim_kernel_x & 0x3;
 
 #else
-                    uint16_t  colCnt = ch_im_in * dim_kernel_y * dim_kernel_x >> 1;
+                    colCnt = ch_im_in * dim_kernel_y * dim_kernel_x >> 1;
                     /* accumulate over the vector */
                     while (colCnt)
                     {
@@ -245,8 +232,7 @@ riscv_status riscv_convolve_HWC_q15_fast_nonsquare(const q15_t *Im_in,
                     } /* while over colCnt */
                     colCnt = ch_im_in * dim_kernel_y * dim_kernel_x & 0x1;
 #endif /* __RISCV_XLEN == 64 */
-#else
-                    uint16_t  colCnt = ch_im_in * dim_kernel_y * dim_kernel_x;
+
 #endif
                     while (colCnt)
                     {
@@ -260,17 +246,16 @@ riscv_status riscv_convolve_HWC_q15_fast_nonsquare(const q15_t *Im_in,
                         sum3 += inA2 * inB1;
                         sum4 += inA2 * inB2;
                         colCnt--;
-                    }           /* while over colCnt */
-
-                    *pOut++ = (q15_t) __SSAT(sum >> out_shift, 16);
-                    *pOut++ = (q15_t) __SSAT(sum3 >> out_shift, 16);
-                    *pOut2++ = (q15_t) __SSAT(sum2 >> out_shift, 16);
-                    *pOut2++ = (q15_t) __SSAT(sum4 >> out_shift, 16);
+                    } /* while over colCnt */
+                    *pOut++ = (q15_t)__SSAT(sum >> out_shift, 16);
+                    *pOut++ = (q15_t)__SSAT(sum3 >> out_shift, 16);
+                    *pOut2++ = (q15_t)__SSAT(sum2 >> out_shift, 16);
+                    *pOut2++ = (q15_t)__SSAT(sum4 >> out_shift, 16);
 
                     /* skip the row computed with A2 */
                     pA += ch_im_in * dim_kernel_y * dim_kernel_x;
-                }               /* for over ch_im_out */
-#endif
+                } /* for over ch_im_out */
+
                 pOut += ch_im_out;
                 /* counter reset */
                 pBuffer = im_buffer;
@@ -325,6 +310,7 @@ riscv_status riscv_convolve_HWC_q15_fast_nonsquare(const q15_t *Im_in,
     /* Return to application */
     return RISCV_MATH_SUCCESS;
 }
+
 /**
  * @} end of NNConv group
  */

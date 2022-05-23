@@ -22,8 +22,8 @@
  * Title:        riscv_depthwise_separable_conv_HWC_q7.c
  * Description:  Q7 depthwise separable convolution function
  *
- * $Date:        January 26, 2021
- * $Revision:    V.1.0.2
+ * $Date:        July 20, 2021
+ * $Revision:    V.1.1.2
  *
  * Target Processor: RISC-V Cores
  *

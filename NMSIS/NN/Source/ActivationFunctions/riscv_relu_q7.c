@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2020 Arm Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 Arm Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_relu_q7.c
  * Description:  Q7 version of ReLU
  *
- * $Date:        09. October 2020
- * $Revision:    V.1.0.3
+ * $Date:        20. July 2021
+ * $Revision:    V.1.1.3
  *
  * Target Processor: RISC-V Cores
  *
@@ -54,20 +54,24 @@
 
 void riscv_relu_q7(q7_t *data, uint16_t size)
 {
+    uint16_t i;
+
 #if defined(RISCV_MATH_VECTOR)
-  uint16_t blkCnt = size;                               /* Loop counter */
-  size_t l;
-  vint8m8_t vx;
-  //inital to zero
-  int8_t vy=0;
-  for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
-    vx = vle8_v_i8m8(data, l);
-    // if data >= zero, return data, else return zero
-    vse8_v_i8m8 (data, vmax_vx_i8m8(vx, vy, l), l);
-    data += l;
-  }
-#else
-#if defined(RISCV_MATH_DSP)
+    uint16_t blkCnt = size & (~RVV_OPT_THRESHOLD);                               /* Loop counter */
+    uint16_t tmp_i = blkCnt;
+    size_t l;
+    vint8m8_t vx;
+    int8_t zero = 0;
+
+    for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
+        vx = vle8_v_i8m8(data, l);
+        // if data >= zero, return data, else return zero
+        vse8_v_i8m8(data, vmax_vx_i8m8(vx, zero, l), l);
+        data += l;
+    }
+    i = tmp_i;
+
+#elif defined(RISCV_MATH_DSP)
     /* Run the following code for M cores with DSP extension */
 
     q7_t     *input = data;
@@ -77,56 +81,46 @@ void riscv_relu_q7(q7_t *data, uint16_t size)
     q31_t     mask;
     q31_t     zero = 0;
 #if __RISCV_XLEN == 64
-uint16_t  i = size >> 3;
-   q63_t in64;
+    i = size >> 3;
+    uint16_t tmp_i = i;
+    q63_t in64;
     while (i)
     {
 
         in64 = *__SIMD64(input)++;
 
-        *__SIMD64(output)++ = __RV_SMAX8 (in64,zero);
+        *__SIMD64(output)++ = __RV_SMAX8 (in64, zero);
 
         i--;
     }
 
-    i = size & 0x7;
+    i = tmp_i;
 #else
-    uint16_t  i = size >> 2;
-
+    i = size >> 2;
+    uint16_t tmp_i = size;
     while (i)
     {
 
         in = *__SIMD32(input)++;
 
-        *__SIMD32(output)++ = __RV_SMAX8 (in,zero);
+        *__SIMD32(output)++ = __RV_SMAX8 (in, zero);
 
         i--;
     }
 
-    i = size & 0x3;
+    i = tmp_i;
 #endif /* __RISCV_XLEN == 64 */
-    while (i)
-    {
-        if (*input < 0)
-        {
-            *input = 0;
-        }
-        input++;
-        i--;
-    }
 
 #else
+	i = 0;
+#endif /* RISCV_MATH_VECTOR */
     /* Run the following code as reference implementation for cores without DSP extension */
 
-    uint16_t i;
-
-    for (i = 0; i < size; i++)
+    for (; i < size; i++)
     {
         if (data[i] < 0)
             data[i] = 0;
     }
-#endif
-#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

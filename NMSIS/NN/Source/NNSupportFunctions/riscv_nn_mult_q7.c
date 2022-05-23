@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2018 Arm Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 Arm Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_nn_mult_q7.c
  * Description:  Q7 vector multiplication with variable output shifts
  *
- * $Date:        09. October 2020
- * $Revision:    V.1.0.2
+ * $Date:        20. July 2021
+ * $Revision:    V.1.1.2
  *
  * Target Processor: RISC-V Cores
  *
@@ -56,58 +56,56 @@
 
 void riscv_nn_mult_q7(q7_t *pSrcA, q7_t *pSrcB, q7_t *pDst, const uint16_t out_shift, uint32_t blockSize)
 {
+	uint32_t blkCnt;
+
 #if defined (RISCV_MATH_VECTOR)
-    uint32_t blkCnt = blockSize;                              /* Loop counter */
+    blkCnt = blockSize & (~RVV_OPT_THRESHOLD);                              /* Loop counter */
     size_t l;
-    q7_t *pCnt = pDst;
-    q7_t *pA = pSrcA;
-    q7_t *pB = pSrcB;
-    vint8m2_t pA_v8m2,pB_v8m2;
-    vint16m4_t mulRes_i16m4;
-    vint32m8_t addRes_i32m8;
 
-    for (; (l = vsetvl_e8m2(blkCnt)) > 0; blkCnt -= l) {
-      pA_v8m2 = vle8_v_i8m2(pA, l);
-      pB_v8m2 = vle8_v_i8m2(pB, l);
-      pA += l;
-      pB += l;
-      mulRes_i16m4 = vwmul_vv_i16m4(pA_v8m2,pB_v8m2, l);
-      addRes_i32m8 = vwadd_vx_i32m8(mulRes_i16m4,NN_ROUND(out_shift), l);
-      vse8_v_i8m2 (pCnt, vnclip_wx_i8m2(vnsra_wx_i16m4(addRes_i32m8,out_shift, l),0, l), l);
-      pCnt += l;
+    vint8m4_t pA_v8m4, pB_v8m4;
+    vint16m8_t tempi16m8;
+
+    for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
+        pA_v8m4 = vle8_v_i8m4(pSrcA, l);
+        pB_v8m4 = vle8_v_i8m4(pSrcB, l);
+        pSrcA += l;
+        pSrcB += l;
+        tempi16m8 = vadd_vx_i16m8(vwmul_vv_i16m8(pA_v8m4, pB_v8m4, l), NN_ROUND(out_shift), l);
+        vse8_v_i8m4(pDst, vnclip_wx_i8m4(vsra_vx_i16m8(tempi16m8, out_shift, l), 0, l), l);
+        pDst += l;
+
     }
-#else
-  uint32_t blkCnt;                               /* loop counters */
+    blkCnt = blockSize & RVV_OPT_THRESHOLD;
 
-#if defined(RISCV_MATH_DSP)
+#elif defined(RISCV_MATH_DSP)
 
-/* Run the below code for RISC-V Core with DSP enabled */
-  q7_t out1, out2, out3, out4;                   /* Temporary variables to store the product */
-  q63_t mul1;
-  q31_t inA1, inB1;
-  /* loop Unrolling */
-  blkCnt = blockSize >> 2U;
+    /* Run the below code for RISC-V Core with DSP enabled */
+    q7_t out1, out2, out3, out4;                   /* Temporary variables to store the product */
+    q63_t mul1;
+    q31_t inA1, inB1;
+    /* loop Unrolling */
+    blkCnt = blockSize >> 2U;
 
-  /* First part of the processing with loop unrolling.  Compute 4 outputs at a time.
-   ** a second loop below computes the remaining 1 to 3 samples. */
-  while (blkCnt > 0U)
-  {
-    /* C = A * B */
-    /* Multiply the inputs and store the results in temporary variables */
-    // out1 = (q7_t) __SSAT(((q15_t) ((q15_t) (*pSrcA++) * (*pSrcB++) + NN_ROUND(out_shift)) >> out_shift), 8);
-    // out2 = (q7_t) __SSAT(((q15_t) ((q15_t) (*pSrcA++) * (*pSrcB++) + NN_ROUND(out_shift)) >> out_shift), 8);
-    // out3 = (q7_t) __SSAT(((q15_t) ((q15_t) (*pSrcA++) * (*pSrcB++) + NN_ROUND(out_shift)) >> out_shift), 8);
-    // out4 = (q7_t) __SSAT(((q15_t) ((q15_t) (*pSrcA++) * (*pSrcB++) + NN_ROUND(out_shift)) >> out_shift), 8);
+    /* First part of the processing with loop unrolling.  Compute 4 outputs at a time.
+    ** a second loop below computes the remaining 1 to 3 samples. */
+    while (blkCnt > 0U)
+    {
+        /* C = A * B */
+        /* Multiply the inputs and store the results in temporary variables */
+        // out1 = (q7_t) __SSAT(((q15_t) ((q15_t) (*pSrcA++) * (*pSrcB++) + NN_ROUND(out_shift)) >> out_shift), 8);
+        // out2 = (q7_t) __SSAT(((q15_t) ((q15_t) (*pSrcA++) * (*pSrcB++) + NN_ROUND(out_shift)) >> out_shift), 8);
+        // out3 = (q7_t) __SSAT(((q15_t) ((q15_t) (*pSrcA++) * (*pSrcB++) + NN_ROUND(out_shift)) >> out_shift), 8);
+        // out4 = (q7_t) __SSAT(((q15_t) ((q15_t) (*pSrcA++) * (*pSrcB++) + NN_ROUND(out_shift)) >> out_shift), 8);
 
-    inA1 = riscv_nn_read_q7x4_ia((const q7_t **)&pSrcA);
-    inB1 = riscv_nn_read_q7x4_ia((const q7_t **)&pSrcB);
+        inA1 = riscv_nn_read_q7x4_ia((const q7_t **)&pSrcA);
+        inB1 = riscv_nn_read_q7x4_ia((const q7_t **)&pSrcB);
 
-    mul1 = __RV_SMUL8(inA1,inB1);
+        mul1 = __RV_SMUL8(inA1, inB1);
 
-    out1 = (q7_t) __SSAT((q15_t) ((mul1 & 0xffff) + NN_ROUND(out_shift)) >> out_shift, 8);
-    out2 = (q7_t) __SSAT((q15_t) (((mul1 & 0x00000000ffff0000UL) >> 16) + NN_ROUND(out_shift)) >> out_shift, 8);
-    out3 = (q7_t) __SSAT((q15_t) (((mul1 & 0x0000ffff00000000UL) >> 32) + NN_ROUND(out_shift)) >> out_shift, 8);
-    out4 = (q7_t) __SSAT((q15_t) (((mul1 & 0xffff000000000000UL) >> 48) + NN_ROUND(out_shift)) >> out_shift, 8);
+        out1 = (q7_t) __SSAT((q15_t) ((mul1 & 0xffff) + NN_ROUND(out_shift)) >> out_shift, 8);
+        out2 = (q7_t) __SSAT((q15_t) (((mul1 & 0x00000000ffff0000UL) >> 16) + NN_ROUND(out_shift)) >> out_shift, 8);
+        out3 = (q7_t) __SSAT((q15_t) (((mul1 & 0x0000ffff00000000UL) >> 32) + NN_ROUND(out_shift)) >> out_shift, 8);
+        out4 = (q7_t) __SSAT((q15_t) (((mul1 & 0xffff000000000000UL) >> 48) + NN_ROUND(out_shift)) >> out_shift, 8);
 
         /* Store the results of 4 inputs in the destination buffer in single cycle by packing */
         *__SIMD32(pDst)++ = __PACKq7(out1, out2, out3, out4);
@@ -117,18 +115,14 @@ void riscv_nn_mult_q7(q7_t *pSrcA, q7_t *pSrcB, q7_t *pDst, const uint16_t out_s
     }
 
     /* If the blockSize is not a multiple of 4, compute any remaining output samples here.
-     ** No loop unrolling is used. */
-    blkCnt = blockSize % 0x4U;
+    ** No loop unrolling is used. */
+    blkCnt = blockSize & 0x3U;
 
 #else
-
-    /* Run the below code for RISC-V Core without DSP */
-
     /* Initialize blkCnt with number of samples */
     blkCnt = blockSize;
 
-#endif /* #if defined (RISCV_MATH_DSP) */
-
+#endif
     while (blkCnt > 0U)
     {
         /* C = A * B */
@@ -138,7 +132,6 @@ void riscv_nn_mult_q7(q7_t *pSrcA, q7_t *pSrcB, q7_t *pDst, const uint16_t out_s
         /* Decrement the blockSize loop counter */
         blkCnt--;
     }
-#endif /*defined (RISCV_MATH_VECTOR)*/
 }
 
 /**

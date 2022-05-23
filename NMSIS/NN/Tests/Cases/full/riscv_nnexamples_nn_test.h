@@ -84,7 +84,7 @@ void verify_results_int32(int32_t * ref, int32_t * opt, int length)
     {
         if (ref[i] != opt[i])
         {
-            printf("Q7 Output mismatch at %d, expected %d, actual %d\r\n", i, ref[i], opt[i]);
+            printf("Q31 Output mismatch at %d, expected %d, actual %d\r\n", i, ref[i], opt[i]);
 
             if_match = false;
         }

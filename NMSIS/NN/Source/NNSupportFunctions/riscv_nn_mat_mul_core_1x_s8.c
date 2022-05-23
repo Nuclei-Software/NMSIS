@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2020 Arm Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2022 Arm Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_nn_mat_mul_core_1x_s8.c
  * Description:  General Matrix-multiplication function
  *
- * $Date:        09. October 2020
- * $Revision:    V.1.0.2
+ * $Date:        19. April 2022
+ * $Revision:    V.1.0.3
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
@@ -54,32 +54,35 @@ riscv_status riscv_nn_mat_mul_core_1x_s8(int32_t row_elements,
 {
     int32_t acc_n0 = 0;
     int32_t sum_tmp = 0;
+    int i;
 
 #if defined (RISCV_MATH_VECTOR)
-    uint32_t blkCnt = row_elements;                              /* Loop counter */
+    uint32_t blkCnt = row_elements & (~RVV_OPT_THRESHOLD);                              /* Loop counter */
+    uint32_t temp_i = blkCnt;
     size_t l;
-    const q7_t *pCol = col_base;
-    const q7_t *pRow = row_base;
-    vint8m2_t v_col,v_row;
+    vint8m4_t v_col, v_row;
+	const int8_t *p_row = row_base;
+	const int8_t *p_col = col_base;
     vint32m1_t temp;
-    l = vsetvl_e8m2(1);
-    temp = vsub_vv_i32m1(temp,temp, l);
-    for (; (l = vsetvl_e8m2(blkCnt)) > 0; blkCnt -= l) {
-      v_col = vle8_v_i8m2(pCol, l);
-      v_row = vle8_v_i8m2(pRow, l);
-      pCol += l;
-      pRow += l;
-      sum_tmp += vmv_x_s_i32m1_i32(vwredsum_vs_i16m4_i32m1(temp,vwadd_vx_i16m4(v_col,0, l),temp, l));
-      l = vsetvl_e8m2(blkCnt);
-      acc_n0 += vmv_x_s_i32m1_i32(vwredsum_vs_i16m4_i32m1(temp,vwadd_vv_i16m4(v_col,v_row, l),temp, l));
+    l = vsetvl_e32m1(1);
+    temp = vsub_vv_i32m1(temp, temp, l);
+    for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
+        v_col = vle8_v_i8m4(p_col, l);
+        v_row = vle8_v_i8m4(p_row, l);
+        p_col += l;
+        p_row += l;
+        sum_tmp += vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(temp, vwadd_vx_i16m8(v_col, 0, l), temp, l));
+        acc_n0  += vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(temp, vwmul_vv_i16m8(v_col, v_row, l), temp, l));
     }
+    i = temp_i;
 #else
-    for (int i = 0; i < row_elements; i++)
+    i = 0;
+#endif
+    for (; i < row_elements; i++)
     {
         sum_tmp += col_base[i];
         acc_n0 += row_base[i] * col_base[i];
     }
-#endif
 
     *sum_col = sum_tmp;
     *output = acc_n0;

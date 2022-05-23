@@ -64,8 +64,8 @@ riscv_status riscv_depthwise_conv_wrapper_s8_ref(const nmsis_nn_context *ctx,
         if ((filter_dims->w == 3) && (filter_dims->h == 3) && (dw_conv_params->padding.h <= 1))
         {
             status = riscv_depthwise_conv_3x3_s8_ref(ctx,
-                                                   quant_params,
                                                    dw_conv_params,
+                                                   quant_params,
                                                    input_dims,
                                                    input,
                                                    filter_dims,

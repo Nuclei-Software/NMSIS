@@ -30,7 +30,7 @@
  * -------------------------------------------------------------------- */
 
 #include "riscv_nnfunctions.h"
-
+#include "riscv_nnsupportfunctions.h"
 /**
  *  @ingroup groupNN
  */
@@ -65,8 +65,30 @@ void riscv_softmax_q15(const q15_t *vec_in, const uint16_t dim_vec, q15_t *p_out
     int16_t i;
     uint8_t shift;
     q31_t base;
-    base = -1 * 0x100000;
-    for (i = 0; i < dim_vec; i++)
+    base = -1 * 0x8000;
+
+#if defined(RISCV_MATH_VECTOR)
+    q15_t temp_max;
+    uint16_t blkCnt = dim_vec & (~RVV_OPT_THRESHOLD);
+    uint16_t tmp_i = blkCnt;
+    size_t l;
+    const q15_t *px = vec_in;
+    vint16m8_t v_x;
+    vint16m1_t vtemp;
+    l = vsetvl_e16m1(1);
+    vtemp = vmv_v_x_i16m1(base, l);
+    for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
+        v_x = vle16_v_i16m8(px, l);
+        px += l;
+        temp_max = vmv_x_s_i16m1_i16(vredmax_vs_i16m8_i16m1(vtemp, v_x, vtemp, l));
+        if (temp_max > base)
+            base = temp_max;
+    }
+    i = tmp_i;
+#else
+	i = 0;
+#endif
+    for (; i < dim_vec; i++)
     {
         if (vec_in[i] > base)
         {

@@ -22,8 +22,8 @@
  * Title:        riscv_convolve_HWC_q15_fast.c
  * Description:  Fast Q15 version of convolution
  *
- * $Date:        January 26, 2021
- * $Revision:    V.1.0.2
+ * $Date:        July 20, 2021
+ * $Revision:    V.1.1.2
  *
  * Target Processor: RISC-V Cores
  *
@@ -75,6 +75,8 @@
  *
  * ch_im_out is multiple of 2
  *
+ * dim_im_out is a multiple of 2
+ *
  */
 
 riscv_status riscv_convolve_HWC_q15_fast(const q15_t *Im_in,
@@ -101,7 +103,7 @@ riscv_status riscv_convolve_HWC_q15_fast(const q15_t *Im_in,
     q15_t *im_buffer = bufferA;
     q15_t *pOut = Im_out;
 
-    if (ch_im_in % 2 != 0 || ch_im_out % 2 != 0)
+    if (ch_im_in % 2 != 0 || ch_im_out % 2 != 0 || dim_im_out & 0x1)
     {
         /* check if the input dimension meets the constraints */
         return RISCV_MATH_SIZE_MISMATCH;
@@ -151,10 +153,10 @@ riscv_status riscv_convolve_HWC_q15_fast(const q15_t *Im_in,
                     const q15_t *pA2 = pA + ch_im_in * dim_kernel * dim_kernel;
 
                     /* init the sum with bias */
-                    q31_t     sum =  ((q31_t)bias[i] << bias_shift) + NN_ROUND(out_shift);
-                    q31_t     sum2 = ((q31_t)bias[i] << bias_shift) + NN_ROUND(out_shift);
-                    q31_t     sum3 = ((q31_t)bias[i + 1] << bias_shift) + NN_ROUND(out_shift);
-                    q31_t     sum4 = ((q31_t)bias[i + 1] << bias_shift) + NN_ROUND(out_shift);
+                    q31_t sum = ((q31_t)bias[i] << bias_shift) + NN_ROUND(out_shift);
+                    q31_t sum2 = ((q31_t)bias[i] << bias_shift) + NN_ROUND(out_shift);
+                    q31_t sum3 = ((q31_t)bias[i + 1] << bias_shift) + NN_ROUND(out_shift);
+                    q31_t sum4 = ((q31_t)bias[i + 1] << bias_shift) + NN_ROUND(out_shift);
 #if __RISCV_XLEN == 64
                     uint16_t  colCnt = ch_im_in * dim_kernel * dim_kernel >> 2;
                     /* accumulate over the vector */

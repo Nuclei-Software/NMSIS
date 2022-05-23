@@ -67,7 +67,94 @@ riscv_status riscv_nn_vec_mat_mult_t_svdf_s8(const q7_t *lhs,
     }
 
     (void)rhs_offset;
-#if   defined(RISCV_MATH_DSP) && !defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
+    int32_t blkCnt;    /* Loop counter */
+    size_t l;
+
+    vint32m8_t v_rhs0, v_rhs1, v_rhs2, v_lhs;
+    vint32m1_t temp00m1;
+    l = vsetvl_e32m1(1);
+    temp00m1 = vmv_v_x_i32m1(0, l);
+
+    int32_t row_loop_cnt = rhs_rows / 3;
+    for (int i_row_loop_cnt = 0; i_row_loop_cnt < row_loop_cnt; i_row_loop_cnt++)
+    {
+        const q7_t *lhs_ptr = lhs;
+        const q7_t *rhs_ptr_0 = &rhs[0];
+        const q7_t *rhs_ptr_1 = &rhs[rhs_cols];
+        const q7_t *rhs_ptr_2 = &rhs[rhs_cols * 2];
+
+        q31_t res00 = 0;
+        q31_t res01 = 0;
+        q31_t res02 = 0;
+
+        blkCnt = rhs_cols;
+
+        for (; (l = vsetvl_e8m2(blkCnt)) > 0; blkCnt -= l) {
+            v_rhs0 = vwadd_vx_i32m8(vwadd_vx_i16m4(vle8_v_i8m2(rhs_ptr_0, l), 0, l), 0, l);
+            v_rhs1 = vwadd_vx_i32m8(vwadd_vx_i16m4(vle8_v_i8m2(rhs_ptr_1, l), 0, l), 0, l);
+            v_rhs2 = vwadd_vx_i32m8(vwadd_vx_i16m4(vle8_v_i8m2(rhs_ptr_2, l), 0, l), 0, l);
+            v_lhs = vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vle8_v_i8m2(lhs_ptr, l), 0, l), 0, l), lhs_offset, l);
+
+            rhs_ptr_0 += l;
+            rhs_ptr_1 += l;
+            rhs_ptr_2 += l;
+            lhs_ptr += l;
+
+            res00 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vmul_vv_i32m8(v_lhs, v_rhs0, l), temp00m1, l));
+            res01 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vmul_vv_i32m8(v_lhs, v_rhs1, l), temp00m1, l));
+            res02 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vmul_vv_i32m8(v_lhs, v_rhs2, l), temp00m1, l));
+        }
+
+        // Quantize down
+        res00 = riscv_nn_requantize(res00, dst_multiplier, dst_shift);
+        res01 = riscv_nn_requantize(res01, dst_multiplier, dst_shift);
+        res02 = riscv_nn_requantize(res02, dst_multiplier, dst_shift);
+
+        // Clamp the result
+        res00 = MAX(res00, activation_min);
+        res00 = MIN(res00, activation_max);
+        res01 = MAX(res01, activation_min);
+        res01 = MIN(res01, activation_max);
+        res02 = MAX(res02, activation_min);
+        res02 = MIN(res02, activation_max);
+
+        *dst = (q15_t)res00;
+        *(dst + dst_offset) = (q15_t)res01;
+        *(dst + 2 * dst_offset) = (q15_t)res02;
+        dst += 3 * dst_offset;
+        rhs += 3 * rhs_cols;
+    }
+
+    const int loop_cnt = rhs_rows % 3;
+
+    for (int i_loop_cnt = 0; i_loop_cnt < loop_cnt; i_loop_cnt++)
+    {
+        const q7_t *lhs_ptr = &lhs[0];
+        const q7_t *rhs_ptr_0 = &rhs[0];
+
+        q31_t res00 = 0;
+
+        blkCnt = rhs_cols;
+        for (; (l = vsetvl_e8m2(blkCnt)) > 0; blkCnt -= l) {
+            v_rhs0 = vwadd_vx_i32m8(vwadd_vx_i16m4(vle8_v_i8m2(rhs_ptr_0, l), 0, l), 0, l);
+            v_lhs = vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vle8_v_i8m2(lhs_ptr, l), 0, l), 0, l), lhs_offset, l);
+            rhs_ptr_0 += l;
+            lhs_ptr += l;
+            res00 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vmul_vv_i32m8(v_lhs, v_rhs0, l), temp00m1, l));
+        }
+        // Quantize down
+        res00 = riscv_nn_requantize(res00, dst_multiplier, dst_shift);
+
+        // Clamp the result
+        res00 = MAX(res00, activation_min);
+        res00 = MIN(res00, activation_max);
+
+        *dst = (q15_t)res00;
+        dst += dst_offset;
+        rhs += rhs_cols;
+    }
+#elif defined(RISCV_MATH_DSP)
     int32_t row_loop_cnt = rhs_rows / 2;
 
     const int16_t lhs_offset_s16 = lhs_offset;
@@ -157,21 +244,6 @@ riscv_status riscv_nn_vec_mat_mult_t_svdf_s8(const q7_t *lhs,
 
 #else
 
-#if defined(RISCV_MATH_VECTOR)
-    uint32_t blkCnt;                               /* Loop counter */
-    size_t l;
-    vint8m2_t v_rhs0, v_rhs1, v_rhs2;
-    vint8m2_t v_lhs;
-    vint16m4_t v_a, v_b, v_c;
-    vint32m1_t v_temp;
-    const q7_t *pRHS0;
-    const q7_t *pRHS1;
-    const q7_t *pRHS2;
-    const q7_t *pLHS;
-    ptrdiff_t bstride;
-    l = vsetvl_e32m1(1);
-    v_temp = vsub_vv_i32m1(v_temp, v_temp, l);
-#endif
     int32_t row_loop_cnt = rhs_rows / 3;
 
     for (int i_row_loop_cnt = 0; i_row_loop_cnt < row_loop_cnt; i_row_loop_cnt++)
@@ -180,38 +252,7 @@ riscv_status riscv_nn_vec_mat_mult_t_svdf_s8(const q7_t *lhs,
         const q7_t *rhs_ptr_0 = &rhs[0];
         const q7_t *rhs_ptr_1 = &rhs[rhs_cols];
         const q7_t *rhs_ptr_2 = &rhs[rhs_cols * 2];
-#if defined(RISCV_MATH_VECTOR)
-        blkCnt = rhs_cols;
-        pRHS0 = rhs_ptr_0;
-        pRHS1 = rhs_ptr_1;
-        pRHS2 = rhs_ptr_2;
-        pLHS = lhs_ptr;
-        l = vsetvl_e32m8(blkCnt);
-        v_a = vsub_vv_i16m4(v_a,v_a, l);
-        v_b = vsub_vv_i16m4(v_b,v_b, l);
-        v_c = vsub_vv_i16m4(v_c,v_c, l);
-        for (; (l = vsetvl_e8m2(blkCnt)) > 0; blkCnt -= l) {
-            v_rhs0 = vle8_v_i8m2(pRHS0, l);
-            v_rhs1 = vle8_v_i8m2(pRHS1, l);
-            v_rhs2 = vle8_v_i8m2(pRHS2, l);
-            v_lhs = vle8_v_i8m2(pLHS, l);
-            v_lhs = vadd_vx_i8m2(v_lhs,lhs_offset, l);
-            v_a = vwmacc_vv_i16m4(v_a,v_lhs,v_rhs0, l);
-            v_b = vwmacc_vv_i16m4(v_b,v_lhs,v_rhs1, l);
-            v_c = vwmacc_vv_i16m4(v_c,v_lhs,v_rhs2, l);
 
-            pRHS0 += l;
-            pRHS1 += l;
-            pRHS2 += l;
-            pLHS += l;
-        }
-        l = vsetvl_e8m2(rhs_cols);
-        q31_t res00 = vmv_x_s_i32m1_i32(vwredsum_vs_i16m4_i32m1(v_temp,v_a,v_temp, l));
-        l = vsetvl_e8m2(rhs_cols);
-        q31_t res01 = vmv_x_s_i32m1_i32(vwredsum_vs_i16m4_i32m1(v_temp,v_b,v_temp, l));
-        l = vsetvl_e8m2(rhs_cols);
-        q31_t res02 = vmv_x_s_i32m1_i32(vwredsum_vs_i16m4_i32m1(v_temp,v_c,v_temp, l));
-#else
         q31_t res00 = 0;
         q31_t res01 = 0;
         q31_t res02 = 0;
@@ -231,7 +272,6 @@ riscv_status riscv_nn_vec_mat_mult_t_svdf_s8(const q7_t *lhs,
             ++rhs_ptr_2;
             ++lhs_ptr;
         }
-#endif
         // Quantize down
         res00 = riscv_nn_requantize(res00, dst_multiplier, dst_shift);
         res01 = riscv_nn_requantize(res01, dst_multiplier, dst_shift);
@@ -261,24 +301,6 @@ riscv_status riscv_nn_vec_mat_mult_t_svdf_s8(const q7_t *lhs,
 
         q31_t res00 = 0;
 
-#if defined(RISCV_MATH_VECTOR)
-        blkCnt = rhs_cols;
-        pRHS0 = rhs_ptr;
-        pLHS = lhs_ptr;
-        l = vsetvl_e32m8(blkCnt);
-        v_a = vsub_vv_i16m4(v_a,v_a, l);
-        for (; (l = vsetvl_e8m2(blkCnt)) > 0; blkCnt -= l) {
-            v_rhs0 = vle8_v_i8m2(pRHS0, l);
-            v_lhs = vle8_v_i8m2(pLHS, l);
-            v_lhs = vadd_vx_i8m2(v_lhs,lhs_offset, l);
-            v_a = vwmacc_vv_i16m4(v_a,v_lhs,v_rhs0, l);
-
-            pRHS0 += l;
-            pLHS += l;
-        }
-        l = vsetvl_e8m2(rhs_cols);
-        res00 = vmv_x_s_i32m1_i32(vwredsum_vs_i16m4_i32m1(v_temp,v_a,v_temp, l));
-#else
         for (int32_t rhs_cols_idx = 0; rhs_cols_idx < rhs_cols; ++rhs_cols_idx)
         {
             q31_t rhs_value0 = (int8_t)rhs_ptr[0] + rhs_offset;
@@ -289,7 +311,6 @@ riscv_status riscv_nn_vec_mat_mult_t_svdf_s8(const q7_t *lhs,
             ++rhs_ptr;
             ++lhs_ptr;
         }
-#endif
 
         // Quantize down
         res00 = riscv_nn_requantize(res00, dst_multiplier, dst_shift);

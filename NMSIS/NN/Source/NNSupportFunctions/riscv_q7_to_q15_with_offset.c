@@ -43,19 +43,17 @@
 void riscv_q7_to_q15_with_offset(const q7_t *src, q15_t *dst, uint32_t block_size, q15_t offset)
 {
     int block_cnt;
-#if defined (RISCV_MATH_VECTOR)
-    uint32_t blkCnt = block_size;                              /* Loop counter */
+#if defined(RISCV_MATH_VECTOR)
+    block_cnt = block_size & (~RVV_OPT_THRESHOLD);                              /* Loop counter */
     size_t l;
-    q15_t *pCnt = dst;
-    const q7_t *pV = src;
 
-    for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
-        vse16_v_i16m8 (pCnt, vadd_vx_i16m8(vwadd_vx_i16m8(vle8_v_i8m4(pV, l), 0, l), offset, l), l);
-        pV += l;
-        pCnt += l;
+    for (; (l = vsetvl_e8m4(block_cnt)) > 0; block_cnt -= l) {
+        vse16_v_i16m8(dst, vadd_vx_i16m8(vwadd_vx_i16m8(vle8_v_i8m4(src, l), 0, l), offset, l), l);
+        src += l;
+        dst += l;
     }
-#else
-#if   defined(RISCV_MATH_DSP)
+    block_cnt = block_size & RVV_OPT_THRESHOLD;
+#elif defined(RISCV_MATH_DSP)
     /* Run the below code for cores that support SIMD instructions  */
     q31_t in_q7x4;
     q31_t in_q15x2_1;
@@ -79,7 +77,7 @@ void riscv_q7_to_q15_with_offset(const q7_t *src, q15_t *dst, uint32_t block_siz
         block_cnt--;
     }
     /* Handle left over samples */
-    block_cnt = block_size % 0x4;
+    block_cnt = block_size & 0x3;
 
 #else
     /* Run the below code for RISC-V Core without DSP */
@@ -94,8 +92,8 @@ void riscv_q7_to_q15_with_offset(const q7_t *src, q15_t *dst, uint32_t block_siz
         /* Decrement the loop counter */
         block_cnt--;
     }
-#endif /*defined (RISCV_MATH_VECTOR)*/
 }
+
 /**
  * @} end of nndata_convert group
  */

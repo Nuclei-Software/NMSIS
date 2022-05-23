@@ -40,14 +40,6 @@
  * @addtogroup SVDF
  * @{
  */
-
-/*
- * S8 SVDF layer function for TensorFlow Lite
- *
- * Refer to header file for details.
- *
- */
-
 riscv_status ref_svdf_s8(const nmsis_nn_context *input_ctx,
                        const nmsis_nn_context *output_ctx,
                        const nmsis_nn_svdf_params *svdf_params,
@@ -56,11 +48,11 @@ riscv_status ref_svdf_s8(const nmsis_nn_context *input_ctx,
                        const nmsis_nn_dims *input_dims,
                        const q7_t *input_data,
                        const nmsis_nn_dims *state_dims,
-                       q15_t *state_data,
+                       q7_t *state_data,
                        const nmsis_nn_dims *weights_feature_dims,
                        const q7_t *weights_feature_data,
                        const nmsis_nn_dims *weights_time_dims,
-                       const q15_t *weights_time_data,
+                       const q7_t *weights_time_data,
                        const nmsis_nn_dims *bias_dims,
                        const q31_t *bias_data,
                        const nmsis_nn_dims *output_dims,
@@ -91,28 +83,32 @@ riscv_status ref_svdf_s8(const nmsis_nn_context *input_ctx,
     q31_t *buffer_a = (q31_t *)input_ctx->buf;
     q31_t *buffer_b = (q31_t *)output_ctx->buf;
 
-    memmove((q15_t *)state_data,
-            (q15_t *)state_data + 1,
-            (size_t)(input_batches * feature_batches * time_batches * (int32_t)sizeof(int16_t)));
+    // Left shift state
+    memmove((int8_t *)state_data,
+            (int8_t *)state_data + 1,
+            (size_t)((input_batches * feature_batches * time_batches - 1) * (int32_t)sizeof(int8_t)));
 
+    // Matrix multiplication input * feature weight
     for (int i_batch = 0; i_batch < input_batches; i_batch++)
     {
-        q15_t *res_ptr = state_data + (time_batches * i_batch * feature_batches) + (time_batches - 1);
+        q7_t *res_ptr = state_data + (time_batches * i_batch * feature_batches) + (time_batches - 1);
         const q7_t *weight = weights_feature_data;
         const q7_t *input = input_data + i_batch * input_height;
 
-        riscv_status res = riscv_nn_vec_mat_mult_t_svdf_s8(input,
-                                                       weight,
-                                                       res_ptr,
-                                                       -zp_in,
-                                                       0,
-                                                       time_batches,
-                                                       multiplier_in,
-                                                       shift_in,
-                                                       input_height,
-                                                       feature_batches,
-                                                       in_activation_min,
-                                                       in_activation_max);
+        riscv_status res = riscv_nn_vec_mat_mult_t_s8(input,
+                                                  weight,
+                                                  NULL,
+                                                  res_ptr,
+                                                  -zp_in,
+                                                  0,
+                                                  0,
+                                                  multiplier_in,
+                                                  shift_in,
+                                                  input_height,
+                                                  feature_batches,
+                                                  in_activation_min,
+                                                  in_activation_max,
+                                                  time_batches);
 
         if (res != RISCV_MATH_SUCCESS)
         {
@@ -120,18 +116,20 @@ riscv_status ref_svdf_s8(const nmsis_nn_context *input_ctx,
         }
     }
 
+    // Matrix multiplicate time weight * state tensors
     {
         q31_t *ptr_a = buffer_a;
-        const q15_t *v2 = state_data;
+        const int8_t *v2 = state_data;
         for (int i_batch = 0; i_batch < input_batches; i_batch++)
         {
-            const q15_t *v1 = weights_time_data;
+            const int8_t *v1 = weights_time_data;
 
             for (int i_feature_batch = 0; i_feature_batch < feature_batches; i_feature_batch++)
             {
                 *ptr_a = 0;
                 int32_t sum = 0;
 #if defined(RISCV_MATH_DSP)
+                // Perform matrix multiplication in blocks of four
                 int j = 0;
                 int32_t block_count = time_batches >> 1;
                 for (int i = 0; i < block_count; i++)
@@ -229,6 +227,13 @@ riscv_status ref_svdf_s8(const nmsis_nn_context *input_ctx,
 
     return (RISCV_MATH_SUCCESS);
 }
+/*
+ * S8 SVDF layer function for TensorFlow Lite
+ *
+ * Refer to header file for details.
+ *
+ */
+
 
 /**
  * @} end of SVDF group

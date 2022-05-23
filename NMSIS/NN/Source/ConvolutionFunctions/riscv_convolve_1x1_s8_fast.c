@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2020 Arm Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 Arm Limited or its affiliates.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_convolve_1x1_s8_fast.c
  * Description:  Fast q7 version of 1x1 convolution (non-square shape)
  *
- * $Date:        09. October 2020
- * $Revision:    V.2.0.3
+ * $Date:        12. November 2021
+ * $Revision:    V.2.0.4
  *
  * Target Processor: RISC-V Cores
  *

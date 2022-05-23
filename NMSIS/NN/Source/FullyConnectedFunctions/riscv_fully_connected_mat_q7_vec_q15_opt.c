@@ -22,8 +22,8 @@
  * Title:        riscv_fully_connected_mat_q7_vec_q15_opt.c
  * Description:  Mixed Q15-Q7 opt fully-connected layer function
  *
- * $Date:        09. October 2020
- * $Revision:    V.1.0.1
+ * $Date:        20. July 2021
+ * $Revision:    V.1.1.1
  *
  * Target Processor: RISC-V Cores
  *
@@ -41,87 +41,88 @@
  * @{
  */
 
-  /**
-   * @brief Mixed Q15-Q7 opt fully-connected layer function
-   * @param[in]       pV          pointer to input vector
-   * @param[in]       pM          pointer to matrix weights
-   * @param[in]       dim_vec     length of the vector
-   * @param[in]       num_of_rows number of rows in weight matrix
-   * @param[in]       bias_shift  amount of left-shift for bias
-   * @param[in]       out_shift   amount of right-shift for output
-   * @param[in]       bias        pointer to bias
-   * @param[in,out]   pOut        pointer to output vector
-   * @param[in,out]   vec_buffer  pointer to buffer space for input
-   * @return     The function returns <code>RISCV_MATH_SUCCESS</code>
-   *
-   * @details
-   *
-   * <b>Buffer size:</b>
-   *
-   * vec_buffer size: 0
-   *
-   *  Q7_Q15 version of the fully connected layer
-   *
-   *  Weights are in q7_t and Activations are in q15_t
-   *
-   *  Limitation: x4 version requires weight reordering to work
-   *
-   *  Here we use only one pointer to read 4 rows in the weight
-   *  matrix. So if the original q7_t matrix looks like this:
-   *
-   *  | a11 | a12 | a13 | a14 | a15 | a16 | a17 |
-   *
-   *  | a21 | a22 | a23 | a24 | a25 | a26 | a27 |
-   *
-   *  | a31 | a32 | a33 | a34 | a35 | a36 | a37 |
-   *
-   *  | a41 | a42 | a43 | a44 | a45 | a46 | a47 |
-   *
-   *  | a51 | a52 | a53 | a54 | a55 | a56 | a57 |
-   *
-   *  | a61 | a62 | a63 | a64 | a65 | a66 | a67 |
-   *
-   *  We operates on multiple-of-4 rows, so the first four rows becomes
-   *
-   *  | a11 | a21 | a12 | a22 | a31 | a41 | a32 | a42 |
-   *
-   *  | a13 | a23 | a14 | a24 | a33 | a43 | a34 | a44 |
-   *
-   *  | a15 | a25 | a16 | a26 | a35 | a45 | a36 | a46 |
-   *
-   *  The column left over will be in-order.
-   *  which is:
-   *  | a17 | a27 | a37 | a47 |
-   *
-   *  For the left-over rows, we do 1x1 computation, so the data remains
-   *  as its original order.
-   *
-   *  So the stored weight matrix looks like this:
-   *
-   *  | a11 | a21 | a12 | a22 | a31 | a41 |
-   *
-   *  | a32 | a42 | a13 | a23 | a14 | a24 |
-   *
-   *  | a33 | a43 | a34 | a44 | a15 | a25 |
-   *
-   *  | a16 | a26 | a35 | a45 | a36 | a46 |
-   *
-   *  | a17 | a27 | a37 | a47 | a51 | a52 |
-   *
-   *  | a53 | a54 | a55 | a56 | a57 | a61 |
-   *
-   *  | a62 | a63 | a64 | a65 | a66 | a67 |
-   *
-   */
-#define USE_INTRINSIC
+/**
+ * @brief Mixed Q15-Q7 opt fully-connected layer function
+ * @param[in]       pV          pointer to input vector
+ * @param[in]       pM          pointer to matrix weights
+ * @param[in]       dim_vec     length of the vector
+ * @param[in]       num_of_rows number of rows in weight matrix
+ * @param[in]       bias_shift  amount of left-shift for bias
+ * @param[in]       out_shift   amount of right-shift for output
+ * @param[in]       bias        pointer to bias
+ * @param[in,out]   pOut        pointer to output vector
+ * @param[in,out]   vec_buffer  pointer to buffer space for input
+ * @return     The function returns <code>RISCV_MATH_SUCCESS</code>
+ *
+ * @details
+ *
+ * <b>Buffer size:</b>
+ *
+ * vec_buffer size: 0
+ *
+ *  Q7_Q15 version of the fully connected layer
+ *
+ *  Weights are in q7_t and Activations are in q15_t
+ *
+ *  Limitation: x4 version requires weight reordering to work
+ *
+ *  Here we use only one pointer to read 4 rows in the weight
+ *  matrix. So if the original q7_t matrix looks like this:
+ *
+ *  | a11 | a12 | a13 | a14 | a15 | a16 | a17 |
+ *
+ *  | a21 | a22 | a23 | a24 | a25 | a26 | a27 |
+ *
+ *  | a31 | a32 | a33 | a34 | a35 | a36 | a37 |
+ *
+ *  | a41 | a42 | a43 | a44 | a45 | a46 | a47 |
+ *
+ *  | a51 | a52 | a53 | a54 | a55 | a56 | a57 |
+ *
+ *  | a61 | a62 | a63 | a64 | a65 | a66 | a67 |
+ *
+ *  We operates on multiple-of-4 rows, so the first four rows becomes
+ *
+ *  | a11 | a21 | a12 | a22 | a31 | a41 | a32 | a42 |
+ *
+ *  | a13 | a23 | a14 | a24 | a33 | a43 | a34 | a44 |
+ *
+ *  | a15 | a25 | a16 | a26 | a35 | a45 | a36 | a46 |
+ *
+ *  The column left over will be in-order.
+ *  which is:
+ *  | a17 | a27 | a37 | a47 |
+ *
+ *  For the left-over rows, we do 1x1 computation, so the data remains
+ *  as its original order.
+ *
+ *  So the stored weight matrix looks like this:
+ *
+ *  | a11 | a21 | a12 | a22 | a31 | a41 |
+ *
+ *  | a32 | a42 | a13 | a23 | a14 | a24 |
+ *
+ *  | a33 | a43 | a34 | a44 | a15 | a25 |
+ *
+ *  | a16 | a26 | a35 | a45 | a36 | a46 |
+ *
+ *  | a17 | a27 | a37 | a47 | a51 | a52 |
+ *
+ *  | a53 | a54 | a55 | a56 | a57 | a61 |
+ *
+ *  | a62 | a63 | a64 | a65 | a66 | a67 |
+ *
+ */
 
-riscv_status
-riscv_fully_connected_mat_q7_vec_q15_opt(const q15_t * pV,
-                                       const q7_t * pM,
-                                       const uint16_t dim_vec,
-                                       const uint16_t num_of_rows,
-                                       const uint16_t bias_shift,
-                                       const uint16_t out_shift, const q7_t * bias, q15_t * pOut, q15_t * vec_buffer)
+riscv_status riscv_fully_connected_mat_q7_vec_q15_opt(const q15_t *pV,
+                                                  const q7_t *pM,
+                                                  const uint16_t dim_vec,
+                                                  const uint16_t num_of_rows,
+                                                  const uint16_t bias_shift,
+                                                  const uint16_t out_shift,
+                                                  const q7_t *bias,
+                                                  q15_t *pOut,
+                                                  q15_t *vec_buffer)
 {
 
     (void)vec_buffer;
@@ -130,61 +131,57 @@ riscv_fully_connected_mat_q7_vec_q15_opt(const q15_t * pV,
     uint16_t  rowCnt = num_of_rows >> 2;
     const q7_t *pB = pM;
     const q15_t *pA;
-    q15_t    *pO = pOut;
+    q15_t *pO = pOut;
     const q7_t *pBias = bias;
 
-    int       i, j;
-    uint32_t blkCnt_v;
+    int i, j;
+    uint32_t blkCnt;
     size_t l;
     ptrdiff_t bstridea = 4;
     ptrdiff_t bstrideb = 8;
     vint16m4_t v_a1, v_a2;
     vint16m4_t v_b1, v_b2, v_b3, v_b4;
-    vint64m1_t v_temp;
-    l = vsetvl_e64m1(1);
-    v_temp = vsub_vv_i64m1(v_temp, v_temp, l);
+    vint32m1_t v_temp;
+    l = vsetvl_e32m1(1);
+    v_temp = vsub_vv_i32m1(v_temp, v_temp, l);
 
     while (rowCnt)
     {
-        q31_t     sum =  ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
-        q31_t     sum2 = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
-        q31_t     sum3 = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
-        q31_t     sum4 = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
+        q31_t sum = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
+        q31_t sum2 = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
+        q31_t sum3 = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
+        q31_t sum4 = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
 
-        uint16_t  colCnt = dim_vec >> 1;
-        blkCnt_v = colCnt;
+        uint16_t colCnt = dim_vec >> 1;
+        blkCnt = colCnt;
         pA = pV;
-        for (; (l = vsetvl_e16m4(blkCnt_v)) > 0; blkCnt_v -= l) {
+        for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
             v_a1 = vlse16_v_i16m4(pA, bstridea, l);
-            v_a2 = vlse16_v_i16m4(pA+1, bstridea, l);
-            pA += l*2;
+            v_a2 = vlse16_v_i16m4(pA + 1, bstridea, l);
+            pA += l * 2;
 
-            v_b1 = vwadd_vx_i16m4(vlse8_v_i8m2(pB  , bstrideb, l),0, l);
-            v_b3 = vwadd_vx_i16m4(vlse8_v_i8m2(pB+1, bstrideb, l),0, l);
-            v_b2 = vwadd_vx_i16m4(vlse8_v_i8m2(pB+2, bstrideb, l),0, l);
-            v_b4 = vwadd_vx_i16m4(vlse8_v_i8m2(pB+3, bstrideb, l),0, l);
+            v_b1 = vwadd_vx_i16m4(vlse8_v_i8m2(pB, bstrideb, l), 0, l);
+            v_b3 = vwadd_vx_i16m4(vlse8_v_i8m2(pB + 1, bstrideb, l), 0, l);
+            v_b2 = vwadd_vx_i16m4(vlse8_v_i8m2(pB + 2, bstrideb, l), 0, l);
+            v_b4 = vwadd_vx_i16m4(vlse8_v_i8m2(pB + 3, bstrideb, l), 0, l);
+            sum += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, vadd_vv_i32m8(vwmul_vv_i32m8(v_a1, v_b1, l), vwmul_vv_i32m8(v_a2, v_b2, l), l), v_temp, l));
 
-            sum += (q31_t)vmv_x_s_i64m1_i64 (vwredsum_vs_i32m8_i64m1(v_temp,vadd_vv_i32m8(vwmul_vv_i32m8(v_a1,v_b1, l),vwmul_vv_i32m8(v_a2,v_b2, l), l),v_temp, l));
-            l = vsetvl_e16m4(blkCnt_v);
-            sum2 += (q31_t)vmv_x_s_i64m1_i64 (vwredsum_vs_i32m8_i64m1(v_temp,vadd_vv_i32m8(vwmul_vv_i32m8(v_a1,v_b3, l),vwmul_vv_i32m8(v_a2,v_b4, l), l),v_temp, l));
-            l = vsetvl_e16m4(blkCnt_v);
+            sum2 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, vadd_vv_i32m8(vwmul_vv_i32m8(v_a1, v_b3, l), vwmul_vv_i32m8(v_a2, v_b4, l), l), v_temp, l));
 
-            v_b1 = vwadd_vx_i16m4(vlse8_v_i8m2(pB+4, bstrideb, l),0, l);
-            v_b3 = vwadd_vx_i16m4(vlse8_v_i8m2(pB+5, bstrideb, l),0, l);
-            v_b2 = vwadd_vx_i16m4(vlse8_v_i8m2(pB+6, bstrideb, l),0, l);
-            v_b4 = vwadd_vx_i16m4(vlse8_v_i8m2(pB+7, bstrideb, l),0, l);
+            v_b1 = vwadd_vx_i16m4(vlse8_v_i8m2(pB + 4, bstrideb, l), 0, l);
+            v_b3 = vwadd_vx_i16m4(vlse8_v_i8m2(pB + 5, bstrideb, l), 0, l);
+            v_b2 = vwadd_vx_i16m4(vlse8_v_i8m2(pB + 6, bstrideb, l), 0, l);
+            v_b4 = vwadd_vx_i16m4(vlse8_v_i8m2(pB + 7, bstrideb, l), 0, l);
+            sum3 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, vadd_vv_i32m8(vwmul_vv_i32m8(v_a1, v_b1, l), vwmul_vv_i32m8(v_a2, v_b2, l), l), v_temp, l));
 
-            sum3 += (q31_t)vmv_x_s_i64m1_i64 (vwredsum_vs_i32m8_i64m1(v_temp,vadd_vv_i32m8(vwmul_vv_i32m8(v_a1,v_b1, l),vwmul_vv_i32m8(v_a2,v_b2, l), l),v_temp, l));
-            l = vsetvl_e16m4(blkCnt_v);
-            sum4 += (q31_t)vmv_x_s_i64m1_i64 (vwredsum_vs_i32m8_i64m1(v_temp,vadd_vv_i32m8(vwmul_vv_i32m8(v_a1,v_b3, l),vwmul_vv_i32m8(v_a2,v_b4, l), l),v_temp, l));
-
-            pB += l*8;
+            sum4 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, vadd_vv_i32m8(vwmul_vv_i32m8(v_a1, v_b3, l), vwmul_vv_i32m8(v_a2, v_b4, l), l), v_temp, l));
+            pB += l * 8;
         }
         colCnt = dim_vec & 0x1;
         while (colCnt)
         {
-            q15_t     inA = *pA++;
-            q15_t     inB = *pB++;
+            q15_t inA = *pA++;
+            q15_t inB = *pB++;
             sum += inA * inB;
             inB = *pB++;
             sum2 += inA * inB;
@@ -202,28 +199,30 @@ riscv_fully_connected_mat_q7_vec_q15_opt(const q15_t * pV,
         rowCnt--;
     }
     rowCnt = num_of_rows & 0x3;
-
     while (rowCnt)
     {
-        int       ip_out = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
-        int       j;
-
+        q31_t sum = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
         pA = pV;
-        for (j = 0; j < dim_vec; j++)
+        blkCnt = dim_vec & (~RVV_OPT_THRESHOLD);                               /* Loop counter */
+        for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
         {
-            q15_t     inA = *pA++;
-            q15_t     inB = *pB++;
-            ip_out += inA * inB;
+            v_a1 = vle16_v_i16m4(pA, l);
+            v_b1 = vwadd_vx_i16m4(vle8_v_i8m2(pB, l), 0, l);
+            sum += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, vwmul_vv_i32m8(v_a1, v_b1, l), v_temp, l));
+            pA += l;
+            pB += l;
         }
-        *pO++ = (q15_t) __SSAT((ip_out >> out_shift), 16);
+        j =  dim_vec & RVV_OPT_THRESHOLD;
+        while (j--)
+        {
+            sum += *(pA++) * *(pB++);
+        }
+        *pO++ = (q15_t)__SSAT((sum >> out_shift), 16);
 
         rowCnt--;
     }
 
-
-
-#else
-#if defined (RISCV_MATH_DSP)
+#elif defined (RISCV_MATH_DSP)
     /* Run the following code for RISC-V Core with DSP enabled */
 
     const q7_t *pB = pM;
@@ -441,8 +440,8 @@ riscv_fully_connected_mat_q7_vec_q15_opt(const q15_t * pV,
         rowCnt--;
     }
 
-#endif                          /* RISCV_MATH_DSP */
-#endif
+#endif /* RISCV_MATH_DSP */
+
     /* Return to RISCV_MATH_SUCCESS */
     return (RISCV_MATH_SUCCESS);
 }
