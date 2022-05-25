@@ -71,21 +71,21 @@ float16_t riscv_correlation_distance_f16(float16_t *pA,float16_t *pB, uint32_t b
     riscv_mean_f16(pA, blockSize, &ma);
     riscv_mean_f16(pB, blockSize, &mb);
 
-    riscv_offset_f16(pA, -ma, pA, blockSize);
-    riscv_offset_f16(pB, -mb, pB, blockSize);
+    riscv_offset_f16(pA, -(_Float16)ma, pA, blockSize);
+    riscv_offset_f16(pB, -(_Float16)mb, pB, blockSize);
 
     riscv_power_f16(pA, blockSize, &pwra);
     riscv_power_f16(pB, blockSize, &pwrb);
 
     riscv_dot_prod_f16(pA,pB,blockSize,&dot);
 
-    dot = dot / blockSize;
-    pwra = pwra / blockSize;
-    pwrb = pwrb / blockSize;
+    dot = (_Float16)dot / (_Float16)blockSize;
+    pwra = (_Float16)pwra / (_Float16)blockSize;
+    pwrb = (_Float16)pwrb / (_Float16)blockSize;
 
-    riscv_sqrt_f16(pwra * pwrb,&tmp);
+    riscv_sqrt_f16((_Float16)pwra * (_Float16)pwrb,&tmp);
  
-    return(1.0f - dot / tmp);
+    return(1.0f16 - (_Float16)dot / (_Float16)tmp);
 
    
 }

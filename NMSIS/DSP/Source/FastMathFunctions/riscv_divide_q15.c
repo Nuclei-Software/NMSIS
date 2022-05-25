@@ -84,8 +84,8 @@ riscv_status riscv_divide_q15(q15_t numerator,
      return(RISCV_MATH_NANINF);
   }
 
-  numerator = abs(numerator);
-  denominator = abs(denominator);
+  riscv_abs_q15(&numerator,&numerator,1);
+  riscv_abs_q15(&denominator,&denominator,1);
   
   temp = ((q31_t)numerator << 15) / ((q31_t)denominator);
 

@@ -78,13 +78,13 @@ void riscv_abs_q15(
 	write_q15x2_ia (&pDst, __RV_KABS16(read_q15x2_ia ((q15_t **) &pSrc)));
 	write_q15x2_ia (&pDst, __RV_KABS16(read_q15x2_ia ((q15_t **) &pSrc)));
 #endif
-	in = *pSrc++;
+    in = *pSrc++;
     *pDst++ = (in > 0) ? in : ((in == (q15_t) 0x8000) ? 0x7fff : -in);
-	in = *pSrc++;
+	  in = *pSrc++;
     *pDst++ = (in > 0) ? in : ((in == (q15_t) 0x8000) ? 0x7fff : -in);
-	in = *pSrc++;
+	  in = *pSrc++;
     *pDst++ = (in > 0) ? in : ((in == (q15_t) 0x8000) ? 0x7fff : -in);
-	in = *pSrc++;
+	  in = *pSrc++;
     *pDst++ = (in > 0) ? in : ((in == (q15_t) 0x8000) ? 0x7fff : -in);
 #endif
 #endif /* __RISCV_XLEN == 64 */
@@ -93,7 +93,7 @@ void riscv_abs_q15(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 

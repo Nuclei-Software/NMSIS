@@ -56,21 +56,22 @@ void riscv_mult_q7(
         q7_t * pDst,
         uint32_t blockSize)
 {
+        uint32_t blkCnt;                               /* Loop counter */
+
 #if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = blockSize;                               /* Loop counter */
+  blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vint8m8_t vx, vy;
 
   for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
     vx = vle8_v_i8m8(pSrcA, l);
-    pSrcA += l;
     vy = vle8_v_i8m8(pSrcB, l);
-    vse8_v_i8m8 (pDst, vsmul_vv_i8m8(vx, vy, l), l);
+    pSrcA += l;
     pSrcB += l;
+    vse8_v_i8m8(pDst, vsmul_vv_i8m8(vx, vy, l), l);
     pDst += l;
   }
 #else
-        uint32_t blkCnt;                               /* Loop counter */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -129,9 +130,9 @@ void riscv_mult_q7(
 
 #if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x8U;
+  blkCnt = blockSize & 0x7U;
 #else
-	blkCnt = blockSize % 0x4U;
+	blkCnt = blockSize & 0x3U;
 #endif
 
 #else

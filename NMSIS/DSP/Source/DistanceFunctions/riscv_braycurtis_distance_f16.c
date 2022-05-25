@@ -78,8 +78,8 @@ float16_t riscv_braycurtis_distance_f16(const float16_t *pA,const float16_t *pB,
    {
       tmpA = *pA++;
       tmpB = *pB++;
-      accumDiff += (_Float16)fabsf(tmpA - tmpB);
-      accumSum += (_Float16)fabsf(tmpA + tmpB);
+      accumDiff += (_Float16)fabsf((float32_t)((_Float16)tmpA - (_Float16)tmpB));
+      accumSum += (_Float16)fabsf((float32_t)((_Float16)tmpA + (_Float16)tmpB));
       blockSize --;
    }
    /*

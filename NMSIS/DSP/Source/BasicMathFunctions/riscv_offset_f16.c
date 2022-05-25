@@ -81,13 +81,13 @@ void riscv_offset_f16(
     /* C = A + offset */
 
     /* Add offset and store result in destination buffer. */
-    *pDst++ = (*pSrc++) + offset;
+    *pDst++ = (_Float16)(*pSrc++) + (_Float16)offset;
 
-    *pDst++ = (*pSrc++) + offset;
+    *pDst++ = (_Float16)(*pSrc++) + (_Float16)offset;
 
-    *pDst++ = (*pSrc++) + offset;
+    *pDst++ = (_Float16)(*pSrc++) + (_Float16)offset;
 
-    *pDst++ = (*pSrc++) + offset;
+    *pDst++ = (_Float16)(*pSrc++) + (_Float16)offset;
 
     /* Decrement loop counter */
     blkCnt--;
@@ -108,7 +108,7 @@ void riscv_offset_f16(
     /* C = A + offset */
 
     /* Add offset and store result in destination buffer. */
-    *pDst++ = (*pSrc++) + offset;
+    *pDst++ = (_Float16)(*pSrc++) + (_Float16)offset;
 
     /* Decrement loop counter */
     blkCnt--;

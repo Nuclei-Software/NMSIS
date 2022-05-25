@@ -78,10 +78,10 @@ void riscv_add_f16(
     /* C = A + B */
 
     /* Add and store result in destination buffer. */
-    *pDst++ = (*pSrcA++) + (*pSrcB++);
-    *pDst++ = (*pSrcA++) + (*pSrcB++);
-    *pDst++ = (*pSrcA++) + (*pSrcB++);
-    *pDst++ = (*pSrcA++) + (*pSrcB++);
+    *pDst++ = (_Float16)(*pSrcA++) + (_Float16)(*pSrcB++);
+    *pDst++ = (_Float16)(*pSrcA++) + (_Float16)(*pSrcB++);
+    *pDst++ = (_Float16)(*pSrcA++) + (_Float16)(*pSrcB++);
+    *pDst++ = (_Float16)(*pSrcA++) + (_Float16)(*pSrcB++);
 
     /* Decrement loop counter */
     blkCnt--;
@@ -102,7 +102,7 @@ void riscv_add_f16(
     /* C = A + B */
 
     /* Add and store result in destination buffer. */
-    *pDst++ = (*pSrcA++) + (*pSrcB++);
+    *pDst++ = (_Float16)(*pSrcA++) + (_Float16)(*pSrcB++);
 
     /* Decrement loop counter */
     blkCnt--;

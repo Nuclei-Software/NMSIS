@@ -80,20 +80,20 @@ void riscv_abs_f16(
     /* C = |A| */
 
     /* Calculate absolute and store result in destination buffer. */
-    *pDst++ = fabsf(*pSrc++);
+    *pDst++ = (_Float16)fabsf((float32_t)*pSrc++);
 
-    *pDst++ = fabsf(*pSrc++);
+    *pDst++ = (_Float16)fabsf((float32_t)*pSrc++);
 
-    *pDst++ = fabsf(*pSrc++);
+    *pDst++ = (_Float16)fabsf((float32_t)*pSrc++);
 
-    *pDst++ = fabsf(*pSrc++);
+    *pDst++ = (_Float16)fabsf((float32_t)*pSrc++);
 
     /* Decrement loop counter */
     blkCnt--;
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 
@@ -107,7 +107,7 @@ void riscv_abs_f16(
     /* C = |A| */
 
     /* Calculate absolute and store result in destination buffer. */
-    *pDst++ = fabsf(*pSrc++);
+    *pDst++ = (_Float16)fabsf((float32_t)*pSrc++);
 
     /* Decrement loop counter */
     blkCnt--;

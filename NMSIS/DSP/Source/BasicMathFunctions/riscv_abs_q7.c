@@ -84,10 +84,10 @@ void riscv_abs_q7(
 #endif
 #endif /* __RISCV_XLEN == 64 */
 #else
-	in = *pSrc++;
+	  in = *pSrc++;
     *pDst++ = (in > 0) ? in : ((in == (q7_t) 0x80) ? (q7_t) 0x7f : -in);
     *pDst++ = (in > 0) ? in : ((in == (q7_t) 0x80) ? (q7_t) 0x7f : -in);
-#endif /* defined (RISCV_DSP64) || (__RISCV_XLEN == 64) */
+#endif
 
     /* Decrement loop counter */
     blkCnt--;
@@ -95,9 +95,9 @@ void riscv_abs_q7(
 
 #if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x8U;
+  blkCnt = blockSize & 0x7U;
 #else
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 #endif /* defined (RISCV_DSP64) || (__RISCV_XLEN == 64) */
 
 #else
@@ -119,7 +119,7 @@ void riscv_abs_q7(
     *pDst++ = (in > 0) ? in : ((in == (q7_t) 0x80) ? (q7_t) 0x7f : -in);
 #endif
 
-  /* Decrement loop counter */
+    /* Decrement loop counter */
     blkCnt--;
   }
 
@@ -128,4 +128,3 @@ void riscv_abs_q7(
 /**
   @} end of BasicAbs group
  */
-

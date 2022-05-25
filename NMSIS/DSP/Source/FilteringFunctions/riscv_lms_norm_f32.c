@@ -245,18 +245,15 @@ void riscv_lms_norm_f32(
     uint32_t vblkCnt = numTaps;                               /* Loop counter */
     size_t l;
     vfloat32m8_t vx, vy;
-    vfloat32m1_t temp00m1,temp01m1,vz;
+    vfloat32m1_t temp00m1;
     l = vsetvl_e32m8(vblkCnt);
     temp00m1 = vfmv_v_f_f32m1(0, l);
-    temp01m1 = vfmv_v_f_f32m1(0, l);
     for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
       vx = vle32_v_f32m8(px, l);
       px += l;
       vy = vle32_v_f32m8(pb, l);
       pb += l;
-      vx = vfmul_vv_f32m8(vx, vy, l);
-      vz = vfredusum_vs_f32m8_f32m1(temp00m1, vx, temp01m1, l);
-      acc += vfmv_f_s_f32m1_f32(vz);
+      acc += vfmv_f_s_f32m1_f32(vfredusum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l));
     }
 #else
     while (tapCnt > 0U)
@@ -324,7 +321,7 @@ void riscv_lms_norm_f32(
     for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
       vx = vle32_v_f32m8(px, l);
       px += l;
-      vse32_v_f32m8 (pb,vfadd_vv_f32m8(vfmul_vf_f32m8(vx, w, l), vle32_v_f32m8(pb, l), l) , l);
+      vse32_v_f32m8 (pb, vfadd_vv_f32m8(vfmul_vf_f32m8(vx, w, l), vle32_v_f32m8(pb, l), l), l);
       pb += l;
     }
 #else
@@ -388,7 +385,7 @@ void riscv_lms_norm_f32(
     uint32_t vblkCnt = (numTaps - 1U);                               /* Loop counter */
     size_t l;
     for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
-      vse32_v_f32m8 (pStateCurnt,vle32_v_f32m8(pState, l) , l);
+      vse32_v_f32m8(pStateCurnt, vle32_v_f32m8(pState, l), l);
       pState += l;
       pStateCurnt += l;
     }

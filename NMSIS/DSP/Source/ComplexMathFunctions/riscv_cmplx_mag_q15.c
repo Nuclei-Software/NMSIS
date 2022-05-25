@@ -48,6 +48,11 @@
   @par           Scaling and Overflow Behavior
                    The function implements 1.15 by 1.15 multiplications and finally output is converted into 2.14 format.
  */
+
+/* Sqrt q31 is used otherwise accuracy is not good enough
+           for small values and for some applications it is
+           an issue.
+        */
 void riscv_cmplx_mag_q15(
   const q15_t * pSrc,
         q15_t * pDst,

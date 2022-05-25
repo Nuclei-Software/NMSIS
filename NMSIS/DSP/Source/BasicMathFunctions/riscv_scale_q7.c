@@ -59,21 +59,21 @@ void riscv_scale_q7(
         q7_t * pDst,
         uint32_t blockSize)
 {
+        uint32_t blkCnt;                               /* Loop counter */
+        int8_t kShift = 7 - shift;                     /* Shift to apply after scaling */
+
 #if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = blockSize;                               /* Loop counter */
-  int8_t kShift = 7 - shift;                                 /* Shift to apply after scaling */
+  blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vint8m4_t vx;
 
   for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
     vx = vle8_v_i8m4(pSrc, l);
     pSrc += l;
-    vse8_v_i8m4 (pDst, vnclip_wx_i8m4(vwmul_vx_i16m8(vx, scaleFract, l), kShift, l), l);
+    vse8_v_i8m4(pDst, vnclip_wx_i8m4(vwmul_vx_i16m8(vx, scaleFract, l), kShift, l), l);
     pDst += l;
   }
 #else
-        uint32_t blkCnt;                               /* Loop counter */
-        int8_t kShift = 7 - shift;                     /* Shift to apply after scaling */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 

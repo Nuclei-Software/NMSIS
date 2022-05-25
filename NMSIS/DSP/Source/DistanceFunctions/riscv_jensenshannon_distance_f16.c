@@ -54,7 +54,7 @@
 /// @private
 __STATIC_INLINE float16_t rel_entr(float16_t x, float16_t y)
 {
-    return (x * logf(x / y));
+    return ((_Float16)x * (_Float16)logf((float32_t)((_Float16)x / (_Float16)y)));
 }
 
 
@@ -98,7 +98,7 @@ float16_t riscv_jensenshannon_distance_f16(const float16_t *pA,const float16_t *
 
 
     sum = left + right;
-    riscv_sqrt_f16(sum/2.0f, &result);
+    riscv_sqrt_f16((_Float16)sum/2.0f16, &result);
     return(result);
 
 }

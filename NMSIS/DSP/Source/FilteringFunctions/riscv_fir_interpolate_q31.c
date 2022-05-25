@@ -72,16 +72,6 @@ void riscv_fir_interpolate_q31(
         uint32_t i, blkCnt, tapCnt;                    /* Loop counters */
         uint32_t phaseLen = S->phaseLength;            /* Length of each polyphase filter component */
         uint32_t j;
-#if defined (RISCV_MATH_VECTOR)
-        uint32_t blkCnt_v;                               /* Loop counter */
-        size_t l;
-        vint32m4_t v_x, v_y;
-        vint64m8_t v_a;
-        vint64m1_t v_temp;
-        ptrdiff_t bstride = S->L*4;
-        l = vsetvl_e64m1(1);
-        v_temp = vsub_vv_i64m1(v_temp, v_temp, l);
-#endif
 
 #if defined (RISCV_MATH_LOOPUNROLL)
         q63_t acc0, acc1, acc2, acc3;
@@ -282,19 +272,23 @@ void riscv_fir_interpolate_q31(
       /* Loop over the polyPhase length.
          Repeat until we've computed numTaps-(4*S->L) coefficients. */
 #if defined (RISCV_MATH_VECTOR)
+      uint32_t blkCnt_v;                               /* Loop counter */
+      size_t l;
+      vint32m4_t v_x, v_y;
+      vint64m1_t v_temp;
+      ptrdiff_t bstride = S->L*4;
+      l = vsetvl_e64m1(1);
+      v_temp = vsub_vv_i64m1(v_temp, v_temp, l);
       tapCnt = phaseLen;
       blkCnt_v = tapCnt;
-      l = vsetvl_e32m4(blkCnt_v);
-      v_a = vsub_vv_i64m8(v_a,v_a, l);
+
       for (; (l = vsetvl_e32m4(blkCnt_v)) > 0; blkCnt_v -= l) {
         v_x = vle32_v_i32m4(ptr1, l);
-        v_y = vlse32_v_i32m4(ptr2,bstride, l);
-        v_a = vwmacc_vv_i64m8(v_a,v_x,v_y, l);
+        v_y = vlse32_v_i32m4(ptr2, bstride, l);
         ptr1 += l;
-        ptr2 += l*S->L;
+        ptr2 += l * (S->L);
+        sum0 += vmv_x_s_i64m1_i64(vredsum_vs_i64m8_i64m1(v_temp, vwmul_vv_i64m8(v_x, v_y, l), v_temp, l));
       }
-      l = vsetvl_e32m4(tapCnt);
-      sum0 = vmv_x_s_i64m1_i64 (vredsum_vs_i64m8_i64m1(v_temp,v_a,v_temp, l));
 #else
 #if defined (RISCV_MATH_LOOPUNROLL)
 

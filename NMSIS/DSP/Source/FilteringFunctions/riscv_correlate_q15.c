@@ -484,9 +484,7 @@ void riscv_correlate_q15(
     /* If the blockSize2 is not a multiple of 4, compute any remaining output samples here.
      ** No loop unrolling is used. */
     blkCnt = blockSize2 % 0x4U;
-// #if __RISCV_XLEN == 64
-//       q63_t acc064, acc164;
-// #endif /* __RISCV_XLEN == 64 */
+
     while (blkCnt > 0U)
     {
       /* Accumulator is made zero for every iteration */
@@ -685,7 +683,7 @@ void riscv_correlate_q15(
   const q15_t *pIn1 = pSrcA;                           /* InputA pointer */
   const q15_t *pIn2 = pSrcB + (srcBLen - 1U);          /* InputB pointer */
         q63_t sum;                                     /* Accumulators */
-        int32_t i = 0U, j;                            /* Loop counters */
+        uint32_t i = 0U, j;                            /* Loop counters */
         uint32_t inv = 0U;                             /* Reverse order flag */
         uint32_t tot = 0U;                             /* Length */
 

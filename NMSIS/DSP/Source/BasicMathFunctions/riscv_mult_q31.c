@@ -56,21 +56,23 @@ void riscv_mult_q31(
         q31_t * pDst,
         uint32_t blockSize)
 {
+        uint32_t blkCnt;                               /* Loop counter */
+
 #if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = blockSize;                               /* Loop counter */
+  blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vint32m8_t vx, vy;
 
   for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
     vx = vle32_v_i32m8(pSrcA, l);
-    pSrcA += l;
     vy = vle32_v_i32m8(pSrcB, l);
-    vse32_v_i32m8 (pDst, vsmul_vv_i32m8(vx, vy, l), l);
+    pSrcA += l;
     pSrcB += l;
+    vse32_v_i32m8(pDst, vsmul_vv_i32m8(vx, vy, l), l);
     pDst += l;
   }
 #else
-        uint32_t blkCnt;                               /* Loop counter */
+
 #if __RISCV_XLEN == 64
         q63_t temp;                                     /* Temporary output variable */
 #endif

@@ -324,7 +324,6 @@ void riscv_conv_opt_q15(
     size_t l;
     vint16m4_t vx, vy;
     vint32m1_t temp00m1;
-    // ptrdiff_t bstride = -2;
     l = vsetvl_e32m1(1);
     temp00m1 = vmv_v_x_i32m1(0, l);
     for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {

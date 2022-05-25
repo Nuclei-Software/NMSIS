@@ -61,6 +61,8 @@
  * @param[in]    blockSize  vector length
  * @return distance
  *
+ * @par           Description
+ *                  cosine_distance(u,v) is 1 - u . v / (Norm(u) Norm(v))
  */
 
 float16_t riscv_cosine_distance_f16(const float16_t *pA,const float16_t *pB, uint32_t blockSize)
@@ -72,8 +74,8 @@ float16_t riscv_cosine_distance_f16(const float16_t *pA,const float16_t *pB, uin
 
     riscv_dot_prod_f16(pA,pB,blockSize,&dot);
 
-    riscv_sqrt_f16(pwra * pwrb, &tmp);
-    return(1.0f - dot / tmp);
+    riscv_sqrt_f16((_Float16)pwra * (_Float16)pwrb, &tmp);
+    return(1.0f16 - (_Float16)dot / (_Float16)tmp);
 
 }
 

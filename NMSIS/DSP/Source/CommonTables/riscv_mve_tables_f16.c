@@ -4,9 +4,8 @@
  * Description:  common tables like fft twiddle factors, Bitreverse, reciprocal etc
  *               used for MVE implementation only
  *
- * $Date:        23 April 2021
- *
- * $Revision:    V1.9.0
+ * @version  V1.10.0
+ * @date     04 October 2021
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
@@ -29,9 +28,11 @@
  * limitations under the License.
  */
 
-#include "riscv_math_types_f16.h"
+ #include "riscv_math_types_f16.h"
+
 
 #if defined(RISCV_FLOAT16_SUPPORTED)
+
 
 
 #endif /* if defined(RISCV_FLOAT16_SUPPORTED) */

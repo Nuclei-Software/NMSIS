@@ -59,28 +59,29 @@ void riscv_cmplx_mult_cmplx_q15(
 #if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = numSamples;                               /* Loop counter */
   size_t l;
-  const q15_t * inputA = pSrcA;
-  const q15_t * inputB = pSrcB;
-  q15_t *output = pDst;
   ptrdiff_t bstride = 4;
   vint16m4_t v_R1, v_R2, v_I1, v_I2;
   vint32m8_t v_RR, v_II, v_RI, v_IR;
-  for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
+
+  for(; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
   {
-    v_R1 = vlse16_v_i16m4(inputA, bstride, l);
-    v_R2 = vlse16_v_i16m4(inputB, bstride, l);
-    inputA++; inputB++;                  /* Point to the first complex pointer */
-    v_I1 = vlse16_v_i16m4(inputA, bstride, l);
-    v_I2 = vlse16_v_i16m4(inputB, bstride, l);
-    inputA += (l*2-1); inputB += (l*2-1);
+    v_R1 = vlse16_v_i16m4(pSrcA, bstride, l);
+    v_R2 = vlse16_v_i16m4(pSrcB, bstride, l);
+
+    v_I1 = vlse16_v_i16m4(pSrcA + 1, bstride, l);
+    v_I2 = vlse16_v_i16m4(pSrcB + 1, bstride, l);
+
     v_RR = vsra_vx_i32m8(vwmul_vv_i32m8(v_R1, v_R2, l), 17, l);
     v_II = vsra_vx_i32m8(vwmul_vv_i32m8(v_I1, v_I2, l), 17, l);
     v_RI = vsra_vx_i32m8(vwmul_vv_i32m8(v_R1, v_I2, l), 17, l);
     v_IR = vsra_vx_i32m8(vwmul_vv_i32m8(v_I1, v_R2, l), 17, l);
-    vsse16_v_i16m4 (output, bstride, vnclip_wx_i16m4(vssub_vv_i32m8(v_RR, v_II, l),0, l), l);
-    output++;
-    vsse16_v_i16m4 (output, bstride, vnclip_wx_i16m4(vsadd_vv_i32m8(v_RI, v_IR, l),0, l), l);
-    output += (l*2-1);
+
+    vsse16_v_i16m4(pDst, bstride, vnclip_wx_i16m4(vssub_vv_i32m8(v_RR, v_II, l),0, l), l);
+    vsse16_v_i16m4(pDst + 1, bstride, vnclip_wx_i16m4(vsadd_vv_i32m8(v_RI, v_IR, l),0, l), l);
+
+    pSrcA += l * 2;
+    pSrcB += l * 2;
+    pDst += l * 2;
   }
 #else
         uint32_t blkCnt;                               /* Loop counter */

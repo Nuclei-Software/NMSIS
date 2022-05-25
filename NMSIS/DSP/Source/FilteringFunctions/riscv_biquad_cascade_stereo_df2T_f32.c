@@ -46,7 +46,7 @@
   @param[in]     blockSize number of samples to process
   @return        none
  */
-LOW_OPTIMIZATION_ENTER
+
 void riscv_biquad_cascade_stereo_df2T_f32(
   const riscv_biquad_cascade_stereo_df2T_instance_f32 * S,
   const float32_t * pSrc,
@@ -279,7 +279,7 @@ void riscv_biquad_cascade_stereo_df2T_f32(
     } while (stage > 0U);
 
 }
-LOW_OPTIMIZATION_EXIT
+
 
 /**
   @} end of BiquadCascadeDF2T group

@@ -74,30 +74,29 @@ void riscv_cmplx_conj_f32(
         float32_t * pDst,
         uint32_t numSamples)
 {
+        uint32_t blkCnt;                               /* Loop counter */
+
 #if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = numSamples;                               /* Loop counter */
+  blkCnt = numSamples;                               /* Loop counter */
   size_t l;
-  l = vsetvl_e32m8(blkCnt);
-  const float32_t * input = pSrc;
-  float32_t * output = pDst;
   ptrdiff_t bstride = 8;
-  vfloat32m8_t v_R,v_I;
-  vfloat32m8_t v0;
-  v0 = vfsub_vv_f32m8(v0, v0, l);                   /* vector 0 */
+  vfloat32m8_t v_R, v_I;
+  vfloat32m8_t temp00;
+  l = vsetvlmax_e32m8();
+  temp00 = vfsub_vv_f32m8(temp00, temp00, l);                   /* vector 0 */
   for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
   {
-    v_R = vlse32_v_f32m8(input, bstride, l);
-    input++;
-    vsse32_v_f32m8 (output, bstride, v_R, l);
-    output++;
-    v_I = vfsub_vv_f32m8(v0, vlse32_v_f32m8(input, bstride, l), l);
-    input += (l*2-1);
-    vsse32_v_f32m8 (output, bstride, v_I, l);
-    output += (l*2-1);
+    v_R = vlse32_v_f32m8(pSrc, bstride, l);
+    vsse32_v_f32m8 (pDst, bstride, v_R, l);
+
+    v_I = vfsub_vv_f32m8(temp00, vlse32_v_f32m8(pSrc + 1, bstride, l), l);
+    vsse32_v_f32m8(pDst + 1, bstride, v_I, l);
+
+    pSrc += l * 2;
+    pDst += l * 2;
   }
 
 #else
-        uint32_t blkCnt;                               /* Loop counter */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 

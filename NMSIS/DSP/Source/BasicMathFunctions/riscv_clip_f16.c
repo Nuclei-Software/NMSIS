@@ -60,12 +60,12 @@ void riscv_clip_f16(const float16_t * pSrc,
 {
     for (uint32_t i = 0; i < numSamples; i++)
     {                                        
-        if (pSrc[i] > high)                  
-            pDst[i] = high;                  
-        else if (pSrc[i] < low)              
-            pDst[i] = low;                   
-        else                                 
-            pDst[i] = pSrc[i];               
+        if ((_Float16)pSrc[i] > (_Float16)high)
+            pDst[i] = high;
+        else if ((_Float16)pSrc[i] < (_Float16)low)
+            pDst[i] = low;
+        else
+            pDst[i] = pSrc[i];
     }
 }
 #endif /* defined(RISCV_FLOAT16_SUPPORTED */

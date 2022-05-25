@@ -78,21 +78,17 @@ void riscv_cmplx_mag_squared_f32(
 #if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = numSamples;                               /* Loop counter */
   size_t l;
-  const float32_t * input = pSrc;
-  float32_t * output = pDst;
   ptrdiff_t bstride = 8;
-  vfloat32m8_t v_R,v_I;
-  vfloat32m8_t vR2_m4, vI2_m4;
+  vfloat32m8_t v_R, v_I;
   vfloat32m8_t v_sum;
   for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
   {
-    v_R = vlse32_v_f32m8(input, bstride, l);
-    input++;
-    v_I = vlse32_v_f32m8(input, bstride, l);
-    input += (l*2-1);
+    v_R = vlse32_v_f32m8(pSrc, bstride, l);
+    v_I = vlse32_v_f32m8(pSrc + 1, bstride, l);
     v_sum = vfadd_vv_f32m8(vfmul_vv_f32m8(v_R, v_R, l), vfmul_vv_f32m8(v_I, v_I, l), l);
-    vse32_v_f32m8(output, v_sum, l);
-    output += l;
+    vse32_v_f32m8(pDst, v_sum, l);
+    pSrc += l * 2;
+    pDst += l;
   }
 
 #else

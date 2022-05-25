@@ -59,23 +59,21 @@ void riscv_cmplx_conj_q15(
 #if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = numSamples;                               /* Loop counter */
   size_t l;
-  l = vsetvl_e32m8(blkCnt);
-  const q15_t * input = pSrc;
-  q15_t * output = pDst;
   ptrdiff_t bstride = 4;
-  vint16m8_t v_R,v_I;
-  vint16m8_t v0;
-  v0 = vxor_vv_i16m8(v0, v0, l);                   /* vector 0 */
+  vint16m8_t v_R, v_I;
+  vint16m8_t temp00;
+  l = vsetvlmax_e16m8();
+  temp00 = vxor_vv_i16m8(temp00, temp00, l);                   /* vector 0 */
   for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
   {
-    v_R = vlse16_v_i16m8(input, bstride, l);
-    input++;
-    vsse16_v_i16m8 (output, bstride, v_R, l);
-    output++;
-    v_I = vsub_vv_i16m8(v0, vlse16_v_i16m8(input, bstride, l), l);
-    input += (l*2-1);
-    vsse16_v_i16m8 (output, bstride, v_I, l);
-    output += (l*2-1);
+    v_R = vlse16_v_i16m8(pSrc, bstride, l);
+    vsse16_v_i16m8(pDst, bstride, v_R, l);
+
+    v_I = vsub_vv_i16m8(temp00, vlse16_v_i16m8(pSrc + 1, bstride, l), l);
+    vsse16_v_i16m8(pDst + 1, bstride, v_I, l);
+
+    pSrc += l * 2;
+    pDst += l * 2;
   }
 
 #else

@@ -31,6 +31,24 @@
 #include "riscv_common_tables.h"
 
 
+/**
+  @ingroup groupFastMath
+ */
+
+
+/**
+  @defgroup vlog Vector Log
+
+  Compute the log values of a vector of samples.
+
+ */
+
+/**
+  @addtogroup vlog
+  @{
+ */
+
+
 void riscv_vlog_f32(
   const float32_t * pSrc,
         float32_t * pDst,
@@ -51,3 +69,7 @@ void riscv_vlog_f32(
       blkCnt--;
    }
 }
+
+/**
+  @} end of vlog group
+ */

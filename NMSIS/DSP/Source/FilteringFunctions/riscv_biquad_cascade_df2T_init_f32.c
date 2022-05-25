@@ -38,6 +38,9 @@
   @{
  */
 
+
+
+
 /**
   @brief         Initialization function for the floating-point transposed direct form II Biquad cascade filter.
   @param[in,out] S           points to an instance of the filter data structure.
@@ -68,11 +71,11 @@
 
                    Then, the initialization can be done with:
   <pre>
-                   riscv_biquad_cascade_df2T_init_f32(&SNeon, nbCascade, neonCoefs, stateNeon);
-                   riscv_biquad_cascade_df2T_compute_coefs_f32(&SNeon,nbCascade,coefs);
+                   riscv_biquad_cascade_df2T_compute_coefs_f32(nbCascade,coefs,computedCoefs);
+                   riscv_biquad_cascade_df2T_init_f32(&SNeon, nbCascade, computedCoefs, stateNeon);
   </pre>
 
-  @par             In this example, neonCoefs is a bigger array of size 8 * numStages.
+  @par             In this example, computedCoefs is a bigger array of size 8 * numStages.
                    coefs is the standard array:
 
   <pre>
@@ -87,8 +90,6 @@
                    The state array has a total length of <code>2*numStages</code> values.
                    The state variables are updated after each block of data is processed; the coefficients are untouched.
  */
-
-
 void riscv_biquad_cascade_df2T_init_f32(
         riscv_biquad_cascade_df2T_instance_f32 * S,
         uint8_t numStages,

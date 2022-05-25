@@ -57,8 +57,10 @@ void riscv_sub_q15(
         q15_t * pDst,
         uint32_t blockSize)
 {
+        uint32_t blkCnt;                               /* Loop counter */
+
 #if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = blockSize;                               /* Loop counter */
+  blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vint16m8_t vx, vy;
 
@@ -66,13 +68,11 @@ void riscv_sub_q15(
     vx = vle16_v_i16m8(pSrcA, l);
     pSrcA += l;
     vy = vle16_v_i16m8(pSrcB, l);
-    vse16_v_i16m8 (pDst, vssub_vv_i16m8(vx, vy, l), l);
     pSrcB += l;
+    vse16_v_i16m8(pDst, vssub_vv_i16m8(vx, vy, l), l);
     pDst += l;
   }
 #else
-        uint32_t blkCnt;                               /* Loop counter */
-
 #if defined (RISCV_MATH_LOOPUNROLL)
 
 #if defined (RISCV_MATH_DSP)
@@ -120,7 +120,7 @@ void riscv_sub_q15(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 

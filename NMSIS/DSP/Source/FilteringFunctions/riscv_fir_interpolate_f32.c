@@ -148,16 +148,7 @@ void riscv_fir_interpolate_f32(
         uint32_t i, blkCnt, tapCnt;                    /* Loop counters */
         uint32_t phaseLen = S->phaseLength;            /* Length of each polyphase filter component */
         uint32_t j;
-#if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt_v;                               /* Loop counter */
-  size_t l;
-  vfloat32m8_t v_x, v_y;
-  vfloat32m8_t v_a;
-  vfloat32m1_t v_temp;
-  ptrdiff_t bstride = S->L*4;
-  l = vsetvl_e32m1(1);
-  v_temp = vfsub_vv_f32m1(v_temp, v_temp, l);
-#endif
+
 #if defined (RISCV_MATH_LOOPUNROLL)
         float32_t acc0, acc1, acc2, acc3;
         float32_t x0, x1, x2, x3;
@@ -360,19 +351,21 @@ void riscv_fir_interpolate_f32(
 
 
 #if defined(RISCV_MATH_VECTOR)
-      tapCnt = phaseLen;
-      blkCnt_v = tapCnt;
-      l = vsetvl_e32m8(blkCnt_v);
-      v_a = vfsub_vv_f32m8(v_a,v_a, l);
+      uint32_t blkCnt_v;                               /* Loop counter */
+      size_t l;
+      vfloat32m8_t v_x, v_y;
+      vfloat32m1_t v_temp;
+      ptrdiff_t bstride = S->L*4;
+      l = vsetvl_e32m1(1);
+      v_temp = vfsub_vv_f32m1(v_temp, v_temp, l);
+      blkCnt_v = phaseLen;
       for (; (l = vsetvl_e32m8(blkCnt_v)) > 0; blkCnt_v -= l) {
         v_x = vle32_v_f32m8(ptr1, l);
-        v_y = vlse32_v_f32m8(ptr2,bstride, l);
-        v_a = vfmacc_vv_f32m8(v_a,v_x,v_y, l);
+        v_y = vlse32_v_f32m8(ptr2, bstride, l);
+        sum0 += vfmv_f_s_f32m1_f32(vfredusum_vs_f32m8_f32m1(v_temp, vfmul_vv_f32m8(v_x, v_y, l), v_temp, l));
         ptr1 += l;
         ptr2 += l;
       }
-      l = vsetvl_e32m8(blockSize);
-      sum0 = vfmv_f_s_f32m1_f32 (vfredusum_vs_f32m8_f32m1(v_temp,v_a,v_temp, l));
 #else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -411,6 +404,7 @@ void riscv_fir_interpolate_f32(
       tapCnt = phaseLen;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
+
       while (tapCnt > 0U)
       {
         /* Perform the multiply-accumulate */

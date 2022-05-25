@@ -74,30 +74,34 @@ void riscv_shift_q31(
         q31_t * pDst,
         uint32_t blockSize)
 {
-#if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = blockSize;                               /* Loop counter */
-  uint8_t sign = (shiftBits & 0x80);
-  size_t l;
-  vint32m4_t vx;
-
-  for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l) {
-    vx = vle32_v_i32m4(pSrc, l);
-    pSrc += l;
-    /* If the shift value is positive then do right shift else left shift */
-    if (sign == 0U)
-    {
-      vse32_v_i32m4 (pDst, vnclip_wx_i32m4(vsll_vx_i64m8(vwadd_vx_i64m8(vx,0, l), shiftBits, l),0, l), l);
-      pDst += l;
-    }
-    else
-    {
-      vse32_v_i32m4 (pDst, vsra_vx_i32m4(vx, -shiftBits, l), l);
-      pDst += l;
-    }
-  }
-#else
         uint32_t blkCnt;                               /* Loop counter */
         uint8_t sign = (shiftBits & 0x80);             /* Sign of shiftBits */
+
+#if defined(RISCV_MATH_VECTOR)
+  blkCnt = blockSize;                               /* Loop counter */
+  size_t l;
+  vint32m4_t vx;
+  if (sign == 0U)
+  {
+     for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)
+     {
+        vx = vle32_v_i32m4(pSrc, l);
+        pSrc += l;
+        vse32_v_i32m4(pDst, vnclip_wx_i32m4(vsll_vx_i64m8(vwadd_vx_i64m8(vx, 0, l), shiftBits, l), 0, l), l);
+        pDst += l;
+     }
+  }
+  else
+  {
+      for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)
+      {
+          vx = vle32_v_i32m4(pSrc, l);
+          pSrc += l;
+          vse32_v_i32m4(pDst, vsra_vx_i32m4(vx, -shiftBits, l), l);
+          pDst += l;
+      }
+  }
+#else
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 

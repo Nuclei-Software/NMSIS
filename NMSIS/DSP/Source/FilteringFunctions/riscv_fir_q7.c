@@ -258,19 +258,16 @@ void riscv_fir_q7(
 #if defined (RISCV_MATH_VECTOR)
     uint32_t vblkCnt = numTaps;                               /* Loop counter */
     size_t l;
-    vint16m8_t vx,vy;
-    vint32m1_t temp00m1,temp01m1,accm1;
+    vint16m8_t vx, vy;
+    vint32m1_t temp00m1;
     l = vsetvl_e32m1(1);
     temp00m1 = vmv_v_x_i32m1(0, l);
-    temp01m1 = vmv_v_x_i32m1(0, l);
-
     for (; (l = vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vwadd_vx_i16m8(vle8_v_i8m4(px, l),0, l);
+      vx = vwadd_vx_i16m8(vle8_v_i8m4(px, l), 0, l);
       px += l;
-      vy = vwadd_vx_i16m8(vle8_v_i8m4(pb, l),0, l);
+      vy = vwadd_vx_i16m8(vle8_v_i8m4(pb, l), 0, l);
       pb += l;
-      accm1 = vwredsum_vs_i16m8_i32m1 ( temp00m1,vmul_vv_i16m8(vx, vy, l), temp01m1, l);
-      acc0 +=vmv_x_s_i32m1_i32(accm1);
+      acc0 +=vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(temp00m1, vmul_vv_i16m8(vx, vy, l), temp00m1, l));
     }
 #else
     /* Perform the multiply-accumulates */

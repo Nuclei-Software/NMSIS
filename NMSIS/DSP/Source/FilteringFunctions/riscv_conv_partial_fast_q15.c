@@ -64,7 +64,7 @@ riscv_status riscv_conv_partial_fast_q15(
         uint32_t numPoints)
 {
 #if defined (RISCV_MATH_VECTOR)
-    return(riscv_conv_partial_q15(pSrcA, srcALen, pSrcB, srcBLen, pDst, firstIndex, numPoints));
+    return riscv_conv_partial_q15(pSrcA, srcALen, pSrcB, srcBLen, pDst, firstIndex, numPoints);
 #else
   const q15_t *pIn1;                                   /* InputA pointer */
   const q15_t *pIn2;                                   /* InputB pointer */

@@ -53,8 +53,12 @@ void riscv_xor_u8(
           uint8_t * pDst,
           uint32_t blockSize)
 {
+    uint32_t blkCnt;      /* Loop counter */
+
+    /* Initialize blkCnt with number of samples */
+    blkCnt = blockSize;
+
 #if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vuint8m8_t vx, vy;
 
@@ -62,12 +66,11 @@ void riscv_xor_u8(
     vx = vle8_v_u8m8(pSrcA, l);
     pSrcA += l;
     vy = vle8_v_u8m8(pSrcB, l);
-    vse8_v_u8m8 (pDst, vxor_vv_u8m8(vx, vy, l), l);
     pSrcB += l;
+    vse8_v_u8m8(pDst, vxor_vv_u8m8(vx, vy, l), l);
     pDst += l;
   }
 #else
-    uint32_t blkCnt;      /* Loop counter */
 
 #if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
 

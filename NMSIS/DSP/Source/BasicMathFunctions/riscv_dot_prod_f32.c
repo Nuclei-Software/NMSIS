@@ -3,8 +3,8 @@
  * Title:        riscv_dot_prod_f32.c
  * Description:  Floating-point dot product
  *
- * $Date:        23 April 2021
- * $Revision:    V1.9.0
+ * $Date:        05 October 2021
+ * $Revision:    V1.9.1
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
@@ -67,27 +67,27 @@ void riscv_dot_prod_f32(
         uint32_t blockSize,
         float32_t * result)
 {
-#if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = blockSize;                               /* Loop counter */
-  size_t l;
-  const float32_t * inputA = pSrcA;
-  const float32_t * inputB = pSrcB;
-  vfloat32m8_t v_A, v_B;
-  l = vsetvl_e32m1(1);
-  vfloat32m1_t v_sum = vfmv_s_f_f32m1(v_sum, 0.0f, l);
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
-  {
-    v_A = vle32_v_f32m8(inputA, l);
-    v_B = vle32_v_f32m8(inputB, l);
-    inputA += l;
-    inputB += l;                  /* Point to the first complex pointer */
-    v_sum = vfredusum_vs_f32m8_f32m1(v_sum, vfmul_vv_f32m8(v_A, v_B, l), v_sum, l);
-  }
-  l = vsetvl_e32m1(1);
-  vse32_v_f32m1(result, v_sum, l);
-#else
+
         uint32_t blkCnt;                               /* Loop counter */
         float32_t sum = 0.0f;                          /* Temporary return variable */
+
+#if defined(RISCV_MATH_VECTOR)
+  blkCnt = blockSize;                               /* Loop counter */
+  size_t l;
+  vfloat32m8_t v_A, v_B;
+  l = vsetvl_e32m1(1);
+  vfloat32m1_t v_sum = vfmv_v_f_f32m1(0.0f, l);
+
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+  {
+    v_A = vle32_v_f32m8(pSrcA, l);
+    v_B = vle32_v_f32m8(pSrcB, l);
+    pSrcA += l;
+    pSrcB += l;
+    v_sum = vfredusum_vs_f32m8_f32m1(v_sum, vfmul_vv_f32m8(v_A, v_B, l), v_sum, l);
+  }
+  sum = vfmv_f_s_f32m1_f32(v_sum);
+#else
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -133,10 +133,9 @@ void riscv_dot_prod_f32(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_MATH_VECTOR) */
   /* Store result in destination buffer */
   *result = sum;
-#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

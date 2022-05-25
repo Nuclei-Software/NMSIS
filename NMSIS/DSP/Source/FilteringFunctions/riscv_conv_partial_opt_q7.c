@@ -121,7 +121,7 @@ riscv_status riscv_conv_partial_opt_q7(
   vint16m8_t vx;
   ptrdiff_t bstride = -1;
   for (; (l = vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
-    vx = vwadd_vx_i16m8(vlse8_v_i8m4(px, bstride, l),0, l);
+    vx = vwadd_vx_i16m8(vlse8_v_i8m4(px, bstride, l), 0, l);
     px -= l;
     vse16_v_i16m8(pScr2, vx, l);
     pScr2 += l;
@@ -173,7 +173,7 @@ riscv_status riscv_conv_partial_opt_q7(
 #if defined (RISCV_MATH_VECTOR)
   vblkCnt = srcALen;                               /* Loop counter */
   for (; (l = vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
-    vx = vwadd_vx_i16m8(vle8_v_i8m4(pIn1, l),0, l);
+    vx = vwadd_vx_i16m8(vle8_v_i8m4(pIn1, l), 0, l);
     pIn1 += l;
     vse16_v_i16m8(pScr1, vx, l);
     pScr1 += l;
@@ -242,19 +242,19 @@ riscv_status riscv_conv_partial_opt_q7(
       /* Clear Accumlators */
       acc0 = 0;
 
-    uint32_t vblkCnt = srcBLen;                               /* Loop counter */
-    size_t l;
-    vint16m4_t vx, vy;
-    vint32m1_t temp00m1;
-    l = vsetvl_e32m1(vblkCnt);
-    temp00m1 = vmv_v_x_i32m1(0, l);
-    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle16_v_i16m4(pScr1, l);
-      pScr1 += l;
-      vy = vle16_v_i16m4(pScr2, l);
-      pScr2 += l;
-      acc0 += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l));
-    }
+      uint32_t vblkCnt = srcBLen;                               /* Loop counter */
+      size_t l;
+      vint16m4_t vx, vy;
+      vint32m1_t temp00m1;
+      l = vsetvl_e32m1(vblkCnt);
+      temp00m1 = vmv_v_x_i32m1(0, l);
+      for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+        vx = vle16_v_i16m4(pScr1, l);
+        pScr1 += l;
+        vy = vle16_v_i16m4(pScr2, l);
+        pScr2 += l;
+        acc0 += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l));
+      }
 
       blkCnt--;
 

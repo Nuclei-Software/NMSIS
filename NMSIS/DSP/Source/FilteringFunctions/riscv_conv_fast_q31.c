@@ -69,7 +69,7 @@ void riscv_conv_fast_q31(
         q31_t * pDst)
 {
 #if defined (RISCV_MATH_VECTOR)
-      riscv_conv_q31(pSrcA,srcALen,pSrcB,srcBLen,pDst);
+      riscv_conv_q31(pSrcA, srcALen, pSrcB, srcBLen, pDst);
 #else
   const q31_t *pIn1;                                   /* InputA pointer */
   const q31_t *pIn2;                                   /* InputB pointer */

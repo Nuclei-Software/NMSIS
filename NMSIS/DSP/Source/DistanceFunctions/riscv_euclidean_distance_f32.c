@@ -50,28 +50,25 @@
  */
 float32_t riscv_euclidean_distance_f32(const float32_t *pA,const float32_t *pB, uint32_t blockSize)
 {
-   float32_t accum=0.0f,tmp;
+   float32_t accum=0.0f, tmp;
+
 #if defined(RISCV_MATH_VECTOR)
    uint32_t blkCnt = blockSize;                               /* Loop counter */
    size_t l;
    vfloat32m8_t v_x, v_y;
-   vfloat32m8_t v_a, v_b;
-   vfloat32m8_t v_at, v_bt;
+   vfloat32m8_t v_at;
    vfloat32m1_t v_temp;
    l = vsetvl_e32m1(1);
    v_temp = vfsub_vv_f32m1(v_temp, v_temp, l);
-   l = vsetvl_e32m8(blkCnt);
-   v_a = vfsub_vv_f32m8(v_a,v_a, l);
    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
       v_x = vle32_v_f32m8(pA, l);
       v_y = vle32_v_f32m8(pB, l);
       v_at = vfsub_vv_f32m8(v_x,v_y, l);
-      v_a = vfmacc_vv_f32m8(v_a,v_at,v_at, l);
+
+      accum = vfmv_f_s_f32m1_f32 (vfredusum_vs_f32m8_f32m1(v_temp,vfmul_vv_f32m8(v_at,v_at, l),v_temp, l));
       pA += l;
       pB += l;
    }
-   l = vsetvl_e32m8(blockSize);
-   accum = vfmv_f_s_f32m1_f32 (vfredusum_vs_f32m8_f32m1(v_temp,v_a,v_temp, l));
 #else
    while(blockSize > 0)
    {

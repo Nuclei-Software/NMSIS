@@ -78,13 +78,13 @@ void riscv_sub_f16(
     /* C = A - B */
 
     /* Subtract and store result in destination buffer. */
-    *pDst++ = (*pSrcA++) - (*pSrcB++);
+    *pDst++ = (_Float16)(*pSrcA++) - (_Float16)(*pSrcB++);
 
-    *pDst++ = (*pSrcA++) - (*pSrcB++);
+    *pDst++ = (_Float16)(*pSrcA++) - (_Float16)(*pSrcB++);
 
-    *pDst++ = (*pSrcA++) - (*pSrcB++);
+    *pDst++ = (_Float16)(*pSrcA++) - (_Float16)(*pSrcB++);
 
-    *pDst++ = (*pSrcA++) - (*pSrcB++);
+    *pDst++ = (_Float16)(*pSrcA++) - (_Float16)(*pSrcB++);
 
     /* Decrement loop counter */
     blkCnt--;
@@ -105,7 +105,7 @@ void riscv_sub_f16(
     /* C = A - B */
 
     /* Subtract and store result in destination buffer. */
-    *pDst++ = (*pSrcA++) - (*pSrcB++);
+    *pDst++ = (_Float16)(*pSrcA++) - (_Float16)(*pSrcB++);
 
     /* Decrement loop counter */
     blkCnt--;

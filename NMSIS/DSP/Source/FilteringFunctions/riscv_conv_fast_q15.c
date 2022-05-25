@@ -69,7 +69,7 @@ void riscv_conv_fast_q15(
         q15_t * pDst)
 {
 #if defined (RISCV_MATH_VECTOR)
-      riscv_conv_q15(pSrcA,srcALen,pSrcB,srcBLen,pDst);
+      riscv_conv_q15(pSrcA, srcALen, pSrcB, srcBLen, pDst);
 #else
   const q15_t *pIn1;                                   /* InputA pointer */
   const q15_t *pIn2;                                   /* InputB pointer */
@@ -227,7 +227,7 @@ void riscv_conv_fast_q15(
 
     /* If the count is not a multiple of 4, compute any remaining MACs here.
      ** No loop unrolling is used. */
-    k = count % 0x4U;
+    k = count & 0x3U;
 
     while (k > 0U)
     {

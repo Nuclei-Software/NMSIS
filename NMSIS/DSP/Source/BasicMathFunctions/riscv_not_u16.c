@@ -59,19 +59,22 @@ void riscv_not_u16(
           uint16_t * pDst,
           uint32_t blockSize)
 {
+    uint32_t blkCnt;      /* Loop counter */
+
+    /* Initialize blkCnt with number of samples */
+    blkCnt = blockSize;
+
 #if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vuint16m8_t vx;
 
   for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
     vx = vle16_v_u16m8(pSrc, l);
     pSrc += l;
-    vse16_v_u16m8(pDst,vnot_v_u16m8(vx, l), l);
+    vse16_v_u16m8(pDst, vnot_v_u16m8(vx, l), l);
     pDst += l;
   }
 #else
-    uint32_t blkCnt;      /* Loop counter */
 
 #if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
 

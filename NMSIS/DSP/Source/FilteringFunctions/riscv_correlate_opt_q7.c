@@ -137,7 +137,7 @@ void riscv_correlate_opt_q7(
   size_t l;
   vint16m8_t vx;
   for (; (l = vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
-    vx = vwadd_vx_i16m8(vle8_v_i8m4(pIn2, l),0, l);
+    vx = vwadd_vx_i16m8(vle8_v_i8m4(pIn2, l), 0, l);
     pIn2 += l;
     vse16_v_i16m8(pScr2, vx, l);
     pScr2 += l;
@@ -189,7 +189,7 @@ void riscv_correlate_opt_q7(
 #if defined (RISCV_MATH_VECTOR)
   vblkCnt = srcBLen;                               /* Loop counter */
   for (; (l = vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
-    vx = vwadd_vx_i16m8(vle8_v_i8m4(pIn1, l),0, l);
+    vx = vwadd_vx_i16m8(vle8_v_i8m4(pIn1, l), 0, l);
     pIn1 += l;
     vse16_v_i16m8(pScr1, vx, l);
     pScr1 += l;

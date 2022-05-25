@@ -63,43 +63,43 @@ void riscv_cmplx_dot_prod_q31(
         q63_t * realResult,
         q63_t * imagResult)
 {
+        uint32_t blkCnt;                               /* Loop counter */
+        q63_t real_sum = 0, imag_sum = 0;              /* Temporary result variables */
+
 #if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = numSamples;                               /* Loop counter */
+  blkCnt = numSamples;                               /* Loop counter */
   size_t l;
-  const q31_t * inputA = pSrcA;
-  const q31_t * inputB = pSrcB;
   ptrdiff_t bstride = 8;
   vint32m4_t v_R1, v_R2, v_I1, v_I2;
   vint64m8_t v_RR, v_II, v_RI, v_IR;
-  vint64m1_t v_dst;                      /* I don't know what the effect is  */
+
   vint64m1_t v_real ;
   vint64m1_t v_imag ;    /* Initialize accumulated value */
+
   l = vsetvl_e64m1(1);
   v_real = vmv_s_x_i64m1(v_real, 0, l);
   v_imag = vmv_s_x_i64m1(v_imag, 0, l);
-  v_dst = vmv_s_x_i64m1(v_dst, 0, l);
 
   for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)
   {
-    v_R1 = vlse32_v_i32m4(inputA, bstride, l);
-    v_R2 = vlse32_v_i32m4(inputB, bstride, l);
-    inputA++; inputB++;                  /* Point to the first complex pointer */
-    v_I1 = vlse32_v_i32m4(inputA, bstride, l);
-    v_I2 = vlse32_v_i32m4(inputB, bstride, l);
+    v_R1 = vlse32_v_i32m4(pSrcA, bstride, l);
+    v_R2 = vlse32_v_i32m4(pSrcB, bstride, l);
+
+    v_I1 = vlse32_v_i32m4(pSrcA + 1, bstride, l);
+    v_I2 = vlse32_v_i32m4(pSrcB + 1, bstride, l);
     v_RR = vsra_vx_i64m8(vwmul_vv_i64m8(v_R1, v_R2, l), 14, l);
     v_II = vsra_vx_i64m8(vwmul_vv_i64m8(v_I1, v_I2, l), 14, l);
     v_RI = vsra_vx_i64m8(vwmul_vv_i64m8(v_R1, v_I2, l), 14, l);
     v_IR = vsra_vx_i64m8(vwmul_vv_i64m8(v_I1, v_R2, l), 14, l);
-    v_real = vredsum_vs_i64m8_i64m1(v_dst, vssub_vv_i64m8(v_RR, v_II, l), v_real, l);
-    v_imag = vredsum_vs_i64m8_i64m1(v_dst, vsadd_vv_i64m8(v_RI, v_IR, l), v_imag, l);
-    inputA += (l*2-1); inputB += (l*2-1);
+    v_real = vredsum_vs_i64m8_i64m1(v_real, vssub_vv_i64m8(v_RR, v_II, l), v_real, l);
+    v_imag = vredsum_vs_i64m8_i64m1(v_imag, vsadd_vv_i64m8(v_RI, v_IR, l), v_imag, l);
+
+    pSrcA += l * 2;
+    pSrcB += l * 2;
   }
-  vsetvl_e32m4(1);
-  *realResult = vmv_x_s_i64m1_i64(v_real);
-  *imagResult = vmv_x_s_i64m1_i64(v_imag);
+  real_sum = vmv_x_s_i64m1_i64(v_real);
+  imag_sum = vmv_x_s_i64m1_i64(v_imag);
 #else
-        uint32_t blkCnt;                               /* Loop counter */
-        q63_t real_sum = 0, imag_sum = 0;              /* Temporary result variables */
 #if __RISCV_XLEN == 64
         q63_t RESA,RESB;
 #endif /* __RISCV_XLEN == 64 */
@@ -210,11 +210,10 @@ void riscv_cmplx_dot_prod_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_MATH_VECTOR) */
   /* Store real and imaginary result in 16.48 format  */
   *realResult = real_sum;
   *imagResult = imag_sum;
-#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

@@ -274,7 +274,7 @@ void riscv_fir_sparse_f32(
     for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
       vx = vle32_v_f32m8(px, l);
       px += l;
-      vse32_v_f32m8 (pOut,vfadd_vv_f32m8(vfmul_vf_f32m8(vx, coeff, l), vle32_v_f32m8(pOut, l), l) , l);
+      vse32_v_f32m8(pOut, vfadd_vv_f32m8(vfmul_vf_f32m8(vx, coeff, l), vle32_v_f32m8(pOut, l), l) , l);
       pOut += l;
     }
 #else

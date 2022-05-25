@@ -311,7 +311,7 @@ void riscv_fir_decimate_f32(
   size_t l;
 
   for (; (l = vsetvl_e32m8(blkCnti)) > 0; blkCnti -= l) {
-    vse32_v_f32m8 (pStateCur, vle32_v_f32m8(pSrc, l), l);
+    vse32_v_f32m8(pStateCur, vle32_v_f32m8(pSrc, l), l);
     pSrc += l;
     pStateCur += l;
   }
@@ -392,34 +392,19 @@ void riscv_fir_decimate_f32(
 #if defined (RISCV_MATH_VECTOR)
     uint32_t blkCntb;
     vfloat32m4_t va1m4,va2m4;
-    vfloat32m4_t vch00m4;
-    vfloat32m1_t vch00m1;
     vfloat32m1_t vtemp00m1;
-    vfloat32m4_t vach00m4;
-        blkCntb = numTaps;                               /* Loop counter */
-        // q7_t temp[] = {0};
-        l = vsetvl_e32m4(blkCntb);
-        //initial array to zero
-        vach00m4 = vfmv_v_f_f32m4(0, l);
-        l = vsetvl_e32m4(1);
-        vtemp00m1 = vfmv_v_f_f32m1(0, l);
-        for (; (l = vsetvl_e32m4(blkCntb)) > 0; blkCntb -= l) {
-            va1m4 = vle32_v_f32m4(pb, l);
-            va2m4 = vle32_v_f32m4(px0, l);
-            pb += l;
-            px0 += l;
-            vch00m4 = vfmul_vv_f32m4(va1m4, va2m4, l);
-            vach00m4 = vfadd_vv_f32m4(vach00m4, vch00m4, l);
-        }
-        //Here we calculate sum of four vector
-        //set vl to max vl
-        l = vsetvl_e32m4(numTaps);
-        //calculate sum
-        vch00m1 = vfredusum_vs_f32m4_f32m1(vtemp00m1, vach00m4, vtemp00m1, l);
-        //set vl to 1
-        l = vsetvl_e32m1(1);
-        //wrfte result scalar back
-        acc0  += (float32_t)vfmv_f_s_f32m1_f32(vch00m1);
+    blkCntb = numTaps;                               /* Loop counter */
+
+    l = vsetvl_e32m4(1);
+    vtemp00m1 = vfmv_v_f_f32m1(0, l);
+    for (; (l = vsetvl_e32m4(blkCntb)) > 0; blkCntb -= l) {
+      va1m4 = vle32_v_f32m4(pb, l);
+      va2m4 = vle32_v_f32m4(px0, l);
+      pb += l;
+      px0 += l;
+
+      acc0 += vfmv_f_s_f32m1_f32(vfredusum_vs_f32m4_f32m1(vtemp00m1, vfmul_vv_f32m4(va1m4, va2m4, l), vtemp00m1, l));
+    }
 #else
     while (tapCnt > 0U)
     {
@@ -485,7 +470,7 @@ void riscv_fir_decimate_f32(
   size_t l;
 
   for (; (l = vsetvl_e32m8(blkCnti)) > 0; blkCnti -= l) {
-    vse32_v_f32m8 (pStateCur, vle32_v_f32m8(pState, l), l);
+    vse32_v_f32m8(pStateCur, vle32_v_f32m8(pState, l), l);
     pState += l;
     pStateCur += l;
   }

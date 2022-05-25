@@ -69,14 +69,14 @@ float16_t riscv_minkowski_distance_f16(const float16_t *pA,const float16_t *pB, 
     _Float16 sum;
     uint32_t i;
 
-    sum = 0.0f; 
+    sum = 0.0f16;
     for(i=0; i < blockSize; i++)
     {
-       sum += (_Float16)powf(fabsf(pA[i] - pB[i]),order);
+       sum += (_Float16)powf(fabsf((float32_t)((_Float16)pA[i] - (_Float16)pB[i])),order);
     }
 
 
-    return(powf(sum,(1.0f/order)));
+    return(_Float16)(powf((float32_t)sum,(1.0f/(float32_t)order)));
 
 }
 

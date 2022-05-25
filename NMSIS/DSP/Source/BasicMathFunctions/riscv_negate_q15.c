@@ -56,20 +56,21 @@ void riscv_negate_q15(
         q15_t * pDst,
         uint32_t blockSize)
 {
-#if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = blockSize;                               /* Loop counter */
-  size_t l = vsetvl_e16m8(blkCnt);
-  vint16m8_t vx, vy = vmv_s_x_i16m8(vy, 0, l);
+        uint32_t blkCnt;                               /* Loop counter */
+        q15_t in;                                      /* Temporary input variable */
 
+#if defined(RISCV_MATH_VECTOR)
+  blkCnt = blockSize;                               /* Loop counter */
+  size_t l = vsetvl_e16m8(blkCnt);
+  vint16m8_t vx;
+  vint16m8_t vy = vmv_s_x_i16m8(vy, 0, l);
   for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
     vx = vle16_v_i16m8(pSrc, l);
     pSrc += l;
-    vse16_v_i16m8 (pDst, vssub_vv_i16m8(vy ,vx, l), l);
+    vse16_v_i16m8(pDst, vssub_vv_i16m8(vy, vx, l), l);
     pDst += l;
   }
 #else
-        uint32_t blkCnt;                               /* Loop counter */
-        q15_t in;                                      /* Temporary input variable */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 

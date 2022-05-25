@@ -60,27 +60,24 @@ void riscv_cmplx_mult_real_q31(
 #if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = numSamples;                               /* Loop counter */
   size_t l;
-  const q31_t * input_c = pSrcCmplx;         /* Complex pointer */
-  const q31_t * input_r = pSrcReal;          /* Real pointer */
-  q31_t * output = pCmplxDst;
   ptrdiff_t bstride = 8;
-  vint32m4_t v_Rc, v_Ic ,v_Rr;
+  vint32m4_t v_Rc, v_Ic, v_Rr;
   vint32m4_t vR2_m4, vI2_m4;
-  vint32m4_t v_sum;
+
   for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)
   {
-    v_Rc = vlse32_v_i32m4(input_c, bstride, l);
-    input_c++;
-    v_Ic = vlse32_v_i32m4(input_c, bstride, l);
-    v_Rr = vle32_v_i32m4(input_r, l);
-    input_r += l;
-    input_c += (l*2-1);
+    v_Rc = vlse32_v_i32m4(pSrcCmplx, bstride, l);
+    v_Ic = vlse32_v_i32m4(pSrcCmplx + 1, bstride, l);
+    v_Rr = vle32_v_i32m4(pSrcReal, l);
+
     vR2_m4 = vnclip_wx_i32m4(vwmul_vv_i64m8(v_Rc, v_Rr, l), 31, l);
     vI2_m4 = vnclip_wx_i32m4(vwmul_vv_i64m8(v_Ic, v_Rr, l), 31, l);
-    vsse32_v_i32m4(output, bstride, vR2_m4, l);
-    output++;
-    vsse32_v_i32m4(output, bstride, vI2_m4, l);
-    output += (l*2-1);
+    vsse32_v_i32m4(pCmplxDst, bstride, vR2_m4, l);
+    vsse32_v_i32m4(pCmplxDst + 1, bstride, vI2_m4, l);
+
+    pSrcReal += l;
+    pSrcCmplx += l * 2;
+    pCmplxDst += l * 2;
   }
 #else
         uint32_t blkCnt;                               /* Loop counter */

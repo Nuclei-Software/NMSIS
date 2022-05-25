@@ -355,8 +355,8 @@ void riscv_fir_decimate_q15(
   uint32_t blkCnti = S->M * 2;                              /* Loop counter */
   size_t l;
 
-  for (; (l = vsetvl_e32m8(blkCnti)) > 0; blkCnti -= l) {
-    vse32_v_i32m8 (pStateCur, vle32_v_i32m8(pSrc, l), l);
+  for (; (l = vsetvl_e16m8(blkCnti)) > 0; blkCnti -= l) {
+    vse16_v_i16m8(pStateCur, vle16_v_i16m8(pSrc, l), l);
     pSrc += l;
     pStateCur += l;
   }
@@ -448,43 +448,22 @@ void riscv_fir_decimate_q15(
 #if defined (RISCV_MATH_VECTOR)
     uint32_t blkCntb;
     // size_t l;
-    vint16m2_t va1m2,vb1m2,vb2m2;
-    vint32m4_t vch00m4,vch01m4;
-    vint64m1_t vch00m1,vch01m1;
-    vint64m1_t vtemp00m1,vtemp01m1;
-    vint64m8_t vach00m8,vach01m8;
-        blkCntb = numTaps;                               /* Loop counter */
-        // q7_t temp[] = {0};
-        l = vsetvl_e16m2(blkCntb);
-        //initial array to zero
-        vach00m8 = vmv_v_x_i64m8(0, l);
-        vach01m8 = vmv_v_x_i64m8(0, l);
-        l = vsetvl_e64m1(1);
-        vtemp00m1 = vmv_v_x_i64m1(0, l);
-        vtemp01m1 = vmv_v_x_i64m1(0, l);
-        for (; (l = vsetvl_e16m2(blkCntb)) > 0; blkCntb -= l) {
-            va1m2 = vle16_v_i16m2(pb , l);
-            vb1m2 = vle16_v_i16m2(px0, l);
-            vb2m2 = vle16_v_i16m2(px1, l);
-            pb += l;
-            px0 += l;
-            px1 += l;
-            vch00m4 = vwmul_vv_i32m4(va1m2, vb1m2, l);
-            vch01m4 = vwmul_vv_i32m4(va1m2, vb2m2, l);
-            vach00m8 = vwadd_wv_i64m8(vach00m8, vch00m4, l);
-            vach01m8 = vwadd_wv_i64m8(vach01m8, vch01m4, l);
-        }
-        //Here we calculate sum of four vector
-        //set vl to max vl
-        l = vsetvl_e16m2(numTaps);
-        //calculate sum
-        vch00m1 = vredsum_vs_i64m8_i64m1(vtemp00m1, vach00m8, vtemp00m1, l);
-        vch01m1 = vredsum_vs_i64m8_i64m1(vtemp01m1, vach01m8, vtemp01m1, l);
-        //set vl to 1
-        l = vsetvl_e64m1(1);
-        //wrfte result scalar back
-        acc0  += (q63_t)vmv_x_s_i64m1_i64(vch00m1);
-        acc1  += (q63_t)vmv_x_s_i64m1_i64(vch01m1);
+    vint16m4_t va1m4, vb1m4, vb2m4;
+    vint64m1_t vtemp00m1;
+    blkCntb = numTaps;                               /* Loop counter */
+
+    l = vsetvl_e64m1(1);
+    vtemp00m1 = vmv_v_x_i64m1(0, l);
+    for (; (l = vsetvl_e16m4(blkCntb)) > 0; blkCntb -= l) {
+      va1m4 = vle16_v_i16m4(pb , l);
+      vb1m4 = vle16_v_i16m4(px0, l);
+      vb2m4 = vle16_v_i16m4(px1, l);
+      pb += l;
+      px0 += l;
+      px1 += l;
+      acc0  += (q63_t)vmv_x_s_i64m1_i64(vwredsum_vs_i32m8_i64m1(vtemp00m1, vwmul_vv_i32m8(va1m4, vb1m4, l), vtemp00m1, l));
+      acc1  += (q63_t)vmv_x_s_i64m1_i64(vwredsum_vs_i32m8_i64m1(vtemp00m1, vwmul_vv_i32m8(va1m4, vb2m4, l), vtemp00m1, l));
+    }
 #else
     while (tapCnt > 0U)
     {
@@ -524,8 +503,8 @@ void riscv_fir_decimate_q15(
   uint32_t blkCnti = S->M * 2;                              /* Loop counter */
   size_t l;
 
-  for (; (l = vsetvl_e32m8(blkCnti)) > 0; blkCnti -= l) {
-    vse32_v_i32m8 (pStateCur, vle32_v_i32m8(pSrc, l), l);
+  for (; (l = vsetvl_e16m8(blkCnti)) > 0; blkCnti -= l) {
+    vse16_v_i16m8(pStateCur, vle16_v_i16m8(pSrc, l), l);
     pSrc += l;
     pStateCur += l;
   }

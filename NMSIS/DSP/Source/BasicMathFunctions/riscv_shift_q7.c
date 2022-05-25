@@ -59,30 +59,35 @@ void riscv_shift_q7(
         q7_t * pDst,
         uint32_t blockSize)
 {
+
+        uint32_t blkCnt;                               /* Loop counter */
+        uint8_t sign = (shiftBits & 0x80);             /* Sign of shiftBits */
+
 #if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = blockSize;                               /* Loop counter */
-  uint8_t sign = (shiftBits & 0x80);
+  blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vint8m4_t vx;
 
-  for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
-    vx = vle8_v_i8m4(pSrc, l);
-    pSrc += l;
-    /* If the shift value is positive then do right shift else left shift */
-    if (sign == 0U)
-    {
-      vse8_v_i8m4 (pDst, vnclip_wx_i8m4(vsll_vx_i16m8(vwadd_vx_i16m8(vx,0, l), shiftBits, l),0, l), l);
-      pDst += l;
-    }
-    else
-    {
-      vse8_v_i8m4 (pDst, vsra_vx_i8m4(vx, -shiftBits, l), l);
+  if (sign == 0U)
+  {
+     for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
+       vx = vle8_v_i8m4(pSrc, l);
+       pSrc += l;
+       vse8_v_i8m4(pDst, vnclip_wx_i8m4(vsll_vx_i16m8(vwadd_vx_i16m8(vx, 0, l), shiftBits, l), 0, l), l);
+       pDst += l;
+     }
+  }
+  else
+  {
+    for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
+      vx = vle8_v_i8m4(pSrc, l);
+      pSrc += l;
+      vse8_v_i8m4(pDst, vsra_vx_i8m4(vx, -shiftBits, l), l);
       pDst += l;
     }
   }
+
 #else
-        uint32_t blkCnt;                               /* Loop counter */
-        uint8_t sign = (shiftBits & 0x80);             /* Sign of shiftBits */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -179,9 +184,9 @@ void riscv_shift_q7(
 
   /* Loop unrolling: Compute remaining outputs */
 #if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
-  blkCnt = blockSize % 0x8U;
+  blkCnt = blockSize & 0x7U;
 #else
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 #endif
 
 #else

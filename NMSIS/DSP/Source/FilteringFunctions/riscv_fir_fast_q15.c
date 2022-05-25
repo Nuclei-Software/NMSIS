@@ -73,16 +73,6 @@ void riscv_fir_fast_q15(
         uint32_t numTaps = S->numTaps;                 /* Number of filter coefficients in the filter */
         uint32_t tapCnt, blkCnt;                       /* Loop counters */
 
-#if defined (RISCV_MATH_VECTOR)
-        uint32_t blkCnt_v;                               /* Loop counter */
-        size_t l;
-        vint16m4_t v_x, v_y;
-        vint32m8_t v_a;
-        vint32m1_t v_temp;
-        l = vsetvl_e32m1(1);
-        v_temp = vsub_vv_i32m1(v_temp, v_temp, l);
-#endif
-
 #if defined (RISCV_MATH_LOOPUNROLL)
         q31_t acc1, acc2, acc3;                        /* Accumulators */
         q31_t x0, x1, x2, c0;                          /* Temporary variables to hold state and coefficient values */
@@ -250,18 +240,20 @@ void riscv_fir_fast_q15(
     pb = pCoeffs;
 
 #if defined (RISCV_MATH_VECTOR)
+    uint32_t blkCnt_v;                               /* Loop counter */
+    size_t l;
+    vint16m4_t v_x, v_y;
+    vint32m1_t v_temp;
+    l = vsetvl_e32m1(1);
+    v_temp = vsub_vv_i32m1(v_temp, v_temp, l);
     blkCnt_v = numTaps;
-    l = vsetvl_e16m4(blkCnt_v);
-    v_a = vsub_vv_i32m8(v_a,v_a, l);
     for (; (l = vsetvl_e16m4(blkCnt_v)) > 0; blkCnt_v -= l) {
         v_x = vle16_v_i16m4(px, l);
         v_y = vle16_v_i16m4(pb, l);
-        v_a = vwmacc_vv_i32m8(v_a,v_x,v_y, l);
         px += l;
         pb += l;
+        acc0 += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, vwmul_vv_i32m8(v_x, v_y, l), v_temp, l));
     }
-    l = vsetvl_e16m4(numTaps);
-    acc0 = vmv_x_s_i32m1_i32 (vredsum_vs_i32m8_i32m1(v_temp,v_a,v_temp, l));
 #else
     tapCnt = numTaps >> 1U;
     do

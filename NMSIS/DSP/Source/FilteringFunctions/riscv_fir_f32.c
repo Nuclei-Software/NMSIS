@@ -459,17 +459,15 @@ void riscv_fir_f32(
     uint32_t vblkCnt = numTaps;                               /* Loop counter */
     size_t l;
     vfloat32m8_t vx, vy;
-    vfloat32m1_t temp00m1,temp01m1,accm1;
+    vfloat32m1_t temp00m1;
     l = vsetvl_e32m1(1);
     temp00m1 = vfmv_v_f_f32m1(0, l);
-    temp01m1 = vfmv_v_f_f32m1(0, l);
     for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
       vx = vle32_v_f32m8(px, l);
       px += l;
       vy = vle32_v_f32m8(pb, l);
-      accm1 = vfredusum_vs_f32m8_f32m1 ( temp00m1,vfmul_vv_f32m8(vy, vx, l), temp01m1, l);
       pb += l;
-      acc0 += vfmv_f_s_f32m1_f32(accm1);
+      acc0 += vfmv_f_s_f32m1_f32(vfredusum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vy, vx, l), temp00m1, l));
     }
 #else
     /* Perform the multiply-accumulates */
@@ -531,7 +529,7 @@ void riscv_fir_f32(
     for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
       vx = vle32_v_f32m8(pState, l);
       pState += l;
-      vse32_v_f32m8 (pStateCurnt, vx, l);
+      vse32_v_f32m8(pStateCurnt, vx, l);
       pStateCurnt += l;
     }
 #else

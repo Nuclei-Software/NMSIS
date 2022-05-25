@@ -727,7 +727,7 @@ void riscv_correlate_f32(
   const float32_t *pIn1 = pSrcA;                       /* inputA pointer */
   const float32_t *pIn2 = pSrcB + (srcBLen - 1U);      /* inputB pointer */
         float32_t sum;                                 /* Accumulator */
-        int32_t i = 0U, j;                            /* Loop counters */
+        uint32_t i = 0U, j;                            /* Loop counters */
         uint32_t inv = 0U;                             /* Reverse order flag */
         uint32_t tot = 0U;                             /* Length */
 

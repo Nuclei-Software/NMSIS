@@ -48,7 +48,7 @@
   @return        none
  */
 
-LOW_OPTIMIZATION_ENTER
+
 void riscv_biquad_cascade_df2T_f16(
   const riscv_biquad_cascade_df2T_instance_f16 * S,
   const float16_t * pSrc,
@@ -348,7 +348,6 @@ void riscv_biquad_cascade_df2T_f16(
    } while (stage > 0U);
 
 }
-LOW_OPTIMIZATION_EXIT
 /**
   @} end of BiquadCascadeDF2T group
  */

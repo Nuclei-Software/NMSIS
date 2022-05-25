@@ -147,7 +147,7 @@ void riscv_fir_sparse_q7(
     for (; (l = vsetvl_e8m2(vblkCnt)) > 0; vblkCnt -= l) {
       vx = vle8_v_i8m2(px, l);
       px += l;
-      vse32_v_i32m8 (pScratchOut,vwadd_vx_i32m8(vwmul_vx_i16m4(vx, coeff, l),0, l), l);
+      vse32_v_i32m8(pScratchOut, vwadd_vx_i32m8(vwmul_vx_i16m4(vx, coeff, l), 0, l), l);
       pScratchOut += l;
     }
 #else
@@ -227,7 +227,7 @@ void riscv_fir_sparse_q7(
     for (; (l = vsetvl_e8m2(vblkCnt)) > 0; vblkCnt -= l) {
       vx = vle8_v_i8m2(px, l);
       px += l;
-      vse32_v_i32m8 (pScratchOut,vadd_vv_i32m8(vle32_v_i32m8(pScratchOut, l), vwadd_vx_i32m8(vwmul_vx_i16m4(vx, coeff, l),0, l), l), l);
+      vse32_v_i32m8 (pScratchOut, vadd_vv_i32m8(vle32_v_i32m8(pScratchOut, l), vwadd_vx_i32m8(vwmul_vx_i16m4(vx, coeff, l), 0, l), l), l);
       pScratchOut += l;
     }
 #else
@@ -309,7 +309,7 @@ void riscv_fir_sparse_q7(
     for (; (l = vsetvl_e8m2(vblkCnt)) > 0; vblkCnt -= l) {
       vx = vle8_v_i8m2(px, l);
       px += l;
-      vse32_v_i32m8 (pScratchOut,vadd_vv_i32m8(vle32_v_i32m8(pScratchOut, l), vwadd_vx_i32m8(vwmul_vx_i16m4(vx, coeff, l),0, l), l), l);
+      vse32_v_i32m8 (pScratchOut, vadd_vv_i32m8(vle32_v_i32m8(pScratchOut, l), vwadd_vx_i32m8(vwmul_vx_i16m4(vx, coeff, l), 0, l), l), l);
       pScratchOut += l;
     }
 #else

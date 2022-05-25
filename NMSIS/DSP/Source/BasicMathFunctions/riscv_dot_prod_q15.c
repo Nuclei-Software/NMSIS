@@ -59,29 +59,24 @@ void riscv_dot_prod_q15(
         uint32_t blockSize,
         q63_t * result)
 {
+        uint32_t blkCnt;                               /* Loop counter */
+        q63_t sum = 0;                                 /* Temporary return variable */
+
 #if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = blockSize;                               /* Loop counter */
+  blkCnt = blockSize;                               /* Loop counter */
   size_t l;
-  const q15_t * inputA = pSrcA;
-  const q15_t * inputB = pSrcB;
-  q63_t * output = result;
-  vint16m4_t v_inA;
-  vint16m4_t v_inB;
+  vint16m4_t v_inA, v_inB;
   l = vsetvl_e64m1(1);
-  vint64m1_t v_sum = vmv_s_x_i64m1(v_sum, 0, l);
+  vint64m1_t temp00 = vmv_v_x_i64m1(0, l);
   for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
   {
-    v_inA = vle16_v_i16m4(inputA, l);
-    v_inB = vle16_v_i16m4(inputB, l);
-    inputA += l;
-    inputB += l;
-    v_sum = vwredsum_vs_i32m8_i64m1(v_sum, vwmul_vv_i32m8(v_inA, v_inB, l), v_sum, l);
+    v_inA = vle16_v_i16m4(pSrcA, l);
+    v_inB = vle16_v_i16m4(pSrcB, l);
+    pSrcA += l;
+    pSrcB += l;
+    sum += vmv_x_s_i64m1_i64(vwredsum_vs_i32m8_i64m1(temp00, vwmul_vv_i32m8(v_inA, v_inB, l), temp00, l));
   }
-  l = vsetvl_e64m1(1);
-  vse64_v_i64m1(output, v_sum, l);
 #else
-        uint32_t blkCnt;                               /* Loop counter */
-        volatile q63_t sum = 0;                                 /* Temporary return variable */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 #if __RISCV_XLEN == 64
@@ -141,10 +136,9 @@ void riscv_dot_prod_q15(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_MATH_VECTOR) */
   /* Store result in destination buffer in 34.30 format */
   *result = sum;
-#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

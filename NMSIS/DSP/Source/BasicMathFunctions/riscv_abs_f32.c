@@ -68,18 +68,19 @@ void riscv_abs_f32(
         uint32_t blockSize)
 {
         uint32_t blkCnt;                               /* Loop counter */
+
 #if defined(RISCV_MATH_VECTOR)
   vfloat32m8_t vx;
   blkCnt = blockSize;
   size_t l;
   for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
     vx = vle32_v_f32m8(pSrc, l);
-    vse32_v_f32m8 (pDst, vfsgnjx_vv_f32m8(vx, vx, l), l);
+    vse32_v_f32m8(pDst, vfsgnjx_vv_f32m8(vx, vx, l), l);
     pSrc += l;
     pDst += l;
   }
-#else
-#if defined (RISCV_MATH_LOOPUNROLL)
+
+#elif defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
@@ -102,7 +103,7 @@ void riscv_abs_f32(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 
@@ -121,7 +122,7 @@ void riscv_abs_f32(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif
+
 }
 /**
   @} end of BasicAbs group

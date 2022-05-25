@@ -79,20 +79,20 @@ void riscv_negate_f16(
     /* C = -A */
 
     /* Negate and store result in destination buffer. */
-    *pDst++ = -*pSrc++;
+    *pDst++ = -(_Float16)*pSrc++;
 
-    *pDst++ = -*pSrc++;
+    *pDst++ = -(_Float16)*pSrc++;
 
-    *pDst++ = -*pSrc++;
+    *pDst++ = -(_Float16)*pSrc++;
 
-    *pDst++ = -*pSrc++;
+    *pDst++ = -(_Float16)*pSrc++;
 
     /* Decrement loop counter */
     blkCnt--;
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 
@@ -106,7 +106,7 @@ void riscv_negate_f16(
     /* C = -A */
 
     /* Negate and store result in destination buffer. */
-    *pDst++ = -*pSrc++;
+    *pDst++ = -(_Float16)*pSrc++;
 
     /* Decrement loop counter */
     blkCnt--;

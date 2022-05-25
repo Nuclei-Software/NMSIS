@@ -56,19 +56,20 @@ void riscv_offset_q15(
         q15_t * pDst,
         uint32_t blockSize)
 {
+        uint32_t blkCnt;                               /* Loop counter */
+
 #if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = blockSize;                               /* Loop counter */
+  blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vint16m8_t vx;
 
   for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
     vx = vle16_v_i16m8(pSrc, l);
     pSrc += l;
-    vse16_v_i16m8 (pDst, vsadd_vx_i16m8(vx, offset, l), l);
+    vse16_v_i16m8(pDst, vsadd_vx_i16m8(vx, offset, l), l);
     pDst += l;
   }
 #else
-        uint32_t blkCnt;                               /* Loop counter */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 

@@ -73,7 +73,7 @@ void riscv_conv_fast_opt_q15(
         q15_t * pScratch2)
 {
 #if defined (RISCV_MATH_VECTOR)
-      riscv_conv_opt_q15(pSrcA,srcALen,pSrcB,srcBLen,pDst,pScratch1,pScratch2);
+      riscv_conv_opt_q15(pSrcA, srcALen, pSrcB, srcBLen, pDst, pScratch1, pScratch2);
 #else
         q31_t acc0;                                    /* Accumulators */
   const q15_t *pIn1;                                   /* InputA pointer */
@@ -153,7 +153,7 @@ void riscv_conv_fast_opt_q15(
     pScr2 += 3;
 #endif /* __RISCV_XLEN == 64 */
   /* Loop unrolling: Compute remaining outputs */
-  k = srcBLen % 0x4U;
+  k = srcBLen & 0x3U;
 
 #else
 

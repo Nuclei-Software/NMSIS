@@ -34,7 +34,6 @@
 #include <limits.h>
 #include <math.h>
 
-#define PI_F 3.1415926535897932384626433832795f16
 
 /**
  * @addtogroup groupBayes
@@ -87,20 +86,20 @@ uint32_t riscv_gaussian_naive_bayes_predict_f16(const riscv_gaussian_naive_bayes
         acc2 = 0.0f16;
         for(nbDim = 0; nbDim < S->vectorDimension; nbDim++)
         {
-           sigma = *pSigma + S->epsilon;
-           acc1 += logf(2.0f16 * (_Float16)PI_F * sigma);
-           acc2 += (*pIn - *pTheta) * (*pIn - *pTheta) / sigma;
+           sigma = (_Float16)*pSigma + (_Float16)S->epsilon;
+           acc1 += (_Float16)logf(2.0f * PI * (float32_t)sigma);
+           acc2 += ((_Float16)*pIn - (_Float16)*pTheta) * ((_Float16)*pIn - (_Float16)*pTheta) / (_Float16)sigma;
 
            pIn++;
            pTheta++;
            pSigma++;
         }
 
-        tmp = -0.5f16 * acc1;
-        tmp -= 0.5f16 * acc2;
+        tmp = -0.5f16 * (_Float16)acc1;
+        tmp -= 0.5f16 * (_Float16)acc2;
 
 
-        *buffer = tmp + logf(*pPrior++);
+        *buffer = (_Float16)tmp + (_Float16)logf((float32_t)*pPrior++);
         buffer++;
     }
 
@@ -114,5 +113,4 @@ uint32_t riscv_gaussian_naive_bayes_predict_f16(const riscv_gaussian_naive_bayes
  * @} end of groupBayes group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
-
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */

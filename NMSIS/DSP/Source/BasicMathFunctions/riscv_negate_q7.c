@@ -54,21 +54,22 @@ void riscv_negate_q7(
         q7_t * pDst,
         uint32_t blockSize)
 {
+        uint32_t blkCnt;                               /* Loop counter */
+        q7_t in;                                       /* Temporary input variable */
+
 #if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = blockSize;                               /* Loop counter */
-  size_t l;
-  l = vsetvl_e8m8(blkCnt);
-  vint8m8_t vx,vy = vmv_s_x_i8m8(vy, 0, l);
+  blkCnt = blockSize;                               /* Loop counter */
+  size_t l = vsetvl_e8m8(blkCnt);
+  vint8m8_t vx;
+  vint8m8_t vy = vmv_s_x_i8m8(vy, 0, l);
 
   for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
     vx = vle8_v_i8m8(pSrc, l);
     pSrc += l;
-    vse8_v_i8m8 (pDst, vssub_vv_i8m8(vy ,vx, l), l);
+    vse8_v_i8m8(pDst, vssub_vv_i8m8(vy, vx, l), l);
     pDst += l;
   }
 #else
-        uint32_t blkCnt;                               /* Loop counter */
-        q7_t in;                                       /* Temporary input variable */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 

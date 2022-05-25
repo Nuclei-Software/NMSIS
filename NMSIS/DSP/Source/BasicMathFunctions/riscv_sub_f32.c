@@ -65,8 +65,10 @@ void riscv_sub_f32(
         float32_t * pDst,
         uint32_t blockSize)
 {
+        uint32_t blkCnt;                               /* Loop counter */
+
 #if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = blockSize;                               /* Loop counter */
+  blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vfloat32m8_t vx, vy;
 
@@ -74,12 +76,11 @@ void riscv_sub_f32(
     vx = vle32_v_f32m8(pSrcA, l);
     pSrcA += l;
     vy = vle32_v_f32m8(pSrcB, l);
-    vse32_v_f32m8 (pDst, vfsub_vv_f32m8(vx, vy, l), l);
     pSrcB += l;
+    vse32_v_f32m8(pDst, vfsub_vv_f32m8(vx, vy, l), l);
     pDst += l;
   }
 #else
-        uint32_t blkCnt;                               /* Loop counter */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 

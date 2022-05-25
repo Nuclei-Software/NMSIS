@@ -361,7 +361,7 @@ void riscv_fir_f16(
     while (i > 0U)
     {
       /* acc =  b[numTaps-1] * x[n-numTaps-1] + b[numTaps-2] * x[n-numTaps-2] + b[numTaps-3] * x[n-numTaps-3] +...+ b[0] * x[0] */
-      acc0 += *px++ * *pb++;
+      acc0 += (_Float16)*px++ * (_Float16)*pb++;
 
       i--;
     }

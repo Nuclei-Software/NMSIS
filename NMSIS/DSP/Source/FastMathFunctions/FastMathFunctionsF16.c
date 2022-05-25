@@ -30,3 +30,4 @@
 #include "riscv_vexp_f16.c"
 #include "riscv_vlog_f16.c"
 #include "riscv_vinverse_f16.c"
+#include "riscv_atan2_f16.c"

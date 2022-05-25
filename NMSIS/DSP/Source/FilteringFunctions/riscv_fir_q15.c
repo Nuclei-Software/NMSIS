@@ -126,7 +126,7 @@ void riscv_fir_q15(
     while (tapCnt > 0U)
     {
       /* Read the first two coefficients using SIMD:  b[N] and b[N-1] coefficients */
-      c0 = read_q15x2_ia ((q15_t **) &pb);
+      c0 = read_q15x2_ia (&pb);
 
       /* acc0 +=  b[N] * x[n-N] + b[N-1] * x[n-N-1] */
       acc0 = __SMLALD(x0, c0, acc0);
@@ -150,7 +150,7 @@ void riscv_fir_q15(
       acc3 = __SMLALDX(x1, c0, acc3);
 
       /* Read coefficients b[N-2], b[N-3] */
-      c0 = read_q15x2_ia ((q15_t **) &pb);
+      c0 = read_q15x2_ia (&pb);
 
       /* acc0 +=  b[N-2] * x[n-N-2] + b[N-3] * x[n-N-3] */
       acc0 = __SMLALD(x2, c0, acc0);
@@ -179,7 +179,7 @@ void riscv_fir_q15(
     if ((numTaps & 0x3U) != 0U)
     {
       /* Read last two coefficients */
-      c0 = read_q15x2_ia ((q15_t **) &pb);
+      c0 = read_q15x2_ia (&pb);
 
       /* Perform the multiply-accumulates */
       acc0 = __SMLALD(x0, c0, acc0);
@@ -241,19 +241,17 @@ void riscv_fir_q15(
 #if defined (RISCV_MATH_VECTOR)
     uint32_t vblkCnt = numTaps;                               /* Loop counter */
     size_t l;
-    vint16m4_t vx,vy;
-    vint64m1_t temp00m1,temp01m1,accm1;
+    vint16m4_t vx, vy;
+    vint64m1_t temp00m1;
     l = vsetvl_e64m1(1);
     temp00m1 = vmv_v_x_i64m1(0, l);
-    temp01m1 = vmv_v_x_i64m1(0, l);
 
     for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
       vx = vle16_v_i16m4(px, l);
       px += l;
       vy = vle16_v_i16m4(pb, l);
       pb += l;
-      accm1 = vwredsum_vs_i32m8_i64m1 ( temp00m1,vwmul_vv_i32m8(vx, vy, l), temp01m1, l);
-      acc0 +=vmv_x_s_i64m1_i64(accm1);
+      acc0 +=vmv_x_s_i64m1_i64(vwredsum_vs_i32m8_i64m1(temp00m1,vwmul_vv_i32m8(vx, vy, l), temp00m1, l));
     }
 #else
     tapCnt = numTaps >> 1U;

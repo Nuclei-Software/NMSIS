@@ -88,16 +88,16 @@ void riscv_cmplx_conj_f16(
 
     /* Calculate Complex Conjugate and store result in destination buffer. */
     *pDst++ =  *pSrc++;
-    *pDst++ = -*pSrc++;
+    *pDst++ = -(_Float16)*pSrc++;
 
     *pDst++ =  *pSrc++;
-    *pDst++ = -*pSrc++;
+    *pDst++ = -(_Float16)*pSrc++;
 
     *pDst++ =  *pSrc++;
-    *pDst++ = -*pSrc++;
+    *pDst++ = -(_Float16)*pSrc++;
 
     *pDst++ =  *pSrc++;
-    *pDst++ = -*pSrc++;
+    *pDst++ = -(_Float16)*pSrc++;
 
     /* Decrement loop counter */
     blkCnt--;
@@ -119,7 +119,7 @@ void riscv_cmplx_conj_f16(
 
     /* Calculate Complex Conjugate and store result in destination buffer. */
     *pDst++ =  *pSrc++;
-    *pDst++ = -*pSrc++;
+    *pDst++ = -(_Float16)*pSrc++;
 
     /* Decrement loop counter */
     blkCnt--;

@@ -84,10 +84,6 @@ void riscv_correlate_q7(
         q31_t input1, input2;                          /* Temporary input variables */
         q15_t in1, in2;                                /* Temporary input variables */
         q7_t x0, x1, x2, x3, c0, c1;                   /* Temporary variables for holding input and coefficient values */
-// #if __RISCV_XLEN == 64
-//         q63_t input164, input264;                          /* Temporary input variables */
-//         q63_t in164, in264;                                /* Temporary input variables */
-// #endif /* __RISCV_XLEN == 64 */
 #endif
 
   /* The algorithm implementation is based on the lengths of the inputs. */
@@ -189,24 +185,13 @@ void riscv_correlate_q7(
     /* Accumulator is made zero for every iteration */
     sum = 0;
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
-// #if __RISCV_XLEN == 64
-//     /* Loop unrolling: Compute 8 outputs at a time */
-//     k = count >> 3U;
-// #else
+#if defined (RISCV_MATH_LOOPUNROLL)
+
     /* Loop unrolling: Compute 4 outputs at a time */
     k = count >> 2U;
-// #endif
-// #if __RISCV_XLEN == 64
-//     py -= 7;
-// #endif /* __RISCV_XLEN == 64 */
+
     while (k > 0U)
     {
-// #if __RISCV_XLEN == 64
-//       in164 = read_q7x8_ia ((q7_t **) &px);
-//       in264 = read_q7x8_da ((q7_t **) &py);
-//       sum = __RV_SMAQA(sum, input1, input2);
-// #else
       /* x[0] , x[1] */
       in1 = (q15_t) *px++;
       in2 = (q15_t) *px++;
@@ -234,20 +219,14 @@ void riscv_correlate_q7(
       /* x[2] * y[srcBLen - 2] */
       /* x[3] * y[srcBLen - 1] */
       sum = __SMLAD(input1, input2, sum);
-// #endif /* __RISCV_XLEN == 64 */
+
       /* Decrement loop counter */
       k--;
     }
-// #if __RISCV_XLEN == 64
-//     py += 7;
-// #endif /* __RISCV_XLEN == 64 */
-// #if __RISCV_XLEN == 64
-//     /* Loop unrolling: Compute remaining outputs */
-//     k = count % 0x8U;
-// #else
+
     /* Loop unrolling: Compute remaining outputs */
     k = count % 0x4U;
-// #endif
+
 #else
 
     /* Initialize k with number of samples */

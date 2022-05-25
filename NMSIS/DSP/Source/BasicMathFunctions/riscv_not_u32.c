@@ -51,19 +51,22 @@ void riscv_not_u32(
           uint32_t * pDst,
           uint32_t blockSize)
 {
+    uint32_t blkCnt;      /* Loop counter */
+
+    /* Initialize blkCnt with number of samples */
+    blkCnt = blockSize;
+
 #if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vuint32m8_t vx;
 
   for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
     vx = vle32_v_u32m8(pSrc, l);
     pSrc += l;
-    vse32_v_u32m8(pDst,vnot_v_u32m8(vx, l), l);
+    vse32_v_u32m8(pDst, vnot_v_u32m8(vx, l), l);
     pDst += l;
   }
 #else
-    uint32_t blkCnt;      /* Loop counter */
 
 #if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
 
@@ -83,9 +86,6 @@ void riscv_not_u32(
     {
         pSrc = (uint8_t * )(pSrc_temp-1);
     }
-#else
-    /* Initialize blkCnt with number of samples */
-    blkCnt = blockSize;
 #endif
     while (blkCnt > 0U)
     {

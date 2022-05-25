@@ -102,20 +102,17 @@ void riscv_conv_opt_q7(
     srcBLen = srcALen;
     srcALen = j;
   }
-// #if __RISCV_XLEN == 64
-//   /* points to smaller length sequence */
-//   px = pIn2 + srcBLen - 8;
-// #else
+
   /* points to smaller length sequence */
   px = pIn2 + srcBLen - 1;
-// #endif /* __RISCV_XLEN == 64 */
+
 #if defined (RISCV_MATH_VECTOR)
   uint32_t vblkCnt = srcBLen;                               /* Loop counter */
   size_t l;
   vint16m8_t vx;
   ptrdiff_t bstride = -1;
   for (; (l = vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
-    vx = vwadd_vx_i16m8(vlse8_v_i8m4(px, bstride, l),0, l);
+    vx = vwadd_vx_i16m8(vlse8_v_i8m4(px, bstride, l), 0, l);
     px -= l;
     vse16_v_i16m8(pScr2, vx, l);
     pScr2 += l;
@@ -168,7 +165,7 @@ void riscv_conv_opt_q7(
 #if defined (RISCV_MATH_VECTOR)
   vblkCnt = srcALen;                               /* Loop counter */
   for (; (l = vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
-    vx = vwadd_vx_i16m8(vle8_v_i8m4(pIn1, l),0, l);
+    vx = vwadd_vx_i16m8(vle8_v_i8m4(pIn1, l), 0, l);
     pIn1 += l;
     vse16_v_i16m8(pScr1, vx, l);
     pScr1 += l;

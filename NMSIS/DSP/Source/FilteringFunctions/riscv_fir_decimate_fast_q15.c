@@ -369,7 +369,7 @@ void riscv_fir_decimate_fast_q15(
   size_t l;
 
   for (; (l = vsetvl_e16m8(blkCnti)) > 0; blkCnti -= l) {
-    vse16_v_i16m8 (pStateCur, vle16_v_i16m8(pSrc, l), l);
+    vse16_v_i16m8(pStateCur, vle16_v_i16m8(pSrc, l), l);
     pSrc += l;
     pStateCur += l;
   }

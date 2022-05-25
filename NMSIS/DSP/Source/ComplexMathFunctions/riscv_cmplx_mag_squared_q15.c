@@ -57,28 +57,25 @@ void riscv_cmplx_mag_squared_q15(
 #if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = numSamples;                               /* Loop counter */
   size_t l;
-  const q15_t * input = pSrc;
-  q15_t * output = pDst;
+
   ptrdiff_t bstride = 4;
-  vint16m2_t v_R,v_I;
+  vint16m2_t v_R, v_I;
   vint32m4_t vR2_m4, vI2_m4;
   vint64m8_t vsum_m8;
   vint16m2_t v_summ2;
   for (; (l = vsetvl_e16m2(blkCnt)) > 0; blkCnt -= l)
   {
-    v_R = vlse16_v_i16m2(input, bstride, l);
-    input++;
-    v_I = vlse16_v_i16m2(input, bstride, l);
-    input += (l*2-1);
+    v_R = vlse16_v_i16m2(pSrc, bstride, l);
+    v_I = vlse16_v_i16m2(pSrc + 1, bstride, l);
+
     vR2_m4 = vwmul_vv_i32m4(v_R, v_R, l);
     vI2_m4 = vwmul_vv_i32m4(v_I, v_I, l);
-    vsum_m8 = vwadd_vv_i64m8 (vR2_m4, vI2_m4, l);
-    //v_summ2 = vnclip_wx_i16m2(vnsra_wx_i32m4(vsum_m8, 17), 0);
+    vsum_m8 = vwadd_vv_i64m8(vR2_m4, vI2_m4, l);
     v_summ2 = vnclip_wx_i16m2(vnclip_wx_i32m4(vsum_m8, 17, l), 0, l);
-    vse16_v_i16m2 (output, v_summ2, l);
-    output += l;
+    vse16_v_i16m2(pDst, v_summ2, l);
+    pSrc += l * 2;
+    pDst += l;
   }
-
 #else
         uint32_t blkCnt;                               /* Loop counter */
 
@@ -170,7 +167,7 @@ void riscv_cmplx_mag_squared_q15(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = numSamples % 0x4U;
+  blkCnt = numSamples & 0x3U;
 
 #else
 

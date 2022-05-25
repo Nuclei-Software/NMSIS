@@ -79,13 +79,13 @@ void riscv_mult_f16(
     /* C = A * B */
 
     /* Multiply inputs and store result in destination buffer. */
-    *pDst++ = (*pSrcA++) * (*pSrcB++);
+    *pDst++ = (_Float16)(*pSrcA++) * (_Float16)(*pSrcB++);
 
-    *pDst++ = (*pSrcA++) * (*pSrcB++);
+    *pDst++ = (_Float16)(*pSrcA++) * (_Float16)(*pSrcB++);
 
-    *pDst++ = (*pSrcA++) * (*pSrcB++);
+    *pDst++ = (_Float16)(*pSrcA++) * (_Float16)(*pSrcB++);
 
-    *pDst++ = (*pSrcA++) * (*pSrcB++);
+    *pDst++ = (_Float16)(*pSrcA++) * (_Float16)(*pSrcB++);
 
     /* Decrement loop counter */
     blkCnt--;
@@ -106,7 +106,7 @@ void riscv_mult_f16(
     /* C = A * B */
 
     /* Multiply input and store result in destination buffer. */
-    *pDst++ = (*pSrcA++) * (*pSrcB++);
+    *pDst++ = (_Float16)(*pSrcA++) * (_Float16)(*pSrcB++);
 
     /* Decrement loop counter */
     blkCnt--;

@@ -60,29 +60,24 @@ void riscv_dot_prod_q7(
         uint32_t blockSize,
         q31_t * result)
 {
+        uint32_t blkCnt;                               /* Loop counter */
+        q31_t sum = 0;                                 /* Temporary return variable */
+
 #if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = blockSize;                               /* Loop counter */
+  blkCnt = blockSize;                               /* Loop counter */
   size_t l;
-  const q7_t * inputA = pSrcA;
-  const q7_t * inputB = pSrcB;
-  q31_t * output = result;
-  vint8m4_t v_inA;
-  vint8m4_t v_inB;
+  vint8m4_t v_inA, v_inB;
   l = vsetvl_e32m1(1);
-  vint32m1_t v_sum = vmv_s_x_i32m1(v_sum, 0, l);
+  vint32m1_t temp00 = vmv_v_x_i32m1(0, l);
   for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l)
   {
-    v_inA = vle8_v_i8m4(inputA, l);
-    v_inB = vle8_v_i8m4(inputB, l);
-    inputA += l;
-    inputB += l;
-    v_sum = vwredsum_vs_i16m8_i32m1(v_sum, vwmul_vv_i16m8(v_inA, v_inB, l), v_sum, l);
+    v_inA = vle8_v_i8m4(pSrcA, l);
+    v_inB = vle8_v_i8m4(pSrcB, l);
+    pSrcA += l;
+    pSrcB += l;
+    sum += vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(temp00, vwmul_vv_i16m8(v_inA, v_inB, l), temp00, l));
   }
-  l = vsetvl_e32m1(1);
-  vse32_v_i32m1(output, v_sum, l);
 #else
-        uint32_t blkCnt;                               /* Loop counter */
-        volatile q31_t sum = 0;                                 /* Temporary return variable */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -171,10 +166,9 @@ void riscv_dot_prod_q7(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_MATH_VECTOR) */
   /* Store result in destination buffer in 18.14 format */
   *result = sum;
-#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**
