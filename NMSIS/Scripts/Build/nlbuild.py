@@ -10,6 +10,7 @@ import re
 import json
 import argparse
 import shutil
+import subprocess
 from prettytable import PrettyTable
 
 
@@ -22,22 +23,40 @@ def mkdirs(dir, remove_first=False):
             os.makedirs(dir)
     pass
 
+def flush_console():
+    sys.stdout.flush()
+    sys.stderr.flush()
+    pass
+
+#def run_command(cmd):
+#    try:
+#        print("Run command: %s" %(cmd))
+#        ret = os.system(cmd)
+#        print("return value is %d" % (ret))
+#        if ret == 0:
+#            return True
+#    except Exception as exc:
+#        print("Execute command, catch exception: %s", e)
+#    return False
+
 def run_command(cmd):
     try:
         print("Run command: %s" %(cmd))
-        ret = os.system(cmd)
-        print("return value is %d" % (ret))
-        if ret == 0:
+        ret = subprocess.run(cmd, shell=True, executable='/bin/bash')
+        flush_console()
+        print("Previous command return value is %d" % (ret.returncode))
+        if ret.returncode == 0:
             return True
     except Exception as exc:
         print("Execute command, catch exception: %s", e)
+    flush_console()
     return False
 
 def checkbuilderror(log):
     if os.path.isfile(log) == False:
         return False
     with open(log, 'r') as lf:
-        repattern = 'make.+Error.+'
+        repattern = 'make.+ \*\*\*.+'
         for line in lf.readlines():
             match = re.match(repattern, line)
             if match:
@@ -77,7 +96,7 @@ class nl_build(object):
         if genmake == True:
             mkdirs(nl_buildir, True)
             print("Configure project %s for target %s, log record in %s" % (self.nl_src, target, nl_cmakelog))
-            cmake_cmd = "cmake %s -S %s -B %s 2>&1 | tee %s" % (cmakeopts, abs_nlsrc, nl_buildir, nl_cmakelog)
+            cmake_cmd = "cmake %s -S %s -B %s > >(tee %s) 2>&1" % (cmakeopts, abs_nlsrc, nl_buildir, nl_cmakelog)
             run_command(cmake_cmd)
         else:
             print("Reuse previous generated Makefile configured by cmake!")
@@ -88,7 +107,7 @@ class nl_build(object):
         parallel = parallel.strip()
         if parallel.startswith("-j"):
             make_cmd += " %s " % (parallel)
-        make_cmd += " -C %s  2>&1 | tee %s" % (nl_buildir, nl_buildlog)
+        make_cmd += " -C %s > >(tee %s) 2>&1" % (nl_buildir, nl_buildlog)
         print("Build project %s for target %s, log record in %s" % (self.nl_src, target, nl_buildlog))
         ret = run_command(make_cmd)
         if ret == False:
@@ -174,7 +193,7 @@ def install_library(libsrc, buildcfgs:dict, aliascfgs:dict, libprefix, libroot, 
             rst_table.add_row([key, ret, cost_time, buildlog])
             if ret == False:
                 runstatus = False
-                print(">>> ERROR failed to build %s library for config %s" % (libsrc, key))
+                print(">>> ERROR Failed to build %s library for config %s" % (libsrc, key))
                 if ignore_fail == False:
                     break
     else:
@@ -188,7 +207,7 @@ def install_library(libsrc, buildcfgs:dict, aliascfgs:dict, libprefix, libroot, 
             rst_table.add_row([target, ret, cost_time, buildlog])
             if ret == False:
                 runstatus = False
-                print(">>> ERROR failed to build %s library for config %s" % (libsrc, target))
+                print(">>> ERROR Failed to build %s library for config %s" % (libsrc, target))
         else:
             runstatus = False
             print(">>> ERROR: config %s not found" % (target))
@@ -213,6 +232,10 @@ if __name__ == '__main__':
     parser.add_argument('--ignore_fail', action='store_true', help="If specified, will ignore fail even any build configuration failed")
 
     args = parser.parse_args()
+
+    if sys.platform == "win32":
+        print("Windows build is not yet supported!")
+        sys.exit(1)
 
     valid, jsoncfg = load_json(args.config)
 
