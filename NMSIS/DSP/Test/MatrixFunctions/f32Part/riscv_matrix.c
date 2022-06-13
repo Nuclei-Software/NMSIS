@@ -42,6 +42,23 @@ int DSP_matrix_f32(void)
     riscv_mat_init_f32(&f32_back, ROWS, COLUMNS, f32_output_back);
     riscv_mat_init_f32(&f32_ref, ROWS, COLUMNS, f32_output_ref);
 
+    float32_t f32_ref_vec[ROWS];
+    float32_t f32_dst_vec[ROWS];
+
+    BENCH_START(riscv_mat_vec_mult_f32);
+    riscv_mat_vec_mult_f32(&f32_A, f32_B_vec, f32_dst_vec);
+    BENCH_END(riscv_mat_vec_mult_f32);
+    ref_mat_vec_mult_f32(&f32_A, f32_B_vec, f32_ref_vec);
+    for (int i = 0; i < ROWS; i++)
+        if (fabs(f32_ref_vec[i] - f32_dst_vec[i]) > DELTAF32) {
+            BENCH_ERROR(riscv_mat_vec_mult_f32);
+            printf("index: %d,expect: %f, actual: %f\n", i, f32_ref_vec[i],
+                   f32_dst_vec[i]);
+            test_flag_error = 1;
+        }
+    BENCH_STATUS(riscv_mat_vec_mult_f32);
+
+    // add 
     BENCH_START(riscv_mat_add_f32);
     riscv_mat_add_f32(&f32_A, &f32_B, &f32_des);
     BENCH_END(riscv_mat_add_f32);
@@ -345,8 +362,8 @@ int DSP_matrix_f64(void)
 int main()
 {
     BENCH_INIT;
-    // DSP_matrix_f32();
-    DSP_matrix_f64();
+     DSP_matrix_f32();
+    //DSP_matrix_f64();
     BENCH_FINISH;
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");

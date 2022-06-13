@@ -49,6 +49,15 @@
 #include "riscv_rfft_fast_init_f32.c"
 #include "riscv_rfft_fast_init_f64.c"
 
+#include "riscv_mfcc_init_f32.c"
+#include "riscv_mfcc_f32.c"
+
+#include "riscv_mfcc_init_q31.c"
+#include "riscv_mfcc_q31.c"
+
+#include "riscv_mfcc_init_q15.c"
+#include "riscv_mfcc_q15.c"
+
 /* Deprecated */
 
 #include "riscv_dct4_f32.c"

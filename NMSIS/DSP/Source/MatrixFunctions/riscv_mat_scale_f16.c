@@ -71,6 +71,7 @@ riscv_status riscv_mat_scale_f16(
   {
     /* Set status as RISCV_MATH_SIZE_MISMATCH */
     status = RISCV_MATH_SIZE_MISMATCH;
+    return status;
   }
   else
 
@@ -90,10 +91,10 @@ riscv_status riscv_mat_scale_f16(
       /* C(m,n) = A(m,n) * scale */
 
       /* Scale and store result in destination buffer. */
-      *pOut++ = (*pIn++) * scale;
-      *pOut++ = (*pIn++) * scale;
-      *pOut++ = (*pIn++) * scale;
-      *pOut++ = (*pIn++) * scale;
+      *pOut++ = (_Float16)(*pIn++) * (_Float16)scale;
+      *pOut++ = (_Float16)(*pIn++) * (_Float16)scale;
+      *pOut++ = (_Float16)(*pIn++) * (_Float16)scale;
+      *pOut++ = (_Float16)(*pIn++) * (_Float16)scale;
 
       /* Decrement loop counter */
       blkCnt--;
@@ -114,7 +115,7 @@ riscv_status riscv_mat_scale_f16(
       /* C(m,n) = A(m,n) * scale */
 
       /* Scale and store result in destination buffer. */
-      *pOut++ = (*pIn++) * scale;
+      *pOut++ = (_Float16)(*pIn++) * (_Float16)scale;
 
       /* Decrement loop counter */
       blkCnt--;

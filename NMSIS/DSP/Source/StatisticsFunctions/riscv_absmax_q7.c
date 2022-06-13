@@ -141,9 +141,45 @@ void riscv_absmax_q7(
         q7_t * pResult,
         uint32_t * pIndex)
 {
-       q7_t maxVal, out;                              /* Temporary variables to store the output value. */
-        uint32_t blkCnt, outIndex;                     /* Loop counter */
+  q7_t maxVal, out;                              /* Temporary variables to store the output value. */
+  uint32_t blkCnt, outIndex;                     /* Loop counter */
 
+#if defined(RISCV_MATH_VECTOR)
+  blkCnt = blockSize;
+  size_t l;
+  vint8m8_t v_x, v_zero;
+  vint8m1_t v_temp;
+  uint32_t temp_index = 0;
+  l = vsetvlmax_e8m8();
+  v_zero = vmv_v_x_i8m8(0, l);
+  q7_t *pData = pSrc;
+  l = vsetvlmax_e8m1();
+  v_temp = vmv_s_x_i8m1(v_temp, 0, l);
+  out = *pData;
+  outIndex = 0;
+  for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
+    v_x = vle8_v_i8m8(pData, l);
+    pData += l;
+    vbool1_t mask = vmslt_vx_i8m8_b1(v_x, 0, l);
+    v_x = vssub_vv_i8m8_m(mask, v_x, v_zero, v_x, l);
+    maxVal = vmv_x_s_i8m1_i8(vredmax_vs_i8m8_i8m1(v_temp, v_x, v_temp, l));
+    if (maxVal > out) {
+        out = maxVal;
+        outIndex = temp_index;
+    }
+    temp_index += l;
+  }
+  
+  pData = pSrc + outIndex;
+  while (1) {
+    if ((out == *pData) || (out == -(*pData))) {
+      break;
+    } else {
+      pData++;
+      outIndex++;
+    }
+  }
+#else
 
   /* Initialise index value to zero. */
   outIndex = 0U;
@@ -171,6 +207,7 @@ void riscv_absmax_q7(
     /* Decrement loop counter */
     blkCnt--;
   }
+#endif /* defined(RISCV_MATH_VECTOR) */
 
   /* Store the maximum value and it's index into destination pointers */
   *pResult = out;

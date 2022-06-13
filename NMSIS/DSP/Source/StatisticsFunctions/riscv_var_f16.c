@@ -77,10 +77,10 @@ void riscv_var_f16(
   {
     /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) */
 
-    sum += *pInput++;
-    sum += *pInput++;
-    sum += *pInput++;
-    sum += *pInput++;
+    sum += (_Float16)*pInput++;
+    sum += (_Float16)*pInput++;
+    sum += (_Float16)*pInput++;
+    sum += (_Float16)*pInput++;
 
 
     /* Decrement loop counter */
@@ -101,14 +101,14 @@ void riscv_var_f16(
   {
     /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) */
 
-    sum += *pInput++;
+    sum += (_Float16)*pInput++;
 
     /* Decrement loop counter */
     blkCnt--;
   }
 
   /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) / blockSize  */
-  fMean = sum / (float16_t) blockSize;
+  fMean = (_Float16)sum / (_Float16) blockSize;
 
   pInput = pSrc;
 
@@ -119,17 +119,17 @@ void riscv_var_f16(
 
   while (blkCnt > 0U)
   {
-    fValue = *pInput++ - fMean;
-    fSum += fValue * fValue;
+    fValue = (_Float16)*pInput++ - (_Float16)fMean;
+    fSum += (_Float16)fValue * (_Float16)fValue;
 
-    fValue = *pInput++ - fMean;
-    fSum += fValue * fValue;
+    fValue = (_Float16)*pInput++ - (_Float16)fMean;
+    fSum += (_Float16)fValue * (_Float16)fValue;
 
-    fValue = *pInput++ - fMean;
-    fSum += fValue * fValue;
+    fValue = (_Float16)*pInput++ - (_Float16)fMean;
+    fSum += (_Float16)fValue * (_Float16)fValue;
 
-    fValue = *pInput++ - fMean;
-    fSum += fValue * fValue;
+    fValue = (_Float16)*pInput++ - (_Float16)fMean;
+    fSum += (_Float16)fValue * (_Float16)fValue;
 
     /* Decrement loop counter */
     blkCnt--;
@@ -147,15 +147,15 @@ void riscv_var_f16(
 
   while (blkCnt > 0U)
   {
-    fValue = *pInput++ - fMean;
-    fSum += fValue * fValue;
+    fValue = (_Float16)*pInput++ - (_Float16)fMean;
+    fSum += (_Float16)fValue * (_Float16)fValue;
 
     /* Decrement loop counter */
     blkCnt--;
   }
 
   /* Variance */
-  *pResult = fSum / (float16_t)(blockSize - 1.0f);
+  *pResult = (_Float16)fSum / ((_Float16)blockSize - 1.0f16);
 }
 
 /**

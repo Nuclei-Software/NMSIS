@@ -74,7 +74,7 @@ void riscv_barycenter_f16(const float16_t *in, const float16_t *weights, float16
    blkCntVector = nbVectors;
    blkCntSample = vecDim;
 
-   accum = 0.0f;
+   accum = 0.0f16;
 
    pW = weights;
    pIn = in;
@@ -85,7 +85,7 @@ void riscv_barycenter_f16(const float16_t *in, const float16_t *weights, float16
 
    while(blkCntSample > 0)
    {
-         *pOut = 0.0f;
+         *pOut = 0.0f16;
          pOut++;
          blkCntSample--;
    }
@@ -95,12 +95,12 @@ void riscv_barycenter_f16(const float16_t *in, const float16_t *weights, float16
    {
       pOut = out;
       w = *pW++;
-      accum += w;
+      accum += (_Float16)w;
 
       blkCntSample = vecDim;
       while(blkCntSample > 0)
       {
-          *pOut = *pOut + *pIn++ * w;
+          *pOut = (_Float16)*pOut + (_Float16)*pIn++ * (_Float16)w;
           pOut++;
           blkCntSample--;
       }
@@ -114,7 +114,7 @@ void riscv_barycenter_f16(const float16_t *in, const float16_t *weights, float16
 
    while(blkCntSample > 0)
    {
-         *pOut = *pOut / accum;
+         *pOut = (_Float16)*pOut / (_Float16)accum;
          pOut++;
          blkCntSample--;
    }

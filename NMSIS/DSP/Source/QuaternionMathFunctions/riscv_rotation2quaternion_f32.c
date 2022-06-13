@@ -64,7 +64,8 @@ void riscv_rotation2quaternion_f32(const float32_t *pInputRotations,
     float32_t *pOutputQuaternions,  
     uint32_t nbQuaternions)
 {
-   for(uint32_t nb=0; nb < nbQuaternions; nb++)
+   uint32_t nb;
+   for (nb=0; nb < nbQuaternions; nb++)
    {
        const float32_t *r=&pInputRotations[nb*9];
        float32_t *q=&pOutputQuaternions[nb*4];
@@ -76,11 +77,11 @@ void riscv_rotation2quaternion_f32(const float32_t *pInputRotations,
 
 
 
-      if (trace > 0)
+      if (trace > 0.0f)
       {
-        doubler = sqrtf(trace + 1.0) * 2; // invs=4*qw
-        s = 1.0 / doubler;
-        q[0] = 0.25 * doubler;
+        doubler = sqrtf(trace + 1.0f) * 2.0f; // invs=4*qw
+        s = 1.0f / doubler;
+        q[0] = 0.25f * doubler;
         q[1] = (RI(2,1) - RI(1,2)) * s;
         q[2] = (RI(0,2) - RI(2,0)) * s;
         q[3] = (RI(1,0) - RI(0,1)) * s;
@@ -90,27 +91,27 @@ void riscv_rotation2quaternion_f32(const float32_t *pInputRotations,
         doubler = sqrtf(1.0 + RI(0,0) - RI(1,1) - RI(2,2)) * 2; // invs=4*qx
         s = 1.0 / doubler;
         q[0] = (RI(2,1) - RI(1,2)) * s;
-        q[1] = 0.25 * doubler;
+        q[1] = 0.25f * doubler;
         q[2] = (RI(0,1) + RI(1,0)) * s;
         q[3] = (RI(0,2) + RI(2,0)) * s;
       }
       else if (RI(1,1) > RI(2,2))
       {
-        doubler = sqrtf(1.0 + RI(1,1) - RI(0,0) - RI(2,2)) * 2; // invs=4*qy
-        s = 1.0 / doubler;
+        doubler = sqrtf(1.0f + RI(1,1) - RI(0,0) - RI(2,2)) * 2.0f; // invs=4*qy
+        s = 1.0f / doubler;
         q[0] = (RI(0,2) - RI(2,0)) * s;
         q[1] = (RI(0,1) + RI(1,0)) * s;
-        q[2] = 0.25 * doubler;
+        q[2] = 0.25f * doubler;
         q[3] = (RI(1,2) + RI(2,1)) * s;
       }
       else
       {
-        doubler = sqrtf(1.0 + RI(2,2) - RI(0,0) - RI(1,1)) * 2; // invs=4*qz
-        s = 1.0 / doubler;
+        doubler = sqrtf(1.0f + RI(2,2) - RI(0,0) - RI(1,1)) * 2.0f; // invs=4*qz
+        s = 1.0f / doubler;
         q[0] = (RI(1,0) - RI(0,1)) * s;
         q[1] = (RI(0,2) + RI(2,0)) * s;
         q[2] = (RI(1,2) + RI(2,1)) * s;
-        q[3] = 0.25 * doubler;
+        q[3] = 0.25f * doubler;
       }
 
     }

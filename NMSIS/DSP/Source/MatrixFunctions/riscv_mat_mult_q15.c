@@ -197,19 +197,19 @@ riscv_status riscv_mat_mult_q15(
         {
           /* c(m,n) = a(1,1) * b(1,1) + a(1,2) * b(2,1) + .... + a(m,p) * b(p,n) */
 #if __RISCV_XLEN == 64
-          inA164 = read_q15x4_ia ((q15_t **) &pInA);
-          inB164 = read_q15x4_ia ((q15_t **) &pInB);
+          inA164 = read_q15x4_ia (&pInA);
+          inB164 = read_q15x4_ia (&pInB);
           /* Multiply and Accumlates */
           sum = __RV_SMALDA(sum, inA164, inB164);
           // sum = (q31_t)(sum64 + (sum64 >> 32));
 
 #else
           /* read real and imag values from pSrcA and pSrcB buffer */
-          inA1 = read_q15x2_ia ((q15_t **) &pInA);
-          inB1 = read_q15x2_ia ((q15_t **) &pInB);
+          inA1 = read_q15x2_ia (&pInA);
+          inB1 = read_q15x2_ia (&pInB);
 
-          inA2 = read_q15x2_ia ((q15_t **) &pInA);
-          inB2 = read_q15x2_ia ((q15_t **) &pInB);
+          inA2 = read_q15x2_ia (&pInA);
+          inB2 = read_q15x2_ia (&pInB);
 
           /* Multiply and Accumlates */
           sum = __RV_SMALDA(sum, inA1, inB1);

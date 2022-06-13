@@ -441,16 +441,16 @@ void riscv_radix4_butterfly_q15(
   do
   {
     /* Read xa (real), ya(imag) input */
-    xaya = read_q15x2_ia ((q15_t **) &ptr1);
+    xaya = read_q15x2_ia (&ptr1);
 
     /* Read xb (real), yb(imag) input */
-    xbyb = read_q15x2_ia ((q15_t **) &ptr1);
+    xbyb = read_q15x2_ia (&ptr1);
 
     /* Read xc (real), yc(imag) input */
-    xcyc = read_q15x2_ia ((q15_t **) &ptr1);
+    xcyc = read_q15x2_ia (&ptr1);
 
     /* Read xd (real), yd(imag) input */
-    xdyd = read_q15x2_ia ((q15_t **) &ptr1);
+    xdyd = read_q15x2_ia (&ptr1);
 
     /* R = packed((ya + yc), (xa + xc)) */
     R = __QADD16(xaya, xcyc);

@@ -89,8 +89,8 @@ void riscv_q15_to_q31(
     /* C = (q31_t)A << 16 */
 
     /* Convert from q15 to q31 and store result in destination buffer */
-    in1 = read_q15x2_ia ((q15_t **) &pIn);
-    in2 = read_q15x2_ia ((q15_t **) &pIn);
+    in1 = read_q15x2_ia (&pIn);
+    in2 = read_q15x2_ia (&pIn);
 
 
     /* extract lower 16 bits to 32 bit result */

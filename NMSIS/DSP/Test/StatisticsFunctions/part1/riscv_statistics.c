@@ -12,9 +12,9 @@
 #include "../HelperFunctions/ref_helper.c"
 
 #include <stdio.h>
-#define DELTAF32 (0.05f)
+#define DELTAF32 (0.5f)
 #define DELTAQ31 (63)
-#define DELTAQ15 (1)
+#define DELTAQ15 (2)
 #define DELTAQ7 (1)
 
 #define ENABLE_ALL
@@ -84,6 +84,18 @@ int main()
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_min_f32);
+    // min_no_idx
+    BENCH_START(riscv_min_no_idx_f32);
+    riscv_min_no_idx_f32(f32_array, ARRAY_SIZE, &f32_out);
+    BENCH_END(riscv_min_no_idx_f32);
+    ref_min_no_idx_f32(f32_array, ARRAY_SIZE, &f32_out_ref);
+    if (fabs(f32_out - f32_out_ref) > DELTAF32) {
+        BENCH_ERROR(riscv_min_no_idx_f32);
+        printf("value expect: %f, actual: %f\n", f32_out_ref, f32_out);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_min_no_idx_f32);
+
     // power
     BENCH_START(riscv_power_f32);
     riscv_power_f32(f32_array, ARRAY_SIZE, &f32_out);
@@ -130,7 +142,7 @@ int main()
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_var_f32);
-    //absmax
+    // absmax
     BENCH_START(riscv_absmax_f32);
     riscv_absmax_f32(f32_array, ARRAY_SIZE, &f32_out, &index);
     BENCH_END(riscv_absmax_f32);
@@ -146,7 +158,18 @@ int main()
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_absmax_f32);
-    //absmin
+    // absmax_no_idx
+    BENCH_START(riscv_absmax_no_idx_f32);
+    riscv_absmax_no_idx_f32(f32_array, ARRAY_SIZE, &f32_out);
+    BENCH_END(riscv_absmax_no_idx_f32);
+    ref_absmax_no_idx_f32(f32_array, ARRAY_SIZE, &f32_out_ref);
+    if (fabs(f32_out - f32_out_ref) > DELTAF32) {
+        BENCH_ERROR(riscv_absmax_no_idx_f32);
+        printf("expect: %f, actual: %f\n", f32_out_ref, f32_out);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_absmax_no_idx_f32);
+    // absmin
     BENCH_START(riscv_absmin_f32);
     riscv_absmin_f32(f32_array, ARRAY_SIZE, &f32_out, &index);
     BENCH_END(riscv_absmin_f32);
@@ -162,6 +185,28 @@ int main()
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_absmin_f32);
+    // absmin_no_idx
+    BENCH_START(riscv_absmin_no_idx_f32);
+    riscv_absmin_no_idx_f32(f32_array, ARRAY_SIZE, &f32_out);
+    BENCH_END(riscv_absmin_no_idx_f32);
+    ref_absmin_no_idx_f32(f32_array, ARRAY_SIZE, &f32_out_ref);
+    if (fabs(f32_out - f32_out_ref) > DELTAF32) {
+        BENCH_ERROR(riscv_absmin_no_idx_f32);
+        printf("expect: %f, actual: %f\n", f32_out_ref, f32_out);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_absmin_no_idx_f32);
+    // mse
+    BENCH_START(riscv_mse_f32);
+    riscv_mse_f32(f32_array, f32_b_array, ARRAY_SIZE, &f32_out);
+    BENCH_END(riscv_mse_f32);
+    ref_mse_f32(f32_array, f32_b_array, ARRAY_SIZE, &f32_out_ref);
+    if (fabs(f32_out - f32_out_ref) > DELTAF32) {
+        BENCH_ERROR(riscv_mse_f32);
+        printf("expect: %f, actual: %f\n", f32_out_ref, f32_out);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_mse_f32);
 #endif
 #if defined Q31 || defined ENABLE_ALL
     // ********************************* q31 *****************************
@@ -177,6 +222,17 @@ int main()
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_max_q31);
+    // max_no_idx
+    BENCH_START(riscv_max_no_idx_q31);
+    riscv_max_no_idx_q31(q31_array, ARRAY_SIZE, &q31_out);
+    BENCH_END(riscv_max_no_idx_q31);
+    ref_max_no_idx_q31(q31_array, ARRAY_SIZE, &q31_out_ref);
+    if (labs(q31_out - q31_out_ref) > DELTAQ31) {
+        BENCH_ERROR(riscv_max_no_idx_q31);
+        printf("value expect: %x, actual: %x\n", q31_out_ref, q31_out);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_max_no_idx_q31);
     // mean
     BENCH_START(riscv_mean_q31);
     riscv_mean_q31(q31_array, ARRAY_SIZE, &q31_out);
@@ -200,6 +256,17 @@ int main()
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_min_q31);
+    // min_no_idx
+    BENCH_START(riscv_min_no_idx_q31);
+    riscv_min_no_idx_q31(q31_array, ARRAY_SIZE, &q31_out);
+    BENCH_END(riscv_min_no_idx_q31);
+    ref_min_no_idx_q31(q31_array, ARRAY_SIZE, &q31_out_ref);
+    if (labs(q31_out - q31_out_ref) > DELTAQ31) {
+        BENCH_ERROR(riscv_min_no_idx_q31);
+        printf("value expect: %x, actual: %x\n", q31_out_ref, q31_out);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_min_no_idx_q31);
     // power
     BENCH_START(riscv_power_q31);
     riscv_power_q31(q31_array, ARRAY_SIZE, &q63_out);
@@ -244,7 +311,7 @@ int main()
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_var_q31);
-    //absmax
+    // absmax
     BENCH_START(riscv_absmax_q31);
     riscv_absmax_q31(q31_array, ARRAY_SIZE, &q31_out, &index);
     BENCH_END(riscv_absmax_q31);
@@ -260,7 +327,18 @@ int main()
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_absmax_q31);
-    //absmin
+    // absmax_no_idx
+    BENCH_START(riscv_absmax_no_idx_q31);
+    riscv_absmax_no_idx_q31(q31_array, ARRAY_SIZE, &q31_out);
+    BENCH_END(riscv_absmax_no_idx_q31);
+    ref_absmax_no_idx_q31(q31_array, ARRAY_SIZE, &q31_out_ref);
+    if (labs(q31_out - q31_out_ref) > DELTAQ31) {
+        BENCH_ERROR(riscv_absmax_no_idx_q31);
+        printf("expect: %x actual: %x\n", q31_out_ref, q31_out);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_absmax_no_idx_q31);
+    // absmin
     BENCH_START(riscv_absmin_q31);
     riscv_absmin_q31(q31_array, ARRAY_SIZE, &q31_out, &index);
     BENCH_END(riscv_absmin_q31);
@@ -276,6 +354,28 @@ int main()
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_absmin_q31);
+    // absmin_no_idx
+    BENCH_START(riscv_absmin_no_idx_q31);
+    riscv_absmin_no_idx_q31(q31_array, ARRAY_SIZE, &q31_out);
+    BENCH_END(riscv_absmin_no_idx_q31);
+    ref_absmin_no_idx_q31(q31_array, ARRAY_SIZE, &q31_out_ref);
+    if (labs(q31_out - q31_out_ref) > DELTAQ31) {
+        BENCH_ERROR(riscv_absmin_no_idx_q31);
+        printf("expect: %x, actual: %x\n", q31_out_ref, q31_out);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_absmin_no_idx_q31);
+    // mse
+    BENCH_START(riscv_mse_q31);
+    riscv_mse_q31(q31_array, q31_b_array, ARRAY_SIZE, &q31_out);
+    BENCH_END(riscv_mse_q31);
+    ref_mse_q31(q31_array, q31_b_array, ARRAY_SIZE, &q31_out_ref);
+    if (labs(q31_out - q31_out_ref) > DELTAQ31) {
+        BENCH_ERROR(riscv_mse_q31);
+        printf("expect: %x, actual: %x\n", q31_out_ref, q31_out);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_mse_q31);
 #endif
 #if defined Q15 || defined ENABLE_ALL
     // ********************************* q15 *****************************
@@ -291,6 +391,18 @@ int main()
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_max_q15);
+    // max_no_idx
+    BENCH_START(riscv_max_no_idx_q15);
+    riscv_max_no_idx_q15(q15_array, ARRAY_SIZE, &q15_out);
+    BENCH_END(riscv_max_no_idx_q15);
+    ref_max_no_idx_q15(q15_array, ARRAY_SIZE, &q15_out_ref);
+    if (abs(q15_out - q15_out_ref) > DELTAQ15) {
+        BENCH_ERROR(riscv_max_no_idx_q15);
+        printf("value expect: %x, actual: %x\n",
+               q15_out_ref, q15_out);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_max_no_idx_q15);
     // mean
     BENCH_START(riscv_mean_q15);
     riscv_mean_q15(q15_array, ARRAY_SIZE, &q15_out);
@@ -314,6 +426,17 @@ int main()
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_min_q15);
+    // min_no_idx
+    BENCH_START(riscv_min_no_idx_q15);
+    riscv_min_no_idx_q15(q15_array, ARRAY_SIZE, &q15_out);
+    BENCH_END(riscv_min_no_idx_q15);
+    ref_min_no_idx_q15(q15_array, ARRAY_SIZE, &q15_out_ref);
+    if (abs(q15_out - q15_out_ref) > DELTAQ15) {
+        BENCH_ERROR(riscv_min_no_idx_q15);
+        printf("value expect: %x, actual: %x\n", q15_out_ref, q15_out);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_min_no_idx_q15);
     // power
     BENCH_START(riscv_power_q15);
     riscv_power_q15(q15_array, ARRAY_SIZE, &q63_out);
@@ -358,7 +481,7 @@ int main()
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_var_q15);
-    //absmax
+    // absmax
     BENCH_START(riscv_absmax_q15);
     riscv_absmax_q15(q15_array, ARRAY_SIZE, &q15_out, &index);
     BENCH_END(riscv_absmax_q15);
@@ -374,7 +497,18 @@ int main()
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_absmax_q15);
-    //absmin
+    // absmax_no_idx
+    BENCH_START(riscv_absmax_no_idx_q15);
+    riscv_absmax_no_idx_q15(q15_array, ARRAY_SIZE, &q15_out);
+    BENCH_END(riscv_absmax_no_idx_q15);
+    ref_absmax_no_idx_q15(q15_array, ARRAY_SIZE, &q15_out_ref);
+    if (abs(q15_out - q15_out_ref) > DELTAQ15) {
+        BENCH_ERROR(riscv_absmax_no_idx_q15);
+        printf("expect: %d, actual: %d\n", q15_out_ref, q15_out);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_absmax_no_idx_q15);
+    // absmin
     BENCH_START(riscv_absmin_q15);
     riscv_absmin_q15(q15_array, ARRAY_SIZE, &q15_out, &index);
     BENCH_END(riscv_absmin_q15);
@@ -390,6 +524,28 @@ int main()
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_absmin_q15);
+    // absmin_no_idx
+    BENCH_START(riscv_absmin_no_idx_q15);
+    riscv_absmin_no_idx_q15(q15_array, ARRAY_SIZE, &q15_out);
+    BENCH_END(riscv_absmin_no_idx_q15);
+    ref_absmin_no_idx_q15(q15_array, ARRAY_SIZE, &q15_out_ref);
+    if (abs(q15_out - q15_out_ref) > DELTAQ15) {
+        BENCH_ERROR(riscv_absmin_no_idx_q15);
+        printf("expect: %d, actual: %d\n", q15_out_ref, q15_out);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_absmin_no_idx_q15);
+    // mse
+    BENCH_START(riscv_mse_q15);
+    riscv_mse_q15(q15_array, q15_b_array, ARRAY_SIZE, &q15_out);
+    BENCH_END(riscv_mse_q15);
+    ref_mse_q15(q15_array, q15_b_array, ARRAY_SIZE, &q15_out_ref);
+    if (abs(q15_out - q15_out_ref) > DELTAQ15) {
+        BENCH_ERROR(riscv_mse_q15);
+        printf("expect: %x, actual: %x\n", q15_out_ref, q15_out);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_mse_q15);
 #endif
 #if defined Q7 || defined ENABLE_ALL
     // ********************************* q7 *****************************
@@ -405,6 +561,18 @@ int main()
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_max_q7);
+    // max_no_idx
+    BENCH_START(riscv_max_no_idx_q7);
+    riscv_max_no_idx_q7(q7_array, ARRAY_SIZE, &q7_out);
+    BENCH_END(riscv_max_no_idx_q7);
+    ref_max_no_idx_q7(q7_array, ARRAY_SIZE, &q7_out_ref);
+    if ((abs(q7_out - q7_out_ref) > DELTAQ7)) {
+        BENCH_ERROR(riscv_max_no_idx_q7);
+        printf("value expect: %x, actual: %x\n",
+               q7_out_ref, q7_out);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_max_no_idx_q7);
     // mean
     BENCH_START(riscv_mean_q7);
     riscv_mean_q7(q7_array, ARRAY_SIZE, &q7_out);
@@ -428,6 +596,18 @@ int main()
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_min_q7);
+    // min_no_idx
+    BENCH_START(riscv_min_no_idx_q7);
+    riscv_min_no_idx_q7(q7_array, ARRAY_SIZE, &q7_out);
+    BENCH_END(riscv_min_no_idx_q7);
+    ref_min_no_idx_q7(q7_array, ARRAY_SIZE, &q7_out_ref);
+    if (abs(q7_out - q7_out_ref) > DELTAQ7) {
+        BENCH_ERROR(riscv_min_no_idx_q7);
+        printf("value expect: %x, actual: %x\n",
+               q7_out_ref, q7_out);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_min_no_idx_q7);
     // power
     BENCH_START(riscv_power_q7);
     riscv_power_q7(q7_array, ARRAY_SIZE, &q31_out);
@@ -439,7 +619,7 @@ int main()
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_power_q7);
-    //absmax
+    // absmax
     BENCH_START(riscv_absmax_q7);
     riscv_absmax_q7(q7_array, ARRAY_SIZE, &q7_out, &index);
     BENCH_END(riscv_absmax_q7);
@@ -455,7 +635,18 @@ int main()
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_absmax_q7);
-    //absmin
+    // absmax_no_idx
+    BENCH_START(riscv_absmax_no_idx_q7);
+    riscv_absmax_no_idx_q7(q7_array, ARRAY_SIZE, &q7_out);
+    BENCH_END(riscv_absmax_no_idx_q7);
+    ref_absmax_no_idx_q7(q7_array, ARRAY_SIZE, &q7_out_ref);
+    if (fabs(q7_out - q7_out_ref) > DELTAQ7) {
+        BENCH_ERROR(riscv_absmax_no_idx_q7);
+        printf("expect: %d, actual: %d\n", q7_out_ref, q7_out);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_absmax_no_idx_q7);
+    // absmin
     BENCH_START(riscv_absmin_q7);
     riscv_absmin_q7(q7_array, ARRAY_SIZE, &q7_out, &index);
     BENCH_END(riscv_absmin_q7);
@@ -471,7 +662,28 @@ int main()
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_absmin_q7);
-    printf("all tests are passed,well done!\n");
+    // absmin_no_idx
+    BENCH_START(riscv_absmin_no_idx_q7);
+    riscv_absmin_no_idx_q7(q7_array, ARRAY_SIZE, &q7_out);
+    BENCH_END(riscv_absmin_no_idx_q7);
+    ref_absmin_no_idx_q7(q7_array, ARRAY_SIZE, &q7_out_ref);
+    if (abs(q7_out - q7_out_ref) > DELTAQ7) {
+        BENCH_ERROR(riscv_absmin_no_idx_q7);
+        printf("expect: %d, actual: %d\n", q7_out_ref, q7_out);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_absmin_no_idx_q7);
+    // mse
+    BENCH_START(riscv_mse_q7);
+    riscv_mse_q7(q7_array, q7_b_array, ARRAY_SIZE, &q7_out);
+    BENCH_END(riscv_mse_q7);
+    ref_mse_q7(q7_array, q7_b_array, ARRAY_SIZE, &q7_out_ref);
+    if (abs(q7_out - q7_out_ref) > DELTAQ7) {
+        BENCH_ERROR(riscv_mse_q7);
+        printf("expect: %d, actual: %d\n", q7_out_ref, q7_out);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_mse_q7);
 #endif
     BENCH_FINISH;
     if (test_flag_error) {

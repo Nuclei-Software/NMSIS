@@ -121,7 +121,7 @@ void riscv_rms_f16(
   }
 
   /* Compute Rms and store result in destination */
-  riscv_sqrt_f16(sum / (float16_t) blockSize, pResult);
+  riscv_sqrt_f16((_Float16)sum / (_Float16) blockSize, pResult);
 }
 
 /**

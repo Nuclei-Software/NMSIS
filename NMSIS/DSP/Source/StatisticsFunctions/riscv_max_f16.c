@@ -83,7 +83,7 @@ void riscv_max_f16(
     maxVal = *pSrc++;
 
     /* compare for the maximum value */
-    if (out < maxVal)
+    if ((_Float16)out < (_Float16)maxVal)
     {
       /* Update the maximum value and it's index */
       out = maxVal;
@@ -91,21 +91,21 @@ void riscv_max_f16(
     }
 
     maxVal = *pSrc++;
-    if (out < maxVal)
+    if ((_Float16)out < (_Float16)maxVal)
     {
       out = maxVal;
       outIndex = index + 2U;
     }
 
     maxVal = *pSrc++;
-    if (out < maxVal)
+    if ((_Float16)out < (_Float16)maxVal)
     {
       out = maxVal;
       outIndex = index + 3U;
     }
 
     maxVal = *pSrc++;
-    if (out < maxVal)
+    if ((_Float16)out < (_Float16)maxVal)
     {
       out = maxVal;
       outIndex = index + 4U;
@@ -133,7 +133,7 @@ void riscv_max_f16(
     maxVal = *pSrc++;
 
     /* compare for the maximum value */
-    if (out < maxVal)
+    if ((_Float16)out < (_Float16)maxVal)
     {
       /* Update the maximum value and it's index */
       out = maxVal;

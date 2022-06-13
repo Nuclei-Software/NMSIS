@@ -37,7 +37,23 @@ int DSP_matrix_q15(void)
     riscv_mat_init_q15(&q15_des, ROWS, COLUMNS, q15_output);
     riscv_mat_init_q15(&q15_ref, ROWS, COLUMNS, q15_output_ref);
 
+    q15_t q15_ref_vec[ROWS];
+    q15_t q15_dst_vec[ROWS];
+
     // ****************   q15   *********************
+    // mat_vec_mult
+    BENCH_START(riscv_mat_vec_mult_q31);
+    riscv_mat_vec_mult_q15(&q15_A, q15_b_vec, q15_dst_vec);
+    BENCH_END(riscv_mat_vec_mult_q31);
+    ref_mat_vec_mult_q15(&q15_A, q15_b_vec, q15_ref_vec);
+    for (int i = 0; i < ROWS; i++)
+        if (labs(q15_ref_vec[i] - q15_dst_vec[i]) > DELTAQ31) {
+            BENCH_ERROR(riscv_mat_vec_mult_q15);
+            printf("index: %d,expect: %f, actual: %f\n", i, q15_ref_vec[i],
+                   q15_dst_vec[i]);
+            test_flag_error = 1;
+        }
+    BENCH_STATUS(riscv_mat_vec_mult_q15);
     // add
     BENCH_START(riscv_mat_add_q15);
     riscv_mat_add_q15(&q15_A, &q15_B, &q15_des);

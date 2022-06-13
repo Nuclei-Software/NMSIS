@@ -178,7 +178,7 @@ riscv_status riscv_mat_inverse_f16(
 
 
       /* Check if the pivot element is zero */
-      if (*pInT1 == 0.0f16)
+      if ((_Float16)*pInT1 == 0.0f16)
       {
         /* Loop over the number rows present below */
 
@@ -190,7 +190,7 @@ riscv_status riscv_mat_inverse_f16(
 
           /* Check if there is a non zero pivot element to
            * replace in the rows below */
-          if (*pInT2 != 0.0f16)
+          if ((_Float16)*pInT2 != 0.0f16)
           {
             /* Loop over number of columns
              * to the right of the pilot element */
@@ -320,7 +320,7 @@ riscv_status riscv_mat_inverse_f16(
             /* Replace the element by the sum of that row
                and a multiple of the reference row  */
             in1 = *pInT1;
-            *pInT1++ = in1 - (in * *pPRT_in++);
+            *pInT1++ = (_Float16)in1 - ((_Float16)in * (_Float16)*pPRT_in++);
 
             /* Decrement the loop counter */
             j--;
@@ -335,7 +335,7 @@ riscv_status riscv_mat_inverse_f16(
             /* Replace the element by the sum of that row
                and a multiple of the reference row  */
             in1 = *pInT2;
-            *pInT2++ = in1 - (in * *pPRT_pDst++);
+            *pInT2++ = (_Float16)in1 - ((_Float16)in * (_Float16)*pPRT_pDst++);
 
             /* Decrement loop counter */
             j--;
@@ -366,12 +366,12 @@ riscv_status riscv_mat_inverse_f16(
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
 
-    if ((flag != 1U) && (in == 0.0f16))
+    if ((flag != 1U) && ((_Float16)in == 0.0f16))
     {
       pIn = pSrc->pData;
       for (i = 0; i < numRows * numCols; i++)
       {
-        if (pIn[i] != 0.0f16)
+        if ((_Float16)pIn[i] != 0.0f16)
             break;
       }
 

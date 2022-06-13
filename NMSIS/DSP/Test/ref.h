@@ -631,6 +631,22 @@ riscv_status ref_mat_mult_q31(const riscv_matrix_instance_q31 *pSrcA,
                             const riscv_matrix_instance_q31 *pSrcB,
                             riscv_matrix_instance_q31 *pDst);
 
+void ref_mat_vec_mult_f32(const riscv_matrix_instance_f32 *pSrcMat,
+                        const float32_t *pVec,
+                        float32_t *pDst);
+
+void ref_mat_vec_mult_q31(const riscv_matrix_instance_q31 *pSrcMat,
+                        const q31_t *pVec,
+                        q31_t *pDst);
+
+void ref_mat_vec_mult_q15(const riscv_matrix_instance_q15 *pSrcMat,
+                        const q15_t *pVec,
+                        q15_t *pDst);
+
+void ref_mat_vec_mult_q7(const riscv_matrix_instance_q7 *pSrcMat,
+                       const q7_t *pVec,
+                       q7_t *pDst);
+
 /* Alias for testing purposes*/
 #define ref_mat_mult_fast_q31 ref_mat_mult_q31
 
@@ -696,11 +712,17 @@ void ref_max_no_idx_f32(float32_t * pSrc, uint32_t blockSize, float32_t * pResul
 void ref_max_q31(q31_t *pSrc, uint32_t blockSize, q31_t *pResult,
                  uint32_t *pIndex);
 
+void ref_max_no_idx_q31(q31_t *pSrc, uint32_t blockSize, q31_t *pResult);
+
 void ref_max_q15(q15_t *pSrc, uint32_t blockSize, q15_t *pResult,
                  uint32_t *pIndex);
 
+void ref_max_no_idx_q15(q15_t *pSrc, uint32_t blockSize, q15_t *pResult);
+
 void ref_max_q7(q7_t *pSrc, uint32_t blockSize, q7_t *pResult,
                 uint32_t *pIndex);
+
+void ref_max_no_idx_q7(q7_t *pSrc, uint32_t blockSize, q7_t *pResult);
 
 void ref_mean_f32(float32_t *pSrc, uint32_t blockSize, float32_t *pResult);
 
@@ -713,14 +735,22 @@ void ref_mean_q7(q7_t *pSrc, uint32_t blockSize, q7_t *pResult);
 void ref_min_f32(float32_t *pSrc, uint32_t blockSize, float32_t *pResult,
                  uint32_t *pIndex);
 
+void ref_min_no_idx_f32(float32_t *pSrc, uint32_t blockSize, float32_t *pResult);
+
 void ref_min_q31(q31_t *pSrc, uint32_t blockSize, q31_t *pResult,
                  uint32_t *pIndex);
+
+void ref_min_no_idx_q31(q31_t *pSrc, uint32_t blockSize, q31_t *pResult);
 
 void ref_min_q15(q15_t *pSrc, uint32_t blockSize, q15_t *pResult,
                  uint32_t *pIndex);
 
+void ref_min_no_idx_q15(q15_t *pSrc, uint32_t blockSize, q15_t *pResult);
+
 void ref_min_q7(q7_t *pSrc, uint32_t blockSize, q7_t *pResult,
                 uint32_t *pIndex);
+
+void ref_min_no_idx_q7(q7_t *pSrc, uint32_t blockSize, q7_t *pResult);
 
 void ref_power_f32(float32_t *pSrc, uint32_t blockSize, float32_t *pResult);
 
@@ -747,6 +777,18 @@ void ref_var_f32(float32_t *pSrc, uint32_t blockSize, float32_t *pResult);
 void ref_var_q31(q31_t *pSrc, uint32_t blockSize, q31_t *pResult);
 
 void ref_var_q15(q15_t *pSrc, uint32_t blockSize, q15_t *pResult);
+
+void ref_mse_f32(float32_t *pSrcA, const float32_t *pSrcB,
+                   uint32_t blockSize, float32_t *result);
+
+void ref_mse_q31(q31_t *pSrcA, const q31_t *pSrcB, uint32_t blockSize,
+                   q31_t *pResult);
+
+void ref_mse_q15(q15_t *pSrcA, const q15_t *pSrcB, uint32_t blockSize,
+                   q15_t *pResult);
+
+void ref_mse_q7(q7_t *pSrcA, const q7_t *pSrcB, uint32_t blockSize,
+                  q7_t *pResult);
 
 /*
  * Support Functions

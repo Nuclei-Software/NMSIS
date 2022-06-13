@@ -83,7 +83,7 @@ float16_t riscv_kullback_leibler_f16(const float16_t * pSrcA,const float16_t * p
     {
        pA = *pInA++;
        pB = *pInB++;
-       accum += pA * logf(pB / pA);
+       accum += pA * (_Float16)logf((float32_t)pB / (float32_t)pA);
        
        blkCnt--;
     

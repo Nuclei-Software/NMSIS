@@ -56,7 +56,7 @@ float64_t riscv_kullback_leibler_f64(const float64_t * pSrcA, const float64_t * 
     pInB = pSrcB;
     blkCnt = blockSize;
 
-    accum = 0.0f;
+    accum = 0.0;
 
     while(blkCnt > 0)
     {

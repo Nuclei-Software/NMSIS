@@ -280,8 +280,8 @@ for(rownum = 0;rownum < numRowsA; rownum++)
 
 #if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
-          pSourceA64 = read_q15x4_ia ((q15_t **) &pInA);
-          pSourceB64 = read_q15x4_ia ((q15_t **) &pInB);
+          pSourceA64 = read_q15x4_ia (&pInA);
+          pSourceB64 = read_q15x4_ia (&pInB);
 
           prod164 = __RV_SMDRS(pSourceA64, pSourceB64);
           prod264 = __RV_KMXDA(pSourceA64, pSourceB64);
@@ -292,8 +292,8 @@ for(rownum = 0;rownum < numRowsA; rownum++)
           sumImag += (q63_t) ((q31_t) (prod264 >> 32));
 #else
           /* read real and imag values from pSrcA and pSrcB buffer */
-          pSourceA = read_q15x2_ia ((q15_t **) &pInA);
-          pSourceB = read_q15x2_ia ((q15_t **) &pInB);
+          pSourceA = read_q15x2_ia (&pInA);
+          pSourceB = read_q15x2_ia (&pInB);
 
           /* Multiply and Accumlates */
           prod1 = __RV_SMDRS(pSourceA, pSourceB);
@@ -302,8 +302,8 @@ for(rownum = 0;rownum < numRowsA; rownum++)
           sumImag += (q63_t) prod2;
 
           /* read real and imag values from pSrcA and pSrcB buffer */
-          pSourceA = read_q15x2_ia ((q15_t **) &pInA);
-          pSourceB = read_q15x2_ia ((q15_t **) &pInB);
+          pSourceA = read_q15x2_ia (&pInA);
+          pSourceB = read_q15x2_ia (&pInB);
 
           /* Multiply and Accumlates */
           prod1 = __RV_SMDRS(pSourceA, pSourceB);
@@ -357,8 +357,8 @@ for(rownum = 0;rownum < numRowsA; rownum++)
 
 #if defined (RISCV_MATH_DSP) && (__RISCV_XLEN != 64)
           /* read real and imag values from pSrcA and pSrcB buffer */
-          pSourceA = read_q15x2_ia ((q15_t **) &pInA);
-          pSourceB = read_q15x2_ia ((q15_t **) &pInB);
+          pSourceA = read_q15x2_ia (&pInA);
+          pSourceB = read_q15x2_ia (&pInB);
 
           /* Multiply and Accumlates */
           prod1 = __RV_SMDRS(pSourceA, pSourceB);

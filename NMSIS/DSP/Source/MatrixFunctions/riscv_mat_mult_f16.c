@@ -119,16 +119,16 @@ riscv_status riscv_mat_mult_f16(
           /* c(m,n) = a(1,1) * b(1,1) + a(1,2) * b(2,1) + .... + a(m,p) * b(p,n) */
 
           /* Perform the multiply-accumulates */
-          sum += *pIn1++ * *pIn2;
+          sum += (_Float16)*pIn1++ * (_Float16)*pIn2;
           pIn2 += numColsB;
 
-          sum += *pIn1++ * *pIn2;
+          sum += (_Float16)*pIn1++ * (_Float16)*pIn2;
           pIn2 += numColsB;
 
-          sum += *pIn1++ * *pIn2;
+          sum += (_Float16)*pIn1++ * (_Float16)*pIn2;
           pIn2 += numColsB;
 
-          sum += *pIn1++ * *pIn2;
+          sum += (_Float16)*pIn1++ * (_Float16)*pIn2;
           pIn2 += numColsB;
 
           /* Decrement loop counter */
@@ -150,7 +150,7 @@ riscv_status riscv_mat_mult_f16(
           /* c(m,n) = a(1,1) * b(1,1) + a(1,2) * b(2,1) + .... + a(m,p) * b(p,n) */
 
           /* Perform the multiply-accumulates */
-          sum += *pIn1++ * *pIn2;
+          sum += (_Float16)*pIn1++ * (_Float16)*pIn2;
           pIn2 += numColsB;
 
           /* Decrement loop counter */

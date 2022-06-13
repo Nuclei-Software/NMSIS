@@ -62,6 +62,37 @@ void riscv_mat_vec_mult_q7(const riscv_matrix_instance_q7 *pSrcMat, const q7_t *
 
     q31_t matData, matData2, vecData, vecData2;
 
+#if defined(RISCV_MATH_VECTOR)
+    q7_t *pInA = NULL;
+    q7_t *pInB = NULL;
+    uint16_t blkCnt = pSrcMat->numCols;
+    size_t l;        // max_l is the maximum column elements at a time
+    uint16_t rownum; //  How many rowumns and rownum are controlled
+    vint8m4_t v_inA, v_inB;
+    vint16m8_t vmul;
+    q31_t sum = 0;
+    vint32m1_t vsum;
+    px = pDst;
+    for (rownum = 0; rownum < numRows; rownum++) {
+        l = vsetvl_e32m1(1);
+        vsum = vmv_s_x_i32m1(vsum, 0, l);
+        blkCnt = numCols;
+        pInB = pVec;
+        pInA = pSrcMat->pData + rownum * pSrcMat->numCols; // Pointer to the first element of the
+
+        for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
+            v_inA = vle8_v_i8m4(pInA, l);
+            pInA += l;
+            v_inB = vle8_v_i8m4(pInB, l);
+            pInB += l;
+            /* Perform multiply-accumulates */
+            vmul = vwmul_vv_i16m8(v_inA, v_inB, l);
+            vsum = vwredsum_vs_i16m8_i32m1(vsum, vmul, vsum, l);
+        }
+        sum = vmv_x_s_i32m1_i32(vsum);
+        *px++ = (q7_t)(__SSAT((sum >> 7), 8));
+    }
+#else
 
     /* Process 4 rows at a time */
     row = numRows >> 2;
@@ -96,26 +127,26 @@ void riscv_mat_vec_mult_q7(const riscv_matrix_instance_q7 *pSrcMat, const q7_t *
 
         while (colCnt > 0u) {
             // Read 4 values from vector
-            vecData = read_q7x4_ia ((q7_t **) &pInVec);
+            vecData = read_q7x4_ia (&pInVec);
             vecData2 = __SXTB16(__ROR(vecData, 8));
             vecData = __SXTB16(vecData);
             // Read 16 values from the matrix - 4 values from each of 4 rows, and do multiply accumulate
-            matData = read_q7x4_ia ((q7_t **) &pInA1);
+            matData = read_q7x4_ia (&pInA1);
             matData2 = __SXTB16(__ROR(matData, 8));
             matData = __SXTB16(matData);
             sum1 = __SMLAD(matData, vecData, sum1);
             sum1 = __SMLAD(matData2, vecData2, sum1);
-            matData = read_q7x4_ia ((q7_t **) &pInA2);
+            matData = read_q7x4_ia (&pInA2);
             matData2 = __SXTB16(__ROR(matData, 8));
             matData = __SXTB16(matData);
             sum2 = __SMLAD(matData, vecData, sum2);
             sum2 = __SMLAD(matData2, vecData2, sum2);
-            matData = read_q7x4_ia ((q7_t **) &pInA3);
+            matData = read_q7x4_ia (&pInA3);
             matData2 = __SXTB16(__ROR(matData, 8));
             matData = __SXTB16(matData);
             sum3 = __SMLAD(matData, vecData, sum3);
             sum3 = __SMLAD(matData2, vecData2, sum3);
-            matData = read_q7x4_ia ((q7_t **) &pInA4);
+            matData = read_q7x4_ia (&pInA4);
             matData2 = __SXTB16(__ROR(matData, 8));
             matData = __SXTB16(matData);
             sum4 = __SMLAD(matData, vecData, sum4);
@@ -162,10 +193,10 @@ void riscv_mat_vec_mult_q7(const riscv_matrix_instance_q7 *pSrcMat, const q7_t *
         colCnt = numCols >> 2;
 
         while (colCnt > 0) {
-            vecData = read_q7x4_ia ((q7_t **) &pInVec);
+            vecData = read_q7x4_ia (&pInVec);
             vecData2 = __SXTB16(__ROR(vecData, 8));
             vecData = __SXTB16(vecData);
-            matData = read_q7x4_ia ((q7_t **) &pInA1);
+            matData = read_q7x4_ia (&pInA1);
             matData2 = __SXTB16(__ROR(matData, 8));
             matData = __SXTB16(matData);
             sum = __SMLAD(matData, vecData, sum);
@@ -183,6 +214,7 @@ void riscv_mat_vec_mult_q7(const riscv_matrix_instance_q7 *pSrcMat, const q7_t *
         i = i + numCols;
         row--;
     }
+#endif /*defined(RISCV_MATH_VECTOR)*/
 }
 
 /**

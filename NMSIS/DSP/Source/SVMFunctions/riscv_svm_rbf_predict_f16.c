@@ -68,7 +68,7 @@ void riscv_svm_rbf_predict_f16(
             dot = dot + SQ((_Float16)in[j] - (_Float16) *pSupport);
             pSupport++;
         }
-        sum += (_Float16)S->dualCoefficients[i] * (_Float16)expf(-(_Float16)S->gamma * dot);
+        sum += (_Float16)S->dualCoefficients[i] * (_Float16)expf((float32_t)(-(_Float16)S->gamma * (_Float16)dot));
     }
     *pResult=S->classes[STEP(sum)];
 }

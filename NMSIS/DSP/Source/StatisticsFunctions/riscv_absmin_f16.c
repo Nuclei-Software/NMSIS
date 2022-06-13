@@ -67,7 +67,7 @@ void riscv_absmin_f16(
   outIndex = 0U;                                                                                            \
   /* Load first input value that act as reference value for comparision */                                  \
   out = *pSrc++;                                                                                            \
-  out = (out > 0.0f16) ? out : -out;                                                                             \
+  out = ((_Float16)out > 0.0f16) ? out : -(_Float16)out;                                                                             \
   /* Initialize index of extrema value. */                                                                  \
   index = 0U;                                                                                               \
                                                                                                             \
@@ -78,9 +78,9 @@ void riscv_absmin_f16(
   {                                                                                                         \
     /* Initialize cur_absmin to next consecutive values one by one */                                         \
     cur_absmin = *pSrc++;                                                                                     \
-    cur_absmin = (cur_absmin > 0.0f16) ? cur_absmin : -cur_absmin;                                                                 \
+    cur_absmin = ((_Float16)cur_absmin > 0.0f16) ? cur_absmin : -(_Float16)cur_absmin;                                                                 \
     /* compare for the extrema value */                                                                     \
-    if (cur_absmin < out)                                                                         \
+    if ((_Float16)cur_absmin < (_Float16)out)                                                                         \
     {                                                                                                       \
       /* Update the extrema value and it's index */                                                         \
       out = cur_absmin;                                                                                       \
@@ -88,24 +88,24 @@ void riscv_absmin_f16(
     }                                                                                                       \
                                                                                                             \
     cur_absmin = *pSrc++;                                                                                     \
-    cur_absmin = (cur_absmin > 0.0f16) ? cur_absmin : -cur_absmin;                                                                 \
-    if (cur_absmin < out)                                                                         \
+    cur_absmin = ((_Float16)cur_absmin > 0.0f16) ? cur_absmin : -(_Float16)cur_absmin;                                                                 \
+    if ((_Float16)cur_absmin < (_Float16)out)                                                                         \
     {                                                                                                       \
       out = cur_absmin;                                                                                       \
       outIndex = index + 2U;                                                                                \
     }                                                                                                       \
                                                                                                             \
     cur_absmin = *pSrc++;                                                                                     \
-    cur_absmin = (cur_absmin > 0.0f16) ? cur_absmin : -cur_absmin;                                                                 \
-    if (cur_absmin < out)                                                                          \
+    cur_absmin = ((_Float16)cur_absmin > 0.0f16) ? cur_absmin : -(_Float16)cur_absmin;                                                                 \
+    if ((_Float16)cur_absmin < (_Float16)out)                                                                          \
     {                                                                                                       \
       out = cur_absmin;                                                                                       \
       outIndex = index + 3U;                                                                                \
     }                                                                                                       \
                                                                                                             \
     cur_absmin = *pSrc++;                                                                                     \
-    cur_absmin = (cur_absmin > 0.0f16) ? cur_absmin : -cur_absmin;                                                                 \
-    if (cur_absmin < out)                                                                          \
+    cur_absmin = ((_Float16)cur_absmin > 0.0f16) ? cur_absmin : -(_Float16)cur_absmin;                                                                 \
+    if ((_Float16)cur_absmin < (_Float16)out)                                                                          \
     {                                                                                                       \
       out = cur_absmin;                                                                                       \
       outIndex = index + 4U;                                                                                \
@@ -124,8 +124,8 @@ void riscv_absmin_f16(
   while (blkCnt > 0U)                                                                                       \
   {                                                                                                         \
     cur_absmin = *pSrc++;                                                                                     \
-    cur_absmin = (cur_absmin > 0.0f16) ? cur_absmin : -cur_absmin;                                                                 \
-    if (cur_absmin < out)                                                                         \
+    cur_absmin = ((_Float16)cur_absmin > 0.0f16) ? cur_absmin : -(_Float16)cur_absmin;                                                                 \
+    if ((_Float16)cur_absmin < (_Float16)out)                                                                         \
     {                                                                                                       \
       out = cur_absmin;                                                                                       \
       outIndex = blockSize - blkCnt;                                                                        \
@@ -153,7 +153,7 @@ void riscv_absmin_f16(
   outIndex = 0U;
 
   /* Load first input value that act as reference value for comparision */
-  out = fabsf(*pSrc++);
+  out = (_Float16)fabsf((float32_t)*pSrc++);
 
   /* Initialize blkCnt with number of samples */
   blkCnt = (blockSize - 1U);
@@ -161,10 +161,10 @@ void riscv_absmin_f16(
   while (blkCnt > 0U)
   {
     /* Initialize minVal to the next consecutive values one by one */
-    minVal = fabsf(*pSrc++);
+    minVal = (_Float16)fabsf((float32_t)*pSrc++);
 
     /* compare for the minimum value */
-    if (out > minVal)
+    if ((_Float16)out > (_Float16)minVal)
     {
       /* Update the minimum value and it's index */
       out = minVal;

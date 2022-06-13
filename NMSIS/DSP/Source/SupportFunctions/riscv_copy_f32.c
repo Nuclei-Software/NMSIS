@@ -70,7 +70,7 @@ void riscv_copy_f32(
   for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
     v_copy = vle32_v_f32m8(pSrc, l);
     pSrc += l;
-    vse32_v_f32m8 (pDst, v_copy, l);
+    vse32_v_f32m8(pDst, v_copy, l);
     pDst += l;
   }
 #else

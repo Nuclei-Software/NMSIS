@@ -65,7 +65,7 @@ void riscv_max_no_idx_f32(
     v_max = vfredmax_vs_f32m8_f32m1(v_max, v_in, v_max, l);
   }
   l = vsetvl_e32m1(1);
-  vse32_v_f32m1 (pResult, v_max, l);
+  vse32_v_f32m1(pResult, v_max, l);
 #else
    float32_t   maxValue = F32_MIN;
    float32_t   newVal;

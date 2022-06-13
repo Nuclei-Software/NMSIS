@@ -93,7 +93,7 @@ void riscv_q7_to_q15(
     /* Convert from q7 to q15 and store result in destination buffer */
 #if defined (RISCV_MATH_DSP)
 
-    in = read_q7x4_ia ((q7_t **) &pIn);
+    in = read_q7x4_ia (&pIn);
 
     /* rotatate in by 8 and extend two q7_t values to q15_t values */
     in1 = __SXTB16(__ROR(in, 8));

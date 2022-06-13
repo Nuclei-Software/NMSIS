@@ -58,7 +58,7 @@ void riscv_copy_q15(
   for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
     v_copy = vle16_v_i16m8(pSrc, l);
     pSrc += l;
-    vse16_v_i16m8 (pDst, v_copy, l);
+    vse16_v_i16m8(pDst, v_copy, l);
     pDst += l;
   }
 #else
@@ -77,8 +77,8 @@ void riscv_copy_q15(
     write_q15x4_ia (&pDst, read_q15x4_ia ((q15_t **) &pSrc));
 #else
     /* read 2 times 2 samples at a time */
-    write_q15x2_ia (&pDst, read_q15x2_ia ((q15_t **) &pSrc));
-    write_q15x2_ia (&pDst, read_q15x2_ia ((q15_t **) &pSrc));
+    write_q15x2_ia (&pDst, read_q15x2_ia (&pSrc));
+    write_q15x2_ia (&pDst, read_q15x2_ia (&pSrc));
 #endif /* __RISCV_XLEN == 64 */
 
     /* Decrement loop counter */

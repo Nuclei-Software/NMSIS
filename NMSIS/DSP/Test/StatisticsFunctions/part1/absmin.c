@@ -163,3 +163,110 @@ void ref_absmin_q31(
   *pResult = out;
   *pIndex = outIndex;
 }
+
+void ref_absmin_no_idx_f32(const float32_t *pSrc, uint32_t blockSize,
+                             float32_t *pResult)
+{
+    float32_t minVal, out; /* Temporary variables to store the output value. */
+    uint32_t blkCnt;       /* Loop counter */
+    /* Load first input value that act as reference value for comparision */
+    out = fabsf(*pSrc++);
+    /* Initialize blkCnt with number of samples */
+    blkCnt = (blockSize - 1U);
+
+    while (blkCnt > 0U) {
+        /* Initialize minVal to the next consecutive values one by one */
+        minVal = fabsf(*pSrc++);
+
+        /* compare for the minimum value */
+        if (out > minVal) {
+            /* Update the minimum value and it's index */
+            out = minVal;
+        }
+        /* Decrement loop counter */
+        blkCnt--;
+    }
+    /* Store the minimum value and it's index into destination pointers */
+    *pResult = out;
+}
+
+void ref_absmin_no_idx_q7(const q7_t *pSrc, uint32_t blockSize, q7_t *pResult)
+{
+    q7_t minVal, out; /* Temporary variables to store the output value. */
+    uint32_t blkCnt;  /* Loop counter */
+    /* Load first input value that act as reference value for comparision */
+    out = (*pSrc > 0) ? *pSrc : ((*pSrc == (q7_t)0x80) ? (q7_t)0x7f : -*pSrc);
+    pSrc++;
+    /* Initialize blkCnt with number of samples */
+    blkCnt = (blockSize - 1U);
+
+    while (blkCnt > 0U) {
+        /* Initialize minVal to the next consecutive values one by one */
+        minVal = (*pSrc > 0) ? *pSrc : ((*pSrc == (q7_t)0x80) ? (q7_t)0x7f : -*pSrc);
+        pSrc++;
+        /* compare for the minimum value */
+        if (out > minVal) {
+            /* Update the minimum value and it's index */
+            out = minVal;
+        }
+        /* Decrement loop counter */
+        blkCnt--;
+    }
+    /* Store the minimum value and it's index into destination pointers */
+    *pResult = out;
+}
+
+void ref_absmin_no_idx_q15(const q15_t *pSrc, uint32_t blockSize,
+                             q15_t *pResult)
+{
+    q15_t minVal, out; /* Temporary variables to store the output value. */
+    uint32_t blkCnt;   /* Loop counter */
+    /* Load first input value that act as reference value for comparision */
+    out = (*pSrc > 0) ? *pSrc : ((*pSrc == (q15_t)0x8000) ? 0x7fff : -*pSrc);
+    pSrc++;
+    /* Initialize blkCnt with number of samples */
+    blkCnt = (blockSize - 1U);
+
+    while (blkCnt > 0U) {
+        /* Initialize minVal to the next consecutive values one by one */
+        minVal = (*pSrc > 0) ? *pSrc : ((*pSrc == (q15_t)0x8000) ? 0x7fff : -*pSrc);
+        pSrc++;
+
+        /* compare for the minimum value */
+        if (out > minVal) {
+            /* Update the minimum value and it's index */
+            out = minVal;
+        }
+        /* Decrement loop counter */
+        blkCnt--;
+    }
+    /* Store the minimum value and it's index into destination pointers */
+    *pResult = out;
+}
+
+void ref_absmin_no_idx_q31(const q31_t *pSrc, uint32_t blockSize,
+                             q31_t *pResult)
+{
+    q31_t minVal, out; /* Temporary variables to store the output value. */
+    uint32_t blkCnt;   /* Loop counter */
+    /* Load first input value that act as reference value for comparision */
+    out = (*pSrc > 0) ? *pSrc : ((*pSrc == INT32_MIN) ? INT32_MAX : -*pSrc);
+    pSrc++;
+    /* Initialize blkCnt with number of samples */
+    blkCnt = (blockSize - 1U);
+
+    while (blkCnt > 0U) {
+        /* Initialize minVal to the next consecutive values one by one */
+        minVal = (*pSrc > 0) ? *pSrc : ((*pSrc == INT32_MIN) ? INT32_MAX : -*pSrc);
+        pSrc++;
+        /* compare for the minimum value */
+        if (out > minVal) {
+            /* Update the minimum value and it's index */
+            out = minVal;
+        }
+        /* Decrement loop counter */
+        blkCnt--;
+    }
+    /* Store the minimum value and it's index into destination pointers */
+    *pResult = out;
+}

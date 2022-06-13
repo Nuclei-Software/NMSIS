@@ -78,13 +78,13 @@ void riscv_mean_f16(
   while (blkCnt > 0U)
   {
     /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) */
-    sum += *pSrc++;
+    sum += (_Float16)*pSrc++;
 
-    sum += *pSrc++;
+    sum += (_Float16)*pSrc++;
 
-    sum += *pSrc++;
+    sum += (_Float16)*pSrc++;
 
-    sum += *pSrc++;
+    sum += (_Float16)*pSrc++;
 
     /* Decrement the loop counter */
     blkCnt--;
@@ -103,7 +103,7 @@ void riscv_mean_f16(
   while (blkCnt > 0U)
   {
     /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) */
-    sum += *pSrc++;
+    sum += (_Float16)*pSrc++;
 
     /* Decrement loop counter */
     blkCnt--;
@@ -111,7 +111,7 @@ void riscv_mean_f16(
 
   /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) / blockSize  */
   /* Store result to destination */
-  *pResult = (sum / (float16_t)blockSize);
+  *pResult = ((_Float16)sum / (_Float16)blockSize);
 }
 
 /**

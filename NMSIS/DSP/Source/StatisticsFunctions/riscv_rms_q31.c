@@ -67,7 +67,7 @@ void riscv_rms_q31(
   size_t l;
   const q31_t * input = pSrc;
   q31_t * result = pResult;
-  q63_t sum;
+  q63_t sum;                                                /* uint64 type may ignore the sign bit when overflow is happened */
   vint32m4_t v_in;
   l = vsetvl_e64m1(1);
   vint64m1_t v_sum = vmv_s_x_i64m1(v_sum, 0, l);                /* init v_sum data */

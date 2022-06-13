@@ -128,8 +128,8 @@ riscv_status riscv_mat_scale_q15(
       out4 = (q31_t) ((q15_t) (inA164 >> 32) * scaleFract);
 #else
       /* read 2 times 2 samples at a time from source */
-      inA1 = read_q15x2_ia ((q15_t **) &pIn);
-      inA2 = read_q15x2_ia ((q15_t **) &pIn);
+      inA1 = read_q15x2_ia (&pIn);
+      inA2 = read_q15x2_ia (&pIn);
 
       /* Scale inputs and store result in temporary variables
        * in single cycle by packing the outputs */

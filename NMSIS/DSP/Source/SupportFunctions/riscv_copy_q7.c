@@ -58,7 +58,7 @@ void riscv_copy_q7(
   for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
     v_copy = vle8_v_i8m8(pSrc, l);
     pSrc += l;
-    vse8_v_i8m8 (pDst, v_copy, l);
+    vse8_v_i8m8(pDst, v_copy, l);
     pDst += l;
   }
 #else
@@ -78,10 +78,10 @@ void riscv_copy_q7(
     /* C = A */
 #if __RISCV_XLEN == 64
     /* read 8 samples at a time */
-    write_q7x8_ia (&pDst, read_q7x8_ia ((q7_t **) &pSrc));
+    write_q7x8_ia (&pDst, read_q7x8_ia (&pSrc));
 #else
     /* read 4 samples at a time */
-    write_q7x4_ia (&pDst, read_q7x4_ia ((q7_t **) &pSrc));
+    write_q7x4_ia (&pDst, read_q7x4_ia (&pSrc));
 #endif /* __RISCV_XLEN == 64 */
 
     /* Decrement loop counter */
@@ -104,8 +104,6 @@ void riscv_copy_q7(
 
   while (blkCnt > 0U)
   {
-    /* C = A */
-
     /* Copy and store result in destination buffer */
     *pDst++ = *pSrc++;
 

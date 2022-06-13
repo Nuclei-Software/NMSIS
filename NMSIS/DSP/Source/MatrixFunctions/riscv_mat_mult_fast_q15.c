@@ -254,7 +254,7 @@ riscv_status riscv_mat_mult_fast_q15(
 //                 px += numRowsB;
 // #else
         /* Read two elements from row */
-        in = read_q15x2_ia ((q15_t **) &pInB);
+        in = read_q15x2_ia (&pInB);
 
         /* Unpack and store one element in destination */
         *px = (q15_t) in;
@@ -268,7 +268,7 @@ riscv_status riscv_mat_mult_fast_q15(
         /* Update pointer px to point to next row of transposed matrix */
         px += numRowsB;
 
-        in = read_q15x2_ia ((q15_t **) &pInB);
+        in = read_q15x2_ia (&pInB);
         *px = (q15_t) in;
         px += numRowsB;
 
@@ -410,11 +410,11 @@ riscv_status riscv_mat_mult_fast_q15(
 //         //   ((inA2 & (uint32_t)0x0ffff) * (inB2  & (uint32_t)0x0ffff)) + (((inA2 >> 16) & (uint32_t)0x0ffff) * ((inB2 >> 16) & (uint32_t)0x0ffff));
 // #else
           /* read real and imag values from pSrcA and pSrcB buffer */
-          inA1 = read_q15x2_ia ((q15_t **) &pInA);
-          inB1 = read_q15x2_ia ((q15_t **) &pInB);
+          inA1 = read_q15x2_ia (&pInA);
+          inB1 = read_q15x2_ia (&pInB);
 
-          inA2 = read_q15x2_ia ((q15_t **) &pInA2);
-          inB2 = read_q15x2_ia ((q15_t **) &pInB2);
+          inA2 = read_q15x2_ia (&pInA2);
+          inB2 = read_q15x2_ia (&pInB2);
 
           /* Multiply and Accumlates */
           sum  = __RV_KMADA(sum, inA1, inB1);
@@ -532,15 +532,15 @@ riscv_status riscv_mat_mult_fast_q15(
         while (colCnt > 0U)
         {
 #if __RISCV_XLEN == 64
-          inA164 = read_q15x4_ia ((q15_t **) &pInA);
-          inB164 = read_q15x4_ia ((q15_t **) &pInB);
+          inA164 = read_q15x4_ia (&pInA);
+          inB164 = read_q15x4_ia (&pInB);
 
           sum64  = __RV_KMADA(sum64, inA164, inB164);
 #else
-          inA1 = read_q15x2_ia ((q15_t **) &pInA);
-          inA2 = read_q15x2_ia ((q15_t **) &pInA);
-          inB1 = read_q15x2_ia ((q15_t **) &pInB);
-          inB2 = read_q15x2_ia ((q15_t **) &pInB);
+          inA1 = read_q15x2_ia (&pInA);
+          inA2 = read_q15x2_ia (&pInA);
+          inB1 = read_q15x2_ia (&pInB);
+          inB2 = read_q15x2_ia (&pInB);
 
           sum  = __RV_KMADA(sum, inA1, inB1);
           sum  = __RV_KMADA(sum, inA2, inB2);
@@ -595,15 +595,15 @@ riscv_status riscv_mat_mult_fast_q15(
         while (colCnt > 0U)
         {
 #if __RISCV_XLEN == 64
-          inA164 = read_q15x4_ia ((q15_t **) &pInA);
-          inB164 = read_q15x4_ia ((q15_t **) &pInB);
+          inA164 = read_q15x4_ia (&pInA);
+          inB164 = read_q15x4_ia (&pInB);
 
           sum64  = __RV_KMADA(sum64, inA164, inB164);
 #else
-          inA1 = read_q15x2_ia ((q15_t **) &pInA);
-          inA2 = read_q15x2_ia ((q15_t **) &pInA);
-          inB1 = read_q15x2_ia ((q15_t **) &pInB);
-          inB2 = read_q15x2_ia ((q15_t **) &pInB);
+          inA1 = read_q15x2_ia (&pInA);
+          inA2 = read_q15x2_ia (&pInA);
+          inB1 = read_q15x2_ia (&pInB);
+          inB2 = read_q15x2_ia (&pInB);
 
           sum  = __RV_KMADA(sum, inA1, inB1);
           sum  = __RV_KMADA(sum, inA2, inB2);

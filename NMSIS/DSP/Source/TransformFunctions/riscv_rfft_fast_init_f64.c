@@ -332,7 +332,7 @@ riscv_status riscv_rfft_fast_init_f64(
     break;
 #endif
   default:
-    return RISCV_MATH_ARGUMENT_ERROR;
+    break;
   }
 
   if( ! fptr ) return RISCV_MATH_ARGUMENT_ERROR;

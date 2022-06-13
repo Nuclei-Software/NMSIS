@@ -145,6 +145,44 @@ void riscv_absmin_q31(
         q31_t minVal, out;                             /* Temporary variables to store the output value. */
         uint32_t blkCnt, outIndex;                     /* Loop counter */
 
+#if defined(RISCV_MATH_VECTOR)
+  blkCnt = blockSize;
+  size_t l;
+  vint32m8_t v_x, v_zero;
+  vint32m1_t v_temp;
+  uint32_t temp_index = 0;
+  q31_t *pData = pSrc;
+  out = 0x7fffffff;
+  l = vsetvlmax_e32m8();
+  v_zero = vmv_v_x_i32m8(0, l);
+  l = vsetvlmax_e32m1();
+  v_temp = vmv_v_x_i32m1(out, l);
+  
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+    v_x = vle32_v_i32m8(pData, l);
+    pData += l;
+    vbool4_t mask = vmslt_vx_i32m8_b4(v_x, 0, l);
+    v_x = vssub_vv_i32m8_m(mask, v_x, v_zero, v_x, l);
+    minVal =
+        vmv_x_s_i32m1_i32(vredmin_vs_i32m8_i32m1(v_temp, v_x, v_temp, l));
+    if (minVal < out) {
+      out = minVal;
+      outIndex = temp_index;
+    }
+    temp_index += l;
+  }
+  
+  pData = pSrc + outIndex;
+  while (1) {
+    if ((out == *pData) || (out == -(*pData))) {
+      break;
+    } else {
+      pData++;
+      outIndex++;
+    }
+  }
+#else
+
   /* Initialise index value to zero. */
   outIndex = 0U;
   /* Load first input value that act as reference value for comparision */
@@ -171,6 +209,7 @@ void riscv_absmin_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
+#endif /* defined(RISCV_MATH_VECTOR) */
 
   /* Store the minimum value and it's index into destination pointers */
   *pResult = out;

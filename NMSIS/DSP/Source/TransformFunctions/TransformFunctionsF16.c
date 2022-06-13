@@ -37,6 +37,9 @@
 
 #include "riscv_bitreversal_f16.c"
 
+#include "riscv_mfcc_init_f16.c"
+#include "riscv_mfcc_f16.c"
+
 /* Deprecated */
 #include "riscv_cfft_radix2_init_f16.c"
 #include "riscv_cfft_radix4_init_f16.c"
