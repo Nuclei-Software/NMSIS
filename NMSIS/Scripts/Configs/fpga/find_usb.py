@@ -13,21 +13,23 @@ def parse_usbinfo(origin):
     bus, device = bus_splits[1], bus_splits[3].strip(":")
     vid = origin["idvendor"].split()[1]
     pid = origin["idproduct"].split()[1]
+    manufact = " ".join(origin["imanufacturer"].split()[2:])
+    product = " ".join(origin["iproduct"].split()[2:])
     if len(origin["iserial"].split()) > 2:
         serial = origin["iserial"].split()[2]
     else:
         serial = ""
-    return {"bus": bus, "device": device, "pid": pid, "vid": vid, "serial": serial}
-
+    return {"bus": bus, "device": device, "pid": pid, "vid": vid, "serial": serial, "manufacturer": manufact, "product": product}
 
 def find_usbinfo():
     cmdlog = tempfile.mktemp()
-    os.system("lsusb -v 2>/dev/null | grep -i -E \"^bus |iserial|idvendor|idproduct\" > %s" % (cmdlog))
+    os.system("lsusb -v 2>/dev/null | grep -i -E \"^bus |iserial|idvendor|idproduct|imanufacturer|iproduct\" > %s" % (cmdlog))
     usb_devices = []
+    INFOCNT = 6
     with open(cmdlog, "r") as cf:
         lines = cf.readlines()
-        for i in range(0, int(len(lines) / 4)):
-            bus = lines[i*4]
+        for i in range(0, int(len(lines) / INFOCNT)):
+            bus = lines[i*INFOCNT]
             if "Linux Foundation" in bus:
                 continue
             if "VMware, Inc" in bus:
@@ -35,8 +37,9 @@ def find_usbinfo():
             if "VirtualBox" in bus:
                 continue
             try:
-                origin = {"bus": lines[i*4].strip(), "idvendor": lines[i*4 + 1].strip(), \
-                          "idproduct": lines[i*4 + 2].strip(), "iserial": lines[i*4 + 3].strip()}
+                origin = {"bus": lines[i*INFOCNT].strip(), "idvendor": lines[i*INFOCNT + 1].strip(), \
+                          "idproduct": lines[i*INFOCNT + 2].strip(), "iserial": lines[i*INFOCNT + 5].strip(), \
+                          "imanufacturer": lines[i*INFOCNT + 3], "iproduct": lines[i*INFOCNT + 4]}
                 parsed = parse_usbinfo(origin)
                 device = {"origin": origin, "parsed": parsed}
             except:
@@ -69,7 +72,9 @@ if __name__ == '__main__':
         usb_infos[loc] = {"serial": parsed["serial"], \
                           "serports": serports, \
                           "pid": parsed["pid"], \
-                          "vid": parsed["vid"],
+                          "vid": parsed["vid"], \
+                          "manufacturer": parsed["manufacturer"], \
+                          "product": parsed["product"], \
                           "info": usb["origin"]["bus"]}
 
     # save as json
