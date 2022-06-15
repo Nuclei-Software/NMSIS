@@ -15,8 +15,9 @@ fpga_runners:
         fpga_serial: Digilent/210251A08870
         # ftdi_serial number, such as FT4JUVF6
         ftdi_serial: FT4JUVF6
+        # leave it empty, will find the serial port by ftdi_serial
         # serial_port number, such as /dev/ttyUSB1
-        serial_port: /dev/ttyUSB1
+        serial_port:
     ku060_1:
         # ddr200t/mcu200t/ku060/vcu118
         board_type: ku060
@@ -25,7 +26,18 @@ fpga_runners:
         # ftdi_serial number, such as FT4JUVF6
         ftdi_serial: FT6JGAXS
         # serial_port number, such as /dev/ttyUSB1
-        serial_port: /dev/ttyUSB4
+        # leave it empty, will find the serial port by ftdi_serial
+        serial_port:
+    vcu118_1:
+        # ddr200t/mcu200t/ku060/vcu118
+        board_type: vcu118
+        # serial number, such as Digilent/210308AC59C6
+        fpga_serial: Digilent/210308B0AC12
+        # ftdi_serial number, such as FT4JUVF6
+        ftdi_serial: FT64JJQU
+        # serial_port number, such as /dev/ttyUSB1
+        # leave it empty, will find the serial port by ftdi_serial
+        serial_port:
 
 ncycm_runners:
     n200:
@@ -76,15 +88,15 @@ configs:
         hwcfg: ux600.json
     # cpu core name
     n900:
-        fpga: ku060
-        bitstream: n900_software_best_config_ku060_16M.bit
+        fpga: vcu118
+        bitstream: n900_software_best_config_vcu118_100M.bit
         ncycm: n900
         openocd_cfg: SoC/demosoc/Board/nuclei_fpga_eval/openocd_demosoc.cfg
         appcfg: nmsis_dsp.json
         hwcfg: n900.json
     ux900:
-        fpga: ku060
-        bitstream: ux900_software_best_config_ku060_16M.bit
+        fpga: vcu118
+        bitstream: ux900_software_best_config_vpu_vcu118_100M.bit
         ncycm: ux900
         openocd_cfg: SoC/demosoc/Board/nuclei_fpga_eval/openocd_demosoc.cfg
         appcfg: nmsis_dsp.json
