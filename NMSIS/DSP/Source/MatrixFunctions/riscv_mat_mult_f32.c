@@ -125,7 +125,7 @@ for(rownum = 0;rownum < numRowsA; rownum++)
         /* c(m,n) = a(1,1) * b(1,1) + a(1,2) * b(2,1) + .... + a(m,p) * b(p,n) */
         /* Perform multiply-accumulates */
         vmul = vfmul_vv_f32m8(v_inA, v_inB, l);
-        vsum = vfredusum_vs_f32m8_f32m1(vsum, vmul, vsum, l);
+        vsum = vfredosum_vs_f32m8_f32m1(vsum, vmul, vsum, l);
         sum = vfmv_f_s_f32m1_f32 (vsum);
         // if(l == max_l)
         // {

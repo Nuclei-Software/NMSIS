@@ -81,7 +81,7 @@ void riscv_power_f32(
     v_in = vle32_v_f32m8(input, l);
     input += l;
     v_in2 = vfmul_vv_f32m8(v_in, v_in, l);
-    v_sum = vfredusum_vs_f32m8_f32m1(v_sum, v_in2, v_sum, l);
+    v_sum = vfredosum_vs_f32m8_f32m1(v_sum, v_in2, v_sum, l);
   }
   l = vsetvl_e32m1(1);
   vse32_v_f32m1(output, v_sum, l);

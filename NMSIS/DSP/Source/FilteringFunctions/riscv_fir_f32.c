@@ -467,7 +467,7 @@ void riscv_fir_f32(
       px += l;
       vy = vle32_v_f32m8(pb, l);
       pb += l;
-      acc0 += vfmv_f_s_f32m1_f32(vfredusum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vy, vx, l), temp00m1, l));
+      acc0 += vfmv_f_s_f32m1_f32(vfredosum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vy, vx, l), temp00m1, l));
     }
 #else
     /* Perform the multiply-accumulates */

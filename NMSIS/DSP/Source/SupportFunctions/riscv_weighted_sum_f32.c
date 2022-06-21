@@ -87,9 +87,9 @@ float32_t riscv_weighted_sum_f32(const float32_t *in, const float32_t *weigths, 
         pW += l;
     }
     l = vsetvl_e32m8(blockSize);
-    accum1 = vfmv_f_s_f32m1_f32 (vfredusum_vs_f32m8_f32m1(v_temp,v_a,v_temp, l));
+    accum1 = vfmv_f_s_f32m1_f32 (vfredosum_vs_f32m8_f32m1(v_temp,v_a,v_temp, l));
     l = vsetvl_e32m8(blockSize);
-    accum2 = vfmv_f_s_f32m1_f32 (vfredusum_vs_f32m8_f32m1(v_temp,v_b,v_temp, l));
+    accum2 = vfmv_f_s_f32m1_f32 (vfredosum_vs_f32m8_f32m1(v_temp,v_b,v_temp, l));
 #else
     blkCnt = blockSize;
     while(blkCnt > 0)

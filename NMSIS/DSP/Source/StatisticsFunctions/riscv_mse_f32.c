@@ -105,7 +105,7 @@ void riscv_mse_f32(const float32_t *pSrcA, const float32_t *pSrcB,
         pInB += l;
         v_subVal = vfsub_vv_f32m8(v_inA, v_inB, l);
         v_mul = vfmul_vv_f32m8(v_subVal, v_subVal, l);
-        v_sum = vfredusum_vs_f32m8_f32m1(v_sum, v_mul, v_sum, l);
+        v_sum = vfredosum_vs_f32m8_f32m1(v_sum, v_mul, v_sum, l);
     }
     sum = vfmv_f_s_f32m1_f32(v_sum);
 #else

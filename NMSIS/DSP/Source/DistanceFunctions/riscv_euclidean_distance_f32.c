@@ -65,7 +65,7 @@ float32_t riscv_euclidean_distance_f32(const float32_t *pA,const float32_t *pB, 
       v_y = vle32_v_f32m8(pB, l);
       v_at = vfsub_vv_f32m8(v_x,v_y, l);
 
-      accum = vfmv_f_s_f32m1_f32 (vfredusum_vs_f32m8_f32m1(v_temp,vfmul_vv_f32m8(v_at,v_at, l),v_temp, l));
+      accum = vfmv_f_s_f32m1_f32 (vfredosum_vs_f32m8_f32m1(v_temp,vfmul_vv_f32m8(v_at,v_at, l),v_temp, l));
       pA += l;
       pB += l;
    }

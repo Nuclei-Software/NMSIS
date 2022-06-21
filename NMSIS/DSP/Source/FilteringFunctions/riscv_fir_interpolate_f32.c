@@ -362,7 +362,7 @@ void riscv_fir_interpolate_f32(
       for (; (l = vsetvl_e32m8(blkCnt_v)) > 0; blkCnt_v -= l) {
         v_x = vle32_v_f32m8(ptr1, l);
         v_y = vlse32_v_f32m8(ptr2, bstride, l);
-        sum0 += vfmv_f_s_f32m1_f32(vfredusum_vs_f32m8_f32m1(v_temp, vfmul_vv_f32m8(v_x, v_y, l), v_temp, l));
+        sum0 += vfmv_f_s_f32m1_f32(vfredosum_vs_f32m8_f32m1(v_temp, vfmul_vv_f32m8(v_x, v_y, l), v_temp, l));
         ptr1 += l;
         ptr2 += l;
       }

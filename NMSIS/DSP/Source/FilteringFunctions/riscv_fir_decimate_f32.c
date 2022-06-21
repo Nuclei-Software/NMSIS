@@ -403,7 +403,7 @@ void riscv_fir_decimate_f32(
       pb += l;
       px0 += l;
 
-      acc0 += vfmv_f_s_f32m1_f32(vfredusum_vs_f32m4_f32m1(vtemp00m1, vfmul_vv_f32m4(va1m4, va2m4, l), vtemp00m1, l));
+      acc0 += vfmv_f_s_f32m1_f32(vfredosum_vs_f32m4_f32m1(vtemp00m1, vfmul_vv_f32m4(va1m4, va2m4, l), vtemp00m1, l));
     }
 #else
     while (tapCnt > 0U)

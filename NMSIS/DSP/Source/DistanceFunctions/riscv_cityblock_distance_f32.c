@@ -63,7 +63,7 @@ float32_t riscv_cityblock_distance_f32(const float32_t *pA,const float32_t *pB, 
       v_y = vle32_v_f32m8(pB, l);
       v_at = vfsub_vv_f32m8(v_x,v_y, l);
 
-      v_sum = vfredusum_vs_f32m8_f32m1(v_temp, vfsgnjx_vv_f32m8(v_at, v_at, l), v_temp, l);
+      v_sum = vfredosum_vs_f32m8_f32m1(v_temp, vfsgnjx_vv_f32m8(v_at, v_at, l), v_temp, l);
       pA += l;
       pB += l;
    }

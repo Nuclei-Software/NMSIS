@@ -75,7 +75,7 @@ void riscv_svm_linear_predict_f32(
         {
             v_in = vle32_v_f32m8(in, l);
             v_support = vle32_v_f32m8(pSupport, l);
-            v_dot = vfredusum_vs_f32m8_f32m1(v_dot, vfmul_vv_f32m8(v_in, v_support, l), v_dot, l);
+            v_dot = vfredosum_vs_f32m8_f32m1(v_dot, vfmul_vv_f32m8(v_in, v_support, l), v_dot, l);
             in += l;
             pSupport += l;
         }
