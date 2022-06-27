@@ -192,8 +192,9 @@ void riscv_correlate_q15(
       px += l;
       vy = vle16_v_i16m4(py, l);
       py += l;
-      sum += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l));
+      temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
     }
+    sum += vmv_x_s_i32m1_i32(temp00m1);
 #else
     /* Apply loop unrolling and compute 4 MACs simultaneously. */
     k = count >> 2U;
@@ -288,9 +289,9 @@ void riscv_correlate_q15(
         px += l;
         vy = vlse16_v_i16m4(py, bstride, l);
         py -= l;
-        sum += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l));
+        temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
       }
-
+      sum += vmv_x_s_i32m1_i32(temp00m1);
       /* Store the result in the accumulator in the destination buffer. */
       *pOut = (q15_t) (__SSAT(sum >> 15, 16));
       /* Destination pointer is updated according to the address modifier, inc */
@@ -385,7 +386,7 @@ void riscv_correlate_q15(
 
       /* If the srcBLen is not a multiple of 4, compute any remaining MACs here.
        ** No loop unrolling is used. */
-      k = srcBLen % 0x4U;
+      k = srcBLen & 0x3U;
 
       if (k == 1U)
       {
@@ -483,7 +484,7 @@ void riscv_correlate_q15(
 
     /* If the blockSize2 is not a multiple of 4, compute any remaining output samples here.
      ** No loop unrolling is used. */
-    blkCnt = blockSize2 % 0x4U;
+    blkCnt = blockSize2 & 0x3U;
 
     while (blkCnt > 0U)
     {
@@ -514,7 +515,7 @@ void riscv_correlate_q15(
 
       /* If the srcBLen is not a multiple of 4, compute any remaining MACs here.
        ** No loop unrolling is used. */
-      k = srcBLen % 0x4U;
+      k = srcBLen & 0x3U;
 
       while (k > 0U)
       {
@@ -624,8 +625,9 @@ void riscv_correlate_q15(
       px += l;
       vy = vle16_v_i16m4(py, l);
       py += l;
-      sum += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l));
+      temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
     }
+    sum += vmv_x_s_i32m1_i32(temp00m1);
 
 #else
     /* Apply loop unrolling and compute 4 MACs simultaneously. */

@@ -60,7 +60,6 @@ riscv_status status;                             /* status of matrix inverse */
 
   /* Check for matrix mismatch condition */
   if ((ut->numRows != ut->numCols) ||
-      (a->numRows != a->numCols) ||
       (ut->numRows != a->numRows)   )
   {
     /* Set status as RISCV_MATH_SIZE_MISMATCH */
@@ -71,21 +70,8 @@ riscv_status status;                             /* status of matrix inverse */
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
 
   {
-#if defined(RISCV_MATH_VECTOR)
-    uint32_t blkCnt;                               /* Loop counter */
-    size_t l;
-    vfloat32m8_t v_x, v_y;
-    vfloat32m8_t v_a;
-    vfloat32m1_t v_temp;
-    float32_t *pVut_row;
-    float32_t *pX_row;
-    ptrdiff_t bstride;
-    l = vsetvl_e32m1(1);
-    v_temp = vfsub_vv_f32m1(v_temp, v_temp, l);
-#endif
-    int i,j,k,n;
 
-    n = dst->numRows;
+    int i,j,k,n,cols;
 
     float32_t *pX = dst->pData;
     float32_t *pUT = ut->pData;
@@ -94,35 +80,47 @@ riscv_status status;                             /* status of matrix inverse */
     float32_t *ut_row;
     float32_t *a_col;
 
-    for(j=0; j < n; j ++)
+    n = dst->numRows;
+    cols = dst->numCols;
+
+    for(j=0; j < cols; j ++)
     {
        a_col = &pA[j];
 
        for(i=n-1; i >= 0 ; i--)
        {
+            float32_t tmp=a_col[i * cols];
+
             ut_row = &pUT[n*i];
 
-            float32_t tmp=a_col[i * n];
 #if defined(RISCV_MATH_VECTOR)
-            blkCnt = n-i-1;
-            pVut_row = ut_row + i+1;
-            pX_row = pX + n*(i+1)+j;
-            l = vsetvl_e32m8(blkCnt);
-            v_a = vfsub_vv_f32m8(v_a,v_a, l);
-            bstride = 4*n;
+            uint32_t blkCnt;                               /* Loop counter */
+            size_t l;
+            vfloat32m8_t v_x, v_y;
+            vfloat32m1_t v_a;
+            float32_t *pVut_row;
+            float32_t *pX_row;
+            ptrdiff_t bstride;
+
+            blkCnt = n - i - 1;
+            pVut_row = ut_row + i + 1;
+            pX_row = pX + n * (i + 1) + j;
+            l = vsetvl_e32m1(1);
+            v_a = vfsub_vv_f32m1(v_a, v_a, l);
+            bstride = 4 * n;
             for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
                 v_x = vle32_v_f32m8(pVut_row, l);
-                v_y = vlse32_v_f32m8(pX_row,bstride, l);
-                v_a = vfmacc_vv_f32m8(v_a,v_x,v_y, l);
                 pVut_row += l;
-                pX_row += l*n;
+                v_y = vlse32_v_f32m8(pX_row, bstride, l);
+                pX_row += l * cols;
+                v_a = vfredusum_vs_f32m8_f32m1(v_a, vfmul_vv_f32m8(v_x, v_y, l), v_a, l);
             }
-            l = vsetvl_e32m8(n-i-1);
-            tmp -= vfmv_f_s_f32m1_f32(vfredosum_vs_f32m8_f32m1(v_temp,v_a,v_temp, l));
+
+            tmp -= vfmv_f_s_f32m1_f32(v_a);
 #else
-            for(k=i+1; k < n; k++)
+            for(k=n-1; k > i; k--)
             {
-                tmp -= ut_row[k] * pX[n*k+j];
+                tmp -= ut_row[k] * pX[cols*k+j];
             }
 #endif
             if (ut_row[i]==0.0f)
@@ -130,7 +128,7 @@ riscv_status status;                             /* status of matrix inverse */
               return(RISCV_MATH_SINGULAR);
             }
             tmp = tmp / ut_row[i];
-            pX[i*n+j] = tmp;
+            pX[i*cols+j] = tmp;
        }
 
     }
@@ -142,7 +140,6 @@ riscv_status status;                             /* status of matrix inverse */
   /* Return to application */
   return (status);
 }
-
 
 /**
   @} end of MatrixInv group

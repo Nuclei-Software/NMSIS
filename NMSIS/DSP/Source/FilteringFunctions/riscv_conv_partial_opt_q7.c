@@ -150,7 +150,7 @@ riscv_status riscv_conv_partial_opt_q7(
 
     /* If the count is not a multiple of 4, copy remaining samples here.
      ** No loop unrolling is used. */
-    k = srcBLen % 0x4U;
+    k = srcBLen & 0x3U;
 
     while (k > 0U)
     {
@@ -202,7 +202,7 @@ riscv_status riscv_conv_partial_opt_q7(
 
     /* If the count is not a multiple of 4, copy remaining samples here.
      ** No loop unrolling is used. */
-    k = srcALen % 0x4U;
+    k = srcALen & 0x3U;
 
     while (k > 0U)
     {
@@ -253,8 +253,9 @@ riscv_status riscv_conv_partial_opt_q7(
         pScr1 += l;
         vy = vle16_v_i16m4(pScr2, l);
         pScr2 += l;
-        acc0 += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l));
+        temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
       }
+      acc0 += vmv_x_s_i32m1_i32(temp00m1);
 
       blkCnt--;
 

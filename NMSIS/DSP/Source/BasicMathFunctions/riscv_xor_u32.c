@@ -77,7 +77,7 @@ void riscv_xor_u32(
     uint64_t * pSrcA_temp = pSrcA;
     uint64_t * pSrcB_temp = pSrcB;
     uint64_t * pDst_temp = pDst;
-    if(blkCnt = blockSize >> 1)
+    if (blkCnt = blockSize >> 1)
     {
         while (blkCnt > 0U)
         {
@@ -87,10 +87,10 @@ void riscv_xor_u32(
             blkCnt--;
         }
     }
-    if(blkCnt = blockSize & 0x1)
+    if (blkCnt = blockSize & 0x1)
     {
-        pSrcA = (uint8_t * )(pSrcA_temp-1);
-        pSrcB = (uint8_t * )(pSrcB_temp-1);
+        pSrcA = (uint8_t * )(pSrcA_temp - 1);
+        pSrcB = (uint8_t * )(pSrcB_temp - 1);
     }
 #endif
 

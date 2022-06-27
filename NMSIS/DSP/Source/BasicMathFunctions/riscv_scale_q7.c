@@ -141,7 +141,7 @@ void riscv_scale_q7(
 //   blkCnt = blockSize % 0x8U;
 // #else
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 // #endif /* __RISCV_XLEN == 64 */
 #else
 

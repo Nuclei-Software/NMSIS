@@ -58,7 +58,22 @@ void riscv_abs_q31(
         uint32_t blkCnt;                               /* Loop counter */
         q31_t in;                                      /* Temporary variable */
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined(RISCV_MATH_VECTOR)
+    blkCnt = blockSize;
+    size_t l;
+    vint32m8_t v_x, v_zero;
+    l = vsetvlmax_e32m8();
+    v_zero = vmv_v_x_i32m8(0, l);
+    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+        v_x = vle32_v_i32m8(pSrc, l);
+        pSrc += l;
+        vbool4_t mask = vmslt_vx_i32m8_b4(v_x, 0, l);
+        v_x = vssub_vv_i32m8_m(mask, v_x, v_zero, v_x, l);
+        vse32_v_i32m8(pDst, v_x, l);
+        pDst += l;
+    }
+
+#elif defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
@@ -67,8 +82,8 @@ void riscv_abs_q31(
   {
     /* C = |A| */
 #if __RISCV_XLEN == 64
-	write_q31x2_ia (&pDst, __RV_KABS32(read_q31x2_ia ((q31_t **) &pSrc)));
-	write_q31x2_ia (&pDst, __RV_KABS32(read_q31x2_ia ((q31_t **) &pSrc)));
+	write_q31x2_ia(&pDst, __RV_KABS32(read_q31x2_ia ((q31_t **) &pSrc)));
+	write_q31x2_ia(&pDst, __RV_KABS32(read_q31x2_ia ((q31_t **) &pSrc)));
 #else
     /* Calculate absolute of input (if -1 then saturated to 0x7fffffff) and store result in destination buffer. */
     in = *pSrc++;

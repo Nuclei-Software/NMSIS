@@ -82,9 +82,9 @@ void riscv_not_u8(
             blkCnt--;
         }
     }
-    if(blkCnt = blockSize%8)
+    if(blkCnt = blockSize & 0x7U)
     {
-        pSrc = (uint8_t * )(pSrc_temp-7);
+        pSrc = (uint8_t * )(pSrc_temp - 7);
     }
 
 #else
@@ -100,9 +100,9 @@ void riscv_not_u8(
             blkCnt--;
         }
     }
-    if(blkCnt = blockSize%4)
+    if(blkCnt = blockSize & 0x3U)
     {
-        pSrc = (uint8_t * )(pSrc_temp-3);
+        pSrc = (uint8_t * )(pSrc_temp - 3);
     }
 #endif /*defined (RISCV_DSP64) || (__RISCV_XLEN == 64)*/
 

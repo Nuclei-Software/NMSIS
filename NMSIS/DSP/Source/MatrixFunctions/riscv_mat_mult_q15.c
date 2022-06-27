@@ -144,7 +144,7 @@ riscv_status riscv_mat_mult_q15(
 
       /* If the columns of pSrcB is not a multiple of 4, compute any remaining output samples here.
        ** No loop unrolling is used. */
-      col = numColsB % 0x4U;
+      col = numColsB & 0x3U;
 
       while (col > 0U)
       {
@@ -197,8 +197,8 @@ riscv_status riscv_mat_mult_q15(
         {
           /* c(m,n) = a(1,1) * b(1,1) + a(1,2) * b(2,1) + .... + a(m,p) * b(p,n) */
 #if __RISCV_XLEN == 64
-          inA164 = read_q15x4_ia (&pInA);
-          inB164 = read_q15x4_ia (&pInB);
+          inA164 = read_q15x4_ia(&pInA);
+          inB164 = read_q15x4_ia(&pInB);
           /* Multiply and Accumlates */
           sum = __RV_SMALDA(sum, inA164, inB164);
           // sum = (q31_t)(sum64 + (sum64 >> 32));
@@ -221,7 +221,7 @@ riscv_status riscv_mat_mult_q15(
         }
 
         /* process remaining column samples */
-        colCnt = numColsA % 0x4U;
+        colCnt = numColsA & 0x3U;
 
         while (colCnt > 0U)
         {
@@ -280,52 +280,42 @@ riscv_status riscv_mat_mult_q15(
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
 #if defined(RISCV_MATH_VECTOR)
   uint16_t blkCnt = numColsA;  //number of matrix columns  numColsA = numrowB
-  size_t l,max_l;              // max_l is the maximum column elements at a time
+  size_t l;
   ptrdiff_t bstride = 2;       //  16bit/8bit = 2
   ptrdiff_t col_diff = bstride * numColsB;  //Control the column width of the span
-  uint16_t colnum,rownum;      //  How many rowumns and rownum are controlled
-  vint16m4_t v_inA,v_inB;
-  vint32m8_t vmul;
-  l = vsetvl_e32m1(1);
-  vint64m1_t vsum = vmv_s_x_i64m1(vsum, 0, l);
-  // max_l = vsetvl_e16m4(32);
+  uint16_t colnum, rownum;      //  How many rowumns and rownum are controlled
+  vint16m4_t v_inA, v_inB;
+  vint64m1_t vsum;
   px = pOut;
-for(rownum = 0;rownum < numRowsA; rownum++)
+  for (rownum = 0; rownum < numRowsA; rownum++)
   {
     pIn1 = pInA;       //backup pointer position
-    for(colnum = 0;colnum < numColsB; colnum++)
+    for(colnum = 0; colnum < numColsB; colnum++)
     {
       blkCnt = numColsA;
       pIn2 = pInB;     //backup pointer position
-      sum = 0;
-      l = vsetvl_e16m1(1);
+
+      l = vsetvl_e64m1(1);
       vsum = vmv_s_x_i64m1(vsum, 0, l);
       for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)   //Multiply a row by a column
       {
         v_inA = vle16_v_i16m4(pInA, l);
+        pInA += l;    //Pointer to the first element of the next line
         v_inB = vlse16_v_i16m4(pInB, col_diff, l);
+        pInB += l * numColsB;
         /* c(m,n) = a(1,1) * b(1,1) + a(1,2) * b(2,1) + .... + a(m,p) * b(p,n) */
         /* Perform multiply-accumulates */
-        vmul = vwmul_vv_i32m8(v_inA, v_inB, l);
-        vsum = vwredsum_vs_i32m8_i64m1(vsum, vmul, vsum, l);
-        //sum = vmv_x_s_i64m1_i64 (vsum);
-        //*px = (q15_t) __SSAT((sum >> 15), 16);
-        //printf("l=%d\t",l);
-        // if(l == max_l)
-        // {
-        pInA = pInA+l;    //Pointer to the first element of the next line
-        pInB = pInB+l*numColsB;
-        // }
+        vsum = vwredsum_vs_i32m8_i64m1(vsum, vwmul_vv_i32m8(v_inA, v_inB, l), vsum, l);
       }
-      sum = vmv_x_s_i64m1_i64 (vsum);
-      *px = (q15_t) __SSAT((sum >> 15), 16);
-      px++;
+      sum = vmv_x_s_i64m1_i64(vsum);
+      *px++ = (q15_t) __SSAT((sum >> 15), 16);
       pInA = pIn1;
-      pInB = pIn2;pInB = pInB+1;    //Pointer to the first element of the next column for matrix BS
-    //printf("px=%d\n",px);
+      pInB = pIn2;
+      pInB += 1;    //Pointer to the first element of the next column for matrix BS
     }
     pInB = pSrcB->pData;
-    pInA = pIn1;pInA = pInA+numColsA;    //Pointer to the first element of the next row for matrix A
+    pInA = pIn1;
+    pInA = pInA + numColsA;    //Pointer to the first element of the next row for matrix A
   }
   /* Set status as RISCV_MATH_SUCCESS */
   status = RISCV_MATH_SUCCESS;

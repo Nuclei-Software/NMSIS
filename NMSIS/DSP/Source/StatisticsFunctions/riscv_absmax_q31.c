@@ -163,8 +163,7 @@ void riscv_absmax_q31(
     pData += l;
     vbool4_t mask = vmslt_vx_i32m8_b4(v_x, 0, l);
     v_x = vssub_vv_i32m8_m(mask, v_x, v_zero, v_x, l);
-    maxVal =
-        vmv_x_s_i32m1_i32(vredmax_vs_i32m8_i32m1(v_temp, v_x, v_temp, l));
+    maxVal = vmv_x_s_i32m1_i32(vredmax_vs_i32m8_i32m1(v_temp, v_x, v_temp, l));
     if (maxVal > out) {
       out = maxVal;
       outIndex = temp_index;

@@ -54,6 +54,18 @@ void riscv_clip_q15(const q15_t * pSrc,
   q15_t high, 
   uint32_t numSamples)
 {
+#if defined(RISCV_MATH_VECTOR)
+    uint32_t blkCnt = numSamples;
+    size_t l;
+    vint16m8_t v_x;
+    for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
+        v_x = vle16_v_i16m8(pSrc, l);
+        pSrc += l;
+        v_x = vmax_vx_i16m8(vmin_vx_i16m8(v_x, high, l), low, l);
+        vse16_v_i16m8(pDst, v_x, l);
+        pDst += l;
+    }
+#else
     uint32_t i;
     for (i = 0; i < numSamples; i++)
     {                                        
@@ -64,6 +76,7 @@ void riscv_clip_q15(const q15_t * pSrc,
         else                                 
             pDst[i] = pSrc[i];               
     }
+#endif /* #if defined (RISCV_MATH_VECTOR) */
 }
 
 /**

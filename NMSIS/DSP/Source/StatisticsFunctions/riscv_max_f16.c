@@ -118,7 +118,7 @@ void riscv_max_f16(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = (blockSize - 1U) % 4U;
+  blkCnt = (blockSize - 1U) & 3U;
 
 #else
 

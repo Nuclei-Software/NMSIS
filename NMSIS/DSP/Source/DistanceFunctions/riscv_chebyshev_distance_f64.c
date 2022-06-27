@@ -49,7 +49,28 @@
  */
 float64_t riscv_chebyshev_distance_f64(const float64_t *pA,const float64_t *pB, uint32_t blockSize)
 {
-   float64_t diff=0.,  maxVal,tmpA, tmpB;
+   float64_t diff=0., maxVal, tmpA, tmpB;
+
+#if 0
+   uint32_t blkCnt = blockSize;                               /* Loop counter */
+   float64_t max_temp;
+   size_t l;
+   vfloat64m8_t v_x, v_y;
+   vfloat64m8_t v_at, v_bt;
+   vfloat64m1_t v_sum;
+   l = vsetvl_e64m1(1);
+   v_sum = vfsub_vv_f64m1(v_sum, v_sum, l);
+   for (; (l = vsetvl_e64m8(blkCnt)) > 0; blkCnt -= l) {
+      v_x = vle64_v_f64m8(pA, l);
+      pA += l;
+      v_y = vle64_v_f64m8(pB, l);
+      pB += l;
+      v_at = vfsub_vv_f64m8(v_x, v_y, l);
+      v_at = vfsgnjx_vv_f64m8(v_at, v_at, l);
+      v_sum = vfredmax_vs_f64m8_f64m1(v_sum, v_at, v_sum, l);
+   }
+   maxVal = vfmv_f_s_f64m1_f64(v_sum);
+#else
 
    tmpA = *pA++;
    tmpB = *pB++;
@@ -68,7 +89,7 @@ float64_t riscv_chebyshev_distance_f64(const float64_t *pA,const float64_t *pB, 
       }
       blockSize --;
    }
-  
+#endif /* defined(RISCV_MATH_VECTOR) */
    return(maxVal);
 }
 

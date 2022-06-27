@@ -113,7 +113,7 @@ void riscv_absmin_q15(
   }                                                                                                         \
                                                                                                             \
   /* Loop unrolling: Compute remaining outputs */                                                           \
-  blkCnt = (blockSize - 1U) % 4U;                                                                           \
+  blkCnt = (blockSize - 1U) & 3U;                                                                           \
                                                                                                             \
                                                                                                             \
   while (blkCnt > 0U)                                                                                       \
@@ -152,6 +152,7 @@ void riscv_absmin_q15(
   uint32_t temp_index = 0;
   q15_t *pData = pSrc;
   out = 0x7fff;
+  outIndex = 0;
   l = vsetvlmax_e16m8();
   v_zero = vmv_v_x_i16m8(0, l);
   l = vsetvlmax_e16m1();

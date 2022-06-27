@@ -162,7 +162,7 @@ void riscv_fir_decimate_fast_q15(
     }
 
     /* Loop unrolling: Compute remaining taps */
-    tapCnt = numTaps % 0x4U;
+    tapCnt = numTaps & 0x3U;
 
 #else
 
@@ -262,7 +262,7 @@ void riscv_fir_decimate_fast_q15(
     sum0 =(q31_t)((sum064 + (sum064<<32u))>>32u);
 #endif
     /* Loop unrolling: Compute remaining taps */
-    tapCnt = numTaps % 0x4U;
+    tapCnt = numTaps & 0x3U;
 
 #else
 
@@ -317,7 +317,7 @@ void riscv_fir_decimate_fast_q15(
     i--;
   }
 
-  i = (numTaps - 1U) % 0x04U;
+  i = (numTaps - 1U) & 0x03U;
 
   /* Copy data */
   while (i > 0U)
@@ -365,14 +365,14 @@ void riscv_fir_decimate_fast_q15(
     /* Copy 2 * decimation factor number of new input samples into the state buffer */
     i = S->M * 2;
 #if defined (RISCV_MATH_VECTOR)
-  uint32_t blkCnti = i;                              /* Loop counter */
-  size_t l;
+    uint32_t blkCnti = i;                              /* Loop counter */
+    size_t l;
 
-  for (; (l = vsetvl_e16m8(blkCnti)) > 0; blkCnti -= l) {
-    vse16_v_i16m8(pStateCur, vle16_v_i16m8(pSrc, l), l);
-    pSrc += l;
-    pStateCur += l;
-  }
+    for (; (l = vsetvl_e16m8(blkCnti)) > 0; blkCnti -= l) {
+      vse16_v_i16m8(pStateCur, vle16_v_i16m8(pSrc, l), l);
+      pSrc += l;
+      pStateCur += l;
+    }
 #else
     do
     {
@@ -448,7 +448,7 @@ void riscv_fir_decimate_fast_q15(
     }
 
     /* Loop unrolling: Compute remaining taps */
-    tapCnt = numTaps % 0x4U;
+    tapCnt = numTaps & 0x3U;
 
 #else
 
@@ -493,14 +493,14 @@ void riscv_fir_decimate_fast_q15(
     /* Copy decimation factor number of new input samples into the state buffer */
     i = S->M;
 #if defined (RISCV_MATH_VECTOR)
-  uint32_t blkCnti = i;                              /* Loop counter */
-  size_t l;
+    uint32_t blkCnti = i;                              /* Loop counter */
+    size_t l;
 
-  for (; (l = vsetvl_e16m8(blkCnti)) > 0; blkCnti -= l) {
-    vse16_v_i16m8 (pStateCur, vle16_v_i16m8(pSrc, l), l);
-    pSrc += l;
-    pStateCur += l;
-  }
+    for (; (l = vsetvl_e16m8(blkCnti)) > 0; blkCnti -= l) {
+      vse16_v_i16m8(pStateCur, vle16_v_i16m8(pSrc, l), l);
+      pSrc += l;
+      pStateCur += l;
+    }
 #else
     do
     {
@@ -565,7 +565,7 @@ void riscv_fir_decimate_fast_q15(
     }
 
     /* Loop unrolling: Compute remaining taps */
-    tapCnt = numTaps % 0x4U;
+    tapCnt = numTaps & 0x3U;
 
 #else
 
@@ -608,14 +608,14 @@ void riscv_fir_decimate_fast_q15(
   /* Points to the start of the state buffer */
   pStateCur = S->pState;
 #if defined (RISCV_MATH_VECTOR)
-  uint32_t blkCnti = (numTaps - 1U);                              /* Loop counter */
-  size_t l;
+    uint32_t blkCnti = (numTaps - 1U);                              /* Loop counter */
+    size_t l;
 
-  for (; (l = vsetvl_e16m8(blkCnti)) > 0; blkCnti -= l) {
-    vse16_v_i16m8 (pStateCur, vle16_v_i16m8(pSrc, l), l);
-    pSrc += l;
-    pStateCur += l;
-  }
+    for (; (l = vsetvl_e16m8(blkCnti)) > 0; blkCnti -= l) {
+      vse16_v_i16m8(pStateCur, vle16_v_i16m8(pSrc, l), l);
+      pSrc += l;
+      pStateCur += l;
+    }
 #else
   i = (numTaps - 1U) >> 2U;
 
@@ -631,7 +631,7 @@ void riscv_fir_decimate_fast_q15(
     i--;
   }
 
-  i = (numTaps - 1U) % 0x04U;
+  i = (numTaps - 1U) & 0x03U;
 
   /* copy data */
   while (i > 0U)

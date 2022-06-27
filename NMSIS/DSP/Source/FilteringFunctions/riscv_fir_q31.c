@@ -245,8 +245,9 @@ void riscv_fir_q31(
       px += l;
       vy = vle32_v_i32m4(pb, l);
       pb += l;
-      acc0 +=vmv_x_s_i64m1_i64(vredsum_vs_i64m8_i64m1 (temp00m1, vwmul_vv_i64m8(vx, vy, l), temp00m1, l));
+      temp00m1 = vredsum_vs_i64m8_i64m1 (temp00m1, vwmul_vv_i64m8(vx, vy, l), temp00m1, l);
     }
+    acc0 +=vmv_x_s_i64m1_i64(temp00m1);
 #else
     /* Perform the multiply-accumulates */
     do
@@ -293,7 +294,7 @@ void riscv_fir_q31(
   }
 
   /* Calculate remaining number of copies */
-  tapCnt = (numTaps - 1U) % 0x4U;
+  tapCnt = (numTaps - 1U) & 0x3U;
 
 #else
 

@@ -204,8 +204,9 @@ void riscv_conv_f32(
       px += l;
       vy = vlse32_v_f32m8(py, bstride, l);
       py -= l;
-      sum += vfmv_f_s_f32m1_f32(vfredosum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l));
+      temp00m1 = vfredusum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l);
     }
+    sum += vfmv_f_s_f32m1_f32(temp00m1);
 #else
 #if defined (RISCV_MATH_LOOPUNROLL)
     /* Loop unrolling: Compute 4 outputs at a time */
@@ -230,7 +231,7 @@ void riscv_conv_f32(
     }
 
     /* Loop unrolling: Compute remaining outputs */
-    k = count % 0x4U;
+    k = count & 0x3U;
 
 
 #else /* defined (RISCV_MATH_LOOPUNROLL)  */
@@ -306,8 +307,9 @@ void riscv_conv_f32(
         px += l;
         vy = vlse32_v_f32m8(py, bstride, l);
         py -= l;
-        sum += vfmv_f_s_f32m1_f32(vfredosum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l));
+        temp00m1 = vfredusum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l);
       }
+      sum += vfmv_f_s_f32m1_f32(temp00m1);
 
       /* Store the result in the accumulator in the destination buffer. */
       *pOut++ = sum;
@@ -498,7 +500,7 @@ void riscv_conv_f32(
       }
 
       /* Loop unrolling: Compute remaining outputs */
-      k = srcBLen % 0x4U;
+      k = srcBLen & 0x3U;
 
 #else
       /* Initialize blkCnt with number of samples */
@@ -610,8 +612,9 @@ void riscv_conv_f32(
       px += l;
       vy = vlse32_v_f32m8(py, bstride, l);
       py -= l;
-      sum += vfmv_f_s_f32m1_f32(vfredosum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l));
+      temp00m1 = vfredusum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l);
     }
+    sum += vfmv_f_s_f32m1_f32(temp00m1);
 #else
 #if defined (RISCV_MATH_LOOPUNROLL)
     /* Loop unrolling: Compute 4 outputs at a time */
@@ -637,7 +640,7 @@ void riscv_conv_f32(
     }
 
     /* Loop unrolling: Compute remaining outputs */
-    k = blockSize3 % 0x4U;
+    k = blockSize3 & 0x3U;
 #else
 
     /* Initialize blkCnt with number of samples */

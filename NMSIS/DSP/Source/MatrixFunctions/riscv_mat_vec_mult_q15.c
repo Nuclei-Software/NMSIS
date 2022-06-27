@@ -65,10 +65,9 @@ void riscv_mat_vec_mult_q15(const riscv_matrix_instance_q15 *pSrcMat, const q15_
     q15_t *pInA = NULL;
     q15_t *pInB = NULL;
     uint16_t blkCnt = pSrcMat->numCols;
-    size_t l;        // max_l is the maximum column elements at a time
+    size_t l;
     uint16_t rownum; //  How many rowumns and rownum are controlled
     vint16m4_t v_inA, v_inB;
-    vint32m8_t vmul;
     q63_t sum = 0;
     vint64m1_t vsum;
     px = pDst;
@@ -84,12 +83,10 @@ void riscv_mat_vec_mult_q15(const riscv_matrix_instance_q15 *pSrcMat, const q15_
             pInA += l;
             v_inB = vle16_v_i16m4(pInB, l);
             pInB += l;
-            /* Perform multiply-accumulates */
-            vmul = vwmul_vv_i32m8(v_inA, v_inB, l);
-            vsum = vwredsum_vs_i32m8_i64m1(vsum, vmul, vsum, l);
+            vsum = vwredsum_vs_i32m8_i64m1(vsum, vwmul_vv_i32m8(v_inA, v_inB, l), vsum, l);
         }
         sum = vmv_x_s_i64m1_i64(vsum);
-	*px++ = (q15_t)(__SSAT((sum >> 15), 16));
+	      *px++ = (q15_t)(__SSAT((sum >> 15), 16));
     }
     /* Set status as RISCV_MATH_SUCCESS */
 #else
@@ -102,15 +99,15 @@ void riscv_mat_vec_mult_q15(const riscv_matrix_instance_q15 *pSrcMat, const q15_
     /* The following loop performs the dot-product of each row in pSrcA with the vector */
     /* row loop */
     while (row > 0) {
-        /* For every row wise process, the pInVec pointer is set
-         ** to the starting address of the vector */
-        pInVec = pVec;
-
         /* Initialize accumulators */
         q63_t sum1 = 0;
         q63_t sum2 = 0;
         q63_t sum3 = 0;
         q63_t sum4 = 0;
+
+        /* For every row wise process, the pInVec pointer is set
+         ** to the starting address of the vector */
+        pInVec = pVec;
 
         /* Loop unrolling: process 2 columns per iteration */
         colCnt = numCols >> 1;

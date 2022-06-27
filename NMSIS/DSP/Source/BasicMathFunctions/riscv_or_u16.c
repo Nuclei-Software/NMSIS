@@ -95,10 +95,10 @@ void riscv_or_u16(
             blkCnt--;
         }
     }
-    if(blkCnt = blockSize%4)
+    if(blkCnt = blockSize & 0x3)
     {
-        pSrcA = (uint8_t * )(pSrcA_temp-3);
-        pSrcB = (uint8_t * )(pSrcB_temp-3);
+        pSrcA = (uint8_t * )(pSrcA_temp - 3);
+        pSrcB = (uint8_t * )(pSrcB_temp - 3);
     }
 
 #else
@@ -115,10 +115,10 @@ void riscv_or_u16(
             blkCnt--;
         }
     }
-    if(blkCnt = blockSize%2)
+    if(blkCnt = blockSize & 0x1)
     {
-        pSrcA = (uint8_t * )(pSrcA_temp-1);
-        pSrcB = (uint8_t * )(pSrcB_temp-1);
+        pSrcA = (uint8_t * )(pSrcA_temp - 1);
+        pSrcB = (uint8_t * )(pSrcB_temp - 1);
     }
 #endif
 

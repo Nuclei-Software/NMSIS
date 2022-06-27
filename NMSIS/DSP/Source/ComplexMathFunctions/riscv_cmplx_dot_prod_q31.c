@@ -70,35 +70,29 @@ void riscv_cmplx_dot_prod_q31(
   blkCnt = numSamples;                               /* Loop counter */
   size_t l;
   ptrdiff_t bstride = 8;
-  vint32m4_t v_R1, v_R2, v_I1, v_I2;
-  vint64m8_t v_RR, v_II, v_RI, v_IR;
-
-  vint64m1_t v_real ;
-  vint64m1_t v_imag ;    /* Initialize accumulated value */
+  vint32m2_t v_R1, v_R2, v_I1, v_I2;
+  vint64m4_t v_RR, v_II, v_RI, v_IR;
 
   l = vsetvl_e64m1(1);
-  v_real = vmv_s_x_i64m1(v_real, 0, l);
-  v_imag = vmv_s_x_i64m1(v_imag, 0, l);
-
-  for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)
+  vint64m1_t v_temp = vmv_s_x_i64m1(v_temp, 0, l);
+  /* Note the total number of V registers to avoid saturation */
+  for (; (l = vsetvl_e32m2(blkCnt)) > 0; blkCnt -= l)
   {
-    v_R1 = vlse32_v_i32m4(pSrcA, bstride, l);
-    v_R2 = vlse32_v_i32m4(pSrcB, bstride, l);
+    v_R1 = vlse32_v_i32m2(pSrcA, bstride, l);
+    v_R2 = vlse32_v_i32m2(pSrcB, bstride, l);
 
-    v_I1 = vlse32_v_i32m4(pSrcA + 1, bstride, l);
-    v_I2 = vlse32_v_i32m4(pSrcB + 1, bstride, l);
-    v_RR = vsra_vx_i64m8(vwmul_vv_i64m8(v_R1, v_R2, l), 14, l);
-    v_II = vsra_vx_i64m8(vwmul_vv_i64m8(v_I1, v_I2, l), 14, l);
-    v_RI = vsra_vx_i64m8(vwmul_vv_i64m8(v_R1, v_I2, l), 14, l);
-    v_IR = vsra_vx_i64m8(vwmul_vv_i64m8(v_I1, v_R2, l), 14, l);
-    v_real = vredsum_vs_i64m8_i64m1(v_real, vssub_vv_i64m8(v_RR, v_II, l), v_real, l);
-    v_imag = vredsum_vs_i64m8_i64m1(v_imag, vsadd_vv_i64m8(v_RI, v_IR, l), v_imag, l);
+    v_I1 = vlse32_v_i32m2(pSrcA + 1, bstride, l);
+    v_I2 = vlse32_v_i32m2(pSrcB + 1, bstride, l);
+    v_RR = vsra_vx_i64m4(vwmul_vv_i64m4(v_R1, v_R2, l), 14, l);
+    v_II = vsra_vx_i64m4(vwmul_vv_i64m4(v_I1, v_I2, l), 14, l);
+    real_sum += vmv_x_s_i64m1_i64(vredsum_vs_i64m4_i64m1(v_temp, vssub_vv_i64m4(v_RR, v_II, l), v_temp, l));
+    v_RI = vsra_vx_i64m4(vwmul_vv_i64m4(v_R1, v_I2, l), 14, l);
+    v_IR = vsra_vx_i64m4(vwmul_vv_i64m4(v_I1, v_R2, l), 14, l);
+    imag_sum += vmv_x_s_i64m1_i64(vredsum_vs_i64m4_i64m1(v_temp, vsadd_vv_i64m4(v_RI, v_IR, l), v_temp, l));
 
     pSrcA += l * 2;
     pSrcB += l * 2;
   }
-  real_sum = vmv_x_s_i64m1_i64(v_real);
-  imag_sum = vmv_x_s_i64m1_i64(v_imag);
 #else
 #if __RISCV_XLEN == 64
         q63_t RESA,RESB;
@@ -186,7 +180,7 @@ void riscv_cmplx_dot_prod_q31(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = numSamples % 0x4U;
+  blkCnt = numSamples & 0x3U;
 
 #else
 

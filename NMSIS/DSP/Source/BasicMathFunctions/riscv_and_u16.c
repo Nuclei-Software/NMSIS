@@ -72,8 +72,8 @@ void riscv_and_u16(
 
   for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
     vx = vle16_v_u16m8(pSrcA, l);
-    vy = vle16_v_u16m8(pSrcB, l);
     pSrcA += l;
+    vy = vle16_v_u16m8(pSrcB, l);
     pSrcB += l;
     vse16_v_u16m8(pDst, vand_vv_u16m8(vx, vy, l), l);
     pDst += l;
@@ -95,7 +95,7 @@ void riscv_and_u16(
             blkCnt--;
         }
     }
-    if(blkCnt = blockSize & 0x3)
+    if(blkCnt = blockSize & 0x3U)
     {
         pSrcA = (uint8_t * )(pSrcA_temp-3);
         pSrcB = (uint8_t * )(pSrcB_temp-3);
@@ -115,10 +115,10 @@ void riscv_and_u16(
             blkCnt--;
         }
     }
-    if(blkCnt = blockSize%2)
+    if(blkCnt = blockSize & 0x1U)
     {
-        pSrcA = (uint8_t * )(pSrcA_temp-1);
-        pSrcB = (uint8_t * )(pSrcB_temp-1);
+        pSrcA = (uint8_t * )(pSrcA_temp - 1);
+        pSrcB = (uint8_t * )(pSrcB_temp - 1);
     }
 #endif
     while (blkCnt > 0U)

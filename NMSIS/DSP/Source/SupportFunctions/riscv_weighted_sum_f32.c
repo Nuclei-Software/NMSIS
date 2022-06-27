@@ -56,16 +56,6 @@ float32_t riscv_weighted_sum_f32(const float32_t *in, const float32_t *weigths, 
     const float32_t *pIn, *pW;
     uint32_t blkCnt;
 
-#if defined(RISCV_MATH_VECTOR)
-    uint32_t blkCnt_v;
-    size_t l;
-    float32_t temp_max;
-    vfloat32m8_t v_x, v_y;
-    vfloat32m8_t v_a, v_b;
-    vfloat32m1_t v_temp;
-    l = vsetvl_e32m1(1);
-    v_temp = vfsub_vv_f32m1(v_temp, v_temp, l);
-#endif
 
     pIn = in;
     pW = weigths;
@@ -74,22 +64,23 @@ float32_t riscv_weighted_sum_f32(const float32_t *in, const float32_t *weigths, 
     accum2=0.0f;
 
 #if defined(RISCV_MATH_VECTOR)
-    blkCnt_v = blockSize;
-    l = vsetvl_e32m8(blkCnt_v);
-    v_a = vfsub_vv_f32m8(v_a,v_a, l);
-    v_b = vfsub_vv_f32m8(v_b,v_b, l);
+    uint32_t blkCnt_v;
+    size_t l;
+    vfloat32m8_t v_x, v_y;
+    vfloat32m1_t v_a, v_b;
+    l = vsetvl_e32m1(1);
+    v_a = vfsub_vv_f32m1(v_a, v_a, l);
+    v_b = vfsub_vv_f32m1(v_b, v_b, l);
     for (; (l = vsetvl_e32m8(blkCnt_v)) > 0; blkCnt_v -= l) {
         v_x = vle32_v_f32m8(pIn, l);
-        v_y = vle32_v_f32m8(pW, l);
-        v_a = vfmacc_vv_f32m8(v_a,v_x,v_y, l);
-        v_b = vfadd_vv_f32m8(v_b,v_y, l);
         pIn += l;
+        v_y = vle32_v_f32m8(pW, l);
         pW += l;
+        v_a = vfredusum_vs_f32m8_f32m1(v_a, vfmul_vv_f32m8(v_x, v_y, l), v_a, l);
+        v_b = vfredusum_vs_f32m8_f32m1(v_b, v_y, v_b, l);
     }
-    l = vsetvl_e32m8(blockSize);
-    accum1 = vfmv_f_s_f32m1_f32 (vfredosum_vs_f32m8_f32m1(v_temp,v_a,v_temp, l));
-    l = vsetvl_e32m8(blockSize);
-    accum2 = vfmv_f_s_f32m1_f32 (vfredosum_vs_f32m8_f32m1(v_temp,v_b,v_temp, l));
+    accum1 += vfmv_f_s_f32m1_f32(v_a);
+    accum2 += vfmv_f_s_f32m1_f32(v_b);
 #else
     blkCnt = blockSize;
     while(blkCnt > 0)
@@ -98,7 +89,7 @@ float32_t riscv_weighted_sum_f32(const float32_t *in, const float32_t *weigths, 
         accum2 += *pW++;
         blkCnt--;
     }
-#endif
+#endif /* #if defined(RISCV_MATH_VECTOR) */
     return(accum1 / accum2);
 }
 

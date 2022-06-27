@@ -111,7 +111,7 @@ void riscv_cmplx_mag_f16(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = numSamples % 0x4U;
+  blkCnt = numSamples & 0x3U;
 
 #else
 

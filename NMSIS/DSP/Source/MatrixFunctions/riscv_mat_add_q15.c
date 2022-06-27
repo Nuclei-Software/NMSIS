@@ -78,29 +78,25 @@ riscv_status riscv_mat_add_q15(
   else
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
-      /* Set status as RISCV_MATH_SUCCESS */
-#if defined(RISCV_MATH_VECTOR)
-    /* Total number of samples in input matrix */
-  numSamples = (uint32_t) pSrcA->numRows * pSrcA->numCols;
-  blkCnt = numSamples;
-  size_t l;
-  vint16m8_t vx, vy;
 
-  for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
-    vx = vle16_v_i16m8(pInA, l);
-    pInA += l;
-    vy = vle16_v_i16m8(pInB, l);
-    vse16_v_i16m8 (pOut, vsadd_vv_i16m8(vx, vy, l), l);
-    pInB += l;
-    pOut += l;
-  }
-#else
-    status = RISCV_MATH_SUCCESS;
   {
     /* Total number of samples in input matrix */
     numSamples = (uint32_t) pSrcA->numRows * pSrcA->numCols;
+#if defined(RISCV_MATH_VECTOR)
+    blkCnt = numSamples;
+    size_t l;
+    vint16m8_t vx, vy;
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+    for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
+      vx = vle16_v_i16m8(pInA, l);
+      pInA += l;
+      vy = vle16_v_i16m8(pInB, l);
+      pInB += l;
+      vse16_v_i16m8(pOut, vsadd_vv_i16m8(vx, vy, l), l);
+      pOut += l;
+    }
+
+#elif defined (RISCV_MATH_LOOPUNROLL)
 
     /* Loop unrolling: Compute 4 outputs at a time */
     blkCnt = numSamples >> 2U;
@@ -133,7 +129,7 @@ riscv_status riscv_mat_add_q15(
     }
 
     /* Loop unrolling: Compute remaining outputs */
-    blkCnt = numSamples % 0x4U;
+    blkCnt = numSamples & 0x3U;
 
 #else
 
@@ -163,7 +159,6 @@ riscv_status riscv_mat_add_q15(
 
   /* Return to application */
   return (status);
-#endif /*defined(RISCV_MATH_VECTOR)*/
 }
 
 /**

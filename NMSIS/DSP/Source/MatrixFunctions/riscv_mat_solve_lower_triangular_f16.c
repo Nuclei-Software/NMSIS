@@ -61,7 +61,6 @@
 
   /* Check for matrix mismatch condition */
   if ((lt->numRows != lt->numCols) ||
-      (a->numRows != a->numCols) ||
       (lt->numRows != a->numRows)   )
   {
     /* Set status as RISCV_MATH_SIZE_MISMATCH */
@@ -76,13 +75,14 @@
           b2 c2   x2   a2
              c3   x3   a3
 
-    x3 = a3 / c3 
+    x3 = a3 / c3
     x2 = (a2 - c2 x3) / b2
 
     */
-    int i,j,k,n;
+    int i,j,k,n,cols;
 
     n = dst->numRows;
+    cols = dst->numCols;
 
     float16_t *pX = dst->pData;
     float16_t *pLT = lt->pData;
@@ -91,7 +91,7 @@
     float16_t *lt_row;
     float16_t *a_col;
 
-    for(j=0; j < n; j ++)
+    for(j=0; j < cols; j ++)
     {
        a_col = &pA[j];
 
@@ -99,19 +99,19 @@
        {
             lt_row = &pLT[n*i];
 
-            float16_t tmp=a_col[i * n];
-            
+            float16_t tmp=a_col[i * cols];
+
             for(k=0; k < i; k++)
             {
-                tmp -= lt_row[k] * pX[n*k+j];
+                tmp -= (_Float16)lt_row[k] * (_Float16)pX[cols*k+j];
             }
 
-            if (lt_row[i]==0.0f)
+            if ((_Float16)lt_row[i]==0.0f16)
             {
               return(RISCV_MATH_SINGULAR);
             }
-            tmp = tmp / lt_row[i];
-            pX[i*n+j] = tmp;
+            tmp = (_Float16)tmp / (_Float16)lt_row[i];
+            pX[i*cols+j] = tmp;
        }
 
     }
@@ -126,4 +126,4 @@
 /**
   @} end of MatrixInv group
  */
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */

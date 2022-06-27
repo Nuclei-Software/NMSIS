@@ -63,7 +63,6 @@ riscv_status status;                             /* status of matrix inverse */
 
   /* Check for matrix mismatch condition */
   if ((ut->numRows != ut->numCols) ||
-      (a->numRows != a->numCols) ||
       (ut->numRows != a->numRows)   )
   {
     /* Set status as RISCV_MATH_SIZE_MISMATCH */
@@ -75,9 +74,10 @@ riscv_status status;                             /* status of matrix inverse */
 
   {
 
-    int i,j,k,n;
+    int i,j,k,n,cols;
 
     n = dst->numRows;
+    cols = dst->numCols;
 
     float16_t *pX = dst->pData;
     float16_t *pUT = ut->pData;
@@ -86,7 +86,7 @@ riscv_status status;                             /* status of matrix inverse */
     float16_t *ut_row;
     float16_t *a_col;
 
-    for(j=0; j < n; j ++)
+    for(j=0; j < cols; j ++)
     {
        a_col = &pA[j];
 
@@ -94,19 +94,19 @@ riscv_status status;                             /* status of matrix inverse */
        {
             ut_row = &pUT[n*i];
 
-            float16_t tmp=a_col[i * n];
-            
+            float16_t tmp=a_col[i * cols];
+
             for(k=n-1; k > i; k--)
             {
-                tmp -= ut_row[k] * pX[n*k+j];
+                tmp -= (_Float16)ut_row[k] * (_Float16)pX[cols*k+j];
             }
 
-            if (ut_row[i]==0.0f)
+            if ((_Float16)ut_row[i]==0.0f16)
             {
               return(RISCV_MATH_SINGULAR);
             }
-            tmp = tmp / ut_row[i];
-            pX[i*n+j] = tmp;
+            tmp = (_Float16)tmp / (_Float16)ut_row[i];
+            pX[i*cols+j] = tmp;
        }
 
     }
@@ -114,7 +114,7 @@ riscv_status status;                             /* status of matrix inverse */
 
   }
 
-  
+
   /* Return to application */
   return (status);
 }
@@ -123,4 +123,4 @@ riscv_status status;                             /* status of matrix inverse */
 /**
   @} end of MatrixInv group
  */
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */

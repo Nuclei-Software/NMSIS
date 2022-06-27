@@ -156,7 +156,7 @@ void riscv_lms_norm_q31(
     }
 
     /* Loop unrolling: Compute remaining taps */
-    tapCnt = numTaps % 0x4U;
+    tapCnt = numTaps & 0x3U;
 
 #else
 
@@ -176,8 +176,9 @@ void riscv_lms_norm_q31(
       px += l;
       vy = vle32_v_i32m4(pb, l);
       pb += l;
-      acc += vmv_x_s_i64m1_i64(vredsum_vs_i64m8_i64m1(temp00m1, vwmul_vv_i64m8(vx, vy, l), temp00m1, l));
+      temp00m1 = vredsum_vs_i64m8_i64m1(temp00m1, vwmul_vv_i64m8(vx, vy, l), temp00m1, l);
     }
+    acc += vmv_x_s_i64m1_i64(temp00m1);
 #else
     while (tapCnt > 0U)
     {
@@ -253,7 +254,7 @@ void riscv_lms_norm_q31(
     }
 
     /* Loop unrolling: Compute remaining taps */
-    tapCnt = numTaps % 0x4U;
+    tapCnt = numTaps & 0x3U;
 
 #else
 
@@ -320,7 +321,7 @@ void riscv_lms_norm_q31(
   }
 
   /* Loop unrolling: Compute remaining taps */
-  tapCnt = (numTaps - 1U) % 0x4U;
+  tapCnt = (numTaps - 1U) & 0x3U;
 
 #else
 

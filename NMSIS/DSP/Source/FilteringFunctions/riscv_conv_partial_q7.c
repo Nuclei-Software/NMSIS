@@ -235,8 +235,9 @@ riscv_status riscv_conv_partial_q7(
       px += l;
       vy = vlse8_v_i8m4(py, bstride, l);
       py -= l;
-      sum += vmv_x_s_i16m1_i16(vredsum_vs_i16m8_i16m1(temp00m1, vwmul_vv_i16m8(vx, vy, l), temp00m1, l));
+      temp00m1 = vredsum_vs_i16m8_i16m1(temp00m1, vwmul_vv_i16m8(vx, vy, l), temp00m1, l);
     }
+    sum += vmv_x_s_i16m1_i16(temp00m1);
 #else
       while (k > 0U)
       {
@@ -312,8 +313,9 @@ riscv_status riscv_conv_partial_q7(
         px += l;
         vy = vlse8_v_i8m4(py, bstride, l);
         py -= l;
-        sum += vmv_x_s_i16m1_i16(vredsum_vs_i16m8_i16m1(temp00m1, vwmul_vv_i16m8(vx, vy, l), temp00m1, l));
+        temp00m1 = vredsum_vs_i16m8_i16m1(temp00m1, vwmul_vv_i16m8(vx, vy, l), temp00m1, l);
       }
+      sum += vmv_x_s_i16m1_i16(temp00m1);
 
       /* Store the result in the accumulator in the destination buffer. */
       *pOut++ = (q7_t) (__SSAT(sum >> 7U, 8));
@@ -469,7 +471,7 @@ riscv_status riscv_conv_partial_q7(
 
         /* If the srcBLen is not a multiple of 4, compute any remaining MACs here.
          ** No loop unrolling is used. */
-        k = srcBLen % 0x4U;
+        k = srcBLen & 0x3U;
 
         while (k > 0U)
         {
@@ -515,7 +517,7 @@ riscv_status riscv_conv_partial_q7(
       }
 
       /* Loop unrolling: Compute remaining outputs */
-      blkCnt = (uint32_t) blockSize2 % 0x4U;
+      blkCnt = (uint32_t) blockSize2 & 0x3U;
 
 #else
 
@@ -567,7 +569,7 @@ riscv_status riscv_conv_partial_q7(
         }
 
         /* Loop unrolling: Compute remaining outputs */
-        k = srcBLen % 0x4U;
+        k = srcBLen & 0x3U;
 
 #else
 
@@ -717,7 +719,7 @@ riscv_status riscv_conv_partial_q7(
       }
 
       /* Loop unrolling: Compute remaining outputs */
-      k = count % 0x4U;
+      k = count & 0x3U;
 
 #else
 
@@ -738,8 +740,9 @@ riscv_status riscv_conv_partial_q7(
       px += l;
       vy = vlse8_v_i8m4(py, bstride, l);
       py -= l;
-      sum += vmv_x_s_i16m1_i16(vredsum_vs_i16m8_i16m1(temp00m1, vwmul_vv_i16m8(vx, vy, l), temp00m1, l));
+      temp00m1 = vredsum_vs_i16m8_i16m1(temp00m1, vwmul_vv_i16m8(vx, vy, l), temp00m1, l);
     }
+    sum += vmv_x_s_i16m1_i16(temp00m1);
 #else
       while (k > 0U)
       {

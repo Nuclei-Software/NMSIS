@@ -33,6 +33,7 @@
   @ingroup groupStats
  */
 
+
 /**
   @addtogroup mean
   @{
@@ -45,24 +46,29 @@
   @param[out]    pResult    mean value returned here.
   @return        none
  */
-void riscv_mean_f64(const float64_t *pSrc, uint32_t blockSize,
-                    float64_t *pResult)
+void riscv_mean_f64(
+  const float64_t * pSrc,
+        uint32_t blockSize,
+        float64_t * pResult)
 {
-    uint32_t blkCnt;    /* Loop counter */
-    float64_t sum = 0.; /* Temporary result storage */
-    /* Initialize blkCnt with number of samples */
-    blkCnt = blockSize;
+        uint32_t blkCnt;                               /* Loop counter */
+        float64_t sum = 0.;                            /* Temporary result storage */
 
-    while (blkCnt > 0U) {
-        /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) */
-        sum += *pSrc++;
-        /* Decrement loop counter */
-        blkCnt--;
-    }
+  /* Initialize blkCnt with number of samples */
+  blkCnt = blockSize;
 
-    /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) / blockSize  */
-    /* Store result to destination */
-    *pResult = (sum / blockSize);
+  while (blkCnt > 0U)
+  {
+    /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) */
+    sum += *pSrc++;
+
+    /* Decrement loop counter */
+    blkCnt--;
+  }
+
+  /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) / blockSize  */
+  /* Store result to destination */
+  *pResult = (sum / blockSize);
 }
 
 /**

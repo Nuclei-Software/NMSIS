@@ -87,17 +87,17 @@ void riscv_xor_u8(
             blkCnt--;
         }
     }
-    if(blkCnt = blockSize%8)
+    if(blkCnt = blockSize & 0x7)
     {
-        pSrcA = (uint8_t * )(pSrcA_temp-7);
-        pSrcB = (uint8_t * )(pSrcB_temp-7);
+        pSrcA = (uint8_t * )(pSrcA_temp - 7);
+        pSrcB = (uint8_t * )(pSrcB_temp - 7);
     }
 
 #else
     uint32_t * pSrcA_temp = pSrcA;
     uint32_t * pSrcB_temp = pSrcB;
     uint32_t * pDst_temp = pDst;
-    if(blkCnt = blockSize >> 2)
+    if (blkCnt = blockSize >> 2)
     {
         while (blkCnt > 0U)
         {
@@ -107,10 +107,10 @@ void riscv_xor_u8(
             blkCnt--;
         }
     }
-    if(blkCnt = blockSize%4)
+    if (blkCnt = blockSize & 0x3U)
     {
-        pSrcA = (uint8_t * )(pSrcA_temp-3);
-        pSrcB = (uint8_t * )(pSrcB_temp-3);
+        pSrcA = (uint8_t * )(pSrcA_temp - 3);
+        pSrcB = (uint8_t * )(pSrcB_temp - 3);
     }
 #endif /*defined (RISCV_DSP64) || (__RISCV_XLEN == 64)*/
 

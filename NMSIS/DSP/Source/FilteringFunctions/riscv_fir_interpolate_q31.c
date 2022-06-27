@@ -185,7 +185,7 @@ void riscv_fir_interpolate_q31(
       }
 
       /* If the polyPhase length is not a multiple of 4, compute the remaining filter taps */
-      tapCnt = phaseLen % 0x4U;
+      tapCnt = phaseLen & 0x3U;
 
       while (tapCnt > 0U)
       {
@@ -239,7 +239,7 @@ void riscv_fir_interpolate_q31(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 
@@ -284,11 +284,12 @@ void riscv_fir_interpolate_q31(
 
       for (; (l = vsetvl_e32m4(blkCnt_v)) > 0; blkCnt_v -= l) {
         v_x = vle32_v_i32m4(ptr1, l);
-        v_y = vlse32_v_i32m4(ptr2, bstride, l);
         ptr1 += l;
+        v_y = vlse32_v_i32m4(ptr2, bstride, l);
         ptr2 += l * (S->L);
-        sum0 += vmv_x_s_i64m1_i64(vredsum_vs_i64m8_i64m1(v_temp, vwmul_vv_i64m8(v_x, v_y, l), v_temp, l));
+        v_temp = vredsum_vs_i64m8_i64m1(v_temp, vwmul_vv_i64m8(v_x, v_y, l), v_temp, l);
       }
+      sum0 += vmv_x_s_i64m1_i64(v_temp);
 #else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -319,7 +320,7 @@ void riscv_fir_interpolate_q31(
       }
 
       /* Loop unrolling: Compute remaining outputs */
-      tapCnt = phaseLen % 0x4U;
+      tapCnt = phaseLen & 0x3U;
 
 #else
 
@@ -385,7 +386,7 @@ void riscv_fir_interpolate_q31(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  tapCnt = (phaseLen - 1U) % 0x04U;
+  tapCnt = (phaseLen - 1U) & 0x03U;
 
 #else
 

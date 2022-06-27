@@ -87,10 +87,9 @@ void riscv_cmplx_mag_f32(
   {
     v_R = vlse32_v_f32m8(pSrc, bstride, l);
     v_I = vlse32_v_f32m8(pSrc + 1, bstride, l);
-
+    pSrc += l * 2;
     v_sum = vfadd_vv_f32m8(vfmul_vv_f32m8(v_R, v_R, l), vfmul_vv_f32m8(v_I, v_I, l), l);
     vse32_v_f32m8(pDst, vfsqrt_v_f32m8(v_sum, l), l);
-    pSrc += l * 2;
     pDst += l;
   }
 #else

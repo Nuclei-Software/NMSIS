@@ -57,18 +57,18 @@ float32_t riscv_euclidean_distance_f32(const float32_t *pA,const float32_t *pB, 
    size_t l;
    vfloat32m8_t v_x, v_y;
    vfloat32m8_t v_at;
-   vfloat32m1_t v_temp;
+   vfloat32m1_t v_sum;
    l = vsetvl_e32m1(1);
-   v_temp = vfsub_vv_f32m1(v_temp, v_temp, l);
+   v_sum = vfsub_vv_f32m1(v_sum, v_sum, l);
    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
       v_x = vle32_v_f32m8(pA, l);
-      v_y = vle32_v_f32m8(pB, l);
-      v_at = vfsub_vv_f32m8(v_x,v_y, l);
-
-      accum = vfmv_f_s_f32m1_f32 (vfredosum_vs_f32m8_f32m1(v_temp,vfmul_vv_f32m8(v_at,v_at, l),v_temp, l));
       pA += l;
+      v_y = vle32_v_f32m8(pB, l);
       pB += l;
+      v_at = vfsub_vv_f32m8(v_x, v_y, l);
+      v_sum = vfredusum_vs_f32m8_f32m1(v_sum, vfmul_vv_f32m8(v_at, v_at, l), v_sum, l);
    }
+   accum = vfmv_f_s_f32m1_f32(v_sum);
 #else
    while(blockSize > 0)
    {
@@ -76,7 +76,7 @@ float32_t riscv_euclidean_distance_f32(const float32_t *pA,const float32_t *pB, 
       accum += SQ(tmp);
       blockSize --;
    }
-#endif
+#endif /* defined(RISCV_MATH_VECTOR) */
    riscv_sqrt_f32(accum,&tmp);
    return(tmp);
 }

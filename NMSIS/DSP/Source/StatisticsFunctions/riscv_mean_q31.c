@@ -58,26 +58,23 @@ void riscv_mean_q31(
         uint32_t blockSize,
         q31_t * pResult)
 {
+        uint32_t blkCnt;                               /* Loop counter */
+        q63_t sum = 0;                                 /* Temporary result storage */
+
 #if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = blockSize;                               /* Loop counter */
+  blkCnt = blockSize;                               /* Loop counter */
   size_t l;
-  const q31_t * input = pSrc;
-  q31_t * result = pResult;
-  q63_t sum;
+  const q31_t *input = pSrc;
   vint32m8_t v_in;
   l = vsetvl_e64m1(1);
   vint64m1_t v_sum = vmv_s_x_i64m1(v_sum, 0, l);                /* init v_sum data */
   for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
     v_in = vle32_v_i32m8(input, l);
     input += l;
-    v_sum = vwredsum_vs_i32m8_i64m1(v_sum, v_in ,v_sum, l);
+    v_sum = vwredsum_vs_i32m8_i64m1(v_sum, v_in, v_sum, l);
   }
-  l = vsetvl_e64m1(1);
-  sum = vmv_x_s_i64m1_i64(v_sum);
-  * result = (q31_t) (sum / blockSize);
+  sum += vmv_x_s_i64m1_i64(v_sum);
 #else
-        uint32_t blkCnt;                               /* Loop counter */
-        q63_t sum = 0;                                 /* Temporary result storage */
 #if __RISCV_XLEN == 64
         q63_t valueA,valueB;                                 /* Temporary result storage */
 #endif /* __RISCV_XLEN == 64 */
@@ -109,7 +106,7 @@ void riscv_mean_q31(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 
@@ -126,11 +123,10 @@ void riscv_mean_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_MATH_VECTOR) */
   /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) / blockSize  */
   /* Store result to destination */
   *pResult = (q31_t) (sum / blockSize);
-#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

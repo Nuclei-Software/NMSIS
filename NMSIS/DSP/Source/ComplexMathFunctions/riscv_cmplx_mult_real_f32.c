@@ -90,14 +90,13 @@ void riscv_cmplx_mult_real_f32(
     v_Rc = vlse32_v_f32m8(pSrcCmplx, bstride, l);
     v_Ic = vlse32_v_f32m8(pSrcCmplx + 1, bstride, l);
     v_Rr = vle32_v_f32m8(pSrcReal, l);
+    pSrcReal += l;
+    pSrcCmplx += l * 2;
 
     vR2_m8 = vfmul_vv_f32m8(v_Rc, v_Rr, l);
     vI2_m8 = vfmul_vv_f32m8(v_Ic, v_Rr, l);
     vsse32_v_f32m8(pCmplxDst, bstride, vR2_m8, l);
     vsse32_v_f32m8(pCmplxDst + 1, bstride, vI2_m8, l);
-
-    pSrcReal += l;
-    pSrcCmplx += l * 2;
     pCmplxDst += l * 2;
   }
 #else
@@ -136,7 +135,7 @@ void riscv_cmplx_mult_real_f32(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = numSamples % 0x4U;
+  blkCnt = numSamples & 0x3U;
 
 #else
 

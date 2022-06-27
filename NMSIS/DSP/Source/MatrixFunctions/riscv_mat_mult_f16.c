@@ -136,7 +136,7 @@ riscv_status riscv_mat_mult_f16(
         }
 
         /* Loop unrolling: Compute remaining MACs */
-        colCnt = numColsA % 0x4U;
+        colCnt = numColsA & 0x3U;
 
 #else
 

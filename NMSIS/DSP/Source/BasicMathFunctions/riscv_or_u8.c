@@ -64,8 +64,8 @@ void riscv_or_u8(
 
   for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
     vx = vle8_v_u8m8(pSrcA, l);
-    vy = vle8_v_u8m8(pSrcB, l);
     pSrcA += l;
+    vy = vle8_v_u8m8(pSrcB, l);
     pSrcB += l;
     vse8_v_u8m8(pDst, vor_vv_u8m8(vx, vy, l), l);
     pDst += l;
@@ -87,10 +87,10 @@ void riscv_or_u8(
             blkCnt--;
         }
     }
-    if(blkCnt = blockSize%8)
+    if(blkCnt = blockSize & 0x7U)
     {
-        pSrcA = (uint8_t * )(pSrcA_temp-7);
-        pSrcB = (uint8_t * )(pSrcB_temp-7);
+        pSrcA = (uint8_t * )(pSrcA_temp - 7);
+        pSrcB = (uint8_t * )(pSrcB_temp - 7);
     }
 
 #else
@@ -107,10 +107,10 @@ void riscv_or_u8(
             blkCnt--;
         }
     }
-    if(blkCnt = blockSize%4)
+    if(blkCnt = blockSize & 0x3U)
     {
-        pSrcA = (uint8_t * )(pSrcA_temp-3);
-        pSrcB = (uint8_t * )(pSrcB_temp-3);
+        pSrcA = (uint8_t * )(pSrcA_temp - 3);
+        pSrcB = (uint8_t * )(pSrcB_temp - 3);
     }
 #endif /*defined (RISCV_DSP64) || (__RISCV_XLEN == 64)*/
 

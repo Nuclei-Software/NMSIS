@@ -163,9 +163,9 @@ void riscv_conv_q15(
       px += l;
       vy = vlse16_v_i16m4(py, bstride, l);
       py -= l;
-      sum += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l));
+      temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
     }
-
+    sum += vmv_x_s_i32m1_i32(temp00m1);
 
     /* Store the result in the accumulator in the destination buffer. */
     *pOut++ = (q15_t) (__SSAT((sum >> 15), 16));
@@ -326,9 +326,9 @@ void riscv_conv_q15(
         px += l;
         vy = vlse16_v_i16m4(py, bstride, l);
         py -= l;
-        sum += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l));
+        temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
       }
-
+      sum += vmv_x_s_i32m1_i32(temp00m1);
       /* Store the result in the accumulator in the destination buffer. */
       *pOut++ = (q15_t) (__SSAT(sum >> 15, 16));
 
@@ -427,7 +427,7 @@ void riscv_conv_q15(
 
       /* If the srcBLen is not a multiple of 4, compute any remaining MACs here.
        ** No loop unrolling is used. */
-      k = srcBLen % 0x4U;
+      k = srcBLen & 0x3U;
 
       if (k == 1U)
       {
@@ -549,7 +549,7 @@ void riscv_conv_q15(
 
       /* If the srcBLen is not a multiple of 4, compute any remaining MACs here.
        ** No loop unrolling is used. */
-      k = srcBLen % 0x4U;
+      k = srcBLen & 0x3U;
 
       while (k > 0U)
       {
@@ -662,9 +662,9 @@ void riscv_conv_q15(
       px += l;
       vy = vlse16_v_i16m4(py, bstride, l);
       py -= l;
-      sum += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l));
+      temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
     }
-
+    sum += vmv_x_s_i32m1_i32(temp00m1);
     /* Store the result in the accumulator in the destination buffer. */
     *pOut++ = (q15_t) (__SSAT((sum >> 15), 16));
 
@@ -720,7 +720,7 @@ void riscv_conv_q15(
 #endif /* __RISCV_XLEN == 64 */
     /* If the blockSize3 is not a multiple of 4, compute any remaining MACs here.
      ** No loop unrolling is used. */
-    k = blockSize3 % 0x4U;
+    k = blockSize3 & 0x3U;
 
     while (k > 0U)
     {

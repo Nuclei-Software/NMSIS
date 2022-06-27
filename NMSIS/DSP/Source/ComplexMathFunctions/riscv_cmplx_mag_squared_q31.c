@@ -67,12 +67,11 @@ void riscv_cmplx_mag_squared_q31(
   {
     v_R = vlse32_v_i32m4(pSrc, bstride, l);
     v_I = vlse32_v_i32m4(pSrc + 1, bstride, l);
-
+    pSrc += l * 2;
     vR2_m4 = vnclip_wx_i32m4(vwmul_vv_i64m8(v_R, v_R, l), 33, l);
     vI2_m4 = vnclip_wx_i32m4(vwmul_vv_i64m8(v_I, v_I, l), 33, l);
     v_sum = vsadd_vv_i32m4(vR2_m4, vI2_m4, l);
     vse32_v_i32m4(pDst, v_sum, l);
-    pSrc += l * 2;
     pDst += l;
   }
 #else
@@ -146,7 +145,7 @@ void riscv_cmplx_mag_squared_q31(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = numSamples % 0x4U;
+  blkCnt = numSamples & 0x3U;
 
 #else
 

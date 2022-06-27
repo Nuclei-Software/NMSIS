@@ -56,9 +56,11 @@ void riscv_q7_to_q31(
         q31_t * pDst,
         uint32_t blockSize)
 {
+        uint32_t blkCnt;                               /* Loop counter */
+  const q7_t *pIn = pSrc;                              /* Source pointer */
+
 #if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = blockSize;                         /* Loop counter */
-  const q7_t *pIn = pSrc;                             /* Source pointer */
+  blkCnt = blockSize;                         /* Loop counter */
   size_t l;
   vint8m2_t v_in;
   vint32m8_t v_out;
@@ -71,8 +73,6 @@ void riscv_q7_to_q31(
     pDst += l;
   }
 #else
-        uint32_t blkCnt;                               /* Loop counter */
-  const q7_t *pIn = pSrc;                              /* Source pointer */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -100,7 +100,7 @@ void riscv_q7_to_q31(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 

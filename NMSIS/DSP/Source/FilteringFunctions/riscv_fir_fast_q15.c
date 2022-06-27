@@ -249,11 +249,12 @@ void riscv_fir_fast_q15(
     blkCnt_v = numTaps;
     for (; (l = vsetvl_e16m4(blkCnt_v)) > 0; blkCnt_v -= l) {
         v_x = vle16_v_i16m4(px, l);
-        v_y = vle16_v_i16m4(pb, l);
         px += l;
+        v_y = vle16_v_i16m4(pb, l);
         pb += l;
-        acc0 += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, vwmul_vv_i32m8(v_x, v_y, l), v_temp, l));
+        v_temp = vredsum_vs_i32m8_i32m1(v_temp, vwmul_vv_i32m8(v_x, v_y, l), v_temp, l);
     }
+    acc0 += vmv_x_s_i32m1_i32(v_temp);
 #else
     tapCnt = numTaps >> 1U;
     do
@@ -301,7 +302,7 @@ void riscv_fir_fast_q15(
   }
 
   /* Calculate remaining number of copies */
-  tapCnt = (numTaps - 1U) % 0x4U;
+  tapCnt = (numTaps - 1U) & 0x3U;
 
 #else
 

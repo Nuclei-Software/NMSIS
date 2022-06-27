@@ -50,14 +50,17 @@ void riscv_fill_f64(
   float64_t * pDst,
   uint32_t blockSize)
 {
+  uint32_t blkCnt;                               /* Loop counter */
+
   /* Initialize blkCnt with number of samples */
-  uint32_t blkCnt = blockSize;
+  blkCnt = blockSize;
 
 #if defined(RISCV_MATH_VECTOR)
   size_t l;
   vfloat64m8_t v_fill;
+  l = vsetvlmax_e64m8();
+  v_fill = vfmv_v_f_f64m8(value, l);
   for (; (l = vsetvl_e64m8(blkCnt)) > 0; blkCnt -= l) {
-    v_fill = vfmv_v_f_f64m8(value, l);
     vse64_v_f64m8 (pDst, v_fill, l);
     pDst += l;
   }

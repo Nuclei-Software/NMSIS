@@ -65,42 +65,6 @@ void riscv_var_f32(
         uint32_t blockSize,
         float32_t * pResult)
 {
-#if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = blockSize;                   /* Loop counter */
-  float32_t sum = 0.0f;                          /* Temporary result storage */
-  float32_t fSum = 0.0f;
-  float32_t fMean, fValue;
-  size_t l;
-  const float32_t * input = pSrc;
-  float32_t * output = pResult;
-  vfloat32m8_t v_in;                               /* Temporary variable to store input value */
-  vfloat32m8_t v_fValue;
-  l = vsetvl_e32m1(1);
-  vfloat32m1_t v_fSum = vfmv_s_f_f32m1(v_fSum, 0.0f, l);
-  vfloat32m1_t v_sum = vfmv_s_f_f32m1(v_sum, 0.0f, l);
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
-  {
-    v_in = vle32_v_f32m8(input, l);
-    input += l;
-    v_sum = vfredosum_vs_f32m8_f32m1(v_sum, v_in, v_sum, l);
-  }
-  l = vsetvl_e32m1(1);
-  sum = vfmv_f_s_f32m1_f32(v_sum);
-  /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) / blockSize  */
-  fMean = sum / (float32_t) blockSize;
-  input = pSrc;
-  for (blkCnt = blockSize; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
-  {
-    v_in = vle32_v_f32m8(input, l);
-    input += l;
-    v_fValue = vfsub_vf_f32m8(v_in, fMean, l);
-    v_fSum = vfredosum_vs_f32m8_f32m1(v_fSum, vfmul_vv_f32m8(v_fValue, v_fValue, l), v_fSum, l);
-  }
-  l = vsetvl_e32m1(1);
-  fSum = vfmv_f_s_f32m1_f32(v_fSum);
-   /* Variance */
-  *output = fSum / (float32_t)(blockSize - 1.0f);
-#else
         uint32_t blkCnt;                               /* Loop counter */
         float32_t sum = 0.0f;                          /* Temporary result storage */
         float32_t fSum = 0.0f;
@@ -113,6 +77,35 @@ void riscv_var_f32(
     return;
   }
 
+#if defined(RISCV_MATH_VECTOR)
+  blkCnt = blockSize;                   /* Loop counter */
+  size_t l;
+  vfloat32m8_t v_in;                               /* Temporary variable to store pInput value */
+  vfloat32m8_t v_fValue;
+  l = vsetvl_e32m1(1);
+  vfloat32m1_t v_sum = vfmv_s_f_f32m1(v_sum, 0.0f, l);
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+  {
+    v_in = vle32_v_f32m8(pInput, l);
+    pInput += l;
+    v_sum = vfredusum_vs_f32m8_f32m1(v_sum, v_in, v_sum, l);
+  }
+  sum += vfmv_f_s_f32m1_f32(v_sum);
+  /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) / blockSize  */
+  fMean = sum / (float32_t) blockSize;
+  pInput = pSrc;
+  blkCnt = blockSize;
+  l = vsetvl_e32m1(1);
+  vfloat32m1_t v_fSum = vfmv_s_f_f32m1(v_fSum, 0.0f, l);
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+  {
+    v_in = vle32_v_f32m8(pInput, l);
+    pInput += l;
+    v_fValue = vfsub_vf_f32m8(v_in, fMean, l);
+    v_fSum = vfredosum_vs_f32m8_f32m1(v_fSum, vfmul_vv_f32m8(v_fValue, v_fValue, l), v_fSum, l);
+  }
+  fSum += vfmv_f_s_f32m1_f32(v_fSum);
+#else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -133,7 +126,7 @@ void riscv_var_f32(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 
@@ -198,10 +191,9 @@ void riscv_var_f32(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* #if defined(RISCV_MATH_VECTOR) */
   /* Variance */
   *pResult = fSum / (float32_t)(blockSize - 1.0f);
-#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

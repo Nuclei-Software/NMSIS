@@ -121,7 +121,7 @@ void riscv_sub_q7(
   /* Loop unrolling: Compute remaining outputs */
   blkCnt = blockSize & 0x7U;
 #else
-	blkCnt = blockSize & 0x3U;
+  blkCnt = blockSize & 0x3U;
 #endif
 
 #else

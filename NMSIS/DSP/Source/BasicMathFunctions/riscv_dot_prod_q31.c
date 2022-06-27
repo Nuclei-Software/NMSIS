@@ -73,11 +73,12 @@ void riscv_dot_prod_q31(
   for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)
   {
     v_inA = vle32_v_i32m4(pSrcA, l);
-    v_inB = vle32_v_i32m4(pSrcB, l);
     pSrcA += l;
+    v_inB = vle32_v_i32m4(pSrcB, l);
     pSrcB += l;
-    sum += vmv_x_s_i64m1_i64(vredsum_vs_i64m8_i64m1(temp00, vsra_vx_i64m8(vwmul_vv_i64m8(v_inA, v_inB, l), 14, l), temp00, l));
+    temp00 = vredsum_vs_i64m8_i64m1(temp00, vsra_vx_i64m8(vwmul_vv_i64m8(v_inA, v_inB, l), 14, l), temp00, l);
   }
+  sum += vmv_x_s_i64m1_i64(temp00);
 #else
 
 #if defined (RISCV_MATH_LOOPUNROLL)
@@ -118,7 +119,7 @@ void riscv_dot_prod_q31(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 

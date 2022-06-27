@@ -47,53 +47,70 @@
   @return        none
  */
 
-void riscv_mse_f32(const float32_t *pSrcA, const float32_t *pSrcB,
-                   uint32_t blockSize, float32_t *result)
+
+
+
+
+
+
+
+
+void riscv_mse_f32(
+    const float32_t * pSrcA,
+    const float32_t * pSrcB,
+    uint32_t    blockSize,
+    float32_t * result)
+
 {
-    uint32_t blkCnt; /* Loop counter */
-    float32_t inA, inB;
-    float32_t sum = 0.0f; /* Temporary return variable */
-#if defined(RISCV_MATH_LOOPUNROLL)
-    /* Loop unrolling: Compute 4 outputs at a time */
-    blkCnt = (blockSize) >> 2;
-    /* First part of the processing with loop unrolling. Compute 4 outputs at a
-     *time.
-     ** a second loop below computes the remaining 1 to 3 samples. */
-    while (blkCnt > 0U) {
-        inA = *pSrcA++;
-        inB = *pSrcB++;
-        inA = inA - inB;
-        sum += inA * inA;
+  uint32_t blkCnt;                               /* Loop counter */
+  float32_t inA, inB;
+  float32_t sum = 0.0f;                          /* Temporary return variable */
+#if defined (RISCV_MATH_LOOPUNROLL)
+  /* Loop unrolling: Compute 4 outputs at a time */
+  blkCnt = (blockSize) >> 2;
 
-        inA = *pSrcA++;
-        inB = *pSrcB++;
-        inA = inA - inB;
-        sum += inA * inA;
+  /* First part of the processing with loop unrolling. Compute 4 outputs at a time.
+   ** a second loop below computes the remaining 1 to 3 samples. */
+  while (blkCnt > 0U)
+  {
 
-        inA = *pSrcA++;
-        inB = *pSrcB++;
-        inA = inA - inB;
-        sum += inA * inA;
+    inA = *pSrcA++;
+    inB = *pSrcB++;
+    inA = inA - inB;
+    sum += inA * inA;
 
-        inA = *pSrcA++;
-        inB = *pSrcB++;
-        inA = inA - inB;
-        sum += inA * inA;
-        /* Decrement loop counter */
-        blkCnt--;
-    }
-    /* Loop unrolling: Compute remaining outputs */
-    blkCnt = (blockSize) & 3;
+    inA = *pSrcA++;
+    inB = *pSrcB++;
+    inA = inA - inB;
+    sum += inA * inA;
+
+    inA = *pSrcA++;
+    inB = *pSrcB++;
+    inA = inA - inB;
+    sum += inA * inA;
+
+    inA = *pSrcA++;
+    inB = *pSrcB++;
+    inA = inA - inB;
+    sum += inA * inA;
+
+    /* Decrement loop counter */
+    blkCnt--;
+  }
+
+
+  /* Loop unrolling: Compute remaining outputs */
+  blkCnt = (blockSize) & 3;
 #else
-    /* Initialize blkCnt with number of samples */
-    blkCnt = blockSize;
+  /* Initialize blkCnt with number of samples */
+  blkCnt = blockSize;
 #endif
 
 #if defined(RISCV_MATH_VECTOR)
     size_t l;
-    float32_t *pInA = pSrcA;
-    float32_t *pInB = pSrcB;
-    vfloat32m8_t v_inA, v_inB, v_subVal, v_tmpVal;
+    const float32_t *pInA = pSrcA;
+    const float32_t *pInB = pSrcB;
+    vfloat32m8_t v_inA, v_inB, v_subVal;
     vfloat32m8_t v_mul;
     l = vsetvl_e32m1(1);
     vfloat32m1_t v_sum = vfmv_s_f_f32m1(v_sum, 0, l);
@@ -107,17 +124,19 @@ void riscv_mse_f32(const float32_t *pSrcA, const float32_t *pSrcB,
         v_mul = vfmul_vv_f32m8(v_subVal, v_subVal, l);
         v_sum = vfredosum_vs_f32m8_f32m1(v_sum, v_mul, v_sum, l);
     }
-    sum = vfmv_f_s_f32m1_f32(v_sum);
+    sum += vfmv_f_s_f32m1_f32(v_sum);
 #else
 
-    while (blkCnt > 0U) {
-        inA = *pSrcA++;
-        inB = *pSrcB++;
-        inA = inA - inB;
-        sum += inA * inA;
-        /* Decrement loop counter */
-        blkCnt--;
-    }
+  while (blkCnt > 0U)
+  {
+    inA = *pSrcA++;
+    inB = *pSrcB++;
+    inA = inA - inB;
+    sum += inA * inA;
+
+    /* Decrement loop counter */
+    blkCnt--;
+  }
 #endif /* defined(RISCV_MATH_VECTOR) */
 
     /* Store result in destination buffer */

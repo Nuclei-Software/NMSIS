@@ -1,10 +1,10 @@
 /* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
- * Title:        riscv_mat_mult_q31.c
+ * Title:        riscv_mat_mult_opt_q31.c
  * Description:  Q31 matrix multiplication
  *
- * $Date:        23 April 2021
- * $Revision:    V1.9.0
+ * $Date:        3 Nov 2021
+ * $Revision:    V1.10.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
@@ -43,6 +43,7 @@
   @param[in]     pSrcA      points to the first input matrix structure
   @param[in]     pSrcB      points to the second input matrix structure
   @param[out]    pDst       points to output matrix structure
+  @param[in]  pState  points to the array for storing intermediate results
   @return        execution status
                    - \ref RISCV_MATH_SUCCESS       : Operation successful
                    - \ref RISCV_MATH_SIZE_MISMATCH : Matrix size check failed
@@ -58,11 +59,15 @@
                    The 2.62 accumulator is right shifted by 31 bits and saturated to 1.31 format to yield the final result.
   @remark
                    Refer to \ref riscv_mat_mult_fast_q31() for a faster but less precise implementation of this function.
+  @remark
+                   This function is a faster implementation of riscv_mat_mult_q31 for MVE but it is requiring
+                   additional storage for intermediate results.
  */
-riscv_status riscv_mat_mult_q31(
+riscv_status riscv_mat_mult_opt_q31(
   const riscv_matrix_instance_q31 * pSrcA,
   const riscv_matrix_instance_q31 * pSrcB,
-        riscv_matrix_instance_q31 * pDst)
+        riscv_matrix_instance_q31 * pDst,
+        q31_t *pState)
 {
   q31_t *pIn1 = pSrcA->pData;                    /* Input data matrix pointer A */
   q31_t *pIn2 = pSrcB->pData;                    /* Input data matrix pointer B */
@@ -76,9 +81,7 @@ riscv_status riscv_mat_mult_q31(
   uint16_t numColsA = pSrcA->numCols;            /* Number of columns of input matrix A */
   uint32_t col, i = 0U, row = numRowsA, colCnt;  /* Loop counters */
   riscv_status status;                             /* Status of matrix multiplication */
-#if __RISCV_XLEN == 64
-  q63_t temp164, temp264;                                     /* Accumulator */
-#endif /* __RISCV_XLEN == 64 */
+  (void)pState;
 #ifdef RISCV_MATH_MATRIX_CHECK
 
   /* Check for matrix mismatch condition */
@@ -93,49 +96,6 @@ riscv_status riscv_mat_mult_q31(
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
 
-#if defined(RISCV_MATH_VECTOR)
-  uint16_t blkCnt = numColsA;  //number of matrix columns  numColsA = numrowB
-  size_t l;              // max_l is the maximum column elements at a time
-  ptrdiff_t bstride = 4;       //  32bit/8bit = 4
-  ptrdiff_t col_diff = bstride * numColsB;  //Control the column width of the span
-  uint16_t colnum, rownum;      //  How many rowumns and rownum are controlled
-  vint32m4_t v_inA, v_inB;
-  vint64m1_t vsum;
-
-  px = pOut;
-  for (rownum = 0; rownum < numRowsA; rownum++)
-  {
-    pIn1 = pInA;       //backup pointer position
-    for(colnum = 0; colnum < numColsB; colnum++)
-    {
-      blkCnt = numColsA;
-      pIn2 = pInB;     //backup pointer position
-      l = vsetvl_e64m1(1);
-      vsum = vmv_s_x_i64m1(vsum, 0, l);
-      for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)   //Multiply a row by a column
-      {
-        v_inA = vle32_v_i32m4(pInA, l);
-        pInA = pInA + l;    //Pointer to the first element of the next line
-        v_inB = vlse32_v_i32m4(pInB, col_diff, l);
-        /* c(m,n) = a(1,1) * b(1,1) + a(1,2) * b(2,1) + .... + a(m,p) * b(p,n) */
-        /* Perform multiply-accumulates */
-        vsum = vredsum_vs_i64m8_i64m1(vsum, vwmul_vv_i64m8(v_inA, v_inB, l), vsum, l);
-        pInB = pInB + l * numColsB;
-      }
-      sum = vmv_x_s_i64m1_i64(vsum);
-      *px++ = (q31_t) (sum >> 31);
-      pInA = pIn1;
-      pInB = pIn2;
-      pInB = pInB+1;    //Pointer to the first element of the next column for matrix BS
-
-    }
-    pInB = pSrcB->pData;
-    pInA = pIn1;
-    pInA = pInA + numColsA;    //Pointer to the first element of the next row for matrix A
-  }
-  /* Set status as RISCV_MATH_SUCCESS */
-  status = RISCV_MATH_SUCCESS;
-#else
   {
     /* The following loop performs the dot-product of each row in pSrcA with each column in pSrcB */
     /* row loop */
@@ -168,11 +128,7 @@ riscv_status riscv_mat_mult_q31(
         while (colCnt > 0U)
         {
           /* c(m,n) = a(1,1) * b(1,1) + a(1,2) * b(2,1) + .... + a(m,p) * b(p,n) */
-#if __RISCV_XLEN == 64
-	        temp164 = read_q31x2_ia ((q31_t **) &pIn1);
-          temp264 = ((q63_t) *pIn2) | ((q63_t) *pIn2 << 32);
-          sum = __RV_KMADA32(sum, temp164, temp264);
-#else
+
           /* Perform the multiply-accumulates */
           sum += (q63_t) *pIn1++ * *pIn2;
           pIn2 += numColsB;
@@ -185,7 +141,6 @@ riscv_status riscv_mat_mult_q31(
 
           sum += (q63_t) *pIn1++ * *pIn2;
           pIn2 += numColsB;
-#endif /* __RISCV_XLEN == 64 */
 
           /* Decrement loop counter */
           colCnt--;
@@ -236,7 +191,7 @@ riscv_status riscv_mat_mult_q31(
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
   }
-#endif /*defined(RISCV_MATH_VECTOR)*/
+
   /* Return to application */
   return (status);
 }

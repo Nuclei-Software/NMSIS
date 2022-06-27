@@ -98,66 +98,61 @@ riscv_status riscv_mat_cmplx_mult_q31(
 #if defined(RISCV_MATH_VECTOR)
   q31_t *pInB = pSrcB->pData;                    /* Input data matrix pointer A */
   uint16_t blkCnt = numColsA;  //number of matrix columns  numColsA = numrowB
-  size_t l,max_l;              // max_l is the maximum column elements at a time
+  size_t l;
   ptrdiff_t bstride = 4;       //  32bit/8bit = 4
   ptrdiff_t reim_diff = bstride * 2;
   ptrdiff_t col_diff = reim_diff * numColsB;  //Control the column width of the span
-  uint16_t colnum,rownum;      //  How many rowumns and rownum are controlled
+  uint16_t colnum, rownum;      //  How many rowumns and rownum are controlled
   vint32m4_t v_inAR, v_inBR, v_inAI, v_inBI;
   vint64m8_t v_RR, v_II, v_RI, v_IR;
   vint64m8_t vReal, vImag;
-  l = vsetvl_e32m1(1);
-  vint64m1_t vsumReal = vmv_s_x_i64m1(vsumReal, 0, l);
-  vint64m1_t vsumImag = vmv_s_x_i64m1(vsumImag, 0, l);
-  // max_l = vsetvl_e32m4(32);
+
+  vint64m1_t vsumReal;
+  vint64m1_t vsumImag;
   px = pOut;
-for(rownum = 0;rownum < numRowsA; rownum++)
+  for (rownum = 0; rownum < numRowsA; rownum++)
   {
     pIn1 = pInA;       //backup pointer position
-    for(colnum = 0;colnum < numColsB; colnum++)
+    for(colnum = 0; colnum < numColsB; colnum++)
     {
       blkCnt = numColsA;
       pIn2 = pInB;     //backup pointer position
-      sumReal = 0;
-      sumImag = 0;
-      l = vsetvl_e32m1(1);
+      l = vsetvl_e64m1(1);
       vsumReal = vmv_s_x_i64m1(vsumReal, 0, l);
       vsumImag = vmv_s_x_i64m1(vsumImag, 0, l);
       for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)   //Multiply a row by a column
       {
         v_inAR = vlse32_v_i32m4(pInA, reim_diff, l);
         v_inBR = vlse32_v_i32m4(pInB, col_diff, l);
-        pInA++; pInB++;
-        v_inAI = vlse32_v_i32m4(pInA, reim_diff, l);
-        v_inBI = vlse32_v_i32m4(pInB, col_diff, l);
+        v_inAI = vlse32_v_i32m4(pInA + 1, reim_diff, l);
+        v_inBI = vlse32_v_i32m4(pInB + 1, col_diff, l);
         /* c(m,n) = a(1,1) * b(1,1) + a(1,2) * b(2,1) + .... + a(m,p) * b(p,n) */
         /* Perform multiply-accumulates */
-        v_RR = vwmul_vv_i64m8(v_inAR , v_inBR, l);
-        v_II = vwmul_vv_i64m8(v_inAI , v_inBI, l);
-        v_RI = vwmul_vv_i64m8(v_inAR , v_inBI, l);
-        v_IR = vwmul_vv_i64m8(v_inAI , v_inBR, l);
+        v_RR = vwmul_vv_i64m8(v_inAR, v_inBR, l);
+        v_II = vwmul_vv_i64m8(v_inAI, v_inBI, l);
+        v_RI = vwmul_vv_i64m8(v_inAR, v_inBI, l);
+        v_IR = vwmul_vv_i64m8(v_inAI, v_inBR, l);
         vReal = vssub_vv_i64m8(v_RR, v_II, l);
         vImag = vsadd_vv_i64m8(v_RI, v_IR, l);
         vsumReal = vredsum_vs_i64m8_i64m1(vsumReal, vReal, vsumReal, l);
         vsumImag = vredsum_vs_i64m8_i64m1(vsumImag, vImag, vsumImag, l);
-        // if(l == max_l)
-        // {
-        pInA = pInA+l*2-1;    //Pointer to the first element of the next line
-        pInB = pInB+l*numColsB*4-1;
-        // }
+
+        pInA += l * 2;    //Pointer to the first element of the next line
+        pInB += l * numColsB * 4;
+
       }
       sumReal = vmv_x_s_i64m1_i64 (vsumReal);
       sumImag = vmv_x_s_i64m1_i64 (vsumImag);
-      *px = (q31_t) clip_q63_to_q31(sumReal >> 31);
-      px++;
-      *px = (q31_t) clip_q63_to_q31(sumImag >> 31);
-      px++;
+      *px++ = (q31_t) clip_q63_to_q31(sumReal >> 31);
+      *px++ = (q31_t) clip_q63_to_q31(sumImag >> 31);
+
       pInA = pIn1;
-      pInB = pIn2;pInB = pInB+2;    //Pointer to the first element of the next column for matrix BS
-    //printf("px=%d\n",px);
+      pInB = pIn2;
+      pInB = pInB + 2;    //Pointer to the first element of the next column for matrix BS
     }
     pInB = pSrcB->pData;
-    pInA = pIn1;pInA = pInA+numColsA*2;    //Pointer to the first element of the next row for matrix A
+    pInA = pIn1;
+    pInA = pInA + numColsA * 2;    //Pointer to the first element of the next row for matrix A
   }
   /* Set status as RISCV_MATH_SUCCESS */
   status = RISCV_MATH_SUCCESS;
@@ -322,7 +317,7 @@ for(rownum = 0;rownum < numRowsA; rownum++)
 
         /* If the columns of pSrcA is not a multiple of 4, compute any remaining MACs here.
          ** No loop unrolling is used. */
-        colCnt = numColsA % 0x4U;
+        colCnt = numColsA & 0x3U;
 
 #else
 

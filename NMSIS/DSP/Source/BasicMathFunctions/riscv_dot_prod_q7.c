@@ -72,11 +72,12 @@ void riscv_dot_prod_q7(
   for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l)
   {
     v_inA = vle8_v_i8m4(pSrcA, l);
-    v_inB = vle8_v_i8m4(pSrcB, l);
     pSrcA += l;
+    v_inB = vle8_v_i8m4(pSrcB, l);
     pSrcB += l;
-    sum += vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(temp00, vwmul_vv_i16m8(v_inA, v_inB, l), temp00, l));
+    temp00 = vwredsum_vs_i16m8_i32m1(temp00, vwmul_vv_i16m8(v_inA, v_inB, l), temp00, l);
   }
+  sum = vmv_x_s_i32m1_i32(temp00);
 #else
 
 #if defined (RISCV_MATH_LOOPUNROLL)
@@ -103,15 +104,15 @@ void riscv_dot_prod_q7(
 #if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
     /* read 4 samples at a time from sourceA */
-    input1 = read_q7x8_ia ((q7_t **) &pSrcA);
+    input1 = read_q7x8_ia((q7_t **) &pSrcA);
     /* read 4 samples at a time from sourceB */
-    input2 = read_q7x8_ia ((q7_t **) &pSrcB);
+    input2 = read_q7x8_ia((q7_t **) &pSrcB);
     sum64 = __RV_SMAQA(sum64, input1, input2);
 #else
     /* read 4 samples at a time from sourceA */
-    input1 = read_q7x4_ia ((q7_t **) &pSrcA);
+    input1 = read_q7x4_ia((q7_t **) &pSrcA);
     /* read 4 samples at a time from sourceB */
-    input2 = read_q7x4_ia ((q7_t **) &pSrcB);
+    input2 = read_q7x4_ia((q7_t **) &pSrcB);
 
     ///* extract two q7_t samples to q15_t samples */
     //inA1 = __SXTB16(__ROR(input1, 8));
@@ -140,10 +141,10 @@ void riscv_dot_prod_q7(
 #if __RISCV_XLEN == 64
   sum +=((sum64 + (sum64<<32u))>>32u);
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x8U;
+  blkCnt = blockSize & 0x7U;
 #else
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 #endif /* __RISCV_XLEN == 64 */
 #else
 

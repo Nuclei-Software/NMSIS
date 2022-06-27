@@ -82,218 +82,7 @@ riscv_status riscv_mat_mult_fast_q31(
   uint32_t col, i = 0U, j, row = numRowsA, colCnt;  /* Loop counters */
   riscv_status status;                             /* Status of matrix multiplication */
 
-#if defined(RISCV_MATH_VECTOR)
-        uint16_t blkCnt;  //number of matrix columns  numColsA = numrowB
-        size_t l;              // max_l is the maximum column elements at a time
-        ptrdiff_t bstride = 4;       //  32bit/8bit = 4
-        uint16_t colnum,rownum;      //  How many rowumns and rownum are controlled
-        vint32m4_t v_inA1, v_inA2, v_inB1, v_inB2;
-        vint32m4_t v_sum1, v_sum2, v_sum3, v_sum4;
-        vint16m8_t vReal, vImag;
-        l = vsetvl_e32m1(1);
-        vint32m1_t vtemp = vsub_vv_i32m1(vtemp, vtemp, l);
 
-#ifdef RISCV_MATH_MATRIX_CHECK
-
-  /* Check for matrix mismatch condition */
-  if ((pSrcA->numCols != pSrcB->numRows) ||
-      (pSrcA->numRows != pDst->numRows)  ||
-      (pSrcB->numCols != pDst->numCols)    )
-  {
-    /* Set status as RISCV_MATH_SIZE_MISMATCH */
-    status = RISCV_MATH_SIZE_MISMATCH;
-  }
-  else
-
-#endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
-
-  {
-    px = pDst->pData;
-
-    row = row >> 1U;
-    px2 = px + numColsB;
-
-    /* The following loop performs the dot-product of each row in pSrcA with each column in pSrcB */
-    /* row loop */
-    while (row > 0U)
-    {
-      /* For every row wise process, column loop counter is to be initiated */
-      col = numColsB;
-
-      /* For every row wise process, pIn2 pointer is set to starting address of pSrcB data */
-      pInB = pSrcB->pData;
-
-      j = 0U;
-
-      col = col >> 1U;
-
-      /* column loop */
-      while (col > 0U)
-      {
-        /* Set the variable sum, that acts as accumulator, to zero */
-        // sum1 = 0;
-        // sum2 = 0;
-        // sum3 = 0;
-        // sum4 = 0;
-
-        /* Initiate data pointers */
-        pInA = pSrcA->pData + i;
-        pInB = pSrcB->pData + j;
-        pInA2 = pInA + numColsA;
-
-        colCnt = numColsA;
-
-        /* matrix multiplication */
-        blkCnt = numColsA;
-        bstride = numColsB*4;
-        l = vsetvl_e32m4(blkCnt);
-        v_sum1 = vsub_vv_i32m4(v_sum1,v_sum1, l);
-        v_sum2 = vsub_vv_i32m4(v_sum2,v_sum2, l);
-        v_sum3 = vsub_vv_i32m4(v_sum3,v_sum3, l);
-        v_sum4 = vsub_vv_i32m4(v_sum4,v_sum4, l);
-        for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)   //Multiply a row by a column
-        {
-            v_inA1 = vle32_v_i32m4(pInA, l);
-            v_inA2 = vle32_v_i32m4(pInA2, l);
-            pInA += l;
-            pInA2 += l;
-            v_inB1 = vlse32_v_i32m4(pInB,bstride, l);
-            v_inB2 = vlse32_v_i32m4(pInB+1,bstride, l);
-            pInB += l*numColsB;
-
-            v_sum1 = vadd_vv_i32m4(v_sum1, vsmul_vv_i32m4(v_inA1, v_inB1, l), l);
-            v_sum2 = vadd_vv_i32m4(v_sum2, vsmul_vv_i32m4(v_inA1, v_inB2, l), l);
-            v_sum3 = vadd_vv_i32m4(v_sum3, vsmul_vv_i32m4(v_inA2, v_inB1, l), l);
-            v_sum4 = vadd_vv_i32m4(v_sum4, vsmul_vv_i32m4(v_inA2, v_inB2, l), l);
-        }
-        l = vsetvl_e32m4(numColsA);
-        sum1 = vmv_x_s_i32m1_i32 (vredsum_vs_i32m4_i32m1(vtemp, v_sum1, vtemp, l));
-        l = vsetvl_e32m4(numColsA);
-        sum2 = vmv_x_s_i32m1_i32 (vredsum_vs_i32m4_i32m1(vtemp, v_sum2, vtemp, l));
-        l = vsetvl_e32m4(numColsA);
-        sum3 = vmv_x_s_i32m1_i32 (vredsum_vs_i32m4_i32m1(vtemp, v_sum3, vtemp, l));
-        l = vsetvl_e32m4(numColsA);
-        sum4 = vmv_x_s_i32m1_i32 (vredsum_vs_i32m4_i32m1(vtemp, v_sum4, vtemp, l));
-
-        /* Convert the result from 2.30 to 1.31 format and store in destination buffer */
-        *px++  = sum1 << 1;
-        *px++  = sum2 << 1;
-        *px2++ = sum3 << 1;
-        *px2++ = sum4 << 1;
-
-        j += 2;
-
-        /* Decrement column loop counter */
-        col--;
-      }
-
-      i = i + (numColsA << 1U);
-      px  = px2 + (numColsB & 1U);
-      px2 = px  +  numColsB;
-
-      /* Decrement row loop counter */
-      row--;
-    }
-
-    /* Compute any remaining odd row/column below */
-
-    /* Compute remaining output column */
-    if (numColsB & 1U) {
-
-      /* Avoid redundant computation of last element */
-      row = numRowsA & (~1U);
-
-      /* Point to remaining unfilled column in output matrix */
-      px = pDst->pData + numColsB-1;
-      pInA = pSrcA->pData;
-
-      /* row loop */
-      while (row > 0)
-      {
-
-        /* point to last column in matrix B */
-        pInB  = pSrcB->pData + numColsB-1;
-
-        /* Set variable sum1, that acts as accumulator, to zero */
-        sum1  = 0;
-
-        /* Initialize colCnt with number of columns */
-        colCnt = numColsA;
-
-        blkCnt = numColsA;
-        bstride = numColsB*4;
-        l = vsetvl_e32m4(blkCnt);
-        v_sum1 = vsub_vv_i32m4(v_sum1,v_sum1, l);
-        for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)   //Multiply a row by a column
-        {
-            v_inA1 = vle32_v_i32m4(pInA, l);
-            pInA += l;
-            v_inB1 = vlse32_v_i32m4(pInB,bstride, l);
-            pInB += l*numColsB;
-
-            v_sum1 = vadd_vv_i32m4(v_sum1, vsmul_vv_i32m4(v_inA1, v_inB1, l), l);
-        }
-        l = vsetvl_e32m4(numColsA);
-        sum1 = vmv_x_s_i32m1_i32 (vredsum_vs_i32m4_i32m1(vtemp, v_sum1, vtemp, l));
-
-        /* Convert the result from 2.30 to 1.31 format and store in destination buffer */
-        *px = sum1 << 1;
-        px += numColsB;
-
-        /* Decrement row loop counter */
-        row--;
-      }
-    }
-
-    /* Compute remaining output row */
-    if (numRowsA & 1U) {
-
-      /* point to last row in output matrix */
-      px = pDst->pData + (numColsB) * (numRowsA-1);
-
-      col = numColsB;
-      i = 0U;
-
-      /* col loop */
-      while (col > 0)
-      {
-
-        /* point to last row in matrix A */
-        pInA = pSrcA->pData + (numRowsA-1) * numColsA;
-        pInB  = pSrcB->pData + i;
-
-        /* Set variable sum1, that acts as accumulator, to zero */
-        sum1  = 0;
-
-        /* Initialize colCnt with number of columns */
-        colCnt = numColsA;
-
-        blkCnt = numColsA;
-        bstride = numColsB*4;
-        l = vsetvl_e32m4(blkCnt);
-        v_sum1 = vsub_vv_i32m4(v_sum1,v_sum1, l);
-        for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)   //Multiply a row by a column
-        {
-            v_inA1 = vle32_v_i32m4(pInA, l);
-            pInA += l;
-            v_inB1 = vlse32_v_i32m4(pInB,bstride, l);
-            pInB += l*numColsB;
-
-            v_sum1 = vadd_vv_i32m4(v_sum1, vsmul_vv_i32m4(v_inA1, v_inB1, l), l);
-        }
-        l = vsetvl_e32m4(numColsA);
-        sum1 = vmv_x_s_i32m1_i32 (vredsum_vs_i32m4_i32m1(vtemp, v_sum1, vtemp, l));
-
-        /* Saturate and store the result in the destination buffer */
-        *px++ = sum1 << 1;
-        i++;
-
-        /* Decrement col loop counter */
-        col--;
-      }
-    }
-
-#else
 #ifdef RISCV_MATH_MATRIX_CHECK
 
   /* Check for matrix mismatch condition */
@@ -343,7 +132,40 @@ riscv_status riscv_mat_mult_fast_q31(
         pInA2 = pInA + numColsA;
 
         colCnt = numColsA;
+#if defined(RISCV_MATH_VECTOR)
+        uint16_t blkCnt;
+        size_t l;
+        ptrdiff_t bstride;
+        vint32m4_t v_inA1, v_inA2, v_inB1, v_inB2;
+        vint32m1_t v_sum1, v_sum2, v_sum3, v_sum4;
 
+        blkCnt = numColsA;
+        bstride = numColsB * 4;
+        l = vsetvlmax_e32m1();
+        v_sum1 = vsub_vv_i32m1(v_sum1, v_sum1, l);
+        v_sum2 = vsub_vv_i32m1(v_sum2, v_sum2, l);
+        v_sum3 = vsub_vv_i32m1(v_sum3, v_sum3, l);
+        v_sum4 = vsub_vv_i32m1(v_sum4, v_sum4, l);
+        for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)
+        {
+            v_inA1 = vle32_v_i32m4(pInA, l);
+            v_inA2 = vle32_v_i32m4(pInA2, l);
+            pInA += l;
+            pInA2 += l;
+            v_inB1 = vlse32_v_i32m4(pInB, bstride, l);
+            v_inB2 = vlse32_v_i32m4(pInB + 1, bstride, l);
+            pInB += l * numColsB;
+
+            v_sum1 = vredsum_vs_i32m4_i32m1(v_sum1, vsmul_vv_i32m4(v_inA1, v_inB1, l), v_sum1, l);
+            v_sum2 = vredsum_vs_i32m4_i32m1(v_sum2, vsmul_vv_i32m4(v_inA1, v_inB2, l), v_sum2, l);
+            v_sum3 = vredsum_vs_i32m4_i32m1(v_sum3, vsmul_vv_i32m4(v_inA2, v_inB1, l), v_sum3, l);
+            v_sum4 = vredsum_vs_i32m4_i32m1(v_sum4, vsmul_vv_i32m4(v_inA2, v_inB2, l), v_sum4, l);
+        }
+        sum1 = vmv_x_s_i32m1_i32(v_sum1);
+        sum2 = vmv_x_s_i32m1_i32(v_sum2);
+        sum3 = vmv_x_s_i32m1_i32(v_sum3);
+        sum4 = vmv_x_s_i32m1_i32(v_sum4);
+#else
         /* matrix multiplication */
         while (colCnt > 0U)
         {
@@ -370,6 +192,7 @@ riscv_status riscv_mat_mult_fast_q31(
           /* Decrement loop counter */
           colCnt--;
         }
+#endif /* #if defined(RISCV_MATH_VECTOR) */
 
         /* Convert the result from 2.30 to 1.31 format and store in destination buffer */
         *px++  = sum1 << 1;
@@ -412,6 +235,28 @@ riscv_status riscv_mat_mult_fast_q31(
 
         /* Set variable sum1, that acts as accumulator, to zero */
         sum1  = 0;
+#if defined(RISCV_MATH_VECTOR)
+        uint16_t blkCnt;
+        size_t l;
+        ptrdiff_t bstride;
+        vint32m8_t v_inA1, v_inB1;
+        vint32m1_t v_sum1;
+
+        blkCnt = numColsA;
+        bstride = numColsB * 4;
+        l = vsetvlmax_e32m1();
+        v_sum1 = vsub_vv_i32m1(v_sum1, v_sum1, l);
+        for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+        {
+            v_inA1 = vle32_v_i32m8(pInA, l);
+            pInA += l;
+            v_inB1 = vlse32_v_i32m8(pInB, bstride, l);
+            pInB += l * numColsB;
+
+            v_sum1 = vredsum_vs_i32m8_i32m1(v_sum1, vsmul_vv_i32m8(v_inA1, v_inB1, l), v_sum1, l);
+        }
+        sum1 = vmv_x_s_i32m1_i32(v_sum1);
+#else
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -454,7 +299,7 @@ riscv_status riscv_mat_mult_fast_q31(
         }
 
         /* Loop unrolling: Compute remaining column */
-        colCnt = numColsA % 4U;
+        colCnt = numColsA & 3U;
 
 #else
 
@@ -473,7 +318,7 @@ riscv_status riscv_mat_mult_fast_q31(
 
           colCnt--;
         }
-
+#endif /* #if defined(RISCV_MATH_VECTOR) */
         /* Convert the result from 2.30 to 1.31 format and store in destination buffer */
         *px = sum1 << 1;
         px += numColsB;
@@ -502,7 +347,28 @@ riscv_status riscv_mat_mult_fast_q31(
 
         /* Set variable sum1, that acts as accumulator, to zero */
         sum1  = 0;
+#if defined(RISCV_MATH_VECTOR)
+        uint16_t blkCnt;
+        size_t l;
+        ptrdiff_t bstride;
+        vint32m8_t v_inA1, v_inB1;
+        vint32m1_t v_sum1;
 
+        blkCnt = numColsA;
+        bstride = numColsB * 4;
+        l = vsetvlmax_e32m1();
+        v_sum1 = vsub_vv_i32m1(v_sum1, v_sum1, l);
+        for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+        {
+            v_inA1 = vle32_v_i32m8(pInA, l);
+            pInA += l;
+            v_inB1 = vlse32_v_i32m8(pInB, bstride, l);
+            pInB += l * numColsB;
+
+            v_sum1 = vredsum_vs_i32m8_i32m1(v_sum1, vsmul_vv_i32m8(v_inA1, v_inB1, l), v_sum1, l);
+        }
+        sum1 += vmv_x_s_i32m1_i32(v_sum1);
+#else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
         /* Loop unrolling: Compute 4 columns at a time. */
@@ -544,7 +410,7 @@ riscv_status riscv_mat_mult_fast_q31(
         }
 
         /* Loop unrolling: Compute remaining column */
-        colCnt = numColsA % 4U;
+        colCnt = numColsA & 3U;
 
 #else
 
@@ -563,7 +429,7 @@ riscv_status riscv_mat_mult_fast_q31(
 
           colCnt--;
         }
-
+#endif /* #if defined(RISCV_MATH_VECTOR) */
         /* Saturate and store the result in the destination buffer */
         *px++ = sum1 << 1;
         i++;
@@ -572,7 +438,7 @@ riscv_status riscv_mat_mult_fast_q31(
         col--;
       }
     }
-#endif
+
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
   }

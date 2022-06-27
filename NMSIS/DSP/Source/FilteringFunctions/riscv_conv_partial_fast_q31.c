@@ -200,7 +200,7 @@ riscv_status riscv_conv_partial_fast_q31(
       }
 
       /* Loop unrolling: Compute remaining outputs */
-      k = count % 0x4U;
+      k = count & 0x3U;
 
 #else
 
@@ -359,7 +359,7 @@ riscv_status riscv_conv_partial_fast_q31(
 
         /* If the srcBLen is not a multiple of 4, compute any remaining MACs here.
          ** No loop unrolling is used. */
-        k = srcBLen % 0x4U;
+        k = srcBLen & 0x3U;
 
         while (k > 0U)
         {
@@ -441,7 +441,7 @@ riscv_status riscv_conv_partial_fast_q31(
         }
 
         /* Loop unrolling: Compute remaining outputs */
-        k = srcBLen % 0x4U;
+        k = srcBLen & 0x3U;
 
 #else
 
@@ -581,7 +581,7 @@ riscv_status riscv_conv_partial_fast_q31(
       }
 
       /* Loop unrolling: Compute remaining outputs */
-      k = count % 0x4U;
+      k = count & 0x3U;
 
 #else
 

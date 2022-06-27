@@ -47,81 +47,98 @@
   @return        none
  */
 
+
+
+
+
+
 #if defined(RISCV_FLOAT16_SUPPORTED)
 
-void riscv_mse_f16(const float16_t *pSrcA, const float16_t *pSrcB,
-                   uint32_t blockSize, float16_t *result)
+
+
+
+void riscv_mse_f16(
+    const float16_t * pSrcA,
+    const float16_t * pSrcB,
+    uint32_t    blockSize,
+    float16_t * result)
 
 {
-    uint32_t blkCnt; /* Loop counter */
-    _Float16 inA, inB;
-    _Float16 sum = 0.0f16; /* Temporary return variable */
-#if defined(RISCV_MATH_LOOPUNROLL)
-    blkCnt = (blockSize) >> 3;
+  uint32_t blkCnt;                               /* Loop counter */
+  _Float16 inA, inB;
+  _Float16 sum = 0.0f16;                          /* Temporary return variable */
+#if defined (RISCV_MATH_LOOPUNROLL)
+  blkCnt = (blockSize) >> 3;
 
-    while (blkCnt > 0U) {
-        inA = *pSrcA++;
-        inB = *pSrcB++;
-        inA = (_Float16)inA - (_Float16)inB;
-        sum += (_Float16)inA * (_Float16)inA;
 
-        inA = *pSrcA++;
-        inB = *pSrcB++;
-        inA = (_Float16)inA - (_Float16)inB;
-        sum += (_Float16)inA * (_Float16)inA;
+  while (blkCnt > 0U)
+  {
+    inA = *pSrcA++;
+    inB = *pSrcB++;
+    inA = (_Float16)inA - (_Float16)inB;
+    sum += (_Float16)inA * (_Float16)inA;
 
-        inA = *pSrcA++;
-        inB = *pSrcB++;
-        inA = (_Float16)inA - (_Float16)inB;
-        sum += (_Float16)inA * (_Float16)inA;
+    inA = *pSrcA++;
+    inB = *pSrcB++;
+    inA = (_Float16)inA - (_Float16)inB;
+    sum += (_Float16)inA * (_Float16)inA;
 
-        inA = *pSrcA++;
-        inB = *pSrcB++;
-        inA = (_Float16)inA - (_Float16)inB;
-        sum += (_Float16)inA * (_Float16)inA;
+    inA = *pSrcA++;
+    inB = *pSrcB++;
+    inA = (_Float16)inA - (_Float16)inB;
+    sum += (_Float16)inA * (_Float16)inA;
 
-        inA = *pSrcA++;
-        inB = *pSrcB++;
-        inA = (_Float16)inA - (_Float16)inB;
-        sum += (_Float16)inA * (_Float16)inA;
+    inA = *pSrcA++;
+    inB = *pSrcB++;
+    inA = (_Float16)inA - (_Float16)inB;
+    sum += (_Float16)inA * (_Float16)inA;
 
-        inA = *pSrcA++;
-        inB = *pSrcB++;
-        inA = (_Float16)inA - (_Float16)inB;
-        sum += (_Float16)inA * (_Float16)inA;
+    inA = *pSrcA++;
+    inB = *pSrcB++;
+    inA = (_Float16)inA - (_Float16)inB;
+    sum += (_Float16)inA * (_Float16)inA;
 
-        inA = *pSrcA++;
-        inB = *pSrcB++;
-        inA = (_Float16)inA - (_Float16)inB;
-        sum += (_Float16)inA * (_Float16)inA;
+    inA = *pSrcA++;
+    inB = *pSrcB++;
+    inA = (_Float16)inA - (_Float16)inB;
+    sum += (_Float16)inA * (_Float16)inA;
 
-        inA = *pSrcA++;
-        inB = *pSrcB++;
-        inA = (_Float16)inA - (_Float16)inB;
-        sum += (_Float16)inA * (_Float16)inA;
+    inA = *pSrcA++;
+    inB = *pSrcB++;
+    inA = (_Float16)inA - (_Float16)inB;
+    sum += (_Float16)inA * (_Float16)inA;
 
-        /* Decrement loop counter */
-        blkCnt--;
-    }
+    inA = *pSrcA++;
+    inB = *pSrcB++;
+    inA = (_Float16)inA - (_Float16)inB;
+    sum += (_Float16)inA * (_Float16)inA;
 
-    /* Loop unrolling: Compute remaining outputs */
-    blkCnt = (blockSize)&7;
+    /* Decrement loop counter */
+    blkCnt--;
+  }
+
+
+  /* Loop unrolling: Compute remaining outputs */
+  blkCnt = (blockSize) & 7;
 #else
-    /* Initialize blkCnt with number of samples */
-    blkCnt = blockSize;
+  /* Initialize blkCnt with number of samples */
+  blkCnt = blockSize;
 #endif
-    while (blkCnt > 0U) {
-        inA = *pSrcA++;
-        inB = *pSrcB++;
-        inA = (_Float16)inA - (_Float16)inB;
-        sum += (_Float16)inA * (_Float16)inA;
-        /* Decrement loop counter */
-        blkCnt--;
-    }
+  while (blkCnt > 0U)
+  {
+    inA = *pSrcA++;
+    inB = *pSrcB++;
+    inA = (_Float16)inA - (_Float16)inB;
+    sum += (_Float16)inA * (_Float16)inA;
 
-    /* Store result in destination buffer */
-    *result = (_Float16)sum / (_Float16)blockSize;
+    /* Decrement loop counter */
+    blkCnt--;
+  }
+
+  /* Store result in destination buffer */
+  *result = (_Float16)sum / (_Float16)blockSize;
 }
+
 
 #endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
 /**

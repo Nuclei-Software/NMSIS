@@ -218,7 +218,7 @@ void riscv_fir_q15(
   }
 
   /* Loop unrolling: Compute remaining output samples */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 
@@ -251,8 +251,9 @@ void riscv_fir_q15(
       px += l;
       vy = vle16_v_i16m4(pb, l);
       pb += l;
-      acc0 +=vmv_x_s_i64m1_i64(vwredsum_vs_i32m8_i64m1(temp00m1,vwmul_vv_i32m8(vx, vy, l), temp00m1, l));
+      temp00m1 = vwredsum_vs_i32m8_i64m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
     }
+    acc0 +=vmv_x_s_i64m1_i64(temp00m1);
 #else
     tapCnt = numTaps >> 1U;
 
@@ -301,7 +302,7 @@ void riscv_fir_q15(
   }
 
   /* Calculate remaining number of copies */
-  tapCnt = (numTaps - 1U) % 0x4U;
+  tapCnt = (numTaps - 1U) & 0x3U;
 
 #else
 

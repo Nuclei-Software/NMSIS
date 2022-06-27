@@ -55,7 +55,7 @@
 
 float32_t riscv_canberra_distance_f32(const float32_t *pA,const float32_t *pB, uint32_t blockSize)
 {
-   float32_t accum=0.0f, tmpA, tmpB,diff,sum;
+   float32_t accum=0.0f, tmpA, tmpB, diff, sum;
 
    while(blockSize > 0)
    {

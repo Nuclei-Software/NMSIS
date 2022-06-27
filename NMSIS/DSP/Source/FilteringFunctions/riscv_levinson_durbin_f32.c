@@ -82,7 +82,7 @@ void riscv_levinson_durbin_f32(const float32_t *phi,
 
       nb = p >> 1;
       j=0;
-      for(i = 0; i < nb ; i++)
+      for(i = 0; i < nb; i++)
       {
           float32_t x,y;
 

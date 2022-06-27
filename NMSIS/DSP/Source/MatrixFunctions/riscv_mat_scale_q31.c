@@ -78,29 +78,26 @@ riscv_status riscv_mat_scale_q31(
   else
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
-#if defined(RISCV_MATH_VECTOR)
-    /* Total number of samples in input matrix */
-  numSamples = (uint32_t) pSrc->numRows * pSrc->numCols;
-  blkCnt = numSamples;
-  size_t l;
-  vint32m4_t v_in, v_out;
-    for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l) {
-    v_in = vle32_v_i32m4(pIn, l);
-    pIn += l;
-    v_in = vnsra_wx_i32m4(vwmul_vx_i64m8(v_in, scaleFract, l),32U, l);
-    v_out = vsll_vx_i32m4(v_in, (uint8_t)kShift, l);
-    vse32_v_i32m4 (pOut, v_out, l);
-    pOut += l;
-  }
-      /* Set status as RISCV_MATH_SUCCESS */
-    status = RISCV_MATH_SUCCESS;
-#else
 
   {
     /* Total number of samples in input matrix */
     numSamples = (uint32_t) pSrc->numRows * pSrc->numCols;
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined(RISCV_MATH_VECTOR)
+    blkCnt = numSamples;
+    size_t l;
+    vint32m4_t v_in, v_out;
+    for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l) {
+      v_in = vle32_v_i32m4(pIn, l);
+      pIn += l;
+      v_in = vnsra_wx_i32m4(vwmul_vx_i64m8(v_in, scaleFract, l), 32U, l);
+      v_out = vsll_vx_i32m4(v_in, (uint8_t)kShift, l);
+      vse32_v_i32m4(pOut, v_out, l);
+      pOut += l;
+    }
+      /* Set status as RISCV_MATH_SUCCESS */
+    status = RISCV_MATH_SUCCESS;
+#elif defined (RISCV_MATH_LOOPUNROLL)
 
     /* Loop unrolling: Compute 4 outputs at a time */
     blkCnt = numSamples >> 2U;
@@ -143,7 +140,7 @@ riscv_status riscv_mat_scale_q31(
     }
 
     /* Loop unrolling: Compute remaining outputs */
-    blkCnt = numSamples % 0x4U;
+    blkCnt = numSamples & 0x3U;
 
 #else
 
@@ -174,7 +171,6 @@ riscv_status riscv_mat_scale_q31(
 
   /* Return to application */
   return (status);
-#endif /*defined(RISCV_MATH_VECTOR)*/
 }
 
 /**

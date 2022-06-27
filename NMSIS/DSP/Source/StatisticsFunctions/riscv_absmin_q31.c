@@ -114,7 +114,7 @@ void riscv_absmin_q31(
   }                                                                                                         \
                                                                                                             \
   /* Loop unrolling: Compute remaining outputs */                                                           \
-  blkCnt = (blockSize - 1U) % 4U;                                                                           \
+  blkCnt = (blockSize - 1U) & 3U;                                                                           \
                                                                                                             \
                                                                                                             \
   while (blkCnt > 0U)                                                                                       \
@@ -153,6 +153,7 @@ void riscv_absmin_q31(
   uint32_t temp_index = 0;
   q31_t *pData = pSrc;
   out = 0x7fffffff;
+  outIndex = 0;
   l = vsetvlmax_e32m8();
   v_zero = vmv_v_x_i32m8(0, l);
   l = vsetvlmax_e32m1();
@@ -163,8 +164,7 @@ void riscv_absmin_q31(
     pData += l;
     vbool4_t mask = vmslt_vx_i32m8_b4(v_x, 0, l);
     v_x = vssub_vv_i32m8_m(mask, v_x, v_zero, v_x, l);
-    minVal =
-        vmv_x_s_i32m1_i32(vredmin_vs_i32m8_i32m1(v_temp, v_x, v_temp, l));
+    minVal = vmv_x_s_i32m1_i32(vredmin_vs_i32m8_i32m1(v_temp, v_x, v_temp, l));
     if (minVal < out) {
       out = minVal;
       outIndex = temp_index;

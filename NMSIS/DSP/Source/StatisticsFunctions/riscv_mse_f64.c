@@ -47,49 +47,64 @@
   @return        none
  */
 
-void riscv_mse_f64(const float64_t *pSrcA, const float64_t *pSrcB,
-                   uint32_t blockSize, float64_t *result)
+
+
+
+
+void riscv_mse_f64(
+    const float64_t * pSrcA,
+    const float64_t * pSrcB,
+    uint32_t    blockSize,
+    float64_t * result)
 
 {
-    uint32_t blkCnt; /* Loop counter */
-    float64_t inA, inB;
-    float64_t sum = 0.0; /* Temporary return variable */
-#if defined(RISCV_MATH_LOOPUNROLL)
-    blkCnt = (blockSize) >> 1;
+  uint32_t blkCnt;                               /* Loop counter */
+  float64_t inA, inB;
+  float64_t sum = 0.0;                          /* Temporary return variable */
+#if defined (RISCV_MATH_LOOPUNROLL)
+  blkCnt = (blockSize) >> 1;
 
-    while (blkCnt > 0U) {
-        inA = *pSrcA++;
-        inB = *pSrcB++;
-        inA = inA - inB;
-        sum += inA * inA;
 
-        inA = *pSrcA++;
-        inB = *pSrcB++;
-        inA = inA - inB;
-        sum += inA * inA;
+  while (blkCnt > 0U)
+  {
 
-        /* Decrement loop counter */
-        blkCnt--;
-    }
 
-    /* Loop unrolling: Compute remaining outputs */
-    blkCnt = (blockSize)&1;
+    inA = *pSrcA++;
+    inB = *pSrcB++;
+    inA = inA - inB;
+    sum += inA * inA;
+
+    inA = *pSrcA++;
+    inB = *pSrcB++;
+    inA = inA - inB;
+    sum += inA * inA;
+
+    /* Decrement loop counter */
+    blkCnt--;
+  }
+
+
+  /* Loop unrolling: Compute remaining outputs */
+  blkCnt = (blockSize) & 1;
 #else
-    /* Initialize blkCnt with number of samples */
-    blkCnt = blockSize;
+  /* Initialize blkCnt with number of samples */
+  blkCnt = blockSize;
 #endif
-    while (blkCnt > 0U) {
-        inA = *pSrcA++;
-        inB = *pSrcB++;
-        inA = inA - inB;
-        sum += inA * inA;
-        /* Decrement loop counter */
-        blkCnt--;
-    }
+  while (blkCnt > 0U)
+  {
+    inA = *pSrcA++;
+    inB = *pSrcB++;
+    inA = inA - inB;
+    sum += inA * inA;
 
-    /* Store result in destination buffer */
-    *result = sum / blockSize;
+    /* Decrement loop counter */
+    blkCnt--;
+  }
+
+  /* Store result in destination buffer */
+  *result = sum / blockSize;
 }
+
 
 /**
   @} end of MSE group

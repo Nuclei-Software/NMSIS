@@ -124,11 +124,11 @@ void riscv_shift_q31(
 	    *pDst++ = __RV_KSLRAW(*pSrc++, shiftBits);
 	    *pDst++ = __RV_KSLRAW(*pSrc++, shiftBits);
 	    *pDst++ = __RV_KSLRAW(*pSrc++, shiftBits);
-      blkCnt--;
+        blkCnt--;
     }
 #endif /* __RISCV_XLEN == 64 */
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 

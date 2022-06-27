@@ -140,9 +140,9 @@ void riscv_offset_q7(
 
   /* Loop unrolling: Compute remaining outputs */
 #if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
-  blkCnt = blockSize % 0x8U;
+  blkCnt = blockSize & 0x7U;
  #else
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
  #endif
 
 

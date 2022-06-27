@@ -69,9 +69,9 @@ void riscv_mat_vec_mult_q7(const riscv_matrix_instance_q7 *pSrcMat, const q7_t *
     size_t l;        // max_l is the maximum column elements at a time
     uint16_t rownum; //  How many rowumns and rownum are controlled
     vint8m4_t v_inA, v_inB;
-    vint16m8_t vmul;
     q31_t sum = 0;
     vint32m1_t vsum;
+
     px = pDst;
     for (rownum = 0; rownum < numRows; rownum++) {
         l = vsetvl_e32m1(1);
@@ -85,9 +85,7 @@ void riscv_mat_vec_mult_q7(const riscv_matrix_instance_q7 *pSrcMat, const q7_t *
             pInA += l;
             v_inB = vle8_v_i8m4(pInB, l);
             pInB += l;
-            /* Perform multiply-accumulates */
-            vmul = vwmul_vv_i16m8(v_inA, v_inB, l);
-            vsum = vwredsum_vs_i16m8_i32m1(vsum, vmul, vsum, l);
+            vsum = vwredsum_vs_i16m8_i32m1(vsum,  vwmul_vv_i16m8(v_inA, v_inB, l), vsum, l);
         }
         sum = vmv_x_s_i32m1_i32(vsum);
         *px++ = (q7_t)(__SSAT((sum >> 7), 8));
@@ -103,15 +101,15 @@ void riscv_mat_vec_mult_q7(const riscv_matrix_instance_q7 *pSrcMat, const q7_t *
 
     /* The following loop performs the dot-product of each row in pSrcA with the vector */
     while (row > 0) {
-        /* For every row wise process, the pInVec pointer is set
-         ** to the starting address of the vector */
-        pInVec = pVec;
-
         /* Initialize accumulators */
         q31_t sum1 = 0;
         q31_t sum2 = 0;
         q31_t sum3 = 0;
         q31_t sum4 = 0;
+
+        /* For every row wise process, the pInVec pointer is set
+         ** to the starting address of the vector */
+        pInVec = pVec;
 
         /* Loop unrolling: process 4 columns per iteration */
         colCnt = numCols >> 2;

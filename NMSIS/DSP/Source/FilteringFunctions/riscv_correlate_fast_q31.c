@@ -206,7 +206,7 @@ void riscv_correlate_fast_q31(
 
     /* If the count is not a multiple of 4, compute any remaining MACs here.
      ** No loop unrolling is used. */
-    k = count % 0x4U;
+    k = count & 0x3U;
 
     while (k > 0U)
     {
@@ -354,7 +354,7 @@ void riscv_correlate_fast_q31(
 
       /* If the srcBLen is not a multiple of 4, compute any remaining MACs here.
        ** No loop unrolling is used. */
-      k = srcBLen % 0x4U;
+      k = srcBLen & 0x3U;
 
       while (k > 0U)
       {
@@ -439,7 +439,7 @@ void riscv_correlate_fast_q31(
 
       /* If the srcBLen is not a multiple of 4, compute any remaining MACs here.
        ** No loop unrolling is used. */
-      k = srcBLen % 0x4U;
+      k = srcBLen & 0x3U;
 
       while (k > 0U)
       {
@@ -570,7 +570,7 @@ void riscv_correlate_fast_q31(
 
     /* If the count is not a multiple of 4, compute any remaining MACs here.
      ** No loop unrolling is used. */
-    k = count % 0x4U;
+    k = count & 0x3U;
 
     while (k > 0U)
     {

@@ -61,6 +61,10 @@ __STATIC_INLINE float16_t riscv_exponent_f16(float16_t x, int32_t nb)
  */
 
 
+
+
+
+
 /**
  * @brief SVM polynomial prediction
  * @param[in]    S          Pointer to an instance of the polynomial SVM structure.
@@ -97,5 +101,4 @@ void riscv_svm_polynomial_predict_f16(
  * @} end of polysvm group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
-
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */

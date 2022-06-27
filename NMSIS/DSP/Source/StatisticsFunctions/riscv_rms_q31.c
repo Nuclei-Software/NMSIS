@@ -62,27 +62,24 @@ void riscv_rms_q31(
         uint32_t blockSize,
         q31_t * pResult)
 {
+        uint32_t blkCnt;                               /* Loop counter */
+        uint64_t sum = 0;                              /* Temporary result storage (can get never negative. changed type from q63 to uint64 */
+        q31_t in;                                      /* Temporary variable to store input value */
+
 #if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = blockSize;                               /* Loop counter */
+  blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   const q31_t * input = pSrc;
-  q31_t * result = pResult;
-  q63_t sum;                                                /* uint64 type may ignore the sign bit when overflow is happened */
   vint32m4_t v_in;
   l = vsetvl_e64m1(1);
   vint64m1_t v_sum = vmv_s_x_i64m1(v_sum, 0, l);                /* init v_sum data */
   for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l) {
     v_in = vle32_v_i32m4(input, l);
     input += l;
-    v_sum = vredsum_vs_i64m8_i64m1(v_sum, vwmul_vv_i64m8(v_in, v_in, l) ,v_sum, l);
+    v_sum = vredsum_vs_i64m8_i64m1(v_sum, vwmul_vv_i64m8(v_in, v_in, l), v_sum, l);
   }
-  l = vsetvl_e64m1(1);
-  sum = vmv_x_s_i64m1_i64(v_sum);
-  riscv_sqrt_q31(clip_q63_to_q31((sum / (q63_t) blockSize) >> 31), result);
+  sum += vmv_x_s_i64m1_i64(v_sum);
 #else
-        uint32_t blkCnt;                               /* Loop counter */
-        uint64_t sum = 0;                              /* Temporary result storage (can get never negative. changed type from q63 to uint64 */
-        q31_t in;                                      /* Temporary variable to store input value */
 #if __RISCV_XLEN == 64
         q63_t in64;                                      /* Temporary variable to store input value */
 #endif /* __RISCV_XLEN == 64 */
@@ -122,7 +119,7 @@ void riscv_rms_q31(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 
@@ -142,11 +139,10 @@ void riscv_rms_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_MATH_VECTOR) */
   /* Convert data in 2.62 to 1.31 by 31 right shifts and saturate */
   /* Compute Rms and store result in destination vector */
   riscv_sqrt_q31(clip_q63_to_q31((sum / (q63_t) blockSize) >> 31), pResult);
-#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

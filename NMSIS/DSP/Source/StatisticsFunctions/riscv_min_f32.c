@@ -63,48 +63,47 @@ void riscv_min_f32(
         float32_t * pResult,
         uint32_t * pIndex)
 {
-#if defined(RISCV_MATH_VECTOR)
-    float32_t min = pSrc[0],min_temp;
-    uint32_t index = 0,index_temp = 0;
-
-    uint32_t blkCnt;
-    size_t l;
-    float32_t * inputx;
-    vfloat32m8_t v_x;
-    vfloat32m1_t v_tempa;
-
-    inputx = pSrc;
-    blkCnt = blockSize;
-    l = vsetvl_e32m1(1);
-    v_tempa = vfmv_s_f_f32m1(v_tempa, pSrc[0], l);
-    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
-    {
-        v_x = vle32_v_f32m8(inputx, l);
-        inputx += l;
-        min_temp = vfmv_f_s_f32m1_f32 (vfredmin_vs_f32m8_f32m1(v_tempa,v_x,v_tempa, l));
-        if (min_temp < min){
-          min = min_temp;
-          index = index_temp;
-        }
-        index_temp += l;
-    }
-    * pResult = min;
-    while(1)
-    {
-        if (pSrc[index] == min){
-          break;
-        }
-        else
-            index++;
-    }
-    * pIndex = index;
-
-#else
         float32_t minVal, out;                         /* Temporary variables to store the output value. */
         uint32_t blkCnt, outIndex;                     /* Loop counter */
 
+#if defined(RISCV_MATH_VECTOR)
+  float32_t min_temp;
+  uint32_t index_temp = 0;
+
+  size_t l;
+  const float32_t *inputx = pSrc;
+  vfloat32m8_t v_x;
+  vfloat32m1_t v_tempa;
+  out = pSrc[0];
+  outIndex = 0;
+  blkCnt = blockSize;
+  l = vsetvl_e32m1(1);
+  v_tempa = vfmv_s_f_f32m1(v_tempa, pSrc[0], l);
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+  {
+      v_x = vle32_v_f32m8(inputx, l);
+      inputx += l;
+      min_temp = vfmv_f_s_f32m1_f32 (vfredmin_vs_f32m8_f32m1(v_tempa, v_x, v_tempa, l));
+      if (min_temp < out){
+        out = min_temp;
+        outIndex = index_temp;
+      }
+      index_temp += l;
+  }
+
+  while (1)
+  {
+      if (pSrc[outIndex] == out){
+        break;
+      } else {
+        outIndex++;
+      }
+  }
+
+#else
+
 #if defined (RISCV_MATH_LOOPUNROLL)
-        uint32_t index;                                /* index of minimum value */
+        uint32_t index;                                /* index of maximum value */
 #endif
 
   /* Initialise index value to zero. */
@@ -114,7 +113,7 @@ void riscv_min_f32(
   out = *pSrc++;
 
 #if defined (RISCV_MATH_LOOPUNROLL)
-  /* Initialise index of minimum value. */
+  /* Initialise index of maximum value. */
   index = 0U;
 
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -161,7 +160,7 @@ void riscv_min_f32(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = (blockSize - 1U) % 4U;
+  blkCnt = (blockSize - 1U) & 3U;
 
 #else
 
@@ -186,11 +185,10 @@ void riscv_min_f32(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_MATH_VECTOR) */
   /* Store the minimum value and it's index into destination pointers */
   *pResult = out;
   *pIndex = outIndex;
-#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

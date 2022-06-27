@@ -431,7 +431,7 @@ void riscv_fir_f32(
   }
 
   /* Loop unrolling: Compute remaining output samples */
-  blkCnt = blockSize % 0x8U;
+  blkCnt = blockSize & 0x7U;
 
 #else
 
@@ -467,8 +467,9 @@ void riscv_fir_f32(
       px += l;
       vy = vle32_v_f32m8(pb, l);
       pb += l;
-      acc0 += vfmv_f_s_f32m1_f32(vfredosum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vy, vx, l), temp00m1, l));
+      temp00m1 = vfredusum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vy, vx, l), temp00m1, l);
     }
+    acc0 += vfmv_f_s_f32m1_f32(temp00m1);
 #else
     /* Perform the multiply-accumulates */
     while (i > 0U)
@@ -514,7 +515,7 @@ void riscv_fir_f32(
   }
 
   /* Calculate remaining number of copies */
-  tapCnt = (numTaps - 1U) % 0x4U;
+  tapCnt = (numTaps - 1U) & 0x3U;
 
 #else
 
@@ -523,15 +524,15 @@ void riscv_fir_f32(
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
 #if defined (RISCV_MATH_VECTOR)
-    uint32_t vblkCnt = (numTaps - 1U);                               /* Loop counter */
-    size_t l;
-    vfloat32m8_t vx;
-    for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle32_v_f32m8(pState, l);
-      pState += l;
-      vse32_v_f32m8(pStateCurnt, vx, l);
-      pStateCurnt += l;
-    }
+  uint32_t vblkCnt = (numTaps - 1U);                               /* Loop counter */
+  size_t l;
+  vfloat32m8_t vx;
+  for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
+    vx = vle32_v_f32m8(pState, l);
+    pState += l;
+    vse32_v_f32m8(pStateCurnt, vx, l);
+    pStateCurnt += l;
+  }
 #else
   /* Copy remaining data */
   while (tapCnt > 0U)

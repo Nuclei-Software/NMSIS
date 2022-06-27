@@ -1,8 +1,7 @@
 /* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_min_no_idx_f16.c
- * Description:  Minimum value of a floating-point vector without returning the
- * index
+ * Description:  Minimum value of a floating-point vector without returning the index
  *
  * $Date:        16 November 2021
  * $Revision:    V1.10.0
@@ -32,9 +31,11 @@
 
 #if defined(RISCV_FLOAT16_SUPPORTED)
 
+
 /**
   @ingroup groupStats
  */
+
 
 /**
   @addtogroup Min
@@ -49,25 +50,32 @@
   @return        none
  */
 
-void riscv_min_no_idx_f16(const float16_t *pSrc, uint32_t blockSize,
-                          float16_t *pResult)
+
+void riscv_min_no_idx_f16(
+    const float16_t *pSrc,
+    uint32_t   blockSize,
+    float16_t *pResult)
 {
-    float16_t minValue = F16_MAX;
-    float16_t newVal;
+   float16_t   minValue = F16_MAX;
+   float16_t   newVal;
 
-    while (blockSize > 0U) {
-        newVal = *pSrc++;
-        /* compare for the minimum value */
-        if ((_Float16)minValue > (_Float16)newVal) {
-            /* Update the minimum value and it's index */
-            minValue = newVal;
-        }
+   while (blockSize > 0U)
+   {
+       newVal = *pSrc++;
 
-        blockSize--;
-    }
+       /* compare for the minimum value */
+       if ((_Float16)minValue > (_Float16)newVal)
+       {
+           /* Update the minimum value and it's index */
+           minValue = newVal;
+       }
 
-    *pResult = minValue;
+       blockSize --;
+   }
+
+   *pResult = minValue;
 }
+
 
 /**
   @} end of Min group

@@ -80,13 +80,8 @@ riscv_status riscv_mat_inverse_f32(
   float32_t *pPivotRowIn, *pPRT_in, *pPivotRowDst, *pPRT_pDst;  /* Temporary input and output data matrix pointer */
   uint32_t numRows = pSrc->numRows;              /* Number of rows in the matrix  */
   uint32_t numCols = pSrc->numCols;              /* Number of Cols in the matrix  */
-#if defined (RISCV_MATH_VECTOR)
-  uint32_t blkCnt;                               /* loop counters */
-  size_t vl;
-  vfloat32m8_t vx, vy;
-#endif
 
-#if defined (RISCV_MATH_DSP) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_DSP)
 
   float32_t Xchg, in = 0.0f, in1;                /* Temporary input values  */
   uint32_t i, rowCnt, flag = 0U, j, loopCnt, k,l;      /* loop counters */
@@ -200,6 +195,8 @@ riscv_status riscv_mat_inverse_f32(
       /* Temporary variable to hold the pivot value */
       in = *pInT1;
 
+
+
       /* Check if the pivot element is zero */
       if (*pInT1 == 0.0f)
       {
@@ -250,6 +247,8 @@ riscv_status riscv_mat_inverse_f32(
             /* Break after exchange is done */
             break;
           }
+
+
           /* Decrement loop counter */
         }
       }
@@ -451,29 +450,6 @@ riscv_status riscv_mat_inverse_f32(
     rowCnt = numRows;
 
     /* Making the destination matrix as identity matrix */
-#if defined (RISCV_MATH_VECTOR)
-    while (rowCnt > 0U)
-    {
-      blkCnt = numRows - rowCnt;
-      vl = vsetvl_e32m8(blkCnt);
-      vx = vfmv_v_f_f32m8(0, vl);
-      for (; (vl = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= vl) {
-        vse32_v_f32m8 (pOutT1, vx, vl);
-        pOutT1 += vl;
-      }
-      /* Writing all ones in the diagonal of the destination matrix */
-        *pOutT1++ = 1.0f;
-
-      blkCnt = rowCnt - 1U;
-      vl = vsetvl_e32m8(blkCnt);
-      vx = vfmv_v_f_f32m8(0, vl);
-      for (; (vl = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= vl) {
-        vse32_v_f32m8 (pOutT1, vx, vl);
-        pOutT1 += vl;
-      }
-      rowCnt--;
-    }
-#else
     while (rowCnt > 0U)
     {
       /* Writing all zeroes in lower triangle of the destination matrix */
@@ -498,7 +474,6 @@ riscv_status riscv_mat_inverse_f32(
       /* Decrement loop counter */
       rowCnt--;
     }
-#endif
 
     /* Loop over the number of columns of the input matrix.
        All the elements in each column are processed by the row operations */
@@ -629,6 +604,9 @@ riscv_status riscv_mat_inverse_f32(
           /* Loop over the number of columns to the right of the pivot element,
              to replace the elements in the input matrix */
 #if defined (RISCV_MATH_VECTOR)
+          uint32_t blkCnt;                               /* loop counters */
+          size_t vl;
+          vfloat32m8_t vx, vy;
           /* Replace the element by the sum of that row
                and a multiple of the reference row  */
           blkCnt = numCols - l;
@@ -636,9 +614,9 @@ riscv_status riscv_mat_inverse_f32(
           {
             vx = vle32_v_f32m8(pInT1, vl);
             vy = vle32_v_f32m8(pPRT_in, vl);
-            vse32_v_f32m8 (pInT1, vfsub_vv_f32m8(vx, vfmul_vf_f32m8(vy,in, vl), vl), vl);
-            pInT1 += vl;
             pPRT_in += vl;
+            vse32_v_f32m8(pInT1, vfsub_vv_f32m8(vx, vfmul_vf_f32m8(vy, in, vl), vl), vl);
+            pInT1 += vl;
           }
           /* Loop over the number of columns to
              replace the elements in the destination matrix */
@@ -647,9 +625,9 @@ riscv_status riscv_mat_inverse_f32(
           {
             vx = vle32_v_f32m8(pOutT1, vl);
             vy = vle32_v_f32m8(pPRT_pDst, vl);
-            vse32_v_f32m8 (pOutT1, vfsub_vv_f32m8(vx, vfmul_vf_f32m8(vy,in, vl), vl), vl);
-            pOutT1 += vl;
             pPRT_pDst += vl;
+            vse32_v_f32m8(pOutT1, vfsub_vv_f32m8(vx, vfmul_vf_f32m8(vy, in, vl), vl), vl);
+            pOutT1 += vl;
           }
 #else
           for (j = 0U; j < (numCols - l); j++)
@@ -670,7 +648,6 @@ riscv_status riscv_mat_inverse_f32(
             pOutT1++;
           }
 #endif
-
         }
 
         /* Increment temporary input pointer */

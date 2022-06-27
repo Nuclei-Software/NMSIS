@@ -45,14 +45,15 @@
   @param[out]    pResult    minimum value returned here
   @return        none
  */
-void riscv_min_no_idx_q7(const q7_t *pSrc, uint32_t blockSize, q7_t *pResult)
+void riscv_min_no_idx_q7(
+  const q7_t * pSrc,
+        uint32_t blockSize,
+        q7_t * pResult)
 {
-    q7_t minVal1, out; /* Temporary variables to store the output value. */
-    uint32_t blkCnt;   /* loop counter */
+  q7_t minVal1, out;       /* Temporary variables to store the output value. */
+  uint32_t blkCnt;              /* loop counter */
 
 #if defined(RISCV_MATH_VECTOR)
-    out = pSrc[0];
-    q7_t min_temp;
     size_t l;
     q7_t *inputx;
     vint8m8_t v_x;
@@ -65,32 +66,35 @@ void riscv_min_no_idx_q7(const q7_t *pSrc, uint32_t blockSize, q7_t *pResult)
     for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
         v_x = vle8_v_i8m8(inputx, l);
         inputx += l;
-        min_temp =
-            vmv_x_s_i8m1_i8(vredmin_vs_i8m8_i8m1(v_tempa, v_x, v_tempa, l));
-        if (min_temp < out) {
-            out = min_temp;
-        }
+        v_tempa = vredmin_vs_i8m8_i8m1(v_tempa, v_x, v_tempa, l);
     }
+    out = vmv_x_s_i8m1_i8(v_tempa);
 #else
 
-    /* Load first input value that act as reference value for comparision */
-    out = *pSrc++;
-    blkCnt = (blockSize - 1U);
+  /* Load first input value that act as reference value for comparision */
+  out = *pSrc++;
 
-    while (blkCnt > 0U) {
-        /* Initialize minVal to the next consecutive values one by one */
-        minVal1 = *pSrc++;
-        /* compare for the minimum value */
-        if (out > minVal1) {
-            /* Update the minimum value */
-            out = minVal1;
-        }
-        /* Decrement the loop counter */
-        blkCnt--;
+  blkCnt = (blockSize - 1U);
+
+
+  while (blkCnt > 0U)
+  {
+    /* Initialize minVal to the next consecutive values one by one */
+    minVal1 = *pSrc++;
+
+    /* compare for the minimum value */
+    if (out > minVal1)
+    {
+      /* Update the minimum value */
+      out = minVal1;
     }
-#endif /* defined(RISCV_MATH_VECTOR) */
-    /* Store the minimum value into destination pointer */
-    *pResult = out;
+
+    /* Decrement the loop counter */
+    blkCnt--;
+  }
+#endif
+  /* Store the minimum value into destination pointer */
+  *pResult = out;
 }
 
 /**

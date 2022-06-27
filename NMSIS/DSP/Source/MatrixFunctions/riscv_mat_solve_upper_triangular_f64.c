@@ -53,23 +53,12 @@
   riscv_matrix_instance_f64 * dst)
   {
 riscv_status status;                             /* status of matrix inverse */
-#if defined(RISCV_MATH_VECTOR) && (defined(__riscv_flen) && (__riscv_flen == 64))
-    uint32_t blkCnt;                               /* Loop counter */
-    size_t l;
-    vfloat64m8_t v_x, v_y;
-    vfloat64m8_t v_a;
-    vfloat64m1_t v_temp;
-    float64_t *pVut_row;
-    float64_t *pX_row;
-    ptrdiff_t bstride;
-    l = vsetvl_e64m1(1);
-    v_temp = vfsub_vv_f64m1(v_temp, v_temp, l);
-#endif
+
+
 #ifdef RISCV_MATH_MATRIX_CHECK
 
   /* Check for matrix mismatch condition */
   if ((ut->numRows != ut->numCols) ||
-      (a->numRows != a->numCols) ||
       (ut->numRows != a->numRows)   )
   {
     /* Set status as RISCV_MATH_SIZE_MISMATCH */
@@ -81,9 +70,7 @@ riscv_status status;                             /* status of matrix inverse */
 
   {
 
-    int i,j,k,n;
-
-    n = dst->numRows;
+    int i,j,k,n,cols;
 
     float64_t *pX = dst->pData;
     float64_t *pUT = ut->pData;
@@ -92,44 +79,56 @@ riscv_status status;                             /* status of matrix inverse */
     float64_t *ut_row;
     float64_t *a_col;
 
-    for(j=0; j < n; j ++)
+    n = dst->numRows;
+    cols = dst->numCols;
+
+    for(j=0; j < cols; j ++)
     {
        a_col = &pA[j];
 
        for(i=n-1; i >= 0 ; i--)
        {
+            float64_t tmp=a_col[i * cols];
+
             ut_row = &pUT[n*i];
 
-            float64_t tmp=a_col[i * n];
 #if defined(RISCV_MATH_VECTOR) && (defined(__riscv_flen) && (__riscv_flen == 64))
-            blkCnt = n-i-1;
-            pVut_row = ut_row + i+1;
-            pX_row = pX + n*(i+1)+j;
-            l = vsetvl_e64m8(blkCnt);
-            v_a = vfsub_vv_f64m8(v_a,v_a, l);
-            bstride = 8*n;
+            uint32_t blkCnt;                               /* Loop counter */
+            size_t l;
+            vfloat64m8_t v_x, v_y;
+            vfloat64m1_t v_a;
+
+            float64_t *pVut_row;
+            float64_t *pX_row;
+            ptrdiff_t bstride;
+
+            blkCnt = n - i - 1;
+            pVut_row = ut_row + i + 1;
+            pX_row = pX + n * (i + 1) + j;
+            l = vsetvl_e64m1(1);
+            v_a = vfsub_vv_f64m1(v_a, v_a, l);
+            bstride = 8 * n;
             for (; (l = vsetvl_e64m8(blkCnt)) > 0; blkCnt -= l) {
                 v_x = vle64_v_f64m8(pVut_row, l);
-                v_y = vlse64_v_f64m8(pX_row,bstride, l);
-                v_a = vfmacc_vv_f64m8(v_a,v_x,v_y, l);
+                v_y = vlse64_v_f64m8(pX_row, bstride, l);
+                v_a = vfredusum_vs_f64m8_f64m1(v_a, vfmul_vv_f64m8(v_x, v_y, l), v_a, l);
                 pVut_row += l;
-                pX_row += l*n;
+                pX_row += l * cols;
             }
-            l = vsetvl_e64m8(n-i-1);
-            tmp -= vfmv_f_s_f64m1_f64(vfredosum_vs_f64m8_f64m1(v_temp,v_a,v_temp, l));
+            tmp -= vfmv_f_s_f64m1_f64(v_a);
 #else
             for(k=n-1; k > i; k--)
             {
-                tmp -= ut_row[k] * pX[n*k+j];
+                tmp -= ut_row[k] * pX[cols*k+j];
             }
 #endif
 
-            if (ut_row[i]==0.0f)
+            if (ut_row[i]==0.0)
             {
               return(RISCV_MATH_SINGULAR);
             }
             tmp = tmp / ut_row[i];
-            pX[i*n+j] = tmp;
+            pX[i*cols+j] = tmp;
        }
 
     }

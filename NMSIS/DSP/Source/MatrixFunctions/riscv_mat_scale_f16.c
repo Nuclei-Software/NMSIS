@@ -71,7 +71,6 @@ riscv_status riscv_mat_scale_f16(
   {
     /* Set status as RISCV_MATH_SIZE_MISMATCH */
     status = RISCV_MATH_SIZE_MISMATCH;
-    return status;
   }
   else
 
@@ -133,5 +132,4 @@ riscv_status riscv_mat_scale_f16(
   @} end of MatrixScale group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
-
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */

@@ -52,43 +52,35 @@ void riscv_svm_rbf_predict_f32(
     const float32_t * in,
     int32_t * pResult)
 {
-#if defined(RISCV_MATH_VECTOR)
-
-    float32_t dot = 0;
-    float32_t sum = S->intercept;
-    const float32_t *pSupport = S->supportVectors;
-    uint32_t blkCnt = S->vectorDimension;
-    uint32_t blkCnt_back = S->vectorDimension;
-    size_t l;
-    vfloat32m8_t v_in, v_support, v_sq;
-    vfloat32m1_t v_dot;
-    uint32_t i;
-    const float32_t * pIn = in;
-    for(i=0; i < S->nbOfSupportVectors; i++)
-    {
-        l = vsetvl_e32m1(1);
-        v_dot = vfmv_s_f_f32m1(v_dot, 0, l);
-        in = pIn;
-        for (blkCnt = blkCnt_back; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
-        {
-            v_in = vle32_v_f32m8(in, l);
-            v_support = vle32_v_f32m8(pSupport, l);
-            v_sq = vfsub_vv_f32m8(v_in, v_support, l);
-            v_dot = vfredosum_vs_f32m8_f32m1(v_dot, vfmul_vv_f32m8(v_sq, v_sq, l), v_dot, l);
-            in += l;
-            pSupport += l;
-        }
-        vsetvl_e32m1(1);
-        dot = vfmv_f_s_f32m1_f32(v_dot);
-        sum += S->dualCoefficients[i] * expf(-S->gamma * dot);
-    }
-    *pResult=S->classes[STEP(sum)];
-#else
     float32_t sum=S->intercept;
     float32_t dot=0;
     uint32_t i,j;
     const float32_t *pSupport = S->supportVectors;
 
+#if defined(RISCV_MATH_VECTOR)
+    uint32_t blkCnt;
+    size_t l;
+    vfloat32m8_t v_in, v_support, v_sq;
+    vfloat32m1_t v_dot;
+    const float32_t *pIn = in;
+    for(i=0; i < S->nbOfSupportVectors; i++)
+    {
+         blkCnt = S->vectorDimension;
+        l = vsetvl_e32m1(1);
+        v_dot = vfmv_s_f_f32m1(v_dot, 0, l);
+        for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+        {
+            v_in = vle32_v_f32m8(pIn, l);
+            pIn += l;
+            v_support = vle32_v_f32m8(pSupport, l);
+            pSupport += l;
+            v_sq = vfsub_vv_f32m8(v_in, v_support, l);
+            v_dot = vfredusum_vs_f32m8_f32m1(v_dot, vfmul_vv_f32m8(v_sq, v_sq, l), v_dot, l);
+        }
+        dot += vfmv_f_s_f32m1_f32(v_dot);
+        sum += S->dualCoefficients[i] * expf(-S->gamma * dot);
+    }
+#else
     for(i=0; i < S->nbOfSupportVectors; i++)
     {
         dot=0;
@@ -99,8 +91,8 @@ void riscv_svm_rbf_predict_f32(
         }
         sum += S->dualCoefficients[i] * expf(-S->gamma * dot);
     }
-    *pResult=S->classes[STEP(sum)];
 #endif /* defined(RISCV_MATH_VECTOR) */
+    *pResult=S->classes[STEP(sum)];
 }
 
 

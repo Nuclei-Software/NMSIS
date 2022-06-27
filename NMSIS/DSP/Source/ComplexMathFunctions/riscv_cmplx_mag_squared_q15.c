@@ -67,13 +67,12 @@ void riscv_cmplx_mag_squared_q15(
   {
     v_R = vlse16_v_i16m2(pSrc, bstride, l);
     v_I = vlse16_v_i16m2(pSrc + 1, bstride, l);
-
+    pSrc += l * 2;
     vR2_m4 = vwmul_vv_i32m4(v_R, v_R, l);
     vI2_m4 = vwmul_vv_i32m4(v_I, v_I, l);
     vsum_m8 = vwadd_vv_i64m8(vR2_m4, vI2_m4, l);
     v_summ2 = vnclip_wx_i16m2(vnclip_wx_i32m4(vsum_m8, 17, l), 0, l);
     vse16_v_i16m2(pDst, v_summ2, l);
-    pSrc += l * 2;
     pDst += l;
   }
 #else

@@ -29,6 +29,7 @@
 
 #include "dsp/matrix_functions.h"
 
+
 /**
  * @ingroup groupMatrix
  */
@@ -55,16 +56,17 @@
  * @{
  */
 
+
+
+
 /**
  * @brief Floating-point matrix multiplication.
  * @param[in]       *pSrcA points to the first input matrix structure
  * @param[in]       *pSrcB points to the second input matrix structure
  * @param[out]      *pDst points to output matrix structure
- * @return     		The function returns either
+ * @return          The function returns either
  * <code>RISCV_MATH_SIZE_MISMATCH</code> or <code>RISCV_MATH_SUCCESS</code> based on the outcome of size checking.
  */
-
-
 riscv_status riscv_mat_mult_f32(
   const riscv_matrix_instance_f32 * pSrcA,
   const riscv_matrix_instance_f32 * pSrcB,
@@ -98,24 +100,22 @@ riscv_status riscv_mat_mult_f32(
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
 #if defined(RISCV_MATH_VECTOR)
   uint16_t blkCnt = numColsA;  //number of matrix columns  numColsA = numrowB
-  size_t l,max_l;              // max_l is the maximum column elements at a time
+  size_t l;
   ptrdiff_t bstride = 4;       //  32bit/8bit = 4
   ptrdiff_t col_diff = bstride * numColsB;  //Control the column width of the span
-  uint16_t colnum,rownum;      //  How many rowumns and rownum are controlled
+  uint16_t colnum, rownum;      //  How many rowumns and rownum are controlled
   vfloat32m8_t v_inA, v_inB;
   vfloat32m8_t vmul;
-  l = vsetvl_e32m1(1);
-  vfloat32m1_t vsum = vfmv_s_f_f32m1(vsum, 0.0f, l);
-  // max_l = vsetvl_e32m8(32);
+  vfloat32m1_t vsum;
   px = pOut;
-for(rownum = 0;rownum < numRowsA; rownum++)
+  for(rownum = 0; rownum < numRowsA; rownum++)
   {
     pIn1 = pInA;       //backup pointer position
-    for(colnum = 0;colnum < numColsB; colnum++)
+    for(colnum = 0; colnum < numColsB; colnum++)
     {
       blkCnt = numColsA;
       pIn2 = pInB;     //backup pointer position
-      sum = 0.0f;
+
       l = vsetvl_e32m1(1);
       vsum = vfmv_s_f_f32m1(vsum, 0.0f, l);
       for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)   //Multiply a row by a column
@@ -125,22 +125,20 @@ for(rownum = 0;rownum < numRowsA; rownum++)
         /* c(m,n) = a(1,1) * b(1,1) + a(1,2) * b(2,1) + .... + a(m,p) * b(p,n) */
         /* Perform multiply-accumulates */
         vmul = vfmul_vv_f32m8(v_inA, v_inB, l);
-        vsum = vfredosum_vs_f32m8_f32m1(vsum, vmul, vsum, l);
-        sum = vfmv_f_s_f32m1_f32 (vsum);
-        // if(l == max_l)
-        // {
-        pInA = pInA+l;    //Pointer to the first element of the next line
-        pInB = pInB+l*numColsB;
-        // }
+        vsum = vfredusum_vs_f32m8_f32m1(vsum, vmul, vsum, l);
+
+        pInA += l;    //Pointer to the first element of the next line
+        pInB += l * numColsB;
       }
-      *px = sum;
-      px++;
+      sum = vfmv_f_s_f32m1_f32(vsum);
+      *px++ = sum;
       pInA = pIn1;
-      pInB = pIn2;pInB = pInB+1;    //Pointer to the first element of the next column for matrix BS
-    //printf("px=%d\n",px);
+      pInB = pIn2;
+      pInB = pInB + 1;    //Pointer to the first element of the next column for matrix BS
     }
     pInB = pSrcB->pData;
-    pInA = pIn1;pInA = pInA+numColsA;    //Pointer to the first element of the next row for matrix A
+    pInA = pIn1;
+    pInA += numColsA;    //Pointer to the first element of the next row for matrix A
   }
   /* Set status as RISCV_MATH_SUCCESS */
   status = RISCV_MATH_SUCCESS;
@@ -196,7 +194,7 @@ for(rownum = 0;rownum < numRowsA; rownum++)
         }
 
         /* Loop unrolling: Compute remaining MACs */
-        colCnt = numColsA % 0x4U;
+        colCnt = numColsA & 0x3U;
 
 #else
 

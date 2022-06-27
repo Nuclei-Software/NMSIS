@@ -79,30 +79,27 @@ riscv_status riscv_mat_trans_q15(
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
 #if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = nRows;
-  size_t l,max_l;
-  ptrdiff_t bstride = 2;  //  16bit/8bit = 2
-  ptrdiff_t col_diff = bstride * nCols;  //Control the column width of the span
-  uint16_t colnum;     //  How many rowumns are controlled
-  vint16m8_t v_in;
-  q15_t *pIn1;
-  // max_l = vsetvl_e16m8(32);
-    for(colnum = 0;colnum < nCols; colnum++)
+    uint32_t blkCnt = nRows;
+    size_t l;
+    ptrdiff_t bstride = 2;  //  16bit/8bit = 2
+    ptrdiff_t col_diff = bstride * nCols;  //Control the column width of the span
+    uint16_t colnum;     //  How many rowumns are controlled
+    vint16m8_t v_in;
+    q15_t *pIn1;
+
+    for (colnum = 0; colnum < nCols; colnum++)
     {
       blkCnt = nRows;
       pIn1 = pIn;
       for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
       {
         v_in = vlse16_v_i16m8(pIn, col_diff, l);
-        vse16_v_i16m8 (pOut, v_in, l);
-        // if(l == max_l)
-        // {
-        pIn = pIn+l*nCols;
-        // }
-        pOut = pOut+l;
+        pIn += l * nCols;
+        vse16_v_i16m8(pOut, v_in, l);
+        pOut += l;
       }
-    pIn = pIn1;
-    pIn = pIn+1;
+      pIn = pIn1;
+      pIn = pIn+1;
     }
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
@@ -172,7 +169,7 @@ riscv_status riscv_mat_trans_q15(
       }
 
       /* Loop unrolling: Compute remaining outputs */
-      col = nCols % 0x4U;
+      col = nCols & 0x3U;
 
 #else
 

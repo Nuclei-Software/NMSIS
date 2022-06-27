@@ -120,7 +120,7 @@ void riscv_absmax_f32(
   }                                                                                                         \
                                                                                                             \
   /* Loop unrolling: Compute remaining outputs */                                                           \
-  blkCnt = (blockSize - 1U) % 4U;                                                                           \
+  blkCnt = (blockSize - 1U) & 3U;                                                                           \
                                                                                                             \
                                                                                                             \
   while (blkCnt > 0U)                                                                                       \
@@ -158,29 +158,27 @@ void riscv_absmax_f32(
     float32_t temp_max;
     size_t l;
     vfloat32m8_t v_x;
-    vfloat32m1_t v_temp;
     float32_t *pIN = pSrc;
     out = 0;
     outIndex = 0;
     l = vsetvl_e32m1(1);
-    v_temp = vfsub_vv_f32m1(v_temp, v_temp, l);
+    vfloat32m1_t v_zero = vfsub_vv_f32m1(v_zero, v_zero, l);
     for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
         v_x = vle32_v_f32m8(pIN, l);
         pIN += l;
         v_x = vfsgnjx_vv_f32m8(v_x,v_x, l);
-        temp_max = vfmv_f_s_f32m1_f32(vfredmax_vs_f32m8_f32m1(v_temp,v_x,v_temp, l));
-        if(temp_max > out){
+        temp_max = vfmv_f_s_f32m1_f32(vfredmax_vs_f32m8_f32m1(v_zero, v_x, v_zero, l));
+        if (temp_max > out) {
             out = temp_max;
             outIndex = temp_index;
         }
         temp_index += l;
     }
     pIN = pSrc + outIndex;
-    while(1){
-        if(out == *pIN){
+    while (1) {
+        if (out == *pIN) {
             break;
-        }
-        else{
+        } else {
             pIN++;
             outIndex++;
         }

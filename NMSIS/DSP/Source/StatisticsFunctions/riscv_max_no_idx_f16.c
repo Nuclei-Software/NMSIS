@@ -62,17 +62,17 @@ void riscv_max_no_idx_f16(
    while (blockSize > 0U)
    {
        newVal = *pSrc++;
-   
+
        /* compare for the maximum value */
-       if (maxValue < newVal)
+       if ((_Float16)maxValue < (_Float16)newVal)
        {
            /* Update the maximum value and it's index */
            maxValue = newVal;
        }
-   
+
        blockSize --;
    }
-    
+
    *pResult = maxValue;
 }
 
@@ -81,5 +81,4 @@ void riscv_max_no_idx_f16(
   @} end of Max group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
-
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */

@@ -33,6 +33,7 @@
   @ingroup groupStats
  */
 
+
 /**
   @addtogroup MSE
   @{
@@ -46,57 +47,62 @@
   @param[out]    pResult    mean square error
   @return        none
  */
-void riscv_mse_q31(const q31_t *pSrcA, const q31_t *pSrcB, uint32_t blockSize,
-                   q31_t *pResult)
+void riscv_mse_q31(
+  const q31_t * pSrcA,
+  const q31_t * pSrcB,
+        uint32_t blockSize,
+        q31_t * pResult)
 {
-    uint32_t blkCnt; /* Loop counter */
-    q63_t sum = 0;   /* Temporary result storage */
+        uint32_t blkCnt;                               /* Loop counter */
+        q63_t sum = 0;                                 /* Temporary result storage */
 
-    q31_t inA32, inB32; /* Temporary variable to store packed input value */
+        q31_t inA32,inB32;                                    /* Temporary variable to store packed input value */
 
-#if defined(RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL)
 
-    /* Loop unrolling: Compute 4 outputs at a time */
-    blkCnt = blockSize >> 2U;
+  /* Loop unrolling: Compute 4 outputs at a time */
+  blkCnt = blockSize >> 2U;
 
-    while (blkCnt > 0U) {
-        inA32 = *pSrcA++ >> 1;
-        inB32 = *pSrcB++ >> 1;
-        inA32 = __QSUB(inA32, inB32);
-        sum += ((q63_t)inA32 * inA32) >> 14U;
+  while (blkCnt > 0U)
+  {
+    inA32 = *pSrcA++ >> 1;
+    inB32 = *pSrcB++ >> 1;
+    inA32 = __QSUB(inA32, inB32);
+    sum += ((q63_t) inA32 * inA32) >> 14U;
 
-        inA32 = *pSrcA++ >> 1;
-        inB32 = *pSrcB++ >> 1;
-        inA32 = __QSUB(inA32, inB32);
-        sum += ((q63_t)inA32 * inA32) >> 14U;
+    inA32 = *pSrcA++ >> 1;
+    inB32 = *pSrcB++ >> 1;
+    inA32 = __QSUB(inA32, inB32);
+    sum += ((q63_t) inA32 * inA32) >> 14U;
 
-        inA32 = *pSrcA++ >> 1;
-        inB32 = *pSrcB++ >> 1;
-        inA32 = __QSUB(inA32, inB32);
-        sum += ((q63_t)inA32 * inA32) >> 14U;
+    inA32 = *pSrcA++ >> 1;
+    inB32 = *pSrcB++ >> 1;
+    inA32 = __QSUB(inA32, inB32);
+    sum += ((q63_t) inA32 * inA32) >> 14U;
 
-        inA32 = *pSrcA++ >> 1;
-        inB32 = *pSrcB++ >> 1;
-        inA32 = __QSUB(inA32, inB32);
-        sum += ((q63_t)inA32 * inA32) >> 14U;
+    inA32 = *pSrcA++ >> 1;
+    inB32 = *pSrcB++ >> 1;
+    inA32 = __QSUB(inA32, inB32);
+    sum += ((q63_t) inA32 * inA32) >> 14U;
 
-        /* Decrement loop counter */
-        blkCnt--;
-    }
 
-    /* Loop unrolling: Compute remaining outputs */
-    blkCnt = blockSize % 0x4U;
+    /* Decrement loop counter */
+    blkCnt--;
+  }
+
+  /* Loop unrolling: Compute remaining outputs */
+  blkCnt = blockSize & 0x3U;
 
 #else
 
-    /* Initialize blkCnt with number of samples */
-    blkCnt = blockSize;
+  /* Initialize blkCnt with number of samples */
+  blkCnt = blockSize;
 
 #if defined(RISCV_MATH_VECTOR)
     size_t l;
-    q31_t *pInA = pSrcA;
-    q31_t *pInB = pSrcB;
-    vint32m4_t v_inA, v_inB, v_subVal, v_tmpVal;
+    const q31_t *pInA = pSrcA;
+    const q31_t *pInB = pSrcB;
+    vint32m4_t v_inA, v_inB, v_subVal;
     vint64m8_t v_mul;
     l = vsetvl_e64m1(1);
     vint64m1_t v_sum = vmv_s_x_i64m1(v_sum, 0, l); /* init v_sum data */
@@ -111,23 +117,25 @@ void riscv_mse_q31(const q31_t *pSrcA, const q31_t *pSrcB, uint32_t blockSize,
         v_mul = vsra_vx_i64m8(vwmul_vv_i64m8(v_subVal, v_subVal, l), 14, l);
         v_sum = vredsum_vs_i64m8_i64m1(v_sum, v_mul, v_sum, l);
     }
-    sum = vmv_x_s_i64m1_i64(v_sum);
+    sum += vmv_x_s_i64m1_i64(v_sum);
 #else
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-    while (blkCnt > 0U) {
-        inA32 = *pSrcA++ >> 1;
-        inB32 = *pSrcB++ >> 1;
-        inA32 = __QSUB(inA32, inB32);
-        sum += ((q63_t)inA32 * inA32) >> 14U;
 
-        /* Decrement loop counter */
-        blkCnt--;
-    }
+  while (blkCnt > 0U)
+  {
+    inA32 = *pSrcA++ >> 1;
+    inB32 = *pSrcB++ >> 1;
+    inA32 = __QSUB(inA32, inB32);
+    sum += ((q63_t) inA32 * inA32) >> 14U;
+
+    /* Decrement loop counter */
+    blkCnt--;
+  }
 
 #endif /* defined(RISCV_MATH_VECTOR) */
-    /* Store result in q31 format */
-    *pResult = (q31_t)((sum / blockSize) >> 15);
+  /* Store result in q31 format */
+  *pResult = (q31_t) ((sum / blockSize)>>15);
 }
 
 /**

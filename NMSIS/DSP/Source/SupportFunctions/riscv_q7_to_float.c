@@ -34,7 +34,7 @@
  */
 
 /**
- * @defgroup q7_to_x  Convert 8-bit Integer value
+ * @defgroup q7_to_x  Convert 8-bit fixed point value
  */
 
 /**
@@ -60,9 +60,11 @@ void riscv_q7_to_float(
         float32_t * pDst,
         uint32_t blockSize)
 {
+        uint32_t blkCnt;                               /* Loop counter */
+  const q7_t *pIn = pSrc;                              /* Source pointer */
+
 #if defined(RISCV_MATH_VECTOR)
-  const q7_t *pIn = pSrc;                                    /* Src pointer */
-  uint32_t blkCnt = blockSize;                               /* loop counter */
+  blkCnt = blockSize;                               /* loop counter */
   size_t l;
   vint8m2_t v_in;
   vfloat32m8_t v_out;
@@ -75,8 +77,6 @@ void riscv_q7_to_float(
     pDst += l;
   }
 #else
-        uint32_t blkCnt;                               /* Loop counter */
-  const q7_t *pIn = pSrc;                              /* Source pointer */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -98,7 +98,7 @@ void riscv_q7_to_float(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 

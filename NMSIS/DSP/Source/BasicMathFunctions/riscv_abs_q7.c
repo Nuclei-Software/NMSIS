@@ -60,7 +60,22 @@ void riscv_abs_q7(
         uint32_t blkCnt;                               /* Loop counter */
         q7_t in;                                       /* Temporary input variable */
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined(RISCV_MATH_VECTOR)
+    blkCnt = blockSize;
+    size_t l;
+    vint8m8_t v_x, v_zero;
+    l = vsetvlmax_e8m8();
+    v_zero = vmv_v_x_i8m8(0, l);
+    for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
+        v_x = vle8_v_i8m8(pSrc, l);
+        pSrc += l;
+        vbool1_t mask = vmslt_vx_i8m8_b1(v_x, 0, l);
+        v_x = vssub_vv_i8m8_m(mask, v_x, v_zero, v_x, l);
+        vse8_v_i8m8(pDst, v_x, l);
+        pDst += l;
+    }
+
+#elif defined (RISCV_MATH_LOOPUNROLL)
 #if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
   /* Loop unrolling: Compute 8 outputs at a time */
   blkCnt = blockSize >> 3U;
@@ -75,12 +90,12 @@ void riscv_abs_q7(
     /* Calculate absolute of input (if -1 then saturated to 0x7f) and store result in destination buffer. */
 #if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
-  write_q7x8_ia (&pDst, __RV_KABS8(read_q7x8_ia ((q7_t **) &pSrc)));
+  write_q7x8_ia(&pDst, __RV_KABS8(read_q7x8_ia ((q7_t **) &pSrc)));
 #else
 #if defined (RISCV_DSP64)
-  write_q7x8_ia (&pDst, __RV_DKABS8(read_q7x8_ia ((q7_t **) &pSrc)));
+  write_q7x8_ia(&pDst, __RV_DKABS8(read_q7x8_ia ((q7_t **) &pSrc)));
 #else
-  write_q7x4_ia (&pDst, __RV_KABS8(read_q7x4_ia ((q7_t **) &pSrc)));
+  write_q7x4_ia(&pDst, __RV_KABS8(read_q7x4_ia ((q7_t **) &pSrc)));
 #endif
 #endif /* __RISCV_XLEN == 64 */
 #else

@@ -65,8 +65,8 @@ void riscv_mult_q7(
 
   for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
     vx = vle8_v_i8m8(pSrcA, l);
-    vy = vle8_v_i8m8(pSrcB, l);
     pSrcA += l;
+    vy = vle8_v_i8m8(pSrcB, l);
     pSrcB += l;
     vse8_v_i8m8(pDst, vsmul_vv_i8m8(vx, vy, l), l);
     pDst += l;

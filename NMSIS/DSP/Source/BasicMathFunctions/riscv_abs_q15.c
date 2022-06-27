@@ -58,7 +58,22 @@ void riscv_abs_q15(
         uint32_t blkCnt;                               /* Loop counter */
         q15_t in;                                      /* Temporary input variable */
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined(RISCV_MATH_VECTOR)
+    blkCnt = blockSize;
+    size_t l;
+    vint16m8_t v_x, v_zero;
+    l = vsetvlmax_e16m8();
+    v_zero = vmv_v_x_i16m8(0, l);
+    for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
+        v_x = vle16_v_i16m8(pSrc, l);
+        pSrc += l;
+        vbool2_t mask = vmslt_vx_i16m8_b2(v_x, 0, l);
+        v_x = vssub_vv_i16m8_m(mask, v_x, v_zero, v_x, l);
+        vse16_v_i16m8(pDst, v_x, l);
+        pDst += l;
+    }
+
+#elif defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
@@ -70,21 +85,21 @@ void riscv_abs_q15(
     /* Calculate absolute of input (if -1 then saturated to 0x7fff) and store result in destination buffer. */
 #if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
-	write_q15x4_ia (&pDst, __RV_KABS16(read_q15x4_ia ((q15_t **) &pSrc)));
+	write_q15x4_ia(&pDst, __RV_KABS16(read_q15x4_ia ((q15_t **) &pSrc)));
 #else
 #ifdef RISCV_DSP64
-	write_q15x4_ia (&pDst, __RV_DKABS16(read_q15x4_ia ((q15_t **) &pSrc)));
+	write_q15x4_ia(&pDst, __RV_DKABS16(read_q15x4_ia ((q15_t **) &pSrc)));
 #else
-	write_q15x2_ia (&pDst, __RV_KABS16(read_q15x2_ia ((q15_t **) &pSrc)));
-	write_q15x2_ia (&pDst, __RV_KABS16(read_q15x2_ia ((q15_t **) &pSrc)));
+	write_q15x2_ia(&pDst, __RV_KABS16(read_q15x2_ia ((q15_t **) &pSrc)));
+	write_q15x2_ia(&pDst, __RV_KABS16(read_q15x2_ia ((q15_t **) &pSrc)));
 #endif
     in = *pSrc++;
     *pDst++ = (in > 0) ? in : ((in == (q15_t) 0x8000) ? 0x7fff : -in);
-	  in = *pSrc++;
+    in = *pSrc++;
     *pDst++ = (in > 0) ? in : ((in == (q15_t) 0x8000) ? 0x7fff : -in);
-	  in = *pSrc++;
+    in = *pSrc++;
     *pDst++ = (in > 0) ? in : ((in == (q15_t) 0x8000) ? 0x7fff : -in);
-	  in = *pSrc++;
+    in = *pSrc++;
     *pDst++ = (in > 0) ? in : ((in == (q15_t) 0x8000) ? 0x7fff : -in);
 #endif
 #endif /* __RISCV_XLEN == 64 */
@@ -100,7 +115,7 @@ void riscv_abs_q15(
   /* Initialize blkCnt with number of samples */
   blkCnt = blockSize;
 
-#endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
+#endif /* #if defined (RISCV_MATH_VECTOR) */
 
   while (blkCnt > 0U)
   {

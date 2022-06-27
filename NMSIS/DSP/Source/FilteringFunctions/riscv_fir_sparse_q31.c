@@ -225,7 +225,7 @@ void riscv_fir_sparse_q31(
     }
 
     /* Loop unrolling: Compute remaining outputs */
-    blkCnt = blockSize % 0x4U;
+    blkCnt = blockSize & 0x3U;
 
 #else
 
@@ -238,7 +238,7 @@ void riscv_fir_sparse_q31(
     for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
       vx = vle32_v_i32m4(px, l);
       px += l;
-      vse32_v_i32m4 (pOut, vadd_vv_i32m4(vle32_v_i32m4(pOut, l), vnclip_wx_i32m4(vwmul_vx_i64m8(vx, coeff, l), 32, l), l), l);
+      vse32_v_i32m4(pOut, vadd_vv_i32m4(vle32_v_i32m4(pOut, l), vnclip_wx_i32m4(vwmul_vx_i64m8(vx, coeff, l), 32, l), l), l);
       pOut += l;
     }
 #else
@@ -316,7 +316,7 @@ void riscv_fir_sparse_q31(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 
@@ -325,13 +325,13 @@ void riscv_fir_sparse_q31(
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
 #if defined (RISCV_MATH_VECTOR)
-    vblkCnt = blockSize;
-    for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle32_v_i32m4(px, l);
-      px += l;
-      vse32_v_i32m4(pOut, vadd_vv_i32m4(vle32_v_i32m4(pOut, l), vnclip_wx_i32m4(vwmul_vx_i64m8(vx, coeff, l), 32, l), l), l);
-      pOut += l;
-    }
+  vblkCnt = blockSize;
+  for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
+    vx = vle32_v_i32m4(px, l);
+    px += l;
+    vse32_v_i32m4(pOut, vadd_vv_i32m4(vle32_v_i32m4(pOut, l), vnclip_wx_i32m4(vwmul_vx_i64m8(vx, coeff, l), 32, l), l), l);
+    pOut += l;
+  }
 #else
   while (blkCnt > 0U)
   {
@@ -369,7 +369,7 @@ void riscv_fir_sparse_q31(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 

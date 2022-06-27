@@ -165,22 +165,10 @@ void riscv_spline_f32(
     int32_t i;
     float32_t x_sc;
 
-#if defined(RISCV_MATH_VECTOR)
-    uint32_t blkCnt_v;                               /* Loop counter */
-    size_t l;
-    float32_t temp_max;
-    vfloat32m8_t v_x, v_y;
-    vfloat32m8_t v_a, v_b;
-    vfloat32m1_t v_temp;
-    l = vsetvl_e32m1(1);
-    v_temp = vfsub_vv_f32m1(v_temp, v_temp, l);
-#endif
-
 
     /* Create output for x(i)<x<x(i+1) */
     for (i=0; i<n-1; i++)
     {
-
         while( *pXq <= x[i+1] && blkCnt > 0 )
         {
             x_sc = *pXq++;
@@ -195,18 +183,21 @@ void riscv_spline_f32(
     /* Create output for remaining samples (x>=x(n)) */
     blkCnt2 = blkCnt;
 #if defined(RISCV_MATH_VECTOR)
-    blkCnt_v = blkCnt;
-    l = vsetvl_e32m8(blkCnt_v);
-    v_a = vfsub_vv_f32m8(v_a,v_a, l);
+    uint32_t blkCnt_v;                               /* Loop counter */
+    size_t l;
+    vfloat32m8_t v_x, v_y, v_b;
+
+    blkCnt_v = blkCnt2;
+
     for (; (l = vsetvl_e32m8(blkCnt_v)) > 0; blkCnt_v -= l) {
       v_x = vle32_v_f32m8(pXq, l);
-      v_x = vfsub_vf_f32m8(v_x,x[i-1], l);
-      v_y = vfmul_vv_f32m8(v_x,v_x, l);
-      v_b = vfmul_vv_f32m8(v_y,v_x, l);
-      v_x = vfadd_vf_f32m8(vfmul_vf_f32m8(v_x,b[i-1], l),y[i-1], l);
-      v_y = vfadd_vv_f32m8(vfmul_vf_f32m8(v_y,c[i-1], l),vfmul_vf_f32m8(v_b,d[i-1], l), l);
-      v_x = vfadd_vv_f32m8(v_x,v_y, l);
-      vse32_v_f32m8(pDst,v_x, l);
+      v_x = vfsub_vf_f32m8(v_x, x[i-1], l);
+      v_y = vfmul_vv_f32m8(v_x, v_x, l);
+      v_b = vfmul_vv_f32m8(v_y, v_x, l);
+      v_x = vfadd_vf_f32m8(vfmul_vf_f32m8(v_x, b[i-1], l), y[i-1], l);
+      v_y = vfadd_vv_f32m8(vfmul_vf_f32m8(v_y, c[i-1], l), vfmul_vf_f32m8(v_b, d[i-1], l), l);
+      v_x = vfadd_vv_f32m8(v_x, v_y, l);
+      vse32_v_f32m8(pDst, v_x, l);
       pXq += l;
       pDst += l;
     }

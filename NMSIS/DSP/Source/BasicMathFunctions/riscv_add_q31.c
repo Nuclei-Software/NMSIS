@@ -67,8 +67,8 @@ void riscv_add_q31(
 
   for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
     vx = vle32_v_i32m8(pSrcA, l);
-    vy = vle32_v_i32m8(pSrcB, l);
     pSrcA += l;
+    vy = vle32_v_i32m8(pSrcB, l);
     pSrcB += l;
     vse32_v_i32m8(pDst, vsadd_vv_i32m8(vy, vx, l), l);
     pDst += l;
@@ -84,8 +84,8 @@ void riscv_add_q31(
   {
     /* C = A + B */
 #if __RISCV_XLEN == 64
-	write_q31x2_ia (&pDst, __RV_KADD32(read_q31x2_ia ((q31_t **) &pSrcA),read_q31x2_ia ((q31_t **) &pSrcB)));
-	write_q31x2_ia (&pDst, __RV_KADD32(read_q31x2_ia ((q31_t **) &pSrcA),read_q31x2_ia ((q31_t **) &pSrcB)));
+	write_q31x2_ia(&pDst, __RV_KADD32(read_q31x2_ia ((q31_t **) &pSrcA),read_q31x2_ia((q31_t **) &pSrcB)));
+	write_q31x2_ia(&pDst, __RV_KADD32(read_q31x2_ia ((q31_t **) &pSrcA),read_q31x2_ia((q31_t **) &pSrcB)));
 #else
     /* Add and store result in destination buffer. */
     *pDst++ = __RV_KADDW(*pSrcA++, *pSrcB++);

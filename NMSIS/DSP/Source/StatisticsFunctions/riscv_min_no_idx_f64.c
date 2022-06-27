@@ -1,8 +1,7 @@
 /* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_min_no_idx_f64.c
- * Description:  Maximum value of a floating-point vector without returning the
- * index
+ * Description:  Maximum value of a floating-point vector without returning the index
  *
  * $Date:        16 November 2021
  * $Revision:    V1.10.0
@@ -34,6 +33,7 @@
   @ingroup groupStats
  */
 
+
 /**
   @addtogroup Min
   @{
@@ -46,23 +46,29 @@
   @param[out]    pResult    minimum value returned here
   @return        none
  */
-void riscv_min_no_idx_f64(const float64_t *pSrc, uint32_t blockSize,
-                          float64_t *pResult)
+void riscv_min_no_idx_f64(
+    const float64_t *pSrc,
+    uint32_t   blockSize,
+    float64_t *pResult)
 {
-    float64_t minValue = F64_MAX;
-    float64_t newVal;
-    while (blockSize > 0U) {
-        newVal = *pSrc++;
-        /* compare for the minimum value */
-        if (minValue > newVal) {
-            /* Update the minimum value and it's index */
-            minValue = newVal;
-        }
+   float64_t   minValue = F64_MAX;
+   float64_t   newVal;
 
-        blockSize--;
-    }
+   while (blockSize > 0U)
+   {
+       newVal = *pSrc++;
 
-    *pResult = minValue;
+       /* compare for the minimum value */
+       if (minValue > newVal)
+       {
+           /* Update the minimum value and it's index */
+           minValue = newVal;
+       }
+
+       blockSize --;
+   }
+
+   *pResult = minValue;
 }
 
 /**

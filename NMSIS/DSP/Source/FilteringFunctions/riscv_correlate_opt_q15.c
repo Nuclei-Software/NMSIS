@@ -296,8 +296,9 @@ void riscv_correlate_opt_q15(
       pScr1 += l;
       vy = vle16_v_i16m4(pIn2, l);
       pIn2 += l;
-      acc0 += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l));
+      temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
     }
+    acc0 += vmv_x_s_i32m1_i32(temp00m1);
 #else
     tapCnt = (srcBLen) >> 1U;
 

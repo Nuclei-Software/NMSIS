@@ -1,8 +1,7 @@
 /* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_min_no_idx_f32.c
- * Description:  Minimum value of a floating-point vector without returning the
- * index
+ * Description:  Minimum value of a floating-point vector without returning the index
  *
  * $Date:        16 November 2021
  * $Revision:    V1.10.0
@@ -34,6 +33,7 @@
   @ingroup groupStats
  */
 
+
 /**
   @addtogroup Min
   @{
@@ -47,41 +47,44 @@
   @return        none
  */
 
-void riscv_min_no_idx_f32(const float32_t *pSrc, uint32_t blockSize,
-                          float32_t *pResult)
+
+void riscv_min_no_idx_f32(
+    const float32_t *pSrc,
+    uint32_t   blockSize,
+    float32_t *pResult)
 {
-    float32_t minValue = F32_MAX;
-    float32_t newVal;
+   float32_t   minValue = F32_MAX;
+   float32_t   newVal;
 
 #if defined(RISCV_MATH_VECTOR)
     int32_t blkCnt = blockSize; /* Loop counter */
     size_t l;
-    float32_t min_temp;
     vfloat32m8_t v_in;
     l = vsetvl_e32m1(1);
     vfloat32m1_t v_min = vfmv_s_f_f32m1(v_min, minValue, l); /* vector0 */
     for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
         v_in = vle32_v_f32m8(pSrc, l);
         pSrc += l;
-        min_temp =
-            vfmv_f_s_f32m1_f32(vfredmin_vs_f32m8_f32m1(v_min, v_in, v_min, l));
-        if (min_temp < minValue) {
-            minValue = min_temp;
-        }
+        v_min = vfredmin_vs_f32m8_f32m1(v_min, v_in, v_min, l);
     }
+    minValue = vfmv_f_s_f32m1_f32(v_min);
 #else
 
-    while (blockSize > 0U) {
-        newVal = *pSrc++;
-        /* compare for the minimum value */
-        if (minValue > newVal) {
-            /* Update the minimum value and it's index */
-            minValue = newVal;
-        }
-        blockSize--;
-    }
-#endif /* defined(RISCV_MATH_VECTOR) */
-    *pResult = minValue;
+   while (blockSize > 0U)
+   {
+       newVal = *pSrc++;
+
+       /* compare for the minimum value */
+       if (minValue > newVal)
+       {
+           /* Update the minimum value and it's index */
+           minValue = newVal;
+       }
+
+       blockSize --;
+   }
+#endif
+   *pResult = minValue;
 }
 
 /**

@@ -117,7 +117,7 @@ void riscv_absmax_f16(
   }                                                                                                         \
                                                                                                             \
   /* Loop unrolling: Compute remaining outputs */                                                           \
-  blkCnt = (blockSize - 1U) % 4U;                                                                           \
+  blkCnt = (blockSize - 1U) & 3U;                                                                           \
                                                                                                             \
                                                                                                             \
   while (blkCnt > 0U)                                                                                       \

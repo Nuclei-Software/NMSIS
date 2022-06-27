@@ -217,8 +217,9 @@ void riscv_conv_q31(
       px += l;
       vy = vlse32_v_i32m4(py, bstride, l);
       py -= l;
-      sum += vmv_x_s_i64m1_i64(vredsum_vs_i64m8_i64m1(temp00m1, vwmul_vv_i64m8(vx, vy, l), temp00m1, l));
+      temp00m1 = vredsum_vs_i64m8_i64m1(temp00m1, vwmul_vv_i64m8(vx, vy, l), temp00m1, l);
     }
+    sum += vmv_x_s_i64m1_i64(temp00m1);
 #else
     while (k > 0U)
     {
@@ -285,8 +286,9 @@ void riscv_conv_q31(
         px += l;
         vy = vlse32_v_i32m4(py, bstride, l);
         py -= l;
-        sum += vmv_x_s_i64m1_i64(vredsum_vs_i64m8_i64m1(temp00m1, vwmul_vv_i64m8(vx, vy, l), temp00m1, l));
+        temp00m1 = vredsum_vs_i64m8_i64m1(temp00m1, vwmul_vv_i64m8(vx, vy, l), temp00m1, l);
       }
+      sum += vmv_x_s_i64m1_i64(temp00m1);
       /* Store the result in the accumulator in the destination buffer. */
       *pOut++ = (q31_t) (sum >> 31);
 
@@ -463,7 +465,7 @@ void riscv_conv_q31(
     py++;
 #endif /* __RISCV_XLEN == 64 */
       /* Loop unrolling: Compute remaining outputs */
-      k = srcBLen % 0x4U;
+      k = srcBLen & 0x3U;
 
 #else
 
@@ -603,7 +605,7 @@ void riscv_conv_q31(
     py++;
 #endif /* __RISCV_XLEN == 64 */
     /* Loop unrolling: Compute remaining outputs */
-    k = blockSize3 % 0x4U;
+    k = blockSize3 & 0x3U;
 
 #else
 
@@ -624,8 +626,9 @@ void riscv_conv_q31(
       px += l;
       vy = vlse32_v_i32m4(py, bstride, l);
       py -= l;
-      sum += vmv_x_s_i64m1_i64(vredsum_vs_i64m8_i64m1(temp00m1, vwmul_vv_i64m8(vx, vy, l), temp00m1, l));
+      temp00m1 = vredsum_vs_i64m8_i64m1(temp00m1, vwmul_vv_i64m8(vx, vy, l), temp00m1, l);
     }
+    sum += vmv_x_s_i64m1_i64(temp00m1);
 #else
     while (k > 0U)
     {

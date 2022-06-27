@@ -53,17 +53,20 @@ void riscv_min_q31(
         q31_t * pResult,
         uint32_t * pIndex)
 {
-#if defined(RISCV_MATH_VECTOR)
-    int32_t min = pSrc[0],min_temp;
-    uint32_t index = 0,index_temp = 0;
+        q31_t minVal, out;                             /* Temporary variables to store the output value. */
+        uint32_t blkCnt, outIndex;                     /* Loop counter */
 
-    uint32_t blkCnt;
+#if defined(RISCV_MATH_VECTOR)
+    q31_t min_temp;
+    uint32_t index_temp = 0;
+
     size_t l;
-    int32_t * inputx;
+    const int32_t *inputx = pSrc;
     vint32m8_t v_x;
     vint32m1_t v_tempa;
 
-    inputx = pSrc;
+    out = pSrc[0];
+    outIndex = 0;
     blkCnt = blockSize;
     l = vsetvl_e32m1(1);
     v_tempa = vmv_s_x_i32m1(v_tempa, pSrc[0], l);
@@ -71,31 +74,26 @@ void riscv_min_q31(
     {
         v_x = vle32_v_i32m8(inputx, l);
         inputx += l;
-        min_temp = vmv_x_s_i32m1_i32 (vredmin_vs_i32m8_i32m1(v_tempa,v_x,v_tempa, l));
-        if (min_temp < min){
-          min = min_temp;
-          index = index_temp;
+        min_temp = vmv_x_s_i32m1_i32(vredmin_vs_i32m8_i32m1(v_tempa, v_x, v_tempa, l));
+        if (min_temp < out){
+          out = min_temp;
+          outIndex = index_temp;
         }
         index_temp += l;
-
     }
-    * pResult = min;
-    while(1)
+
+    while (1)
     {
-        if (pSrc[index] == min){
+        if (pSrc[outIndex] == out) {
           break;
+        } else {
+          outIndex++;
         }
-        else
-            index++;
     }
-    * pIndex = index;
-
 #else
-        q31_t minVal, out;                             /* Temporary variables to store the output value. */
-        uint32_t blkCnt, outIndex;                     /* Loop counter */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
-        uint32_t index;                                /* index of minimum value */
+        uint32_t index;                                /* index of maximum value */
 #endif
 
   /* Initialise index value to zero. */
@@ -104,7 +102,7 @@ void riscv_min_q31(
   out = *pSrc++;
 
 #if defined (RISCV_MATH_LOOPUNROLL)
-  /* Initialise index of minimum value. */
+  /* Initialise index of maximum value. */
   index = 0U;
 
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -151,7 +149,7 @@ void riscv_min_q31(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = (blockSize - 1U) % 4U;
+  blkCnt = (blockSize - 1U) & 3U;
 
 #else
 
@@ -176,11 +174,10 @@ void riscv_min_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_MATH_VECTOR) */
   /* Store the minimum value and it's index into destination pointers */
   *pResult = out;
   *pIndex = outIndex;
-#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

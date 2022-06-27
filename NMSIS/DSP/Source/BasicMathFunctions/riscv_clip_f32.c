@@ -57,22 +57,35 @@
   @param[in]     numSamples    number of samples to clip
   @return        none
  */
-void riscv_clip_f32(const float32_t * pSrc, 
-  float32_t * pDst, 
-  float32_t low, 
-  float32_t high, 
+void riscv_clip_f32(const float32_t * pSrc,
+  float32_t * pDst,
+  float32_t low,
+  float32_t high,
   uint32_t numSamples)
 {
+#if defined(RISCV_MATH_VECTOR)
+    uint32_t blkCnt = numSamples;
+    size_t l;
+    vfloat32m8_t v_x;
+    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+        v_x = vle32_v_f32m8(pSrc, l);
+        pSrc += l;
+        v_x = vfmax_vf_f32m8(vfmin_vf_f32m8(v_x, high, l), low, l);
+        vse32_v_f32m8(pDst, v_x, l);
+        pDst += l;
+    }
+#else
     uint32_t i;
     for (i = 0; i < numSamples; i++)
-    {                                        
-        if (pSrc[i] > high)                  
-            pDst[i] = high;                  
-        else if (pSrc[i] < low)              
-            pDst[i] = low;                   
-        else                                 
-            pDst[i] = pSrc[i];               
+    {
+        if (pSrc[i] > high)
+            pDst[i] = high;
+        else if (pSrc[i] < low)
+            pDst[i] = low;
+        else
+            pDst[i] = pSrc[i];
     }
+#endif
 }
 
 /**

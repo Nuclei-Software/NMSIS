@@ -212,7 +212,7 @@ riscv_status riscv_mat_cmplx_mult_f16(
 
         /* If the columns of pSrcA is not a multiple of 4, compute any remaining MACs here.
          ** No loop unrolling is used. */
-        colCnt = numColsA % 0x4U;
+        colCnt = numColsA & 0x3U;
 
 #else
 

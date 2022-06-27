@@ -187,7 +187,7 @@ void riscv_fir_q7(
     }
 
     /* If the filter length is not a multiple of 4, compute the remaining filter taps */
-    tapCnt = numTaps % 0x4U;
+    tapCnt = numTaps & 0x3U;
 
     while (tapCnt > 0U)
     {
@@ -231,7 +231,7 @@ void riscv_fir_q7(
   }
 
   /* Loop unrolling: Compute remaining output samples */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 
@@ -267,8 +267,9 @@ void riscv_fir_q7(
       px += l;
       vy = vwadd_vx_i16m8(vle8_v_i8m4(pb, l), 0, l);
       pb += l;
-      acc0 +=vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(temp00m1, vmul_vv_i16m8(vx, vy, l), temp00m1, l));
+      temp00m1 = vwredsum_vs_i16m8_i32m1(temp00m1, vmul_vv_i16m8(vx, vy, l), temp00m1, l);
     }
+    acc0 +=vmv_x_s_i32m1_i32(temp00m1);
 #else
     /* Perform the multiply-accumulates */
     while (i > 0U)
@@ -314,7 +315,7 @@ void riscv_fir_q7(
   }
 
   /* Calculate remaining number of copies */
-  tapCnt = (numTaps - 1U) % 0x4U;
+  tapCnt = (numTaps - 1U) & 0x3U;
 
 #else
 

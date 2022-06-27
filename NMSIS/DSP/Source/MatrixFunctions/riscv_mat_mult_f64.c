@@ -60,7 +60,7 @@
  * @param[in]       *pSrcA points to the first input matrix structure
  * @param[in]       *pSrcB points to the second input matrix structure
  * @param[out]      *pDst points to output matrix structure
- * @return     		The function returns either
+ * @return		The function returns either
  * <code>RISCV_MATH_SIZE_MISMATCH</code> or <code>RISCV_MATH_SUCCESS</code> based on the outcome of size checking.
  */
 
@@ -115,7 +115,7 @@ riscv_status riscv_mat_mult_f64(
       do
       {
         /* Set the variable sum, that acts as accumulator, to zero */
-        sum = 0.0f;
+        sum = 0.0;
 
         /* Initialize pointer pIn1 to point to starting address of column being processed */
         pIn1 = pInA;
@@ -148,7 +148,7 @@ riscv_status riscv_mat_mult_f64(
         }
 
         /* Loop unrolling: Compute remaining MACs */
-        colCnt = numColsA % 0x4U;
+        colCnt = numColsA & 0x3U;
 
 #else
 

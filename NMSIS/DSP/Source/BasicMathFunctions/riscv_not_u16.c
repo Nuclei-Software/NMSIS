@@ -90,9 +90,9 @@ void riscv_not_u16(
             blkCnt--;
         }
     }
-    if(blkCnt = blockSize%4)
+    if(blkCnt = blockSize & 0x3)
     {
-        pSrc = (uint8_t * )(pSrc_temp-3);
+        pSrc = (uint8_t * )(pSrc_temp - 3);
     }
 
 #else
@@ -108,9 +108,9 @@ void riscv_not_u16(
             blkCnt--;
         }
     }
-    if(blkCnt = blockSize%2)
+    if(blkCnt = blockSize & 0x1)
     {
-        pSrc = (uint8_t * )(pSrc_temp-1);
+        pSrc = (uint8_t * )(pSrc_temp - 1);
     }
 #endif
 

@@ -123,7 +123,7 @@ void riscv_absmin_f32(
   }                                                                                                         \
                                                                                                             \
   /* Loop unrolling: Compute remaining outputs */                                                           \
-  blkCnt = (blockSize - 1U) % 4U;                                                                           \
+  blkCnt = (blockSize - 1U) & 3U;                                                                           \
                                                                                                             \
                                                                                                             \
   while (blkCnt > 0U)                                                                                       \
@@ -170,20 +170,18 @@ void riscv_absmin_f32(
         v_x = vle32_v_f32m8(pIN, l);
         pIN += l;
         v_x = vfsgnjx_vv_f32m8(v_x,v_x, l);
-        temp_min = vfmv_f_s_f32m1_f32(vfredmin_vs_f32m8_f32m1(v_temp,v_x,v_temp, l));
-        if(temp_min < out){
+        temp_min = vfmv_f_s_f32m1_f32(vfredmin_vs_f32m8_f32m1(v_temp, v_x, v_temp, l));
+        if (temp_min < out) {
             out = temp_min;
             outIndex = temp_index;
-            temp_index = 0;
         }
         temp_index += l;
     }
     pIN = pSrc + outIndex;
-    while(1){
-        if(out == *pIN){
+    while (1) {
+        if (out == *pIN) {
             break;
-        }
-        else{
+        } else {
             pIN++;
             outIndex++;
         }

@@ -3,8 +3,8 @@
  * Title:        riscv_mat_cholesky_f32.c
  * Description:  Floating-point Cholesky decomposition
  *
- * $Date:        23 April 2021
- * $Revision:    V1.9.0
+ * $Date:        05 October 2021
+ * $Revision:    V1.9.1
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
@@ -90,54 +90,41 @@ riscv_status riscv_mat_cholesky_f32(
     float32_t invSqrtVj;
     float32_t *pA,*pG;
 
-#if defined(RISCV_MATH_VECTOR)
-    uint32_t blkCnt;                               /* Loop counter */
-    size_t l;
-    vfloat32m8_t v_x, v_y;
-    vfloat32m8_t v_a;
-    vfloat32m1_t v_temp;
-    float32_t *pGX;
-    float32_t *pGY;
-    ptrdiff_t bstride = 8;
-    l = vsetvl_e32m1(1);
-    v_temp = vfsub_vv_f32m1(v_temp, v_temp, l);
-#endif
-
     pA = pSrc->pData;
     pG = pDst->pData;
 
 
-    for(i=0 ; i < n ; i++)
+    for (i = 0 ; i < n; i++)
     {
-       for(j=i ; j < n ; j++)
+       for (j = i ; j < n; j++)
        {
+          pG[j * n + i] = pA[j * n + i];
 #if defined(RISCV_MATH_VECTOR)
-            if(i==0){
-                pG[j * n + i] = pA[j * n + i];
-            }
-            else{
-                blkCnt = i;
-                pGX = pG + i * n;
-                pGY = pG + j * n;
-                l = vsetvl_e32m8(blkCnt);
-                v_a = vfsub_vv_f32m8(v_a,v_a, l);
-                for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-                    v_x = vle32_v_f32m8(pGX, l);
-                    v_y = vle32_v_f32m8(pGY, l);
-                    v_a = vfmacc_vv_f32m8(v_a,v_x,v_y, l);
-                    pGX += l;
-                    pGY += l;
-                }
-                l = vsetvl_e32m8(i);
-                pG[j * n + i] = pA[j * n + i] - vfmv_f_s_f32m1_f32(vfredosum_vs_f32m8_f32m1(v_temp,v_a,v_temp, l));
-            }
-#else
-            pG[j * n + i] = pA[j * n + i];
+          uint32_t blkCnt;                               /* Loop counter */
+          size_t l;
+          vfloat32m8_t v_x, v_y;
+          float32_t *pGX;
+          float32_t *pGY;
+          blkCnt = i;
+          pGX = pG + i * n;
+          pGY = pG + j * n;
+          l = vsetvlmax_e32m1();
+          vfloat32m1_t v_a = vfmv_v_f_f32m1(0.0f, l);
+          for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+              v_x = vle32_v_f32m8(pGX, l);
+              pGX += l;
+              v_y = vle32_v_f32m8(pGY, l);
+              pGY += l;
+              v_a = vfredusum_vs_f32m8_f32m1(v_a, vfmul_vv_f32m8(v_x, v_y, l), v_a, l);
+          }
 
-            for(k=0; k < i ; k++)
-            {
-                pG[j * n + i] = pG[j * n + i] - pG[i * n + k] * pG[j * n + k];
-            }
+          pG[j * n + i] -= vfmv_f_s_f32m1_f32(v_a);
+#else
+
+          for(k=0; k < i ; k++)
+          {
+             pG[j * n + i] = pG[j * n + i] - pG[i * n + k] * pG[j * n + k];
+          }
 #endif
        }
 
@@ -147,7 +134,7 @@ riscv_status riscv_mat_cholesky_f32(
        }
 
        invSqrtVj = 1.0f/sqrtf(pG[i * n + i]);
-       for(j=i ; j < n ; j++)
+       for (j = i ; j < n ; j++)
        {
          pG[j * n + i] = pG[j * n + i] * invSqrtVj ;
        }

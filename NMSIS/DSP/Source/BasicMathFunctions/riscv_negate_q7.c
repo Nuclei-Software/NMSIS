@@ -61,12 +61,12 @@ void riscv_negate_q7(
   blkCnt = blockSize;                               /* Loop counter */
   size_t l = vsetvl_e8m8(blkCnt);
   vint8m8_t vx;
-  vint8m8_t vy = vmv_s_x_i8m8(vy, 0, l);
+  vint8m8_t v_zero = vmv_v_x_i8m8(0, l);
 
   for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
     vx = vle8_v_i8m8(pSrc, l);
     pSrc += l;
-    vse8_v_i8m8(pDst, vssub_vv_i8m8(vy, vx, l), l);
+    vse8_v_i8m8(pDst, vssub_vv_i8m8(v_zero, vx, l), l);
     pDst += l;
   }
 #else
@@ -143,10 +143,10 @@ void riscv_negate_q7(
 
 #if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x8U;
+  blkCnt = blockSize & 0x7U;
 #else
 	/* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 #endif
 
 #else

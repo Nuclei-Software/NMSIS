@@ -57,15 +57,15 @@
  *
  * q and -q are representing the same rotation. This ambiguity must be taken into
  * account when using the output of this function.
- * 
+ *
  */
 
-void riscv_rotation2quaternion_f32(const float32_t *pInputRotations, 
-    float32_t *pOutputQuaternions,  
+void riscv_rotation2quaternion_f32(const float32_t *pInputRotations,
+    float32_t *pOutputQuaternions,
     uint32_t nbQuaternions)
 {
    uint32_t nb;
-   for (nb=0; nb < nbQuaternions; nb++)
+   for(nb=0; nb < nbQuaternions; nb++)
    {
        const float32_t *r=&pInputRotations[nb*9];
        float32_t *q=&pOutputQuaternions[nb*4];
@@ -88,8 +88,8 @@ void riscv_rotation2quaternion_f32(const float32_t *pInputRotations,
       }
       else if ((RI(0,0) > RI(1,1)) && (RI(0,0) > RI(2,2)) )
       {
-        doubler = sqrtf(1.0 + RI(0,0) - RI(1,1) - RI(2,2)) * 2; // invs=4*qx
-        s = 1.0 / doubler;
+        doubler = sqrtf(1.0f + RI(0,0) - RI(1,1) - RI(2,2)) * 2.0f; // invs=4*qx
+        s = 1.0f / doubler;
         q[0] = (RI(2,1) - RI(1,2)) * s;
         q[1] = 0.25f * doubler;
         q[2] = (RI(0,1) + RI(1,0)) * s;

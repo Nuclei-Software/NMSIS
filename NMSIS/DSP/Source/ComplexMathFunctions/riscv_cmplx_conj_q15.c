@@ -102,14 +102,14 @@ void riscv_cmplx_conj_q15(
 
 #if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
-    in641 = read_q15x4_ia ((q15_t **) &pSrc);
+    in641 = read_q15x4_ia((q15_t **) &pSrc);
     in641 = __RV_KCRAS16(0, in641);
     in641 = ((((uint64_t)in641) >> 48) << 32) | (((((uint64_t)in641) << 16) >> 48) << 48) | (((((uint64_t)in641) << 32) >> 48)) | (((((uint64_t)in641) << 48) >> 32));
     write_q15x4_ia (&pDst, in641);
-    in641 = read_q15x4_ia ((q15_t **) &pSrc);
+    in641 = read_q15x4_ia((q15_t **) &pSrc);
     in641 = __RV_KCRAS16(0, in641);
     in641 = ((((uint64_t)in641) >> 48) << 32) | (((((uint64_t)in641) << 16) >> 48) << 48) | (((((uint64_t)in641) << 32) >> 48)) | (((((uint64_t)in641) << 48) >> 32));
-    write_q15x4_ia (&pDst, in641);
+    write_q15x4_ia(&pDst, in641);
 #else
     in1 = read_q15x2_ia ((q15_t **) &pSrc);
     in2 = read_q15x2_ia ((q15_t **) &pSrc);
@@ -155,7 +155,7 @@ void riscv_cmplx_conj_q15(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = numSamples % 0x4U;
+  blkCnt = numSamples & 0x3U;
 
 #else
 

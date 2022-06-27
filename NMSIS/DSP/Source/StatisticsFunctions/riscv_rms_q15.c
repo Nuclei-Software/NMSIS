@@ -60,27 +60,24 @@ void riscv_rms_q15(
         uint32_t blockSize,
         q15_t * pResult)
 {
+        uint32_t blkCnt;                               /* Loop counter */
+        q63_t sum = 0;                                 /* Temporary result storage */
+        q15_t in;                                      /* Temporary variable to store input value */
+
 #if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = blockSize;                               /* Loop counter */
+  blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   const q15_t * input = pSrc;
-  q15_t * result = pResult;
-  q63_t sum;
   vint16m4_t v_in;
   l = vsetvl_e64m1(1);
   vint64m1_t v_sum = vmv_s_x_i64m1(v_sum, 0, l);                /* init v_sum data= vmv_s_x_i64m1(v_sum, 0) */
   for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
     v_in = vle16_v_i16m4(input, l);
     input += l;
-    v_sum = vwredsum_vs_i32m8_i64m1(v_sum, vwmul_vv_i32m8(v_in, v_in, l) ,v_sum, l);
+    v_sum = vwredsum_vs_i32m8_i64m1(v_sum, vwmul_vv_i32m8(v_in, v_in, l), v_sum, l);
   }
-  l = vsetvl_e64m1(1);
-  sum = vmv_x_s_i64m1_i64(v_sum);
-  riscv_sqrt_q15(__SSAT((sum / (q63_t)blockSize) >> 15, 16), result);
+  sum += vmv_x_s_i64m1_i64(v_sum);
 #else
-        uint32_t blkCnt;                               /* Loop counter */
-        q63_t sum = 0;                                 /* Temporary result storage */
-        q15_t in;                                      /* Temporary variable to store input value */
 
 #if defined (RISCV_MATH_LOOPUNROLL) && defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
@@ -129,7 +126,7 @@ void riscv_rms_q15(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 
@@ -149,11 +146,10 @@ void riscv_rms_q15(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_MATH_VECTOR) */
   /* Truncating and saturating the accumulator to 1.15 format */
   /* Store result in destination */
   riscv_sqrt_q15(__SSAT((sum / (q63_t)blockSize) >> 15, 16), pResult);
-#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

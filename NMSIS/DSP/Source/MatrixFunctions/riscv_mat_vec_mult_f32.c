@@ -75,14 +75,12 @@ void riscv_mat_vec_mult_f32(const riscv_matrix_instance_f32 *pSrcMat, const floa
     size_t l;        // max_l is the maximum column elements at a time
     uint16_t rownum; //  How many rowumns and rownum are controlled
     vfloat32m8_t v_inA, v_inB;
-    vfloat32m8_t vmul;
     float32_t sum;
     vfloat32m1_t vsum;
     px = pDst;
 
     for (rownum = 0; rownum < numRows; rownum++) {
         blkCnt = numCols;
-        sum = 0.0f;
         l = vsetvl_e32m1(1);
         vsum = vfmv_s_f_f32m1(vsum, 0.0f, l);
         pInB = pVec;
@@ -90,11 +88,10 @@ void riscv_mat_vec_mult_f32(const riscv_matrix_instance_f32 *pSrcMat, const floa
 
         for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
             v_inA = vle32_v_f32m8(pInA, l);
-            pInA += l; // Pointer to the first element of the next line
+            pInA += l;
             v_inB = vle32_v_f32m8(pInB, l);
             pInB += l;
-            vmul = vfmul_vv_f32m8(v_inA, v_inB, l);
-            vsum = vfredosum_vs_f32m8_f32m1(vsum, vmul, vsum, l);
+            vsum = vfredusum_vs_f32m8_f32m1(vsum, vfmul_vv_f32m8(v_inA, v_inB, l), vsum, l);
         }
         sum = vfmv_f_s_f32m1_f32(vsum);
         *px++ = sum;
@@ -109,15 +106,15 @@ void riscv_mat_vec_mult_f32(const riscv_matrix_instance_f32 *pSrcMat, const floa
     /* The following loop performs the dot-product of each row in pSrcA with the vector */
     /* row loop */
     while (row > 0) {
-        /* For every row wise process, the pInVec pointer is set
-         ** to the starting address of the vector */
-        pInVec = pVec;
-
         /* Initialize accumulators */
         float32_t sum1 = 0.0f;
         float32_t sum2 = 0.0f;
         float32_t sum3 = 0.0f;
         float32_t sum4 = 0.0f;
+
+        /* For every row wise process, the pInVec pointer is set
+         ** to the starting address of the vector */
+        pInVec = pVec;
 
         /* Loop unrolling: process 2 columns per iteration */
         colCnt = numCols;

@@ -223,7 +223,7 @@ void riscv_correlate_q31(
     }
 
     /* Loop unrolling: Compute remaining outputs */
-    k = count % 0x4U;
+    k = count & 0x3U;
 
 #else
 
@@ -243,8 +243,9 @@ void riscv_correlate_q31(
       px += l;
       vy = vle32_v_i32m4(py, l);
       py += l;
-      sum += vmv_x_s_i64m1_i64(vredsum_vs_i64m8_i64m1(temp00m1, vwmul_vv_i64m8(vx, vy, l), temp00m1, l));
+      temp00m1 = vredsum_vs_i64m8_i64m1(temp00m1, vwmul_vv_i64m8(vx, vy, l), temp00m1, l);
     }
+    sum += vmv_x_s_i64m1_i64(temp00m1);
 #else
     while (k > 0U)
     {
@@ -312,8 +313,9 @@ void riscv_correlate_q31(
         px += l;
         vy = vle32_v_i32m4(py, l);
         py += l;
-        sum += vmv_x_s_i64m1_i64(vredsum_vs_i64m8_i64m1(temp00m1, vwmul_vv_i64m8(vx, vy, l), temp00m1, l));
+        temp00m1 = vredsum_vs_i64m8_i64m1(temp00m1, vwmul_vv_i64m8(vx, vy, l), temp00m1, l);
       }
+      sum += vmv_x_s_i64m1_i64(temp00m1);
       /* Store the result in the accumulator in the destination buffer. */
       *pOut = (q31_t) (sum >> 31);
       /* Destination pointer is updated according to the address modifier, inc */
@@ -486,7 +488,7 @@ void riscv_correlate_q31(
       }
 
       /* Loop unrolling: Compute remaining outputs */
-      k = srcBLen % 0x4U;
+      k = srcBLen & 0x3U;
 
 #else
 
@@ -617,7 +619,7 @@ void riscv_correlate_q31(
     }
 
     /* Loop unrolling: Compute remaining outputs */
-    k = count % 0x4U;
+    k = count & 0x3U;
 
 #else
 
@@ -637,8 +639,9 @@ void riscv_correlate_q31(
       px += l;
       vy = vle32_v_i32m4(py, l);
       py += l;
-      sum += vmv_x_s_i64m1_i64(vredsum_vs_i64m8_i64m1(temp00m1, vwmul_vv_i64m8(vx, vy, l), temp00m1, l));
+      temp00m1 = vredsum_vs_i64m8_i64m1(temp00m1, vwmul_vv_i64m8(vx, vy, l), temp00m1, l);
     }
+    sum += vmv_x_s_i64m1_i64(temp00m1);
 #else
     while (k > 0U)
     {

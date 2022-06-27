@@ -109,7 +109,7 @@ riscv_status riscv_mat_trans_f16(
       }
 
       /* Loop unrolling: Compute remaining outputs */
-      col = nCols % 0x4U;
+      col = nCols & 0x3U;
 
 #else
 

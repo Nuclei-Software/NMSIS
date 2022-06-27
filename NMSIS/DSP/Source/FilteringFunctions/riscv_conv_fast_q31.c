@@ -182,7 +182,7 @@ void riscv_conv_fast_q31(
 
     /* If the count is not a multiple of 4, compute any remaining MACs here.
      ** No loop unrolling is used. */
-    k = count % 0x4U;
+    k = count & 0x3U;
 
     while (k > 0U)
     {
@@ -328,7 +328,7 @@ void riscv_conv_fast_q31(
 
       /* If the srcBLen is not a multiple of 4, compute any remaining MACs here.
        ** No loop unrolling is used. */
-      k = srcBLen % 0x4U;
+      k = srcBLen & 0x3U;
 
       while (k > 0U)
       {
@@ -375,7 +375,7 @@ void riscv_conv_fast_q31(
 
     /* If the blockSize2 is not a multiple of 4, compute any remaining output samples here.
      ** No loop unrolling is used. */
-    blkCnt = blockSize2 % 0x4U;
+    blkCnt = blockSize2 & 0x3U;
 
     while (blkCnt > 0U)
     {
@@ -405,7 +405,7 @@ void riscv_conv_fast_q31(
 
       /* If the srcBLen is not a multiple of 4, compute any remaining MACs here.
        ** No loop unrolling is used. */
-      k = srcBLen % 0x4U;
+      k = srcBLen & 0x3U;
 
       while (k > 0U)
       {
@@ -532,7 +532,7 @@ void riscv_conv_fast_q31(
 
     /* If the blockSize3 is not a multiple of 4, compute any remaining MACs here.
      ** No loop unrolling is used. */
-    k = blockSize3 % 0x4U;
+    k = blockSize3 & 0x3U;
 
     while (k > 0U)
     {

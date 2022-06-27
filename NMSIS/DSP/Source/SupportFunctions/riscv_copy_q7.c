@@ -50,8 +50,10 @@ void riscv_copy_q7(
         q7_t * pDst,
         uint32_t blockSize)
 {
+  uint32_t blkCnt;                               /* Loop counter */
+
 #if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = blockSize;                               /* Loop counter */
+  blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vint8m8_t v_copy;
 
@@ -61,10 +63,8 @@ void riscv_copy_q7(
     vse8_v_i8m8(pDst, v_copy, l);
     pDst += l;
   }
-#else
-  uint32_t blkCnt;                               /* Loop counter */
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#elif defined (RISCV_MATH_LOOPUNROLL)
 #if __RISCV_XLEN == 64
   /* Loop unrolling: Compute 8 outputs at a time */
   blkCnt = blockSize >> 3U;
@@ -89,10 +89,10 @@ void riscv_copy_q7(
   }
 #if __RISCV_XLEN == 64
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x8U;
+  blkCnt = blockSize & 0x7U;
 #else
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 #endif /* __RISCV_XLEN == 64 */
 
 #else
@@ -110,7 +110,6 @@ void riscv_copy_q7(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

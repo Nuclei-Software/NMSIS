@@ -52,46 +52,44 @@ void riscv_max_q15(
         q15_t * pResult,
         uint32_t * pIndex)
 {
-#if defined(RISCV_MATH_VECTOR)
-    int16_t max = pSrc[0],max_temp;
-    uint32_t index = 0,index_temp = 0;
-
-    uint32_t blkCnt;
-    size_t l;
-    int16_t * inputx;
-    vint16m8_t v_x;
-    vint16m1_t v_tempa;
-
-    inputx = pSrc;
-    blkCnt = blockSize;
-    l = vsetvl_e16m1(1);
-    v_tempa = vmv_s_x_i16m1(v_tempa, pSrc[0], l);
-    for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
-    {
-        v_x = vle16_v_i16m8(inputx, l);
-        inputx += l;
-        max_temp = vmv_x_s_i16m1_i16 (vredmax_vs_i16m8_i16m1(v_tempa,v_x,v_tempa, l));
-        if (max_temp > max){
-          max = max_temp;
-          index = index_temp;
-        }
-        index_temp += l;
-
-    }
-    * pResult = max;
-    while(1)
-    {
-        if (pSrc[index] == max){
-          break;
-        }
-        else
-            index++;
-    }
-    * pIndex = index;
-
-#else
         q15_t maxVal, out;                             /* Temporary variables to store the output value. */
         uint32_t blkCnt, outIndex;                     /* Loop counter */
+
+#if defined(RISCV_MATH_VECTOR)
+  q15_t max_temp;
+  uint32_t index_temp = 0;
+  size_t l;
+  const q15_t *inputx = pSrc;
+  vint16m8_t v_x;
+  vint16m1_t v_tempa;
+
+  out = pSrc[0];
+  outIndex = 0;
+  l = vsetvl_e16m1(1);
+  v_tempa = vmv_s_x_i16m1(v_tempa, pSrc[0], l);
+  blkCnt = blockSize;
+  for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+  {
+      v_x = vle16_v_i16m8(inputx, l);
+      inputx += l;
+      max_temp = vmv_x_s_i16m1_i16(vredmax_vs_i16m8_i16m1(v_tempa, v_x, v_tempa, l));
+      if (max_temp > out) {
+        out = max_temp;
+        outIndex = index_temp;
+      }
+      index_temp += l;
+
+  }
+
+  while (1)
+  {
+      if (pSrc[outIndex] == out) {
+        break;
+      } else {
+        outIndex++;
+      }
+  }
+#else
 
 #if defined (RISCV_MATH_LOOPUNROLL)
         uint32_t index;                                /* index of maximum value */
@@ -175,11 +173,10 @@ void riscv_max_q15(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_MATH_VECTOR) */
   /* Store the maximum value and it's index into destination pointers */
   *pResult = out;
   *pIndex = outIndex;
-#endif /* defined(RISCV_MATH_VECTOR) */
 }
 /**
   @} end of Max group

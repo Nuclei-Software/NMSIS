@@ -55,23 +55,10 @@
   {
   riscv_status status;                             /* status of matrix inverse */
 
-#if defined(RISCV_MATH_VECTOR)
-    uint32_t blkCnt;                               /* Loop counter */
-    size_t l;
-    vfloat32m8_t v_x, v_y;
-    vfloat32m8_t v_a;
-    vfloat32m1_t v_temp;
-    float32_t *pVlt_row;
-    float32_t *pX_row;
-    ptrdiff_t bstride;
-    l = vsetvl_e32m1(1);
-    v_temp = vfsub_vv_f32m1(v_temp, v_temp, l);
-#endif
 
 #ifdef RISCV_MATH_MATRIX_CHECK
   /* Check for matrix mismatch condition */
   if ((lt->numRows != lt->numCols) ||
-      (a->numRows != a->numCols) ||
       (lt->numRows != a->numRows)   )
   {
     /* Set status as RISCV_MATH_SIZE_MISMATCH */
@@ -90,9 +77,7 @@
     x2 = (a2 - c2 x3) / b2
 
     */
-    int i,j,k,n;
-
-    n = dst->numRows;
+    int i,j,k,n,cols;
 
     float32_t *pX = dst->pData;
     float32_t *pLT = lt->pData;
@@ -101,35 +86,48 @@
     float32_t *lt_row;
     float32_t *a_col;
 
-    for(j=0; j < n; j ++)
+    n = dst->numRows;
+    cols = dst -> numCols;
+
+
+    for(j=0; j < cols; j ++)
     {
        a_col = &pA[j];
 
        for(i=0; i < n ; i++)
        {
+            float32_t tmp=a_col[i * cols];
+
             lt_row = &pLT[n*i];
 
-            float32_t tmp=a_col[i * n];
 #if defined(RISCV_MATH_VECTOR)
+            uint32_t blkCnt;                               /* Loop counter */
+            size_t l;
+            vfloat32m8_t v_x, v_y;
+            vfloat32m1_t v_a;
+            float32_t *pVlt_row;
+            float32_t *pX_row;
+            ptrdiff_t bstride;
+
             blkCnt = i;
             pVlt_row = lt_row;
             pX_row = pX + j;
-            l = vsetvl_e32m8(blkCnt);
-            v_a = vfsub_vv_f32m8(v_a,v_a, l);
-            bstride = 4*n;
+            l = vsetvlmax_e32m1();
+            v_a = vfsub_vv_f32m1(v_a, v_a, l);
+            bstride = 4 * n;
             for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
                 v_x = vle32_v_f32m8(pVlt_row, l);
-                v_y = vlse32_v_f32m8(pX_row,bstride, l);
-                v_a = vfmacc_vv_f32m8(v_a,v_x,v_y, l);
+                v_y = vlse32_v_f32m8(pX_row, bstride, l);
+                v_a = vfredusum_vs_f32m8_f32m1(v_a, vfmul_vv_f32m8(v_x, v_y, l), v_a, l);
                 pVlt_row += l;
-                pX_row += l*n;
+                pX_row += l * cols;
             }
-            l = vsetvl_e32m8(i);
-            tmp -= vfmv_f_s_f32m1_f32(vfredosum_vs_f32m8_f32m1(v_temp,v_a,v_temp, l));
+
+            tmp -= vfmv_f_s_f32m1_f32(v_a);
 #else
             for(k=0; k < i; k++)
             {
-                tmp -= lt_row[k] * pX[n*k+j];
+                tmp -= lt_row[k] * pX[cols*k+j];
             }
 #endif
             if (lt_row[i]==0.0f)
@@ -137,7 +135,7 @@
               return(RISCV_MATH_SINGULAR);
             }
             tmp = tmp / lt_row[i];
-            pX[i*n+j] = tmp;
+            pX[i*cols+j] = tmp;
        }
 
     }
@@ -148,7 +146,6 @@
   /* Return to application */
   return (status);
 }
-
 
 /**
   @} end of MatrixInv group

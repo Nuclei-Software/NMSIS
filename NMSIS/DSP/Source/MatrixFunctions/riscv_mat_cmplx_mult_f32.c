@@ -100,7 +100,7 @@ riscv_status riscv_mat_cmplx_mult_f32(
 #if defined(RISCV_MATH_VECTOR)
   float32_t *pInB = pSrcB->pData;                    /* Input data matrix pointer A */
   uint16_t blkCnt = numColsA;  //number of matrix columns  numColsA = numrowB
-  size_t l,max_l;              // max_l is the maximum column elements at a time
+  size_t l;
   ptrdiff_t bstride = 4;       //  32bit/8bit = 4
   ptrdiff_t reim_diff = bstride * 2;
   ptrdiff_t col_diff = reim_diff * numColsB;  //Control the column width of the span
@@ -108,15 +108,14 @@ riscv_status riscv_mat_cmplx_mult_f32(
   vfloat32m8_t v_inAR, v_inBR, v_inAI, v_inBI;
   vfloat32m8_t v_RR, v_II, v_RI, v_IR;
   vfloat32m8_t vReal, vImag;
-  l = vsetvl_e32m1(1);
-  vfloat32m1_t vsumReal = vfmv_s_f_f32m1(vsumReal, 0, l);
-  vfloat32m1_t vsumImag = vfmv_s_f_f32m1(vsumImag, 0, l);
-  // max_l = vsetvl_e32m4(32);
+  vfloat32m1_t vsumReal;
+  vfloat32m1_t vsumImag;
+
   px = pOut;
-for(rownum = 0;rownum < numRowsA; rownum++)
+  for (rownum = 0; rownum < numRowsA; rownum++)
   {
     pIn1 = pInA;       //backup pointer position
-    for(colnum = 0;colnum < numColsB; colnum++)
+    for(colnum = 0; colnum < numColsB; colnum++)
     {
       blkCnt = numColsA;
       pIn2 = pInB;     //backup pointer position
@@ -129,36 +128,33 @@ for(rownum = 0;rownum < numRowsA; rownum++)
       {
         v_inAR = vlse32_v_f32m8(pInA, reim_diff, l);
         v_inBR = vlse32_v_f32m8(pInB, col_diff, l);
-        pInA++; pInB++;
-        v_inAI = vlse32_v_f32m8(pInA, reim_diff, l);
-        v_inBI = vlse32_v_f32m8(pInB, col_diff, l);
+
+        v_inAI = vlse32_v_f32m8(pInA + 1, reim_diff, l);
+        v_inBI = vlse32_v_f32m8(pInB + 1, col_diff, l);
         /* c(m,n) = a(1,1) * b(1,1) + a(1,2) * b(2,1) + .... + a(m,p) * b(p,n) */
         /* Perform multiply-accumulates */
-        v_RR = vfmul_vv_f32m8(v_inAR , v_inBR, l);
-        v_II = vfmul_vv_f32m8(v_inAI , v_inBI, l);
-        v_RI = vfmul_vv_f32m8(v_inAR , v_inBI, l);
-        v_IR = vfmul_vv_f32m8(v_inAI , v_inBR, l);
+        v_RR = vfmul_vv_f32m8(v_inAR, v_inBR, l);
+        v_II = vfmul_vv_f32m8(v_inAI, v_inBI, l);
+        v_RI = vfmul_vv_f32m8(v_inAR, v_inBI, l);
+        v_IR = vfmul_vv_f32m8(v_inAI, v_inBR, l);
         vReal = vfsub_vv_f32m8(v_RR, v_II, l);
         vImag = vfadd_vv_f32m8(v_RI, v_IR, l);
-        vsumReal = vfredosum_vs_f32m8_f32m1(vsumReal, vReal, vsumReal, l);
-        vsumImag = vfredosum_vs_f32m8_f32m1(vsumImag, vImag, vsumImag, l);
-        // if(l == max_l)
-        // {
-        pInA = pInA+l*2-1;    //Pointer to the first element of the next line
-        pInB = pInB+l*numColsB*4-1;
-        // }
+        sumReal += vfmv_f_s_f32m1_f32(vfredusum_vs_f32m8_f32m1(vsumReal, vReal, vsumReal, l));
+        sumImag += vfmv_f_s_f32m1_f32(vfredusum_vs_f32m8_f32m1(vsumImag, vImag, vsumImag, l));
+
+        pInA += l * 2;    //Pointer to the first element of the next line
+        pInB += l * numColsB * 4;
+
       }
-      sumReal = vfmv_f_s_f32m1_f32 (vsumReal);
-      sumImag = vfmv_f_s_f32m1_f32 (vsumImag);
-      *px = sumReal;
-      px++;
-      *px = sumImag;
-      px++;
+      *px++ = sumReal;
+      *px++ = sumImag;
       pInA = pIn1;
-      pInB = pIn2;pInB = pInB+2;    //Pointer to the first element of the next column for matrix BS
+      pInB = pIn2;
+      pInB = pInB + 2;    //Pointer to the first element of the next column for matrix BS
     }
     pInB = pSrcB->pData;
-    pInA = pIn1;pInA = pInA+numColsA*2;    //Pointer to the first element of the next row for matrix A
+    pInA = pIn1;
+    pInA = pInA + numColsA * 2;    //Pointer to the first element of the next row for matrix A
   }
   /* Set status as RISCV_MATH_SUCCESS */
   status = RISCV_MATH_SUCCESS;
@@ -286,7 +282,7 @@ for(rownum = 0;rownum < numRowsA; rownum++)
 
         /* If the columns of pSrcA is not a multiple of 4, compute any remaining MACs here.
          ** No loop unrolling is used. */
-        colCnt = numColsA % 0x4U;
+        colCnt = numColsA & 0x3U;
 
 #else
 

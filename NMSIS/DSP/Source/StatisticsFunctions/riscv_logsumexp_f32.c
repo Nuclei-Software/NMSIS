@@ -78,22 +78,17 @@ float32_t riscv_logsumexp_f32(const float32_t *in, uint32_t blockSize)
 #if defined(RISCV_MATH_VECTOR)
    uint32_t blkCnt_v;                               /* Loop counter */
    size_t l;
-   float32_t temp_max;
    vfloat32m8_t v_x, v_y;
-   vfloat32m8_t v_a;
    vfloat32m1_t v_temp;
    l = vsetvl_e32m1(1);
    v_temp = vfsub_vv_f32m1(v_temp, v_temp, l);
    blkCnt_v = blkCnt;
-   l = vsetvl_e32m8(blkCnt_v);
-   v_a = vfsub_vv_f32m8(v_a,v_a, l);
    for (; (l = vsetvl_e32m8(blkCnt_v)) > 0; blkCnt_v -= l) {
      v_x = vle32_v_f32m8(pIn, l);
-     temp_max = vfmv_f_s_f32m1_f32 (vfredmax_vs_f32m8_f32m1(v_temp,v_x,v_temp, l));
-     if (temp_max > maxVal)
-      maxVal = temp_max;
      pIn += l;
+     v_temp = vfredmax_vs_f32m8_f32m1(v_temp, v_x, v_temp, l);
    }
+   maxVal = vfmv_f_s_f32m1_f32(v_temp);
 #else
     while(blkCnt > 0)
     {
@@ -105,7 +100,7 @@ float32_t riscv_logsumexp_f32(const float32_t *in, uint32_t blockSize)
        }
        blkCnt--;
     }
-#endif
+#endif /* #if defined(RISCV_MATH_VECTOR) */
 
     blkCnt = blockSize;
     pIn = in;

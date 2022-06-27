@@ -51,26 +51,23 @@ void riscv_mean_f32(
         uint32_t blockSize,
         float32_t * pResult)
 {
+        uint32_t blkCnt;                               /* Loop counter */
+        float32_t sum = 0.0f;                          /* Temporary result storage */
+
 #if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = blockSize;                               /* Loop counter */
+  blkCnt = blockSize;                               /* Loop counter */
   size_t l;
-  const float32_t * input = pSrc;
-  float32_t * result = pResult;
-  float32_t sum;
+  const float32_t *input = pSrc;
   vfloat32m8_t v_in;
-  l = vsetvl_e64m1(1);
+  l = vsetvl_e32m1(1);
   vfloat32m1_t v_sum = vfmv_s_f_f32m1(v_sum, 0, l);                /* init v_sum data */
   for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
     v_in = vle32_v_f32m8(input, l);
     input += l;
-    v_sum = vfredosum_vs_f32m8_f32m1(v_sum, v_in ,v_sum, l);
+    v_sum = vfredusum_vs_f32m8_f32m1(v_sum, v_in, v_sum, l);
   }
-  l = vsetvl_e32m1(1);
-  sum = vfmv_f_s_f32m1_f32(v_sum);
-  * result = (sum / blockSize);
+  sum += vfmv_f_s_f32m1_f32(v_sum);
 #else
-        uint32_t blkCnt;                               /* Loop counter */
-        float32_t sum = 0.0f;                          /* Temporary result storage */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -93,7 +90,7 @@ void riscv_mean_f32(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 
@@ -110,11 +107,10 @@ void riscv_mean_f32(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_MATH_VECTOR) */
   /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) / blockSize  */
   /* Store result to destination */
   *pResult = (sum / blockSize);
-#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

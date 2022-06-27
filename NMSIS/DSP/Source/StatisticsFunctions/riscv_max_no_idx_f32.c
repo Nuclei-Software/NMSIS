@@ -53,22 +53,22 @@ void riscv_max_no_idx_f32(
     uint32_t   blockSize,
     float32_t *pResult)
 {
+   float32_t   maxValue = F32_MIN;
+   float32_t   newVal;
+
 #if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vfloat32m8_t v_in;
   l = vsetvl_e32m1(1);
-  vfloat32m1_t v_max = vfmv_s_f_f32m1(v_max, 0, l);        /* vector0 */
+  vfloat32m1_t v_max = vfmv_s_f_f32m1(v_max, maxValue, l);        /* vector0 */
   for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
     v_in = vle32_v_f32m8(pSrc, l);
     pSrc += l;
     v_max = vfredmax_vs_f32m8_f32m1(v_max, v_in, v_max, l);
   }
-  l = vsetvl_e32m1(1);
-  vse32_v_f32m1(pResult, v_max, l);
+  maxValue = vfmv_f_s_f32m1_f32(v_max);
 #else
-   float32_t   maxValue = F32_MIN;
-   float32_t   newVal;
 
    while (blockSize > 0U)
    {
@@ -83,9 +83,8 @@ void riscv_max_no_idx_f32(
 
        blockSize --;
    }
-
-   *pResult = maxValue;
 #endif /* defined(RISCV_MATH_VECTOR) */
+   *pResult = maxValue;
 }
 
 

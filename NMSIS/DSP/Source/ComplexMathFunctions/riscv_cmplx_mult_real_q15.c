@@ -60,22 +60,22 @@ void riscv_cmplx_mult_real_q15(
   uint32_t blkCnt = numSamples;                               /* Loop counter */
   size_t l;
   ptrdiff_t bstride = 4;
-  vint16m4_t v_Rc, v_Ic, v_Rr;
-  vint16m4_t vR2_m4, vI2_m4;
+  vint16m8_t v_Rc, v_Ic, v_Rr;
+  vint16m8_t vR2_m8, vI2_m8;
 
-  for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
+  for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
   {
-    v_Rc = vlse16_v_i16m4(pSrcCmplx, bstride, l);
-    v_Ic = vlse16_v_i16m4(pSrcCmplx + 1, bstride, l);
-    v_Rr = vle16_v_i16m4(pSrcReal, l);
-
-    vR2_m4 = vnclip_wx_i16m4(vwmul_vv_i32m8(v_Rc, v_Rr, l), 15, l);
-    vI2_m4 = vnclip_wx_i16m4(vwmul_vv_i32m8(v_Ic, v_Rr, l), 15, l);
-    vsse16_v_i16m4(pCmplxDst, bstride, vR2_m4, l);
-
-    vsse16_v_i16m4(pCmplxDst + 1, bstride, vI2_m4, l);
+    v_Rc = vlse16_v_i16m8(pSrcCmplx, bstride, l);
+    v_Ic = vlse16_v_i16m8(pSrcCmplx + 1, bstride, l);
     pSrcCmplx += l * 2;
+    v_Rr = vle16_v_i16m8(pSrcReal, l);
     pSrcReal += l;
+
+    vR2_m8 = vsmul_vv_i16m8(v_Rc, v_Rr, l);
+    vI2_m8 = vsmul_vv_i16m8(v_Ic, v_Rr, l);
+
+    vsse16_v_i16m8(pCmplxDst, bstride, vR2_m8, l);
+    vsse16_v_i16m8(pCmplxDst + 1, bstride, vI2_m8, l);
     pCmplxDst += l * 2;
   }
 #else
@@ -211,7 +211,7 @@ void riscv_cmplx_mult_real_q15(
     blkCnt--;
   }
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = numSamples % 0x4U;
+  blkCnt = numSamples & 0x3U;
 
 #else
 

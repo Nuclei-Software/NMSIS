@@ -50,8 +50,10 @@ void riscv_copy_f64(
         float64_t * pDst,
         uint32_t blockSize)
 {
+  uint32_t blkCnt;                               /* Loop counter */
+
   /* Initialize blkCnt with number of samples */
-  uint32_t blkCnt = blockSize;
+  blkCnt = blockSize;
 
 #if defined(RISCV_MATH_VECTOR)
   size_t l;

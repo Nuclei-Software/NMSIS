@@ -59,27 +59,24 @@ void riscv_mean_q7(
         uint32_t blockSize,
         q7_t * pResult)
 {
-#if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = blockSize;                               /* Loop counter */
-  size_t l;
-  const q7_t * input = pSrc;
-  q7_t * result = pResult;
-  q15_t sum;
-  vint8m8_t v_in;
-  l = vsetvl_e16m1(1);
-  vint16m1_t v_sum = vmv_s_x_i16m1(v_sum, 0, l);                /* init v_sum data */
-  for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
-    v_in = vle8_v_i8m8(input, l);
-    input += l;
-    v_sum = vwredsum_vs_i8m8_i16m1(v_sum, v_in ,v_sum, l);
-  }
-  l = vsetvl_e16m1(1);
-  sum = vmv_x_s_i16m1_i16(v_sum);
-  * result = (q7_t) (sum / (int32_t) blockSize);
-#else
         uint32_t blkCnt;                               /* Loop counter */
         q31_t sum = 0;                                 /* Temporary result storage */
 
+#if defined(RISCV_MATH_VECTOR)
+  blkCnt = blockSize;                               /* Loop counter */
+  size_t l;
+  const q7_t *input = pSrc;
+  vint8m8_t v_in;
+  l = vsetvl_e16m1(1);
+  vint16m1_t v_temp = vmv_s_x_i16m1(v_temp, 0, l);                /* init v_sum data */
+  for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
+    v_in = vle8_v_i8m8(input, l);
+    input += l;
+    v_temp = vwredsum_vs_i8m8_i16m1(v_temp, v_in, v_temp, l);
+  }
+  sum += vmv_x_s_i16m1_i16(v_temp);
+
+#else
 #if defined (RISCV_MATH_LOOPUNROLL)
 #if __RISCV_XLEN == 64
         q63_t in64;
@@ -123,10 +120,10 @@ void riscv_mean_q7(
   }
 #if __RISCV_XLEN == 64
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x8U;
+  blkCnt = blockSize & 0x7U;
 #else
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 #endif /* __RISCV_XLEN == 64 */
 
 #else
@@ -144,11 +141,10 @@ void riscv_mean_q7(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_MATH_VECTOR) */
   /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) / blockSize  */
   /* Store result to destination */
   *pResult = (q7_t) (sum / (int32_t) blockSize);
-#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

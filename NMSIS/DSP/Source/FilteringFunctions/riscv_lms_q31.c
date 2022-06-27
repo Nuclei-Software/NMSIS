@@ -143,7 +143,7 @@ void riscv_lms_q31(
     }
 
     /* Loop unrolling: Compute remaining taps */
-    tapCnt = numTaps % 0x4U;
+    tapCnt = numTaps & 0x3U;
 
 #else
 
@@ -163,8 +163,9 @@ void riscv_lms_q31(
       px += l;
       vy = vle32_v_i32m4(pb, l);
       pb += l;
-      acc += vmv_x_s_i64m1_i64(vredsum_vs_i64m8_i64m1(temp00m1, vwmul_vv_i64m8(vx, vy, l), temp00m1, l));
+      temp00m1 = vredsum_vs_i64m8_i64m1(temp00m1, vwmul_vv_i64m8(vx, vy, l), temp00m1, l);
     }
+    acc += vmv_x_s_i64m1_i64(temp00m1);
 #else
     while (tapCnt > 0U)
     {
@@ -235,7 +236,7 @@ void riscv_lms_q31(
     }
 
     /* Loop unrolling: Compute remaining taps */
-    tapCnt = numTaps % 0x4U;
+    tapCnt = numTaps & 0x3U;
 
 #else
 
@@ -248,7 +249,7 @@ void riscv_lms_q31(
     for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
       vx = vle32_v_i32m4(px, l);
       px += l;
-      vse32_v_i32m4 (pb, vnclip_wx_i32m4(vwadd_vv_i64m8(vsll_vx_i32m4(vnclip_wx_i32m4(vwmul_vx_i64m8(vx, alpha, l), 32, l), 1, l), vle32_v_i32m4(pb, l), l), 0, l), l);
+      vse32_v_i32m4(pb, vnclip_wx_i32m4(vwadd_vv_i64m8(vsll_vx_i32m4(vnclip_wx_i32m4(vwmul_vx_i64m8(vx, alpha, l), 32, l), 1, l), vle32_v_i32m4(pb, l), l), 0, l), l);
       pb += l;
     }
 #else
@@ -292,7 +293,7 @@ void riscv_lms_q31(
   }
 
   /* Loop unrolling: Compute remaining taps */
-  tapCnt = (numTaps - 1U) % 0x4U;
+  tapCnt = (numTaps - 1U) & 0x3U;
 
 #else
 
@@ -301,13 +302,13 @@ void riscv_lms_q31(
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
 #if defined (RISCV_MATH_VECTOR)
-    uint32_t vblkCnt = (numTaps - 1U);
-    size_t l;
-    for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vse32_v_i32m4(pStateCurnt, vle32_v_i32m4(pState, l), l);
-      pState += l;
-      pStateCurnt += l;
-    }
+  uint32_t vblkCnt = (numTaps - 1U);
+  size_t l;
+  for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
+    vse32_v_i32m8(pStateCurnt, vle32_v_i32m8(pState, l), l);
+    pState += l;
+    pStateCurnt += l;
+  }
 #else
   while (tapCnt > 0U)
   {

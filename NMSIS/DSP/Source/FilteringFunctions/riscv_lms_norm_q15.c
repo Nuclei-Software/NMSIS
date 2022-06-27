@@ -141,7 +141,7 @@ void riscv_lms_norm_q15(
     }
 
     /* Loop unrolling: Compute remaining taps */
-    tapCnt = numTaps % 0x4U;
+    tapCnt = numTaps & 0x3U;
 
 #else
 
@@ -161,8 +161,9 @@ void riscv_lms_norm_q15(
       px += l;
       vy = vle16_v_i16m4(pb, l);
       pb += l;
-      acc += vmv_x_s_i64m1_i64(vwredsum_vs_i32m8_i64m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l));
+      temp00m1 = vwredsum_vs_i32m8_i64m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
     }
+    acc += vmv_x_s_i64m1_i64(temp00m1);
 #else
     while (tapCnt > 0U)
     {
@@ -236,7 +237,7 @@ void riscv_lms_norm_q15(
     }
 
     /* Loop unrolling: Compute remaining taps */
-    tapCnt = numTaps % 0x4U;
+    tapCnt = numTaps & 0x3U;
 
 #else
 
@@ -309,13 +310,13 @@ void riscv_lms_norm_q15(
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
 #if defined (RISCV_MATH_VECTOR)
-    uint32_t vblkCnt = (numTaps - 1U);
-    size_t l;
-    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vse16_v_i16m4(pStateCurnt, vle16_v_i16m4(pState, l), l);
-      pState += l;
-      pStateCurnt += l;
-    }
+  uint32_t vblkCnt = (numTaps - 1U);
+  size_t l;
+  for (; (l = vsetvl_e16m8(vblkCnt)) > 0; vblkCnt -= l) {
+    vse16_v_i16m8(pStateCurnt, vle16_v_i16m8(pState, l), l);
+    pState += l;
+    pStateCurnt += l;
+  }
 #else
   while (tapCnt > 0U)
   {

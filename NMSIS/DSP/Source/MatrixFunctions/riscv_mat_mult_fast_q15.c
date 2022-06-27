@@ -84,17 +84,14 @@ riscv_status riscv_mat_mult_fast_q15(
         riscv_status status;                             /* Status of matrix multiplication */
 
 #if defined(RISCV_MATH_VECTOR)
-        q15_t in;                                      /* Temporary variable to hold the input value */
-        q15_t inA1, inB1, inA2, inB2;
-        uint16_t blkCnt;  //number of matrix columns  numColsA = numrowB
-        size_t l;              // max_l is the maximum column elements at a time
-        ptrdiff_t bstride = 4;       //  32bit/8bit = 4
-        uint16_t colnum,rownum;      //  How many rowumns and rownum are controlled
-        vint16m4_t v_inA, v_inB;
-        vint32m8_t v_sum;
-        vint16m8_t vReal, vImag;
-        l = vsetvl_e32m1(1);
-        vint32m1_t vtemp = vsub_vv_i32m1(vtemp, vtemp, l);
+    q15_t in;                                      /* Temporary variable to hold the input value */
+    q15_t inA1, inB1, inA2, inB2;
+    uint16_t blkCnt;  //number of matrix columns  numColsA = numrowB
+    size_t l;
+    ptrdiff_t bstride;
+    uint16_t colnum, rownum;      //  How many rowumns and rownum are controlled
+    vint16m4_t v_inA, v_inB;
+    vint32m8_t v_sum;
 
 #ifdef RISCV_MATH_MATRIX_CHECK
 
@@ -117,12 +114,12 @@ riscv_status riscv_mat_mult_fast_q15(
       /* The pointer px is set to starting address of column being processed */
       px = pSrcBT + i;
 
-      col = numColsB ;
+      col = numColsB;
       blkCnt = col;
-      bstride = numRowsB*2;
+      bstride = numRowsB * 2;
       for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)   //Multiply a row by a column
       {
-        vsse16_v_i16m8(px,bstride,vle16_v_i16m8(pInB, l), l);
+        vsse16_v_i16m8(px, bstride, vle16_v_i16m8(pInB, l), l);
         px += l*numRowsB;
         pInB += l;
       }
@@ -163,17 +160,16 @@ riscv_status riscv_mat_mult_fast_q15(
 
         blkCnt = colCnt;
         l = vsetvl_e16m4(blkCnt);
-        v_sum = vsub_vv_i32m8(v_sum,v_sum, l);
+        vint32m1_t v_sum = vsub_vv_i32m1(v_sum, v_sum, l);
         for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)   //Multiply a row by a column
         {
           v_inA = vle16_v_i16m4(pInA, l);
-          v_inB = vle16_v_i16m4(pInB, l);
           pInA += l;
+          v_inB = vle16_v_i16m4(pInB, l);
           pInB += l;
-          v_sum = vwmacc_vv_i32m8(v_sum,v_inA,v_inB, l);
+          v_sum = vredsum_vs_i32m8_i32m1(v_sum, vwmul_vv_i32m8(v_inA, v_inB, l), v_sum, l);
         }
-        l = vsetvl_e16m4(colCnt);
-        sum = vmv_x_s_i32m1_i32 (vredsum_vs_i32m8_i32m1(vtemp, v_sum, vtemp, l));
+        sum = vmv_x_s_i32m1_i32(v_sum);
 
         /* Saturate and store result in destination buffer */
         *px++  = (q15_t) (sum >> 15);
@@ -192,8 +188,6 @@ riscv_status riscv_mat_mult_fast_q15(
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
   }
-
-
 #else
 #if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
         q63_t in64;                                      /* Temporary variable to hold the input value */
@@ -306,7 +300,7 @@ riscv_status riscv_mat_mult_fast_q15(
 
       /* If the columns of pSrcB is not a multiple of 4, compute any remaining output samples here.
        ** No loop unrolling is used. */
-      col = numColsB % 0x4U;
+      col = numColsB & 0x3U;
 
       while (col > 0U)
       {
@@ -459,7 +453,7 @@ riscv_status riscv_mat_mult_fast_q15(
           sum4 += inA2 * inB2;
         }
 #else
-        colCnt = numColsA % 0x4U;
+        colCnt = numColsA & 0x3U;
 
         while (colCnt > 0U)
         {
@@ -614,7 +608,7 @@ riscv_status riscv_mat_mult_fast_q15(
 #if __RISCV_XLEN == 64
           sum = (q31_t) ((q31_t) (sum64 & 0xffffffff)) + ((q31_t) ((sum64 & 0xffffffff00000000)>> 32));
 #endif /* __RISCV_XLEN == 64 */
-        colCnt = numColsA % 4U;
+        colCnt = numColsA & 3U;
         while (colCnt > 0U) {
           sum += (q31_t) (*pInA++) * (*pInB++);
 
@@ -630,6 +624,7 @@ riscv_status riscv_mat_mult_fast_q15(
     }
 
 #endif /* #if defined (RISCV_MATH_DSP) */
+
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
   }

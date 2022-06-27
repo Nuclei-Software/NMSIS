@@ -63,11 +63,11 @@ void riscv_negate_q15(
   blkCnt = blockSize;                               /* Loop counter */
   size_t l = vsetvl_e16m8(blkCnt);
   vint16m8_t vx;
-  vint16m8_t vy = vmv_s_x_i16m8(vy, 0, l);
+  vint16m8_t v_zero = vmv_v_x_i16m8(0, l);
   for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
     vx = vle16_v_i16m8(pSrc, l);
     pSrc += l;
-    vse16_v_i16m8(pDst, vssub_vv_i16m8(vy, vx, l), l);
+    vse16_v_i16m8(pDst, vssub_vv_i16m8(v_zero, vx, l), l);
     pDst += l;
   }
 #else
@@ -121,7 +121,7 @@ void riscv_negate_q15(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 

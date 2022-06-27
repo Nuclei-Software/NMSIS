@@ -34,7 +34,7 @@
  */
 
 /**
- * @defgroup q31_to_x  Convert 32-bit Integer value
+ * @defgroup q31_to_x  Convert 32-bit fixed point value
  */
 
 /**
@@ -60,9 +60,11 @@ void riscv_q31_to_float(
   float32_t * pDst,
   uint32_t blockSize)
 {
-#if defined(RISCV_MATH_VECTOR)
   const q31_t *pIn = pSrc;                             /* Src pointer */
-  uint32_t blkCnt = blockSize;                               /* loop counter */
+  uint32_t blkCnt;                               /* loop counter */
+
+#if defined(RISCV_MATH_VECTOR)
+  blkCnt = blockSize;                               /* loop counter */
   size_t l;
   vint32m8_t v_in;
   vfloat32m8_t v_out;
@@ -75,8 +77,6 @@ void riscv_q31_to_float(
     pDst += l;
   }
 #else
-  const q31_t *pIn = pSrc;                             /* Src pointer */
-  uint32_t blkCnt;                               /* loop counter */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -98,7 +98,7 @@ void riscv_q31_to_float(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 

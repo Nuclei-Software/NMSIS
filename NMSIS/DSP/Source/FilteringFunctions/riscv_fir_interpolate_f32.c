@@ -138,7 +138,6 @@ void riscv_fir_interpolate_f32(
         uint32_t blockSize)
 {
 
-
         float32_t *pState = S->pState;                 /* State pointer */
   const float32_t *pCoeffs = S->pCoeffs;               /* Coefficient pointer */
         float32_t *pStateCur;                          /* Points to the current sample of the state */
@@ -261,7 +260,7 @@ void riscv_fir_interpolate_f32(
       }
 
       /* If the polyPhase length is not a multiple of 4, compute the remaining filter taps */
-      tapCnt = phaseLen % 0x4U;
+      tapCnt = phaseLen & 0x3U;
 
       while (tapCnt > 0U)
       {
@@ -315,7 +314,7 @@ void riscv_fir_interpolate_f32(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 
@@ -361,11 +360,12 @@ void riscv_fir_interpolate_f32(
       blkCnt_v = phaseLen;
       for (; (l = vsetvl_e32m8(blkCnt_v)) > 0; blkCnt_v -= l) {
         v_x = vle32_v_f32m8(ptr1, l);
-        v_y = vlse32_v_f32m8(ptr2, bstride, l);
-        sum0 += vfmv_f_s_f32m1_f32(vfredosum_vs_f32m8_f32m1(v_temp, vfmul_vv_f32m8(v_x, v_y, l), v_temp, l));
         ptr1 += l;
+        v_y = vlse32_v_f32m8(ptr2, bstride, l);
         ptr2 += l;
+        v_temp = vfredusum_vs_f32m8_f32m1(v_temp, vfmul_vv_f32m8(v_x, v_y, l), v_temp, l);
       }
+      sum0 += vfmv_f_s_f32m1_f32(v_temp);
 #else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -396,7 +396,7 @@ void riscv_fir_interpolate_f32(
       }
 
       /* Loop unrolling: Compute remaining outputs */
-      tapCnt = phaseLen % 0x4U;
+      tapCnt = phaseLen & 0x3U;
 
 #else
 
@@ -462,7 +462,7 @@ void riscv_fir_interpolate_f32(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  tapCnt = (phaseLen - 1U) % 0x04U;
+  tapCnt = (phaseLen - 1U) & 0x03U;
 
 #else
 

@@ -472,7 +472,7 @@ void riscv_conv_fast_q15(
 
       /* If the srcBLen is not a multiple of 4, compute any remaining MACs here.
        ** No loop unrolling is used. */
-      k = srcBLen % 0x4U;
+      k = srcBLen & 0x3U;
 
       while (k > 0U)
       {
@@ -598,7 +598,7 @@ void riscv_conv_fast_q15(
 
     /* If the blockSize3 is not a multiple of 4, compute any remaining MACs here.
      ** No loop unrolling is used. */
-    k = blockSize3 % 0x4U;
+    k = blockSize3 & 0x3U;
 
     while (k > 0U)
     {

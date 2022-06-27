@@ -60,18 +60,6 @@ riscv_status riscv_mat_cholesky_f64(
 
   riscv_status status;                             /* status of matrix inverse */
 
-#if defined(RISCV_MATH_VECTOR) && (defined(__riscv_flen) && (__riscv_flen == 64))
-    uint32_t blkCnt;                               /* Loop counter */
-    size_t l;
-    vfloat64m8_t v_x, v_y;
-    vfloat64m8_t v_a;
-    vfloat64m1_t v_temp;
-    float64_t *pGX;
-    float64_t *pGY;
-    ptrdiff_t bstride = 8;
-    l = vsetvl_e64m1(1);
-    v_temp = vfsub_vv_f64m1(v_temp, v_temp, l);
-#endif
 
 #ifdef RISCV_MATH_MATRIX_CHECK
 
@@ -101,37 +89,15 @@ riscv_status riscv_mat_cholesky_f64(
     {
        for(j=i ; j < n ; j++)
        {
-#if defined(RISCV_MATH_VECTOR) && (defined(__riscv_flen) && (__riscv_flen == 64))
-            if(i==0){
-                pG[j * n + i] = pA[j * n + i];
-            }
-            else{
-                blkCnt = i;
-                pGX = pG + i * n;
-                pGY = pG + j * n;
-                l = vsetvl_e64m8(blkCnt);
-                v_a = vfsub_vv_f64m8(v_a,v_a, l);
-                for (; (l = vsetvl_e64m8(blkCnt)) > 0; blkCnt -= l) {
-                    v_x = vle64_v_f64m8(pGX, l);
-                    v_y = vle64_v_f64m8(pGY, l);
-                    v_a = vfmacc_vv_f64m8(v_a,v_x,v_y, l);
-                    pGX += l;
-                    pGY += l;
-                }
-                l = vsetvl_e64m8(i);
-                pG[j * n + i] = pA[j * n + i] - vfmv_f_s_f64m1_f64(vfredosum_vs_f64m8_f64m1(v_temp,v_a,v_temp, l));
-            }
-#else
-            pG[j * n + i] = pA[j * n + i];
+          pG[j * n + i] = pA[j * n + i];
 
-            for(k=0; k < i ; k++)
-            {
-               pG[j * n + i] = pG[j * n + i] - pG[i * n + k] * pG[j * n + k];
-            }
-#endif
+          for(k=0; k < i ; k++)
+          {
+             pG[j * n + i] = pG[j * n + i] - pG[i * n + k] * pG[j * n + k];
+          }
        }
 
-       if (pG[i * n + i] <= 0.0f)
+       if (pG[i * n + i] <= 0.0)
        {
          return(RISCV_MATH_DECOMPOSITION_FAILURE);
        }
@@ -144,7 +110,10 @@ riscv_status riscv_mat_cholesky_f64(
     }
 
     status = RISCV_MATH_SUCCESS;
+
   }
+
+
   /* Return to application */
   return (status);
 }

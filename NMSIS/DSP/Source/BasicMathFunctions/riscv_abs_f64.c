@@ -57,6 +57,17 @@ void riscv_abs_f64(
   /* Initialize blkCnt with number of samples */
   blkCnt = blockSize;
 
+#if defined(RISCV_MATH_VECTOR)
+  vfloat64m8_t vx;
+  blkCnt = blockSize;
+  size_t l;
+  for (; (l = vsetvl_e64m8(blkCnt)) > 0; blkCnt -= l) {
+    vx = vle64_v_f64m8(pSrc, l);
+    pSrc += l;
+    vse64_v_f64m8(pDst, vfsgnjx_vv_f64m8(vx, vx, l), l);
+    pDst += l;
+  }
+#else
   while (blkCnt > 0U)
   {
     /* C = |A| */
@@ -67,7 +78,7 @@ void riscv_abs_f64(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* #if defined (RISCV_MATH_VECTOR) */
 }
 
 /**

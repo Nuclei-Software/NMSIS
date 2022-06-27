@@ -87,10 +87,10 @@ void riscv_or_u32(
             blkCnt--;
         }
     }
-    if(blkCnt = blockSize%2)
+    if(blkCnt = blockSize & 0x1)
     {
-        pSrcA = (uint8_t * )(pSrcA_temp-1);
-        pSrcB = (uint8_t * )(pSrcB_temp-1);
+        pSrcA = (uint8_t * )(pSrcA_temp - 1);
+        pSrcB = (uint8_t * )(pSrcB_temp - 1);
     }
 #endif
 

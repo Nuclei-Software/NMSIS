@@ -391,20 +391,21 @@ void riscv_fir_decimate_f32(
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
 #if defined (RISCV_MATH_VECTOR)
     uint32_t blkCntb;
-    vfloat32m4_t va1m4,va2m4;
+    vfloat32m8_t va1m8,va2m8;
     vfloat32m1_t vtemp00m1;
     blkCntb = numTaps;                               /* Loop counter */
 
-    l = vsetvl_e32m4(1);
+    l = vsetvl_e32m8(1);
     vtemp00m1 = vfmv_v_f_f32m1(0, l);
-    for (; (l = vsetvl_e32m4(blkCntb)) > 0; blkCntb -= l) {
-      va1m4 = vle32_v_f32m4(pb, l);
-      va2m4 = vle32_v_f32m4(px0, l);
+    for (; (l = vsetvl_e32m8(blkCntb)) > 0; blkCntb -= l) {
+      va1m8 = vle32_v_f32m8(pb, l);
+      va2m8 = vle32_v_f32m8(px0, l);
       pb += l;
       px0 += l;
 
-      acc0 += vfmv_f_s_f32m1_f32(vfredosum_vs_f32m4_f32m1(vtemp00m1, vfmul_vv_f32m4(va1m4, va2m4, l), vtemp00m1, l));
+      vtemp00m1 = vfredusum_vs_f32m8_f32m1(vtemp00m1, vfmul_vv_f32m8(va1m8, va2m8, l), vtemp00m1, l);
     }
+    acc0 += vfmv_f_s_f32m1_f32(vtemp00m1);
 #else
     while (tapCnt > 0U)
     {

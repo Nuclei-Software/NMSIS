@@ -254,7 +254,7 @@ void riscv_fir_decimate_q31(
   }
 
   /* Loop unrolling: Compute remaining samples */
-  blkCnt = outBlockSize % 0x4U;
+  blkCnt = outBlockSize & 0x3U;
 
 #else
 
@@ -267,14 +267,14 @@ void riscv_fir_decimate_q31(
   {
 //It turns out if add these part, it will take more cycles
 #if defined (RISCV_MATH_VECTOR)
-  uint32_t blkCnti = S->M;                              /* Loop counter */
-  size_t l;
+    uint32_t blkCnti = S->M;                              /* Loop counter */
+    size_t l;
 
-  for (; (l = vsetvl_e32m8(blkCnti)) > 0; blkCnti -= l) {
-    vse32_v_i32m8(pStateCur, vle32_v_i32m8(pSrc, l), l);
-    pSrc += l;
-    pStateCur += l;
-  }
+    for (; (l = vsetvl_e32m8(blkCnti)) > 0; blkCnti -= l) {
+      vse32_v_i32m8(pStateCur, vle32_v_i32m8(pSrc, l), l);
+      pSrc += l;
+      pStateCur += l;
+    }
 #else
     /* Copy decimation factor number of new input samples into the state buffer */
     i = S->M;
@@ -342,7 +342,7 @@ void riscv_fir_decimate_q31(
     }
 
     /* Loop unrolling: Compute remaining taps */
-    tapCnt = numTaps % 0x4U;
+    tapCnt = numTaps & 0x3U;
 
 #else
 
@@ -360,11 +360,12 @@ void riscv_fir_decimate_q31(
     vtemp00m1 = vmv_v_x_i64m1(0, l);
     for (; (l = vsetvl_e32m4(blkCntb)) > 0; blkCntb -= l) {
         va1m4 = vle32_v_i32m4(pb, l);
-        va2m4 = vle32_v_i32m4(px0, l);
         pb += l;
+        va2m4 = vle32_v_i32m4(px0, l);
         px0 += l;
-        acc0  += (q63_t)vmv_x_s_i64m1_i64(vredsum_vs_i64m8_i64m1(vtemp00m1, vwmul_vv_i64m8(va1m4, va2m4, l), vtemp00m1, l));
+        vtemp00m1 = vredsum_vs_i64m8_i64m1(vtemp00m1, vwmul_vv_i64m8(va1m4, va2m4, l), vtemp00m1, l);
     }
+    acc0 += (q63_t)vmv_x_s_i64m1_i64(vtemp00m1);
 #else
     while (tapCnt > 0U)
     {

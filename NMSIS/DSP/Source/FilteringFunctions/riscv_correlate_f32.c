@@ -231,8 +231,9 @@ void riscv_correlate_f32(
       px += l;
       vy = vle32_v_f32m8(py, l);
       py += l;
-      sum += vfmv_f_s_f32m1_f32(vfredosum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l));
+      temp00m1 = vfredusum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l);
     }
+    sum += vfmv_f_s_f32m1_f32(temp00m1);
 #else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -336,8 +337,9 @@ void riscv_correlate_f32(
         px += l;
         vy = vle32_v_f32m8(py, l);
         py += l;
-        sum += vfmv_f_s_f32m1_f32(vfredosum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l));
+        temp00m1 = vfredusum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l);
       }
+      sum += vfmv_f_s_f32m1_f32(temp00m1);
 
       /* Store the result in the accumulator in the destination buffer. */
       *pOut = sum;
@@ -506,7 +508,7 @@ void riscv_correlate_f32(
     }
 
     /* Loop unrolling: Compute remaining outputs */
-    blkCnt = blockSize2 % 0x4U;
+    blkCnt = blockSize2 & 0x3U;
 
 #else
 
@@ -673,7 +675,7 @@ void riscv_correlate_f32(
     }
 
     /* Loop unrolling: Compute remaining outputs */
-    k = count % 0x4U;
+    k = count & 0x3U;
 
 #else
 
@@ -693,8 +695,9 @@ void riscv_correlate_f32(
       px += l;
       vy = vle32_v_f32m8(py, l);
       py += l;
-      sum += vfmv_f_s_f32m1_f32(vfredosum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l));
+      temp00m1 = vfredusum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l);
     }
+    sum += vfmv_f_s_f32m1_f32(temp00m1);
 #else
     while (k > 0U)
     {

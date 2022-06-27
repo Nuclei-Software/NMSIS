@@ -46,35 +46,44 @@
   @param[out]    pIndex     index of minimum value returned here
   @return        none
  */
-void riscv_min_f64(const float64_t *pSrc, uint32_t blockSize,
-                   float64_t *pResult, uint32_t *pIndex)
+void riscv_min_f64(
+  const float64_t * pSrc,
+        uint32_t blockSize,
+        float64_t * pResult,
+        uint32_t * pIndex)
 {
-    float64_t minVal, out; /* Temporary variables to store the output value. */
-    uint32_t blkCnt, outIndex; /* Loop counter */
-    /* Initialise index value to zero. */
-    outIndex = 0U;
-    /* Load first input value that act as reference value for comparision */
-    out = *pSrc++;
-    /* Initialize blkCnt with number of samples */
-    blkCnt = (blockSize - 1U);
+        float64_t minVal, out;                         /* Temporary variables to store the output value. */
+        uint32_t blkCnt, outIndex;                     /* Loop counter */
 
-    while (blkCnt > 0U) {
-        /* Initialize minVal to the next consecutive values one by one */
-        minVal = *pSrc++;
-        /* compare for the minimum value */
-        if (out > minVal) {
-            /* Update the minimum value and it's index */
-            out = minVal;
-            outIndex = blockSize - blkCnt;
-        }
+  /* Initialise index value to zero. */
+  outIndex = 0U;
 
-        /* Decrement loop counter */
-        blkCnt--;
+  /* Load first input value that act as reference value for comparision */
+  out = *pSrc++;
+
+  /* Initialize blkCnt with number of samples */
+  blkCnt = (blockSize - 1U);
+
+  while (blkCnt > 0U)
+  {
+    /* Initialize minVal to the next consecutive values one by one */
+    minVal = *pSrc++;
+
+    /* compare for the minimum value */
+    if (out > minVal)
+    {
+      /* Update the minimum value and it's index */
+      out = minVal;
+      outIndex = blockSize - blkCnt;
     }
 
-    /* Store the minimum value and it's index into destination pointers */
-    *pResult = out;
-    *pIndex = outIndex;
+    /* Decrement loop counter */
+    blkCnt--;
+  }
+
+  /* Store the minimum value and it's index into destination pointers */
+  *pResult = out;
+  *pIndex = outIndex;
 }
 
 /**

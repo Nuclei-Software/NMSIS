@@ -62,7 +62,7 @@
 
 float16_t riscv_chebyshev_distance_f16(const float16_t *pA,const float16_t *pB, uint32_t blockSize)
 {
-   _Float16 diff=0.0f,  maxVal,tmpA, tmpB;
+   _Float16 diff=0.0f, maxVal, tmpA, tmpB;
 
    tmpA = *pA++;
    tmpB = *pB++;

@@ -85,9 +85,9 @@ void riscv_cmplx_mag_squared_f32(
   {
     v_R = vlse32_v_f32m8(pSrc, bstride, l);
     v_I = vlse32_v_f32m8(pSrc + 1, bstride, l);
+    pSrc += l * 2;
     v_sum = vfadd_vv_f32m8(vfmul_vv_f32m8(v_R, v_R, l), vfmul_vv_f32m8(v_I, v_I, l), l);
     vse32_v_f32m8(pDst, v_sum, l);
-    pSrc += l * 2;
     pDst += l;
   }
 
@@ -124,7 +124,7 @@ void riscv_cmplx_mag_squared_f32(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = numSamples % 0x4U;
+  blkCnt = numSamples & 0x3U;
 
 #else
 

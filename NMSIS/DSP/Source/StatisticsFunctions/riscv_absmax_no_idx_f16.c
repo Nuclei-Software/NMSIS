@@ -31,9 +31,11 @@
 
 #if defined(RISCV_FLOAT16_SUPPORTED)
 
+
 /**
   @ingroup groupStats
  */
+
 
 /**
   @addtogroup AbsMax
@@ -49,97 +51,116 @@
  */
 
 #if defined(RISCV_MATH_LOOPUNROLL)
-void riscv_absmax_no_idx_f16(const float16_t *pSrc, uint32_t blockSize,
-                             float16_t *pResult)
+void riscv_absmax_no_idx_f16(
+  const float16_t * pSrc,
+        uint32_t blockSize,
+        float16_t * pResult)
 {
-    /* Temporary variables to store the output value. */
-    float16_t cur_absmax, out;
-    uint32_t blkCnt; /* Loop counter */
-    /* Load first input value that act as reference value for comparision */
-    out = *pSrc++;
-    out = ((_Float16)out > 0.0f16) ? out : -(_Float16)out;
-    /* Loop unrolling: Compute 4 outputs at a time */
-    blkCnt = (blockSize - 1U) >> 2U;
-
-    /* Initialize cur_absmax to next consecutive values one by one */
-    while (blkCnt > 0U) {
-        cur_absmax = *pSrc++;
-        /* compare for the extrema value */
-        cur_absmax = ((_Float16)cur_absmax > 0.0f16) ? cur_absmax
-                                                     : -(_Float16)cur_absmax;
-        /* Update the extrema value and it's index */
-        if ((_Float16)cur_absmax > (_Float16)out) {
-            out = cur_absmax;
-        }
-
-        cur_absmax = *pSrc++;
-        cur_absmax = ((_Float16)cur_absmax > 0.0f16) ? cur_absmax
-                                                     : -(_Float16)cur_absmax;
-        if ((_Float16)cur_absmax > (_Float16)out) {
-            out = cur_absmax;
-        }
-
-        cur_absmax = *pSrc++;
-        cur_absmax = ((_Float16)cur_absmax > 0.0f16) ? cur_absmax
-                                                     : -(_Float16)cur_absmax;
-        if ((_Float16)cur_absmax > (_Float16)out) {
-            out = cur_absmax;
-        }
-
-        cur_absmax = *pSrc++;
-        cur_absmax = ((_Float16)cur_absmax > 0.0f16) ? cur_absmax
-                                                     : -(_Float16)cur_absmax;
-        if ((_Float16)cur_absmax > (_Float16)out) {
-            out = cur_absmax;
-        }
-
-        /* Decrement loop counter */
-        blkCnt--;
-    }
-
-    /* Loop unrolling: Compute remaining outputs */
-    blkCnt = (blockSize - 1U) % 4U;
-
-    while (blkCnt > 0U) {
-        cur_absmax = *pSrc++;
-        cur_absmax = ((_Float16)cur_absmax > 0.0f16) ? cur_absmax
-                                                     : -(_Float16)cur_absmax;
-        if ((_Float16)cur_absmax > (_Float16)out) {
-            out = cur_absmax;
-        }
-        /* Decrement loop counter */
-        blkCnt--;
-    }
-
-    /* Store the extrema value and it's index into destination pointers */
-    *pResult = out;
+        float16_t cur_absmax, out;                     /* Temporary variables to store the output value. */\
+        uint32_t blkCnt;                     /* Loop counter */                                   \
+                                                                                                            \
+                                                                                           \
+  /* Load first input value that act as reference value for comparision */                                  \
+  out = *pSrc++;                                                                                            \
+  out = ((_Float16)out > 0.0f16) ? out : -(_Float16)out;                                                                             \
+                                                                                             \
+                                                                                                            \
+  /* Loop unrolling: Compute 4 outputs at a time */                                                         \
+  blkCnt = (blockSize - 1U) >> 2U;                                                                          \
+                                                                                                            \
+  while (blkCnt > 0U)                                                                                       \
+  {                                                                                                         \
+    /* Initialize cur_absmax to next consecutive values one by one */                                         \
+    cur_absmax = *pSrc++;                                                                                     \
+    cur_absmax = ((_Float16)cur_absmax > 0.0f16) ? cur_absmax : -(_Float16)cur_absmax;                                                                 \
+    /* compare for the extrema value */                                                                     \
+    if ((_Float16)cur_absmax > (_Float16)out)                                                                         \
+    {                                                                                                       \
+      /* Update the extrema value and it's index */                                                         \
+      out = cur_absmax;                                                                                       \
+    }                                                                                                       \
+                                                                                                            \
+    cur_absmax = *pSrc++;                                                                                     \
+    cur_absmax = ((_Float16)cur_absmax > 0.0f16) ? cur_absmax : -(_Float16)cur_absmax;                                                                 \
+    if ((_Float16)cur_absmax > (_Float16)out)                                                                         \
+    {                                                                                                       \
+      out = cur_absmax;                                                                                       \
+    }                                                                                                       \
+                                                                                                            \
+    cur_absmax = *pSrc++;                                                                                     \
+    cur_absmax = ((_Float16)cur_absmax > 0.0f16) ? cur_absmax : -(_Float16)cur_absmax;                                                                 \
+    if ((_Float16)cur_absmax > (_Float16)out)                                                                          \
+    {                                                                                                       \
+      out = cur_absmax;                                                                                       \
+    }                                                                                                       \
+                                                                                                            \
+    cur_absmax = *pSrc++;                                                                                     \
+    cur_absmax = ((_Float16)cur_absmax > 0.0f16) ? cur_absmax : -(_Float16)cur_absmax;                                                                 \
+    if ((_Float16)cur_absmax > (_Float16)out)                                                                          \
+    {                                                                                                       \
+      out = cur_absmax;                                                                                       \
+    }                                                                                                       \
+                                                                                                            \
+                                                                                                            \
+    /* Decrement loop counter */                                                                            \
+    blkCnt--;                                                                                               \
+  }                                                                                                         \
+                                                                                                            \
+  /* Loop unrolling: Compute remaining outputs */                                                           \
+  blkCnt = (blockSize - 1U) & 3U;                                                                           \
+                                                                                                            \
+                                                                                                            \
+  while (blkCnt > 0U)                                                                                       \
+  {                                                                                                         \
+    cur_absmax = *pSrc++;                                                                                     \
+    cur_absmax = ((_Float16)cur_absmax > 0.0f16) ? cur_absmax : -(_Float16)cur_absmax;                                                                 \
+    if ((_Float16)cur_absmax > (_Float16)out)                                                                         \
+    {                                                                                                       \
+      out = cur_absmax;                                                                                       \
+    }                                                                                                       \
+                                                                                                            \
+    /* Decrement loop counter */                                                                            \
+    blkCnt--;                                                                                               \
+  }                                                                                                         \
+                                                                                                            \
+  /* Store the extrema value and it's index into destination pointers */                                    \
+  *pResult = out;                                                                                           \
 }
 #else
-void riscv_absmax_no_idx_f16(const float16_t *pSrc, uint32_t blockSize,
-                             float16_t *pResult)
+void riscv_absmax_no_idx_f16(
+  const float16_t * pSrc,
+        uint32_t blockSize,
+        float16_t * pResult)
 {
-    float16_t maxVal, out; /* Temporary variables to store the output value. */
-    uint32_t blkCnt;       /* Loop counter */
-    /* Load first input value that act as reference value for comparision */
-    out = (_Float16)fabsf((float32_t)*pSrc++);
-    /* Initialize blkCnt with number of samples */
-    blkCnt = (blockSize - 1U);
+        float16_t maxVal, out;                         /* Temporary variables to store the output value. */
+        uint32_t blkCnt;                     /* Loop counter */
 
-    while (blkCnt > 0U) {
-        /* Initialize maxVal to the next consecutive values one by one */
-        maxVal = (_Float16)fabsf((float32_t)*pSrc++);
-        /* compare for the maximum value */
-        if ((_Float16)out < (_Float16)maxVal) {
-            /* Update the maximum value and it's index */
-            out = maxVal;
-        }
 
-        /* Decrement loop counter */
-        blkCnt--;
+
+  /* Load first input value that act as reference value for comparision */
+  out = (_Float16)fabsf((float32_t)*pSrc++);
+
+  /* Initialize blkCnt with number of samples */
+  blkCnt = (blockSize - 1U);
+
+  while (blkCnt > 0U)
+  {
+    /* Initialize maxVal to the next consecutive values one by one */
+    maxVal = (_Float16)fabsf((float32_t)*pSrc++);
+
+    /* compare for the maximum value */
+    if ((_Float16)out < (_Float16)maxVal)
+    {
+      /* Update the maximum value and it's index */
+      out = maxVal;
     }
 
-    /* Store the maximum value and it's index into destination pointers */
-    *pResult = out;
+    /* Decrement loop counter */
+    blkCnt--;
+  }
+
+  /* Store the maximum value and it's index into destination pointers */
+  *pResult = out;
 }
 #endif /* defined(RISCV_MATH_LOOPUNROLL) */
 /**

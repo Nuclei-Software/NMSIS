@@ -82,9 +82,9 @@ void riscv_not_u32(
             blkCnt--;
         }
     }
-    if(blkCnt = blockSize%2)
+    if(blkCnt = blockSize & 0x1)
     {
-        pSrc = (uint8_t * )(pSrc_temp-1);
+        pSrc = (uint8_t * )(pSrc_temp - 1);
     }
 #endif
     while (blkCnt > 0U)

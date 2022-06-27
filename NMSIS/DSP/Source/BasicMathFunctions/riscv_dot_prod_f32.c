@@ -81,8 +81,8 @@ void riscv_dot_prod_f32(
   for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
   {
     v_A = vle32_v_f32m8(pSrcA, l);
-    v_B = vle32_v_f32m8(pSrcB, l);
     pSrcA += l;
+    v_B = vle32_v_f32m8(pSrcB, l);
     pSrcB += l;
     v_sum = vfredosum_vs_f32m8_f32m1(v_sum, vfmul_vv_f32m8(v_A, v_B, l), v_sum, l);
   }
@@ -114,7 +114,7 @@ void riscv_dot_prod_f32(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 

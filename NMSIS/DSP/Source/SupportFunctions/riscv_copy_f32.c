@@ -62,8 +62,10 @@ void riscv_copy_f32(
         float32_t * pDst,
         uint32_t blockSize)
 {
+  uint32_t blkCnt;                               /* Loop counter */
+
 #if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = blockSize;                               /* Loop counter */
+  blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vfloat32m8_t v_copy;
 
@@ -74,7 +76,6 @@ void riscv_copy_f32(
     pDst += l;
   }
 #else
-  uint32_t blkCnt;                               /* Loop counter */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -96,7 +97,7 @@ void riscv_copy_f32(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 

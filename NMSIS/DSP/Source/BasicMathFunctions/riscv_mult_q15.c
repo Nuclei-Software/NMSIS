@@ -65,10 +65,10 @@ void riscv_mult_q15(
 
   for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
     vx = vle16_v_i16m8(pSrcA, l);
-    vy = vle16_v_i16m8(pSrcB, l);
     pSrcA += l;
+    vy = vle16_v_i16m8(pSrcB, l);
     pSrcB += l;
-    vse16_v_i16m8 (pDst, vsmul_vv_i16m8(vx, vy, l), l);
+    vse16_v_i16m8(pDst, vsmul_vv_i16m8(vx, vy, l), l);
     pDst += l;
   }
 #else
@@ -139,7 +139,7 @@ void riscv_mult_q15(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 

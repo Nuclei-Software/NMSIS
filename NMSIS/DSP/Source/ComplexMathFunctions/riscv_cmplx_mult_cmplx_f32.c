@@ -89,16 +89,15 @@ void riscv_cmplx_mult_cmplx_f32(
 
     v_I1 = vlse32_v_f32m8(pSrcA + 1, bstride, l);
     v_I2 = vlse32_v_f32m8(pSrcB + 1, bstride, l);
+    pSrcA += l * 2;
+    pSrcB += l * 2;
 
     v_RR = vfmul_vv_f32m8(v_R1, v_R2, l);
     v_II = vfmul_vv_f32m8(v_I1, v_I2, l);
     v_RI = vfmul_vv_f32m8(v_R1, v_I2, l);
     v_IR = vfmul_vv_f32m8(v_I1, v_R2, l);
     vsse32_v_f32m8(pDst, bstride, vfsub_vv_f32m8(v_RR, v_II, l), l);
-
     vsse32_v_f32m8(pDst + 1, bstride, vfadd_vv_f32m8(v_RI, v_IR, l), l);
-    pSrcA += l * 2;
-    pSrcB += l * 2;
     pDst += l * 2;
   }
 #else
@@ -149,7 +148,7 @@ void riscv_cmplx_mult_cmplx_f32(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = numSamples % 0x4U;
+  blkCnt = numSamples & 0x3U;
 
 #else
 

@@ -65,9 +65,11 @@ void riscv_float_to_q15(
         q15_t * pDst,
         uint32_t blockSize)
 {
-#if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = blockSize;                         /* Loop counter */
+        uint32_t blkCnt;                               /* Loop counter */
   const float32_t *pIn = pSrc;                         /* Source pointer */
+
+#if defined(RISCV_MATH_VECTOR)
+  blkCnt = blockSize;                         /* Loop counter */
   size_t l;
   vfloat32m8_t v_in;
   vint16m4_t v_out;
@@ -84,8 +86,6 @@ void riscv_float_to_q15(
     pDst +=l;
   }
 #else
-        uint32_t blkCnt;                               /* Loop counter */
-  const float32_t *pIn = pSrc;                         /* Source pointer */
 
 #ifdef RISCV_MATH_ROUNDING
         float32_t in;
@@ -133,7 +133,7 @@ void riscv_float_to_q15(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 

@@ -66,8 +66,8 @@ void riscv_add_q15(
 
   for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
     vx = vle16_v_i16m8(pSrcA, l);
-    vy = vle16_v_i16m8(pSrcB, l);
     pSrcA += l;
+    vy = vle16_v_i16m8(pSrcB, l);
     pSrcB += l;
     vse16_v_i16m8(pDst, vsadd_vv_i16m8(vy, vx, l), l);
     pDst += l;

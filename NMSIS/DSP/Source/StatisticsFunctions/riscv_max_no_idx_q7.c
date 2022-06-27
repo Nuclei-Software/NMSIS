@@ -57,8 +57,6 @@ void riscv_max_no_idx_q7(
     uint32_t blkCnt;    /* loop counter */
 
 #if defined(RISCV_MATH_VECTOR)
-    q7_t max_temp;
-    out = pSrc[0];
     size_t l;
     q7_t * inputx;
     vint8m8_t v_x;
@@ -70,32 +68,35 @@ void riscv_max_no_idx_q7(
     for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
         v_x = vle8_v_i8m8(inputx, l);
         inputx += l;
-        max_temp = (q7_t)vmv_x_s_i8m1_i8(
-            vredmax_vs_i8m8_i8m1(v_tempa, v_x, v_tempa, l));
-        if (max_temp > out) {
-            out = max_temp;
-        }
+        v_tempa = vredmax_vs_i8m8_i8m1(v_tempa, v_x, v_tempa, l);
     }
+    out = vmv_x_s_i8m1_i8(v_tempa);
 #else
 
-    /* Load first input value that act as reference value for comparision */
-    out = *pSrc++;
-    blkCnt = (blockSize - 1U);
+  /* Load first input value that act as reference value for comparision */
+  out = *pSrc++;
 
-    while (blkCnt > 0U) {
-        /* Initialize maxVal to the next consecutive values one by one */
-        maxVal1 = *pSrc++;
-        /* compare for the maximum value */
-        if (out < maxVal1) {
-            /* Update the maximum value */
-            out = maxVal1;
-        }
-        /* Decrement the loop counter */
-        blkCnt--;
+  blkCnt = (blockSize - 1U);
+
+
+  while (blkCnt > 0U)
+  {
+    /* Initialize maxVal to the next consecutive values one by one */
+    maxVal1 = *pSrc++;
+
+    /* compare for the maximum value */
+    if (out < maxVal1)
+    {
+      /* Update the maximum value */
+      out = maxVal1;
     }
-#endif /* defined(RISCV_MATH_VECTOR) */
-    /* Store the maximum value into destination pointer */
-    *pResult = out;
+
+    /* Decrement the loop counter */
+    blkCnt--;
+  }
+#endif /* #if defined(RISCV_MATH_VECTOR) */
+  /* Store the maximum value into destination pointer */
+  *pResult = out;
 }
 
 /**

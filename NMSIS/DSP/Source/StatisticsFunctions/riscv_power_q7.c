@@ -59,11 +59,14 @@ void riscv_power_q7(
         uint32_t blockSize,
         q31_t * pResult)
 {
+        uint32_t blkCnt;                               /* Loop counter */
+        q31_t sum = 0;                                 /* Temporary result storage */
+        q7_t in;                                       /* Temporary variable to store input value */
+
 #if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = blockSize;                               /* Loop counter */
+  blkCnt = blockSize;                               /* Loop counter */
   size_t l;
-  const q7_t * input = pSrc;
-  q31_t * output = pResult;
+  const q7_t *input = pSrc;
   vint8m4_t v_in;
   vint16m8_t v_in2;
   l = vsetvl_e32m1(1);
@@ -75,12 +78,8 @@ void riscv_power_q7(
     v_in2 = vwmul_vv_i16m8(v_in, v_in, l);
     v_sum = vwredsum_vs_i16m8_i32m1(v_sum, v_in2, v_sum, l);
   }
-  l = vsetvl_e32m1(1);
-  vse32_v_i32m1(output, v_sum, l);
+  sum += vmv_x_s_i32m1_i32(v_sum);
 #else
-        uint32_t blkCnt;                               /* Loop counter */
-        q31_t sum = 0;                                 /* Temporary result storage */
-        q7_t in;                                       /* Temporary variable to store input value */
 
 #if defined (RISCV_MATH_LOOPUNROLL) && defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
@@ -135,7 +134,7 @@ void riscv_power_q7(
   sum = (q31_t) ((sum64 >> 32U) + ((sum64 << 32U) >> 32U));
 #else
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 #endif /* __RISCV_XLEN == 64 */
 
 #else
@@ -156,10 +155,10 @@ void riscv_power_q7(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_MATH_VECTOR) */
   /* Store result in 18.14 format */
   *pResult = sum;
-#endif /* defined(RISCV_MATH_VECTOR) */
+
 }
 
 /**

@@ -65,8 +65,8 @@ void riscv_mult_q31(
 
   for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
     vx = vle32_v_i32m8(pSrcA, l);
-    vy = vle32_v_i32m8(pSrcB, l);
     pSrcA += l;
+    vy = vle32_v_i32m8(pSrcB, l);
     pSrcB += l;
     vse32_v_i32m8(pDst, vsmul_vv_i32m8(vx, vy, l), l);
     pDst += l;
@@ -128,7 +128,7 @@ void riscv_mult_q31(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 

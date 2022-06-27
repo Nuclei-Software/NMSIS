@@ -163,7 +163,7 @@ riscv_status riscv_conv_partial_fast_opt_q15(
     pScr2 += 3;
 #endif /* __RISCV_XLEN == 64 */
     /* Loop unrolling: Compute remaining outputs */
-    k = srcBLen % 0x4U;
+    k = srcBLen & 0x3U;
 
 #else
 

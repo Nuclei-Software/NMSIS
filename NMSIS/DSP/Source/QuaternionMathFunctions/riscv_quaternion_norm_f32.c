@@ -54,11 +54,12 @@
  */
 
 
+
 void riscv_quaternion_norm_f32(const float32_t *pInputQuaternions,
   float32_t *pNorms,
   uint32_t nbQuaternions)
 {
-   float32_t temp;
+    float32_t temp;
 #if defined(RISCV_MATH_VECTOR)
     uint32_t blkCnt = nbQuaternions;                               /* Loop counter */
     size_t l;
@@ -68,23 +69,23 @@ void riscv_quaternion_norm_f32(const float32_t *pInputQuaternions,
     float32_t *pOUT = pNorms;
     ptrdiff_t bstride = 16;
     for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-        v_x0 = vlse32_v_f32m8(pIN,bstride, l);
-        v_x1 = vlse32_v_f32m8(pIN+1,bstride, l);
-        v_x2 = vlse32_v_f32m8(pIN+2,bstride, l);
-        v_x3 = vlse32_v_f32m8(pIN+3,bstride, l);
+        v_x0 = vlse32_v_f32m8(pIN, bstride, l);
+        v_x1 = vlse32_v_f32m8(pIN + 1, bstride, l);
+        v_x2 = vlse32_v_f32m8(pIN + 2, bstride, l);
+        v_x3 = vlse32_v_f32m8(pIN + 3, bstride, l);
 
-        v_temp = vfmul_vv_f32m8(v_x0,v_x0, l);
-        v_temp = vfmacc_vv_f32m8(v_temp,v_x1,v_x1, l);
-        v_temp = vfmacc_vv_f32m8(v_temp,v_x2,v_x2, l);
-        v_temp = vfmacc_vv_f32m8(v_temp,v_x3,v_x3, l);
+        v_temp = vfmul_vv_f32m8(v_x0, v_x0, l);
+        v_temp = vfmacc_vv_f32m8(v_temp, v_x1, v_x1, l);
+        v_temp = vfmacc_vv_f32m8(v_temp, v_x2, v_x2, l);
+        v_temp = vfmacc_vv_f32m8(v_temp, v_x3, v_x3, l);
 
-        vse32_v_f32m8(pOUT,vfsqrt_v_f32m8(v_temp, l), l);
+        vse32_v_f32m8(pOUT, vfsqrt_v_f32m8(v_temp, l), l);
 
-        pIN += l*4;
+        pIN += l * 4;
         pOUT += l;
     }
 #else
-   for(uint32_t i=0; i < nbQuaternions; i++)
+   for(uint32_t i = 0; i < nbQuaternions; i++)
    {
       temp = SQ(pInputQuaternions[4 * i + 0]) +
              SQ(pInputQuaternions[4 * i + 1]) +

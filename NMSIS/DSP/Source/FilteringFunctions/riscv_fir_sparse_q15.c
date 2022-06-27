@@ -150,15 +150,15 @@ void riscv_fir_sparse_q15(
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
 #if defined (RISCV_MATH_VECTOR)
-    uint32_t vblkCnt = blockSize;
-    size_t l;
-    vint16m4_t vx;
-    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle16_v_i16m4(px, l);
-      px += l;
-      vse32_v_i32m8 (pScratchOut,vwmul_vx_i32m8(vx, coeff, l), l);
-      pScratchOut += l;
-    }
+  uint32_t vblkCnt = blockSize;
+  size_t l;
+  vint16m4_t vx;
+  for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+    vx = vle16_v_i16m4(px, l);
+    px += l;
+    vse32_v_i32m8 (pScratchOut, vwmul_vx_i32m8(vx, coeff, l), l);
+    pScratchOut += l;
+  }
 #else
   while (blkCnt > 0U)
   {
@@ -219,7 +219,7 @@ void riscv_fir_sparse_q15(
     }
 
     /* Loop unrolling: Compute remaining outputs */
-    blkCnt = blockSize % 0x4U;
+    blkCnt = blockSize & 0x3U;
 
 #else
 
@@ -297,7 +297,7 @@ void riscv_fir_sparse_q15(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 
@@ -306,13 +306,13 @@ void riscv_fir_sparse_q15(
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
 #if defined (RISCV_MATH_VECTOR)
-    vblkCnt = blockSize;
-    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle16_v_i16m4(px, l);
-      px += l;
-      vse32_v_i32m8 (pScratchOut,vadd_vv_i32m8(vle32_v_i32m8(pScratchOut, l), vwmul_vx_i32m8(vx, coeff, l), l), l);
-      pScratchOut += l;
-    }
+  vblkCnt = blockSize;
+  for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+    vx = vle16_v_i16m4(px, l);
+    px += l;
+    vse32_v_i32m8 (pScratchOut,vadd_vv_i32m8(vle32_v_i32m8(pScratchOut, l), vwmul_vx_i32m8(vx, coeff, l), l), l);
+    pScratchOut += l;
+  }
 #else
   while (blkCnt > 0U)
   {
@@ -348,7 +348,7 @@ void riscv_fir_sparse_q15(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 
