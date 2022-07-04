@@ -1,8 +1,8 @@
 /******************************************************************************
  * @file     riscv_math_types.h
  * @brief    Public header file for NMSIS DSP Library
- * @version  V1.9.0
- * @date     23 April 2021
+ * @version  V1.10.0
+ * @date     08 July 2021
  * Target Processor: RISC-V Cores
  ******************************************************************************/
 /*
@@ -34,7 +34,7 @@ extern "C"
 #endif
 
 /* Compiler specific diagnostic adjustment */
-#if   defined ( __GNUC__ )
+#if defined ( __GNUC__ )
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wsign-conversion"
   #pragma GCC diagnostic ignored "-Wconversion"

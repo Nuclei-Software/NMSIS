@@ -70,9 +70,9 @@ void riscv_not_u8(
 
 #if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
 
-    uint64_t * pSrc_temp = pSrc;
-    uint64_t * pDst_temp = pDst;
-    if(blkCnt = blockSize >> 3)
+    const uint64_t * pSrc_temp = (const uint64_t *)pSrc;
+    uint64_t * pDst_temp = (uint64_t *)pDst;
+    if (blkCnt = blockSize >> 3)
     {
         while (blkCnt > 0U)
         {
@@ -82,15 +82,15 @@ void riscv_not_u8(
             blkCnt--;
         }
     }
-    if(blkCnt = blockSize & 0x7U)
+    if (blkCnt = blockSize & 0x7U)
     {
-        pSrc = (uint8_t * )(pSrc_temp - 7);
+        pSrc = (const uint8_t * )(pSrc_temp - 7);
     }
 
 #else
-    uint32_t * pSrc_temp = pSrc;
-    uint32_t * pDst_temp = pDst;
-    if(blkCnt = blockSize >> 2)
+    const uint32_t * pSrc_temp = (const uint32_t *)pSrc;
+    uint32_t * pDst_temp = (uint32_t *)pDst;
+    if (blkCnt = blockSize >> 2)
     {
         while (blkCnt > 0U)
         {
@@ -100,9 +100,9 @@ void riscv_not_u8(
             blkCnt--;
         }
     }
-    if(blkCnt = blockSize & 0x3U)
+    if (blkCnt = blockSize & 0x3U)
     {
-        pSrc = (uint8_t * )(pSrc_temp - 3);
+        pSrc = (const uint8_t *)(pSrc_temp - 3);
     }
 #endif /*defined (RISCV_DSP64) || (__RISCV_XLEN == 64)*/
 

@@ -62,8 +62,8 @@ void riscv_mat_vec_mult_q31(const riscv_matrix_instance_q31 *pSrcMat, const q31_
     q31_t matData, matData2, vecData, vecData2;
 
 #if defined(RISCV_MATH_VECTOR)
-    q31_t *pInA = NULL;
-    q31_t *pInB = NULL;
+    const q31_t *pInA = NULL;
+    const q31_t *pInB = NULL;
     // number of matrix columns  numColsA = numrowB
     uint16_t blkCnt = pSrcMat->numCols;
     size_t l;        // max_l is the maximum column elements at a time

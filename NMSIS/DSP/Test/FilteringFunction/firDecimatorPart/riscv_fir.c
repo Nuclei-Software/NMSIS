@@ -44,7 +44,7 @@ static void riscv_fir_decimate_f32_lp(void)
     riscv_fir_decimate_init_f32(&S, NUM_TAPS, 2, &firCoeffs32LP[0], &firStatef32[0],
                               TEST_LENGTH_SAMPLES);
     BENCH_START(riscv_fir_decimate_f32);
-    riscv_fir_decimate_f32(&S, &testInput_f32_50Hz_200Hz, &testOutput_f32, TEST_LENGTH_SAMPLES);
+    riscv_fir_decimate_f32(&S, testInput_f32_50Hz_200Hz, testOutput_f32, TEST_LENGTH_SAMPLES);
     BENCH_END(riscv_fir_decimate_f32);
     riscv_fir_decimate_init_f32(&S, NUM_TAPS, 2, &firCoeffs32LP[0], &firStatef32[0],
                               TEST_LENGTH_SAMPLES);

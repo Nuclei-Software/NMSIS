@@ -50,11 +50,11 @@
 
 void riscv_min_no_idx_f32(
     const float32_t *pSrc,
-    uint32_t   blockSize,
+    uint32_t blockSize,
     float32_t *pResult)
 {
-   float32_t   minValue = F32_MAX;
-   float32_t   newVal;
+   float32_t minValue = F32_MAX;
+   float32_t newVal;
 
 #if defined(RISCV_MATH_VECTOR)
     int32_t blkCnt = blockSize; /* Loop counter */

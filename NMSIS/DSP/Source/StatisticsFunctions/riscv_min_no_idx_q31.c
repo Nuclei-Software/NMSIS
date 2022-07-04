@@ -57,11 +57,10 @@ void riscv_min_no_idx_q31(
 
 #if defined(RISCV_MATH_VECTOR)
     size_t l;
-    q31_t *inputx;
+    const q31_t *inputx = pSrc;
     vint32m8_t v_x;
     vint32m1_t v_tempa;
 
-    inputx = pSrc;
     blkCnt = blockSize;
     l = vsetvl_e32m1(1);
     v_tempa = vmv_s_x_i32m1(v_tempa, pSrc[0], l);

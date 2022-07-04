@@ -69,8 +69,8 @@ void riscv_mat_vec_mult_f32(const riscv_matrix_instance_f32 *pSrcMat, const floa
     float32_t matData, matData2, vecData, vecData2;
 
 #if defined(RISCV_MATH_VECTOR)
-    float32_t *pInA = NULL;
-    float32_t *pInB = NULL;
+    const float32_t *pInA = NULL;
+    const float32_t *pInB = NULL;
     uint16_t blkCnt; // number of matrix columns  numColsA = numrowB
     size_t l;        // max_l is the maximum column elements at a time
     uint16_t rownum; //  How many rowumns and rownum are controlled

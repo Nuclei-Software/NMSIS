@@ -150,7 +150,7 @@ void riscv_absmin_q7(
   vint8m8_t v_x, v_zero;
   vint8m1_t v_temp;
   uint32_t temp_index = 0;
-  q7_t *pData = pSrc;
+  const q7_t *pData = pSrc;
   out = 0x7f;
   outIndex = 0;
   l = vsetvlmax_e8m8();

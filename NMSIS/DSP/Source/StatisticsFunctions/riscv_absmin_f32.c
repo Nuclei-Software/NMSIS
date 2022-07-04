@@ -161,7 +161,7 @@ void riscv_absmin_f32(
     size_t l;
     vfloat32m8_t v_x;
     vfloat32m1_t v_temp;
-    float32_t *pIN = pSrc;
+    const float32_t *pIN = pSrc;
     out = fabsf(*pIN);
     outIndex = 0;
     l = vsetvl_e32m1(1);

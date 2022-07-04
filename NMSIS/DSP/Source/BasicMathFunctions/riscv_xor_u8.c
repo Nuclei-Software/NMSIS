@@ -74,10 +74,10 @@ void riscv_xor_u8(
 
 #if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
 
-    uint64_t * pSrcA_temp = pSrcA;
-    uint64_t * pSrcB_temp = pSrcB;
-    uint64_t * pDst_temp = pDst;
-    if(blkCnt = blockSize >> 3)
+    const uint64_t * pSrcA_temp = (const uint64_t *)pSrcA;
+    const uint64_t * pSrcB_temp = (const uint64_t *)pSrcB;
+    uint64_t * pDst_temp = (uint64_t *)pDst;
+    if (blkCnt = blockSize >> 3)
     {
         while (blkCnt > 0U)
         {
@@ -87,16 +87,16 @@ void riscv_xor_u8(
             blkCnt--;
         }
     }
-    if(blkCnt = blockSize & 0x7)
+    if (blkCnt = blockSize & 0x7)
     {
-        pSrcA = (uint8_t * )(pSrcA_temp - 7);
-        pSrcB = (uint8_t * )(pSrcB_temp - 7);
+        pSrcA = (const uint8_t * )(pSrcA_temp - 7);
+        pSrcB = (const uint8_t * )(pSrcB_temp - 7);
     }
 
 #else
-    uint32_t * pSrcA_temp = pSrcA;
-    uint32_t * pSrcB_temp = pSrcB;
-    uint32_t * pDst_temp = pDst;
+    const uint32_t * pSrcA_temp = (const uint32_t *)pSrcA;
+    const uint32_t * pSrcB_temp = (const uint32_t *)pSrcB;
+    uint32_t * pDst_temp = (uint32_t *)pDst;
     if (blkCnt = blockSize >> 2)
     {
         while (blkCnt > 0U)
@@ -109,8 +109,8 @@ void riscv_xor_u8(
     }
     if (blkCnt = blockSize & 0x3U)
     {
-        pSrcA = (uint8_t * )(pSrcA_temp - 3);
-        pSrcB = (uint8_t * )(pSrcB_temp - 3);
+        pSrcA = (const uint8_t * )(pSrcA_temp - 3);
+        pSrcB = (const uint8_t * )(pSrcB_temp - 3);
     }
 #endif /*defined (RISCV_DSP64) || (__RISCV_XLEN == 64)*/
 

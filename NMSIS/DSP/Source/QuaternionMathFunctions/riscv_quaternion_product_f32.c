@@ -77,8 +77,8 @@ void riscv_quaternion_product_f32(const float32_t *qa,
     vfloat32m8_t v_QB0, v_QB1, v_QB2, v_QB3;
     vfloat32m8_t v_QR0, v_QR1, v_QR2, v_QR3;
     vfloat32m8_t v_temp;
-    float32_t *pQA = qa;
-    float32_t *pQB = qb;
+    const float32_t *pQA = qa;
+    const float32_t *pQB = qb;
     float32_t *pQR = qr;
     ptrdiff_t bstride = 16;
     for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
@@ -121,7 +121,7 @@ void riscv_quaternion_product_f32(const float32_t *qa,
         pQR += l * 4;
     }
 #else
-   for(uint32_t i=0; i < nbQuaternions; i++)
+   for (uint32_t i = 0; i < nbQuaternions; i++)
    {
      riscv_quaternion_product_single_f32(qa, qb, qr);
 

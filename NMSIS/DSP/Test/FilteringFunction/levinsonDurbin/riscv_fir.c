@@ -42,9 +42,9 @@ static void DSP_levinson_durbin_f32(void)
     for(int i=0;i<256;i++)
         phi[i] = (float32_t) rand();
     BENCH_START(riscv_levinson_durbin_f32);
-    riscv_levinson_durbin_f32(&phi, &a, &err, nbCoefs);
+    riscv_levinson_durbin_f32(phi, a, &err, nbCoefs);
     BENCH_END(riscv_levinson_durbin_f32);
-    ref_levinson_durbin_f32(&phi, &a_ref, &err_ref, nbCoefs);
+    ref_levinson_durbin_f32(phi, a_ref, &err_ref, nbCoefs);
     // ScaleValue = 0.052219514664161221f * 0.04279801741658381f;
     for(int i=0;i<nbCoefs;i++)
         if (a_ref[i] != a[i]) {

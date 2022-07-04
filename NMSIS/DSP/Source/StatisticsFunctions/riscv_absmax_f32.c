@@ -158,7 +158,7 @@ void riscv_absmax_f32(
     float32_t temp_max;
     size_t l;
     vfloat32m8_t v_x;
-    float32_t *pIN = pSrc;
+    const float32_t *pIN = pSrc;
     out = 0;
     outIndex = 0;
     l = vsetvl_e32m1(1);

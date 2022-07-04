@@ -139,7 +139,7 @@ void riscv_absmin_no_idx_q31(
     size_t l;
     vint32m8_t v_x, v_zero;
     vint32m1_t v_temp;
-    q31_t *pData = pSrc;
+    const q31_t *pData = pSrc;
 
     l = vsetvlmax_e32m8();
     v_zero = vmv_v_x_i32m8(0, l);

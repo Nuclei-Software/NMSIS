@@ -52,12 +52,12 @@
 
 float64_t riscv_cosine_distance_f64(const float64_t *pA,const float64_t *pB, uint32_t blockSize)
 {
-    float64_t pwra,pwrb,dot,tmp;
+    float64_t pwra, pwrb, dot, tmp;
 
     riscv_power_f64(pA, blockSize, &pwra);
     riscv_power_f64(pB, blockSize, &pwrb);
 
-    riscv_dot_prod_f64(pA,pB,blockSize,&dot);
+    riscv_dot_prod_f64(pA, pB, blockSize, &dot);
 
     tmp = sqrt(pwra * pwrb);
     return(1. - dot / tmp);

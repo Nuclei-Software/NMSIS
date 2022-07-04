@@ -126,8 +126,8 @@ void riscv_fir_sparse_q15(
 #if __RISCV_XLEN == 64
     temp = (((q63_t)coeff) << 16) | ((uint64_t)((uint16_t)coeff));
 //     // temp = __RV_PKBB16(coeff, coeff);
-    write_q31x2_ia (&pScratchOut, __RV_SMUL16(read_q15x2_ia(&px), (q31_t)temp));
-    write_q31x2_ia (&pScratchOut, __RV_SMUL16(read_q15x2_ia(&px), (q31_t)temp));
+    write_q31x2_ia(&pScratchOut, __RV_SMUL16(read_q15x2_ia(&px), (q31_t)temp));
+    write_q31x2_ia(&pScratchOut, __RV_SMUL16(read_q15x2_ia(&px), (q31_t)temp));
 #else
     /* Perform multiplication and store in the scratch buffer */
     *pScratchOut++ = ((q31_t) *px++ * coeff);
@@ -156,7 +156,7 @@ void riscv_fir_sparse_q15(
   for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
     vx = vle16_v_i16m4(px, l);
     px += l;
-    vse32_v_i32m8 (pScratchOut, vwmul_vx_i32m8(vx, coeff, l), l);
+    vse32_v_i32m8(pScratchOut, vwmul_vx_i32m8(vx, coeff, l), l);
     pScratchOut += l;
   }
 #else
@@ -232,7 +232,7 @@ void riscv_fir_sparse_q15(
     for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
       vx = vle16_v_i16m4(px, l);
       px += l;
-      vse32_v_i32m8 (pScratchOut, vadd_vv_i32m8(vle32_v_i32m8(pScratchOut, l), vwmul_vx_i32m8(vx, coeff, l), l), l);
+      vse32_v_i32m8(pScratchOut, vadd_vv_i32m8(vle32_v_i32m8(pScratchOut, l), vwmul_vx_i32m8(vx, coeff, l), l), l);
       pScratchOut += l;
     }
 #else
@@ -310,7 +310,7 @@ void riscv_fir_sparse_q15(
   for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
     vx = vle16_v_i16m4(px, l);
     px += l;
-    vse32_v_i32m8 (pScratchOut,vadd_vv_i32m8(vle32_v_i32m8(pScratchOut, l), vwmul_vx_i32m8(vx, coeff, l), l), l);
+    vse32_v_i32m8(pScratchOut, vadd_vv_i32m8(vle32_v_i32m8(pScratchOut, l), vwmul_vx_i32m8(vx, coeff, l), l), l);
     pScratchOut += l;
   }
 #else

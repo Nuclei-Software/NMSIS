@@ -56,8 +56,8 @@ void riscv_min_no_idx_f16(
     uint32_t   blockSize,
     float16_t *pResult)
 {
-   float16_t   minValue = F16_MAX;
-   float16_t   newVal;
+   float16_t minValue = F16_MAX;
+   float16_t newVal;
 
    while (blockSize > 0U)
    {

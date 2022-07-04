@@ -151,7 +151,7 @@ void riscv_absmin_q31(
   vint32m8_t v_x, v_zero;
   vint32m1_t v_temp;
   uint32_t temp_index = 0;
-  q31_t *pData = pSrc;
+  const q31_t *pData = pSrc;
   out = 0x7fffffff;
   outIndex = 0;
   l = vsetvlmax_e32m8();

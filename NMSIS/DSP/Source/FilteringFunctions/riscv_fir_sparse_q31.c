@@ -117,9 +117,9 @@ void riscv_fir_sparse_q31(
   {
 #if __RISCV_XLEN == 64
     temp = read_q31x2_ia((q63_t) &px);
-    write_q31x2_ia (&pOut, __RV_PKBB32((__RV_SMBT32(coeff, temp) >> 32), (__RV_SMBB32(temp, coeff) >> 32)));
+    write_q31x2_ia(&pOut, __RV_PKBB32((__RV_SMBT32(coeff, temp) >> 32), (__RV_SMBB32(temp, coeff) >> 32)));
     temp = read_q31x2_ia((q63_t) &px);
-    write_q31x2_ia (&pOut, __RV_PKBB32((__RV_SMBT32(coeff, temp) >> 32), (__RV_SMBB32(temp, coeff) >> 32)));
+    write_q31x2_ia(&pOut, __RV_PKBB32((__RV_SMBT32(coeff, temp) >> 32), (__RV_SMBB32(temp, coeff) >> 32)));
 #else
     /* Perform Multiplications and store in destination buffer */
     *pOut++ = (q31_t) (((q63_t) *px++ * coeff) >> 32);
@@ -136,7 +136,7 @@ void riscv_fir_sparse_q31(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 

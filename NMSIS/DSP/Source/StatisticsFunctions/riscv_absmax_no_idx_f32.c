@@ -134,7 +134,7 @@ void riscv_absmax_no_idx_f32(
     size_t l;
     vfloat32m8_t v_x;
     vfloat32m1_t v_max;
-    float32_t *pIN = pSrc;
+    const float32_t *pIN = pSrc;
     l = vsetvl_e32m1(1);
     v_max = vfmv_s_f_f32m1(v_max, 0.0f, l);
     for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {

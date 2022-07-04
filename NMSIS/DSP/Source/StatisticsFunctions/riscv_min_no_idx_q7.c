@@ -55,10 +55,9 @@ void riscv_min_no_idx_q7(
 
 #if defined(RISCV_MATH_VECTOR)
     size_t l;
-    q7_t *inputx;
+    const q7_t *inputx = pSrc;
     vint8m8_t v_x;
     vint8m1_t v_tempa;
-    inputx = pSrc;
     blkCnt = blockSize;
     l = vsetvl_e8m1(1);
     v_tempa = vmv_s_x_i8m1(v_tempa, pSrc[0], l);

@@ -74,10 +74,10 @@ void riscv_or_u32(
 
 #if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
 
-    uint64_t * pSrcA_temp = pSrcA;
-    uint64_t * pSrcB_temp = pSrcB;
-    uint64_t * pDst_temp = pDst;
-    if(blkCnt = blockSize >> 1)
+    const uint64_t * pSrcA_temp = (const uint64_t *)pSrcA;
+    const uint64_t * pSrcB_temp = (const uint64_t *)pSrcB;
+    uint64_t * pDst_temp = (uint64_t *)pDst;
+    if (blkCnt = blockSize >> 1)
     {
         while (blkCnt > 0U)
         {
@@ -87,10 +87,10 @@ void riscv_or_u32(
             blkCnt--;
         }
     }
-    if(blkCnt = blockSize & 0x1)
+    if (blkCnt = blockSize & 0x1)
     {
-        pSrcA = (uint8_t * )(pSrcA_temp - 1);
-        pSrcB = (uint8_t * )(pSrcB_temp - 1);
+        pSrcA = (const uint32_t * )(pSrcA_temp - 1);
+        pSrcB = (const uint32_t * )(pSrcB_temp - 1);
     }
 #endif
 

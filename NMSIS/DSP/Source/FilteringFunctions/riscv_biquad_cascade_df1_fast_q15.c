@@ -80,13 +80,13 @@ void riscv_biquad_cascade_df1_fast_q15(
   do
   {
     /* Read the b0 and 0 coefficients using SIMD  */
-    b0 = read_q15x2_ia (&pCoeffs);
+    b0 = read_q15x2_ia ((q15_t **)&pCoeffs);
 
     /* Read the b1 and b2 coefficients using SIMD */
-    b1 = read_q15x2_ia (&pCoeffs);
+    b1 = read_q15x2_ia ((q15_t **)&pCoeffs);
 
     /* Read the a1 and a2 coefficients using SIMD */
-    a1 = read_q15x2_ia (&pCoeffs);
+    a1 = read_q15x2_ia ((q15_t **)&pCoeffs);
 
     /* Read the input state values from the state buffer:  x[n-1], x[n-2] */
     state_in = read_q15x2_ia (&pState);
@@ -110,7 +110,7 @@ void riscv_biquad_cascade_df1_fast_q15(
     {
 
       /* Read the input */
-      in = read_q15x2_ia (&pIn);
+      in = read_q15x2_ia ((q15_t **)&pIn);
 
       /* out =  b0 * x[n] + 0 * 0 */
       out = __SMUAD(b0, in);

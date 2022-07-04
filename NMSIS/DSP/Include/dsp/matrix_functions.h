@@ -1,8 +1,8 @@
 /******************************************************************************
  * @file     matrix_functions.h
  * @brief    Public header file for NMSIS DSP Library
- * @version  V1.9.0
- * @date     23 April 2021
+ * @version  V1.10.0
+ * @date     08 July 2021
  * Target Processor: RISC-V Cores
  ******************************************************************************/
 /*
@@ -444,6 +444,21 @@ riscv_status riscv_mat_mult_q31(
   const riscv_matrix_instance_q31 * pSrcA,
   const riscv_matrix_instance_q31 * pSrcB,
         riscv_matrix_instance_q31 * pDst);
+
+  /**
+   * @brief Q31 matrix multiplication
+   * @param[in]  pSrcA  points to the first input matrix structure
+   * @param[in]  pSrcB  points to the second input matrix structure
+   * @param[out] pDst   points to output matrix structure
+   * @param[in]  pState  points to the array for storing intermediate results
+   * @return     The function returns either
+   * <code>RISCV_MATH_SIZE_MISMATCH</code> or <code>RISCV_MATH_SUCCESS</code> based on the outcome of size checking.
+   */
+riscv_status riscv_mat_mult_opt_q31(
+  const riscv_matrix_instance_q31 * pSrcA,
+  const riscv_matrix_instance_q31 * pSrcB,
+        riscv_matrix_instance_q31 * pDst,
+        q31_t *pState);
 
   /**
    * @brief Q31 matrix and vector multiplication

@@ -209,7 +209,7 @@ riscv_status riscv_conv_partial_fast_q15(
       /* Accumulator is made zero for every iteration */
       sum = 0;
 #if defined RISCV_MATH_DSP && __RISCV_XLEN == 64
-    py -= 2;
+      py -= 2;
 #endif /* RISCV_MATH_DSP && __RISCV_XLEN == 64 */
       /* Apply loop unrolling and compute 4 MACs simultaneously. */
       k = count >> 2U;
@@ -219,7 +219,7 @@ riscv_status riscv_conv_partial_fast_q15(
       while (k > 0U)
       {
 #if defined RISCV_MATH_DSP && __RISCV_XLEN == 64
-      sum = __RV_KMAXDA(sum, read_q7x8_ia ((q15_t **) &px), read_q7x8_da ((q15_t **) &py));
+        sum = __RV_KMAXDA(sum, read_q7x8_ia ((q15_t **) &px), read_q7x8_da ((q15_t **) &py));
 #else
         /* Perform the multiply-accumulate */
         /* x[0], x[1] are multiplied with y[srcBLen - 1], y[srcBLen - 2] respectively */

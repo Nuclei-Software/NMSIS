@@ -138,7 +138,7 @@ void riscv_absmin_no_idx_q7(
     size_t l;
     vint8m8_t v_x, v_zero;
     vint8m1_t v_temp;
-    q7_t *pData = pSrc;
+    const q7_t *pData = pSrc;
     l = vsetvlmax_e8m8();
     v_zero = vmv_v_x_i8m8(0, l);
     l = vsetvlmax_e8m1();

@@ -69,12 +69,12 @@ void riscv_max_f32(
     uint32_t index_temp = 0;
 
     size_t l;
-    float32_t * inputx;
+    const float32_t *inputx = pSrc;
     vfloat32m8_t v_x;
     vfloat32m1_t v_tempa;
     out = pSrc[0];
     outIndex = 0;
-    inputx = pSrc;
+
     blkCnt = blockSize;
     l = vsetvl_e32m1(1);
     v_tempa = vfmv_s_f_f32m1(v_tempa, out, l);

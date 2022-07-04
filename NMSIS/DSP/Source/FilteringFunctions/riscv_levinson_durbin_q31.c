@@ -153,8 +153,8 @@ void riscv_levinson_durbin_q31(const q31_t *phi,
 
 
       nb = p >> 1;
-      j=0;
-      for(i = 0;i < nb; i++)
+      j = 0;
+      for(i = 0; i < nb; i++)
       {
           q31_t x,y;
 

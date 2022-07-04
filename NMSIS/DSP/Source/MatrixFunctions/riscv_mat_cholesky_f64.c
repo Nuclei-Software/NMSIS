@@ -91,7 +91,7 @@ riscv_status riscv_mat_cholesky_f64(
        {
           pG[j * n + i] = pA[j * n + i];
 
-          for(k=0; k < i ; k++)
+          for(k = 0; k < i; k++)
           {
              pG[j * n + i] = pG[j * n + i] - pG[i * n + k] * pG[j * n + k];
           }

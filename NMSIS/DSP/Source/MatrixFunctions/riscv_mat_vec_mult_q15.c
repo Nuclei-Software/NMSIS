@@ -62,8 +62,8 @@ void riscv_mat_vec_mult_q15(const riscv_matrix_instance_q15 *pSrcMat, const q15_
     q31_t matData, matData2, vecData, vecData2;
 
 #if defined(RISCV_MATH_VECTOR)
-    q15_t *pInA = NULL;
-    q15_t *pInB = NULL;
+    const q15_t *pInA = NULL;
+    const q15_t *pInB = NULL;
     uint16_t blkCnt = pSrcMat->numCols;
     size_t l;
     uint16_t rownum; //  How many rowumns and rownum are controlled
@@ -86,7 +86,7 @@ void riscv_mat_vec_mult_q15(const riscv_matrix_instance_q15 *pSrcMat, const q15_
             vsum = vwredsum_vs_i32m8_i64m1(vsum, vwmul_vv_i32m8(v_inA, v_inB, l), vsum, l);
         }
         sum = vmv_x_s_i64m1_i64(vsum);
-	      *px++ = (q15_t)(__SSAT((sum >> 15), 16));
+	    *px++ = (q15_t)(__SSAT((sum >> 15), 16));
     }
     /* Set status as RISCV_MATH_SUCCESS */
 #else
@@ -121,16 +121,16 @@ void riscv_mat_vec_mult_q15(const riscv_matrix_instance_q15 *pSrcMat, const q15_
         // Main loop: matrix-vector multiplication
         while (colCnt > 0u) {
             // Read 2 values from vector
-            vecData = read_q15x2_ia (&pInVec);
+            vecData = read_q15x2_ia ((q15_t **)&pInVec);
 
             // Read 8 values from the matrix - 2 values from each of 4 rows, and do multiply accumulate
-            matData =  read_q15x2_ia (&pInA1);
+            matData =  read_q15x2_ia ((q15_t **)&pInA1);
             sum1 = __SMLALD(matData, vecData, sum1);
-            matData = read_q15x2_ia (&pInA2);
+            matData = read_q15x2_ia ((q15_t **)&pInA2);
             sum2 = __SMLALD(matData, vecData, sum2);
-            matData = read_q15x2_ia (&pInA3);
+            matData = read_q15x2_ia ((q15_t **)&pInA3);
             sum3 = __SMLALD(matData, vecData, sum3);
-            matData = read_q15x2_ia (&pInA4);
+            matData = read_q15x2_ia ((q15_t **)&pInA4);
             sum4 = __SMLALD(matData, vecData, sum4);
 
             // Decrement the loop counter
@@ -171,10 +171,10 @@ void riscv_mat_vec_mult_q15(const riscv_matrix_instance_q15 *pSrcMat, const q15_
         colCnt = numCols >> 2;
 
         while (colCnt > 0) {
-            vecData = read_q15x2_ia (&pInVec);
-            vecData2 = read_q15x2_ia (&pInVec);
-            matData = read_q15x2_ia (&pInA1);
-            matData2 = read_q15x2_ia (&pInA1);
+            vecData = read_q15x2_ia ((q15_t **)&pInVec);
+            vecData2 = read_q15x2_ia ((q15_t **)&pInVec);
+            matData = read_q15x2_ia ((q15_t **)&pInA1);
+            matData2 = read_q15x2_ia ((q15_t **)&pInA1);
             sum = __SMLALD(matData, vecData, sum);
             sum = __SMLALD(matData2, vecData2, sum);
             colCnt--;

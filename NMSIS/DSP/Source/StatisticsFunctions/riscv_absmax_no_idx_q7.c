@@ -137,7 +137,7 @@ void riscv_absmax_no_idx_q7(
     vint8m8_t v_x, v_zero;
     l = vsetvlmax_e8m8();
     v_zero = vmv_v_x_i8m8(0, l);
-    q7_t *pData = pSrc;
+    const q7_t *pData = pSrc;
     out = *pData;
     l = vsetvlmax_e8m1();
     vint8m1_t v_max = vmv_s_x_i8m1(v_max, 0, l);

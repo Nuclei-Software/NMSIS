@@ -86,7 +86,7 @@ void riscv_quaternion2rotation_f32(const float32_t *pInputQuaternions,
     vfloat32m8_t v_q00, v_q11, v_q22, v_q33, v_q01, v_q02, v_q03, v_q12, v_q13, v_q23;
     vfloat32m8_t v_xx, v_yy, v_zz, v_xy, v_xz, v_yx, v_yz, v_zx, v_zy;
     vfloat32m8_t v_temp;
-    float32_t *pQA = pInputQuaternions;
+    const float32_t *pQA = pInputQuaternions;
     float32_t *pOUT = pOutputRotations;
     ptrdiff_t bstride = 16;
     ptrdiff_t bstride_out = 36;

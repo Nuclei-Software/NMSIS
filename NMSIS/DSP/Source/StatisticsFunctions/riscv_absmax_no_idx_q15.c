@@ -136,7 +136,7 @@ void riscv_absmax_no_idx_q15(
     vint16m8_t v_x, v_zero;
     l = vsetvlmax_e16m8();
     v_zero = vmv_v_x_i16m8(0, l);
-    q15_t *pData = pSrc;
+    const q15_t *pData = pSrc;
     l = vsetvlmax_e16m1();
     vint16m1_t v_max = vmv_v_x_i16m1(0, l);
     for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {

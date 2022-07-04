@@ -152,7 +152,7 @@ void riscv_absmax_q7(
   uint32_t temp_index = 0;
   l = vsetvlmax_e8m8();
   v_zero = vmv_v_x_i8m8(0, l);
-  q7_t *pData = pSrc;
+  const q7_t *pData = pSrc;
   l = vsetvlmax_e8m1();
   v_temp = vmv_s_x_i8m1(v_temp, 0, l);
   out = *pData;

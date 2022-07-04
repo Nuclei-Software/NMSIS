@@ -75,20 +75,20 @@ void riscv_cmplx_mag_fast_q15(
     /* C[0] = sqrt(A[0] * A[0] + A[1] * A[1]) */
 
 #if defined (RISCV_MATH_DSP)
-    in = read_q15x2_ia (&pSrc);
+    in = read_q15x2_ia ((q15_t **)&pSrc);
     acc0 = __SMUAD(in, in);
     /* store result in 2.14 format in destination buffer. */
     riscv_sqrt_q15((q15_t) (acc0 >> 17), pDst++);
 
-    in = read_q15x2_ia (&pSrc);
+    in = read_q15x2_ia ((q15_t **)&pSrc);
     acc0 = __SMUAD(in, in);
     riscv_sqrt_q15((q15_t) (acc0 >> 17), pDst++);
 
-    in = read_q15x2_ia (&pSrc);
+    in = read_q15x2_ia ((q15_t **)&pSrc);
     acc0 = __SMUAD(in, in);
     riscv_sqrt_q15((q15_t) (acc0 >> 17), pDst++);
 
-    in = read_q15x2_ia (&pSrc);
+    in = read_q15x2_ia ((q15_t **)&pSrc);
     acc0 = __SMUAD(in, in);
     riscv_sqrt_q15((q15_t) (acc0 >> 17), pDst++);
 #else
@@ -138,7 +138,7 @@ void riscv_cmplx_mag_fast_q15(
     /* C[0] = sqrt(A[0] * A[0] + A[1] * A[1]) */
 
 #if defined (RISCV_MATH_DSP)
-    in = read_q15x2_ia (&pSrc);
+    in = read_q15x2_ia ((q15_t **)&pSrc);
     acc0 = __SMUAD(in, in);
 
     /* store result in 2.14 format in destination buffer. */

@@ -57,10 +57,9 @@ void riscv_max_no_idx_q15(
 
 #if defined(RISCV_MATH_VECTOR)
     size_t l;
-    q15_t * inputx;
+    const q15_t *inputx = pSrc;
     vint16m8_t v_x;
     vint16m1_t v_tempa;
-    inputx = pSrc;
     blkCnt = blockSize;
     l = vsetvl_e16m1(1);
     v_tempa = vmv_s_x_i16m1(v_tempa, pSrc[0], l);

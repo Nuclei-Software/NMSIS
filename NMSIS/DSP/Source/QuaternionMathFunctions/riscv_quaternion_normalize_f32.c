@@ -63,7 +63,7 @@ void riscv_quaternion_normalize_f32(const float32_t *pInputQuaternions,
     size_t l;
     vfloat32m8_t v_x0, v_x1, v_x2, v_x3;
     vfloat32m8_t v_temp;
-    float32_t *pIN = pInputQuaternions;
+    const float32_t *pIN = pInputQuaternions;
     float32_t *pOUT = pNormalizedQuaternions;
     ptrdiff_t bstride = 16;
     for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {

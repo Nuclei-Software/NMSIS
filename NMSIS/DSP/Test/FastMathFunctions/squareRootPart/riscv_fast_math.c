@@ -92,7 +92,7 @@ static int DSP_EXP(void)
     // f32_sqrt
     BENCH_START(riscv_vexp_f32);
     for (int i = 0; i < 256; i++)
-        riscv_vexp_f32(f32_pIN, &f32_pOUT, 256);
+        riscv_vexp_f32(f32_pIN, f32_pOUT, 256);
     BENCH_END(riscv_vexp_f32);
     ref_vexp_f32(f32_pIN, &f32_pOUT_ref, 256);
     for (int i = 0; i < 256; i++)
@@ -113,7 +113,7 @@ static int DSP_LOG(void)
     // f32_sqrt
     BENCH_START(riscv_vlog_f32);
     for (int i = 0; i < 256; i++)
-        riscv_vlog_f32(f32_pIN, &f32_pOUT, 256);
+        riscv_vlog_f32(f32_pIN, f32_pOUT, 256);
     BENCH_END(riscv_vlog_f32);
     ref_vlog_f32(f32_pIN, &f32_pOUT_ref, 256);
     for (int i = 0; i < 256; i++)

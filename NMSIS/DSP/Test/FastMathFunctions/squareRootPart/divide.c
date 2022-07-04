@@ -1,4 +1,5 @@
 #include "ref.h"
+#include <math.h>
 
 riscv_status ref_divide_q15(q15_t numerator,
   q15_t denominator,

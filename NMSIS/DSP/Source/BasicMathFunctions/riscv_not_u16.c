@@ -78,9 +78,9 @@ void riscv_not_u16(
 
 #if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
 
-    uint64_t * pSrc_temp = pSrc;
-    uint64_t * pDst_temp = pDst;
-    if(blkCnt = blockSize >> 2)
+    const uint64_t *pSrc_temp = (const uint64_t *)pSrc;
+    uint64_t *pDst_temp = (uint64_t *)pDst;
+    if (blkCnt = blockSize >> 2)
     {
         while (blkCnt > 0U)
         {
@@ -90,15 +90,15 @@ void riscv_not_u16(
             blkCnt--;
         }
     }
-    if(blkCnt = blockSize & 0x3)
+    if (blkCnt = blockSize & 0x3)
     {
-        pSrc = (uint8_t * )(pSrc_temp - 3);
+        pSrc = (const uint16_t * )(pSrc_temp - 3);
     }
 
 #else
-    uint32_t * pSrc_temp = pSrc;
-    uint32_t * pDst_temp = pDst;
-    if(blkCnt = blockSize >> 1)
+    const uint32_t *pSrc_temp = (const uint32_t *)pSrc;
+    uint32_t * pDst_temp = (uint32_t *)pDst;
+    if (blkCnt = blockSize >> 1)
     {
         while (blkCnt > 0U)
         {
@@ -108,9 +108,9 @@ void riscv_not_u16(
             blkCnt--;
         }
     }
-    if(blkCnt = blockSize & 0x1)
+    if (blkCnt = blockSize & 0x1)
     {
-        pSrc = (uint8_t * )(pSrc_temp - 1);
+        pSrc = (const uint16_t * )(pSrc_temp - 1);
     }
 #endif
 
