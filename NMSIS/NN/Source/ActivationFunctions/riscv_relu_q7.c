@@ -65,7 +65,7 @@ void riscv_relu_q7(q7_t *data, uint16_t size)
 
     for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
         vx = vle8_v_i8m8(data, l);
-        // if data >= zero, return data, else return zero
+        /* if data >= zero, return data, else return zero */
         vse8_v_i8m8(data, vmax_vx_i8m8(vx, zero, l), l);
         data += l;
     }
@@ -74,12 +74,12 @@ void riscv_relu_q7(q7_t *data, uint16_t size)
 #elif defined(RISCV_MATH_DSP)
     /* Run the following code for M cores with DSP extension */
 
-    q7_t     *input = data;
-    q7_t     *output = data;
-    q31_t     in;
-    q31_t     buf;
-    q31_t     mask;
-    q31_t     zero = 0;
+    q7_t *input = data;
+    q7_t *output = data;
+    q31_t in;
+    q31_t buf;
+    q31_t mask;
+    q31_t zero = 0;
 #if __RISCV_XLEN == 64
     i = size >> 3;
     uint16_t tmp_i = i;

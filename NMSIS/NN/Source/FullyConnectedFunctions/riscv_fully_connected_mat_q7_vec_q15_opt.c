@@ -165,7 +165,6 @@ riscv_status riscv_fully_connected_mat_q7_vec_q15_opt(const q15_t *pV,
             v_b2 = vwadd_vx_i16m4(vlse8_v_i8m2(pB + 2, bstrideb, l), 0, l);
             v_b4 = vwadd_vx_i16m4(vlse8_v_i8m2(pB + 3, bstrideb, l), 0, l);
             sum += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, vadd_vv_i32m8(vwmul_vv_i32m8(v_a1, v_b1, l), vwmul_vv_i32m8(v_a2, v_b2, l), l), v_temp, l));
-
             sum2 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, vadd_vv_i32m8(vwmul_vv_i32m8(v_a1, v_b3, l), vwmul_vv_i32m8(v_a2, v_b4, l), l), v_temp, l));
 
             v_b1 = vwadd_vx_i16m4(vlse8_v_i8m2(pB + 4, bstrideb, l), 0, l);
@@ -173,7 +172,6 @@ riscv_status riscv_fully_connected_mat_q7_vec_q15_opt(const q15_t *pV,
             v_b2 = vwadd_vx_i16m4(vlse8_v_i8m2(pB + 6, bstrideb, l), 0, l);
             v_b4 = vwadd_vx_i16m4(vlse8_v_i8m2(pB + 7, bstrideb, l), 0, l);
             sum3 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, vadd_vv_i32m8(vwmul_vv_i32m8(v_a1, v_b1, l), vwmul_vv_i32m8(v_a2, v_b2, l), l), v_temp, l));
-
             sum4 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, vadd_vv_i32m8(vwmul_vv_i32m8(v_a1, v_b3, l), vwmul_vv_i32m8(v_a2, v_b4, l), l), v_temp, l));
             pB += l * 8;
         }
@@ -304,8 +302,8 @@ riscv_status riscv_fully_connected_mat_q7_vec_q15_opt(const q15_t *pV,
         q63_t sum64 = 0;
         while (colCnt)
         {
-            q63_t     inV1, inV2;
-            q31_t     inM11, inM12;
+            q63_t inV1, inV2;
+            q31_t inM11, inM12;
             pB = (q7_t *) read_and_pad(pB, &inM11, &inM12);
             inV2 = __RV_PKBB32(inM12,inM11);
             inV1 = *__SIMD64(pA)++;

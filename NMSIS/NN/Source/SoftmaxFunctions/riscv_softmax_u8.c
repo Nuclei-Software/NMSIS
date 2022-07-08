@@ -63,7 +63,6 @@ void riscv_softmax_u8(const uint8_t *input,
 #if defined(RISCV_MATH_VECTOR)
         uint32_t blkCnt_v;
         size_t l;
-        uint8_t i_a;
         vuint8m8_t v_x;
         vuint8m1_t v_temp;
         l = vsetvl_e8m1(1);
@@ -72,11 +71,10 @@ void riscv_softmax_u8(const uint8_t *input,
         col = 1;
         for (; (l = vsetvl_e8m8(blkCnt_v)) > 0; blkCnt_v -= l) {
             v_x = vle8_v_u8m8(input + col, l);
-            i_a = vmv_x_s_u8m1_u8(vredmaxu_vs_u8m8_u8m1(v_temp, v_x, v_temp, l));
-            if (i_a > max)
-                max = i_a;
+            v_temp = vredmaxu_vs_u8m8_u8m1(v_temp, v_x, v_temp, l);
             col += l;
         }
+        max = vmv_x_s_u8m1_u8(v_temp);
 #else
         col = 1;
 #endif

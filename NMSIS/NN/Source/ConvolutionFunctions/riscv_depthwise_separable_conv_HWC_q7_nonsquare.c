@@ -157,47 +157,47 @@ riscv_status riscv_depthwise_separable_conv_HWC_q7_nonsquare(const q7_t *Im_in,
             ptrdiff_t bstride;
             vint8m4_t vam4, vbm4;
             vint32m1_t vtemp;
-            l = vsetvl_e32m1(1);
-            vtemp = vsub_vv_i32m1(vtemp,vtemp, l);
+
             rowCnt = ch_im_out;
             bstride = ch_im_in;
             while (rowCnt)
             {
                 const q7_t *pB = colBuffer + row_shift;
                 const q7_t *pA = wt + row_shift;
-                q31_t     sum = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
+                q31_t sum = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
                 uint16_t  colCnt = (dim_kernel_x * dim_kernel_y);
-
                 row_shift += 1;
-
                 blkCnt = colCnt;
+                l = vsetvl_e32m1(1);
+                vtemp = vsub_vv_i32m1(vtemp, vtemp, l);
                 for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
-                    vam4 = vlse8_v_i8m4(pA,bstride, l);
-                    vbm4 = vlse8_v_i8m4(pB,bstride, l);
+                    vam4 = vlse8_v_i8m4(pA, bstride, l);
+                    vbm4 = vlse8_v_i8m4(pB, bstride, l);
                     pA += l * ch_im_in;
                     pB += l * ch_im_in;
-                    sum += vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(vtemp, vwmul_vv_i16m8(vam4, vbm4, l), vtemp, l));
+                    vtemp = vwredsum_vs_i16m8_i32m1(vtemp, vwmul_vv_i16m8(vam4, vbm4, l), vtemp, l);
                 }
+                sum += vmv_x_s_i32m1_i32(vtemp);
                 *pOut++ = (q7_t) __SSAT((sum >> out_shift), 8);
                 rowCnt--;
             }
 #elif defined (RISCV_MATH_DSP)
             while (rowCnt)
             {
-                q31_t     sum =  ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
-                q31_t     sum2 = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
-                q31_t     sum3 = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
-                q31_t     sum4 = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
-                uint16_t  colCnt = (dim_kernel_x * dim_kernel_y) >> 2;
-                q7_t     *pB = colBuffer + row_shift;
+                q31_t sum =  ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
+                q31_t sum2 = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
+                q31_t sum3 = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
+                q31_t sum4 = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
+                uint16_t colCnt = (dim_kernel_x * dim_kernel_y) >> 2;
+                q7_t *pB = colBuffer + row_shift;
                 const q7_t *pA = wt + row_shift;
                 row_shift += 4;
 
                 while (colCnt)
                 {
 
-                    q31_t     A1, A2, A3 , A4 , B1, B2, B3, B4 ;
-                    q31_t     opA1, opA2, opA3 , opA4 , opB1, opB2, opB3, opB4 ;
+                    q31_t A1, A2, A3 , A4 , B1, B2, B3, B4 ;
+                    q31_t opA1, opA2, opA3 , opA4 , opB1, opB2, opB3, opB4 ;
 
                     opB1 = *__SIMD32(pB);
                     pB += ch_im_in;

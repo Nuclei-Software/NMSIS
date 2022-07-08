@@ -50,15 +50,16 @@ void riscv_nn_add_q7(const q7_t *input, q31_t *output, uint32_t block_size)
     uint32_t blkCnt = block_size & (~RVV_OPT_THRESHOLD);                              /* Loop counter */
     size_t l;
     vint8m4_t a0m4;
-    vint32m1_t temp;
+    vint32m1_t vtemp;
 
     l = vsetvl_e32m1(1);
-    temp = vmv_v_x_i32m1(0, l);
+    vtemp = vmv_v_x_i32m1(0, l);
     for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
         a0m4 = vle8_v_i8m4(input, l);
         input += l;
-        result += vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(temp, vwadd_vx_i16m8(a0m4, 0, l), temp, l));
+        vtemp = vwredsum_vs_i16m8_i32m1(vtemp, vwadd_vx_i16m8(a0m4, 0, l), vtemp, l);
     }
+    result += vmv_x_s_i32m1_i32(vtemp);
     block_count = block_size & RVV_OPT_THRESHOLD;
 
 #elif defined(RISCV_MATH_DSP)

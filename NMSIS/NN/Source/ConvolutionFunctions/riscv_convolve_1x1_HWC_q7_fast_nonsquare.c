@@ -154,7 +154,6 @@ riscv_status riscv_convolve_1x1_HWC_q7_fast_nonsquare(const q7_t *Im_in,
 #if defined(RISCV_MATH_VECTOR)
                 int32_t blkCnt;
                 vint8m4_t a8m4, b8m4;
-
                 vint32m1_t v_temp;
                 size_t l;
                 l = vsetvl_e32m1(1);
@@ -163,11 +162,12 @@ riscv_status riscv_convolve_1x1_HWC_q7_fast_nonsquare(const q7_t *Im_in,
                 for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l)
                 {
                     a8m4 = vle8_v_i8m4(pA, l);
-                    b8m4 = vle8_v_i8m4(pB, l);
-                    sum += vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(v_temp, vwmul_vv_i16m8(a8m4, b8m4, l), v_temp, l));
                     pA += l;
+                    b8m4 = vle8_v_i8m4(pB, l);
                     pB += l;
+                    v_temp = vwredsum_vs_i16m8_i32m1(v_temp, vwmul_vv_i16m8(a8m4, b8m4, l), v_temp, l);
                 }
+                sum += vmv_x_s_i32m1_i32(v_temp);
                 colCnt = colCnt & RVV_OPT_THRESHOLD;
 #elif defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
@@ -175,8 +175,8 @@ riscv_status riscv_convolve_1x1_HWC_q7_fast_nonsquare(const q7_t *Im_in,
             q63_t sum64 = 0;
             while (colCnt)
             {
-                q63_t     inB1 = *__SIMD64(pB)++;
-                q63_t     inA1 = *__SIMD64(pA)++;
+                q63_t inB1 = *__SIMD64(pB)++;
+                q63_t inA1 = *__SIMD64(pA)++;
                 sum64  = __RV_SMAQA(sum64, inA1, inB1);
 
                 colCnt--;
@@ -189,8 +189,8 @@ riscv_status riscv_convolve_1x1_HWC_q7_fast_nonsquare(const q7_t *Im_in,
 
             while (colCnt)
             {
-                q31_t     inB1 = *__SIMD32(pB)++;
-                q31_t     inA1 = *__SIMD32(pA)++;
+                q31_t inB1 = *__SIMD32(pB)++;
+                q31_t inA1 = *__SIMD32(pA)++;
                 sum  = __RV_SMAQA(sum, inA1, inB1);
 
                 colCnt--;

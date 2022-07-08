@@ -61,19 +61,22 @@ riscv_status riscv_nn_mat_mul_core_1x_s8(int32_t row_elements,
     uint32_t temp_i = blkCnt;
     size_t l;
     vint8m4_t v_col, v_row;
-	const int8_t *p_row = row_base;
-	const int8_t *p_col = col_base;
-    vint32m1_t temp;
+    const int8_t *p_row = row_base;
+    const int8_t *p_col = col_base;
+    vint32m1_t vtemp1, vtemp2;
     l = vsetvl_e32m1(1);
-    temp = vsub_vv_i32m1(temp, temp, l);
+    vtemp1 = vsub_vv_i32m1(vtemp1, vtemp1, l);
+    vtemp2 = vsub_vv_i32m1(vtemp2, vtemp2, l);
     for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
         v_col = vle8_v_i8m4(p_col, l);
         v_row = vle8_v_i8m4(p_row, l);
         p_col += l;
         p_row += l;
-        sum_tmp += vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(temp, vwadd_vx_i16m8(v_col, 0, l), temp, l));
-        acc_n0  += vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(temp, vwmul_vv_i16m8(v_col, v_row, l), temp, l));
+        vtemp1 = vwredsum_vs_i16m8_i32m1(vtemp1, vwadd_vx_i16m8(v_col, 0, l), vtemp1, l);
+        vtemp2 = vwredsum_vs_i16m8_i32m1(vtemp2, vwmul_vv_i16m8(v_col, v_row, l), vtemp2, l);
     }
+    sum_tmp += vmv_x_s_i32m1_i32(vtemp1);
+    acc_n0 += vmv_x_s_i32m1_i32(vtemp2);
     i = temp_i;
 #else
     i = 0;

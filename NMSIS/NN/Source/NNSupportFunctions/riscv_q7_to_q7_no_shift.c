@@ -66,16 +66,16 @@ void riscv_q7_to_q7_no_shift(const q7_t * pSrc, q7_t * pDst, uint32_t blockSize)
     vint8m8_t vx, vy;
 
     for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
-        vse8_v_i8m8 (pDst, vle8_v_i8m8(pIn, l), l);
+        vse8_v_i8m8(pDst, vle8_v_i8m8(pIn, l), l);
         pIn += l;
         pDst += l;
     }
 #else
     uint32_t  blkCnt;
 #if defined(RISCV_MATH_LOOPUNROLL) && defined(RISCV_MATH_DSP)
-    q31_t     in;
-    q31_t     in1, in2;
-    q31_t     out1, out2;
+    q31_t in;
+    q31_t in1, in2;
+    q31_t out1, out2;
 
     /*loop Unrolling */
     blkCnt = blockSize >> 2u;
@@ -92,7 +92,7 @@ void riscv_q7_to_q7_no_shift(const q7_t * pSrc, q7_t * pDst, uint32_t blockSize)
 
     /* If the blockSize is not a multiple of 4, compute any remaining output samples here.
      ** No loop unrolling is used. */
-    blkCnt = blockSize % 0x4u;
+    blkCnt = blockSize & 0x3u;
 
 #else
 

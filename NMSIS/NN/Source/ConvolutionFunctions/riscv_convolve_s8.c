@@ -185,11 +185,12 @@ riscv_status riscv_convolve_s8(const nmsis_nn_context *ctx,
                 for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
                 {
                     a16m4 = vle16_v_i16m4(ip_as_col, l);
-                    b16m4 = vwadd_vx_i16m4(vle8_v_i8m2(ker_a, l), 0, l);
-                    sum += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, vwmul_vv_i32m8(a16m4, b16m4, l), v_temp, l));
                     ip_as_col += l;
+                    b16m4 = vwadd_vx_i16m4(vle8_v_i8m2(ker_a, l), 0, l);
                     ker_a += l;
+                    v_temp = vredsum_vs_i32m8_i32m1(v_temp, vwmul_vv_i32m8(a16m4, b16m4, l), v_temp, l);
                 }
+                sum += vmv_x_s_i32m1_i32(v_temp);
                 col_count = col_count & RVV_OPT_THRESHOLD;
 #elif defined(RISCV_MATH_DSP)
                 /* 4 multiply and accumulates are done in one loop. */

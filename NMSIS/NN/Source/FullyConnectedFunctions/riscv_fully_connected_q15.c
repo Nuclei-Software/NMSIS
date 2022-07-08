@@ -84,7 +84,7 @@ riscv_status riscv_fully_connected_q15(const q15_t *pV,
     const q15_t *pA, *pB, *pB2, *pB3;
     int32_t blkCnt;
     vint16m4_t a16m4, b16m4, c16m4, d16m4;
-    vint32m1_t v_temp;
+    vint32m1_t v_temp, v_temp1;
     size_t l;
     l = vsetvl_e32m1(1);
     v_temp = vsub_vv_i32m1(v_temp, v_temp, l);
@@ -105,16 +105,16 @@ riscv_status riscv_fully_connected_q15(const q15_t *pV,
         for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
         {
             a16m4 = vle16_v_i16m4(pA, l);
+            pA += l;
             b16m4 = vle16_v_i16m4(pB, l);
+            pB += l;
             c16m4 = vle16_v_i16m4(pB2, l);
+            pB2 += l;
             d16m4 = vle16_v_i16m4(pB3, l);
+            pB3 += l;
             sum += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, vwmul_vv_i32m8(a16m4, b16m4, l), v_temp, l));
             sum2 += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, vwmul_vv_i32m8(a16m4, c16m4, l), v_temp, l));
             sum3 += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, vwmul_vv_i32m8(a16m4, d16m4, l), v_temp, l));
-            pA += l;
-            pB += l;
-            pB2 += l;
-            pB3 += l;
         }
         j = dim_vec & RVV_OPT_THRESHOLD;
         while (j--)
@@ -134,14 +134,17 @@ riscv_status riscv_fully_connected_q15(const q15_t *pV,
         sum = ((q31_t)(*bias++) << bias_shift) + NN_ROUND(out_shift);
         pA = pV;
         blkCnt = dim_vec & (~RVV_OPT_THRESHOLD);                               /* Loop counter */
+        l = vsetvl_e32m1(1);
+        v_temp1 = vsub_vv_i32m1(v_temp1, v_temp1, l);
         for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
         {
             a16m4 = vle16_v_i16m4(pA, l);
             b16m4 = vle16_v_i16m4(pB3, l);
-            sum += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, vwmul_vv_i32m8(a16m4, b16m4, l), v_temp, l));
+            v_temp1 = vredsum_vs_i32m8_i32m1(v_temp1, vwmul_vv_i32m8(a16m4, b16m4, l), v_temp1, l);
             pA += l;
             pB3 += l;
         }
+        sum += vmv_x_s_i32m1_i32(v_temp1);
         j = dim_vec & RVV_OPT_THRESHOLD;
         while (j--)
         {
@@ -222,8 +225,8 @@ riscv_status riscv_fully_connected_q15(const q15_t *pV,
         q63_t sum64 = 0;
         while (colCnt) {
 
-            q63_t     inB1 = *__SIMD64(pB)++;
-            q63_t     inA1 = *__SIMD64(pA)++;
+            q63_t inB1 = *__SIMD64(pB)++;
+            q63_t inA1 = *__SIMD64(pA)++;
             sum64 = __RV_KMADA(sum64, inA1, inB1);
             colCnt--;
 	    }
@@ -252,8 +255,8 @@ riscv_status riscv_fully_connected_q15(const q15_t *pV,
 	colCnt = dim_vec & 0x3;
 #endif /* __RISCV_XLEN == 64 */
 	while(colCnt) {
-            q15_t     inV = *pA++;
-            q15_t     inM = *pB++;
+            q15_t inV = *pA++;
+            q15_t inM = *pB++;
 
             sum += inV * inM;
 

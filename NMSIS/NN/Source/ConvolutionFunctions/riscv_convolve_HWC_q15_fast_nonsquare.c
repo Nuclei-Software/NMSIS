@@ -180,12 +180,12 @@ riscv_status riscv_convolve_HWC_q15_fast_nonsquare(const q15_t *Im_in,
                     blkCnt = colCnt & (~RVV_OPT_THRESHOLD);
                     for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
                         va1m4 = vle16_v_i16m4(pA, l);
-                        vb1m4 = vle16_v_i16m4(pB, l);
-                        va2m4 = vle16_v_i16m4(pA2, l);
-                        vb2m4 = vle16_v_i16m4(pB2, l);
                         pA  += l;
+                        vb1m4 = vle16_v_i16m4(pB, l);
                         pB  += l;
+                        va2m4 = vle16_v_i16m4(pA2, l);
                         pA2 += l;
+                        vb2m4 = vle16_v_i16m4(pB2, l);
                         pB2 += l;
                         sum  += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(vtemp, vwmul_vv_i32m8(va1m4, vb1m4, l), vtemp, l));
                         sum2 += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(vtemp, vwmul_vv_i32m8(va1m4, vb2m4, l), vtemp, l));

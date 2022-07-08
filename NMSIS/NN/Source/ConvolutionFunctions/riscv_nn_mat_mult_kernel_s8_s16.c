@@ -90,9 +90,9 @@ q7_t *riscv_nn_mat_mult_kernel_s8_s16(const q7_t *input_a,
         vtemp00m1 = vmv_v_x_i32m1(0, l);
 
         for (; (l = vsetvl_e8m2(col_count)) > 0; col_count -= l) {
-            va0m4 = vwadd_vx_i16m4(vle8_v_i8m2(ip_a0 , l), 0, l);
-            va1m4 = vwadd_vx_i16m4(vle8_v_i8m2(ip_a1 , l), 0, l);
-            vb0m4 = vle16_v_i16m4(ip_b0 , l);
+            va0m4 = vwadd_vx_i16m4(vle8_v_i8m2(ip_a0, l), 0, l);
+            va1m4 = vwadd_vx_i16m4(vle8_v_i8m2(ip_a1, l), 0, l);
+            vb0m4 = vle16_v_i16m4(ip_b0, l);
             vb1m4 = vle16_v_i16m4(ip_b1, l);
 
             ip_a0 += l;
@@ -100,7 +100,7 @@ q7_t *riscv_nn_mat_mult_kernel_s8_s16(const q7_t *input_a,
             ip_b0 += l;
             ip_b1 += l;
 
-            ch_0_out_0  += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(vtemp00m1, vwmul_vv_i32m8(va0m4, vb0m4, l), vtemp00m1, l));
+            ch_0_out_0 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(vtemp00m1, vwmul_vv_i32m8(va0m4, vb0m4, l), vtemp00m1, l));
             ch_0_out_1 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(vtemp00m1, vwmul_vv_i32m8(va0m4, vb1m4, l), vtemp00m1, l));
             ch_1_out_0 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(vtemp00m1, vwmul_vv_i32m8(va1m4, vb0m4, l), vtemp00m1, l));
             ch_1_out_1 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(vtemp00m1, vwmul_vv_i32m8(va1m4, vb1m4, l), vtemp00m1, l));
@@ -213,23 +213,25 @@ q7_t *riscv_nn_mat_mult_kernel_s8_s16(const q7_t *input_a,
         uint16_t col_count = num_col_a & (~RVV_OPT_THRESHOLD);
 
         vint16m4_t va0m4, vb0m4, vb1m4;
-        vint32m1_t vtemp00m1;
+        vint32m1_t vtemp00m1, vtemp01m1;
 
         l = vsetvl_e32m1(1);
         vtemp00m1 = vmv_v_x_i32m1(0, l);
-
+        vtemp01m1 = vmv_v_x_i32m1(0, l);
         for (; (l = vsetvl_e8m2(col_count)) > 0; col_count -= l) {
             va0m4 = vwadd_vx_i16m4(vle8_v_i8m2(ip_a0 , l), 0, l);
-            vb0m4 = vle16_v_i16m4(ip_b0 , l);
+            vb0m4 = vle16_v_i16m4(ip_b0, l);
             vb1m4 = vle16_v_i16m4(ip_b1, l);
 
             ip_a0 += l;
             ip_b0 += l;
             ip_b1 += l;
 
-            ch_0_out_0  += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(vtemp00m1, vwmul_vv_i32m8(va0m4, vb0m4, l), vtemp00m1, l));
-            ch_0_out_1 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(vtemp00m1, vwmul_vv_i32m8(va0m4, vb1m4, l), vtemp00m1, l));
+            vtemp00m1 = vredsum_vs_i32m8_i32m1(vtemp00m1, vwmul_vv_i32m8(va0m4, vb0m4, l), vtemp00m1, l);
+            vtemp01m1 = vredsum_vs_i32m8_i32m1(vtemp01m1, vwmul_vv_i32m8(va0m4, vb1m4, l), vtemp01m1, l);
         }
+        ch_0_out_0 += (q31_t)vmv_x_s_i32m1_i32(vtemp00m1);
+        ch_0_out_1 += (q31_t)vmv_x_s_i32m1_i32(vtemp01m1);
         col_count = num_col_a & RVV_OPT_THRESHOLD;
 #elif defined(RISCV_MATH_DSP)
         uint16_t col_count = num_col_a >> 2;

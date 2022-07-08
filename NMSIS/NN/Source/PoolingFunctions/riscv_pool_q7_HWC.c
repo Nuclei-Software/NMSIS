@@ -50,10 +50,12 @@ static void buffer_scale_back_q15_to_q7(q15_t *buffer, q7_t *target, uint16_t le
     size_t l;
     q15_t *pA = buffer;
     q7_t *pOut = target;
+    vint16m8_t vx;
 
     for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
-        vse8_v_i8m4(pOut, vnclip_wx_i8m4(vdiv_vx_i16m8(vle16_v_i16m8(pA, l), scale, l), 0, l), l);
+        vx = vle16_v_i16m8(pA, l);
         pA += l;
+        vse8_v_i8m4(pOut, vnclip_wx_i8m4(vdiv_vx_i16m8(vx, scale, l), 0, l), l);
         pOut += l;
     }
 	i = tmp_i;
@@ -84,9 +86,9 @@ static void compare_and_replace_if_larger_q7(q7_t * base,   // base data
 
     for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
         a0m8 = vle8_v_i8m8(pCom, l);
+        pCom += l;
         b0m8 = vle8_v_i8m8(pIn, l);
         vse8_v_i8m8(pIn, vmax_vv_i8m8(a0m8, b0m8, l), l);
-        pCom += l;
         pIn += l;
     }
     cnt = length & RVV_OPT_THRESHOLD;
@@ -143,14 +145,14 @@ static void accumulate_q7_to_q15(q15_t *base, q7_t *target, const uint16_t lengt
 #if defined (RISCV_MATH_VECTOR)
     uint32_t blkCnt = length & (~RVV_OPT_THRESHOLD);                               /* Loop counter */
     size_t l;
-	vint8m4_t a0m4;
-	vint16m8_t b0m8;
+    vint8m4_t a0m4;
+    vint16m8_t b0m8;
 
     for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
         a0m4 = vle8_v_i8m4(pV, l);
+        pV += l;
         b0m8 = vle16_v_i16m8(pCnt, l);
         vse16_v_i16m8(pCnt, vwadd_wv_i16m8(b0m8, a0m4, l), l);
-        pV += l;
         pCnt += l;
     }
 	cnt = length & RVV_OPT_THRESHOLD;

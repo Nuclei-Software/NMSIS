@@ -294,8 +294,8 @@ riscv_status riscv_convolve_HWC_q7_fast(const q7_t *Im_in,
 
         for (i = 0; i < ch_im_out; i++)
         {
-            q31_t     sum = ((q31_t)bias[i] << bias_shift) + NN_ROUND(out_shift);
-            q7_t    *pB = (q7_t *)bufferA;
+            q31_t sum = ((q31_t)bias[i] << bias_shift) + NN_ROUND(out_shift);
+            q7_t *pB = (q7_t *)bufferA;
 #if defined (RISCV_MATH_VECTOR)
             uint16_t colCnt = ch_im_in * dim_kernel * dim_kernel;
             uint32_t vblkCnt = colCnt & (~RVV_OPT_THRESHOLD);
@@ -310,8 +310,9 @@ riscv_status riscv_convolve_HWC_q7_fast(const q7_t *Im_in,
                 vz = vle8_v_i8m4(pB, l);
                 pB += l;
 
-                sum += (q31_t)vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(temp00m1, vwmul_vv_i16m8(vx, vz, l), temp00m1, l));
+                temp00m1 = vwredsum_vs_i16m8_i32m1(temp00m1, vwmul_vv_i16m8(vx, vz, l), temp00m1, l);
             }
+            sum += (q31_t)vmv_x_s_i32m1_i32(temp00m1);
             colCnt = colCnt & RVV_OPT_THRESHOLD;
 #elif defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
@@ -321,8 +322,8 @@ riscv_status riscv_convolve_HWC_q7_fast(const q7_t *Im_in,
             while (colCnt)
             {
                 //pA = (const q7_t *)read_and_pad_reordered((void *)pA, &inA1, &inA2);
-                q63_t     inB1 = *__SIMD64(pB)++;
-                q63_t     inA1 = *__SIMD64(pA)++;
+                q63_t inB1 = *__SIMD64(pB)++;
+                q63_t inA1 = *__SIMD64(pA)++;
                 sum64  = __RV_SMAQA(sum64, inA1, inB1);
                 colCnt--;
             }
@@ -335,8 +336,8 @@ riscv_status riscv_convolve_HWC_q7_fast(const q7_t *Im_in,
 
             while (colCnt)
             {
-                q31_t     inB1 = *__SIMD32(pB)++;
-                q31_t     inA1 = *__SIMD32(pA)++;
+                q31_t inB1 = *__SIMD32(pB)++;
+                q31_t inA1 = *__SIMD32(pA)++;
                 sum  = __RV_SMAQA(sum, inA1, inB1);
 
                 colCnt--;

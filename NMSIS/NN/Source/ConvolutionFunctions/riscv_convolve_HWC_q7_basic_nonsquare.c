@@ -166,8 +166,9 @@ riscv_status riscv_convolve_HWC_q7_basic_nonsquare(const q7_t *Im_in,
                 vz = vle8_v_i8m4(pB, l);
                 pB += l;
 
-                sum += (q31_t)vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(temp00m1, vwmul_vv_i16m8(vx, vz, l), temp00m1, l));
+                temp00m1 = vwredsum_vs_i16m8_i32m1(temp00m1, vwmul_vv_i16m8(vx, vz, l), temp00m1, l);
             }
+            sum += (q31_t)vmv_x_s_i32m1_i32(temp00m1);
             colCnt = colCnt & RVV_OPT_THRESHOLD;
 #elif defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
@@ -176,8 +177,8 @@ riscv_status riscv_convolve_HWC_q7_basic_nonsquare(const q7_t *Im_in,
             q63_t sum64 = 0;
             while (colCnt)
             {
-                q63_t     inB1 = *__SIMD64(pB)++;
-                q63_t     inA1 = *__SIMD64(pA)++;
+                q63_t inB1 = *__SIMD64(pB)++;
+                q63_t inA1 = *__SIMD64(pA)++;
                 sum64  = __RV_KMADA(sum64, inA1, inB1);
                 colCnt--;
             }
@@ -191,8 +192,8 @@ riscv_status riscv_convolve_HWC_q7_basic_nonsquare(const q7_t *Im_in,
             {
 
 
-                q31_t     inB1 = *__SIMD32(pB)++;
-                q31_t     inA1 = *__SIMD32(pA)++;
+                q31_t inB1 = *__SIMD32(pB)++;
+                q31_t inA1 = *__SIMD32(pA)++;
                 sum  = __RV_KMADA(sum, inA1, inB1);
                 colCnt--;
 

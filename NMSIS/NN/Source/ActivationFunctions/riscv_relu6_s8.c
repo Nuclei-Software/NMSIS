@@ -58,11 +58,9 @@ void riscv_relu6_s8(q7_t *data, uint16_t size)
     size_t l;
     vint8m8_t vx;
     q7_t *px = data;
-    // inital to zero
     int8_t vy1 = 0, vy2 = 6;
     for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
         vx = vle8_v_i8m8(px, l);
-        // if data >= zero, return data, else return zero
         vse8_v_i8m8(px, vmin_vx_i8m8(vmax_vx_i8m8(vx, vy1, l), vy2, l), l);
         px += l;
     }

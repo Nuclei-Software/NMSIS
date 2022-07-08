@@ -69,27 +69,24 @@ void riscv_nn_softmax_common_s8(const int8_t *input,
         size_t l;
         vint8m8_t v_x;
         vint8m1_t v_temp;
-        int8_t i_a;
 
         l = vsetvl_e8m1(1);
         v_temp = vmv_v_x_i8m1(max, l);
-        int32_t blkCnt_v = (row_size - 1) & (~RVV_OPT_THRESHOLD);
+        int32_t blkCnt_v = (row_size - 1);
         col = 1;
         for (; (l = vsetvl_e8m8(blkCnt_v)) > 0; blkCnt_v -= l) {
             v_x = vle8_v_i8m8(input + col, l);
-            i_a = vmv_x_s_i8m1_i8(vredmax_vs_i8m8_i8m1(v_temp, v_x, v_temp, l));
-            if (i_a > max)
-            	max = i_a;
+            v_temp = vredmax_vs_i8m8_i8m1(v_temp, v_x, v_temp, l);
             col += l;
         }
+        max = vmv_x_s_i8m1_i8(v_temp);
+
 #else
-        col = 1;
-#endif
-        for (; col < row_size; ++col)
+        for (col = 1; col < row_size; ++col)
         {
             max = MAX(max, input[col]);
         }
-
+#endif /* #if defined(RISCV_MATH_VECTOR) */
         int32_t diff = 0;
         int32_t sum = 0;
 

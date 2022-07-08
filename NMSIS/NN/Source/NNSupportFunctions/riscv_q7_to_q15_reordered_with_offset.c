@@ -78,7 +78,7 @@ void riscv_q7_to_q15_reordered_with_offset(const q7_t *src, q15_t *dst, uint32_t
         block_cnt--;
     }
     /* Handle left over samples */
-    block_cnt = block_size % 0x4u;
+    block_cnt = block_size & 0x3u;
 
     while (block_cnt > 0u)
     {

@@ -156,8 +156,8 @@ riscv_status riscv_depthwise_separable_conv_HWC_q7(const q7_t *Im_in,
 
                 while (colCnt)
                 {
-                    q31_t     A1, A2, A3 , A4 , B1, B2, B3, B4 ;
-                    q31_t     opA1, opA2, opA3 , opA4 , opB1, opB2, opB3, opB4 ;
+                    q31_t A1, A2, A3 , A4 , B1, B2, B3, B4 ;
+                    q31_t opA1, opA2, opA3 , opA4 , opB1, opB2, opB3, opB4;
 
                     opB1 = *__SIMD32(pB);
                     pB += ch_im_in;

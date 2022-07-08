@@ -85,10 +85,8 @@ riscv_status riscv_fully_connected_q7(const q7_t *pV,
     const q7_t *pA, *pB, *pB2, *pB3;
     int32_t blkCnt;
     vint8m4_t a8m4, b8m4, c8m4, d8m4;
-    vint32m1_t v_temp;
+    vint32m1_t v_sum, v_sum2, v_sum3;
     size_t l;
-    l = vsetvl_e32m1(1);
-    v_temp = vsub_vv_i32m1(v_temp, v_temp, l);
 
     pA = pV;
     pB = pM;
@@ -103,20 +101,27 @@ riscv_status riscv_fully_connected_q7(const q7_t *pV,
         pB2 = pB + dim_vec;
         pB3 = pB2 + dim_vec;
         blkCnt = dim_vec & (~RVV_OPT_THRESHOLD);                             /* Loop counter */
+        l = vsetvl_e32m1(1);
+        v_sum = vmv_v_x_i32m1(0, l);
+        v_sum2 = vmv_v_x_i32m1(0, l);
+        v_sum3 = vmv_v_x_i32m1(0, l);
         for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l)
         {
             a8m4 = vle8_v_i8m4(pA, l);
-            b8m4 = vle8_v_i8m4(pB, l);
-            c8m4 = vle8_v_i8m4(pB2, l);
-            d8m4 = vle8_v_i8m4(pB3, l);
-            sum += vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(v_temp, vwmul_vv_i16m8(a8m4, b8m4, l), v_temp, l));
-            sum2 += vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(v_temp, vwmul_vv_i16m8(a8m4, c8m4, l), v_temp, l));
-            sum3 += vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(v_temp, vwmul_vv_i16m8(a8m4, d8m4, l), v_temp, l));
             pA += l;
+            b8m4 = vle8_v_i8m4(pB, l);
             pB += l;
+            c8m4 = vle8_v_i8m4(pB2, l);
             pB2 += l;
+            d8m4 = vle8_v_i8m4(pB3, l);
             pB3 += l;
+            v_sum = vwredsum_vs_i16m8_i32m1(v_sum, vwmul_vv_i16m8(a8m4, b8m4, l), v_sum, l);
+            v_sum2 = vwredsum_vs_i16m8_i32m1(v_sum2, vwmul_vv_i16m8(a8m4, c8m4, l), v_sum2, l);
+            v_sum3 = vwredsum_vs_i16m8_i32m1(v_sum3, vwmul_vv_i16m8(a8m4, d8m4, l), v_sum3, l);
         }
+        sum += vmv_x_s_i32m1_i32(v_sum);
+        sum2 += vmv_x_s_i32m1_i32(v_sum2);
+        sum3 += vmv_x_s_i32m1_i32(v_sum3);
         j = dim_vec & RVV_OPT_THRESHOLD;
         while (j--)
         {
@@ -135,14 +140,17 @@ riscv_status riscv_fully_connected_q7(const q7_t *pV,
         sum = ((q31_t)(*bias++) << bias_shift) + NN_ROUND(out_shift);
         pA = pV;
         blkCnt = dim_vec & (~RVV_OPT_THRESHOLD);                               /* Loop counter */
+        l = vsetvl_e32m1(1);
+        v_sum = vmv_v_x_i32m1(0, l);
         for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l)
         {
             a8m4 = vle8_v_i8m4(pA, l);
-            b8m4 = vle8_v_i8m4(pB3, l);
-            sum += vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(v_temp, vwmul_vv_i16m8(a8m4, b8m4, l), v_temp, l));
             pA += l;
+            b8m4 = vle8_v_i8m4(pB3, l);
             pB3 += l;
+            v_sum = vwredsum_vs_i16m8_i32m1(v_sum, vwmul_vv_i16m8(a8m4, b8m4, l), v_sum, l);
         }
+        sum += vmv_x_s_i32m1_i32(v_sum);
         j = dim_vec & RVV_OPT_THRESHOLD;
         while (j--)
         {
@@ -178,9 +186,9 @@ riscv_status riscv_fully_connected_q7(const q7_t *pV,
         q63_t sum642 = 0;
         while (colCnt)
         {
-            q63_t     inB1 = *__SIMD64(pB)++;
-            q63_t     inB2 = *__SIMD64(pB2)++;
-            q63_t     inA1 = *__SIMD64(pA)++;
+            q63_t inB1 = *__SIMD64(pB)++;
+            q63_t inB2 = *__SIMD64(pB2)++;
+            q63_t inA1 = *__SIMD64(pA)++;
 
             sum64  = __RV_SMAQA(sum64 , inA1, inB1);
             sum642 = __RV_SMAQA(sum642, inA1, inB2);
@@ -210,10 +218,10 @@ riscv_status riscv_fully_connected_q7(const q7_t *pV,
             sum = __SMLAD(inV, inM12, sum);
             sum2 = __SMLAD(inV, inM22, sum2);
             */
-            q31_t     inB1 = *__SIMD32(pB)++;
-            q31_t     inB2 = *__SIMD32(pB2)++;
+            q31_t inB1 = *__SIMD32(pB)++;
+            q31_t inB2 = *__SIMD32(pB2)++;
 
-            q31_t     inA1 = *__SIMD32(pA)++;
+            q31_t inA1 = *__SIMD32(pA)++;
 
             sum  = __RV_SMAQA(sum , inA1, inB1);
             sum2 = __RV_SMAQA(sum2, inA1, inB2);
@@ -264,8 +272,8 @@ riscv_status riscv_fully_connected_q7(const q7_t *pV,
             sum = __SMLAD(inV2, inM12, sum);
             */
 
-            q31_t     inB1 = *__SIMD32(pB)++;
-            q31_t     inA1 = *__SIMD32(pA)++;
+            q31_t inB1 = *__SIMD32(pB)++;
+            q31_t inA1 = *__SIMD32(pA)++;
             sum  = __RV_SMAQA(sum, inA1, inB1);
 
             colCnt--;

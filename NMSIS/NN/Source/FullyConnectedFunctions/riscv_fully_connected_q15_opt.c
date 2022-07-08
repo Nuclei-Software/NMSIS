@@ -270,8 +270,8 @@ riscv_status riscv_fully_connected_q15_opt(const q15_t *pV,
     {
 
         pA = pV;
-        q31_t     sum = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
-        uint16_t  colCnt = dim_vec >> 2;
+        q31_t sum = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
+        uint16_t colCnt = dim_vec >> 2;
 #if __RISCV_XLEN == 64
         // q63_t     sum = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
         // uint16_t  colCnt = dim_vec >> 3;

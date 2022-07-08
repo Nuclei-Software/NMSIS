@@ -152,7 +152,7 @@ riscv_status riscv_fully_connected_q7_opt(const q7_t *pV,
     vint8m4_t a8m4, b8m4;
     vint32m1_t vtemp;
     l = vsetvl_e32m1(1);
-    vtemp = vsub_vv_i32m1(vtemp,vtemp, l);
+    vtemp = vsub_vv_i32m1(vtemp, vtemp, l);
 
     while (rowCnt)
     {
@@ -278,22 +278,21 @@ riscv_status riscv_fully_connected_q7_opt(const q7_t *pV,
         while (colCnt)
         {
 
-            q31_t     inA1 = *__SIMD32(pA)++;
-            q31_t     inB1 = *__SIMD32(pB)++;
-            q31_t     inB2 = *__SIMD32(pB)++;
-            q31_t     inB3 = *__SIMD32(pB)++;
-            q31_t     inB4 = *__SIMD32(pB)++;
+            q31_t inA1 = *__SIMD32(pA)++;
+            q31_t inB1 = *__SIMD32(pB)++;
+            q31_t inB2 = *__SIMD32(pB)++;
+            q31_t inB3 = *__SIMD32(pB)++;
+            q31_t inB4 = *__SIMD32(pB)++;
 
-            q31_t     sumb1 = inB1 & 0x000000ff | (inB3 & 0x000000ff) << 8 |
+            q31_t sumb1 = inB1 & 0x000000ff | (inB3 & 0x000000ff) << 8 |
                               inB1 & 0x00ff0000 | (inB3 & 0x00ff0000) << 8  ;
-
-            q31_t     sumb2 = (inB1 & 0x0000ff00) >> 8 | (inB3 & 0x0000ff00) |
+            q31_t sumb2 = (inB1 & 0x0000ff00) >> 8 | (inB3 & 0x0000ff00) |
                               ((inB1 & 0xff000000) >> 8) & 0x00ff0000 | (inB3 & 0xff000000) ;
 
-            q31_t     sumb3 = inB2 & 0x000000ff | (inB4 & 0x000000ff) << 8 |
+            q31_t sumb3 = inB2 & 0x000000ff | (inB4 & 0x000000ff) << 8 |
                               inB2 & 0x00ff0000 | (inB4 & 0x00ff0000) << 8  ;
 
-            q31_t     sumb4 = (inB2 & 0x0000ff00) >> 8 | (inB4 & 0x0000ff00) |
+            q31_t sumb4 = (inB2 & 0x0000ff00) >> 8 | (inB4 & 0x0000ff00) |
                               ((inB2 & 0xff000000) >> 8) & 0x00ff0000 | (inB4 & 0xff000000) ;
 
             sum  = __RV_SMAQA(sum , inA1, sumb1);
@@ -308,11 +307,11 @@ riscv_status riscv_fully_connected_q7_opt(const q7_t *pV,
 
         while (colCnt)
         {
-            q7_t     inV = *pA++;
-            q7_t      inM = *pB++;
-            q7_t      inM2 = *pB++;
-            q7_t      inM3 = *pB++;
-            q7_t      inM4 = *pB++;
+            q7_t inV = *pA++;
+            q7_t inM = *pB++;
+            q7_t inM2 = *pB++;
+            q7_t inM3 = *pB++;
+            q7_t inM4 = *pB++;
 
             sum += inV * inM;
             sum2 += inV * inM2;
@@ -343,8 +342,8 @@ riscv_status riscv_fully_connected_q7_opt(const q7_t *pV,
         while (colCnt)
         {
 
-            q63_t     inA1 = *__SIMD64(pA)++;
-            q63_t     inB1 = *__SIMD64(pB)++;
+            q63_t inA1 = *__SIMD64(pA)++;
+            q63_t inB1 = *__SIMD64(pB)++;
 
             sum64  = __RV_SMAQA(sum64, inA1, inB1);
 
@@ -359,8 +358,8 @@ riscv_status riscv_fully_connected_q7_opt(const q7_t *pV,
         while (colCnt)
         {
 
-            q31_t     inA1 = *__SIMD32(pA)++;
-            q31_t     inB1 = *__SIMD32(pB)++;
+            q31_t inA1 = *__SIMD32(pA)++;
+            q31_t inB1 = *__SIMD32(pB)++;
 
             sum  = __RV_SMAQA(sum, inA1, inB1);
 

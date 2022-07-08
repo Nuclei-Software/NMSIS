@@ -80,10 +80,9 @@ void riscv_softmax_q7(const q7_t *vec_in, const uint16_t dim_vec, q7_t *p_out)
     for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
         v_x = vle8_v_i8m8(px, l);
         px += l;
-        temp_max = vmv_x_s_i8m1_i8(vredmax_vs_i8m8_i8m1(vtemp, v_x, vtemp, l));
-        if (temp_max > base)
-            base = temp_max;
+        vtemp = vredmax_vs_i8m8_i8m1(vtemp, v_x, vtemp, l);
     }
+    base = vmv_x_s_i8m1_i8(vtemp);
 	i = tmp_i;
 #else
 	i = 0;

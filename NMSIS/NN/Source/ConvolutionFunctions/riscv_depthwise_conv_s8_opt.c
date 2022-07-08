@@ -327,10 +327,10 @@ riscv_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
                 for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
                     a16m4 = vwadd_vx_i16m4(vlse8_v_i8m2(row_pos + i, input_ch, l), 0, l);
                     b16m4 = vlse16_v_i16m4(col_pos + i, input_ch * 2, l);
-
                     i += l;
-                    sum += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, vwmul_vv_i32m8(a16m4, b16m4, l), v_temp, l));
+                    v_temp = vredsum_vs_i32m8_i32m1(v_temp, vwmul_vv_i32m8(a16m4, b16m4, l), v_temp, l);
                 }
+                sum += vmv_x_s_i32m1_i32(v_temp);
 #endif
                 for (; i < col_count; i++)
                 {

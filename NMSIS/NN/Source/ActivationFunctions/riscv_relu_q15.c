@@ -65,7 +65,7 @@ void riscv_relu_q15(q15_t *data, uint16_t size)
 
     for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
         vx = vle16_v_i16m8(data, l);
-        // if data >= zero, return data, else return zero
+        /* if data >= zero, return data, else return zero */
         vse16_v_i16m8(data, vmax_vx_i16m8(vx, zero, l), l);
         data += l;
     }

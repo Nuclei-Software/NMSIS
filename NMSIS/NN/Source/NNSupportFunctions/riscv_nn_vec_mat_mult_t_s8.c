@@ -150,8 +150,9 @@ riscv_status riscv_nn_vec_mat_mult_t_s8(const q7_t *lhs,
 			rhs_value0 = vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vx, 0, l), 0, l), rhs_offset, l);
 			lhs_value = vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vz, 0, l), 0, l), lhs_offset, l);
 
-			res00 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vmul_vv_i32m8(lhs_value, rhs_value0, l), temp00m1, l));
+			temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vmul_vv_i32m8(lhs_value, rhs_value0, l), temp00m1, l);
 		}
+		res00 += (q31_t)vmv_x_s_i32m1_i32(temp00m1);
 
 		// Quantize down
 		res00 = riscv_nn_requantize(res00, dst_multiplier, dst_shift);

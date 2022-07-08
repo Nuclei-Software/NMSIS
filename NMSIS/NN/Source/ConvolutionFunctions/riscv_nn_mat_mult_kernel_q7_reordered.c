@@ -60,8 +60,8 @@ q7_t *riscv_nn_mat_mult_kernel_q7_reordered(const q7_t * pA,
 
 #if defined (RISCV_MATH_DSP) || defined(RISCV_MATH_VECTOR)
     /* set up the second output pointers */
-    q7_t     *pOut2 = pOut + ch_im_out;
-    int       i;
+    q7_t *pOut2 = pOut + ch_im_out;
+    int i;
 
     /* this loop over rows in A */
     for (i = 0; i < ch_im_out; i += 2)
@@ -74,7 +74,7 @@ q7_t *riscv_nn_mat_mult_kernel_q7_reordered(const q7_t * pA,
         const q7_t *pA2 = pA + numCol_A;
 
         /* init the sum with bias */
-        q31_t sum =  ((q31_t)(bias[i]) << bias_shift) + NN_ROUND(out_shift);
+        q31_t sum = ((q31_t)(bias[i]) << bias_shift) + NN_ROUND(out_shift);
         q31_t sum2 = sum;
         q31_t sum3 = ((q31_t)(bias[i + 1]) << bias_shift) + NN_ROUND(out_shift);
         q31_t sum4 = sum3;
@@ -85,26 +85,33 @@ q7_t *riscv_nn_mat_mult_kernel_q7_reordered(const q7_t * pA,
         uint16_t  colCnt = numCol_A & (~RVV_OPT_THRESHOLD);
 
         vint8m4_t va1m4,va2m4,vb1m4,vb2m4;
-        vint32m1_t vtemp00m1;
+        vint32m1_t v_sum, v_sum2, v_sum3, v_sum4;
 
         l = vsetvl_e32m1(1);
-        vtemp00m1 = vmv_v_x_i32m1(0, l);
+        v_sum = vmv_v_x_i32m1(0, l);
+        v_sum2 = vmv_v_x_i32m1(0, l);
+        v_sum3 = vmv_v_x_i32m1(0, l);
+        v_sum4 = vmv_v_x_i32m1(0, l);
 
         for (; (l = vsetvl_e8m4(colCnt)) > 0; colCnt -= l) {
             va1m4 = vle8_v_i8m4(pA , l);
+            pA += l;
             va2m4 = vle8_v_i8m4(pA2, l);
-            vb1m4 = vle8_v_i8m4(pB , l);
-            vb2m4 = vle8_v_i8m4(pB2, l);
-
-            pA  += l;
             pA2 += l;
+            vb1m4 = vle8_v_i8m4(pB , l);
             pB  += l;
+            vb2m4 = vle8_v_i8m4(pB2, l);
             pB2 += l;
-            sum  += (q31_t)vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(vtemp00m1, vwmul_vv_i16m8(va1m4, vb1m4, l), vtemp00m1, l));
-            sum2 += (q31_t)vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(vtemp00m1, vwmul_vv_i16m8(va1m4, vb2m4, l), vtemp00m1, l));
-            sum3 += (q31_t)vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(vtemp00m1, vwmul_vv_i16m8(va2m4, vb1m4, l), vtemp00m1, l));
-            sum4 += (q31_t)vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(vtemp00m1, vwmul_vv_i16m8(va2m4, vb2m4, l), vtemp00m1, l));
+
+            v_sum  = vwredsum_vs_i16m8_i32m1(v_sum, vwmul_vv_i16m8(va1m4, vb1m4, l), v_sum, l);
+            v_sum2 = vwredsum_vs_i16m8_i32m1(v_sum2, vwmul_vv_i16m8(va1m4, vb2m4, l), v_sum2, l);
+            v_sum3 = vwredsum_vs_i16m8_i32m1(v_sum3, vwmul_vv_i16m8(va2m4, vb1m4, l), v_sum3, l);
+            v_sum4 = vwredsum_vs_i16m8_i32m1(v_sum4, vwmul_vv_i16m8(va2m4, vb2m4, l), v_sum4, l);
         }
+        sum += (q31_t)vmv_x_s_i32m1_i32(v_sum);
+        sum2 += (q31_t)vmv_x_s_i32m1_i32(v_sum2);
+        sum3 += (q31_t)vmv_x_s_i32m1_i32(v_sum3);
+        sum4 += (q31_t)vmv_x_s_i32m1_i32(v_sum4);
         colCnt = numCol_A & RVV_OPT_THRESHOLD;
 #else
 #if __RISCV_XLEN == 64
@@ -113,13 +120,12 @@ q7_t *riscv_nn_mat_mult_kernel_q7_reordered(const q7_t * pA,
         /* accumulate over the vector */
         while (colCnt)
         {
-
             q63_t inB1 = *__SIMD64(pB)++;
             q63_t inB2 = *__SIMD64(pB2)++;
             q63_t inA1 = *__SIMD64(pA)++;
             q63_t inA2 = *__SIMD64(pA2)++;
 
-            sum64  = __RV_SMAQA(sum64 , inA1, inB1);
+            sum64 = __RV_SMAQA(sum64 , inA1, inB1);
             sum642 = __RV_SMAQA(sum642, inA1, inB2);
             sum643 = __RV_SMAQA(sum643, inA2, inB1);
             sum644 = __RV_SMAQA(sum644, inA2, inB2);
@@ -159,11 +165,11 @@ q7_t *riscv_nn_mat_mult_kernel_q7_reordered(const q7_t * pA,
             sum4 = __SMLAD(inA22, inB2, sum4);
             */
 
-            q31_t     inB1 = *__SIMD32(pB)++;
-            q31_t     inB2 = *__SIMD32(pB2)++;
+            q31_t inB1 = *__SIMD32(pB)++;
+            q31_t inB2 = *__SIMD32(pB2)++;
 
-            q31_t     inA1 = *__SIMD32(pA)++;
-            q31_t     inA2 = *__SIMD32(pA2)++;
+            q31_t inA1 = *__SIMD32(pA)++;
+            q31_t inA2 = *__SIMD32(pA2)++;
 
             sum  = __RV_SMAQA(sum , inA1, inB1);
             sum2 = __RV_SMAQA(sum2, inA1, inB2);

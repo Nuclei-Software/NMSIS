@@ -91,10 +91,10 @@ void riscv_q7_to_q7_reordered_no_shift(const q7_t * pSrc, q7_t * pDst, uint32_t 
     }
     blkCnt = blockSize & RVV_OPT_THRESHOLD;
 #else
-    uint32_t  blkCnt;           /* loop counter */
-    q31_t     in;
+    uint32_t blkCnt;           /* loop counter */
+    q31_t in;
     //q31_t     in1, in2;
-    q31_t     out;
+    q31_t out;
     /* Run the below code for RISC-V Core with DSP enabled */
 
     /*loop Unrolling */

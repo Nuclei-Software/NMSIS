@@ -133,8 +133,8 @@ riscv_status riscv_convolve_HWC_q15_basic(const q15_t *Im_in,
 #if __RISCV_XLEN == 64
                 while (colCnt)
                 {
-                    q63_t     inA1 = *__SIMD64(pA)++;
-                    q63_t     inB1 = *__SIMD64(pB)++;
+                    q63_t inA1 = *__SIMD64(pA)++;
+                    q63_t inB1 = *__SIMD64(pB)++;
 
                     sum = __RV_SMALDA(sum, inA1, inB1);
 
