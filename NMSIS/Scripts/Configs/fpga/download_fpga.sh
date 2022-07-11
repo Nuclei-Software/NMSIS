@@ -8,7 +8,7 @@ N200_BIT=${N200_BIT:-n200_software_best_config_ddr200t.bit}
 N300_BIT=${N300_BIT:-n300_software_best_config_ddr200t.bit}
 N600_BIT=${N600_BIT:-n600_software_best_config_ku060.bit}
 UX600_BIT=${UX600_BIT:-ux600_software_best_config_ku060.bit}
-N900_BIT=${N200_BIT:-n900_software_best_config_vcu118.bit}
+N900_BIT=${N900_BIT:-n900_software_best_config_vcu118.bit}
 UX900_BIT=${UX900_BIT:-ux900_software_best_config_vcu118.bit}
 
 function wget_file() {
