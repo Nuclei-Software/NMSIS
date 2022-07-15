@@ -73,8 +73,17 @@ function run_nmsis {
     eval $runcmd | tee $logdir/run.log
 }
 
+function gen_report {
+    local logdir=${1:-logs}
+
+    local runcmd="python3 $NUCLEI_SDK_ROOT/tools/scripts/nsdk_cli/nsdk_report.py --logdir ${logdir} --split --run"
+    echo $runcmd
+    eval $runcmd | tee $logdir/run.log
+}
+
 backup_logs
 setup_suite ${CFGSET} ${FPGASET}
 
 run_nmsis nmsis_nn
 run_nmsis nmsis_dsp
+gen_report ${LOGROOT}
