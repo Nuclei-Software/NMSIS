@@ -120,6 +120,9 @@ build_align_library:
       - feature/5.9.0
       - merge_requests
   before_script:
+    - free -g
+    - uname -a
+    - lscpu
     # prepare for docker ssh environment
     ## https://docs.gitlab.com/ee/ci/ssh_keys/#ssh-keys-when-using-the-docker-executor
     - apt update
