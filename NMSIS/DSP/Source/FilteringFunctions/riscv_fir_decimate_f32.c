@@ -403,7 +403,7 @@ void riscv_fir_decimate_f32(
       pb += l;
       px0 += l;
 
-      vtemp00m1 = vfredusum_vs_f32m8_f32m1(vtemp00m1, vfmul_vv_f32m8(va1m8, va2m8, l), vtemp00m1, l);
+      vtemp00m1 = vfredosum_vs_f32m8_f32m1(vtemp00m1, vfmul_vv_f32m8(va1m8, va2m8, l), vtemp00m1, l);
     }
     acc0 += vfmv_f_s_f32m1_f32(vtemp00m1);
 #else

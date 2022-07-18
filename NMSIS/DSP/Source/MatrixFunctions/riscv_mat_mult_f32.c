@@ -125,7 +125,7 @@ riscv_status riscv_mat_mult_f32(
         /* c(m,n) = a(1,1) * b(1,1) + a(1,2) * b(2,1) + .... + a(m,p) * b(p,n) */
         /* Perform multiply-accumulates */
         vmul = vfmul_vv_f32m8(v_inA, v_inB, l);
-        vsum = vfredusum_vs_f32m8_f32m1(vsum, vmul, vsum, l);
+        vsum = vfredosum_vs_f32m8_f32m1(vsum, vmul, vsum, l);
 
         pInA += l;    //Pointer to the first element of the next line
         pInB += l * numColsB;

@@ -118,7 +118,7 @@
             for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
                 v_x = vle32_v_f32m8(pVlt_row, l);
                 v_y = vlse32_v_f32m8(pX_row, bstride, l);
-                v_a = vfredusum_vs_f32m8_f32m1(v_a, vfmul_vv_f32m8(v_x, v_y, l), v_a, l);
+                v_a = vfredosum_vs_f32m8_f32m1(v_a, vfmul_vv_f32m8(v_x, v_y, l), v_a, l);
                 pVlt_row += l;
                 pX_row += l * cols;
             }

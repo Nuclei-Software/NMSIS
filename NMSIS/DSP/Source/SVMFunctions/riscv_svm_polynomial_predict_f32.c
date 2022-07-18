@@ -75,7 +75,7 @@ void riscv_svm_polynomial_predict_f32(
             pIn += l;
             v_support = vle32_v_f32m8(pSupport, l);
             pSupport += l;
-            v_dot = vfredusum_vs_f32m8_f32m1(v_dot, vfmul_vv_f32m8(v_in, v_support, l), v_dot, l);
+            v_dot = vfredosum_vs_f32m8_f32m1(v_dot, vfmul_vv_f32m8(v_in, v_support, l), v_dot, l);
         }
         dot = vfmv_f_s_f32m1_f32(v_dot);
         sum += S->dualCoefficients[i] * riscv_exponent_f32(S->gamma * dot + S->coef0, S->degree);
