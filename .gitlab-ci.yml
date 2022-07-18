@@ -11,6 +11,10 @@ default:
     - env::docker
     - net::outside
   image: $IMAGE:$IMAGE_TAG
+  before_script:
+    - free -g
+    - uname -a
+    - lscpu
 
 stages:
   - build
@@ -35,7 +39,7 @@ build_doc:
       - NMSIS/NN/
   artifacts:
     when: always
-    name: "nmsis_doc-${CI_COMMIT_SHA::8}"
+    name: "nmsis_doc-job${CI_JOB_ID}-${CI_COMMIT_SHA::8}"
     paths:
       - NMSIS/doc/build
     expire_in: 2 day
@@ -65,7 +69,7 @@ build_library:
       - merge_requests
   artifacts:
     when: always
-    name: "nmsis_library-${CI_COMMIT_SHA::8}"
+    name: "nmsis_library-job${CI_JOB_ID}-${CI_COMMIT_SHA::8}"
     paths:
       - NMSIS/Library
       - NMSIS/build.log
@@ -92,7 +96,7 @@ build_align_library:
       - merge_requests
   artifacts:
     when: always
-    name: "nmsis_align_library-${CI_COMMIT_SHA::8}"
+    name: "nmsis_align_library-job${CI_JOB_ID}-${CI_COMMIT_SHA::8}"
     paths:
       - NMSIS/Library
       - NMSIS/build.log
@@ -139,7 +143,7 @@ test_nn_library:
   <<: *test_job_template_default
   artifacts:
     when: always
-    name: "nmsis_nn_test_cycles_log-${CI_COMMIT_SHA::8}"
+    name: "nmsis_nn_test_cycles_logs-job${CI_JOB_ID}-${CI_COMMIT_SHA::8}"
     paths:
       - NMSIS/Logs
     expire_in: 2 day
@@ -162,7 +166,7 @@ test_dsp_library:
   <<: *test_job_template_default
   artifacts:
     when: always
-    name: "nmsis_dsp_test_cycles_log-${CI_COMMIT_SHA::8}"
+    name: "nmsis_dsp_test_cycles_logs-job${CI_JOB_ID}-${CI_COMMIT_SHA::8}"
     paths:
       - NMSIS/Logs
     expire_in: 2 day
@@ -190,7 +194,7 @@ release_benchmark:
       - feature/5.9.0
       - merge_requests
   artifacts:
-    name: "nmsis_test_log-${CI_COMMIT_SHA::8}"
+    name: "nmsis_test_logs-job${CI_JOB_ID}-${CI_COMMIT_SHA::8}"
     paths:
       - NMSIS/Logs
     expire_in: 2 day
@@ -210,7 +214,7 @@ release_nmsis:
       - feature/5.9.0
       - merge_requests
   artifacts:
-    name: "nmsis_release-${CI_COMMIT_SHA::8}"
+    name: "nmsis_release-$job${CI_JOB_ID}-{CI_COMMIT_SHA::8}"
     paths:
       - NMSIS/Core
       - NMSIS/DSP/Include
