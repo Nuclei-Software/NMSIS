@@ -29,7 +29,7 @@ build_doc:
     refs:
       - master
       - develop
-      - feature/5.9.0
+      - /^feature\/.*/
       - merge_requests
     changes:
       - NMSIS/doc/source/**/**/**/*
@@ -65,7 +65,7 @@ build_library:
     refs:
       - master
       - develop
-      - feature/5.9.0
+      - /^feature\/.*/
       - merge_requests
   artifacts:
     when: always
@@ -92,7 +92,7 @@ build_align_library:
     refs:
       - master
       - develop
-      - feature/5.9.0
+      - /^feature\/.*/
       - merge_requests
   artifacts:
     when: always
@@ -117,7 +117,7 @@ build_align_library:
     refs:
       - master
       - develop
-      - feature/5.9.0
+      - /^feature\/.*/
       - merge_requests
   before_script:
     - free -g
@@ -194,7 +194,7 @@ release_benchmark:
     refs:
       - master
       - develop
-      - feature/5.9.0
+      - /^feature\/.*/
       - merge_requests
   artifacts:
     name: "nmsis_test_logs-job${CI_JOB_ID}-${CI_COMMIT_SHA::8}"
@@ -214,7 +214,7 @@ release_nmsis:
     refs:
       - master
       - develop
-      - feature/5.9.0
+      - /^feature\/.*/
       - merge_requests
   artifacts:
     name: "nmsis_release-$job${CI_JOB_ID}-{CI_COMMIT_SHA::8}"
