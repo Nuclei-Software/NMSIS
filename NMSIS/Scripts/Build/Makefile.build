@@ -40,9 +40,10 @@ endif
 .PHONY: all clean info genmake build distclean strip install
 
 help:
-	@echo "Help about build and install NMSIS"
+	@echo "Help about NMSIS build system for single configuration"
 	@echo "Command make TARGET=<target> RISCV_ARCH=<arch> RISCV_ABI=<abi> RISCV_MODEL=<model>  all    It will clean and build and install library for select target and riscv arch"
 	@echo "Here are a list of make target we supported."
+	@echo "nmsis_help    Show nmsis library related help message"
 	@echo "clean         clean one build configuration"
 	@echo "distclean     clean build root directory"
 	@echo "info          show build configuration"
@@ -57,6 +58,7 @@ help:
 	@echo "RISCV_MODEL  RISC-V Model, eg. RISCV_MODEL=medany"
 	@echo "PARALLEL     Compile library in PARALLEL, enable PARALLEL by PARALLEL=1"
 	@echo "REBUILD      Do full rebuild library, default REBUILD=1 to full rebuild, use REBUILD=0 to rebuild generated Makefile"
+	@echo "STRIP        Don't strip library, default STRIP=1 to strip debug symbols, use STRIP=0 to not strip debug symbols"
 	@echo "By default, the installed library will be saved into $(LIBIRAY_ROOT)"
 
 all: clean info install strip

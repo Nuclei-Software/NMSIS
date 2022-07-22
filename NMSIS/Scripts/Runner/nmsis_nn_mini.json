@@ -1,0 +1,46 @@
+{
+    "run_config": {
+        "target": "qemu",
+        "xlspike": {
+            "timeout": 480
+        },
+        "qemu": {
+            "timeout": 240
+        }
+    },
+    "parallel": "-j",
+    "copy_objects": true,
+    "build_target": "clean all",
+    "build_config": {
+        "SOC": "demosoc",
+        "DOWNLOAD": "ilm"
+    },
+    "checks": {
+        "PASS": ["passed", "Passed"],
+        "FAIL": ["MEPC", "failed", "Failed", "FAILURE"]
+    },
+    "appdirs": [
+        "NN/Examples/RISCV",
+        "NN/Tests/Cases"
+    ],
+    "build_configs": {
+        "rv32imafdc": { "CORE": "n300fd", "ARCH_EXT": "" },
+        "rv32imafdcbp": { "CORE": "n300fd", "ARCH_EXT": "bp" },
+        "rv64imafdc": { "CORE": "nx600fd", "ARCH_EXT": "" },
+        "rv64imafdcp": { "CORE": "nx600fd", "ARCH_EXT": "p" },
+        "rv64imafdcbv": { "CORE": "nx600fd", "ARCH_EXT": "bv" },
+        "rv64imafdcbpv": { "CORE": "nx600fd", "ARCH_EXT": "bpv" }
+    },
+    "appconfig": {
+        "NN/Examples/RISCV/cifar10": {
+            "checks": {
+                "PASS": ["label 3: 45, Cat, 35.43%"]
+            }
+        },
+        "NN/Examples/RISCV/gru": {
+            "checks": {
+                "PASS": ["Complete second iteration on GRU"]
+            }
+        }
+    }
+}

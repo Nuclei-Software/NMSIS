@@ -7,6 +7,9 @@ BUILD_TARGET ?= all
 PARALLEL_OPTS ?= -j8
 REBUILD ?= 1
 STRIP ?= 1
+SIMU ?= qemu
+
+LOGDIR ?= logs/nmsis
 
 # Build Configuration
 DSP64 ?= ON
@@ -24,7 +27,6 @@ NNREF_JSON_CONFIG ?= Scripts/Build/nmsis_nnref.json
 MAKE_INFO += DSP64=$(DSP64) LOOPUNROLL=$(LOOPUNROLL) \
 	ROUNDING=$(ROUNDING) MATRIXCHECK=$(MATRIXCHECK) RISCV_UNALIGN=$(RISCV_UNALIGN)
 
-
 ifeq ($(REBUILD),0)
 EXTRA_NLOPTS += --norebuild
 else
@@ -37,7 +39,16 @@ else
 EXTRA_NLOPTS +=
 endif
 
-.PHONY: gen_dsp_lib gen_nn_lib gen_unalign_dsp_lib gen_unalign_nn_lib gen gen_unalign
+.PHONY: nmsis_help gen_dsp_lib gen_nn_lib gen_unalign_dsp_lib gen_unalign_nn_lib gen gen_unalign envsetup check_build check_run check
+
+nmsis_help:
+	@echo "Help about build and install NMSIS Library"
+	@echo "Here are a list of make target we supported."
+	@echo "gen           generate all configurations of NMSIS DSP and NN Library"
+	@echo "gen_nnref_lib generate all configurations for NMSIS NN Reference Library"
+	@echo "envsetup      show how to setup environment"
+	@echo "check_build   Run simple build test for DSP and NN example and test"
+	@echo "check_run     Run simple run test for DSP and NN example and test"
 
 gen_dsp_lib:
 	@echo "Generated DSP library for configuration file $(DSP_JSON_CONFIG)"
@@ -74,3 +85,22 @@ gen_unalign: gen_unalign_dsp_lib gen_unalign_nn_lib
 
 gen: gen_dsp_lib gen_nn_lib
 	@echo "All libraries are generated into $(LIBIRAY_ROOT)"
+
+envsetup:
+	@echo "Please run following command to setup NMSIS environment"
+	@echo "source Scripts/Configs/fpga/setup.sh"
+
+check: check_run
+
+check_build:
+	rm -rf $(LOGDIR)
+	python3 $(NUCLEI_SDK_ROOT)/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_dsp_mini.json --logdir $(LOGDIR)/dsp --parallel=-j --make_options "SIMU=$(SIMU)"
+	python3 $(NUCLEI_SDK_ROOT)/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_nn_mini.json --logdir $(LOGDIR)/nn --parallel=-j --make_options "SIMU=$(SIMU)"
+	@echo "Check build status for NMSIS, please find build logs in $(LOGDIR)"
+
+check_run:
+	rm -rf $(LOGDIR)
+	python3 $(NUCLEI_SDK_ROOT)/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_dsp_mini.json --logdir $(LOGDIR)/dsp --parallel=-j --make_options "SIMU=$(SIMU)" --run_target $(SIMU) --run
+	python3 $(NUCLEI_SDK_ROOT)/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_nn_mini.json --logdir $(LOGDIR)/nn --parallel=-j --make_options "SIMU=$(SIMU)" --run_target $(SIMU) --run
+	@echo "Check run status for NMSIS, please find run logs in $(LOGDIR)"
+

@@ -1,0 +1,34 @@
+{
+    "run_config": {
+        "target": "qemu",
+        "xlspike": {
+            "timeout": 480
+        },
+        "qemu": {
+            "timeout": 240
+        }
+    },
+    "parallel": "-j",
+    "copy_objects": false,
+    "build_target": "clean all",
+    "build_config": {
+        "SOC": "demosoc",
+        "DOWNLOAD": "ilm"
+    },
+    "checks": {
+        "PASS": ["passed", "Passed"],
+        "FAIL": ["MEPC", "failed", "Failed", "FAILURE", "ERROR", "test error apprears"]
+    },
+    "appdirs": [
+        "DSP/Examples/RISCV",
+        "DSP/Test"
+    ],
+    "build_configs": {
+        "rv32imafdc": { "CORE": "n300fd", "ARCH_EXT": "" },
+        "rv32imafdcbp": { "CORE": "n300fd", "ARCH_EXT": "bp" },
+        "rv64imafdc": { "CORE": "nx600fd", "ARCH_EXT": "" },
+        "rv64imafdcp": { "CORE": "nx600fd", "ARCH_EXT": "p" },
+        "rv64imafdcbv": { "CORE": "nx600fd", "ARCH_EXT": "bv" },
+        "rv64imafdcbpv": { "CORE": "nx600fd", "ARCH_EXT": "bpv" }
+    }
+}
