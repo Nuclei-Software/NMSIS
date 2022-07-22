@@ -144,6 +144,8 @@ q7_t      scratch_buffer[32 * 32 * 10 * 4];
 
 const char* cifar10_label[] = {"Plane", "Car", "Bird", "Cat", "Deer", "Dog", "Frog", "Horse", "Ship", "Truck"};
 
+BENCH_DECLARE_VAR();
+
 int main()
 {
   #ifdef RTE_Compiler_EventRecorder
@@ -156,7 +158,7 @@ int main()
   q7_t     *img_buffer1 = scratch_buffer;
   q7_t     *img_buffer2 = img_buffer1 + 32 * 32 * 32;
 
-  BENCH_INIT;
+  BENCH_INIT();
 
   /* input pre-processing */
   BENCH_START(preprocess);
@@ -238,6 +240,5 @@ int main()
       printf("label %d: %d, %s, %.2f%%\n", \
               i, output_data[i], cifar10_label[i], confidence);
   }
-  BENCH_FINISH;
   return 0;
 }
