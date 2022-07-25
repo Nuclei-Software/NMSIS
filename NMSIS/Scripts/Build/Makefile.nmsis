@@ -94,13 +94,15 @@ check: check_run
 
 check_build:
 	rm -rf $(LOGDIR)
-	python3 $(NUCLEI_SDK_ROOT)/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_dsp_mini.json --logdir $(LOGDIR)/dsp --parallel=-j --make_options "SIMU=$(SIMU)"
-	python3 $(NUCLEI_SDK_ROOT)/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_nn_mini.json --logdir $(LOGDIR)/nn --parallel=-j --make_options "SIMU=$(SIMU)"
+	-python3 $(NUCLEI_SDK_ROOT)/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_dsp_mini.json --logdir $(LOGDIR)/dsp --parallel=-j --make_options "SIMU=$(SIMU)"
+	-python3 $(NUCLEI_SDK_ROOT)/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_nn_mini.json --logdir $(LOGDIR)/nn --parallel=-j --make_options "SIMU=$(SIMU)"
+	-python3 $(NUCLEI_SDK_ROOT)/tools/scripts/nsdk_cli/nsdk_report.py --logdir $(LOGDIR)
 	@echo "Check build status for NMSIS, please find build logs in $(LOGDIR)"
 
 check_run:
 	rm -rf $(LOGDIR)
-	python3 $(NUCLEI_SDK_ROOT)/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_dsp_mini.json --logdir $(LOGDIR)/dsp --parallel=-j --make_options "SIMU=$(SIMU)" --run_target $(SIMU) --run
-	python3 $(NUCLEI_SDK_ROOT)/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_nn_mini.json --logdir $(LOGDIR)/nn --parallel=-j --make_options "SIMU=$(SIMU)" --run_target $(SIMU) --run
+	-python3 $(NUCLEI_SDK_ROOT)/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_dsp_mini.json --logdir $(LOGDIR)/dsp --parallel=-j --make_options "SIMU=$(SIMU)" --run_target $(SIMU) --run
+	-python3 $(NUCLEI_SDK_ROOT)/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_nn_mini.json --logdir $(LOGDIR)/nn --parallel=-j --make_options "SIMU=$(SIMU)" --run_target $(SIMU) --run
+	-python3 $(NUCLEI_SDK_ROOT)/tools/scripts/nsdk_cli/nsdk_report.py --logdir $(LOGDIR) --run
 	@echo "Check run status for NMSIS, please find run logs in $(LOGDIR)"
 
