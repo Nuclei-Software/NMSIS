@@ -1,8 +1,9 @@
 TARGET ?=
+TOOLCHAIN ?= GCC
+# CMake Configurations
 RISCV_ARCH ?= rv32imac
 RISCV_ABI ?= ilp32
 RISCV_MODEL ?= medany
-TOOLCHAIN ?= GCC
 
 # Build generation
 LIBIRAY_ROOT ?= Library
@@ -11,10 +12,9 @@ LIB_PREFIX ?= riscv
 AR ?= riscv-nuclei-elf-ar
 PARALLEL ?=
 
-MAKE_INFO += RISCV_ARCH=$(RISCV_ARCH) RISCV_ABI=$(RISCV_ABI) \
-	RISCV_MODEL=$(RISCV_MODEL)
+CMAKE_INFO += RISCV_ARCH=$(RISCV_ARCH) RISCV_ABI=$(RISCV_ABI) RISCV_MODEL=$(RISCV_MODEL)
 
-CMAKE_DEFINES += $(addprefix -D, $(MAKE_INFO))
+CMAKE_DEFINES += $(addprefix -D, $(CMAKE_INFO))
 
 CMAKE_OPTIONS := $(CMAKE_DEFINES)
 TARGET_LOWER  := $(shell echo $(TARGET) | tr A-Z a-z)
@@ -64,7 +64,7 @@ help:
 all: clean info install strip
 
 info:
-	@echo "Current build configuration is $(MAKE_INFO)"
+	@echo "Current cmake build configuration for $(TARGET): $(CMAKE_INFO)"
 
 clean:
 	@echo "Clean build directory $(TARGET_CMAKE_BUILD)"
