@@ -3,6 +3,11 @@ SCRIPTDIR=$(dirname $(readlink -f $BASH_SOURCE))
 NSDK_ROOT=${NSDK_ROOT:-${SCRIPTDIR}/../../../../../nuclei-sdk}
 NMSIS_ROOT=${NMSIS_ROOT:-${SCRIPTDIR}/../../../}
 
+ILMSZ=${ILMSZ:-512K}
+DEVENVSH=${DEVENVSH:-/home/share/devtools/env.sh}
+
+[ -f ${DEVENVSH} ] && source $DEVENVSH
+
 if [ "x${NSDK_ROOT}" == "x" ] ; then
     echo "Please export NSDK_ROOT variable to correct path"
     exit 1
@@ -29,6 +34,6 @@ echo "Only copy elf and map file when do bench"
 export SDK_COPY_OBJECTS="elf,map"
 
 LDSCRIPT=$NUCLEI_SDK_ROOT/SoC/demosoc/Board/nuclei_fpga_eval/Source/GCC/gcc_demosoc_ilm.ld
-echo "Change ILM size from 64K to 512K in $LDSCRIPT"
+echo "Change ILM size from 64K to $ILMSZ in $LDSCRIPT"
 
-sed -i "s/64K/512K/g" $LDSCRIPT
+sed -i "s/64K/$ILMSZ/g" $LDSCRIPT
