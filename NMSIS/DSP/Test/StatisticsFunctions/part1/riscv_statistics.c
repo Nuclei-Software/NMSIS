@@ -25,6 +25,7 @@
 
 int test_flag_error = 0;
 
+BENCH_DECLARE_VAR();
 int main()
 {
     q63_t q63_out, q63_out_ref;
@@ -34,7 +35,7 @@ int main()
     q7_t q7_out, q7_out_ref;
     uint32_t index, index_ref;
 
-    BENCH_INIT;
+    BENCH_INIT();
 #if defined F32 || defined ENABLE_ALL
     //*****************************   f32   *************************
     // max
@@ -685,7 +686,7 @@ int main()
     }
     BENCH_STATUS(riscv_mse_q7);
 #endif
-    BENCH_FINISH;
+
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");
         return 1;

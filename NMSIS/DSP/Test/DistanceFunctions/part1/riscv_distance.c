@@ -15,11 +15,12 @@
 
 int test_flag_error = 0;
 
+BENCH_DECLARE_VAR();
 int main()
 {
     int i;
     float32_t f32_output, f32_output_ref = 0.211678832116788;
-    BENCH_INIT;
+    BENCH_INIT();
     //1-2( sun(min(Sai,Sbi)) / (sum(Sai)+sum(Sbi)) )
     BENCH_START(riscv_braycurtis_distance_f32);
     f32_output = riscv_braycurtis_distance_f32(f32_braycurtis_a_array, f32_braycurtis_b_array, 10);
@@ -118,7 +119,7 @@ int main()
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_minkowski_distance_f32);
-    BENCH_FINISH;
+
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");
         return 1;

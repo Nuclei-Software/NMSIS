@@ -58,6 +58,7 @@ int test_index = 0;
 q7_t test_flags[100];
 bool test_pass;
 
+BENCH_DECLARE_VAR();
 int main()
 {
     printf("start tests\n");
@@ -68,7 +69,7 @@ int main()
     q7_t *test1;
     q15_t *test2;
 
-    BENCH_INIT;
+    BENCH_INIT();
 
     for (test_index = 0; test_index < 100; test_index++) {
         test_flags[test_index] = -1;
@@ -1357,7 +1358,7 @@ int main()
     } else {
         printf("Test failed\n");
     }
-    BENCH_FINISH;
+
     if (test_pass) {
         return 0;
     } else {

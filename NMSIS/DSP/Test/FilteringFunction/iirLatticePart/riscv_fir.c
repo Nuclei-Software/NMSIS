@@ -30,6 +30,7 @@
 
 int test_flag_error = 0;
 
+BENCH_DECLARE_VAR();
 // #define WITH_FRONT
 
 //***************************************************************************************
@@ -152,11 +153,11 @@ static void riscv_iir_q15_lattice_lp(void)
 
 int main()
 {
-    BENCH_INIT;
+    BENCH_INIT();
     riscv_iir_f32_lattice_lp();
     riscv_iir_q31_lattice_lp();
     riscv_iir_q15_lattice_lp();
-    BENCH_FINISH;
+
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");
         return 1;

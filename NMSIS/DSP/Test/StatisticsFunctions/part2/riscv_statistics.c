@@ -26,9 +26,10 @@
 
 int test_flag_error = 0;
 
+BENCH_DECLARE_VAR();
 int main()
 {
-    BENCH_INIT;
+    BENCH_INIT();
 //entropy -Sum(p ln p)
     BENCH_START(riscv_entropy_f32);
     f32_out_array = riscv_entropy_f32(f32_a_array, ARRAY_SIZE);
@@ -97,7 +98,6 @@ int main()
     }
     BENCH_STATUS(riscv_logsumexp_f32);
 
-    BENCH_FINISH;
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");
         return 1;

@@ -24,11 +24,12 @@
 
 int test_flag_error = 0;
 
+BENCH_DECLARE_VAR();
 int main()
 {
     int i;
 
-    BENCH_INIT;
+    BENCH_INIT();
 #if defined AND || defined ENABLE_ALL
     BENCH_START(riscv_and_u16);
     riscv_and_u16(u16_a_array, u16_b_array, u16_out_array, ARRAY_SIZE);
@@ -192,8 +193,7 @@ int main()
         }
     BENCH_STATUS(riscv_xor_u8);
 #endif /*defined XOR || defined ENABLE_ALL*/
-    BENCH_FINISH;
-    
+
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");
         return 1;

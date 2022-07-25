@@ -26,6 +26,8 @@
 
 int test_flag_error = 0;
 
+BENCH_DECLARE_VAR();
+
 static int DSP_clarke_f32_app()
 {
     float32_t Ia = sin(30 * PI / 180);
@@ -379,9 +381,10 @@ static int DSP_pid_q31_app()
     }
     BENCH_STATUS(riscv_pid_q31);
 }
+
 int main()
 {
-    BENCH_INIT;
+    BENCH_INIT();
 #if defined CLARKE || defined ENABLE_ALL
     DSP_clarke_f32_app();
     DSP_clarke_q31_app();
@@ -403,7 +406,7 @@ int main()
     DSP_pid_q15_app();
     DSP_pid_q31_app();
 #endif
-    BENCH_FINISH;
+
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");
         return 1;

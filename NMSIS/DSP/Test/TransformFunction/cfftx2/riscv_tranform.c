@@ -26,12 +26,13 @@
 
 int test_flag_error = 0;
 
+BENCH_DECLARE_VAR();
+
 uint32_t fftSize = 1024;
 uint32_t ifftFlag = 0;
 uint32_t doBitReverse = 1;
 
 extern uint16_t bitrevIndexGrp [FFT_DOT] __attribute__((aligned(16)));
-
 
 static int DSP_cfft_radix2_q15(void)
 {
@@ -142,12 +143,11 @@ static int DSP_cfft_radix2_f32(void)
 
 int main()
 {
-    BENCH_INIT;
+    BENCH_INIT();
     DSP_cfft_radix2_f32();
     DSP_cfft_radix2_q15(); 
     DSP_cfft_radix2_q31();
 
-    BENCH_FINISH;
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");
         return 1;

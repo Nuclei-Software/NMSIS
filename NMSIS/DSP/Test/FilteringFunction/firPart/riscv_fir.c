@@ -32,6 +32,7 @@ int test_flag_error = 0;
 
 // #define WITH_FRONT
 
+BENCH_DECLARE_VAR();
 /* clang-format on */
 //***************************************************************************************
 //				fir
@@ -255,14 +256,14 @@ static int riscv_fir_fast_q15_lp(void)
 
 int main()
 {
-    BENCH_INIT;
+    BENCH_INIT();
     riscv_fir_f32_lp();
     riscv_fir_q31_lp();
     riscv_fir_q15_lp();
     riscv_fir_q7_lp();
     riscv_fir_fast_q31_lp();
     riscv_fir_fast_q15_lp();
-    BENCH_FINISH;
+
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");
         return 1;

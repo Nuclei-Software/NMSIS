@@ -26,10 +26,11 @@
 
 int test_flag_error = 0;
 
+BENCH_DECLARE_VAR();
 int main()
 {
     int i;
-    BENCH_INIT;
+    BENCH_INIT();
     riscv_sort_instance_f32 S_sort;
     riscv_sort_init_f32(&S_sort, RISCV_SORT_BUBBLE, RISCV_SORT_ASCENDING);
     BENCH_START(riscv_sort_f32);
@@ -99,7 +100,6 @@ int main()
     }
     BENCH_STATUS(riscv_weighted_sum_f32);
 
-    BENCH_FINISH;
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");
         return 1;

@@ -15,11 +15,12 @@
 
 int test_flag_error = 0;
 
+BENCH_DECLARE_VAR();
 int main()
 {
     int i;
 
-    BENCH_INIT;
+    BENCH_INIT();
     //simulate y=pi*x + pi/2
     riscv_linear_interp_instance_f32 S_f32 = {
         ARRAY_SIZE,       /*number of values*/
@@ -101,7 +102,6 @@ int main()
     }
     BENCH_STATUS(riscv_linear_interp_q7);
 
-    BENCH_FINISH;
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");
         return 1;

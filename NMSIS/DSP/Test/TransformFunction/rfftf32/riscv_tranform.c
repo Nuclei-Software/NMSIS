@@ -27,6 +27,7 @@ uint32_t fftSize = 1024;
 uint32_t ifftFlag = 0;
 uint32_t doBitReverse = 1;
 
+BENCH_DECLARE_VAR();
 static int DSP_rfft_fast_f32(void)
 {
     uint16_t i;
@@ -83,10 +84,10 @@ static int DSP_rfft_f32(void)
 
 int main()
 {
-    BENCH_INIT;
+    BENCH_INIT();
     DSP_rfft_fast_f32();
     DSP_rfft_f32();
-    BENCH_FINISH;
+
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");
         return 1;

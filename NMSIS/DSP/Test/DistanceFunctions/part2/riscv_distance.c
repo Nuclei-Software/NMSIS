@@ -15,13 +15,14 @@
 
 int test_flag_error = 0;
 
+BENCH_DECLARE_VAR();
 int main()
 {
     int i;
 
 // Noticing that all the following functions are in Big-end!
 
-    BENCH_INIT;
+    BENCH_INIT();
     float32_t f32_output, f32_output_ref =  0.282051282051282;
     //1.0*(ctf + cft) / (2.0*ctt + cft + ctf)
     //t stands for true,f stands for false
@@ -136,7 +137,6 @@ int main()
     }
     BENCH_STATUS(riscv_yule_distance);
 
-    BENCH_FINISH;
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");
         return 1;

@@ -24,6 +24,8 @@
 
 int test_flag_error = 0;
 
+BENCH_DECLARE_VAR();
+
 /*
 *********************************************************************************************************
 *	? ? ?: DSP_Copy
@@ -401,14 +403,14 @@ static int DSP_Q31(void)
 
 int main()
 {
-    BENCH_INIT;
+    BENCH_INIT();
     DSP_Q7();
     DSP_Q15();
     DSP_Q31();
     DSP_Fill();
     DSP_Copy();
     DSP_FloatToFix();
-    BENCH_FINISH;
+
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");
         return 1;

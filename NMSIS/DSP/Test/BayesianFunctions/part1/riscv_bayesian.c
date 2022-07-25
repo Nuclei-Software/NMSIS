@@ -28,9 +28,10 @@ const float32_t sigma[NB_OF_CLASSES*VECTOR_DIMENSION] = {0.8790413342380022, 1.0
 
 const float32_t classPriors[NB_OF_CLASSES] = {0.3333333333333333f, 0.3333333333333333f, 0.3333333333333333f}; /**< Class prior probabilities */
 
+BENCH_DECLARE_VAR();
 int32_t main(void)
 {
-    BENCH_INIT;
+    BENCH_INIT();
     /* Array of input data */
     float32_t in[2];
 
@@ -92,7 +93,6 @@ int32_t main(void)
     }
     BENCH_STATUS(riscv_gaussian_naive_bayes_predict_f32);
 
-    BENCH_FINISH;
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");
         return 1;

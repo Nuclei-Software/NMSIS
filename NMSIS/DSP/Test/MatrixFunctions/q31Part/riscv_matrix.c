@@ -22,6 +22,7 @@
 
 int test_flag_error = 0;
 
+BENCH_DECLARE_VAR();
 int DSP_matrix_q31(void)
 {
     riscv_matrix_instance_q31 q31_A;
@@ -151,9 +152,9 @@ int DSP_matrix_q31(void)
 
 int main()
 {
-    BENCH_INIT;
+    BENCH_INIT();
     DSP_matrix_q31();
-    BENCH_FINISH;
+
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");
         return 1;

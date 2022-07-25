@@ -15,11 +15,12 @@
 
 int test_flag_error = 0;
 
+BENCH_DECLARE_VAR();
 int main()
 {
     int i;
 
-    BENCH_INIT;
+    BENCH_INIT();
     //simulate z=3.1*x + 7.2*y + 1.25
     riscv_bilinear_interp_instance_f32 S_f32 = {
         20,                 /*number of Rows*/
@@ -102,7 +103,6 @@ int main()
     }
     BENCH_STATUS(riscv_bilinear_interp_q7);
 
-    BENCH_FINISH;
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");
         return 1;

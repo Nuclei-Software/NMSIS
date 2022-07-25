@@ -19,11 +19,12 @@
 
 int test_flag_error = 0;
 
+BENCH_DECLARE_VAR();
 int main()
 {
     uint16_t i;
 
-    BENCH_INIT;
+    BENCH_INIT();
     // *****************************************************
     // conv partical part
     // *****************************************************
@@ -164,7 +165,7 @@ int main()
             test_flag_error = 1;
         }
     BENCH_STATUS(riscv_conv_partial_fast_opt_q15);
-    BENCH_FINISH;
+
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");
         return 1;

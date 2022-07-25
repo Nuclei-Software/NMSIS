@@ -30,6 +30,8 @@
 
 int test_flag_error = 0;
 
+BENCH_DECLARE_VAR();
+
 // #define WITH_FRONT
 
 /* clang-format on */
@@ -144,11 +146,11 @@ static void riscv_iir_df2t_f64_lp(void)
 
 int main()
 {
-    BENCH_INIT;
+    BENCH_INIT();
     riscv_iir_df2t_f32_lp();
     riscv_iir_stereo_df2t_f32_lp();
     riscv_iir_df2t_f64_lp();
-    BENCH_FINISH;
+
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");
         return 1;

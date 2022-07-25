@@ -25,11 +25,12 @@
 
 int test_flag_error = 0;
 
+BENCH_DECLARE_VAR();
 int main()
 {
     float32_t f32_out[ARRAY_SIZE], f32_out_ref[ARRAY_SIZE];
 
-    BENCH_INIT;
+    BENCH_INIT();
     // conjugate
     BENCH_START(riscv_quaternion_conjugate_f32);
     riscv_quaternion_conjugate_f32(f32_array, f32_array_opt, ARRAY_SIZE/4);
@@ -134,7 +135,6 @@ int main()
         }
     BENCH_STATUS(riscv_rotation2quaternion_f32);
 
-    BENCH_FINISH;
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");
         return 1;

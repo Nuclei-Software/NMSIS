@@ -18,6 +18,8 @@
 
 int test_flag_error = 0;
 
+BENCH_DECLARE_VAR();
+
 static int DSP_SIN_COS_F32(void)
 {
     int16_t i;
@@ -62,10 +64,10 @@ static int DSP_SIN_COS_Q31(void)
 
 int main()
 {
-    BENCH_INIT;
+    BENCH_INIT();
     DSP_SIN_COS_F32();
     DSP_SIN_COS_Q31();
-    BENCH_FINISH;
+
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");
         return 1;

@@ -21,6 +21,8 @@
 
 int test_flag_error = 0;
 
+BENCH_DECLARE_VAR();
+
 static int DSP_SQRT(void)
 {
     float32_t f32_pOUT, f32_pOUT_ref;
@@ -125,15 +127,14 @@ static int DSP_LOG(void)
     BENCH_STATUS(riscv_vlog_f32);
 }
 
-
 int main()
 {
-    BENCH_INIT;
+    BENCH_INIT();
     DSP_SQRT();
     DSP_DIVIDE();
     DSP_EXP();
     DSP_LOG();
-    BENCH_FINISH;
+
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");
         return 1;

@@ -30,6 +30,7 @@
 
 int test_flag_error = 0;
 
+BENCH_DECLARE_VAR();
 //***************************************************************************************
 //				iir		Lattice Filters
 //***************************************************************************************
@@ -89,10 +90,10 @@ static void DSP_levinson_durbin_q31(void)
 
 int main()
 {
-    BENCH_INIT;
+    BENCH_INIT();
     DSP_levinson_durbin_f32();
     DSP_levinson_durbin_q31();
-    BENCH_FINISH;
+
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");
         return 1;

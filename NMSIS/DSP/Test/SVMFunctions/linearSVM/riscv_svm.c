@@ -45,10 +45,11 @@ const float32_t supportVectors[NB_SUPPORT_VECTORS*VECTOR_DIMENSION]={0.72036631f
  */
 const int32_t   classes[2]={0,1};
 
+BENCH_DECLARE_VAR();
 int main()
 {
     int i;
-    BENCH_INIT;
+    BENCH_INIT();
     /* Array of input data */
     float32_t in[VECTOR_DIMENSION];
 
@@ -104,8 +105,6 @@ int main()
     }
     BENCH_STATUS(riscv_svm_linear_predict_f32);
 
-
-    BENCH_FINISH;
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");
         return 1;

@@ -32,6 +32,7 @@ int test_flag_error = 0;
 
 // #define WITH_FRONT
 
+BENCH_DECLARE_VAR();
 //***************************************************************************************
 //				lms		 Filters
 //***************************************************************************************
@@ -153,11 +154,11 @@ static void riscv_fir_q15_LMS_lp(void)
 
 int main()
 {
-    BENCH_INIT;
+    BENCH_INIT();
     riscv_fir_f32_LMS_lp();
     riscv_fir_q31_LMS_lp();
     riscv_fir_q15_LMS_lp();
-    BENCH_FINISH;
+
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");
         return 1;

@@ -24,6 +24,7 @@
 
 int test_flag_error = 0;
 
+BENCH_DECLARE_VAR();
 int main()
 {
     int i;
@@ -32,7 +33,7 @@ int main()
     q15_t q15_out, q15_out_ref;
     q31_t q31_out, q31_out_ref;
     q63_t q63_out, q63_out_ref;
-    BENCH_INIT;
+    BENCH_INIT();
 #if defined ABS || defined ENABLE_ALL
     // ***********************************   abs
     // ********************************** riscv_abs_f32.c
@@ -258,7 +259,7 @@ int main()
         }
     BENCH_STATUS(riscv_mult_q31);
 #endif
-    BENCH_FINISH;
+
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");
         return 1;

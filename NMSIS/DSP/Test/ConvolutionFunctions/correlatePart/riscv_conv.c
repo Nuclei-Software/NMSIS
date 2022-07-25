@@ -19,6 +19,7 @@
 
 int test_flag_error = 0;
 
+BENCH_DECLARE_VAR();
 int main()
 {
     /* clang-format off */
@@ -26,7 +27,7 @@ int main()
 
     /* clang-format on */
 
-    BENCH_INIT;
+    BENCH_INIT();
     // *****************************************************
     // Correlation
     // *****************************************************
@@ -166,7 +167,7 @@ int main()
             test_flag_error = 1;
         }
     BENCH_STATUS(riscv_correlate_fast_opt_q15);
-    BENCH_FINISH;
+
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");
         return 1;

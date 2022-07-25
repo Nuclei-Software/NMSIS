@@ -31,6 +31,7 @@
 
 int test_flag_error = 0;
 
+BENCH_DECLARE_VAR();
 /*
 *********************************************************************************************************
 *	DSP_MagSquared
@@ -369,7 +370,7 @@ static int DSP_CmplxMag(void)
 
 int main()
 {
-    BENCH_INIT;
+    BENCH_INIT();
 #if defined CmplxMag || defined ENABLE_ALL
     DSP_CmplxMag();
 #endif
@@ -388,7 +389,7 @@ int main()
 #if defined CmplxMultReal || defined ENABLE_ALL
     DSP_CmplxMultReal();
 #endif
-    BENCH_FINISH;
+
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");
         return 1;

@@ -26,6 +26,7 @@
 
 int test_flag_error = 0;
 
+BENCH_DECLARE_VAR();
 int main()
 {
     int i;
@@ -35,7 +36,7 @@ int main()
     q15_t q15_out, q15_out_ref;
     q31_t q31_out, q31_out_ref;
     q63_t q63_out, q63_out_ref;
-    BENCH_INIT;
+    BENCH_INIT();
 #if defined NEGATE || defined ENABLE_ALL
     // ****************************************   negate
     // ******************************* f32_negate
@@ -366,7 +367,7 @@ int main()
     BENCH_STATUS(riscv_clip_q31);
 #endif /*defined CLIP || defined ENABLE_ALL*/
 
-    BENCH_FINISH;
+
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");
         return 1;

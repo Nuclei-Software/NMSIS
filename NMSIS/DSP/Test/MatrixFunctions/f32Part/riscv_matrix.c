@@ -22,11 +22,7 @@
 
 int test_flag_error = 0;
 
-
-
-
-
-
+BENCH_DECLARE_VAR();
 
 int DSP_matrix_f32(void)
 {
@@ -358,13 +354,12 @@ int DSP_matrix_f64(void)
     printf("all tests are passed,well done!\n");
 }
 
-
 int main()
 {
-    BENCH_INIT;
+    BENCH_INIT();
      DSP_matrix_f32();
     //DSP_matrix_f64();
-    BENCH_FINISH;
+
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");
         return 1;
