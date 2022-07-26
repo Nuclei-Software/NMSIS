@@ -80,13 +80,13 @@ void riscv_mult_q7(
 #endif
 
 
-#if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
+#if defined (NUCLEI_DSP_N1) || (__RISCV_XLEN == 64)
   /* Loop unrolling: Compute 8 outputs at a time */
   blkCnt = blockSize >> 3U;
 #else
 	/* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
-#endif /* defined (RISCV_DSP64) || (__RISCV_XLEN == 64) */
+#endif /* defined (NUCLEI_DSP_N1) || (__RISCV_XLEN == 64) */
 
   while (blkCnt > 0U)
   {
@@ -105,7 +105,7 @@ void riscv_mult_q7(
 #if __RISCV_XLEN == 64
 	write_q7x8_ia (&pDst, __RV_KHM8 (read_q7x8_ia ((q7_t **) &pSrcA), read_q7x8_ia ((q7_t **) &pSrcB)));
 #else
-#ifdef RISCV_DSP64
+#ifdef NUCLEI_DSP_N1
 	write_q7x8_ia (&pDst, __RV_DKHM8 (read_q7x8_ia ((q7_t **) &pSrcA), read_q7x8_ia ((q7_t **) &pSrcB)));
 #else
 	write_q7x4_ia (&pDst, __RV_KHM8 (read_q7x4_ia ((q7_t **) &pSrcA), read_q7x4_ia ((q7_t **) &pSrcB)));
@@ -116,7 +116,7 @@ void riscv_mult_q7(
     *pDst++ = (q7_t) __SSAT((((q15_t) (*pSrcA++) * (*pSrcB++)) >> 7), 8);
     *pDst++ = (q7_t) __SSAT((((q15_t) (*pSrcA++) * (*pSrcB++)) >> 7), 8);
     *pDst++ = (q7_t) __SSAT((((q15_t) (*pSrcA++) * (*pSrcB++)) >> 7), 8);
-#if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
+#if defined (NUCLEI_DSP_N1) || (__RISCV_XLEN == 64)
     *pDst++ = (q7_t) __SSAT((((q15_t) (*pSrcA++) * (*pSrcB++)) >> 7), 8);
     *pDst++ = (q7_t) __SSAT((((q15_t) (*pSrcA++) * (*pSrcB++)) >> 7), 8);
     *pDst++ = (q7_t) __SSAT((((q15_t) (*pSrcA++) * (*pSrcB++)) >> 7), 8);
@@ -128,7 +128,7 @@ void riscv_mult_q7(
     blkCnt--;
   }
 
-#if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
+#if defined (NUCLEI_DSP_N1) || (__RISCV_XLEN == 64)
   /* Loop unrolling: Compute remaining outputs */
   blkCnt = blockSize & 0x7U;
 #else

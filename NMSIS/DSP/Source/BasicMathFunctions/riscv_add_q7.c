@@ -77,7 +77,7 @@ void riscv_add_q7(
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
-#if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
+#if defined (NUCLEI_DSP_N1) || (__RISCV_XLEN == 64)
   /* Loop unrolling: Compute 8 outputs at a time */
   blkCnt = blockSize >> 3U;
 #else
@@ -93,7 +93,7 @@ void riscv_add_q7(
 #if __RISCV_XLEN == 64
     write_q7x8_ia(&pDst, __RV_KADD8 (read_q7x8_ia((q7_t **) &pSrcA), read_q7x8_ia((q7_t **) &pSrcB)));
 #else
-#ifdef RISCV_DSP64
+#ifdef NUCLEI_DSP_N1
     /* Add and store result in destination buffer (4 samples at a time). */
     write_q7x8_ia(&pDst, __RV_DKADD8 (read_q7x8_ia((q7_t **) &pSrcA), read_q7x8_ia((q7_t **) &pSrcB)));
 #else
@@ -111,7 +111,7 @@ void riscv_add_q7(
     blkCnt--;
   }
 
-#if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
+#if defined (NUCLEI_DSP_N1) || (__RISCV_XLEN == 64)
   /* Loop unrolling: Compute remaining outputs */
   blkCnt = blockSize & 0x7U;
 #else

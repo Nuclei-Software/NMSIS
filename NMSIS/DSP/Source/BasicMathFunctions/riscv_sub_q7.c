@@ -75,7 +75,7 @@ void riscv_sub_q7(
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
-#ifdef RISCV_DSP64
+#ifdef NUCLEI_DSP_N1
   /* Loop unrolling: Compute 8 outputs at a time */
   blkCnt = blockSize >> 3U;
 #else
@@ -92,7 +92,7 @@ void riscv_sub_q7(
     /* Subtract and store result in destination buffer (8 samples at a time). */
     write_q7x8_ia (&pDst, __RV_KSUB8(read_q7x8_ia ((q7_t **) &pSrcA), read_q7x8_ia ((q7_t **) &pSrcB)));
 #else
-#ifdef RISCV_DSP64
+#ifdef NUCLEI_DSP_N1
     /* Subtract and store result in destination buffer (8 samples at a time). */
     write_q7x8_ia (&pDst, __DQSUB8(read_q7x8_ia ((q7_t **) &pSrcA), read_q7x8_ia ((q7_t **) &pSrcB)));
 #else
@@ -105,7 +105,7 @@ void riscv_sub_q7(
     *pDst++ = (q7_t) __SSAT((q15_t) *pSrcA++ - *pSrcB++, 8);
     *pDst++ = (q7_t) __SSAT((q15_t) *pSrcA++ - *pSrcB++, 8);
     *pDst++ = (q7_t) __SSAT((q15_t) *pSrcA++ - *pSrcB++, 8);
-#ifdef RISCV_DSP64
+#ifdef NUCLEI_DSP_N1
     *pDst++ = (q7_t) __SSAT((q15_t) *pSrcA++ - *pSrcB++, 8);
     *pDst++ = (q7_t) __SSAT((q15_t) *pSrcA++ - *pSrcB++, 8);
     *pDst++ = (q7_t) __SSAT((q15_t) *pSrcA++ - *pSrcB++, 8);
@@ -117,7 +117,7 @@ void riscv_sub_q7(
     blkCnt--;
   }
 
-#ifdef RISCV_DSP64
+#ifdef NUCLEI_DSP_N1
   /* Loop unrolling: Compute remaining outputs */
   blkCnt = blockSize & 0x7U;
 #else

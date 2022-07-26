@@ -72,7 +72,7 @@ void riscv_or_u32(
   }
 #else
 
-#if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
+#if defined (NUCLEI_DSP_N1) || (__RISCV_XLEN == 64)
 
     const uint64_t * pSrcA_temp = (const uint64_t *)pSrcA;
     const uint64_t * pSrcB_temp = (const uint64_t *)pSrcB;

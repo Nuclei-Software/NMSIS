@@ -103,7 +103,7 @@ void riscv_shift_q7(
 	  blkCnt--;
   }
 #else
-#ifdef RISCV_DSP64
+#ifdef NUCLEI_DSP_N1
   /* Loop unrolling: Compute 8 outputs at a time */
   blkCnt = blockSize >> 3U;
 
@@ -183,7 +183,7 @@ void riscv_shift_q7(
 //  }
 
   /* Loop unrolling: Compute remaining outputs */
-#if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
+#if defined (NUCLEI_DSP_N1) || (__RISCV_XLEN == 64)
   blkCnt = blockSize & 0x7U;
 #else
   blkCnt = blockSize & 0x3U;

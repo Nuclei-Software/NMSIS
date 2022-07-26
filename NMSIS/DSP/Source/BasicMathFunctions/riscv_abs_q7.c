@@ -76,7 +76,7 @@ void riscv_abs_q7(
     }
 
 #elif defined (RISCV_MATH_LOOPUNROLL)
-#if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
+#if defined (NUCLEI_DSP_N1) || (__RISCV_XLEN == 64)
   /* Loop unrolling: Compute 8 outputs at a time */
   blkCnt = blockSize >> 3U;
 #else
@@ -92,7 +92,7 @@ void riscv_abs_q7(
 #if __RISCV_XLEN == 64
   write_q7x8_ia(&pDst, __RV_KABS8(read_q7x8_ia ((q7_t **) &pSrc)));
 #else
-#if defined (RISCV_DSP64)
+#if defined (NUCLEI_DSP_N1)
   write_q7x8_ia(&pDst, __RV_DKABS8(read_q7x8_ia ((q7_t **) &pSrc)));
 #else
   write_q7x4_ia(&pDst, __RV_KABS8(read_q7x4_ia ((q7_t **) &pSrc)));
@@ -108,12 +108,12 @@ void riscv_abs_q7(
     blkCnt--;
   }
 
-#if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
+#if defined (NUCLEI_DSP_N1) || (__RISCV_XLEN == 64)
   /* Loop unrolling: Compute remaining outputs */
   blkCnt = blockSize & 0x7U;
 #else
   blkCnt = blockSize & 0x3U;
-#endif /* defined (RISCV_DSP64) || (__RISCV_XLEN == 64) */
+#endif /* defined (NUCLEI_DSP_N1) || (__RISCV_XLEN == 64) */
 
 #else
 

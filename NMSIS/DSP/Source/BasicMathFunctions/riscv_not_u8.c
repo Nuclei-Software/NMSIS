@@ -68,7 +68,7 @@ void riscv_not_u8(
   }
 #else
 
-#if defined (RISCV_DSP64) || (__RISCV_XLEN == 64)
+#if defined (NUCLEI_DSP_N1) || (__RISCV_XLEN == 64)
 
     const uint64_t * pSrc_temp = (const uint64_t *)pSrc;
     uint64_t * pDst_temp = (uint64_t *)pDst;
@@ -104,7 +104,7 @@ void riscv_not_u8(
     {
         pSrc = (const uint8_t *)(pSrc_temp - 3);
     }
-#endif /*defined (RISCV_DSP64) || (__RISCV_XLEN == 64)*/
+#endif /*defined (NUCLEI_DSP_N1) || (__RISCV_XLEN == 64)*/
 
     while (blkCnt > 0U)
     {

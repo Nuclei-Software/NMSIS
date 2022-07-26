@@ -95,7 +95,7 @@ void riscv_negate_q15(
 #if __RISCV_XLEN == 64
     write_q15x4_ia(&pDst, __RV_KSUB16(0, read_q15x4_ia((q15_t **)&pSrc)));
 #else
-#ifdef RISCV_DSP64
+#ifdef NUCLEI_DSP_N1
     write_q15x4_ia(&pDst, __DKSUB16(0, read_q15x4_ia((q15_t **)&pSrc)));
 #else
 	  write_q15x2_ia(&pDst, __RV_KSUB16(0, read_q15x2_ia((q15_t **)&pSrc)));

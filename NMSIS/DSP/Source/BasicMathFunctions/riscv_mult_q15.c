@@ -120,7 +120,7 @@ void riscv_mult_q15(
 #if __RISCV_XLEN == 64
 	write_q15x4_ia(&pDst, __RV_KHM16(read_q15x4_ia((q15_t **)& pSrcA), read_q15x4_ia((q15_t**)&pSrcB)));
 #else
-#ifdef RISCV_DSP64
+#ifdef NUCLEI_DSP_N1
 	write_q15x4_ia(&pDst, __RV_DKHM16(read_q15x4_ia((q15_t **)& pSrcA), read_q15x4_ia((q15_t**)&pSrcB)));
 #else
 	write_q15x2_ia(&pDst, __RV_KHM16(read_q15x2_ia((q15_t **)& pSrcA), read_q15x2_ia((q15_t**)&pSrcB)));

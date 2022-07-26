@@ -26,7 +26,11 @@ option(SVDF                 "SVDF"                  ON)
 option(NNSUPPORT             "NN Support"           ON)
 
 option(LOOPUNROLL "option to enable unroll loop" ON)
-option(DSP64 "option to enable dsp 64" ON)
+# DSP64 option is removed, replaced by NUCLEI_DSP_N1
+# previous DSP64 means Nuclei DSP N1 extension is enabled
+option(NUCLEI_DSP_N1 "option to enable nuclei dsp n1 extension" ON)
+option(NUCLEI_DSP_N2 "option to enable nuclei dsp n2 extension" ON)
+option(NUCLEI_DSP_N3 "option to enable nuclei dsp n3 extension" ON)
 option(RISCV_ARCH "option to select riscv arch" rv32imafdc)
 option(RISCV_ABI "option to select riscv abi" ilp32d)
 option(RISCV_MODEL "option to select mcmodel" medany)
@@ -40,8 +44,18 @@ add_definitions(-g -O2 -ffunction-sections -fdata-sections)
 if(LOOPUNROLL)
     add_definitions(-DRISCV_MATH_LOOPUNROLL)
 endif()
-if(DSP64)
-    add_definitions(-DRISCV_DSP64)
+
+# only define N1/N2/N3 when riscv dsp extension enabled
+if(RISCV_ARCH MATCHES "p")
+    if(NUCLEI_DSP_N1)
+        add_definitions(-DNUCLEI_DSP_N1)
+    endif()
+    if(NUCLEI_DSP_N2)
+        add_definitions(-DNUCLEI_DSP_N2)
+    endif()
+    if(NUCLEI_DSP_N3)
+        add_definitions(-DNUCLEI_DSP_N3)
+    endif()
 endif()
 
 if(RISCV_UNALIGN)

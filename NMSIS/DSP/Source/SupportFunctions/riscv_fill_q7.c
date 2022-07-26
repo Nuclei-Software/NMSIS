@@ -79,7 +79,7 @@ void riscv_fill_q7(
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
 
-  #ifdef RISCV_DSP64
+  #ifdef NUCLEI_DSP_N1
   packedValue = __PACKq7(value, value, value, value);
   // packedValue = __RV_EXPD80(value);
   #else
