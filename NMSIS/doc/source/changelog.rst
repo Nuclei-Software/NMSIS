@@ -3,6 +3,45 @@
 Changelog
 =========
 
+V1.0.5-dev
+----------
+
+This is the version ``V1.0.5`` release of Nuclei MCU Software Interface Standard(NMSIS), which is still in development.
+
+* **NMSIS-Core**
+
+  - Add ``nmsis_bench.h`` for benchmark and hpm helper functions.
+  - Add hpm related API
+  - Update ``riscv_encoding.h`` for latest riscv changes.
+
+* **NMSIS-DSP**
+
+  - Sync with DSP library in CMSIS 5.9.0 release.
+  - Optimize with RVV for DSP library.
+
+* **NMSIS-NN**
+
+  - Sync with NN library in CMSIS 5.9.0 release.
+  - Optimize with RVV for NN library.
+
+* **Build System**
+
+  - **DSP64** is removed, and replaced by **NUCLEI_DSP_N1**, which means Nuclei DSP N1 extension present.
+  - **NUCLEI_DSP_N2** and **NUCLEI_DSP_N3** are introduced to standard for Nuclei DSP N2/N3 extension present.
+  - Add ``nmsis_help`` make target to show help message to build nmsis dsp/nn library.
+  - Add ``check_build`` and ``check_run`` make target for locally build or run on a small test suite configuration.
+  - Add fpga related test script located in ``Scripts/Configs/fpga/``.
+  - Fix bugs found in ``nlbuild.py`` script.
+
+* **Device Tempates**
+
+
+* **CI**
+
+  - Misc changes for github and gitlab ci, see commit history
+
+* **Documentation**
+
 V1.0.4
 ------
 
@@ -29,7 +68,7 @@ This is the version ``V1.0.4`` release of Nuclei MCU Software Interface Standard
   - Re-org NN_Lib_Tests to Tests
 
 * **Build System**
-   
+
   - Change minimal version of cmake to 3.14
   - Add REBUILD=0 to reuse previous generated Makefile
 
