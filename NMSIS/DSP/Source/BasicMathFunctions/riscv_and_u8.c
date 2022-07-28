@@ -97,7 +97,7 @@ void riscv_and_u8(
 #else
     const uint32_t * pSrcA_temp = (const uint32_t *)pSrcA;
     const uint32_t * pSrcB_temp = (const uint32_t *)pSrcB;
-    uint32_t * pDst_temp = pDst;
+    uint32_t * pDst_temp = (uint32_t *)pDst;
     if (blkCnt = blockSize >> 2)
     {
         while (blkCnt > 0U)

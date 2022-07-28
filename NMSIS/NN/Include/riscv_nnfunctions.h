@@ -98,7 +98,7 @@
 
 #include "riscv_math_types.h"
 #include "riscv_nn_types.h"
-
+#include "dsp/support_functions.h"
 #define USE_INTRINSIC
 
 //#define RISCV_NN_TRUNCATE /* This config the rounding model to floor or round to the nearest int */
