@@ -63,24 +63,32 @@ __HEAP_SIZE  = 0x00000800;
 
 /**************************** end of configuration section ********************/
 
+/* Define entry label of program */
+ENTRY(_start)
 /* Define base address and length of flash and ram */
 MEMORY
 {
   flash (rxa!w) : ORIGIN = __ROM_BASE, LENGTH = __ROM_SIZE
   ram (wxar) : ORIGIN = __RAM_BASE, LENGTH = __RAM_SIZE
 }
+
+REGION_ALIAS("ROM", flash)
+REGION_ALIAS("RAM", ram)
+
 /* Linker script to place sections and symbol values. Should be used together
  * with other linker script that defines memory regions FLASH,ILM and RAM.
  * It references following symbols, which must be defined in code:
  *   _start : Entry of reset handler
  *
  * It defines following symbols, which code can use without definition:
- *   _ilm_lma
- *   _ilm
- *   __etext
+ *   _ilm_lma ; deprecated
+ *   _ilm     ; deprecated
+ *   _eilm    ; deprecated
+ *   _text_lma
+ *   _text
  *   _etext
+ *   __etext
  *   etext
- *   _eilm
  *   __preinit_array_start
  *   __preinit_array_end
  *   __init_array_start
@@ -104,51 +112,45 @@ MEMORY
  *   __HEAP_SIZE
  *   __STACK_SIZE
  */
-/* Define entry label of program */
-ENTRY(_start)
+
 SECTIONS
 {
+  /* To provide symbol __STACK_SIZE, __HEAP_SIZE and __SMP_CPU_CNT */
+  PROVIDE(__STACK_SIZE = 2K);
+  PROVIDE(__HEAP_SIZE = 2K);
+  PROVIDE(__SMP_CPU_CNT = 1);
+  __TOT_STACK_SIZE = __STACK_SIZE * __SMP_CPU_CNT;
+
   .init           :
   {
-    /* vector table locate at flash */
+    /* vector table locate at ROM */
     *(.vtable)
     KEEP (*(SORT_NONE(.init)))
-  } >flash AT>flash
-
-  .ilalign         :
-  {
     . = ALIGN(4);
-    /* Create a section label as _ilm_lma which located at flash */
-    PROVIDE( _ilm_lma = . );
-  } >flash AT>flash
+  } >ROM AT>ROM
 
-  .ialign         :
-  {
-    . = ALIGN(4);
-    /* Create a section label as _ilm which located at flash */
-    PROVIDE( _ilm = . );
-  } >flash AT>flash
-
-  /* Code section located at flash */
+  /* Code section located at ROM */
   .text           :
   {
     *(.text.unlikely .text.unlikely.*)
     *(.text.startup .text.startup.*)
     *(.text .text.*)
     *(.gnu.linkonce.t.*)
-  } >flash AT>flash
-
-  .rodata : ALIGN(4)
-  {
-    . = ALIGN(4);
+    /* readonly data placed in ROM */
+    . = ALIGN(8);
+    *(.srodata.cst16)
+    *(.srodata.cst8)
+    *(.srodata.cst4)
+    *(.srodata.cst2)
+    *(.srodata .srodata.*)
     *(.rdata)
     *(.rodata .rodata.*)
-    /* section information for initial. */
+    *(.gnu.linkonce.r.*)
+    /* below sections are used for rt-thread */
     . = ALIGN(4);
     __rt_init_start = .;
     KEEP(*(SORT(.rti_fn*)))
     __rt_init_end = .;
-    /* section information for finsh shell */
     . = ALIGN(4);
     __fsymtab_start = .;
     KEEP(*(FSymTab))
@@ -157,26 +159,19 @@ SECTIONS
     __vsymtab_start = .;
     KEEP(*(VSymTab))
     __vsymtab_end = .;
-    *(.gnu.linkonce.r.*)
-    . = ALIGN(8);
-    *(.srodata.cst16)
-    *(.srodata.cst8)
-    *(.srodata.cst4)
-    *(.srodata.cst2)
-    *(.srodata .srodata.*)
-  } >flash AT>flash
+  } >ROM AT>ROM
 
   .fini           :
   {
     KEEP (*(SORT_NONE(.fini)))
-  } >flash AT>flash
+  } >ROM AT>ROM
 
   .preinit_array  :
   {
     PROVIDE_HIDDEN (__preinit_array_start = .);
     KEEP (*(.preinit_array))
     PROVIDE_HIDDEN (__preinit_array_end = .);
-  } >flash AT>flash
+  } >ROM AT>ROM
 
   .init_array     :
   {
@@ -184,7 +179,7 @@ SECTIONS
     KEEP (*(SORT_BY_INIT_PRIORITY(.init_array.*) SORT_BY_INIT_PRIORITY(.ctors.*)))
     KEEP (*(.init_array EXCLUDE_FILE (*crtbegin.o *crtbegin?.o *crtend.o *crtend?.o ) .ctors))
     PROVIDE_HIDDEN (__init_array_end = .);
-  } >flash AT>flash
+  } >ROM AT>ROM
 
   .fini_array     :
   {
@@ -192,7 +187,7 @@ SECTIONS
     KEEP (*(SORT_BY_INIT_PRIORITY(.fini_array.*) SORT_BY_INIT_PRIORITY(.dtors.*)))
     KEEP (*(.fini_array EXCLUDE_FILE (*crtbegin.o *crtbegin?.o *crtend.o *crtend?.o ) .dtors))
     PROVIDE_HIDDEN (__fini_array_end = .);
-  } >flash AT>flash
+  } >ROM AT>ROM
 
   .ctors          :
   {
@@ -216,7 +211,7 @@ SECTIONS
     KEEP (*(EXCLUDE_FILE (*crtend.o *crtend?.o ) .ctors))
     KEEP (*(SORT(.ctors.*)))
     KEEP (*(.ctors))
-  } >flash AT>flash
+  } >ROM AT>ROM
 
   .dtors          :
   {
@@ -225,27 +220,18 @@ SECTIONS
     KEEP (*(EXCLUDE_FILE (*crtend.o *crtend?.o ) .dtors))
     KEEP (*(SORT(.dtors.*)))
     KEEP (*(.dtors))
-  } >flash AT>flash
+  } >ROM AT>ROM
 
-  PROVIDE (__etext = .);
+  PROVIDE( _ilm_lma = LOADADDR(.text) );
+  PROVIDE( _ilm = ADDR(.text) );
+  PROVIDE( _eilm = . );
+  PROVIDE( _text_lma = LOADADDR(.text) );
+  PROVIDE( _text = ADDR(.text) );
   PROVIDE (_etext = .);
+  PROVIDE (__etext = .);
   PROVIDE (etext = .);
-  PROVIDE (_eilm = .);
 
-  .lalign         :
-  {
-    . = ALIGN(4);
-    PROVIDE( _data_lma = . );
-  } >flash AT>flash
-
-  .dalign         :
-  {
-    . = ALIGN(4);
-    PROVIDE( _data = . );
-  } >ram AT>flash
-
-  /* Define data section virtual address is ram and physical address is flash */
-  .data          :
+  .data            : ALIGN(8)
   {
     KEEP(*(.data.ctest*))
     *(.data .data.*)
@@ -254,15 +240,17 @@ SECTIONS
     PROVIDE( __global_pointer$ = . + 0x800 );
     *(.sdata .sdata.* .sdata*)
     *(.gnu.linkonce.s.*)
-  } >ram AT>flash
+    . = ALIGN(8);
+  } >RAM AT>ROM
 
-  . = ALIGN(8);
   .tdata           : ALIGN(8)
   {
     PROVIDE( __tls_base = . );
     *(.tdata .tdata.* .gnu.linkonce.td.*)
-  } >ram AT>flash
+  } >RAM AT>ROM
 
+  PROVIDE( _data_lma = LOADADDR(.data) );
+  PROVIDE( _data = ADDR(.data) );
   PROVIDE( _edata = . );
   PROVIDE( edata = . );
 
@@ -274,12 +262,12 @@ SECTIONS
     *(.tbss .tbss.* .gnu.linkonce.tb.*)
     *(.tcommon)
     PROVIDE( __tls_end = . );
-  } >ram AT>ram
+  } >RAM AT>RAM
 
   .tbss_space (NOLOAD) : ALIGN(8)
   {
     . = . + SIZEOF(.tbss);
-  } >ram AT>ram
+  } >RAM AT>RAM
 
   .bss (NOLOAD)   : ALIGN(8)
   {
@@ -289,7 +277,7 @@ SECTIONS
     *(.gnu.linkonce.b.*)
     *(COMMON)
     . = ALIGN(4);
-  } >ram AT>ram
+  } >RAM AT>RAM
 
   PROVIDE( _end = . );
   PROVIDE( end = . );
@@ -306,18 +294,18 @@ SECTIONS
     . += __HEAP_SIZE;
     . = ALIGN(16);
     PROVIDE( __heap_limit = . );
-  } >ram AT>ram
+  } >RAM AT>RAM
 
-  .stack ORIGIN(ram) + LENGTH(ram) - __STACK_SIZE (NOLOAD) :
+  .stack ORIGIN(RAM) + LENGTH(RAM) - __TOT_STACK_SIZE (NOLOAD) :
   {
     . = ALIGN(16);
     PROVIDE( _heap_end = . );
     PROVIDE( __heap_end = . );
     PROVIDE( __StackLimit = . );
     PROVIDE( __StackBottom = . );
-    . += __STACK_SIZE;
+    . += __TOT_STACK_SIZE;
     . = ALIGN(16);
     PROVIDE( __StackTop = . );
     PROVIDE( _sp = . );
-  } >ram AT>ram
+  } >RAM AT>RAM
 }

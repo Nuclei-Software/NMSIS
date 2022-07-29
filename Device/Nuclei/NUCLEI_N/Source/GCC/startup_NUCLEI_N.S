@@ -39,8 +39,8 @@
      */
     .section .vtable
 
-    .weak  eclic_msip_handler
-    .weak  eclic_mtip_handler
+    .weak eclic_msip_handler
+    .weak eclic_mtip_handler
     /* TODO: add vendor interrupt handlers */
 
     .globl vector_base
@@ -89,12 +89,38 @@ vector_base:
     DECLARE_INT_HANDLER     default_intexc_handler          /* 30: Interrupt 30 */
     DECLARE_INT_HANDLER     default_intexc_handler          /* 31: Interrupt 31 */
 
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 32: Interrupt 32 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 33: Interrupt 33 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 34: Interrupt 34 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 35: Interrupt 35 */
+
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 36: Interrupt 36 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 37: Interrupt 37 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 38: Interrupt 38 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 39: Interrupt 39 */
+
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 40: Interrupt 40 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 41: Interrupt 41 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 42: Interrupt 42 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 43: Interrupt 43 */
+
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 44: Interrupt 44 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 45: Interrupt 45 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 46: Interrupt 46 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 47: Interrupt 47 */
+
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 48: Interrupt 48 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 49: Interrupt 49 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 50: Interrupt 50 */
+    /* Please adjust the above part of interrupt definition code
+     * according to your device interrupt number and its configuration */
+
 
 /*** Startup Code Section ***/
     .section .init
 
     .globl _start
-    .type _start,@function
+    .type _start, @function
 
 /**
  * Reset Handler called on controller reset
@@ -110,7 +136,25 @@ _start:
     la gp, __global_pointer$
     la tp, __tls_base
     .option pop
+
+#if defined(SMP_CPU_CNT) && (SMP_CPU_CNT > 1)
+    /* Set correct sp for each cpu
+     * each stack size is __STACK_SIZE
+     * defined in linker script */
+    la t0, __STACK_SIZE
     la sp, _sp
+    csrr a0, CSR_MHARTID
+    li a1, 0
+1:
+    beq a0, a1, 2f
+    sub sp, sp, t0
+    addi a1, a1, 1
+    j 1b
+2:
+#else
+    /* Set correct sp for current cpu */
+    la sp, _sp
+#endif
 
     /*
      * Set the the NMI base mnvec to share
@@ -154,32 +198,45 @@ _start:
 
     /* ===== Startup Stage 2 ===== */
 
+    /* Enable FPU and Vector Unit if f/d/v exist in march */
 #if defined(__riscv_flen) && __riscv_flen > 0
-    /* Enable FPU */
+    /* Enable FPU, and set state to initial */
     li t0, MSTATUS_FS
+    csrc mstatus, t0
+    li t0, MSTATUS_FS_INITIAL
     csrs mstatus, t0
-    csrw fcsr, x0
+#endif
+
+#if defined(__riscv_vector)
+    /* Enable Vector, and set state to initial */
+    li t0, MSTATUS_VS
+    csrc mstatus, t0
+    li t0, MSTATUS_VS_INITIAL
+    csrs mstatus, t0
 #endif
 
     /* Enable mcycle and minstret counter */
     csrci CSR_MCOUNTINHIBIT, 0x5
 
-    /*
-     * Call vendor defined SystemInit to
-     * initialize the micro-controller system.
-     */
-    call SystemInit
+#if defined(SMP_CPU_CNT) && (SMP_CPU_CNT > 1)
+    csrr a0, CSR_MHARTID
+    /* TODO: make boot hard id configurable */
+    li a1, 0
+    bne a0, a1, __skip_init
+#endif
 
+__init_common:
     /* ===== Startup Stage 3 ===== */
     /*
-     * Load code section from FLASH to ILM
-     * when code LMA is different with VMA
+     * Load text section from CODE ROM to CODE RAM
+     * when text LMA is different with VMA
      */
-    la a0, _ilm_lma
-    la a1, _ilm
-    /* If the ILM phy-address same as the logic-address, then quit */
+    la a0, _text_lma
+    la a1, _text
+    /* If text LMA and VMA are equal
+     * then no need to copy text section */
     beq a0, a1, 2f
-    la a2, _eilm
+    la a2, _etext
     bgeu a1, a2, 2f
 
 1:
@@ -214,6 +271,16 @@ _start:
     bltu a0, a1, 1b
 2:
 
+.globl _start_premain
+.type _start_premain, @function
+_start_premain:
+    /*
+     * Call vendor defined SystemInit to
+     * initialize the micro-controller system
+     * SystemInit will just be called by boot cpu
+     */
+    call SystemInit
+
     /* Call global constructors */
     la a0, __libc_fini_array
     call atexit
@@ -221,6 +288,15 @@ _start:
     call __libc_init_array
 
     /* do pre-init steps before main */
+__skip_init:
+    /* Sync all harts at this function */
+    call __sync_harts
+
+    /* do pre-init steps before main */
+    /* _premain_init will be called by each cpu
+     * please make sure the implementation of __premain_int
+     * considered this
+     */
     call _premain_init
 
     /*
@@ -236,20 +312,65 @@ _start:
     csrc CSR_MTVEC, t0
     csrs CSR_MTVEC, 0x3
 
-    /* ===== Call Main Function  ===== */
+    /* BPU cold bringup need time, so enable BPU before enter to main */
+    li t0, MMISC_CTL_BPU
+    csrs CSR_MMISC_CTL, t0
+
+    /* ===== Call SMP Main Function  ===== */
     /* argc = argv = 0 */
     li a0, 0
     li a1, 0
+#if defined(SMP_CPU_CNT) && (SMP_CPU_CNT > 1)
+    /* The weak implementation of smp_main is in this file */
+    call smp_main
+#else
+#ifdef RTOS_RTTHREAD
+    // Call entry function when using RT-Thread
+    call entry
+#else
     call main
-    /* do post-main steps after main */
+#endif
+#endif
+    /* do post-main steps after main
+     * this function will be called by each cpu */
     call _postmain_fini
 
 1:
     j 1b
 
+#if defined(SMP_CPU_CNT) && (SMP_CPU_CNT > 1)
+/*
+ * You can re-implement smp_main function in your code
+ * to do smp boot process and handle multi harts
+ */
+.weak smp_main
+.type smp_main, @function
+smp_main:
+    addi sp, sp, -2*REGBYTES
+    STORE ra, 0*REGBYTES(sp)
+    /* only boot hart goto main, other harts do wfi */
+    csrr t0, mhartid
+    li t1, 0
+    beq t0, t1, 2f
+1:
+    wfi
+    j 1b
+2:
+#ifdef RTOS_RTTHREAD
+    // Call entry function when using RT-Thread
+    call entry
+#else
+    call main
+#endif
+    LOAD ra, 0*REGBYTES(sp)
+    addi sp, sp, 2*REGBYTES
+    ret
+#endif
+
 /* Early boot exception entry before main */
 .align 6
 .global early_exc_entry
+.type early_exc_entry, @function
 early_exc_entry:
     wfi
     j early_exc_entry

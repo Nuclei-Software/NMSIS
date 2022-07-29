@@ -30,7 +30,9 @@
 /*----------------------------------------------------------------------------
   Define clocks
  *----------------------------------------------------------------------------*/
-#define XTAL            (1000000U)       /* Oscillator frequency             */
+/* TODO: add here your necessary defines for device initialization
+         following is an example for different system frequencies */
+#define XTAL            (12000000U)       /* Oscillator frequency             */
 
 #define SYSTEM_CLOCK    (5 * XTAL)
 
@@ -72,6 +74,9 @@
 /*----------------------------------------------------------------------------
   System Core Clock Variable
  *----------------------------------------------------------------------------*/
+/* TODO: initialize SystemCoreClock with the system core clock frequency value
+         achieved after system initialization.
+         This means system core clock frequency after call to SystemInit() */
 /**
  * \brief      Variable to hold the system core clock value
  * \details
@@ -100,6 +105,11 @@ volatile uint32_t SystemCoreClock = SYSTEM_CLOCK;  /* System Clock Frequency (Co
  */
 void SystemCoreClockUpdate (void)  /* Get Core Clock Frequency */
 {
+    /* TODO: add code to calculate the system frequency based upon the current
+     *    register settings.
+     * Note: This function can be used to retrieve the system core clock frequeny
+     *    after user changed register settings.
+     */
     SystemCoreClock = SYSTEM_CLOCK;
 }
 
@@ -113,6 +123,10 @@ void SystemCoreClockUpdate (void)  /* Get Core Clock Frequency */
  */
 void SystemInit (void)
 {
+    /* TODO: add code to initialize the system
+     * Warn: do not use global variables because this function is called before
+     * reaching pre-main. RW section maybe overwritten afterwards.
+     */
     SystemCoreClock = SYSTEM_CLOCK;
 }
 
@@ -141,7 +155,7 @@ static unsigned long SystemExceptionHandlers[MAX_SYSTEM_EXCEPTION_NUM+1];
 /**
  * \brief      Exception Handler Function Typedef
  * \note
- * This typedef is only used internal in this system_NUCLEI_N.c file.
+ * This typedef is only used internal in this system_<Device>.c file.
  * It is used to do type conversion for registered exception handler before calling it.
  */
 typedef void (*EXC_HANDLER) (unsigned long mcause, unsigned long sp);
@@ -154,9 +168,11 @@ typedef void (*EXC_HANDLER) (unsigned long mcause, unsigned long sp);
  */
 static void system_default_exception_handler(unsigned long mcause, unsigned long sp)
 {
+    /* TODO: Uncomment this if you have implement printf function.
+     * Or you can implement your own version as you like */
     //printf("MCAUSE: 0x%lx\r\n", mcause);
     //printf("MEPC  : 0x%lx\r\n", __RV_CSR_READ(CSR_MEPC));
-    //printf("MTVAL : 0x%lx\r\n", __RV_CSR_READ(CSR_MBADADDR));
+    //printf("MTVAL : 0x%lx\r\n", __RV_CSR_READ(CSR_MTVAL));
     Exception_DumpFrame(sp);
     while(1);
 }
@@ -274,7 +290,12 @@ uint32_t core_exception_handler(unsigned long mcause, unsigned long sp)
  */
 void ECLIC_Init(void)
 {
+    /* Global Configuration about MTH and NLBits.
+     * TODO: Please adapt it according to your system requirement.
+     * This function is called in _init function */
+    /* Set CSR MTH to zero */
     ECLIC_SetMth(0);
+    /* Set Nlbits to the CLICINTCTLBITS, all the bits are level bits */
     ECLIC_SetCfgNlbits(__ECLIC_INTCTLBITS);
 }
 
@@ -321,6 +342,62 @@ int32_t ECLIC_Register_IRQ(IRQn_Type IRQn, uint8_t shv, ECLIC_TRIGGER_Type trig_
 /** @} */ /* End of Doxygen Group NMSIS_Core_ExceptionAndNMI */
 
 /**
+ * \brief Synchronize all harts
+ * \details
+ * This function is used to synchronize all the harts,
+ * especially to wait the boot hart finish initialization of
+ * data section, bss section and c runtines initialization
+ * This function must be placed in .init section, since
+ * section initialization is not ready, global variable
+ * and static variable should be avoid to use in this function,
+ * and avoid to call other functions
+ */
+#define CLINT_MSIP(base, hartid)    (*(volatile uint32_t *)((uintptr_t)((base) + ((hartid) * 4))))
+#define SMP_CTRLREG(base, ofs)      (*(volatile uint32_t *)((uintptr_t)((base) + (ofs))))
+
+__attribute__((section(".init"))) void __sync_harts(void)
+{
+// Only do synchronize when SMP_CPU_CNT is defined and number > 0
+#if defined(SMP_CPU_CNT) && (SMP_CPU_CNT > 1)
+    unsigned long hartid = __RV_CSR_READ(CSR_MHARTID);
+    unsigned long clint_base, irgb_base, smp_base;
+    unsigned long mcfg_info;
+
+    mcfg_info = __RV_CSR_READ(CSR_MCFG_INFO);
+    if (mcfg_info & MCFG_INFO_IREGION_EXIST) { // IRegion Info present
+        // clint base = system timer base + 0x1000
+        irgb_base = (__RV_CSR_READ(CSR_MIRGB_INFO) >> 10) << 10;
+        clint_base = irgb_base + 0x30000 + 0x1000;
+        smp_base = irgb_base + 0x40000;
+    } else {
+        // TODO: Change clint_base to your real address
+        // system timer base for evalsoc is 0x02000000
+        clint_base = 0x02000000 + 0x1000;
+        smp_base = (__RV_CSR_READ(CSR_MSMPCFG_INFO) >> 4) << 4;
+    }
+    // Enable SMP and L2
+    SMP_CTRLREG(smp_base, 0xc) = 0xFFFFFFFF;
+    SMP_CTRLREG(smp_base, 0x10) = 0x1;
+    __SMP_RWMB();
+
+    // pre-condition: interrupt must be disabled, this is done before calling this function
+    if (hartid == 0) { // boot hart
+        // clear msip pending
+        for (int i = 0; i < SMP_CPU_CNT; i ++) {
+            CLINT_MSIP(clint_base, i) = 0;
+        }
+        __SMP_RWMB();
+    } else {
+        // Set machine software interrupt pending to 1
+        CLINT_MSIP(clint_base, hartid) = 1;
+        __SMP_RWMB();
+        // wait for pending bit cleared by boot hart
+        while (CLINT_MSIP(clint_base, hartid) == 1);
+    }
+#endif
+}
+
+/**
  * \brief early init function before main
  * \details
  * This function is executed right before main function.
@@ -332,20 +409,27 @@ void _premain_init(void)
 {
     /* TODO: Add your own initialization code here, called before main  */
     /* __ICACHE_PRESENT and __DCACHE_PRESENT are defined in <Device>.h */
+    unsigned long hartid = __RV_CSR_READ(CSR_MHARTID);
 #if defined(__ICACHE_PRESENT) && __ICACHE_PRESENT == 1
     EnableICache();
 #endif
 #if defined(__DCACHE_PRESENT) && __DCACHE_PRESENT == 1
     EnableDCache();
 #endif
-    // TODO: Add code to set the system clock frequency value SystemCoreClock
 
-    // TODO: Add code to initialize necessary gpio and basic uart for debug print
+    /* Do fence and fence.i to make sure previous ilm/dlm/icache/dcache control done */
+    __RWMB();
+    __FENCE_I();
 
-    /* Initialize exception default handlers */
-    Exception_Init();
-    /* ECLIC initialization, mainly MTH and NLBIT settings */
-    ECLIC_Init();
+    if (hartid == 0) { // only required for boot hartid
+        // TODO: Add code to set the system clock frequency value SystemCoreClock
+
+        // TODO: Add code to initialize necessary gpio and basic uart for debug print
+        /* Initialize exception default handlers */
+        Exception_Init();
+        /* ECLIC initialization, mainly MTH and NLBIT settings */
+        ECLIC_Init();
+    }
 }
 
 /**
