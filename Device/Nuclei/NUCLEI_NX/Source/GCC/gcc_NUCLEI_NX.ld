@@ -69,7 +69,7 @@ ENTRY(_start)
 MEMORY
 {
   flash (rxa!w) : ORIGIN = __ROM_BASE, LENGTH = __ROM_SIZE
-  ram (wxar) : ORIGIN = __RAM_BASE, LENGTH = __RAM_SIZE
+  ram (wxa!r) : ORIGIN = __RAM_BASE, LENGTH = __RAM_SIZE
 }
 
 REGION_ALIAS("ROM", flash)
