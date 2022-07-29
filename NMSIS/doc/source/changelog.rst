@@ -35,6 +35,7 @@ This is the version ``V1.0.5`` release of Nuclei MCU Software Interface Standard
 
 * **Device Tempates**
 
+  - Update Device templates to support SMP and new linker script changes to align with Nuclei SDK 0.3.9
 
 * **CI**
 

@@ -30,14 +30,15 @@ Stage1: Interrupt and Exception initialization
 
 Stage2: Hardware initialization
   * Enable FPU if necessary
-  * Call user defined :cpp:func:`SystemInit` for system clock initialization.
 
 Stage3: Section initialization
   * Copy section, e.g. data section, text section if necessary.
   * Clear Block Started by Symbol (BSS) section
+  * Call user defined :cpp:func:`SystemInit` for system clock initialization.
   * Call ``__libc_fini_array`` and ``__libc_init_array`` functions to do C library initialization
   * Call ``_premain_init`` function to do initialization steps before main function
   * Initialize exception entry to exception entry in ``intexc_<Device>.S``
+  * Enable BPU of Nuclei CPU
   * Jump Main
 
 
