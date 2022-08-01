@@ -82,7 +82,7 @@ extern "C"
     #define __RISCV_FEATURE_VECTOR 1
 #endif
 
-#if (defined (__riscv_bitmainp))
+#if (defined (__riscv_bitmanip))
     #define __BITMANIP_PRESENT      1
     #undef __RISCV_FEATURE_BITMANIP
     #define __RISCV_FEATURE_BITMANIP 1
@@ -114,7 +114,7 @@ extern "C"
 #endif
 
 /* evaluate RISCV Bitmanip feature */
-#if (defined(__riscv_bitmainp))
+#if (defined(__riscv_bitmanip))
   #define RISCV_MATH_BITMANIP               1
 #endif
 
