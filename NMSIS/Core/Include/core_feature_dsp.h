@@ -1752,11 +1752,11 @@ __STATIC_FORCEINLINE long __RV_KADDH(int a, int b)
  * Rd = SE(res[31:0]) // RV64
  * ~~~
  *
- * \param [in]  a    int type of value stored in a
- * \param [in]  b    int type of value stored in b
+ * \param [in]  a    long type of value stored in a
+ * \param [in]  b    long type of value stored in b
  * \return value stored in long type
  */
-__STATIC_FORCEINLINE long __RV_KADDW(int a, int b)
+__STATIC_FORCEINLINE long __RV_KADDW(long a, long b)
 {
     register long result;
     __ASM volatile("kaddw %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
@@ -18560,63 +18560,63 @@ __STATIC_FORCEINLINE unsigned long __RV_EXPD83(unsigned long a)
 /** \brief Dual 16-bit signed multiply with exchange returning difference. */
 #define __SMUSDX(x, y)              __RV_SMXDS((y), (x))
 /** \brief Q setting sum of dual 16-bit signed multiply with exchange. */
-__STATIC_FORCEINLINE int32_t __SMUADX (int32_t op1, int32_t op2)
+__STATIC_FORCEINLINE long __SMUADX (unsigned long op1, unsigned long op2)
 {
-    return (int32_t)__RV_KMXDA(op1, op2);
+    return __RV_KMXDA(op1, op2);
 }
 /** \brief Q setting saturating add. */
 #define __QADD(x, y)                __RV_KADDW((x), (y))
 /** \brief Q setting saturating subtract. */
 #define __QSUB(x, y)                __RV_KSUBW((x), (y))
 /** \brief Q setting dual 16-bit signed multiply with single 32-bit accumulator. */
-__STATIC_FORCEINLINE int32_t __SMLAD(int32_t op1, int32_t op2, int32_t op3)
+__STATIC_FORCEINLINE long __SMLAD(unsigned long op1, unsigned long op2, long op3)
 {
-    return (int32_t)__RV_KMADA(op3, op1, op2);
+    return __RV_KMADA(op3, op1, op2);
 }
 /** \brief Q setting pre-exchanged dual 16-bit signed multiply with single 32-bit accumulator.  */
-__STATIC_FORCEINLINE int32_t __SMLADX(int32_t op1, int32_t op2, int32_t op3)
+__STATIC_FORCEINLINE long __SMLADX(unsigned long op1, unsigned long op2, long op3)
 {
-    return (int32_t)__RV_KMAXDA(op3, op1, op2);
+    return __RV_KMAXDA(op3, op1, op2);
 }
 /** \brief Q setting dual 16-bit signed multiply with exchange subtract with 32-bit accumulate.  */
-__STATIC_FORCEINLINE int32_t __SMLSDX(int32_t op1, int32_t op2, int32_t op3)
+__STATIC_FORCEINLINE long __SMLSDX(unsigned long op1, unsigned long op2, long op3)
 {
-    return (op3 - (int32_t)__RV_SMXDS(op1, op2));
+    return (op3 - __RV_SMXDS(op1, op2));
 }
 /** \brief Dual 16-bit signed multiply with single 64-bit accumulator. */
-__STATIC_FORCEINLINE int64_t __SMLALD(int32_t op1, int32_t op2, int64_t acc)
+__STATIC_FORCEINLINE long long __SMLALD(unsigned long op1, unsigned long op2, long long acc)
 {
-    return (int64_t)__RV_SMALDA(acc, op1, op2);
+    return __RV_SMALDA(acc, op1, op2);
 }
 /** \brief Dual 16-bit signed multiply with exchange with single 64-bit accumulator.  */
-__STATIC_FORCEINLINE int64_t __SMLALDX(int32_t op1, int32_t op2, int64_t acc)
+__STATIC_FORCEINLINE long long __SMLALDX(unsigned long op1, unsigned long op2, long long acc)
 {
-    return (int64_t)__RV_SMALXDA(acc, op1, op2);
+    return __RV_SMALXDA(acc, op1, op2);
 }
 /** \brief Q setting sum of dual 16-bit signed multiply. */
-__STATIC_FORCEINLINE int32_t __SMUAD(int32_t op1, int32_t op2)
+__STATIC_FORCEINLINE long __SMUAD(unsigned long op1, unsigned long op2)
 {
-    return (int32_t)__RV_KMDA(op1, op2);
+    return __RV_KMDA(op1, op2);
 }
 /** \brief Dual 16-bit signed multiply returning difference. */
-__STATIC_FORCEINLINE int32_t __SMUSD(int32_t op1, int32_t op2)
+__STATIC_FORCEINLINE long __SMUSD(unsigned long op1, unsigned long op2)
 {
-    return (int32_t)__RV_SMDRS(op1, op2);
+    return __RV_SMDRS(op1, op2);
 }
 /** \brief Dual extract 8-bits and sign extend each to 16-bits. */
 #define __SXTB16(x)             __RV_SUNPKD820(x)
 /** \brief Dual extracted 8-bit to 16-bit signed addition. TODO Need test */
-__STATIC_FORCEINLINE int32_t __SXTAB16(uint32_t op1, uint32_t op2)
+__STATIC_FORCEINLINE unsigned long __SXTAB16(unsigned long op1, unsigned long op2)
 {
     return __RV_ADD16(op1, __RV_SUNPKD820(op2));
 }
 #define __SXTAB16_RORn(ARG1, ARG2, ROTATE)        __SXTAB16(ARG1, __ROR(ARG2, ROTATE))
 
 /** \brief 32-bit signed multiply with 32-bit truncated accumulator. */
-__STATIC_FORCEINLINE int32_t __SMMLA(int32_t op1, int32_t op2, int32_t op3)
+__STATIC_FORCEINLINE long __SMMLA(long op1, long op2, long op3)
 {
-    int32_t mul;
-    mul = (int32_t)__RV_SMMUL(op1, op2);
+    long mul;
+    mul = __RV_SMMUL(op1, op2);
     return (op3 + mul);
 }
 #define __DKHM8                 __RV_DKHM8
