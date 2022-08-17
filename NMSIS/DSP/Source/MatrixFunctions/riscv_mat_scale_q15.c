@@ -157,7 +157,7 @@ riscv_status riscv_mat_scale_q15(
       *pOut++ = (q15_t) (__SSAT(((q31_t) (*pIn++) * scaleFract) >> kShift, 16));
       *pOut++ = (q15_t) (__SSAT(((q31_t) (*pIn++) * scaleFract) >> kShift, 16));
       *pOut++ = (q15_t) (__SSAT(((q31_t) (*pIn++) * scaleFract) >> kShift, 16));
-#endif
+#endif /* defined (RISCV_MATH_DSP) */
 
       /* Decrement loop counter */
       blkCnt--;

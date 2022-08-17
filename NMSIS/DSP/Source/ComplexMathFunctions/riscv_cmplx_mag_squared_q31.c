@@ -75,9 +75,11 @@ void riscv_cmplx_mag_squared_q31(
     pDst += l;
   }
 #else
-        uint32_t blkCnt;                               /* Loop counter */
-        q31_t real, imag;                              /* Temporary input variables */
-        q31_t acc0, acc1;                              /* Accumulators */
+
+  uint32_t blkCnt;                               /* Loop counter */
+  q31_t real, imag;                              /* Temporary input variables */
+  q31_t acc0, acc1;                              /* Accumulators */
+
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -95,7 +97,7 @@ void riscv_cmplx_mag_squared_q31(
 	acc1 = (q31_t) (__RV_MULSR64(imag, imag) >> 33);
 #else
 	acc0 = (q31_t) (((q63_t) real * real) >> 33);
-  acc1 = (q31_t) (((q63_t) imag * imag) >> 33);
+    acc1 = (q31_t) (((q63_t) imag * imag) >> 33);
 #endif
 
     /* store the result in 3.29 format in the destination buffer. */
@@ -109,7 +111,7 @@ void riscv_cmplx_mag_squared_q31(
 	acc1 = (q31_t) (__RV_MULSR64(imag, imag) >> 33);
 #else
 	acc0 = (q31_t) (((q63_t) real * real) >> 33);
-  acc1 = (q31_t) (((q63_t) imag * imag) >> 33);
+    acc1 = (q31_t) (((q63_t) imag * imag) >> 33);
 #endif
 
     *pDst++ = acc0 + acc1;
@@ -135,7 +137,7 @@ void riscv_cmplx_mag_squared_q31(
 	acc1 = (q31_t) (__RV_MULSR64(imag, imag) >> 33);
 #else
 	acc0 = (q31_t) (((q63_t) real * real) >> 33);
-  acc1 = (q31_t) (((q63_t) imag * imag) >> 33);
+    acc1 = (q31_t) (((q63_t) imag * imag) >> 33);
 #endif
 
     *pDst++ = acc0 + acc1;

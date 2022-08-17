@@ -647,7 +647,7 @@ riscv_status riscv_mat_inverse_f32(
             *pOutT1 = *pOutT1 - (in * *pPRT_pDst++);
             pOutT1++;
           }
-#endif
+#endif /* defined (RISCV_MATH_VECTOR) */
         }
 
         /* Increment temporary input pointer */

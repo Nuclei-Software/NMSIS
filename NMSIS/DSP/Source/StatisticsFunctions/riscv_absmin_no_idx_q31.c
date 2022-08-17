@@ -129,31 +129,32 @@ void riscv_absmin_no_idx_q31(
         uint32_t blockSize,
         q31_t * pResult)
 {
-        q31_t minVal, out;                             /* Temporary variables to store the output value. */
-        uint32_t blkCnt;                     /* Loop counter */
+  q31_t minVal, out; /* Temporary variables to store the output value. */
+  uint32_t blkCnt;   /* Loop counter */
 
   /* Load first input value that act as reference value for comparision */
   out = (*pSrc > 0) ? *pSrc : ((*pSrc == INT32_MIN) ? INT32_MAX : -*pSrc);
 #if defined(RISCV_MATH_VECTOR)
-    blkCnt = blockSize;
-    size_t l;
-    vint32m8_t v_x, v_zero;
-    vint32m1_t v_temp;
-    const q31_t *pData = pSrc;
+  blkCnt = blockSize;
+  size_t l;
+  vint32m8_t v_x, v_zero;
+  vint32m1_t v_temp;
+  const q31_t *pData = pSrc;
 
-    l = vsetvlmax_e32m8();
-    v_zero = vmv_v_x_i32m8(0, l);
-    l = vsetvlmax_e32m1();
-    v_temp = vmv_v_x_i32m1(out, l);
+  l = vsetvlmax_e32m8();
+  v_zero = vmv_v_x_i32m8(0, l);
+  l = vsetvlmax_e32m1();
+  v_temp = vmv_v_x_i32m1(out, l);
 
-    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-        v_x = vle32_v_i32m8(pData, l);
-        pData += l;
-        vbool4_t mask = vmslt_vx_i32m8_b4(v_x, 0, l);
-        v_x = vssub_vv_i32m8_m(mask, v_x, v_zero, v_x, l);
-        v_temp = vredmin_vs_i32m8_i32m1(v_temp, v_x, v_temp, l);
-    }
-    out = vmv_x_s_i32m1_i32(v_temp);
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+  {
+    v_x = vle32_v_i32m8(pData, l);
+    pData += l;
+    vbool4_t mask = vmslt_vx_i32m8_b4(v_x, 0, l);
+    v_x = vssub_vv_i32m8_m(mask, v_x, v_zero, v_x, l);
+    v_temp = vredmin_vs_i32m8_i32m1(v_temp, v_x, v_temp, l);
+  }
+  out = vmv_x_s_i32m1_i32(v_temp);
 #else
   pSrc++;
 

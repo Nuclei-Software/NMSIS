@@ -31,12 +31,16 @@
   @ingroup groupTransforms
  */
 
+
 /**
   @addtogroup MFCC
   @{
  */
 
+
 #include "dsp/transform_functions.h"
+
+
 
 /**
   @brief         Initialization of the MFCC F32 instance structure
@@ -60,41 +64,45 @@
                    and on a given number of FFT bins (the filter length).
                    It is the reason for the arrays filterPos and filterLengths.
 
-                   window coefficients can describe (for instance) a Hamming
-  window. The array has the same size as the FFT length.
+                   window coefficients can describe (for instance) a Hamming window.
+                   The array has the same size as the FFT length.
 
-                   The folder Scripts is containing a Python script which can be
-  used to generate the filter, dct and window arrays.
+                   The folder Scripts is containing a Python script which can be used
+                   to generate the filter, dct and window arrays.
  */
 
-riscv_status riscv_mfcc_init_q31(riscv_mfcc_instance_q31 *S, uint32_t fftLen,
-                                 uint32_t nbMelFilters, uint32_t nbDctOutputs,
-                                 const q31_t *dctCoefs,
-                                 const uint32_t *filterPos,
-                                 const uint32_t *filterLengths,
-                                 const q31_t *filterCoefs,
-                                 const q31_t *windowCoefs)
+riscv_status riscv_mfcc_init_q31(
+  riscv_mfcc_instance_q31 * S,
+  uint32_t fftLen,
+  uint32_t nbMelFilters,
+  uint32_t nbDctOutputs,
+  const q31_t *dctCoefs,
+  const uint32_t *filterPos,
+  const uint32_t *filterLengths,
+  const q31_t *filterCoefs,
+  const q31_t *windowCoefs
+  )
 {
-    riscv_status status;
-    S->fftLen = fftLen;
-    S->nbMelFilters = nbMelFilters;
-    S->nbDctOutputs = nbDctOutputs;
-    S->dctCoefs = dctCoefs;
-    S->filterPos = filterPos;
-    S->filterLengths = filterLengths;
-    S->filterCoefs = filterCoefs;
-    S->windowCoefs = windowCoefs;
+ riscv_status status;
 
-#if defined(RISCV_MFCC_CFFT_BASED)
-    status = riscv_cfft_init_q31(&(S->cfft), fftLen);
-#else
-    status = riscv_rfft_init_q31(&(S->rfft), fftLen, 0, 1);
-#endif
+ S->fftLen=fftLen;
+ S->nbMelFilters=nbMelFilters;
+ S->nbDctOutputs=nbDctOutputs;
+ S->dctCoefs=dctCoefs;
+ S->filterPos=filterPos;
+ S->filterLengths=filterLengths;
+ S->filterCoefs=filterCoefs;
+ S->windowCoefs=windowCoefs;
 
-    return (status);
+ #if defined(RISCV_MFCC_CFFT_BASED)
+ status=riscv_cfft_init_q31(&(S->cfft),fftLen);
+ #else
+ status=riscv_rfft_init_q31(&(S->rfft),fftLen,0,1);
+ #endif
+
+ return(status);
 }
 
 /**
   @} end of MFCC group
  */
-

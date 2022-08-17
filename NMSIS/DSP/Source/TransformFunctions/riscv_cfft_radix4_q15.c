@@ -1007,28 +1007,24 @@ void riscv_radix4_butterfly_inverse_q15(
 #if __RISCV_XLEN == 64
     T = __RV_SRA16(T, 2); /* this is just a SIMD arithmetic shift right by 1 */
 #else
-    T = __RV_RADD16(T, 0); /* this is just a SIMD arithmetic shift right by 1 */
-    T = __RV_RADD16(T, 0); /* it turns out doing this twice is 2 cycles, the alternative takes 3 cycles */
+    T = __SHADD16(T, 0); /* this is just a SIMD arithmetic shift right by 1 */
+    T = __SHADD16(T, 0); /* it turns out doing this twice is 2 cycles, the alternative takes 3 cycles */
 #endif /* __RISCV_XLEN == 64 */
-/*
-    in = ((int16_t) (T & 0xFFFF)) >> 2;       // alternative code that takes 3 cycles
-     T = ((T >> 2) & 0xFFFF0000) | (in & 0xFFFF);
-*/
 
     /* Read yc (real), xc(imag) input */
     S = read_q15x2 (pSi2);
 #if __RISCV_XLEN == 64
     S = __RV_SRA16(S, 2); /* this is just a SIMD arithmetic shift right by 1 */
 #else
-    S = __RV_RADD16(S, 0);
-    S = __RV_RADD16(S, 0);
+    S = __SHADD16(S, 0);
+    S = __SHADD16(S, 0);
 #endif /* __RISCV_XLEN == 64 */
 
     /* R = packed((ya + yc), (xa + xc) ) */
-    R = __RV_KADD16(T, S);
+    R = __QADD16(T, S);
 
     /* S = packed((ya - yc), (xa - xc) ) */
-    S = __RV_KSUB16(T, S);
+    S = __QSUB16(T, S);
 
     /*  Reading i0+fftLen/4 , i0+3fftLen/4 inputs */
     /* Read yb (real), xb(imag) input */
@@ -1036,36 +1032,36 @@ void riscv_radix4_butterfly_inverse_q15(
 #if __RISCV_XLEN == 64
     T = __RV_SRA16(T, 2); /* this is just a SIMD arithmetic shift right by 1 */
 #else
-    T = __RV_RADD16(T, 0);
-    T = __RV_RADD16(T, 0);
+    T = __SHADD16(T, 0);
+    T = __SHADD16(T, 0);
 #endif /* __RISCV_XLEN == 64 */
     /* Read yd (real), xd(imag) input */
     U = read_q15x2 (pSi3);
 #if __RISCV_XLEN == 64
     U = __RV_SRA16(U, 2); /* this is just a SIMD arithmetic shift right by 1 */
 #else
-    U = __RV_RADD16(U, 0);
-    U = __RV_RADD16(U, 0);
+    U = __SHADD16(U, 0);
+    U = __SHADD16(U, 0);
 #endif /* __RISCV_XLEN == 64 */
     /* T = packed((yb + yd), (xb + xd) ) */
-    T = __RV_KADD16(T, U);
+    T = __QADD16(T, U);
 
 
     /*  writing the butterfly processed i0 sample */
     /* xa' = xa + xb + xc + xd */
     /* ya' = ya + yb + yc + yd */
-    write_q15x2_ia (&pSi0, __RV_RADD16(R, T));
+    write_q15x2_ia (&pSi0, __SHADD16(R, T));
 
     /* R = packed((ya + yc) - (yb + yd), (xa + xc)- (xb + xd)) */
-    R = __RV_KSUB16(R, T);
+    R = __QSUB16(R, T);
 
     /* co2 & si2 are read from SIMD Coefficient pointer */
     C2 = read_q15x2 ((q15_t *) pCoef16 + (4U * ic));
 
     /* xc' = (xa-xb+xc-xd)* co2 + (ya-yb+yc-yd)* (si2) */
-    out1 = __RV_KMDA(C2, R) >> 16U;
+    out1 = __SMUSD(C2, R) >> 16U;
     /* yc' = (ya-yb+yc-yd)* co2 - (xa-xb+xc-xd)* (si2) */
-    out2 = __RV_KMXDA(C2, R);
+    out2 = __SMUADX(C2, R);
 
     /*  Reading i0+fftLen/4 */
     /* T = packed(yb, xb) */
@@ -1073,8 +1069,8 @@ void riscv_radix4_butterfly_inverse_q15(
 #if __RISCV_XLEN == 64
     T = __RV_SRA16(T, 2); /* this is just a SIMD arithmetic shift right by 1 */
 #else
-    T = __RV_RADD16(T, 0);
-    T = __RV_RADD16(T, 0);
+    T = __SHADD16(T, 0);
+    T = __SHADD16(T, 0);
 #endif /* __RISCV_XLEN == 64 */
     /* writing the butterfly processed i0 + fftLen/4 sample */
     /* writing output(xc', yc') in little endian format */
@@ -1086,25 +1082,25 @@ void riscv_radix4_butterfly_inverse_q15(
 #if __RISCV_XLEN == 64
     U = __RV_SRA16(U, 2); /* this is just a SIMD arithmetic shift right by 1 */
 #else
-    U = __RV_RADD16(U, 0);
-    U = __RV_RADD16(U, 0);
+    U = __SHADD16(U, 0);
+    U = __SHADD16(U, 0);
 #endif /* __RISCV_XLEN == 64 */
     /* T = packed(yb-yd, xb-xd) */
-    T = __RV_KSUB16(T, U);
+    T = __QSUB16(T, U);
 
     /* R = packed((ya-yc) + (xb- xd) , (xa-xc) - (yb-yd)) */
-    R = __RV_KCRAS16(S, T);
-    /* S = packed((ya-yc) - (xb- xd),  (xa-xc) + (yb-yd)) */
-    S = __RV_KCRSA16(S, T);
+    R = __QSAX(S, T);
+    /* S = packed((ya-yc) + (xb- xd),  (xa-xc) - (yb-yd)) */
+    S = __QASX(S, T);
 
     /* co1 & si1 are read from SIMD Coefficient pointer */
     C1 = read_q15x2 ((q15_t *) pCoef16 + (2U * ic));
     /*  Butterfly process for the i0+fftLen/2 sample */
 
     /* xb' = (xa+yb-xc-yd)* co1 + (ya-xb-yc+xd)* (si1) */
-    out1 = __RV_KMDA(C1, S) >> 16U;
+    out1 = __SMUSD(C1, S) >> 16U;
     /* yb' = (ya-xb-yc+xd)* co1 - (xa+yb-xc-yd)* (si1) */
-    out2 = __RV_KMXDA(C1, S);
+    out2 = __SMUADX(C1, S);
 
     /* writing output(xb', yb') in little endian format */
     write_q15x2_ia (&pSi2, __PKHBT( out1, out2, 0 ));
@@ -1114,9 +1110,9 @@ void riscv_radix4_butterfly_inverse_q15(
     /*  Butterfly process for the i0+3fftLen/4 sample */
 
     /* xd' = (xa-yb-xc+yd)* co3 + (ya+xb-yc-xd)* (si3) */
-    out1 = __RV_KMDA(C3, R) >> 16U;
+    out1 = __SMUSD(C3, R) >> 16U;
     /* yd' = (ya+xb-yc-xd)* co3 - (xa-yb-xc+yd)* (si3) */
-    out2 = __RV_KMXDA(C3, R);
+    out2 = __SMUADX(C3, R);
 
     /* writing output(xd', yd') in little endian format */
     write_q15x2_ia (&pSi3, __PKHBT( out1, out2, 0 ));
@@ -1169,10 +1165,10 @@ void riscv_radix4_butterfly_inverse_q15(
         S = read_q15x2 (pSi2);
 
         /* R = packed( (ya + yc), (xa + xc)) */
-        R = __RV_KADD16(T, S);
+        R = __QADD16(T, S);
 
         /* S = packed((ya - yc), (xa - xc)) */
-        S = __RV_KSUB16(T, S);
+        S = __QSUB16(T, S);
 
         /*  Reading i0+fftLen/4 , i0+3fftLen/4 inputs */
         /* Read yb (real), xb(imag) input */
@@ -1182,14 +1178,14 @@ void riscv_radix4_butterfly_inverse_q15(
         U = read_q15x2 (pSi3);
 
         /* T = packed( (yb + yd), (xb + xd)) */
-        T = __RV_KADD16(T, U);
+        T = __QADD16(T, U);
 
         /*  writing the butterfly processed i0 sample */
 
         /* xa' = xa + xb + xc + xd */
         /* ya' = ya + yb + yc + yd */
-        out1 = __RV_RADD16(R, T);
-        out1 = __RV_RADD16(out1, 0);
+        out1 = __SHADD16(R, T);
+        out1 = __SHADD16(out1, 0);
         write_q15x2 (pSi0, out1);
         pSi0 += 2 * n1;
 
@@ -1197,10 +1193,10 @@ void riscv_radix4_butterfly_inverse_q15(
         R = __SHSUB16(R, T);
 
         /* (ya-yb+yc-yd)* (si2) + (xa-xb+xc-xd)* co2 */
-        out1 = __RV_KMDA(C2, R) >> 16U;
+        out1 = __SMUSD(C2, R) >> 16U;
 
         /* (ya-yb+yc-yd)* co2 - (xa-xb+xc-xd)* (si2) */
-        out2 = __RV_KMXDA(C2, R);
+        out2 = __SMUADX(C2, R);
 
         /*  Reading i0+3fftLen/4 */
         /* Read yb (real), xb(imag) input */
@@ -1218,18 +1214,18 @@ void riscv_radix4_butterfly_inverse_q15(
         U = read_q15x2 (pSi3);
 
         /* T = packed(yb-yd, xb-xd) */
-        T = __RV_KSUB16(T, U);
+        T = __QSUB16(T, U);
 
         /* R = packed((ya-yc) + (xb- xd) , (xa-xc) - (yb-yd)) */
-        R = __RV_RCRAS16(S, T);
+        R = __SHSAX(S, T);
 
         /* S = packed((ya-yc) - (xb- xd),  (xa-xc) + (yb-yd)) */
-        S = __RV_RCRSA16(S, T);
+        S = __SHASX(S, T);
 
 
         /*  Butterfly process for the i0+fftLen/2 sample */
-        out1 = __RV_KMDA(C1, S) >> 16U;
-        out2 = __RV_KMXDA(C1, S);
+        out1 = __SMUSD(C1, S) >> 16U;
+        out2 = __SMUADX(C1, S);
 
         /* xb' = (xa+yb-xc-yd)* co1 + (ya-xb-yc+xd)* (si1) */
         /* yb' = (ya-xb-yc+xd)* co1 - (xa+yb-xc-yd)* (si1) */
@@ -1238,8 +1234,8 @@ void riscv_radix4_butterfly_inverse_q15(
 
         /*  Butterfly process for the i0+3fftLen/4 sample */
 
-        out1 = __RV_KMDA(C3, R) >> 16U;
-        out2 = __RV_KMXDA(C3, R);
+        out1 = __SMUSD(C3, R) >> 16U;
+        out2 = __SMUADX(C3, R);
 
         /* xd' = (xa-yb-xc+yd)* co3 + (ya+xb-yc-xd)* (si3) */
         /* yd' = (ya+xb-yc-xd)* co3 - (xa-yb-xc+yd)* (si3) */
@@ -1280,10 +1276,10 @@ void riscv_radix4_butterfly_inverse_q15(
     xdyd = read_q15x2_ia ((q15_t **) &ptr1);
 
     /* R = packed((ya + yc), (xa + xc)) */
-    R = __RV_KADD16(xaya, xcyc);
+    R = __QADD16(xaya, xcyc);
 
     /* T = packed((yb + yd), (xb + xd)) */
-    T = __RV_KADD16(xbyb, xdyd);
+    T = __QADD16(xbyb, xdyd);
 
     /* pointer updation for writing */
     ptr1 = ptr1 - 8U;
@@ -1291,29 +1287,29 @@ void riscv_radix4_butterfly_inverse_q15(
 
     /* xa' = xa + xb + xc + xd */
     /* ya' = ya + yb + yc + yd */
-    write_q15x2_ia (&ptr1, __RV_RADD16(R, T));
+    write_q15x2_ia (&ptr1, __SHADD16(R, T));
 
     /* T = packed((yb + yd), (xb + xd)) */
-    T = __RV_KADD16(xbyb, xdyd);
+    T = __QADD16(xbyb, xdyd);
 
     /* xc' = (xa-xb+xc-xd) */
     /* yc' = (ya-yb+yc-yd) */
-    write_q15x2_ia (&ptr1, __RV_RSUB16(R, T));
+    write_q15x2_ia (&ptr1, __SHSUB16(R, T));
 
     /* S = packed((ya - yc), (xa - xc)) */
-    S = __RV_KSUB16(xaya, xcyc);
+    S = __QSUB16(xaya, xcyc);
 
     /* Read yd (real), xd(imag) input */
     /* T = packed( (yb - yd), (xb - xd))  */
-    U = __RV_KSUB16(xbyb, xdyd);
+    U = __QSUB16(xbyb, xdyd);
 
     /* xb' = (xa+yb-xc-yd) */
     /* yb' = (ya-xb-yc+xd) */
-    write_q15x2_ia (&ptr1, __RV_RCRSA16(S, U));
+    write_q15x2_ia (&ptr1, __SHASX(S, U));
 
     /* xd' = (xa-yb-xc+yd) */
     /* yd' = (ya+xb-yc-xd) */
-    write_q15x2_ia (&ptr1, __RV_RCRAS16(S, U));
+    write_q15x2_ia (&ptr1, __SHSAX(S, U));
 
   } while (--j);
 

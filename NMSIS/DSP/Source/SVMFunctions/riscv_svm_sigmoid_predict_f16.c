@@ -60,7 +60,7 @@ void riscv_svm_sigmoid_predict_f16(
     uint32_t i,j;
     const float16_t *pSupport = S->supportVectors;
 
-    for(i=0; i < S->nbOfSupportVectors; i++)
+    for (i=0; i < S->nbOfSupportVectors; i++)
     {
         dot=0.0f16;
         for(j=0; j < S->vectorDimension; j++)

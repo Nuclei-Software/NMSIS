@@ -160,10 +160,44 @@ void riscv_correlate_opt_q15(
 
   /* Temporary pointer for scratch2 */
   py = pIn2;
+#if defined (RISCV_MATH_VECTOR)
+  while (blkCnt > 0)
+  {
+    /* Initialze temporary scratch pointer as scratch1 */
+    pScr1 = pScratch;
 
+    /* Clear Accumlators */
+    acc0 = 0;
 
+    uint32_t vblkCnt = srcBLen;                               /* Loop counter */
+    size_t l;
+    vint16m4_t vx, vy;
+    vint32m1_t temp00m1;
+    l = vsetvl_e32m1(1);
+    temp00m1 = vmv_v_x_i32m1(0, l);
+    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle16_v_i16m4(pScr1, l);
+      pScr1 += l;
+      vy = vle16_v_i16m4(pIn2, l);
+      pIn2 += l;
+      temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
+    }
+    acc0 += vmv_x_s_i32m1_i32(temp00m1);
+    blkCnt--;
+
+    /* The result is in 2.30 format.  Convert to 1.15 with saturation.
+       Then store the output in the destination buffer. */
+    *pOut = (q15_t) (__SSAT((acc0 >> 15), 16));
+    pOut += inc;
+
+    /* Initialization of inputB pointer */
+    pIn2 = py;
+
+    pScratch += 1U;
+  }
+#else
   /* Actual correlation process starts here */
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = (srcALen + srcBLen - 1U) >> 2;
@@ -284,22 +318,7 @@ void riscv_correlate_opt_q15(
 
     /* Clear Accumlators */
     acc0 = 0;
-#if defined (RISCV_MATH_VECTOR)
-    uint32_t vblkCnt = srcBLen;                               /* Loop counter */
-    size_t l;
-    vint16m4_t vx, vy;
-    vint32m1_t temp00m1;
-    l = vsetvl_e32m1(1);
-    temp00m1 = vmv_v_x_i32m1(0, l);
-    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle16_v_i16m4(pScr1, l);
-      pScr1 += l;
-      vy = vle16_v_i16m4(pIn2, l);
-      pIn2 += l;
-      temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
-    }
-    acc0 += vmv_x_s_i32m1_i32(temp00m1);
-#else
+
     tapCnt = (srcBLen) >> 1U;
 
     while (tapCnt > 0U)
@@ -324,7 +343,7 @@ void riscv_correlate_opt_q15(
       /* Decrement loop counter */
       tapCnt--;
     }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+
     blkCnt--;
 
     /* The result is in 2.30 format.  Convert to 1.15 with saturation.
@@ -337,7 +356,7 @@ void riscv_correlate_opt_q15(
 
     pScratch += 1U;
   }
-
+#endif /*defined (RISCV_MATH_VECTOR)*/
 }
 
 /**

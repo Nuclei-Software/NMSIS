@@ -405,7 +405,7 @@ riscv_status riscv_conv_partial_fast_q31(
       }
 
       /* Loop unrolling: Compute remaining outputs */
-      blkCnt = (uint32_t) blockSize2 % 0x4U;
+      blkCnt = (uint32_t) blockSize2 & 0x3U;
 
 #else
 

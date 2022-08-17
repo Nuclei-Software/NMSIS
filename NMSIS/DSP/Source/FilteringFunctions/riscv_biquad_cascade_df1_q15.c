@@ -116,12 +116,12 @@ void riscv_biquad_cascade_df1_q15(
       in = read_q15x2_ia ((q15_t **) &pIn);
 
       /* out =  b0 * x[n] + 0 * 0 */
-      out = __RV_KMDA(b0, in);
+      out = __SMUAD(b0, in);
 
       /* acc +=  b1 * x[n-1] +  b2 * x[n-2] + out */
-      acc = __RV_SMALDA(out, b1, state_in);
+      acc = __SMLALD(b1, state_in, out);
       /* acc +=  a1 * y[n-1] +  a2 * y[n-2] */
-      acc = __RV_SMALDA(acc, a1, state_out);
+      acc = __SMLALD(a1, state_out, acc);
 
       /* The result is converted from 3.29 to 1.31 if postShift = 1, and then saturation is applied */
       /* Calc lower part of acc */
@@ -148,11 +148,11 @@ void riscv_biquad_cascade_df1_q15(
       state_out = __PKHBT(out, state_out, 16);
 
       /* out =  b0 * x[n] + 0 * 0 */
-      out = __RV_KMXDA(b0, in);
+      out = __SMUADX(b0, in);
       /* acc +=  b1 * x[n-1] +  b2 * x[n-2] + out */
-      acc = __RV_SMALDA(out, b1, state_in);
+      acc = __SMLALD(b1, state_in, out);
       /* acc +=  a1 * y[n-1] + a2 * y[n-2] */
-      acc = __RV_SMALDA(acc, a1, state_out);
+      acc = __SMLALD(a1, state_out, acc);
 
       /* The result is converted from 3.29 to 1.31 if postShift = 1, and then saturation is applied */
       /* Calc lower part of acc */
@@ -193,12 +193,12 @@ void riscv_biquad_cascade_df1_q15(
       in = *pIn++;
 
       /* out =  b0 * x[n] + 0 * 0 */
-      out = __RV_KMDA(b0, in);
+      out = __SMUAD(b0, in);
 
       /* acc =  b1 * x[n-1] + b2 * x[n-2] + out */
-      acc = __RV_SMALDA(out, b1, state_in);
+      acc = __SMLALD(b1, state_in, out);
       /* acc +=  a1 * y[n-1] + a2 * y[n-2] */
-      acc = __RV_SMALDA(acc, a1, state_out);
+      acc = __SMLALD(a1, state_out, acc);
 
       /* The result is converted from 3.29 to 1.31 if postShift = 1, and then saturation is applied */
       /* Calc lower part of acc */

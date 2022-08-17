@@ -211,7 +211,7 @@ void riscv_spline_f32(
         pDst++;
         blkCnt2--;
     }
-#endif
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 /**
   @} end of SplineInterpolate group

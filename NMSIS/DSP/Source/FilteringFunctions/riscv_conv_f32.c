@@ -330,8 +330,6 @@ void riscv_conv_f32(
    * srcBLen should be greater than or equal to 4 */
   if (srcBLen >= 4U)
   {
-
-
 #if defined (RISCV_MATH_LOOPUNROLL)
 
     /* Loop unrolling: Compute 4 outputs at a time */
@@ -422,7 +420,7 @@ void riscv_conv_f32(
 
       /* If the srcBLen is not a multiple of 4, compute any remaining MACs here.
        ** No loop unrolling is used. */
-      k = srcBLen % 0x4U;
+      k = srcBLen & 0x3U;
 
       while (k > 0U)
       {
@@ -469,7 +467,7 @@ void riscv_conv_f32(
 
     /* If the blockSize2 is not a multiple of 4, compute any remaining output samples here.
      ** No loop unrolling is used. */
-    blkCnt = blockSize2 % 0x4U;
+    blkCnt = blockSize2 & 0x3U;
 
 #else
 
@@ -698,7 +696,7 @@ void riscv_conv_f32(
     pDst[i] = sum;
   }
 
-#endif /* #if !defined(RISCV_MATH_CM0_FAMILY) */
+#endif /* defined(RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR) */
 
 }
 

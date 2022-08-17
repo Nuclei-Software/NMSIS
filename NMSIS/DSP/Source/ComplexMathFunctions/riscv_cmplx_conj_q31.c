@@ -77,62 +77,65 @@ void riscv_cmplx_conj_q31(
   }
 
 #else
-        uint32_t blkCnt;                               /* Loop counter */
-        q31_t in;                                      /* Temporary input variable */
+  uint32_t blkCnt;                   /* Loop counter */
+  q31_t in;                          /* Temporary input variable */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
-#if __RISCV_XLEN == 64
-q63_t in64;
-#endif /* __RISCV_XLEN == 64 */
+
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = numSamples >> 2U;
 
   while (blkCnt > 0U)
   {
     /* C[0] + jC[1] = A[0]+ j(-1)A[1] */
+#if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
-    in64 = read_q31x2_ia ((q31_t **) &pSrc);
-    write_q15x4_ia (&pDst, __RV_STSA32(0,in64));
-    in64 = read_q31x2_ia ((q31_t **) &pSrc);
-    write_q15x4_ia (&pDst, __RV_STSA32(0,in64));
-    in64 = read_q31x2_ia ((q31_t **) &pSrc);
-    write_q15x4_ia (&pDst, __RV_STSA32(0,in64));
-    in64 = read_q31x2_ia ((q31_t **) &pSrc);
-    write_q15x4_ia (&pDst, __RV_STSA32(0,in64));
+    q63_t in64;
+    in64 = read_q31x2_ia((q31_t **)&pSrc);
+    write_q31x2_ia(&pDst, __RV_STSA32(0,in64));
+    in64 = read_q31x2_ia((q31_t **)&pSrc);
+    write_q31x2_ia(&pDst, __RV_STSA32(0,in64));
+    in64 = read_q31x2_ia((q31_t **)&pSrc);
+    write_q31x2_ia(&pDst, __RV_STSA32(0,in64));
+    in64 = read_q31x2_ia((q31_t **)&pSrc);
+    write_q31x2_ia(&pDst, __RV_STSA32(0,in64));
 #else
     /* Calculate Complex Conjugate and store result in destination buffer. */
-    *pDst++ =  *pSrc++;
+    *pDst++ = *pSrc++;
     in = *pSrc++;
-#if defined (RISCV_MATH_DSP)
     *pDst++ = __QSUB(0, in);
-#else
-    *pDst++ = (in == INT32_MIN) ? INT32_MAX : -in;
-#endif
 
-    *pDst++ =  *pSrc++;
-    in =  *pSrc++;
-#if defined (RISCV_MATH_DSP)
-    *pDst++ = __QSUB(0, in);
-#else
-    *pDst++ = (in == INT32_MIN) ? INT32_MAX : -in;
-#endif
-
-    *pDst++ =  *pSrc++;
+    *pDst++ = *pSrc++;
     in = *pSrc++;
-#if defined (RISCV_MATH_DSP)
     *pDst++ = __QSUB(0, in);
-#else
-    *pDst++ = (in == INT32_MIN) ? INT32_MAX : -in;
-#endif
 
-    *pDst++ =  *pSrc++;
+    *pDst++ = *pSrc++;
     in = *pSrc++;
-#if defined (RISCV_MATH_DSP)
     *pDst++ = __QSUB(0, in);
-#else
-    *pDst++ = (in == INT32_MIN) ? INT32_MAX : -in;
-#endif
+
+    *pDst++ = *pSrc++;
+    in = *pSrc++;
+    *pDst++ = __QSUB(0, in);
 #endif /* __RISCV_XLEN == 64 */
+
+#else
+
+    *pDst++ = *pSrc++;
+    in = *pSrc++;
+    *pDst++ = (in == INT32_MIN) ? INT32_MAX : -in;
+
+    *pDst++ = *pSrc++;
+    in = *pSrc++;
+    *pDst++ = (in == INT32_MIN) ? INT32_MAX : -in;
+
+    *pDst++ = *pSrc++;
+    in = *pSrc++;
+    *pDst++ = (in == INT32_MIN) ? INT32_MAX : -in;
+
+    *pDst++ = *pSrc++;
+    in = *pSrc++;
+    *pDst++ = (in == INT32_MIN) ? INT32_MAX : -in;
+#endif /* RISCV_MATH_DSP */
     /* Decrement loop counter */
     blkCnt--;
   }
@@ -152,7 +155,7 @@ q63_t in64;
     /* C[0] + jC[1] = A[0]+ j(-1)A[1] */
 
     /* Calculate Complex Conjugate and store result in destination buffer. */
-    *pDst++ =  *pSrc++;
+    *pDst++ = *pSrc++;
     in = *pSrc++;
 #if defined (RISCV_MATH_DSP)
     *pDst++ = __QSUB(0, in);

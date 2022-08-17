@@ -58,47 +58,8 @@ void riscv_mse_q31(
 
         q31_t inA32,inB32;                                    /* Temporary variable to store packed input value */
 
-#if defined (RISCV_MATH_LOOPUNROLL)
-
-  /* Loop unrolling: Compute 4 outputs at a time */
-  blkCnt = blockSize >> 2U;
-
-  while (blkCnt > 0U)
-  {
-    inA32 = *pSrcA++ >> 1;
-    inB32 = *pSrcB++ >> 1;
-    inA32 = __QSUB(inA32, inB32);
-    sum += ((q63_t) inA32 * inA32) >> 14U;
-
-    inA32 = *pSrcA++ >> 1;
-    inB32 = *pSrcB++ >> 1;
-    inA32 = __QSUB(inA32, inB32);
-    sum += ((q63_t) inA32 * inA32) >> 14U;
-
-    inA32 = *pSrcA++ >> 1;
-    inB32 = *pSrcB++ >> 1;
-    inA32 = __QSUB(inA32, inB32);
-    sum += ((q63_t) inA32 * inA32) >> 14U;
-
-    inA32 = *pSrcA++ >> 1;
-    inB32 = *pSrcB++ >> 1;
-    inA32 = __QSUB(inA32, inB32);
-    sum += ((q63_t) inA32 * inA32) >> 14U;
-
-
-    /* Decrement loop counter */
-    blkCnt--;
-  }
-
-  /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize & 0x3U;
-
-#else
-
-  /* Initialize blkCnt with number of samples */
-  blkCnt = blockSize;
-
 #if defined(RISCV_MATH_VECTOR)
+    blkCnt = blockSize;
     size_t l;
     const q31_t *pInA = pSrcA;
     const q31_t *pInB = pSrcB;
@@ -120,6 +81,48 @@ void riscv_mse_q31(
     sum += vmv_x_s_i64m1_i64(v_sum);
 #else
 
+#if defined (RISCV_MATH_LOOPUNROLL)
+
+  /* Loop unrolling: Compute 4 outputs at a time */
+  blkCnt = blockSize >> 2U;
+
+  while (blkCnt > 0U)
+  {
+    inA32 = *pSrcA++ >> 1;
+    inB32 = *pSrcB++ >> 1;
+    inA32 = __QSUB(inA32, inB32);
+    sum += ((q63_t)inA32 * inA32) >> 14U;
+
+    inA32 = *pSrcA++ >> 1;
+    inB32 = *pSrcB++ >> 1;
+    inA32 = __QSUB(inA32, inB32);
+    sum += ((q63_t)inA32 * inA32) >> 14U;
+
+    inA32 = *pSrcA++ >> 1;
+    inB32 = *pSrcB++ >> 1;
+    inA32 = __QSUB(inA32, inB32);
+    sum += ((q63_t)inA32 * inA32) >> 14U;
+
+    inA32 = *pSrcA++ >> 1;
+    inB32 = *pSrcB++ >> 1;
+    inA32 = __QSUB(inA32, inB32);
+    sum += ((q63_t)inA32 * inA32) >> 14U;
+
+
+    /* Decrement loop counter */
+    blkCnt--;
+  }
+
+  /* Loop unrolling: Compute remaining outputs */
+  blkCnt = blockSize & 0x3U;
+
+#else
+
+  /* Initialize blkCnt with number of samples */
+  blkCnt = blockSize;
+
+
+
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
 
   while (blkCnt > 0U)
@@ -127,7 +130,7 @@ void riscv_mse_q31(
     inA32 = *pSrcA++ >> 1;
     inB32 = *pSrcB++ >> 1;
     inA32 = __QSUB(inA32, inB32);
-    sum += ((q63_t) inA32 * inA32) >> 14U;
+    sum += ((q63_t)inA32 * inA32) >> 14U;
 
     /* Decrement loop counter */
     blkCnt--;
@@ -135,7 +138,7 @@ void riscv_mse_q31(
 
 #endif /* defined(RISCV_MATH_VECTOR) */
   /* Store result in q31 format */
-  *pResult = (q31_t) ((sum / blockSize)>>15);
+  *pResult = (q31_t)((sum / blockSize) >> 15);
 }
 
 /**

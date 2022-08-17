@@ -118,11 +118,11 @@ riscv_status status;                             /* status of matrix inverse */
 
             tmp -= vfmv_f_s_f32m1_f32(v_a);
 #else
-            for(k=n-1; k > i; k--)
+            for (k=n-1; k > i; k--)
             {
                 tmp -= ut_row[k] * pX[cols*k+j];
             }
-#endif
+#endif /* defined(RISCV_MATH_VECTOR) */
             if (ut_row[i]==0.0f)
             {
               return(RISCV_MATH_SINGULAR);

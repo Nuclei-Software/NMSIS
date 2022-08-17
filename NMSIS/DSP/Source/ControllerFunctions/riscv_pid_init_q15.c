@@ -60,6 +60,7 @@ void riscv_pid_init_q15(
   S->A0 = __QADD16(__QADD16(S->Kp, S->Ki), S->Kd);
 
   /* Derived coefficients and pack into A1 */
+
   S->A1 = __PKHBT(-__QADD16(__QADD16(S->Kd, S->Kd), S->Kp), S->Kd, 16);
 
 #else

@@ -125,7 +125,7 @@ riscv_status riscv_mat_cholesky_f32(
           {
              pG[j * n + i] = pG[j * n + i] - pG[i * n + k] * pG[j * n + k];
           }
-#endif
+#endif /* defined(RISCV_MATH_VECTOR) */
        }
 
        if (pG[i * n + i] <= 0.0f)

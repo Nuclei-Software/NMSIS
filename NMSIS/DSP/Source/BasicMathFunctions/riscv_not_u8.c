@@ -51,16 +51,16 @@ void riscv_not_u8(
           uint8_t * pDst,
           uint32_t blockSize)
 {
-    uint32_t blkCnt;      /* Loop counter */
-
-    /* Initialize blkCnt with number of samples */
-    blkCnt = blockSize;
+  uint32_t blkCnt;      /* Loop counter */
+  /* Initialize blkCnt with number of samples */
+  blkCnt = blockSize;
 
 #if defined(RISCV_MATH_VECTOR)
   size_t l;
   vuint8m8_t vx;
 
-  for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
+  for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l)
+  {
     vx = vle8_v_u8m8(pSrc, l);
     pSrc += l;
     vse8_v_u8m8(pDst, vnot_v_u8m8(vx, l), l);
@@ -68,51 +68,27 @@ void riscv_not_u8(
   }
 #else
 
-#if defined (NUCLEI_DSP_N1) || (__RISCV_XLEN == 64)
-
-    const uint64_t * pSrc_temp = (const uint64_t *)pSrc;
-    uint64_t * pDst_temp = (uint64_t *)pDst;
-    if (blkCnt = blockSize >> 3)
-    {
-        while (blkCnt > 0U)
-        {
-            *pDst_temp++ = ~(*pSrc_temp++);
-
-            /* Decrement the loop counter */
-            blkCnt--;
-        }
-    }
-    if (blkCnt = blockSize & 0x7U)
-    {
-        pSrc = (const uint8_t * )(pSrc_temp - 7);
-    }
-
-#else
-    const uint32_t * pSrc_temp = (const uint32_t *)pSrc;
-    uint32_t * pDst_temp = (uint32_t *)pDst;
-    if (blkCnt = blockSize >> 2)
-    {
-        while (blkCnt > 0U)
-        {
-            *pDst_temp++ = ~(*pSrc_temp++);
-
-            /* Decrement the loop counter */
-            blkCnt--;
-        }
-    }
-    if (blkCnt = blockSize & 0x3U)
-    {
-        pSrc = (const uint8_t *)(pSrc_temp - 3);
-    }
-#endif /*defined (NUCLEI_DSP_N1) || (__RISCV_XLEN == 64)*/
-
+  const uint64_t * pSrc_temp = (const uint64_t *)pSrc;
+  uint64_t * pDst_temp = (uint64_t *)pDst;
+  if (blkCnt = blockSize >> 3)
+  {
     while (blkCnt > 0U)
     {
-        *pDst++ = ~(*pSrc++);
-
+        *pDst_temp++ = ~(*pSrc_temp++);
         /* Decrement the loop counter */
         blkCnt--;
     }
+  }
+  if (blkCnt = blockSize & 0x7U)
+  {
+    pSrc = (const uint8_t * )(pSrc_temp - 7);
+  }
+  while (blkCnt > 0U)
+  {
+    *pDst++ = ~(*pSrc++);
+    /* Decrement the loop counter */
+    blkCnt--;
+  }
 #endif /* defined(RISCV_MATH_VECTOR) */
 }
 

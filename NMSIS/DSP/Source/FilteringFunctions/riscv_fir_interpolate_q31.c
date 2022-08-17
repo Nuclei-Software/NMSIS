@@ -342,7 +342,7 @@ void riscv_fir_interpolate_q31(
         /* Decrement loop counter */
         tapCnt--;
       }
-#endif
+#endif /* #if defined(RISCV_MATH_VECTOR) */
       /* The result is in the accumulator, store in the destination buffer. */
       *pDst++ = (q31_t) (sum0 >> 31);
 

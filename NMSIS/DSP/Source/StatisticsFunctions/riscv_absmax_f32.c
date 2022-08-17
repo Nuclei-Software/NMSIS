@@ -210,7 +210,7 @@ void riscv_absmax_f32(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif
+#endif /* defined(RISCV_MATH_VECTOR) */
   /* Store the maximum value and it's index into destination pointers */
   *pResult = out;
   *pIndex = outIndex;

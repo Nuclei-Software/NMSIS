@@ -83,7 +83,7 @@ void riscv_min_no_idx_f32(
 
        blockSize --;
    }
-#endif
+#endif /* defined(RISCV_MATH_VECTOR) */
    *pResult = minValue;
 }
 

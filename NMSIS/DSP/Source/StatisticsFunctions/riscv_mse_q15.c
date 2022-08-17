@@ -53,10 +53,34 @@ void riscv_mse_q15(
         uint32_t blockSize,
         q15_t * pResult)
 {
-        uint32_t blkCnt;                               /* Loop counter */
-        q63_t sum = 0;                                 /* Temporary result storage */
-        q15_t inA,inB;                                       /* Temporary variable to store input value */
+  uint32_t blkCnt;                       /* Loop counter */
+  q63_t sum = 0;                         /* Temporary result storage */
+  q15_t inA, inB;                        /* Temporary variable to store input value */
 
+#if defined(RISCV_MATH_VECTOR)
+  blkCnt = blockSize;
+  size_t l;
+  const q15_t *pInA = pSrcA;
+  const q15_t *pInB = pSrcB;
+  vint16m4_t v_inA, v_inB, v_subVal;
+  vint32m8_t v_mul;
+  l = vsetvl_e64m1(1);
+  vint64m1_t v_sum = vmv_s_x_i64m1(v_sum, 0, l); /* init v_sum data */
+
+  for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
+  {
+    v_inA = vle16_v_i16m4(pInA, l);
+    v_inA = vsra_vx_i16m4(v_inA, 1, l);
+    pInA += l;
+    v_inB = vle16_v_i16m4(pInB, l);
+    v_inB = vsra_vx_i16m4(v_inB, 1, l);
+    pInB += l;
+    v_subVal = vssub_vv_i16m4(v_inA, v_inB, l);
+    v_mul = vwmul_vv_i32m8(v_subVal, v_subVal, l);
+    v_sum = vwredsum_vs_i32m8_i64m1(v_sum, v_mul, v_sum, l);
+  }
+  sum += vmv_x_s_i64m1_i64(v_sum);
+#else
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -68,23 +92,23 @@ void riscv_mse_q15(
 
     inA = *pSrcA++ >> 1;
     inB = *pSrcB++ >> 1;
-    inA = (q15_t) __SSAT(((q31_t) inA - (q31_t)inB), 16);
-    sum += (q63_t)((q31_t) inA * inA);
+    inA = (q15_t)__SSAT(((q31_t)inA - (q31_t)inB), 16);
+    sum += (q63_t)((q31_t)inA * inA);
 
     inA = *pSrcA++ >> 1;
     inB = *pSrcB++ >> 1;
-    inA = (q15_t) __SSAT(((q31_t) inA - (q31_t)inB), 16);
-    sum += (q63_t)((q31_t) inA * inA);
+    inA = (q15_t)__SSAT(((q31_t)inA - (q31_t)inB), 16);
+    sum += (q63_t)((q31_t)inA * inA);
 
     inA = *pSrcA++ >> 1;
     inB = *pSrcB++ >> 1;
-    inA = (q15_t) __SSAT(((q31_t) inA - (q31_t)inB), 16);
-    sum += (q63_t)((q31_t) inA * inA);
+    inA = (q15_t)__SSAT(((q31_t)inA - (q31_t)inB), 16);
+    sum += (q63_t)((q31_t)inA * inA);
 
     inA = *pSrcA++ >> 1;
     inB = *pSrcB++ >> 1;
-    inA = (q15_t) __SSAT(((q31_t) inA - (q31_t)inB), 16);
-    sum += (q63_t)((q31_t) inA * inA);
+    inA = (q15_t)__SSAT(((q31_t)inA - (q31_t)inB), 16);
+    sum += (q63_t)((q31_t)inA * inA);
 
     /* Decrement loop counter */
     blkCnt--;
@@ -98,29 +122,6 @@ void riscv_mse_q15(
   /* Initialize blkCnt with number of samples */
   blkCnt = blockSize;
 
-#if defined(RISCV_MATH_VECTOR)
-    size_t l;
-    const q15_t *pInA = pSrcA;
-    const q15_t *pInB = pSrcB;
-    vint16m4_t v_inA, v_inB, v_subVal;
-    vint32m8_t v_mul;
-    l = vsetvl_e64m1(1);
-    vint64m1_t v_sum = vmv_s_x_i64m1(v_sum, 0, l); /* init v_sum data */
-
-    for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
-        v_inA = vle16_v_i16m4(pInA, l);
-        v_inA = vsra_vx_i16m4(v_inA, 1, l);
-        pInA += l;
-        v_inB = vle16_v_i16m4(pInB, l);
-        v_inB = vsra_vx_i16m4(v_inB, 1, l);
-        pInB += l;
-        v_subVal = vssub_vv_i16m4(v_inA, v_inB, l);
-        v_mul = vwmul_vv_i32m8(v_subVal, v_subVal, l);
-        v_sum = vwredsum_vs_i32m8_i64m1(v_sum, v_mul, v_sum, l);
-    }
-    sum += vmv_x_s_i64m1_i64(v_sum);
-#else
-
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
 
   while (blkCnt > 0U)
@@ -128,8 +129,8 @@ void riscv_mse_q15(
 
     inA = *pSrcA++ >> 1;
     inB = *pSrcB++ >> 1;
-    inA = (q15_t) __SSAT(((q31_t) inA - (q31_t)inB), 16);
-    sum += (q63_t)((q31_t) inA * inA);
+    inA = (q15_t) __SSAT(((q31_t)inA - (q31_t)inB), 16);
+    sum += (q63_t)((q31_t)inA * inA);
 
     /* Decrement loop counter */
     blkCnt--;
@@ -137,7 +138,7 @@ void riscv_mse_q15(
 #endif /* defined(RISCV_MATH_VECTOR) */
 
   /* Store result in q15 format */
-  *pResult = (q15_t) __SSAT((q31_t) (sum / blockSize)>>13, 16);
+  *pResult = (q15_t) __SSAT((q31_t)(sum / blockSize) >> 13, 16);
 }
 
 /**

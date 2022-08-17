@@ -56,15 +56,16 @@ void riscv_negate_q15(
         q15_t * pDst,
         uint32_t blockSize)
 {
-        uint32_t blkCnt;                               /* Loop counter */
-        q15_t in;                                      /* Temporary input variable */
+  uint32_t blkCnt;             /* Loop counter */
+  q15_t in;                    /* Temporary input variable */
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
   blkCnt = blockSize;                               /* Loop counter */
   size_t l = vsetvl_e16m8(blkCnt);
   vint16m8_t vx;
   vint16m8_t v_zero = vmv_v_x_i16m8(0, l);
-  for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
+  for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+  {
     vx = vle16_v_i16m8(pSrc, l);
     pSrc += l;
     vse16_v_i16m8(pDst, vssub_vv_i16m8(v_zero, vx, l), l);
@@ -74,10 +75,6 @@ void riscv_negate_q15(
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
-#if defined (RISCV_MATH_DSP)
-  q31_t in1;                                    /* Temporary input variables */
-#endif
-
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
 
@@ -86,35 +83,29 @@ void riscv_negate_q15(
     /* C = -A */
 
 #if defined (RISCV_MATH_DSP)
-    /* Negate and store result in destination buffer (2 samples at a time). */
-    //in1 = read_q15x2_ia ((q15_t **) &pSrc);
-    //write_q15x2_ia (&pDst, __QSUB16(0, in1));
-
-    //in1 = read_q15x2_ia ((q15_t **) &pSrc);
-    //write_q15x2_ia (&pDst, __QSUB16(0, in1));
 #if __RISCV_XLEN == 64
-    write_q15x4_ia(&pDst, __RV_KSUB16(0, read_q15x4_ia((q15_t **)&pSrc)));
+    write_q15x4_ia(&pDst, __QSUB16(0, read_q15x4_ia((q15_t **)&pSrc)));
 #else
 #ifdef NUCLEI_DSP_N1
     write_q15x4_ia(&pDst, __DKSUB16(0, read_q15x4_ia((q15_t **)&pSrc)));
 #else
-	  write_q15x2_ia(&pDst, __RV_KSUB16(0, read_q15x2_ia((q15_t **)&pSrc)));
-	  write_q15x2_ia(&pDst, __RV_KSUB16(0, read_q15x2_ia((q15_t **)&pSrc)));
+	  write_q15x2_ia(&pDst, __QSUB16(0, read_q15x2_ia((q15_t **)&pSrc)));
+	  write_q15x2_ia(&pDst, __QSUB16(0, read_q15x2_ia((q15_t **)&pSrc)));
 #endif
 #endif /* __RISCV_XLEN == 64 */
 #else
     in = *pSrc++;
-    *pDst++ = (in == (q15_t) 0x8000) ? (q15_t) 0x7fff : -in;
+    *pDst++ = (in == (q15_t)0x8000) ? (q15_t)0x7fff : -in;
 
     in = *pSrc++;
-    *pDst++ = (in == (q15_t) 0x8000) ? (q15_t) 0x7fff : -in;
+    *pDst++ = (in == (q15_t)0x8000) ? (q15_t)0x7fff : -in;
 
     in = *pSrc++;
-    *pDst++ = (in == (q15_t) 0x8000) ? (q15_t) 0x7fff : -in;
+    *pDst++ = (in == (q15_t)0x8000) ? (q15_t)0x7fff : -in;
 
     in = *pSrc++;
-    *pDst++ = (in == (q15_t) 0x8000) ? (q15_t) 0x7fff : -in;
-#endif
+    *pDst++ = (in == (q15_t)0x8000) ? (q15_t)0x7fff : -in;
+#endif /* RISCV_MATH_DSP */
 
     /* Decrement loop counter */
     blkCnt--;
@@ -136,7 +127,7 @@ void riscv_negate_q15(
 
     /* Negate and store result in destination buffer. */
     in = *pSrc++;
-    *pDst++ = (in == (q15_t) 0x8000) ? (q15_t) 0x7fff : -in;
+    *pDst++ = (in == (q15_t)0x8000) ? (q15_t)0x7fff : -in;
 
     /* Decrement loop counter */
     blkCnt--;

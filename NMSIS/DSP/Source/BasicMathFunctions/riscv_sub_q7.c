@@ -56,14 +56,15 @@ void riscv_sub_q7(
         q7_t * pDst,
         uint32_t blockSize)
 {
-        uint32_t blkCnt;                               /* Loop counter */
+  uint32_t blkCnt;                               /* Loop counter */
 
 #if defined(RISCV_MATH_VECTOR)
   blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vint8m8_t vx, vy;
 
-  for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
+  for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l)
+  {
     vx = vle8_v_i8m8(pSrcA, l);
     pSrcA += l;
     vy = vle8_v_i8m8(pSrcB, l);
@@ -74,13 +75,12 @@ void riscv_sub_q7(
 #else
 
 #if defined (RISCV_MATH_LOOPUNROLL)
-
-#ifdef NUCLEI_DSP_N1
+#if defined (RISCV_MATH_DSP)
   /* Loop unrolling: Compute 8 outputs at a time */
   blkCnt = blockSize >> 3U;
 #else
-	/* Loop unrolling: Compute 4 outputs at a time */
-	blkCnt = blockSize >> 2U;
+  /* Loop unrolling: Compute 4 outputs at a time */
+  blkCnt = blockSize >> 2U;
 #endif
 
   while (blkCnt > 0U)
@@ -90,34 +90,29 @@ void riscv_sub_q7(
 #if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
     /* Subtract and store result in destination buffer (8 samples at a time). */
-    write_q7x8_ia (&pDst, __RV_KSUB8(read_q7x8_ia ((q7_t **) &pSrcA), read_q7x8_ia ((q7_t **) &pSrcB)));
+    write_q7x8_ia(&pDst, __QSUB8(read_q7x8_ia((q7_t **)&pSrcA), read_q7x8_ia((q7_t **)&pSrcB)));
 #else
 #ifdef NUCLEI_DSP_N1
     /* Subtract and store result in destination buffer (8 samples at a time). */
-    write_q7x8_ia (&pDst, __DQSUB8(read_q7x8_ia ((q7_t **) &pSrcA), read_q7x8_ia ((q7_t **) &pSrcB)));
+    write_q7x8_ia(&pDst, __DQSUB8(read_q7x8_ia((q7_t **)&pSrcA), read_q7x8_ia((q7_t **)&pSrcB)));
 #else
-	  /* Subtract and store result in destination buffer (4 samples at a time). */
-    write_q7x4_ia (&pDst, __RV_KSUB8(read_q7x4_ia ((q7_t **) &pSrcA), read_q7x4_ia ((q7_t **) &pSrcB)));
-#endif
+    /* Subtract and store result in destination buffer (4 samples at a time). */
+    write_q7x4_ia(&pDst, __QSUB8(read_q7x4_ia((q7_t **)&pSrcA), read_q7x4_ia((q7_t **)&pSrcB)));
+    write_q7x4_ia(&pDst, __QSUB8(read_q7x4_ia((q7_t **)&pSrcA), read_q7x4_ia((q7_t **)&pSrcB)));
+#endif /* NUCLEI_DSP_N1 */
 #endif /* __RISCV_XLEN == 64 */
 #else
     *pDst++ = (q7_t) __SSAT((q15_t) *pSrcA++ - *pSrcB++, 8);
     *pDst++ = (q7_t) __SSAT((q15_t) *pSrcA++ - *pSrcB++, 8);
     *pDst++ = (q7_t) __SSAT((q15_t) *pSrcA++ - *pSrcB++, 8);
     *pDst++ = (q7_t) __SSAT((q15_t) *pSrcA++ - *pSrcB++, 8);
-#ifdef NUCLEI_DSP_N1
-    *pDst++ = (q7_t) __SSAT((q15_t) *pSrcA++ - *pSrcB++, 8);
-    *pDst++ = (q7_t) __SSAT((q15_t) *pSrcA++ - *pSrcB++, 8);
-    *pDst++ = (q7_t) __SSAT((q15_t) *pSrcA++ - *pSrcB++, 8);
-    *pDst++ = (q7_t) __SSAT((q15_t) *pSrcA++ - *pSrcB++, 8);
-#endif
-#endif
+#endif /* RISCV_MATH_DSP */
 
     /* Decrement loop counter */
     blkCnt--;
   }
 
-#ifdef NUCLEI_DSP_N1
+#if defined (RISCV_MATH_DSP)
   /* Loop unrolling: Compute remaining outputs */
   blkCnt = blockSize & 0x7U;
 #else

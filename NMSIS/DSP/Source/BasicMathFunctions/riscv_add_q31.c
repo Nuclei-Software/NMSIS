@@ -57,15 +57,15 @@ void riscv_add_q31(
         q31_t * pDst,
         uint32_t blockSize)
 {
-
-        uint32_t blkCnt;                               /* Loop counter */
+  uint32_t blkCnt;                               /* Loop counter */
 
 #if defined(RISCV_MATH_VECTOR)
   blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vint32m8_t vx, vy;
 
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+  {
     vx = vle32_v_i32m8(pSrcA, l);
     pSrcA += l;
     vy = vle32_v_i32m8(pSrcB, l);
@@ -83,16 +83,21 @@ void riscv_add_q31(
   while (blkCnt > 0U)
   {
     /* C = A + B */
-#if __RISCV_XLEN == 64
-	write_q31x2_ia(&pDst, __RV_KADD32(read_q31x2_ia ((q31_t **) &pSrcA),read_q31x2_ia((q31_t **) &pSrcB)));
-	write_q31x2_ia(&pDst, __RV_KADD32(read_q31x2_ia ((q31_t **) &pSrcA),read_q31x2_ia((q31_t **) &pSrcB)));
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+    write_q31x2_ia(&pDst, __RV_KADD32(read_q31x2_ia((q31_t **)&pSrcA), read_q31x2_ia((q31_t **)&pSrcB)));
+    write_q31x2_ia(&pDst, __RV_KADD32(read_q31x2_ia((q31_t **)&pSrcA), read_q31x2_ia((q31_t **)&pSrcB)));
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
+    write_q31x2_ia(&pDst, __dkadd32(read_q31x2_ia((q31_t **)&pSrcA), read_q31x2_ia((q31_t **)&pSrcB)));
+    write_q31x2_ia(&pDst, __dkadd32(read_q31x2_ia((q31_t **)&pSrcA), read_q31x2_ia((q31_t **)&pSrcB)));
 #else
     /* Add and store result in destination buffer. */
-    *pDst++ = __RV_KADDW(*pSrcA++, *pSrcB++);
-    *pDst++ = __RV_KADDW(*pSrcA++, *pSrcB++);
-    *pDst++ = __RV_KADDW(*pSrcA++, *pSrcB++);
-    *pDst++ = __RV_KADDW(*pSrcA++, *pSrcB++);
-  #endif /* __RISCV_XLEN == 64 */
+    *pDst++ = __QADD(*pSrcA++, *pSrcB++);
+    *pDst++ = __QADD(*pSrcA++, *pSrcB++);
+    *pDst++ = __QADD(*pSrcA++, *pSrcB++);
+    *pDst++ = __QADD(*pSrcA++, *pSrcB++);
+#endif /* RISCV_MATH_DSP && NUCLEI_DSP_N2 */
+#endif /* RISCV_MATH_DSP && __RISCV_XLEN == 64 */
     /* Decrement loop counter */
     blkCnt--;
   }

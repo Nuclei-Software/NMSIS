@@ -64,7 +64,8 @@ void riscv_copy_q7(
     pDst += l;
   }
 
-#elif defined (RISCV_MATH_LOOPUNROLL)
+#else
+#if defined (RISCV_MATH_LOOPUNROLL)
 #if __RISCV_XLEN == 64
   /* Loop unrolling: Compute 8 outputs at a time */
   blkCnt = blockSize >> 3U;
@@ -78,10 +79,10 @@ void riscv_copy_q7(
     /* C = A */
 #if __RISCV_XLEN == 64
     /* read 8 samples at a time */
-    write_q7x8_ia (&pDst, read_q7x8_ia (&pSrc));
+    write_q7x8_ia(&pDst, read_q7x8_ia((q7_t **)&pSrc));
 #else
     /* read 4 samples at a time */
-    write_q7x4_ia (&pDst, read_q7x4_ia (&pSrc));
+    write_q7x4_ia(&pDst, read_q7x4_ia((q7_t **)&pSrc));
 #endif /* __RISCV_XLEN == 64 */
 
     /* Decrement loop counter */
@@ -110,6 +111,7 @@ void riscv_copy_q7(
     /* Decrement loop counter */
     blkCnt--;
   }
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

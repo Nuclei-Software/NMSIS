@@ -121,34 +121,6 @@ void riscv_lms_norm_q15(
     /* Set the accumulator to zero */
     acc = 0;
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
-
-    /* Loop unrolling: Compute 4 taps at a time. */
-    tapCnt = numTaps >> 2U;
-
-    while (tapCnt > 0U)
-    {
-#if __RISCV_XLEN == 64
-      acc = __RV_SMALDA(acc, read_q15x4_ia (&px), read_q15x4_ia (&pb));
-#else
-      /* Perform the multiply-accumulate */
-      /* acc +=  b[N] * x[n-N] + b[N-1] * x[n-N-1] */
-      acc = __RV_SMALDA(acc, read_q15x2_ia (&px), read_q15x2_ia (&pb));
-      acc = __RV_SMALDA(acc, read_q15x2_ia (&px), read_q15x2_ia (&pb));
-#endif /* __RISCV_XLEN == 64 */
-      /* Decrement loop counter */
-      tapCnt--;
-    }
-
-    /* Loop unrolling: Compute remaining taps */
-    tapCnt = numTaps & 0x3U;
-
-#else
-
-    /* Initialize tapCnt with number of samples */
-    tapCnt = numTaps;
-
-#endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
 #if defined (RISCV_MATH_VECTOR)
     uint32_t vblkCnt = numTaps;
     size_t l;
@@ -165,6 +137,35 @@ void riscv_lms_norm_q15(
     }
     acc += vmv_x_s_i64m1_i64(temp00m1);
 #else
+#if defined (RISCV_MATH_LOOPUNROLL)
+
+    /* Loop unrolling: Compute 4 taps at a time. */
+    tapCnt = numTaps >> 2U;
+
+    while (tapCnt > 0U)
+    {
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+      acc = __SMLALD(read_q15x4_ia (&px), read_q15x4_ia (&pb), acc);
+#else
+      /* Perform the multiply-accumulate */
+      /* acc +=  b[N] * x[n-N] + b[N-1] * x[n-N-1] */
+      acc = __SMLALD(read_q15x2_ia (&px), read_q15x2_ia (&pb), acc);
+      acc = __SMLALD(read_q15x2_ia (&px), read_q15x2_ia (&pb), acc);
+#endif /* (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
+      /* Decrement loop counter */
+      tapCnt--;
+    }
+
+    /* Loop unrolling: Compute remaining taps */
+    tapCnt = numTaps & 0x3U;
+
+#else
+
+    /* Initialize tapCnt with number of samples */
+    tapCnt = numTaps;
+
+#endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
+
     while (tapCnt > 0U)
     {
       /* Perform the multiply-accumulate */
@@ -211,8 +212,17 @@ void riscv_lms_norm_q15(
 
     /* Initialize coefficient pointer */
     pb = pCoeffs;
-
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
+    vblkCnt = numTaps;
+    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle16_v_i16m4(px, l);
+      px += l;
+      vy = vle16_v_i16m4(pb, l);
+      vse16_v_i16m4(pb, vnclip_wx_i16m4(vwadd_wv_i32m8(vsra_vx_i32m8(vwmul_vx_i32m8(vx, w, l), 15, l), vy, l), 0, l), l);
+      pb += l;
+    }
+#else
+#if defined (RISCV_MATH_LOOPUNROLL)
 
     /* Loop unrolling: Compute 4 taps at a time. */
     tapCnt = numTaps >> 2U;
@@ -245,16 +255,7 @@ void riscv_lms_norm_q15(
     tapCnt = numTaps;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_MATH_VECTOR)
-    vblkCnt = numTaps;
-    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle16_v_i16m4(px, l);
-      px += l;
-      vy = vle16_v_i16m4(pb, l);
-      vse16_v_i16m4(pb, vnclip_wx_i16m4(vwadd_wv_i32m8(vsra_vx_i32m8(vwmul_vx_i32m8(vx, w, l), 15, l), vy, l), 0, l), l);
-      pb += l;
-    }
-#else
+
     while (tapCnt > 0U)
     {
       /* Perform the multiply-accumulate */
@@ -286,7 +287,16 @@ void riscv_lms_norm_q15(
   pStateCurnt = S->pState;
 
   /* copy data */
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
+  uint32_t vblkCnt = (numTaps - 1U);
+  size_t l;
+  for (; (l = vsetvl_e16m8(vblkCnt)) > 0; vblkCnt -= l) {
+    vse16_v_i16m8(pStateCurnt, vle16_v_i16m8(pState, l), l);
+    pState += l;
+    pStateCurnt += l;
+  }
+#else
+#if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 taps at a time. */
   tapCnt = (numTaps - 1U) >> 2U;
@@ -301,7 +311,7 @@ void riscv_lms_norm_q15(
   }
 
   /* Loop unrolling: Compute remaining taps */
-  tapCnt = (numTaps - 1U) % 0x4U;
+  tapCnt = (numTaps - 1U) & 0x3U;
 
 #else
 
@@ -309,15 +319,7 @@ void riscv_lms_norm_q15(
   tapCnt = (numTaps - 1U);
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_MATH_VECTOR)
-  uint32_t vblkCnt = (numTaps - 1U);
-  size_t l;
-  for (; (l = vsetvl_e16m8(vblkCnt)) > 0; vblkCnt -= l) {
-    vse16_v_i16m8(pStateCurnt, vle16_v_i16m8(pState, l), l);
-    pState += l;
-    pStateCurnt += l;
-  }
-#else
+
   while (tapCnt > 0U)
   {
     *pStateCurnt++ = *pState++;

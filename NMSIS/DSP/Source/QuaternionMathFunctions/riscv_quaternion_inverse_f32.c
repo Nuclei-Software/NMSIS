@@ -106,7 +106,7 @@ void riscv_quaternion_inverse_f32(const float32_t *pInputQuaternions,
       pInverseQuaternions[4 * i + 2] = -pInputQuaternions[4 * i + 2] / temp;
       pInverseQuaternions[4 * i + 3] = -pInputQuaternions[4 * i + 3] / temp;
    }
-#endif
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

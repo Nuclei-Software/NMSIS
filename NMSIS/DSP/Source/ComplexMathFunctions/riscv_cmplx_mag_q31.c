@@ -71,10 +71,10 @@ void riscv_cmplx_mag_q31(
     real = *pSrc++;
     imag = *pSrc++;
 #if defined(RISCV_MATH_DSP)
-	acc0 = (q31_t) (__MULSR64(real, real) >> 33);
-	acc1 = (q31_t) (__MULSR64(imag, imag) >> 33);
+    acc0 = (q31_t) (__MULSR64(real, real) >> 33);
+    acc1 = (q31_t) (__MULSR64(imag, imag) >> 33);
 #else
-	acc0 = (q31_t) (((q63_t) real * real) >> 33);
+    acc0 = (q31_t) (((q63_t) real * real) >> 33);
     acc1 = (q31_t) (((q63_t) imag * imag) >> 33);
 #endif
     /* store result in 2.30 format in destination buffer. */
@@ -86,7 +86,7 @@ void riscv_cmplx_mag_q31(
     acc0 = (q31_t) (__MULSR64(real, real) >> 33);
     acc1 = (q31_t) (__MULSR64(imag, imag) >> 33);
 #else
-	acc0 = (q31_t) (((q63_t) real * real) >> 33);
+    acc0 = (q31_t) (((q63_t) real * real) >> 33);
     acc1 = (q31_t) (((q63_t) imag * imag) >> 33);
 #endif
     riscv_sqrt_q31(acc0 + acc1, pDst++);
@@ -94,10 +94,10 @@ void riscv_cmplx_mag_q31(
     real = *pSrc++;
     imag = *pSrc++;
 #if defined(RISCV_MATH_DSP)
-	acc0 = (q31_t) (__MULSR64(real, real) >> 33);
-	acc1 = (q31_t) (__MULSR64(imag, imag) >> 33);
+    acc0 = (q31_t) (__MULSR64(real, real) >> 33);
+    acc1 = (q31_t) (__MULSR64(imag, imag) >> 33);
 #else
-	acc0 = (q31_t) (((q63_t) real * real) >> 33);
+    acc0 = (q31_t) (((q63_t) real * real) >> 33);
     acc1 = (q31_t) (((q63_t) imag * imag) >> 33);
 #endif
     riscv_sqrt_q31(acc0 + acc1, pDst++);
@@ -105,10 +105,10 @@ void riscv_cmplx_mag_q31(
     real = *pSrc++;
     imag = *pSrc++;
 #if defined(RISCV_MATH_DSP)
-	acc0 = (q31_t) (__MULSR64(real, real) >> 33);
-	acc1 = (q31_t) (__MULSR64(imag, imag) >> 33);
+    acc0 = (q31_t) (__MULSR64(real, real) >> 33);
+    acc1 = (q31_t) (__MULSR64(imag, imag) >> 33);
 #else
-	acc0 = (q31_t) (((q63_t) real * real) >> 33);
+    acc0 = (q31_t) (((q63_t) real * real) >> 33);
     acc1 = (q31_t) (((q63_t) imag * imag) >> 33);
 #endif
     riscv_sqrt_q31(acc0 + acc1, pDst++);
@@ -134,10 +134,10 @@ void riscv_cmplx_mag_q31(
     real = *pSrc++;
     imag = *pSrc++;
 #if defined(RISCV_MATH_DSP)
-	acc0 = (q31_t) (__MULSR64(real, real) >> 33);
-	acc1 = (q31_t) (__MULSR64(imag, imag) >> 33);
+    acc0 = (q31_t) (__MULSR64(real, real) >> 33);
+    acc1 = (q31_t) (__MULSR64(imag, imag) >> 33);
 #else
-	acc0 = (q31_t) (((q63_t) real * real) >> 33);
+    acc0 = (q31_t) (((q63_t) real * real) >> 33);
     acc1 = (q31_t) (((q63_t) imag * imag) >> 33);
 #endif
 

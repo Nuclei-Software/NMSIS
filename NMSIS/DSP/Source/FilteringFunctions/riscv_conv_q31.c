@@ -83,9 +83,6 @@ void riscv_conv_q31(
 #if defined (RISCV_MATH_LOOPUNROLL)
         q63_t acc0, acc1, acc2;                        /* Accumulators */
         q31_t x0, x1, x2, c0;                          /* Temporary variables to hold state and coefficient values */
-#if __RISCV_XLEN == 64
-        q63_t acc064, acc164, acc264;
-#endif /* __RISCV_XLEN == 64 */
 #endif
 
   /* The algorithm implementation is based on the lengths of the inputs. */
@@ -159,23 +156,14 @@ void riscv_conv_q31(
     /* Accumulator is made zero for every iteration */
     sum = 0;
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL)
 
     /* Loop unrolling: Compute 4 outputs at a time */
     k = count >> 2U;
-#if __RISCV_XLEN == 64
-    py--;
-#endif /* __RISCV_XLEN == 64 */
+
     while (k > 0U)
     {
-#if __RISCV_XLEN == 64
-      acc064 = read_q31x2_ia((q31_t **)&px);
-      acc164 = read_q31x2_da((q31_t **)&py);
-      sum = __RV_KMAXDA32(sum, acc064, acc164);
-      acc064 = read_q31x2_ia((q31_t **)&px);
-      acc164 = read_q31x2_da((q31_t **)&py);
-      sum = __RV_KMAXDA32(sum, acc064, acc164);
-#else
+
       /* x[0] * y[srcBLen - 1] */
       sum += (q63_t) *px++ * (*py--);
 
@@ -187,16 +175,13 @@ void riscv_conv_q31(
 
       /* x[3] * y[srcBLen - 4] */
       sum += (q63_t) *px++ * (*py--);
-#endif /* __RISCV_XLEN == 64 */
+
 
       /* Decrement loop counter */
       k--;
     }
-#if __RISCV_XLEN == 64
-    py++;
-#endif /* __RISCV_XLEN == 64 */
     /* Loop unrolling: Compute remaining outputs */
-    k = count % 0x4U;
+    k = count & 0x3U;
 
 #else
 
@@ -438,32 +423,19 @@ void riscv_conv_q31(
 
     /* Loop unrolling: Compute 4 outputs at a time */
       k = srcBLen >> 2U;
-#if __RISCV_XLEN == 64
-    py--;
-#endif /* __RISCV_XLEN == 64 */
+
       while (k > 0U)
       {
-#if __RISCV_XLEN == 64
-      acc064 = read_q31x2_ia((q31_t **)&px);
-      acc164 = read_q31x2_da((q31_t **)&py);
-      sum = __RV_KMAXDA32(sum, acc064, acc164);
-      acc064 = read_q31x2_ia((q31_t **)&px);
-      acc164 = read_q31x2_da((q31_t **)&py);
-      sum = __RV_KMAXDA32(sum, acc064, acc164);
-#else
         /* Perform the multiply-accumulates */
         sum += (q63_t) *px++ * *py--;
         sum += (q63_t) *px++ * *py--;
         sum += (q63_t) *px++ * *py--;
         sum += (q63_t) *px++ * *py--;
-#endif /* __RISCV_XLEN == 64 */
+
 
         /* Decrement loop counter */
         k--;
       }
-#if __RISCV_XLEN == 64
-    py++;
-#endif /* __RISCV_XLEN == 64 */
       /* Loop unrolling: Compute remaining outputs */
       k = srcBLen & 0x3U;
 
@@ -571,19 +543,9 @@ void riscv_conv_q31(
 
     /* Loop unrolling: Compute 4 outputs at a time */
     k = blockSize3 >> 2U;
-#if __RISCV_XLEN == 64
-    py--;
-#endif /* __RISCV_XLEN == 64 */
     while (k > 0U)
     {
-#if __RISCV_XLEN == 64
-      acc064 = read_q31x2_ia((q31_t **)&px);
-      acc164 = read_q31x2_da((q31_t **)&py);
-      sum = __RV_KMAXDA32(sum, acc064, acc164);
-      acc064 = read_q31x2_ia((q31_t **)&px);
-      acc164 = read_q31x2_da((q31_t **)&py);
-      sum = __RV_KMAXDA32(sum, acc064, acc164);
-#else
+
       /* Perform the multiply-accumulate */
       /* sum += x[srcALen - srcBLen + 1] * y[srcBLen - 1] */
       sum += (q63_t) *px++ * *py--;
@@ -596,14 +558,10 @@ void riscv_conv_q31(
 
       /* sum += x[srcALen - srcBLen + 4] * y[srcBLen - 4] */
       sum += (q63_t) *px++ * *py--;
-#endif /* __RISCV_XLEN == 64 */
 
       /* Decrement loop counter */
       k--;
     }
-#if __RISCV_XLEN == 64
-    py++;
-#endif /* __RISCV_XLEN == 64 */
     /* Loop unrolling: Compute remaining outputs */
     k = blockSize3 & 0x3U;
 

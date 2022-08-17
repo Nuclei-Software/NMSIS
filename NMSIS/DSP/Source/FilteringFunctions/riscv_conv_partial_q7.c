@@ -167,7 +167,41 @@ riscv_status riscv_conv_partial_q7(
     /* ------------------------
      * Stage1 process
      * ----------------------*/
+    /* The first stage starts here */
+#if defined (RISCV_MATH_VECTOR)
+    while (blockSize1 > 0)
+    {
+      /* Accumulator is made zero for every iteration */
+      sum = 0;
+      uint32_t vblkCnt = count;                               /* Loop counter */
+      size_t l;
+      vint8m4_t vx, vy;
+      vint16m1_t temp00m1;
+      ptrdiff_t bstride = -1;
+      l = vsetvl_e16m1(vblkCnt);
+      temp00m1 = vmv_v_x_i16m1(0, l);
+      for (; (l = vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
+        vx = vle8_v_i8m4(px, l);
+        px += l;
+        vy = vlse8_v_i8m4(py, bstride, l);
+        py -= l;
+        temp00m1 = vredsum_vs_i16m8_i16m1(temp00m1, vwmul_vv_i16m8(vx, vy, l), temp00m1, l);
+      }
+      sum += vmv_x_s_i16m1_i16(temp00m1);
+      /* Store the result in the accumulator in the destination buffer. */
+      *pOut++ = (q7_t) (__SSAT(sum >> 7, 8));
 
+      /* Update the inputA and inputB pointers for next MAC calculation */
+      py = ++pSrc2;
+      px = pIn1;
+
+      /* Increment MAC count */
+      count++;
+
+      /* Decrement loop counter */
+      blockSize1--;
+    }
+#else
     /* The first stage starts here */
     while (blockSize1 > 0)
     {
@@ -214,7 +248,7 @@ riscv_status riscv_conv_partial_q7(
       }
 
       /* Loop unrolling: Compute remaining outputs */
-      k = count % 0x4U;
+      k = count & 0x3U;
 
 #else
 
@@ -222,23 +256,7 @@ riscv_status riscv_conv_partial_q7(
       k = count;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_MATH_VECTOR)
-    uint32_t vblkCnt = count;                               /* Loop counter */
-    size_t l;
-    vint8m4_t vx, vy;
-    vint16m1_t temp00m1;
-    ptrdiff_t bstride = -1;
-    l = vsetvl_e16m1(vblkCnt);
-    temp00m1 = vmv_v_x_i16m1(0, l);
-    for (; (l = vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle8_v_i8m4(px, l);
-      px += l;
-      vy = vlse8_v_i8m4(py, bstride, l);
-      py -= l;
-      temp00m1 = vredsum_vs_i16m8_i16m1(temp00m1, vwmul_vv_i16m8(vx, vy, l), temp00m1, l);
-    }
-    sum += vmv_x_s_i16m1_i16(temp00m1);
-#else
+
       while (k > 0U)
       {
         /* Perform the multiply-accumulate */
@@ -247,7 +265,7 @@ riscv_status riscv_conv_partial_q7(
         /* Decrement loop counter */
         k--;
       }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+
       /* Store the result in the accumulator in the destination buffer. */
       *pOut++ = (q7_t) (__SSAT(sum >> 7, 8));
 
@@ -261,7 +279,7 @@ riscv_status riscv_conv_partial_q7(
       /* Decrement loop counter */
       blockSize1--;
     }
-
+#endif /*defined (RISCV_MATH_VECTOR)*/
     /* --------------------------
      * Initializations of stage2
      * ------------------------*/
@@ -673,13 +691,47 @@ riscv_status riscv_conv_partial_q7(
     /* -------------------
      * Stage3 process
      * ------------------*/
+#if defined (RISCV_MATH_VECTOR)
 
     while (blockSize3 > 0)
     {
       /* Accumulator is made zero for every iteration */
       sum = 0;
+      uint32_t vblkCnt = count;                               /* Loop counter */
+      size_t l;
+      vint8m4_t vx, vy;
+      vint16m1_t temp00m1;
+      ptrdiff_t bstride = -1;
+      l = vsetvl_e16m1(1);
+      temp00m1 = vmv_v_x_i16m1(0, l);
+      for (; (l = vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
+        vx = vle8_v_i8m4(px, l);
+        px += l;
+        vy = vlse8_v_i8m4(py, bstride, l);
+        py -= l;
+        temp00m1 = vredsum_vs_i16m8_i16m1(temp00m1, vwmul_vv_i16m8(vx, vy, l), temp00m1, l);
+      }
+      sum += vmv_x_s_i16m1_i16(temp00m1);
+      /* Store the result in the accumulator in the destination buffer. */
+      *pOut++ = (q7_t) (__SSAT(sum >> 7, 8));
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
+      /* Update the inputA and inputB pointers for next MAC calculation */
+      px = ++pSrc1;
+      py = pSrc2;
+
+      /* Decrement MAC count */
+      count--;
+
+      /* Decrement the loop counter */
+      blockSize3--;
+    }
+#else
+    while (blockSize3 > 0)
+    {
+      /* Accumulator is made zero for every iteration */
+      sum = 0;
+
+#if defined (RISCV_MATH_LOOPUNROLL)
 
       /* Loop unrolling: Compute 4 outputs at a time */
       k = count >> 2U;
@@ -727,23 +779,7 @@ riscv_status riscv_conv_partial_q7(
       k = count;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_MATH_VECTOR)
-    uint32_t vblkCnt = blockSize3;                               /* Loop counter */
-    size_t l;
-    vint8m4_t vx, vy;
-    vint16m1_t temp00m1;
-    ptrdiff_t bstride = -1;
-    l = vsetvl_e16m1(1);
-    temp00m1 = vmv_v_x_i16m1(0, l);
-    for (; (l = vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle8_v_i8m4(px, l);
-      px += l;
-      vy = vlse8_v_i8m4(py, bstride, l);
-      py -= l;
-      temp00m1 = vredsum_vs_i16m8_i16m1(temp00m1, vwmul_vv_i16m8(vx, vy, l), temp00m1, l);
-    }
-    sum += vmv_x_s_i16m1_i16(temp00m1);
-#else
+
       while (k > 0U)
       {
         /* Perform the multiply-accumulates */
@@ -753,7 +789,7 @@ riscv_status riscv_conv_partial_q7(
         /* Decrement loop counter */
         k--;
       }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+
       /* Store the result in the accumulator in the destination buffer. */
       *pOut++ = (q7_t) (__SSAT(sum >> 7, 8));
 
@@ -767,7 +803,7 @@ riscv_status riscv_conv_partial_q7(
       /* Decrement the loop counter */
       blockSize3--;
     }
-
+#endif /* defined (RISCV_MATH_VECTOR) */
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
   }
@@ -820,7 +856,7 @@ riscv_status riscv_conv_partial_q7(
   /* Return to application */
   return (status);
 
-#endif /* #if !defined(RISCV_MATH_CM0_FAMILY) */
+#endif /* defined(RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR) */
 
 }
 

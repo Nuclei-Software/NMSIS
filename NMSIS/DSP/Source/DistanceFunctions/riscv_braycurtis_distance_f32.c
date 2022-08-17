@@ -83,7 +83,7 @@ float32_t riscv_braycurtis_distance_f32(const float32_t *pA,const float32_t *pB,
       accumSum += fabsf(tmpA + tmpB);
       blockSize --;
    }
-#endif
+#endif /* defined(RISCV_MATH_VECTOR) */
    /*
 
    It is assumed that accumSum is not zero. Since it is the sum of several absolute

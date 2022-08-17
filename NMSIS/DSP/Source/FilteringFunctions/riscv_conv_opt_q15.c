@@ -117,41 +117,6 @@ void riscv_conv_opt_q15(
   /* points to smaller length sequence */
   px = pIn2;
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
-
-  /* Loop unrolling: Compute 4 outputs at a time */
-  k = srcBLen >> 2U;
-#if __RISCV_XLEN == 64
-  pScr2 -= 3;
-#endif /* __RISCV_XLEN == 64 */
-  /* Copy smaller length input sequence in reverse order into second scratch buffer */
-  while (k > 0U)
-  {
-#if __RISCV_XLEN == 64
-    write_q15x4_da(&pScr2,read_q15x4_ia(&px));
-#else
-    /* copy second buffer in reversal manner */
-    *pScr2-- = *px++;
-    *pScr2-- = *px++;
-    *pScr2-- = *px++;
-    *pScr2-- = *px++;
-#endif /* __RISCV_XLEN == 64 */
-
-    /* Decrement loop counter */
-    k--;
-  }
-#if __RISCV_XLEN == 64
-  pScr2 += 3;
-#endif /* __RISCV_XLEN == 64 */
-  /* Loop unrolling: Compute remaining outputs */
-  k = srcBLen & 0x3U;
-
-#else
-
-  /* Initialize k with number of samples */
-  k = srcBLen;
-
-#endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
 #if defined (RISCV_MATH_VECTOR)
   uint32_t vblkCnt = srcBLen;                               /* Loop counter */
   size_t l;
@@ -164,6 +129,34 @@ void riscv_conv_opt_q15(
     pScr2 -= l;
   }
 #else
+#if defined (RISCV_MATH_LOOPUNROLL)
+
+  /* Loop unrolling: Compute 4 outputs at a time */
+  k = srcBLen >> 2U;
+
+  /* Copy smaller length input sequence in reverse order into second scratch buffer */
+  while (k > 0U)
+  {
+    /* copy second buffer in reversal manner */
+    *pScr2-- = *px++;
+    *pScr2-- = *px++;
+    *pScr2-- = *px++;
+    *pScr2-- = *px++;
+
+    /* Decrement loop counter */
+    k--;
+  }
+
+  /* Loop unrolling: Compute remaining outputs */
+  k = srcBLen & 0x3U;
+
+#else
+
+  /* Initialize k with number of samples */
+  k = srcBLen;
+
+#endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
+
   while (k > 0U)
   {
     /* copy second buffer in reversal manner for remaining samples */
@@ -172,7 +165,7 @@ void riscv_conv_opt_q15(
     /* Decrement loop counter */
     k--;
   }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif /* defined (RISCV_MATH_VECTOR) */
   /* Initialze temporary scratch pointer */
   pScr1 = pScratch1;
 
@@ -205,7 +198,7 @@ void riscv_conv_opt_q15(
   /* Initialization of pIn2 pointer */
   pIn2 = py;
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = (srcALen + srcBLen - 1U) >> 2;

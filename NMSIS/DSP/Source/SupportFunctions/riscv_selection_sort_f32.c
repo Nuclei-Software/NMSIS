@@ -69,7 +69,7 @@ void riscv_selection_sort_f32(
 
     float32_t * pA;
 
-    if(pSrc != pDst) // out-of-place
+    if (pSrc != pDst) // out-of-place
     {
         memcpy(pDst, pSrc, blockSize*sizeof(float32_t) );
         pA = pDst;

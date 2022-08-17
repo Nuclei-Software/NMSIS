@@ -53,16 +53,17 @@ void riscv_or_u32(
           uint32_t * pDst,
           uint32_t blockSize)
 {
-    uint32_t blkCnt;      /* Loop counter */
+  uint32_t blkCnt;      /* Loop counter */
 
-    /* Initialize blkCnt with number of samples */
-    blkCnt = blockSize;
+  /* Initialize blkCnt with number of samples */
+  blkCnt = blockSize;
 
 #if defined(RISCV_MATH_VECTOR)
   size_t l;
   vuint32m8_t vx, vy;
 
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+  {
     vx = vle32_v_u32m8(pSrcA, l);
     pSrcA += l;
     vy = vle32_v_u32m8(pSrcB, l);
@@ -72,35 +73,31 @@ void riscv_or_u32(
   }
 #else
 
-#if defined (NUCLEI_DSP_N1) || (__RISCV_XLEN == 64)
+  const uint64_t * pSrcA_temp = (const uint64_t *)pSrcA;
+  const uint64_t * pSrcB_temp = (const uint64_t *)pSrcB;
+  uint64_t * pDst_temp = (uint64_t *)pDst;
+  if (blkCnt = blockSize >> 1)
+  {
+      while (blkCnt > 0U)
+      {
+          *pDst_temp++ = (*pSrcA_temp++) | (*pSrcB_temp++);
+          /* Decrement the loop counter */
+          blkCnt--;
+      }
+  }
 
-    const uint64_t * pSrcA_temp = (const uint64_t *)pSrcA;
-    const uint64_t * pSrcB_temp = (const uint64_t *)pSrcB;
-    uint64_t * pDst_temp = (uint64_t *)pDst;
-    if (blkCnt = blockSize >> 1)
-    {
-        while (blkCnt > 0U)
-        {
-            *pDst_temp++ = (*pSrcA_temp++)|(*pSrcB_temp++);
+  if (blkCnt = blockSize & 0x1)
+  {
+      pSrcA = (const uint32_t *)(pSrcA_temp - 1);
+      pSrcB = (const uint32_t *)(pSrcB_temp - 1);
+  }
 
-            /* Decrement the loop counter */
-            blkCnt--;
-        }
-    }
-    if (blkCnt = blockSize & 0x1)
-    {
-        pSrcA = (const uint32_t * )(pSrcA_temp - 1);
-        pSrcB = (const uint32_t * )(pSrcB_temp - 1);
-    }
-#endif
-
-    while (blkCnt > 0U)
-    {
-        *pDst++ = (*pSrcA++)|(*pSrcB++);
-
-        /* Decrement the loop counter */
-        blkCnt--;
-    }
+  while (blkCnt > 0U)
+  {
+      *pDst++ = (*pSrcA++) | (*pSrcB++);
+      /* Decrement the loop counter */
+      blkCnt--;
+  }
 #endif /* defined(RISCV_MATH_VECTOR) */
 }
 /**

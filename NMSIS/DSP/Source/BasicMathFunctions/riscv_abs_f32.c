@@ -79,8 +79,8 @@ void riscv_abs_f32(
     vse32_v_f32m8(pDst, vfsgnjx_vv_f32m8(vx, vx, l), l);
     pDst += l;
   }
-
-#elif defined (RISCV_MATH_LOOPUNROLL)
+#else
+#if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
@@ -122,7 +122,7 @@ void riscv_abs_f32(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 /**
   @} end of BasicAbs group

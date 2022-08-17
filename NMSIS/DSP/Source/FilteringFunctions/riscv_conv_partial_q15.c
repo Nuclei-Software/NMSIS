@@ -240,10 +240,8 @@ riscv_status riscv_conv_partial_q15(
     /* To, read the last two inputB samples using SIMD:
      * y[srcBLen] and y[srcBLen-1] coefficients, py is decremented by 1 */
     py = py - 1;
-#if __RISCV_XLEN == 64
-    py = py - 2;
-#endif /* __RISCV_XLEN == 64 */
-    while (blockSize1 > 0U)
+
+    while (blockSize1 > 0)
     {
       /* Accumulator is made zero for every iteration */
       sum = 0;
@@ -255,22 +253,16 @@ riscv_status riscv_conv_partial_q15(
          a second loop below computes MACs for the remaining 1 to 3 samples. */
       while (k > 0U)
       {
-#if __RISCV_XLEN == 64
-      sum = __RV_SMALXDA(sum, read_q15x4_ia ((q15_t **) &px), read_q15x4_da ((q15_t **) &py));
-#else
         /* Perform the multiply-accumulate */
         /* x[0], x[1] are multiplied with y[srcBLen - 1], y[srcBLen - 2] respectively */
         sum = __SMLALDX(read_q15x2_ia ((q15_t **) &px), read_q15x2_da ((q15_t **) &py), sum);
         /* x[2], x[3] are multiplied with y[srcBLen - 3], y[srcBLen - 4] respectively */
         sum = __SMLALDX(read_q15x2_ia ((q15_t **) &px), read_q15x2_da ((q15_t **) &py), sum);
-#endif /* __RISCV_XLEN == 64 */
 
         /* Decrement loop counter */
         k--;
       }
-#if __RISCV_XLEN == 64
-      py = py + 2;
-#endif /* __RISCV_XLEN == 64 */
+
       /* For the next MAC operations, the pointer py is used without SIMD
        * So, py is incremented by 1 */
       py = py + 1U;
@@ -294,16 +286,14 @@ riscv_status riscv_conv_partial_q15(
       /* Update the inputA and inputB pointers for next MAC calculation */
       py = ++pSrc2 - 1U;
       px = pIn1;
-// #if __RISCV_XLEN == 64
-//       py = py - 2;
-// #endif /* __RISCV_XLEN == 64 */
+
       /* Increment MAC count */
       count++;
 
       /* Decrement loop counter */
       blockSize1--;
     }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif /* defined (RISCV_MATH_VECTOR) */
     /* --------------------------
      * Initializations of stage2
      * ------------------------*/
@@ -542,7 +532,7 @@ riscv_status riscv_conv_partial_q15(
 
       /* If the blockSize2 is not a multiple of 4, compute any remaining output samples here.
          No loop unrolling is used. */
-      blkCnt = (uint32_t) blockSize2 % 0x4U;
+      blkCnt = (uint32_t) blockSize2 & 0x3U;
 
       while (blkCnt > 0U)
       {
@@ -551,25 +541,17 @@ riscv_status riscv_conv_partial_q15(
 
         /* Apply loop unrolling and compute 4 MACs simultaneously. */
         k = srcBLen >> 2U;
-// #if __RISCV_XLEN == 64
-//       py -= 4;
-//       q63_t acc064, acc164;
-// #endif /* __RISCV_XLEN == 64 */
+
         /* First part of the processing with loop unrolling.  Compute 4 MACs at a time.
            a second loop below computes MACs for the remaining 1 to 3 samples. */
         while (k > 0U)
         {
-// #if __RISCV_XLEN == 64
-//         acc064 = read_q15x4_ia((q15_t **) &px);
-//         acc164 = read_q15x4_da((q15_t **) &py);
-//         sum = __RV_KMADA(sum, acc064, acc164);
-// #else
           /* Perform the multiply-accumulates */
           sum += (q63_t) ((q31_t) *px++ * *py--);
           sum += (q63_t) ((q31_t) *px++ * *py--);
           sum += (q63_t) ((q31_t) *px++ * *py--);
           sum += (q63_t) ((q31_t) *px++ * *py--);
-// #endif /* __RISCV_XLEN == 64 */
+
           /* Decrement loop counter */
           k--;
         }
@@ -638,7 +620,7 @@ riscv_status riscv_conv_partial_q15(
         blkCnt--;
       }
     }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif /* defined (RISCV_MATH_VECTOR) */
 
     /* --------------------------
      * Initializations of stage3
@@ -674,39 +656,7 @@ riscv_status riscv_conv_partial_q15(
     /* -------------------
      * Stage3 process
      * ------------------*/
-#if defined (RISCV_MATH_VECTOR)
-  while (blockSize3 > 0U)
-  {
-    /* Accumulator is made zero for every iteration */
-    sum = 0;
 
-    uint32_t vblkCnt = blockSize3;                               /* Loop counter */
-    size_t l;
-    vint16m4_t vx, vy;
-    vint32m1_t temp00m1;
-    ptrdiff_t bstride = -2;
-    l = vsetvl_e32m1(1);
-    temp00m1 = vmv_v_x_i32m1(0, l);
-    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle16_v_i16m4(px, l);
-      px += l;
-      vy = vlse16_v_i16m4(py, bstride, l);
-      py -= l;
-      temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
-    }
-    sum += vmv_x_s_i32m1_i32(temp00m1);
-    /* Store the result in the accumulator in the destination buffer. */
-    *pOut++ = (q15_t) (__SSAT((sum >> 15), 16));
-
-    /* Update the inputA and inputB pointers for next MAC calculation */
-    px = ++pSrc1;
-    py = pSrc2;
-
-    /* Decrement loop counter */
-    blockSize3--;
-  }
-
-#else
     /* For loop unrolling by 4, this stage is divided into two. */
     /* First part of this stage computes the MAC operations greater than 4 */
     /* Second part of this stage computes the MAC operations less than or equal to 4 */
@@ -721,30 +671,22 @@ riscv_status riscv_conv_partial_q15(
 
       /* Apply loop unrolling and compute 4 MACs simultaneously. */
       k = count >> 2U;
-#if __RISCV_XLEN == 64
-    py -= 2;
-#endif /* __RISCV_XLEN == 64 */
+
       /* First part of the processing with loop unrolling.  Compute 4 MACs at a time.
        ** a second loop below computes MACs for the remaining 1 to 3 samples. */
       while (k > 0U)
       {
-#if __RISCV_XLEN == 64
-      sum = __SMLALDX(read_q15x4_ia ((q15_t **) &px), read_q15x4_da ((q15_t **) &py), sum);
-#else
         /* x[srcALen - srcBLen + 1], x[srcALen - srcBLen + 2] are multiplied
          * with y[srcBLen - 1], y[srcBLen - 2] respectively */
         sum = __SMLALDX(read_q15x2_ia ((q15_t **) &px), read_q15x2_da ((q15_t **) &py), sum);
         /* x[srcALen - srcBLen + 3], x[srcALen - srcBLen + 4] are multiplied
          * with y[srcBLen - 3], y[srcBLen - 4] respectively */
         sum = __SMLALDX(read_q15x2_ia ((q15_t **) &px), read_q15x2_da ((q15_t **) &py), sum);
-#endif /* __RISCV_XLEN == 64 */
 
         /* Decrement loop counter */
         k--;
       }
-#if __RISCV_XLEN == 64
-    py = py + 2;
-#endif /* __RISCV_XLEN == 64 */
+
       /* For the next MAC operations, the pointer py is used without SIMD
        * So, py is incremented by 1 */
       py = py + 1U;
@@ -814,11 +756,11 @@ riscv_status riscv_conv_partial_q15(
       /* Decrement the loop counter */
       blockSize3--;
     }
-#endif /*defined (RISCV_MATH_VECTOR)*/
 
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
   }
+
   /* Return to application */
   return (status);
 
@@ -866,7 +808,7 @@ riscv_status riscv_conv_partial_q15(
   /* Return to application */
   return (status);
 
-#endif /* #if defined (RISCV_MATH_DSP) */
+#endif /* defined(RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR) */
 
 }
 

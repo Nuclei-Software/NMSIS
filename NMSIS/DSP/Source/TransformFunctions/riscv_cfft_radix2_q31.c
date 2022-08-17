@@ -117,10 +117,10 @@ void riscv_radix2_butterfly_q31(
       xt = (pSrc[2 * i] >> 1U) - (pSrc[2 * l] >> 1U);
       yt = (pSrc[2 * i + 1] >> 1U) - (pSrc[2 * l + 1] >> 1U);
 #if __RISCV_XLEN == 64
-     write_q31x2 ((pSrc+2*i), (q63_t) ((q63_t)((pSrc[2 * i] >> 2U) + (pSrc[2 * l] >> 2U)) | (((q63_t)((pSrc[2 * l + 1] >> 2U) + (pSrc[2 * i + 1] >> 2U))) << 32)));
+      write_q31x2 ((pSrc+2*i), (q63_t) ((q63_t)((pSrc[2 * i] >> 2U) + (pSrc[2 * l] >> 2U)) | (((q63_t)((pSrc[2 * l + 1] >> 2U) + (pSrc[2 * i + 1] >> 2U))) << 32)));
 #else
-     pSrc[2 * i] = (pSrc[2 * i] >> 2U) + (pSrc[2 * l] >> 2U);
-     pSrc[2 * i + 1] = (pSrc[2 * l + 1] >> 2U) + (pSrc[2 * i + 1] >> 2U);
+      pSrc[2 * i] = (pSrc[2 * i] >> 2U) + (pSrc[2 * l] >> 2U);
+      pSrc[2 * i + 1] = (pSrc[2 * l + 1] >> 2U) + (pSrc[2 * i + 1] >> 2U);
 #endif /* __RISCV_XLEN == 64 */
 
       // pSrc[2 * i] = ((pSrc[2 * i] >> 1U) + (pSrc[2 * l] >> 1U)) >> 1U;
@@ -252,10 +252,10 @@ void riscv_radix2_butterfly_inverse_q31(
       xt = (pSrc[2 * i] >> 1U) - (pSrc[2 * l] >> 1U);
       yt = (pSrc[2 * i + 1] >> 1U) - (pSrc[2 * l + 1] >> 1U);
 #if __RISCV_XLEN == 64
-     write_q31x2 ((pSrc+2*i), (q63_t) ((q63_t)((pSrc[2 * i] >> 2U) + (pSrc[2 * l] >> 2U)) | (((q63_t)((pSrc[2 * l + 1] >> 2U) + (pSrc[2 * i + 1] >> 2U))) << 32)));
+      write_q31x2 ((pSrc+2*i), (q63_t) ((q63_t)((pSrc[2 * i] >> 2U) + (pSrc[2 * l] >> 2U)) | (((q63_t)((pSrc[2 * l + 1] >> 2U) + (pSrc[2 * i + 1] >> 2U))) << 32)));
 #else
-     pSrc[2 * i] = (pSrc[2 * i] >> 2U) + (pSrc[2 * l] >> 2U);
-     pSrc[2 * i + 1] = (pSrc[2 * l + 1] >> 2U) + (pSrc[2 * i + 1] >> 2U);
+      pSrc[2 * i] = (pSrc[2 * i] >> 2U) + (pSrc[2 * l] >> 2U);
+      pSrc[2 * i + 1] = (pSrc[2 * l + 1] >> 2U) + (pSrc[2 * i + 1] >> 2U);
 #endif /* __RISCV_XLEN == 64 */
 
       // pSrc[2 * i] = ((pSrc[2 * i] >> 1U) + (pSrc[2 * l] >> 1U)) >> 1U;
@@ -295,7 +295,7 @@ void riscv_radix2_butterfly_inverse_q31(
             xt = pSrc[2 * i] - pSrc[2 * l];
             yt = pSrc[2 * i + 1] - pSrc[2 * l + 1];
 #if __RISCV_XLEN == 64
-     write_q31x2 ((pSrc+2*i), (q63_t) ((q63_t)((pSrc[2 * i] >> 1U) + (pSrc[2 * l] >> 1U)) | (((q63_t)((pSrc[2 * l + 1] >> 1U) + (pSrc[2 * i + 1] >> 1U))) << 32)));
+            write_q31x2 ((pSrc+2*i), (q63_t) ((q63_t)((pSrc[2 * i] >> 1U) + (pSrc[2 * l] >> 1U)) | (((q63_t)((pSrc[2 * l + 1] >> 1U) + (pSrc[2 * i + 1] >> 1U))) << 32)));
 #else
    //   pSrc[2 * i] = (pSrc[2 * i] >> 2U) + (pSrc[2 * l] >> 2U);
    //   pSrc[2 * i + 1] = (pSrc[2 * l + 1] >> 2U) + (pSrc[2 * i + 1] >> 2U);

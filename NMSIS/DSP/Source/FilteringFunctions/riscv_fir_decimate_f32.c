@@ -323,7 +323,7 @@ void riscv_fir_decimate_f32(
       *pStateCur++ = *pSrc++;
 
     } while (--i);
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif /* defined (RISCV_MATH_VECTOR) */
     /* Set accumulator to zero */
     acc0 = 0.0f;
 
@@ -381,7 +381,7 @@ void riscv_fir_decimate_f32(
     }
 
     /* Loop unrolling: Compute remaining taps */
-    tapCnt = numTaps % 0x4U;
+    tapCnt = numTaps & 0x3U;
 
 #else
 
@@ -421,7 +421,7 @@ void riscv_fir_decimate_f32(
       /* Decrement loop counter */
       tapCnt--;
     }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif /* defined (RISCV_MATH_VECTOR) */
     /* Advance the state pointer by the decimation factor
      * to process the next group of decimation factor number samples */
     pState = pState + S->M;
@@ -458,7 +458,7 @@ void riscv_fir_decimate_f32(
   }
 
   /* Loop unrolling: Compute remaining taps */
-  tapCnt = (numTaps - 1U) % 0x04U;
+  tapCnt = (numTaps - 1U) & 0x03U;
 
 #else
 

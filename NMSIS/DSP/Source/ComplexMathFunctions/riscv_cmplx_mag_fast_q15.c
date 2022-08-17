@@ -55,14 +55,14 @@ void riscv_cmplx_mag_fast_q15(
         q15_t * pDst,
         uint32_t numSamples)
 {
-        uint32_t blkCnt;                               /* Loop counter */
+  uint32_t blkCnt;                    /* Loop counter */
 
 #if defined (RISCV_MATH_DSP)
-        q31_t in;
-        q31_t acc0;                                    /* Accumulators */
+  q31_t in;
+  q31_t acc0;                         /* Accumulators */
 #else
-       q15_t real, imag;                              /* Temporary input variables */
-       q31_t acc0, acc1;                              /* Accumulators */
+  q15_t real, imag;                   /* Temporary input variables */
+  q31_t acc0, acc1;                   /* Accumulators */
 #endif
 
 #if defined (RISCV_MATH_LOOPUNROLL)
@@ -75,18 +75,18 @@ void riscv_cmplx_mag_fast_q15(
     /* C[0] = sqrt(A[0] * A[0] + A[1] * A[1]) */
 
 #if defined (RISCV_MATH_DSP)
-    in = read_q15x2_ia ((q15_t **)&pSrc);
+    in = read_q15x2_ia((q15_t **)&pSrc);
     acc0 = __SMUAD(in, in);
     /* store result in 2.14 format in destination buffer. */
-    riscv_sqrt_q15((q15_t) (acc0 >> 17), pDst++);
+    riscv_sqrt_q15((q15_t)(acc0 >> 17), pDst++);
 
-    in = read_q15x2_ia ((q15_t **)&pSrc);
+    in = read_q15x2_ia((q15_t **)&pSrc);
     acc0 = __SMUAD(in, in);
-    riscv_sqrt_q15((q15_t) (acc0 >> 17), pDst++);
+    riscv_sqrt_q15((q15_t)(acc0 >> 17), pDst++);
 
-    in = read_q15x2_ia ((q15_t **)&pSrc);
+    in = read_q15x2_ia((q15_t **)&pSrc);
     acc0 = __SMUAD(in, in);
-    riscv_sqrt_q15((q15_t) (acc0 >> 17), pDst++);
+    riscv_sqrt_q15((q15_t)(acc0 >> 17), pDst++);
 
     in = read_q15x2_ia ((q15_t **)&pSrc);
     acc0 = __SMUAD(in, in);

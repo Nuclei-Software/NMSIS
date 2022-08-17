@@ -49,7 +49,6 @@ int DSP_matrix_q7(void)
         }
     BENCH_STATUS(riscv_mat_vec_mult_q7);
 
-    printf("all tests are passed,well done!\n");
 }
 
 int main()

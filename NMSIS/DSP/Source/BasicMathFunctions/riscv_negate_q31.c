@@ -55,8 +55,8 @@ void riscv_negate_q31(
         q31_t * pDst,
         uint32_t blockSize)
 {
-        uint32_t blkCnt;                               /* Loop counter */
-        q31_t in;                                      /* Temporary input variable */
+  uint32_t blkCnt;                      /* Loop counter */
+  q31_t in;                             /* Temporary input variable */
 
 #if defined(RISCV_MATH_VECTOR)
   blkCnt = blockSize;                               /* Loop counter */
@@ -64,7 +64,8 @@ void riscv_negate_q31(
   vint32m8_t vx;
   vint32m8_t v_zero = vmv_v_x_i32m8(0, l);
 
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+  {
     vx = vle32_v_i32m8(pSrc, l);
     pSrc += l;
     vse32_v_i32m8(pDst, vssub_vv_i32m8(v_zero, vx, l), l);
@@ -80,9 +81,13 @@ void riscv_negate_q31(
   while (blkCnt > 0U)
   {
     /* C = -A */
-#if __RISCV_XLEN == 64
-    write_q15x4_ia(&pDst, __RV_KSUB32(0, read_q15x4_ia((q31_t **)&pSrc)));
-    write_q15x4_ia(&pDst, __RV_KSUB32(0, read_q15x4_ia((q31_t **)&pSrc)));
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+    write_q31x2_ia(&pDst, __RV_KSUB32(0, read_q31x2_ia((q31_t **)&pSrc)));
+    write_q31x2_ia(&pDst, __RV_KSUB32(0, read_q31x2_ia((q31_t **)&pSrc)));
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
+    write_q31x2_ia(&pDst, __dksub32(0, read_q31x2_ia((q31_t **)&pSrc)));
+    write_q31x2_ia(&pDst, __dksub32(0, read_q31x2_ia((q31_t **)&pSrc)));
 #else
     /* Negate and store result in destination buffer. */
     in = *pSrc++;
@@ -112,7 +117,9 @@ void riscv_negate_q31(
 #else
     *pDst++ = (in == INT32_MIN) ? INT32_MAX : -in;
 #endif
-#endif /* __RISCV_XLEN == 64 */
+
+#endif /* RISCV_MATH_DSP && __RISCV_XLEN == 64 */
+#endif /* RISCV_MATH_DSP && NUCLEI_DSP_N2 */
     /* Decrement loop counter */
     blkCnt--;
   }

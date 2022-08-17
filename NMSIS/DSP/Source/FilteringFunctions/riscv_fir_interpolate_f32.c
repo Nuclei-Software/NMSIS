@@ -418,7 +418,7 @@ void riscv_fir_interpolate_f32(
         /* Decrement loop counter */
         tapCnt--;
       }
-#endif
+#endif /* #if defined(RISCV_MATH_VECTOR) */
       /* The result is in the accumulator, store in the destination buffer. */
       *pDst++ = sum0;
 

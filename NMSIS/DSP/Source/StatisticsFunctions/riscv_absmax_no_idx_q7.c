@@ -152,7 +152,7 @@ void riscv_absmax_no_idx_q7(
 #else
 
   /* Load first input value that act as reference value for comparision */
-  out = (*pSrc > 0) ? *pSrc : ((*pSrc == (q7_t) 0x80) ? (q7_t) 0x7f : -*pSrc);
+  out = (*pSrc > 0) ? *pSrc : ((*pSrc == (q7_t)0x80) ? (q7_t)0x7f : -*pSrc);
   pSrc++;
 
   /* Initialize blkCnt with number of samples */
@@ -161,9 +161,8 @@ void riscv_absmax_no_idx_q7(
   while (blkCnt > 0U)
   {
     /* Initialize maxVal to the next consecutive values one by one */
-    maxVal = (*pSrc > 0) ? *pSrc : ((*pSrc == (q7_t) 0x80) ? (q7_t) 0x7f : -*pSrc);
+    maxVal = (*pSrc > 0) ? *pSrc : ((*pSrc == (q7_t)0x80) ? (q7_t)0x7f : -*pSrc);
     pSrc++;
-
     /* compare for the maximum value */
     if (out < maxVal)
     {

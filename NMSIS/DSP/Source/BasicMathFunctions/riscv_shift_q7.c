@@ -59,9 +59,8 @@ void riscv_shift_q7(
         q7_t * pDst,
         uint32_t blockSize)
 {
-
-        uint32_t blkCnt;                               /* Loop counter */
-        uint8_t sign = (shiftBits & 0x80);             /* Sign of shiftBits */
+  uint32_t blkCnt;                               /* Loop counter */
+  uint8_t sign = (shiftBits & 0x80);             /* Sign of shiftBits */
 
 #if defined(RISCV_MATH_VECTOR)
   blkCnt = blockSize;                               /* Loop counter */
@@ -70,124 +69,76 @@ void riscv_shift_q7(
 
   if (sign == 0U)
   {
-     for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
-       vx = vle8_v_i8m4(pSrc, l);
-       pSrc += l;
-       vse8_v_i8m4(pDst, vnclip_wx_i8m4(vsll_vx_i16m8(vwadd_vx_i16m8(vx, 0, l), shiftBits, l), 0, l), l);
-       pDst += l;
-     }
+    for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l)
+    {
+      vx = vle8_v_i8m4(pSrc, l);
+      pSrc += l;
+      vse8_v_i8m4(pDst, vnclip_wx_i8m4(vsll_vx_i16m8(vwadd_vx_i16m8(vx, 0, l), shiftBits, l), 0, l), l);
+      pDst += l;
+    }
   }
   else
   {
-    for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
+    for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l)
+    {
       vx = vle8_v_i8m4(pSrc, l);
       pSrc += l;
       vse8_v_i8m4(pDst, vsra_vx_i8m4(vx, -shiftBits, l), l);
       pDst += l;
     }
   }
-
 #else
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
-//#if defined (RISCV_MATH_DSP)
-//  q7_t in1,  in2,  in3,  in4;                    /* Temporary input variables */
-//#endif
-#if __RISCV_XLEN == 64
-  /* Loop unrolling: Compute 8 outputs at a time */
+#if defined (RISCV_MATH_DSP)
   blkCnt = blockSize >> 3U;
-
-  while(blkCnt > 0U) {
-	  write_q7x8_ia(&pDst, __RV_KSLRA8(read_q7x8_ia((q7_t **)&pSrc), shiftBits));
-	  blkCnt--;
-  }
+  while(blkCnt > 0U)
+  {
+#if __RISCV_XLEN == 64
+    write_q7x8_ia(&pDst, __RV_KSLRA8(read_q7x8_ia((q7_t **)&pSrc), shiftBits));
 #else
 #ifdef NUCLEI_DSP_N1
-  /* Loop unrolling: Compute 8 outputs at a time */
-  blkCnt = blockSize >> 3U;
-
-  while(blkCnt > 0U) {
-	  write_q7x8_ia(&pDst, __RV_DKSLRA8(read_q7x8_ia((q7_t **)&pSrc), shiftBits));
-	  blkCnt--;
-  }
+    write_q7x8_ia(&pDst, __RV_DKSLRA8(read_q7x8_ia((q7_t **)&pSrc), shiftBits));
 #else
-  /* Loop unrolling: Compute 4 outputs at a time */
-  blkCnt = blockSize >> 2U;
-
-  while(blkCnt > 0U) {
-	  write_q7x4_ia(&pDst, __RV_KSLRA8(read_q7x4_ia((q7_t **)&pSrc), shiftBits));
-	  blkCnt--;
-  }
-#endif
+    write_q7x4_ia(&pDst, __RV_KSLRA8(read_q7x4_ia((q7_t **)&pSrc), shiftBits));
+    write_q7x4_ia(&pDst, __RV_KSLRA8(read_q7x4_ia((q7_t **)&pSrc), shiftBits));
+#endif /* NUCLEI_DSP_N1 */
 #endif /* __RISCV_XLEN == 64 */
-//  /* If the shift value is positive then do right shift else left shift */
-//  if (sign == 0U)
-//  {
-//    while (blkCnt > 0U)
-//    {
-//      /* C = A << shiftBits */
-//
-//#if defined (RISCV_MATH_DSP)
-//      /* Read 4 inputs */
-//      //in1 = *pSrc++;
-//      //in2 = *pSrc++;
-//      //in3 = *pSrc++;
-//      //in4 = *pSrc++;
-//
-//    /* Pack and store result in destination buffer (in single write) */
-//      //write_q7x4_ia (&pDst, __PACKq7(__SSAT((in1 << shiftBits), 8),
-//      //                               __SSAT((in2 << shiftBits), 8),
-//      //                               __SSAT((in3 << shiftBits), 8),
-//      //                               __SSAT((in4 << shiftBits), 8) ));
-//      write_q7x4_ia(&pDst, __KSLRA8(read_q7x4_ia((q7_t **)&pSrc), shiftBits));
-//#else
-//      *pDst++ = (q7_t) __SSAT(((q15_t) *pSrc++ << shiftBits), 8);
-//      *pDst++ = (q7_t) __SSAT(((q15_t) *pSrc++ << shiftBits), 8);
-//      *pDst++ = (q7_t) __SSAT(((q15_t) *pSrc++ << shiftBits), 8);
-//      *pDst++ = (q7_t) __SSAT(((q15_t) *pSrc++ << shiftBits), 8);
-//#endif
-//
-//      /* Decrement loop counter */
-//      blkCnt--;
-//    }
-//  }
-//  else
-//  {
-//    while (blkCnt > 0U)
-//    {
-//      /* C = A >> shiftBits */
-//
-//#if defined (RISCV_MATH_DSP)
-//      /* Read 4 inputs */
-//      in1 = *pSrc++;
-//      in2 = *pSrc++;
-//      in3 = *pSrc++;
-//      in4 = *pSrc++;
-//
-//    /* Pack and store result in destination buffer (in single write) */
-//      write_q7x4_ia (&pDst, __PACKq7((in1 >> -shiftBits),
-//                                     (in2 >> -shiftBits),
-//                                     (in3 >> -shiftBits),
-//                                     (in4 >> -shiftBits) ));
-//#else
-//      *pDst++ = (*pSrc++ >> -shiftBits);
-//      *pDst++ = (*pSrc++ >> -shiftBits);
-//      *pDst++ = (*pSrc++ >> -shiftBits);
-//      *pDst++ = (*pSrc++ >> -shiftBits);
-//#endif
-//
-//      /* Decrement loop counter */
-//      blkCnt--;
-//    }
-//  }
-
-  /* Loop unrolling: Compute remaining outputs */
-#if defined (NUCLEI_DSP_N1) || (__RISCV_XLEN == 64)
+    blkCnt--;
+  }
   blkCnt = blockSize & 0x7U;
+
 #else
+  blkCnt = blockSize >> 2U;
+  if (sign == 0U)
+  {
+    while (blkCnt > 0U)
+    {
+      /* C = A << shiftBits */
+
+      *pDst++ = (q7_t) __SSAT(((q15_t)*pSrc++ << shiftBits), 8);
+      *pDst++ = (q7_t) __SSAT(((q15_t)*pSrc++ << shiftBits), 8);
+      *pDst++ = (q7_t) __SSAT(((q15_t)*pSrc++ << shiftBits), 8);
+      *pDst++ = (q7_t) __SSAT(((q15_t)*pSrc++ << shiftBits), 8);
+      blkCnt--;
+    }
+  }
+  else
+  {
+    while (blkCnt > 0U)
+    {
+      /* C = A >> shiftBits */
+
+      *pDst++ = (*pSrc++ >> -shiftBits);
+      *pDst++ = (*pSrc++ >> -shiftBits);
+      *pDst++ = (*pSrc++ >> -shiftBits);
+      *pDst++ = (*pSrc++ >> -shiftBits);
+      blkCnt--;
+    }
+  }
   blkCnt = blockSize & 0x3U;
-#endif
+#endif /* RISCV_MATH_DSP */
 
 #else
 
@@ -204,7 +155,7 @@ void riscv_shift_q7(
       /* C = A << shiftBits */
 
       /* Shift input and store result in destination buffer. */
-      *pDst++ = (q7_t) __SSAT(((q15_t) *pSrc++ << shiftBits), 8);
+      *pDst++ = (q7_t) __SSAT(((q15_t)*pSrc++ << shiftBits), 8);
 
       /* Decrement loop counter */
       blkCnt--;

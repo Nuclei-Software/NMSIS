@@ -108,10 +108,10 @@ riscv_status riscv_mat_mult_f32(
   vfloat32m8_t vmul;
   vfloat32m1_t vsum;
   px = pOut;
-  for(rownum = 0; rownum < numRowsA; rownum++)
+  for (rownum = 0; rownum < numRowsA; rownum++)
   {
     pIn1 = pInA;       //backup pointer position
-    for(colnum = 0; colnum < numColsB; colnum++)
+    for (colnum = 0; colnum < numColsB; colnum++)
     {
       blkCnt = numColsA;
       pIn2 = pInB;     //backup pointer position
@@ -239,7 +239,7 @@ riscv_status riscv_mat_mult_f32(
     status = RISCV_MATH_SUCCESS;
   }
 
-#endif /*defined(RISCV_MATH_VECTOR)*/
+#endif /* defined(RISCV_MATH_VECTOR) */
   /* Return to application */
   return (status);
 }

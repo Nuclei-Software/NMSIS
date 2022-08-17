@@ -78,6 +78,7 @@ riscv_status riscv_mat_trans_q15(
   else
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
+
 #if defined(RISCV_MATH_VECTOR)
     uint32_t blkCnt = nRows;
     size_t l;
@@ -103,6 +104,7 @@ riscv_status riscv_mat_trans_q15(
     }
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
+
 #else
 
   {

@@ -477,7 +477,7 @@ void riscv_radix4_butterfly_q31(
     *ptr1++ = xd_out;
     *ptr1++ = yd_out;
 
-#endif /* __RISCV_XLEN == 64 */
+#endif /* defined RISCV_MATH_DSP && (__RISCV_XLEN == 64) */
 
   } while (--j);
 
@@ -865,7 +865,7 @@ void riscv_radix4_butterfly_inverse_q31(
     /* writing xd' and yd' */
     *ptr1++ = xd_out;
     *ptr1++ = yd_out;
-#endif /* __RISCV_XLEN == 64 */
+#endif /* defined RISCV_MATH_DSP && (__RISCV_XLEN == 64) */
 
   } while (--j);
 

@@ -126,7 +126,7 @@ void riscv_fir_q15(
     while (tapCnt > 0U)
     {
       /* Read the first two coefficients using SIMD:  b[N] and b[N-1] coefficients */
-      c0 = read_q15x2_ia (&pb);
+      c0 = read_q15x2_ia ((q15_t **)&pb);
 
       /* acc0 +=  b[N] * x[n-N] + b[N-1] * x[n-N-1] */
       acc0 = __SMLALD(x0, c0, acc0);
@@ -138,7 +138,7 @@ void riscv_fir_q15(
       x1 = __PKHBT(x2, x0, 0);
 
       /* Read state x[n-N-4], x[n-N-5] */
-      x0 = read_q15x2_ia (&px);
+      x0 = read_q15x2_ia ((q15_t **)&px);
 
       /* acc1 +=  b[N] * x[n-N-1] + b[N-1] * x[n-N-2] */
       acc1 = __SMLALDX(x1, c0, acc1);
@@ -150,13 +150,13 @@ void riscv_fir_q15(
       acc3 = __SMLALDX(x1, c0, acc3);
 
       /* Read coefficients b[N-2], b[N-3] */
-      c0 = read_q15x2_ia (&pb);
+      c0 = read_q15x2_ia ((q15_t **)&pb);
 
       /* acc0 +=  b[N-2] * x[n-N-2] + b[N-3] * x[n-N-3] */
       acc0 = __SMLALD(x2, c0, acc0);
 
       /* Read state x[n-N-6], x[n-N-7] with offset */
-      x2 = read_q15x2_ia (&px);
+      x2 = read_q15x2_ia ((q15_t **)&px);
 
       /* acc2 +=  b[N-2] * x[n-N-4] + b[N-3] * x[n-N-5] */
       acc2 = __SMLALD(x0, c0, acc2);
@@ -179,7 +179,7 @@ void riscv_fir_q15(
     if ((numTaps & 0x3U) != 0U)
     {
       /* Read last two coefficients */
-      c0 = read_q15x2_ia (&pb);
+      c0 = read_q15x2_ia ((q15_t **)&pb);
 
       /* Perform the multiply-accumulates */
       acc0 = __SMLALD(x0, c0, acc0);
@@ -189,7 +189,7 @@ void riscv_fir_q15(
       x1 = __PKHBT(x2, x0, 0);
 
       /* Read last state variables */
-      x0 = read_q15x2 (px);
+      x0 = read_q15x2 ((q15_t *)px);
 
       /* Perform the multiply-accumulates */
       acc1 = __SMLALDX(x1, c0, acc1);
@@ -203,12 +203,12 @@ void riscv_fir_q15(
 
     /* The results in the 4 accumulators are in 2.30 format. Convert to 1.15 with saturation.
        Then store the 4 outputs in the destination buffer. */
-#if __RISCV_XLEN == 64
-    write_q15x4_ia (&pDst, __RV_PKBB32(__PKHBT(__SSAT((acc2 >> 15), 16), __SSAT((acc3 >> 15), 16), 16),__PKHBT(__SSAT((acc0 >> 15), 16), __SSAT((acc1 >> 15), 16), 16)));
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+    write_q15x4_ia(&pDst, __RV_PKBB32(__PKHBT(__SSAT((acc2 >> 15), 16), __SSAT((acc3 >> 15), 16), 16), __PKHBT(__SSAT((acc0 >> 15), 16), __SSAT((acc1 >> 15), 16), 16)));
 #else
     write_q15x2_ia (&pDst, __PKHBT(__SSAT((acc0 >> 15), 16), __SSAT((acc1 >> 15), 16), 16));
     write_q15x2_ia (&pDst, __PKHBT(__SSAT((acc2 >> 15), 16), __SSAT((acc3 >> 15), 16), 16));
-#endif /* __RISCV_XLEN == 64 */
+#endif /* (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
     /* Advance the state pointer by 4 to process the next group of 4 samples */
     pState = pState + 4U;

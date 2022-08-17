@@ -58,7 +58,7 @@ void riscv_cmplx_mult_real_q31(
         uint32_t numSamples)
 {
 #if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = numSamples;                               /* Loop counter */
+  uint32_t blkCnt = numSamples;           /* Loop counter */
   size_t l;
   ptrdiff_t bstride = 8;
   vint32m8_t v_Rc, v_Ic, v_Rr;
@@ -79,8 +79,9 @@ void riscv_cmplx_mult_real_q31(
     pCmplxDst += l * 2;
   }
 #else
-        uint32_t blkCnt;                               /* Loop counter */
-        q31_t in;                                      /* Temporary variable */
+
+  uint32_t blkCnt;                  /* Loop counter */
+  q31_t in;                         /* Temporary variable */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -97,45 +98,45 @@ void riscv_cmplx_mult_real_q31(
     /* store saturated result in 1.31 format to destination buffer */
     //*pCmplxDst++ = (__SSAT((q31_t) (((q63_t) *pSrcCmplx++ * in) >> 32), 31) << 1);
     //*pCmplxDst++ = (__SSAT((q31_t) (((q63_t) *pSrcCmplx++ * in) >> 32), 31) << 1);
-	*pCmplxDst++ = (__SSAT((q31_t) (__MULSR64(*pSrcCmplx++, in) >> 32), 31) << 1);
-	*pCmplxDst++ = (__SSAT((q31_t) (__MULSR64(*pSrcCmplx++, in) >> 32), 31) << 1);
+    *pCmplxDst++ = (__SSAT((q31_t)(__MULSR64(*pSrcCmplx++, in) >> 32), 31) << 1);
+    *pCmplxDst++ = (__SSAT((q31_t)(__MULSR64(*pSrcCmplx++, in) >> 32), 31) << 1);
 #else
     /* store result in destination buffer. */
-    *pCmplxDst++ = (q31_t) clip_q63_to_q31(((q63_t) *pSrcCmplx++ * in) >> 31);
-    *pCmplxDst++ = (q31_t) clip_q63_to_q31(((q63_t) *pSrcCmplx++ * in) >> 31);
+    *pCmplxDst++ = (q31_t)clip_q63_to_q31(((q63_t)*pSrcCmplx++ * in) >> 31);
+    *pCmplxDst++ = (q31_t)clip_q63_to_q31(((q63_t)*pSrcCmplx++ * in) >> 31);
 #endif
 
     in = *pSrcReal++;
 #if defined (RISCV_MATH_DSP)
     //*pCmplxDst++ = (__SSAT((q31_t) (((q63_t) *pSrcCmplx++ * in) >> 32), 31) << 1);
     //*pCmplxDst++ = (__SSAT((q31_t) (((q63_t) *pSrcCmplx++ * in) >> 32), 31) << 1);
-	*pCmplxDst++ = (__SSAT((q31_t) (__MULSR64(*pSrcCmplx++, in) >> 32), 31) << 1);
-	*pCmplxDst++ = (__SSAT((q31_t) (__MULSR64(*pSrcCmplx++, in) >> 32), 31) << 1);
+    *pCmplxDst++ = (__SSAT((q31_t)(__MULSR64(*pSrcCmplx++, in) >> 32), 31) << 1);
+    *pCmplxDst++ = (__SSAT((q31_t)(__MULSR64(*pSrcCmplx++, in) >> 32), 31) << 1);
 #else
-    *pCmplxDst++ = (q31_t) clip_q63_to_q31(((q63_t) *pSrcCmplx++ * in) >> 31);
-    *pCmplxDst++ = (q31_t) clip_q63_to_q31(((q63_t) *pSrcCmplx++ * in) >> 31);
+    *pCmplxDst++ = (q31_t)clip_q63_to_q31(((q63_t)*pSrcCmplx++ * in) >> 31);
+    *pCmplxDst++ = (q31_t)clip_q63_to_q31(((q63_t)*pSrcCmplx++ * in) >> 31);
 #endif
 
     in = *pSrcReal++;
 #if defined (RISCV_MATH_DSP)
     //*pCmplxDst++ = (__SSAT((q31_t) (((q63_t) *pSrcCmplx++ * in) >> 32), 31) << 1);
     //*pCmplxDst++ = (__SSAT((q31_t) (((q63_t) *pSrcCmplx++ * in) >> 32), 31) << 1);
-	*pCmplxDst++ = (__SSAT((q31_t) (__MULSR64(*pSrcCmplx++, in) >> 32), 31) << 1);
-	*pCmplxDst++ = (__SSAT((q31_t) (__MULSR64(*pSrcCmplx++, in) >> 32), 31) << 1);
+    *pCmplxDst++ = (__SSAT((q31_t)(__MULSR64(*pSrcCmplx++, in) >> 32), 31) << 1);
+    *pCmplxDst++ = (__SSAT((q31_t)(__MULSR64(*pSrcCmplx++, in) >> 32), 31) << 1);
 #else
-    *pCmplxDst++ = (q31_t) clip_q63_to_q31(((q63_t) *pSrcCmplx++ * in) >> 31);
-    *pCmplxDst++ = (q31_t) clip_q63_to_q31(((q63_t) *pSrcCmplx++ * in) >> 31);
+    *pCmplxDst++ = (q31_t)clip_q63_to_q31(((q63_t) *pSrcCmplx++ * in) >> 31);
+    *pCmplxDst++ = (q31_t)clip_q63_to_q31(((q63_t) *pSrcCmplx++ * in) >> 31);
 #endif
 
     in = *pSrcReal++;
 #if defined (RISCV_MATH_DSP)
     //*pCmplxDst++ = (__SSAT((q31_t) (((q63_t) *pSrcCmplx++ * in) >> 32), 31) << 1);
     //*pCmplxDst++ = (__SSAT((q31_t) (((q63_t) *pSrcCmplx++ * in) >> 32), 31) << 1);
-	*pCmplxDst++ = (__SSAT((q31_t) (__MULSR64(*pSrcCmplx++, in) >> 32), 31) << 1);
-	*pCmplxDst++ = (__SSAT((q31_t) (__MULSR64(*pSrcCmplx++, in) >> 32), 31) << 1);
+    *pCmplxDst++ = (__SSAT((q31_t)(__MULSR64(*pSrcCmplx++, in) >> 32), 31) << 1);
+    *pCmplxDst++ = (__SSAT((q31_t)(__MULSR64(*pSrcCmplx++, in) >> 32), 31) << 1);
 #else
-    *pCmplxDst++ = (q31_t) clip_q63_to_q31(((q63_t) *pSrcCmplx++ * in) >> 31);
-    *pCmplxDst++ = (q31_t) clip_q63_to_q31(((q63_t) *pSrcCmplx++ * in) >> 31);
+    *pCmplxDst++ = (q31_t)clip_q63_to_q31(((q63_t)*pSrcCmplx++ * in) >> 31);
+    *pCmplxDst++ = (q31_t)clip_q63_to_q31(((q63_t)*pSrcCmplx++ * in) >> 31);
 #endif
 
     /* Decrement loop counter */
@@ -162,12 +163,12 @@ void riscv_cmplx_mult_real_q31(
     /* store saturated result in 1.31 format to destination buffer */
     //*pCmplxDst++ = (__SSAT((q31_t) (((q63_t) *pSrcCmplx++ * in) >> 32), 31) << 1);
     //*pCmplxDst++ = (__SSAT((q31_t) (((q63_t) *pSrcCmplx++ * in) >> 32), 31) << 1);
-	*pCmplxDst++ = (__SSAT((q31_t) (__MULSR64(*pSrcCmplx++, in) >> 32), 31) << 1);
-	*pCmplxDst++ = (__SSAT((q31_t) (__MULSR64(*pSrcCmplx++, in) >> 32), 31) << 1);
+    *pCmplxDst++ = (__SSAT((q31_t)(__MULSR64(*pSrcCmplx++, in) >> 32), 31) << 1);
+    *pCmplxDst++ = (__SSAT((q31_t)(__MULSR64(*pSrcCmplx++, in) >> 32), 31) << 1);
 #else
     /* store result in destination buffer. */
-    *pCmplxDst++ = (q31_t) clip_q63_to_q31(((q63_t) *pSrcCmplx++ * in) >> 31);
-    *pCmplxDst++ = (q31_t) clip_q63_to_q31(((q63_t) *pSrcCmplx++ * in) >> 31);
+    *pCmplxDst++ = (q31_t)clip_q63_to_q31(((q63_t)*pSrcCmplx++ * in) >> 31);
+    *pCmplxDst++ = (q31_t)clip_q63_to_q31(((q63_t)*pSrcCmplx++ * in) >> 31);
 #endif
 
     /* Decrement loop counter */

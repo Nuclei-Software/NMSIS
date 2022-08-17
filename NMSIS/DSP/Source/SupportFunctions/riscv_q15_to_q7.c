@@ -56,11 +56,11 @@ void riscv_q15_to_q7(
         q7_t * pDst,
         uint32_t blockSize)
 {
-        uint32_t blkCnt;                               /* Loop counter */
-  const q15_t *pIn = pSrc;                             /* Source pointer */
+  uint32_t blkCnt;                       /* Loop counter */
+  const q15_t *pIn = pSrc;               /* Source pointer */
 
 #if defined(RISCV_MATH_VECTOR)
-  blkCnt = blockSize;                         /* Loop counter */
+  blkCnt = blockSize;                    /* Loop counter */
   size_t l;
   vint16m8_t v_in;
   vint8m4_t v_out;
@@ -74,11 +74,6 @@ void riscv_q15_to_q7(
   }
 #else
 
-#if defined (RISCV_MATH_LOOPUNROLL) && defined (RISCV_MATH_DSP)
-        q31_t in1, in2;
-        q31_t out1, out2;
-#endif
-
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -90,14 +85,13 @@ void riscv_q15_to_q7(
 
     /* Convert from q15 to q7 and store result in destination buffer */
 #if defined (RISCV_MATH_DSP)
-
-    in1 = read_q15x2_ia (&pIn);
-    in2 = read_q15x2_ia (&pIn);
-
+    q31_t in1, in2;
+    q31_t out1, out2;
+    in1 = read_q15x2_ia((q15_t **)&pIn);
+    in2 = read_q15x2_ia((q15_t **)&pIn);
 
     out1 = __PKHTB(in2, in1, 16);
     out2 = __PKHBT(in2, in1, 16);
-
 
     /* rotate packed value by 24 */
     out2 = ((uint32_t) out2 << 8) | ((uint32_t) out2 >> 24);
@@ -111,7 +105,7 @@ void riscv_q15_to_q7(
     out1 = out1 | out2;
 
     /* store 4 samples at a time to destiantion buffer */
-    write_q7x4_ia (&pDst, out1);
+    write_q7x4_ia(&pDst, out1);
 
 #else
 

@@ -62,27 +62,26 @@ void riscv_rms_q31(
         uint32_t blockSize,
         q31_t * pResult)
 {
-        uint32_t blkCnt;                               /* Loop counter */
-        uint64_t sum = 0;                              /* Temporary result storage (can get never negative. changed type from q63 to uint64 */
-        q31_t in;                                      /* Temporary variable to store input value */
+  uint32_t blkCnt;         /* Loop counter */
+  uint64_t sum = 0;        /* Temporary result storage (can get never negative. changed type from q63 to uint64 */
+  q31_t in;                /* Temporary variable to store input value */
 
 #if defined(RISCV_MATH_VECTOR)
-  blkCnt = blockSize;                               /* Loop counter */
+  blkCnt = blockSize;      /* Loop counter */
   size_t l;
   const q31_t * input = pSrc;
   vint32m4_t v_in;
   l = vsetvl_e64m1(1);
-  vint64m1_t v_sum = vmv_s_x_i64m1(v_sum, 0, l);                /* init v_sum data */
-  for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l) {
+  vint64m1_t v_sum = vmv_s_x_i64m1(v_sum, 0, l); /* init v_sum data */
+  for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)
+  {
     v_in = vle32_v_i32m4(input, l);
     input += l;
     v_sum = vredsum_vs_i64m8_i64m1(v_sum, vwmul_vv_i64m8(v_in, v_in, l), v_sum, l);
   }
   sum += vmv_x_s_i64m1_i64(v_sum);
 #else
-#if __RISCV_XLEN == 64
-        q63_t in64;                                      /* Temporary variable to store input value */
-#endif /* __RISCV_XLEN == 64 */
+
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -91,28 +90,20 @@ void riscv_rms_q31(
   while (blkCnt > 0U)
   {
     /* C = A[0] * A[0] + A[1] * A[1] + ... + A[blockSize-1] * A[blockSize-1] */
-#if __RISCV_XLEN == 64
-    in64 = read_q31x2_ia ((q31_t **) &pSrc);
-    sum += ((q63_t)__RV_SMBB32(in64, in64) >> 32);
-    sum += __RV_SMTT32(in64, in64);
-    in64 = read_q31x2_ia ((q31_t **) &pSrc);
-    sum += ((q63_t)__RV_SMBB32(in64, in64) >> 32);
-    sum += __RV_SMTT32(in64, in64);
-#else
+
     in = *pSrc++;
     /* Compute sum of squares and store result in a temporary variable, sum. */
-    sum += ((q63_t) in * in);
+    sum += ((q63_t)in * in);
 
     in = *pSrc++;
-    sum += ((q63_t) in * in);
+    sum += ((q63_t)in * in);
 
     in = *pSrc++;
-    sum += ((q63_t) in * in);
+    sum += ((q63_t)in * in);
 
     in = *pSrc++;
-    sum += ((q63_t) in * in);
+    sum += ((q63_t)in * in);
 
-#endif /* __RISCV_XLEN == 64 */
 
     /* Decrement loop counter */
     blkCnt--;
@@ -134,7 +125,7 @@ void riscv_rms_q31(
 
     in = *pSrc++;
     /* Compute sum of squares and store result in a temporary variable. */
-    sum += ((q63_t) in * in);
+    sum += ((q63_t)in * in);
 
     /* Decrement loop counter */
     blkCnt--;
@@ -142,7 +133,7 @@ void riscv_rms_q31(
 #endif /* defined(RISCV_MATH_VECTOR) */
   /* Convert data in 2.62 to 1.31 by 31 right shifts and saturate */
   /* Compute Rms and store result in destination vector */
-  riscv_sqrt_q31(clip_q63_to_q31((sum / (q63_t) blockSize) >> 31), pResult);
+  riscv_sqrt_q31(clip_q63_to_q31((sum / (q63_t)blockSize) >> 31), pResult);
 }
 
 /**

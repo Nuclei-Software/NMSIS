@@ -59,21 +59,20 @@ void riscv_and_u32(
     blkCnt = blockSize;
 
 #if defined(RISCV_MATH_VECTOR)
-  blkCnt = blockSize;                               /* Loop counter */
-  size_t l;
-  vuint32m8_t vx, vy;
+    blkCnt = blockSize;                               /* Loop counter */
+    size_t l;
+    vuint32m8_t vx, vy;
 
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-    vx = vle32_v_u32m8(pSrcA, l);
-    pSrcA += l;
-    vy = vle32_v_u32m8(pSrcB, l);
-    pSrcB += l;
-    vse32_v_u32m8(pDst, vand_vv_u32m8(vx, vy, l), l);
-    pDst += l;
-  }
+    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+    {
+        vx = vle32_v_u32m8(pSrcA, l);
+        pSrcA += l;
+        vy = vle32_v_u32m8(pSrcB, l);
+        pSrcB += l;
+        vse32_v_u32m8(pDst, vand_vv_u32m8(vx, vy, l), l);
+        pDst += l;
+    }
 #else
-
-#if defined (NUCLEI_DSP_N1) || (__RISCV_XLEN == 64)
 
     const uint64_t * pSrcA_temp = (const uint64_t *)pSrcA;
     const uint64_t * pSrcB_temp = (const uint64_t *)pSrcB;
@@ -82,7 +81,7 @@ void riscv_and_u32(
     {
         while (blkCnt > 0U)
         {
-            *pDst_temp++ = (*pSrcA_temp++)&(*pSrcB_temp++);
+            *pDst_temp++ = (*pSrcA_temp++) & (*pSrcB_temp++);
 
             /* Decrement the loop counter */
             blkCnt--;
@@ -90,13 +89,13 @@ void riscv_and_u32(
     }
     if (blkCnt = blockSize & 0x1)
     {
-        pSrcA = (const uint32_t * )(pSrcA_temp - 1);
-        pSrcB = (const uint32_t * )(pSrcB_temp - 1);
+        pSrcA = (const uint32_t *)(pSrcA_temp - 1);
+        pSrcB = (const uint32_t *)(pSrcB_temp - 1);
     }
-#endif
+
     while (blkCnt > 0U)
     {
-        *pDst++ = (*pSrcA++)&(*pSrcB++);
+        *pDst++ = (*pSrcA++) & (*pSrcB++);
 
         /* Decrement the loop counter */
         blkCnt--;

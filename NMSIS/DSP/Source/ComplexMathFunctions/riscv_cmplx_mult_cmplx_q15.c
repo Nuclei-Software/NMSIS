@@ -57,7 +57,7 @@ void riscv_cmplx_mult_cmplx_q15(
         uint32_t numSamples)
 {
 #if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = numSamples;                               /* Loop counter */
+  uint32_t blkCnt = numSamples;                 /* Loop counter */
   size_t l;
   ptrdiff_t bstride = 4;
   vint16m4_t v_R1, v_R2, v_I1, v_I2;
@@ -83,11 +83,9 @@ void riscv_cmplx_mult_cmplx_q15(
     pDst += l * 2;
   }
 #else
-        uint32_t blkCnt;                               /* Loop counter */
-        q15_t a, b, c, d;                              /* Temporary variables */
-#if __RISCV_XLEN == 64
-        q31_t RESA,RESB;
-#endif /* __RISCV_XLEN == 64 */
+  uint32_t blkCnt;                               /* Loop counter */
+  q15_t a, b, c, d;                              /* Temporary variables */
+
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -97,27 +95,27 @@ void riscv_cmplx_mult_cmplx_q15(
   {
     /* C[2 * i    ] = A[2 * i] * B[2 * i    ] - A[2 * i + 1] * B[2 * i + 1]. */
     /* C[2 * i + 1] = A[2 * i] * B[2 * i + 1] + A[2 * i + 1] * B[2 * i    ]. */
-#if defined(RISCV_MATH_DSP)
-#if __RISCV_XLEN == 64
+#if defined(RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+    q31_t RESA, RESB;
     RESA = read_q15x2_ia((q15_t **) &pSrcA);
     RESB = read_q15x2_ia((q15_t **) &pSrcB);
-    *pDst++ = (q15_t) (__RV_SMALDRS(0,RESA,RESB) >> 17);
-    *pDst++ = (q15_t) (__RV_SMALXDA(0,RESA,RESB) >> 17);
+    *pDst++ = (q15_t)(__RV_SMALDRS(0,RESA,RESB) >> 17);
+    *pDst++ = (q15_t)(__SMLALDX(RESA,RESB, 0) >> 17);
 
     RESA = read_q15x2_ia((q15_t **) &pSrcA);
     RESB = read_q15x2_ia((q15_t **) &pSrcB);
-    *pDst++ = (q15_t) (__RV_SMALDRS(0,RESA,RESB) >> 17);
-    *pDst++ = (q15_t) (__RV_SMALXDA(0,RESA,RESB) >> 17);
+    *pDst++ = (q15_t)(__RV_SMALDRS(0,RESA,RESB) >> 17);
+    *pDst++ = (q15_t)(__SMLALDX(RESA,RESB, 0) >> 17);
 
     RESA = read_q15x2_ia((q15_t **) &pSrcA);
     RESB = read_q15x2_ia((q15_t **) &pSrcB);
-    *pDst++ = (q15_t) (__RV_SMALDRS(0,RESA,RESB) >> 17);
-    *pDst++ = (q15_t) (__RV_SMALXDA(0,RESA,RESB) >> 17);
+    *pDst++ = (q15_t)(__RV_SMALDRS(0,RESA,RESB) >> 17);
+    *pDst++ = (q15_t)(__SMLALDX(RESA,RESB, 0) >> 17);
 
     RESA = read_q15x2_ia((q15_t **) &pSrcA);
     RESB = read_q15x2_ia((q15_t **) &pSrcB);
-    *pDst++ = (q15_t) (__RV_SMALDRS(0,RESA,RESB) >> 17);
-    *pDst++ = (q15_t) (__RV_SMALXDA(0,RESA,RESB) >> 17);
+    *pDst++ = (q15_t)(__RV_SMALDRS(0,RESA,RESB) >> 17);
+    *pDst++ = (q15_t)(__SMLALDX(RESA,RESB, 0) >> 17);
 
 #else
 
@@ -127,12 +125,12 @@ void riscv_cmplx_mult_cmplx_q15(
     d = *pSrcB++;
 
     /* store result in 3.13 format in destination buffer. */
-#if defined(RISCV_MATH_DSP) && __RISCV_XLEN == 32
-	*pDst++ = (q15_t) ( (__SMBB16(a, c) >> 17) - (__SMBB16(b, d) >> 17) );
-	*pDst++ = (q15_t) ( (__SMBB16(a, d) >> 17) + (__SMBB16(b, c) >> 17) );
+#if defined(RISCV_MATH_DSP)
+    *pDst++ = (q15_t)((__SMBB16(a, c) >> 17) - (__SMBB16(b, d) >> 17));
+    *pDst++ = (q15_t)((__SMBB16(a, d) >> 17) + (__SMBB16(b, c) >> 17));
 #else
-	*pDst++ = (q15_t) ( (((q31_t) a * c) >> 17) - (((q31_t) b * d) >> 17) );
-    *pDst++ = (q15_t) ( (((q31_t) a * d) >> 17) + (((q31_t) b * c) >> 17) );
+    *pDst++ = (q15_t)((((q31_t)a * c) >> 17) - (((q31_t)b * d) >> 17));
+    *pDst++ = (q15_t)((((q31_t)a * d) >> 17) + (((q31_t)b * c) >> 17));
 #endif
 
     a = *pSrcA++;
@@ -140,12 +138,12 @@ void riscv_cmplx_mult_cmplx_q15(
     c = *pSrcB++;
     d = *pSrcB++;
 
-#if defined(RISCV_MATH_DSP) && __RISCV_XLEN == 32
-	*pDst++ = (q15_t) ( (__SMBB16(a, c) >> 17) - (__SMBB16(b, d) >> 17) );
-	*pDst++ = (q15_t) ( (__SMBB16(a, d) >> 17) + (__SMBB16(b, c) >> 17) );
+#if defined(RISCV_MATH_DSP)
+    *pDst++ = (q15_t)((__SMBB16(a, c) >> 17) - (__SMBB16(b, d) >> 17));
+    *pDst++ = (q15_t)((__SMBB16(a, d) >> 17) + (__SMBB16(b, c) >> 17));
 #else
-	*pDst++ = (q15_t) ( (((q31_t) a * c) >> 17) - (((q31_t) b * d) >> 17) );
-    *pDst++ = (q15_t) ( (((q31_t) a * d) >> 17) + (((q31_t) b * c) >> 17) );
+    *pDst++ = (q15_t)((((q31_t)a * c) >> 17) - (((q31_t)b * d) >> 17));
+    *pDst++ = (q15_t)((((q31_t)a * d) >> 17) + (((q31_t)b * c) >> 17));
 #endif
 
     a = *pSrcA++;
@@ -153,12 +151,12 @@ void riscv_cmplx_mult_cmplx_q15(
     c = *pSrcB++;
     d = *pSrcB++;
 
-#if defined(RISCV_MATH_DSP) && __RISCV_XLEN == 32
-	*pDst++ = (q15_t) ( (__SMBB16(a, c) >> 17) - (__SMBB16(b, d) >> 17) );
-	*pDst++ = (q15_t) ( (__SMBB16(a, d) >> 17) + (__SMBB16(b, c) >> 17) );
+#if defined(RISCV_MATH_DSP)
+    *pDst++ = (q15_t)((__SMBB16(a, c) >> 17) - (__SMBB16(b, d) >> 17));
+    *pDst++ = (q15_t)((__SMBB16(a, d) >> 17) + (__SMBB16(b, c) >> 17));
 #else
-	*pDst++ = (q15_t) ( (((q31_t) a * c) >> 17) - (((q31_t) b * d) >> 17) );
-    *pDst++ = (q15_t) ( (((q31_t) a * d) >> 17) + (((q31_t) b * c) >> 17) );
+    *pDst++ = (q15_t)((((q31_t) a * c)>> 17) - (((q31_t)b * d) >> 17));
+    *pDst++ = (q15_t)((((q31_t) a * d)>> 17) + (((q31_t)b * c) >> 17));
 #endif
 
     a = *pSrcA++;
@@ -166,15 +164,14 @@ void riscv_cmplx_mult_cmplx_q15(
     c = *pSrcB++;
     d = *pSrcB++;
 
-#if defined(RISCV_MATH_DSP) && __RISCV_XLEN == 32
-	*pDst++ = (q15_t) ( (__SMBB16(a, c) >> 17) - (__SMBB16(b, d) >> 17) );
-	*pDst++ = (q15_t) ( (__SMBB16(a, d) >> 17) + (__SMBB16(b, c) >> 17) );
+#if defined(RISCV_MATH_DSP)
+    *pDst++ = (q15_t) ((__SMBB16(a, c) >> 17) - (__SMBB16(b, d) >> 17));
+    *pDst++ = (q15_t) ((__SMBB16(a, d) >> 17) + (__SMBB16(b, c) >> 17));
 #else
-	*pDst++ = (q15_t) ( (((q31_t) a * c) >> 17) - (((q31_t) b * d) >> 17) );
-    *pDst++ = (q15_t) ( (((q31_t) a * d) >> 17) + (((q31_t) b * c) >> 17) );
+    *pDst++ = (q15_t) ((((q31_t)a * c) >> 17) - (((q31_t)b * d) >> 17));
+    *pDst++ = (q15_t) ((((q31_t)a * d) >> 17) + (((q31_t)b * c) >> 17));
 #endif
-#endif
-#endif /* __RISCV_XLEN == 64 */
+#endif /* defined(RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
     /* Decrement loop counter */
     blkCnt--;
   }
@@ -200,12 +197,12 @@ void riscv_cmplx_mult_cmplx_q15(
     d = *pSrcB++;
 
     /* store result in 3.13 format in destination buffer. */
-#if defined(RISCV_MATH_DSP) && __RISCV_XLEN == 32
-	*pDst++ = (q15_t) ( (__SMBB16(a, c) >> 17) - (__SMBB16(b, d) >> 17) );
-	*pDst++ = (q15_t) ( (__SMBB16(a, d) >> 17) + (__SMBB16(b, c) >> 17) );
+#if defined(RISCV_MATH_DSP)
+    *pDst++ = (q15_t)((__SMBB16(a, c) >> 17) - (__SMBB16(b, d) >> 17));
+    *pDst++ = (q15_t)((__SMBB16(a, d) >> 17) + (__SMBB16(b, c) >> 17));
 #else
-	*pDst++ = (q15_t) ( (((q31_t) a * c) >> 17) - (((q31_t) b * d) >> 17) );
-	*pDst++ = (q15_t) ( (((q31_t) a * d) >> 17) + (((q31_t) b * c) >> 17) );
+    *pDst++ = (q15_t)((((q31_t)a * c) >> 17) - (((q31_t)b * d) >> 17));
+    *pDst++ = (q15_t)((((q31_t)a * d) >> 17) + (((q31_t)b * c) >> 17));
 #endif
 
     /* Decrement loop counter */

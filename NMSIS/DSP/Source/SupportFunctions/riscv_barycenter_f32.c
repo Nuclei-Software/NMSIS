@@ -104,7 +104,7 @@ void riscv_barycenter_f32(const float32_t *in, const float32_t *weights, float32
           pOut++;
           blkCntSample--;
       }
-#endif
+#endif /* defined(RISCV_MATH_VECTOR) */
       blkCntVector--;
    }
 

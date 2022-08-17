@@ -93,7 +93,7 @@ void riscv_quaternion_norm_f32(const float32_t *pInputQuaternions,
              SQ(pInputQuaternions[4 * i + 3]);
       pNorms[i] = sqrtf(temp);
    }
-#endif
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

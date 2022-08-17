@@ -212,7 +212,7 @@ void riscv_absmin_f32(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif
+#endif /* defined(RISCV_MATH_VECTOR) */
   /* Store the minimum value and it's index into destination pointers */
   *pResult = out;
   *pIndex = outIndex;

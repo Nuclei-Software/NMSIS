@@ -125,9 +125,6 @@ void riscv_conv_opt_q7(
    ** a second loop below copies for the remaining 1 to 3 samples. */
   while (k > 0U)
   {
-// #if __RISCV_XLEN == 64
-//     write_q15x4_ia(&pScr2,read_q15x4_da((q15_t **)&px));
-// #else
     /* copy second buffer in reversal manner */
     x4 = (q15_t) *px--;
     *pScr2++ = x4;
@@ -137,7 +134,6 @@ void riscv_conv_opt_q7(
     *pScr2++ = x4;
     x4 = (q15_t) *px--;
     *pScr2++ = x4;
-// #endif /* __RISCV_XLEN == 64 */
 
     /* Decrement loop counter */
     k--;
@@ -145,7 +141,7 @@ void riscv_conv_opt_q7(
 
   /* If the count is not a multiple of 4, copy remaining samples here.
    ** No loop unrolling is used. */
-  k = srcBLen % 0x4U;
+  k = srcBLen & 0x3U;
 
   while (k > 0U)
   {

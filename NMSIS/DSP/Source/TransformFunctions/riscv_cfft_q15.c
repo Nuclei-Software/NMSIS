@@ -172,17 +172,17 @@ void riscv_cfft_radix4by2_q15(
       coeff64 = read_q15x4_ia ((q15_t **) &pC);
 
       T64 = read_q15x4 (pSi);
-      T64 = __RV_RADD16(T64, 0); /* this is just a SIMD arithmetic shift right by 1 */
+      T64 = __SHADD16(T64, 0); /* this is just a SIMD arithmetic shift right by 1 */
 
       S64 = read_q15x4 (pSl);
-      S64 = __RV_RADD16(S64, 0); /* this is just a SIMD arithmetic shift right by 1 */
+      S64 = __SHADD16(S64, 0); /* this is just a SIMD arithmetic shift right by 1 */
 
-      R64 = __RV_KSUB16(T64, S64);
+      R64 = __QSUB16(T64, S64);
 
-      write_q15x4_ia (&pSi, __RV_RADD16(T64, S64));
+      write_q15x4_ia (&pSi, __SHADD16(T64, S64));
 
-      out164 = __RV_KMDA(coeff64, R64) >> 16U;
-      out264 = __RV_SMXDS(R64, coeff64);
+      out164 = __SMUAD(coeff64, R64) >> 16U;
+      out264 = __SMUSDX(coeff64, R64);
 
       write_q15x4_ia (&pSl, (q63_t) (((out264) & 0xFFFF0000FFFF0000) | (out164 & 0x0000FFFF0000FFFF)));
   }
@@ -193,17 +193,17 @@ void riscv_cfft_radix4by2_q15(
       coeff = read_q15x2_ia ((q15_t **) &pC);
 
       T = read_q15x2 (pSi);
-      T = __RV_RADD16(T, 0); /* this is just a SIMD arithmetic shift right by 1 */
+      T = __SHADD16(T, 0); /* this is just a SIMD arithmetic shift right by 1 */
 
       S = read_q15x2 (pSl);
-      S = __RV_RADD16(S, 0); /* this is just a SIMD arithmetic shift right by 1 */
+      S = __SHADD16(S, 0); /* this is just a SIMD arithmetic shift right by 1 */
 
-      R = __RV_KSUB16(T, S);
+      R = __QSUB16(T, S);
 
-      write_q15x2_ia (&pSi, __RV_RADD16(T, S));
+      write_q15x2_ia (&pSi, __SHADD16(T, S));
 
-      out1 = __RV_KMDA(coeff, R) >> 16U;
-      out2 = __RV_SMXDS(R, coeff);
+      out1 = __SMUAD(coeff, R) >> 16U;
+      out2 = __SMUSDX(coeff, R);
 
       write_q15x2_ia (&pSl, (q31_t)__PKHBT( out1, out2, 0 ) );
   }
@@ -296,34 +296,34 @@ void riscv_cfft_radix4by2_inverse_q15(
       coeff64 = read_q15x4_ia ((q15_t **) &pC);
 
       T64 = read_q15x4 (pSi);
-      T64 = __RV_RADD16(T64, 0); /* this is just a SIMD arithmetic shift right by 1 */
+      T64 = __SHADD16(T64, 0); /* this is just a SIMD arithmetic shift right by 1 */
 
       S64 = read_q15x4 (pSl);
-      S64 = __RV_RADD16(S64, 0); /* this is just a SIMD arithmetic shift right by 1 */
+      S64 = __SHADD16(S64, 0); /* this is just a SIMD arithmetic shift right by 1 */
 
-      R64 = __RV_KSUB16(T64, S64);
+      R64 = __QSUB16(T64, S64);
 
-      write_q15x4_ia (&pSi, __RV_RADD16(T64, S64));
+      write_q15x4_ia (&pSi, __SHADD16(T64, S64));
 
       out1 = __SMUAD(coeff, R) >> 16U;
       out2 = __SMUSDX(coeff, R);
 
       write_q15x4_ia (&pSl, (q63_t) ((out264) & 0xFFFF0000FFFF0000) | (out164 & 0x0000FFFF0000FFFF));
   }
-  n264 = n2 % 2;
+  n264 = n2 & 0x1;
   if (1 == n264)
   {
       coeff = read_q15x2_ia ((q15_t **) &pC);
 
       T = read_q15x2 (pSi);
-      T = __RV_RADD16(T, 0); /* this is just a SIMD arithmetic shift right by 1 */
+      T = __SHADD16(T, 0); /* this is just a SIMD arithmetic shift right by 1 */
 
       S = read_q15x2 (pSl);
-      S = __RV_RADD16(S, 0); /* this is just a SIMD arithmetic shift right by 1 */
+      S = __SHADD16(S, 0); /* this is just a SIMD arithmetic shift right by 1 */
 
-      R = __RV_KSUB16(T, S);
+      R = __QSUB16(T, S);
 
-      write_q15x2_ia (&pSi, __RV_RADD16(T, S));
+      write_q15x2_ia (&pSi, __SHADD16(T, S));
 
       out1 = __SMUAD(coeff, R) >> 16U;
       out2 = __SMUSDX(coeff, R);
@@ -338,21 +338,21 @@ void riscv_cfft_radix4by2_inverse_q15(
      coeff = read_q15x2_ia ((q15_t **) &pC);
 
      T = read_q15x2 (pSi);
-     T = __RV_RADD16(T, 0); /* this is just a SIMD arithmetic shift right by 1 */
+     T = __SHADD16(T, 0); /* this is just a SIMD arithmetic shift right by 1 */
 
      S = read_q15x2 (pSl);
-     S = __RV_RADD16(S, 0); /* this is just a SIMD arithmetic shift right by 1 */
+     S = __SHADD16(S, 0); /* this is just a SIMD arithmetic shift right by 1 */
 
-     R = __RV_KSUB16(T, S);
+     R = __QSUB16(T, S);
 
-     write_q15x2_ia (&pSi, __RV_RADD16(T, S));
+     write_q15x2_ia (&pSi, __SHADD16(T, S));
 
      out1 = __SMUSD(coeff, R) >> 16U;
      out2 = __SMUADX(coeff, R);
 
      write_q15x2_ia (&pSl, (q31_t)__PKHBT( out1, out2, 0 ));
   }
-#endif
+#endif /* __RISCV_XLEN == 64 */
 #else /* #if defined (RISCV_MATH_DSP) */
 
   for (i = 0; i < n2; i++)

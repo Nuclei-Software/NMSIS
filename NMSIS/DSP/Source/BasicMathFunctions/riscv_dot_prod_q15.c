@@ -59,8 +59,8 @@ void riscv_dot_prod_q15(
         uint32_t blockSize,
         q63_t * result)
 {
-        uint32_t blkCnt;                               /* Loop counter */
-        q63_t sum = 0;                                 /* Temporary return variable */
+  uint32_t blkCnt;                               /* Loop counter */
+  q63_t sum = 0;                                 /* Temporary return variable */
 
 #if defined(RISCV_MATH_VECTOR)
   blkCnt = blockSize;                               /* Loop counter */
@@ -80,34 +80,31 @@ void riscv_dot_prod_q15(
 #else
 
 #if defined (RISCV_MATH_LOOPUNROLL)
-#if __RISCV_XLEN == 64
-  /* Loop unrolling: Compute 8 outputs at a time */
-  blkCnt = blockSize >> 3U;
-#else
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
-#endif /* __RISCV_XLEN == 64 */
+
   while (blkCnt > 0U)
   {
     /* C = A[0]* B[0] + A[1]* B[1] + A[2]* B[2] + .....+ A[blockSize-1]* B[blockSize-1] */
 
 #if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
-	sum = __RV_SMALDA(sum, read_q15x4_ia ((q15_t **) &pSrcA), read_q15x4_ia ((q15_t **) &pSrcB));
-	sum = __RV_SMALDA(sum, read_q15x4_ia ((q15_t **) &pSrcA), read_q15x4_ia ((q15_t **) &pSrcB));
+    sum = __SMLALD(read_q15x4_ia((q15_t **)&pSrcA), read_q15x4_ia((q15_t **)&pSrcB), sum);
+#else
+#ifdef NUCLEI_DSP_N3
+    sum = __dsmalda(sum, read_q15x4_ia((q15_t **)&pSrcA), read_q15x4_ia((q15_t **)&pSrcB));
 #else
     /* Calculate dot product and store result in a temporary buffer. */
-    //sum = __SMLALD(read_q15x2_ia ((q15_t **) &pSrcA), read_q15x2_ia ((q15_t **) &pSrcB), sum);
-    //sum = __SMLALD(read_q15x2_ia ((q15_t **) &pSrcA), read_q15x2_ia ((q15_t **) &pSrcB), sum);
-	sum = __RV_SMALDA(sum, read_q15x2_ia ((q15_t **) &pSrcA), read_q15x2_ia ((q15_t **) &pSrcB));
-	sum = __RV_SMALDA(sum, read_q15x2_ia ((q15_t **) &pSrcA), read_q15x2_ia ((q15_t **) &pSrcB));
+    sum = __SMLALD(read_q15x2_ia((q15_t **)&pSrcA), read_q15x2_ia((q15_t **)&pSrcB), sum);
+    sum = __SMLALD(read_q15x2_ia((q15_t **)&pSrcA), read_q15x2_ia((q15_t **)&pSrcB), sum);
+#endif /* NUCLEI_DSP_N3 */
 #endif /* __RISCV_XLEN == 64 */
 #else
     sum += (q63_t)((q31_t) *pSrcA++ * *pSrcB++);
     sum += (q63_t)((q31_t) *pSrcA++ * *pSrcB++);
     sum += (q63_t)((q31_t) *pSrcA++ * *pSrcB++);
     sum += (q63_t)((q31_t) *pSrcA++ * *pSrcB++);
-#endif
+#endif /* RISCV_MATH_DSP */
 
     /* Decrement loop counter */
     blkCnt--;
@@ -128,11 +125,11 @@ void riscv_dot_prod_q15(
     /* C = A[0]* B[0] + A[1]* B[1] + A[2]* B[2] + .....+ A[blockSize-1]* B[blockSize-1] */
 
     /* Calculate dot product and store result in a temporary buffer. */
-#if defined (RISCV_MATH_DSP)
-    sum  = __SMLALD((*pSrcA++) & 0xffff, (*pSrcB++) & 0xffff, sum);
-#else
+//#if defined (RISCV_MATH_DSP)
+//    sum  = __SMLALD(*pSrcA++, *pSrcB++, sum);
+//#else
     sum += (q63_t)((q31_t) *pSrcA++ * *pSrcB++);
-#endif
+//#endif
 
     /* Decrement loop counter */
     blkCnt--;

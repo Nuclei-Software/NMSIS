@@ -89,7 +89,7 @@ float32_t riscv_chebyshev_distance_f32(const float32_t *pA,const float32_t *pB, 
       }
       blockSize --;
    }
-#endif
+#endif /* defined(RISCV_MATH_VECTOR) */
    return(maxVal);
 }
 

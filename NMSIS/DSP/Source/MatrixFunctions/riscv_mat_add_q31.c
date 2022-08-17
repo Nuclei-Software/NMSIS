@@ -95,8 +95,8 @@ riscv_status riscv_mat_add_q31(
       vse32_v_i32m8(pOut, vx, l);
       pOut += l;
     }
-
-#elif defined (RISCV_MATH_LOOPUNROLL)
+#else
+#if defined (RISCV_MATH_LOOPUNROLL)
 
     /* Loop unrolling: Compute 4 outputs at a time */
     blkCnt = numSamples >> 2U;
@@ -104,9 +104,9 @@ riscv_status riscv_mat_add_q31(
     while (blkCnt > 0U)
     {
       /* C(m,n) = A(m,n) + B(m,n) */
-#if __RISCV_XLEN == 64
-	write_q31x2_ia (&pOut, __RV_KADD32(read_q31x2_ia ((q31_t **) &pInA),read_q31x2_ia ((q31_t **) &pInB)));
-	write_q31x2_ia (&pOut, __RV_KADD32(read_q31x2_ia ((q31_t **) &pInA),read_q31x2_ia ((q31_t **) &pInB)));
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+      write_q31x2_ia(&pOut, __RV_KADD32(read_q31x2_ia((q31_t **)&pInA), read_q31x2_ia((q31_t **)&pInB)));
+      write_q31x2_ia(&pOut, __RV_KADD32(read_q31x2_ia((q31_t **)&pInA), read_q31x2_ia((q31_t **)&pInB)));
 #else
       /* Add, saturate and store result in destination buffer. */
       *pOut++ = __QADD(*pInA++, *pInB++);
@@ -116,7 +116,7 @@ riscv_status riscv_mat_add_q31(
       *pOut++ = __QADD(*pInA++, *pInB++);
 
       *pOut++ = __QADD(*pInA++, *pInB++);
-#endif /* __RISCV_XLEN == 64 */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
       /* Decrement loop counter */
       blkCnt--;
@@ -142,7 +142,7 @@ riscv_status riscv_mat_add_q31(
       /* Decrement loop counter */
       blkCnt--;
     }
-
+#endif /* defined(RISCV_MATH_VECTOR) */
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
   }

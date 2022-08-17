@@ -61,8 +61,8 @@ void riscv_dot_prod_q31(
         uint32_t blockSize,
         q63_t * result)
 {
-        uint32_t blkCnt;                               /* Loop counter */
-        q63_t sum = 0;                                 /* Temporary return variable */
+  uint32_t blkCnt;                               /* Loop counter */
+  q63_t sum = 0;                                 /* Temporary return variable */
 
 #if defined(RISCV_MATH_VECTOR)
   blkCnt = blockSize;                               /* Loop counter */
@@ -91,28 +91,17 @@ void riscv_dot_prod_q31(
     /* C = A[0]* B[0] + A[1]* B[1] + A[2]* B[2] + .....+ A[blockSize-1]* B[blockSize-1] */
 
     /* Calculate dot product and store result in a temporary buffer. */
-#if defined(RISCV_MATH_DSP)
-#if __RISCV_XLEN == 64
-	sum += (__RV_MULSR64(*pSrcA++, *pSrcB++) >> 14);
-	sum += (__RV_MULSR64(*pSrcA++, *pSrcB++) >> 14);
-	sum += (__RV_MULSR64(*pSrcA++, *pSrcB++) >> 14);
-	sum += (__RV_MULSR64(*pSrcA++, *pSrcB++) >> 14);
+#if defined (RISCV_MATH_DSP)
+    sum += (__RV_MULSR64(*pSrcA++, *pSrcB++) >> 14);
+    sum += (__RV_MULSR64(*pSrcA++, *pSrcB++) >> 14);
+    sum += (__RV_MULSR64(*pSrcA++, *pSrcB++) >> 14);
+    sum += (__RV_MULSR64(*pSrcA++, *pSrcB++) >> 14);
 #else
-	sum += (__RV_MULSR64(*pSrcA++, *pSrcB++) >> 14);
-	sum += (__RV_MULSR64(*pSrcA++, *pSrcB++) >> 14);
-	sum += (__RV_MULSR64(*pSrcA++, *pSrcB++) >> 14);
-	sum += (__RV_MULSR64(*pSrcA++, *pSrcB++) >> 14);
-#endif /* __RISCV_XLEN == 64 */
-#else
-    sum += ((q63_t) *pSrcA++ * *pSrcB++) >> 14U;
-    sum += ((q63_t) *pSrcA++ * *pSrcB++) >> 14U;
-    sum += ((q63_t) *pSrcA++ * *pSrcB++) >> 14U;
-    sum += ((q63_t) *pSrcA++ * *pSrcB++) >> 14U;
-#endif
-	  //sum += ((q63_t) *pSrcA++ * *pSrcB++) >> 14U;
-	  //sum += ((q63_t) *pSrcA++ * *pSrcB++) >> 14U;
-	  //sum += ((q63_t) *pSrcA++ * *pSrcB++) >> 14U;
-	  //sum += ((q63_t) *pSrcA++ * *pSrcB++) >> 14U;
+    sum += ((q63_t)*pSrcA++ * *pSrcB++) >> 14U;
+    sum += ((q63_t)*pSrcA++ * *pSrcB++) >> 14U;
+    sum += ((q63_t)*pSrcA++ * *pSrcB++) >> 14U;
+    sum += ((q63_t)*pSrcA++ * *pSrcB++) >> 14U;
+#endif /* defined (RISCV_MATH_DSP) */
 
     /* Decrement loop counter */
     blkCnt--;
@@ -133,12 +122,7 @@ void riscv_dot_prod_q31(
     /* C = A[0]* B[0] + A[1]* B[1] + A[2]* B[2] + .....+ A[blockSize-1]* B[blockSize-1] */
 
     /* Calculate dot product and store result in a temporary buffer. */
-#if defined(RISCV_MATH_DSP)
-	sum += (__MULSR64(*pSrcA++, *pSrcB++) >> 14);
-#else
     sum += ((q63_t) *pSrcA++ * *pSrcB++) >> 14U;
-#endif
-	  //sum += ((q63_t) *pSrcA++ * *pSrcB++) >> 14U;
 
     /* Decrement loop counter */
     blkCnt--;

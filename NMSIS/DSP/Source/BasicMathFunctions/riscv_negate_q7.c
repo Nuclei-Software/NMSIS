@@ -54,8 +54,8 @@ void riscv_negate_q7(
         q7_t * pDst,
         uint32_t blockSize)
 {
-        uint32_t blkCnt;                               /* Loop counter */
-        q7_t in;                                       /* Temporary input variable */
+  uint32_t blkCnt;                               /* Loop counter */
+  q7_t in;                                       /* Temporary input variable */
 
 #if defined(RISCV_MATH_VECTOR)
   blkCnt = blockSize;                               /* Loop counter */
@@ -63,7 +63,8 @@ void riscv_negate_q7(
   vint8m8_t vx;
   vint8m8_t v_zero = vmv_v_x_i8m8(0, l);
 
-  for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
+  for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l)
+  {
     vx = vle8_v_i8m8(pSrc, l);
     pSrc += l;
     vse8_v_i8m8(pDst, vssub_vv_i8m8(v_zero, vx, l), l);
@@ -73,21 +74,19 @@ void riscv_negate_q7(
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
-#if defined (RISCV_MATH_DSP)
-#ifdef NUCLEI_DSP_N1
+#if defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N1) || (__RISCV_XLEN == 64))
   q63_t in1;                                    /* Temporary input variable */
 #else
   q31_t in1;
 #endif
-#endif // RISCV_MATH_DSP
 
-#if defined (NUCLEI_DSP_N1) || (__RISCV_XLEN == 64)
+#if defined (RISCV_MATH_DSP)
   /* Loop unrolling: Compute 8 outputs at a time */
   blkCnt = blockSize >> 3U;
 #else
-	/* Loop unrolling: Compute 4 outputs at a time */
+  /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
-#endif // NUCLEI_DSP_N1
+#endif /* RISCV_MATH_DSP */
 
   while (blkCnt > 0U)
   {
@@ -96,58 +95,45 @@ void riscv_negate_q7(
 #if defined (RISCV_MATH_DSP)
     /* Negate and store result in destination buffer (4 samples at a time). */
 #if __RISCV_XLEN == 64
-    in1 = read_q7x8_ia ((q7_t **) &pSrc);
-    write_q7x8_ia (&pDst, __RV_KSUB8(0, in1));
+    in1 = read_q7x8_ia((q7_t **)&pSrc);
+    write_q7x8_ia (&pDst, __QSUB8(0, in1));
 #else
 #ifdef NUCLEI_DSP_N1
-    in1 = read_q7x8_ia ((q7_t **) &pSrc);
+    in1 = read_q7x8_ia((q7_t **)&pSrc);
     write_q7x8_ia (&pDst, __DQSUB8(0, in1));
 #else
-    in1 = read_q7x4_ia ((q7_t **) &pSrc);
-    write_q7x4_ia (&pDst, __RV_KSUB8(0, in1));
+    in1 = read_q7x4_ia((q7_t **) &pSrc);
+    write_q7x4_ia(&pDst, __QSUB8(0, in1));
+    in1 = read_q7x4_ia((q7_t **) &pSrc);
+    write_q7x4_ia(&pDst, __QSUB8(0, in1));
 
-#endif
+#endif /* NUCLEI_DSP_N1 */
 #endif /* __RISCV_XLEN == 64 */
 #else
     in = *pSrc++;
-    *pDst++ = (in == (q7_t) 0x80) ? (q7_t) 0x7f : -in;
+    *pDst++ = (in == (q7_t)0x80) ? (q7_t)0x7f : -in;
 
     in = *pSrc++;
-    *pDst++ = (in == (q7_t) 0x80) ? (q7_t) 0x7f : -in;
+    *pDst++ = (in == (q7_t)0x80) ? (q7_t)0x7f : -in;
 
     in = *pSrc++;
-    *pDst++ = (in == (q7_t) 0x80) ? (q7_t) 0x7f : -in;
+    *pDst++ = (in == (q7_t)0x80) ? (q7_t)0x7f : -in;
 
     in = *pSrc++;
-    *pDst++ = (in == (q7_t) 0x80) ? (q7_t) 0x7f : -in;
-
-#if defined (NUCLEI_DSP_N1) || (__RISCV_XLEN == 64)
-    in = *pSrc++;
-    *pDst++ = (in == (q7_t) 0x80) ? (q7_t) 0x7f : -in;
-
-    in = *pSrc++;
-    *pDst++ = (in == (q7_t) 0x80) ? (q7_t) 0x7f : -in;
-
-    in = *pSrc++;
-    *pDst++ = (in == (q7_t) 0x80) ? (q7_t) 0x7f : -in;
-
-    in = *pSrc++;
-    *pDst++ = (in == (q7_t) 0x80) ? (q7_t) 0x7f : -in;
-#endif // NUCLEI_DSP_N1
-
-#endif
+    *pDst++ = (in == (q7_t)0x80) ? (q7_t)0x7f : -in;
+#endif /* RISCV_MATH_DSP */
 
     /* Decrement loop counter */
     blkCnt--;
   }
 
-#if defined (NUCLEI_DSP_N1) || (__RISCV_XLEN == 64)
+#if defined (RISCV_MATH_DSP)
   /* Loop unrolling: Compute remaining outputs */
   blkCnt = blockSize & 0x7U;
 #else
-	/* Loop unrolling: Compute remaining outputs */
+  /* Loop unrolling: Compute remaining outputs */
   blkCnt = blockSize & 0x3U;
-#endif
+#endif /* RISCV_MATH_DSP */
 
 #else
 

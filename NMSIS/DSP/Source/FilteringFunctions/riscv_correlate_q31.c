@@ -85,9 +85,6 @@ void riscv_correlate_q31(
 #if defined (RISCV_MATH_LOOPUNROLL)
         q63_t acc0, acc1, acc2;                        /* Accumulators */
         q31_t x0, x1, x2, c0;                          /* Temporary variables for holding input and coefficient values */
-#if __RISCV_XLEN == 64
-        q63_t acc064, acc164, acc264;
-#endif /* __RISCV_XLEN == 64 */
 #endif
 
   /* The algorithm implementation is based on the lengths of the inputs. */
@@ -189,48 +186,6 @@ void riscv_correlate_q31(
   {
     /* Accumulator is made zero for every iteration */
     sum = 0;
-
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
-
-    /* Loop unrolling: Compute 4 outputs at a time */
-    k = count >> 2U;
-
-    while (k > 0U)
-    {
-#if __RISCV_XLEN == 64
-      acc064 = read_q31x2_ia(&px);
-      acc164 = read_q31x2_ia(&py);
-      sum = __RV_KMADA32(sum, acc064, acc164);
-      acc064 = read_q31x2_ia(&px);
-      acc164 = read_q31x2_ia(&py);
-      sum = __RV_KMADA32(sum, acc064, acc164);
-#else
-      /* x[0] * y[srcBLen - 4] */
-      sum += (q63_t) *px++ * (*py++);
-
-      /* x[1] * y[srcBLen - 3] */
-      sum += (q63_t) *px++ * (*py++);
-
-      /* x[2] * y[srcBLen - 2] */
-      sum += (q63_t) *px++ * (*py++);
-
-      /* x[3] * y[srcBLen - 1] */
-      sum += (q63_t) *px++ * (*py++);
-#endif /* __RISCV_XLEN == 64 */
-
-      /* Decrement loop counter */
-      k--;
-    }
-
-    /* Loop unrolling: Compute remaining outputs */
-    k = count & 0x3U;
-
-#else
-
-    /* Initialize k with number of samples */
-    k = count;
-
-#endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
 #if defined (RISCV_MATH_VECTOR)
     uint32_t vblkCnt = count;                               /* Loop counter */
     size_t l;
@@ -247,6 +202,43 @@ void riscv_correlate_q31(
     }
     sum += vmv_x_s_i64m1_i64(temp00m1);
 #else
+#if defined (RISCV_MATH_LOOPUNROLL)
+
+    /* Loop unrolling: Compute 4 outputs at a time */
+    k = count >> 2U;
+
+    while (k > 0U)
+    {
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+      sum = __RV_KMADA32(sum, read_q31x2_ia((q31_t **)&px), read_q31x2_ia((q31_t **)&py));
+      sum = __RV_KMADA32(sum, read_q31x2_ia((q31_t **)&px), read_q31x2_ia((q31_t **)&py));
+#else
+      /* x[0] * y[srcBLen - 4] */
+      sum += (q63_t) *px++ * (*py++);
+
+      /* x[1] * y[srcBLen - 3] */
+      sum += (q63_t) *px++ * (*py++);
+
+      /* x[2] * y[srcBLen - 2] */
+      sum += (q63_t) *px++ * (*py++);
+
+      /* x[3] * y[srcBLen - 1] */
+      sum += (q63_t) *px++ * (*py++);
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
+
+      /* Decrement loop counter */
+      k--;
+    }
+
+    /* Loop unrolling: Compute remaining outputs */
+    k = count & 0x3U;
+
+#else
+
+    /* Initialize k with number of samples */
+    k = count;
+
+#endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
     while (k > 0U)
     {
       /* Perform the multiply-accumulate */
@@ -561,7 +553,7 @@ void riscv_correlate_q31(
       blkCnt--;
     }
   }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif /* defined (RISCV_MATH_VECTOR) */
 
   /* --------------------------
    * Initializations of stage3
@@ -593,8 +585,23 @@ void riscv_correlate_q31(
   {
     /* Accumulator is made zero for every iteration */
     sum = 0;
-
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
+    uint32_t vblkCnt = count;                               /* Loop counter */
+    size_t l;
+    vint32m4_t vx, vy;
+    vint64m1_t temp00m1;
+    l = vsetvl_e64m1(1);
+    temp00m1 = vmv_v_x_i64m1(0, l);
+    for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle32_v_i32m4(px, l);
+      px += l;
+      vy = vle32_v_i32m4(py, l);
+      py += l;
+      temp00m1 = vredsum_vs_i64m8_i64m1(temp00m1, vwmul_vv_i64m8(vx, vy, l), temp00m1, l);
+    }
+    sum += vmv_x_s_i64m1_i64(temp00m1);
+#else
+#if defined (RISCV_MATH_LOOPUNROLL)
 
     /* Loop unrolling: Compute 4 outputs at a time */
     k = count >> 2U;
@@ -627,22 +634,6 @@ void riscv_correlate_q31(
     k = count;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_MATH_VECTOR)
-    uint32_t vblkCnt = count;                               /* Loop counter */
-    size_t l;
-    vint32m4_t vx, vy;
-    vint64m1_t temp00m1;
-    l = vsetvl_e64m1(1);
-    temp00m1 = vmv_v_x_i64m1(0, l);
-    for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle32_v_i32m4(px, l);
-      px += l;
-      vy = vle32_v_i32m4(py, l);
-      py += l;
-      temp00m1 = vredsum_vs_i64m8_i64m1(temp00m1, vwmul_vv_i64m8(vx, vy, l), temp00m1, l);
-    }
-    sum += vmv_x_s_i64m1_i64(temp00m1);
-#else
     while (k > 0U)
     {
       /* Perform the multiply-accumulate */
@@ -651,7 +642,7 @@ void riscv_correlate_q31(
       /* Decrement loop counter */
       k--;
     }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif /* defined (RISCV_MATH_VECTOR) */
     /* Store the result in the accumulator in the destination buffer. */
     *pOut = (q31_t) (sum >> 31);
     /* Destination pointer is updated according to the address modifier, inc */

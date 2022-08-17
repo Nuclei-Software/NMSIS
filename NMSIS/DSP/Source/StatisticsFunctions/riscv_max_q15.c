@@ -52,8 +52,8 @@ void riscv_max_q15(
         q15_t * pResult,
         uint32_t * pIndex)
 {
-        q15_t maxVal, out;                             /* Temporary variables to store the output value. */
-        uint32_t blkCnt, outIndex;                     /* Loop counter */
+  q15_t maxVal, out;                             /* Temporary variables to store the output value. */
+  uint32_t blkCnt, outIndex;                     /* Loop counter */
 
 #if defined(RISCV_MATH_VECTOR)
   q15_t max_temp;
@@ -70,29 +70,33 @@ void riscv_max_q15(
   blkCnt = blockSize;
   for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
   {
-      v_x = vle16_v_i16m8(inputx, l);
-      inputx += l;
-      max_temp = vmv_x_s_i16m1_i16(vredmax_vs_i16m8_i16m1(v_tempa, v_x, v_tempa, l));
-      if (max_temp > out) {
-        out = max_temp;
-        outIndex = index_temp;
-      }
-      index_temp += l;
+    v_x = vle16_v_i16m8(inputx, l);
+    inputx += l;
+    max_temp = vmv_x_s_i16m1_i16(vredmax_vs_i16m8_i16m1(v_tempa, v_x, v_tempa, l));
+    if (max_temp > out)
+    {
+      out = max_temp;
+      outIndex = index_temp;
+    }
+    index_temp += l;
 
   }
 
   while (1)
   {
-      if (pSrc[outIndex] == out) {
-        break;
-      } else {
-        outIndex++;
-      }
+    if (pSrc[outIndex] == out)
+    {
+      break;
+    }
+    else
+    {
+      outIndex++;
+    }
   }
 #else
 
 #if defined (RISCV_MATH_LOOPUNROLL)
-        uint32_t index;                                /* index of maximum value */
+  uint32_t index;                                /* index of maximum value */
 #endif
 
   /* Initialise index value to zero. */

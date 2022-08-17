@@ -103,8 +103,8 @@ riscv_status riscv_mat_add_f32(
       vse32_v_f32m8(pOut, vfadd_vv_f32m8(vy, vx, l), l);
       pOut += l;
     }
-
-#elif defined (RISCV_MATH_LOOPUNROLL)
+#else
+#if defined (RISCV_MATH_LOOPUNROLL)
 
     /* Loop unrolling: Compute 4 outputs at a time */
     blkCnt = numSamples >> 2U;
@@ -146,7 +146,7 @@ riscv_status riscv_mat_add_f32(
       /* Decrement loop counter */
       blkCnt--;
     }
-
+#endif /* defined(RISCV_MATH_VECTOR) */
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
   }

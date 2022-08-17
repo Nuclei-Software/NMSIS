@@ -57,18 +57,17 @@ void riscv_not_u32(
     blkCnt = blockSize;
 
 #if defined(RISCV_MATH_VECTOR)
-  size_t l;
-  vuint32m8_t vx;
+    size_t l;
+    vuint32m8_t vx;
 
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-    vx = vle32_v_u32m8(pSrc, l);
-    pSrc += l;
-    vse32_v_u32m8(pDst, vnot_v_u32m8(vx, l), l);
-    pDst += l;
-  }
+    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+    {
+        vx = vle32_v_u32m8(pSrc, l);
+        pSrc += l;
+        vse32_v_u32m8(pDst, vnot_v_u32m8(vx, l), l);
+        pDst += l;
+    }
 #else
-
-#if defined (NUCLEI_DSP_N1) || (__RISCV_XLEN == 64)
 
     const uint64_t * pSrc_temp = (const uint64_t * )pSrc;
     uint64_t * pDst_temp = (uint64_t *)pDst;
@@ -86,7 +85,6 @@ void riscv_not_u32(
     {
         pSrc = (const uint32_t * )(pSrc_temp - 1);
     }
-#endif
     while (blkCnt > 0U)
     {
         *pDst++ = ~(*pSrc++);

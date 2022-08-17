@@ -77,9 +77,7 @@ void riscv_fir_sparse_q31(
         q31_t in;
         q63_t out;                                     /* Temporary output variable */
 
-#if __RISCV_XLEN == 64
-        q63_t temp;
-#endif /* __RISCV_XLEN == 64 */
+
   /* BlockSize of Input samples are copied into the state buffer */
   /* StateIndex points to the starting position to write in the state buffer */
   riscv_circularWrite_f32((int32_t *) py, delaySize, &S->stateIndex, 1,
@@ -107,18 +105,28 @@ void riscv_fir_sparse_q31(
   /* Working pointer for scratch buffer of output values */
   pOut = pDst;
 
-
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
+    uint32_t vblkCnt = blockSize;
+    size_t l;
+    vint32m4_t vx;
+    for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle32_v_i32m4(px, l);
+      px += l;
+      vse32_v_i32m4(pOut, vnclip_wx_i32m4(vwmul_vx_i64m8(vx, coeff, l), 32, l), l);
+      pOut += l;
+    }
+#else
+#if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time. */
   blkCnt = blockSize >> 2U;
 
   while (blkCnt > 0U)
   {
-#if __RISCV_XLEN == 64
-    temp = read_q31x2_ia((q63_t) &px);
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+    q63_t temp = read_q31x2_ia((q31_t **)&px);
     write_q31x2_ia(&pOut, __RV_PKBB32((__RV_SMBT32(coeff, temp) >> 32), (__RV_SMBB32(temp, coeff) >> 32)));
-    temp = read_q31x2_ia((q63_t) &px);
+    temp = read_q31x2_ia((q31_t **)&px);
     write_q31x2_ia(&pOut, __RV_PKBB32((__RV_SMBT32(coeff, temp) >> 32), (__RV_SMBB32(temp, coeff) >> 32)));
 #else
     /* Perform Multiplications and store in destination buffer */
@@ -129,7 +137,7 @@ void riscv_fir_sparse_q31(
     *pOut++ = (q31_t) (((q63_t) *px++ * coeff) >> 32);
 
     *pOut++ = (q31_t) (((q63_t) *px++ * coeff) >> 32);
-#endif /* __RISCV_XLEN == 64 */
+#endif /* (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
     /* Decrement loop counter */
     blkCnt--;
@@ -144,17 +152,7 @@ void riscv_fir_sparse_q31(
   blkCnt = blockSize;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_MATH_VECTOR)
-    uint32_t vblkCnt = blockSize;
-    size_t l;
-    vint32m4_t vx;
-    for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle32_v_i32m4(px, l);
-      px += l;
-      vse32_v_i32m4(pOut, vnclip_wx_i32m4(vwmul_vx_i64m8(vx, coeff, l), 32, l), l);
-      pOut += l;
-    }
-#else
+
   while (blkCnt > 0U)
   {
     /* Perform Multiplication and store in destination buffer */
@@ -195,8 +193,16 @@ void riscv_fir_sparse_q31(
     /* Working pointer for scratch buffer of output values */
     pOut = pDst;
 
-
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
+    vblkCnt = blockSize;
+    for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle32_v_i32m4(px, l);
+      px += l;
+      vse32_v_i32m4(pOut, vadd_vv_i32m4(vle32_v_i32m4(pOut, l), vnclip_wx_i32m4(vwmul_vx_i64m8(vx, coeff, l), 32, l), l), l);
+      pOut += l;
+    }
+#else
+#if defined (RISCV_MATH_LOOPUNROLL)
 
     /* Loop unrolling: Compute 4 outputs at a time. */
     blkCnt = blockSize >> 2U;
@@ -233,15 +239,7 @@ void riscv_fir_sparse_q31(
     blkCnt = blockSize;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_MATH_VECTOR)
-    vblkCnt = blockSize;
-    for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle32_v_i32m4(px, l);
-      px += l;
-      vse32_v_i32m4(pOut, vadd_vv_i32m4(vle32_v_i32m4(pOut, l), vnclip_wx_i32m4(vwmul_vx_i64m8(vx, coeff, l), 32, l), l), l);
-      pOut += l;
-    }
-#else
+
     while (blkCnt > 0U)
     {
       /* Perform Multiply-Accumulate */
@@ -286,8 +284,16 @@ void riscv_fir_sparse_q31(
   /* Working pointer for scratch buffer of output values */
   pOut = pDst;
 
-
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
+  vblkCnt = blockSize;
+  for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
+    vx = vle32_v_i32m4(px, l);
+    px += l;
+    vse32_v_i32m4(pOut, vadd_vv_i32m4(vle32_v_i32m4(pOut, l), vnclip_wx_i32m4(vwmul_vx_i64m8(vx, coeff, l), 32, l), l), l);
+    pOut += l;
+  }
+#else
+#if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time. */
   blkCnt = blockSize >> 2U;
@@ -324,15 +330,7 @@ void riscv_fir_sparse_q31(
   blkCnt = blockSize;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_MATH_VECTOR)
-  vblkCnt = blockSize;
-  for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
-    vx = vle32_v_i32m4(px, l);
-    px += l;
-    vse32_v_i32m4(pOut, vadd_vv_i32m4(vle32_v_i32m4(pOut, l), vnclip_wx_i32m4(vwmul_vx_i64m8(vx, coeff, l), 32, l), l), l);
-    pOut += l;
-  }
-#else
+
   while (blkCnt > 0U)
   {
     /* Perform Multiply-Accumulate */

@@ -52,45 +52,48 @@ void riscv_max_q7(
         q7_t * pResult,
         uint32_t * pIndex)
 {
-        q7_t maxVal, out;                              /* Temporary variables to store the output value. */
-        uint32_t blkCnt, outIndex;                     /* Loop counter */
+  q7_t maxVal, out; /* Temporary variables to store the output value. */
+  uint32_t blkCnt, outIndex;   /* Loop counter */
 
 #if defined(RISCV_MATH_VECTOR)
-    int8_t max_temp;
-    uint32_t index_temp = 0;
-    size_t l;
-    const q7_t *inputx = pSrc;
-    vint8m8_t v_x;
-    vint8m1_t v_tempa;
-    out = pSrc[0];
-    outIndex = 0;
-    blkCnt = blockSize;
-    l = vsetvl_e8m1(1);
-    v_tempa = vmv_s_x_i8m1(v_tempa, pSrc[0], l);
-    for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l)
+  int8_t max_temp;
+  uint32_t index_temp = 0;
+  size_t l;
+  const q7_t *inputx = pSrc;
+  vint8m8_t v_x;
+  vint8m1_t v_tempa;
+  out = pSrc[0];
+  outIndex = 0;
+  blkCnt = blockSize;
+  l = vsetvl_e8m1(1);
+  v_tempa = vmv_s_x_i8m1(v_tempa, pSrc[0], l);
+  for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l)
+  {
+    v_x = vle8_v_i8m8(inputx, l);
+    inputx += l;
+    max_temp = vmv_x_s_i8m1_i8(vredmax_vs_i8m8_i8m1(v_tempa, v_x, v_tempa, l));
+    if (max_temp > out)
     {
-        v_x = vle8_v_i8m8(inputx, l);
-        inputx += l;
-        max_temp = vmv_x_s_i8m1_i8(vredmax_vs_i8m8_i8m1(v_tempa, v_x, v_tempa, l));
-        if (max_temp > out) {
-          out = max_temp;
-          outIndex = index_temp;
-        }
-        index_temp += l;
-
+      out = max_temp;
+      outIndex = index_temp;
     }
-    while (1)
-    {
-        if (pSrc[outIndex] == out) {
-          break;
-        } else {
-          outIndex++;
-        }
-    }
+    index_temp += l;
+  }
+  while (1)
+  {
+      if (pSrc[outIndex] == out)
+      {
+        break;
+      }
+      else
+      {
+        outIndex++;
+      }
+  }
 #else
 
 #if defined (RISCV_MATH_LOOPUNROLL)
-        uint32_t index;                                /* index of maximum value */
+  uint32_t index;       /* index of maximum value */
 #endif
 
   /* Initialise index value to zero. */

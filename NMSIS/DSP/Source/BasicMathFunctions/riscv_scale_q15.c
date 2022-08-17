@@ -59,10 +59,10 @@ void riscv_scale_q15(
         q15_t *pDst,
         uint32_t blockSize)
 {
-        uint32_t blkCnt;                               /* Loop counter */
-        int8_t kShift = 15 - shift;                    /* Shift to apply after scaling */
+  uint32_t blkCnt;                               /* Loop counter */
+  int8_t kShift = 15 - shift;                    /* Shift to apply after scaling */
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
   blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vint16m4_t vx;
@@ -77,14 +77,9 @@ void riscv_scale_q15(
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 #if defined (RISCV_MATH_DSP)
-#if __RISCV_XLEN == 64
-  q63_t inA164, inA264;
-  q63_t out164, out264, out364, out464;                  /* Temporary output variables */
-  q15_t in164, in264, in364, in464;                      /* Temporary input variables */
-#endif /* __RISCV_XLEN == 64 */
   q31_t inA1, inA2;
   q31_t out1, out2, out3, out4;                  /* Temporary output variables */
-  q15_t in1, in2, in3, in4;                      /* Temporary input variables */
+  q31_t in1, in2, in3, in4;                      /* Temporary input variables */
 #endif
 #endif
 
@@ -98,44 +93,16 @@ void riscv_scale_q15(
     /* C = A * scale */
 
 #if defined (RISCV_MATH_DSP)
-#if __RISCV_XLEN == 64
-    /* read 2 times 2 samples at a time from source */
-    inA164 = read_q15x4_ia ((q15_t **) &pSrc);
-    // inA2 = read_q15x2_ia ((q15_t **) &pSrc);
-
-    /* Scale inputs and store result in temporary variables
-     * in single cycle by packing the outputs */
-    out1 = (q31_t) ((q15_t) (inA164 >> 16) * scaleFract);
-    out2 = (q31_t) ((q15_t) (inA164      ) * scaleFract);
-    out3 = (q31_t) ((q15_t) (inA164 >> 48) * scaleFract);
-    out4 = (q31_t) ((q15_t) (inA164 >> 32) * scaleFract);
-
-    /* apply shifting */
-    out1 = out1 >> kShift;
-    out2 = out2 >> kShift;
-    out3 = out3 >> kShift;
-    out4 = out4 >> kShift;
-
-    /* saturate the output */
-    in1 = (q15_t) (__SSAT(out1, 16));
-    in2 = (q15_t) (__SSAT(out2, 16));
-    in3 = (q15_t) (__SSAT(out3, 16));
-    in4 = (q15_t) (__SSAT(out4, 16));
-
-    /* store result to destination */
-    write_q15x2_ia (&pDst, __PKHBT(in2, in1, 16));
-    write_q15x2_ia (&pDst, __PKHBT(in4, in3, 16));
-#else
     /* read 2 times 2 samples at a time from source */
     inA1 = read_q15x2_ia ((q15_t **) &pSrc);
     inA2 = read_q15x2_ia ((q15_t **) &pSrc);
 
     /* Scale inputs and store result in temporary variables
      * in single cycle by packing the outputs */
-    out1 = (q31_t) ((q15_t) (inA1 >> 16) * scaleFract);
-    out2 = (q31_t) ((q15_t) (inA1      ) * scaleFract);
-    out3 = (q31_t) ((q15_t) (inA2 >> 16) * scaleFract);
-    out4 = (q31_t) ((q15_t) (inA2      ) * scaleFract);
+    out1 = (q31_t)((q15_t) (inA1 >> 16) * scaleFract);
+    out2 = (q31_t)((q15_t) (inA1      ) * scaleFract);
+    out3 = (q31_t)((q15_t) (inA2 >> 16) * scaleFract);
+    out4 = (q31_t)((q15_t) (inA2      ) * scaleFract);
 
     /* apply shifting */
     out1 = out1 >> kShift;
@@ -144,20 +111,19 @@ void riscv_scale_q15(
     out4 = out4 >> kShift;
 
     /* saturate the output */
-    in1 = (q15_t) (__SSAT(out1, 16));
-    in2 = (q15_t) (__SSAT(out2, 16));
-    in3 = (q15_t) (__SSAT(out3, 16));
-    in4 = (q15_t) (__SSAT(out4, 16));
+    in1 = (__SSAT(out1, 16));
+    in2 = (__SSAT(out2, 16));
+    in3 = (__SSAT(out3, 16));
+    in4 = (__SSAT(out4, 16));
 
     /* store result to destination */
-    write_q15x2_ia (&pDst, __PKHBT(in2, in1, 16));
-    write_q15x2_ia (&pDst, __PKHBT(in4, in3, 16));
-#endif /* __RISCV_XLEN == 64 */
+    write_q15x2_ia(&pDst, __RV_PKBB16(in1, in2));
+    write_q15x2_ia(&pDst, __RV_PKBB16(in3, in4));
 #else
-    *pDst++ = (q15_t) (__SSAT(((q31_t) *pSrc++ * scaleFract) >> kShift, 16));
-    *pDst++ = (q15_t) (__SSAT(((q31_t) *pSrc++ * scaleFract) >> kShift, 16));
-    *pDst++ = (q15_t) (__SSAT(((q31_t) *pSrc++ * scaleFract) >> kShift, 16));
-    *pDst++ = (q15_t) (__SSAT(((q31_t) *pSrc++ * scaleFract) >> kShift, 16));
+    *pDst++ = (q15_t)(__SSAT(((q31_t)*pSrc++ * scaleFract) >> kShift, 16));
+    *pDst++ = (q15_t)(__SSAT(((q31_t)*pSrc++ * scaleFract) >> kShift, 16));
+    *pDst++ = (q15_t)(__SSAT(((q31_t)*pSrc++ * scaleFract) >> kShift, 16));
+    *pDst++ = (q15_t)(__SSAT(((q31_t)*pSrc++ * scaleFract) >> kShift, 16));
 #endif
 
     /* Decrement loop counter */
@@ -179,7 +145,7 @@ void riscv_scale_q15(
     /* C = A * scale */
 
     /* Scale input and store result in destination buffer. */
-    *pDst++ = (q15_t) (__SSAT(((q31_t) *pSrc++ * scaleFract) >> kShift, 16));
+    *pDst++ = (q15_t)(__SSAT(((q31_t)*pSrc++ * scaleFract) >> kShift, 16));
 
     /* Decrement loop counter */
     blkCnt--;

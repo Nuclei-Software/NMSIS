@@ -129,7 +129,7 @@ void riscv_quaternion_product_f32(const float32_t *qa,
      qb += 4;
      qr += 4;
    }
-#endif
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

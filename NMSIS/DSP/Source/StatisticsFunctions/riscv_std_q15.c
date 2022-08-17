@@ -60,17 +60,23 @@ void riscv_std_q15(
         uint32_t blockSize,
         q15_t * pResult)
 {
-        uint32_t blkCnt;                               /* Loop counter */
-        q31_t sum = 0;                                 /* Accumulator */
-        q31_t meanOfSquares, squareOfMean;             /* Square of mean and mean of square */
-        q63_t sumOfSquares = 0;                        /* Sum of squares */
-        q15_t in;                                      /* Temporary variable to store input value */
+  uint32_t blkCnt;                   /* Loop counter */
+  q31_t sum = 0;                     /* Accumulator */
+  q31_t meanOfSquares, squareOfMean; /* Square of mean and mean of square */
+  q63_t sumOfSquares = 0;            /* Sum of squares */
+  q15_t in;                        /* Temporary variable to store input value */
+
+  if (blockSize <= 1U)
+  {
+    *pResult = 0;
+    return;
+  }
 
 #if defined(RISCV_MATH_VECTOR)
-  blkCnt = blockSize;                   /* Loop counter */
+  blkCnt = blockSize;             /* Loop counter */
   size_t l;
   const q15_t * input = pSrc;
-  vint16m4_t v_in;                               /* Temporary variable to store input value */
+  vint16m4_t v_in;                /* Temporary variable to store input value */
   vint32m8_t v_in2;
   l = vsetvl_e64m1(1);
   vint64m1_t v_sumOfSquares = vmv_s_x_i64m1(v_sumOfSquares, 0, l);
@@ -86,18 +92,6 @@ void riscv_std_q15(
   sum += vmv_x_s_i32m1_i32(v_sum);
   sumOfSquares += vmv_x_s_i64m1_i64(v_sumOfSquares);
 #else
-#if defined (RISCV_MATH_LOOPUNROLL) && defined (RISCV_MATH_DSP)
-#if __RISCV_XLEN == 64
-        q63_t in64,sum64;
-#endif /* __RISCV_XLEN == 64 */
-  q31_t in32;                                    /* Temporary variable to store input value */
-#endif
-
-  if (blockSize <= 1U)
-  {
-    *pResult = 0;
-    return;
-  }
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -113,22 +107,24 @@ void riscv_std_q15(
     /* Compute sum and store result in a temporary variable, sum. */
 #if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
+    q63_t in64;
     in64 = read_q15x4_ia ((q15_t **) &pSrc);
-    sumOfSquares = __RV_SMALDA(sumOfSquares, in64, in64);
+    sumOfSquares = __SMLALD(in64, in64, sumOfSquares);
     sum += ((q31_t)((in64 << 48U) >> 48U));
     sum += ((q31_t)((in64 << 32U) >> 48U));
     sum += ((q31_t)((in64 << 16U) >> 48U));
-    sum += ((q31_t)((in64       ) >> 48U));
+    sum += ((q31_t)((in64) >> 48U));
 #else
-    in32 = read_q15x2_ia ((q15_t **) &pSrc);
+    q31_t in32;
+    in32 = read_q15x2_ia((q15_t **)&pSrc);
     sumOfSquares = __SMLALD(in32, in32, sumOfSquares);
     sum += ((in32 << 16U) >> 16U);
-    sum +=  (in32 >> 16U);
+    sum += (in32 >> 16U);
 
-    in32 = read_q15x2_ia ((q15_t **) &pSrc);
+    in32 = read_q15x2_ia((q15_t **)&pSrc);
     sumOfSquares = __SMLALD(in32, in32, sumOfSquares);
     sum += ((in32 << 16U) >> 16U);
-    sum +=  (in32 >> 16U);
+    sum += (in32 >> 16U);
 #endif /* __RISCV_XLEN == 64 */
 #else
     in = *pSrc++;
@@ -178,10 +174,10 @@ void riscv_std_q15(
   }
 #endif /* #if defined(RISCV_MATH_VECTOR) */
   /* Compute Mean of squares and store result in a temporary variable, meanOfSquares. */
-  meanOfSquares = (q31_t) (sumOfSquares / (q63_t)(blockSize - 1U));
+  meanOfSquares = (q31_t)(sumOfSquares / (q63_t)(blockSize - 1U));
 
   /* Compute square of mean */
-  squareOfMean = (q31_t) ((q63_t) sum * sum / (q63_t)(blockSize * (blockSize - 1U)));
+  squareOfMean = (q31_t)((q63_t)sum * sum / (q63_t)(blockSize * (blockSize - 1U)));
 
   /* mean of squares minus the square of mean. */
   /* Compute standard deviation and store result in destination */

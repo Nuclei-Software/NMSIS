@@ -198,29 +198,20 @@ void riscv_conv_fast_q15(
     /* Apply loop unrolling and compute 4 MACs simultaneously. */
     k = count >> 2U;
 
-#if defined RISCV_MATH_DSP && __RISCV_XLEN == 64
-    py -= 2;
-#endif /* defined RISCV_MATH_DSP && __RISCV_XLEN == 64 */
     /* First part of the processing with loop unrolling.  Compute 4 MACs at a time.
      ** a second loop below computes MACs for the remaining 1 to 3 samples. */
     while (k > 0U)
     {
       /* Perform the multiply-accumulates */
-#if defined RISCV_MATH_DSP && __RISCV_XLEN == 64
-      sum = __RV_KMAXDA(sum, read_q15x4_ia ((q15_t **) &px), read_q15x4_da ((q15_t **) &py));
-#else
       /* x[0], x[1] are multiplied with y[srcBLen - 1], y[srcBLen - 2] respectively */
       sum = __SMLADX(read_q15x2_ia ((q15_t **) &px), read_q15x2_da ((q15_t **) &py), sum);
       /* x[2], x[3] are multiplied with y[srcBLen - 3], y[srcBLen - 4] respectively */
       sum = __SMLADX(read_q15x2_ia ((q15_t **) &px), read_q15x2_da ((q15_t **) &py), sum);
-#endif /* defined RISCV_MATH_DSP && __RISCV_XLEN == 64 */
 
       /* Decrement loop counter */
       k--;
     }
-#if defined RISCV_MATH_DSP && __RISCV_XLEN == 64
-    py += 2;
-#endif /* defined RISCV_MATH_DSP && __RISCV_XLEN == 64 */
+
     /* For the next MAC operations, the pointer py is used without SIMD
      * So, py is incremented by 1 */
     py = py + 1U;

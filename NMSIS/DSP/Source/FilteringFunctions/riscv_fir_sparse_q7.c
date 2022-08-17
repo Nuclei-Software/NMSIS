@@ -113,8 +113,18 @@ void riscv_fir_sparse_q7(
   /* Working pointer for scratch buffer of output values */
   pScratchOut = pScr2;
 
-
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
+  uint32_t vblkCnt = blockSize;                               /* Loop counter */
+  size_t l;
+  vint8m2_t vx;
+  for (; (l = vsetvl_e8m2(vblkCnt)) > 0; vblkCnt -= l) {
+    vx = vle8_v_i8m2(px, l);
+    px += l;
+    vse32_v_i32m8(pScratchOut, vwadd_vx_i32m8(vwmul_vx_i16m4(vx, coeff, l), 0, l), l);
+    pScratchOut += l;
+  }
+#else
+#if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time. */
   blkCnt = blockSize >> 2U;
@@ -132,7 +142,7 @@ void riscv_fir_sparse_q7(
   }
 
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 
@@ -140,17 +150,7 @@ void riscv_fir_sparse_q7(
   blkCnt = blockSize;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_MATH_VECTOR)
-  uint32_t vblkCnt = blockSize;                               /* Loop counter */
-  size_t l;
-  vint8m2_t vx;
-  for (; (l = vsetvl_e8m2(vblkCnt)) > 0; vblkCnt -= l) {
-    vx = vle8_v_i8m2(px, l);
-    px += l;
-    vse32_v_i32m8(pScratchOut, vwadd_vx_i32m8(vwmul_vx_i16m4(vx, coeff, l), 0, l), l);
-    pScratchOut += l;
-  }
-#else
+
   while (blkCnt > 0U)
   {
     /* Perform Multiplication and store in the scratch buffer */
@@ -190,9 +190,17 @@ void riscv_fir_sparse_q7(
 
     /* Working pointer for scratch buffer of output values */
     pScratchOut = pScr2;
+#if defined (RISCV_MATH_VECTOR)
+    vblkCnt = blockSize;                               /* Loop counter */
+    for (; (l = vsetvl_e8m2(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle8_v_i8m2(px, l);
+      px += l;
+      vse32_v_i32m8(pScratchOut, vadd_vv_i32m8(vle32_v_i32m8(pScratchOut, l), vwadd_vx_i32m8(vwmul_vx_i16m4(vx, coeff, l), 0, l), l), l);
+      pScratchOut += l;
+    }
+#else
 
-
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL)
 
     /* Loop unrolling: Compute 4 outputs at a time. */
     blkCnt = blockSize >> 2U;
@@ -214,7 +222,7 @@ void riscv_fir_sparse_q7(
     }
 
     /* Loop unrolling: Compute remaining outputs */
-    blkCnt = blockSize % 0x4U;
+    blkCnt = blockSize & 0x3U;
 
 #else
 
@@ -222,15 +230,7 @@ void riscv_fir_sparse_q7(
     blkCnt = blockSize;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_MATH_VECTOR)
-    vblkCnt = blockSize;                               /* Loop counter */
-    for (; (l = vsetvl_e8m2(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle8_v_i8m2(px, l);
-      px += l;
-      vse32_v_i32m8(pScratchOut, vadd_vv_i32m8(vle32_v_i32m8(pScratchOut, l), vwadd_vx_i32m8(vwmul_vx_i16m4(vx, coeff, l), 0, l), l), l);
-      pScratchOut += l;
-    }
-#else
+
     while (blkCnt > 0U)
     {
       /* Perform Multiply-Accumulate */
@@ -273,8 +273,16 @@ void riscv_fir_sparse_q7(
   /* Working pointer for scratch buffer of output values */
   pScratchOut = pScr2;
 
-
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
+    vblkCnt = blockSize;                               /* Loop counter */
+    for (; (l = vsetvl_e8m2(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle8_v_i8m2(px, l);
+      px += l;
+      vse32_v_i32m8(pScratchOut, vadd_vv_i32m8(vle32_v_i32m8(pScratchOut, l), vwadd_vx_i32m8(vwmul_vx_i16m4(vx, coeff, l), 0, l), l), l);
+      pScratchOut += l;
+    }
+#else
+#if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time. */
   blkCnt = blockSize >> 2U;
@@ -304,15 +312,6 @@ void riscv_fir_sparse_q7(
   blkCnt = blockSize;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_MATH_VECTOR)
-    vblkCnt = blockSize;                               /* Loop counter */
-    for (; (l = vsetvl_e8m2(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle8_v_i8m2(px, l);
-      px += l;
-      vse32_v_i32m8(pScratchOut, vadd_vv_i32m8(vle32_v_i32m8(pScratchOut, l), vwadd_vx_i32m8(vwmul_vx_i16m4(vx, coeff, l), 0, l), l), l);
-      pScratchOut += l;
-    }
-#else
   while (blkCnt > 0U)
   {
     /* Perform Multiply-Accumulate */

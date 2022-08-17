@@ -60,12 +60,12 @@ void riscv_power_q31(
         uint32_t blockSize,
         q63_t * pResult)
 {
-        uint32_t blkCnt;                               /* Loop counter */
-        q63_t sum = 0;                                 /* Temporary result storage */
-        q31_t in;                                      /* Temporary variable to store input value */
+  uint32_t blkCnt;        /* Loop counter */
+  q63_t sum = 0;          /* Temporary result storage */
+  q31_t in;               /* Temporary variable to store input value */
 
 #if defined(RISCV_MATH_VECTOR)
-  blkCnt = blockSize;                               /* Loop counter */
+  blkCnt = blockSize;     /* Loop counter */
   size_t l;
   const q31_t * input = pSrc;
   vint32m4_t v_in;
@@ -80,10 +80,8 @@ void riscv_power_q31(
     v_sum = vredsum_vs_i64m8_i64m1(v_sum, v_in2, v_sum, l);
   }
   sum += vmv_x_s_i64m1_i64(v_sum);
+
 #else
-#if __RISCV_XLEN == 64
-        q63_t in64;                                      /* Temporary variable to store input value */
-#endif /* __RISCV_XLEN == 64 */
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -92,26 +90,27 @@ void riscv_power_q31(
   while (blkCnt > 0U)
   {
     /* C = A[0] * A[0] + A[1] * A[1] + ... + A[blockSize-1] * A[blockSize-1] */
-#if __RISCV_XLEN == 64
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+    q63_t in64;
     in64 = read_q31x2_ia ((q31_t **) &pSrc);
     sum += __RV_SMBB32(in64, in64);
     sum += __RV_SMTT32(in64, in64);
-    in64 = read_q31x2_ia ((q31_t **) &pSrc);
+    in64 = read_q31x2_ia((q31_t **)&pSrc);
     sum += __RV_SMBB32(in64, in64);
     sum += __RV_SMTT32(in64, in64);
 #else
     /* Compute Power then shift intermediate results by 14 bits to maintain 16.48 format and store result in a temporary variable sum, providing 15 guard bits. */
     in = *pSrc++;
-    sum += ((q63_t) in * in) >> 14U;
+    sum += ((q63_t)in * in) >> 14U;
 
     in = *pSrc++;
-    sum += ((q63_t) in * in) >> 14U;
+    sum += ((q63_t)in * in) >> 14U;
 
     in = *pSrc++;
-    sum += ((q63_t) in * in) >> 14U;
+    sum += ((q63_t)in * in) >> 14U;
 
     in = *pSrc++;
-    sum += ((q63_t) in * in) >> 14U;
+    sum += ((q63_t)in * in) >> 14U;
 #endif /* __RISCV_XLEN == 64 */
 
     /* Decrement loop counter */
@@ -134,7 +133,7 @@ void riscv_power_q31(
 
     /* Compute Power and store result in a temporary variable, sum. */
     in = *pSrc++;
-    sum += ((q63_t) in * in) >> 14U;
+    sum += ((q63_t)in * in) >> 14U;
 
     /* Decrement loop counter */
     blkCnt--;

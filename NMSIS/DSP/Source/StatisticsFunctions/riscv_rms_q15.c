@@ -60,31 +60,25 @@ void riscv_rms_q15(
         uint32_t blockSize,
         q15_t * pResult)
 {
-        uint32_t blkCnt;                               /* Loop counter */
-        q63_t sum = 0;                                 /* Temporary result storage */
-        q15_t in;                                      /* Temporary variable to store input value */
+  uint32_t blkCnt;            /* Loop counter */
+  q63_t sum = 0;              /* Temporary result storage */
+  q15_t in;                   /* Temporary variable to store input value */
 
 #if defined(RISCV_MATH_VECTOR)
-  blkCnt = blockSize;                               /* Loop counter */
+  blkCnt = blockSize;         /* Loop counter */
   size_t l;
   const q15_t * input = pSrc;
   vint16m4_t v_in;
   l = vsetvl_e64m1(1);
-  vint64m1_t v_sum = vmv_s_x_i64m1(v_sum, 0, l);                /* init v_sum data= vmv_s_x_i64m1(v_sum, 0) */
-  for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
+  vint64m1_t v_sum = vmv_s_x_i64m1(v_sum, 0, l); /* init v_sum data= vmv_s_x_i64m1(v_sum, 0) */
+  for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
+  {
     v_in = vle16_v_i16m4(input, l);
     input += l;
     v_sum = vwredsum_vs_i32m8_i64m1(v_sum, vwmul_vv_i32m8(v_in, v_in, l), v_sum, l);
   }
   sum += vmv_x_s_i64m1_i64(v_sum);
 #else
-
-#if defined (RISCV_MATH_LOOPUNROLL) && defined (RISCV_MATH_DSP)
-#if __RISCV_XLEN == 64
-        q63_t in64;                                    /* Temporary variable to store packed input value */
-#endif /* __RISCV_XLEN == 64 */
-        q31_t in32;                                    /* Temporary variable to store input value */
-#endif
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -98,27 +92,29 @@ void riscv_rms_q15(
     /* Compute sum of squares and store result in a temporary variable. */
 #if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
-    in64 = read_q15x4_ia ((q15_t **) &pSrc);
-    sum = __RV_SMALDA(sum, in64, in64);
+    q63_t in64;
+    in64 = read_q15x4_ia((q15_t **)&pSrc);
+    sum = __SMLALD(in64, in64, sum);
 #else
-    in32 = read_q15x2_ia ((q15_t **) &pSrc);
+    q31_t in32;
+    in32 = read_q15x2_ia((q15_t **)&pSrc);
     sum = __SMLALD(in32, in32, sum);
 
-    in32 = read_q15x2_ia ((q15_t **) &pSrc);
+    in32 = read_q15x2_ia((q15_t **)&pSrc);
     sum = __SMLALD(in32, in32, sum);
 #endif
 #else
     in = *pSrc++;
-    sum += ((q31_t) in * in);
+    sum += ((q31_t)in * in);
 
     in = *pSrc++;
-    sum += ((q31_t) in * in);
+    sum += ((q31_t)in * in);
 
     in = *pSrc++;
-    sum += ((q31_t) in * in);
+    sum += ((q31_t)in * in);
 
     in = *pSrc++;
-    sum += ((q31_t) in * in);
+    sum += ((q31_t)in * in);
 #endif /* #if defined (RISCV_MATH_DSP) */
 
     /* Decrement loop counter */
@@ -141,7 +137,7 @@ void riscv_rms_q15(
 
     in = *pSrc++;
     /* Compute sum of squares and store result in a temporary variable. */
-    sum += ((q31_t) in * in);
+    sum += ((q31_t)in * in);
 
     /* Decrement loop counter */
     blkCnt--;

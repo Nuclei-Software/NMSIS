@@ -64,7 +64,7 @@ float32_t riscv_weighted_sum_f32(const float32_t *in, const float32_t *weigths, 
     accum2=0.0f;
 
 #if defined(RISCV_MATH_VECTOR)
-    uint32_t blkCnt_v;
+    uint32_t blkCnt_v = blockSize;
     size_t l;
     vfloat32m8_t v_x, v_y;
     vfloat32m1_t v_a, v_b;

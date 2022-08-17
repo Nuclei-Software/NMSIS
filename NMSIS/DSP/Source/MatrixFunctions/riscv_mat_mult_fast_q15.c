@@ -191,9 +191,9 @@ riscv_status riscv_mat_mult_fast_q15(
 #else
 #if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
         q63_t in64;                                      /* Temporary variable to hold the input value */
-        q63_t sum64=0, sum264=0, sum364=0, sum464=0;
+        q63_t sum64, sum264, sum364, sum464;
         q63_t inA164, inA264, inB164, inB264 ;
-#endif /* defined RISCV_MATH_DSP || (__RISCV_XLEN == 64) */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 #if defined (RISCV_MATH_DSP)
         q31_t in;                                      /* Temporary variable to hold the input value */
         q31_t inA1, inB1, inA2, inB2;
@@ -203,7 +203,7 @@ riscv_status riscv_mat_mult_fast_q15(
 #else
         q15_t in;                                      /* Temporary variable to hold the input value */
         q15_t inA1, inB1, inA2, inB2;
-#endif /* #if defined (RISCV_MATH_DSP) */
+#endif /* defined (RISCV_MATH_DSP) */
 
 #ifdef RISCV_MATH_MATRIX_CHECK
 
@@ -410,12 +410,11 @@ riscv_status riscv_mat_mult_fast_q15(
           inA2 = read_q15x2_ia (&pInA2);
           inB2 = read_q15x2_ia (&pInB2);
 
-          /* Multiply and Accumlates */
-          sum  = __RV_KMADA(sum, inA1, inB1);
-          sum2 = __RV_KMADA(sum2, inA1, inB2);
-          sum3 = __RV_KMADA(sum3, inA2, inB1);
-          sum4 = __RV_KMADA(sum4, inA2, inB2);
-// #endif /* __RISCV_XLEN == 64 */
+          /* Multiply and Accumulates */
+          sum  = __SMLAD(inA1, inB1, sum);
+          sum2 = __SMLAD(inA1, inB2, sum2);
+          sum3 = __SMLAD(inA2, inB1, sum3);
+          sum4 = __SMLAD(inA2, inB2, sum4);
 #else
           /* read real and imag values from pSrcA and pSrcB buffer */
           inA1 = *pInA++;
@@ -513,7 +512,7 @@ riscv_status riscv_mat_mult_fast_q15(
 
         /* point to last column in matrix B */
         pInB  = pSrcBT + numRowsB * (numColsB-1);
-#if __RISCV_XLEN == 64
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
         sum64  = 0;
 #endif
         /* Set variable sum, that acts as accumulator, to zero */
@@ -525,27 +524,27 @@ riscv_status riscv_mat_mult_fast_q15(
         /* matrix multiplication */
         while (colCnt > 0U)
         {
-#if __RISCV_XLEN == 64
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
           inA164 = read_q15x4_ia (&pInA);
           inB164 = read_q15x4_ia (&pInB);
 
-          sum64  = __RV_KMADA(sum64, inA164, inB164);
+          sum64  = __SMLAD(inA164, inB164, sum64);
 #else
           inA1 = read_q15x2_ia (&pInA);
           inA2 = read_q15x2_ia (&pInA);
           inB1 = read_q15x2_ia (&pInB);
           inB2 = read_q15x2_ia (&pInB);
 
-          sum  = __RV_KMADA(sum, inA1, inB1);
-          sum  = __RV_KMADA(sum, inA2, inB2);
-#endif /* __RISCV_XLEN == 64 */
+          sum  = __SMLAD(inA1, inB1, sum);
+          sum  = __SMLAD(inA2, inB2, sum);
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
           /* Decrement loop counter */
           colCnt--;
         }
-#if __RISCV_XLEN == 64
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
           sum = (q31_t) ((q31_t) (sum64 & 0xffffffff)) + ((q31_t) ((sum64 & 0xffffffff00000000)>> 32));
-#endif /* __RISCV_XLEN == 64 */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
         colCnt = numColsA & 3U;
         while (colCnt > 0U) {
           sum += (q31_t) (*pInA++) * (*pInB++);
@@ -576,7 +575,7 @@ riscv_status riscv_mat_mult_fast_q15(
       {
         /* point to last row in matrix A */
         pInA = pSrcA->pData + (numRowsA-1) * numColsA;
-#if __RISCV_XLEN == 64
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
         sum64  = 0;
 #endif
         /* Set variable sum, that acts as accumulator, to zero */
@@ -588,26 +587,26 @@ riscv_status riscv_mat_mult_fast_q15(
         /* matrix multiplication */
         while (colCnt > 0U)
         {
-#if __RISCV_XLEN == 64
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
           inA164 = read_q15x4_ia (&pInA);
           inB164 = read_q15x4_ia (&pInB);
 
-          sum64  = __RV_KMADA(sum64, inA164, inB164);
+          sum64  = __SMLAD(inA164, inB164, sum64);
 #else
           inA1 = read_q15x2_ia (&pInA);
           inA2 = read_q15x2_ia (&pInA);
           inB1 = read_q15x2_ia (&pInB);
           inB2 = read_q15x2_ia (&pInB);
 
-          sum  = __RV_KMADA(sum, inA1, inB1);
-          sum  = __RV_KMADA(sum, inA2, inB2);
-#endif /* __RISCV_XLEN == 64 */
+          sum  = __SMLAD(inA1, inB1, sum);
+          sum  = __SMLAD(inA2, inB2, sum);
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
           /* Decrement loop counter */
           colCnt--;
         }
-#if __RISCV_XLEN == 64
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
           sum = (q31_t) ((q31_t) (sum64 & 0xffffffff)) + ((q31_t) ((sum64 & 0xffffffff00000000)>> 32));
-#endif /* __RISCV_XLEN == 64 */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
         colCnt = numColsA & 3U;
         while (colCnt > 0U) {
           sum += (q31_t) (*pInA++) * (*pInB++);

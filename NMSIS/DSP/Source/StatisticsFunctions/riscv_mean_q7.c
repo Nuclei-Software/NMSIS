@@ -78,9 +78,6 @@ void riscv_mean_q7(
 
 #else
 #if defined (RISCV_MATH_LOOPUNROLL)
-#if __RISCV_XLEN == 64
-        q63_t in64;
-#endif /* __RISCV_XLEN == 64 */
         q31_t in;
 #endif
 
@@ -96,6 +93,7 @@ void riscv_mean_q7(
   while (blkCnt > 0U)
   {
 #if __RISCV_XLEN == 64
+    q63_t in64;
     /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) */
     in64 = read_q7x8_ia ((q7_t **) &pSrc);
     sum += (q31_t)((in64 << 56U) >> 56U);

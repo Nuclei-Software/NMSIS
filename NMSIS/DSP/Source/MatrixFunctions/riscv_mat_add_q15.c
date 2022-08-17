@@ -56,21 +56,21 @@ riscv_status riscv_mat_add_q15(
   const riscv_matrix_instance_q15 * pSrcB,
         riscv_matrix_instance_q15 * pDst)
 {
-        q15_t *pInA = pSrcA->pData;                    /* input data matrix pointer A */
-        q15_t *pInB = pSrcB->pData;                    /* input data matrix pointer B */
-        q15_t *pOut = pDst->pData;                     /* output data matrix pointer */
+  q15_t *pInA = pSrcA->pData;      /* input data matrix pointer A */
+  q15_t *pInB = pSrcB->pData;      /* input data matrix pointer B */
+  q15_t *pOut = pDst->pData;       /* output data matrix pointer */
 
-        uint32_t numSamples;                           /* total number of elements in the matrix */
-        uint32_t blkCnt;                               /* loop counters */
-        riscv_status status;                             /* status of matrix addition */
+  uint32_t numSamples;             /* total number of elements in the matrix */
+  uint32_t blkCnt;                 /* loop counters */
+  riscv_status status;             /* status of matrix addition */
 
 #ifdef RISCV_MATH_MATRIX_CHECK
 
   /* Check for matrix mismatch condition */
   if ((pSrcA->numRows != pSrcB->numRows) ||
       (pSrcA->numCols != pSrcB->numCols) ||
-      (pSrcA->numRows != pDst->numRows)  ||
-      (pSrcA->numCols != pDst->numCols)    )
+      (pSrcA->numRows != pDst->numRows) ||
+      (pSrcA->numCols != pDst->numCols))
   {
     /* Set status as RISCV_MATH_SIZE_MISMATCH */
     status = RISCV_MATH_SIZE_MISMATCH;
@@ -87,7 +87,8 @@ riscv_status riscv_mat_add_q15(
     size_t l;
     vint16m8_t vx, vy;
 
-    for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
+    for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+    {
       vx = vle16_v_i16m8(pInA, l);
       pInA += l;
       vy = vle16_v_i16m8(pInB, l);
@@ -95,8 +96,8 @@ riscv_status riscv_mat_add_q15(
       vse16_v_i16m8(pOut, vsadd_vv_i16m8(vx, vy, l), l);
       pOut += l;
     }
-
-#elif defined (RISCV_MATH_LOOPUNROLL)
+#else
+#if defined (RISCV_MATH_LOOPUNROLL)
 
     /* Loop unrolling: Compute 4 outputs at a time */
     blkCnt = numSamples >> 2U;
@@ -108,20 +109,20 @@ riscv_status riscv_mat_add_q15(
       /* Add, saturate and store result in destination buffer. */
 #if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
-    write_q15x4_ia(&pOut, __RV_KADD16(read_q15x4_ia(&pInA), read_q15x4_ia(&pInB)));
+      write_q15x4_ia(&pOut, __QADD16(read_q15x4_ia(&pInA), read_q15x4_ia(&pInB)));
 #else
-      write_q15x2_ia (&pOut, __QADD16(read_q15x2_ia (&pInA), read_q15x2_ia (&pInB)));
+      write_q15x2_ia(&pOut, __QADD16(read_q15x2_ia(&pInA), read_q15x2_ia(&pInB)));
 
-      write_q15x2_ia (&pOut, __QADD16(read_q15x2_ia (&pInA), read_q15x2_ia (&pInB)));
+      write_q15x2_ia(&pOut, __QADD16(read_q15x2_ia(&pInA), read_q15x2_ia(&pInB)));
 #endif /* __RISCV_XLEN == 64 */
 #else
-      *pOut++ = (q15_t) __SSAT(((q31_t) *pInA++ + *pInB++), 16);
+      *pOut++ = (q15_t)__SSAT(((q31_t)*pInA++ + *pInB++), 16);
 
-      *pOut++ = (q15_t) __SSAT(((q31_t) *pInA++ + *pInB++), 16);
+      *pOut++ = (q15_t)__SSAT(((q31_t)*pInA++ + *pInB++), 16);
 
-      *pOut++ = (q15_t) __SSAT(((q31_t) *pInA++ + *pInB++), 16);
+      *pOut++ = (q15_t)__SSAT(((q31_t)*pInA++ + *pInB++), 16);
 
-      *pOut++ = (q15_t) __SSAT(((q31_t) *pInA++ + *pInB++), 16);
+      *pOut++ = (q15_t)__SSAT(((q31_t)*pInA++ + *pInB++), 16);
 #endif
 
       /* Decrement loop counter */
@@ -146,13 +147,13 @@ riscv_status riscv_mat_add_q15(
 #if defined (RISCV_MATH_DSP)
       *pOut++ = (q15_t) __QADD16(*pInA++, *pInB++);
 #else
-      *pOut++ = (q15_t) __SSAT(((q31_t) *pInA++ + *pInB++), 16);
+      *pOut++ = (q15_t) __SSAT(((q31_t)*pInA++ + *pInB++), 16);
 #endif
 
       /* Decrement loop counter */
       blkCnt--;
     }
-
+#endif /* defined(RISCV_MATH_VECTOR) */
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
   }

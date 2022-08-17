@@ -175,16 +175,16 @@ void riscv_split_rfft_q15(
 
 
         /* pSrc[2 * i] * pATable[2 * i] - pSrc[2 * i + 1] * pATable[2 * i + 1] */
-        outR = __RV_SMDRS(read_q15x2 (pSrc1), read_q15x2((q15_t *) pCoefA));
+        outR = __SMUSD(read_q15x2 (pSrc1), read_q15x2((q15_t *) pCoefA));
 
         /* pSrc[2 * n - 2 * i] * pBTable[2 * i] + pSrc[2 * n - 2 * i + 1] * pBTable[2 * i + 1]) */
-        outR = __RV_KMADA(outR, read_q15x2 (pSrc2), read_q15x2((q15_t *) pCoefB)) >> 16U;
+        outR = __SMLAD(read_q15x2 (pSrc2), read_q15x2((q15_t *) pCoefB), outR) >> 16U;
 
         /* pIn[2 * n - 2 * i] * pBTable[2 * i + 1] - pIn[2 * n - 2 * i + 1] * pBTable[2 * i] */
-        outI = __RV_SMXDS(read_q15x2((q15_t *) pCoefB), read_q15x2_da (&pSrc2));
+        outI = __SMUSDX(read_q15x2((q15_t *) pCoefB), read_q15x2_da (&pSrc2));
 
         /* (pIn[2 * i + 1] * pATable[2 * i] + pIn[2 * i] * pATable[2 * i + 1] */
-        outI = __RV_KMAXDA(outI, read_q15x2_ia (&pSrc1), read_q15x2 ((q15_t *) pCoefA));
+        outI = __SMLADX(read_q15x2_ia (&pSrc1), read_q15x2 ((q15_t *) pCoefA), outI);
 
         /* write output */
         *pD1++ = (q15_t) outR;
@@ -317,13 +317,13 @@ void riscv_split_rifft_q15(
 #if defined (RISCV_MATH_DSP)
 
       /* pIn[2 * n - 2 * i] * pBTable[2 * i] - pIn[2 * n - 2 * i + 1] * pBTable[2 * i + 1]) */
-      outR = __RV_SMDRS(read_q15x2(pSrc2), read_q15x2((q15_t *) pCoefB));
+      outR = __SMUSD(read_q15x2(pSrc2), read_q15x2((q15_t *) pCoefB));
 
       /* pIn[2 * i] * pATable[2 * i] + pIn[2 * i + 1] * pATable[2 * i + 1] + pIn[2 * n - 2 * i] * pBTable[2 * i] */
-      outR = __RV_KMADA(outR, read_q15x2(pSrc1), read_q15x2 ((q15_t *) pCoefA)) >> 16U;
+      outR = __SMLAD(read_q15x2(pSrc1), read_q15x2 ((q15_t *) pCoefA), outR) >> 16U;
 
       /* -pIn[2 * n - 2 * i] * pBTable[2 * i + 1] + pIn[2 * n - 2 * i + 1] * pBTable[2 * i] */
-      outI = __RV_KMXDA(read_q15x2_da (&pSrc2), read_q15x2((q15_t *) pCoefB));
+      outI = __SMUADX(read_q15x2_da (&pSrc2), read_q15x2((q15_t *) pCoefB));
 
       /* pIn[2 * i + 1] * pATable[2 * i] - pIn[2 * i] * pATable[2 * i + 1] */
       outI = __SMLSDX(read_q15x2 ((q15_t *) pCoefA), read_q15x2_ia (&pSrc1), -outI);

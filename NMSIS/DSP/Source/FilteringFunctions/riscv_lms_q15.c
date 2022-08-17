@@ -111,14 +111,15 @@ void riscv_lms_q15(
 
     while (tapCnt > 0U)
     {
-#if __RISCV_XLEN == 64
-      acc = __RV_SMALDA(acc, read_q15x4_ia (&px), read_q15x4_ia (&pb));
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+      acc = __SMLALD(read_q15x4_ia (&px), read_q15x4_ia (&pb), acc);
 #else
       /* Perform the multiply-accumulate */
       /* acc +=  b[N] * x[n-N] + b[N-1] * x[n-N-1] */
-      acc = __RV_SMALDA(acc, read_q15x2_ia (&px), read_q15x2_ia (&pb));
-      acc = __RV_SMALDA(acc, read_q15x2_ia (&px), read_q15x2_ia (&pb));
-#endif /* __RISCV_XLEN == 64 */
+      acc = __SMLALD(read_q15x2_ia (&px), read_q15x2_ia (&pb), acc);
+      acc = __SMLALD(read_q15x2_ia (&px), read_q15x2_ia (&pb), acc);
+#endif /* (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
+
 
       /* Decrement loop counter */
       tapCnt--;

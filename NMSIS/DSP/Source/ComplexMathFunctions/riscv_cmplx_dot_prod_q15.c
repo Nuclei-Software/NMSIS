@@ -62,16 +62,16 @@ void riscv_cmplx_dot_prod_q15(
         q31_t * realResult,
         q31_t * imagResult)
 {
-        uint32_t blkCnt;                               /* Loop counter */
-        q63_t real_sum = 0, imag_sum = 0;              /* Temporary result variables */
+  uint32_t blkCnt;                        /* Loop counter */
+  q63_t real_sum = 0, imag_sum = 0;       /* Temporary result variables */
 
 #if defined(RISCV_MATH_VECTOR)
-  blkCnt = numSamples;                               /* Loop counter */
+  blkCnt = numSamples;                   /* Loop counter */
   size_t l;
   ptrdiff_t bstride = 4;
   vint16m2_t v_R1, v_R2, v_I1, v_I2;
   vint32m4_t v_RR, v_II, v_RI, v_IR;
-  // vint32m1_t v_dst;                      /* I don't know what the effect is  */
+  // vint32m1_t v_dst;              /* I don't know what the effect is */
   l = vsetvl_e64m1(1);
   vint64m1_t v_temp = vmv_s_x_i64m1(v_temp, 0, l);
   /* Note the total number of V registers to avoid saturation */
@@ -94,10 +94,7 @@ void riscv_cmplx_dot_prod_q15(
     pSrcB += l * 2;
   }
 #else
-#if __RISCV_XLEN == 64
-        q31_t RESA,RESB;
-#endif /* __RISCV_XLEN == 64 */
-        q15_t a0,b0,c0,d0;
+  q15_t a0, b0, c0, d0;
 
 #if defined (RISCV_MATH_LOOPUNROLL)
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -105,26 +102,28 @@ void riscv_cmplx_dot_prod_q15(
 
   while (blkCnt > 0U)
   {
-#if __RISCV_XLEN == 64
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+    q31_t RESA, RESB;
     RESA = read_q15x2_ia((q15_t **) &pSrcA);
     RESB = read_q15x2_ia((q15_t **) &pSrcB);
     real_sum += __RV_SMALDRS(0,RESA,RESB);
-    imag_sum += __RV_SMALXDA(0,RESA,RESB);
+    imag_sum += __SMLALDX(RESA,RESB, 0);
 
     RESA = read_q15x2_ia((q15_t **) &pSrcA);
     RESB = read_q15x2_ia((q15_t **) &pSrcB);
     real_sum += __RV_SMALDRS(0,RESA,RESB);
-    imag_sum += __RV_SMALXDA(0,RESA,RESB);
+    imag_sum += __SMLALDX(RESA,RESB, 0);
 
     RESA = read_q15x2_ia((q15_t **) &pSrcA);
     RESB = read_q15x2_ia((q15_t **) &pSrcB);
     real_sum += __RV_SMALDRS(0,RESA,RESB);
-    imag_sum += __RV_SMALXDA(0,RESA,RESB);
+    imag_sum += __SMLALDX(RESA,RESB, 0);
 
     RESA = read_q15x2_ia((q15_t **) &pSrcA);
     RESB = read_q15x2_ia((q15_t **) &pSrcB);
     real_sum += __RV_SMALDRS(0,RESA,RESB);
-    imag_sum += __RV_SMALXDA(0,RESA,RESB);
+    imag_sum += __SMLALDX(RESA,RESB, 0);
+
 #else
     a0 = *pSrcA++;
     b0 = *pSrcA++;
@@ -193,7 +192,7 @@ void riscv_cmplx_dot_prod_q15(
     real_sum -= (q31_t)b0 * d0;
     imag_sum += (q31_t)b0 * c0;
 #endif
-#endif /* __RISCV_XLEN == 64 */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
     /* Decrement loop counter */
     blkCnt--;
   }
@@ -215,17 +214,17 @@ void riscv_cmplx_dot_prod_q15(
     c0 = *pSrcB++;
     d0 = *pSrcB++;
 
-// #if defined(RISCV_MATH_DSP)
-// 	real_sum = __SMALBB(real_sum, a0, c0);
-// 	imag_sum = __SMALBB(imag_sum, a0, d0);
-// 	real_sum = __SMSLDA(real_sum, b0, d0);
-// 	imag_sum = __SMALBB(imag_sum, b0, c0);
-// #else
+#if defined(RISCV_MATH_DSP)
+	real_sum = __SMALBB(real_sum, a0, c0);
+	imag_sum = __SMALBB(imag_sum, a0, d0);
+	real_sum = __SMSLDA(real_sum, b0, d0);
+	imag_sum = __SMALBB(imag_sum, b0, c0);
+#else
     real_sum += (q31_t)a0 * c0;
     imag_sum += (q31_t)a0 * d0;
     real_sum -= (q31_t)b0 * d0;
     imag_sum += (q31_t)b0 * c0;
-// #endif
+#endif
 
     /* Decrement loop counter */
     blkCnt--;

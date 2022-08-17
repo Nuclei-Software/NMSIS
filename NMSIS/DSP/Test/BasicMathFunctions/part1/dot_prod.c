@@ -28,7 +28,7 @@ void ref_dot_prod_q15(q15_t *pSrcA, q15_t *pSrcB, uint32_t blockSize,
                       q63_t *result)
 {
     uint32_t i;
-    q63_t sum = 0.0f;
+    q63_t sum = 0.0;
 
     for (i = 0; i < blockSize; i++) {
         sum += (q31_t)pSrcA[i] * pSrcB[i]; // 34.30

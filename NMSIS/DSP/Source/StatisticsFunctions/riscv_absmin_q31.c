@@ -142,8 +142,8 @@ void riscv_absmin_q31(
         q31_t * pResult,
         uint32_t * pIndex)
 {
-        q31_t minVal, out;                             /* Temporary variables to store the output value. */
-        uint32_t blkCnt, outIndex;                     /* Loop counter */
+  q31_t minVal, out; /* Temporary variables to store the output value. */
+  uint32_t blkCnt, outIndex; /* Loop counter */
 
 #if defined(RISCV_MATH_VECTOR)
   blkCnt = blockSize;
@@ -159,13 +159,15 @@ void riscv_absmin_q31(
   l = vsetvlmax_e32m1();
   v_temp = vmv_v_x_i32m1(out, l);
   
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+  {
     v_x = vle32_v_i32m8(pData, l);
     pData += l;
     vbool4_t mask = vmslt_vx_i32m8_b4(v_x, 0, l);
     v_x = vssub_vv_i32m8_m(mask, v_x, v_zero, v_x, l);
     minVal = vmv_x_s_i32m1_i32(vredmin_vs_i32m8_i32m1(v_temp, v_x, v_temp, l));
-    if (minVal < out) {
+    if (minVal < out)
+    {
       out = minVal;
       outIndex = temp_index;
     }
@@ -173,10 +175,14 @@ void riscv_absmin_q31(
   }
   
   pData = pSrc + outIndex;
-  while (1) {
-    if ((out == *pData) || (out == -(*pData))) {
+  while (1)
+  {
+    if ((out == *pData) || (out == -(*pData)))
+    {
       break;
-    } else {
+    }
+    else
+    {
       pData++;
       outIndex++;
     }

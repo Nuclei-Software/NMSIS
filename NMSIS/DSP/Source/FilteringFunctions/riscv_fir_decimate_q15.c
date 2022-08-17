@@ -131,8 +131,8 @@ void riscv_fir_decimate_q15(
       x064 = read_q15x4_ia ((q15_t **) &px0);
       x164 = read_q15x4_ia ((q15_t **) &px1);
 
-      acc0 = __RV_SMALDA(acc0, x064, c064);
-      acc1 = __RV_SMALDA(acc1, x164, c064);
+      acc0 = __SMLALD(x064, c064, acc0);
+      acc1 = __SMLALD(x164, c064, acc1);
 
 #else
       /* Read the b[numTaps-1] and b[numTaps-2] coefficients */
@@ -143,8 +143,8 @@ void riscv_fir_decimate_q15(
       x1 = read_q15x2_ia (&px1);
 
       /* Perform the multiply-accumulate */
-      acc0 = __RV_SMALDA(acc0, x0, c0);
-      acc1 = __RV_SMALDA(acc1, x1, c0);
+      acc0 = __SMLALD(x0, c0, acc0);
+      acc1 = __SMLALD(x1, c0, acc1);
 
       /* Read the b[numTaps-3] and b[numTaps-4] coefficient */
       c0 = read_q15x2_ia ((q15_t **) &pb);
@@ -154,8 +154,8 @@ void riscv_fir_decimate_q15(
       x1 = read_q15x2_ia (&px1);
 
       /* Perform the multiply-accumulate */
-      acc0 = __RV_SMALDA(acc0, x0, c0);
-      acc1 = __RV_SMALDA(acc1, x1, c0);
+      acc0 = __SMLALD(x0, c0, acc0);
+      acc1 = __SMLALD(x1, c0, acc1);
 #endif /* __RISCV_XLEN == 64 */
 
       /* Decrement loop counter */
@@ -369,7 +369,7 @@ void riscv_fir_decimate_q15(
       *pStateCur++ = *pSrc++;
 
     } while (--i);
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif /* defined (RISCV_MATH_VECTOR) */
     /* Set accumulator to zero */
     acc0 = 0;
     acc1 = 0;
@@ -484,7 +484,7 @@ void riscv_fir_decimate_q15(
       /* Decrement the loop counter */
       tapCnt--;
     }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif /* defined (RISCV_MATH_VECTOR) */
     /* Advance the state pointer by the decimation factor
      * to process the next group of decimation factor number samples */
     pState = pState + S->M * 2;
@@ -518,7 +518,7 @@ void riscv_fir_decimate_q15(
       *pStateCur++ = *pSrc++;
 
     } while (--i);
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif /* defined (RISCV_MATH_VECTOR) */
     /* Set accumulator to zero */
     sum0 = 0;
 

@@ -55,25 +55,27 @@ void riscv_abs_q31(
         q31_t * pDst,
         uint32_t blockSize)
 {
-        uint32_t blkCnt;                               /* Loop counter */
-        q31_t in;                                      /* Temporary variable */
+  uint32_t blkCnt;                               /* Loop counter */
+  q31_t in;                                      /* Temporary variable */
 
-#if defined(RISCV_MATH_VECTOR)
-    blkCnt = blockSize;
-    size_t l;
-    vint32m8_t v_x, v_zero;
-    l = vsetvlmax_e32m8();
-    v_zero = vmv_v_x_i32m8(0, l);
-    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-        v_x = vle32_v_i32m8(pSrc, l);
-        pSrc += l;
-        vbool4_t mask = vmslt_vx_i32m8_b4(v_x, 0, l);
-        v_x = vssub_vv_i32m8_m(mask, v_x, v_zero, v_x, l);
-        vse32_v_i32m8(pDst, v_x, l);
-        pDst += l;
-    }
+#if defined (RISCV_MATH_VECTOR)
+  blkCnt = blockSize;
+  size_t l;
+  vint32m8_t v_x, v_zero;
+  l = vsetvlmax_e32m8();
+  v_zero = vmv_v_x_i32m8(0, l);
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+  {
+    v_x = vle32_v_i32m8(pSrc, l);
+    pSrc += l;
+    vbool4_t mask = vmslt_vx_i32m8_b4(v_x, 0, l);
+    v_x = vssub_vv_i32m8_m(mask, v_x, v_zero, v_x, l);
+    vse32_v_i32m8(pDst, v_x, l);
+    pDst += l;
+  }
 
-#elif defined (RISCV_MATH_LOOPUNROLL)
+#else
+#if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
@@ -81,53 +83,58 @@ void riscv_abs_q31(
   while (blkCnt > 0U)
   {
     /* C = |A| */
-#if __RISCV_XLEN == 64
-	write_q31x2_ia(&pDst, __RV_KABS32(read_q31x2_ia ((q31_t **) &pSrc)));
-	write_q31x2_ia(&pDst, __RV_KABS32(read_q31x2_ia ((q31_t **) &pSrc)));
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+    write_q31x2_ia(&pDst, __RV_KABS32(read_q31x2_ia((q31_t **)&pSrc)));
+    write_q31x2_ia(&pDst, __RV_KABS32(read_q31x2_ia((q31_t **)&pSrc)));
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
+    write_q31x2_ia(&pDst, __dkabs32(read_q31x2_ia((q31_t **)&pSrc)));
+    write_q31x2_ia(&pDst, __dkabs32(read_q31x2_ia((q31_t **)&pSrc)));
 #else
     /* Calculate absolute of input (if -1 then saturated to 0x7fffffff) and store result in destination buffer. */
     in = *pSrc++;
 #if defined (RISCV_MATH_DSP)
-	*pDst++ = __KABSW(in);
+    *pDst++ = __KABSW(in);
 #else
     *pDst++ = (in > 0) ? in : ((in == INT32_MIN) ? INT32_MAX : -in);
 #endif
 
     in = *pSrc++;
 #if defined (RISCV_MATH_DSP)
-	*pDst++ = __KABSW(in);
+    *pDst++ = __KABSW(in);
 #else
     *pDst++ = (in > 0) ? in : ((in == INT32_MIN) ? INT32_MAX : -in);
 #endif
 
     in = *pSrc++;
 #if defined (RISCV_MATH_DSP)
-	*pDst++ = __KABSW(in);
+    *pDst++ = __KABSW(in);
 #else
     *pDst++ = (in > 0) ? in : ((in == INT32_MIN) ? INT32_MAX : -in);
 #endif
 
     in = *pSrc++;
 #if defined (RISCV_MATH_DSP)
-	*pDst++ = __KABSW(in);
+    *pDst++ = __KABSW(in);
 #else
     *pDst++ = (in > 0) ? in : ((in == INT32_MIN) ? INT32_MAX : -in);
-#endif
+#endif /* RISCV_MATH_DSP */
 
     /* Decrement loop counter */
-#endif /* __RISCV_XLEN == 64 */
+#endif /* RISCV_MATH_DSP && NUCLEI_DSP_N2 */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
     blkCnt--;
   }
 
   /* Loop unrolling: Compute remaining outputs */
   blkCnt = blockSize & 0x3U;
 
-#else
+#else /* RISCV_MATH_LOOPUNROLL */
 
   /* Initialize blkCnt with number of samples */
   blkCnt = blockSize;
 
-#endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
+#endif /* RISCV_MATH_LOOPUNROLL */
 
   while (blkCnt > 0U)
   {
@@ -137,15 +144,15 @@ void riscv_abs_q31(
     in = *pSrc++;
 #if defined (RISCV_MATH_DSP)
     //*pDst++ = (in > 0) ? in : (q31_t)__QSUB(0, in);
-	*pDst++ = __KABSW(in);
+    *pDst++ = __KABSW(in);
 #else
     *pDst++ = (in > 0) ? in : ((in == INT32_MIN) ? INT32_MAX : -in);
-#endif
+#endif /* RISCV_MATH_DSP */
 
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* RISCV_MATH_VECTOR */
 }
 /**
   @} end of BasicAbs group

@@ -31,9 +31,6 @@ BENCH_DECLARE_VAR();
 uint32_t fftSize = 1024;
 uint32_t ifftFlag = 0;
 uint32_t doBitReverse = 1;
-
-extern uint16_t bitrevIndexGrp [FFT_DOT] __attribute__((aligned(16)));
-
 static int DSP_cfft_radix2_q15(void)
 {
     uint16_t i;
@@ -95,9 +92,13 @@ static uint32_t reverseBits(uint32_t index,uint8_t totalLayer) {
     return rev;
 }
 
+#if defined(RISCV_MATH_VECTOR)
+extern uint16_t bitrevIndexGrp [FFT_DOT];
+#endif
 
-static void init_bitrev (uint16_t *bitrevIndexGrp, int fftSize)
+static void init_bitrev (int fftSize)
 {
+#if defined(RISCV_MATH_VECTOR)
 	for(uint32_t i = 0;i < fftSize;i++)
 	{
         //bit reverse index
@@ -108,6 +109,7 @@ static void init_bitrev (uint16_t *bitrevIndexGrp, int fftSize)
         //index for index load
         bitrevIndexGrp[i] = 4 * 2 * bitrevIndexGrp[i];
 	}
+#endif
 }
 
 
@@ -118,7 +120,7 @@ static int DSP_cfft_radix2_f32(void)
     riscv_cfft_radix2_instance_f32 S;
     uint8_t ifftFlag = 0, doBitReverse = 1;
     riscv_cfft_radix2_init_f32(&S, fftSize, ifftFlag, doBitReverse);
-    init_bitrev(bitrevIndexGrp, fftSize);       //generate bit reverse index group
+    init_bitrev(fftSize);       //generate bit reverse index group
 
     BENCH_START(riscv_cfft_radix2_f32);
     riscv_cfft_radix2_f32(&S, cfft_testinput_f32_50hz_200Hz);

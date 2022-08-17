@@ -117,10 +117,10 @@ riscv_status riscv_mat_cmplx_mult_q15(
   vint64m1_t vsumImag;
   q15_t *pOut = pDst->pData;                     /* Output data matrix pointer */
   px = pOut;
-for(rownum = 0;rownum < numRowsA; rownum++)
+  for (rownum = 0;rownum < numRowsA; rownum++)
   {
     pIn1 = pInA;       //backup pointer position
-    for(colnum = 0;colnum < numColsB; colnum++)
+    for (colnum = 0;colnum < numColsB; colnum++)
     {
       blkCnt = numColsA;
       pIn2 = pInB;     //backup pointer position
@@ -209,7 +209,7 @@ for(rownum = 0;rownum < numRowsA; rownum++)
 
       /* If the columns of pSrcB is not a multiple of 4, compute any remaining output samples here.
        ** No loop unrolling is used. */
-      col = numColsB % 0x4U;
+      col = numColsB & 0x3U;
 
 #else
 
@@ -275,8 +275,8 @@ for(rownum = 0;rownum < numRowsA; rownum++)
           pSourceA64 = read_q15x4_ia (&pInA);
           pSourceB64 = read_q15x4_ia (&pInB);
 
-          prod164 = __RV_SMDRS(pSourceA64, pSourceB64);
-          prod264 = __RV_KMXDA(pSourceA64, pSourceB64);
+          prod164 = __SMUSD(pSourceA64, pSourceB64);
+          prod264 = __SMUADX(pSourceA64, pSourceB64);
 
           sumReal += (q63_t) ((q31_t) prod164);
           sumReal += (q63_t) ((q31_t) (prod164 >> 32));
@@ -288,8 +288,8 @@ for(rownum = 0;rownum < numRowsA; rownum++)
           pSourceB = read_q15x2_ia (&pInB);
 
           /* Multiply and Accumlates */
-          prod1 = __RV_SMDRS(pSourceA, pSourceB);
-          prod2 = __RV_KMXDA(pSourceA, pSourceB);
+          prod1 = __SMUSD(pSourceA, pSourceB);
+          prod2 = __SMUADX(pSourceA, pSourceB);
           sumReal += (q63_t) prod1;
           sumImag += (q63_t) prod2;
 
@@ -298,8 +298,8 @@ for(rownum = 0;rownum < numRowsA; rownum++)
           pSourceB = read_q15x2_ia (&pInB);
 
           /* Multiply and Accumlates */
-          prod1 = __RV_SMDRS(pSourceA, pSourceB);
-          prod2 = __RV_KMXDA(pSourceA, pSourceB);
+          prod1 = __SMUSD(pSourceA, pSourceB);
+          prod2 = __SMUADX(pSourceA, pSourceB);
           sumReal += (q63_t) prod1;
           sumImag += (q63_t) prod2;
 #endif /* __RISCV_XLEN == 64 */
@@ -347,14 +347,14 @@ for(rownum = 0;rownum < numRowsA; rownum++)
         {
           /* c(m,n) = a(1,1) * b(1,1) + a(1,2) * b(2,1) + .... + a(m,p) * b(p,n) */
 
-#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN != 64)
+#if defined (RISCV_MATH_DSP)
           /* read real and imag values from pSrcA and pSrcB buffer */
           pSourceA = read_q15x2_ia (&pInA);
           pSourceB = read_q15x2_ia (&pInB);
 
           /* Multiply and Accumlates */
-          prod1 = __RV_SMDRS(pSourceA, pSourceB);
-          prod2 = __RV_KMXDA(pSourceA, pSourceB);
+          prod1 = __SMUSD(pSourceA, pSourceB);
+          prod2 = __SMUADX(pSourceA, pSourceB);
           sumReal += (q63_t) prod1;
           sumImag += (q63_t) prod2;
 
@@ -396,7 +396,7 @@ for(rownum = 0;rownum < numRowsA; rownum++)
     status = RISCV_MATH_SUCCESS;
   }
 
-#endif /*defined(RISCV_MATH_VECTOR)*/
+#endif /* defined(RISCV_MATH_VECTOR) */
   /* Return to application */
   return (status);
 }

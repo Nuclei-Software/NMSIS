@@ -60,8 +60,8 @@ void riscv_dot_prod_q7(
         uint32_t blockSize,
         q31_t * result)
 {
-        uint32_t blkCnt;                               /* Loop counter */
-        q31_t sum = 0;                                 /* Temporary return variable */
+  uint32_t blkCnt;                               /* Loop counter */
+  q31_t sum = 0;                                 /* Temporary return variable */
 
 #if defined(RISCV_MATH_VECTOR)
   blkCnt = blockSize;                               /* Loop counter */
@@ -81,21 +81,17 @@ void riscv_dot_prod_q7(
 #else
 
 #if defined (RISCV_MATH_LOOPUNROLL)
-
-#if defined (RISCV_MATH_DSP)
-#if __RISCV_XLEN == 64
-  q63_t input1, input2;                          /* Temporary variables */
+  uint32_t remain_blkCnt;
   q63_t sum64 = 0;
-    /* Loop unrolling: Compute 8 outputs at a time */
+#if defined (RISCV_MATH_DSP) && (defined NUCLEI_DSP_N3 || __RISCV_XLEN == 64)
+  q63_t input1, input2;                          /* Temporary variables */
+  /* Loop unrolling: Compute 8 outputs at a time */
   blkCnt = blockSize >> 3U;
+  remain_blkCnt = blockSize & 0x7U;
 #else
-  q31_t input1, input2;                          /* Temporary variables */
-  //q31_t inA1, inA2, inB1, inB2;                  /* Temporary variables */
-    /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
-#endif /* __RISCV_XLEN == 64 */
-#endif
-
+  remain_blkCnt = blockSize & 0x3U;
+#endif /* RISCV_MATH_DSP && (NUCLEI_DSP_N3 || __RISCV_XLEN == 64) */
 
   while (blkCnt > 0U)
   {
@@ -103,49 +99,43 @@ void riscv_dot_prod_q7(
 
 #if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
-    /* read 4 samples at a time from sourceA */
-    input1 = read_q7x8_ia((q7_t **) &pSrcA);
-    /* read 4 samples at a time from sourceB */
-    input2 = read_q7x8_ia((q7_t **) &pSrcB);
+    /* read 8 samples at a time from sourceA */
+    input1 = read_q7x8_ia((q7_t **)&pSrcA);
+    /* read 8 samples at a time from sourceB */
+    input2 = read_q7x8_ia((q7_t **)&pSrcB);
     sum64 = __RV_SMAQA(sum64, input1, input2);
 #else
-    /* read 4 samples at a time from sourceA */
-    input1 = read_q7x4_ia((q7_t **) &pSrcA);
-    /* read 4 samples at a time from sourceB */
-    input2 = read_q7x4_ia((q7_t **) &pSrcB);
-
-    ///* extract two q7_t samples to q15_t samples */
-    //inA1 = __SXTB16(__ROR(input1, 8));
-    ///* extract reminaing two samples */
-    //inA2 = __SXTB16(input1);
-    ///* extract two q7_t samples to q15_t samples */
-    //inB1 = __SXTB16(__ROR(input2, 8));
-    ///* extract reminaing two samples */
-    //inB2 = __SXTB16(input2);
-
-    ///* multiply and accumulate two samples at a time */
-    //sum = __SMLAD(inA1, inB1, sum);
-    //sum = __SMLAD(inA2, inB2, sum);
-    sum = __RV_SMAQA(sum, input1, input2);
-#endif /* __RISCV_XLEN == 64 */
+#ifdef NUCLEI_DSP_N3
+    /* read 8 samples at a time from sourceA */
+    input1 = read_q7x8_ia((q7_t **)&pSrcA);
+    /* read 8 samples at a time from sourceB */
+    input2 = read_q7x8_ia((q7_t **)&pSrcB);
+    sum64 = __ddsmaqa(sum64, input1, input2);
 #else
-    sum += (q31_t) ((q15_t) *pSrcA++ * *pSrcB++);
-    sum += (q31_t) ((q15_t) *pSrcA++ * *pSrcB++);
-    sum += (q31_t) ((q15_t) *pSrcA++ * *pSrcB++);
-    sum += (q31_t) ((q15_t) *pSrcA++ * *pSrcB++);
-#endif
+    /* read 4 samples at a time from sourceA */
+    input1 = read_q7x4_ia((q7_t **)&pSrcA);
+    /* read 4 samples at a time from sourceB */
+    input2 = read_q7x4_ia((q7_t **)&pSrcB);
+    sum = __RV_SMAQA(sum, input1, input2);
+#endif /* NUCLEI_DSP_N3 */
+#endif /* __RISCV_XLEN == 64 */
+
+#else
+    sum += (q31_t) ((q15_t)*pSrcA++ * *pSrcB++);
+    sum += (q31_t) ((q15_t)*pSrcA++ * *pSrcB++);
+    sum += (q31_t) ((q15_t)*pSrcA++ * *pSrcB++);
+    sum += (q31_t) ((q15_t)*pSrcA++ * *pSrcB++);
+#endif /* RISCV_MATH_DSP */
 
     /* Decrement loop counter */
     blkCnt--;
   }
-#if __RISCV_XLEN == 64
-  sum +=((sum64 + (sum64<<32u))>>32u);
+#if defined (RISCV_MATH_DSP) && (defined NUCLEI_DSP_N3 || __RISCV_XLEN == 64)
+  sum += ((sum64 + (sum64 << 32u)) >> 32u);
+#endif
+
   /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize & 0x7U;
-#else
-  /* Loop unrolling: Compute remaining outputs */
-  blkCnt = blockSize & 0x3U;
-#endif /* __RISCV_XLEN == 64 */
+  blkCnt = remain_blkCnt;
 #else
 
   /* Initialize blkCnt with number of samples */
@@ -158,11 +148,11 @@ void riscv_dot_prod_q7(
     /* C = A[0]* B[0] + A[1]* B[1] + A[2]* B[2] + .....+ A[blockSize-1]* B[blockSize-1] */
 
     /* Calculate dot product and store result in a temporary buffer. */
-#if defined (RISCV_MATH_DSP)
-    sum  = __SMLAD((*pSrcA++) & 0xffff, (*pSrcB++) & 0xffff, sum);
-#else
+//#if defined (RISCV_MATH_DSP)
+//    sum  = __SMLAD(*pSrcA++, *pSrcB++, sum);
+//#else
     sum += (q31_t) ((q15_t) *pSrcA++ * *pSrcB++);
-#endif
+//#endif
 
     /* Decrement loop counter */
     blkCnt--;

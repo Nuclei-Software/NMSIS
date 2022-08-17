@@ -58,26 +58,26 @@ void riscv_mean_q31(
         uint32_t blockSize,
         q31_t * pResult)
 {
-        uint32_t blkCnt;                               /* Loop counter */
-        q63_t sum = 0;                                 /* Temporary result storage */
+  uint32_t blkCnt;                   /* Loop counter */
+  q63_t sum = 0;                     /* Temporary result storage */
 
 #if defined(RISCV_MATH_VECTOR)
-  blkCnt = blockSize;                               /* Loop counter */
+  blkCnt = blockSize;                /* Loop counter */
   size_t l;
   const q31_t *input = pSrc;
   vint32m8_t v_in;
   l = vsetvl_e64m1(1);
-  vint64m1_t v_sum = vmv_s_x_i64m1(v_sum, 0, l);                /* init v_sum data */
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+  vint64m1_t v_sum = vmv_s_x_i64m1(v_sum, 0, l);       /* init v_sum data */
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+  {
     v_in = vle32_v_i32m8(input, l);
     input += l;
     v_sum = vwredsum_vs_i32m8_i64m1(v_sum, v_in, v_sum, l);
   }
   sum += vmv_x_s_i64m1_i64(v_sum);
+
 #else
-#if __RISCV_XLEN == 64
-        q63_t valueA,valueB;                                 /* Temporary result storage */
-#endif /* __RISCV_XLEN == 64 */
+
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -85,12 +85,6 @@ void riscv_mean_q31(
 
   while (blkCnt > 0U)
   {
-#if __RISCV_XLEN == 64
-    valueA = read_q31x2_ia ((q31_t **) &pSrc);
-    valueB = read_q31x2_ia ((q31_t **) &pSrc);
-    valueA = __RV_ADD32(valueA,valueB);
-    sum += (((int64_t)__RV_CRAS32(valueA,valueA)) >> 32);
-#else
     /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) */
     sum += *pSrc++;
 
@@ -99,7 +93,6 @@ void riscv_mean_q31(
     sum += *pSrc++;
 
     sum += *pSrc++;
-#endif /* __RISCV_XLEN == 64 */
 
     /* Decrement the loop counter */
     blkCnt--;
@@ -126,7 +119,7 @@ void riscv_mean_q31(
 #endif /* defined(RISCV_MATH_VECTOR) */
   /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) / blockSize  */
   /* Store result to destination */
-  *pResult = (q31_t) (sum / blockSize);
+  *pResult = (q31_t)(sum / blockSize);
 }
 
 /**

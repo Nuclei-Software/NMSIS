@@ -128,31 +128,30 @@ void riscv_absmin_no_idx_q15(
         uint32_t blockSize,
         q15_t * pResult)
 {
-    q15_t minVal, out; /* Temporary variables to store the output value. */
-    uint32_t blkCnt;   /* Loop counter */
-
-
+  q15_t minVal, out; /* Temporary variables to store the output value. */
+  uint32_t blkCnt;   /* Loop counter */
 
   /* Load first input value that act as reference value for comparision */
   out = (*pSrc > 0) ? *pSrc : ((*pSrc == (q15_t) 0x8000) ? 0x7fff : -*pSrc);
 #if defined(RISCV_MATH_VECTOR)
-    blkCnt = blockSize;
-    size_t l;
-    vint16m8_t v_x, v_zero;
-    vint16m1_t v_temp;
-    const q15_t * pData = pSrc;
-    l = vsetvlmax_e16m8();
-    v_zero = vmv_v_x_i16m8(0, l);
-    l = vsetvlmax_e16m1();
-    v_temp = vmv_v_x_i16m1(out, l);
+  blkCnt = blockSize;
+  size_t l;
+  vint16m8_t v_x, v_zero;
+  vint16m1_t v_temp;
+  const q15_t * pData = pSrc;
+  l = vsetvlmax_e16m8();
+  v_zero = vmv_v_x_i16m8(0, l);
+  l = vsetvlmax_e16m1();
+  v_temp = vmv_v_x_i16m1(out, l);
 
-    for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
-        v_x = vle16_v_i16m8(pData, l);
-        pData += l;
-        vbool2_t mask = vmslt_vx_i16m8_b2(v_x, 0, l);
-        v_x = vssub_vv_i16m8_m(mask, v_x, v_zero, v_x, l);
-        v_temp = vredmin_vs_i16m8_i16m1(v_temp, v_x, v_temp, l);
-    }
+  for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+  {
+    v_x = vle16_v_i16m8(pData, l);
+    pData += l;
+    vbool2_t mask = vmslt_vx_i16m8_b2(v_x, 0, l);
+    v_x = vssub_vv_i16m8_m(mask, v_x, v_zero, v_x, l);
+    v_temp = vredmin_vs_i16m8_i16m1(v_temp, v_x, v_temp, l);
+  }
     out = vmv_x_s_i16m1_i16(v_temp);
 #else
   pSrc++;

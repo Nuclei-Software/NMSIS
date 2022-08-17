@@ -45,6 +45,7 @@
 #include "riscv_mat_mult_q7.c"
 #include "riscv_mat_mult_q15.c"
 #include "riscv_mat_mult_q31.c"
+#include "riscv_mat_mult_opt_q31.c"
 #include "riscv_mat_scale_f32.c"
 #include "riscv_mat_scale_q15.c"
 #include "riscv_mat_scale_q31.c"
@@ -72,4 +73,3 @@
 #include "riscv_mat_solve_lower_triangular_f64.c"
 #include "riscv_mat_ldlt_f32.c"
 #include "riscv_mat_ldlt_f64.c"
-#include "riscv_mat_init_f64.c"

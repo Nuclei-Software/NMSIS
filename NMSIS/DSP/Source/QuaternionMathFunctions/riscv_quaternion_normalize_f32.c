@@ -100,7 +100,7 @@ void riscv_quaternion_normalize_f32(const float32_t *pInputQuaternions,
       pNormalizedQuaternions[4 * i + 2] = pInputQuaternions[4 * i + 2] / temp;
       pNormalizedQuaternions[4 * i + 3] = pInputQuaternions[4 * i + 3] / temp;
    }
-#endif
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

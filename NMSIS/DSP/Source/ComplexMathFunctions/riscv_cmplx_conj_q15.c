@@ -77,14 +77,14 @@ void riscv_cmplx_conj_q15(
   }
 
 #else
-        uint32_t blkCnt;                               /* Loop counter */
-        q31_t in1;                                     /* Temporary input variable */
+  uint32_t blkCnt;                    /* Loop counter */
+  q31_t in1;                          /* Temporary input variable */
 
 #if defined (RISCV_MATH_LOOPUNROLL) && defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
-        q63_t in641, in642, in643, in644;
+  q63_t in641, in642, in643, in644;
 #else
-        q31_t in2, in3, in4;                           /* Temporary input variables */
+  q31_t in2, in3, in4;            /* Temporary input variables */
 #endif /* __RISCV_XLEN == 64 */
 #endif
 
@@ -111,40 +111,40 @@ void riscv_cmplx_conj_q15(
     in641 = ((((uint64_t)in641) >> 48) << 32) | (((((uint64_t)in641) << 16) >> 48) << 48) | (((((uint64_t)in641) << 32) >> 48)) | (((((uint64_t)in641) << 48) >> 32));
     write_q15x4_ia(&pDst, in641);
 #else
-    in1 = read_q15x2_ia ((q15_t **) &pSrc);
-    in2 = read_q15x2_ia ((q15_t **) &pSrc);
-    in3 = read_q15x2_ia ((q15_t **) &pSrc);
-    in4 = read_q15x2_ia ((q15_t **) &pSrc);
+    in1 = read_q15x2_ia((q15_t **)&pSrc);
+    in2 = read_q15x2_ia((q15_t **)&pSrc);
+    in3 = read_q15x2_ia((q15_t **)&pSrc);
+    in4 = read_q15x2_ia((q15_t **)&pSrc);
 
     in1 = __RV_KCRAS16(0, in1);
     in2 = __RV_KCRAS16(0, in2);
     in3 = __RV_KCRAS16(0, in3);
     in4 = __RV_KCRAS16(0, in4);
 
-    in1 = ((uint32_t) in1 >> 16) | ((uint32_t) in1 << 16);
-    in2 = ((uint32_t) in2 >> 16) | ((uint32_t) in2 << 16);
-    in3 = ((uint32_t) in3 >> 16) | ((uint32_t) in3 << 16);
-    in4 = ((uint32_t) in4 >> 16) | ((uint32_t) in4 << 16);
+    in1 = ((uint32_t)in1 >> 16) | ((uint32_t)in1 << 16);
+    in2 = ((uint32_t)in2 >> 16) | ((uint32_t)in2 << 16);
+    in3 = ((uint32_t)in3 >> 16) | ((uint32_t)in3 << 16);
+    in4 = ((uint32_t)in4 >> 16) | ((uint32_t)in4 << 16);
 
-    write_q15x2_ia (&pDst, in1);
-    write_q15x2_ia (&pDst, in2);
-    write_q15x2_ia (&pDst, in3);
-    write_q15x2_ia (&pDst, in4);
+    write_q15x2_ia(&pDst, in1);
+    write_q15x2_ia(&pDst, in2);
+    write_q15x2_ia(&pDst, in3);
+    write_q15x2_ia(&pDst, in4);
 #endif /* __RISCV_XLEN == 64 */
 #else
-    *pDst++ =  *pSrc++;
+    *pDst++ = *pSrc++;
     in1 = *pSrc++;
     *pDst++ = (in1 == (q15_t) 0x8000) ? (q15_t) 0x7fff : -in1;
 
-    *pDst++ =  *pSrc++;
+    *pDst++ = *pSrc++;
     in1 = *pSrc++;
     *pDst++ = (in1 == (q15_t) 0x8000) ? (q15_t) 0x7fff : -in1;
 
-    *pDst++ =  *pSrc++;
+    *pDst++ = *pSrc++;
     in1 = *pSrc++;
     *pDst++ = (in1 == (q15_t) 0x8000) ? (q15_t) 0x7fff : -in1;
 
-    *pDst++ =  *pSrc++;
+    *pDst++ = *pSrc++;
     in1 = *pSrc++;
     *pDst++ = (in1 == (q15_t) 0x8000) ? (q15_t) 0x7fff : -in1;
 
@@ -169,13 +169,13 @@ void riscv_cmplx_conj_q15(
     /* C[0] + jC[1] = A[0]+ j(-1)A[1] */
 
     /* Calculate Complex Conjugate and store result in destination buffer. */
-    *pDst++ =  *pSrc++;
+    *pDst++ = *pSrc++;
     in1 = *pSrc++;
-// #if defined (RISCV_MATH_DSP)
-//     *pDst++ = __SSAT(-in1, 16);
-// #else
+#if defined (RISCV_MATH_DSP)
+    *pDst++ = __SSAT(-in1, 16);
+#else
     *pDst++ = (in1 == (q15_t) 0x8000) ? (q15_t) 0x7fff : -in1;
-// #endif
+#endif
 
     /* Decrement loop counter */
     blkCnt--;

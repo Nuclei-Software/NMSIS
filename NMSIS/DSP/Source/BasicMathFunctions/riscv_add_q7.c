@@ -58,14 +58,15 @@ void riscv_add_q7(
         q7_t * pDst,
         uint32_t blockSize)
 {
-        uint32_t blkCnt;                               /* Loop counter */
+  uint32_t blkCnt;                               /* Loop counter */
 
 #if defined(RISCV_MATH_VECTOR)
   blkCnt = blockSize;                              /* Loop counter */
   size_t l;
   vint8m8_t vx, vy;
 
-  for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
+  for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l)
+  {
     vx = vle8_v_i8m8(pSrcA, l);
     pSrcA += l;
     vy = vle8_v_i8m8(pSrcB, l);
@@ -77,13 +78,12 @@ void riscv_add_q7(
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
-#if defined (NUCLEI_DSP_N1) || (__RISCV_XLEN == 64)
+#if defined (RISCV_MATH_DSP)
   /* Loop unrolling: Compute 8 outputs at a time */
   blkCnt = blockSize >> 3U;
 #else
-	/* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
-#endif
+#endif /* RISCV_MATH_DSP */
 
   while (blkCnt > 0U)
   {
@@ -91,13 +91,14 @@ void riscv_add_q7(
 
 #if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
-    write_q7x8_ia(&pDst, __RV_KADD8 (read_q7x8_ia((q7_t **) &pSrcA), read_q7x8_ia((q7_t **) &pSrcB)));
+    write_q7x8_ia(&pDst, __QADD8 (read_q7x8_ia((q7_t **) &pSrcA), read_q7x8_ia((q7_t **) &pSrcB)));
 #else
 #ifdef NUCLEI_DSP_N1
     /* Add and store result in destination buffer (4 samples at a time). */
-    write_q7x8_ia(&pDst, __RV_DKADD8 (read_q7x8_ia((q7_t **) &pSrcA), read_q7x8_ia((q7_t **) &pSrcB)));
+    write_q7x8_ia(&pDst, __RV_DKADD8(read_q7x8_ia((q7_t **)&pSrcA), read_q7x8_ia((q7_t **)&pSrcB)));
 #else
-    write_q7x4_ia(&pDst, __RV_KADD8 (read_q7x4_ia((q7_t **) &pSrcA), read_q7x4_ia((q7_t **) &pSrcB)));
+    write_q7x4_ia(&pDst, __QADD8 (read_q7x4_ia((q7_t **) &pSrcA), read_q7x4_ia((q7_t **) &pSrcB)));
+    write_q7x4_ia(&pDst, __QADD8 (read_q7x4_ia((q7_t **) &pSrcA), read_q7x4_ia((q7_t **) &pSrcB)));
 #endif
 #endif /* __RISCV_XLEN == 64 */
 #else
@@ -105,18 +106,18 @@ void riscv_add_q7(
     *pDst++ = (q7_t) __SSAT((q15_t) *pSrcA++ + *pSrcB++, 8);
     *pDst++ = (q7_t) __SSAT((q15_t) *pSrcA++ + *pSrcB++, 8);
     *pDst++ = (q7_t) __SSAT((q15_t) *pSrcA++ + *pSrcB++, 8);
-#endif
+#endif /* defined (RISCV_MATH_DSP) */
 
     /* Decrement loop counter */
     blkCnt--;
   }
 
-#if defined (NUCLEI_DSP_N1) || (__RISCV_XLEN == 64)
   /* Loop unrolling: Compute remaining outputs */
+#if defined (RISCV_MATH_DSP)
   blkCnt = blockSize & 0x7U;
 #else
   blkCnt = blockSize & 0x3U;
-#endif
+#endif /* RISCV_MATH_DSP */
 
 #else
 
@@ -131,7 +132,6 @@ void riscv_add_q7(
 
     /* Add and store result in destination buffer. */
     *pDst++ = (q7_t) __SSAT((q15_t) *pSrcA++ + *pSrcB++, 8);
-
     /* Decrement loop counter */
     blkCnt--;
   }

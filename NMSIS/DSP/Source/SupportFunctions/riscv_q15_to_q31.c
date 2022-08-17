@@ -75,11 +75,8 @@ void riscv_q15_to_q31(
 #else
 
 #if defined (RISCV_MATH_LOOPUNROLL)
-        q31_t in1, in2;
-        q31_t out1, out2, out3, out4;
-#endif
-
-#if defined (RISCV_MATH_LOOPUNROLL)
+  q31_t in1, in2;
+  q31_t out1, out2, out3, out4;
 
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
@@ -89,8 +86,8 @@ void riscv_q15_to_q31(
     /* C = (q31_t)A << 16 */
 
     /* Convert from q15 to q31 and store result in destination buffer */
-    in1 = read_q15x2_ia (&pIn);
-    in2 = read_q15x2_ia (&pIn);
+    in1 = read_q15x2_ia((q15_t **)&pIn);
+    in2 = read_q15x2_ia((q15_t **)&pIn);
 
 
     /* extract lower 16 bits to 32 bit result */

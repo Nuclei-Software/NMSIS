@@ -63,7 +63,8 @@ void riscv_copy_q15(
     vse16_v_i16m8(pDst, v_copy, l);
     pDst += l;
   }
-#elif defined (RISCV_MATH_LOOPUNROLL)
+#else
+#if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
@@ -76,8 +77,8 @@ void riscv_copy_q15(
     write_q15x4_ia (&pDst, read_q15x4_ia ((q15_t **) &pSrc));
 #else
     /* read 2 times 2 samples at a time */
-    write_q15x2_ia (&pDst, read_q15x2_ia (&pSrc));
-    write_q15x2_ia (&pDst, read_q15x2_ia (&pSrc));
+    write_q15x2_ia (&pDst, read_q15x2_ia ((q15_t **) &pSrc));
+    write_q15x2_ia (&pDst, read_q15x2_ia ((q15_t **) &pSrc));
 #endif /* __RISCV_XLEN == 64 */
 
     /* Decrement loop counter */
@@ -104,6 +105,7 @@ void riscv_copy_q15(
     /* Decrement loop counter */
     blkCnt--;
   }
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

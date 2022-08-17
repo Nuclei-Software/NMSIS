@@ -29,10 +29,12 @@
 
 #include "dsp/transform_functions.h"
 
+#if defined (RISCV_MATH_VECTOR)
 #define FFT_DOT 1024
 
 //bit reverse table for vector
 uint16_t bitrevIndexGrp [FFT_DOT] __attribute__((aligned(16)))= {0};
+#endif /* defined (RISCV_MATH_VECTOR) */
 
 void riscv_radix2_butterfly_f32(
         float32_t * pSrc,
@@ -90,8 +92,7 @@ const riscv_cfft_radix2_instance_f32 * S,
 
    if (S->bitReverseFlag == 1U)
    {
-#if defined (RISCV_MATH_VECTOR)
-#else
+#if !defined(RISCV_MATH_VECTOR)
       /* Bit Reversal */
       riscv_bitreversal_f32(pSrc, S->fftLen, S->bitRevFactor, S->pBitRevTable);
 #endif
@@ -129,7 +130,7 @@ void riscv_radix2_butterfly_f32(
 
 #if defined (RISCV_MATH_VECTOR)
 
-	size_t stage_loop_count, group_count, group_total , group_size, butterfly_left, bufferfly_total;
+	size_t stage_loop_count, group_count, group_total, group_size, butterfly_left, bufferfly_total;
 
 	//length for each bufferfly compute
 	size_t vl_bufferfly;
@@ -142,7 +143,7 @@ void riscv_radix2_butterfly_f32(
 	vfloat32m2_t  Coef_real_cos, Coef_imag_sin, group_a_real, group_a_imag,group_b_real, group_b_imag;
 
 	// bufferfly compute result
-	vfloat32m2_t bufferfly_result_a_real, bufferfly_result_a_imag,bufferfly_result_b_real, bufferfly_result_b_imag;
+	vfloat32m2_t bufferfly_result_a_real, bufferfly_result_a_imag, bufferfly_result_b_real, bufferfly_result_b_imag;
 
 	// bufferfly compute temp
 	vfloat32m2_t bufferfly_temp1, bufferfly_temp2, bufferfly_temp3, bufferfly_temp4, bufferfly_temp5, bufferfly_temp6;
@@ -153,10 +154,10 @@ void riscv_radix2_butterfly_f32(
 	for (; stage_loop_count > 4; stage_loop_count = stage_loop_count >> 1)
 	{
 		// group_total means we should do how many bufferfly for this stage
-		group_total = (fftLen/stage_loop_count);
+		group_total = (fftLen / stage_loop_count);
 		group_count = 0;
 
-		bufferfly_total = (fftLen >>1)/group_total;
+		bufferfly_total = (fftLen >> 1) / group_total;
 		butterfly_left = bufferfly_total;
 
 		// group size means each group has how many points to compute
@@ -164,32 +165,33 @@ void riscv_radix2_butterfly_f32(
 
 		// each stage ,initialize the two group source to the first element of the source array
 		bufferfly_group_a_src = pSrc;
-		bufferfly_group_b_src = pSrc + group_size*2;
+		bufferfly_group_b_src = pSrc + group_size * 2;
 
 		// as we use LMUL =2 here, because the complex compute has two source (two real & two imag ) and one coef (one real & one imag)
 		// so we don't want the compiler to backup the temporary vector result to stack
 		vl_bufferfly = vsetvl_e32m2(group_size);
 
-		bufferfly_pCoef = (float32_t * )pCoef;
+		bufferfly_pCoef = (float32_t *)pCoef;
 
 		// pCoef size is SIZE_COEF, each element is 8 Bytes (real is f32, imag is f32 )
 		//bstride_bufferfly_pCoef = ((FFT_DOT*2)/bufferfly_total)*4*2;
-		bstride_bufferfly_pCoef =  twidCoefModifier*4*2;
+		bstride_bufferfly_pCoef =  twidCoefModifier * 4 * 2;
 
 		// the coef load should move to outside,each group share the same coef
 		// one segment stride load for Coef , result 1 is Cos, Real part of Coef , result 2 is  Sin, imag part of Coef
 		// void vlsseg2e32_v_f32m2 (vfloat32m2_t *v0, vfloat32m2_t *v1, const float32_t *base, ptrdiff_t bstride, size_t vl);
 		vlsseg2e32_v_f32m2 (&Coef_real_cos, &Coef_imag_sin, bufferfly_pCoef, bstride_bufferfly_pCoef, vl_bufferfly);
 
-		do{
+		do
+		{
 
 			for(; group_count < group_total; group_count ++ )
 			{
 				// one segment load for group a,  result 1 is real part of group a, result 2 is imag part of group a
-				vlseg2e32_v_f32m2(&group_a_real,&group_a_imag,bufferfly_group_a_src,vl_bufferfly);
+				vlseg2e32_v_f32m2(&group_a_real, &group_a_imag, bufferfly_group_a_src, vl_bufferfly);
 
 				// one segment load for group b, result 1 is real part of group b, result 2 is imag part of group b
-				vlseg2e32_v_f32m2(&group_b_real,&group_b_imag,bufferfly_group_b_src,vl_bufferfly);
+				vlseg2e32_v_f32m2(&group_b_real, &group_b_imag, bufferfly_group_b_src, vl_bufferfly);
 
 				// bufferfly compute
 
@@ -201,7 +203,7 @@ void riscv_radix2_butterfly_f32(
 
 				// store
 				// segment store bufferfly_result_a_real and bufferfly_result_a_imag
-				vsseg2e32_v_f32m2(bufferfly_group_a_src,bufferfly_result_a_real,bufferfly_result_a_imag,vl_bufferfly);
+				vsseg2e32_v_f32m2(bufferfly_group_a_src, bufferfly_result_a_real, bufferfly_result_a_imag, vl_bufferfly);
 
 				// temp1 = group_a_real - group_b_real
 				bufferfly_temp1 = vfsub_vv_f32m2(group_a_real, group_b_real, vl_bufferfly);
@@ -234,9 +236,9 @@ void riscv_radix2_butterfly_f32(
 				// update group src pointer for next loop
 
 				// gourp_a pointer
-				bufferfly_group_a_src += (2*group_size)*2;
+				bufferfly_group_a_src += (2 * group_size) * 2;
 				// group_b pointer
-				bufferfly_group_b_src += (2*group_size)*2;
+				bufferfly_group_b_src += (2 * group_size) * 2;
 
 			} // for loop end for all group with current coef
 
@@ -247,19 +249,19 @@ void riscv_radix2_butterfly_f32(
 				// update vl
 				vl_bufferfly = vsetvl_e32m2(butterfly_left);
 				// coef update, should use bstride_bufferfly_pCoef here
-				bufferfly_pCoef += vl_bufferfly*(bstride_bufferfly_pCoef>>2);
+				bufferfly_pCoef += vl_bufferfly * (bstride_bufferfly_pCoef >> 2);
 				// stride segment load coef for next compute
-				vlsseg2e32_v_f32m2 (&Coef_real_cos, &Coef_imag_sin, bufferfly_pCoef, bstride_bufferfly_pCoef, vl_bufferfly);
+				vlsseg2e32_v_f32m2(&Coef_real_cos, &Coef_imag_sin, bufferfly_pCoef, bstride_bufferfly_pCoef, vl_bufferfly);
 
 				// gourp_a_src & bufferfly_group_b_src update , each element is 8 byte
 				// each stage ,initialize the two group source to the first element of the source array
 				bufferfly_group_a_src = pSrc;
-				bufferfly_group_b_src = pSrc + group_size*2;
+				bufferfly_group_b_src = pSrc + group_size * 2;
 
 				//bufferfly_group_a_src += vl_bufferfly*2;
 				//bufferfly_group_b_src += vl_bufferfly*2;
-				bufferfly_group_a_src += (bufferfly_total - butterfly_left)*2;
-				bufferfly_group_b_src += (bufferfly_total - butterfly_left)*2;
+				bufferfly_group_a_src += (bufferfly_total - butterfly_left) * 2;
+				bufferfly_group_b_src += (bufferfly_total - butterfly_left) * 2;
 				// reset the group count
 				group_count = 0;
 
@@ -275,7 +277,7 @@ void riscv_radix2_butterfly_f32(
 	// handle the second to last stage, using pure c
 	if(4 >= stage_loop_count)
 	{
-		float32_t coef_real_cos,coef_imag_sin,coef_2_real_cos,coef_2_imag_sin;
+		float32_t coef_real_cos, coef_imag_sin, coef_2_real_cos, coef_2_imag_sin;
 
 		float32_t src1_real, src1_imag, src2_real, src2_imag;
 
@@ -288,9 +290,9 @@ void riscv_radix2_butterfly_f32(
 		for (; stage_loop_count > 2; stage_loop_count = stage_loop_count >>1)
 		{
 			// group_total means we should do how many bufferfly for this stage
-			group_total = (fftLen/stage_loop_count);
+			group_total = (fftLen / stage_loop_count);
 
-			bufferfly_total = (fftLen >>1)/group_total;
+			bufferfly_total = (fftLen >> 1) / group_total;
 			butterfly_left = bufferfly_total;
 
 			// group size means each group has how many points to compute
@@ -300,21 +302,21 @@ void riscv_radix2_butterfly_f32(
 
 			for (; group_size_cnt < group_size; group_size_cnt ++)
 			{
-				coef_real_cos =  pCoef[(group_size_cnt*twidCoefModifier) * 2];
-				coef_imag_sin = pCoef[(group_size_cnt*twidCoefModifier) * 2 + 1];
+				coef_real_cos =  pCoef[(group_size_cnt * twidCoefModifier) * 2];
+				coef_imag_sin = pCoef[(group_size_cnt * twidCoefModifier) * 2 + 1];
 
-				psrc1 = pSrc + group_size_cnt*group_size;
-				psrc2 = pSrc + group_size_cnt*group_size + 2*group_size;
+				psrc1 = pSrc + group_size_cnt * group_size;
+				psrc2 = pSrc + group_size_cnt * group_size + 2 * group_size;
 
 				group_count = 0;
 
 				for (; group_count < group_total; group_count++)
 				{
-					src1_real = psrc1[4*group_count*group_size];
-					src1_imag = psrc1[4*group_count*group_size + 1];
+					src1_real = psrc1[4 * group_count * group_size];
+					src1_imag = psrc1[4 * group_count * group_size + 1];
 
-					src2_real = psrc2[4*group_count*group_size];
-					src2_imag = psrc2[4*group_count*group_size + 1];
+					src2_real = psrc2[4 * group_count * group_size];
+					src2_imag = psrc2[4 * group_count * group_size + 1];
 
 					dest1_real = src1_real + src2_real;
 					dest1_imag = src1_imag + src2_imag;
@@ -323,26 +325,25 @@ void riscv_radix2_butterfly_f32(
 
 					temp2 = src1_imag - src2_imag;
 
-					temp3 = temp1*coef_real_cos;
+					temp3 = temp1 * coef_real_cos;
 
-					temp4 = temp2*coef_imag_sin;
+					temp4 = temp2 * coef_imag_sin;
 
-					temp5 = temp2*coef_real_cos;
+					temp5 = temp2 * coef_real_cos;
 
-					temp6 = temp1*coef_imag_sin;
+					temp6 = temp1 * coef_imag_sin;
 
 					dest2_real = temp3 + temp4;
 
 					dest2_imag = temp5 - temp6;
 
-					psrc1[4*group_count*group_size] = dest1_real;
-					psrc1[4*group_count*group_size + 1] = dest1_imag;
+					psrc1[4 * group_count * group_size] = dest1_real;
+					psrc1[4 * group_count * group_size + 1] = dest1_imag;
 
-					psrc2[4*group_count*group_size] = dest2_real;
-					psrc2[4*group_count*group_size + 1] = dest2_imag;
+					psrc2[4 * group_count * group_size] = dest2_real;
+					psrc2[4 * group_count * group_size + 1] = dest2_imag;
 
 				}
-
 			}
 
 			twidCoefModifier >>= 1U;
@@ -354,15 +355,15 @@ void riscv_radix2_butterfly_f32(
 	// and also do bit reverse too
 	if(2 == stage_loop_count)
 	{
-		float32_t coef_real_cos,coef_imag_sin;
+		float32_t coef_real_cos, coef_imag_sin;
 		float32_t *psrc1, *pdst1;
 
 		// group_total means we should do how many bufferfly for this stage
-		group_total = fftLen/2;
+		group_total = fftLen / 2;
 		coef_real_cos =  pCoef[0];
 		coef_imag_sin =  pCoef[1];
 
-		float32_t  pdst_copy[2*fftLen];
+		float32_t  pdst_copy[2 * fftLen];
 
 		psrc1 = pSrc;
 		pdst1 = pdst_copy;
@@ -370,7 +371,7 @@ void riscv_radix2_butterfly_f32(
 		for (; (vl_bufferfly = vsetvl_e32m2(group_total)) > 0; group_total -= vl_bufferfly)
 		{
 			// segment nf4 load
-			vlseg4e32_v_f32m2(&group_a_real,&group_a_imag,&group_b_real,&group_b_imag,psrc1,vl_bufferfly);
+			vlseg4e32_v_f32m2(&group_a_real, &group_a_imag, &group_b_real, &group_b_imag, psrc1, vl_bufferfly);
 			psrc1 += 4 * vl_bufferfly;
 
 			// temp1 = group_a_real - group_b_real
@@ -404,7 +405,7 @@ void riscv_radix2_butterfly_f32(
 			bufferfly_result_a_imag = vfadd_vv_f32m2(group_a_imag, group_b_imag, vl_bufferfly);
 
 			/*segment nf4 store*/
-			vsseg4e32_v_f32m2(pdst1,bufferfly_result_a_real,bufferfly_result_a_imag,bufferfly_result_b_real,bufferfly_result_b_imag,vl_bufferfly);
+			vsseg4e32_v_f32m2(pdst1, bufferfly_result_a_real, bufferfly_result_a_imag, bufferfly_result_b_real, bufferfly_result_b_imag, vl_bufferfly);
 			pdst1 += 4 * vl_bufferfly;
 		}
 
@@ -421,25 +422,26 @@ void riscv_radix2_butterfly_f32(
 
 		for (; (bit_reverse_vl = vsetvl_e64m8(fftLen)) > 0; fftLen -= bit_reverse_vl)
 		{
-				//index seg load
-				v_rev_index = vle16_v_u16m2(pBitRevIndex,bit_reverse_vl);
-				pBitRevIndex += bit_reverse_vl;
-				//index load, so the src pointer should not update here
-				v_dot = vloxei16_v_f64m8 (pcopy_src, v_rev_index, bit_reverse_vl);
-		        /*unit-stride store*/
-				vse64_v_f64m8(pcopy_dst,v_dot,bit_reverse_vl);
-				pcopy_dst += bit_reverse_vl ;
+            //index seg load
+            v_rev_index = vle16_v_u16m2(pBitRevIndex, bit_reverse_vl);
+            pBitRevIndex += bit_reverse_vl;
+            //index load, so the src pointer should not update here
+            v_dot = vloxei16_v_f64m8(pcopy_src, v_rev_index, bit_reverse_vl);
+            /*unit-stride store*/
+            vse64_v_f64m8(pcopy_dst,v_dot,bit_reverse_vl);
+            pcopy_dst += bit_reverse_vl ;
 		}
 
 	}  /* #if defined (RISCV_MATH_VECTOR) */
 
-#elif defined (RISCV_MATH_DSP)
+#else
 
    uint32_t i, j, k, l;
    uint32_t n1, n2, ia;
    float32_t xt, yt, cosVal, sinVal;
    float32_t p0, p1, p2, p3;
    float32_t a0, a1;
+#if defined (RISCV_MATH_DSP)
 
    /*  Initializations for the first stage */
    n2 = fftLen >> 1;
@@ -471,10 +473,10 @@ void riscv_radix2_butterfly_f32(
       p2 = yt * cosVal;
       p3 = xt * sinVal;
 
-      pSrc[2 * i]     = a0;
+      pSrc[2 * i] = a0;
       pSrc[2 * i + 1] = a1;
 
-      pSrc[2 * l]     = p0 + p1;
+      pSrc[2 * l] = p0 + p1;
       pSrc[2 * l + 1] = p2 - p3;
 
       i++;
@@ -543,12 +545,6 @@ void riscv_radix2_butterfly_f32(
 
 #else /* #if defined (RISCV_MATH_DSP) */
 
-   uint32_t i, j, k, l;
-   uint32_t n1, n2, ia;
-   float32_t xt, yt, cosVal, sinVal;
-   float32_t p0, p1, p2, p3;
-   float32_t a0, a1;
-
    n2 = fftLen;
 
    // loop for stage
@@ -594,8 +590,8 @@ void riscv_radix2_butterfly_f32(
       } while (j < n2);
       twidCoefModifier <<= 1U;
    }
-
-#endif 
+#endif /* #if defined (RISCV_MATH_DSP) */
+#endif /* defined (RISCV_MATH_VECTOR) */
 
 }
 
@@ -607,12 +603,11 @@ void riscv_radix2_butterfly_inverse_f32(
         uint16_t twidCoefModifier,
         float32_t onebyfftLen)
 {
-
-        uint32_t i, j, k, l;
-        uint32_t n1, n2, ia;
-        float32_t xt, yt, cosVal, sinVal;
-        float32_t p0, p1, p2, p3;
-        float32_t a0, a1;
+   uint32_t i, j, k, l;
+   uint32_t n1, n2, ia;
+   float32_t xt, yt, cosVal, sinVal;
+   float32_t p0, p1, p2, p3;
+   float32_t a0, a1;
 
 #if defined (RISCV_MATH_DSP)
 
@@ -681,7 +676,7 @@ void riscv_radix2_butterfly_inverse_f32(
             pSrc[2 * i] = a0;
             pSrc[2 * i + 1] = a1;
 
-            pSrc[2 * l]     = p0 - p1;
+            pSrc[2 * l] = p0 - p1;
             pSrc[2 * l + 1] = p2 + p3;
 
             i += n1;

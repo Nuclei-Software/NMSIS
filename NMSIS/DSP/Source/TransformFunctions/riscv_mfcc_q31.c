@@ -27,12 +27,14 @@
  * limitations under the License.
  */
 
+
+
+#include "dsp/transform_functions.h"
+#include "dsp/statistics_functions.h"
 #include "dsp/basic_math_functions.h"
 #include "dsp/complex_math_functions.h"
 #include "dsp/fast_math_functions.h"
 #include "dsp/matrix_functions.h"
-#include "dsp/statistics_functions.h"
-#include "dsp/transform_functions.h"
 
 /* Constants for Q31 implementation */
 #define LOG2TOLOG_Q31 0x02C5C860
@@ -42,6 +44,7 @@
   @ingroup groupTransforms
  */
 
+
 /**
   @defgroup MFCC MFCC
 
@@ -49,6 +52,8 @@
 
   There are separate functions for floating-point, Q31, and Q31 data types.
  */
+
+
 
 /**
   @addtogroup MFCC
@@ -78,38 +83,51 @@
 
  */
 
-riscv_status riscv_mfcc_q31(const riscv_mfcc_instance_q31 *S, q31_t *pSrc,
-                            q31_t *pDst, q31_t *pTmp)
+
+riscv_status riscv_mfcc_q31(
+  const riscv_mfcc_instance_q31 * S,
+  q31_t *pSrc,
+  q31_t *pDst,
+  q31_t *pTmp
+  )
 {
     q31_t m;
     uint32_t index;
-    uint32_t fftShift = 0;
+    uint32_t fftShift=0;
     q31_t logExponent;
     q63_t result;
     riscv_matrix_instance_q31 pDctMat;
     uint32_t i;
     uint32_t coefsPos;
     uint32_t filterLimit;
-    q31_t *pTmp2 = (q31_t *)pTmp;
+    q31_t *pTmp2=(q31_t*)pTmp;
+
     riscv_status status = RISCV_MATH_SUCCESS;
 
     // q31
-    riscv_absmax_q31(pSrc, S->fftLen, &m, &index);
+    riscv_absmax_q31(pSrc,S->fftLen,&m,&index);
 
-    if (m != 0) {
-        q31_t quotient;
-        int16_t shift;
-        status = riscv_divide_q31(0x7FFFFFFF, m, &quotient, &shift);
-        if (status != RISCV_MATH_SUCCESS) {
-            return (status);
-        }
-        riscv_scale_q31(pSrc, quotient, shift, pSrc, S->fftLen);
+    if (m !=0)
+    {
+       q31_t quotient;
+       int16_t shift;
+
+       status = riscv_divide_q31(0x7FFFFFFF,m,&quotient,&shift);
+       if (status != RISCV_MATH_SUCCESS)
+       {
+          return(status);
+       }
+
+       riscv_scale_q31(pSrc,quotient,shift,pSrc,S->fftLen);
     }
 
+
     // q31
-    riscv_mult_q31(pSrc, S->windowCoefs, pSrc, S->fftLen);
+    riscv_mult_q31(pSrc,S->windowCoefs, pSrc, S->fftLen);
+
+
     /* Compute spectrum magnitude
-     */
+    */
     fftShift = 31 - __CLZ(S->fftLen);
 #if defined(RISCV_MFCC_CFFT_BASED)
     /* some HW accelerator for NMSIS-DSP used in some boards
@@ -120,48 +138,69 @@ riscv_status riscv_mfcc_q31(const riscv_mfcc_instance_q31 *S, q31_t *pSrc,
        The default is to use RFFT
     */
     /* Convert from real to complex */
-    for (i = 0; i < S->fftLen; i++) {
-        pTmp2[2 * i] = pSrc[i];
-        pTmp2[2 * i + 1] = 0;
+    for(i=0; i < S->fftLen ; i++)
+    {
+      pTmp2[2*i] = pSrc[i];
+      pTmp2[2*i+1] = 0;
     }
-    riscv_cfft_q31(&(S->cfft), pTmp2, 0, 1);
+    riscv_cfft_q31(&(S->cfft),pTmp2,0,1);
 #else
     /* Default RFFT based implementation */
-    riscv_rfft_q31(&(S->rfft), pSrc, pTmp2);
+    riscv_rfft_q31(&(S->rfft),pSrc,pTmp2);
 #endif
     filterLimit = 1 + (S->fftLen >> 1);
+
+
     // q31 - fftShift
-    riscv_cmplx_mag_q31(pTmp2, pSrc, filterLimit);
+    riscv_cmplx_mag_q31(pTmp2,pSrc,filterLimit);
     // q30 - fftShift
+
+
     /* Apply MEL filters */
     coefsPos = 0;
-    for (i = 0; i < S->nbMelFilters; i++) {
-        riscv_dot_prod_q31(pSrc + S->filterPos[i], &(S->filterCoefs[coefsPos]),
-                           S->filterLengths[i], &result);
-        coefsPos += S->filterLengths[i];
-        // q16.48 - fftShift
-        result += MICRO_Q31;
-        result >>= (SHIFT_MELFILTER_SATURATION_Q31 + 18);
-        // q16.29 - fftShift - satShift
-        pTmp[i] = __SSAT(result, 31);
+    for(i=0; i<S->nbMelFilters; i++)
+    {
+      riscv_dot_prod_q31(pSrc+S->filterPos[i],
+        &(S->filterCoefs[coefsPos]),
+        S->filterLengths[i],
+        &result);
+
+      coefsPos += S->filterLengths[i];
+
+      // q16.48 - fftShift
+      result += MICRO_Q31;
+      result >>= (SHIFT_MELFILTER_SATURATION_Q31 + 18);
+      // q16.29 - fftShift - satShift
+      pTmp[i] = __SSAT(result,31) ;
+
     }
+
 
     // q16.29 - fftShift - satShift
     /* Compute the log */
-    riscv_vlog_q31(pTmp, pTmp, S->nbMelFilters);
+    riscv_vlog_q31(pTmp,pTmp,S->nbMelFilters);
+
+
     // q5.26
+
     logExponent = fftShift + 2 + SHIFT_MELFILTER_SATURATION_Q31;
     logExponent = logExponent * LOG2TOLOG_Q31;
+
+
     // q5.26
-    riscv_offset_q31(pTmp, logExponent, pTmp, S->nbMelFilters);
-    riscv_shift_q31(pTmp, -3, pTmp, S->nbMelFilters);
+    riscv_offset_q31(pTmp,logExponent,pTmp,S->nbMelFilters);
+    riscv_shift_q31(pTmp,-3,pTmp,S->nbMelFilters);
+
+
     // q8.23
-    pDctMat.numRows = S->nbDctOutputs;
-    pDctMat.numCols = S->nbMelFilters;
-    pDctMat.pData = (q31_t *)S->dctCoefs;
+
+    pDctMat.numRows=S->nbDctOutputs;
+    pDctMat.numCols=S->nbMelFilters;
+    pDctMat.pData=(q31_t*)S->dctCoefs;
+
     riscv_mat_vec_mult_q31(&pDctMat, pTmp, pDst);
 
-    return (status);
+    return(status);
 }
 
 /**

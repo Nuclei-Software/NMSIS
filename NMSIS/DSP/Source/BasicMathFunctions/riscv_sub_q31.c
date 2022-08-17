@@ -57,14 +57,15 @@ void riscv_sub_q31(
         q31_t * pDst,
         uint32_t blockSize)
 {
-        uint32_t blkCnt;                               /* Loop counter */
+  uint32_t blkCnt;                               /* Loop counter */
 
 #if defined(RISCV_MATH_VECTOR)
   blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vint32m8_t vx, vy;
 
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+  {
     vx = vle32_v_i32m8(pSrcA, l);
     pSrcA += l;
     vy = vle32_v_i32m8(pSrcB, l);
@@ -81,18 +82,24 @@ void riscv_sub_q31(
   while (blkCnt > 0U)
   {
     /* C = A - B */
-
-#if __RISCV_XLEN == 64
+#if defined (RISCV_MATH_DSP) && __RISCV_XLEN == 64
     /* Subtract and store result in destination buffer (8 samples at a time). */
-    write_q31x2_ia (&pDst, __RV_KSUB32(read_q31x2_ia ((q31_t **) &pSrcA), read_q31x2_ia ((q31_t **) &pSrcB)));
-    write_q31x2_ia (&pDst, __RV_KSUB32(read_q31x2_ia ((q31_t **) &pSrcA), read_q31x2_ia ((q31_t **) &pSrcB)));
+    write_q31x2_ia(&pDst, __RV_KSUB32(read_q31x2_ia((q31_t **)&pSrcA), read_q31x2_ia((q31_t **)&pSrcB)));
+    write_q31x2_ia(&pDst, __RV_KSUB32(read_q31x2_ia((q31_t **)&pSrcA), read_q31x2_ia((q31_t **)&pSrcB)));
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
+    /* Subtract and store result in destination buffer (8 samples at a time). */
+    write_q31x2_ia(&pDst, __dksub32(read_q31x2_ia((q31_t **)&pSrcA), read_q31x2_ia((q31_t **)&pSrcB)));
+    write_q31x2_ia(&pDst, __dksub32(read_q31x2_ia((q31_t **)&pSrcA), read_q31x2_ia((q31_t **)&pSrcB)));
 #else
     /* Subtract and store result in destination buffer. */
     *pDst++ = __QSUB(*pSrcA++, *pSrcB++);
     *pDst++ = __QSUB(*pSrcA++, *pSrcB++);
     *pDst++ = __QSUB(*pSrcA++, *pSrcB++);
     *pDst++ = __QSUB(*pSrcA++, *pSrcB++);
-#endif /* __RISCV_XLEN == 64 */
+
+#endif /* RISCV_MATH_DSP && NUCLEI_DSP_N2 */
+#endif /* RISCV_MATH_DSP && __RISCV_XLEN == 64 */
     /* Decrement loop counter */
     blkCnt--;
   }

@@ -60,20 +60,19 @@ void riscv_and_u8(
     blkCnt = blockSize;
 
 #if defined(RISCV_MATH_VECTOR)
-  size_t l;
-  vuint8m8_t vx, vy;
+    size_t l;
+    vuint8m8_t vx, vy;
 
-  for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
-    vx = vle8_v_u8m8(pSrcA, l);
-    pSrcA += l;
-    vy = vle8_v_u8m8(pSrcB, l);
-    pSrcB += l;
-    vse8_v_u8m8(pDst, vand_vv_u8m8(vx, vy, l), l);
-    pDst += l;
-  }
+    for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l)
+    {
+        vx = vle8_v_u8m8(pSrcA, l);
+        pSrcA += l;
+        vy = vle8_v_u8m8(pSrcB, l);
+        pSrcB += l;
+        vse8_v_u8m8(pDst, vand_vv_u8m8(vx, vy, l), l);
+        pDst += l;
+    }
 #else
-
-#if defined (NUCLEI_DSP_N1) || (__RISCV_XLEN == 64)
 
     const uint64_t *pSrcA_temp = (const uint64_t *)pSrcA;
     const uint64_t *pSrcB_temp = (const uint64_t *)pSrcB;
@@ -82,7 +81,7 @@ void riscv_and_u8(
     {
         while (blkCnt > 0U)
         {
-            *pDst_temp++ = (*pSrcA_temp++)&(*pSrcB_temp++);
+            *pDst_temp++ = (*pSrcA_temp++) & (*pSrcB_temp++);
 
             /* Decrement the loop counter */
             blkCnt--;
@@ -90,34 +89,13 @@ void riscv_and_u8(
     }
     if (blkCnt = blockSize & 0x7)
     {
-        pSrcA = (const uint8_t * )(pSrcA_temp - 7);
-        pSrcB = (const uint8_t * )(pSrcB_temp - 7);
+        pSrcA = (const uint8_t *)(pSrcA_temp - 7);
+        pSrcB = (const uint8_t *)(pSrcB_temp - 7);
     }
-
-#else
-    const uint32_t * pSrcA_temp = (const uint32_t *)pSrcA;
-    const uint32_t * pSrcB_temp = (const uint32_t *)pSrcB;
-    uint32_t * pDst_temp = (uint32_t *)pDst;
-    if (blkCnt = blockSize >> 2)
-    {
-        while (blkCnt > 0U)
-        {
-            *pDst_temp++ = (*pSrcA_temp++)&(*pSrcB_temp++);
-
-            /* Decrement the loop counter */
-            blkCnt--;
-        }
-    }
-    if (blkCnt = blockSize & 0x3)
-    {
-        pSrcA = (const uint8_t * )(pSrcA_temp - 3);
-        pSrcB = (const uint8_t * )(pSrcB_temp - 3);
-    }
-#endif /*defined (NUCLEI_DSP_N1) || (__RISCV_XLEN == 64)*/
 
     while (blkCnt > 0U)
     {
-        *pDst++ = (*pSrcA++)&(*pSrcB++);
+        *pDst++ = (*pSrcA++) & (*pSrcB++);
 
         /* Decrement the loop counter */
         blkCnt--;

@@ -56,14 +56,15 @@ void riscv_mult_q31(
         q31_t * pDst,
         uint32_t blockSize)
 {
-        uint32_t blkCnt;                               /* Loop counter */
+  uint32_t blkCnt;                               /* Loop counter */
 
 #if defined(RISCV_MATH_VECTOR)
   blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vint32m8_t vx, vy;
 
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+  {
     vx = vle32_v_i32m8(pSrcA, l);
     pSrcA += l;
     vy = vle32_v_i32m8(pSrcB, l);
@@ -72,11 +73,7 @@ void riscv_mult_q31(
     pDst += l;
   }
 #else
-
-#if __RISCV_XLEN == 64
-        q63_t temp;                                     /* Temporary output variable */
-#endif
-        q31_t out;                                     /* Temporary output variable */
+  q31_t out;                      /* Temporary output variable */
 
 
 #if defined (RISCV_MATH_LOOPUNROLL)
@@ -87,42 +84,55 @@ void riscv_mult_q31(
   while (blkCnt > 0U)
   {
     /* C = A * B */
-#if __RISCV_XLEN == 64
-
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+    q63_t temp;   /* Temporary output variable */
     temp = __RV_SMMUL(read_q31x2_ia((q31_t **) &pSrcA), read_q31x2_ia((q31_t **) &pSrcB));
     out = __SSAT(temp, 31);
     *pDst++ = out << 1U;
 
-    // out = __RV_SMMUL(*pSrcA++, *pSrcB++);
-    out = __SSAT(temp>>32, 31);
+    out = __SSAT(temp >> 32, 31);
     *pDst++ = out << 1U;
 
-    temp = __RV_SMMUL(read_q31x2_ia((q31_t **) &pSrcA), read_q31x2_ia((q31_t **) &pSrcB));
+    temp = __RV_SMMUL(read_q31x2_ia((q31_t **)&pSrcA), read_q31x2_ia((q31_t **)&pSrcB));
     out = __SSAT(temp, 31);
     *pDst++ = out << 1U;
 
-    // out = __RV_SMMUL(*pSrcA++, *pSrcB++);
-    out = __SSAT(temp>>32, 31);
+    out = __SSAT(temp >> 32, 31);
     *pDst++ = out << 1U;
 #else
     /* Multiply inputs and store result in destination buffer. */
+#if defined(RISCV_MATH_DSP)
     out = __RV_SMMUL(*pSrcA++, *pSrcB++);
+#else
+    out = ((q63_t) *pSrcA++ * *pSrcB++) >> 32;
+#endif /* defined(RISCV_MATH_DSP) */
     out = __SSAT(out, 31);
     *pDst++ = out << 1U;
 
+#if defined(RISCV_MATH_DSP)
     out = __RV_SMMUL(*pSrcA++, *pSrcB++);
+#else
+    out = ((q63_t) *pSrcA++ * *pSrcB++) >> 32;
+#endif /* defined(RISCV_MATH_DSP) */
     out = __SSAT(out, 31);
     *pDst++ = out << 1U;
 
+#if defined(RISCV_MATH_DSP)
     out = __RV_SMMUL(*pSrcA++, *pSrcB++);
+#else
+    out = ((q63_t) *pSrcA++ * *pSrcB++) >> 32;
+#endif /* defined(RISCV_MATH_DSP) */
     out = __SSAT(out, 31);
     *pDst++ = out << 1U;
 
+#if defined(RISCV_MATH_DSP)
     out = __RV_SMMUL(*pSrcA++, *pSrcB++);
+#else
+    out = ((q63_t) *pSrcA++ * *pSrcB++) >> 32;
+#endif /* defined(RISCV_MATH_DSP) */
     out = __SSAT(out, 31);
     *pDst++ = out << 1U;
-
-#endif /* __RISCV_XLEN == 64 */
+#endif /* (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)*/
     /* Decrement loop counter */
     blkCnt--;
   }
@@ -142,7 +152,7 @@ void riscv_mult_q31(
     /* C = A * B */
 
     /* Multiply inputs and store result in destination buffer. */
-    out = ((q63_t) *pSrcA++ * *pSrcB++) >> 32;
+    out = ((q63_t)*pSrcA++ * *pSrcB++) >> 32;
     out = __SSAT(out, 31);
     *pDst++ = out << 1U;
 

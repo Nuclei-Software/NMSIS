@@ -39,6 +39,10 @@ if(RISCV_ARCH MATCHES "p")
     endif()
 endif()
 
+if(LOOPUNROLL)
+    add_definitions(-DRISCV_MATH_LOOPUNROLL)
+endif()
+
 if(RISCV_UNALIGN)
     add_definitions(-D__RISCV_FEATURE_UNALIGNED)
 endif()

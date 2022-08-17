@@ -205,8 +205,23 @@ void riscv_lms_f32(
 
     /* Set the accumulator to zero */
     acc = 0.0f;
-
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
+    uint32_t vblkCnt = numTaps;                               /* Loop counter */
+    size_t l;
+    vfloat32m8_t vx, vy;
+    vfloat32m1_t temp00m1;
+    l = vsetvl_e32m1(1);
+    temp00m1 = vfmv_v_f_f32m1(0, l);
+    for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle32_v_f32m8(px, l);
+      px += l;
+      vy = vle32_v_f32m8(pb, l);
+      pb += l;
+      temp00m1 = vfredosum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l);
+    }
+    acc += vfmv_f_s_f32m1_f32(temp00m1);
+#else
+#if defined (RISCV_MATH_LOOPUNROLL)
 
     /* Loop unrolling: Compute 4 taps at a time. */
     tapCnt = numTaps >> 2U;
@@ -235,22 +250,7 @@ void riscv_lms_f32(
     tapCnt = numTaps;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_MATH_VECTOR)
-    uint32_t vblkCnt = numTaps;                               /* Loop counter */
-    size_t l;
-    vfloat32m8_t vx, vy;
-    vfloat32m1_t temp00m1;
-    l = vsetvl_e32m1(1);
-    temp00m1 = vfmv_v_f_f32m1(0, l);
-    for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle32_v_f32m8(px, l);
-      px += l;
-      vy = vle32_v_f32m8(pb, l);
-      pb += l;
-      temp00m1 = vfredosum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l);
-    }
-    acc += vfmv_f_s_f32m1_f32(temp00m1);
-#else
+
     while (tapCnt > 0U)
     {
       /* Perform the multiply-accumulate */
@@ -277,7 +277,16 @@ void riscv_lms_f32(
     /* Initialize coefficient pointer */
     pb = pCoeffs;
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
+    vblkCnt = numTaps;
+    for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle32_v_f32m8(px, l);
+      px += l;
+      vse32_v_f32m8(pb, vfadd_vv_f32m8(vfmul_vf_f32m8(vx, w, l), vle32_v_f32m8(pb, l), l) , l);
+      pb += l;
+    }
+#else
+#if defined (RISCV_MATH_LOOPUNROLL)
 
     /* Loop unrolling: Compute 4 taps at a time. */
     tapCnt = numTaps >> 2U;
@@ -311,15 +320,7 @@ void riscv_lms_f32(
     tapCnt = numTaps;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_MATH_VECTOR)
-    vblkCnt = numTaps;
-    for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle32_v_f32m8(px, l);
-      px += l;
-      vse32_v_f32m8(pb, vfadd_vv_f32m8(vfmul_vf_f32m8(vx, w, l), vle32_v_f32m8(pb, l), l) , l);
-      pb += l;
-    }
-#else
+
     while (tapCnt > 0U)
     {
       /* Perform the multiply-accumulate */
@@ -342,7 +343,16 @@ void riscv_lms_f32(
   pStateCurnt = S->pState;
 
   /* copy data */
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
+    uint32_t vblkCnt = (numTaps - 1U);                               /* Loop counter */
+    size_t l;
+    for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
+      vse32_v_f32m8(pStateCurnt, vle32_v_f32m8(pState, l) , l);
+      pState += l;
+      pStateCurnt += l;
+    }
+#else
+#if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 taps at a time. */
   tapCnt = (numTaps - 1U) >> 2U;
@@ -367,15 +377,7 @@ void riscv_lms_f32(
   tapCnt = (numTaps - 1U);
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_MATH_VECTOR)
-    uint32_t vblkCnt = (numTaps - 1U);                               /* Loop counter */
-    size_t l;
-    for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
-      vse32_v_f32m8(pStateCurnt, vle32_v_f32m8(pState, l) , l);
-      pState += l;
-      pStateCurnt += l;
-    }
-#else
+
   while (tapCnt > 0U)
   {
     *pStateCurnt++ = *pState++;

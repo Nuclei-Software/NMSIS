@@ -91,7 +91,7 @@ void riscv_min_no_idx_q7(
     /* Decrement the loop counter */
     blkCnt--;
   }
-#endif
+#endif /* defined(RISCV_MATH_VECTOR) */
   /* Store the minimum value into destination pointer */
   *pResult = out;
 }

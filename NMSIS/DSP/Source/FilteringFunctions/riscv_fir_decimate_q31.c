@@ -77,9 +77,9 @@ void riscv_fir_decimate_q31(
         q31_t *px1, *px2, *px3;
         q31_t x1, x2, x3;
         q63_t acc1, acc2, acc3;
-#if __RISCV_XLEN == 64
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
         q63_t x064, c064, x164, x264, x364;
-#endif /* __RISCV_XLEN == 64 */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 #endif
 
   /* S->pState buffer contains previous frame (numTaps - 1) samples */
@@ -123,7 +123,7 @@ void riscv_fir_decimate_q31(
 
     while (tapCnt > 0U)
     {
-#if __RISCV_XLEN == 64
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
       c064 = read_q31x2_ia((q31_t **)&pb);
       x064 = read_q31x2_ia((q31_t **)&px0);
       x164 = read_q31x2_ia((q31_t **)&px1);
@@ -209,14 +209,14 @@ void riscv_fir_decimate_q31(
       acc1 += (q63_t) x1 * c0;
       acc2 += (q63_t) x2 * c0;
       acc3 += (q63_t) x3 * c0;
-#endif /* __RISCV_XLEN == 64 */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
       /* Decrement loop counter */
       tapCnt--;
     }
 
     /* Loop unrolling: Compute remaining taps */
-    tapCnt = numTaps % 0x4U;
+    tapCnt = numTaps & 0x3U;
 
     while (tapCnt > 0U)
     {
@@ -284,7 +284,7 @@ void riscv_fir_decimate_q31(
       *pStateCur++ = *pSrc++;
 
     } while (--i);
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif /* defined (RISCV_MATH_VECTOR) */
     /* Set accumulator to zero */
     acc0 = 0;
 
@@ -381,7 +381,7 @@ void riscv_fir_decimate_q31(
       /* Decrement loop counter */
       tapCnt--;
     }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif /* defined (RISCV_MATH_VECTOR) */
     /* Advance the state pointer by the decimation factor
      * to process the next group of decimation factor number samples */
     pState = pState + S->M;
@@ -409,8 +409,8 @@ void riscv_fir_decimate_q31(
   while (tapCnt > 0U)
   {
 #if __RISCV_XLEN == 64
-    write_q31x2_ia((q31_t **)&pStateCur,read_q31x2_ia((q31_t **)&pState));
-    write_q31x2_ia((q31_t **)&pStateCur,read_q31x2_ia((q31_t **)&pState));
+    write_q31x2_ia((q31_t **)&pStateCur, read_q31x2_ia((q31_t **)&pState));
+    write_q31x2_ia((q31_t **)&pStateCur, read_q31x2_ia((q31_t **)&pState));
 #else
     *pStateCur++ = *pState++;
     *pStateCur++ = *pState++;
@@ -449,7 +449,7 @@ void riscv_fir_decimate_q31(
     /* Decrement loop counter */
     tapCnt--;
   }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif /* defined (RISCV_MATH_VECTOR) */
 }
 /**
   @} end of FIR_decimate group

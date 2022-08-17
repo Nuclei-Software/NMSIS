@@ -158,7 +158,7 @@ void riscv_quaternion2rotation_f32(const float32_t *pInputQuaternions,
         pOutputRotations[3 + nb * 9] = yx; pOutputRotations[4 + nb * 9] = yy; pOutputRotations[5 + nb * 9] = yz;
         pOutputRotations[6 + nb * 9] = zx; pOutputRotations[7 + nb * 9] = zy; pOutputRotations[8 + nb * 9] = zz;
    }
-#endif
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 

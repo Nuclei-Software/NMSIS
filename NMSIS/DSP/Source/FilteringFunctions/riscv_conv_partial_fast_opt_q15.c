@@ -127,13 +127,8 @@ riscv_status riscv_conv_partial_fast_opt_q15(
     /* Temporary pointer for scratch2 */
     py = pScratch2;
 
-#if __RISCV_XLEN == 64
-  /* Pointer to take end of scratch2 buffer */
-  pScr2 = pScratch2 + srcBLen - 4;
-#else
-   /* Pointer to take end of scratch2 buffer */
+    /* pointer to take end of scratch2 buffer */
     pScr2 = pScratch2 + srcBLen - 1;
-#endif /* __RISCV_XLEN == 64 */
 
     /* points to smaller length sequence */
     px = pIn2;
@@ -146,22 +141,16 @@ riscv_status riscv_conv_partial_fast_opt_q15(
     /* Copy smaller length input sequence in reverse order into second scratch buffer */
     while (k > 0U)
     {
-#if __RISCV_XLEN == 64
-    write_q15x4_da(&pScr2,read_q15x4_ia((q15_t **)&px));
-#else
       /* copy second buffer in reversal manner */
       *pScr2-- = *px++;
       *pScr2-- = *px++;
       *pScr2-- = *px++;
       *pScr2-- = *px++;
-#endif /* __RISCV_XLEN == 64 */
 
       /* Decrement loop counter */
       k--;
     }
-#if __RISCV_XLEN == 64
-    pScr2 += 3;
-#endif /* __RISCV_XLEN == 64 */
+
     /* Loop unrolling: Compute remaining outputs */
     k = srcBLen & 0x3U;
 
@@ -378,7 +367,7 @@ riscv_status riscv_conv_partial_fast_opt_q15(
 
   /* Return to application */
   return (status);
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif /* defined (RISCV_MATH_VECTOR) */
 }
 
 /**

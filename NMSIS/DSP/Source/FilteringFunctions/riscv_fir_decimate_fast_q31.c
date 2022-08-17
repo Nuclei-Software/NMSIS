@@ -257,7 +257,7 @@ void riscv_fir_decimate_fast_q31(
       *pStateCur++ = *pSrc++;
 
     } while (--i);
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif /* defined (RISCV_MATH_VECTOR) */
     /* Set accumulator to zero */
     acc0 = 0;
 
@@ -401,7 +401,7 @@ void riscv_fir_decimate_fast_q31(
     /* Decrement loop counter */
     tapCnt--;
   }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif /* defined (RISCV_MATH_VECTOR) */
 }
 
 /**

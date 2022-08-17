@@ -56,14 +56,15 @@ void riscv_mult_q15(
         q15_t * pDst,
         uint32_t blockSize)
 {
-        uint32_t blkCnt;                               /* Loop counter */
+  uint32_t blkCnt;                               /* Loop counter */
 
 #if defined(RISCV_MATH_VECTOR)
   blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vint16m8_t vx, vy;
 
-  for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
+  for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+  {
     vx = vle16_v_i16m8(pSrcA, l);
     pSrcA += l;
     vy = vle16_v_i16m8(pSrcB, l);
@@ -75,13 +76,6 @@ void riscv_mult_q15(
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
-// #if defined (RISCV_MATH_DSP)
-//   q31_t inA1, inA2, inB1, inB2;                  /* Temporary input variables */
-//   q15_t out1, out2, out3, out4;                  /* Temporary output variables */
-//   q31_t mul1, mul2, mul3, mul4;                  /* Temporary variables */
-//   q63_t opa, opb;
-// #endif
-
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
 
@@ -90,49 +84,22 @@ void riscv_mult_q15(
     /* C = A * B */
 
 #if defined (RISCV_MATH_DSP)
-    /* read 2 samples at a time from sourceA */
-    //inA1 = read_q15x2_ia ((q15_t **) &pSrcA);
-    ///* read 2 samples at a time from sourceB */
-    //inB1 = read_q15x2_ia ((q15_t **) &pSrcB);
-    ///* read 2 samples at a time from sourceA */
-    //inA2 = read_q15x2_ia ((q15_t **) &pSrcA);
-    ///* read 2 samples at a time from sourceB */
-    //inB2 = read_q15x2_ia ((q15_t **) &pSrcB);
-
-    ///* multiply mul = sourceA * sourceB */
-    //mul1 = (q31_t) ((q15_t) (inA1 >> 16) * (q15_t) (inB1 >> 16));
-    //mul2 = (q31_t) ((q15_t) (inA1      ) * (q15_t) (inB1      ));
-    //mul3 = (q31_t) ((q15_t) (inA2 >> 16) * (q15_t) (inB2 >> 16));
-    //mul4 = (q31_t) ((q15_t) (inA2      ) * (q15_t) (inB2      ));
-
-    ///* saturate result to 16 bit */
-    //out1 = (q15_t) __SSAT(mul1 >> 15, 16);
-    //out2 = (q15_t) __SSAT(mul2 >> 15, 16);
-    //out3 = (q15_t) __SSAT(mul3 >> 15, 16);
-    //out4 = (q15_t) __SSAT(mul4 >> 15, 16);
-
-    ///* store result to destination */
-    //write_q15x2_ia (&pDst, __PKHBT(out2, out1, 16));
-    //write_q15x2_ia (&pDst, __PKHBT(out4, out3, 16));
-
-	//write_q15x2_ia (&pDst, __KHM16(inA1, inB1));
-	//write_q15x2_ia (&pDst, __KHM16(inA2, inB2));
 #if __RISCV_XLEN == 64
-	write_q15x4_ia(&pDst, __RV_KHM16(read_q15x4_ia((q15_t **)& pSrcA), read_q15x4_ia((q15_t**)&pSrcB)));
+    write_q15x4_ia(&pDst, __RV_KHM16(read_q15x4_ia((q15_t **)& pSrcA), read_q15x4_ia((q15_t**)&pSrcB)));
 #else
 #ifdef NUCLEI_DSP_N1
-	write_q15x4_ia(&pDst, __RV_DKHM16(read_q15x4_ia((q15_t **)& pSrcA), read_q15x4_ia((q15_t**)&pSrcB)));
+    write_q15x4_ia(&pDst, __RV_DKHM16(read_q15x4_ia((q15_t **)& pSrcA), read_q15x4_ia((q15_t**)&pSrcB)));
 #else
-	write_q15x2_ia(&pDst, __RV_KHM16(read_q15x2_ia((q15_t **)& pSrcA), read_q15x2_ia((q15_t**)&pSrcB)));
-	write_q15x2_ia(&pDst, __RV_KHM16(read_q15x2_ia((q15_t **)& pSrcA), read_q15x2_ia((q15_t**)&pSrcB)));
-#endif
+    write_q15x2_ia(&pDst, __RV_KHM16(read_q15x2_ia((q15_t **)& pSrcA), read_q15x2_ia((q15_t**)&pSrcB)));
+    write_q15x2_ia(&pDst, __RV_KHM16(read_q15x2_ia((q15_t **)& pSrcA), read_q15x2_ia((q15_t**)&pSrcB)));
+#endif /* NUCLEI_DSP_N1 */
 #endif /* __RISCV_XLEN == 64 */
 #else
     *pDst++ = (q15_t) __SSAT((((q31_t) (*pSrcA++) * (*pSrcB++)) >> 15), 16);
     *pDst++ = (q15_t) __SSAT((((q31_t) (*pSrcA++) * (*pSrcB++)) >> 15), 16);
     *pDst++ = (q15_t) __SSAT((((q31_t) (*pSrcA++) * (*pSrcB++)) >> 15), 16);
     *pDst++ = (q15_t) __SSAT((((q31_t) (*pSrcA++) * (*pSrcB++)) >> 15), 16);
-#endif
+#endif /* RISCV_MATH_DSP */
 
     /* Decrement loop counter */
     blkCnt--;

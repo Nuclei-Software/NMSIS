@@ -53,16 +53,17 @@ void riscv_xor_u8(
           uint8_t * pDst,
           uint32_t blockSize)
 {
-    uint32_t blkCnt;      /* Loop counter */
+  uint32_t blkCnt;      /* Loop counter */
 
-    /* Initialize blkCnt with number of samples */
-    blkCnt = blockSize;
+  /* Initialize blkCnt with number of samples */
+  blkCnt = blockSize;
 
 #if defined(RISCV_MATH_VECTOR)
   size_t l;
   vuint8m8_t vx, vy;
 
-  for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
+  for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l)
+  {
     vx = vle8_v_u8m8(pSrcA, l);
     pSrcA += l;
     vy = vle8_v_u8m8(pSrcB, l);
@@ -72,55 +73,31 @@ void riscv_xor_u8(
   }
 #else
 
-#if defined (NUCLEI_DSP_N1) || (__RISCV_XLEN == 64)
-
-    const uint64_t * pSrcA_temp = (const uint64_t *)pSrcA;
-    const uint64_t * pSrcB_temp = (const uint64_t *)pSrcB;
-    uint64_t * pDst_temp = (uint64_t *)pDst;
-    if (blkCnt = blockSize >> 3)
-    {
-        while (blkCnt > 0U)
-        {
-            *pDst_temp++ = (*pSrcA_temp++)^(*pSrcB_temp++);
-
-            /* Decrement the loop counter */
-            blkCnt--;
-        }
-    }
-    if (blkCnt = blockSize & 0x7)
-    {
-        pSrcA = (const uint8_t * )(pSrcA_temp - 7);
-        pSrcB = (const uint8_t * )(pSrcB_temp - 7);
-    }
-
-#else
-    const uint32_t * pSrcA_temp = (const uint32_t *)pSrcA;
-    const uint32_t * pSrcB_temp = (const uint32_t *)pSrcB;
-    uint32_t * pDst_temp = (uint32_t *)pDst;
-    if (blkCnt = blockSize >> 2)
-    {
-        while (blkCnt > 0U)
-        {
-            *pDst_temp++ = (*pSrcA_temp++)^(*pSrcB_temp++);
-
-            /* Decrement the loop counter */
-            blkCnt--;
-        }
-    }
-    if (blkCnt = blockSize & 0x3U)
-    {
-        pSrcA = (const uint8_t * )(pSrcA_temp - 3);
-        pSrcB = (const uint8_t * )(pSrcB_temp - 3);
-    }
-#endif /*defined (NUCLEI_DSP_N1) || (__RISCV_XLEN == 64)*/
-
+  const uint64_t * pSrcA_temp = (const uint64_t *)pSrcA;
+  const uint64_t * pSrcB_temp = (const uint64_t *)pSrcB;
+  uint64_t * pDst_temp = (uint64_t *)pDst;
+  if (blkCnt = blockSize >> 3)
+  {
     while (blkCnt > 0U)
     {
-        *pDst++ = (*pSrcA++)^(*pSrcB++);
-
-        /* Decrement the loop counter */
-        blkCnt--;
+      *pDst_temp++ = (*pSrcA_temp++) ^ (*pSrcB_temp++);
+      /* Decrement the loop counter */
+      blkCnt--;
     }
+  }
+
+  if (blkCnt = blockSize & 0x7)
+  {
+    pSrcA = (const uint8_t *)(pSrcA_temp - 7);
+    pSrcB = (const uint8_t *)(pSrcB_temp - 7);
+  }
+
+  while (blkCnt > 0U)
+  {
+    *pDst++ = (*pSrcA++) ^ (*pSrcB++);
+    /* Decrement the loop counter */
+    blkCnt--;
+  }
 #endif /* defined(RISCV_MATH_VECTOR) */
 }
 

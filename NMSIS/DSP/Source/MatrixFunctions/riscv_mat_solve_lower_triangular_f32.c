@@ -129,7 +129,7 @@
             {
                 tmp -= lt_row[k] * pX[cols*k+j];
             }
-#endif
+#endif /* defined(RISCV_MATH_VECTOR) */
             if (lt_row[i]==0.0f)
             {
               return(RISCV_MATH_SINGULAR);

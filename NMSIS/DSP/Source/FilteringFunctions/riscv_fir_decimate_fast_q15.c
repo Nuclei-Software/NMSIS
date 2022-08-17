@@ -81,9 +81,9 @@ void riscv_fir_decimate_fast_q15(
 
 #if defined (RISCV_MATH_LOOPUNROLL)
         q31_t c1;                                      /* Temporary variables to hold state and coefficient values */
-#if __RISCV_XLEN == 64
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
         q63_t x064, x164, c064, sum064 = 0;
-#endif /* __RISCV_XLEN == 64 */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 #endif
 
   /* S->pState buffer contains previous frame (numTaps - 1) samples */
@@ -123,7 +123,7 @@ void riscv_fir_decimate_fast_q15(
 
     while (tapCnt > 0U)
     {
-#if __RISCV_XLEN == 64
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
       /* Read the b[numTaps-1] and b[numTaps-2] coefficients */
       c064 = read_q15x4_ia ((q15_t **) &pb);
 
@@ -131,8 +131,8 @@ void riscv_fir_decimate_fast_q15(
       x064 = read_q15x4_ia ((q15_t **) &px0);
       x164 = read_q15x4_ia ((q15_t **) &px1);
 
-      acc0 = __RV_SMALDA(acc0, x064, c064);
-      acc1 = __RV_SMALDA(acc1, x164, c064);
+      acc0 = __SMLALD(x064, c064, acc0);
+      acc1 = __SMLALD(x164, c064, acc1);
 
 #else
       /* Read the b[numTaps-1] and b[numTaps-2] coefficients */
@@ -156,7 +156,7 @@ void riscv_fir_decimate_fast_q15(
       /* Perform the multiply-accumulate */
       acc0 = __SMLAD(x0, c0, acc0);
       acc1 = __SMLAD(x1, c0, acc1);
-#endif /* __RISCV_XLEN == 64 */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
       /* Decrement loop counter */
       tapCnt--;
     }
@@ -228,7 +228,7 @@ void riscv_fir_decimate_fast_q15(
 
     while (tapCnt > 0U)
     {
-#if __RISCV_XLEN == 64
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
       /* Read the b[numTaps-1] and b[numTaps-2] coefficients */
       c064 = read_q15x4_ia ((q15_t **) &pb);
 
@@ -254,17 +254,17 @@ void riscv_fir_decimate_fast_q15(
 
       /* Perform the multiply-accumulate */
       sum0 = __SMLAD(x0, c1, sum0);
-#endif
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
       /* Decrement loop counter */
       tapCnt--;
     }
-#if __RISCV_XLEN == 64
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
     sum0 =(q31_t)((sum064 + (sum064<<32u))>>32u);
 #endif
     /* Loop unrolling: Compute remaining taps */
     tapCnt = numTaps & 0x3U;
 
-#else
+#else /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
     /* Initialize tapCnt with number of taps */
     tapCnt = numTaps;
@@ -379,7 +379,7 @@ void riscv_fir_decimate_fast_q15(
       *pStateCur++ = *pSrc++;
 
     } while (--i);
-#endif
+#endif /* defined (RISCV_MATH_VECTOR) */
 
     /* Set accumulator to zero */
     acc0 = 0;
@@ -507,7 +507,7 @@ void riscv_fir_decimate_fast_q15(
       *pStateCur++ = *pSrc++;
 
     } while (--i);
-#endif
+#endif /* defined (RISCV_MATH_VECTOR) */
     /* Set accumulator to zero */
     sum0 = 0;
 

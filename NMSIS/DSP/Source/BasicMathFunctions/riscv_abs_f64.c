@@ -59,7 +59,6 @@ void riscv_abs_f64(
 
 #if defined(RISCV_MATH_VECTOR)
   vfloat64m8_t vx;
-  blkCnt = blockSize;
   size_t l;
   for (; (l = vsetvl_e64m8(blkCnt)) > 0; blkCnt -= l) {
     vx = vle64_v_f64m8(pSrc, l);

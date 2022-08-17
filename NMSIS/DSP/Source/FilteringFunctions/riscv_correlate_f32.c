@@ -261,7 +261,7 @@ void riscv_correlate_f32(
     }
 
     /* Loop unrolling: Compute remaining outputs */
-    k = count % 0x4U;
+    k = count & 0x3U;
 
 #else
 
@@ -647,8 +647,23 @@ void riscv_correlate_f32(
   {
     /* Accumulator is made zero for every iteration */
     sum = 0.0f;
-
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
+    uint32_t vblkCnt = count;                               /* Loop counter */
+    size_t l;
+    vfloat32m8_t vx, vy;
+    vfloat32m1_t temp00m1;
+    l = vsetvl_e32m1(1);
+    temp00m1 = vfmv_v_f_f32m1(0, l);
+    for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle32_v_f32m8(px, l);
+      px += l;
+      vy = vle32_v_f32m8(py, l);
+      py += l;
+      temp00m1 = vfredosum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l);
+    }
+    sum += vfmv_f_s_f32m1_f32(temp00m1);
+#else
+#if defined (RISCV_MATH_LOOPUNROLL)
 
     /* Loop unrolling: Compute 4 outputs at a time */
     k = count >> 2U;
@@ -683,22 +698,7 @@ void riscv_correlate_f32(
     k = count;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL)  */
-#if defined (RISCV_MATH_VECTOR)
-    uint32_t vblkCnt = count;                               /* Loop counter */
-    size_t l;
-    vfloat32m8_t vx, vy;
-    vfloat32m1_t temp00m1;
-    l = vsetvl_e32m1(1);
-    temp00m1 = vfmv_v_f_f32m1(0, l);
-    for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle32_v_f32m8(px, l);
-      px += l;
-      vy = vle32_v_f32m8(py, l);
-      py += l;
-      temp00m1 = vfredosum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l);
-    }
-    sum += vfmv_f_s_f32m1_f32(temp00m1);
-#else
+
     while (k > 0U)
     {
       /* Perform the multiply-accumulate */

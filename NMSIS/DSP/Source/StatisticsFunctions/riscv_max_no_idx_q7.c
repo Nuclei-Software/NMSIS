@@ -53,23 +53,24 @@ void riscv_max_no_idx_q7(
         uint32_t blockSize,
         q7_t * pResult)
 {
-    q7_t maxVal1, out;  /* Temporary variables to store the output value. */
-    uint32_t blkCnt;    /* loop counter */
+  q7_t maxVal1, out;  /* Temporary variables to store the output value. */
+  uint32_t blkCnt;    /* loop counter */
 
 #if defined(RISCV_MATH_VECTOR)
-    size_t l;
-    const q7_t *inputx = pSrc;
-    vint8m8_t v_x;
-    vint8m1_t v_tempa;
-    blkCnt = blockSize;
-    l = vsetvl_e8m1(1);
-    v_tempa = vmv_s_x_i8m1(v_tempa, pSrc[0], l);
-    for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
-        v_x = vle8_v_i8m8(inputx, l);
-        inputx += l;
-        v_tempa = vredmax_vs_i8m8_i8m1(v_tempa, v_x, v_tempa, l);
-    }
-    out = vmv_x_s_i8m1_i8(v_tempa);
+  size_t l;
+  const q7_t *inputx = pSrc;
+  vint8m8_t v_x;
+  vint8m1_t v_tempa;
+  blkCnt = blockSize;
+  l = vsetvl_e8m1(1);
+  v_tempa = vmv_s_x_i8m1(v_tempa, pSrc[0], l);
+  for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l)
+  {
+    v_x = vle8_v_i8m8(inputx, l);
+    inputx += l;
+    v_tempa = vredmax_vs_i8m8_i8m1(v_tempa, v_x, v_tempa, l);
+  }
+  out = vmv_x_s_i8m1_i8(v_tempa);
 #else
 
   /* Load first input value that act as reference value for comparision */

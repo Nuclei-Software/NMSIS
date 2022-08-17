@@ -204,12 +204,12 @@ void riscv_fir_fast_q15(
 
     /* The results in the 4 accumulators are in 2.30 format. Convert to 1.15 with saturation.
        Then store the 4 outputs in the destination buffer. */
-#if __RISCV_XLEN == 64
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
     write_q15x4_ia (&pDst, __RV_PKBB32(__PKHBT(__SSAT((acc2 >> 15), 16), __SSAT((acc3 >> 15), 16), 16),__PKHBT(__SSAT((acc0 >> 15), 16), __SSAT((acc1 >> 15), 16), 16)));
 #else
     write_q15x2_ia (&pDst, __PKHBT(__SSAT((acc0 >> 15), 16), __SSAT((acc1 >> 15), 16), 16));
     write_q15x2_ia (&pDst, __PKHBT(__SSAT((acc2 >> 15), 16), __SSAT((acc3 >> 15), 16), 16));
-#endif /* __RISCV_XLEN == 64 */
+#endif /* (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
     /* Advance the state pointer by 4 to process the next group of 4 samples */
     pState = pState + 4U;
 
@@ -218,7 +218,7 @@ void riscv_fir_fast_q15(
   }
 
   /* Loop unrolling: Compute remaining output samples */
-  blkCnt = blockSize % 0x4U;
+  blkCnt = blockSize & 0x3U;
 
 #else
 
@@ -265,7 +265,7 @@ void riscv_fir_fast_q15(
       tapCnt--;
     }
     while (tapCnt > 0U);
-#endif
+#endif /* defined (RISCV_MATH_VECTOR) */
     /* The result is in 2.30 format. Convert to 1.15 with saturation.
        Then store the output in the destination buffer. */
     *pDst++ = (q15_t) (__SSAT((acc0 >> 15), 16));

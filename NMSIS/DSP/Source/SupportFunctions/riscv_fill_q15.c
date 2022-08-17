@@ -50,45 +50,52 @@ void riscv_fill_q15(
   q15_t * pDst,
   uint32_t blockSize)
 {
-  uint32_t blkCnt;                               /* Loop counter */
+  uint32_t blkCnt;                       /* Loop counter */
 
 #if defined(RISCV_MATH_VECTOR)
-  blkCnt = blockSize;                               /* Loop counter */
+  blkCnt = blockSize;                    /* Loop counter */
   size_t l;
   vint16m8_t v_fill;
   l = vsetvlmax_e16m8();
   v_fill = vmv_v_x_i16m8(value, l);
-  for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
+  for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+  {
     vse16_v_i16m8 (pDst, v_fill, l);
     pDst += l;
   }
-#elif defined (RISCV_MATH_LOOPUNROLL)
+#else
+#if defined (RISCV_MATH_LOOPUNROLL)
   q31_t packedValue;                             /* value packed to 32 bits */
 
   /* Packing two 16 bit values to 32 bit value in order to use SIMD */
   //packedValue = __PKHBT(value, value, 16U);
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+  q63_t packedValue64;                       /* value packed to 32 bits */
   packedValue = __PKBB16(value, value);
-#if __RISCV_XLEN == 64
-  q63_t packedValue64;                             /* value packed to 32 bits */
   packedValue64 = __RV_PKBB32(packedValue,packedValue);
-#endif /* __RISCV_XLEN == 64 */
-  /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
 
   while (blkCnt > 0U)
   {
     /* C = value */
-#if __RISCV_XLEN == 64
-    write_q15x4_ia (&pDst, packedValue64);
-#else
-    /* fill 2 times 2 samples at a time */
-    write_q15x2_ia (&pDst, packedValue);
-    write_q15x2_ia (&pDst, packedValue);
-#endif /* __RISCV_XLEN == 64 */
 
-    /* Decrement loop counter */
+    /* fill 4 times 2 samples at a time */
+    write_q15x4_ia(&pDst, packedValue64);
     blkCnt--;
   }
+#else
+  packedValue = __PKHBT(value, value, 16U);
+  blkCnt = blockSize >> 2U;
+    while (blkCnt > 0U)
+  {
+    /* C = value */
+
+    /* fill 2 times 2 samples at a time */
+    write_q15x2_ia(&pDst, packedValue);
+    write_q15x2_ia(&pDst, packedValue);
+    blkCnt--;
+  }
+#endif /* RISCV_MATH_DSP && __RISCV_XLEN == 64 */
 
   /* Loop unrolling: Compute remaining outputs */
   blkCnt = blockSize & 0x3U;
@@ -110,6 +117,7 @@ void riscv_fill_q15(
     /* Decrement loop counter */
     blkCnt--;
   }
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

@@ -131,40 +131,6 @@ riscv_status riscv_conv_partial_opt_q15(
     /* points to smaller length sequence */
     px = pIn2;
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
-#if __RISCV_XLEN == 64
-  pScr2 -= 3;
-#endif /* __RISCV_XLEN == 64 */
-    /* Loop unrolling: Compute 4 outputs at a time */
-    k = srcBLen >> 2U;
-
-    /* Copy smaller length input sequence in reverse order into second scratch buffer */
-    while (k > 0U)
-    {
-#if __RISCV_XLEN == 64
-    write_q15x4_da(&pScr2,read_q15x4_ia(&px));
-#else
-      /* copy second buffer in reversal manner */
-      *pScr2-- = *px++;
-      *pScr2-- = *px++;
-      *pScr2-- = *px++;
-      *pScr2-- = *px++;
-#endif /* __RISCV_XLEN == 64 */
-      /* Decrement loop counter */
-      k--;
-    }
-#if __RISCV_XLEN == 64
-  pScr2 += 3;
-#endif /* __RISCV_XLEN == 64 */
-    /* Loop unrolling: Compute remaining outputs */
-    k = srcBLen & 0x3U;
-
-#else
-
-    /* Initialize k with number of samples */
-    k = srcBLen;
-
-#endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
 #if defined (RISCV_MATH_VECTOR)
   uint32_t vblkCnt = srcBLen;                               /* Loop counter */
   size_t l;
@@ -177,6 +143,34 @@ riscv_status riscv_conv_partial_opt_q15(
     pScr2 -= l;
   }
 #else
+#if defined (RISCV_MATH_LOOPUNROLL)
+
+    /* Loop unrolling: Compute 4 outputs at a time */
+    k = srcBLen >> 2U;
+
+    /* Copy smaller length input sequence in reverse order into second scratch buffer */
+    while (k > 0U)
+    {
+      /* copy second buffer in reversal manner */
+      *pScr2-- = *px++;
+      *pScr2-- = *px++;
+      *pScr2-- = *px++;
+      *pScr2-- = *px++;
+
+      /* Decrement loop counter */
+      k--;
+    }
+
+    /* Loop unrolling: Compute remaining outputs */
+    k = srcBLen & 0x3U;
+
+#else
+
+    /* Initialize k with number of samples */
+    k = srcBLen;
+
+#endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
+
     while (k > 0U)
     {
       /* copy second buffer in reversal manner for remaining samples */
@@ -185,7 +179,7 @@ riscv_status riscv_conv_partial_opt_q15(
       /* Decrement loop counter */
       k--;
     }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif /* defined (RISCV_MATH_VECTOR) */
     /* Initialze temporary scratch pointer */
     pScr1 = pScratch1;
 
@@ -219,7 +213,43 @@ riscv_status riscv_conv_partial_opt_q15(
 
     /* Actual convolution process starts here */
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
+    blkCnt = numPoints;
+    while (blkCnt > 0)
+    {
+        pScr1 = pScratch1;
+
+        /* Clear Accumlators */
+        acc0 = 0;
+
+        uint32_t vblkCnt = srcBLen;                               /* Loop counter */
+        size_t l;
+        vint16m4_t vx, vy;
+        vint32m1_t temp00m1;
+        l = vsetvl_e32m1(1);
+        temp00m1 = vmv_v_x_i32m1(0, l);
+        for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+          vx = vle16_v_i16m4(pScr1, l);
+          pScr1 += l;
+          vy = vle16_v_i16m4(pIn2, l);
+          pIn2 += l;
+          temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
+        }
+        acc0 += vmv_x_s_i32m1_i32(temp00m1);
+
+        blkCnt--;
+
+        /* The result is in 2.30 format.  Convert to 1.15 with saturation.
+         ** Then store the output in the destination buffer. */
+        *pOut++ = (q15_t) (__SSAT((acc0 >> 15), 16));
+
+        /* Initialization of inputB pointer */
+        pIn2 = py;
+
+        pScratch1 += 1U;
+    }
+#else
+#if defined (RISCV_MATH_LOOPUNROLL)
 
     /* Loop unrolling: Compute 4 outputs at a time */
     blkCnt = (numPoints) >> 2;
@@ -236,10 +266,10 @@ riscv_status riscv_conv_partial_opt_q15(
       acc3 = 0;
 
       /* Read two samples from scratch1 buffer */
-      x1 = read_q15x2_ia (&pScr1);
+      x1 = read_q15x2_ia((q15_t **)&pScr1);
 
       /* Read next two samples from scratch1 buffer */
-      x2 = read_q15x2_ia (&pScr1);
+      x2 = read_q15x2_ia((q15_t **)&pScr1);
 
       tapCnt = (srcBLen) >> 2U;
 
@@ -247,8 +277,8 @@ riscv_status riscv_conv_partial_opt_q15(
       {
 
         /* Read four samples from smaller buffer */
-        y1 = read_q15x2_ia ((q15_t **) &pIn2);
-        y2 = read_q15x2_ia ((q15_t **) &pIn2);
+        y1 = read_q15x2_ia((q15_t **)&pIn2);
+        y2 = read_q15x2_ia((q15_t **)&pIn2);
 
         /* multiply and accumulate */
         acc0 = __SMLALD(x1, y1, acc0);
@@ -261,7 +291,7 @@ riscv_status riscv_conv_partial_opt_q15(
         acc1 = __SMLALDX(x3, y1, acc1);
 
         /* Read next two samples from scratch1 buffer */
-        x1 = read_q15x2_ia (&pScr1);
+        x1 = read_q15x2_ia((q15_t **)&pScr1);
 
         /* multiply and accumulate */
         acc0 = __SMLALD(x2, y2, acc0);
@@ -273,7 +303,7 @@ riscv_status riscv_conv_partial_opt_q15(
         acc3 = __SMLALDX(x3, y1, acc3);
         acc1 = __SMLALDX(x3, y2, acc1);
 
-        x2 = read_q15x2_ia (&pScr1);
+        x2 = read_q15x2_ia((q15_t **)&pScr1);
 
         x3 = __PKHBT(x2, x1, 0);
 
@@ -333,31 +363,16 @@ riscv_status riscv_conv_partial_opt_q15(
 
       /* Clear Accumlators */
       acc0 = 0;
-#if defined (RISCV_MATH_VECTOR)
-    uint32_t vblkCnt = srcBLen;                               /* Loop counter */
-    size_t l;
-    vint16m4_t vx, vy;
-    vint32m1_t temp00m1;
-    l = vsetvl_e32m1(1);
-    temp00m1 = vmv_v_x_i32m1(0, l);
-    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle16_v_i16m4(pScr1, l);
-      pScr1 += l;
-      vy = vle16_v_i16m4(pIn2, l);
-      pIn2 += l;
-      temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
-    }
-    acc0 += vmv_x_s_i32m1_i32(temp00m1);
-#else
+
       tapCnt = (srcBLen) >> 1U;
 
       while (tapCnt > 0U)
       {
         /* Read next two samples from scratch1 buffer */
-        x1 = read_q15x2_ia (&pScr1);
+        x1 = read_q15x2_ia((q15_t **)&pScr1);
 
         /* Read two samples from smaller buffer */
-        y1 = read_q15x2_ia ((q15_t **) &pIn2);
+        y1 = read_q15x2_ia((q15_t **)&pIn2);
 
         acc0 = __SMLALD(x1, y1, acc0);
 
@@ -376,7 +391,7 @@ riscv_status riscv_conv_partial_opt_q15(
         /* Decrement loop counter */
         tapCnt--;
       }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+
       blkCnt--;
 
       /* The result is in 2.30 format.  Convert to 1.15 with saturation.
@@ -389,7 +404,7 @@ riscv_status riscv_conv_partial_opt_q15(
       pScratch1 += 1U;
 
     }
-
+#endif /* defined (RISCV_MATH_VECTOR) */
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
   }
