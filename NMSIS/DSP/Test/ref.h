@@ -705,6 +705,48 @@ riscv_status ref_mat_add_q15(const riscv_matrix_instance_q15 *pSrcA,
 /*
  * Statistics Functions
  */
+void ref_absmax_f32(const float32_t *pSrc, uint32_t blockSize,
+                    float32_t *pResult, uint32_t * pIndex);
+
+void ref_absmax_no_idx_f32(const float32_t *pSrc, uint32_t blockSize,
+                           float32_t *pResult);
+
+void ref_absmin_f32(const float32_t *pSrc, uint32_t blockSize,
+                    float32_t *pResult, uint32_t *pIndex);
+
+void ref_absmin_no_idx_f32(const float32_t *pSrc, uint32_t blockSize,
+                           float32_t *pResult);
+
+void ref_absmax_q31(const q31_t *pSrc, uint32_t blockSize, q31_t *pResult,
+                    uint32_t *pIndex);
+
+void ref_absmax_no_idx_q31(const q31_t *pSrc, uint32_t blockSize, q31_t *pResult);
+
+void ref_absmin_q31(const q31_t *pSrc, uint32_t blockSize, q31_t *pResult,
+                    uint32_t *pIndex);
+
+void ref_absmin_no_idx_q31(const q31_t *pSrc, uint32_t blockSize, q31_t *pResult);
+
+void ref_absmax_q15(const q15_t *pSrc, uint32_t blockSize, q15_t *pResult,
+                    uint32_t *pIndex);
+
+void ref_absmax_no_idx_q15(const q15_t *pSrc, uint32_t blockSize, q15_t *pResult);
+
+void ref_absmin_q15(const q15_t *pSrc, uint32_t blockSize, q15_t *pResult,
+                    uint32_t *pIndex);
+
+void ref_absmin_no_idx_q15(const q15_t *pSrc, uint32_t blockSize, q15_t *pResult);
+
+void ref_absmax_q7(const q7_t *pSrc, uint32_t blockSize, q7_t *pResult,
+                   uint32_t *pIndex);
+
+void ref_absmax_no_idx_q7(const q7_t *pSrc, uint32_t blockSize, q7_t *pResult);
+
+void ref_absmin_q7(const q7_t *pSrc, uint32_t blockSize, q7_t *pResult,
+                   uint32_t *pIndex);
+
+void ref_absmin_no_idx_q7(const q7_t *pSrc, uint32_t blockSize, q7_t *pResult);
+
 void ref_max_f32(float32_t *pSrc, uint32_t blockSize, float32_t *pResult,
                  uint32_t *pIndex);
 void ref_max_no_idx_f32(float32_t * pSrc, uint32_t blockSize, float32_t * pResult);
