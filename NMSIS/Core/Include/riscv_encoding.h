@@ -168,6 +168,11 @@
 #define MIE_HEIE            MIP_HEIP
 #define MIE_MEIE            MIP_MEIP
 
+#define MCAUSE_INTR         (1ULL << (__riscv_xlen - 1))
+#define MCAUSE_CAUSE        0x00000FFFUL
+#define SCAUSE_INTR         MCAUSE_INTR
+#define SCAUSE_CAUSE        0x000003FFUL
+
 /* === P-ext CSR bit mask === */
 
 #define UCODE_OV            (0x1)
@@ -239,7 +244,9 @@
 #define MCFG_INFO_SMP               (1<<11)
 #define MCFG_INFO_DSP_N1            (1<<12)
 #define MCFG_INFO_DSP_N2            (1<<13)
+#define MCFG_INFO_DSP_N3            (1<<14)
 #define MCFG_INFO_IREGION_EXIST     (1<<16)
+#define MCFG_INFO_VP                (0x3<<17)
 
 #define MICFG_IC_SET                (0xF<<0)
 #define MICFG_IC_WAY                (0x7<<4)
@@ -256,6 +263,9 @@
 #define MDCFG_DLM_SIZE              (0x1F<<16)
 #define MDCFG_DLM_ECC               (0x1<<21)
 
+#define MIRGB_INFO_IRG_BASE_ADDR_BOFS       (10)
+#define MIRGB_INFO_IREGION_SIZE_BOFS        (1)
+
 #define MPPICFG_INFO_PPI_SIZE       (0x1F<<1)
 #define MPPICFG_INFO_PPI_BPA        (((1ULL<<((__riscv_xlen)-10))-1)<<10)
 
@@ -271,6 +281,17 @@
 #define CCM_SUEN_SUEN               (0x1<<0)
 #define CCM_DATA_DATA               (0x7<<0)
 #define CCM_COMMAND_COMMAND         (0x1F<<0)
+
+/* IREGION Offsets */
+#define IREGION_IINFO_OFS           (0x0)
+#define IREGION_DEBUG_OFS           (0x10000)
+#define IREGION_ECLIC_OFS           (0x20000)
+#define IREGION_TIMER_OFS           (0x30000)
+#define IREGION_SMP_OFS             (0x40000)
+#define IREGION_IDU_OFS             (0x50000)
+#define IREGION_PL2_OFS             (0x60000)
+#define IREGION_DPREFETCH_OFS       (0x70000)
+#define IREGION_PLIC_OFS            (0x4000000)
 
 #define SIP_SSIP MIP_SSIP
 #define SIP_STIP MIP_STIP
@@ -358,6 +379,20 @@
 
 #define PMP_SHIFT            2
 #define PMP_COUNT            16
+
+/* === sPMP CFG Bits === */
+#define SPMP_R               PMP_R
+#define SPMP_W               PMP_W
+#define SPMP_X               PMP_X
+#define SPMP_A               PMP_A
+#define SPMP_A_TOR           PMP_A_TOR
+#define SPMP_A_NA4           PMP_A_NA4
+#define SPMP_A_NAPOT         PMP_A_NAPOT
+#define SPMP_U               0x40
+#define SPMP_L               PMP_L
+
+#define SPMP_SHIFT           PMP_SHIFT
+#define SPMP_COUNT           16
 
 // page table entry (PTE) fields
 #define PTE_V     0x001 // Valid
@@ -450,6 +485,7 @@
 #define CSR_SIDELEG 0x103
 #define CSR_SIE 0x104
 #define CSR_STVEC 0x105
+#define CSR_STVT 0x107
 #define CSR_SCOUNTEREN 0x106
 #define CSR_SENVCFG 0x10a
 #define CSR_SSTATEEN0 0x10c
@@ -904,6 +940,23 @@
 #define CAUSE_SUPERVISOR_ECALL 0x9
 #define CAUSE_HYPERVISOR_ECALL 0xa
 #define CAUSE_MACHINE_ECALL 0xb
+#define CAUSE_FETCH_PAGE_FAULT 0xc
+#define CAUSE_LOAD_PAGE_FAULT 0xd
+#define CAUSE_STORE_PAGE_FAULT 0xf
+
+/* Delegatable Exception Code Mask in MCAUSE CSR*/
+#define MISALIGNED_FETCH            (1 << CAUSE_MISALIGNED_FETCH)
+#define FAULT_FETCH                 (1 << CAUSE_FAULT_FETCH)
+#define ILLEGAL_INSTRUCTION         (1 << CAUSE_ILLEGAL_INSTRUCTION)
+#define BREAKPOINT                  (1 << CAUSE_BREAKPOINT)
+#define MISALIGNED_LOAD             (1 << CAUSE_MISALIGNED_LOAD)
+#define FAULT_LOAD                  (1 << CAUSE_FAULT_LOAD)
+#define MISALIGNED_STORE            (1 << CAUSE_MISALIGNED_STORE)
+#define FAULT_STORE                 (1 << CAUSE_FAULT_STORE)
+#define USER_ECALL                  (1 << CAUSE_USER_ECALL)
+#define FETCH_PAGE_FAULT            (1 << CAUSE_FETCH_PAGE_FAULT)
+#define LOAD_PAGE_FAULT             (1 << CAUSE_LOAD_PAGE_FAULT)
+#define STORE_PAGE_FAULT            (1 << CAUSE_STORE_PAGE_FAULT)
 
 /* Exception Subcode in MDCAUSE CSR */
 #define DCAUSE_FAULT_FETCH_PMP      0x1
