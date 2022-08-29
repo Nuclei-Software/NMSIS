@@ -69,58 +69,65 @@ void riscv_relu_q7(q7_t *data, uint16_t size)
         vse8_v_i8m8(data, vmax_vx_i8m8(vx, zero, l), l);
         data += l;
     }
-    i = tmp_i;
 
-#elif defined(RISCV_MATH_DSP)
-    /* Run the following code for M cores with DSP extension */
-
-    q7_t *input = data;
-    q7_t *output = data;
-    q31_t in;
-    q31_t buf;
-    q31_t mask;
-    q31_t zero = 0;
-#if __RISCV_XLEN == 64
-    i = size >> 3;
-    uint16_t tmp_i = i;
-    q63_t in64;
-    while (i)
-    {
-
-        in64 = *__SIMD64(input)++;
-
-        *__SIMD64(output)++ = __RV_SMAX8 (in64, zero);
-
-        i--;
-    }
-
-    i = tmp_i;
-#else
-    i = size >> 2;
-    uint16_t tmp_i = size;
-    while (i)
-    {
-
-        in = *__SIMD32(input)++;
-
-        *__SIMD32(output)++ = __RV_SMAX8 (in, zero);
-
-        i--;
-    }
-
-    i = tmp_i;
-#endif /* __RISCV_XLEN == 64 */
-
-#else
-	i = 0;
-#endif /* RISCV_MATH_VECTOR */
-    /* Run the following code as reference implementation for cores without DSP extension */
-
-    for (; i < size; i++)
+    for (i = tmp_i; i < size; i++)
     {
         if (data[i] < 0)
             data[i] = 0;
     }
+#else
+#if defined(RISCV_MATH_DSP)
+    /* Run the following code for M cores with DSP extension */
+
+    q7_t *input = data;
+    q7_t *output = data;
+
+#if __RISCV_XLEN == 64
+    q63_t in64, zero = 0;
+    i = size >> 3;
+    while (i)
+    {
+
+        in64 = *__SIMD64(input)++;
+        *__SIMD64(output)++ = __RV_SMAX8(in64, zero);
+        i--;
+    }
+
+    i = size & 0x7;
+#else
+    q31_t in, zero = 0;
+    i = size >> 2;
+    while (i)
+    {
+        in = *__SIMD32(input)++;
+        *__SIMD32(output)++ = __RV_SMAX8(in, zero);
+        i--;
+    }
+
+    i = size & 0x3;
+#endif /* __RISCV_XLEN == 64 */
+    while (i)
+    {
+        if (*input < 0)
+        {
+            *input = 0;
+        }
+        input++;
+        i--;
+    }
+
+#else
+    /* Run the following code as reference implementation for cores without DSP extension */
+
+
+    for (i = 0; i < size; i++)
+    {
+        if (data[i] < 0)
+            data[i] = 0;
+    }
+
+#endif /* defined(RISCV_MATH_DSP) */
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

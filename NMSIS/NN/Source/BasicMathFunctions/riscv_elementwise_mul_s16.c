@@ -94,7 +94,7 @@ riscv_status riscv_elementwise_mul_s16(const int16_t *input_1_vect,
     loop_count = block_size & RVV_OPT_THRESHOLD;
 #else
     loop_count = block_size;
-#endif
+#endif /* defined(RISCV_MATH_VECTOR) */
 
     while (loop_count > 0)
     {

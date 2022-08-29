@@ -308,7 +308,8 @@ riscv_status riscv_convolve_HWC_q7_fast_nonsquare(const q7_t *Im_in,
             }
             sum += (q31_t)vmv_x_s_i32m1_i32(temp00m1);
             colCnt = colCnt & RVV_OPT_THRESHOLD;
-#elif defined (RISCV_MATH_DSP)
+#else
+#if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
             /* basically each time it process 4 entries */
             uint16_t  colCnt = ch_im_in * dim_kernel_x * dim_kernel_y >> 3;
@@ -321,7 +322,7 @@ riscv_status riscv_convolve_HWC_q7_fast_nonsquare(const q7_t *Im_in,
                 sum64  = __RV_SMAQA(sum64, inA1, inB1);
                 colCnt--;
             }
-            sum = sum + (q31_t)(sum64 & 0xFFFFFFFF) + (q31_t)((sum64 & 0xFFFFFFFF00000000)>>32);
+            sum += (q31_t)(sum64 & 0xFFFFFFFF) + (q31_t)((sum64 & 0xFFFFFFFF00000000)>>32);
             colCnt = (ch_im_in * dim_kernel_y * dim_kernel_x) & 0x7;
 #else
             /* basically each time it process 4 entries */
@@ -330,22 +331,15 @@ riscv_status riscv_convolve_HWC_q7_fast_nonsquare(const q7_t *Im_in,
             while (colCnt)
             {
 
-                //pA = (const q7_t *)read_and_pad_reordered((void *)pA, &inA1, &inA2);
                 q31_t inB1 = *__SIMD32(pB)++;
                 q31_t inA1 = *__SIMD32(pA)++;
                 sum  = __RV_SMAQA(sum, inA1, inB1);
 
-                /*colCnt--;
-                inB1 = *__SIMD32(pB)++;
-                sum = __SMLAD(inA1, inB1, sum);
-                inB2 = riscv_nn_read_q15x2_ia(&pB);
-                sum = __SMLAD(inA2, inB2, sum);
-                    */
                 colCnt--;
             }
             colCnt = (ch_im_in * dim_kernel_y * dim_kernel_x) & 0x3;
 #endif /* __RISCV_XLEN == 64 */
-#endif /*ndef RISCV_MATH_VECTOR*/
+
             while (colCnt)
             {
                 q7_t inA1 = *pA++;
@@ -353,6 +347,8 @@ riscv_status riscv_convolve_HWC_q7_fast_nonsquare(const q7_t *Im_in,
                 sum += inA1 * inB1;
                 colCnt--;
             }
+#endif /* RISCV_MATH_DSP */
+#endif /* RISCV_MATH_VECTOR */
             *pOut = (q7_t)__SSAT((sum >> out_shift), 8);
             pOut++;
         }

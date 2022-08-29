@@ -349,7 +349,7 @@ riscv_status riscv_fully_connected_q7_opt(const q7_t *pV,
 
             colCnt--;
         }
-        sum = sum + (q31_t)(sum64 & 0xFFFFFFFF) + (q31_t)((sum64 & 0xFFFFFFFF00000000)>>32);
+        sum += (q31_t)(sum64 & 0xFFFFFFFF) + (q31_t)((sum64 & 0xFFFFFFFF00000000)>>32);
         /* left-over of the vector */
         colCnt = dim_vec & 0x7;
 

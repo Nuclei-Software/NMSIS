@@ -154,7 +154,7 @@ riscv_status riscv_convolve_HWC_q7_basic_nonsquare(const q7_t *Im_in,
             q7_t    *pB = (q7_t *)bufferA;
 #if defined (RISCV_MATH_VECTOR)
             uint16_t colCnt = ch_im_in * dim_kernel_y * dim_kernel_x;
-            uint32_t vblkCnt = colCnt & (~RVV_OPT_THRESHOLD);
+            uint32_t vblkCnt = colCnt;
             size_t l;
             vint8m4_t vx, vz;
             vint32m1_t temp00m1;
@@ -169,8 +169,8 @@ riscv_status riscv_convolve_HWC_q7_basic_nonsquare(const q7_t *Im_in,
                 temp00m1 = vwredsum_vs_i16m8_i32m1(temp00m1, vwmul_vv_i16m8(vx, vz, l), temp00m1, l);
             }
             sum += (q31_t)vmv_x_s_i32m1_i32(temp00m1);
-            colCnt = colCnt & RVV_OPT_THRESHOLD;
-#elif defined (RISCV_MATH_DSP)
+#else
+#if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
             /* Each time it process 4 entries */
             uint16_t  colCnt = ch_im_in * dim_kernel_y * dim_kernel_x >> 3;
@@ -179,10 +179,10 @@ riscv_status riscv_convolve_HWC_q7_basic_nonsquare(const q7_t *Im_in,
             {
                 q63_t inB1 = *__SIMD64(pB)++;
                 q63_t inA1 = *__SIMD64(pA)++;
-                sum64  = __RV_KMADA(sum64, inA1, inB1);
+                sum64  = __SMLAD(inA1, inB1, sum64);
                 colCnt--;
             }
-            sum = sum + (q31_t)(sum64 & 0xFFFFFFFF) + (q31_t)((sum64 & 0xFFFFFFFF00000000)>>32);
+            sum += (q31_t)(sum64 & 0xFFFFFFFF) + (q31_t)((sum64 & 0xFFFFFFFF00000000)>>32);
             colCnt = ch_im_in * dim_kernel_y * dim_kernel_x & 0x7;
 #else
             /* Each time it process 4 entries */
@@ -194,28 +194,13 @@ riscv_status riscv_convolve_HWC_q7_basic_nonsquare(const q7_t *Im_in,
 
                 q31_t inB1 = *__SIMD32(pB)++;
                 q31_t inA1 = *__SIMD32(pA)++;
-                sum  = __RV_KMADA(sum, inA1, inB1);
+                sum  = __SMLAD(inA1, inB1, sum);
                 colCnt--;
-
-
-               /* q31_t     inA1, inA2;
-                q31_t     inB1, inB2;
-
-                pA = read_and_pad(pA, &inA1, &inA2);
-
-                inB1 = riscv_nn_read_q15x2_ia(&pB);
-                sum = __SMLAD(inA1, inB1, sum);
-                inB2 = riscv_nn_read_q15x2_ia(&pB);
-
-                sum = __SMLAD(inA2, inB2, sum);
-
-                colCnt--;*/
             }
             colCnt = ch_im_in * dim_kernel_y * dim_kernel_x & 0x3;
 #endif /* __RISCV_XLEN == 64 */
-#else
-            uint16_t colCnt = ch_im_in * dim_kernel_y * dim_kernel_x;
-#endif /*ndef RISCV_MATH_VECTOR*/
+
+
             while (colCnt)
             {
                 q7_t inA1 = *pA++;
@@ -223,6 +208,8 @@ riscv_status riscv_convolve_HWC_q7_basic_nonsquare(const q7_t *Im_in,
                 sum += inA1 * inB1;
                 colCnt--;
             }
+#endif /* defined (RISCV_MATH_DSP) */
+#endif /* RISCV_MATH_VECTOR*/
             *pOut++ = (q7_t)__SSAT((sum >> out_shift), 8);
         }
     }
@@ -263,7 +250,7 @@ riscv_status riscv_convolve_HWC_q7_basic_nonsquare(const q7_t *Im_in,
         }
     }
 
-#endif /* RISCV_MATH_DSP */
+#endif /* defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR) */
 
     /* Return to application */
     return RISCV_MATH_SUCCESS;

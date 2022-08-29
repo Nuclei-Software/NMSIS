@@ -268,7 +268,7 @@ riscv_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
                 }
 
                 col_count = (kernel_x * kernel_y) & 0x1;
-#endif
+#endif /* defined(RISCV_MATH_VECTOR) */
                 while (col_count)
                 {
                     sum += row_pos[0] * col_pos[0];
@@ -317,7 +317,7 @@ riscv_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
                 row_shift += 1;
                 int i = 0;
 #if defined(RISCV_MATH_VECTOR)
-                uint32_t blkCnt = col_count & (~RVV_OPT_THRESHOLD);                               /* Loop counter */
+                uint32_t blkCnt;                               /* Loop counter */
                 size_t l;
                 vint16m4_t a16m4, b16m4;
 
@@ -331,12 +331,12 @@ riscv_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
                     v_temp = vredsum_vs_i32m8_i32m1(v_temp, vwmul_vv_i32m8(a16m4, b16m4, l), v_temp, l);
                 }
                 sum += vmv_x_s_i32m1_i32(v_temp);
-#endif
-                for (; i < col_count; i++)
+#else
+                for (int i = 0; i < col_count; i++)
                 {
                     sum += row_pos[i * input_ch] * col_pos[i * input_ch];
                 }
-
+#endif /* defined(RISCV_MATH_VECTOR) */
                 sum = riscv_nn_requantize(sum, *output_mult++, *output_shift++);
                 sum += output_offset;
                 sum = MAX(sum, output_activation_min);

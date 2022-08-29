@@ -311,7 +311,7 @@ riscv_status riscv_depthwise_separable_conv_HWC_q7_nonsquare(const q7_t *Im_in,
                 *pOut++ = (q7_t)__SSAT((sum >> out_shift), 8);
                 rowCnt--;
             }
-#endif
+#endif /* defined(RISCV_MATH_VECTOR) */
             // clear counter and pointers
             pBuffer = colBuffer;
         }

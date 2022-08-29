@@ -227,12 +227,12 @@ riscv_status riscv_fully_connected_q15(const q15_t *pV,
 
             q63_t inB1 = *__SIMD64(pB)++;
             q63_t inA1 = *__SIMD64(pA)++;
-            sum64 = __RV_KMADA(sum64, inA1, inB1);
+            sum64 = __SMLAD(inA1, inB1, sum64);
             colCnt--;
-	    }
-        sum = sum + (q31_t)(sum64 & 0xFFFFFFFF) + (q31_t)((sum64 & 0xFFFFFFFF00000000)>>32);
-	    /* left-over of the vector */
-	    colCnt = dim_vec & 0x3;
+	      }
+        sum += (q31_t)(sum64 & 0xFFFFFFFF) + (q31_t)((sum64 & 0xFFFFFFFF00000000)>>32);
+        /* left-over of the vector */
+        colCnt = dim_vec & 0x3;
 #else
         uint16_t  colCnt = dim_vec >> 2;
         while (colCnt) {
@@ -247,14 +247,15 @@ riscv_status riscv_fully_connected_q15(const q15_t *pV,
 
             // q31_t     inB1 = *__SIMD32(pB)++;
             // q31_t     inA1 = *__SIMD32(pA)++;
-            // sum = __RV_KMADA(sum, inA1, inB1);
+            // sum = __SMLAD(inA1, inB1, sum);
             colCnt--;
-	}
+        }
 
-	/* left-over of the vector */
-	colCnt = dim_vec & 0x3;
+        /* left-over of the vector */
+        colCnt = dim_vec & 0x3;
 #endif /* __RISCV_XLEN == 64 */
-	while(colCnt) {
+        while (colCnt)
+        {
             q15_t inV = *pA++;
             q15_t inM = *pB++;
 

@@ -83,9 +83,9 @@ void riscv_softmax_q7(const q7_t *vec_in, const uint16_t dim_vec, q7_t *p_out)
         vtemp = vredmax_vs_i8m8_i8m1(vtemp, v_x, vtemp, l);
     }
     base = vmv_x_s_i8m1_i8(vtemp);
-	i = tmp_i;
+    i = tmp_i;
 #else
-	i = 0;
+    i = 0;
 #endif
     /* We first search for the maximum */
     for (; i < dim_vec; i++)

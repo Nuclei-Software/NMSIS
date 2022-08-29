@@ -228,13 +228,13 @@ riscv_status riscv_fully_connected_q15_opt(const q15_t *pV,
 
             inV = *__SIMD32(pA)++;
             inM11 = *__SIMD32(pB)++;
-            sum = __RV_KMADA(sum , inV, inM11);
+            sum = __SMLAD(inV, inM11, sum);
             inM12 = *__SIMD32(pB)++;
-            sum2 = __RV_KMADA(sum2, inV, inM12);
+            sum2 = __SMLAD(inV, inM12, sum2);
             inM13 = *__SIMD32(pB)++;
-            sum3 = __RV_KMADA(sum3, inV, inM13);
+            sum3 = __SMLAD(inV, inM13, sum3);
             inM14 = *__SIMD32(pB)++;
-            sum4 = __RV_KMADA(sum4, inV, inM14);
+            sum4 = __SMLAD(inV, inM14, sum4);
             colCnt--;
         }
 
@@ -282,18 +282,18 @@ riscv_status riscv_fully_connected_q15_opt(const q15_t *pV,
 
             inM1 = *__SIMD64(pB)++;
             inV1 = *__SIMD64(pA)++;
-            sum64 = __RV_KMADA(sum64, inV1, inM1);
+            sum64 = __SMLAD(inV1, inM1, sum64);
 
             // inM2 = *__SIMD64(pB)++;
             // inV2 = *__SIMD64(pA)++;
-            // sum = __RV_SMALDA(sum, inV2, inM2);
+            // sum = __SMLALD(inV2, inM2, sum);
 
            // q31_t   inB1 = *__SIMD32(pB)++;
            // q31_t   inA1 = *__SIMD32(pA)++;
             //sum = __RV_KMAR64(sum, inB1, inA1);
             colCnt--;
         }
-    sum = sum + (q31_t)(sum64 & 0xFFFFFFFF) + (q31_t)((sum64 & 0xFFFFFFFF00000000)>>32);
+        sum += (q31_t)(sum64 & 0xFFFFFFFF) + (q31_t)((sum64 & 0xFFFFFFFF00000000)>>32);
 
         /* left-over of the vector */
         // colCnt = dim_vec & 0x7;
@@ -306,11 +306,11 @@ riscv_status riscv_fully_connected_q15_opt(const q15_t *pV,
 
             inM1 = *__SIMD32(pB)++;
             inV1 = *__SIMD32(pA)++;
-            sum = __RV_KMADA(sum, inV1, inM1);
+            sum = __SMLAD(inV1, inM1, sum);
 
             inM2 = *__SIMD32(pB)++;
             inV2 = *__SIMD32(pA)++;
-            sum = __RV_KMADA(sum, inV2, inM2);
+            sum = __SMLAD(inV2, inM2, sum);
 
            // q31_t   inB1 = *__SIMD32(pB)++;
            // q31_t   inA1 = *__SIMD32(pA)++;

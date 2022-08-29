@@ -112,7 +112,7 @@ riscv_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
     q31_t *pOUT;
     l = vsetvl_e32m1(1);
     v_temp = vsub_vv_i32m1(v_temp, v_temp, l);
-#endif
+#endif /* defined(RISCV_MATH_VECTOR) */
     // Left shift state
     memmove((int8_t *)state_data,
             (int8_t *)state_data + 1,
@@ -211,7 +211,7 @@ riscv_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
                 int j;
 #if defined(RISCV_MATH_VECTOR)
                 blkCnt = feature_batches & (~RVV_OPT_THRESHOLD);
-				int tmp_j = blkCnt;
+                int tmp_j = blkCnt;
                 pA = ptr_a;
                 pB = bi;
                 pOUT = output_temp;

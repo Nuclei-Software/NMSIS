@@ -152,24 +152,24 @@ riscv_status riscv_convolve_1x1_HWC_q7_fast_nonsquare(const q7_t *Im_in,
             /* basically each time it process 4 entries */
             uint16_t  colCnt = ch_im_in * dim_kernel_x * dim_kernel_y;
 #if defined(RISCV_MATH_VECTOR)
-                int32_t blkCnt;
-                vint8m4_t a8m4, b8m4;
-                vint32m1_t v_temp;
-                size_t l;
-                l = vsetvl_e32m1(1);
-                v_temp = vsub_vv_i32m1(v_temp, v_temp, l);
-                blkCnt = colCnt & (~RVV_OPT_THRESHOLD);                               /* Loop counter */
-                for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l)
-                {
-                    a8m4 = vle8_v_i8m4(pA, l);
-                    pA += l;
-                    b8m4 = vle8_v_i8m4(pB, l);
-                    pB += l;
-                    v_temp = vwredsum_vs_i16m8_i32m1(v_temp, vwmul_vv_i16m8(a8m4, b8m4, l), v_temp, l);
-                }
-                sum += vmv_x_s_i32m1_i32(v_temp);
-                colCnt = colCnt & RVV_OPT_THRESHOLD;
-#elif defined (RISCV_MATH_DSP)
+            int32_t blkCnt;
+            vint8m4_t a8m4, b8m4;
+            vint32m1_t v_temp;
+            size_t l;
+            l = vsetvl_e32m1(1);
+            v_temp = vsub_vv_i32m1(v_temp, v_temp, l);
+            blkCnt = colCnt;                               /* Loop counter */
+            for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l)
+            {
+                a8m4 = vle8_v_i8m4(pA, l);
+                pA += l;
+                b8m4 = vle8_v_i8m4(pB, l);
+                pB += l;
+                v_temp = vwredsum_vs_i16m8_i32m1(v_temp, vwmul_vv_i16m8(a8m4, b8m4, l), v_temp, l);
+            }
+            sum += vmv_x_s_i32m1_i32(v_temp);
+#else
+#if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
             uint16_t colCnt1 = colCnt >> 3;
             q63_t sum64 = 0;
@@ -181,7 +181,7 @@ riscv_status riscv_convolve_1x1_HWC_q7_fast_nonsquare(const q7_t *Im_in,
 
                 colCnt--;
             }
-            sum = sum + (q31_t)(sum64 & 0xFFFFFFFF) + (q31_t)((sum64 & 0xFFFFFFFF00000000)>>32);
+            sum += (q31_t)(sum64 & 0xFFFFFFFF) + (q31_t)((sum64 & 0xFFFFFFFF00000000)>>32);
             colCnt = colCnt & 0x7;
 
 #else
@@ -204,7 +204,8 @@ riscv_status riscv_convolve_1x1_HWC_q7_fast_nonsquare(const q7_t *Im_in,
                 sum += inA1 * inB1;
                 colCnt--;
             }
-#endif
+#endif /* defined (RISCV_MATH_DSP) */
+#endif /* defined(RISCV_MATH_VECTOR) */
             *pOut = (q7_t) __SSAT((sum >> out_shift), 8);
             pOut++;
         }
@@ -254,7 +255,7 @@ riscv_status riscv_convolve_1x1_HWC_q7_fast_nonsquare(const q7_t *Im_in,
         }
     }
 
-#endif /* RISCV_MATH_DSP */
+#endif /* defined(RISCV_MATH_DSP)  || defined (RISCV_MATH_VECTOR) */
 
     /* Return to application */
     return RISCV_MATH_SUCCESS;

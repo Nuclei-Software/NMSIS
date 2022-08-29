@@ -79,7 +79,7 @@ q7_t *riscv_nn_mat_mult_kernel_q7_reordered(const q7_t * pA,
         q31_t sum3 = ((q31_t)(bias[i + 1]) << bias_shift) + NN_ROUND(out_shift);
         q31_t sum4 = sum3;
 
-#if defined(RISCV_MATH_VECTOR) && !defined (RISCV_MATH_DSP)
+#if defined(RISCV_MATH_VECTOR)
         /* accumulate over the vector */
         size_t l;
         uint16_t  colCnt = numCol_A & (~RVV_OPT_THRESHOLD);
@@ -113,7 +113,7 @@ q7_t *riscv_nn_mat_mult_kernel_q7_reordered(const q7_t * pA,
         sum3 += (q31_t)vmv_x_s_i32m1_i32(v_sum3);
         sum4 += (q31_t)vmv_x_s_i32m1_i32(v_sum4);
         colCnt = numCol_A & RVV_OPT_THRESHOLD;
-#else
+#elif defined(RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
         uint16_t  colCnt = numCol_A >> 3;
         q63_t sum64 = 0, sum642 = 0, sum643 = 0, sum644 = 0;
@@ -132,10 +132,10 @@ q7_t *riscv_nn_mat_mult_kernel_q7_reordered(const q7_t * pA,
 
             colCnt--;
         }                       /* while over colCnt */
-        sum  = sum  + (q31_t)(sum64  & 0xFFFFFFFF) + (q31_t)((sum64  & 0xFFFFFFFF00000000)>>32);
-        sum2 = sum2 + (q31_t)(sum642 & 0xFFFFFFFF) + (q31_t)((sum642 & 0xFFFFFFFF00000000)>>32);
-        sum3 = sum3 + (q31_t)(sum643 & 0xFFFFFFFF) + (q31_t)((sum643 & 0xFFFFFFFF00000000)>>32);
-        sum4 = sum4 + (q31_t)(sum644 & 0xFFFFFFFF) + (q31_t)((sum644 & 0xFFFFFFFF00000000)>>32);
+        sum  += (q31_t)(sum64  & 0xFFFFFFFF) + (q31_t)((sum64  & 0xFFFFFFFF00000000)>>32);
+        sum2 += (q31_t)(sum642 & 0xFFFFFFFF) + (q31_t)((sum642 & 0xFFFFFFFF00000000)>>32);
+        sum3 += (q31_t)(sum643 & 0xFFFFFFFF) + (q31_t)((sum643 & 0xFFFFFFFF00000000)>>32);
+        sum4 += (q31_t)(sum644 & 0xFFFFFFFF) + (q31_t)((sum644 & 0xFFFFFFFF00000000)>>32);
 
         colCnt = numCol_A & 0x7;
 #else

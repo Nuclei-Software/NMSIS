@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2010-2022 Arm Limited or its affiliates.
- * Copyright (c) 2019 Nuclei Limited. All rights reserved.
+ * Copyright (c) 2022 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -31,8 +31,7 @@
 #ifndef _RISCV_NNSUPPORTFUNCTIONS_H_
 #define _RISCV_NNSUPPORTFUNCTIONS_H_
 
-#include "riscv_common_tables.h"
-#include "riscv_math_types.h"
+#include "riscv_nn_math_types.h"
 #include "riscv_nn_types.h"
 
 #ifdef __cplusplus
@@ -55,6 +54,12 @@ extern "C" {
  * RVV_OPT_THRESHOLD could be {0x0, 0x1, 0x3, 0x7, 0xF, 0x1F, 0x3F ...}
  */
 #define RVV_OPT_THRESHOLD 0xF
+/**
+ * @brief definition to pack four 8 bit values.
+ */
+#define PACK_Q7x4_32x1(v0, v1, v2, v3)                                                                                 \
+    ((((int32_t)(v0) << 0) & (int32_t)0x000000FF) | (((int32_t)(v1) << 8) & (int32_t)0x0000FF00) |                     \
+     (((int32_t)(v2) << 16) & (int32_t)0x00FF0000) | (((int32_t)(v3) << 24) & (int32_t)0xFF000000))
 
 /**
  * @brief Union for SIMD access of q31/q15/q7 types
@@ -597,11 +602,11 @@ __STATIC_FORCEINLINE q31_t riscv_nn_read_q15x2_ia(const q15_t **in_q15)
     q31_t val;
 
 #ifdef __RISCV_FEATURE_UNALIGNED
-  memcpy (&val, *in_q15, 4);
+    memcpy(&val, *in_q15, 4);
 #else
     __ASM volatile ("lw %0, 0(%1)" : "=r" (val) : "r" (*in_q15));
 #endif
-  *in_q15 += 2;
+    *in_q15 += 2;
 
     return (val);
 }
@@ -613,11 +618,11 @@ __STATIC_FORCEINLINE q31_t riscv_nn_read_q15x2_ia(const q15_t **in_q15)
  */
 __STATIC_FORCEINLINE q31_t riscv_nn_read_q7x4_ia(const q7_t **in_q7)
 {
-  q31_t val;
+    q31_t val;
 #ifdef __RISCV_FEATURE_UNALIGNED
-  memcpy (&val, *in_q7, 4);
+    memcpy (&val, *in_q7, 4);
 #else
-  __ASM volatile ("lw %0, 0(%1)" : "=r" (val) : "r" (*in_q7));
+    __ASM volatile ("lw %0, 0(%1)" : "=r" (val) : "r" (*in_q7));
 #endif
   *in_q7 += 4;
 
@@ -631,9 +636,9 @@ __STATIC_FORCEINLINE q31_t riscv_nn_read_q7x4_ia(const q7_t **in_q7)
  */
 __STATIC_FORCEINLINE q31_t riscv_nn_read_q15x2(const q15_t *in_q15)
 {
-  q31_t val;
+    q31_t val;
 #ifdef __RISCV_FEATURE_UNALIGNED
-  memcpy (&val, in_q15, 4);
+    memcpy (&val, in_q15, 4);
 #else
     __ASM volatile ("lw %0, 0(%1)" : "=r" (val) : "r" (in_q15));
 #endif
@@ -649,9 +654,9 @@ __STATIC_FORCEINLINE q31_t riscv_nn_read_q15x2(const q15_t *in_q15)
  */
 __STATIC_FORCEINLINE q31_t riscv_nn_read_q7x4(const q7_t *in_q7)
 {
-  q31_t val;
+    q31_t val;
 #ifdef __RISCV_FEATURE_UNALIGNED
-  memcpy (&val, in_q7, 4);
+    memcpy (&val, in_q7, 4);
 #else
     __ASM volatile ("lw %0, 0(%1)" : "=r" (val) : "r" (in_q7));
 #endif
@@ -691,7 +696,7 @@ __STATIC_FORCEINLINE void riscv_memset_q7(q7_t *dst, const q7_t val, uint32_t bl
 __STATIC_FORCEINLINE const q7_t *read_and_pad(const q7_t *source, q31_t *out1, q31_t *out2)
 {
     q31_t inA = riscv_nn_read_q7x4_ia(&source);
-    q31_t inAbuf1 = __SXTB16(__ROR((uint32_t)inA, 8));
+    q31_t inAbuf1 = __SXTB16_RORn((uint32_t)inA, 8);
     q31_t inAbuf2 = __SXTB16(inA);
 
     *out2 = (int32_t)(__PKHTB(inAbuf1, inAbuf2, 16));
@@ -852,8 +857,8 @@ void riscv_nn_softmax_common_s8(const int8_t *input,
 /**
  * @brief           Saturating doubling high multiply. Result matches
  *                  NEON instruction VQRDMULH.
- * @param[in]       m1        Multiplicand. Range: {Q31_MIN, Q31_MAX}
- * @param[in]       m2        Multiplier. Range: {Q31_MIN, Q31_MAX}
+ * @param[in]       m1        Multiplicand. Range: {NN_Q31_MIN, NN_Q31_MAX}
+ * @param[in]       m2        Multiplier. Range: {NN_Q31_MIN, NN_Q31_MAX}
  * @return          Result of multiplication.
  *
  */
@@ -874,9 +879,9 @@ __STATIC_FORCEINLINE q31_t riscv_nn_doubling_high_mult(const q31_t m1, const q31
     // as well.
     result = (int32_t)(mult / (1ll << 31));
 
-    if ((m1 == m2) && (m1 == (int32_t)Q31_MIN))
+    if ((m1 == m2) && (m1 == (int32_t)NN_Q31_MIN))
     {
-        result = Q31_MAX;
+        result = NN_Q31_MAX;
     }
     return result;
 }
@@ -885,13 +890,13 @@ __STATIC_FORCEINLINE q31_t riscv_nn_doubling_high_mult(const q31_t m1, const q31
  * @brief           Doubling high multiply without saturation. This is intended
  *                  for requantization where the scale is a positive integer
  *
- * @param[in]       m1        Multiplicand. Range: {Q31_MIN, Q31_MAX}
- * @param[in]       m2        Multiplier Range: {Q31_MIN, Q31_MAX}
+ * @param[in]       m1        Multiplicand. Range: {NN_Q31_MIN, NN_Q31_MAX}
+ * @param[in]       m2        Multiplier Range: {NN_Q31_MIN, NN_Q31_MAX}
  * @return          Result of multiplication.
  * @note            The result of this matches that of neon instruction
- *                  VQRDMULH for m1 in range {Q31_MIN, Q31_MAX} and m2 in
- *                  range {Q31_MIN + 1, Q31_MAX}. Saturation occurs when
- *                  m1 equals m2 equals Q31_MIN and that is not handled by
+ *                  VQRDMULH for m1 in range {NN_Q31_MIN, NN_Q31_MAX} and m2 in
+ *                  range {NN_Q31_MIN + 1, NN_Q31_MAX}. Saturation occurs when
+ *                  m1 equals m2 equals NN_Q31_MIN and that is not handled by
  *                  this function.
  *
  */
@@ -948,7 +953,7 @@ __STATIC_FORCEINLINE q31_t riscv_nn_divide_by_power_of_two(const q31_t dividend,
 /**
  * @brief           Requantize a given value.
  * @param[in]       val         Value to be requantized
- * @param[in]       multiplier  multiplier. Range {Q31_MIN + 1, Q32_MAX}
+ * @param[in]       multiplier  multiplier. Range {NN_Q31_MIN + 1, Q32_MAX}
  * @param[in]       shift       left or right shift for 'val * multiplier'
  *
  * @return          Returns (val * multiplier)/(2 ^ shift)
@@ -1024,21 +1029,21 @@ __STATIC_FORCEINLINE int32_t riscv_nn_exp_on_negative_values(int32_t val)
 #undef SELECT_IF_NON_ZERO
 
     mask = MASK_IF_ZERO(val);
-    return SELECT_USING_MASK(mask, Q31_MAX, result);
+    return SELECT_USING_MASK(mask, NN_Q31_MAX, result);
 }
 
 __STATIC_FORCEINLINE q31_t riscv_nn_mult_by_power_of_two(const int32_t val, const int32_t exp)
 {
     const int32_t thresh = ((1 << (31 - exp)) - 1);
     int32_t result = val << exp;
-    result = SELECT_USING_MASK(MASK_IF_NON_ZERO(val > thresh), Q31_MAX, result);
-    result = SELECT_USING_MASK(MASK_IF_NON_ZERO(val < -thresh), Q31_MIN, result);
+    result = SELECT_USING_MASK(MASK_IF_NON_ZERO(val > thresh), NN_Q31_MAX, result);
+    result = SELECT_USING_MASK(MASK_IF_NON_ZERO(val < -thresh), NN_Q31_MIN, result);
     return result;
 }
 
 __STATIC_FORCEINLINE int32_t riscv_nn_one_over_one_plus_x_for_x_in_0_1(int32_t val)
 {
-    const int64_t sum = (int64_t)val + (int64_t)Q31_MAX;
+    const int64_t sum = (int64_t)val + (int64_t)NN_Q31_MAX;
     const int32_t half_denominator = (int32_t)((sum + (sum >= 0 ? 1 : -1)) / 2L);
     int32_t x = 1515870810 + MUL_SAT(half_denominator, -1010580540);
 

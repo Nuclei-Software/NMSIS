@@ -187,13 +187,13 @@ riscv_status riscv_fully_connected_mat_q7_vec_q15(const q15_t *pV,
 
             inV = riscv_nn_read_q15x2_ia(&pA);
 
-            sum  = __RV_KMADA(sum , inV, inM11);
-            sum2 = __RV_KMADA(sum2, inV, inM21);
+            sum = __SMLAD(inV, inM11, sum);
+            sum2 = __SMLAD(inV, inM21, sum2);
 
             inV = riscv_nn_read_q15x2_ia(&pA);
 
-            sum  = __RV_KMADA(sum , inV, inM12);
-            sum2 = __RV_KMADA(sum2, inV, inM22);
+            sum = __SMLAD(inV, inM12, sum);
+            sum2 = __SMLAD(inV, inM22, sum2);
 
             colCnt--;
         }
@@ -234,10 +234,7 @@ riscv_status riscv_fully_connected_mat_q7_vec_q15(const q15_t *pV,
             pB = (q7_t *) read_and_pad((void *)pB, &inM11, &inM12);
             inV2 = __RV_PKBB32(inM12,inM11);
             inV1 = *__SIMD64(pA)++;
-            sum64 = __RV_KMADA(sum64, inV1, inV2);
-
-            // inV2 = *__SIMD32(pA)++;
-            // sum = __RV_KMADA(sum, inV2, inM12);
+            sum64 = __SMLAD(inV1, inV2, sum64);
             colCnt--;
 
         }
@@ -252,14 +249,10 @@ riscv_status riscv_fully_connected_mat_q7_vec_q15(const q15_t *pV,
             pB = read_and_pad(pB, &inM11, &inM12);
 
             inV1 = *__SIMD32(pA)++;
-            sum = __RV_KMADA(sum, inV1, inM11);
+            sum = __SMLAD(inV1, inM11, sum);
 
             inV2 = *__SIMD32(pA)++;
-            sum = __RV_KMADA(sum, inV2, inM12);
-            /*
-            q31_t     inB1 = *__SIMD32(pB)++;
-            q31_t     inA1 = *__SIMD32(pA)++;
-            sum  = __RV_SMALDA(sum, inA1, inB1); */
+            sum = __SMLAD(inV2, inM12, sum);
 
             colCnt--;
         }

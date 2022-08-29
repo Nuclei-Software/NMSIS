@@ -84,7 +84,7 @@ void riscv_softmax_q15(const q15_t *vec_in, const uint16_t dim_vec, q15_t *p_out
     base = vmv_x_s_i16m1_i16(vtemp);
     i = tmp_i;
 #else
-	i = 0;
+    i = 0;
 #endif
     for (; i < dim_vec; i++)
     {

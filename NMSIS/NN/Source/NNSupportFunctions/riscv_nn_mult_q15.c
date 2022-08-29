@@ -29,6 +29,7 @@
  *
  * -------------------------------------------------------------------- */
 
+#include "riscv_nnfunctions.h"
 #include "riscv_nnsupportfunctions.h"
 
 /**

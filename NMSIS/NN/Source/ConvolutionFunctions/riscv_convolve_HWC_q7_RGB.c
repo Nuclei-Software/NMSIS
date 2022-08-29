@@ -154,7 +154,7 @@ riscv_status riscv_convolve_HWC_q7_RGB(const q7_t *Im_in,
     }
 
     /* left-over because odd number of output pixels */
-  if (pBuffer != (q7_t *)bufferA)
+    if (pBuffer != (q7_t *)bufferA)
     {
         const q7_t *pA = wt;
         int i;
@@ -168,7 +168,7 @@ riscv_status riscv_convolve_HWC_q7_RGB(const q7_t *Im_in,
             q7_t *pB = (q7_t *)bufferA;
 #if defined (RISCV_MATH_VECTOR)
             uint16_t colCnt = ch_im_in * dim_kernel * dim_kernel;
-            uint32_t vblkCnt = colCnt & (~RVV_OPT_THRESHOLD);
+            uint32_t vblkCnt = colCnt;
             size_t l;
             vint8m4_t vx, vz;
             vint32m1_t v_sum;
@@ -182,8 +182,8 @@ riscv_status riscv_convolve_HWC_q7_RGB(const q7_t *Im_in,
                 v_sum = vwredsum_vs_i16m8_i32m1(v_sum, vwmul_vv_i16m8(vx, vz, l), v_sum, l);
             }
             sum += (q31_t)vmv_x_s_i32m1_i32(v_sum);
-            colCnt = colCnt & RVV_OPT_THRESHOLD;
-#elif defined (RISCV_MATH_DSP)
+#else
+#if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
             /* basically each time it process 4 entries */
             uint16_t  colCnt = ch_im_in * dim_kernel * dim_kernel >> 3;
@@ -196,7 +196,7 @@ riscv_status riscv_convolve_HWC_q7_RGB(const q7_t *Im_in,
                 sum64  = __RV_SMAQA(sum64, inA1, inB1);
                 colCnt--;
             }
-            sum = sum + (q31_t)(sum64 & 0xFFFFFFFF) + (q31_t)((sum64 & 0xFFFFFFFF00000000)>>32);
+            sum += (q31_t)(sum64 & 0xFFFFFFFF) + (q31_t)((sum64 & 0xFFFFFFFF00000000)>>32);
             colCnt = (ch_im_in * dim_kernel * dim_kernel) & 0x7;
 
 #else
@@ -213,7 +213,7 @@ riscv_status riscv_convolve_HWC_q7_RGB(const q7_t *Im_in,
             }
             colCnt = ch_im_in * dim_kernel * dim_kernel & 0x3;
 #endif /* __RISCV_XLEN == 64 */
-#endif
+
             while (colCnt)
             {
                 q7_t inA1 = *pA++;
@@ -221,6 +221,8 @@ riscv_status riscv_convolve_HWC_q7_RGB(const q7_t *Im_in,
                 sum += inA1 * inB1;
                 colCnt--;
             }
+#endif /* defined (RISCV_MATH_DSP) */
+#endif /* defined (RISCV_MATH_VECTOR) */
             *pOut++ = (q7_t)__SSAT((sum >> out_shift), 8);
         }
     }
@@ -266,7 +268,7 @@ riscv_status riscv_convolve_HWC_q7_RGB(const q7_t *Im_in,
         }
     }
 
-#endif /* RISCV_MATH_DSP */
+#endif /* defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR) */
 
     /* Return to application */
     return (RISCV_MATH_SUCCESS);

@@ -61,7 +61,7 @@ riscv_status riscv_nn_vec_mat_mult_t_svdf_s8(const q7_t *lhs,
                                          const int32_t activation_max)
 {
     (void)rhs_offset;
-    if (rhs_cols < 0 || (Q31_MAX - rhs_cols) < 16 || dst_offset < 0)
+    if (rhs_cols < 0 || (NN_Q31_MAX - rhs_cols) < 16 || dst_offset < 0)
     {
         return RISCV_MATH_ARGUMENT_ERROR;
     }
@@ -147,8 +147,7 @@ riscv_status riscv_nn_vec_mat_mult_t_svdf_s8(const q7_t *lhs,
         res00 = riscv_nn_requantize(res00, dst_multiplier, dst_shift);
 
         // Clamp the result
-        res00 = MAX(res00, activation_min);
-        res00 = MIN(res00, activation_max);
+        res00 = CLAMP(res00, activation_max, activation_min);
 
         *dst = (q15_t)res00;
         dst += dst_offset;

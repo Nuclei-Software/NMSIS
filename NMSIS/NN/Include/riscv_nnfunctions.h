@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2010-2022 Arm Limited or its affiliates.
- * Copyright (c) 2019 Nuclei Limited. All rights reserved.
+ * Copyright (c) 2022 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -96,7 +96,7 @@
 #ifndef _RISCV_NNFUNCTIONS_H
 #define _RISCV_NNFUNCTIONS_H
 
-#include "riscv_math_types.h"
+#include "riscv_nn_math_types.h"
 #include "riscv_nn_types.h"
 #include "dsp/support_functions.h"
 #define USE_INTRINSIC

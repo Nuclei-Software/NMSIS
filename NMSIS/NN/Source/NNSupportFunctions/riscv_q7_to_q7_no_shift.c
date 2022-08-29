@@ -83,9 +83,8 @@ void riscv_q7_to_q7_no_shift(const q7_t * pSrc, q7_t * pDst, uint32_t blockSize)
     /* First part of the processing with loop unrolling.  Compute 4 outputs at a time. */
     while (blkCnt > 0u)
     {
-        //in = riscv_nn_read_q7x4_ia(&pIn);
-        in = read_q7x4_ia((q7_t **)&pIn);
-        write_q7x4_ia(&pDst, in);
+        in = riscv_nn_read_q7x4_ia(&pIn);
+        riscv_nn_write_q7x4_ia(&pDst, in);
         /* Decrement the loop counter */
         blkCnt--;
     }

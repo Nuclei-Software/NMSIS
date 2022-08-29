@@ -69,65 +69,60 @@ void riscv_relu_q15(q15_t *data, uint16_t size)
         vse16_v_i16m8(data, vmax_vx_i16m8(vx, zero, l), l);
         data += l;
     }
-    i = tmp_i;
-#elif defined(RISCV_MATH_DSP)
-    /* Run the following code for M cores with DSP extension */
 
-    q15_t    *input = data;
-    q15_t    *output = data;
-    q31_t     in;
-    q31_t     buf;
-    q31_t     mask;
-    q31_t      zero;
-#if __RISCV_XLEN == 64
-    i = size >> 2;
-    uint16_t tmp_i = i;
-    q63_t in64;
-    while (i)
-    {
-        in64 = *__SIMD64(input)++;
-
-        *__SIMD64(output)++ = __RV_SMAX16 (in64, zero);
-
-        i--;
-    }
-    i = tmp_i;
-#else
-    i = size >> 1;
-    uint16_t tmp_i = i;
-    while (i)
-    {
-
-
-        // in = *__SIMD32(input)++;
-
-        //*__SIMD32(output)++ = __SMAX8 (in,zero);
-
-        in = *__SIMD32(input)++;
-
-        /* extract the first bit */
-        //buf = __ROR(in & 0x80008000, 15);
-
-        /* if MSB=1, mask will be 0xFF, 0x0 otherwise */
-       // mask = __QSUB16(0x00000000, buf);
-        *__SIMD32(output)++ = __RV_SMAX16 (in, zero);
-       // *__SIMD32(output)++ = in & (~mask);
-        i--;
-    }
-
-    i = tmp_i;
-#endif /* __RISCV_XLEN == 64 */
-#else
-	i = 0;
-#endif
-    /* Run the following code as reference implementation for M cores without DSP extension */
-
-    for (; i < size; i++)
+    for (i = tmp_i; i < size; i++)
     {
         if (data[i] < 0)
             data[i] = 0;
     }
+#else
+#if defined(RISCV_MATH_DSP)
+    /* Run the following code for M cores with DSP extension */
 
+    q15_t *input = data;
+    q15_t *output = data;
+#if __RISCV_XLEN == 64
+    q63_t in64, zero = 0;
+    i = size >> 2;
+    while (i)
+    {
+        in64 = *__SIMD64(input)++;
+        *__SIMD64(output)++ = __RV_SMAX16(in64, zero);
+
+        i--;
+    }
+    i = size & 0x3;
+#else
+    q31_t in, zero = 0;
+    i = size >> 1;
+    while (i)
+    {
+        in = *__SIMD32(input)++;
+        *__SIMD32(output)++ = __RV_SMAX16(in, zero);
+        i--;
+    }
+
+    i = size & 0x1;
+#endif /* __RISCV_XLEN == 64 */
+    while (i)
+    {
+        if (*input < 0)
+        {
+            *input = 0;
+        }
+        input++;
+        i--;
+    }
+#else
+    /* Run the following code as reference implementation for M cores without DSP extension */
+
+    for (i = 0; i < size; i++)
+    {
+        if (data[i] < 0)
+            data[i] = 0;
+    }
+#endif /* RISCV_MATH_DSP */
+#endif /* RISCV_MATH_VECTOR */
 }
 
 /**

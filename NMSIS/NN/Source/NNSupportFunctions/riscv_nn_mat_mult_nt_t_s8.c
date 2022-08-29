@@ -129,14 +129,10 @@ riscv_status riscv_nn_mat_mult_nt_t_s8(const q7_t *lhs,
             res11 += dst_offset;
 
             // Clamp the result
-            res00 = MAX(res00, activation_min);
-            res00 = MIN(res00, activation_max);
-            res01 = MAX(res01, activation_min);
-            res01 = MIN(res01, activation_max);
-            res10 = MAX(res10, activation_min);
-            res10 = MIN(res10, activation_max);
-            res11 = MAX(res11, activation_min);
-            res11 = MIN(res11, activation_max);
+            res00 = CLAMP(res00, activation_max, activation_min);
+            res01 = CLAMP(res01, activation_max, activation_min);
+            res10 = CLAMP(res10, activation_max, activation_min);
+            res11 = CLAMP(res11, activation_max, activation_min);
 
             dst_ptr[0] = (q7_t)res00;
             dst_ptr[1] = (q7_t)res01;
@@ -187,10 +183,8 @@ riscv_status riscv_nn_mat_mult_nt_t_s8(const q7_t *lhs,
             res01 += dst_offset;
 
             // Clamp the result
-            res00 = MAX(res00, activation_min);
-            res00 = MIN(res00, activation_max);
-            res01 = MAX(res01, activation_min);
-            res01 = MIN(res01, activation_max);
+            res00 = CLAMP(res00, activation_max, activation_min);
+            res01 = CLAMP(res01, activation_max, activation_min);
 
             dst_ptr[0] = (q7_t)res00;
             dst_ptr[1] = (q7_t)res01;
@@ -235,8 +229,7 @@ riscv_status riscv_nn_mat_mult_nt_t_s8(const q7_t *lhs,
             res00 += dst_offset;
 
             // Clamp the result
-            res00 = MAX(res00, activation_min);
-            res00 = MIN(res00, activation_max);
+            res00 = CLAMP(res00, activation_max, activation_min);
 
             dst_ptr[0] = (q7_t)res00;
             dst_ptr += rhs_rows;

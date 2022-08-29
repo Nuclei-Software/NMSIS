@@ -30,7 +30,7 @@
 #ifndef _RISCV_NN_TABLES_H
 #define _RISCV_NN_TABLES_H
 
-#include "riscv_math_types.h"
+#include "riscv_nn_math_types.h"
 
 /**
  * @brief tables for various activation functions

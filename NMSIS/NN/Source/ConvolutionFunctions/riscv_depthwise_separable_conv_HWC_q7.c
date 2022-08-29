@@ -150,7 +150,7 @@ riscv_status riscv_depthwise_separable_conv_HWC_q7(const q7_t *Im_in,
                 q31_t sum4 = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
 
                 uint16_t  colCnt = (dim_kernel * dim_kernel) >> 2;
-                q7_t     *pB = colBuffer + row_shift;
+                q7_t *pB = colBuffer + row_shift;
                 const q7_t *pA = wt + row_shift;
                 row_shift += 4;
 

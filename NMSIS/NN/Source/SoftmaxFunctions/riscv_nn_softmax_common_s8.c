@@ -117,12 +117,12 @@ void riscv_nn_softmax_common_s8(const int8_t *input,
                 {
                     const int32_t res =
                         DIV_POW2(MUL_SAT(shifted_scale, EXP_ON_NEG(MUL_SAT(diff * mask, mult))), bits_over_unit) +
-                        Q15_MIN;
-                    output_s16[col] = (int16_t)CLAMP(res, (int32_t)Q15_MAX, (int32_t)Q15_MIN);
+                        NN_Q15_MIN;
+                    output_s16[col] = (int16_t)CLAMP(res, (int32_t)NN_Q15_MAX, (int32_t)NN_Q15_MIN);
                 }
                 else
                 {
-                    output_s16[col] = Q15_MIN;
+                    output_s16[col] = NN_Q15_MIN;
                 }
             }
         }
@@ -139,12 +139,12 @@ void riscv_nn_softmax_common_s8(const int8_t *input,
                 {
                     const int32_t res =
                         DIV_POW2(MUL_SAT(shifted_scale, EXP_ON_NEG(MUL_SAT(diff * mask, mult))), bits_over_unit) +
-                        Q7_MIN;
-                    output_s8[col] = (int8_t)CLAMP(res, (int32_t)Q7_MAX, (int32_t)Q7_MIN);
+                        NN_Q7_MIN;
+                    output_s8[col] = (int8_t)CLAMP(res, (int32_t)NN_Q7_MAX, (int32_t)NN_Q7_MIN);
                 }
                 else
                 {
-                    output_s8[col] = Q7_MIN;
+                    output_s8[col] = NN_Q7_MIN;
                 }
             }
         }

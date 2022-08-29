@@ -136,11 +136,10 @@ riscv_status riscv_convolve_HWC_q15_basic(const q15_t *Im_in,
                     q63_t inA1 = *__SIMD64(pA)++;
                     q63_t inB1 = *__SIMD64(pB)++;
 
-                    sum = __RV_SMALDA(sum, inA1, inB1);
+                    sum = __SMLALD(inA1, inB1, sum);
 
                     colCnt--;
                 }
-                colCnt = ch_im_in * dim_kernel * dim_kernel & 0x3;
 #else
                 while (colCnt)
                 {
@@ -149,13 +148,13 @@ riscv_status riscv_convolve_HWC_q15_basic(const q15_t *Im_in,
                     q31_t inA2 = riscv_nn_read_q15x2_ia(&pA);
                     q31_t inB2 = riscv_nn_read_q15x2_ia(&pB);
 
-                    sum = __RV_SMALDA(sum, inA1, inB1);
-                    sum = __RV_SMALDA(sum, inA2, inB2);
+                    sum = __SMLALD(inA1, inB1, sum);
+                    sum = __SMLALD(inA2, inB2, sum);
 
                     colCnt--;
                 }
-                colCnt = ch_im_in * dim_kernel * dim_kernel & 0x3;
 #endif /* __RISCV_XLEN == 64 */
+                colCnt = ch_im_in * dim_kernel * dim_kernel & 0x3;
                 while (colCnt)
                 {
                     q15_t inA1 = *pA++;

@@ -58,9 +58,9 @@ static void buffer_scale_back_q15_to_q7(q15_t *buffer, q7_t *target, uint16_t le
         vse8_v_i8m4(pOut, vnclip_wx_i8m4(vdiv_vx_i16m8(vx, scale, l), 0, l), l);
         pOut += l;
     }
-	i = tmp_i;
+    i = tmp_i;
 #else
-	i = 0;
+    i = 0;
 #endif
 
     for (; i < length; i++)
@@ -70,10 +70,10 @@ static void buffer_scale_back_q15_to_q7(q15_t *buffer, q7_t *target, uint16_t le
 }
 
 
-static void compare_and_replace_if_larger_q7(q7_t * base,   // base data
-                                             const q7_t * target,   // compare target
-                                             const uint16_t length  // data length
-    )
+static void compare_and_replace_if_larger_q7(q7_t *base,           // base data
+                                             const q7_t *target,   // compare target
+                                             const uint16_t length // data length
+)
 {
     q7_t *pIn = base;
     const q7_t *pCom = target;
@@ -101,26 +101,16 @@ static void compare_and_replace_if_larger_q7(q7_t * base,   // base data
     {
         in.word = *__SIMD32(pIn);
         com.word = *__SIMD32(pCom)++;
-        //__SMAX8(in.word,com.word);
-        // if version
-       /* if (com.bytes[0] > in.bytes[0])
-            in.bytes[0] = com.bytes[0];
-        if (com.bytes[1] > in.bytes[1])
-            in.bytes[1] = com.bytes[1];
-        if (com.bytes[2] > in.bytes[2])
-            in.bytes[2] = com.bytes[2];
-        if (com.bytes[3] > in.bytes[3])
-            in.bytes[3] = com.bytes[3];*/
-        *__SIMD32(pIn)++ = __RV_SMAX8(in.word,com.word);
-        ///*__SIMD32(pIn)++ = in.word;
+        *__SIMD32(pIn)++ = __RV_SMAX8(in.word, com.word);
+
 
         cnt--;
     }
 
     cnt = length & 0x3;
 #else
-	cnt = length;
-#endif /*defined (RISCV_MATH_VECTOR)*/
+    cnt = length;
+#endif /* defined (RISCV_MATH_VECTOR) */
     while (cnt > 0u)
     {
         if (*pCom > *pIn)
@@ -155,32 +145,32 @@ static void accumulate_q7_to_q15(q15_t *base, q7_t *target, const uint16_t lengt
         vse16_v_i16m8(pCnt, vwadd_wv_i16m8(b0m8, a0m4, l), l);
         pCnt += l;
     }
-	cnt = length & RVV_OPT_THRESHOLD;
+    cnt = length & RVV_OPT_THRESHOLD;
 #elif defined (RISCV_MATH_DSP)
-	cnt = length >> 2;
+    cnt = length >> 2;
     while (cnt > 0u)
     {
 
-        q31_t  value = *__SIMD32(pV)++;
+        q31_t value = *__SIMD32(pV)++;
         v1 = __SXTB16(__ROR(value, 8));
         v2 = __SXTB16(value);
 
-        vo2 = __RV_PKTT16(v1,v2);
-        vo1 = __RV_PKBB16(v1,v2);
+        vo2 = __RV_PKTT16(v1, v2);
+        vo1 = __RV_PKBB16(v1, v2);
 
 
 
         in = *__SIMD32(pCnt);
-        *__SIMD32(pCnt)++ = __RV_KADD16(vo1, in);
+        *__SIMD32(pCnt)++ = __QADD16(vo1, in);
 
         in = *__SIMD32(pCnt);
-        *__SIMD32(pCnt)++ = __RV_KADD16(vo2, in);
+        *__SIMD32(pCnt)++ = __QADD16(vo2, in);
 
         cnt--;
     }
     cnt = length & 0x3;
 #else
-	cnt = length;
+    cnt = length;
 #endif
     while (cnt > 0u)
     {

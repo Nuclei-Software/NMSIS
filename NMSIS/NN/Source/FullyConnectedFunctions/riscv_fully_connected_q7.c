@@ -195,29 +195,14 @@ riscv_status riscv_fully_connected_q7(const q7_t *pV,
 
             colCnt--;
         }
-        sum = sum + (q31_t)(sum64 & 0xFFFFFFFF) + (q31_t)((sum64 & 0xFFFFFFFF00000000)>>32);
-        sum2 = sum2 + (q31_t)(sum642 & 0xFFFFFFFF) + (q31_t)((sum642 & 0xFFFFFFFF00000000)>>32);
+        sum += (q31_t)(sum64 & 0xFFFFFFFF) + (q31_t)((sum64 & 0xFFFFFFFF00000000)>>32);
+        sum2 += (q31_t)(sum642 & 0xFFFFFFFF) + (q31_t)((sum642 & 0xFFFFFFFF00000000)>>32);
         colCnt = dim_vec & 0x7;
 #else
         uint16_t  colCnt = dim_vec >> 2;
 
         while (colCnt)
         {
-            /*
-            q31_t     inV, inM11, inM12, inM21, inM22;
-            pB = read_and_pad_reordered(pB, &inM11, &inM12);
-            pB2 = read_and_pad_reordered(pB2, &inM21, &inM22);
-
-            inV = riscv_nn_read_q15x2_ia(&pA);
-
-            sum = __SMLAD(inV, inM11, sum);
-            sum2 = __SMLAD(inV, inM21, sum2);
-
-            inV = riscv_nn_read_q15x2_ia(&pA);
-
-            sum = __SMLAD(inV, inM12, sum);
-            sum2 = __SMLAD(inV, inM22, sum2);
-            */
             q31_t inB1 = *__SIMD32(pB)++;
             q31_t inB2 = *__SIMD32(pB2)++;
 

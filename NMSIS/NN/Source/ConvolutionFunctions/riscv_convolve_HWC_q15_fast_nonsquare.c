@@ -177,7 +177,7 @@ riscv_status riscv_convolve_HWC_q15_fast_nonsquare(const q15_t *Im_in,
                     vint32m1_t vtemp;
                     l = vsetvl_e32m1(1);
                     vtemp = vsub_vv_i32m1(vtemp, vtemp, l);
-                    blkCnt = colCnt & (~RVV_OPT_THRESHOLD);
+                    blkCnt = colCnt;
                     for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
                         va1m4 = vle16_v_i16m4(pA, l);
                         pA  += l;
@@ -192,8 +192,8 @@ riscv_status riscv_convolve_HWC_q15_fast_nonsquare(const q15_t *Im_in,
                         sum3 += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(vtemp, vwmul_vv_i32m8(va2m4, vb1m4, l), vtemp, l));
                         sum4 += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(vtemp, vwmul_vv_i32m8(va2m4, vb2m4, l), vtemp, l));
                     }
-                    colCnt = colCnt & RVV_OPT_THRESHOLD;
-#elif defined (RISCV_MATH_DSP)
+#else
+#if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
                     colCnt = ch_im_in * dim_kernel_y * dim_kernel_x >> 2;
                     /* accumulate over the vector */
@@ -204,10 +204,10 @@ riscv_status riscv_convolve_HWC_q15_fast_nonsquare(const q15_t *Im_in,
                         q63_t inA2 = *__SIMD64(pA2)++;
                         q63_t inB2 = *__SIMD64(pB2)++;
 
-                        sum  = __RV_SMALDA(sum , inA1, inB1);
-                        sum2 = __RV_SMALDA(sum2, inA1, inB2);
-                        sum3 = __RV_SMALDA(sum3, inA2, inB1);
-                        sum4 = __RV_SMALDA(sum4, inA2, inB2);
+                        sum  = __SMLALD(inA1, inB1, sum);
+                        sum2 = __SMLALD(inA1, inB2, sum2);
+                        sum3 = __SMLALD(inA2, inB1, sum3);
+                        sum4 = __SMLALD(inA2, inB2, sum4);
 
                         colCnt--;
                     }           /* while over colCnt */
@@ -223,17 +223,15 @@ riscv_status riscv_convolve_HWC_q15_fast_nonsquare(const q15_t *Im_in,
                         q31_t inA2 = riscv_nn_read_q15x2_ia(&pA2);
                         q31_t inB2 = riscv_nn_read_q15x2_ia(&pB2);
 
-                        sum  = __RV_SMALDA(sum , inA1, inB1);
-                        sum2 = __RV_SMALDA(sum2, inA1, inB2);
-                        sum3 = __RV_SMALDA(sum3, inA2, inB1);
-                        sum4 = __RV_SMALDA(sum4, inA2, inB2);
+                        sum  = __SMLALD(inA1, inB1, sum);
+                        sum2 = __SMLALD(inA1, inB2, sum2);
+                        sum3 = __SMLALD(inA2, inB1, sum3);
+                        sum4 = __SMLALD(inA2, inB2, sum4);
 
                         colCnt--;
                     } /* while over colCnt */
                     colCnt = ch_im_in * dim_kernel_y * dim_kernel_x & 0x1;
 #endif /* __RISCV_XLEN == 64 */
-
-#endif
                     while (colCnt)
                     {
                         q15_t inA1 = *pA++;
@@ -247,6 +245,8 @@ riscv_status riscv_convolve_HWC_q15_fast_nonsquare(const q15_t *Im_in,
                         sum4 += inA2 * inB2;
                         colCnt--;
                     } /* while over colCnt */
+#endif /* defined (RISCV_MATH_DSP) */
+#endif /* defined (RISCV_MATH_VECTOR) */
                     *pOut++ = (q15_t)__SSAT(sum >> out_shift, 16);
                     *pOut++ = (q15_t)__SSAT(sum3 >> out_shift, 16);
                     *pOut2++ = (q15_t)__SSAT(sum2 >> out_shift, 16);
@@ -305,7 +305,7 @@ riscv_status riscv_convolve_HWC_q15_fast_nonsquare(const q15_t *Im_in,
         }
     }
 
-#endif /* RISCV_MATH_DSP */
+#endif /* defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR) */
 
     /* Return to application */
     return RISCV_MATH_SUCCESS;

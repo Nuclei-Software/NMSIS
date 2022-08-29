@@ -75,7 +75,7 @@ static void compare_and_replace_if_larger_q7(q7_t *base, const q7_t *target, int
             ref_max.bytes[3] = comp_max.bytes[3];
         }
 
-        write_q7x4_ia(&dst, ref_max.word);
+        riscv_nn_write_q7x4_ia(&dst, ref_max.word);
 
         cnt--;
     }
@@ -128,7 +128,7 @@ static void clamp_output(q7_t *source, int32_t length, const int32_t act_min, co
         in.bytes[3] = MAX(in.bytes[3], act_min);
         in.bytes[3] = MIN(in.bytes[3], act_max);
 
-        write_q7x4_ia(&source, in.word);
+        riscv_nn_write_q7x4_ia(&source, in.word);
         cnt--;
     }
 

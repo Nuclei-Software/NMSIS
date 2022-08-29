@@ -142,7 +142,7 @@ q7_t *riscv_nn_mat_mult_kernel_s8_s16(const q7_t *input_a,
         col_count = num_col_a & 0x3;
 #else
         uint16_t col_count = num_col_a;
-#endif
+#endif /* defined(RISCV_MATH_VECTOR) */
         while (col_count)
         {
             q7_t a0 = *ip_a0++;
@@ -259,7 +259,7 @@ q7_t *riscv_nn_mat_mult_kernel_s8_s16(const q7_t *input_a,
         col_count = num_col_a & 0x3;
 #else
         uint16_t col_count = num_col_a;
-#endif
+#endif /* defined(RISCV_MATH_VECTOR) */
         while (col_count)
         {
             q7_t a0 = *ip_a0++;

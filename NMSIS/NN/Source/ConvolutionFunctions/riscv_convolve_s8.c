@@ -207,9 +207,9 @@ riscv_status riscv_convolve_s8(const nmsis_nn_context *ctx,
                     ker_a2 = __RV_SUNPKD832(inA);
 
                     ip_b1 = riscv_nn_read_q15x2_ia(&ip_as_col);
-                    sum = __RV_KMADA(sum, ker_a1, ip_b1);
+                    sum = __SMLAD(ker_a1, ip_b1, sum);
                     ip_b2 = riscv_nn_read_q15x2_ia(&ip_as_col);
-                    sum = __RV_KMADA(sum, ker_a2, ip_b2);
+                    sum = __SMLAD(ker_a2, ip_b2, sum);
 
                     col_count--;
                 }
@@ -217,7 +217,7 @@ riscv_status riscv_convolve_s8(const nmsis_nn_context *ctx,
                 col_count = input_ch * kernel_y * kernel_x & 0x3;
 #else
                 uint16_t col_count = input_ch * kernel_y * kernel_x;
-#endif
+#endif /* defined(RISCV_MATH_VECTOR) */
                 while (col_count)
                 {
                     q7_t ker_a1 = *ker_a++;

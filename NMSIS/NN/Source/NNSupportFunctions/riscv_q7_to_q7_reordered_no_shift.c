@@ -28,7 +28,7 @@
  * Target Processor: RISC-V Cores
  *
  * -------------------------------------------------------------------- */
-
+#include "riscv_nnfunctions.h"
 #include "riscv_nnsupportfunctions.h"
 
 /**

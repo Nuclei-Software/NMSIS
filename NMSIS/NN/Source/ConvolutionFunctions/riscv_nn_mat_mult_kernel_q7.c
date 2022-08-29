@@ -194,10 +194,10 @@ q7_t *riscv_nn_mat_mult_kernel_q7(const q7_t * pA,
 
             colCnt--;
         }                       /* while over colCnt */
-        sum  = sum  + (q31_t)(sum64  & 0xFFFFFFFF) + (q31_t)((sum64  & 0xFFFFFFFF00000000)>>32);
-        sum2 = sum2 + (q31_t)(sum642 & 0xFFFFFFFF) + (q31_t)((sum642 & 0xFFFFFFFF00000000)>>32);
-        sum3 = sum3 + (q31_t)(sum643 & 0xFFFFFFFF) + (q31_t)((sum643 & 0xFFFFFFFF00000000)>>32);
-        sum4 = sum4 + (q31_t)(sum644 & 0xFFFFFFFF) + (q31_t)((sum644 & 0xFFFFFFFF00000000)>>32);
+        sum  += (q31_t)(sum64  & 0xFFFFFFFF) + (q31_t)((sum64  & 0xFFFFFFFF00000000)>>32);
+        sum2 += (q31_t)(sum642 & 0xFFFFFFFF) + (q31_t)((sum642 & 0xFFFFFFFF00000000)>>32);
+        sum3 += (q31_t)(sum643 & 0xFFFFFFFF) + (q31_t)((sum643 & 0xFFFFFFFF00000000)>>32);
+        sum4 += (q31_t)(sum644 & 0xFFFFFFFF) + (q31_t)((sum644 & 0xFFFFFFFF00000000)>>32);
         colCnt = numCol_A & 0x7;
 #else
         uint16_t  colCnt = numCol_A >> 2;
@@ -253,8 +253,8 @@ q7_t *riscv_nn_mat_mult_kernel_q7(const q7_t * pA,
         const q7_t *pB2 = pB + numCol_A;
 
         /* load the bias */
-        q31_t     sum = ((q31_t)(*pBias) << bias_shift) + NN_ROUND(out_shift);
-        q31_t     sum2 = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
+        q31_t sum = ((q31_t)(*pBias) << bias_shift) + NN_ROUND(out_shift);
+        q31_t sum2 = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
 
         uint16_t  colCnt = numCol_A >> 2;
         while (colCnt)

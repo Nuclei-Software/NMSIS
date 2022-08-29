@@ -167,10 +167,10 @@ riscv_status riscv_convolve_HWC_q15_fast(const q15_t *Im_in,
                         q63_t inA2 = *__SIMD64(pA2)++;
                         q63_t inB2 = *__SIMD64(pB2)++;
 
-                        sum  = __RV_SMALDA(sum , inA1, inB1);
-                        sum2 = __RV_SMALDA(sum2, inA1, inB2);
-                        sum3 = __RV_SMALDA(sum3, inA2, inB1);
-                        sum4 = __RV_SMALDA(sum4, inA2, inB2);
+                        sum  = __SMLALD(inA1, inB1, sum);
+                        sum2 = __SMLALD(inA1, inB2, sum2);
+                        sum3 = __SMLALD(inA2, inB1, sum3);
+                        sum4 = __SMLALD(inA2, inB2, sum4);
 
                         colCnt--;
                     }           /* while over colCnt */
@@ -186,10 +186,10 @@ riscv_status riscv_convolve_HWC_q15_fast(const q15_t *Im_in,
                         q31_t inA2 = riscv_nn_read_q15x2_ia(&pA2);
                         q31_t inB2 = riscv_nn_read_q15x2_ia(&pB2);
 
-                        sum  = __RV_SMALDA(sum , inA1, inB1);
-                        sum2 = __RV_SMALDA(sum2, inA1, inB2);
-                        sum3 = __RV_SMALDA(sum3, inA2, inB1);
-                        sum4 = __RV_SMALDA(sum4, inA2, inB2);
+                        sum  = __SMLALD(inA1, inB1, sum);
+                        sum2 = __SMLALD(inA1, inB2, sum2);
+                        sum3 = __SMLALD(inA2, inB1, sum3);
+                        sum4 = __SMLALD(inA2, inB2, sum4);
 
                         colCnt--;
                     } /* while over colCnt */
