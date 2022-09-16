@@ -8,11 +8,14 @@ Here we will describe how to run the nmsis nn examples in Nuclei QEMU.
 Preparation
 -----------
 
-* Nuclei SDK, ``master`` branch(>= 0.3.7 release)
-* Nuclei RISCV GNU Toolchain 2022.04
-* Nuclei QEMU 2022.04
+* Nuclei SDK, ``master`` branch(>= 0.3.9 release)
+* Nuclei RISCV GNU Toolchain 2022.08
+* Nuclei QEMU 2022.08
 * CMake >= 3.14
-* Python 3
+* Python 3 and pip package requirements located in
+
+  * <nuclei-sdk>/tools/scripts/requirements.txt
+  * <NMSIS>/NMSIS/Scripts/requirements.txt
 
 Tool Setup
 ----------
