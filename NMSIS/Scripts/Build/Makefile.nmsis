@@ -42,7 +42,7 @@ else
 EXTRA_NLOPTS +=
 endif
 
-.PHONY: nmsis_help gen_dsp_lib gen_nn_lib gen_unalign_dsp_lib gen_unalign_nn_lib gen gen_unalign envsetup check_build check_run check view_report
+.PHONY: nmsis_help gen_dsp_lib gen_nn_lib gen_unalign_dsp_lib gen_unalign_nn_lib gen gen_unalign envsetup check_build check_run check view_report view_logs
 
 nmsis_help:
 	@echo "Help about build and install NMSIS Library"
@@ -53,6 +53,7 @@ nmsis_help:
 	@echo "check_build   Run simple build test for DSP and NN example and test"
 	@echo "check_run     Run simple run test for DSP and NN example and test"
 	@echo "view_report   View report of check_build or check_run"
+	@echo "view_logs     View logs of check_build or check_run"
 
 gen_dsp_lib:
 	@echo "Generated DSP library for configuration file $(DSP_JSON_CONFIG)"
@@ -113,3 +114,8 @@ check_run:
 view_report:
 	@echo "Preview report $(LOGDIR) in web"
 	-python3 $(NUCLEI_SDK_ROOT)/tools/scripts/nsdk_cli/report_preview.py --logdir $(LOGDIR)
+
+view_logs:
+	@echo "Preview logs $(LOGDIR) in web"
+	-python3 $(NUCLEI_SDK_ROOT)/tools/scripts/nsdk_cli/httpserver.py --directory $(LOGDIR)
+
