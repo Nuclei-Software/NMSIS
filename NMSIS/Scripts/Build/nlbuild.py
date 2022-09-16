@@ -11,7 +11,13 @@ import json
 import argparse
 import shutil
 import subprocess
-from prettytable import PrettyTable
+
+try:
+    from prettytable import PrettyTable
+except Exception as exc:
+    print("Import Error: %s" % (exc))
+    print("Please install requried packages using: pip3 install prettytable")
+    sys.exit(1)
 
 
 def mkdirs(dir, remove_first=False):
