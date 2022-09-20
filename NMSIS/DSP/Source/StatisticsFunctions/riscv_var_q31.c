@@ -97,11 +97,25 @@ void riscv_var_q31(
 #else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+  q63_t in164;
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
 
   while (blkCnt > 0U)
   {
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+    in164 = __RV_SRA32(read_q31x2_ia((q31_t **)&pSrc), 8);
+    sumOfSquares = __RV_SMAR64(sumOfSquares, in164, in164);
+    sum += (q31_t)((in164 << 32) >> 32);
+    sum += (q31_t)(in164 >> 32);
+
+    in164 = __RV_SRA32(read_q31x2_ia((q31_t **)&pSrc), 8);
+    sumOfSquares = __RV_SMAR64(sumOfSquares, in164, in164);
+    sum += (q31_t)((in164 << 32) >> 32);
+    sum += (q31_t)(in164 >> 32);
+#else
     /* C = A[0] * A[0] + A[1] * A[1] + ... + A[blockSize-1] * A[blockSize-1] */
     /* C = A[0] + A[1] + ... + A[blockSize-1] */
     in = *pSrc++ >> 8U;
@@ -121,6 +135,8 @@ void riscv_var_q31(
     in = *pSrc++ >> 8U;
     sumOfSquares += ((q63_t)(in) * (in));
     sum += in;
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
+
     /* Decrement loop counter */
     blkCnt--;
   }
