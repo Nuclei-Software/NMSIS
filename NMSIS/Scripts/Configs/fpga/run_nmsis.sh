@@ -1,12 +1,21 @@
 CONFIG=${CONFIG:-n300,ux900}
 LOGROOT=${LOGROOT:-logs}
 BACKUP=${BACKUP:-Backups}
+RUNYAML=${RUNYAML-}
 CFGSET=${CFGSET:-mini}
 BITSET=${BITSET:-latest}
 
 SCRIPTDIR=$(dirname $(readlink -f $BASH_SOURCE))
 CFGLOC=
 FPGALOC=
+
+if [ "x$RUNYAML" != "x" ] ; then
+    RUNYAML=$(readlink -f $RUNYAML)
+    if [ ! -f $RUNYAML ] ; then
+        echo "$RUNYAML not exist, please check!"
+        exit 1
+    fi
+fi
 
 function env_help() {
     echo "You can easily setup environment by execute command below"
@@ -69,6 +78,9 @@ function run_nmsis {
     mkdir -p $logdir
 
     local runcmd="python3 $NUCLEI_SDK_ROOT/tools/scripts/nsdk_cli/nsdk_runner.py --appyaml ${NUCLEI_SDK_NMSIS}/Scripts/Configs/fpga/${lib}.yaml --logdir ${logdir} --runon fpga --config ${CONFIG} --cfgloc ${CFGLOC} --fpgaloc ${FPGALOC}"
+    if [ "x$RUNYAML" != "x" ] ; then
+        runcmd="${runcmd} --runyaml $RUNYAML"
+    fi
     echo $runcmd
     eval $runcmd | tee $logdir/run.log
 }
