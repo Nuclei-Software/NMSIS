@@ -4,6 +4,7 @@ BACKUP=${BACKUP:-Backups}
 RUNYAML=${RUNYAML-}
 CFGSET=${CFGSET:-mini}
 BITSET=${BITSET:-latest}
+VERBOSE=${VERBOSE-}
 
 SCRIPTDIR=$(dirname $(readlink -f $BASH_SOURCE))
 CFGLOC=
@@ -80,6 +81,9 @@ function run_nmsis {
     local runcmd="python3 $NUCLEI_SDK_ROOT/tools/scripts/nsdk_cli/nsdk_runner.py --appyaml ${NUCLEI_SDK_NMSIS}/Scripts/Configs/fpga/${lib}.yaml --logdir ${logdir} --runon fpga --config ${CONFIG} --cfgloc ${CFGLOC} --fpgaloc ${FPGALOC}"
     if [ "x$RUNYAML" != "x" ] ; then
         runcmd="${runcmd} --runyaml $RUNYAML"
+    fi
+    if [ "x$VERBOSE" == "x1" ] ; then
+        runcmd="${runcmd} --verbose"
     fi
     echo $runcmd
     eval $runcmd | tee $logdir/run.log
