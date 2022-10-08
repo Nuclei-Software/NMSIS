@@ -68,7 +68,8 @@ void riscv_fill_q7(
 
 #if defined (RISCV_MATH_LOOPUNROLL)
   q31_t packedValue;                             /* value packed to 32 bits */
-#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+#if defined (RISCV_MATH_DSP)
+#if (__RISCV_XLEN == 64)
   q63_t packedValue64;                  /* value packed to 32 bits */
   blkCnt = blockSize >> 3U;
   packedValue = __PACKq7(value, value, value, value);
@@ -83,6 +84,17 @@ void riscv_fill_q7(
   blkCnt = blockSize & 0x7U;
 #else
 
+  packedValue = __RV_EXPD80((q31_t)value);
+  blkCnt = blockSize >> 2U;
+  while (blkCnt > 0U)
+  {
+    /* fill 8 samples at a time */
+    write_q7x4_ia(&pDst, packedValue);
+    blkCnt--;
+  }
+  blkCnt = blockSize & 0x3U;
+#endif /* __RISCV_XLEN == 64 */
+#else
   blkCnt = blockSize >> 2U;
   packedValue = __PACKq7(value, value, value, value);
   while (blkCnt > 0U)
@@ -92,7 +104,7 @@ void riscv_fill_q7(
     blkCnt--;
   }
   blkCnt = blockSize & 0x3U;
-#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
+#endif /* defined (RISCV_MATH_DSP) */
 
 #else
 

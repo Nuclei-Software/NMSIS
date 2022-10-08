@@ -111,9 +111,13 @@ riscv_status riscv_mat_add_q15(
 #if __RISCV_XLEN == 64
       write_q15x4_ia(&pOut, __QADD16(read_q15x4_ia(&pInA), read_q15x4_ia(&pInB)));
 #else
+#ifdef NUCLEI_DSP_N1
+      write_q15x4_ia(&pOut, __DKADD16(read_q15x4_ia(&pInA), read_q15x4_ia(&pInB)));
+#else
       write_q15x2_ia(&pOut, __QADD16(read_q15x2_ia(&pInA), read_q15x2_ia(&pInB)));
 
       write_q15x2_ia(&pOut, __QADD16(read_q15x2_ia(&pInA), read_q15x2_ia(&pInB)));
+#endif /* NUCLEI_DSP_N1 */
 #endif /* __RISCV_XLEN == 64 */
 #else
       *pOut++ = (q15_t)__SSAT(((q31_t)*pInA++ + *pInB++), 16);

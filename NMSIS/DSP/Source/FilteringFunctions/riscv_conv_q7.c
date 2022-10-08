@@ -163,12 +163,12 @@ void riscv_conv_q7(
       /* x[0] , x[1] */
       in1 = (q15_t) *px++;
       in2 = (q15_t) *px++;
-      input1 = ((q31_t) in1 & 0x0000FFFF) | ((q31_t) in2 << 16U);
+      input1 = __PKHBT(in1, in2, 16);
 
       /* y[srcBLen - 1] , y[srcBLen - 2] */
       in1 = (q15_t) *py--;
       in2 = (q15_t) *py--;
-      input2 = ((q31_t) in1 & 0x0000FFFF) | ((q31_t) in2 << 16U);
+      input2 = __PKHBT(in1, in2, 16);
 
       /* x[0] * y[srcBLen - 1] */
       /* x[1] * y[srcBLen - 2] */
@@ -177,12 +177,12 @@ void riscv_conv_q7(
       /* x[2] , x[3] */
       in1 = (q15_t) *px++;
       in2 = (q15_t) *px++;
-      input1 = ((q31_t) in1 & 0x0000FFFF) | ((q31_t) in2 << 16U);
+      input1 = __PKHBT(in1, in2, 16);
 
       /* y[srcBLen - 3] , y[srcBLen - 4] */
       in1 = (q15_t) *py--;
       in2 = (q15_t) *py--;
-      input2 = ((q31_t) in1 & 0x0000FFFF) | ((q31_t) in2 << 16U);
+      input2 = __PKHBT(in1, in2, 16);
 
       /* x[2] * y[srcBLen - 3] */
       /* x[3] * y[srcBLen - 4] */
@@ -343,13 +343,13 @@ void riscv_conv_q7(
         in1 = (q15_t) x0;
         in2 = (q15_t) x1;
 
-        input1 = ((q31_t) in1 & 0x0000FFFF) | ((q31_t) in2 << 16U);
+        input1 = __PKHBT(in1, in2, 16);
 
         /* y[srcBLen - 1]   and y[srcBLen - 2] are packed */
         in1 = (q15_t) c0;
         in2 = (q15_t) c1;
 
-        input2 = ((q31_t) in1 & 0x0000FFFF) | ((q31_t) in2 << 16U);
+        input2 = __PKHBT(in1, in2, 16);
 
         /* acc0 += x[0] * y[srcBLen - 1] + x[1] * y[srcBLen - 2]  */
         acc0 = __SMLAD(input1, input2, acc0);
@@ -358,7 +358,7 @@ void riscv_conv_q7(
         in1 = (q15_t) x1;
         in2 = (q15_t) x2;
 
-        input1 = ((q31_t) in1 & 0x0000FFFF) | ((q31_t) in2 << 16U);
+        input1 = __PKHBT(in1, in2, 16);
 
         /* acc1 += x[1] * y[srcBLen - 1] + x[2] * y[srcBLen - 2]  */
         acc1 = __SMLAD(input1, input2, acc1);
@@ -367,7 +367,7 @@ void riscv_conv_q7(
         in1 = (q15_t) x2;
         in2 = (q15_t) x3;
 
-        input1 = ((q31_t) in1 & 0x0000FFFF) | ((q31_t) in2 << 16U);
+        input1 = __PKHBT(in1, in2, 16);
 
         /* acc2 += x[2] * y[srcBLen - 1] + x[3] * y[srcBLen - 2]  */
         acc2 = __SMLAD(input1, input2, acc2);
@@ -379,7 +379,7 @@ void riscv_conv_q7(
         in1 = (q15_t) x3;
         in2 = (q15_t) x0;
 
-        input1 = ((q31_t) in1 & 0x0000FFFF) | ((q31_t) in2 << 16U);
+        input1 = __PKHBT(in1, in2, 16);
 
         /* acc3 += x[3] * y[srcBLen - 1] + x[4] * y[srcBLen - 2]  */
         acc3 = __SMLAD(input1, input2, acc3);
@@ -396,13 +396,13 @@ void riscv_conv_q7(
         in1 = (q15_t) x2;
         in2 = (q15_t) x3;
 
-        input1 = ((q31_t) in1 & 0x0000FFFF) | ((q31_t) in2 << 16U);
+        input1 = __PKHBT(in1, in2, 16);
 
         /* y[srcBLen - 3] and y[srcBLen - 4] are packed */
         in1 = (q15_t) c0;
         in2 = (q15_t) c1;
 
-        input2 = ((q31_t) in1 & 0x0000FFFF) | ((q31_t) in2 << 16U);
+        input2 = __PKHBT(in1, in2, 16);
 
         /* acc0 += x[2] * y[srcBLen - 3] + x[3] * y[srcBLen - 4]  */
         acc0 = __SMLAD(input1, input2, acc0);
@@ -411,7 +411,7 @@ void riscv_conv_q7(
         in1 = (q15_t) x3;
         in2 = (q15_t) x0;
 
-        input1 = ((q31_t) in1 & 0x0000FFFF) | ((q31_t) in2 << 16U);
+        input1 = __PKHBT(in1, in2, 16);
 
         /* acc1 += x[3] * y[srcBLen - 3] + x[4] * y[srcBLen - 4]  */
         acc1 = __SMLAD(input1, input2, acc1);
@@ -420,7 +420,7 @@ void riscv_conv_q7(
         in1 = (q15_t) x0;
         in2 = (q15_t) x1;
 
-        input1 = ((q31_t) in1 & 0x0000FFFF) | ((q31_t) in2 << 16U);
+        input1 = __PKHBT(in1, in2, 16);
 
         /* acc2 += x[4] * y[srcBLen - 3] + x[5] * y[srcBLen - 4]  */
         acc2 = __SMLAD(input1, input2, acc2);
@@ -432,7 +432,7 @@ void riscv_conv_q7(
         in1 = (q15_t) x1;
         in2 = (q15_t) x2;
 
-        input1 = ((q31_t) in1 & 0x0000FFFF) | ((q31_t) in2 << 16U);
+        input1 = __PKHBT(in1, in2, 16);
 
         /* acc3 += x[5] * y[srcBLen - 3] + x[6] * y[srcBLen - 4]  */
         acc3 = __SMLAD(input1, input2, acc3);
@@ -512,12 +512,12 @@ void riscv_conv_q7(
         /* Reading two inputs of SrcA buffer and packing */
         in1 = (q15_t) *px++;
         in2 = (q15_t) *px++;
-        input1 = ((q31_t) in1 & 0x0000FFFF) | ((q31_t) in2 << 16U);
+        input1 = __PKHBT(in1, in2, 16);
 
         /* Reading two inputs of SrcB buffer and packing */
         in1 = (q15_t) *py--;
         in2 = (q15_t) *py--;
-        input2 = ((q31_t) in1 & 0x0000FFFF) | ((q31_t) in2 << 16U);
+        input2 = __PKHBT(in1, in2, 16);
 
         /* Perform the multiply-accumulate */
         sum = __SMLAD(input1, input2, sum);
@@ -525,12 +525,12 @@ void riscv_conv_q7(
         /* Reading two inputs of SrcA buffer and packing */
         in1 = (q15_t) *px++;
         in2 = (q15_t) *px++;
-        input1 = ((q31_t) in1 & 0x0000FFFF) | ((q31_t) in2 << 16U);
+        input1 = __PKHBT(in1, in2, 16);
 
         /* Reading two inputs of SrcB buffer and packing */
         in1 = (q15_t) *py--;
         in2 = (q15_t) *py--;
-        input2 = ((q31_t) in1 & 0x0000FFFF) | ((q31_t) in2 << 16U);
+        input2 = __PKHBT(in1, in2, 16);
 
         /* Perform the multiply-accumulate */
         sum = __SMLAD(input1, input2, sum);
@@ -652,12 +652,12 @@ void riscv_conv_q7(
       /* Reading two inputs, x[srcALen - srcBLen + 1] and x[srcALen - srcBLen + 2] of SrcA buffer and packing */
       in1 = (q15_t) *px++;
       in2 = (q15_t) *px++;
-      input1 = ((q31_t) in1 & 0x0000FFFF) | ((q31_t) in2 << 16U);
+      input1 = __PKHBT(in1, in2, 16);
 
       /* Reading two inputs, y[srcBLen - 1] and y[srcBLen - 2] of SrcB buffer and packing */
       in1 = (q15_t) *py--;
       in2 = (q15_t) *py--;
-      input2 = ((q31_t) in1 & 0x0000FFFF) | ((q31_t) in2 << 16U);
+      input2 = __PKHBT(in1, in2, 16);
 
       /* sum += x[srcALen - srcBLen + 1] * y[srcBLen - 1] */
       /* sum += x[srcALen - srcBLen + 2] * y[srcBLen - 2] */
@@ -666,12 +666,12 @@ void riscv_conv_q7(
       /* Reading two inputs, x[srcALen - srcBLen + 3] and x[srcALen - srcBLen + 4] of SrcA buffer and packing */
       in1 = (q15_t) *px++;
       in2 = (q15_t) *px++;
-      input1 = ((q31_t) in1 & 0x0000FFFF) | ((q31_t) in2 << 16U);
+      input1 = __PKHBT(in1, in2, 16);
 
       /* Reading two inputs, y[srcBLen - 3] and y[srcBLen - 4] of SrcB buffer and packing */
       in1 = (q15_t) *py--;
       in2 = (q15_t) *py--;
-      input2 = ((q31_t) in1 & 0x0000FFFF) | ((q31_t) in2 << 16U);
+      input2 = __PKHBT(in1, in2, 16);
 
       /* sum += x[srcALen - srcBLen + 3] * y[srcBLen - 3] */
       /* sum += x[srcALen - srcBLen + 4] * y[srcBLen - 4] */

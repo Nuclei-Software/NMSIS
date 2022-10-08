@@ -82,6 +82,14 @@ void riscv_rms_q15(
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
+#if defined (RISCV_MATH_DSP)
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
+  q63_t in64;
+#else
+  q31_t in32;
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
+#endif /* defined (RISCV_MATH_DSP) */
+
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
 
@@ -96,13 +104,17 @@ void riscv_rms_q15(
     in64 = read_q15x4_ia((q15_t **)&pSrc);
     sum = __SMLALD(in64, in64, sum);
 #else
-    q31_t in32;
+#ifdef NUCLEI_DSP_N3
+    in64 = read_q15x4_ia((q15_t **)&pSrc);
+    sum = __dsmalda(sum, in64, in64);
+#else
     in32 = read_q15x2_ia((q15_t **)&pSrc);
     sum = __SMLALD(in32, in32, sum);
 
     in32 = read_q15x2_ia((q15_t **)&pSrc);
     sum = __SMLALD(in32, in32, sum);
-#endif
+#endif /* NUCLEI_DSP_N3 */
+#endif /* __RISCV_XLEN == 64 */
 #else
     in = *pSrc++;
     sum += ((q31_t)in * in);

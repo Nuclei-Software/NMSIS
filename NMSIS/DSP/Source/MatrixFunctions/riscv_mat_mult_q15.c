@@ -81,9 +81,9 @@ riscv_status riscv_mat_mult_q15(
 
         q31_t inA1, inB1, inA2, inB2;
         riscv_matrix_instance_q15 BT;
-#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+#if defined (RISCV_MATH_DSP) && (defined NUCLEI_DSP_N3 || __RISCV_XLEN == 64)
         q63_t inA164, inB164;
-#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
+#endif /* defined (RISCV_MATH_DSP) && (defined NUCLEI_DSP_N3 || __RISCV_XLEN == 64) */
 
 #ifdef RISCV_MATH_MATRIX_CHECK
 
@@ -141,8 +141,13 @@ riscv_status riscv_mat_mult_q15(
           inB164 = read_q15x4_ia(&pInB);
           /* Multiply and Accumlates */
           sum = __SMLALD(inA164, inB164, sum);
-          // sum = (q31_t)(sum64 + (sum64 >> 32));
 
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3)
+          inA164 = read_q15x4_ia(&pInA);
+          inB164 = read_q15x4_ia(&pInB);
+          /* Multiply and Accumlates */
+          sum = __dsmalda(sum, inA164, inB164);
 #else
           /* read real and imag values from pSrcA and pSrcB buffer */
           inA1 = read_q15x2_ia (&pInA);
@@ -154,6 +159,7 @@ riscv_status riscv_mat_mult_q15(
           /* Multiply and Accumlates */
           sum = __SMLALD(inA1, inB1, sum);
           sum = __SMLALD(inA2, inB2, sum);
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) */
 #endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
           /* Decrement loop counter */

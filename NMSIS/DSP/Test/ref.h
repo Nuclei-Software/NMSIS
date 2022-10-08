@@ -631,6 +631,10 @@ riscv_status ref_mat_mult_q31(const riscv_matrix_instance_q31 *pSrcA,
                             const riscv_matrix_instance_q31 *pSrcB,
                             riscv_matrix_instance_q31 *pDst);
 
+riscv_status ref_mat_mult_opt_q31(const riscv_matrix_instance_q31 *pSrcA,
+                            const riscv_matrix_instance_q31 *pSrcB,
+                            riscv_matrix_instance_q31 *pDst);
+
 void ref_mat_vec_mult_f32(const riscv_matrix_instance_f32 *pSrcMat,
                         const float32_t *pVec,
                         float32_t *pDst);
@@ -656,6 +660,10 @@ riscv_status ref_mat_mult_q15(const riscv_matrix_instance_q15 *pSrcA,
 
 /* Alias for testing purposes*/
 #define ref_mat_mult_fast_q15 ref_mat_mult_q15
+
+riscv_status ref_mat_mult_q7(const riscv_matrix_instance_q7 *pSrcA,
+                            const riscv_matrix_instance_q7 *pSrcB,
+                            riscv_matrix_instance_q7 *pDst);
 
 riscv_status ref_mat_scale_f32(const riscv_matrix_instance_f32 *pSrc,
                              float32_t scale, riscv_matrix_instance_f32 *pDst);

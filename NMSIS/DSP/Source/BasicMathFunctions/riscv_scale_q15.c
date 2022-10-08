@@ -77,11 +77,16 @@ void riscv_scale_q15(
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 #if defined (RISCV_MATH_DSP)
+#if __RISCV_XLEN == 64
+  q31_t out32, tmpScale32;
+  q63_t out64;
+  tmpScale32 = (q31_t)scaleFract | ((q31_t)scaleFract << 16);
+#endif /* __RISCV_XLEN == 64 */
   q31_t inA1, inA2;
   q31_t out1, out2, out3, out4;                  /* Temporary output variables */
   q31_t in1, in2, in3, in4;                      /* Temporary input variables */
-#endif
-#endif
+#endif /* defined (RISCV_MATH_DSP) */
+#endif /* defined (RISCV_MATH_LOOPUNROLL) */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -93,6 +98,20 @@ void riscv_scale_q15(
     /* C = A * scale */
 
 #if defined (RISCV_MATH_DSP)
+
+#if __RISCV_XLEN == 64
+    out32 = read_q15x2_ia((q15_t **)&pSrc);
+    out64 = __RV_SMUL16(out32, tmpScale32);
+    out64 = __RV_SRA32(out64, kShift);
+    out1 = (q31_t)(out64 >> 32);
+    out2 = (q31_t)out64;
+
+    out32 = read_q15x2_ia((q15_t **)&pSrc);
+    out64 = __RV_SMUL16(out32, tmpScale32);
+    out64 = __RV_SRA32(out64, kShift);
+    out3 = (q31_t)(out64 >> 32);
+    out4 = (q31_t)out64;
+#else
     /* read 2 times 2 samples at a time from source */
     inA1 = read_q15x2_ia ((q15_t **) &pSrc);
     inA2 = read_q15x2_ia ((q15_t **) &pSrc);
@@ -109,6 +128,7 @@ void riscv_scale_q15(
     out2 = out2 >> kShift;
     out3 = out3 >> kShift;
     out4 = out4 >> kShift;
+#endif /* __RISCV_XLEN == 64 */
 
     /* saturate the output */
     in1 = (__SSAT(out1, 16));
@@ -124,7 +144,8 @@ void riscv_scale_q15(
     *pDst++ = (q15_t)(__SSAT(((q31_t)*pSrc++ * scaleFract) >> kShift, 16));
     *pDst++ = (q15_t)(__SSAT(((q31_t)*pSrc++ * scaleFract) >> kShift, 16));
     *pDst++ = (q15_t)(__SSAT(((q31_t)*pSrc++ * scaleFract) >> kShift, 16));
-#endif
+#endif /* defined (RISCV_MATH_DSP) */
+
 
     /* Decrement loop counter */
     blkCnt--;

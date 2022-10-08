@@ -78,6 +78,20 @@ int DSP_matrix_q31(void)
             test_flag_error = 1;
         }
     BENCH_STATUS(riscv_mat_mult_q31);
+    // mult_opt
+    BENCH_START(riscv_mat_mult_opt_q31);
+    riscv_mat_mult_opt_q31(&q31_A, &q31_B, &q31_des, q31_output_back);
+    BENCH_END(riscv_mat_mult_opt_q31);
+    ref_mat_mult_opt_q31(&q31_A, &q31_B, &q31_ref);
+    for (int i = 0; i < (ROWS * COLUMNS); i++){
+        if (labs(q31_output[i] - q31_output_ref[i]) > DELTAQ31) {
+            BENCH_ERROR(riscv_mat_mult_opt_q31);
+            printf("index: %d,expect: %x, actual: %x\n", i, q31_output_ref[i],
+                   q31_output[i]);
+            test_flag_error = 1;
+        }
+    }
+    BENCH_STATUS(riscv_mat_mult_opt_q31);
     // sub
     BENCH_START(riscv_mat_sub_q31);
     riscv_mat_sub_q31(&q31_A, &q31_B, &q31_des);

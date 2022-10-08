@@ -89,6 +89,7 @@ void riscv_dot_prod_q7(
   blkCnt = blockSize >> 3U;
   remain_blkCnt = blockSize & 0x7U;
 #else
+  q31_t input1, input2;
   blkCnt = blockSize >> 2U;
   remain_blkCnt = blockSize & 0x3U;
 #endif /* RISCV_MATH_DSP && (NUCLEI_DSP_N3 || __RISCV_XLEN == 64) */

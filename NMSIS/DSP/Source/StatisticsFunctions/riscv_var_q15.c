@@ -96,6 +96,14 @@ void riscv_var_q15(
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
+#if defined (RISCV_MATH_DSP)
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
+  q63_t in64;
+#else
+  q31_t in32;
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
+#endif /* defined (RISCV_MATH_DSP) */
+
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
 
@@ -108,15 +116,21 @@ void riscv_var_q15(
     /* Compute sum and store result in a temporary variable, sum. */
 #if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
-    q63_t in64;
-    in64 = read_q15x4_ia ((q15_t **) &pSrc);
+    in64 = read_q15x4_ia((q15_t **)&pSrc);
     sumOfSquares = __SMLALD(in64, in64, sumOfSquares);
     sum += ((q31_t)((in64 << 48U) >> 48U));
     sum += ((q31_t)((in64 << 32U) >> 48U));
     sum += ((q31_t)((in64 << 16U) >> 48U));
     sum += ((q31_t)((in64) >> 48U));
 #else
-    q31_t in32;
+#ifdef NUCLEI_DSP_N3
+    in64 = read_q15x4_ia((q15_t **)&pSrc);
+    sumOfSquares = __dsmalda(sumOfSquares, in64, in64);
+    sum += ((q31_t)((in64 << 48U) >> 48U));
+    sum += ((q31_t)((in64 << 32U) >> 48U));
+    sum += ((q31_t)((in64 << 16U) >> 48U));
+    sum += ((q31_t)((in64) >> 48U));
+#else
     in32 = read_q15x2_ia((q15_t **)&pSrc);
     sumOfSquares = __SMLALD(in32, in32, sumOfSquares);
     sum += ((in32 << 16U) >> 16U);
@@ -126,6 +140,7 @@ void riscv_var_q15(
     sumOfSquares = __SMLALD(in32, in32, sumOfSquares);
     sum += ((in32 << 16U) >> 16U);
     sum += (in32 >> 16U);
+#endif /* NUCLEI_DSP_N3 */
 #endif /* __RISCV_XLEN == 64 */
 #else
     in = *pSrc++;

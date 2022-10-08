@@ -105,9 +105,12 @@ riscv_status riscv_mat_sub_q31(
     {
       /* C(m,n) = A(m,n) - B(m,n) */
 #if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
-    /* Subtract and store result in destination buffer (8 samples at a time). */
-    write_q31x2_ia(&pOut, __RV_KSUB32(read_q31x2_ia((q31_t **)&pInA), read_q31x2_ia((q31_t **)&pInB)));
-    write_q31x2_ia(&pOut, __RV_KSUB32(read_q31x2_ia((q31_t **)&pInA), read_q31x2_ia((q31_t **)&pInB)));
+      /* Subtract and store result in destination buffer (8 samples at a time). */
+      write_q31x2_ia(&pOut, __RV_KSUB32(read_q31x2_ia((q31_t **)&pInA), read_q31x2_ia((q31_t **)&pInB)));
+      write_q31x2_ia(&pOut, __RV_KSUB32(read_q31x2_ia((q31_t **)&pInA), read_q31x2_ia((q31_t **)&pInB)));
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
+      write_q31x2_ia(&pOut, __dksub32(read_q31x2_ia((q31_t**)&pInA), read_q31x2_ia((q31_t **)&pInB)));
 #else
       /* Subtract, saturate and then store the results in the destination buffer. */
       *pOut++ = __QSUB(*pInA++, *pInB++);
@@ -117,6 +120,7 @@ riscv_status riscv_mat_sub_q31(
       *pOut++ = __QSUB(*pInA++, *pInB++);
 
       *pOut++ = __QSUB(*pInA++, *pInB++);
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2) */
 #endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
       /* Decrement loop counter */
       blkCnt--;

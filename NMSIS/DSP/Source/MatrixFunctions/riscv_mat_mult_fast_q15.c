@@ -120,7 +120,7 @@ riscv_status riscv_mat_mult_fast_q15(
       for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)   //Multiply a row by a column
       {
         vsse16_v_i16m8(px, bstride, vle16_v_i16m8(pInB, l), l);
-        px += l*numRowsB;
+        px += l * numRowsB;
         pInB += l;
       }
 
@@ -189,11 +189,11 @@ riscv_status riscv_mat_mult_fast_q15(
     status = RISCV_MATH_SUCCESS;
   }
 #else
-#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+#if defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64))
         q63_t in64;                                      /* Temporary variable to hold the input value */
-        q63_t sum64, sum264, sum364, sum464;
-        q63_t inA164, inA264, inB164, inB264 ;
-#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
+        q63_t sum64;
+        q63_t inA164, inB164;
+#endif /* defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)) */
 #if defined (RISCV_MATH_DSP)
         q31_t in;                                      /* Temporary variable to hold the input value */
         q31_t inA1, inB1, inA2, inB2;
@@ -235,18 +235,6 @@ riscv_status riscv_mat_mult_fast_q15(
       {
 
 #if defined (RISCV_MATH_DSP)
-// #if __RISCV_XLEN == 64
-//         /* Read two elements from row */
-//         in64 = read_q15x4_ia ((q15_t **) &pInB);
-//         *px = (q15_t) ((in64) >> 16);
-//                 px += numRowsB;
-//         *px = (q15_t) in64;
-//                 px += numRowsB;
-//         *px = (q15_t) ((in64) >> 48);
-//                 px += numRowsB;
-//         *px = (q15_t) (in64 >> 32);
-//                 px += numRowsB;
-// #else
         /* Read two elements from row */
         in = read_q15x2_ia (&pInB);
 
@@ -268,7 +256,6 @@ riscv_status riscv_mat_mult_fast_q15(
 
         *px = (q15_t) ((in & (q31_t) 0xffff0000) >> 16);
         px += numRowsB;
-// #endif /* __RISCV_XLEN == 64 */
 #else /* #if defined (RISCV_MATH_DSP) */
 
         /* Read one element from row */
@@ -377,32 +364,6 @@ riscv_status riscv_mat_mult_fast_q15(
           /* c(m,n) = a(1,1) * b(1,1) + a(1,2) * b(2,1) + .... + a(m,p) * b(p,n) */
 
 #if defined (RISCV_MATH_DSP)
-// #if __RISCV_XLEN == 64
-//           /* read real and imag values from pSrcA and pSrcB buffer */
-//           inA1 = read_q15x2_ia ((q15_t **) &pInA);
-//           inB1 = read_q15x2_ia ((q15_t **) &pInB);
-
-//           inA2 = read_q15x2_ia ((q15_t **) &pInA2);
-//           inB2 = read_q15x2_ia ((q15_t **) &pInB2);
-
-//           /* Multiply and Accumlates */
-//           sum  = ((uint32_t)(((((q31_t)inA1 << 16) >> 16) * (((q31_t)inB1 << 16) >> 16)) +
-//                        ((((q31_t)inA1      ) >> 16) * (((q31_t)inB1      ) >> 16)) +
-//                        ( ((q31_t)sum    )                                  )   ));
-//         //   ((inA1 & (uint32_t)0x0ffff) * (inB1  & (uint32_t)0x0ffff)) + (((inA1 >> 16) & (uint32_t)0x0ffff) * ((inB1 >> 16) & (uint32_t)0x0ffff));
-//           sum2 = ((uint32_t)(((((q31_t)inA1 << 16) >> 16) * (((q31_t)inB2 << 16) >> 16)) +
-//                        ((((q31_t)inA1      ) >> 16) * (((q31_t)inB2      ) >> 16)) +
-//                        ( ((q31_t)sum    )                                  )   ));
-//         //   ((inA1 & (uint32_t)0x0ffff) * (inB2  & (uint32_t)0x0ffff)) + (((inA1 >> 16) & (uint32_t)0x0ffff) * ((inB2 >> 16) & (uint32_t)0x0ffff));
-//           sum3 = ((uint32_t)(((((q31_t)inA2 << 16) >> 16) * (((q31_t)inB1 << 16) >> 16)) +
-//                        ((((q31_t)inA2      ) >> 16) * (((q31_t)inB1      ) >> 16)) +
-//                        ( ((q31_t)sum    )                                  )   ));
-//         //   ((inA2 & (uint32_t)0x0ffff) * (inB1  & (uint32_t)0x0ffff)) + (((inA2 >> 16) & (uint32_t)0x0ffff) * ((inB1 >> 16) & (uint32_t)0x0ffff));
-//           sum4 = ((uint32_t)(((((q31_t)inA2 << 16) >> 16) * (((q31_t)inB2 << 16) >> 16)) +
-//                        ((((q31_t)inA2      ) >> 16) * (((q31_t)inB2      ) >> 16)) +
-//                        ( ((q31_t)sum    )                                  )   ));
-//         //   ((inA2 & (uint32_t)0x0ffff) * (inB2  & (uint32_t)0x0ffff)) + (((inA2 >> 16) & (uint32_t)0x0ffff) * ((inB2 >> 16) & (uint32_t)0x0ffff));
-// #else
           /* read real and imag values from pSrcA and pSrcB buffer */
           inA1 = read_q15x2_ia (&pInA);
           inB1 = read_q15x2_ia (&pInB);
@@ -512,9 +473,9 @@ riscv_status riscv_mat_mult_fast_q15(
 
         /* point to last column in matrix B */
         pInB  = pSrcBT + numRowsB * (numColsB-1);
-#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
-        sum64  = 0;
-#endif
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
+        sum64 = 0;
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
         /* Set variable sum, that acts as accumulator, to zero */
         sum  = 0;
 
@@ -524,27 +485,34 @@ riscv_status riscv_mat_mult_fast_q15(
         /* matrix multiplication */
         while (colCnt > 0U)
         {
-#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+#if __RISCV_XLEN == 64
           inA164 = read_q15x4_ia (&pInA);
           inB164 = read_q15x4_ia (&pInB);
 
-          sum64  = __SMLAD(inA164, inB164, sum64);
+          sum64 = __SMLAD(inA164, inB164, sum64);
+#else
+#ifdef NUCLEI_DSP_N3
+          inA164 = read_q15x4_ia(&pInA);
+          inB164 = read_q15x4_ia(&pInB);
+
+          sum64 = __dkmada(sum64, inA164, inB164);
 #else
           inA1 = read_q15x2_ia (&pInA);
           inA2 = read_q15x2_ia (&pInA);
           inB1 = read_q15x2_ia (&pInB);
           inB2 = read_q15x2_ia (&pInB);
 
-          sum  = __SMLAD(inA1, inB1, sum);
-          sum  = __SMLAD(inA2, inB2, sum);
-#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
+          sum = __SMLAD(inA1, inB1, sum);
+          sum = __SMLAD(inA2, inB2, sum);
+#endif /* NUCLEI_DSP_N3 */
+#endif /* __RISCV_XLEN == 64 */
 
           /* Decrement loop counter */
           colCnt--;
         }
-#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
-          sum = (q31_t) ((q31_t) (sum64 & 0xffffffff)) + ((q31_t) ((sum64 & 0xffffffff00000000)>> 32));
-#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
+        sum = (q31_t)((q31_t)(sum64 & 0xffffffff)) + ((q31_t)((sum64 & 0xffffffff00000000) >> 32));
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
         colCnt = numColsA & 3U;
         while (colCnt > 0U) {
           sum += (q31_t) (*pInA++) * (*pInB++);
@@ -575,9 +543,9 @@ riscv_status riscv_mat_mult_fast_q15(
       {
         /* point to last row in matrix A */
         pInA = pSrcA->pData + (numRowsA-1) * numColsA;
-#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
-        sum64  = 0;
-#endif
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
+        sum64 = 0;
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
         /* Set variable sum, that acts as accumulator, to zero */
         sum  = 0;
 
@@ -587,26 +555,33 @@ riscv_status riscv_mat_mult_fast_q15(
         /* matrix multiplication */
         while (colCnt > 0U)
         {
-#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+#if __RISCV_XLEN == 64
           inA164 = read_q15x4_ia (&pInA);
           inB164 = read_q15x4_ia (&pInB);
 
-          sum64  = __SMLAD(inA164, inB164, sum64);
+          sum64 = __SMLAD(inA164, inB164, sum64);
+#else
+#ifdef NUCLEI_DSP_N3
+          inA164 = read_q15x4_ia(&pInA);
+          inB164 = read_q15x4_ia(&pInB);
+
+          sum64 = __dkmada(sum64, inA164, inB164);
 #else
           inA1 = read_q15x2_ia (&pInA);
           inA2 = read_q15x2_ia (&pInA);
           inB1 = read_q15x2_ia (&pInB);
           inB2 = read_q15x2_ia (&pInB);
 
-          sum  = __SMLAD(inA1, inB1, sum);
-          sum  = __SMLAD(inA2, inB2, sum);
-#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
+          sum = __SMLAD(inA1, inB1, sum);
+          sum = __SMLAD(inA2, inB2, sum);
+#endif /* NUCLEI_DSP_N3 */
+#endif /* __RISCV_XLEN == 64 */
           /* Decrement loop counter */
           colCnt--;
         }
-#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
-          sum = (q31_t) ((q31_t) (sum64 & 0xffffffff)) + ((q31_t) ((sum64 & 0xffffffff00000000)>> 32));
-#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
+          sum = (q31_t)((q31_t)(sum64 & 0xffffffff)) + ((q31_t)((sum64 & 0xffffffff00000000) >> 32));
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
         colCnt = numColsA & 3U;
         while (colCnt > 0U) {
           sum += (q31_t) (*pInA++) * (*pInB++);

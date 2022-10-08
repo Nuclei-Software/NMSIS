@@ -28,13 +28,33 @@ BENCH_DECLARE_VAR();
 int DSP_matrix_q7(void)
 {
     riscv_matrix_instance_q7 q7_A;
+    riscv_matrix_instance_q7 q7_B;
+    riscv_matrix_instance_q7 q7_ref;
+    riscv_matrix_instance_q7 q7_des;
 
     q7_t q7_ref_vec[ROWS];
     q7_t q7_dst_vec[ROWS];
 
     riscv_mat_init_q7(&q7_A, ROWS, COLUMNS, (q7_t *)q7_a_array);
+    riscv_mat_init_q7(&q7_B, ROWS, COLUMNS, (q7_t *)q7_b_array);
+    riscv_mat_init_q7(&q7_des, ROWS, COLUMNS, q7_output);
+    riscv_mat_init_q7(&q7_ref, ROWS, COLUMNS, q7_output_ref);
 
     // ****************   q7   *********************
+    // mat_mult_q7
+    BENCH_START(riscv_mat_mult_q7);
+    riscv_mat_mult_q7(&q7_A, &q7_B, &q7_des, q7_output_back);
+    BENCH_END(riscv_mat_mult_q7);
+    ref_mat_mult_q7(&q7_A, &q7_B, &q7_ref);
+    for (int i = 0; i < ROWS * COLUMNS; i++)
+        if (abs(q7_output[i] - q7_output_ref[i]) > DELTAQ7) {
+            BENCH_ERROR(riscv_mat_mult_q7);
+            printf("index: %d,expect: %x, actual: %x\t", i, q7_output_ref[i],
+                   q7_output[i]);
+            test_flag_error = 1;
+        }
+    BENCH_STATUS(riscv_mat_mult_q7);
+
     // mat_vec_mult
     BENCH_START(riscv_mat_vec_mult_q7);
     riscv_mat_vec_mult_q7(&q7_A, q7_b_vec, q7_dst_vec);

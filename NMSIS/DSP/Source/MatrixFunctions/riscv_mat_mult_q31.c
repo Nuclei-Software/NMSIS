@@ -77,6 +77,7 @@ riscv_status riscv_mat_mult_q31(
   uint32_t col, i = 0U, row = numRowsA, colCnt;  /* Loop counters */
   riscv_status status;                             /* Status of matrix multiplication */
 #if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+  q31_t tmp131, tmp231;
   q63_t temp164, temp264;                                     /* Accumulator */
 #endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 #ifdef RISCV_MATH_MATRIX_CHECK
@@ -169,9 +170,22 @@ riscv_status riscv_mat_mult_q31(
         {
           /* c(m,n) = a(1,1) * b(1,1) + a(1,2) * b(2,1) + .... + a(m,p) * b(p,n) */
 #if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
-	        temp164 = read_q31x2_ia ((q31_t **) &pIn1);
-          temp264 = ((q63_t) *pIn2) | ((q63_t) *pIn2 << 32);
-          sum = __RV_KMADA32(sum, temp164, temp264);
+          temp164 = read_q31x2_ia ((q31_t **) &pIn1);
+          tmp131 = *pIn2;
+          pIn2 += numColsB;
+          tmp231 = *pIn2;
+          pIn2 += numColsB;
+          temp264 = ((q63_t)tmp131) | ((q63_t) tmp231 << 32);
+          sum = __RV_SMAR64(sum, temp164, temp264);
+
+          temp164 = read_q31x2_ia ((q31_t **) &pIn1);
+          tmp131 = *pIn2;
+          pIn2 += numColsB;
+          tmp231 = *pIn2;
+          pIn2 += numColsB;
+          temp264 = ((q63_t)tmp131) | ((q63_t) tmp231 << 32);
+          sum = __RV_SMAR64(sum, temp164, temp264);
+
 #else
           /* Perform the multiply-accumulates */
           sum += (q63_t) *pIn1++ * *pIn2;

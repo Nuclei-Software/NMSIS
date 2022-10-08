@@ -108,6 +108,10 @@ riscv_status riscv_mat_add_q31(
       write_q31x2_ia(&pOut, __RV_KADD32(read_q31x2_ia((q31_t **)&pInA), read_q31x2_ia((q31_t **)&pInB)));
       write_q31x2_ia(&pOut, __RV_KADD32(read_q31x2_ia((q31_t **)&pInA), read_q31x2_ia((q31_t **)&pInB)));
 #else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
+      write_q31x2_ia(&pOut, __dkadd32(read_q31x2_ia((q31_t **)&pInA), read_q31x2_ia((q31_t **)&pInB)));
+      write_q31x2_ia(&pOut, __dkadd32(read_q31x2_ia((q31_t **)&pInA), read_q31x2_ia((q31_t **)&pInB)));
+#else
       /* Add, saturate and store result in destination buffer. */
       *pOut++ = __QADD(*pInA++, *pInB++);
 
@@ -116,6 +120,7 @@ riscv_status riscv_mat_add_q31(
       *pOut++ = __QADD(*pInA++, *pInB++);
 
       *pOut++ = __QADD(*pInA++, *pInB++);
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2) */
 #endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
       /* Decrement loop counter */

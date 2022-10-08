@@ -18652,11 +18652,16 @@ __STATIC_FORCEINLINE long __SMMLA(long op1, long op2, long op3)
 #define __USAT16                __RV_UCLIP16
 
 /** \brief Halfword packing instruction. Combines bits[15:0] of val1 with bits[31:16] of val2 levitated with the val3. */
-#define __PKHBT(ARG1,ARG2,ARG3)     ( ((((uint32_t)(ARG1))          ) & 0x0000FFFFUL) |  \
-                                    ((((uint32_t)(ARG2)) << (ARG3)) & 0xFFFF0000UL)  )
+#define __PKHBT(ARG1, ARG2, ARG3)  ((ARG3 == 0) ? __RV_PKTB16(ARG2, ARG1) :              \
+                                   (ARG3 == 16) ? __RV_PKBB16(ARG2, ARG1) :              \
+                                   (((((uint32_t)(ARG1))          ) & 0x0000FFFFUL) |    \
+                                   ((((uint32_t)(ARG2)) << (ARG3)) & 0xFFFF0000UL)))
+
 /** \brief Halfword packing instruction. Combines bits[31:16] of val1 with bits[15:0] of val2 right-shifted with the val3. */
-#define __PKHTB(ARG1,ARG2,ARG3)     ( ((((uint32_t)(ARG1))          ) & 0xFFFF0000UL) |  \
-                                    ((((uint32_t)(ARG2)) >> (ARG3)) & 0x0000FFFFUL)  )
+#define __PKHTB(ARG1, ARG2, ARG3)  ((ARG3 == 0) ? __RV_PKTB16(ARG1, ARG2) :              \
+	                           (ARG3 == 16) ? __RV_PKTT16(ARG1, ARG2) :              \
+                                   (((((uint32_t)(ARG1))          ) & 0xFFFF0000UL) |    \
+                                   ((((uint32_t)(ARG2)) >> (ARG3)) & 0x0000FFFFUL)))
 
 /** first rotate then extract. This is more suitable for arm compiler for it can rotate and extract in one command*/
 #define __SXTB16_RORn(ARG1, ARG2)   __RV_SUNPKD820(__ROR(ARG1, ARG2))

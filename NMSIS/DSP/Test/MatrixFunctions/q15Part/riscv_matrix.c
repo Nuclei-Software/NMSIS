@@ -43,9 +43,9 @@ int DSP_matrix_q15(void)
 
     // ****************   q15   *********************
     // mat_vec_mult
-    BENCH_START(riscv_mat_vec_mult_q31);
+    BENCH_START(riscv_mat_vec_mult_q15);
     riscv_mat_vec_mult_q15(&q15_A, q15_b_vec, q15_dst_vec);
-    BENCH_END(riscv_mat_vec_mult_q31);
+    BENCH_END(riscv_mat_vec_mult_q15);
     ref_mat_vec_mult_q15(&q15_A, q15_b_vec, q15_ref_vec);
     for (int i = 0; i < ROWS; i++)
         if (labs(q15_ref_vec[i] - q15_dst_vec[i]) > DELTAQ31) {

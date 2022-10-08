@@ -80,37 +80,43 @@ void riscv_scale_q7(
 #if defined (RISCV_MATH_DSP)
   q7_t in1,  in2,  in3,  in4;                    /* Temporary input variables */
   q7_t out1, out2, out3, out4;                   /* Temporary output variables */
-#endif
-// #if __RISCV_XLEN == 64
-//   /* Loop unrolling: Compute 8 outputs at a time */
-//   blkCnt = blockSize >> 3U;
-// #else
+#if __RISCV_XLEN == 64
+  q63_t out64;
+  q31_t in32;
+  q15_t out116, out216, out316, out416;
+  q31_t scale_packed;                           /* scale packed to 32 bit */
+  q7_t *scale_a = (q7_t *)&scale_packed;
+  for (int i = 0; i < 4; i++)
+  {
+    scale_a[i] = scaleFract;
+  }
+#endif /* __RISCV_XLEN == 64 */
+#endif /* defined (RISCV_MATH_DSP) */
+
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
-// #endif /* __RISCV_XLEN == 64 */
 
   while (blkCnt > 0U)
   {
     /* C = A * scale */
 
 #if defined (RISCV_MATH_DSP)
-// #if __RISCV_XLEN == 64
-// 	q63_t scale_packed;                           /* scale packed to 32 bit */
-// 	//q31_t scale_packed_32;
-// 	q7_t scale_a[8];
-// 	scale_a[0]	 = scaleFract;
-// 	scale_a[1]	 = scaleFract;
-// 	scale_a[2]	 = scaleFract;
-// 	scale_a[3]	 = scaleFract;
-// 	scale_a[4]	 = scaleFract;
-// 	scale_a[5]	 = scaleFract;
-// 	scale_a[6]	 = scaleFract;
-// 	scale_a[7]	 = scaleFract;
+#if __RISCV_XLEN == 64
+    /* Reading 4 inputs from memory */
+    in32 = read_q7x4_ia((q7_t **)&pSrc);
+    out64 = __RV_SMUL8(in32, scale_packed);
+    out64 = __RV_SRA16(out64, kShift);
+    out116 = (q15_t)(out64);
+    out216 = (q15_t)(out64 >> 16);
+    out316 = (q15_t)(out64 >> 32);
+    out416 = (q15_t)(out64 >> 48);
 
-// 	/* scale is packed to 64 bit in order to use SIMD64 for addition */
-//     scale_packed = *((q63_t *)scale_a);
-//   write_q7x8_ia (&pDst,__RV_KSLRA8((__RV_SMUL8(read_q7x8_ia ((q7_t **) &pSrc), scale_packed)),shift));
-// #else
+    /* Scale inputs and store result in the temporary variable. */
+    out1 = (q7_t)(__SSAT(out116, 8));
+    out2 = (q7_t)(__SSAT(out216, 8));
+    out3 = (q7_t)(__SSAT(out316, 8));
+    out4 = (q7_t)(__SSAT(out416, 8));
+#else
     /* Reading 4 inputs from memory */
     in1 = *pSrc++;
     in2 = *pSrc++;
@@ -122,27 +128,22 @@ void riscv_scale_q7(
     out2 = (q7_t) (__SSAT(((in2) * scaleFract) >> kShift, 8));
     out3 = (q7_t) (__SSAT(((in3) * scaleFract) >> kShift, 8));
     out4 = (q7_t) (__SSAT(((in4) * scaleFract) >> kShift, 8));
+#endif /* __RISCV_XLEN == 64 */
 
     /* Pack and store result in destination buffer (in single write) */
     write_q7x4_ia (&pDst, __PACKq7(out1, out2, out3, out4));
-// #endif /* __RISCV_XLEN == 64 */
 #else
     *pDst++ = (q7_t) (__SSAT((((q15_t) *pSrc++ * scaleFract) >> kShift), 8));
     *pDst++ = (q7_t) (__SSAT((((q15_t) *pSrc++ * scaleFract) >> kShift), 8));
     *pDst++ = (q7_t) (__SSAT((((q15_t) *pSrc++ * scaleFract) >> kShift), 8));
     *pDst++ = (q7_t) (__SSAT((((q15_t) *pSrc++ * scaleFract) >> kShift), 8));
-#endif
+#endif /* defined (RISCV_MATH_DSP) */
 
     /* Decrement loop counter */
     blkCnt--;
   }
-// #if __RISCV_XLEN == 64
-//   /* Loop unrolling: Compute remaining outputs */
-//   blkCnt = blockSize % 0x8U;
-// #else
   /* Loop unrolling: Compute remaining outputs */
   blkCnt = blockSize & 0x3U;
-// #endif /* __RISCV_XLEN == 64 */
 #else
 
   /* Initialize blkCnt with number of samples */

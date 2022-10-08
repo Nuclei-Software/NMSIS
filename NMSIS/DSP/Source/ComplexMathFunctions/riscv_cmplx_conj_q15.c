@@ -103,12 +103,10 @@ void riscv_cmplx_conj_q15(
 #if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
     in641 = read_q15x4_ia((q15_t **) &pSrc);
-    in641 = __RV_KCRAS16(0, in641);
-    in641 = ((((uint64_t)in641) >> 48) << 32) | (((((uint64_t)in641) << 16) >> 48) << 48) | (((((uint64_t)in641) << 32) >> 48)) | (((((uint64_t)in641) << 48) >> 32));
+    in641 = __RV_KSTSA16(0, in641);
     write_q15x4_ia (&pDst, in641);
     in641 = read_q15x4_ia((q15_t **) &pSrc);
-    in641 = __RV_KCRAS16(0, in641);
-    in641 = ((((uint64_t)in641) >> 48) << 32) | (((((uint64_t)in641) << 16) >> 48) << 48) | (((((uint64_t)in641) << 32) >> 48)) | (((((uint64_t)in641) << 48) >> 32));
+    in641 = __RV_KSTSA16(0, in641);
     write_q15x4_ia(&pDst, in641);
 #else
     in1 = read_q15x2_ia((q15_t **)&pSrc);
@@ -116,15 +114,10 @@ void riscv_cmplx_conj_q15(
     in3 = read_q15x2_ia((q15_t **)&pSrc);
     in4 = read_q15x2_ia((q15_t **)&pSrc);
 
-    in1 = __RV_KCRAS16(0, in1);
-    in2 = __RV_KCRAS16(0, in2);
-    in3 = __RV_KCRAS16(0, in3);
-    in4 = __RV_KCRAS16(0, in4);
-
-    in1 = ((uint32_t)in1 >> 16) | ((uint32_t)in1 << 16);
-    in2 = ((uint32_t)in2 >> 16) | ((uint32_t)in2 << 16);
-    in3 = ((uint32_t)in3 >> 16) | ((uint32_t)in3 << 16);
-    in4 = ((uint32_t)in4 >> 16) | ((uint32_t)in4 << 16);
+    in1 = __RV_KSTSA16(0, in1);
+    in2 = __RV_KSTSA16(0, in2);
+    in3 = __RV_KSTSA16(0, in3);
+    in4 = __RV_KSTSA16(0, in4);
 
     write_q15x2_ia(&pDst, in1);
     write_q15x2_ia(&pDst, in2);

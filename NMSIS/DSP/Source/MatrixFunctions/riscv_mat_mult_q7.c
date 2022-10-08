@@ -62,16 +62,20 @@ riscv_status riscv_mat_mult_q7(const riscv_matrix_instance_q7 *pSrcA, const risc
     q7_t *pIn1 = pSrcA->pData;                    /* input data matrix pointer A */
     q7_t *pIn2 = pSrcB->pData;                    /* input data matrix pointer B */
     q7_t *pInA = pSrcA->pData;                    /* input data matrix pointer A of Q7 type */
-    q7_t *pInB = pSrcB->pData;                    /* input data matrix pointer B of Q7 type */
     q7_t *pOut = pDst->pData;                     /* output data matrix pointer */
-    q7_t *px;                                     /* Temporary output data matrix pointer */
+    q7_t *pSrcBT = pState;                        /* Input data matrix pointer for transpose */
+    q7_t *px = NULL;                              /* Temporary output data matrix pointer */
     uint16_t numColsB = pSrcB->numCols;           /* number of columns of input matrix B */
     uint16_t numColsA = pSrcA->numCols;           /* number of columns of input matrix A */
     uint16_t numRowsA = pSrcA->numRows;           /* number of rows of input matrix A    */
+    uint16_t numRowsB = pSrcB->numRows;            /* Number of rows of input matrix B */
     uint16_t col, i = 0U, row = numRowsA, colCnt; /* loop counters */
     riscv_status status;                            /* status of matrix multiplication */
+    riscv_matrix_instance_q7 BT;
 
-    (void)pState;
+#if defined (RISCV_MATH_DSP)
+    q31_t tmpVal1, tmpVal2;
+#endif /* defined (RISCV_MATH_DSP) */
 
 #ifdef RISCV_MATH_MATRIX_CHECK
 
@@ -88,18 +92,28 @@ riscv_status riscv_mat_mult_q7(const riscv_matrix_instance_q7 *pSrcA, const risc
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
 
     {
+        BT.numRows = numColsB;
+        BT.numCols = numRowsB;
+        BT.pData = pSrcBT;
+
+        /* Matrix transpose by exchanging the rows with columns */
+	status = riscv_mat_trans_q7(pSrcB, &BT);
+	if (status != RISCV_MATH_SUCCESS)
+	{
+	    return status;
+	}
+
+	px = pDst->pData;
+
         /* The following loop performs the dot-product of each row in pSrcA with each column in pSrcB */
         /* row loop */
         do {
-            /* Output pointer is set to starting address of the row being processed */
-            px = pOut + i;
-
             /* For every row wise process, the column loop counter is to be initiated */
             col = numColsB;
 
             /* For every row wise process, the pIn2 pointer is set
              ** to the starting address of the pSrcB data */
-            pIn2 = pSrcB->pData;
+            pIn2 = pSrcBT;
 
             /* column loop */
             do {
@@ -107,17 +121,44 @@ riscv_status riscv_mat_mult_q7(const riscv_matrix_instance_q7 *pSrcA, const risc
                 sum = 0;
 
                 /* Initiate the pointer pIn1 to point to the starting address of pSrcA */
-                pIn1 = pInA;
+                pIn1 = pInA + i;
+#if defined (RISCV_MATH_LOOPUNROLL)
+                /* Loop unrolling: Compute 4 MACs at a time. */
+                colCnt = numColsA >> 2U;
+
+                /* matrix multiplication */
+                while (colCnt > 0U)
+                {
+                    /* c(m,n) = a(1,1)*b(1,1) + a(1,2) * b(2,1) + .... + a(m,p)*b(p,n) */
+#if defined (RISCV_MATH_DSP)
+                    tmpVal1 = read_q7x4_ia(&pIn1);
+                    tmpVal2 = read_q7x4_ia(&pIn2);
+                    sum = __RV_SMAQA(sum, tmpVal1, tmpVal2);
+#else
+                    sum += (q31_t)*pIn1++ * *pIn2++;
+                    sum += (q31_t)*pIn1++ * *pIn2++;
+                    sum += (q31_t)*pIn1++ * *pIn2++;
+                    sum += (q31_t)*pIn1++ * *pIn2++;
+#endif /* defined (RISCV_MATH_DSP) */
+                    /* Decrement loop counter */
+                    colCnt--;
+                }
+
+                /* Loop unrolling: Compute remaining MACs */
+                colCnt = numColsA & 0x3U;
+#else
 
                 /* Matrix A columns number of MAC operations are to be performed */
                 colCnt = numColsA;
+
+#endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
 
                 /* matrix multiplication */
                 while (colCnt > 0U) {
                     /* c(m,n) = a(1,1)*b(1,1) + a(1,2) * b(2,1) + .... + a(m,p)*b(p,n) */
                     /* Perform the multiply-accumulates */
-                    sum += (q31_t)*pIn1++ * *pIn2;
-                    pIn2 += numColsB;
+
+                    sum += (q31_t)*pIn1++ * *pIn2++;
 
                     /* Decrement the loop counter */
                     colCnt--;
@@ -130,14 +171,10 @@ riscv_status riscv_mat_mult_q7(const riscv_matrix_instance_q7 *pSrcA, const risc
                 /* Decrement the column loop counter */
                 col--;
 
-                /* Update the pointer pIn2 to point to the  starting address of the next column */
-                pIn2 = pInB + (numColsB - col);
-
             } while (col > 0U);
 
             /* Update the pointer pSrcA to point to the  starting address of the next row */
-            i = i + numColsB;
-            pInA = pInA + numColsA;
+            i = i + numColsA;
 
             /* Decrement the row loop counter */
             row--;

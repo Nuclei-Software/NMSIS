@@ -82,7 +82,7 @@ void riscv_power_q7(
 #else
 
 #if defined (RISCV_MATH_LOOPUNROLL)
-#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+#if defined (RISCV_MATH_DSP) && (defined NUCLEI_DSP_N3 || __RISCV_XLEN == 64)
   q63_t in64, sum64 = 0;      /* Temporary variable to store packed input value */
   /* Loop unrolling: Compute 8 outputs at a time */
   blkCnt = blockSize >> 3U;
@@ -90,7 +90,7 @@ void riscv_power_q7(
   q31_t in32;                /* Temporary variable to store packed input value */
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
-#endif /* __RISCV_XLEN == 64 */
+#endif /* defined (RISCV_MATH_DSP) && (defined NUCLEI_DSP_N3 || __RISCV_XLEN == 64) */
 
   while (blkCnt > 0U)
   {
@@ -102,8 +102,13 @@ void riscv_power_q7(
     in64 = read_q7x8_ia((q7_t **)&pSrc);
     sum64 = __RV_SMAQA(sum64, in64, in64);
 #else
+#ifdef NUCLEI_DSP_N3
+    in64 = read_q7x8_ia((q7_t **)&pSrc);
+    sum64 = __dsmaqa(sum64, in64, in64);
+#else
     in32 = read_q7x4_ia((q7_t **)&pSrc);
     sum = __RV_SMAQA(sum, in32, in32);
+#endif /* NUCLEI_DSP_N3 */
 #endif /* __RISCV_XLEN == 64 */
 #else
     in = *pSrc++;
@@ -124,12 +129,12 @@ void riscv_power_q7(
   }
 
 /* Loop unrolling: Compute remaining outputs */
-#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+#if defined (RISCV_MATH_DSP) && (defined NUCLEI_DSP_N3 || __RISCV_XLEN == 64)
   sum = (q31_t)((sum64 >> 32U) + ((sum64 << 32U) >> 32U));
   blkCnt = blockSize & 0x7U;
 #else
   blkCnt = blockSize & 0x3U;
-#endif /* (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
+#endif /* defined (RISCV_MATH_DSP) && (defined NUCLEI_DSP_N3 || __RISCV_XLEN == 64) */
 
 #else
 

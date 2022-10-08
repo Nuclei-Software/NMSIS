@@ -72,16 +72,23 @@ riscv_status riscv_mat_mult_opt_q31(
   q31_t *pIn1 = pSrcA->pData;                    /* Input data matrix pointer A */
   q31_t *pIn2 = pSrcB->pData;                    /* Input data matrix pointer B */
   q31_t *pInA = pSrcA->pData;                    /* Input data matrix pointer A */
-  q31_t *pInB = pSrcB->pData;                    /* Input data matrix pointer B */
   q31_t *pOut = pDst->pData;                     /* Output data matrix pointer */
-  q31_t *px;                                     /* Temporary output data matrix pointer */
+  q31_t *pSrcBT = pState;                        /* Input data matrix pointer for transpose */
+  q31_t *px = NULL;                              /* Temporary output data matrix pointer */
   q63_t sum;                                     /* Accumulator */
   uint16_t numRowsA = pSrcA->numRows;            /* Number of rows of input matrix A */
+  uint16_t numRowsB = pSrcB->numRows;            /* Number of rows of input matrix B */
   uint16_t numColsB = pSrcB->numCols;            /* Number of columns of input matrix B */
   uint16_t numColsA = pSrcA->numCols;            /* Number of columns of input matrix A */
   uint32_t col, i = 0U, row = numRowsA, colCnt;  /* Loop counters */
   riscv_status status;                             /* Status of matrix multiplication */
-  (void)pState;
+  //(void)pState;
+  riscv_matrix_instance_q31 BT;
+
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+  q63_t tmpVal1, tmpVal2;
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
+
 #ifdef RISCV_MATH_MATRIX_CHECK
 
   /* Check for matrix mismatch condition */
@@ -97,18 +104,28 @@ riscv_status riscv_mat_mult_opt_q31(
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
 
   {
+    BT.numRows = numColsB;
+    BT.numCols = numRowsB;
+    BT.pData = pSrcBT;
+
+    /* Matrix transpose by exchanging the rows with columns */
+    status = riscv_mat_trans_q31(pSrcB, &BT);
+    if (status != RISCV_MATH_SUCCESS)
+    {
+      return status;
+    }
+
+    px = pDst->pData;
+
     /* The following loop performs the dot-product of each row in pSrcA with each column in pSrcB */
     /* row loop */
     do
     {
-      /* Output pointer is set to starting address of row being processed */
-      px = pOut + i;
-
       /* For every row wise process, column loop counter is to be initiated */
       col = numColsB;
 
       /* For every row wise process, pIn2 pointer is set to starting address of pSrcB data */
-      pIn2 = pSrcB->pData;
+      pIn2 = pSrcBT;
 
       /* column loop */
       do
@@ -116,8 +133,8 @@ riscv_status riscv_mat_mult_opt_q31(
         /* Set the variable sum, that acts as accumulator, to zero */
         sum = 0;
 
-        /* Initialize pointer pIn1 to point to starting address of column being processed */
-        pIn1 = pInA;
+        /* Initiate the pointer pIn1 to point to the starting address of pSrcA */
+        pIn1 = pInA + i;
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -130,18 +147,23 @@ riscv_status riscv_mat_mult_opt_q31(
           /* c(m,n) = a(1,1) * b(1,1) + a(1,2) * b(2,1) + .... + a(m,p) * b(p,n) */
 
           /* Perform the multiply-accumulates */
-          sum += (q63_t) *pIn1++ * *pIn2;
-          pIn2 += numColsB;
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+          tmpVal1 = read_q31x2_ia(&pIn1);
+          tmpVal2 = read_q31x2_ia(&pIn2);
+          sum = __RV_SMAR64(sum, tmpVal1, tmpVal2);
 
-          sum += (q63_t) *pIn1++ * *pIn2;
-          pIn2 += numColsB;
+          tmpVal1 = read_q31x2_ia(&pIn1);
+          tmpVal2 = read_q31x2_ia(&pIn2);
+          sum = __RV_SMAR64(sum, tmpVal1, tmpVal2);
+#else
+          sum += (q63_t)*pIn1++ * *pIn2++;
 
-          sum += (q63_t) *pIn1++ * *pIn2;
-          pIn2 += numColsB;
+          sum += (q63_t)*pIn1++ * *pIn2++;
 
-          sum += (q63_t) *pIn1++ * *pIn2;
-          pIn2 += numColsB;
+          sum += (q63_t)*pIn1++ * *pIn2++;
 
+          sum += (q63_t)*pIn1++ * *pIn2++;
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
           /* Decrement loop counter */
           colCnt--;
         }
@@ -161,8 +183,7 @@ riscv_status riscv_mat_mult_opt_q31(
           /* c(m,n) = a(1,1) * b(1,1) + a(1,2) * b(2,1) + .... + a(m,p) * b(p,n) */
 
           /* Perform the multiply-accumulates */
-          sum += (q63_t) *pIn1++ * *pIn2;
-          pIn2 += numColsB;
+          sum += (q63_t) *pIn1++ * *pIn2++;
 
           /* Decrement loop counter */
           colCnt--;
@@ -174,14 +195,10 @@ riscv_status riscv_mat_mult_opt_q31(
         /* Decrement column loop counter */
         col--;
 
-        /* Update pointer pIn2 to point to starting address of next column */
-        pIn2 = pInB + (numColsB - col);
-
       } while (col > 0U);
 
-      /* Update pointer pInA to point to starting address of next row */
-      i = i + numColsB;
-      pInA = pInA + numColsA;
+      /* Update the pointer pSrcA to point to the  starting address of the next row */
+      i = i + numColsA;
 
       /* Decrement row loop counter */
       row--;
