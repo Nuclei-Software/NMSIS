@@ -12,10 +12,10 @@ void ref_vlog_f32(
    while (blkCnt > 0U)
    {
       /* C = log(A) */
-  
+
       /* Calculate log and store result in destination buffer. */
       *pDst++ = logf(*pSrc++);
-  
+
       /* Decrement loop counter */
       blkCnt--;
    }

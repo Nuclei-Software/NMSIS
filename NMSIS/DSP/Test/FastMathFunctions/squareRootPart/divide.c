@@ -1,5 +1,6 @@
 #include "ref.h"
 #include <math.h>
+#include <stdlib.h>
 
 riscv_status ref_divide_q15(q15_t numerator,
   q15_t denominator,
@@ -29,7 +30,7 @@ riscv_status ref_divide_q15(q15_t numerator,
 
   numerator = abs(numerator);
   denominator = abs(denominator);
-  
+
   temp = ((q31_t)numerator << 15) / ((q31_t)denominator);
 
   shiftForNormalizing= 17 - __CLZ(temp);
