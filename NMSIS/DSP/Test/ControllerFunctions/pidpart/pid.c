@@ -5,7 +5,7 @@ float32_t ref_pid_f32(riscv_pid_instance_f32 *S, float32_t in)
     float32_t out;
 
     /* y[n] = y[n-1] + A0 * x[n] + A1 * x[n-1] + A2 * x[n-2]  */
-    out = S->state[2] + S->A0 * in + S->A1 * S->state[0] + S->A2 * S->state[1];
+    out = (S->A0 * in) + (S->A1 * S->state[0]) + (S->A2 * S->state[1]) + (S->state[2]);
 
     /* Update state */
     S->state[1] = S->state[0];
@@ -79,7 +79,7 @@ q15_t ref_pid_q15(riscv_pid_instance_q15 *S, q15_t in)
     acc += (q31_t)S->state[2] << 15;
 
     /* saturate the output */
-    out = ref_sat_q15(acc >> 15);
+    out = ref_sat_q15((q31_t)acc >> 15);
 
     /* Update state */
     S->state[1] = S->state[0];

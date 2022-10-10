@@ -20,44 +20,66 @@ int test_flag_error = 0;
 
 BENCH_DECLARE_VAR();
 
+#define BLOCK_TESTSZ        256
+
 static int DSP_SIN_COS_F32(void)
 {
-    int16_t i;
-    float32_t pSinVal, pSinVal_ref;
-    float32_t pCosVal, pCosVal_ref;
+    volatile int i;
+    float32_t pSinVal[BLOCK_TESTSZ], pSinVal_ref[BLOCK_TESTSZ];
+    float32_t pCosVal[BLOCK_TESTSZ], pCosVal_ref[BLOCK_TESTSZ];
+    float32_t f32_pIN[BLOCK_TESTSZ];
+
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        f32_pIN[i] = (float32_t)rand() / 0x7ff;
+    }
 
     BENCH_START(riscv_sin_cos_f32);
-    for (int i = 0; i < 1000; i++)
-        riscv_sin_cos_f32(0, &pSinVal, &pCosVal);
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        riscv_sin_cos_f32(f32_pIN[i], &pSinVal[i], &pCosVal[i]);
+    }
     BENCH_END(riscv_sin_cos_f32);
-    ref_sin_cos_f32(0, &pSinVal_ref, &pCosVal_ref);
-    if ((fabs(pSinVal - pSinVal_ref) > DELTAF32) ||
-        (fabs(pCosVal - pCosVal_ref) > DELTAF32)) {
-        BENCH_ERROR(riscv_sin_cos_f32);
-        printf("sin expect: %f, actual: %f\ncos expect: %f, actual: %f",
-               pSinVal_ref, pSinVal, pCosVal_ref, pCosVal);
-        test_flag_error = 1;
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        ref_sin_cos_f32(f32_pIN[i], &pSinVal_ref[i], &pCosVal_ref[i]);
+    }
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        if ((fabs(pSinVal[i] - pSinVal_ref[i]) > DELTAF32) ||
+            (fabs(pCosVal[i] - pCosVal_ref[i]) > DELTAF32)) {
+            BENCH_ERROR(riscv_sin_cos_f32);
+            printf("sin expect: %f, actual: %f\ncos expect: %f, actual: %f",
+                   pSinVal_ref[i], pSinVal[i], pCosVal_ref[i], pCosVal[i]);
+            test_flag_error = 1;
+        }
     }
     BENCH_STATUS(riscv_sin_cos_f32);
 }
 
 static int DSP_SIN_COS_Q31(void)
 {
-    int16_t i;
-    q31_t pSinVal, pSinVal_ref;
-    q31_t pCosVal, pCosVal_ref;
+    volatile int i;
+    q31_t pSinVal[BLOCK_TESTSZ], pSinVal_ref[BLOCK_TESTSZ];
+    q31_t pCosVal[BLOCK_TESTSZ], pCosVal_ref[BLOCK_TESTSZ];
+    q31_t q31_pIN[BLOCK_TESTSZ];
+
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        q31_pIN[i] = (q31_t)rand();
+    }
 
     BENCH_START(riscv_sin_cos_q31);
-    for (int i = 0; i < 1000; i++)
-        riscv_sin_cos_q31(0, &pSinVal, &pCosVal);
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        riscv_sin_cos_q31(q31_pIN[i], &pSinVal[i], &pCosVal[i]);
+    }
     BENCH_END(riscv_sin_cos_q31);
-    ref_sin_cos_q31(0, &pSinVal_ref, &pCosVal_ref);
-    if ((labs(pSinVal - pSinVal_ref) > DELTAQ31) ||
-        (labs(pCosVal - pCosVal_ref) > DELTAQ31)) {
-        BENCH_ERROR(riscv_sin_cos_q31);
-        printf("sin expect: %x, actual: %x\ncos expect: %x, actual: %x",
-               pSinVal_ref, pSinVal, pCosVal_ref, pCosVal);
-        test_flag_error = 1;
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        ref_sin_cos_q31(q31_pIN[i], &pSinVal_ref[i], &pCosVal_ref[i]);
+    }
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        if ((labs(pSinVal[i] - pSinVal_ref[i]) > DELTAQ31) ||
+            (labs(pCosVal[i] - pCosVal_ref[i]) > DELTAQ31)) {
+            BENCH_ERROR(riscv_sin_cos_q31);
+            printf("sin expect: %x, actual: %x\ncos expect: %x, actual: %x",
+                   pSinVal_ref[i], pSinVal[i], pCosVal_ref[i], pCosVal[i]);
+            test_flag_error = 1;
+        }
     }
     BENCH_STATUS(riscv_sin_cos_q31);
 }
@@ -65,6 +87,9 @@ static int DSP_SIN_COS_Q31(void)
 int main()
 {
     BENCH_INIT();
+
+    srand(__RV_CSR_READ(mcycle));
+
     DSP_SIN_COS_F32();
     DSP_SIN_COS_Q31();
 

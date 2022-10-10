@@ -351,13 +351,13 @@ q15_t ref_pid_q15(riscv_pid_instance_q15 *S, q15_t in);
 /*
  * Fast Math Functions
  */
-#define ref_sin_f32(a) sinf(a)
+float32_t ref_sin_f32(float32_t x);
 
 q31_t ref_sin_q31(q31_t x);
 
 q15_t ref_sin_q15(q15_t x);
 
-#define ref_cos_f32(a) cosf(a)
+float32_t ref_cos_f32(float32_t x);
 
 q31_t ref_cos_q31(q31_t x);
 

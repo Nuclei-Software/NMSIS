@@ -28,356 +28,487 @@ int test_flag_error = 0;
 
 BENCH_DECLARE_VAR();
 
+#define BLOCK_TESTSZ        256
+
 static int DSP_clarke_f32_app()
 {
-    float32_t Ia = sin(30 * PI / 180);
-    float32_t Ib = sin(150 * PI / 180);
+    volatile int i = 0;
 
-    float32_t pIalpha, pIalpha_ref;
-    float32_t pIbeta, pIbeta_ref;
+    float32_t Ia[BLOCK_TESTSZ];
+    float32_t Ib[BLOCK_TESTSZ];
+
+    float32_t pIalpha[BLOCK_TESTSZ], pIalpha_ref[BLOCK_TESTSZ];
+    float32_t pIbeta[BLOCK_TESTSZ], pIbeta_ref[BLOCK_TESTSZ];
+
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        Ia[i] = (float32_t)rand() / RAND_MAX;
+        Ib[i] = (float32_t)rand() / RAND_MAX;
+    }
 
     BENCH_START(riscv_clarke_f32);
-    for (int i = 0; i < 1000; i++)
-        riscv_clarke_f32(Ia, Ib, &pIalpha, &pIbeta);
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        riscv_clarke_f32(Ia[i], Ib[i], &pIalpha[i], &pIbeta[i]);
+    }
     BENCH_END(riscv_clarke_f32);
-    pIalpha_ref = 0.500000;
-    pIbeta_ref = 0.866025;
-    if ((fabs(pIalpha - pIalpha_ref) > DELTAF32) ||
-        (fabs(pIbeta - pIbeta_ref) > DELTAF32)) {
-        BENCH_ERROR(riscv_clarke_f32);
-        printf("pIalpha expect: %f, actual: %f\npIbeta expect: %f, actual: %f",
-               pIalpha_ref, pIalpha, pIbeta_ref, pIbeta);
-        test_flag_error = 1;
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        pIalpha_ref[i] = Ia[i];
+        pIbeta_ref[i] = (1 / sqrt(3)) * Ia[i] + (2 / sqrt(3)) * Ib[i];
+    }
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        if ((fabs(pIalpha[i] - pIalpha_ref[i]) > DELTAF32) ||
+            (fabs(pIbeta[i] - pIbeta_ref[i]) > DELTAF32)) {
+            BENCH_ERROR(riscv_clarke_f32);
+            printf("pIalpha expect: %f, actual: %f\npIbeta expect: %f, actual: %f",
+                    pIalpha_ref[i], pIalpha[i], pIbeta_ref[i], pIbeta[i]);
+            test_flag_error = 1;
+      }
     }
     BENCH_STATUS(riscv_clarke_f32);
 }
 
 static int DSP_clarke_q31_app()
 {
+    volatile int i = 0;
 
-    const float32_t Ia = sin(30 * PI / 180);
-    const float32_t Ib = sin(150 * PI / 180);
+    float32_t Ia[BLOCK_TESTSZ];
+    float32_t Ib[BLOCK_TESTSZ];
 
-    q31_t Ia1;
-    q31_t Ib1;
+    q31_t Ia1[BLOCK_TESTSZ];
+    q31_t Ib1[BLOCK_TESTSZ];
 
-    riscv_float_to_q31(&Ia, &Ia1, 1);
-    riscv_float_to_q31(&Ib, &Ib1, 1);
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        Ia[i] = (float32_t)rand() / RAND_MAX;
+        Ib[i] = (float32_t)rand() / RAND_MAX;
+    }
+    riscv_float_to_q31(Ia, Ia1, BLOCK_TESTSZ);
+    riscv_float_to_q31(Ib, Ib1, BLOCK_TESTSZ);
 
-    q31_t pIalpha, pIalpha_ref;
-    q31_t pIbeta, pIbeta_ref;
+    q31_t pIalpha[BLOCK_TESTSZ], pIalpha_ref[BLOCK_TESTSZ];
+    q31_t pIbeta[BLOCK_TESTSZ], pIbeta_ref[BLOCK_TESTSZ];
+    q63_t pIbeta_refTmp;
 
     BENCH_START(riscv_clarke_q31);
-    for (int i = 0; i < 1000; i++)
-        riscv_clarke_q31(Ia1, Ib1, &pIalpha, &pIbeta);
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        riscv_clarke_q31(Ia1[i], Ib1[i], &pIalpha[i], &pIbeta[i]);
+    }
     BENCH_END(riscv_clarke_q31);
-    pIalpha_ref = 1073741824;
-    pIbeta_ref = 1859774949;
-    if ((labs(pIalpha - pIalpha_ref) > DELTAQ31) ||
-        (labs(pIbeta - pIbeta_ref) > DELTAQ31)) {
-        BENCH_ERROR(riscv_clarke_q31);
-        printf("pIalpha expect: %x, actual: %x\npIbeta expect: %x, actual: %x",
-               pIalpha_ref, pIalpha, pIbeta_ref, pIbeta);
-        test_flag_error = 1;
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        pIalpha_ref[i] = Ia1[i];
+        pIbeta_refTmp = (q63_t)((q31_t)(((q63_t)Ia1[i] * 0x24F34E8B) >> 30)) + (q31_t)(((q63_t)Ib1[i] * 0x49E69D16) >> 30);
+        pIbeta_ref[i] = (q31_t)(clip_q63_to_q31(pIbeta_refTmp));
+    }
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        if ((labs(pIalpha[i] - pIalpha_ref[i]) > DELTAQ31) ||
+            (labs(pIbeta[i] - pIbeta_ref[i]) > DELTAQ31)) {
+            BENCH_ERROR(riscv_clarke_q31);
+            printf("pIalpha expect: %x, actual: %x\npIbeta expect: %x, actual: %x",
+                   pIalpha_ref[i], pIalpha[i], pIbeta_ref[i], pIbeta[i]);
+            test_flag_error = 1;
+        }
     }
     BENCH_STATUS(riscv_clarke_q31);
 }
 
 static int DSP_inv_clarke_f32_app()
 {
-    float32_t Ia, Ia_ref;
-    float32_t Ib, Ib_ref;
+    volatile int i = 0;
 
-    float32_t pIalpha = 0.500000;
-    float32_t pIbeta = 0.866025;
+    float32_t Ia[BLOCK_TESTSZ], Ia_ref[BLOCK_TESTSZ];
+    float32_t Ib[BLOCK_TESTSZ], Ib_ref[BLOCK_TESTSZ];
+
+    float32_t pIalpha[BLOCK_TESTSZ];
+    float32_t pIbeta[BLOCK_TESTSZ];
+
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        pIalpha[i] = (float32_t)rand() / RAND_MAX;
+        pIbeta[i] = (float32_t)rand() / RAND_MAX;
+    }
+
     BENCH_START(riscv_inv_clarke_f32);
-    for (int i = 0; i < 1000; i++)
-        riscv_inv_clarke_f32(pIalpha, pIbeta, &Ia, &Ib);
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        riscv_inv_clarke_f32(pIalpha[i], pIbeta[i], &Ia[i], &Ib[i]);
+    }
     BENCH_END(riscv_inv_clarke_f32);
-    Ia_ref = 0.500000;
-    Ib_ref = 0.500000;
-    if ((fabs(Ia - Ia_ref) > DELTAF32) || (fabs(Ib - Ib_ref) > DELTAF32)) {
-        BENCH_ERROR(riscv_inv_clarke_f32);
-        printf("Ia expect: %f, actual: %f\nIb expect: %f, actual: %f", Ia_ref,
-               Ia, Ib_ref, Ib);
-        test_flag_error = 1;
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        Ia_ref[i] = pIalpha[i];
+        Ib_ref[i] = -0.5f * pIalpha[i] + 0.8660254039f * pIbeta[i];
+    }
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        if ((fabs(Ia[i] - Ia_ref[i]) > DELTAF32) || (fabs(Ib[i] - Ib_ref[i]) > DELTAF32)) {
+            BENCH_ERROR(riscv_inv_clarke_f32);
+            printf("Ia expect: %f, actual: %f\nIb expect: %f, actual: %f", Ia_ref[i],
+                   Ia[i], Ib_ref[i], Ib[i]);
+            test_flag_error = 1;
+        }
     }
     BENCH_STATUS(riscv_inv_clarke_f32);
 }
 
 static int DSP_inv_clarke_q31_app()
 {
-    q31_t Ia, Ia_ref;
-    q31_t Ib, Ib_ref;
+    volatile int i = 0;
 
-    float32_t pIalpha = 0.500000;
-    float32_t pIbeta = 0.866025;
+    q31_t Ia[BLOCK_TESTSZ], Ia_ref[BLOCK_TESTSZ];
+    q31_t Ib[BLOCK_TESTSZ], Ib_ref[BLOCK_TESTSZ];
+    q31_t Ib_refTmp1, Ib_refTmp2;
 
-    q31_t pIalpha1;
-    q31_t pIbeta1;
+    float32_t pIalpha[BLOCK_TESTSZ];
+    float32_t pIbeta[BLOCK_TESTSZ];
 
-    riscv_float_to_q31(&pIalpha, &pIalpha1, 1);
-    riscv_float_to_q31(&pIalpha, &pIbeta1, 1);
+    q31_t pIalpha1[BLOCK_TESTSZ];
+    q31_t pIbeta1[BLOCK_TESTSZ];
+
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        pIalpha[i] = (float32_t)rand() / RAND_MAX;
+        pIbeta[i] = (float32_t)rand() / RAND_MAX;
+    }
+    riscv_float_to_q31(pIalpha, pIalpha1, BLOCK_TESTSZ);
+    riscv_float_to_q31(pIbeta, pIbeta1, BLOCK_TESTSZ);
 
     BENCH_START(riscv_inv_clarke_q31);
-    for (int i = 0; i < 1000; i++)
-        riscv_inv_clarke_q31(pIalpha1, pIbeta1, &Ia, &Ib);
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        riscv_inv_clarke_q31(pIalpha1[i], pIbeta1[i], &Ia[i], &Ib[i]);
+    }
     BENCH_END(riscv_inv_clarke_q31);
-    Ia_ref = 1073741824;
-    Ib_ref = 393016784;
-    if ((labs(Ia - Ia_ref) > DELTAQ31) || (labs(Ib - Ib_ref) > DELTAQ31)) {
-        BENCH_ERROR(riscv_inv_clarke_q31);
-        printf("Ia expect: %x, actual: %x\nIb expect: %x, actual: %x", Ia_ref,
-               Ia, Ib_ref, Ib);
-        test_flag_error = 1;
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        Ia_ref[i] = pIalpha1[i];
+	Ib_refTmp1 = (q31_t)(((q63_t)(pIbeta1[i]) * (0x6ED9EBA1)) >> 31);
+	Ib_refTmp2 = (q31_t)(((q63_t)(pIalpha1[i]) * (0x40000000)) >> 31);
+	Ib_ref[i] = (q31_t)(clip_q63_to_q31((q63_t)Ib_refTmp1 - Ib_refTmp2));
+    }
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        if ((labs(Ia[i] - Ia_ref[i]) > DELTAQ31) || (labs(Ib[i] - Ib_ref[i]) > DELTAQ31)) {
+            BENCH_ERROR(riscv_inv_clarke_q31);
+            printf("Ia expect: %x, actual: %x\nIb expect: %x, actual: %x", Ia_ref[i],
+                   Ia[i], Ib_ref[i], Ib[i]);
+            test_flag_error = 1;
+        }
     }
     BENCH_STATUS(riscv_inv_clarke_q31);
 }
 
 static int DSP_park_f32_app()
 {
-    float32_t Ia = sin(30 * PI / 180);
-    float32_t Ib = sin(120 * PI / 180);
+    volatile int i = 0;
 
-    float32_t pIalpha;
-    float32_t Ibeta;
+    float32_t Ia[BLOCK_TESTSZ];
+    float32_t Ib[BLOCK_TESTSZ];
 
-    float32_t pId, pId_ref;
-    float32_t pIq, pIq_ref;
+    float32_t sinVal[BLOCK_TESTSZ];
+    float32_t cosVal[BLOCK_TESTSZ];
 
-    float32_t sinVal = sin(30 * PI / 180);
-    float32_t cosVal = cos(30 * PI / 180);
+    float32_t pId[BLOCK_TESTSZ], pId_ref[BLOCK_TESTSZ];
+    float32_t pIq[BLOCK_TESTSZ], pIq_ref[BLOCK_TESTSZ];
+
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        Ia[i] = (float32_t)rand() / RAND_MAX;
+        Ib[i] = (float32_t)rand() / RAND_MAX;
+    }
+
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        sinVal[i] = (float32_t)rand() / RAND_MAX;
+        cosVal[i] = (float32_t)rand() / RAND_MAX;
+    }
 
     BENCH_START(riscv_park_f32);
-    for (int i = 0; i < 1000; i++)
-        riscv_park_f32(Ia, Ib, &pId, &pIq, sinVal, cosVal);
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        riscv_park_f32(Ia[i], Ib[i], &pId[i], &pIq[i], sinVal[i], cosVal[i]);
+    }
     BENCH_END(riscv_park_f32);
-    pId_ref = 0.866025;
-    pIq_ref = 0.500000;
-    if ((fabs(pId - pId_ref) > DELTAF32) || (fabs(pIq - pIq_ref) > DELTAF32)) {
-        BENCH_ERROR(riscv_park_f32);
-        printf("pId expect: %f, actual: %f\npIq expect: %f, actual: %f",
-               pId_ref, pId, pIq_ref, pIq);
-        test_flag_error = 1;
+
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        pId_ref[i] = Ia[i] * cosVal[i] + Ib[i] * sinVal[i];
+        pIq_ref[i] = -Ia[i] * sinVal[i] + Ib[i] * cosVal[i];
+    }
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        if ((fabs(pId[i] - pId_ref[i]) > DELTAF32) || (fabs(pIq[i] - pIq_ref[i]) > DELTAF32)) {
+            BENCH_ERROR(riscv_park_f32);
+            printf("pId expect: %f, actual: %f\npIq expect: %f, actual: %f",
+                   pId_ref[i], pId[i], pIq_ref[i], pIq[i]);
+            test_flag_error = 1;
+        }
     }
     BENCH_STATUS(riscv_park_f32);
 }
 
 static int DSP_park_q31_app()
 {
+    volatile int i = 0;
 
-    const float32_t Ia = sin(30 * PI / 180);
-    const float32_t Ib = sin(150 * PI / 180);
+    float32_t Ia[BLOCK_TESTSZ];
+    float32_t Ib[BLOCK_TESTSZ];
 
-    q31_t Ia1;
-    q31_t Ib1;
+    q31_t Ia1[BLOCK_TESTSZ];
+    q31_t Ib1[BLOCK_TESTSZ];
 
-    riscv_float_to_q31(&Ia, &Ia1, 1);
-    riscv_float_to_q31(&Ib, &Ib1, 1);
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        Ia[i] = (float32_t)rand() / RAND_MAX;
+        Ib[i] = (float32_t)rand() / RAND_MAX;
+    }
+    riscv_float_to_q31(Ia, Ia1, BLOCK_TESTSZ);
+    riscv_float_to_q31(Ib, Ib1, BLOCK_TESTSZ);
 
-    q31_t pIalpha;
-    q31_t pIbeta;
+    q31_t pId[BLOCK_TESTSZ], pId_ref[BLOCK_TESTSZ];
+    q31_t pIq[BLOCK_TESTSZ], pIq_ref[BLOCK_TESTSZ];
 
-    q31_t pId, pId_ref;
-    q31_t pIq, pIq_ref;
 
-    float32_t sinVal = sin(30 * PI / 180);
-    float32_t cosVal = cos(30 * PI / 180);
+    float32_t sinVal[BLOCK_TESTSZ], cosVal[BLOCK_TESTSZ];
+    q31_t sinVal1[BLOCK_TESTSZ], cosVal1[BLOCK_TESTSZ];
+    q31_t refTmp1, refTmp2;
 
-    q31_t sinVal1;
-    q31_t cosVal1;
-
-    riscv_float_to_q31(&sinVal, &sinVal1, 1);
-    riscv_float_to_q31(&cosVal, &cosVal1, 1);
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        sinVal[i] = (float32_t)rand() / RAND_MAX;
+        cosVal[i] = (float32_t)rand() / RAND_MAX;
+    }
+    riscv_float_to_q31(sinVal, sinVal1, BLOCK_TESTSZ);
+    riscv_float_to_q31(cosVal, cosVal1, BLOCK_TESTSZ);
 
     BENCH_START(riscv_park_q31);
-    for (int i = 0; i < 1000; i++)
-        riscv_park_q31(Ia1, Ib1, &pId, &pIq, sinVal1, cosVal1);
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        riscv_park_q31(Ia1[i], Ib1[i], &pId[i], &pIq[i], sinVal1[i], cosVal1[i]);
+    }
     BENCH_END(riscv_park_q31);
-    pId_ref = 1466758400;
-    pIq_ref = 393016435;
-    if ((labs(pId - pId_ref) > DELTAQ31) || (labs(pIq - pIq_ref) > DELTAQ31)) {
-        BENCH_ERROR(riscv_park_q31);
-        printf("pId expect: %x, actual: %x\npIq expect: %x, actual: %x",
-               pId_ref, pId, pIq_ref, pIq);
-        test_flag_error = 1;
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        refTmp1 = (q31_t)(((q63_t)(Ia1[i]) * (cosVal1[i])) >> 31);
+        refTmp2 = (q31_t)(((q63_t)(Ib1[i]) * (sinVal1[i])) >> 31);
+        pId_ref[i] = (q31_t)(clip_q63_to_q31((q63_t)refTmp1 + refTmp2));
+        refTmp1 = (q31_t)(((q63_t)(Ib1[i]) * (cosVal1[i])) >> 31);
+        refTmp2 = (q31_t)(((q63_t)(Ia1[i]) * (sinVal1[i])) >> 31);
+        pIq_ref[i] = (q31_t)(clip_q63_to_q31((q63_t)refTmp1 - refTmp2));
+    }
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        if ((labs(pId[i] - pId_ref[i]) > DELTAQ31) || (labs(pIq[i] - pIq_ref[i]) > DELTAQ31)) {
+            BENCH_ERROR(riscv_park_q31);
+            printf("pId expect: %x, actual: %x\npIq expect: %x, actual: %x",
+                   pId_ref[i], pId[i], pIq_ref[i], pIq[i]);
+            test_flag_error = 1;
+        }
     }
     BENCH_STATUS(riscv_park_q31);
 }
 
 static int DSP_inv_park_f32_app()
 {
-    float32_t Ia = 0.866025;
-    float32_t Ib = 0.500000;
+    volatile int i = 0;
 
-    float32_t pIalpha, pIalpha_ref;
-    float32_t pIbeta, pIbeta_ref;
+    float32_t Ia[BLOCK_TESTSZ];
+    float32_t Ib[BLOCK_TESTSZ];
 
-    float32_t sinVal = sin(30 * PI / 180);
-    float32_t cosVal = cos(30 * PI / 180);
+    float32_t pIalpha[BLOCK_TESTSZ], pIalpha_ref[BLOCK_TESTSZ];
+    float32_t pIbeta[BLOCK_TESTSZ], pIbeta_ref[BLOCK_TESTSZ];
+
+    float32_t sinVal[BLOCK_TESTSZ];
+    float32_t cosVal[BLOCK_TESTSZ];
+
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        Ia[i] = (float32_t)rand() / RAND_MAX;
+        Ib[i] = (float32_t)rand() / RAND_MAX;
+    }
+
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        sinVal[i] = (float32_t)rand() / RAND_MAX;
+        cosVal[i] = (float32_t)rand() / RAND_MAX;
+    }
 
     BENCH_START(riscv_inv_park_f32);
-    for (int i = 0; i < 1000; i++)
-        riscv_inv_park_f32(Ia, Ib, &pIalpha, &pIbeta, sinVal, cosVal);
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        riscv_inv_park_f32(Ia[i], Ib[i], &pIalpha[i], &pIbeta[i], sinVal[i], cosVal[i]);
+    }
     BENCH_END(riscv_inv_park_f32);
-    pIalpha_ref = 0.500000;
-    pIbeta_ref = 0.866025;
-    if ((fabs(pIalpha - pIalpha_ref) > DELTAF32) ||
-        (fabs(pIbeta - pIbeta_ref) > DELTAF32)) {
-        BENCH_ERROR(riscv_inv_park_f32);
-        printf("pIalpha expect: %f, actual: %f\npIbeta expect: %f, actual: %f",
-               pIalpha_ref, pIalpha, pIbeta_ref, pIbeta);
-        test_flag_error = 1;
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        pIalpha_ref[i] = Ia[i] * cosVal[i] - Ib[i] * sinVal[i];
+        pIbeta_ref[i] = Ia[i] * sinVal[i] + Ib[i] * cosVal[i];
+    }
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        if ((fabs(pIalpha[i] - pIalpha_ref[i]) > DELTAF32) ||
+            (fabs(pIbeta[i] - pIbeta_ref[i]) > DELTAF32)) {
+            BENCH_ERROR(riscv_inv_park_f32);
+            printf("pIalpha expect: %f, actual: %f\npIbeta expect: %f, actual: %f",
+                    pIalpha_ref[i], pIalpha[i], pIbeta_ref[i], pIbeta[i]);
+            test_flag_error = 1;
+        }
     }
     BENCH_STATUS(riscv_inv_park_f32);
 }
 
 static int DSP_inv_park_q31_app()
 {
-    q31_t Ia1 = 1859774464;
-    q31_t Ib1 = 1073741824;
+    volatile int i = 0;
 
-    q31_t pIalpha, pIalpha_ref;
-    q31_t pIbeta, pIbeta_ref;
+    q31_t Ia1[BLOCK_TESTSZ];
+    q31_t Ib1[BLOCK_TESTSZ];
 
-    q31_t sinValb = 1073741824;
-    q31_t cosValb = 1859775360;
+    q31_t pIalpha[BLOCK_TESTSZ], pIalpha_ref[BLOCK_TESTSZ];
+    q31_t pIbeta[BLOCK_TESTSZ], pIbeta_ref[BLOCK_TESTSZ];
+
+    q31_t sinValb[BLOCK_TESTSZ];
+    q31_t cosValb[BLOCK_TESTSZ];
+
+    q63_t pIalpha_refTmp, pIbeta_refTmp;
+
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        Ia1[i] = (q31_t)(((float32_t)rand() / RAND_MAX) * pow(2, 31));
+        Ib1[i] = (q31_t)(((float32_t)rand() / RAND_MAX) * pow(2, 31));
+    }
+
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        Ia1[i] = (q31_t)(((float32_t)rand() / RAND_MAX) * pow(2, 31));
+        Ib1[i] = (q31_t)(((float32_t)rand() / RAND_MAX) * pow(2, 31));
+    }
 
     BENCH_START(riscv_inv_park_q31);
-    for (int i = 0; i < 1000; i++)
-        riscv_inv_park_q31(Ia1, Ib1, &pIalpha, &pIbeta, sinValb, cosValb);
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        riscv_inv_park_q31(Ia1[i], Ib1[i], &pIalpha[i], &pIbeta[i], sinValb[i], cosValb[i]);
+    }
     BENCH_END(riscv_inv_park_q31);
-    pIalpha_ref = 1073740990;
-    pIbeta_ref = 1859774912;
-    if ((labs(pIalpha - pIalpha_ref) > DELTAQ31) ||
-        (labs(pIbeta - pIbeta_ref) > DELTAQ31)) {
-        BENCH_ERROR(riscv_inv_park_q31);
-        printf(
-            "pIalpha expect: %x, actual: %x\npIbeta expect: %x, actual: %x\n",
-            pIalpha_ref, pIalpha, pIbeta_ref, pIbeta);
-        test_flag_error = 1;
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        pIalpha_refTmp = (((q63_t)Ia1[i] * cosValb[i]) >> 31) - (((q63_t)Ib1[i] * sinValb[i]) >> 31);
+        pIalpha_ref[i] = (q31_t)clip_q63_to_q31(pIalpha_refTmp);
+        pIbeta_refTmp = (((q63_t)Ia1[i] * sinValb[i]) >> 31) + (((q63_t)Ib1[i] * cosValb[i]) >> 31);
+        pIbeta_ref[i] = (q31_t)clip_q63_to_q31(pIbeta_refTmp);
+    }
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        if ((labs(pIalpha[i] - pIalpha_ref[i]) > DELTAQ31) ||
+            (labs(pIbeta[i] - pIbeta_ref[i]) > DELTAQ31)) {
+            BENCH_ERROR(riscv_inv_park_q31);
+            printf("pIalpha expect: %x, actual: %x\npIbeta expect: %x, actual: %x\n",
+                    pIalpha_ref[i], pIalpha[i], pIbeta_ref[i], pIbeta[i]);
+            test_flag_error = 1;
+        }
     }
     BENCH_STATUS(riscv_inv_park_q31);
 }
 
 static int DSP_pid_f32_app()
 {
-    uint32_t i;
-    riscv_pid_instance_f32 PIDS;
-    PIDS.Kp = 0.4;
-    PIDS.Ki = 0.4;
-    PIDS.Kd = 0;
+    volatile int i = 0;
+
+    riscv_pid_instance_f32 PIDS, PIDS_ref;
+    PIDS.Kp = (float32_t)rand() / RAND_MAX;
+    PIDS.Ki = (float32_t)rand() / RAND_MAX;
+    PIDS.Kd = (float32_t)rand() / RAND_MAX;
     float32_t target, ival, ee = 0, ee_ref = 0;
-    output[0] = 0;
-    output_ref[0] = 0;
+    output_f32[0] = 0;
+    output_f32_ref[0] = 0;
     /* Target value*/
-    target = 500;
+    target = (float32_t)rand();
     /* Inital value */
     ival = 0;
     /* Initial value and target value error */
     ee = target - ival;
-    ee_ref = target - ival;
+    ee_ref = ee;
     /* Initial DSP PID controller function*/
     riscv_pid_init_f32(&PIDS, 1);
+    memcpy(&PIDS_ref, &PIDS, sizeof(riscv_pid_instance_f32));
     BENCH_START(riscv_pid_f32);
-    for (i = 1; i < 100; i++) {
-        output[i] = riscv_pid_f32(&PIDS, ee);
-        ee = target - output[i - 1];
+    for (i = 1; i < TEST_SIZE; i++) {
+        output_f32[i] = riscv_pid_f32(&PIDS, ee);
+        ee = target - output_f32[i - 1];
     }
     BENCH_END(riscv_pid_f32);
-    for (i = 1; i < 100; i++) {
-        output_ref[i] = ref_pid_f32(&PIDS, ee_ref);
-        ee_ref = target - output_ref[i - 1];
+    for (i = 1; i < TEST_SIZE; i++) {
+        output_f32_ref[i] = ref_pid_f32(&PIDS_ref, ee_ref);
+        ee_ref = target - output_f32_ref[i - 1];
     }
-    if (fabs(output[99] - output_ref[99]) > DELTAF32) {
-        BENCH_ERROR(riscv_pid_f32);
-        printf("index: %d, expect: %f, actual: %f\n", i, output_ref[99],
-               output[99]);
-        test_flag_error = 1;
+    for (i = 0; i < TEST_SIZE; i++) {
+        if (fabs(output_f32[i] - output_f32_ref[i]) > DELTAF32) {
+            BENCH_ERROR(riscv_pid_f32);
+            printf("index: %d, expect: %f, actual: %f\n", i, output_f32_ref[i],
+                   output_f32[i]);
+            test_flag_error = 1;
+        }
     }
     BENCH_STATUS(riscv_pid_f32);
 }
 
 static int DSP_pid_q15_app()
 {
-    uint32_t i;
+    volatile int i = 0;
+
     riscv_pid_instance_f32 PIDS;
-    riscv_pid_instance_q15 PIDS_q15;
-    PIDS.Kp = 0.4;
-    PIDS.Ki = 0.4;
-    PIDS.Kd = 0;
+    riscv_pid_instance_q15 PIDS_q15, PIDS_q15_ref;
+    PIDS.Kp = (float32_t)rand() / RAND_MAX;
+    PIDS.Ki = (float32_t)rand() / RAND_MAX;
+    PIDS.Kd = (float32_t)rand() / RAND_MAX;
     riscv_float_to_q15(&PIDS.Kp, &PIDS_q15.Kp, 1);
     riscv_float_to_q15(&PIDS.Ki, &PIDS_q15.Ki, 1);
     riscv_float_to_q15(&PIDS.Kd, &PIDS_q15.Kd, 1);
-    q15_t ee_q15 = 0, ee_q15_ref = 0,target, ival;
+    q15_t ee_q15 = 0, ee_q15_ref = 0, target, ival;
     output_q15[0] = 0;
     output_q15_ref[0] = 0;
     /* Target value*/
-    target = 500;
+    target = (q15_t)(rand() % 0x7fff);
     /* Inital value */
     ival = 0;
     /* Initial value and target value error */
     ee_q15 = target - ival;
-    ee_q15_ref = target - ival;
+    ee_q15_ref = ee_q15;
     /* Initial DSP PID controller function*/
     riscv_pid_init_q15(&PIDS_q15, 0);
+    memcpy(&PIDS_q15_ref, &PIDS_q15, sizeof(riscv_pid_instance_q15));
     BENCH_START(riscv_pid_q15);
-    for (i = 1; i < 100; i++) {
+    for (i = 1; i < TEST_SIZE; i++) {
         output_q15[i] = riscv_pid_q15(&PIDS_q15, ee_q15);
         ee_q15 = target - output_q15[i - 1];
     }
     BENCH_END(riscv_pid_q15);
-    riscv_pid_init_q15(&PIDS_q15, 0);
-    for (i = 1; i < 100; i++) {
-        output_q15_ref[i] = ref_pid_q15(&PIDS_q15, ee_q15_ref);
+    for (i = 1; i < TEST_SIZE; i++) {
+        output_q15_ref[i] = ref_pid_q15(&PIDS_q15_ref, ee_q15_ref);
         ee_q15_ref = target - output_q15_ref[i - 1];
     }
-    if (abs(output_q15[99] - output_q15_ref[99]) > DELTAQ15) {
-        BENCH_ERROR(riscv_pid_q15);
-        printf("index: %d, expect: %x, actual: %x\n", 99, output_q15_ref[99],
-               output_q15[99]);
-        test_flag_error = 1;
+    for (i = 0; i < TEST_SIZE; i++) {
+        if (abs(output_q15[i] - output_q15_ref[i]) > DELTAQ15) {
+            BENCH_ERROR(riscv_pid_q15);
+            printf("index: %d, expect: %x, actual: %x\n", (i), output_q15_ref[i],
+                   output_q15[i]);
+            test_flag_error = 1;
+        }
     }
     BENCH_STATUS(riscv_pid_q15);
 }
 
 static int DSP_pid_q31_app()
 {
-    uint32_t i;
+    volatile int i = 0;
+
     riscv_pid_instance_f32 PIDS;
-    riscv_pid_instance_q31 PIDS_q31;
-    PIDS.Kp = 0.4;
-    PIDS.Ki = 0.4;
-    PIDS.Kd = 0;
+    riscv_pid_instance_q31 PIDS_q31, PIDS_q31_ref;
+    PIDS.Kp = (float32_t)rand() / RAND_MAX;
+    PIDS.Ki = (float32_t)rand() / RAND_MAX;
+    PIDS.Kd = (float32_t)rand() / RAND_MAX;
     riscv_float_to_q31(&PIDS.Kp, &PIDS_q31.Kp, 1);
     riscv_float_to_q31(&PIDS.Ki, &PIDS_q31.Ki, 1);
     riscv_float_to_q31(&PIDS.Kd, &PIDS_q31.Kd, 1);
-    q31_t ee_q31 = 0, ee_q31_ref = 0,target, ival;
+    q31_t ee_q31 = 0, ee_q31_ref = 0, target, ival;
     output_q31[0] = 0;
     output_q31_ref[0] = 0;
     /* Target value*/
-    target = 500;
+    target = (q31_t)rand();
     /* Inital value */
     ival = 0;
     /* Initial value and target value error */
     ee_q31 = target - ival;
+    ee_q31_ref = ee_q31;
     /* Initial DSP PID controller function*/
     riscv_pid_init_q31(&PIDS_q31, 1);
+    memcpy(&PIDS_q31_ref, &PIDS_q31, sizeof(riscv_pid_instance_q31));
     BENCH_START(riscv_pid_q31);
-    for (i = 1; i < 100; i++) {
+    for (i = 1; i < TEST_SIZE; i++) {
         output_q31[i] = riscv_pid_q31(&PIDS_q31, ee_q31);
         ee_q31 = target - output_q31[i - 1];
     }
     BENCH_END(riscv_pid_q31);
-    for (i = 1; i < 100; i++) {
-        output_q31_ref[i] = ref_pid_q31(&PIDS_q31, ee_q31_ref);
+    for (i = 1; i < TEST_SIZE; i++) {
+        output_q31_ref[i] = ref_pid_q31(&PIDS_q31_ref, ee_q31_ref);
         ee_q31_ref = target - output_q31_ref[i - 1];
     }
-    if (labs(output_q31[99] - output_q31_ref[99]) > DELTAQ31) {
-        BENCH_ERROR(riscv_pid_q31);
-        printf("index: %d, expect: %x, actual: %x\n", i, output_q31_ref[i],
-               output_q31[i]);
-        test_flag_error = 1;
+    for (i = 0; i < TEST_SIZE; i++) {
+        if (labs(output_q31[i] - output_q31_ref[i]) > DELTAQ31) {
+	    BENCH_ERROR(riscv_pid_q31);
+	    printf("index: %d, expect: %x, actual: %x\n", i, output_q31_ref[i],
+                   output_q31[i]);
+	    test_flag_error = 1;
+	}
     }
     BENCH_STATUS(riscv_pid_q31);
 }
@@ -385,6 +516,7 @@ static int DSP_pid_q31_app()
 int main()
 {
     BENCH_INIT();
+    srand(__RV_CSR_READ(mcycle));
 #if defined CLARKE || defined ENABLE_ALL
     DSP_clarke_f32_app();
     DSP_clarke_q31_app();

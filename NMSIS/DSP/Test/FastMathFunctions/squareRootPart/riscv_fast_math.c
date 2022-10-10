@@ -9,7 +9,6 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include "../common.h"
-#include <nuclei_sdk_hal.h>
 
 #include "../HelperFunctions/math_helper.c"
 #include "../HelperFunctions/ref_helper.c"
@@ -36,11 +35,16 @@ static int DSP_SQRT(void)
 {
     float32_t f32_pOUT[BLOCK_TESTSZ], f32_pOUT_ref[BLOCK_TESTSZ];
     float32_t f32_pIN[BLOCK_TESTSZ];
-    q31_t q31_pOUT, q31_pOUT_ref;
-    q15_t q15_pOUT, q15_pOUT_ref;
+
+    q31_t q31_pOUT[BLOCK_TESTSZ], q31_pOUT_ref[BLOCK_TESTSZ];
+    q31_t q31_pIN[BLOCK_TESTSZ];
+
+    q15_t q15_pOUT[BLOCK_TESTSZ], q15_pOUT_ref[BLOCK_TESTSZ];
+    q15_t q15_pIN[BLOCK_TESTSZ];
+
     volatile int i = 0;
 
-    for (int i = 0; i < BLOCK_TESTSZ; i++) {
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
         f32_pIN[i] = (float32_t) abs(rand());
     }
 
@@ -64,51 +68,78 @@ static int DSP_SQRT(void)
 
     // q31_sqrt
     // TODO optimize this case not using a fixed value
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        q31_pIN[i] = (q31_t) abs(rand());
+    }
     BENCH_START(riscv_sqrt_q31);
     for (i = 0; i < BLOCK_TESTSZ; i++) {
-        riscv_sqrt_q31(100, &q31_pOUT);
+        riscv_sqrt_q31(q31_pIN[i], &q31_pOUT[i]);
     }
     BENCH_END(riscv_sqrt_q31);
-    ref_sqrt_q31(100, &q31_pOUT_ref);
-    if (labs(q31_pOUT - q31_pOUT_ref) > DELTAQ31) {
-        BENCH_ERROR(riscv_sqrt_q31);
-        printf("expect: %x, actual: %x\n", q31_pOUT_ref, q31_pOUT);
-        test_flag_error = 1;
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        ref_sqrt_q31(q31_pIN[i], &q31_pOUT_ref[i]);
+    }
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        if (labs(q31_pOUT[i] - q31_pOUT_ref[i]) > DELTAQ31) {
+            BENCH_ERROR(riscv_sqrt_q31);
+            printf("expect: %x, actual: %x\n", q31_pOUT_ref[i], q31_pOUT[i]);
+            test_flag_error = 1;
+        }
     }
     BENCH_STATUS(riscv_sqrt_q31);
 
     // q15_sqrt
     // TODO optimize this case not using a fixed value
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        q15_pIN[i] = (q15_t) abs(rand() % 0x7fff);
+    }
     BENCH_START(riscv_sqrt_q15);
     for (i = 0; i < BLOCK_TESTSZ; i++) {
-        riscv_sqrt_q15(100, &q15_pOUT);
+        riscv_sqrt_q15(q15_pIN[i], &q15_pOUT[i]);
     }
     BENCH_END(riscv_sqrt_q15);
-    ref_sqrt_q15(100, &q15_pOUT_ref);
-    if (abs(q15_pOUT - q15_pOUT_ref) > DELTAQ15) {
-        BENCH_ERROR(riscv_sqrt_q15);
-        printf("expect: %x, actual: %x\n", q15_pOUT_ref, q15_pOUT);
-        test_flag_error = 1;
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        ref_sqrt_q15(q15_pIN[i], &q15_pOUT_ref[i]);
+    }
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        if (abs(q15_pOUT[i] - q15_pOUT_ref[i]) > DELTAQ15) {
+            BENCH_ERROR(riscv_sqrt_q15);
+            printf("expect: %x, actual: %x\n", q15_pOUT_ref[i], q15_pOUT[i]);
+            test_flag_error = 1;
+        }
     }
     BENCH_STATUS(riscv_sqrt_q15);
 }
 
 static int DSP_DIVIDE(void)
 {
-    q15_t q15_pOUT, q15_pOUT_ref;
-    int16_t shift;
+    q15_t q15_pOUT[BLOCK_TESTSZ], q15_pOUT_ref[BLOCK_TESTSZ];
+    q15_t q15_pIN1[BLOCK_TESTSZ], q15_pIN2[BLOCK_TESTSZ];
+    int16_t shift[BLOCK_TESTSZ], shift_ref[BLOCK_TESTSZ];
+
+    volatile int i;
 
     // TODO optimize this case not using a fixed value
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        q15_pIN1[i] = (q15_t) (rand() % 0x7fff);
+        q15_pIN2[i] = (q15_t) (rand() % 0x7fff);
+    }
     BENCH_START(riscv_divide_q15);
-    for (volatile int i = 0; i < BLOCK_TESTSZ; i ++) {
-        riscv_divide_q15(4203, 2490, &q15_pOUT, &shift);
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        riscv_divide_q15(q15_pIN1[i], q15_pIN2[i], &q15_pOUT[i], &shift[i]);
     }
     BENCH_END(riscv_divide_q15);
-    ref_divide_q15(4203, 2490, &q15_pOUT_ref, &shift);
-    if (abs(q15_pOUT - q15_pOUT_ref) > DELTAQ15) {
-        BENCH_ERROR(riscv_divide_q15);
-        printf("expect: %x, actual: %x\n", q15_pOUT_ref, q15_pOUT);
-        test_flag_error = 1;
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        ref_divide_q15(q15_pIN1[i], q15_pIN2[i], &q15_pOUT_ref[i], &shift_ref[i]);
+    }
+    for (i = 0; i < BLOCK_TESTSZ; i++) {
+        if ((abs(q15_pOUT[i] - q15_pOUT_ref[i]) > DELTAQ15) ||
+            (abs(shift[i] - shift_ref[i]) > DELTAQ15)) {
+            BENCH_ERROR(riscv_divide_q15);
+            printf("q15_pOUT expect: %x, actual: %x\n shift expect: %x, actual: %x",
+                   q15_pOUT_ref[i], q15_pOUT[i], shift[i], shift_ref[i]);
+            test_flag_error = 1;
+        }
     }
     BENCH_STATUS(riscv_divide_q15);
 }

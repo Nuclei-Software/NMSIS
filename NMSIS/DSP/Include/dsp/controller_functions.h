@@ -370,6 +370,8 @@ __STATIC_FORCEINLINE q15_t riscv_pid_q15(
     acc += (q31_t) S->A2 * S->state[1];
 #endif
 
+    asm volatile("nop");
+
     /* acc += y[n-1] */
     acc += (q31_t) S->state[2] << 15;
 
