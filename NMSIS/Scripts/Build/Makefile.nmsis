@@ -8,6 +8,12 @@ PARALLEL_OPTS ?= -j8
 REBUILD ?= 1
 STRIP ?= 1
 SIMU ?= qemu
+# supported options
+# N1: turn on only N1 extension
+# N2: turn on N1/N2 extension
+# N3: turn on N1/N2/N3 extension
+NUCLEI_DSP ?=
+EXTRAOPTS ?=
 
 LOGDIR ?= logs/nmsis
 
@@ -40,6 +46,21 @@ ifeq ($(STRIP),1)
 EXTRA_NLOPTS += --strip
 else
 EXTRA_NLOPTS +=
+endif
+
+# handle Nuclei DSP selection
+ifeq ($(NUCLEI_DSP),N1)
+EXTRAOPTS += NUCLEI_DSP_N1=ON,NUCLEI_DSP_N2=OFF,NUCLEI_DSP_N3=OFF
+endif
+ifeq ($(NUCLEI_DSP),N2)
+EXTRAOPTS += NUCLEI_DSP_N1=ON,NUCLEI_DSP_N2=ON,NUCLEI_DSP_N3=OFF
+endif
+ifeq ($(NUCLEI_DSP),N3)
+EXTRAOPTS += NUCLEI_DSP_N1=ON,NUCLEI_DSP_N2=ON,NUCLEI_DSP_N3=ON
+endif
+
+ifneq ($(EXTRAOPTS),)
+EXTRA_NLOPTS += --extraopts ${EXTRAOPTS}
 endif
 
 .PHONY: nmsis_help gen_dsp_lib gen_nn_lib gen_unalign_dsp_lib gen_unalign_nn_lib gen gen_unalign envsetup check_build check_run check view_report view_logs
