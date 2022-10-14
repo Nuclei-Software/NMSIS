@@ -154,6 +154,22 @@ def load_json(file):
         print("Error: %s is an invalid json file!" % (file))
         return JSON_INVAILD, None
 
+def merge_extraopts2config(config, extraopts):
+    if isinstance(config, dict) == False or isinstance(extraopts, str) == False:
+        return config
+    newconfig = copy.deepcopy(config)
+    try:
+        glopts = [ key.strip().split("=") for key in extraopts.split(",") ]
+        if "global" not in newconfig:
+            newconfig["global"] = dict()
+        for opt in glopts:
+            if len(opt) == 2:
+                key, value = opt
+                newconfig["global"][key.strip()] = value.strip()
+    except:
+        return config
+    return newconfig
+
 def get_buildcfgs(jsonconfig:dict):
     glcfg = jsonconfig.get("global", dict())
     percfgs = jsonconfig.get("target", None)
@@ -228,6 +244,7 @@ def install_library(libsrc, buildcfgs:dict, aliascfgs:dict, libprefix, libroot, 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Nuclei Library Build Tool")
     parser.add_argument('--config', required=True, help="JSON Configuration File")
+    parser.add_argument('--extraopts', help="Extra options to overwrite global configuration specified by config, such as NUCLEI_DSP_N1=ON,NUCLEI_DSP_N3=OFF")
     parser.add_argument('--lib_src', default="DSP/Source", help="Where library source code's cmakefile located")
     parser.add_argument('--lib_prefix', default="nmsis_dsp", help="Library prefix")
     parser.add_argument('--lib_root', default="Library/DSP/GCC", help="Library built and generate to")
@@ -248,6 +265,11 @@ if __name__ == '__main__':
     if valid != JSON_OK:
         print("Invalid json file %s, please check!" % (args.config))
         sys.exit(1)
+
+    # merge extraopts into global sections defined in json config
+    if args.extraopts:
+        jsoncfg = merge_extraopts2config(jsoncfg, args.extraopts)
+
     buildcfgs = get_buildcfgs(jsoncfg)
     aliascfgs = get_aliascfgs(jsoncfg)
     runrst = install_library(args.lib_src, buildcfgs, aliascfgs, args.lib_prefix, args.lib_root, args.target, args.strip, args.parallel, args.ignore_fail, args.norebuild)
