@@ -71,11 +71,13 @@ build_library:
     when: always
     name: "nmsis_library-job${CI_JOB_ID}-${CI_COMMIT_SHA::8}"
     paths:
-      - NMSIS/Library
-      - NMSIS/build.log
+      - NMSIS/gen
     expire_in: 2 day
+  parallel:
+    matrix:
+      - NUCLEI_DSP: ["N1", "N2", "N3"]
   variables:
-    PARALLEL_OPTS: "-j4"
+    PARALLEL_OPTS: "-j8"
   script:
     - apt update
     - apt install -y python3 python3-pip
@@ -83,6 +85,10 @@ build_library:
     - cd NMSIS
     - echo "Generate NMSIS Library for Nuclei RISC-V Processors"
     - make gen > build.log 2>&1
+    # mv build library to different loc according to NUCLEI_DSP settings
+    - mkdir -p gen/${NUCLEI_DSP}
+    - mv Library gen/${NUCLEI_DSP}/
+    - mv build.log gen/${NUCLEI_DSP}/
 
 build_align_library:
   stage: build
@@ -150,6 +156,9 @@ test_nn_library:
     paths:
       - NMSIS/Logs
     expire_in: 2 day
+  parallel:
+    matrix:
+      - NUCLEI_DSP: ["N1", "N2", "N3"]
   script:
     - git clone -b $SDK_BRANCH $NUCLEI_SDK NMSIS/nuclei_sdk
     - export NUCLEI_SDK_ROOT=$(readlink -f NMSIS/nuclei_sdk)
@@ -162,8 +171,11 @@ test_nn_library:
     - source NMSIS/env.sh
     - export SILENT=1
     - cd NMSIS
+    # symbolic link to proper build NUCLEI_DSP configured library
+    - rm -rf Library
+    - ln -s gen/${NUCLEI_DSP}/Library .
     - make gen_nnref_lib
-    - python3 $NUCLEI_SDK_ROOT/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_nn.json --logdir $NMSIS_LOGS/nmsis_nn --parallel=-j --make_options "SIMU=$RUNTARGET" --run_target $RUNTARGET --run
+    - python3 $NUCLEI_SDK_ROOT/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_nn.json --logdir $NMSIS_LOGS/${NUCLEI_DSP}/nmsis_nn --parallel=-j --make_options "SIMU=$RUNTARGET" --run_target $RUNTARGET --run
 
 test_dsp_library:
   <<: *test_job_template_default
@@ -173,6 +185,9 @@ test_dsp_library:
     paths:
       - NMSIS/Logs
     expire_in: 2 day
+  parallel:
+    matrix:
+      - NUCLEI_DSP: ["N1", "N2", "N3"]
   script:
     - git clone -b $SDK_BRANCH $NUCLEI_SDK NMSIS/nuclei_sdk
     - export NUCLEI_SDK_ROOT=$(readlink -f NMSIS/nuclei_sdk)
@@ -185,7 +200,10 @@ test_dsp_library:
     - source NMSIS/env.sh
     - export SILENT=1
     - cd NMSIS
-    - python3 $NUCLEI_SDK_ROOT/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_dsp.json --logdir $NMSIS_LOGS/nmsis_dsp --parallel=-j --make_options "SIMU=$RUNTARGET" --run_target $RUNTARGET --run
+    # symbolic link to proper build NUCLEI_DSP configured library
+    - rm -rf Library
+    - ln -s gen/${NUCLEI_DSP}/Library .
+    - python3 $NUCLEI_SDK_ROOT/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_dsp.json --logdir $NMSIS_LOGS/${NUCLEI_DSP}/nmsis_dsp --parallel=-j --make_options "SIMU=$RUNTARGET" --run_target $RUNTARGET --run
 
 release_benchmark:
   stage: release
@@ -216,6 +234,8 @@ release_nmsis:
       - develop
       - /^feature\/.*/
       - merge_requests
+  variables:
+    NUCLEI_DSP: "N2"
   artifacts:
     name: "nmsis_release-$job${CI_JOB_ID}-{CI_COMMIT_SHA::8}"
     paths:
@@ -230,6 +250,10 @@ release_nmsis:
   dependencies:
     - build_library
   script:
+    - ls -lh NMSIS/gen/
+    # choose proper built library to release
+    - rm -rf NMSIS/Library
+    - mv NMSIS/gen/${NUCLEI_DSP}/Library NMSIS/
     - ls -lh NMSIS/Library
     - cat NMSIS/npk.yml
 
