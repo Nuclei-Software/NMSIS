@@ -75,7 +75,7 @@ build_library:
     expire_in: 2 day
   parallel:
     matrix:
-      - NUCLEI_DSP: ["N1", "N2", "N3"]
+      - NUCLEI_DSP: ["NO", "N1", "N2", "N3"]
   variables:
     PARALLEL_OPTS: "-j8"
   script:
@@ -154,11 +154,11 @@ test_nn_library:
     when: always
     name: "nmsis_nn_test_cycles_logs-job${CI_JOB_ID}-${CI_COMMIT_SHA::8}"
     paths:
-      - NMSIS/Logs
+      - NMSIS/log_nmsis_nn.zip
     expire_in: 2 day
   parallel:
     matrix:
-      - NUCLEI_DSP: ["N1", "N2", "N3"]
+      - NUCLEI_DSP: ["NO", "N1", "N2", "N3"]
   script:
     - git clone -b $SDK_BRANCH $NUCLEI_SDK NMSIS/nuclei_sdk
     - export NUCLEI_SDK_ROOT=$(readlink -f NMSIS/nuclei_sdk)
@@ -176,6 +176,7 @@ test_nn_library:
     - ln -s gen/${NUCLEI_DSP}/Library .
     - make gen_nnref_lib
     - python3 $NUCLEI_SDK_ROOT/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_nn.json --logdir $NMSIS_LOGS/${NUCLEI_DSP}/nmsis_nn --parallel=-j --make_options "SIMU=$RUNTARGET" --run_target $RUNTARGET --run
+    - zip log_nmsis_nn.zip $NMSIS_LOGS
 
 test_dsp_library:
   <<: *test_job_template_default
@@ -183,11 +184,11 @@ test_dsp_library:
     when: always
     name: "nmsis_dsp_test_cycles_logs-job${CI_JOB_ID}-${CI_COMMIT_SHA::8}"
     paths:
-      - NMSIS/Logs
+      - NMSIS/log_nmsis_dsp.zip
     expire_in: 2 day
   parallel:
     matrix:
-      - NUCLEI_DSP: ["N1", "N2", "N3"]
+      - NUCLEI_DSP: ["NO", "N1", "N2", "N3"]
   script:
     - git clone -b $SDK_BRANCH $NUCLEI_SDK NMSIS/nuclei_sdk
     - export NUCLEI_SDK_ROOT=$(readlink -f NMSIS/nuclei_sdk)
@@ -204,6 +205,7 @@ test_dsp_library:
     - rm -rf Library
     - ln -s gen/${NUCLEI_DSP}/Library .
     - python3 $NUCLEI_SDK_ROOT/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_dsp.json --logdir $NMSIS_LOGS/${NUCLEI_DSP}/nmsis_dsp --parallel=-j --make_options "SIMU=$RUNTARGET" --run_target $RUNTARGET --run
+    - zip log_nmsis_dsp.zip $NMSIS_LOGS
 
 release_benchmark:
   stage: release
