@@ -175,6 +175,7 @@ test_nn_library:
     - rm -rf Library
     - ln -s gen/${NUCLEI_DSP}/Library .
     - make gen_nnref_lib
+    - export SDK_VERB_BUILDMSG=0
     - python3 $NUCLEI_SDK_ROOT/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_nn.json --logdir $NMSIS_LOGS/${NUCLEI_DSP}/nmsis_nn --parallel=-j --make_options "SIMU=$RUNTARGET" --run_target $RUNTARGET --run
     # zip logs
     - cd -
@@ -206,6 +207,7 @@ test_dsp_library:
     # symbolic link to proper build NUCLEI_DSP configured library
     - rm -rf Library
     - ln -s gen/${NUCLEI_DSP}/Library .
+    - export SDK_VERB_BUILDMSG=0
     - python3 $NUCLEI_SDK_ROOT/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_dsp.json --logdir $NMSIS_LOGS/${NUCLEI_DSP}/nmsis_dsp --parallel=-j --make_options "SIMU=$RUNTARGET" --run_target $RUNTARGET --run
     # zip logs
     - cd -
