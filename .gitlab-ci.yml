@@ -231,7 +231,8 @@ release_benchmark:
     - test_nn_library
     - test_dsp_library
   script:
-    - unzip log_nmsis_*.zip
+    # unzip all log_nmsis_*.zip files
+    - for zf in `find . -name "log_nmsis*.zip"` ; do unzip -qo $zf ; done
     - ls -lh NMSIS/Logs
     - rm -f log_nmsis_*.zip
     - zip -r log_nmsis.zip NMSIS/Logs
