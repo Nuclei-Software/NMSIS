@@ -15,6 +15,9 @@ default:
     - free -g
     - uname -a
     - lscpu
+  after_script:
+    - free -g
+    - ps aux | grep qemu
 
 stages:
   - build
