@@ -78,7 +78,6 @@
  */
 /** @} */ /* End of Doxygen Group NMSIS_Core_DSP_Intrinsic */
 
-
 /**
  * \defgroup NMSIS_Core_DSP_Intrinsic_SIMD_DATA_PROCESS      SIMD Data Processing Instructions
  * \ingroup  NMSIS_Core_DSP_Intrinsic
@@ -1752,11 +1751,11 @@ __STATIC_FORCEINLINE long __RV_KADDH(int a, int b)
  * Rd = SE(res[31:0]) // RV64
  * ~~~
  *
- * \param [in]  a    long type of value stored in a
- * \param [in]  b    long type of value stored in b
+ * \param [in]  a    int type of value stored in a
+ * \param [in]  b    int type of value stored in b
  * \return value stored in long type
  */
-__STATIC_FORCEINLINE long __RV_KADDW(long a, long b)
+__STATIC_FORCEINLINE long __RV_KADDW(int a, int b)
 {
     register long result;
     __ASM volatile("kaddw %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
@@ -15413,12 +15412,13 @@ __STATIC_FORCEINLINE unsigned long __RV_KSLL32(unsigned long a, unsigned int b)
  * \param [in]  b    unsigned int type of value stored in b
  * \return value stored in unsigned long type
  */
-__STATIC_FORCEINLINE unsigned long __RV_KSLLI32(unsigned long a, unsigned int b)
-{
-    register unsigned long result;
-    __ASM volatile("kslli32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
-    return result;
-}
+#define __RV_KSLLI32(a, b)    \
+    ({    \
+        register unsigned long result;    \
+        register unsigned long __a = (unsigned long)(a);    \
+        __ASM volatile("kslli32 %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
+        result;    \
+    })
 /* ===== Inline Function End for 4.17. KSLLI32 ===== */
 
 /* ===== Inline Function Start for 4.18.1. KSLRA32 ===== */
@@ -16245,12 +16245,13 @@ __STATIC_FORCEINLINE unsigned long __RV_SLL32(unsigned long a, unsigned int b)
  * \param [in]  b    unsigned int type of value stored in b
  * \return value stored in unsigned long type
  */
-__STATIC_FORCEINLINE unsigned long __RV_SLLI32(unsigned long a, unsigned int b)
-{
-    register unsigned long result;
-    __ASM volatile("slli32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
-    return result;
-}
+#define __RV_SLLI32(a, b)    \
+    ({    \
+        register unsigned long result;    \
+        register unsigned long __a = (unsigned long)(a);    \
+        __ASM volatile("slli32 %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
+        result;    \
+    })
 /* ===== Inline Function End for 4.30. SLLI32 ===== */
 
 /* ===== Inline Function Start for 4.31. SMAX32 ===== */
@@ -16786,12 +16787,13 @@ __STATIC_FORCEINLINE unsigned long __RV_SRA32_U(unsigned long a, unsigned int b)
  * \param [in]  b    unsigned int type of value stored in b
  * \return value stored in unsigned long type
  */
-__STATIC_FORCEINLINE unsigned long __RV_SRAI32(unsigned long a, unsigned int b)
-{
-    register unsigned long result;
-    __ASM volatile("srai32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
-    return result;
-}
+#define __RV_SRAI32(a, b)    \
+    ({    \
+        register unsigned long result;    \
+        register unsigned long __a = (unsigned long)(a);    \
+        __ASM volatile("srai32 %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
+        result;    \
+    })
 /* ===== Inline Function End for 4.36.1. SRAI32 ===== */
 
 /* ===== Inline Function Start for 4.36.2. SRAI32.u ===== */
@@ -16839,12 +16841,13 @@ __STATIC_FORCEINLINE unsigned long __RV_SRAI32(unsigned long a, unsigned int b)
  * \param [in]  b    unsigned int type of value stored in b
  * \return value stored in unsigned long type
  */
-__STATIC_FORCEINLINE unsigned long __RV_SRAI32_U(unsigned long a, unsigned int b)
-{
-    register unsigned long result;
-    __ASM volatile("srai32.u %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
-    return result;
-}
+#define __RV_SRAI32_U(a, b)    \
+    ({    \
+        register unsigned long result;    \
+        register unsigned long __a = (unsigned long)(a);    \
+        __ASM volatile("srai32.u %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
+        result;    \
+    })
 /* ===== Inline Function End for 4.36.2. SRAI32.u ===== */
 
 /* ===== Inline Function Start for 4.37. SRAIW.u ===== */
@@ -16884,12 +16887,13 @@ __STATIC_FORCEINLINE unsigned long __RV_SRAI32_U(unsigned long a, unsigned int b
  * \param [in]  b    unsigned int type of value stored in b
  * \return value stored in long type
  */
-__STATIC_FORCEINLINE long __RV_SRAIW_U(int a, unsigned int b)
-{
-    register long result;
-    __ASM volatile("sraiw.u %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
-    return result;
-}
+#define __RV_SRAIW_U(a, b)    \
+    ({    \
+        register long result;    \
+        register int __a = (int)(a);    \
+        __ASM volatile("sraiw.u %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
+        result;    \
+    })
 /* ===== Inline Function End for 4.37. SRAIW.u ===== */
 
 /* ===== Inline Function Start for 4.38.1. SRL32 ===== */
@@ -17041,12 +17045,13 @@ __STATIC_FORCEINLINE unsigned long __RV_SRL32_U(unsigned long a, unsigned int b)
  * \param [in]  b    unsigned int type of value stored in b
  * \return value stored in unsigned long type
  */
-__STATIC_FORCEINLINE unsigned long __RV_SRLI32(unsigned long a, unsigned int b)
-{
-    register unsigned long result;
-    __ASM volatile("srli32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
-    return result;
-}
+#define __RV_SRLI32(a, b)    \
+    ({    \
+        register unsigned long result;    \
+        register unsigned long __a = (unsigned long)(a);    \
+        __ASM volatile("srli32 %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
+        result;    \
+    })
 /* ===== Inline Function End for 4.39.1. SRLI32 ===== */
 
 /* ===== Inline Function Start for 4.39.2. SRLI32.u ===== */
@@ -17092,12 +17097,13 @@ __STATIC_FORCEINLINE unsigned long __RV_SRLI32(unsigned long a, unsigned int b)
  * \param [in]  b    unsigned int type of value stored in b
  * \return value stored in unsigned long type
  */
-__STATIC_FORCEINLINE unsigned long __RV_SRLI32_U(unsigned long a, unsigned int b)
-{
-    register unsigned long result;
-    __ASM volatile("srli32.u %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
-    return result;
-}
+#define __RV_SRLI32_U(a, b)    \
+    ({    \
+        register unsigned long result;    \
+        register unsigned long __a = (unsigned long)(a);    \
+        __ASM volatile("srli32.u %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
+        result;    \
+    })
 /* ===== Inline Function End for 4.39.2. SRLI32.u ===== */
 
 /* ===== Inline Function Start for 4.40. STAS32 ===== */
@@ -18659,7 +18665,7 @@ __STATIC_FORCEINLINE long __SMMLA(long op1, long op2, long op3)
 
 /** \brief Halfword packing instruction. Combines bits[31:16] of val1 with bits[15:0] of val2 right-shifted with the val3. */
 #define __PKHTB(ARG1, ARG2, ARG3)  ((ARG3 == 0) ? __RV_PKTB16(ARG1, ARG2) :              \
-	                           (ARG3 == 16) ? __RV_PKTT16(ARG1, ARG2) :              \
+                                   (ARG3 == 16) ? __RV_PKTT16(ARG1, ARG2) :              \
                                    (((((uint32_t)(ARG1))          ) & 0xFFFF0000UL) |    \
                                    ((((uint32_t)(ARG2)) >> (ARG3)) & 0x0000FFFFUL)))
 
