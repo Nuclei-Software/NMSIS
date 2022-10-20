@@ -182,7 +182,7 @@ test_nn_library:
     - python3 $NUCLEI_SDK_ROOT/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_nn.json --logdir $NMSIS_LOGS/${NUCLEI_DSP}/nmsis_nn --parallel=-j --make_options "SIMU=$RUNTARGET" --run_target $RUNTARGET --run
     # zip logs
     - cd -
-    - zip -r log_nmsis_nn_${NUCLEI_DSP}.zip NMSIS/Logs
+    - zip -q -r log_nmsis_nn_${NUCLEI_DSP}.zip NMSIS/Logs
 
 test_dsp_library:
   <<: *test_job_template_default
@@ -214,7 +214,7 @@ test_dsp_library:
     - python3 $NUCLEI_SDK_ROOT/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_dsp.json --logdir $NMSIS_LOGS/${NUCLEI_DSP}/nmsis_dsp --parallel=-j --make_options "SIMU=$RUNTARGET" --run_target $RUNTARGET --run
     # zip logs
     - cd -
-    - zip -r log_nmsis_dsp_${NUCLEI_DSP}.zip NMSIS/Logs
+    - zip -q -r log_nmsis_dsp_${NUCLEI_DSP}.zip NMSIS/Logs
 
 release_benchmark:
   stage: release
@@ -238,7 +238,7 @@ release_benchmark:
     - for zf in `find . -name "log_nmsis*.zip"` ; do unzip -qo $zf ; done
     - ls -lh NMSIS/Logs
     - rm -f log_nmsis_*.zip
-    - zip -r log_nmsis.zip NMSIS/Logs
+    - zip -q -r log_nmsis.zip NMSIS/Logs
 
 release_nmsis:
   stage: release
