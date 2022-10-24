@@ -99,13 +99,37 @@ riscv_status riscv_mat_scale_q31(
     status = RISCV_MATH_SUCCESS;
 #elif defined (RISCV_MATH_LOOPUNROLL)
 
+    q63_t Double_scaleFract = ((q63_t)scaleFract << 32) | ((q63_t)scaleFract);
+
     /* Loop unrolling: Compute 4 outputs at a time */
     blkCnt = numSamples >> 2U;
 
     while (blkCnt > 0U)
     {
-      /* C(m,n) = A(m,n) * k */
+#if defined (RISCV_MATH_DSP)
 
+      /* C(m,n) = A(m,n) * k */
+#if __RISCV_XLEN == 64
+      in = read_q31x2_ia((q31_t **)&pIn);              /* read two inputs from source */
+      in = __RV_SMMUL(in, Double_scaleFract);          /* multiply input with scaler value */
+      write_q31x2_ia(&pOut, __RV_KSLRA32(in, kShift)); /* apply shifting, saturate and Store result destination*/
+
+      in = read_q31x2_ia((q31_t **)&pIn);
+      in = __RV_SMMUL(in, Double_scaleFract);
+      write_q31x2_ia(&pOut, __RV_KSLRA32(in, kShift));
+#else
+#ifdef NUCLEI_DSP_N2
+      /* Scale, saturate and store result in destination buffer. */
+      in = read_q31x2_ia((q31_t **)&pIn);              /* read two inputs from source */
+      in = __dsmmul(in, Double_scaleFract);            /* multiply input with scaler value */
+      write_q31x2_ia(&pOut, __dkslra32(in, kShift));   /* apply shifting, saturate and Store result destination*/
+
+      in = read_q31x2_ia((q31_t **)&pIn);
+      in = __dsmmul(in, Double_scaleFract);
+      write_q31x2_ia(&pOut, __dkslra32(in, kShift));
+#endif /* NUCLEI_DSP_N2 */
+#endif /* __RISCV_XLEN == 64 */
+#else
       /* Scale, saturate and store result in destination buffer. */
       in = *pIn++;                                 /* read four inputs from source */
       in = ((q63_t) in * scaleFract) >> 32;        /* multiply input with scaler value */
@@ -134,6 +158,7 @@ riscv_status riscv_mat_scale_q31(
       if (in != (out >> kShift))
         out = 0x7FFFFFFF ^ (in >> 31);
       *pOut++ = out;
+#endif /* defined (RISCV_MATH_DSP) */
 
       /* Decrement loop counter */
       blkCnt--;
@@ -176,3 +201,4 @@ riscv_status riscv_mat_scale_q31(
 /**
   @} end of MatrixScale group
  */
+
