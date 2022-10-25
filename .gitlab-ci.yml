@@ -158,6 +158,7 @@ test_nn_library:
     name: "nmsis_nn_test_cycles_logs-job${CI_JOB_ID}-${CI_COMMIT_SHA::8}"
     paths:
       - log_nmsis_*.zip
+      - NMSIS/Logs
     expire_in: 2 day
   parallel:
     matrix:
@@ -183,6 +184,7 @@ test_nn_library:
     # zip logs
     - cd -
     - zip -q -r log_nmsis_nn_${NUCLEI_DSP}.zip NMSIS/Logs
+    - rm -rf NMSIS/Logs
 
 test_dsp_library:
   <<: *test_job_template_default
@@ -191,6 +193,7 @@ test_dsp_library:
     name: "nmsis_dsp_test_cycles_logs-job${CI_JOB_ID}-${CI_COMMIT_SHA::8}"
     paths:
       - log_nmsis_*.zip
+      - NMSIS/Logs
     expire_in: 2 day
   parallel:
     matrix:
@@ -215,6 +218,7 @@ test_dsp_library:
     # zip logs
     - cd -
     - zip -q -r log_nmsis_dsp_${NUCLEI_DSP}.zip NMSIS/Logs
+    - rm -rf NMSIS/Logs
 
 release_benchmark:
   stage: release
