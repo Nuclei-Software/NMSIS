@@ -20,7 +20,7 @@ int test_flag_error = 0;
 
 BENCH_DECLARE_VAR();
 
-#define BLOCK_TESTSZ        256
+#define BLOCK_TESTSZ        16
 
 static int DSP_SIN_COS_F32(void)
 {

@@ -28,7 +28,7 @@ int test_flag_error = 0;
 
 BENCH_DECLARE_VAR();
 
-#define BLOCK_TESTSZ        256
+#define BLOCK_TESTSZ        100
 
 static int DSP_clarke_f32_app()
 {
