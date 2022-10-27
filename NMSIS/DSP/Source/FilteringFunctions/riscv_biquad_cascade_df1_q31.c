@@ -56,6 +56,145 @@
   @remark
                    Refer to \ref riscv_biquad_cascade_df1_fast_q31() for a faster but less precise implementation of this filter.
  */
+
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+void riscv_biquad_cascade_df1_q31(
+  const riscv_biquad_casd_df1_inst_q31 * S,
+  const q31_t * pSrc,
+        q31_t * pDst,
+        uint32_t blockSize)
+{
+  const q31_t *pIn = pSrc;                             /* Source pointer */
+        q31_t *pOut = pDst;                            /* Destination pointer */
+        q31_t *pState = S->pState;                     /* pState pointer */
+  const q31_t *pCoeffs = S->pCoeffs;                   /* Coefficient pointer */
+        q63_t acc, acc_1, acc_2;                         /* Accumulator */
+        q63_t in;                                      /* Temporary variable to hold input value */
+        q63_t out;                                     /* Temporary variable to hold output value */
+        q63_t b0;                                      /* Temporary variable to hold b0 value */
+        q63_t b1, a1;                                  /* Filter coefficients */
+        q63_t state_in, state_out;                     /* Filter state variables */
+        q31_t Xn;                                      /* Temporary input */
+        uint32_t uShift = ((uint32_t) S->postShift + 1U);
+        uint32_t lShift = 32U - uShift;                /* Shift to be applied to the output */
+        uint32_t sample, stage = S->numStages;         /* Loop counters */
+        q63_t out1, out2;
+        q31_t Yn;
+
+  do
+  {
+    /* Read the b0 and 0 coefficients using SIMD  */
+    b0 = *pCoeffs++;
+
+    /* Read the b1 and b2 coefficients using SIMD */
+    b1 = read_q31x2_ia((q31_t **) &pCoeffs);
+
+    /* Read the a1 and a2 coefficients using SIMD */
+    a1 = read_q31x2_ia((q31_t **) &pCoeffs);
+
+    /* Read the input state values from the state buffer:  x[n-1], x[n-2] */
+    state_in = read_q31x2_ia((q31_t **) &pState);
+
+    /* Read the output state values from the state buffer:  y[n-1], y[n-2] */
+    state_out = read_q31x2_da((q31_t **) &pState);
+
+    /* Apply loop unrolling and compute 2 output values simultaneously. */
+    /*      The variable acc hold output values that are being computed:
+     *
+     *    acc =  b0 * x[n] + b1 * x[n-1] + b2 * x[n-2] + a1 * y[n-1] + a2 * y[n-2]
+     *    acc =  b0 * x[n] + b1 * x[n-1] + b2 * x[n-2] + a1 * y[n-1] + a2 * y[n-2]
+     */
+    sample = blockSize >> 1U;
+
+    /* First part of the processing with loop unrolling.  Compute 2 outputs at a time.
+     ** a second loop below computes the remaining 1 sample. */
+    while (sample > 0U)
+    {
+
+      /* Read the input */
+      in = read_q31x2_ia((q31_t **) &pIn);
+
+      /* out =  b0 * x[n] + 0 * 0 */
+      acc_1 = __RV_KMDA32(b0, in);
+
+      /* acc +=  b1 * x[n-1] +  b2 * x[n-2] + out */
+      acc_1 = __RV_SMAR64(acc_1, b1, state_in);
+
+      /* acc +=  a1 * y[n-1] +  a2 * y[n-2] */
+      acc_1 = __RV_SMAR64(acc_1, a1, state_out);
+
+      /* The result is converted to 1.31  */
+
+      acc_2 = __RV_KMXDA32(b0, in);
+
+      acc_1 = acc_1 >> lShift;
+
+      state_in = __RV_PKBB32(state_in, in);
+      state_out = __RV_PKBB32(state_out, acc_1);
+
+      /* acc +=  b1 * x[n-1] +  b2 * x[n-2] + out */
+      acc_2 = __RV_SMAR64(acc_2, b1, state_in);
+      /* acc +=  a1 * y[n-1] + a2 * y[n-2] */
+      acc_2 = __RV_SMAR64(acc_2, a1, state_out);
+
+      /* The result is converted to 1.31  */
+
+      acc_2 = acc_2 >> lShift;
+
+      state_in = __RV_PKBT32(state_in, in);
+
+      write_q31x2_ia(&pOut, __RV_PKBB32(acc_2, state_out));
+      state_out = __RV_PKBB32(state_out, acc_2);
+
+      sample--;
+
+    }
+
+    /* If the blockSize is not a multiple of 2, compute any remaining output samples here.
+     ** No loop unrolling is used. */
+
+    if ((blockSize & 0x1U) != 0U)
+    {
+      /* Read the input */
+      in = *pIn++;
+
+      /* out =  b0 * x[n] + 0 * 0 */
+      out = __RV_KMDA32(b0, in);
+
+      /* acc =  b1 * x[n-1] + b2 * x[n-2] + out */
+      acc = __RV_SMAR64(out, b1, state_in);
+      /* acc +=  a1 * y[n-1] + a2 * y[n-2] */
+      acc = __RV_SMAR64(acc, a1, state_out);
+
+      acc = acc >> lShift;
+
+      /* Store the output in the destination buffer. */
+      *pOut++ = (q31_t) acc;
+
+      state_in = __RV_PKBB32(state_in, in);
+      state_out = __RV_PKBB32(state_out, acc);
+    }
+
+    /* The first stage goes from the input wire to the output wire.  */
+    /* Subsequent numStages occur in-place in the output wire  */
+    pIn = pDst;
+
+    /* Reset the output pointer */
+    pOut = pDst;
+
+    /* Store the updated state variables back into the state array */
+    write_q31x2_ia(&pState, state_in);
+    write_q31x2_ia(&pState, state_out);
+
+    /* decrement loop counter */
+    stage--;
+
+  } while (stage > 0U);
+
+}
+
+#else
+
 void riscv_biquad_cascade_df1_q31(
   const riscv_biquad_casd_df1_inst_q31 * S,
   const q31_t * pSrc,
@@ -242,6 +381,7 @@ void riscv_biquad_cascade_df1_q31(
 
 }
 
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 /**
   @} end of BiquadCascadeDF1 group
  */
