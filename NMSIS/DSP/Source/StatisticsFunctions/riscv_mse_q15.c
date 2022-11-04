@@ -57,7 +57,7 @@ void riscv_mse_q15(
   q63_t sum = 0;                         /* Temporary result storage */
   q15_t inA, inB;                        /* Temporary variable to store input value */
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
   blkCnt = blockSize;
   size_t l;
   const q15_t *pInA = pSrcA;
@@ -84,12 +84,30 @@ void riscv_mse_q15(
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
+#if defined (RISCV_MATH_DSP)
+  q31_t inA1, inB1, inA2;
+#endif /* defined (RISCV_MATH_DSP) */
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
 
   while (blkCnt > 0U)
   {
 
+#if defined (RISCV_MATH_DSP)
+    inA1 = read_q15x2_ia((q15_t **)&pSrcA);
+    inB1 = read_q15x2_ia((q15_t **)&pSrcB);
+    inA1 = __RV_SRAI16(inA1, 1);
+    inB1 = __RV_SRAI16(inB1, 1);
+    inA2 = __RV_KSUB16(inA1, inB1);
+    sum  = __RV_SMALDA(sum, inA2, inA2);
+
+    inA1 = read_q15x2_ia((q15_t **)&pSrcA);
+    inB1 = read_q15x2_ia((q15_t **)&pSrcB);
+    inA1 = __RV_SRAI16(inA1, 1);
+    inB1 = __RV_SRAI16(inB1, 1);
+    inA2 = __RV_KSUB16(inA1, inB1);
+    sum  = __RV_SMALDA(sum, inA2, inA2);
+#else
     inA = *pSrcA++ >> 1;
     inB = *pSrcB++ >> 1;
     inA = (q15_t)__SSAT(((q31_t)inA - (q31_t)inB), 16);
@@ -109,6 +127,7 @@ void riscv_mse_q15(
     inB = *pSrcB++ >> 1;
     inA = (q15_t)__SSAT(((q31_t)inA - (q31_t)inB), 16);
     sum += (q63_t)((q31_t)inA * inA);
+#endif /* defined (RISCV_MATH_DSP) */
 
     /* Decrement loop counter */
     blkCnt--;

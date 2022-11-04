@@ -62,14 +62,15 @@ riscv_status riscv_mat_scale_q15(
         q15_t *pOut = pDst->pData;                     /* Output data matrix pointer */
         uint32_t numSamples;                           /* Total number of elements in the matrix */
         uint32_t blkCnt;                               /* Loop counter */
-        riscv_status status;                             /* Status of matrix scaling */
+        riscv_status status;                           /* Status of matrix scaling */
         int32_t kShift = 15 - shift;                   /* Total shift to apply after scaling */
 
 #if defined (RISCV_MATH_LOOPUNROLL) && defined (RISCV_MATH_DSP)
-#if __RISCV_XLEN == 64
-        q31_t scaleTemp = ((q31_t)scaleFract << 16) | (q31_t)scaleFract;
+#if defined (NUCLEI_DSP_N2) || (__RISCV_XLEN == 64)
+        q63_t out12, out34;
+#endif /* defined (NUCLEI_DSP_N2) || (__RISCV_XLEN == 64) */
+        q31_t scaleTemp = ((q31_t)scaleFract << 16) | ((q31_t)scaleFract & 0xffff);
         q63_t out164, out264;
-#endif /* __RISCV_XLEN == 64 */
         q31_t inA1, inA2;
         q31_t out1, out2, out3, out4;                  /* Temporary output variables */
         q15_t in1, in2, in3, in4;                      /* Temporary input variables */
@@ -115,38 +116,34 @@ riscv_status riscv_mat_scale_q15(
       /* C(m,n) = A(m,n) * k */
 
 #if defined (RISCV_MATH_DSP)
-#if __RISCV_XLEN == 64
       /* read 2 times 2 samples at a time from source */
       inA1 = read_q15x2_ia(&pIn);
       out164 = __RV_SMUL16(inA1, scaleTemp);
       inA1 = read_q15x2_ia(&pIn);
       out264 = __RV_SMUL16(inA1, scaleTemp);
 
-      out164 = __RV_SRA32(out164, kShift);
-      out264 = __RV_SRA32(out264, kShift);
-      /* Scale inputs and store result in temporary variables
-       * in single cycle by packing the outputs */
-      out1 = (q31_t)(out164 >> 32);
-      out2 = (q31_t)(out164);
-      out3 = (q31_t)(out264 >> 32);
-      out4 = (q31_t)(out264);
+#if __RISCV_XLEN == 64
+      out12 = __RV_KSLRA32(out164, -kShift);
+      out34 = __RV_KSLRA32(out264, -kShift);
+      out1 = (q31_t)(out12 >> 32);
+      out2 = (q31_t)out12;
+      out3 = (q31_t)(out34 >> 32);
+      out4 = (q31_t)out34;
 #else
-      /* read 2 times 2 samples at a time from source */
-      inA1 = read_q15x2_ia (&pIn);
-      inA2 = read_q15x2_ia (&pIn);
-
-      /* Scale inputs and store result in temporary variables
-       * in single cycle by packing the outputs */
-      out1 = (q31_t) ((q15_t) (inA1 >> 16) * scaleFract);
-      out2 = (q31_t) ((q15_t) (inA1      ) * scaleFract);
-      out3 = (q31_t) ((q15_t) (inA2 >> 16) * scaleFract);
-      out4 = (q31_t) ((q15_t) (inA2      ) * scaleFract);
-
-      /* apply shifting */
-      out1 = out1 >> kShift;
-      out2 = out2 >> kShift;
-      out3 = out3 >> kShift;
-      out4 = out4 >> kShift;
+#ifdef NUCLEI_DSP_N2
+      /* apply shifting and saturate the output */
+      out12 = __dkslra32(out164, -kShift);
+      out34 = __dkslra32(out264, -kShift);
+      out1 = (q31_t)(out12 >> 32);
+      out2 = (q31_t)out12;
+      out3 = (q31_t)(out34 >> 32);
+      out4 = (q31_t)out34;
+#else
+      out1 = (q31_t)(out164 >> 32) >> kShift;
+      out2 = (q31_t)out164 >> kShift;
+      out3 = (q31_t)(out264 >> 32) >> kShift;
+      out4 = (q31_t)out264 >> kShift;
+#endif /* NUCLEI_DSP_N2 */
 #endif /* __RISCV_XLEN == 64 */
 
       /* saturate the output */

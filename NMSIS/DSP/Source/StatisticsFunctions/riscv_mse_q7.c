@@ -88,11 +88,22 @@ void riscv_mse_q7(
 #else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
+#if defined (RISCV_MATH_DSP)
+  q31_t inA1, inB1, inA2;
+#endif /* defined (RISCV_MATH_DSP) */
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
 
   while (blkCnt > 0U)
   {
+#if defined (RISCV_MATH_DSP)
+    inA1 = read_q7x4_ia((q7_t **)&pSrcA);
+    inB1 = read_q7x4_ia((q7_t **)&pSrcB);
+    inA1 = __RV_SRAI8(inA1, 1);
+    inB1 = __RV_SRAI8(inB1, 1);
+    inA2 = __RV_KSUB8(inA1, inB1);
+    sum  = __RV_SMAQA(sum, inA2, inA2);
+#else
     inA = *pSrcA++ >> 1;
     inB = *pSrcB++ >> 1;
     inA = (q7_t) __SSAT((q15_t) inA - (q15_t)inB, 8);
@@ -112,6 +123,7 @@ void riscv_mse_q7(
     inB = *pSrcB++ >> 1;
     inA = (q7_t) __SSAT((q15_t) inA - (q15_t)inB, 8);
     sum += ((q15_t) inA * inA);
+#endif/* defined (RISCV_MATH_DSP) */
 
     /* Decrement loop counter */
     blkCnt--;
