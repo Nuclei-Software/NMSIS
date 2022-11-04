@@ -76,11 +76,17 @@ void riscv_correlate_q15(
   const q15_t *px;                                     /* Intermediate inputA pointer */
   const q15_t *py;                                     /* Intermediate inputB pointer */
   const q15_t *pSrc1;                                  /* Intermediate pointers */
-        q31_t x0, x1, x2, x3, c0;                      /* Temporary input variables for holding input and coefficient values */
         uint32_t blockSize1, blockSize2, blockSize3;   /* Loop counters */
         uint32_t j, k, count, blkCnt;                  /* Loop counters */
         uint32_t outBlockSize;
         int32_t inc = 1;                               /* Destination address modifier */
+#if defined (RISCV_MATH_DSP)
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)    /* Temporary input variables for holding input and coefficient values */
+        q63_t x0, x1, x2, x3, c0;
+#else
+        q31_t x0, x1, x2, x3, c0;
+#endif/* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
+#endif/* defined (RISCV_MATH_DSP) */
 
   /* The algorithm implementation is based on the lengths of the inputs. */
   /* srcB is always made to slide across srcA. */
@@ -188,12 +194,24 @@ void riscv_correlate_q15(
      ** a second loop below computes MACs for the remaining 1 to 3 samples. */
     while (k > 0U)
     {
+#if defined (RISCV_MATH_DSP)
+#if __RISCV_XLEN == 64
+      /* x[0] * y[srcBLen - 4] , x[1] * y[srcBLen - 3] , x[2] * y[srcBLen - 2] , x[3] * y[srcBLen - 1]*/
+      sum = __SMLALD(read_q15x4_ia ((q15_t **) &px), read_q15x4_ia ((q15_t **) &py), sum);
+#else
+#ifdef NUCLEI_DSP_N3
+      /* x[0] * y[srcBLen - 4] , x[1] * y[srcBLen - 3] , x[2] * y[srcBLen - 2] , x[3] * y[srcBLen - 1]*/
+      sum = __dsmalda(sum, read_q15x4_ia ((q15_t **) &px), read_q15x4_ia ((q15_t **) &py));
+#else
       /* Perform the multiply-accumulate */
       /* x[0] * y[srcBLen - 4] , x[1] * y[srcBLen - 3] */
       sum = __SMLALD(read_q15x2_ia ((q15_t **) &px), read_q15x2_ia ((q15_t **) &py), sum);
       /* x[3] * y[srcBLen - 1] , x[2] * y[srcBLen - 2] */
       sum = __SMLALD(read_q15x2_ia ((q15_t **) &px), read_q15x2_ia ((q15_t **) &py), sum);
 
+#endif/* #ifdef NUCLEI_DSP_N3 */
+#endif/* __RISCV_XLEN == 64 */
+#endif/* #if defined (RISCV_MATH_DSP) */
       /* Decrement loop counter */
       k--;
     }
@@ -304,7 +322,26 @@ void riscv_correlate_q15(
       acc1 = 0;
       acc2 = 0;
       acc3 = 0;
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
+      /* read x[0], x[1], x[2], x[3] samples */
+      x0 = read_q15x4 ((q15_t *) px);
 
+      /* read x[1], x[2], x[3], x[4] samples */
+      x1 = read_q15x4 ((q15_t *) px + 1);
+
+      /* read x[2], x[3], x[4], x[5] samples */
+      x2 = read_q15x4 ((q15_t *) px + 2);
+
+      /* read x[3], x[4], x[5], x[6] samples */
+      x3 = read_q15x4 ((q15_t *) px + 3);
+      px += 4U;
+
+      /* read y[0], y[1], y[2], y[3] samples */
+      c0 = read_q15x4_ia ((q15_t **) &py);
+
+      /* Apply loop unrolling and compute 4 MACs simultaneously. */
+      k = srcBLen >> 2U;
+#else
       /* read x[0], x[1] samples */
       x0 = read_q15x2 ((q15_t *) px);
 
@@ -315,10 +352,71 @@ void riscv_correlate_q15(
       /* Apply loop unrolling and compute 4 MACs simultaneously. */
       k = srcBLen >> 2U;
 
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
       /* First part of the processing with loop unrolling.  Compute 4 MACs at a time.
        ** a second loop below computes MACs for the remaining 1 to 3 samples. */
       do
       {
+#if __RISCV_XLEN == 64
+        /* Read the first two inputB samples using SIMD:
+        /* acc0 +=  x[0] * y[0] + x[1] * y[1] + x[2] * y[2] + x[3] * y[3] */
+        acc0 = __SMLALD(x0, c0, acc0);
+
+        /* acc1 +=  x[1] * y[0] + x[2] * y[1] + x[3] * y[2] + x[4] * y[3] */
+        acc1 = __SMLALD(x1, c0, acc1);
+
+        /* acc2 +=  x[2] * y[0] + x[3] * y[1] + x[4] * y[2] + x[5] * y[3] */
+        acc2 = __SMLALD(x2, c0, acc2);
+
+        /* acc3 +=  x[3] * y[0] + x[4] * y[1] + x[5] * y[2] + x[6] * y[3] */
+        acc3 = __SMLALD(x3, c0, acc3);
+
+        /* read x[4], x[5], x[6], x[7] samples */
+        x0 = read_q15x4((q15_t *) px);
+
+        /* read x[5], x[6], x[7], x[8] samples */
+        x1 = read_q15x4((q15_t *) px + 1);
+
+        /* read x[6], x[7], x[8], x[9] samples */
+        x2 = read_q15x4((q15_t *) px + 2);
+
+        /* read x[7], x[8], x[9], x[10] samples */
+        x3 = read_q15x4((q15_t *) px + 3);
+        px += 4U;
+
+        /* read y[4], y[5], y[6], y[7] samples */
+        c0 = read_q15x4_ia ((q15_t **) &py);
+#else
+#ifdef NUCLEI_DSP_N3
+        /* Read the first two inputB samples using SIMD:
+        /* acc0 +=  x[0] * y[0] + x[1] * y[1] + x[2] * y[2] + x[3] * y[3] */
+        acc0 = __dsmalda(acc0, x0, c0);
+
+        /* acc1 +=  x[1] * y[0] + x[2] * y[1] + x[3] * y[2] + x[4] * y[3] */
+        acc1 = __dsmalda(acc1, x1, c0);
+
+        /* acc2 +=  x[2] * y[0] + x[3] * y[1] + x[4] * y[2] + x[5] * y[3] */
+        acc2 = __dsmalda(acc2, x2, c0);
+
+        /* acc3 +=  x[3] * y[0] + x[4] * y[1] + x[5] * y[2] + x[6] * y[3] */
+        acc3 = __dsmalda(acc3, x3, c0);
+
+        /* read x[4], x[5], x[6], x[7] samples */
+        x0 = read_q15x4((q15_t *) px);
+
+        /* read x[5], x[6], x[7], x[8] samples */
+        x1 = read_q15x4((q15_t *) px + 1);
+
+        /* read x[6], x[7], x[8], x[9] samples */
+        x2 = read_q15x4((q15_t *) px + 2);
+
+        /* read x[7], x[8], x[9], x[10] samples */
+        x3 = read_q15x4((q15_t *) px + 3);
+        px += 4U;
+
+        /* read y[4], y[5], y[6], y[7] samples */
+        c0 = read_q15x4_ia ((q15_t **) &py);
+#else
         /* Read the first two inputB samples using SIMD:
          * y[0] and y[1] */
         c0 = read_q15x2_ia ((q15_t **) &py);
@@ -363,6 +461,8 @@ void riscv_correlate_q15(
         /* acc3 +=  x[5] * y[2] + x[6] * y[3] */
         acc3 = __SMLALD(x1, c0, acc3);
 
+#endif/* #ifdef NUCLEI_DSP_N3 */
+#endif/* #if __RISCV_XLEN == 64 */
       } while (--k);
 
       /* If the srcBLen is not a multiple of 4, compute any remaining MACs here.
@@ -613,12 +713,24 @@ void riscv_correlate_q15(
      ** a second loop below computes MACs for the remaining 1 to 3 samples. */
     while (k > 0U)
     {
+#if  __RISCV_XLEN == 64
+      /* sum += x[srcALen - srcBLen + 4] * y[3] , sum += x[srcALen - srcBLen + 3] * y[2]
+         sum += x[srcALen - srcBLen + 2] * y[1] , sum += x[srcALen - srcBLen + 1] * y[0] */
+      sum = __SMLALD(read_q15x4_ia ((q15_t **) &px), read_q15x4_ia ((q15_t **) &py), sum);
+#else
+#ifdef NUCLEI_DSP_N3
+      /* sum += x[srcALen - srcBLen + 4] * y[3] , sum += x[srcALen - srcBLen + 3] * y[2]
+         sum += x[srcALen - srcBLen + 2] * y[1] , sum += x[srcALen - srcBLen + 1] * y[0] */
+      sum = __dsmalda(sum, read_q15x4_ia ((q15_t **) &px), read_q15x4_ia ((q15_t **) &py));
+#else
       /* Perform the multiply-accumulate */
       /* sum += x[srcALen - srcBLen + 4] * y[3] , sum += x[srcALen - srcBLen + 3] * y[2] */
       sum = __SMLALD(read_q15x2_ia ((q15_t **) &px), read_q15x2_ia ((q15_t **) &py), sum);
       /* sum += x[srcALen - srcBLen + 2] * y[1] , sum += x[srcALen - srcBLen + 1] * y[0] */
       sum = __SMLALD(read_q15x2_ia ((q15_t **) &px), read_q15x2_ia ((q15_t **) &py), sum);
 
+#endif/* #ifdef NUCLEI_DSP_N3 */
+#endif/* #if  __RISCV_XLEN == 64 */
       /* Decrement loop counter */
       k--;
     }
