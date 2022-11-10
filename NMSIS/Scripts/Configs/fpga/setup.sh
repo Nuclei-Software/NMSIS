@@ -4,6 +4,7 @@ NSDK_ROOT=${NSDK_ROOT:-${SCRIPTDIR}/../../../../../nuclei-sdk}
 NMSIS_ROOT=${NMSIS_ROOT:-${SCRIPTDIR}/../../../}
 
 ILMSZ=${ILMSZ:-512K}
+DLMSZ=${DLMSZ:-256K}
 DEVENVSH=${DEVENVSH:-/home/share/devtools/env.sh}
 
 [ -f ${DEVENVSH} ] && source $DEVENVSH
@@ -35,5 +36,6 @@ export SDK_COPY_OBJECTS="elf,map"
 
 LDSCRIPT=$NUCLEI_SDK_ROOT/SoC/demosoc/Board/nuclei_fpga_eval/Source/GCC/gcc_demosoc_ilm.ld
 echo "Change ILM size from 64K to $ILMSZ in $LDSCRIPT"
-
-sed -i "s/64K/$ILMSZ/g" $LDSCRIPT
+sed -i "s/ORIGIN = 0x80000000, LENGTH = 64K/ORIGIN = 0x80000000, LENGTH = $ILMSZ/g" $LDSCRIPT
+echo "Change DLM size from 64K to $DLMSZ in $LDSCRIPT"
+sed -i "s/ORIGIN = 0x90000000, LENGTH = 64K/ORIGIN = 0x90000000, LENGTH = $DLMSZ/g" $LDSCRIPT
