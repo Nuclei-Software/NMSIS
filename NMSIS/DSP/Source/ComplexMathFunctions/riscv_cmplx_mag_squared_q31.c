@@ -93,10 +93,10 @@ void riscv_cmplx_mag_squared_q31(
     imag = *pSrc++;
 
 #if defined(RISCV_MATH_DSP)
-	acc0 = (q31_t) (__RV_MULSR64(real, real) >> 33);
-	acc1 = (q31_t) (__RV_MULSR64(imag, imag) >> 33);
+    acc0 = (q31_t) (__RV_MULSR64(real, real) >> 33);
+    acc1 = (q31_t) (__RV_MULSR64(imag, imag) >> 33);
 #else
-	acc0 = (q31_t) (((q63_t) real * real) >> 33);
+    acc0 = (q31_t) (((q63_t) real * real) >> 33);
     acc1 = (q31_t) (((q63_t) imag * imag) >> 33);
 #endif
 
@@ -107,10 +107,10 @@ void riscv_cmplx_mag_squared_q31(
     imag = *pSrc++;
 
 #if defined(RISCV_MATH_DSP)
-	acc0 = (q31_t) (__RV_MULSR64(real, real) >> 33);
-	acc1 = (q31_t) (__RV_MULSR64(imag, imag) >> 33);
+    acc0 = (q31_t) (__RV_MULSR64(real, real) >> 33);
+    acc1 = (q31_t) (__RV_MULSR64(imag, imag) >> 33);
 #else
-	acc0 = (q31_t) (((q63_t) real * real) >> 33);
+    acc0 = (q31_t) (((q63_t) real * real) >> 33);
     acc1 = (q31_t) (((q63_t) imag * imag) >> 33);
 #endif
 
@@ -120,11 +120,11 @@ void riscv_cmplx_mag_squared_q31(
     imag = *pSrc++;
 
 #if defined(RISCV_MATH_DSP)
-	acc0 = (q31_t) (__RV_MULSR64(real, real) >> 33);
-	acc1 = (q31_t) (__RV_MULSR64(imag, imag) >> 33);
+    acc0 = (q31_t) (__RV_MULSR64(real, real) >> 33);
+    acc1 = (q31_t) (__RV_MULSR64(imag, imag) >> 33);
 #else
-	acc0 = (q31_t) (((q63_t) real * real) >> 33);
-	acc1 = (q31_t) (((q63_t) imag * imag) >> 33);
+    acc0 = (q31_t) (((q63_t) real * real) >> 33);
+    acc1 = (q31_t) (((q63_t) imag * imag) >> 33);
 #endif
 
     *pDst++ = acc0 + acc1;
@@ -133,10 +133,10 @@ void riscv_cmplx_mag_squared_q31(
     imag = *pSrc++;
 
 #if defined(RISCV_MATH_DSP)
-	acc0 = (q31_t) (__RV_MULSR64(real, real) >> 33);
-	acc1 = (q31_t) (__RV_MULSR64(imag, imag) >> 33);
+    acc0 = (q31_t) (__RV_MULSR64(real, real) >> 33);
+    acc1 = (q31_t) (__RV_MULSR64(imag, imag) >> 33);
 #else
-	acc0 = (q31_t) (((q63_t) real * real) >> 33);
+    acc0 = (q31_t) (((q63_t) real * real) >> 33);
     acc1 = (q31_t) (((q63_t) imag * imag) >> 33);
 #endif
 
@@ -164,10 +164,10 @@ void riscv_cmplx_mag_squared_q31(
     imag = *pSrc++;
 
 #if defined(RISCV_MATH_DSP)
-	acc0 = (q31_t) (__RV_MULSR64(real, real) >> 33);
-	acc1 = (q31_t) (__RV_MULSR64(imag, imag) >> 33);
+    acc0 = (q31_t) (__RV_MULSR64(real, real) >> 33);
+    acc1 = (q31_t) (__RV_MULSR64(imag, imag) >> 33);
 #else
-	acc0 = (q31_t) (((q63_t) real * real) >> 33);
+    acc0 = (q31_t) (((q63_t) real * real) >> 33);
     acc1 = (q31_t) (((q63_t) imag * imag) >> 33);
 #endif
 

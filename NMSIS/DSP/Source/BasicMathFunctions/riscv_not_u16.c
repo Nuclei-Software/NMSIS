@@ -79,6 +79,7 @@ void riscv_not_u16(
 
     const uint64_t *pSrc_temp = (const uint64_t *)pSrc;
     uint64_t *pDst_temp = (uint64_t *)pDst;
+    uint16_t *pDst_remain = NULL;
     if (blkCnt = blockSize >> 2)
     {
         while (blkCnt > 0U)
@@ -91,15 +92,14 @@ void riscv_not_u16(
     }
     if (blkCnt = blockSize & 0x3)
     {
-        pSrc = (const uint16_t * )(pSrc_temp - 3);
-    }
-
-    while (blkCnt > 0U)
-    {
-        *pDst++ = ~(*pSrc++);
-
-        /* Decrement the loop counter */
-        blkCnt--;
+        pSrc = (const uint16_t * )pSrc_temp;
+        pDst_remain = (uint16_t *)pDst_temp;
+        while (blkCnt > 0U)
+        {
+            *pDst_remain++ = ~(*pSrc++);
+            /* Decrement the loop counter */
+            blkCnt--;
+        }
     }
 #endif /* defined(RISCV_MATH_VECTOR) */
 }

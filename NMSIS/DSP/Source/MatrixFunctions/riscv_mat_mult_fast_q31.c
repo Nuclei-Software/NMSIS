@@ -165,6 +165,10 @@ riscv_status riscv_mat_mult_fast_q31(
         sum2 = vmv_x_s_i32m1_i32(v_sum2);
         sum3 = vmv_x_s_i32m1_i32(v_sum3);
         sum4 = vmv_x_s_i32m1_i32(v_sum4);
+        *px++  = sum1;
+        *px++  = sum2;
+        *px2++ = sum3;
+        *px2++ = sum4;
 #else
         /* matrix multiplication */
         while (colCnt > 0U)
@@ -192,14 +196,13 @@ riscv_status riscv_mat_mult_fast_q31(
           /* Decrement loop counter */
           colCnt--;
         }
-#endif /* #if defined(RISCV_MATH_VECTOR) */
 
         /* Convert the result from 2.30 to 1.31 format and store in destination buffer */
         *px++  = sum1 << 1;
         *px++  = sum2 << 1;
         *px2++ = sum3 << 1;
         *px2++ = sum4 << 1;
-
+#endif /* #if defined(RISCV_MATH_VECTOR) */
         j += 2;
 
         /* Decrement column loop counter */
@@ -256,6 +259,7 @@ riscv_status riscv_mat_mult_fast_q31(
             v_sum1 = vredsum_vs_i32m8_i32m1(v_sum1, vsmul_vv_i32m8(v_inA1, v_inB1, l), v_sum1, l);
         }
         sum1 = vmv_x_s_i32m1_i32(v_sum1);
+        *px = sum1;
 #else
 
 #if defined (RISCV_MATH_LOOPUNROLL)
@@ -318,9 +322,10 @@ riscv_status riscv_mat_mult_fast_q31(
 
           colCnt--;
         }
-#endif /* #if defined(RISCV_MATH_VECTOR) */
+
         /* Convert the result from 2.30 to 1.31 format and store in destination buffer */
         *px = sum1 << 1;
+#endif /* #if defined(RISCV_MATH_VECTOR) */
         px += numColsB;
 
         /* Decrement row loop counter */
@@ -368,6 +373,7 @@ riscv_status riscv_mat_mult_fast_q31(
             v_sum1 = vredsum_vs_i32m8_i32m1(v_sum1, vsmul_vv_i32m8(v_inA1, v_inB1, l), v_sum1, l);
         }
         sum1 += vmv_x_s_i32m1_i32(v_sum1);
+        *px++ = sum1;
 #else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -429,9 +435,10 @@ riscv_status riscv_mat_mult_fast_q31(
 
           colCnt--;
         }
-#endif /* #if defined(RISCV_MATH_VECTOR) */
+
         /* Saturate and store the result in the destination buffer */
         *px++ = sum1 << 1;
+#endif /* #if defined(RISCV_MATH_VECTOR) */
         i++;
 
         /* Decrement col loop counter */

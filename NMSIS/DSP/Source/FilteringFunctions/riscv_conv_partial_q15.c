@@ -192,7 +192,7 @@ riscv_status riscv_conv_partial_q15(
     *pOut++ = (q15_t) (__SSAT((sum >> 15), 16));
 
     /* Update the inputA and inputB pointers for next MAC calculation */
-    py = pIn2 + (count - 1U);
+    py = pIn2 + count;
     px = pIn1;
 
     /* Increment MAC count */
@@ -647,7 +647,44 @@ riscv_status riscv_conv_partial_q15(
        pSrc1 = (pIn1 + srcALen) - (srcBLen - 1U);
     }
     px = pSrc1;
+#if defined (RISCV_MATH_VECTOR)
+    /* Working pointer of inputB */
+    pSrc2 = pIn2 + (srcBLen - 1U);
+    py = pSrc2;
+    while (blockSize3 > 0U)
+    {
+    /* Accumulator is made zero for every iteration */
+    sum = 0;
+    uint32_t vblkCnt = count;                               /* Loop counter */
+    size_t l;
+    vint16m4_t vx, vy;
+    vint32m1_t temp00m1;
+    ptrdiff_t bstride = -2;
+    l = vsetvl_e32m1(vblkCnt);
+    temp00m1 = vmv_v_x_i32m1(0, l);
+    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle16_v_i16m4(px, l);
+      px += l;
+      vy = vlse16_v_i16m4(py, bstride, l);
+      py -= l;
+      temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
+    }
+    sum += vmv_x_s_i32m1_i32(temp00m1);
 
+    /* Store the result in the accumulator in the destination buffer. */
+    *pOut++ = (q15_t) (__SSAT((sum >> 15), 16));
+
+    /* Update the inputA and inputB pointers for next MAC calculation */
+    px = ++pSrc1;
+    py = pSrc2;
+
+    /* Increment MAC count */
+    count--;
+
+    /* Decrement loop counter */
+    blockSize3--;
+    }
+#else
     /* Working pointer of inputB */
     pSrc2 = pIn2 + (srcBLen - 1U);
     pIn2 = pSrc2 - 1U;
@@ -756,7 +793,7 @@ riscv_status riscv_conv_partial_q15(
       /* Decrement the loop counter */
       blockSize3--;
     }
-
+#endif /* defined (RISCV_MATH_VECTOR) */
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
   }

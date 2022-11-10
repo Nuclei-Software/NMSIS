@@ -688,7 +688,7 @@ void riscv_correlate_q7(
     sum = 0;
 
 #if defined (RISCV_MATH_VECTOR)
-    uint32_t vblkCnt = blockSize3;                               /* Loop counter */
+    uint32_t vblkCnt = count;                               /* Loop counter */
     size_t l;
     vint8m4_t vx, vy;
     vint16m1_t temp00m1;

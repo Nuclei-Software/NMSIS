@@ -187,7 +187,7 @@ void riscv_correlate_opt_q7(
   /* Update temporary scratch pointer */
   pScr1 += (srcBLen - 1U);
 #if defined (RISCV_MATH_VECTOR)
-  vblkCnt = srcBLen;                               /* Loop counter */
+  vblkCnt = srcALen;                               /* Loop counter */
   for (; (l = vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
     vx = vwadd_vx_i16m8(vle8_v_i8m4(pIn1, l), 0, l);
     pIn1 += l;

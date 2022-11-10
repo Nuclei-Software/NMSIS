@@ -175,7 +175,7 @@ riscv_status riscv_mat_mult_q31(
           pIn2 += numColsB;
           tmp231 = *pIn2;
           pIn2 += numColsB;
-          temp264 = ((q63_t)tmp131) | ((q63_t) tmp231 << 32);
+          temp264 = ((q63_t)tmp131 & 0xffffffff) | ((q63_t) tmp231 << 32);
           sum = __RV_SMAR64(sum, temp164, temp264);
 
           temp164 = read_q31x2_ia ((q31_t **) &pIn1);
@@ -183,7 +183,7 @@ riscv_status riscv_mat_mult_q31(
           pIn2 += numColsB;
           tmp231 = *pIn2;
           pIn2 += numColsB;
-          temp264 = ((q63_t)tmp131) | ((q63_t) tmp231 << 32);
+          temp264 = ((q63_t)tmp131 & 0xffffffff) | ((q63_t) tmp231 << 32);
           sum = __RV_SMAR64(sum, temp164, temp264);
 
 #else

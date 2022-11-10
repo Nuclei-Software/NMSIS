@@ -280,17 +280,15 @@ void riscv_correlate_q15(
       size_t l;
       vint16m4_t vx, vy;
       vint32m1_t temp00m1;
-      ptrdiff_t bstride = -2;
       l = vsetvl_e32m1(1);
       temp00m1 = vmv_v_x_i32m1(0, l);
       for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
         vx = vle16_v_i16m4(px, l);
         px += l;
-        vy = vlse16_v_i16m4(py, bstride, l);
-        py -= l;
-        temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
+        vy = vle16_v_i16m4(py, l);
+        py += l;
+        sum += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l));
       }
-      sum += vmv_x_s_i32m1_i32(temp00m1);
       /* Store the result in the accumulator in the destination buffer. */
       *pOut = (q15_t) (__SSAT(sum >> 15, 16));
       /* Destination pointer is updated according to the address modifier, inc */
@@ -701,9 +699,8 @@ void riscv_correlate_q15(
       px += l;
       vy = vle16_v_i16m4(py, l);
       py += l;
-      temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
+      sum += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l));
     }
-    sum += vmv_x_s_i32m1_i32(temp00m1);
 
 #else
     /* Apply loop unrolling and compute 4 MACs simultaneously. */

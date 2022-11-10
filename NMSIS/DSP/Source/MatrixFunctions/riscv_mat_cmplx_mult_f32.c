@@ -143,7 +143,7 @@ riscv_status riscv_mat_cmplx_mult_f32(
         sumImag += vfmv_f_s_f32m1_f32(vfredosum_vs_f32m8_f32m1(vsumImag, vImag, vsumImag, l));
 
         pInA += l * 2;    //Pointer to the first element of the next line
-        pInB += l * numColsB * 4;
+        pInB += l * numColsB * 2;
 
       }
       *px++ = sumReal;

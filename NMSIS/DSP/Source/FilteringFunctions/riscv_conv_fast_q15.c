@@ -68,9 +68,6 @@ void riscv_conv_fast_q15(
         uint32_t srcBLen,
         q15_t * pDst)
 {
-#if defined (RISCV_MATH_VECTOR)
-      riscv_conv_q15(pSrcA, srcALen, pSrcB, srcBLen, pDst);
-#else
   const q15_t *pIn1;                                   /* InputA pointer */
   const q15_t *pIn2;                                   /* InputB pointer */
         q15_t *pOut = pDst;                            /* Output pointer */
@@ -150,7 +147,40 @@ void riscv_conv_fast_q15(
   /* For loop unrolling by 4, this stage is divided into two. */
   /* First part of this stage computes the MAC operations less than 4 */
   /* Second part of this stage computes the MAC operations greater than or equal to 4 */
+#if defined (RISCV_MATH_VECTOR)
+  while (blockSize1 > 0U)
+  {
+    /* Accumulator is made zero for every iteration */
+    sum = 0;
+    uint32_t vblkCnt = count;                               /* Loop counter */
+    size_t l;
+    vint16m4_t vx, vy;
+    vint32m1_t temp00m1;
+    ptrdiff_t bstride = -2;
+    l = vsetvl_e32m1(vblkCnt);
+    temp00m1 = vmv_v_x_i32m1(0, l);
+    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle16_v_i16m4(px, l);
+      px += l;
+      vy = vlse16_v_i16m4(py, bstride, l);
+      py -= l;
+      sum += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l));
+    }
 
+    /* Store the result in the accumulator in the destination buffer. */
+    *pOut++ = (q15_t) (sum >> 15);
+
+    /* Update the inputA and inputB pointers for next MAC calculation */
+    py = pIn2 + count;
+    px = pIn1;
+
+    /* Increment MAC count */
+    count++;
+
+    /* Decrement loop counter */
+    blockSize1--;
+  }
+#else
   /* The first part of the stage starts here */
   while ((count < 4U) && (blockSize1 > 0U))
   {
@@ -242,7 +272,7 @@ void riscv_conv_fast_q15(
     /* Decrement loop counter */
     blockSize1--;
   }
-
+#endif /*defined (RISCV_MATH_VECTOR)*/
   /* --------------------------
    * Initializations of stage2
    * ------------------------*/
@@ -266,7 +296,43 @@ void riscv_conv_fast_q15(
   /* --------------------
    * Stage2 process
    * -------------------*/
+#if defined (RISCV_MATH_VECTOR)
+    blkCnt = blockSize2;
 
+    while (blkCnt > 0U)
+    {
+      /* Accumulator is made zero for every iteration */
+      sum = 0;
+
+      uint32_t vblkCnt = srcBLen;                               /* Loop counter */
+      size_t l;
+      vint16m4_t vx, vy;
+      vint32m1_t temp00m1;
+      ptrdiff_t bstride = -2;
+      l = vsetvl_e32m1(1);
+      temp00m1 = vmv_v_x_i32m1(0, l);
+      for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+        vx = vle16_v_i16m4(px, l);
+        px += l;
+        vy = vlse16_v_i16m4(py, bstride, l);
+        py -= l;
+        temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
+      }
+      sum += vmv_x_s_i32m1_i32(temp00m1);
+      /* Store the result in the accumulator in the destination buffer. */
+      *pOut++ = (q15_t) (sum >> 15);
+
+      /* Increment the MAC count */
+      count++;
+
+      /* Update the inputA and inputB pointers for next MAC calculation */
+      px = pIn1 + count;
+      py = pSrc2;
+
+      /* Decrement the loop counter */
+      blkCnt--;
+    }
+#else
   /* Stage2 depends on srcBLen as in this stage srcBLen number of MACS are performed.
    * So, to loop unroll over blockSize2,
    * srcBLen should be greater than or equal to 4 */
@@ -289,7 +355,7 @@ void riscv_conv_fast_q15(
       x0 = read_q15x2 ((q15_t *) px);
       /* read x[1], x[2] samples */
       x1 = read_q15x2 ((q15_t *) px + 1);
-	  px += 2U;
+      px += 2U;
 
       /* Apply loop unrolling and compute 4 MACs simultaneously. */
       k = srcBLen >> 2U;
@@ -334,7 +400,7 @@ void riscv_conv_fast_q15(
 
         /* Read x[5], x[6] */
         x1 = read_q15x2 ((q15_t *) px + 3);
-		px += 4U;
+        px += 4U;
 
         /* acc2 +=  x[4] * y[srcBLen - 3] + x[5] * y[srcBLen - 4] */
         acc2 = __SMLADX(x0, c0, acc2);
@@ -360,7 +426,7 @@ void riscv_conv_fast_q15(
 
         /* Read x[7] */
         x3 = read_q15x2 ((q15_t *) px);
-		px++;
+        px++;
 
         /* Perform the multiply-accumulates */
         acc0 = __SMLAD(x0, c0, acc0);
@@ -379,7 +445,7 @@ void riscv_conv_fast_q15(
 
         /* Read x[9] */
         x2 = read_q15x2 ((q15_t *) px + 1);
-		px += 2U;
+        px += 2U;
 
         /* Perform the multiply-accumulates */
         acc0 = __SMLADX(x0, c0, acc0);
@@ -406,12 +472,12 @@ void riscv_conv_fast_q15(
         acc3 = __SMLADX(x2, c0, acc3);
 
         /* Read y[srcBLen - 7] */
-		c0 = *(py-1);
+        c0 = *(py-1);
         c0 = c0 & 0x0000FFFF;
 
         /* Read x[10] */
         x3 =  read_q15x2 ((q15_t *) px + 2);
-		px += 3U;
+        px += 3U;
 
         /* Perform the multiply-accumulates */
         acc0 = __SMLADX(x1, c0, acc0);
@@ -525,6 +591,7 @@ void riscv_conv_fast_q15(
       blkCnt--;
     }
   }
+#endif /*defined (RISCV_MATH_VECTOR)*/
 
   /* --------------------------
    * Initializations of stage3
@@ -546,6 +613,41 @@ void riscv_conv_fast_q15(
 
   /* Working pointer of inputB */
   pSrc2 = pIn2 + (srcBLen - 1U);
+#if defined (RISCV_MATH_VECTOR)
+  pIn2 = pSrc2;
+  py = pIn2;
+  while (blockSize3 > 0U)
+  {
+    /* Accumulator is made zero for every iteration */
+    sum = 0;
+
+    uint32_t vblkCnt = blockSize3;                               /* Loop counter */
+    size_t l;
+    vint16m4_t vx, vy;
+    vint32m1_t temp00m1;
+    ptrdiff_t bstride = -2;
+    l = vsetvl_e32m1(1);
+    temp00m1 = vmv_v_x_i32m1(0, l);
+    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle16_v_i16m4(px, l);
+      px += l;
+      vy = vlse16_v_i16m4(py, bstride, l);
+      py -= l;
+      temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
+    }
+    sum += vmv_x_s_i32m1_i32(temp00m1);
+    /* Store the result in the accumulator in the destination buffer. */
+    *pOut++ = (q15_t) (sum >> 15);
+
+    /* Update the inputA and inputB pointers for next MAC calculation */
+    px = ++pSrc1;
+    py = pSrc2;
+
+    /* Decrement loop counter */
+    blockSize3--;
+  }
+
+#else
   pIn2 = pSrc2 - 1U;
   py = pIn2;
 

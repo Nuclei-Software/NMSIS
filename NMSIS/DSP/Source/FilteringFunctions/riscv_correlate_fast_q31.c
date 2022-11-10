@@ -70,9 +70,6 @@ void riscv_correlate_fast_q31(
         uint32_t srcBLen,
         q31_t * pDst)
 {
-#if defined (RISCV_MATH_VECTOR)
-    riscv_correlate_q31(pSrcA, srcALen, pSrcB, srcBLen, pDst);
-#else
   const q31_t *pIn1;                                   /* InputA pointer */
   const q31_t *pIn2;                                   /* InputB pointer */
         q31_t *pOut = pDst;                            /* Output pointer */
@@ -170,7 +167,41 @@ void riscv_correlate_fast_q31(
   /* ------------------------
    * Stage1 process
    * ----------------------*/
+#if defined (RISCV_MATH_VECTOR)
+  while (blockSize1 > 0U)
+  {
+    sum = 0;
+    uint32_t vblkCnt = count;                               /* Loop counter */
+    size_t l;
+    vint32m8_t vx, vy;
+    vint32m1_t temp00m1;
+    l = vsetvl_e32m1(1);
+    temp00m1 = vmv_v_x_i32m1(0, l);
+    for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle32_v_i32m8(px, l);
+      px += l;
+      vy = vle32_v_i32m8(py, l);
+      py += l;
+      temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vsmul_vv_i32m8(vx, vy, l), temp00m1, l);
+    }
+    sum += vmv_x_s_i32m1_i32(temp00m1);
 
+    /* Store the result in the accumulator in the destination buffer. */
+    *pOut = sum;
+    /* Destination pointer is updated according to the address modifier, inc */
+    pOut += inc;
+
+    /* Update the inputA and inputB pointers for next MAC calculation */
+    py = pSrc1 - count;
+    px = pIn1;
+
+    /* Increment MAC count */
+    count++;
+
+    /* Decrement loop counter */
+    blockSize1--;
+  }
+#else
   /* The first stage starts here */
   while (blockSize1 > 0U)
   {
@@ -234,6 +265,7 @@ void riscv_correlate_fast_q31(
     /* Decrement loop counter */
     blockSize1--;
   }
+#endif /* #if defined (RISCV_MATH_VECTOR) */
 
   /* --------------------------
    * Initializations of stage2
@@ -257,7 +289,43 @@ void riscv_correlate_fast_q31(
   /* -------------------
    * Stage2 process
    * ------------------*/
+#if defined (RISCV_MATH_VECTOR)
+    blkCnt = blockSize2;
 
+    while (blkCnt > 0U)
+    {
+      /* Accumulator is made zero for every iteration */
+      sum = 0;
+      uint32_t vblkCnt = srcBLen;                               /* Loop counter */
+      size_t l;
+      vint32m8_t vx, vy;
+      vint32m1_t temp00m1;
+      l = vsetvl_e32m1(1);
+      temp00m1 = vmv_v_x_i32m1(0, l);
+      for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
+        vx = vle32_v_i32m8(px, l);
+        px += l;
+        vy = vle32_v_i32m8(py, l);
+        py += l;
+        temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vsmul_vv_i32m8(vx, vy, l), temp00m1, l);
+      }
+      sum += vmv_x_s_i32m1_i32(temp00m1);
+      /* Store the result in the accumulator in the destination buffer. */
+      *pOut = (q31_t) sum;
+      /* Destination pointer is updated according to the address modifier, inc */
+      pOut += inc;
+
+      /* Increment MAC count */
+      count++;
+
+      /* Update the inputA and inputB pointers for next MAC calculation */
+      px = pIn1 + count;
+      py = pIn2;
+
+      /* Decrement loop counter */
+      blkCnt--;
+    }
+#else
   /* Stage2 depends on srcBLen as in this stage srcBLen number of MACS are performed.
    * So, to loop unroll over blockSize2,
    * srcBLen should be greater than or equal to 4 */
@@ -507,7 +575,7 @@ void riscv_correlate_fast_q31(
       blkCnt--;
     }
   }
-
+#endif /* defined (RISCV_MATH_VECTOR) */
 
   /* --------------------------
    * Initializations of stage3
@@ -539,6 +607,23 @@ void riscv_correlate_fast_q31(
   {
     /* Accumulator is made zero for every iteration */
     sum = 0;
+#if defined (RISCV_MATH_VECTOR)
+    uint32_t vblkCnt = count;                               /* Loop counter */
+    size_t l;
+    vint32m8_t vx, vy;
+    vint32m1_t temp00m1;
+    l = vsetvl_e32m1(1);
+    temp00m1 = vmv_v_x_i32m1(0, l);
+    for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle32_v_i32m8(px, l);
+      px += l;
+      vy = vle32_v_i32m8(py, l);
+      py += l;
+      temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vsmul_vv_i32m8(vx, vy, l), temp00m1, l);
+    }
+    sum += vmv_x_s_i32m1_i32(temp00m1);
+    *pOut = sum;
+#else
 
     /* Apply loop unrolling and compute 4 MACs simultaneously. */
     k = count >> 2U;
@@ -584,6 +669,7 @@ void riscv_correlate_fast_q31(
 
     /* Store the result in the accumulator in the destination buffer. */
     *pOut = sum << 1;
+#endif /* defined (RISCV_MATH_VECTOR) */
     /* Destination pointer is updated according to the address modifier, inc */
     pOut += inc;
 
@@ -597,7 +683,6 @@ void riscv_correlate_fast_q31(
     /* Decrement loop counter */
     blockSize3--;
   }
-#endif /*defined (RISCV_MATH_VECTOR)*/
 }
 
 /**

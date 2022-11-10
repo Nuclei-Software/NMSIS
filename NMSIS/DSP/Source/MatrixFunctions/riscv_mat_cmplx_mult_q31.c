@@ -136,7 +136,7 @@ riscv_status riscv_mat_cmplx_mult_q31(
         vsumImag = vredsum_vs_i64m8_i64m1(vsumImag, vImag, vsumImag, l);
 
         pInA += l * 2;    //Pointer to the first element of the next line
-        pInB += l * numColsB * 4;
+        pInB += l * numColsB * 2;
 
       }
       sumReal = vmv_x_s_i64m1_i64 (vsumReal);

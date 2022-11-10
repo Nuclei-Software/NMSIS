@@ -112,7 +112,6 @@ void riscv_cmplx_mult_real_q15(
 #if __RISCV_XLEN == 64
     /* read 2 complex numbers both real and imaginary from complex input buffer */
     inA1 = read_q15x4_ia((q15_t **)&pSrcCmplx);
-    // inA2 = read_q15x4_ia ((q15_t **) &pSrcCmplx);
     /* read 2 real values at a time from real input buffer */
     temp = read_q15x2_ia((q15_t **)&pSrcReal);
     inB1 = (q63_t)(((q63_t)(((uint32_t)temp) & 0xffff0000) << 16) | ((q63_t)((uint32_t)temp)));
@@ -120,11 +119,14 @@ void riscv_cmplx_mult_real_q15(
     mul1 = __RV_SMBB16(inA1, inB1); //1,3
     mul2 = __RV_SMBT16(inB1, inA1); // 2,4
 
-    write_q15x4_ia(&pCmplxDst, ((uint64_t)((uint16_t)__SSAT(((mul1)& 0xffffffffull) >> 15U, 16)) ) |
-                                ((uint64_t)((uint16_t)__SSAT(((mul2)& 0xffffffffull) >> 15U, 16)) << 16) |
-                                ((uint64_t)((uint16_t)__SSAT(((mul1)& 0xffffffff00000000ull) >> 47U, 16))<< 32) |
-                                ((uint64_t)((uint16_t)__SSAT(((mul2)& 0xffffffff00000000ull) >> 47U, 16)) << 48)
-                               );
+    out1 = (q15_t)__SSAT(((q31_t)(mul1 & 0xffffffff) >> 15U), 16);
+    out2 = (q15_t)__SSAT(((q31_t)(mul2 & 0xffffffff) >> 15U), 16);
+    out3 = (q15_t)__SSAT(((q31_t)((mul1 >> 32) & 0xffffffff) >> 15U), 16);
+    out4 = (q15_t)__SSAT(((q31_t)((mul2 >> 32) & 0xffffffff) >> 15U), 16);
+
+    write_q15x2_ia(&pCmplxDst, __PKHBT(out1, out2, 16));
+    write_q15x2_ia(&pCmplxDst, __PKHBT(out3, out4, 16));
+
     /* read 2 complex numbers both real and imaginary from complex input buffer */
     inA1 = read_q15x4_ia((q15_t **)&pSrcCmplx);
     /* read 2 real values at a time from real input buffer */
@@ -134,11 +136,14 @@ void riscv_cmplx_mult_real_q15(
     mul1 = __RV_SMBB16(inA1, inB1); //1,3
     mul2 = __RV_SMBT16(inB1, inA1); // 2,4
 
-    write_q15x4_ia(&pCmplxDst, ((uint64_t)((uint16_t)__SSAT(((mul1)& 0xffffffffull) >> 15U, 16)) ) |
-                                ((uint64_t)((uint16_t) __SSAT(((mul2)& 0xffffffffull) >> 15U, 16)) << 16) |
-                                ((uint64_t)((uint16_t) __SSAT(((mul1)& 0xffffffff00000000ull) >> 47U, 16))<< 32) |
-                                ((uint64_t)((uint16_t) __SSAT(((mul2)& 0xffffffff00000000ull) >> 47U, 16)) << 48)
-                               );
+    out1 = (q15_t)__SSAT(((q31_t)(mul1 & 0xffffffff) >> 15U), 16);
+    out2 = (q15_t)__SSAT(((q31_t)(mul2 & 0xffffffff) >> 15U), 16);
+    out3 = (q15_t)__SSAT(((q31_t)((mul1 >> 32) & 0xffffffff) >> 15U), 16);
+    out4 = (q15_t)__SSAT(((q31_t)((mul2 >> 32) & 0xffffffff) >> 15U), 16);
+
+    write_q15x2_ia(&pCmplxDst, __PKHBT(out1, out2, 16));
+    write_q15x2_ia(&pCmplxDst, __PKHBT(out3, out4, 16));
+
 #else
     /* read 2 complex numbers both real and imaginary from complex input buffer */
     inA1 = read_q15x2_ia((q15_t **)&pSrcCmplx);

@@ -572,7 +572,7 @@ riscv_status riscv_conv_partial_q31(
       /* Accumulator is made zero for every iteration */
       sum = 0;
 
-      uint32_t vblkCnt = blockSize3;                               /* Loop counter */
+      uint32_t vblkCnt = count;                               /* Loop counter */
       size_t l;
       vint32m4_t vx, vy;
       vint64m1_t temp00m1;

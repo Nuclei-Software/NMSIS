@@ -72,9 +72,6 @@ void riscv_conv_fast_opt_q15(
         q15_t * pScratch1,
         q15_t * pScratch2)
 {
-#if defined (RISCV_MATH_VECTOR)
-      riscv_conv_opt_q15(pSrcA, srcALen, pSrcB, srcBLen, pDst, pScratch1, pScratch2);
-#else
         q31_t acc0;                                    /* Accumulators */
   const q15_t *pIn1;                                   /* InputA pointer */
   const q15_t *pIn2;                                   /* InputB pointer */
@@ -124,6 +121,19 @@ void riscv_conv_fast_opt_q15(
   /* points to smaller length sequence */
   px = pIn2;
 
+#if defined (RISCV_MATH_VECTOR)
+  k = srcBLen;
+  uint32_t vblkCnt = k;
+  size_t l;
+  vint16m8_t vx;
+  ptrdiff_t bstride = -2;
+  for (; (l = vsetvl_e16m8(vblkCnt)) > 0; vblkCnt -= l) {
+    vx = vle16_v_i16m8(px, l);
+    px += l;
+    vsse16_v_i16m8(pScr2, bstride, vx, l);
+    pScr2 -= l;
+  }
+#else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -160,7 +170,7 @@ void riscv_conv_fast_opt_q15(
     /* Decrement loop counter */
     k--;
   }
-
+#endif /* defined (RISCV_MATH_VECTOR) */
   /* Initialze temporary scratch pointer */
   pScr1 = pScratch1;
 
@@ -193,6 +203,48 @@ void riscv_conv_fast_opt_q15(
   /* Initialization of pIn2 pointer */
   pIn2 = py;
 
+#if defined (RISCV_MATH_VECTOR)
+  /* Initialize blkCnt with number of samples */
+  blkCnt = (srcALen + srcBLen - 1U);
+
+  /* Calculate convolution for remaining samples of Bigger length sequence */
+  while (blkCnt > 0)
+  {
+    /* Initialze temporary scratch pointer as scratch1 */
+    pScr1 = pScratch1;
+
+    /* Clear Accumlators */
+    acc0 = 0;
+
+    tapCnt = srcBLen;
+    uint32_t vblkCnt = tapCnt;                               /* Loop counter */
+    size_t l;
+    vint16m4_t vx, vy;
+    vint32m1_t temp00m1;
+    l = vsetvl_e32m1(1);
+    temp00m1 = vmv_v_x_i32m1(0, l);
+    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle16_v_i16m4(pScr1, l);
+      pScr1 += l;
+      vy = vle16_v_i16m4(pIn2, l);
+      pIn2 += l;
+      temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
+    }
+    acc0 += vmv_x_s_i32m1_i32(temp00m1);
+
+    blkCnt--;
+
+    /* The result is in 2.30 format.  Convert to 1.15 with saturation.
+       Then store the output in the destination buffer. */
+    *pOut++ = (q15_t) (__SSAT((acc0 >> 15), 16));
+
+    /* Initialization of inputB pointer */
+    pIn2 = py;
+
+    pScratch1 += 1U;
+  }
+
+#else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */

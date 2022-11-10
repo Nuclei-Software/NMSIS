@@ -71,6 +71,7 @@ void riscv_not_u32(
 
     const uint64_t * pSrc_temp = (const uint64_t * )pSrc;
     uint64_t * pDst_temp = (uint64_t *)pDst;
+    uint32_t *pDst_remain = NULL;
     if (blkCnt = blockSize >> 1)
     {
         while (blkCnt > 0U)
@@ -83,14 +84,15 @@ void riscv_not_u32(
     }
     if (blkCnt = blockSize & 0x1)
     {
-        pSrc = (const uint32_t * )(pSrc_temp - 1);
-    }
-    while (blkCnt > 0U)
-    {
-        *pDst++ = ~(*pSrc++);
+        pSrc = (const uint32_t * )pSrc_temp;
+        pDst_remain = (uint32_t *)pDst_temp;
+        while (blkCnt > 0U)
+        {
+            *pDst_remain++ = ~(*pSrc++);
 
-        /* Decrement the loop counter */
-        blkCnt--;
+            /* Decrement the loop counter */
+            blkCnt--;
+        }
     }
 #endif /* defined(RISCV_MATH_VECTOR) */
 }

@@ -73,9 +73,10 @@ void riscv_xor_u32(
   }
 #else
 
-  const uint64_t * pSrcA_temp = (const uint64_t *)pSrcA;
-  const uint64_t * pSrcB_temp = (const uint64_t *)pSrcB;
-  uint64_t * pDst_temp = (uint64_t *)pDst;
+  const uint64_t *pSrcA_temp = (const uint64_t *)pSrcA;
+  const uint64_t *pSrcB_temp = (const uint64_t *)pSrcB;
+  uint64_t *pDst_temp = (uint64_t *)pDst;
+  uint32_t *pDst_remain = NULL;
   if (blkCnt = blockSize >> 1)
   {
     while (blkCnt > 0U)
@@ -88,15 +89,15 @@ void riscv_xor_u32(
 
   if (blkCnt = blockSize & 0x1)
   {
-    pSrcA = (const uint32_t *)(pSrcA_temp - 1);
-    pSrcB = (const uint32_t *)(pSrcB_temp - 1);
-  }
-
-  while (blkCnt > 0U)
-  {
-    *pDst++ = (*pSrcA++) ^ (*pSrcB++);
-    /* Decrement the loop counter */
-    blkCnt--;
+    pSrcA = (const uint32_t *)pSrcA_temp;
+    pSrcB = (const uint32_t *)pSrcB_temp;
+    pDst_remain = (uint32_t *)pDst_temp;
+    while (blkCnt > 0U)
+    {
+      *pDst_remain++ = (*pSrcA++) ^ (*pSrcB++);
+      /* Decrement the loop counter */
+      blkCnt--;
+    }
   }
 #endif /* defined(RISCV_MATH_VECTOR) */
 }

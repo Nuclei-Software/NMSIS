@@ -76,6 +76,7 @@ void riscv_xor_u8(
   const uint64_t * pSrcA_temp = (const uint64_t *)pSrcA;
   const uint64_t * pSrcB_temp = (const uint64_t *)pSrcB;
   uint64_t * pDst_temp = (uint64_t *)pDst;
+  uint8_t * pDst_remain = NULL;
   if (blkCnt = blockSize >> 3)
   {
     while (blkCnt > 0U)
@@ -88,15 +89,15 @@ void riscv_xor_u8(
 
   if (blkCnt = blockSize & 0x7)
   {
-    pSrcA = (const uint8_t *)(pSrcA_temp - 7);
-    pSrcB = (const uint8_t *)(pSrcB_temp - 7);
-  }
-
-  while (blkCnt > 0U)
-  {
-    *pDst++ = (*pSrcA++) ^ (*pSrcB++);
-    /* Decrement the loop counter */
-    blkCnt--;
+    pSrcA = (const uint8_t *)pSrcA_temp;
+    pSrcB = (const uint8_t *)pSrcB_temp;
+    pDst_remain = (uint8_t *)pDst_temp;
+    while (blkCnt > 0U)
+    {
+      *pDst_remain++ = (*pSrcA++) ^ (*pSrcB++);
+      /* Decrement the loop counter */
+      blkCnt--;
+    }
   }
 #endif /* defined(RISCV_MATH_VECTOR) */
 }

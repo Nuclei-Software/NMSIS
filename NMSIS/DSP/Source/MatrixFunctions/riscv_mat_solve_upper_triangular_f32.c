@@ -107,7 +107,7 @@ riscv_status status;                             /* status of matrix inverse */
             pX_row = pX + n * (i + 1) + j;
             l = vsetvl_e32m1(1);
             v_a = vfsub_vv_f32m1(v_a, v_a, l);
-            bstride = 4 * n;
+            bstride = 4 * cols;
             for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
                 v_x = vle32_v_f32m8(pVut_row, l);
                 pVut_row += l;

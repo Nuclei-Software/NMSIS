@@ -85,10 +85,10 @@ void riscv_cmplx_dot_prod_q15(
 
     v_RR = vwmul_vv_i32m4(v_R1, v_R2, l);
     v_II = vwmul_vv_i32m4(v_I1, v_I2, l);
-    real_sum += vmv_x_s_i64m1_i64(vwredsum_vs_i32m4_i64m1(v_temp, vssub_vv_i32m4(v_RR, v_II, l), v_temp, l));
+    real_sum += vmv_x_s_i64m1_i64(vwredsum_vs_i32m4_i64m1(v_temp, vsub_vv_i32m4(v_RR, v_II, l), v_temp, l));
     v_RI = vwmul_vv_i32m4(v_R1, v_I2, l);
     v_IR = vwmul_vv_i32m4(v_I1, v_R2, l);
-    imag_sum += vmv_x_s_i64m1_i64(vwredsum_vs_i32m4_i64m1(v_temp, vsadd_vv_i32m4(v_RI, v_IR, l), v_temp, l));
+    imag_sum += vmv_x_s_i64m1_i64(vwredsum_vs_i32m4_i64m1(v_temp, vadd_vv_i32m4(v_RI, v_IR, l), v_temp, l));
 
     pSrcA += l * 2;
     pSrcB += l * 2;

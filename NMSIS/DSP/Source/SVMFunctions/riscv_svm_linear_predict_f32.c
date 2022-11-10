@@ -61,13 +61,14 @@ void riscv_svm_linear_predict_f32(
     size_t l;
     vfloat32m8_t v_in, v_support;
     vfloat32m1_t v_dot;             /* init v_dot data */
-    const float32_t *pIn = in;
+    const float32_t *pIn;
     for (i = 0; i < S->nbOfSupportVectors; i++)
     {
         dot = 0;
         blkCnt = S->vectorDimension;
         l = vsetvl_e32m1(1);
         v_dot = vfmv_s_f_f32m1(v_dot, 0, l);
+        pIn = in;
         for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
         {
             v_in = vle32_v_f32m8(pIn, l);

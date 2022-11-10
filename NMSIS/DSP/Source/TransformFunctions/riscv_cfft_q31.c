@@ -157,27 +157,23 @@ void riscv_cfft_radix4by2_q31(
      l = i + n2;
 
      xt = (pSrc[2 * i] >> 2U) - (pSrc[2 * l] >> 2U);
-     yt = (pSrc[2 * i + 1] >> 2U) - (pSrc[2 * l + 1] >> 2U);
-#if __RISCV_XLEN == 64
-     
-     write_q31x2 ((pSrc+2*i), (q63_t) ((q63_t)((pSrc[2 * i] >> 2U) + (pSrc[2 * l] >> 2U)) | (((q63_t)((pSrc[2 * l + 1] >> 2U) + (pSrc[2 * i + 1] >> 2U))) << 32)));
-#else
      pSrc[2 * i] = (pSrc[2 * i] >> 2U) + (pSrc[2 * l] >> 2U);
+
+     yt = (pSrc[2 * i + 1] >> 2U) - (pSrc[2 * l + 1] >> 2U);
      pSrc[2 * i + 1] = (pSrc[2 * l + 1] >> 2U) + (pSrc[2 * i + 1] >> 2U);
-#endif /* __RISCV_XLEN == 64 */
 
      mult_32x32_keep32_R(p0, xt, cosVal);
      mult_32x32_keep32_R(p1, yt, cosVal);
      multAcc_32x32_keep32_R(p0, yt, sinVal);
      multSub_32x32_keep32_R(p1, xt, sinVal);
 
-     pSrc[2 * l]     = p0 << 1;
+     pSrc[2 * l] = p0 << 1;
      pSrc[2 * l + 1] = p1 << 1;
   }
 
 
   /* first col */
-  riscv_radix4_butterfly_q31 (pSrc,          n2, (q31_t*)pCoef, 2U);
+  riscv_radix4_butterfly_q31 (pSrc, n2, (q31_t*)pCoef, 2U);
 
   /* second col */
   riscv_radix4_butterfly_q31 (pSrc + fftLen, n2, (q31_t*)pCoef, 2U);
@@ -222,26 +218,22 @@ void riscv_cfft_radix4by2_inverse_q31(
      l = i + n2;
 
      xt = (pSrc[2 * i] >> 2U) - (pSrc[2 * l] >> 2U);
-     yt = (pSrc[2 * i + 1] >> 2U) - (pSrc[2 * l + 1] >> 2U);
-#if __RISCV_XLEN == 64
-     
-     write_q31x2 ((pSrc + 2*i), (q63_t) ((q63_t)((pSrc[2 * i] >> 2U) + (pSrc[2 * l] >> 2U)) | (((q63_t)((pSrc[2 * l + 1] >> 2U) + (pSrc[2 * i + 1] >> 2U))) << 32)));
-#else
      pSrc[2 * i] = (pSrc[2 * i] >> 2U) + (pSrc[2 * l] >> 2U);
+
+     yt = (pSrc[2 * i + 1] >> 2U) - (pSrc[2 * l + 1] >> 2U);
      pSrc[2 * i + 1] = (pSrc[2 * l + 1] >> 2U) + (pSrc[2 * i + 1] >> 2U);
-#endif /* __RISCV_XLEN == 64 */
 
      mult_32x32_keep32_R(p0, xt, cosVal);
      mult_32x32_keep32_R(p1, yt, cosVal);
      multSub_32x32_keep32_R(p0, yt, sinVal);
      multAcc_32x32_keep32_R(p1, xt, sinVal);
 
-     pSrc[2 * l]     = p0 << 1U;
+     pSrc[2 * l] = p0 << 1U;
      pSrc[2 * l + 1] = p1 << 1U;
   }
 
   /* first col */
-  riscv_radix4_butterfly_inverse_q31( pSrc,          n2, (q31_t*)pCoef, 2U);
+  riscv_radix4_butterfly_inverse_q31(pSrc, n2, (q31_t*)pCoef, 2U);
 
   /* second col */
   riscv_radix4_butterfly_inverse_q31( pSrc + fftLen, n2, (q31_t*)pCoef, 2U);
