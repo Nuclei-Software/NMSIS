@@ -1,0 +1,39 @@
+{
+    "run_config": {
+        "target": "hardware",
+        "hardware": {
+            "timeout": 480
+        },
+        "qemu": {
+            "timeout": 240
+        },
+        "ncycm": {
+            "timeout": 2400
+        }
+    },
+    "parallel": "-j",
+    "copy_objects": true,
+    "build_target": "clean all",
+    "build_config": {
+    },
+    "checks": {
+        "PASS": ["passed", "Passed"],
+        "FAIL": ["MEPC", "failed", "Failed", "FAILURE", "ERROR", "test error apprears"]
+    },
+    "appdirs": [
+        "DSP/Examples/RISCV",
+        "DSP/Test",
+        "NN/Examples/RISCV/cifar10",
+        "NN/Tests/Cases/"
+    ],
+    "appdirs_ignore": [
+        "DSP/Examples/RISCV/riscv_linear_interp_example"
+    ],
+    "appconfig": {
+        "NN/Examples/RISCV/cifar10": {
+            "checks": {
+                "PASS": ["label 3: 45, Cat, 35.43%"]
+            }
+        }
+    }
+}
