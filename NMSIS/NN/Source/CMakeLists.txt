@@ -45,8 +45,8 @@ if(LOOPUNROLL)
     add_definitions(-DRISCV_MATH_LOOPUNROLL)
 endif()
 
-# only define N1/N2/N3 when riscv dsp extension enabled
-if(RISCV_ARCH MATCHES "p")
+# only define N1/N2/N3 when rv32 dsp extension enabled
+if(RISCV_ARCH MATCHES "^rv32.+p")
     if(NUCLEI_DSP_N1)
         add_definitions(-DNUCLEI_DSP_N1)
     endif()
