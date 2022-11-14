@@ -17890,12 +17890,26 @@ __STATIC_FORCEINLINE unsigned long __RV_URSUB32(unsigned long a, unsigned long b
 
 #if (__RISCV_XLEN == 32) || defined(__ONLY_FOR_DOXYGEN_DOCUMENT_GENERATION__)
 /* XXXXX Nuclei Extended DSP Instructions for RV32 XXXXX */
+
 /**
- * \defgroup NMSIS_Core_DSP_Intrinsic_NUCLEI_CUSTOM      Nuclei Customized DSP Instructions
+ * \defgroup NMSIS_Core_DSP_Intrinsic_NUCLEI_N1      Nuclei N1 SIMD DSP Additional Instructions
  * \ingroup  NMSIS_Core_DSP_Intrinsic
- * \brief    (RV32 only)Nuclei Customized DSP Instructions
- * \details  This is Nuclei customized DSP instructions only for RV32
+ * \brief    (RV32 only)Nuclei Customized N1 DSP Instructions
+ * \details  This is Nuclei customized DSP N1 instructions only for RV32
  */
+/**
+ * \defgroup NMSIS_Core_DSP_Intrinsic_NUCLEI_N2      Nuclei N2 SIMD DSP Additional Instructions
+ * \ingroup  NMSIS_Core_DSP_Intrinsic
+ * \brief    (RV32 only)Nuclei Customized N2 DSP Instructions
+ * \details  This is Nuclei customized DSP N2 instructions only for RV32
+ */
+/**
+ * \defgroup NMSIS_Core_DSP_Intrinsic_NUCLEI_N3      Nuclei N3 SIMD DSP Additional Instructions
+ * \ingroup  NMSIS_Core_DSP_Intrinsic
+ * \brief    (RV32 only)Nuclei Customized N3 DSP Instructions
+ * \details  This is Nuclei customized DSP N3 instructions only for RV32
+ */
+
 /* ===== Inline Function Start for B.8.1 DKHM8 ===== */
 /**
  * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N1
