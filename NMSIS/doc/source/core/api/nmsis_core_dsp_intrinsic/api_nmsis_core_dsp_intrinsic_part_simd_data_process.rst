@@ -6,7 +6,6 @@ Partial-SIMD Data Processing Instructions
 .. toctree::
    :maxdepth: 2
 
-   
    nmsis_core_dsp_intrinsic_part_simd_data_process/api_nmsis_core_dsp_intrinsic_simd_16b_pack.rst
    nmsis_core_dsp_intrinsic_part_simd_data_process/api_nmsis_core_dsp_intrinsic_signed_msw_32x32_mac.rst
    nmsis_core_dsp_intrinsic_part_simd_data_process/api_nmsis_core_dsp_intrinsic_signed_msw_32x16_mac.rst
