@@ -215,7 +215,7 @@ void riscv_lms_norm_q31(
     /* Initialize coefficient pointer */
     pb = pCoeffs;
 #if defined (RISCV_MATH_VECTOR)
-    vblkCnt = blockSize;
+    vblkCnt = numTaps;
     for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
       vx = vle32_v_i32m4(px, l);
       px += l;
@@ -302,8 +302,8 @@ void riscv_lms_norm_q31(
 #if defined (RISCV_MATH_VECTOR)
     uint32_t vblkCnt = (numTaps - 1U);
     size_t l;
-    for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vse32_v_i32m4(pStateCurnt, vle32_v_i32m4(pState, l), l);
+    for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
+      vse32_v_i32m8(pStateCurnt, vle32_v_i32m8(pState, l), l);
       pState += l;
       pStateCurnt += l;
     }

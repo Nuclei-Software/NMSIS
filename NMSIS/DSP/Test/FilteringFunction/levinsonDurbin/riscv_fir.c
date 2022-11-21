@@ -14,7 +14,6 @@
 //
 // You MUST be careful about overflow.
 #include "riscv_math.h"
-#include "array.h"
 #include <stdint.h>
 #include "../common.h"
 
@@ -22,11 +21,6 @@
 #include "../HelperFunctions/ref_helper.c"
 
 #include <stdio.h>
-#define DELTAF32 (0.05f)
-#define DELTAQ31 (63)
-#define DELTAQ15 (1)
-#define DELTAQ7 (1)
-#define SNR_THRESHOLD_F32 (80.0f)
 
 int test_flag_error = 0;
 
@@ -40,19 +34,20 @@ static void DSP_levinson_durbin_f32(void)
     float32_t phi[256];
     float32_t a[256], a_ref[256];
     float32_t err, err_ref;
-    for(int i=0;i<256;i++)
+    for(int i = 0; i < 256; i++)
         phi[i] = (float32_t) rand();
     BENCH_START(riscv_levinson_durbin_f32);
     riscv_levinson_durbin_f32(phi, a, &err, nbCoefs);
     BENCH_END(riscv_levinson_durbin_f32);
     ref_levinson_durbin_f32(phi, a_ref, &err_ref, nbCoefs);
-    // ScaleValue = 0.052219514664161221f * 0.04279801741658381f;
-    for(int i=0;i<nbCoefs;i++)
+    // ScaleV alue = 0.052219514664161221f * 0.04279801741658381f;
+    for(int i = 0; i < nbCoefs; i++) {
         if (a_ref[i] != a[i]) {
             BENCH_ERROR(riscv_levinson_durbin_f32);
             printf("evinson_durbin a failed, index: %d, expect: %f, actual: %f\n", i, a_ref[i], a[i]);
             test_flag_error = 1;
         }
+    }
     if (err_ref != err) {
         BENCH_ERROR(riscv_levinson_durbin_f32);
         printf("evinson_durbin err failed, expect: %f, actual: %f\n", err_ref, err);
@@ -65,16 +60,16 @@ static void DSP_levinson_durbin_q31(void)
 {
     int nbCoefs = 180;
     q31_t phi[256];
-    q31_t a[256]={0}, a_ref[256]={0};
-    q31_t err=0, err_ref=0;
-    for(int i=0;i<256;i++)
+    q31_t a[256] = {0}, a_ref[256] = {0};
+    q31_t err = 0, err_ref = 0;
+    for(int i = 0; i < 256; i++)
         phi[i] = (q31_t) rand();
     BENCH_START(riscv_levinson_durbin_q31);
-    riscv_levinson_durbin_q31(&phi, &a, &err, nbCoefs);
+    riscv_levinson_durbin_q31(phi, a, &err, nbCoefs);
     BENCH_END(riscv_levinson_durbin_q31);
-    ref_levinson_durbin_q31(&phi, &a_ref, &err_ref, nbCoefs);
+    ref_levinson_durbin_q31(phi, a_ref, &err_ref, nbCoefs);
     // ScaleValue = 0.052219514664161221f * 0.04279801741658381f;
-    for(int i=0;i<nbCoefs;i++)
+    for(int i = 0;i < nbCoefs; i++)
         if (a_ref[i] != a[i]) {
             BENCH_ERROR(riscv_levinson_durbin_q31);
             printf("evinson_durbin a failed, index: %d, expect: %d, actual: %d\n", i, a_ref[i], a[i]);
@@ -88,7 +83,7 @@ static void DSP_levinson_durbin_q31(void)
     BENCH_STATUS(riscv_levinson_durbin_q31);
 }
 
-int main()
+int main(void)
 {
     BENCH_INIT();
     DSP_levinson_durbin_f32();

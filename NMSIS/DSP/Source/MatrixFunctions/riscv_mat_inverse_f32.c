@@ -604,9 +604,11 @@ riscv_status riscv_mat_inverse_f32(
           /* Loop over the number of columns to the right of the pivot element,
              to replace the elements in the input matrix */
 #if defined (RISCV_MATH_VECTOR)
+
           uint32_t blkCnt;                               /* loop counters */
           size_t vl;
           vfloat32m8_t vx, vy;
+          vfloat32m8_t vx1, vy1;
           /* Replace the element by the sum of that row
                and a multiple of the reference row  */
           blkCnt = numCols - l;
@@ -623,10 +625,10 @@ riscv_status riscv_mat_inverse_f32(
           blkCnt = numCols;
           for (; (vl = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= vl)
           {
-            vx = vle32_v_f32m8(pOutT1, vl);
-            vy = vle32_v_f32m8(pPRT_pDst, vl);
+            vx1 = vle32_v_f32m8(pOutT1, vl);
+            vy1 = vle32_v_f32m8(pPRT_pDst, vl);
             pPRT_pDst += vl;
-            vse32_v_f32m8(pOutT1, vfsub_vv_f32m8(vx, vfmul_vf_f32m8(vy, in, vl), vl), vl);
+            vse32_v_f32m8(pOutT1, vfsub_vv_f32m8(vx1, vfmul_vf_f32m8(vy1, in, vl), vl), vl);
             pOutT1 += vl;
           }
 #else

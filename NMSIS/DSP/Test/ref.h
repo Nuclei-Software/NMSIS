@@ -351,13 +351,13 @@ q15_t ref_pid_q15(riscv_pid_instance_q15 *S, q15_t in);
 /*
  * Fast Math Functions
  */
-float32_t ref_sin_f32(float32_t x);
+#define ref_sin_f32(a) sinf(a)
 
 q31_t ref_sin_q31(q31_t x);
 
 q15_t ref_sin_q15(q15_t x);
 
-float32_t ref_cos_f32(float32_t x);
+#define ref_cos_f32(a) cosf(a)
 
 q31_t ref_cos_q31(q31_t x);
 
@@ -369,6 +369,21 @@ riscv_status ref_sqrt_q15(q15_t in, q15_t *pOut);
 
 riscv_status ref_divide_q15(q15_t numerator, q15_t denominator, q15_t *quotient, int16_t *shift);
 
+void ref_vexp_f32(const float32_t * pSrc, float32_t * pDst, uint32_t blockSize);
+void ref_vlog_f32(const float32_t * pSrc, float32_t * pDst, uint32_t blockSize);
+
+/*
+ * distance Functions
+ */
+float32_t ref_braycurtis_distance_f32(const float32_t *pA, const float32_t *pB, uint32_t blockSize);
+float32_t ref_canberra_distance_f32(const float32_t *pA, const float32_t *pB, uint32_t blockSize);
+float32_t ref_chebyshev_distance_f32(const float32_t *pA, const float32_t *pB, uint32_t blockSize);
+float32_t ref_cityblock_distance_f32(const float32_t *pA,const float32_t *pB, uint32_t blockSize);
+float32_t ref_cityblock_distance_f32(const float32_t *pA, const float32_t *pB, uint32_t blockSize);
+float32_t ref_cosine_distance_f32(const float32_t *pA,const float32_t *pB, uint32_t blockSize);
+float32_t ref_euclidean_distance_f32(const float32_t *pA,const float32_t *pB, uint32_t blockSize);
+float32_t ref_jensenshannon_distance_f32(const float32_t *pA,const float32_t *pB, uint32_t blockSize);
+float32_t ref_minkowski_distance_f32(const float32_t *pA, const float32_t *pB, int32_t order, uint32_t blockSize);
 /*
  * Filtering Functions
  */
@@ -602,6 +617,9 @@ void ref_fir_interpolate_q31(const riscv_fir_interpolate_instance_q31 *S,
 void ref_fir_interpolate_q15(const riscv_fir_interpolate_instance_q15 *S,
                              q15_t *pSrc, q15_t *pDst, uint32_t blockSize);
 
+void ref_levinson_durbin_f32(const float32_t *phi, float32_t *a, float32_t *err, int nbCoefs);
+
+void ref_levinson_durbin_q31(const q31_t *phi, q31_t *a, q31_t *err, int nbCoefs);
 /*
  * Matrix Functions
  */
@@ -631,6 +649,10 @@ riscv_status ref_mat_mult_q31(const riscv_matrix_instance_q31 *pSrcA,
                             const riscv_matrix_instance_q31 *pSrcB,
                             riscv_matrix_instance_q31 *pDst);
 
+riscv_status ref_mat_mult_fast_q31(const riscv_matrix_instance_q31 *pSrcA,
+                            const riscv_matrix_instance_q31 *pSrcB,
+                            riscv_matrix_instance_q31 *pDst);
+
 riscv_status ref_mat_mult_opt_q31(const riscv_matrix_instance_q31 *pSrcA,
                             const riscv_matrix_instance_q31 *pSrcB,
                             riscv_matrix_instance_q31 *pDst);
@@ -651,15 +673,14 @@ void ref_mat_vec_mult_q7(const riscv_matrix_instance_q7 *pSrcMat,
                        const q7_t *pVec,
                        q7_t *pDst);
 
-/* Alias for testing purposes*/
-#define ref_mat_mult_fast_q31 ref_mat_mult_q31
 
 riscv_status ref_mat_mult_q15(const riscv_matrix_instance_q15 *pSrcA,
                             const riscv_matrix_instance_q15 *pSrcB,
                             riscv_matrix_instance_q15 *pDst);
 
-/* Alias for testing purposes*/
-#define ref_mat_mult_fast_q15 ref_mat_mult_q15
+riscv_status ref_mat_mult_fast_q15(const riscv_matrix_instance_q15 *pSrcA,
+                            const riscv_matrix_instance_q15 *pSrcB,
+                            riscv_matrix_instance_q15 *pDst);
 
 riscv_status ref_mat_mult_q7(const riscv_matrix_instance_q7 *pSrcA,
                             const riscv_matrix_instance_q7 *pSrcB,
@@ -710,6 +731,71 @@ riscv_status ref_mat_add_q15(const riscv_matrix_instance_q15 *pSrcA,
                            const riscv_matrix_instance_q15 *pSrcB,
                            riscv_matrix_instance_q15 *pDst);
 
+riscv_status ref_mat_solve_upper_triangular_f32(const riscv_matrix_instance_f32 * ut,
+                                                const riscv_matrix_instance_f32 * a,
+                                                riscv_matrix_instance_f32 * dst);
+
+riscv_status ref_mat_solve_lower_triangular_f32(const riscv_matrix_instance_f32 * lt,
+                                                const riscv_matrix_instance_f32 * a,
+                                                riscv_matrix_instance_f32 * dst);
+
+riscv_status ref_mat_cholesky_f32(const riscv_matrix_instance_f32 * pSrc,
+                                  riscv_matrix_instance_f32 * pDst);
+
+riscv_status ref_mat_ldlt_f32(const riscv_matrix_instance_f32 * pSrc,
+                              riscv_matrix_instance_f32 * pl,
+                              riscv_matrix_instance_f32 * pd,
+                              uint16_t * pp);
+
+riscv_status ref_mat_cholesky_f64(const riscv_matrix_instance_f64 * pSrc,
+                                  riscv_matrix_instance_f64 * pDst);
+
+riscv_status ref_mat_solve_upper_triangular_f64(const riscv_matrix_instance_f64 * ut,
+                                                const riscv_matrix_instance_f64 * a,
+                                                riscv_matrix_instance_f64 * dst);
+
+riscv_status ref_mat_solve_lower_triangular_f64(const riscv_matrix_instance_f64 * lt,
+                                                const riscv_matrix_instance_f64 * a,
+                                                riscv_matrix_instance_f64 * dst);
+riscv_status ref_mat_ldlt_f64(const riscv_matrix_instance_f64 * pSrc,
+                              riscv_matrix_instance_f64 * pl,
+                              riscv_matrix_instance_f64 * pd,
+                              uint16_t * pp);
+/*
+ * Quaternion Math Functions
+ */
+void ref_quaternion_conjugate_f32(const float32_t *pInputQuaternions,
+    float32_t *pConjugateQuaternions,
+    uint32_t nbQuaternions);
+
+void ref_quaternion_inverse_f32(const float32_t *pInputQuaternions,
+  float32_t *pInverseQuaternions,
+  uint32_t nbQuaternions);
+
+void ref_quaternion_norm_f32(const float32_t *pInputQuaternions,
+  float32_t *pNorms,
+  uint32_t nbQuaternions);
+
+void ref_quaternion_normalize_f32(const float32_t *pInputQuaternions,
+    float32_t *pNormalizedQuaternions,
+    uint32_t nbQuaternions);
+
+void ref_quaternion_product_f32(const float32_t *qa,
+    const float32_t *qb,
+    float32_t *qr,
+    uint32_t nbQuaternions);
+
+void ref_quaternion_product_single_f32(const float32_t *qa,
+    const float32_t *qb,
+    float32_t *qr);
+
+void ref_quaternion2rotation_f32(const float32_t *pInputQuaternions,
+    float32_t *pOutputRotations,
+    uint32_t nbQuaternions);
+
+void ref_rotation2quaternion_f32(const float32_t *pInputRotations,
+    float32_t *pOutputQuaternions,
+    uint32_t nbQuaternions);
 /*
  * Statistics Functions
  */

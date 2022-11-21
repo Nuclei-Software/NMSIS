@@ -14,7 +14,6 @@
 //
 // You MUST be careful about overflow.
 #include "riscv_math.h"
-#include "array.h"
 #include <stdint.h>
 #include "../common.h"
 
@@ -22,10 +21,6 @@
 #include "../HelperFunctions/ref_helper.c"
 
 #include <stdio.h>
-#define DELTAF32 (0.05f)
-#define DELTAQ31 (63)
-#define DELTAQ15 (1)
-#define DELTAQ7 (1)
 #define SNR_THRESHOLD_F32 (80.0f)
 
 int test_flag_error = 0;
@@ -33,22 +28,57 @@ int test_flag_error = 0;
 BENCH_DECLARE_VAR();
 // #define WITH_FRONT
 
+#define TEST_LENGTH_SAMPLES 320
+#define NUM_TAPS 29
+
+// float32_t
+float32_t firCoeffs32LP[NUM_TAPS] = {
+  -0.001822523074f, -0.001587929321f, 1.226008847e-18f, 0.003697750857f, 0.008075430058f,
+  0.008530221879f, -4.273456581e-18f, -0.01739769801f, -0.03414586186f, -0.03335915506f,
+  8.073562366e-18f, 0.06763084233f, 0.1522061825f, 0.2229246944f, 0.2504960895f,
+  0.2229246944f, 0.1522061825f, 0.06763084233f, 8.073562366e-18f, -0.03335915506f,
+  -0.03414586186f, -0.01739769801f, -4.273456581e-18f, 0.008530221879f, 0.008075430058f,
+  0.003697750857f, 1.226008847e-18f, -0.001587929321f, -0.001822523074f};
+float32_t firCoeffs32LP_tmp[NUM_TAPS];
+
+float32_t testInput_f32_50Hz_200Hz[TEST_LENGTH_SAMPLES];
+float32_t expectoutput_f32_50Hz_200Hz[TEST_LENGTH_SAMPLES];
+float32_t error_ones[TEST_LENGTH_SAMPLES];
+float32_t testOutput_f32[TEST_LENGTH_SAMPLES];
+float32_t testOutput_f32_ref[TEST_LENGTH_SAMPLES];
+float32_t firStateF32_LMS[TEST_LENGTH_SAMPLES + NUM_TAPS - 1];
+
+//q31_t
+q31_t expectoutput_q31_50Hz_200Hz[TEST_LENGTH_SAMPLES];
+q31_t error_ones_q31[TEST_LENGTH_SAMPLES];
+q31_t firStateq31_LMS[TEST_LENGTH_SAMPLES + NUM_TAPS - 1];
+q31_t testInput_q31_50Hz_200Hz[TEST_LENGTH_SAMPLES] = {0}, testOutput_q31[TEST_LENGTH_SAMPLES] = {0},testOutput_q31_ref[TEST_LENGTH_SAMPLES] = {0};
+q31_t firCoeffs32LP_q31[NUM_TAPS] = {0};
+
+//q15_t
+q15_t expectoutput_q15_50Hz_200Hz[TEST_LENGTH_SAMPLES];
+q15_t error_ones_q15[TEST_LENGTH_SAMPLES];
+q15_t firStateq15_LMS[TEST_LENGTH_SAMPLES + NUM_TAPS - 1];
+q15_t testInput_q15_50Hz_200Hz[TEST_LENGTH_SAMPLES] = {0}, testOutput_q15[TEST_LENGTH_SAMPLES] = {0},testOutput_q15_ref[TEST_LENGTH_SAMPLES] = {0};
+q15_t firCoeffs32LP_q15[NUM_TAPS] = {0};
+
 //***************************************************************************************
-//				Normalized LMS Filters
+// Normalized LMS Filters
 //***************************************************************************************
 static void riscv_fir_f32_NLMS_lp(void)
 {
+    generate_rand_f32(testInput_f32_50Hz_200Hz, TEST_LENGTH_SAMPLES);
+    generate_rand_f32(expectoutput_f32_50Hz_200Hz, TEST_LENGTH_SAMPLES);
     uint32_t i;
     /* clang-format off */
-	riscv_lms_norm_instance_f32 S;
-    /* clang-format on */
-    for (i = 0; i < TEST_LENGTH_SAMPLES; i++)
-        error_ones[i] = 1;
-    riscv_lms_norm_init_f32(&S, NUM_TAPS, &firCoeffs32LP[0], &firStateF32_LMS[0], 0.00000001f, TEST_LENGTH_SAMPLES);
+    riscv_lms_norm_instance_f32 S;
+
+    memcpy(firCoeffs32LP_tmp, firCoeffs32LP, sizeof(firCoeffs32LP));
+    riscv_lms_norm_init_f32(&S, NUM_TAPS, firCoeffs32LP, firStateF32_LMS, 0.2f, TEST_LENGTH_SAMPLES);
     BENCH_START(riscv_lms_norm_f32);
     riscv_lms_norm_f32(&S, testInput_f32_50Hz_200Hz, expectoutput_f32_50Hz_200Hz, testOutput_f32, &error_ones[0], TEST_LENGTH_SAMPLES);
     BENCH_END(riscv_lms_norm_f32);
-    riscv_lms_norm_init_f32(&S, NUM_TAPS, &firCoeffs32LP[0], &firStateF32_LMS[0], 0.00000001f, TEST_LENGTH_SAMPLES);
+    riscv_lms_norm_init_f32(&S, NUM_TAPS, firCoeffs32LP_tmp, firStateF32_LMS, 0.2f, TEST_LENGTH_SAMPLES);
     ref_lms_norm_f32(&S, testInput_f32_50Hz_200Hz, expectoutput_f32_50Hz_200Hz, testOutput_f32_ref, &error_ones[0], TEST_LENGTH_SAMPLES);
 #ifndef WITH_FRONT
     float snr = riscv_snr_f32(&testOutput_f32_ref[50], &testOutput_f32[50], 269);
@@ -73,20 +103,18 @@ static void riscv_fir_f32_NLMS_lp(void)
 }
 static void riscv_fir_q31_NLMS_lp(void)
 {
-    uint32_t i;
     /* clang-format off */
-	riscv_lms_norm_instance_q31 S;
-    /* clang-format on */
-    for (i = 0; i < TEST_LENGTH_SAMPLES; i++)
-        error_ones_q31[i] = 1;
+    riscv_lms_norm_instance_q31 S;
     riscv_float_to_q31(testInput_f32_50Hz_200Hz, testInput_q31_50Hz_200Hz, TEST_LENGTH_SAMPLES);
     riscv_float_to_q31(expectoutput_f32_50Hz_200Hz, expectoutput_q31_50Hz_200Hz, TEST_LENGTH_SAMPLES);
+
     riscv_float_to_q31(firCoeffs32LP, firCoeffs32LP_q31, NUM_TAPS);
-    riscv_lms_norm_init_q31(&S, NUM_TAPS, &firCoeffs32LP_q31[0], &firStateq31_LMS[0], 15, TEST_LENGTH_SAMPLES, 1);
+    riscv_lms_norm_init_q31(&S, NUM_TAPS, firCoeffs32LP_q31, firStateq31_LMS, 15, TEST_LENGTH_SAMPLES, 1);
     BENCH_START(riscv_lms_norm_q31);
     riscv_lms_norm_q31(&S, testInput_q31_50Hz_200Hz, expectoutput_q31_50Hz_200Hz, testOutput_q31, error_ones_q31, TEST_LENGTH_SAMPLES);
     BENCH_END(riscv_lms_norm_q31);
-    riscv_lms_norm_init_q31(&S, NUM_TAPS, &firCoeffs32LP_q31[0], &firStateq31_LMS[0], 15, TEST_LENGTH_SAMPLES, 1);
+    riscv_float_to_q31(firCoeffs32LP, firCoeffs32LP_q31, NUM_TAPS);
+    riscv_lms_norm_init_q31(&S, NUM_TAPS, firCoeffs32LP_q31, firStateq31_LMS, 15, TEST_LENGTH_SAMPLES, 1);
     ref_lms_norm_q31(&S, testInput_q31_50Hz_200Hz, expectoutput_q31_50Hz_200Hz, testOutput_q31_ref, error_ones_q31, TEST_LENGTH_SAMPLES);
     riscv_q31_to_float(testOutput_q31, testOutput_f32, TEST_LENGTH_SAMPLES);
     riscv_q31_to_float(testOutput_q31_ref, testOutput_f32_ref, TEST_LENGTH_SAMPLES);
@@ -103,7 +131,7 @@ static void riscv_fir_q31_NLMS_lp(void)
     float snr = riscv_snr_f32(&testOutput_f32_ref[0], &testOutput_f32[0],
                             TEST_LENGTH_SAMPLES);
 
-    if (snr < SNR_THRESHOLD_F32) {
+    if (snr < SNR_THRESHOLD_F32_L) {
         BENCH_ERROR(riscv_lms_norm_q31);
         printf("q31 lms_norm failed with snr:%f\n", snr);
         test_flag_error = 1;
@@ -113,20 +141,17 @@ static void riscv_fir_q31_NLMS_lp(void)
 }
 static void riscv_fir_q15_NLMS_lp(void)
 {
-    uint32_t i;
     /* clang-format off */
-	riscv_lms_norm_instance_q15 S;
-    /* clang-format on */
-    for (i = 0; i < TEST_LENGTH_SAMPLES; i++)
-        error_ones_q15[i] = 1;
+    riscv_lms_norm_instance_q15 S;
     riscv_float_to_q15(testInput_f32_50Hz_200Hz, testInput_q15_50Hz_200Hz, TEST_LENGTH_SAMPLES);
     riscv_float_to_q15(expectoutput_f32_50Hz_200Hz, expectoutput_q15_50Hz_200Hz, TEST_LENGTH_SAMPLES);
     riscv_float_to_q15(firCoeffs32LP, firCoeffs32LP_q15, NUM_TAPS);
-    riscv_lms_norm_init_q15(&S, NUM_TAPS, &firCoeffs32LP_q15[0], &firStateq15_LMS[0], 0, TEST_LENGTH_SAMPLES, 1);
+    riscv_lms_norm_init_q15(&S, NUM_TAPS, firCoeffs32LP_q15, firStateq15_LMS, 3, TEST_LENGTH_SAMPLES, 1);
     BENCH_START(riscv_lms_norm_q15);
     riscv_lms_norm_q15(&S, testInput_q15_50Hz_200Hz, expectoutput_q15_50Hz_200Hz, testOutput_q15, error_ones_q15, TEST_LENGTH_SAMPLES);
     BENCH_END(riscv_lms_norm_q15);
-    riscv_lms_norm_init_q15(&S, NUM_TAPS, &firCoeffs32LP_q15[0], &firStateq15_LMS[0], 0, TEST_LENGTH_SAMPLES, 1);
+    riscv_float_to_q15(firCoeffs32LP, firCoeffs32LP_q15, NUM_TAPS);
+    riscv_lms_norm_init_q15(&S, NUM_TAPS, firCoeffs32LP_q15, firStateq15_LMS, 3, TEST_LENGTH_SAMPLES, 1);
     ref_lms_norm_q15(&S, testInput_q15_50Hz_200Hz, expectoutput_q15_50Hz_200Hz, testOutput_q15_ref, error_ones_q15, TEST_LENGTH_SAMPLES);
     riscv_q15_to_float(testOutput_q15, testOutput_f32, TEST_LENGTH_SAMPLES);
     riscv_q15_to_float(testOutput_q15_ref, testOutput_f32_ref, TEST_LENGTH_SAMPLES);
@@ -155,6 +180,7 @@ static void riscv_fir_q15_NLMS_lp(void)
 int main()
 {
     BENCH_INIT();
+
     riscv_fir_f32_NLMS_lp();
     riscv_fir_q31_NLMS_lp();
     riscv_fir_q15_NLMS_lp();

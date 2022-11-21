@@ -14,7 +14,6 @@
 //
 // You MUST be careful about overflow.
 #include "riscv_math.h"
-#include "array.h"
 #include <stdint.h>
 #include "../common.h"
 
@@ -22,10 +21,6 @@
 #include "../HelperFunctions/ref_helper.c"
 
 #include <stdio.h>
-#define DELTAF32 (0.05f)
-#define DELTAQ31 (63)
-#define DELTAQ15 (1)
-#define DELTAQ7 (1)
 #define SNR_THRESHOLD_F32 (80.0f)
 
 int test_flag_error = 0;
@@ -33,20 +28,42 @@ int test_flag_error = 0;
 BENCH_DECLARE_VAR();
 // #define WITH_FRONT
 
+#define TEST_LENGTH_SAMPLES 320 /* 采样点数 */
+#define numStages 8             /* 2阶IIR滤波的个数 */
+// float32_t
+// stereo requires 2*TEST_LENGTH_SAMPLES
+float32_t testOutput_f32[TEST_LENGTH_SAMPLES], testOutput_f32_ref[TEST_LENGTH_SAMPLES];
+float32_t IIRStateF32[TEST_LENGTH_SAMPLES+numStages];
+float32_t IIRCoeffs32LP_K[numStages] = {-0.9490513802f, 0.960866034f, -0.950527668f, 0.9305356741f, -0.8808346987f, 0.7298035026f, -0.3796664774f, 0.07335939258f};
+float32_t IIRCoeffs32LP_V[numStages + 1] = {0.0004670530325f, 0.002966811415f, 0.006142409053f, 0.006682873704f, 0.004372655414f, 0.00177692459f, 0.0004465713282f, 6.86832791e-05f, 5.115610293e-06f};
+float32_t testInput_f32_50Hz_200Hz[TEST_LENGTH_SAMPLES];
+// q31_t
+q31_t testOutput_q31[TEST_LENGTH_SAMPLES],testOutput_q31_ref[TEST_LENGTH_SAMPLES];
+q31_t IIRStateQ31[TEST_LENGTH_SAMPLES+numStages];
+q31_t IIRCoeffs32LP_K_q31[numStages];
+q31_t IIRCoeffs32LP_V_q31[numStages + 1];
+q31_t testInput_q31_50Hz_200Hz[TEST_LENGTH_SAMPLES];
+
+// q15_t
+q15_t testOutput_q15[TEST_LENGTH_SAMPLES],testOutput_q15_ref[TEST_LENGTH_SAMPLES];
+q15_t IIRStateQ15[TEST_LENGTH_SAMPLES+numStages];
+q15_t IIRCoeffs32LP_K_q15[numStages];
+q15_t IIRCoeffs32LP_V_q15[numStages + 1];
+q15_t testInput_q15_50Hz_200Hz[TEST_LENGTH_SAMPLES];
 //***************************************************************************************
 //				iir		Lattice Filters
 //***************************************************************************************
 static void riscv_iir_f32_lattice_lp(void)
 {
-    uint32_t i;
+    generate_rand_f32(testInput_f32_50Hz_200Hz, TEST_LENGTH_SAMPLES);
     /* clang-format off */
-	riscv_iir_lattice_instance_f32 S;
+    riscv_iir_lattice_instance_f32 S;
     /* clang-format on */
-    riscv_iir_lattice_init_f32(&S, numStages, IIRCoeffs32LP_K, IIRCoeffs32LP_V, &IIRStateF32[0], TEST_LENGTH_SAMPLES);
+    riscv_iir_lattice_init_f32(&S, numStages, IIRCoeffs32LP_K, IIRCoeffs32LP_V, IIRStateF32, TEST_LENGTH_SAMPLES);
     BENCH_START(riscv_iir_lattice_f32);
     riscv_iir_lattice_f32(&S, testInput_f32_50Hz_200Hz, testOutput_f32, TEST_LENGTH_SAMPLES);
     BENCH_END(riscv_iir_lattice_f32);
-    riscv_iir_lattice_init_f32(&S, numStages, IIRCoeffs32LP_K, IIRCoeffs32LP_V, &IIRStateF32[0], TEST_LENGTH_SAMPLES);
+    riscv_iir_lattice_init_f32(&S, numStages, IIRCoeffs32LP_K, IIRCoeffs32LP_V, IIRStateF32, TEST_LENGTH_SAMPLES);
     ref_iir_lattice_f32(&S, testInput_f32_50Hz_200Hz, testOutput_f32_ref, TEST_LENGTH_SAMPLES);
     // ScaleValue = 0.052219514664161221f * 0.04279801741658381f;
 #ifndef WITH_FRONT
@@ -72,18 +89,17 @@ static void riscv_iir_f32_lattice_lp(void)
 }
 static void riscv_iir_q31_lattice_lp(void)
 {
-    uint32_t i;
     /* clang-format off */
-	riscv_iir_lattice_instance_q31 S;
+    riscv_iir_lattice_instance_q31 S;
     /* clang-format on */
     riscv_float_to_q31(testInput_f32_50Hz_200Hz, testInput_q31_50Hz_200Hz, TEST_LENGTH_SAMPLES);
     riscv_float_to_q31(IIRCoeffs32LP_K, IIRCoeffs32LP_K_q31, numStages);
     riscv_float_to_q31(IIRCoeffs32LP_V, IIRCoeffs32LP_V_q31, numStages+1);
-    riscv_iir_lattice_init_q31(&S, numStages, IIRCoeffs32LP_K_q31, IIRCoeffs32LP_V_q31, &IIRStateQ31[0], TEST_LENGTH_SAMPLES);
+    riscv_iir_lattice_init_q31(&S, numStages, IIRCoeffs32LP_K_q31, IIRCoeffs32LP_V_q31, IIRStateQ31, TEST_LENGTH_SAMPLES);
     BENCH_START(riscv_iir_lattice_q31);
     riscv_iir_lattice_q31(&S, testInput_q31_50Hz_200Hz, testOutput_q31, TEST_LENGTH_SAMPLES);
     BENCH_END(riscv_iir_lattice_q31);
-    riscv_iir_lattice_init_q31(&S, numStages, IIRCoeffs32LP_K_q31, IIRCoeffs32LP_V_q31, &IIRStateQ31[0], TEST_LENGTH_SAMPLES);
+    riscv_iir_lattice_init_q31(&S, numStages, IIRCoeffs32LP_K_q31, IIRCoeffs32LP_V_q31, IIRStateQ31, TEST_LENGTH_SAMPLES);
     ref_iir_lattice_q31(&S, testInput_q31_50Hz_200Hz, testOutput_q31_ref, TEST_LENGTH_SAMPLES);
     // ScaleValue = 0.052219514664161221f * 0.04279801741658381f;
     riscv_q31_to_float(testOutput_q31, testOutput_f32, TEST_LENGTH_SAMPLES);
@@ -112,18 +128,17 @@ static void riscv_iir_q31_lattice_lp(void)
 }
 static void riscv_iir_q15_lattice_lp(void)
 {
-    uint32_t i;
     /* clang-format off */
-	riscv_iir_lattice_instance_q15 S;
+    riscv_iir_lattice_instance_q15 S;
     /* clang-format on */
     riscv_float_to_q15(testInput_f32_50Hz_200Hz, testInput_q15_50Hz_200Hz, TEST_LENGTH_SAMPLES);
     riscv_float_to_q15(IIRCoeffs32LP_K, IIRCoeffs32LP_K_q15, numStages);
-    riscv_float_to_q15(IIRCoeffs32LP_V, IIRCoeffs32LP_V_q15, numStages+1);
-    riscv_iir_lattice_init_q15(&S, numStages, IIRCoeffs32LP_K_q15, IIRCoeffs32LP_V_q15, &IIRStateQ15[0], TEST_LENGTH_SAMPLES);
+    riscv_float_to_q15(IIRCoeffs32LP_V, IIRCoeffs32LP_V_q15, numStages + 1);
+    riscv_iir_lattice_init_q15(&S, numStages, IIRCoeffs32LP_K_q15, IIRCoeffs32LP_V_q15, IIRStateQ15, TEST_LENGTH_SAMPLES);
     BENCH_START(riscv_iir_lattice_q15);
     riscv_iir_lattice_q15(&S, testInput_q15_50Hz_200Hz, testOutput_q15, TEST_LENGTH_SAMPLES);
     BENCH_END(riscv_iir_lattice_q15);
-    riscv_iir_lattice_init_q15(&S, numStages, IIRCoeffs32LP_K_q15, IIRCoeffs32LP_V_q15, &IIRStateQ15[0], TEST_LENGTH_SAMPLES);
+    riscv_iir_lattice_init_q15(&S, numStages, IIRCoeffs32LP_K_q15, IIRCoeffs32LP_V_q15, IIRStateQ15, TEST_LENGTH_SAMPLES);
     ref_iir_lattice_q15(&S, testInput_q15_50Hz_200Hz, testOutput_q15_ref, TEST_LENGTH_SAMPLES);
     // ScaleValue = 0.052219514664161221f * 0.04279801741658381f;
     riscv_q15_to_float(testOutput_q15, testOutput_f32, TEST_LENGTH_SAMPLES);

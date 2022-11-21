@@ -14,7 +14,6 @@
 //
 // You MUST be careful about overflow.
 #include "riscv_math.h"
-#include "array.h"
 #include <stdint.h>
 #include "../common.h"
 
@@ -22,10 +21,6 @@
 #include "../HelperFunctions/ref_helper.c"
 
 #include <stdio.h>
-#define DELTAF32 (0.05f)
-#define DELTAQ31 (63)
-#define DELTAQ15 (1)
-#define DELTAQ7 (1)
 #define SNR_THRESHOLD_F32 (80.0f)
 
 int test_flag_error = 0;
@@ -34,22 +29,36 @@ BENCH_DECLARE_VAR();
 
 // #define WITH_FRONT
 
+#define TEST_LENGTH_SAMPLES 320 /* 采样点数 */
+#define numStages 2             /* 2阶IIR滤波的个数 */
+// f32
+float32_t testInput_f32_50Hz_200Hz[TEST_LENGTH_SAMPLES];
+float32_t testOutput_f32[TEST_LENGTH_SAMPLES * 2];
+float32_t testOutput_f32_ref[TEST_LENGTH_SAMPLES * 2];
+float32_t IIRCoeffs32LP[5 * numStages] = {1.0f, 2.0f, 1.0f,    1.11302985416334787593939381622476503253f,  - 0.574061915083954765748330828500911593437f,1.0f,  2.0f,  1.0f,   0.855397932775170177777113167394418269396f, - 0.209715357756554754420363906319835223258f};
+float32_t IIRStateF32[2 * numStages];
+
+// f64
+float64_t testInput_f64_50Hz_200Hz[TEST_LENGTH_SAMPLES];
+float64_t testOutput_f64[TEST_LENGTH_SAMPLES];
+float64_t testOutput_f64_ref[TEST_LENGTH_SAMPLES];
+float64_t IIRStateF64[2 * numStages];
 /* clang-format on */
 //***************************************************************************************
 //				iir		df2t
 //***************************************************************************************
 static void riscv_iir_df2t_f32_lp(void)
 {
-    uint32_t i;
+    generate_rand_f32(testInput_f32_50Hz_200Hz, TEST_LENGTH_SAMPLES);
     /* clang-format off */
 	riscv_biquad_cascade_df2T_instance_f32 S;
     /* clang-format on */
     float32_t ScaleValue;
-    riscv_biquad_cascade_df2T_init_f32(&S, numStages, IIRCoeffs32LP, &IIRStateF32[0]);
+    riscv_biquad_cascade_df2T_init_f32(&S, numStages, IIRCoeffs32LP, IIRStateF32);
     BENCH_START(riscv_biquad_cascade_df2T_f32);
     riscv_biquad_cascade_df2T_f32(&S, testInput_f32_50Hz_200Hz, testOutput_f32, TEST_LENGTH_SAMPLES);
     BENCH_END(riscv_biquad_cascade_df2T_f32);
-    riscv_biquad_cascade_df2T_init_f32(&S, numStages, IIRCoeffs32LP, &IIRStateF32[0]);
+    riscv_biquad_cascade_df2T_init_f32(&S, numStages, IIRCoeffs32LP, IIRStateF32);
     ref_biquad_cascade_df2T_f32(&S, testInput_f32_50Hz_200Hz, testOutput_f32_ref, TEST_LENGTH_SAMPLES);
     // ScaleValue = 0.052219514664161221f * 0.04279801741658381f;
 #ifndef WITH_FRONT
@@ -75,7 +84,6 @@ static void riscv_iir_df2t_f32_lp(void)
 }
 static void riscv_iir_stereo_df2t_f32_lp(void)
 {
-    uint32_t i;
     /* clang-format off */
 	riscv_biquad_cascade_stereo_df2T_instance_f32 S;
     /* clang-format on */
@@ -108,48 +116,12 @@ static void riscv_iir_stereo_df2t_f32_lp(void)
     BENCH_STATUS(riscv_biquad_cascade_stereo_df2T_f32);
 #endif
 }
-static void riscv_iir_df2t_f64_lp(void)
-{
-    uint32_t i;
-    /* clang-format off */
-	riscv_biquad_cascade_df2T_instance_f64 S;
-    /* clang-format on */
-    // float32_t ScaleValue;
-    riscv_biquad_cascade_df2T_init_f64(&S, numStages, IIRCoeffs64LP, &IIRStateF64[0]);
-    BENCH_START(riscv_biquad_cascade_df2T_f64);
-    riscv_biquad_cascade_df2T_f64(&S, testInput_f64_50Hz_200Hz, testOutput_f64, TEST_LENGTH_SAMPLES);
-    BENCH_END(riscv_biquad_cascade_df2T_f64);
-    riscv_biquad_cascade_df2T_init_f64(&S, numStages, IIRCoeffs32LP, &IIRStateF64[0]);
-    ref_biquad_cascade_df2T_f64(&S, testInput_f64_50Hz_200Hz, testOutput_f64_ref, TEST_LENGTH_SAMPLES);
-    // ScaleValue = 0.052219514664161221f * 0.04279801741658381f;
-#ifndef WITH_FRONT
-    float snr = riscv_snr_f32((float32_t *)&testOutput_f64_ref[50], (float32_t *)&testOutput_f64[50], 269);
-
-    if (snr < SNR_THRESHOLD_F32) {
-        BENCH_ERROR(riscv_biquad_cascade_df2T_f64);
-        printf("f32 biquad_cascade_df2T failed with snr:%f\n", snr);
-        test_flag_error = 1;
-    }
-    BENCH_STATUS(riscv_biquad_cascade_df2T_f64);
-#else
-    float snr =
-        riscv_snr_f32(&testOutput_ref[0], &testOutput[0], TEST_LENGTH_SAMPLES);
-
-    if (snr < SNR_THRESHOLD_F32) {
-        BENCH_ERROR(riscv_biquad_cascade_df2T_f64);
-        printf("f32 biquad_cascade_df2T failed with snr:%f\n", snr);
-        test_flag_error = 1;
-    }
-    BENCH_STATUS(riscv_biquad_cascade_df2T_f64);
-#endif
-}
 
 int main()
 {
     BENCH_INIT();
     riscv_iir_df2t_f32_lp();
     riscv_iir_stereo_df2t_f32_lp();
-    riscv_iir_df2t_f64_lp();
 
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");

@@ -182,6 +182,43 @@ void riscv_correlate_q15(
    * ----------------------*/
 
   /* The first loop starts here */
+#if defined (RISCV_MATH_VECTOR)
+  while (blockSize1 > 0U)
+  {
+    /* Accumulator is made zero for every iteration */
+    sum = 0;
+
+    uint32_t vblkCnt = count;                               /* Loop counter */
+    size_t l;
+    vint16m4_t vx, vy;
+    vint64m1_t temp00m1;
+    l = vsetvl_e64m1(1);
+    temp00m1 = vmv_v_x_i64m1(0, l);
+    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = vle16_v_i16m4(px, l);
+      px += l;
+      vy = vle16_v_i16m4(py, l);
+      py += l;
+      sum += vmv_x_s_i64m1_i64(vwredsum_vs_i32m8_i64m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l));
+    }
+
+    /* Store the result in the accumulator in the destination buffer. */
+    *pOut = (q15_t) (__SSAT((sum >> 15), 16));
+    /* Destination pointer is updated according to the address modifier, inc */
+    pOut += inc;
+
+    /* Update the inputA and inputB pointers for next MAC calculation */
+    py = pSrc1 - count;
+    px = pIn1;
+
+    /* Increment MAC count */
+    count++;
+
+    /* Decrement loop counter */
+    blockSize1--;
+  }
+#else
+  /* RISCV_MATH_DSP branch */
   while (blockSize1 > 0U)
   {
     /* Accumulator is made zero for every iteration */
@@ -194,7 +231,6 @@ void riscv_correlate_q15(
      ** a second loop below computes MACs for the remaining 1 to 3 samples. */
     while (k > 0U)
     {
-#if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
       /* x[0] * y[srcBLen - 4] , x[1] * y[srcBLen - 3] , x[2] * y[srcBLen - 2] , x[3] * y[srcBLen - 1]*/
       sum = __SMLALD(read_q15x4_ia ((q15_t **) &px), read_q15x4_ia ((q15_t **) &py), sum);
@@ -211,7 +247,6 @@ void riscv_correlate_q15(
 
 #endif/* #ifdef NUCLEI_DSP_N3 */
 #endif/* __RISCV_XLEN == 64 */
-#endif/* #if defined (RISCV_MATH_DSP) */
       /* Decrement loop counter */
       k--;
     }
@@ -245,7 +280,7 @@ void riscv_correlate_q15(
     /* Decrement loop counter */
     blockSize1--;
   }
-
+#endif /* defined (RISCV_MATH_VECTOR) */
   /* --------------------------
    * Initializations of stage2
    * ------------------------*/

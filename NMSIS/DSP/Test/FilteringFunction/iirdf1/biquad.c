@@ -551,149 +551,177 @@ void ref_biquad_cascade_df1_fast_q15(const riscv_biquad_casd_df1_inst_q15 *S,
                                      q15_t *pSrc, q15_t *pDst,
                                      uint32_t blockSize)
 {
-    q15_t *pIn = pSrc;  /*  Source pointer                           */
-    q15_t *pOut = pDst; /*  Destination pointer                      */
-    q15_t b0, b1, b2, a1,
-        a2; /*  Filter coefficients           				*/
-    q15_t Xn1, Xn2, Yn1,
-        Yn2;   /*  Filter state variables        				*/
-    q15_t Xn;  /*  temporary input  */
-    q31_t acc; /*  Accumulator                              */
-    int32_t shift = (15 - (int32_t)S->postShift); /*  Post shift */
-    q15_t *pState = S->pState; /*  State pointer                            */
-    const q15_t *pCoeffs = S->pCoeffs;               /*  Coefficient pointer               */
-    uint32_t sample, stage = (uint32_t)S->numStages; /*  Stage loop counter */
+  const q15_t *pIn = pSrc;                             /* Source pointer */
+        q15_t *pOut = pDst;                            /* Destination pointer */
+        q15_t *pState = S->pState;                     /* State pointer */
+  const q15_t *pCoeffs = S->pCoeffs;                   /* Coefficient pointer */
+        q31_t acc;                                     /* Accumulator */
+        q31_t in;                                      /* Temporary variable to hold input value */
+        q31_t out;                                     /* Temporary variable to hold output value */
+        q31_t b0;                                      /* Temporary variable to hold bo value */
+        q31_t b1, a1;                                  /* Filter coefficients */
+        q31_t state_in, state_out;                     /* Filter state variables */
+        int32_t shift = (int32_t) (15 - S->postShift); /* Post shift */
+        uint32_t sample, stage = S->numStages;         /* Loop counters */
 
-    do {
-        /* Reading the coefficients */
-        b0 = *pCoeffs++;
-        pCoeffs++; // skip the 0 coefficient
-        b1 = *pCoeffs++;
-        b2 = *pCoeffs++;
-        a1 = *pCoeffs++;
-        a2 = *pCoeffs++;
+  do
+  {
+    /* Read the b0 and 0 coefficients using SIMD  */
+    b0 = read_q15x2_ia ((q15_t **)&pCoeffs);
 
-        /* Reading the state values */
-        Xn1 = pState[0];
-        Xn2 = pState[1];
-        Yn1 = pState[2];
-        Yn2 = pState[3];
+    /* Read the b1 and b2 coefficients using SIMD */
+    b1 = read_q15x2_ia ((q15_t **)&pCoeffs);
 
-        sample = blockSize;
+    /* Read the a1 and a2 coefficients using SIMD */
+    a1 = read_q15x2_ia ((q15_t **)&pCoeffs);
 
-        while (sample > 0U) {
-            /* Read the input */
-            Xn = *pIn++;
+    /* Read the input state values from the state buffer:  x[n-1], x[n-2] */
+    state_in = read_q15x2_ia (&pState);
 
-            /* acc =  b0 * x[n] + b1 * x[n-1] + b2 * x[n-2] + a1 * y[n-1] + a2 *
-             * y[n-2] */
-            acc = (q31_t)b0 * Xn + (q31_t)b1 * Xn1 + (q31_t)b2 * Xn2 +
-                  (q31_t)a1 * Yn1 + (q31_t)a2 * Yn2;
+    /* Read the output state values from the state buffer:  y[n-1], y[n-2] */
+    state_out = read_q15x2_da (&pState);
 
-            /* The result is converted to 1.15  */
-            acc = ref_sat_q15(acc >> shift);
+    /* Initialize blkCnt with number of samples */
+    sample = blockSize;
 
-            /* Every time after the output is computed state should be updated.
-             */
-            Xn2 = Xn1;
-            Xn1 = Xn;
-            Yn2 = Yn1;
-            Yn1 = (q15_t)acc;
+    while (sample > 0U)
+    {
+      /* Read the input */
+      in = *pIn++;
 
-            /* Store the output in the destination buffer. */
-            *pOut++ = (q15_t)acc;
+      /* out =  b0 * x[n] + 0 * 0 */
+      out = __SMUAD(b0, in);
 
-            /* decrement the loop counter */
-            sample--;
-        }
+      /* acc =  b1 * x[n-1], acc +=  b2 * x[n-2] + out */
+      acc = __SMLAD(b1, state_in, out);
+      /* acc +=  a1 * y[n-1] + acc +=  a2 * y[n-2] */
+      acc = __SMLAD(a1, state_out, acc);
 
-        /*  The first stage goes from the input buffer to the output buffer. */
-        /*  Subsequent stages occur in-place in the output buffer */
-        pIn = pDst;
+      /* The result is converted from 3.29 to 1.31 and then saturation is applied */
+      out = __SSAT((acc >> shift), 16);
 
-        /* Reset to destination pointer */
-        pOut = pDst;
+      /* Store the output in the destination buffer. */
+      *pOut++ = (q15_t) out;
 
-        /*  Store the updated state variables back into the pState array */
-        *pState++ = Xn1;
-        *pState++ = Xn2;
-        *pState++ = Yn1;
-        *pState++ = Yn2;
+      /* Every time after the output is computed state should be updated. */
+      /* The states should be updated as:  */
+      /* Xn2 = Xn1 */
+      /* Xn1 = Xn  */
+      /* Yn2 = Yn1 */
+      /* Yn1 = acc */
+      /* x[n-N], x[n-N-1] are packed together to make state_in of type q31 */
+      /* y[n-N], y[n-N-1] are packed together to make state_out of type q31 */
+      state_in = __PKHBT(in, state_in, 16);
+      state_out = __PKHBT(out, state_out, 16);
 
-    } while (--stage);
+      /* decrement loop counter */
+      sample--;
+    }
+
+    /* The first stage goes from the input buffer to the output buffer. */
+    /* Subsequent (numStages - 1) occur in-place in the output buffer */
+    pIn = pDst;
+
+    /* Reset the output pointer */
+    pOut = pDst;
+
+    /* Store the updated state variables back into the state array */
+    write_q15x2_ia(&pState, state_in);
+    write_q15x2_ia(&pState, state_out);
+
+    /* Decrement loop counter */
+    stage--;
+
+  } while (stage > 0U);
 }
 
 void ref_biquad_cascade_df1_q15(const riscv_biquad_casd_df1_inst_q15 *S,
                                 q15_t *pSrc, q15_t *pDst, uint32_t blockSize)
 {
-    q15_t *pIn = pSrc;  /*  Source pointer                           */
-    q15_t *pOut = pDst; /*  Destination pointer                      */
-    q15_t b0, b1, b2, a1,
-        a2; /*  Filter coefficients           				*/
-    q15_t Xn1, Xn2, Yn1,
-        Yn2;   /*  Filter state variables        				*/
-    q15_t Xn;  /*  temporary input  */
-    q63_t acc; /*  Accumulator                              */
-    int32_t shift = (15 - (int32_t)S->postShift); /*  Post shift */
-    q15_t *pState = S->pState; /*  State pointer                            */
-    const q15_t *pCoeffs = S->pCoeffs;               /*  Coefficient pointer               */
-    uint32_t sample, stage = (uint32_t)S->numStages; /*  Stage loop counter */
+  const q15_t *pIn = pSrc;                             /* Source pointer */
+        q15_t *pOut = pDst;                            /* Destination pointer */
+        q15_t b0, b1, b2, a1, a2;                      /* Filter coefficients */
+        q15_t Xn1, Xn2, Yn1, Yn2;                      /* Filter state variables */
+        q15_t Xn;                                      /* temporary input */
+        q63_t acc;                                     /* Accumulator */
+        int32_t shift = (15 - (int32_t) S->postShift); /* Post shift */
+        q15_t *pState = S->pState;                     /* State pointer */
+  const q15_t *pCoeffs = S->pCoeffs;                   /* Coefficient pointer */
+        uint32_t sample, stage = (uint32_t) S->numStages;     /* Stage loop counter */
 
-    do {
-        /* Reading the coefficients */
-        b0 = *pCoeffs++;
-        pCoeffs++; // skip the 0 coefficient
-        b1 = *pCoeffs++;
-        b2 = *pCoeffs++;
-        a1 = *pCoeffs++;
-        a2 = *pCoeffs++;
+  do
+  {
+    /* Reading the coefficients */
+    b0 = *pCoeffs++;
+    pCoeffs++;  // skip the 0 coefficient
+    b1 = *pCoeffs++;
+    b2 = *pCoeffs++;
+    a1 = *pCoeffs++;
+    a2 = *pCoeffs++;
 
-        /* Reading the state values */
-        Xn1 = pState[0];
-        Xn2 = pState[1];
-        Yn1 = pState[2];
-        Yn2 = pState[3];
+    /* Reading the state values */
+    Xn1 = pState[0];
+    Xn2 = pState[1];
+    Yn1 = pState[2];
+    Yn2 = pState[3];
 
-        sample = blockSize;
+    /* The variables acc holds the output value that is computed:
+     *    acc =  b0 * x[n] + b1 * x[n-1] + b2 * x[n-2] + a1 * y[n-1] + a2 * y[n-2]
+     */
 
-        while (sample > 0U) {
-            /* Read the input */
-            Xn = *pIn++;
+    sample = blockSize;
 
-            /* acc =  b0 * x[n] + b1 * x[n-1] + b2 * x[n-2] + a1 * y[n-1] + a2 *
-             * y[n-2] */
-            acc = (q31_t)b0 * Xn + (q31_t)b1 * Xn1 + (q31_t)b2 * Xn2 +
-                  (q31_t)a1 * Yn1 + (q31_t)a2 * Yn2;
+    while (sample > 0U)
+    {
+      /* Read the input */
+      Xn = *pIn++;
 
-            /* The result is converted to 1.15  */
-            acc = ref_sat_q15(acc >> shift);
+      /* acc =  b0 * x[n] + b1 * x[n-1] + b2 * x[n-2] + a1 * y[n-1] + a2 * y[n-2] */
+      /* acc =  b0 * x[n] */
+      acc = (q31_t) b0 *Xn;
 
-            /* Every time after the output is computed state should be updated.
-             */
-            Xn2 = Xn1;
-            Xn1 = Xn;
-            Yn2 = Yn1;
-            Yn1 = (q15_t)acc;
+      /* acc +=  b1 * x[n-1] */
+      acc += (q31_t) b1 *Xn1;
+      /* acc +=  b[2] * x[n-2] */
+      acc += (q31_t) b2 *Xn2;
+      /* acc +=  a1 * y[n-1] */
+      acc += (q31_t) a1 *Yn1;
+      /* acc +=  a2 * y[n-2] */
+      acc += (q31_t) a2 *Yn2;
 
-            /* Store the output in the destination buffer. */
-            *pOut++ = (q15_t)acc;
+      /* The result is converted to 1.31  */
+      acc = __SSAT((acc >> shift), 16);
 
-            /* decrement the loop counter */
-            sample--;
-        }
+      /* Every time after the output is computed state should be updated. */
+      /* The states should be updated as:  */
+      /* Xn2 = Xn1 */
+      /* Xn1 = Xn  */
+      /* Yn2 = Yn1 */
+      /* Yn1 = acc */
+      Xn2 = Xn1;
+      Xn1 = Xn;
+      Yn2 = Yn1;
+      Yn1 = (q15_t) acc;
 
-        /*  The first stage goes from the input buffer to the output buffer. */
-        /*  Subsequent stages occur in-place in the output buffer */
-        pIn = pDst;
+      /* Store the output in the destination buffer. */
+      *pOut++ = (q15_t) acc;
 
-        /* Reset to destination pointer */
-        pOut = pDst;
+      /* decrement the loop counter */
+      sample--;
+    }
 
-        /*  Store the updated state variables back into the pState array */
-        *pState++ = Xn1;
-        *pState++ = Xn2;
-        *pState++ = Yn1;
-        *pState++ = Yn2;
+    /*  The first stage goes from the input buffer to the output buffer. */
+    /*  Subsequent stages occur in-place in the output buffer */
+    pIn = pDst;
 
-    } while (--stage);
+    /* Reset to destination pointer */
+    pOut = pDst;
+
+    /*  Store the updated state variables back into the pState array */
+    *pState++ = Xn1;
+    *pState++ = Xn2;
+    *pState++ = Yn1;
+    *pState++ = Yn2;
+
+  } while (--stage);
 }

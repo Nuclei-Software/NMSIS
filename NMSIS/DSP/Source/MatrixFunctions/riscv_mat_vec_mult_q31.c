@@ -114,13 +114,8 @@ void riscv_mat_vec_mult_q31(const riscv_matrix_instance_q31 *pSrcMat, const q31_
         /* For every row wise process, the pInVec pointer is set
          ** to the starting address of the vector */
         pInVec = pVec;
-
-#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
-        colCnt = numCols >> 1;
-#else
         /* Loop unrolling: process 2 columns per iteration */
         colCnt = numCols;
-#endif/* #if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
         /* Initialize pointers to the starting address of the column being processed */
         pInA1 = pSrcA + i;
         pInA2 = pInA1 + numCols;
@@ -129,7 +124,8 @@ void riscv_mat_vec_mult_q31(const riscv_matrix_instance_q31 *pSrcMat, const q31_
 
         // Main loop: matrix-vector multiplication
         while (colCnt > 0u) {
-#if defined (RISCV_MATH_DSP) && (RISCV_XLEN == 64)
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+          if (colCnt >= 2) {
             // Read 2 values from vector
             vecData = read_q31x2_ia((q31_t **)&pInVec);
 
@@ -142,7 +138,10 @@ void riscv_mat_vec_mult_q31(const riscv_matrix_instance_q31 *pSrcMat, const q31_
             sum3 = __RV_SMAR64(sum3, matData, vecData);
             matData = read_q31x2_ia((q31_t **)&pInA4);
             sum4 = __RV_SMAR64(sum4, matData, vecData);
-#else
+            // Decrement the loop counter
+            colCnt -= 2;
+          } else {
+#endif /* defined (RISCV_MATH_DSP) && (RISCV_XLEN == 64) */
             // Read 1 values from vector
             vecData = *(pInVec)++;
 
@@ -155,9 +154,11 @@ void riscv_mat_vec_mult_q31(const riscv_matrix_instance_q31 *pSrcMat, const q31_
             sum3 += (q63_t)matData * vecData;
             matData = *(pInA4)++;
             sum4 += (q63_t)matData * vecData;
-#endif/* defined (RISCV_MATH_DSP) && (RISCV_XLEN == 64) */
             // Decrement the loop counter
             colCnt--;
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+          }
+#endif /* defined (RISCV_MATH_DSP) && (RISCV_XLEN == 64) */
         }
 
         /* Saturate and store the result in the destination buffer */
