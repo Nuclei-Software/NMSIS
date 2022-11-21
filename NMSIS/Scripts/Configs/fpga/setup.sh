@@ -4,7 +4,7 @@ NSDK_ROOT=${NSDK_ROOT:-${SCRIPTDIR}/../../../../../nuclei-sdk}
 NMSIS_ROOT=${NMSIS_ROOT:-${SCRIPTDIR}/../../../}
 
 ILMSZ=${ILMSZ:-512K}
-DLMSZ=${DLMSZ:-256K}
+DLMSZ=${DLMSZ:-512K}
 DEVENVSH=${DEVENVSH:-/home/share/devtools/env.sh}
 
 [ -f ${DEVENVSH} ] && source $DEVENVSH
