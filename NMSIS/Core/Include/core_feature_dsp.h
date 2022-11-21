@@ -19962,7 +19962,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKMXDA32(unsigned long long t, unsi
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DKMADA32(unsigned long long t, unsigned long long a, unsigned long long b)
 {
-    __ASM volatile("dkmxda32 %0, %1, %2" : "+r"(t) : "r"(a), "r"(b));
+    __ASM volatile("dkmada32 %0, %1, %2" : "+r"(t) : "r"(a), "r"(b));
     return t;
 }
 /* ===== Inline Function End for D.10.17. DKMADA32 ===== */
