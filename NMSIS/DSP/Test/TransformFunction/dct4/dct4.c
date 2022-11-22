@@ -1,5 +1,6 @@
 #include "ref.h"
 
+extern float32_t scratchArray[];
 void ref_dct4_f32(const riscv_dct4_instance_f32 *S, float32_t *pState,
                   float32_t *pInlineBuffer)
 {

@@ -1,9 +1,5 @@
 #include "ref.h"
 
-float32_t scratchArray[8192 * 2];
-
-riscv_cfft_instance_f32 ref_cfft_sR_f32_len8192 = {8192, 0, 0, 0};
-
 q31_t ref_sat_n(q31_t num, uint32_t bits)
 {
     int32_t posMax, negMin;

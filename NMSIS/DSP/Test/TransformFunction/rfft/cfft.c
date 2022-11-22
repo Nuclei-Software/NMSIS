@@ -1,6 +1,8 @@
 #include "riscv_const_structs.h"
 #include "ref.h"
 
+extern float32_t scratchArray[];
+
 void ref_cfft_f32(const riscv_cfft_instance_f32 *S, float32_t *p1,
                   uint8_t ifftFlag, uint8_t bitReverseFlag)
 {

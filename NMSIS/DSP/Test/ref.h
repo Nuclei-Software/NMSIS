@@ -134,8 +134,6 @@ typedef enum {
 /*
  * Ref Lib Global Variables
  */
-extern float32_t scratchArray[];
-extern riscv_cfft_instance_f32 ref_cfft_sR_f32_len8192;
 
 /*
  * Ref Lib Functions

@@ -1,6 +1,7 @@
 #include "riscv_const_structs.h"
 #include "ref.h"
 
+riscv_cfft_instance_f32 ref_cfft_sR_f32_len8192 = {8192, 0, 0, 0};
 void ref_rfft_f32(riscv_rfft_instance_f32 *S, float32_t *pSrc, float32_t *pDst)
 {
     uint32_t i;
