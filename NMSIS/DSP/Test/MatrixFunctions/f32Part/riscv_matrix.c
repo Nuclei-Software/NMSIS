@@ -204,7 +204,15 @@ int DSP_matrix_f32(void)
     riscv_mat_cholesky_f32(&f32_A, &f32_des);
     BENCH_END(riscv_mat_cholesky_f32);
     ref_mat_cholesky_f32(&f32_A, &f32_ref);
-    s = verify_results_f32(f32_output_ref_2, f32_output_2, M * M);
+    s = 0;
+    /* result is lower triangular matrix */
+    for (int i = 0 ; i < M ; i++) {
+      for (int j = i ; j < M ; j++) {
+         if (fabs(f32_output_ref_2[j * M + i] - f32_output_2[j * M + i]) > DELTAF64 ) {
+           s = 1; /* fail */
+         }
+      }
+    }
     if (s != 0) {
         BENCH_ERROR(riscv_mat_cholesky_f32);
         test_flag_error = 1;
