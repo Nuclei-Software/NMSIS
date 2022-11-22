@@ -75,7 +75,7 @@ q15_t ref_pid_q15(riscv_pid_instance_q15 *S, q15_t in)
     acc += (q31_t)S->state[2] << 15;
 
     /* saturate the output */
-    out = ref_sat_q15((q31_t)acc >> 15);
+    out = ref_sat_q15((q31_t)(acc >> 15));
 
     /* Update state */
     S->state[1] = S->state[0];
