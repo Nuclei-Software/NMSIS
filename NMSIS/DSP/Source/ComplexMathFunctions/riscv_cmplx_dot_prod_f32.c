@@ -105,10 +105,10 @@ void riscv_cmplx_dot_prod_f32(
 
     v_RR = vfmul_vv_f32m2(v_R1, v_R2, l);
     v_II = vfmul_vv_f32m2(v_I1, v_I2, l);
-    real_sum += vfmv_f_s_f32m1_f32(vfredosum_vs_f32m2_f32m1(v_temp, vfsub_vv_f32m2(v_RR, v_II, l), v_temp, l));
+    real_sum += vfmv_f_s_f32m1_f32(vfredusum_vs_f32m2_f32m1(v_temp, vfsub_vv_f32m2(v_RR, v_II, l), v_temp, l));
     v_RI = vfmul_vv_f32m2(v_R1, v_I2, l);
     v_IR = vfmul_vv_f32m2(v_I1, v_R2, l);
-    imag_sum += vfmv_f_s_f32m1_f32(vfredosum_vs_f32m2_f32m1(v_temp, vfadd_vv_f32m2(v_RI, v_IR, l), v_temp, l));
+    imag_sum += vfmv_f_s_f32m1_f32(vfredusum_vs_f32m2_f32m1(v_temp, vfadd_vv_f32m2(v_RI, v_IR, l), v_temp, l));
 
     pSrcA += l * 2;
     pSrcB += l * 2;

@@ -84,7 +84,7 @@ void riscv_dot_prod_f32(
     pSrcA += l;
     v_B = vle32_v_f32m8(pSrcB, l);
     pSrcB += l;
-    v_sum = vfredosum_vs_f32m8_f32m1(v_sum, vfmul_vv_f32m8(v_A, v_B, l), v_sum, l);
+    v_sum = vfredusum_vs_f32m8_f32m1(v_sum, vfmul_vv_f32m8(v_A, v_B, l), v_sum, l);
   }
   sum = vfmv_f_s_f32m1_f32(v_sum);
 #else

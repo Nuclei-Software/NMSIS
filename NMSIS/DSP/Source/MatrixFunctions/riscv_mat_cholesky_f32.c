@@ -115,7 +115,7 @@ riscv_status riscv_mat_cholesky_f32(
               pGX += l;
               v_y = vle32_v_f32m8(pGY, l);
               pGY += l;
-              v_a = vfredosum_vs_f32m8_f32m1(v_a, vfmul_vv_f32m8(v_x, v_y, l), v_a, l);
+              v_a = vfredusum_vs_f32m8_f32m1(v_a, vfmul_vv_f32m8(v_x, v_y, l), v_a, l);
           }
 
           pG[j * n + i] -= vfmv_f_s_f32m1_f32(v_a);

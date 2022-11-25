@@ -76,8 +76,8 @@ float32_t riscv_weighted_sum_f32(const float32_t *in, const float32_t *weigths, 
         pIn += l;
         v_y = vle32_v_f32m8(pW, l);
         pW += l;
-        v_a = vfredosum_vs_f32m8_f32m1(v_a, vfmul_vv_f32m8(v_x, v_y, l), v_a, l);
-        v_b = vfredosum_vs_f32m8_f32m1(v_b, v_y, v_b, l);
+        v_a = vfredusum_vs_f32m8_f32m1(v_a, vfmul_vv_f32m8(v_x, v_y, l), v_a, l);
+        v_b = vfredusum_vs_f32m8_f32m1(v_b, v_y, v_b, l);
     }
     accum1 += vfmv_f_s_f32m1_f32(v_a);
     accum2 += vfmv_f_s_f32m1_f32(v_b);

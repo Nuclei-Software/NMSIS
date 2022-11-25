@@ -88,7 +88,7 @@ void riscv_var_f32(
   {
     v_in = vle32_v_f32m8(pInput, l);
     pInput += l;
-    v_sum = vfredosum_vs_f32m8_f32m1(v_sum, v_in, v_sum, l);
+    v_sum = vfredusum_vs_f32m8_f32m1(v_sum, v_in, v_sum, l);
   }
   sum += vfmv_f_s_f32m1_f32(v_sum);
   /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) / blockSize  */
@@ -102,7 +102,7 @@ void riscv_var_f32(
     v_in = vle32_v_f32m8(pInput, l);
     pInput += l;
     v_fValue = vfsub_vf_f32m8(v_in, fMean, l);
-    v_fSum = vfredosum_vs_f32m8_f32m1(v_fSum, vfmul_vv_f32m8(v_fValue, v_fValue, l), v_fSum, l);
+    v_fSum = vfredusum_vs_f32m8_f32m1(v_fSum, vfmul_vv_f32m8(v_fValue, v_fValue, l), v_fSum, l);
   }
   fSum += vfmv_f_s_f32m1_f32(v_fSum);
 #else

@@ -113,7 +113,7 @@ riscv_status status;                             /* status of matrix inverse */
                 pVut_row += l;
                 v_y = vlse32_v_f32m8(pX_row, bstride, l);
                 pX_row += l * cols;
-                v_a = vfredosum_vs_f32m8_f32m1(v_a, vfmul_vv_f32m8(v_x, v_y, l), v_a, l);
+                v_a = vfredusum_vs_f32m8_f32m1(v_a, vfmul_vv_f32m8(v_x, v_y, l), v_a, l);
             }
 
             tmp -= vfmv_f_s_f32m1_f32(v_a);

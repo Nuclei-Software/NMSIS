@@ -111,7 +111,7 @@ riscv_status status;                             /* status of matrix inverse */
             for (; (l = vsetvl_e64m8(blkCnt)) > 0; blkCnt -= l) {
                 v_x = vle64_v_f64m8(pVut_row, l);
                 v_y = vlse64_v_f64m8(pX_row, bstride, l);
-                v_a = vfredosum_vs_f64m8_f64m1(v_a, vfmul_vv_f64m8(v_x, v_y, l), v_a, l);
+                v_a = vfredusum_vs_f64m8_f64m1(v_a, vfmul_vv_f64m8(v_x, v_y, l), v_a, l);
                 pVut_row += l;
                 pX_row += l * cols;
             }

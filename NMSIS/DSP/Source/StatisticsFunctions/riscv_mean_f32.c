@@ -64,7 +64,7 @@ void riscv_mean_f32(
   for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
     v_in = vle32_v_f32m8(input, l);
     input += l;
-    v_sum = vfredosum_vs_f32m8_f32m1(v_sum, v_in, v_sum, l);
+    v_sum = vfredusum_vs_f32m8_f32m1(v_sum, v_in, v_sum, l);
   }
   sum += vfmv_f_s_f32m1_f32(v_sum);
 #else

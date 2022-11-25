@@ -91,7 +91,7 @@ void riscv_mat_vec_mult_f32(const riscv_matrix_instance_f32 *pSrcMat, const floa
             pInA += l;
             v_inB = vle32_v_f32m8(pInB, l);
             pInB += l;
-            vsum = vfredosum_vs_f32m8_f32m1(vsum, vfmul_vv_f32m8(v_inA, v_inB, l), vsum, l);
+            vsum = vfredusum_vs_f32m8_f32m1(vsum, vfmul_vv_f32m8(v_inA, v_inB, l), vsum, l);
         }
         sum = vfmv_f_s_f32m1_f32(vsum);
         *px++ = sum;

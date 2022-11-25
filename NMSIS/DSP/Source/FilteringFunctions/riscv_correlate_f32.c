@@ -231,7 +231,7 @@ void riscv_correlate_f32(
       px += l;
       vy = vle32_v_f32m8(py, l);
       py += l;
-      temp00m1 = vfredosum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l);
+      temp00m1 = vfredusum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l);
     }
     sum += vfmv_f_s_f32m1_f32(temp00m1);
 #else
@@ -337,7 +337,7 @@ void riscv_correlate_f32(
         px += l;
         vy = vle32_v_f32m8(py, l);
         py += l;
-        temp00m1 = vfredosum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l);
+        temp00m1 = vfredusum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l);
       }
       sum += vfmv_f_s_f32m1_f32(temp00m1);
 
@@ -659,7 +659,7 @@ void riscv_correlate_f32(
       px += l;
       vy = vle32_v_f32m8(py, l);
       py += l;
-      temp00m1 = vfredosum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l);
+      temp00m1 = vfredusum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l);
     }
     sum += vfmv_f_s_f32m1_f32(temp00m1);
 #else

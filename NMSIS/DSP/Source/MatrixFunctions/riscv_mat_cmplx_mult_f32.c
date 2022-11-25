@@ -139,8 +139,8 @@ riscv_status riscv_mat_cmplx_mult_f32(
         v_IR = vfmul_vv_f32m8(v_inAI, v_inBR, l);
         vReal = vfsub_vv_f32m8(v_RR, v_II, l);
         vImag = vfadd_vv_f32m8(v_RI, v_IR, l);
-        sumReal += vfmv_f_s_f32m1_f32(vfredosum_vs_f32m8_f32m1(vsumReal, vReal, vsumReal, l));
-        sumImag += vfmv_f_s_f32m1_f32(vfredosum_vs_f32m8_f32m1(vsumImag, vImag, vsumImag, l));
+        sumReal += vfmv_f_s_f32m1_f32(vfredusum_vs_f32m8_f32m1(vsumReal, vReal, vsumReal, l));
+        sumImag += vfmv_f_s_f32m1_f32(vfredusum_vs_f32m8_f32m1(vsumImag, vImag, vsumImag, l));
 
         pInA += l * 2;    //Pointer to the first element of the next line
         pInB += l * numColsB * 2;

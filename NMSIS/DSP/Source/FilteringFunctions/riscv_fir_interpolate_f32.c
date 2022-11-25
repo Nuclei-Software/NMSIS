@@ -363,7 +363,7 @@ void riscv_fir_interpolate_f32(
         ptr1 += l;
         v_y = vlse32_v_f32m8(ptr2, bstride, l);
         ptr2 += l;
-        v_temp = vfredosum_vs_f32m8_f32m1(v_temp, vfmul_vv_f32m8(v_x, v_y, l), v_temp, l);
+        v_temp = vfredusum_vs_f32m8_f32m1(v_temp, vfmul_vv_f32m8(v_x, v_y, l), v_temp, l);
       }
       sum0 += vfmv_f_s_f32m1_f32(v_temp);
 #else
