@@ -106,7 +106,7 @@ void riscv_rms_q15(
 #else
 #ifdef NUCLEI_DSP_N3
     in64 = read_q15x4_ia((q15_t **)&pSrc);
-    sum = __dsmalda(sum, in64, in64);
+    sum = __RV_DSMALDA(sum, in64, in64);
 #else
     in32 = read_q15x2_ia((q15_t **)&pSrc);
     sum = __SMLALD(in32, in32, sum);
