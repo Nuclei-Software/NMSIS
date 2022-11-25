@@ -53,68 +53,69 @@ void riscv_absmax_q15(
         q15_t * pResult,
         uint32_t * pIndex)
 {
-        q15_t cur_absmax, out;                     /* Temporary variables to store the output value. */\
-        uint32_t blkCnt, outIndex;                     /* Loop counter */                                   \
-        uint32_t index;                                /* index of maximum value */                         \
-                                                                                                            \
-  /* Initialize index value to zero. */                                                                     \
-  outIndex = 0U;                                                                                            \
-  /* Load first input value that act as reference value for comparision */                                  \
-  out = *pSrc++;                                                                                            \
-  out = (out > 0) ? out : (q15_t)__QSUB16(0, out);                                                                           \
-  /* Initialize index of extrema value. */                                                                  \
-  index = 0U;                                                                                               \
-                                                                                                            \
-  /* Loop unrolling: Compute 4 outputs at a time */                                                         \
-  blkCnt = (blockSize - 1U) >> 2U;                                                                          \
-                                                                                                            \
-  while (blkCnt > 0U)                                                                                       \
-  {                                                                                                         \
-    /* Initialize cur_absmax to next consecutive values one by one */                                         \
-    cur_absmax = *pSrc++;                                                                                     \
-    cur_absmax = (cur_absmax > 0) ? cur_absmax : (q15_t)__QSUB16(0, cur_absmax);                                                                \
-    /* compare for the extrema value */                                                                     \
-    if (cur_absmax > out)                                                                         \
-    {                                                                                                       \
-      /* Update the extrema value and it's index */                                                         \
-      out = cur_absmax;                                                                                       \
-      outIndex = index + 1U;                                                                                \
-    }                                                                                                       \
-                                                                                                            \
-    cur_absmax = *pSrc++;                                                                                     \
-    cur_absmax = (cur_absmax > 0) ? cur_absmax : (q15_t)__QSUB16(0, cur_absmax);                                                                \
-    if (cur_absmax > out)                                                                         \
-    {                                                                                                       \
-      out = cur_absmax;                                                                                       \
-      outIndex = index + 2U;                                                                                \
-    }                                                                                                       \
-                                                                                                            \
-    cur_absmax = *pSrc++;                                                                                     \
-    cur_absmax = (cur_absmax > 0) ? cur_absmax : (q15_t)__QSUB16(0, cur_absmax);                                                                \
-    if (cur_absmax > out)                                                                          \
-    {                                                                                                       \
-      out = cur_absmax;                                                                                       \
-      outIndex = index + 3U;                                                                                \
-    }                                                                                                       \
-                                                                                                            \
-    cur_absmax = *pSrc++;                                                                                     \
-    cur_absmax = (cur_absmax > 0) ? cur_absmax : (q15_t)__QSUB16(0, cur_absmax);                                                                 \
-    if (cur_absmax > out)                                                                          \
-    {                                                                                                       \
-      out = cur_absmax;                                                                                       \
-      outIndex = index + 4U;                                                                                \
-    }                                                                                                       \
-                                                                                                            \
-    index += 4U;                                                                                            \
-                                                                                                            \
-    /* Decrement loop counter */                                                                            \
-    blkCnt--;                                                                                               \
-  }                                                                                                         \
-                                                                                                            \
-  /* Loop unrolling: Compute remaining outputs */                                                           \
-  blkCnt = (blockSize - 1U) % 4U;                                                                           \
-                                                                                                            \
-                                                                                                            \
+        q15_t cur_absmax, out;                     /* Temporary variables to store the output value. */
+        q63_t cur;
+        unsigned long blkCnt, outIndex;            /* Loop counter */
+        int index;                                 /* index of maximum value */
+
+  /* Initialize index value to zero. */
+  outIndex = 0U;
+  /* Load first input value that act as reference value for comparision */
+  out = *pSrc;
+  out = (out > 0) ? out : (q15_t)__QSUB16(0, out);
+  /* Initialize index of extreme value. */
+  index = -1;
+
+  /* Loop unrolling: Compute 4 outputs at a time */
+  blkCnt = blockSize >> 2U;
+  while (blkCnt > 0U)
+  {
+    cur = read_q15x4_ia((q15_t**)&pSrc);
+#if (__RISCV_XLEN == 64)
+    cur = __RV_KABS16(cur);
+#else
+#if defined (NUCLEI_DSP_N1)
+    cur = __dkabs16(cur);
+#else
+    cur = (q63_t)__RV_KABS16((uint32_t)(cur >> 32)) << 32 | (uint32_t)__RV_KABS16((uint32_t)(cur));
+#endif /* defined (NUCLEI_DSP_N1) */
+#endif /* (__RISCV_XLEN == 64) */
+
+  /* Initialize cur_absmax to next consecutive values one by one */
+    cur_absmax = (q15_t)cur;                                                    /* num1 */
+    if (cur_absmax > out)
+    {
+      out = cur_absmax;
+      outIndex = index + 1U;
+    }
+    cur_absmax = (q15_t)(cur >> 16U);                                           /* num2 */
+    if (cur_absmax > out)
+    {
+      out = cur_absmax;
+      outIndex = index + 2U;
+    }
+
+    cur_absmax = (q15_t)(cur >> 32U);                                           /* num3 */
+    if (cur_absmax > out)
+    {
+      out = cur_absmax;
+      outIndex = index + 3U;
+    }
+    cur_absmax = (q15_t)(cur >> 48U);                                           /* num4 */
+    if (cur_absmax > out)
+    {
+      out = cur_absmax;
+      outIndex = index + 4U;
+    }
+
+    index += 4U;
+
+    /* Decrement loop counter */
+    blkCnt--;
+  }
+
+  /* Loop unrolling: Compute remaining outputs */
+  blkCnt = blockSize & 3U;
   while (blkCnt > 0U)                                                                                       \
   {                                                                                                         \
     cur_absmax = *pSrc++;                                                                                     \
@@ -141,14 +142,14 @@ void riscv_absmax_q15(
         uint32_t * pIndex)
 {
   q15_t maxVal, out;                             /* Temporary variables to store the output value. */
-  uint32_t blkCnt, outIndex;                     /* Loop counter */
+  unsigned long blkCnt, outIndex;                     /* Loop counter */
 
 #if defined(RISCV_MATH_VECTOR)
   blkCnt = blockSize;
   size_t l;
   vint16m8_t v_x, v_zero;
   vint16m1_t v_temp;
-  uint32_t temp_index = 0;
+  unsigned long temp_index = 0;
   l = vsetvlmax_e16m8();
   v_zero = vmv_v_x_i16m8(0, l);
   l = vsetvlmax_e16m1();
@@ -156,7 +157,7 @@ void riscv_absmax_q15(
   const q15_t *pData = pSrc;
   out = *pData;
   outIndex = 0;
-  
+
   for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
     v_x = vle16_v_i16m8(pData, l);
     pData += l;
@@ -171,7 +172,7 @@ void riscv_absmax_q15(
     temp_index += l;
   }
   pData = pSrc + outIndex;
-  
+
   while (1) {
       if ((out == *pData) || (out == -(*pData))) {
         break;

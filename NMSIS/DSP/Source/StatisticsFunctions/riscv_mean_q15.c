@@ -59,8 +59,14 @@ void riscv_mean_q15(
         uint32_t blockSize,
         q15_t * pResult)
 {
-  uint32_t blkCnt;             /* Loop counter */
-  q31_t sum = 0;               /* Temporary result storage */
+  unsigned long blkCnt;                          /* Loop counter */
+  q31_t sum = 0;                                 /* Temporary result storage */
+#if defined (RISCV_MATH_DSP) && ((__RISCV_XLEN == 64) || defined (NUCLEI_DSP_N3))
+  q63_t in64, sum64 = 0;
+#else
+  q31_t in;
+#endif /* defined (RISCV_MATH_DSP) && ((__RISCV_XLEN == 64) || defined (NUCLEI_DSP_N3)) */
+
 
 #if defined(RISCV_MATH_VECTOR)
   blkCnt = blockSize;          /* Loop counter */
@@ -77,14 +83,30 @@ void riscv_mean_q15(
   }
   sum += vmv_x_s_i32m1_i32(v_sum);
 #else
-
 #if defined (RISCV_MATH_LOOPUNROLL)
-  q31_t in;
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
 
   while (blkCnt > 0U)
   {
+#ifdef RISCV_MATH_DSP
+#if __RISCV_XLEN == 64
+    in64 = read_q15x4_ia((q15_t **)&pSrc);
+    sum64 = __RV_SMALDA(sum64, in64, 0x0001000100010001);
+#else
+#if defined (NUCLEI_DSP_N3)
+    in64 = read_q15x4_ia((q15_t **)&pSrc);
+    sum64 = __RV_DSMALDA(sum64, in64, 0x0001000100010001);
+#else
+    in = read_q15x2_ia((q15_t **)&pSrc);
+    sum = __RV_SMALDA(sum, in, 0x00010001);
+
+    in = read_q15x2_ia((q15_t **)&pSrc);
+    sum = __RV_SMALDA(sum, in, 0x00010001);
+
+#endif /* defined(NUCLEI_DSP_N3) */
+#endif /* __RISCV_XLEN == 64 */
+#else
     /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) */
     in = read_q15x2_ia((q15_t **)&pSrc);
     sum += ((in << 16U) >> 16U);
@@ -93,17 +115,18 @@ void riscv_mean_q15(
     in = read_q15x2_ia((q15_t **)&pSrc);
     sum += ((in << 16U) >> 16U);
     sum += (in >> 16U);
+#endif /* #ifdef RISCV_MATH_DSP */
     /* Decrement the loop counter */
     blkCnt--;
   }
+#if defined (RISCV_MATH_DSP) && ((__RISCV_XLEN == 64) || defined (NUCLEI_DSP_N3))
+  sum = (q31_t)sum64 + (q31_t)(sum64 >> 32);
+#endif /* defined (RISCV_MATH_DSP) && ((__RISCV_XLEN == 64) || defined (NUCLEI_DSP_N3)) */
   /* Loop unrolling: Compute remaining outputs */
   blkCnt = blockSize & 0x3U;
-
 #else
-
   /* Initialize blkCnt with number of samples */
   blkCnt = blockSize;
-
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
 
   while (blkCnt > 0U)

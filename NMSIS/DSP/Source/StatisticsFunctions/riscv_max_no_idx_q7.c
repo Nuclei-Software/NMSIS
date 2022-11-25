@@ -53,8 +53,8 @@ void riscv_max_no_idx_q7(
         uint32_t blockSize,
         q7_t * pResult)
 {
-  q7_t maxVal1, out;  /* Temporary variables to store the output value. */
-  uint32_t blkCnt;    /* loop counter */
+  q7_t maxVal1, out;      /* Temporary variables to store the output value. */
+  unsigned long blkCnt;   /* loop counter */
 
 #if defined(RISCV_MATH_VECTOR)
   size_t l;
@@ -74,10 +74,68 @@ void riscv_max_no_idx_q7(
 #else
 
   /* Load first input value that act as reference value for comparision */
-  out = *pSrc++;
+  out = *pSrc;
+  unsigned long i;
 
-  blkCnt = (blockSize - 1U);
+#ifdef RISCV_MATH_DSP
+#if __RISCV_XLEN == 64
+  q63_t in, max = 0;
+  q7_t max_q7[8];
+  blkCnt = blockSize >> 3U;
+#else
+  q31_t in, max = 0;
+  q7_t max_q7[4];
+  blkCnt = blockSize >> 2U;
+#endif /* __RISCV_XLEN == 64 */
 
+  while (blkCnt > 0U)
+  {
+#if __RISCV_XLEN == 64
+    in = read_q7x8_ia((q7_t**)&pSrc);
+#else
+    in = read_q7x4_ia((q7_t**)&pSrc);
+#endif /* __RISCV_XLEN == 64 */
+    max = __RV_SMAX8(max, in);
+    blkCnt--;
+  }
+
+  max_q7[0] = (q7_t)max;
+  max_q7[1] = (q7_t)(max >> 8);
+  max_q7[2] = (q7_t)(max >> 16);
+  max_q7[3] = (q7_t)(max >> 24);
+#if __RISCV_XLEN == 64
+  max_q7[4] = (q7_t)(max >> 32);
+  max_q7[5] = (q7_t)(max >> 40);
+  max_q7[6] = (q7_t)(max >> 48);
+  max_q7[7] = (q7_t)(max >> 56);
+#endif /* __RISCV_XLEN == 64 */
+
+  maxVal1 = max_q7[0];
+
+#if __RISCV_XLEN == 64
+  for (i = 1; i <= 7; i++)
+#else
+  for (i = 1; i <= 3; i++)
+#endif /* __RISCV_XLEN == 64 */
+  {
+    if (maxVal1 < max_q7[i])
+    {
+      /* Update the maximum value */
+      maxVal1 = max_q7[i];
+    }
+  }
+  out = maxVal1;
+#endif /* #ifdef RISCV_MATH_DSP */
+
+#ifdef RISCV_MATH_DSP
+#if __RISCV_XLEN == 64
+  blkCnt = blockSize & 7U;
+#else
+  blkCnt = blockSize & 3U;
+#endif /* __RISCV_XLEN == 64 */
+#else
+  blkCnt = blockSize;
+#endif /* #ifdef RISCV_MATH_DSP */
 
   while (blkCnt > 0U)
   {
@@ -90,11 +148,10 @@ void riscv_max_no_idx_q7(
       /* Update the maximum value */
       out = maxVal1;
     }
-
-    /* Decrement the loop counter */
+    /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* #if defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR) */
   /* Store the maximum value into destination pointer */
   *pResult = out;
 }

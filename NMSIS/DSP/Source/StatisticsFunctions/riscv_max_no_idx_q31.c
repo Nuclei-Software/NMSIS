@@ -53,7 +53,7 @@ void riscv_max_no_idx_q31(
   q31_t * pResult)
 {
   q31_t maxVal1, out;       /* Temporary variables to store the output value. */
-  uint32_t blkCnt;          /* loop counter */
+  unsigned long blkCnt;     /* Loop counter */
 
 #if defined(RISCV_MATH_VECTOR)
   size_t l;
@@ -71,12 +71,39 @@ void riscv_max_no_idx_q31(
   }
   out = vmv_x_s_i32m1_i32(v_tempa);
 #else
-
   /* Load first input value that act as reference value for comparision */
-  out = *pSrc++;
+  out = *pSrc;
 
-  blkCnt = (blockSize - 1U);
+#if defined(RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+  q63_t in64, max64 = 0;
+  q31_t max_q31[2];
 
+  blkCnt = blockSize >> 1U;
+  while (blkCnt > 0U)
+  {
+    in64 = read_q31x2_ia((q31_t**)&pSrc);
+    max64 = __RV_SMAX32(max64, in64);
+    blkCnt--;
+  }
+
+  max_q31[0] = (q31_t)max64;
+  max_q31[1] = (q31_t)(max64 >> 32);
+
+  maxVal1 = max_q31[0];
+
+  if(maxVal1 < max_q31[1])
+  {
+    maxVal1 = max_q31[1];
+  }
+  out = maxVal1;
+
+#endif /* defined(RISCV_MATH_DSP) && __RISCV_XLEN == 64 */
+
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+  blkCnt = blockSize & 1U;
+#else
+  blkCnt = blockSize;
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
   while (blkCnt > 0U)
   {
@@ -89,8 +116,7 @@ void riscv_max_no_idx_q31(
       /* Update the maximum value */
       out = maxVal1;
     }
-
-    /* Decrement the loop counter */
+    /* Decrement loop counter */
     blkCnt--;
   }
 #endif /* defined(RISCV_MATH_VECTOR) */

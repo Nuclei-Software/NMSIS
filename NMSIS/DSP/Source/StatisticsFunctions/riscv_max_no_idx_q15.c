@@ -53,7 +53,7 @@ void riscv_max_no_idx_q15(
         q15_t * pResult)
 {
   q15_t maxVal1, out;       /* Temporary variables to store the output value. */
-  uint32_t blkCnt;          /* loop counter */
+  unsigned long blkCnt;     /* loop counter */
 
 #if defined(RISCV_MATH_VECTOR)
   size_t l;
@@ -73,10 +73,67 @@ void riscv_max_no_idx_q15(
 #else
 
   /* Load first input value that act as reference value for comparision */
-  out = *pSrc++;
+  out = *pSrc;
+  unsigned long i;
 
-  blkCnt = (blockSize - 1U);
+#ifdef RISCV_MATH_DSP
+#if __RISCV_XLEN == 64
+  q63_t in, max = 0;
+  q15_t max_q15[4];
+  blkCnt = blockSize >> 2U;
+#else
+  q31_t in, max = 0;
+  q15_t max_q15[2];
+  blkCnt = blockSize >> 1U;
+#endif /* __RISCV_XLEN == 64 */
 
+  while (blkCnt > 0U)
+  {
+#if __RISCV_XLEN == 64
+    in = read_q15x4_ia((q15_t**)&pSrc);
+#else
+    in = read_q15x2_ia((q15_t**)&pSrc);
+#endif /* __RISCV_XLEN == 64 */
+    max = __RV_SMAX16(max, in);
+    blkCnt--;
+  }
+
+  max_q15[0] = (q15_t)max;
+  max_q15[1] = (q15_t)(max >> 16);
+#if __RISCV_XLEN == 64
+  max_q15[2] = (q15_t)(max >> 32);
+  max_q15[3] = (q15_t)(max >> 48);
+#endif /* __RISCV_XLEN == 64 */
+
+  maxVal1 = max_q15[0];
+
+#if __RISCV_XLEN == 64
+  for (i = 1; i <= 3; i++)
+  {
+    if (maxVal1 < max_q15[i])
+    {
+      /* Update the maximum value0 */
+      maxVal1 = max_q15[i];
+    }
+  }
+#else
+  if(maxVal1 < max_q15[1])
+  {
+    maxVal1 = max_q15[1];
+  }
+#endif /* __RISCV_XLEN == 64 */
+  out = maxVal1;
+#endif /* #ifdef RISCV_MATH_DSP */
+
+#ifdef RISCV_MATH_DSP
+#if __RISCV_XLEN == 64
+  blkCnt = blockSize & 3U;
+#else
+  blkCnt = blockSize & 1U;
+#endif /* __RISCV_XLEN == 64 */
+#else
+  blkCnt = blockSize;
+#endif /* #ifdef RISCV_MATH_DSP */
 
   while (blkCnt > 0U)
   {
@@ -89,11 +146,10 @@ void riscv_max_no_idx_q15(
       /* Update the maximum value */
       out = maxVal1;
     }
-
     /* Decrement the loop counter */
     blkCnt--;
   }
-#endif
+#endif /* defined(RISCV_MATH_VECTOR) */
   /* Store the maximum value into destination pointer */
   *pResult = out;
 }
