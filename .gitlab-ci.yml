@@ -75,6 +75,7 @@ build_library:
     name: "nmsis_library-job${CI_JOB_ID}-${CI_COMMIT_SHA::8}"
     paths:
       - NMSIS/gen
+      - NMSIS/build/*/*/build.log
     expire_in: 2 day
   parallel:
     matrix:
@@ -87,11 +88,12 @@ build_library:
     - pip3 install prettytable
     - cd NMSIS
     - echo "Generate NMSIS Library for Nuclei RISC-V Processors"
-    - make gen > build.log 2>&1
+    - make gen | grep -E "^Build\ Library|^\+|^\|"
+    - buildsts=${PIPESTATUS[0]}
     # mv build library to different loc according to NUCLEI_DSP settings
     - mkdir -p gen/${NUCLEI_DSP}
     - mv Library gen/${NUCLEI_DSP}/
-    - mv build.log gen/${NUCLEI_DSP}/
+    - exit $buildsts
 
 build_align_library:
   stage: build
