@@ -105,7 +105,7 @@
 
             lt_row = &pLT[n*i];
 
-#if defined(RISCV_MATH_VECTOR) && (defined(__riscv_flen) && (__riscv_flen == 64))
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) && (defined (__riscv_flen) && (__riscv_flen == 64))
             uint32_t blkCnt;                               /* Loop counter */
             size_t l;
             vfloat64m8_t v_x, v_y;
@@ -133,7 +133,7 @@
             {
                 tmp -= lt_row[k] * pX[cols*k+j];
             }
-#endif
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) && (defined (__riscv_flen) && (__riscv_flen == 64)) */
             if (lt_row[i]==0.0)
             {
               return(RISCV_MATH_SINGULAR);

@@ -66,7 +66,7 @@ void riscv_mat_vec_mult_q31(const riscv_matrix_instance_q31 *pSrcMat, const q31_
     q31_t matData, vecData;
 #endif/* #if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
     const q31_t *pInA = NULL;
     const q31_t *pInB = NULL;
     // number of matrix columns  numColsA = numrowB
@@ -204,7 +204,7 @@ void riscv_mat_vec_mult_q31(const riscv_matrix_instance_q31 *pSrcMat, const q31_
         i = i + numCols;
         row--;
     }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
 }
 
 /**

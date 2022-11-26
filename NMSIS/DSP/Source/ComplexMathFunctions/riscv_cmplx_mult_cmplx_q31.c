@@ -57,7 +57,7 @@ void riscv_cmplx_mult_cmplx_q31(
         q31_t * pDst,
         uint32_t numSamples)
 {
-#if defined(RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
   uint32_t blkCnt = numSamples;                               /* Loop counter */
   size_t l;
   ptrdiff_t bstride = 8;
@@ -115,7 +115,7 @@ void riscv_cmplx_mult_cmplx_q31(
     c = *pSrcB++;
     d = *pSrcB++;
 
-#if defined(RISCV_MATH_DSP)
+#if defined (RISCV_MATH_DSP)
     *pDst++ = (q31_t)(((q31_t)__RV_SMMUL(a, c) >> 1) - ((q31_t)__RV_SMMUL(b, d) >> 1));
     *pDst++ = (q31_t)(((q31_t)__RV_SMMUL(a, d) >> 1) + ((q31_t)__RV_SMMUL(b, c) >> 1));
 #else
@@ -128,7 +128,7 @@ void riscv_cmplx_mult_cmplx_q31(
     c = *pSrcB++;
     d = *pSrcB++;
 
-#if defined(RISCV_MATH_DSP)
+#if defined (RISCV_MATH_DSP)
     *pDst++ = (q31_t)(((q31_t)__RV_SMMUL(a, c) >> 1) - ((q31_t)__RV_SMMUL(b, d) >> 1));
     *pDst++ = (q31_t)(((q31_t)__RV_SMMUL(a, d) >> 1) + ((q31_t)__RV_SMMUL(b, c) >> 1));
 #else
@@ -141,7 +141,7 @@ void riscv_cmplx_mult_cmplx_q31(
     c = *pSrcB++;
     d = *pSrcB++;
 
-#if defined(RISCV_MATH_DSP)
+#if defined (RISCV_MATH_DSP)
     *pDst++ = (q31_t)(((q31_t)__RV_SMMUL(a, c) >> 1) - ((q31_t)__RV_SMMUL(b, d) >> 1));
     *pDst++ = (q31_t)(((q31_t)__RV_SMMUL(a, d) >> 1) + ((q31_t)__RV_SMMUL(b, c) >> 1));
 #else
@@ -174,7 +174,7 @@ void riscv_cmplx_mult_cmplx_q31(
     d = *pSrcB++;
 
     /* store result in 3.29 format in destination buffer. */
-#if defined(RISCV_MATH_DSP)
+#if defined (RISCV_MATH_DSP)
     *pDst++ = (q31_t)(((q31_t)__RV_SMMUL(a, c) >> 1) - ((q31_t)__RV_SMMUL(b, d) >> 1));
     *pDst++ = (q31_t)(((q31_t)__RV_SMMUL(a, d) >> 1) + ((q31_t)__RV_SMMUL(b, c) >> 1));
 #else
@@ -184,7 +184,7 @@ void riscv_cmplx_mult_cmplx_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
 }
 
 /**

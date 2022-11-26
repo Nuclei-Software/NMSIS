@@ -182,7 +182,7 @@ void riscv_correlate_q15(
    * ----------------------*/
 
   /* The first loop starts here */
-#if defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
   while (blockSize1 > 0U)
   {
     /* Accumulator is made zero for every iteration */
@@ -280,7 +280,7 @@ void riscv_correlate_q15(
     /* Decrement loop counter */
     blockSize1--;
   }
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
   /* --------------------------
    * Initializations of stage2
    * ------------------------*/

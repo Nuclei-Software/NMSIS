@@ -171,7 +171,7 @@ riscv_status riscv_conv_partial_q31(
     {
       /* Accumulator is made zero for every iteration */
       sum = 0;
-#if defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
       uint32_t vblkCnt = count;                               /* Loop counter */
       size_t l;
       vint32m4_t vx, vy;
@@ -228,7 +228,7 @@ riscv_status riscv_conv_partial_q31(
         /* Decrement loop counter */
         k--;
       }
-#endif /* #if defined (RISCV_MATH_VECTOR) */
+#endif /* #if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
       /* Store the result in the accumulator in the destination buffer. */
       *pOut++ = (q31_t) (sum >> 31);
 
@@ -274,7 +274,7 @@ riscv_status riscv_conv_partial_q31(
     /* -------------------
      * Stage2 process
      * ------------------*/
-#if defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
     blkCnt = blockSize2;
 
     while (blkCnt > 0U)
@@ -531,7 +531,7 @@ riscv_status riscv_conv_partial_q31(
         blkCnt--;
       }
     }
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
 
     /* --------------------------
      * Initializations of stage3
@@ -566,7 +566,7 @@ riscv_status riscv_conv_partial_q31(
     /* -------------------
      * Stage3 process
      * ------------------*/
-#if defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
     while (blockSize3 > 0)
     {
       /* Accumulator is made zero for every iteration */
@@ -659,7 +659,7 @@ riscv_status riscv_conv_partial_q31(
       /* Decrement the loop counter */
       blockSize3--;
     }
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
   }

@@ -224,7 +224,7 @@ riscv_status riscv_mat_mult_q15(
   else
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
   uint16_t blkCnt = numColsA;  //number of matrix columns  numColsA = numrowB
   size_t l;
   ptrdiff_t bstride = 2;       //  16bit/8bit = 2
@@ -331,7 +331,7 @@ riscv_status riscv_mat_mult_q15(
     status = RISCV_MATH_SUCCESS;
   }
 #endif /* #if defined (RISCV_MATH_DSP) */
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
   /* Return to application */
   return (status);
 }

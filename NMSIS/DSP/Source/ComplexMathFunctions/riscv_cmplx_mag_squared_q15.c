@@ -54,7 +54,7 @@ void riscv_cmplx_mag_squared_q15(
         q15_t * pDst,
         uint32_t numSamples)
 {
-#if defined(RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
   uint32_t blkCnt = numSamples;                 /* Loop counter */
   size_t l;
 
@@ -192,7 +192,7 @@ void riscv_cmplx_mag_squared_q15(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
 }
 
 

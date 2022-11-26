@@ -128,7 +128,7 @@ void riscv_radix2_butterfly_f32(
         uint16_t twidCoefModifier)
 {
 
-#if defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) && (defined (__riscv_flen) && (__riscv_flen == 64))
 
 	size_t stage_loop_count, group_count, group_total, group_size, butterfly_left, bufferfly_total;
 
@@ -432,7 +432,7 @@ void riscv_radix2_butterfly_f32(
             pcopy_dst += bit_reverse_vl ;
 		}
 
-	}  /* #if defined (RISCV_MATH_VECTOR) */
+	}  /* #if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) && (defined (__riscv_flen) && (__riscv_flen == 64)) */
 
 #else
 
@@ -591,7 +591,7 @@ void riscv_radix2_butterfly_f32(
       twidCoefModifier <<= 1U;
    }
 #endif /* #if defined (RISCV_MATH_DSP) */
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) && (defined (__riscv_flen) && (__riscv_flen == 64)) */
 
 }
 

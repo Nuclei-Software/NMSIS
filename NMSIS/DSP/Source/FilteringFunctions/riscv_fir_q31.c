@@ -231,7 +231,7 @@ void riscv_fir_q31(
     pb = pCoeffs;
 
     i = numTaps;
-#if defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
     uint32_t vblkCnt = i;                               /* Loop counter */
     size_t l;
     vint32m4_t vx, vy;
@@ -255,7 +255,7 @@ void riscv_fir_q31(
 
       i--;
     } while (i > 0U);
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
 
     /* Result is in 2.62 format. Convert to 1.31 and store in destination buffer. */
     *pDst++ = (q31_t) (acc0 >> 31U);

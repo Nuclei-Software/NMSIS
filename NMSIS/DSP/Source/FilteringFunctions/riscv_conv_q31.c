@@ -149,7 +149,7 @@ void riscv_conv_q31(
   /* ------------------------
    * Stage1 process
    * ----------------------*/
-#if defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
   while (blockSize1 > 0U)
   {
     /* Accumulator is made zero for every iteration */
@@ -249,7 +249,7 @@ void riscv_conv_q31(
     /* Decrement loop counter */
     blockSize1--;
   }
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
 
   /* --------------------------
    * Initializations of stage2
@@ -274,7 +274,7 @@ void riscv_conv_q31(
   /* -------------------
    * Stage2 process
    * ------------------*/
-#if defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
     blkCnt = blockSize2;
 
     while (blkCnt > 0U)
@@ -528,7 +528,7 @@ void riscv_conv_q31(
       blkCnt--;
     }
   }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
 
   /* --------------------------
    * Initializations of stage3
@@ -555,7 +555,7 @@ void riscv_conv_q31(
   /* -------------------
    * Stage3 process
    * ------------------*/
-#if defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
   while (blockSize3 > 0U)
   {
     /* Accumulator is made zero for every iteration */
@@ -645,7 +645,7 @@ void riscv_conv_q31(
     /* Decrement loop counter */
     blockSize3--;
   }
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
 
 }
 

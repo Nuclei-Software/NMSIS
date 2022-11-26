@@ -62,7 +62,7 @@ void riscv_dot_prod_q15(
   uint32_t blkCnt;                               /* Loop counter */
   q63_t sum = 0;                                 /* Temporary return variable */
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
   blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vint16m4_t v_inA, v_inB;
@@ -134,7 +134,7 @@ void riscv_dot_prod_q15(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
   /* Store result in destination buffer in 34.30 format */
   *result = sum;
 }

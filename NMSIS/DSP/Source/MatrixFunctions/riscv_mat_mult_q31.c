@@ -94,7 +94,7 @@ riscv_status riscv_mat_mult_q31(
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
   uint16_t blkCnt = numColsA;  //number of matrix columns  numColsA = numrowB
   size_t l;              // max_l is the maximum column elements at a time
   ptrdiff_t bstride = 4;       //  32bit/8bit = 4
@@ -250,7 +250,7 @@ riscv_status riscv_mat_mult_q31(
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
   }
-#endif /*defined(RISCV_MATH_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
   /* Return to application */
   return (status);
 }

@@ -88,7 +88,7 @@ riscv_status riscv_mat_scale_q31(
     /* Total number of samples in input matrix */
     numSamples = (uint32_t) pSrc->numRows * pSrc->numCols;
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
     blkCnt = numSamples;
     size_t l;
     vint32m4_t v_in, v_out;

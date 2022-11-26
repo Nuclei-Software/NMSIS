@@ -55,7 +55,7 @@ void riscv_copy_f64(
   /* Initialize blkCnt with number of samples */
   blkCnt = blockSize;
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) && (defined (__riscv_flen) && (__riscv_flen == 64))
   size_t l;
   vfloat64m8_t v_copy;
 
@@ -77,7 +77,7 @@ void riscv_copy_f64(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) && (defined (__riscv_flen) && (__riscv_flen == 64)) */
 }
 
 /**

@@ -186,7 +186,7 @@ void riscv_correlate_q31(
   {
     /* Accumulator is made zero for every iteration */
     sum = 0;
-#if defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
     uint32_t vblkCnt = count;                               /* Loop counter */
     size_t l;
     vint32m4_t vx, vy;
@@ -248,7 +248,7 @@ void riscv_correlate_q31(
       /* Decrement loop counter */
       k--;
     }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
     /* Store the result in the accumulator in the destination buffer. */
     *pOut = (q31_t) (sum >> 31);
     /* Destination pointer is updated according to the address modifier, inc */
@@ -287,7 +287,7 @@ void riscv_correlate_q31(
   /* -------------------
    * Stage2 process
    * ------------------*/
-#if defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
     blkCnt = blockSize2;
 
     while (blkCnt > 0U)
@@ -553,7 +553,7 @@ void riscv_correlate_q31(
       blkCnt--;
     }
   }
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
 
   /* --------------------------
    * Initializations of stage3
@@ -585,7 +585,7 @@ void riscv_correlate_q31(
   {
     /* Accumulator is made zero for every iteration */
     sum = 0;
-#if defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
     uint32_t vblkCnt = count;                               /* Loop counter */
     size_t l;
     vint32m4_t vx, vy;
@@ -642,7 +642,7 @@ void riscv_correlate_q31(
       /* Decrement loop counter */
       k--;
     }
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
     /* Store the result in the accumulator in the destination buffer. */
     *pOut = (q31_t) (sum >> 31);
     /* Destination pointer is updated according to the address modifier, inc */

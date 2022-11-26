@@ -64,7 +64,7 @@ void riscv_rms_q15(
   q63_t sum = 0;              /* Temporary result storage */
   q15_t in;                   /* Temporary variable to store input value */
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
   blkCnt = blockSize;         /* Loop counter */
   size_t l;
   const q15_t * input = pSrc;
@@ -154,7 +154,7 @@ void riscv_rms_q15(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
   /* Truncating and saturating the accumulator to 1.15 format */
   /* Store result in destination */
   riscv_sqrt_q15(__SSAT((sum / (q63_t)blockSize) >> 15, 16), pResult);

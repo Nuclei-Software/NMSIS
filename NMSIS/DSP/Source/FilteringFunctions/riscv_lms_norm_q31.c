@@ -121,7 +121,7 @@ void riscv_lms_norm_q31(
     /* Set the accumulator to zero */
     acc = 0;
 
-#if defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
     uint32_t vblkCnt = numTaps;
     size_t l;
     vint32m4_t vx, vy;
@@ -183,7 +183,7 @@ void riscv_lms_norm_q31(
       /* Decrement the loop counter */
       tapCnt--;
     }
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
     /* Converting the result to 1.31 format */
     /* Calc lower part of acc */
     acc_l = acc & 0xffffffff;
@@ -214,7 +214,7 @@ void riscv_lms_norm_q31(
 
     /* Initialize coefficient pointer */
     pb = pCoeffs;
-#if defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR)  && (__RISCV_XLEN == 64)
     vblkCnt = numTaps;
     for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
       vx = vle32_v_i32m4(px, l);
@@ -276,7 +276,7 @@ void riscv_lms_norm_q31(
       /* Decrement loop counter */
       tapCnt--;
     }
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
     /* Read the sample from state buffer */
     x0 = *pState;
 

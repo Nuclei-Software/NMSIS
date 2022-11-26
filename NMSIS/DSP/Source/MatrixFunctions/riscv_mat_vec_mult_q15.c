@@ -61,7 +61,7 @@ void riscv_mat_vec_mult_q15(const riscv_matrix_instance_q15 *pSrcMat, const q15_
     uint16_t i, row, colCnt; /* loop counters */
     q31_t matData, matData2, vecData, vecData2;
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
     const q15_t *pInA = NULL;
     const q15_t *pInB = NULL;
     uint16_t blkCnt = pSrcMat->numCols;
@@ -190,7 +190,7 @@ void riscv_mat_vec_mult_q15(const riscv_matrix_instance_q15 *pSrcMat, const q15_
         i = i + numCols;
         row--;
     }
-#endif /*defined(RISCV_MATH_VECTOR)*/
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
 }
 
 /**

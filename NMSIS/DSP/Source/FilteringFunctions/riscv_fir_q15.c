@@ -238,7 +238,7 @@ void riscv_fir_q15(
     /* Use SIMD to hold states and coefficients */
     px = pState;
     pb = pCoeffs;
-#if defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
     uint32_t vblkCnt = numTaps;                               /* Loop counter */
     size_t l;
     vint16m4_t vx, vy;
@@ -264,7 +264,7 @@ void riscv_fir_q15(
 
       tapCnt--;
     }
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
 
     /* The result is in 2.30 format. Convert to 1.15 with saturation.
        Then store the output in the destination buffer. */

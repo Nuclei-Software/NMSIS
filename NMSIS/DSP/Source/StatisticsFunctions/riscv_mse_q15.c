@@ -57,7 +57,7 @@ void riscv_mse_q15(
   q63_t sum = 0;                         /* Temporary result storage */
   q15_t inA, inB;                        /* Temporary variable to store input value */
 
-#if defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
   blkCnt = blockSize;
   size_t l;
   const q15_t *pInA = pSrcA;
@@ -154,7 +154,7 @@ void riscv_mse_q15(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
 
   /* Store result in q15 format */
   *pResult = (q15_t) __SSAT((q31_t)(sum / blockSize) >> 13, 16);

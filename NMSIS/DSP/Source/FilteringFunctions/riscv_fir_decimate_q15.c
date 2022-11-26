@@ -445,7 +445,7 @@ void riscv_fir_decimate_q15(
     tapCnt = numTaps;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
     uint32_t blkCntb;
     // size_t l;
     vint16m4_t va1m4, vb1m4, vb2m4;
@@ -484,7 +484,7 @@ void riscv_fir_decimate_q15(
       /* Decrement the loop counter */
       tapCnt--;
     }
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
     /* Advance the state pointer by the decimation factor
      * to process the next group of decimation factor number samples */
     pState = pState + S->M * 2;

@@ -57,7 +57,7 @@ void riscv_abs_f64(
   /* Initialize blkCnt with number of samples */
   blkCnt = blockSize;
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) && (defined (__riscv_flen) && (__riscv_flen == 64))
   vfloat64m8_t vx;
   size_t l;
   for (; (l = vsetvl_e64m8(blkCnt)) > 0; blkCnt -= l) {
@@ -77,7 +77,7 @@ void riscv_abs_f64(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* #if defined (RISCV_MATH_VECTOR) */
+#endif /* #if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) && (defined (__riscv_flen) && (__riscv_flen == 64)) */
 }
 
 /**

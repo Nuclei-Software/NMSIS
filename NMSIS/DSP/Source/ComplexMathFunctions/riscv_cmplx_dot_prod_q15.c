@@ -65,7 +65,7 @@ void riscv_cmplx_dot_prod_q15(
   uint32_t blkCnt;                        /* Loop counter */
   q63_t real_sum = 0, imag_sum = 0;       /* Temporary result variables */
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
   blkCnt = numSamples;                   /* Loop counter */
   size_t l;
   ptrdiff_t bstride = 4;
@@ -229,7 +229,7 @@ void riscv_cmplx_dot_prod_q15(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
   /* Store real and imaginary result in 8.24 format  */
   /* Convert real data in 34.30 to 8.24 by 6 right shifts */
   *realResult = (q31_t) (real_sum >> 6);

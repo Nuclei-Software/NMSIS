@@ -55,7 +55,7 @@ void riscv_add_f64(
 {
   uint32_t blkCnt;                               /* Loop counter */
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) && (defined (__riscv_flen) && (__riscv_flen == 64))
   blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vfloat64m8_t vx, vy;
@@ -84,7 +84,7 @@ void riscv_add_f64(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /*defined(RISCV_MATH_VECTOR)*/
+#endif /*defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) && (defined (__riscv_flen) && (__riscv_flen == 64)) */
 
 }
 

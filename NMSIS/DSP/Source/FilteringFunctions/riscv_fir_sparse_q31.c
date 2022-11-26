@@ -105,7 +105,7 @@ void riscv_fir_sparse_q31(
   /* Working pointer for scratch buffer of output values */
   pOut = pDst;
 
-#if defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
     uint32_t vblkCnt = blockSize;
     size_t l;
     vint32m4_t vx;
@@ -161,7 +161,7 @@ void riscv_fir_sparse_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
   /* Load the coefficient value and
    * increment the coefficient buffer for the next set of state values */
   coeff = *pCoeffs++;
@@ -193,7 +193,7 @@ void riscv_fir_sparse_q31(
     /* Working pointer for scratch buffer of output values */
     pOut = pDst;
 
-#if defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
     vblkCnt = blockSize;
     for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
       vx = vle32_v_i32m4(px, l);
@@ -250,7 +250,7 @@ void riscv_fir_sparse_q31(
       /* Decrement loop counter */
       blkCnt--;
     }
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
 
     /* Load the coefficient value and
      * increment the coefficient buffer for the next set of state values */
@@ -284,7 +284,7 @@ void riscv_fir_sparse_q31(
   /* Working pointer for scratch buffer of output values */
   pOut = pDst;
 
-#if defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
   vblkCnt = blockSize;
   for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
     vx = vle32_v_i32m4(px, l);
@@ -341,7 +341,7 @@ void riscv_fir_sparse_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
   /* Working output pointer is updated */
   pOut = pDst;
 

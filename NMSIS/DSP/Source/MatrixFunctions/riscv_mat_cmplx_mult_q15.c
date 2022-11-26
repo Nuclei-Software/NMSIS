@@ -103,7 +103,7 @@ riscv_status riscv_mat_cmplx_mult_q15(
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
   q15_t *pIn1 = pSrcA->pData;                    /* Input data matrix pointer A */
   q15_t *pIn2 = pSrcB->pData;                    /* Input data matrix pointer B */
   uint16_t blkCnt = numColsA;  //number of matrix columns  numColsA = numrowB
@@ -411,7 +411,7 @@ riscv_status riscv_mat_cmplx_mult_q15(
     status = RISCV_MATH_SUCCESS;
   }
 
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
   /* Return to application */
   return (status);
 }

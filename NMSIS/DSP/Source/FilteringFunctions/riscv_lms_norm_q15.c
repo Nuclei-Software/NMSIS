@@ -121,7 +121,7 @@ void riscv_lms_norm_q15(
     /* Set the accumulator to zero */
     acc = 0;
 
-#if defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
     uint32_t vblkCnt = numTaps;
     size_t l;
     vint16m4_t vx, vy;
@@ -174,7 +174,7 @@ void riscv_lms_norm_q15(
       /* Decrement the loop counter */
       tapCnt--;
     }
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
     /* Calc lower part of acc */
     acc_l = acc & 0xffffffff;
 
@@ -213,13 +213,17 @@ void riscv_lms_norm_q15(
     /* Initialize coefficient pointer */
     pb = pCoeffs;
 #if defined (RISCV_MATH_VECTOR)
-    vblkCnt = numTaps;
-    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle16_v_i16m4(px, l);
-      px += l;
-      vy = vle16_v_i16m4(pb, l);
-      vse16_v_i16m4(pb, vnclip_wx_i16m4(vwadd_wv_i32m8(vsra_vx_i32m8(vwmul_vx_i32m8(vx, w, l), 15, l), vy, l), 0, l), l);
-      pb += l;
+    uint32_t vblkCnt1;
+    size_t ll;
+    vint16m4_t vx1, vy1;
+
+    vblkCnt1 = numTaps;
+    for (; (ll = vsetvl_e16m4(vblkCnt1)) > 0; vblkCnt1 -= ll) {
+      vx1 = vle16_v_i16m4(px, ll);
+      px += ll;
+      vy1 = vle16_v_i16m4(pb, ll);
+      vse16_v_i16m4(pb, vnclip_wx_i16m4(vwadd_wv_i32m8(vsra_vx_i32m8(vwmul_vx_i32m8(vx1, w, ll), 15, ll), vy1, ll), 0, ll), ll);
+      pb += ll;
     }
 #else
 #if defined (RISCV_MATH_LOOPUNROLL)
