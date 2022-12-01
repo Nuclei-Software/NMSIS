@@ -199,6 +199,7 @@ int DSP_matrix_f32(void)
     float32_t f32_output_ref_2[M * M];
     riscv_mat_init_f32(&f32_des, M, M, f32_output_2);
     riscv_mat_init_f32(&f32_ref, M, M, f32_output_ref_2);
+    riscv_mat_init_f32(&f32_A, M, M, (float32_t *)f32_e_array);
     generate_rand_f32(f32_e_array, M * M);
     BENCH_START(riscv_mat_cholesky_f32);
     riscv_mat_cholesky_f32(&f32_A, &f32_des);
@@ -209,6 +210,7 @@ int DSP_matrix_f32(void)
     for (int i = 0 ; i < M ; i++) {
       for (int j = i ; j < M ; j++) {
          if (fabs(f32_output_ref_2[j * M + i] - f32_output_2[j * M + i]) > DELTAF64 ) {
+           printf("i%u-j%u mismatch %f vs %f\n", i, j, f32_output_ref_2[j * M + i], f32_output_2[j * M + i]);
            s = 1; /* fail */
          }
       }
@@ -388,8 +390,11 @@ int DSP_matrix_f64(void)
 
 int main(void)
 {
+    unsigned long randvar;
     BENCH_INIT();
-    srand(__RV_CSR_READ(mcycle));
+    randvar = __RV_CSR_READ(mcycle);
+    printf("srandvar is %d\n", randvar);
+    srand(randvar);
     DSP_matrix_f32();
  //   DSP_matrix_f64();
 
