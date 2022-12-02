@@ -1071,7 +1071,7 @@ void ref_rms_q15(q15_t *pSrc, uint32_t blockSize, q15_t *pResult)
     }
     tmp1 = (sumsq / (q63_t)blockSize) >> 15;
     tmp2 = ref_sat_q15(tmp1);
-    *pResult = (q15_t)(sqrtf((float)tmp2 / 32768.0f) * 32768.0f);
+    riscv_sqrt_q15(tmp2, pResult);
 }
 
 void ref_std_f32(float32_t *pSrc, uint32_t blockSize, float32_t *pResult)
