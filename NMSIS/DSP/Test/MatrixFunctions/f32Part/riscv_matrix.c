@@ -201,7 +201,11 @@ int DSP_matrix_f32(void)
     riscv_mat_init_f32(&f32_ref, M, M, f32_output_ref_2);
     riscv_mat_init_f32(&f32_A, M, M, (float32_t *)f32_e_array);
     generate_rand_f32(f32_e_array, M * M);
+    generate_rand_f32(f32_output_2, M * M);
+    // make sure the content of f32_output_2 and f32_output_ref_2 are the same
+    memcpy(f32_output_2, f32_output_ref_2, sizeof(float32_t) * M * M);
     BENCH_START(riscv_mat_cholesky_f32);
+    // riscv_mat_cholesky_f32 may return RISCV_MATH_DECOMPOSITION_FAILURE means input matrix can't be decomposed
     riscv_mat_cholesky_f32(&f32_A, &f32_des);
     BENCH_END(riscv_mat_cholesky_f32);
     ref_mat_cholesky_f32(&f32_A, &f32_ref);
@@ -392,9 +396,7 @@ int main(void)
 {
     unsigned long randvar;
     BENCH_INIT();
-    randvar = __RV_CSR_READ(mcycle);
-    printf("srandvar is %d\n", randvar);
-    srand(randvar);
+    do_srand();
     DSP_matrix_f32();
  //   DSP_matrix_f64();
 

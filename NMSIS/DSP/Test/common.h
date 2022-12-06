@@ -309,9 +309,16 @@ int8_t verify_results_u32(uint32_t * ref, uint32_t * opt, int length)
     return flag;
 }
 
+void do_srand(void)
+{
+    unsigned long randvar = __RV_CSR_READ(mcycle);
+    srand(randvar);
+    //printf("srandvar is %d\n", randvar);
+}
+
 void generate_rand_q7(q7_t *src, int length)
 {
-    srand(__RV_CSR_READ(mcycle));
+    do_srand();
     for (int i = 0; i < length; i++) {
         src[i] = (q7_t)(rand() % Q7_MAX - Q7_MAX / 2);
     }
@@ -319,7 +326,7 @@ void generate_rand_q7(q7_t *src, int length)
 
 void generate_rand_q15(q15_t *src, int length)
 {
-    srand(__RV_CSR_READ(mcycle));
+    do_srand();
     for (int i = 0; i < length; i++) {
         src[i] = (q15_t)(rand() % Q15_MAX - Q15_MAX / 2);
     }
@@ -327,7 +334,7 @@ void generate_rand_q15(q15_t *src, int length)
 
 void generate_rand_q31(q31_t *src, int length)
 {
-    srand(__RV_CSR_READ(mcycle));
+    do_srand();
     for (int i = 0; i < length; i++) {
         src[i] = (q31_t)(rand() % Q31_MAX - Q31_MAX / 2);
     }
@@ -335,7 +342,7 @@ void generate_rand_q31(q31_t *src, int length)
 
 void generate_rand_f32(float32_t *src, int length)
 {
-    srand(__RV_CSR_READ(mcycle));
+    do_srand();
     for (int i = 0; i < length; i++) {
         src[i] = (float32_t)((rand() % Q31_MAX - Q31_MAX / 2) * 1.0 / Q31_MAX);
     }
