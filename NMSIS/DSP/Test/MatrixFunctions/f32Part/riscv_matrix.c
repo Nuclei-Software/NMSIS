@@ -153,7 +153,9 @@ int DSP_matrix_f32(void)
     riscv_mat_init_f32(&f32_ref, M, N, f32_output_ref_1);
     // solve upper triangular matrix
     // initialize upper triangular matrix by setting 0 to lower elements in matrix
-    generate_rand_f32(f32_e_array, M * M);
+    for (int i = 0; i < M * N; i++) {
+        f32_e_array[i] = (float32_t)rand();
+    }
     for (int i = 0; i < M; i++) {
         for(int j = 0; j < i; j++) {
             f32_e_array[i * M + j] = 0;
@@ -162,12 +164,14 @@ int DSP_matrix_f32(void)
     for (int i = 0; i < M * N; i++) {
         f32_f_array[i] = (float32_t)((rand() % Q31_MAX - Q31_MAX / 2) * 1.0 / Q31_MAX);
     }
-
+    memset(f32_output_1, 0, sizeof(float32_t) * M * N);
+    // ensure f32_output_ref_1[i] = f32_output_1[i], i = 0, 1, 2, ...
+    memcpy(f32_output_1, f32_output_ref_1, sizeof(float32_t) * M * N);
     BENCH_START(riscv_mat_solve_upper_triangular_f32);
     riscv_mat_solve_upper_triangular_f32(&f32_A, &f32_B, &f32_des);
     BENCH_END(riscv_mat_solve_upper_triangular_f32);
-    riscv_mat_solve_upper_triangular_f32(&f32_A, &f32_B, &f32_ref);
-    s = verify_results_f32(f32_output_ref_1, f32_output_1, M * N);
+    ref_mat_solve_upper_triangular_f32(&f32_A, &f32_B, &f32_ref);
+    s = verify_results_f32_low_precision(f32_output_ref_1, f32_output_1, M * N);
     if (s != 0) {
         BENCH_ERROR(riscv_mat_solve_upper_triangular_f32);
         test_flag_error = 1;
@@ -183,11 +187,12 @@ int DSP_matrix_f32(void)
         for (int j = 0; j <= i; j++)
             f32_e_array[i * M + j] = (float32_t)rand();
     }
+    // ensure f32_output_ref_1[i] = f32_output_1[i], i = 0, 1, 2, ...
     BENCH_START(riscv_mat_solve_lower_triangular_f32);
     riscv_mat_solve_lower_triangular_f32(&f32_A, &f32_B, &f32_des);
     BENCH_END(riscv_mat_solve_lower_triangular_f32);
     ref_mat_solve_lower_triangular_f32(&f32_A, &f32_B, &f32_ref);
-    s = verify_results_f32(f32_output_ref_1, f32_output_1, M * N);
+    s = verify_results_f32_low_precision(f32_output_ref_1, f32_output_1, M * N);
     if (s != 0) {
         BENCH_ERROR(riscv_mat_solve_lower_triangular_f32);
         test_flag_error = 1;
@@ -197,18 +202,37 @@ int DSP_matrix_f32(void)
     // cholesky
     float32_t f32_output_2[M * M];
     float32_t f32_output_ref_2[M * M];
+    float32_t f32_rand_array[M * M];
+    float32_t f32_posi_array[M * M];
+    float32_t f32_dot_array[M * M];
+    float32_t f32_tmp_array[M * M] = {0};
+    float32_t tmp = (float32_t)(rand() % Q31_MAX) / Q31_MAX;
+    riscv_matrix_instance_f32 f32_rand;
+    riscv_matrix_instance_f32 f32_posi;
+    riscv_matrix_instance_f32 f32_dot;
+    riscv_matrix_instance_f32 f32_tmp;
     riscv_mat_init_f32(&f32_des, M, M, f32_output_2);
     riscv_mat_init_f32(&f32_ref, M, M, f32_output_ref_2);
-    riscv_mat_init_f32(&f32_A, M, M, (float32_t *)f32_e_array);
+    riscv_mat_init_f32(&f32_rand, M, M, f32_rand_array);
+    riscv_mat_init_f32(&f32_posi, M, M, f32_posi_array);
+    riscv_mat_init_f32(&f32_dot, M, M, f32_dot_array);
+    riscv_mat_init_f32(&f32_tmp, M, M, f32_tmp_array);
     generate_rand_f32(f32_e_array, M * M);
     generate_rand_f32(f32_output_2, M * M);
-    // make sure the content of f32_output_2 and f32_output_ref_2 are the same
+    // ensure f32_output_ref_1[i] = f32_output_1[i], i = 0, 1, 2, ...
     memcpy(f32_output_2, f32_output_ref_2, sizeof(float32_t) * M * M);
+    for (int i = 0; i < M; i++) {
+        for (int j = 0; j < M; j++) {
+            if (i == j) {
+                f32_tmp_array[i * M + j] = tmp;
+            }
+        }
+    }
+    generate_posi_def_symme_f32(&f32_A, &f32_tmp, &f32_dot, &f32_posi);
     BENCH_START(riscv_mat_cholesky_f32);
-    // riscv_mat_cholesky_f32 may return RISCV_MATH_DECOMPOSITION_FAILURE means input matrix can't be decomposed
-    riscv_mat_cholesky_f32(&f32_A, &f32_des);
+    riscv_mat_cholesky_f32(&f32_posi, &f32_des);
     BENCH_END(riscv_mat_cholesky_f32);
-    ref_mat_cholesky_f32(&f32_A, &f32_ref);
+    ref_mat_cholesky_f32(&f32_posi, &f32_ref);
     s = 0;
     /* result is lower triangular matrix */
     for (int i = 0 ; i < M ; i++) {
@@ -254,9 +278,9 @@ int DSP_matrix_f32(void)
     riscv_mat_init_f32(&f32_B, M, M, (float32_t *)f32_output_3);
     riscv_mat_init_f32(&f32_back, M, M, f32_output_ref_3);
     BENCH_START(riscv_mat_ldlt_f32);
-    riscv_mat_ldlt_f32(&f32_A, &f32_B, &f32_des, pp);
+    riscv_mat_ldlt_f32(&f32_posi, &f32_B, &f32_des, pp);
     BENCH_END(riscv_mat_ldlt_f32);
-    ref_mat_ldlt_f32(&f32_A, &f32_back, &f32_ref, pp_ref);
+    ref_mat_ldlt_f32(&f32_posi, &f32_back, &f32_ref, pp_ref);
     s1 = verify_results_f32_low_precision(f32_output_ref_2, f32_output_2, M * M);
     s2 = verify_results_f32_low_precision(f32_output_ref_3, f32_output_3, M * M);
     s3 = verify_results_q15((int16_t *)pp_ref, (int16_t *)pp, M);
@@ -291,16 +315,43 @@ int DSP_matrix_f64(void)
     float64_t f64_a_array[M * M];
     float64_t f64_output[M * M];
     float64_t f64_output_ref[M * M];
-
     riscv_matrix_instance_f64 f64_A;
     riscv_matrix_instance_f64 f64_ref;
     riscv_matrix_instance_f64 f64_des;
-    int i;
     riscv_mat_init_f64(&f64_A, M, M, (float64_t *)f64_a_array);
     riscv_mat_init_f64(&f64_des, M, M, f64_output);
     riscv_mat_init_f64(&f64_ref, M, M, f64_output_ref);
+
+    // float32_t type element used to generate positive definite symmetric matrix
+    float32_t f32_rand_array[M * M];
+    float32_t f32_posi_array[M * M];
+    float32_t f32_dot_array[M * M];
+    float32_t f32_tmp_array[M * M] = {0};
+    float32_t tmp = (float32_t)(rand() % Q31_MAX) / Q31_MAX;
+    riscv_matrix_instance_f32 f32_rand;
+    riscv_matrix_instance_f32 f32_posi;
+    riscv_matrix_instance_f32 f32_dot;
+    riscv_matrix_instance_f32 f32_tmp;
+    riscv_mat_init_f32(&f32_rand, M, M, f32_rand_array);
+    riscv_mat_init_f32(&f32_posi, M, M, f32_posi_array);
+    riscv_mat_init_f32(&f32_dot, M, M, f32_dot_array);
+    riscv_mat_init_f32(&f32_tmp, M, M, f32_tmp_array);
+    generate_rand_f32(f32_rand_array, M * M);
+    for (int i = 0; i < M; i++) {
+        for (int j = 0; j < M; j++) {
+            if (i == j) {
+                f32_tmp_array[i * M + j] = tmp;
+            }
+        }
+    }
+    generate_posi_def_symme_f32(&f32_rand, &f32_tmp, &f32_dot, &f32_posi);
+    // f32_rand_array is a positive definite symmetric matrix
+    // turn the element to float64_t type and assign it to the test input f64_a_array
     for (int i = 0; i < M * M; i++) {
-        f64_a_array[i] = (float64_t)((rand() % Q31_MAX - Q31_MAX / 2) * 1.0 / Q31_MAX);
+        f64_a_array[i] = (float64_t)(f32_posi_array[i]);
+        // init f64_output and f64_output_ref and ensure f64_output[i] = f64_output_ref[i], i = 0, 1, 2, ...
+        f64_output[i] = f64_a_array[i];
+        f64_output_ref[i] = f64_a_array[i];
     }
     BENCH_START(riscv_mat_cholesky_f64);
     riscv_mat_cholesky_f64(&f64_A, &f64_des);
@@ -327,7 +378,11 @@ int DSP_matrix_f64(void)
     float64_t f64_output_ref_1[M * N];
     riscv_mat_init_f64(&f64_des, M, N, f64_output_1);
     riscv_mat_init_f64(&f64_ref, M, N, f64_output_ref_1);
-
+    for (int i = 0; i < M * N; i++) {
+        f64_b_array[i] = (float64_t)((rand() % Q31_MAX - Q31_MAX / 2) * 1.0 / Q31_MAX);
+	f64_output_1[i] = 0.0;
+	f64_output_ref_1[i] = 0.0;
+    }
     BENCH_START(riscv_mat_solve_upper_triangular_f64);
     riscv_mat_solve_upper_triangular_f64(&f64_A, &f64_B, &f64_des);
     BENCH_END(riscv_mat_solve_upper_triangular_f64);
@@ -341,6 +396,10 @@ int DSP_matrix_f64(void)
 
     for (int i = 0; i < M * M; i++) {
         f64_a_array[i] = (float64_t)((rand() % Q31_MAX - Q31_MAX / 2) * 1.0 / Q31_MAX);
+    }
+    for (int i = 0; i < M * N; i++) {
+        f64_output_1[i] = 0.0;
+        f64_output_ref_1[i] = 0.0;
     }
     // solve lower triangular matrix
     // initialize lower triangular matrix by setting 0 to upper elements in matrix

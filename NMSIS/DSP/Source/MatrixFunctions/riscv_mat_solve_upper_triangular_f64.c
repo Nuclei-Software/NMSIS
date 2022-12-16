@@ -47,6 +47,12 @@
    * @param[out] dst The solution X of UT . X = A
    * @return The function returns RISCV_MATH_SINGULAR, if the system can't be solved.
   */
+
+/**
+   * Notice: The instruction vfredusum may introduce errors. So, if we use the V-extension implementation,
+   * we have to accept the errors that may happen in this function.
+  */
+
   riscv_status riscv_mat_solve_upper_triangular_f64(
   const riscv_matrix_instance_f64 * ut,
   const riscv_matrix_instance_f64 * a,
@@ -104,16 +110,16 @@ riscv_status status;                             /* status of matrix inverse */
 
             blkCnt = n - i - 1;
             pVut_row = ut_row + i + 1;
-            pX_row = pX + n * (i + 1) + j;
+            pX_row = pX + cols * (i + 1) + j;
             l = vsetvl_e64m1(1);
             v_a = vfsub_vv_f64m1(v_a, v_a, l);
             bstride = 8 * n;
             for (; (l = vsetvl_e64m8(blkCnt)) > 0; blkCnt -= l) {
                 v_x = vle64_v_f64m8(pVut_row, l);
-                v_y = vlse64_v_f64m8(pX_row, bstride, l);
-                v_a = vfredusum_vs_f64m8_f64m1(v_a, vfmul_vv_f64m8(v_x, v_y, l), v_a, l);
                 pVut_row += l;
+                v_y = vlse64_v_f64m8(pX_row, bstride, l);
                 pX_row += l * cols;
+                v_a = vfredusum_vs_f64m8_f64m1(v_a, vfmul_vv_f64m8(v_x, v_y, l), v_a, l);
             }
             tmp -= vfmv_f_s_f64m1_f64(v_a);
 #else

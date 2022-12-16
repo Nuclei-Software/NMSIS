@@ -47,6 +47,12 @@
    * @param[out] dst The solution X of LT . X = A
    * @return The function returns RISCV_MATH_SINGULAR, if the system can't be solved.
    */
+
+/**
+   * Notice: The instruction vfredusum may introduce errors. So, if we use the V-extension implementation,
+   * we have to accept the errors that may happen in this function.
+  */
+
   riscv_status riscv_mat_solve_lower_triangular_f64(
   const riscv_matrix_instance_f64 * lt,
   const riscv_matrix_instance_f64 * a,
@@ -113,7 +119,7 @@
             pX_row = pX + j;
             l = vsetvlmax_e64m1();
             v_a = vfsub_vv_f64m1(v_a, v_a, l);
-            bstride = 4 * n;
+            bstride = 8 * cols;
             for (; (l = vsetvl_e64m8(blkCnt)) > 0; blkCnt -= l) {
                 v_x = vle64_v_f64m8(pVlt_row, l);
                 v_y = vlse64_v_f64m8(pX_row, bstride, l);

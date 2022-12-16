@@ -48,6 +48,11 @@
    * @return The function returns RISCV_MATH_SINGULAR, if the system can't be solved.
   */
 
+/**
+   * Notice: The instruction vfredusum may introduce errors. So, if we use the V-extension implementation,
+   * we have to accept the errors that may happen in this function.
+  */
+
   riscv_status riscv_mat_solve_upper_triangular_f32(
   const riscv_matrix_instance_f32 * ut,
   const riscv_matrix_instance_f32 * a,
@@ -104,7 +109,7 @@ riscv_status status;                             /* status of matrix inverse */
 
             blkCnt = n - i - 1;
             pVut_row = ut_row + i + 1;
-            pX_row = pX + n * (i + 1) + j;
+            pX_row = pX + cols * (i + 1) + j;
             l = vsetvl_e32m1(1);
             v_a = vfsub_vv_f32m1(v_a, v_a, l);
             bstride = 4 * cols;

@@ -53,6 +53,9 @@ int DSP_matrix_q7(void)
 
     // ****************   q7   *********************
     // mat_mult_q7
+    generate_rand_q7(q7_output, M * N);
+    // ensure q7_output_ref[i] = q7_output[i], i = 0, 1, 2, ...
+    memcpy(q7_output, q7_output_ref, sizeof(q7_t) * M * N);
     BENCH_START(riscv_mat_mult_q7);
     riscv_mat_mult_q7(&q7_A, &q7_B, &q7_des, q7_output_back);
     BENCH_END(riscv_mat_mult_q7);

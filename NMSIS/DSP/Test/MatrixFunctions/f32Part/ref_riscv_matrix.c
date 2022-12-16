@@ -501,7 +501,6 @@ riscv_status status;                             /* status of matrix inverse */
 
             ut_row = &pUT[n*i];
 
-
             for (k=n-1; k > i; k--)
             {
                 tmp -= ut_row[k] * pX[cols*k+j];
@@ -618,6 +617,7 @@ riscv_status ref_mat_ldlt_f32(
     int fullRank = 1, diag,k;
     float32_t *pA;
 
+    memset(pd->pData,0,sizeof(float32_t)*n*n);
     memcpy(pl->pData,pSrc->pData,n*n*sizeof(float32_t));
     pA = pl->pData;
 
@@ -772,9 +772,7 @@ riscv_status status;                             /* status of matrix inverse */
 
   {
 
-    int i,j,k,n;
-
-    n = dst->numRows;
+    int i, j, k, n, cols;
 
     float64_t *pX = dst->pData;
     float64_t *pUT = ut->pData;
@@ -783,27 +781,31 @@ riscv_status status;                             /* status of matrix inverse */
     float64_t *ut_row;
     float64_t *a_col;
 
-    for(j=0; j < n; j ++)
+    n = dst->numRows;
+    cols = dst->numCols;
+
+    for(j = 0; j < cols; j ++)
     {
        a_col = &pA[j];
 
-       for(i=n-1; i >= 0 ; i--)
+       for(i = n-1; i >= 0 ; i--)
        {
-            ut_row = &pUT[n*i];
+            float64_t tmp = a_col[i * cols];
 
-            float64_t tmp=a_col[i * n];
+            ut_row = &pUT[n * i];
+
 
             for(k=n-1; k > i; k--)
             {
-                tmp -= ut_row[k] * pX[n*k+j];
+                tmp -= ut_row[k] * pX[cols * k + j];
             }
 
-            if (ut_row[i]==0.0f)
+            if (ut_row[i] == 0.0f)
             {
               return(RISCV_MATH_SINGULAR);
             }
             tmp = tmp / ut_row[i];
-            pX[i*n+j] = tmp;
+            pX[i * cols + j] = tmp;
        }
 
     }
@@ -832,9 +834,7 @@ riscv_status ref_mat_solve_lower_triangular_f64(
     x2 = (a2 - c2 x3) / b2
 
     */
-    int i,j,k,n;
-
-    n = dst->numRows;
+    int i, j, k, n, cols;
 
     float64_t *pX = dst->pData;
     float64_t *pLT = lt->pData;
@@ -843,27 +843,30 @@ riscv_status ref_mat_solve_lower_triangular_f64(
     float64_t *lt_row;
     float64_t *a_col;
 
-    for(j=0; j < n; j ++)
+    n = dst->numRows;
+    cols = dst->numCols;
+
+    for(j = 0; j < cols; j ++)
     {
        a_col = &pA[j];
 
-       for(i=0; i < n ; i++)
+       for(i = 0; i < n ; i++)
        {
-            lt_row = &pLT[n*i];
+            float64_t tmp = a_col[i * cols];
 
-            float64_t tmp=a_col[i * n];
+            lt_row = &pLT[n * i];
 
-            for(k=0; k < i; k++)
+            for(k = 0; k < i; k++)
             {
-                tmp -= lt_row[k] * pX[n*k+j];
+                tmp -= lt_row[k] * pX[cols * k + j];
             }
 
-            if (lt_row[i]==0.0f)
+            if (lt_row[i] == 0.0f)
             {
               return(RISCV_MATH_SINGULAR);
             }
             tmp = tmp / lt_row[i];
-            pX[i*n+j] = tmp;
+            pX[i * cols + j] = tmp;
        }
 
     }
@@ -906,6 +909,8 @@ riscv_status ref_mat_ldlt_f64(
     const int n=pSrc->numRows;
     int fullRank = 1, diag,k;
     float64_t *pA;
+
+    memset(pd->pData,0,sizeof(float64_t)*n*n);
 
     memcpy(pl->pData,pSrc->pData,n*n*sizeof(float64_t));
     pA = pl->pData;

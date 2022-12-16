@@ -48,6 +48,11 @@
    * @return The function returns RISCV_MATH_SINGULAR, if the system can't be solved.
    */
 
+   /**
+    * Notice: The instruction vfredusum may introduce errors. So, if we use the V-extension implementation,
+    * we have to accept the errors that may happen in this function.
+    */
+
   riscv_status riscv_mat_solve_lower_triangular_f32(
   const riscv_matrix_instance_f32 * lt,
   const riscv_matrix_instance_f32 * a,
@@ -118,6 +123,7 @@
             for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
                 v_x = vle32_v_f32m8(pVlt_row, l);
                 v_y = vlse32_v_f32m8(pX_row, bstride, l);
+		// the vfredusum may introduce errors
                 v_a = vfredusum_vs_f32m8_f32m1(v_a, vfmul_vv_f32m8(v_x, v_y, l), v_a, l);
                 pVlt_row += l;
                 pX_row += l * cols;

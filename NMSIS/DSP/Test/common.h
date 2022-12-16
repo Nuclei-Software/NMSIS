@@ -11,6 +11,8 @@
 #include <math.h>
 #include "nmsis_bench.h"
 
+#include "ref.h"
+
 /* The threshold */
 #define DELTAF64 (0.05f)
 #define DELTAF32 (0.2f)
@@ -346,6 +348,22 @@ void generate_rand_f32(float32_t *src, int length)
     for (int i = 0; i < length; i++) {
         src[i] = (float32_t)((rand() % Q31_MAX - Q31_MAX / 2) * 1.0 / Q31_MAX);
     }
+}
+
+/* generate positive-definite symmetric matrix
+* A = rand_array(M); // generate a M*M random matrix
+* A = A * A.transpose(); // matrix A multiply with its transposed matrix
+* B = (rand()/RAND_MAX) * unit_array(M); // unit_array(M) generate a M*M matrix
+* with diagonal elements of 1 and other elements are 0 (unitary matrix)
+* C = A + B;  // C is the positive-definite symmetric matrix
+*/
+void generate_posi_def_symme_f32(const riscv_matrix_instance_f32 *pSrc, riscv_matrix_instance_f32 *pUnitMat,
+                                riscv_matrix_instance_f32 *pDot,  riscv_matrix_instance_f32 *pDst)
+{
+    int dim = pSrc->numRows;
+    ref_mat_trans_f32(pSrc, pDst);
+    ref_mat_mult_f32(pDst, pSrc, pDot);
+    ref_mat_add_f32(pDot, pUnitMat, pDst);
 }
 
 #endif // DSP_COMMON_H
