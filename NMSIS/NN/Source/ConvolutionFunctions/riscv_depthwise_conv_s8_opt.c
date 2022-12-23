@@ -151,6 +151,44 @@ riscv_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
             {
                 memset(&col_buffer[index], 0, (kernel_x * input_ch) * diff * sizeof(q15_t));
             }
+#if defined(RISCV_MATH_VECTOR)
+            row_count = output_ch;
+            row_shift = 0;
+            bias = bias_start_pos;
+            output_mult = out_mult_start_pos;
+            output_shift = out_shift_start_pos;
+
+            while (row_count)
+            {
+                q15_t *col_pos = col_buffer_start + row_shift;
+                const q7_t *row_pos = kernel + row_shift;
+                q31_t sum = *bias++;
+                const uint16_t col_count = (kernel_x * kernel_y);
+                row_shift += 1;
+
+                uint32_t blkCnt = col_count;                               /* Loop counter */
+                size_t l;
+                vint16m4_t a16m4, b16m4;
+                vint32m1_t v_temp;
+                l = vsetvl_e32m1(1);
+                v_temp = vsub_vv_i32m1(v_temp, v_temp, l);
+                for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
+                    a16m4 = vwadd_vx_i16m4(vlse8_v_i8m2(row_pos, input_ch, l), 0, l);
+                    b16m4 = vlse16_v_i16m4(col_pos, input_ch * 2, l);
+                    row_pos += l * input_ch;
+                    col_pos += l * input_ch;
+                    v_temp = vredsum_vs_i32m8_i32m1(v_temp, vwmul_vv_i32m8(a16m4, b16m4, l), v_temp, l);
+                }
+                sum += vmv_x_s_i32m1_i32(v_temp);
+                sum = riscv_nn_requantize(sum, *output_mult++, *output_shift++);
+                sum += output_offset;
+                sum = MAX(sum, output_activation_min);
+                sum = MIN(sum, output_activation_max);
+                *output++ = (q7_t)sum;
+
+                row_count--;
+            }
+#elif defined(RISCV_MATH_DSP)
 
             row_count = output_ch / 4;
             row_shift = 0;
@@ -169,35 +207,6 @@ riscv_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
                 q15_t *col_pos = col_buffer_start + row_shift;
                 const q7_t *row_pos = kernel + row_shift;
                 row_shift += 4;
-#if defined(RISCV_MATH_VECTOR)
-                uint32_t blkCnt = col_count;                               /* Loop counter */
-                size_t l;
-                vint16m4_t a16m4, b16m4, c16m4, d16m4, e16m4, f16m4, g16m4, h16m4;
-
-                vint32m1_t v_temp;
-                l = vsetvl_e32m1(1);
-                v_temp = vsub_vv_i32m1(v_temp, v_temp, l);
-                for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
-                    a16m4 = vwadd_vx_i16m4(vlse8_v_i8m2(row_pos, input_ch, l), 0, l);
-                    b16m4 = vlse16_v_i16m4(col_pos, input_ch * 2, l);
-
-                    c16m4 = vwadd_vx_i16m4(vlse8_v_i8m2(row_pos + 1, input_ch, l), 0, l);
-                    d16m4 = vlse16_v_i16m4(col_pos + 1, input_ch * 2, l);
-
-                    e16m4 = vwadd_vx_i16m4(vlse8_v_i8m2(row_pos + 2, input_ch, l), 0, l);
-                    f16m4 = vlse16_v_i16m4(col_pos + 2, input_ch * 2, l);
-
-                    g16m4 = vwadd_vx_i16m4(vlse8_v_i8m2(row_pos + 3, input_ch, l), 0, l);
-                    h16m4 = vlse16_v_i16m4(col_pos + 3, input_ch * 2, l);
-
-                    row_pos += l * input_ch;
-                    col_pos += l * input_ch;
-                    sum += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, vwmul_vv_i32m8(a16m4, b16m4, l), v_temp, l));
-                    sum_2 += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, vwmul_vv_i32m8(c16m4, d16m4, l), v_temp, l));
-                    sum_3 += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, vwmul_vv_i32m8(e16m4, f16m4, l), v_temp, l));
-                    sum_4 += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, vwmul_vv_i32m8(g16m4, h16m4, l), v_temp, l));
-                }
-#elif defined(RISCV_MATH_DSP)
                 while (col_count)
                 {
                     /* General idea is to read 4 + 4 (input, kernel) pair and re-arrange them in the right order to
@@ -268,7 +277,6 @@ riscv_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
                 }
 
                 col_count = (kernel_x * kernel_y) & 0x1;
-#endif /* defined(RISCV_MATH_VECTOR) */
                 while (col_count)
                 {
                     sum += row_pos[0] * col_pos[0];
@@ -316,27 +324,10 @@ riscv_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
                 const uint16_t col_count = (kernel_x * kernel_y);
                 row_shift += 1;
                 int i = 0;
-#if defined(RISCV_MATH_VECTOR)
-                uint32_t blkCnt;                               /* Loop counter */
-                size_t l;
-                vint16m4_t a16m4, b16m4;
-
-                vint32m1_t v_temp;
-                l = vsetvl_e32m1(1);
-                v_temp = vsub_vv_i32m1(v_temp, v_temp, l);
-                for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
-                    a16m4 = vwadd_vx_i16m4(vlse8_v_i8m2(row_pos + i, input_ch, l), 0, l);
-                    b16m4 = vlse16_v_i16m4(col_pos + i, input_ch * 2, l);
-                    i += l;
-                    v_temp = vredsum_vs_i32m8_i32m1(v_temp, vwmul_vv_i32m8(a16m4, b16m4, l), v_temp, l);
-                }
-                sum += vmv_x_s_i32m1_i32(v_temp);
-#else
                 for (int i = 0; i < col_count; i++)
                 {
                     sum += row_pos[i * input_ch] * col_pos[i * input_ch];
                 }
-#endif /* defined(RISCV_MATH_VECTOR) */
                 sum = riscv_nn_requantize(sum, *output_mult++, *output_shift++);
                 sum += output_offset;
                 sum = MAX(sum, output_activation_min);
@@ -345,6 +336,7 @@ riscv_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
 
                 row_count--;
             }
+#endif /* RISCV_MATH_VECTOR */
 
             // clear counter and pointers
             col_buffer = col_buffer_start;
@@ -363,7 +355,7 @@ riscv_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
                                  bias,
                                  output_dims,
                                  output);
-#endif /*  RISCV_MATH_DSP */
+#endif /*  defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR) */
 
     /* Return to application */
     return RISCV_MATH_SUCCESS;
