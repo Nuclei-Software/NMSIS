@@ -80,6 +80,8 @@ riscv_status riscv_mat_cmplx_mult_q15(
 #if __RISCV_XLEN == 64
         q63_t prod164, prod264, pSourceA64, pSourceB64;
         q15_t a, b, c, d;
+#elif defined (NUCLEI_DSP_N3)
+        q63_t pSourceA64_n, pSourceB64_n;
 #endif /* __RISCV_XLEN == 64 */
         q31_t prod1, prod2;
         q31_t pSourceA, pSourceB;
@@ -272,8 +274,8 @@ riscv_status riscv_mat_cmplx_mult_q15(
 
 #if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
-          pSourceA64 = read_q15x4_ia (&pInA);
-          pSourceB64 = read_q15x4_ia (&pInB);
+          pSourceA64 = read_q15x4_ia((q15_t**)&pInA);
+          pSourceB64 = read_q15x4_ia((q15_t**)&pInB);
 
           prod164 = __SMUSD(pSourceA64, pSourceB64);
           prod264 = __SMUADX(pSourceA64, pSourceB64);
@@ -282,6 +284,17 @@ riscv_status riscv_mat_cmplx_mult_q15(
           sumReal += (q63_t) ((q31_t) (prod164 >> 32));
           sumImag += (q63_t) ((q31_t) prod264);
           sumImag += (q63_t) ((q31_t) (prod264 >> 32));
+#else
+#if defined (NUCLEI_DSP_N3)
+          /* read real and imag values from pSrcA and pSrcB buffer*/
+          pSourceA64_n = read_q15x4_ia((q15_t**)&pInA);
+          pSourceB64_n = read_q15x4_ia((q15_t**)&pInB);
+
+          /* Multiply and Accumlates */
+          // Signed Multiply Two Words and Reverse Subtract, bottom * bottom - top * top
+          sumReal = __RV_DSMALDRS(sumReal, pSourceA64_n, pSourceB64_n);
+          // SIMD Signed Crossed Multiply Two Halfs and Add, top * bottom + bottom * top
+          sumImag = __RV_DSMALXDA(sumImag, pSourceA64_n, pSourceB64_n);
 #else
           /* read real and imag values from pSrcA and pSrcB buffer */
           pSourceA = read_q15x2_ia (&pInA);
@@ -302,6 +315,8 @@ riscv_status riscv_mat_cmplx_mult_q15(
           prod2 = __SMUADX(pSourceA, pSourceB);
           sumReal += (q63_t) prod1;
           sumImag += (q63_t) prod2;
+#endif /* defined(NUCLEI_DSP_N3) */
+
 #endif /* __RISCV_XLEN == 64 */
 #else /* #if defined (RISCV_MATH_DSP) */
 
