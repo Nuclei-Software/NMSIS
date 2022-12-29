@@ -92,7 +92,8 @@ const riscv_cfft_radix2_instance_f32 * S,
 
    if (S->bitReverseFlag == 1U)
    {
-#if !defined(RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) && (defined (__riscv_flen) && (__riscv_flen == 64))
+#else
       /* Bit Reversal */
       riscv_bitreversal_f32(pSrc, S->fftLen, S->bitRevFactor, S->pBitRevTable);
 #endif
