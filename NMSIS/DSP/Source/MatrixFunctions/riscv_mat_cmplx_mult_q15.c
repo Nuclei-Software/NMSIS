@@ -80,8 +80,6 @@ riscv_status riscv_mat_cmplx_mult_q15(
 #if __RISCV_XLEN == 64
         q63_t prod164, prod264, pSourceA64, pSourceB64;
         q15_t a, b, c, d;
-#elif defined (NUCLEI_DSP_N3)
-        q63_t pSourceA64_n, pSourceB64_n;
 #endif /* __RISCV_XLEN == 64 */
 #else
         q15_t a, b, c, d;
@@ -89,6 +87,9 @@ riscv_status riscv_mat_cmplx_mult_q15(
 #if defined (RISCV_MATH_DSP)
         q31_t prod1, prod2;
         q31_t pSourceA, pSourceB;
+#if defined (NUCLEI_DSP_N3)
+        q63_t pSourceA64_n, pSourceB64_n;
+#endif
 #endif /* #if defined (RISCV_MATH_DSP) */
 
 #ifdef RISCV_MATH_MATRIX_CHECK
