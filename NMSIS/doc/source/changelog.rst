@@ -49,6 +49,12 @@ This is the version ``V1.1.0`` release of Nuclei MCU Software Interface Standard
 
 * **Documentation**
 
+  - Update Core/DSP/NN documentation
+
+* **Misc**
+
+  - Nuclei SDK 0.4.0 will use NMSIS 1.1.0
+
 V1.0.4
 ------
 
