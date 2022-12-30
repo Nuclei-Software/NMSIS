@@ -20,8 +20,8 @@
  * @file     system_NUCLEI_NX.h
  * @brief    NMSIS Nuclei Device Peripheral Access Layer Header File for
  *           Nuclei NX Device
- * @version  V1.10
- * @date     30. July 2021
+ * @version  V2.0.0
+ * @date     30. Dec 2022
  ******************************************************************************/
 
 #ifndef __SYSTEM_NUCLEI_NX_H__
@@ -33,9 +33,8 @@ extern "C" {
 
 #include <stdint.h>
 
-extern volatile uint32_t SystemCoreClock;     /*!< System Clock Frequency (Core Clock)  */
+extern volatile uint32_t SystemCoreClock;     /*!< System Clock Frequency (Core Clock) */
 
-/** \brief Exception frame structure store in stack */
 typedef struct EXC_Frame {
     unsigned long ra;                /* ra: x1, return address for jump */
     unsigned long tp;                /* tp: x4, thread pointer */
@@ -48,9 +47,9 @@ typedef struct EXC_Frame {
     unsigned long a3;                /* a3: x13, function argument 3 */
     unsigned long a4;                /* a4: x14, function argument 4 */
     unsigned long a5;                /* a5: x15, function argument 5 */
-    unsigned long mcause;            /* mcause: machine cause csr register */
-    unsigned long mepc;              /* mepc: machine exception program counter csr register */
-    unsigned long msubm;             /* msubm: machine sub-mode csr register, nuclei customized */
+    unsigned long cause;             /* cause: machine/supervisor mode cause csr register */
+    unsigned long epc;               /* epc: machine/ supervisor mode exception program counter csr register */
+    unsigned long msubm;             /* msubm: machine sub-mode csr register, nuclei customized, exclusive to machine mode */
 #ifndef __riscv_32e
     unsigned long a6;                /* a6: x16, function argument 6 */
     unsigned long a7;                /* a7: x17, function argument 7 */
@@ -64,21 +63,21 @@ typedef struct EXC_Frame {
 /**
  * \brief Setup the microcontroller system.
  * \details
- *  Initialize the System and update the SystemCoreClock variable.
+ * Initialize the System and update the SystemCoreClock variable.
  */
 extern void SystemInit(void);
 
 /**
  * \brief  Update SystemCoreClock variable.
  * \details
- *  Updates the SystemCoreClock with current core Clock retrieved from cpu registers.
+ * Updates the SystemCoreClock with current core Clock retrieved from cpu registers.
  */
 extern void SystemCoreClockUpdate(void);
 
 /**
  * \brief Dump Exception Frame
  */
-void Exception_DumpFrame(unsigned long sp);
+void Exception_DumpFrame(unsigned long sp, uint8_t mode);
 
 /**
  * \brief Register an exception handler for exception code EXCn
@@ -96,21 +95,33 @@ extern unsigned long Exception_Get_EXC(uint32_t EXCn);
 extern void ECLIC_Init(void);
 
 /**
- * \brief  initialize a specific IRQ and register the handler
+ * \brief  Initialize a specific IRQ and register the handler
  * \details
  * This function set vector mode, trigger mode and polarity, interrupt level and priority,
  * assign handler for specific IRQn.
- * \param [in]  IRQn        NMI interrupt handler address
- * \param [in]  shv         \ref ECLIC_NON_VECTOR_INTERRUPT means non-vector mode, and \ref ECLIC_VECTOR_INTERRUPT is vector mode
- * \param [in]  trig_mode   see \ref ECLIC_TRIGGER_Type
- * \param [in]  lvl         interupt level
- * \param [in]  priority    interrupt priority
- * \param [in]  handler     interrupt handler
- * return       -1 means invalid input parameter. 0 means successful.
- * \remarks
- * - This function use to configure specific eclic interrupt and register its interrupt handler and enable its interrupt.
  */
-extern int32_t ECLIC_Register_IRQ(IRQn_Type IRQn, uint8_t shv, ECLIC_TRIGGER_Type trig_mode, uint8_t lvl, uint8_t priority, void *handler);
+extern int32_t ECLIC_Register_IRQ(IRQn_Type IRQn, uint8_t shv, ECLIC_TRIGGER_Type trig_mode, uint8_t lvl, uint8_t priority, void* handler);
+
+#if defined(__TEE_PRESENT) && (__TEE_PRESENT == 1)
+/**
+ * \brief Register an exception handler for exception code EXCn of supervisor mode
+ */
+extern void Exception_Register_EXC_S(uint32_t EXCn, unsigned long exc_handler);
+
+/**
+ * \brief Get current exception handler for exception code EXCn of supervisor mode
+ */
+extern unsigned long Exception_Get_EXC_S(uint32_t EXCn);
+
+/**
+ * \brief  Initialize a specific IRQ and register the handler of supervisor mode
+ * \details
+ * This function set vector mode, trigger mode and polarity, interrupt level and priority,
+ * assign handler for specific IRQn.
+ */
+extern int32_t ECLIC_Register_IRQ_S(IRQn_Type IRQn, uint8_t shv, ECLIC_TRIGGER_Type trig_mode, uint8_t lvl, uint8_t priority, void* handler);
+
+#endif
 
 #ifdef __cplusplus
 }

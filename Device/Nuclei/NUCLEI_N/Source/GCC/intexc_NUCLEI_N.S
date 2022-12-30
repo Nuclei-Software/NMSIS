@@ -19,8 +19,8 @@
  * \file     intexc_NUCLEI_N.S
  * \brief    NMSIS Interrupt and Exception Handling Template File
  *           for Nuclei N Device
- * \version  V1.10
- * \date     30. July 2021
+ * \version  V2.0.0
+ * \date     30. Dec 2022
  *
  ******************************************************************************/
 

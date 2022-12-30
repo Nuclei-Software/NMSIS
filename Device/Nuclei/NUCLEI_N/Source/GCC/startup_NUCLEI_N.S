@@ -19,8 +19,8 @@
  * \file     startup_NUCLEI_N.S
  * \brief    NMSIS Nuclei N/NX Class Core based Core Device Startup File for
  *           Device NUCLEI_N
- * \version  V1.10
- * \date     30. July 2021
+ * \version  V2.0.0
+ * \date     30. Dec 2022
  *
  ******************************************************************************/
 

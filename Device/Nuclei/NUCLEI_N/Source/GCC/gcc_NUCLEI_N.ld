@@ -18,8 +18,8 @@
 /******************************************************************************
  * @file     gcc_NUCLEI_N.ld
  * @brief    GNU Linker Script for Nuclei N based device
- * @version  V1.2.0
- * @date     23. Nov 2021
+ * @version  V2.0.0
+ * @date     30. Dec 2022
  ******************************************************************************/
 
 /*********** Use Configuration Wizard in Context Menu *************************/
@@ -125,6 +125,7 @@ SECTIONS
   {
     /* vector table locate at ROM */
     *(.vtable)
+    *(.vtable_s)
     KEEP (*(SORT_NONE(.init)))
     . = ALIGN(4);
   } >ROM AT>ROM

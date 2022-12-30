@@ -20,8 +20,8 @@
  * @file     NUCLEI_NX.h
  * @brief    NMSIS Nuclei Core Peripheral Access Layer Header File for
  *           Nuclei NX Device
- * @version  V1.10
- * @date     30. July 2021
+ * @version  V2.0.0
+ * @date     30. Dec 2022
  ******************************************************************************/
 
 #ifndef __NUCLEI_NX_H__
@@ -137,8 +137,12 @@ typedef enum EXCn {
 #define __VECTOR_PRESENT          1                     /*!< Set to 1 if Vector extension is present */
 #define __PMP_PRESENT             1                     /*!< Set to 1 if PMP is present */
 #define __PMP_ENTRY_NUM           16                    /*!< Set to 8 or 16, the number of PMP entries */
-#define __ICACHE_PRESENT          1                     /*!< Set to 1 if I-Cache is present */
-#define __DCACHE_PRESENT          1                     /*!< Set to 1 if D-Cache is present */
+#define __SPMP_PRESENT            1                     /*!< Set to 1 if SPMP is present */
+#define __SPMP_ENTRY_NUM          16                    /*!< Set to 8 or 16, the number of SPMP entries */
+#define __TEE_PRESENT             0                     /*!< Set to 1 if TEE is present */
+#define __ICACHE_PRESENT          0                     /*!< Set to 1 if I-Cache is present */
+#define __DCACHE_PRESENT          0                     /*!< Set to 1 if D-Cache is present */
+#define __CCM_PRESENT             0                     /*!< Set to 1 if Cache Control and Mantainence Unit is present */
 #define __INC_INTRINSIC_API       0                     /*!< Set to 1 if intrinsic api header files need to be included */
 #define __Vendor_SysTickConfig    0                     /*!< Set to 1 if different SysTick Config is used */
 

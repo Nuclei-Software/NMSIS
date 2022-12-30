@@ -19,8 +19,8 @@
  * \file     startup_NUCLEI_NX.S
  * \brief    NMSIS Nuclei N/NX Class Core based Core Device Startup File for
  *           Device NUCLEI_NX
- * \version  V1.10
- * \date     30. July 2021
+ * \version  V2.0.0
+ * \date     30. Dec 2022
  *
  ******************************************************************************/
 
@@ -34,21 +34,20 @@
 #endif
 .endm
 
-    /*
-     * Put the interrupt vectors in this .vtable section
-     */
     .section .vtable
 
     .weak eclic_msip_handler
     .weak eclic_mtip_handler
-    /* TODO: add vendor interrupt handlers */
 
     .globl vector_base
     .type vector_base, @object
 vector_base:
+#ifndef VECTOR_TABLE_REMAPPED
     j _start                                                /* 0: Reserved, Jump to _start when reset for vector table not remapped cases.*/
     .align LOG_REGBYTES                                     /*    Need to align 4 byte for RV32, 8 Byte for RV64 */
-
+#else
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 0: Reserved, default handler for vector table remapped cases */
+#endif
     DECLARE_INT_HANDLER     default_intexc_handler          /* 1: Reserved */
     DECLARE_INT_HANDLER     default_intexc_handler          /* 2: Reserved */
     DECLARE_INT_HANDLER     eclic_msip_handler              /* 3: Machine software interrupt */
@@ -71,7 +70,6 @@ vector_base:
     DECLARE_INT_HANDLER     default_intexc_handler          /* 16: Reserved */
     DECLARE_INT_HANDLER     default_intexc_handler          /* 17: Reserved */
     DECLARE_INT_HANDLER     default_intexc_handler          /* 18: Reserved */
-    /* TODO: Adjust Vendor Defined External Interrupts */
     DECLARE_INT_HANDLER     default_intexc_handler          /* 19: Interrupt 19 */
 
     DECLARE_INT_HANDLER     default_intexc_handler          /* 20: Interrupt 20 */
@@ -112,11 +110,30 @@ vector_base:
     DECLARE_INT_HANDLER     default_intexc_handler          /* 48: Interrupt 48 */
     DECLARE_INT_HANDLER     default_intexc_handler          /* 49: Interrupt 49 */
     DECLARE_INT_HANDLER     default_intexc_handler          /* 50: Interrupt 50 */
-    /* Please adjust the above part of interrupt definition code
-     * according to your device interrupt number and its configuration */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 51: Interrupt 51 */
 
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 52: Interrupt 52 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 53: Interrupt 53 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 54: Interrupt 54 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 55: Interrupt 55 */
 
-/*** Startup Code Section ***/
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 56: Interrupt 56 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 57: Interrupt 57 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 58: Interrupt 58 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 59: Interrupt 59 */
+
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 60: Interrupt 60 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 61: Interrupt 61 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 62: Interrupt 62 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 63: Interrupt 63 */
+
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 64: Interrupt 64 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 65: Interrupt 65 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 66: Interrupt 66 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 67: Interrupt 67 */
+
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 68: Interrupt 68 */
+
     .section .init
 
     .globl _start
@@ -130,7 +147,19 @@ _start:
     /* Disable Global Interrupt */
     csrc CSR_MSTATUS, MSTATUS_MIE
 
-    /* Initialize GP and Stack Pointer SP */
+    /* If SMP_CPU_CNT is not defined,
+     * assume that only 1 core is allowed to run,
+     * the core hartid is defined via BOOT_HARTID.
+     * other harts if run to here, just do wfi in __amp_wait
+     */
+#ifndef SMP_CPU_CNT
+    csrr a0, CSR_MHARTID
+    /* BOOT_HARTID is configurable in Makefile via BOOT_HARTID variable */
+    li a1, BOOT_HARTID
+    bne a0, a1, __amp_wait
+#endif
+
+    /* Initialize GP and TP */
     .option push
     .option norelax
     la gp, __global_pointer$
@@ -220,8 +249,7 @@ _start:
 
 #if defined(SMP_CPU_CNT) && (SMP_CPU_CNT > 1)
     csrr a0, CSR_MHARTID
-    /* TODO: make boot hard id configurable */
-    li a1, 0
+    li a1, BOOT_HARTID
     bne a0, a1, __skip_init
 #endif
 
@@ -287,7 +315,6 @@ _start_premain:
     /* Call C/C++ constructor start up code */
     call __libc_init_array
 
-    /* do pre-init steps before main */
 __skip_init:
     /* Sync all harts at this function */
     call __sync_harts
@@ -335,7 +362,9 @@ __skip_init:
      * this function will be called by each cpu */
     call _postmain_fini
 
+__amp_wait:
 1:
+    wfi
     j 1b
 
 #if defined(SMP_CPU_CNT) && (SMP_CPU_CNT > 1)
@@ -350,7 +379,7 @@ smp_main:
     STORE ra, 0*REGBYTES(sp)
     /* only boot hart goto main, other harts do wfi */
     csrr t0, mhartid
-    li t1, 0
+    li t1, BOOT_HARTID
     beq t0, t1, 2f
 1:
     wfi
