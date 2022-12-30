@@ -3,31 +3,37 @@
 Changelog
 =========
 
-V1.0.5-dev
-----------
+V1.1.0
+------
 
-This is the version ``V1.0.5`` release of Nuclei MCU Software Interface Standard(NMSIS), which is still in development.
+This is the version ``V1.1.0`` release of Nuclei MCU Software Interface Standard(NMSIS), which is still in development.
 
 * **NMSIS-Core**
 
   - Add ``nmsis_bench.h`` for benchmark and hpm helper functions.
   - Add hpm related API
   - Update ``riscv_encoding.h`` for latest riscv changes.
+  - Add ``core_feature_spmp.h`` for TEE/sPMP unit.
+  - Add more Nuclei DSP N1/N2/N3 intrinsic APIs in ``core_feature_dsp.h``
+  - Bring SMP/AMP support in ``core_feature_eclic.h`` and ``core_feature_timer.h``
 
 * **NMSIS-DSP**
 
   - Sync with DSP library in CMSIS 5.9.0 release.
-  - Optimize with RVV for DSP library.
+  - Add experimental RV32 Vector support.
+  - Optimize with RVP/RVV for DSP library.
 
 * **NMSIS-NN**
 
   - Sync with NN library in CMSIS 5.9.0 release.
-  - Optimize with RVV for NN library.
+  - Add experimental RV32 Vector support.
+  - Optimize with RVP/RVV for NN library.
 
 * **Build System**
 
   - **DSP64** is removed, and replaced by **NUCLEI_DSP_N1**, which means Nuclei DSP N1 extension present.
   - **NUCLEI_DSP_N2** and **NUCLEI_DSP_N3** are introduced to standard for Nuclei DSP N2/N3 extension present.
+  - Now you build different DSP/NN library optimized Nuclei DSP N1/N2/N3 via command such as ``make NUCLEI_DSP=N1 gen``
   - Add ``nmsis_help`` make target to show help message to build nmsis dsp/nn library.
   - Add ``check_build`` and ``check_run`` make target for locally build or run on a small test suite configuration.
   - Add fpga related test script located in ``Scripts/Configs/fpga/``.
@@ -35,7 +41,7 @@ This is the version ``V1.0.5`` release of Nuclei MCU Software Interface Standard
 
 * **Device Tempates**
 
-  - Update Device templates to support SMP and new linker script changes to align with Nuclei SDK 0.3.9
+  - Update Device templates to support SMP/AMP and new linker script changes to align with Nuclei SDK 0.4.0
 
 * **CI**
 

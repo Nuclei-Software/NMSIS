@@ -38,7 +38,7 @@ PROJECT_NAME           = NMSIS-Core
 # could be handy for archiving the generated documentation or if some version
 # control system is used.
 
-PROJECT_NUMBER         = "Version 1.0.2"
+PROJECT_NUMBER         = "Version 1.1.0"
 
 # Using the PROJECT_BRIEF tag one can provide an optional one line description
 # for a project that appears at the top of each page and should give viewer a
@@ -803,6 +803,7 @@ INPUT                  = nmsis_core.txt \
                          ../../../Core/Include/core_feature_fpu.h \
                          ../../../Core/Include/core_feature_dsp.h \
                          ../../../Core/Include/core_feature_pmp.h \
+                         ../../../Core/Include/core_feature_spmp.h \
                          ../../../Core/Include/core_feature_cache.h \
                          ../../../Core/Include/core_compatiable.h \
                          ../../../../Device/_Template_Vendor/Vendor/Device/Source/system_Device.c
@@ -2072,8 +2073,8 @@ INCLUDE_FILE_PATTERNS  =
 # This tag requires that the tag ENABLE_PREPROCESSING is set to YES.
 
 PREDEFINED             =  __ECLIC_PRESENT=1 __ECLIC_BASEADDR=0x0C000000 __ECLIC_INTNUM=50 __ECLIC_INTCTLBITS=2 \
-                    __PMP_PRESENT=1 __PMP_ENTRY_NUM=16 __FPU_PRESENT=2 __DSP_PRESENT=1 __VECTOR_PRESENT=1 \
-                    __BITMANIP_PRESENT=1 __ICACHE_PRESENT=1 __DCACHE_PRESENT=1 __Vendor_SysTickConfig=0 \
+                    __PMP_PRESENT=1 __PMP_ENTRY_NUM=16 __SPMP_PRESENT=1 __SPMP_ENTRY_NUM=16 __TEE_PRESENT=1 __FPU_PRESENT=2 __DSP_PRESENT=1 __VECTOR_PRESENT=1 \
+                    __BITMANIP_PRESENT=1 __ICACHE_PRESENT=1 __DCACHE_PRESENT=1 __CCM_PRESENT=1 __Vendor_SysTickConfig=0 \
                     __SYSTIMER_PRESENT=1 __SYSTIMER_BASEADDR=0x02000000 __IRQC_PRESENT=1 __IRQC_INTNUM=16 \
                     __ONLY_FOR_DOXYGEN_DOCUMENT_GENERATION__
 
