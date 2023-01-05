@@ -36,7 +36,7 @@ Block Diagram
     :alt: NMSIS NN Block Diagram
     :width: 80%
     :align: center
-    
+
     NMSIS NN Block Diagram
 
 Examples
@@ -51,15 +51,9 @@ The library ships with a number of examples which demonstrate how to use the lib
 Pre-processor Macros
 --------------------
 
-Each library project have differant pre-processor macros.
+Each library project have different pre-processor macros controlled via CMakeLists.txt.
 
 This library is only built for little endian targets.
-
-RISCV_MATH_DSP:
-  Define macro RISCV_MATH_DSP, If the silicon supports DSP instructions.
-
-RISCV_NN_TRUNCATE:
-  Define macro RISCV_NN_TRUNCATE to use floor instead of round-to-the-nearest-int for the computation.
 
 
 .. _CMSIS-NN\: Efficient Neural Network Kernels for Arm Cortex-M CPUs: https://arxiv.org/abs/1801.06601

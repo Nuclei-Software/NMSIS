@@ -28,7 +28,8 @@ The library has separate functions for operating on 8-bit integers, 16-bit integ
 Using the Library
 -----------------
 
-The library functions are declared in the public file ``riscv_math.h`` which is placed in the *NMSIS/DSP/Include* folder.
+The library functions are declared in the public file ``riscv_math.h`` which is placed in the
+``NMSIS/DSP/Include`` and ``NMSIS/DSP/PrivateInclude`` folder.
 
 Simply include this file and link the appropriate library in the application and begin calling the library functions.
 
@@ -57,13 +58,6 @@ The libraries can be built by run ``make gen_dsp_lib``, it will build and instal
 Preprocessor Macros
 -------------------
 
-Each library project have different preprocessor macros.
+Each library project have different pre-processor macros controlled via CMakeLists.txt.
 
-RISCV_MATH_MATRIX_CHECK:
-  Define macro RISCV_MATH_MATRIX_CHECK for checking on the input and output sizes of matrices
-
-RISCV_MATH_ROUNDING:
-  Define macro RISCV_MATH_ROUNDING for rounding on support functions
-
-RISCV_MATH_LOOPUNROLL:
-  Define macro RISCV_MATH_LOOPUNROLL to enable manual loop unrolling in DSP functions
+This library is only built for little endian targets.
