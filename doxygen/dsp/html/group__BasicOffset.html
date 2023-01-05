@@ -30,7 +30,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.0.2</span>
+   &#160;<span id="projectnumber">Version 1.1.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -97,6 +97,9 @@ Functions</h2></td></tr>
 <tr class="memitem:gad72716bfc95d745db84d40b018dc4121"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BasicOffset.html#gad72716bfc95d745db84d40b018dc4121">riscv_offset_f32</a> (const float32_t *pSrc, float32_t offset, float32_t *pDst, uint32_t blockSize)</td></tr>
 <tr class="memdesc:gad72716bfc95d745db84d40b018dc4121"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a constant offset to a floating-point vector.  <a href="#gad72716bfc95d745db84d40b018dc4121">More...</a><br /></td></tr>
 <tr class="separator:gad72716bfc95d745db84d40b018dc4121"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae56da7c0c7af0e6b13df16e04b152fa8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BasicOffset.html#gae56da7c0c7af0e6b13df16e04b152fa8">riscv_offset_f64</a> (const float64_t *pSrc, float64_t offset, float64_t *pDst, uint32_t blockSize)</td></tr>
+<tr class="memdesc:gae56da7c0c7af0e6b13df16e04b152fa8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a constant offset to a floating-point vector.  <a href="#gae56da7c0c7af0e6b13df16e04b152fa8">More...</a><br /></td></tr>
+<tr class="separator:gae56da7c0c7af0e6b13df16e04b152fa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac5b374a633b8aa139db81238318a6a8b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BasicOffset.html#gac5b374a633b8aa139db81238318a6a8b">riscv_offset_q15</a> (const q15_t *pSrc, q15_t offset, q15_t *pDst, uint32_t blockSize)</td></tr>
 <tr class="memdesc:gac5b374a633b8aa139db81238318a6a8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a constant offset to a Q15 vector.  <a href="#gac5b374a633b8aa139db81238318a6a8b">More...</a><br /></td></tr>
 <tr class="separator:gac5b374a633b8aa139db81238318a6a8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -187,6 +190,58 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float32_t *&#160;</td>
+          <td class="paramname"><em>pDst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>blockSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a constant offset to a floating-point vector. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pSrc</td><td>points to the input vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">offset</td><td>is the offset to be added </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pDst</td><td>points to the output vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">blockSize</td><td>number of samples in each vector </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
+
+</div>
+</div>
+<a id="gae56da7c0c7af0e6b13df16e04b152fa8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae56da7c0c7af0e6b13df16e04b152fa8">&#9670;&nbsp;</a></span>riscv_offset_f64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void riscv_offset_f64 </td>
+          <td>(</td>
+          <td class="paramtype">const float64_t *&#160;</td>
+          <td class="paramname"><em>pSrc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float64_t&#160;</td>
+          <td class="paramname"><em>offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float64_t *&#160;</td>
           <td class="paramname"><em>pDst</em>, </td>
         </tr>
         <tr>
@@ -381,7 +436,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Mar 30 2022 07:45:01 for NMSIS-DSP by
+    <li class="footer">Generated on Thu Jan 5 2023 09:05:09 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

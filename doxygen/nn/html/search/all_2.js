@@ -1,10 +1,7 @@
 var searchData=
 [
-  ['c',['c',['../structnmsis__nn__dims.html#ab640a21faa6868342cae5af525b7b2d0',1,'nmsis_nn_dims']]],
-  ['ch_5fmult',['ch_mult',['../structnmsis__nn__dw__conv__params.html#ab4921613da4c34e592c71bc54b7c0183',1,'nmsis_nn_dw_conv_params']]],
-  ['convolutional_20neural_20network_20example',['Convolutional Neural Network Example',['../group__CNNExample.html',1,'']]],
-  ['concatenation_20functions',['Concatenation Functions',['../group__Concatenation.html',1,'']]],
-  ['convert_5fq7_5fq15_5fweights',['convert_q7_q15_weights',['../namespacepara__gen.html#af0845a2b6a01a98f6ef345b8992a468c',1,'para_gen']]],
-  ['convert_5fto_5fx4_5fweights',['convert_to_x4_weights',['../namespacepara__gen.html#a2aeb680cc6207c02336be5d942937e84',1,'para_gen']]],
-  ['convolution_20functions',['Convolution Functions',['../group__NNConv.html',1,'']]]
+  ['basic_20math_20functions',['Basic math functions',['../group__BasicMath.html',1,'']]],
+  ['buf',['buf',['../structnmsis__nn__context.html#af6e072db02d746a4dcd41c7af0bc9654',1,'nmsis_nn_context']]],
+  ['bytes',['bytes',['../unionriscv__nnword.html#a7d27a031fb02506228b668e145be3f69',1,'riscv_nnword']]],
+  ['basic_20math_20functions_20for_20neural_20network_20computation',['Basic Math Functions for Neural Network Computation',['../group__NNBasicMath.html',1,'']]]
 ];

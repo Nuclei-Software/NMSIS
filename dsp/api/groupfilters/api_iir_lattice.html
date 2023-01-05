@@ -1,75 +1,39 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Infinite Impulse Response (IIR) Lattice Filters &mdash; NMSIS 1.0.4 documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Infinite Impulse Response (IIR) Lattice Filters &mdash; NMSIS 1.1.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Levinson Durbin Algorithm" href="api_ld.html" />
     <link rel="prev" title="Finite Impulse Response (FIR) Sparse Filters" href="api_fir_sparse.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../../../index.html">
-          
-
-          
-            
             <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                1.0.4
+                1.1.0
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -77,18 +41,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -139,109 +93,68 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">NMSIS</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../../index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
-        
           <li><a href="../index.html">NMSIS DSP API</a> &raquo;</li>
-        
           <li><a href="../api_groupfilters.html">Filtering Functions</a> &raquo;</li>
-        
       <li>Infinite Impulse Response (IIR) Lattice Filters</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="../../../_sources/dsp/api/groupfilters/api_iir_lattice.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="infinite-impulse-response-iir-lattice-filters">
-<span id="nmsis-dsp-api-infinite-impulse-response-iir-lattice-filters"></span><h1>Infinite Impulse Response (IIR) Lattice Filters<a class="headerlink" href="#infinite-impulse-response-iir-lattice-filters" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="_CPPv421riscv_iir_lattice_f32PK30riscv_iir_lattice_instance_f32PK9float32_tP9float32_t8uint32_t">
-<span id="_CPPv321riscv_iir_lattice_f32PK30riscv_iir_lattice_instance_f32PK9float32_tP9float32_t8uint32_t"></span><span id="_CPPv221riscv_iir_lattice_f32PK30riscv_iir_lattice_instance_f32PK9float32_tP9float32_t8uint32_t"></span><span id="riscv_iir_lattice_f32__riscv_iir_lattice_instance_f32CP.float32_tCP.float32_tP.uint32_t"></span><span class="target" id="group__IIR__Lattice_1ga21cbd80b4efa75ebedacf255f3ae9864"></span>void <code class="sig-name descname">riscv_iir_lattice_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_iir_lattice_instance_f32 *<em>S</em>, <em class="property">const</em> float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421riscv_iir_lattice_f32PK30riscv_iir_lattice_instance_f32PK9float32_tP9float32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+             
+  <section id="infinite-impulse-response-iir-lattice-filters">
+<span id="nmsis-dsp-api-infinite-impulse-response-iir-lattice-filters"></span><h1>Infinite Impulse Response (IIR) Lattice Filters<a class="headerlink" href="#infinite-impulse-response-iir-lattice-filters" title="Permalink to this headline"></a></h1>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv421riscv_iir_lattice_f32PK30riscv_iir_lattice_instance_f32PK9float32_tP9float32_t8uint32_t">
+<span id="_CPPv321riscv_iir_lattice_f32PK30riscv_iir_lattice_instance_f32PK9float32_tP9float32_t8uint32_t"></span><span id="_CPPv221riscv_iir_lattice_f32PK30riscv_iir_lattice_instance_f32PK9float32_tP9float32_t8uint32_t"></span><span id="riscv_iir_lattice_f32__riscv_iir_lattice_instance_f32CP.float32_tCP.float32_tP.uint32_t"></span><span class="target" id="group__IIR__Lattice_1ga21cbd80b4efa75ebedacf255f3ae9864"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_iir_lattice_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_iir_lattice_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421riscv_iir_lattice_f32PK30riscv_iir_lattice_instance_f32PK9float32_tP9float32_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv426riscv_iir_lattice_init_f32P30riscv_iir_lattice_instance_f328uint16_tP9float32_tP9float32_tP9float32_t8uint32_t">
-<span id="_CPPv326riscv_iir_lattice_init_f32P30riscv_iir_lattice_instance_f328uint16_tP9float32_tP9float32_tP9float32_t8uint32_t"></span><span id="_CPPv226riscv_iir_lattice_init_f32P30riscv_iir_lattice_instance_f328uint16_tP9float32_tP9float32_tP9float32_t8uint32_t"></span><span id="riscv_iir_lattice_init_f32__riscv_iir_lattice_instance_f32P.uint16_t.float32_tP.float32_tP.float32_tP.uint32_t"></span><span class="target" id="group__IIR__Lattice_1ga0086fda79e52d27e5dbf1aa5e4e5a568"></span>void <code class="sig-name descname">riscv_iir_lattice_init_f32</code><span class="sig-paren">(</span>riscv_iir_lattice_instance_f32 *<em>S</em>, uint16_t <em>numStages</em>, float32_t *<em>pkCoeffs</em>, float32_t *<em>pvCoeffs</em>, float32_t *<em>pState</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426riscv_iir_lattice_init_f32P30riscv_iir_lattice_instance_f328uint16_tP9float32_tP9float32_tP9float32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv426riscv_iir_lattice_init_f32P30riscv_iir_lattice_instance_f328uint16_tP9float32_tP9float32_tP9float32_t8uint32_t">
+<span id="_CPPv326riscv_iir_lattice_init_f32P30riscv_iir_lattice_instance_f328uint16_tP9float32_tP9float32_tP9float32_t8uint32_t"></span><span id="_CPPv226riscv_iir_lattice_init_f32P30riscv_iir_lattice_instance_f328uint16_tP9float32_tP9float32_tP9float32_t8uint32_t"></span><span id="riscv_iir_lattice_init_f32__riscv_iir_lattice_instance_f32P.uint16_t.float32_tP.float32_tP.float32_tP.uint32_t"></span><span class="target" id="group__IIR__Lattice_1ga0086fda79e52d27e5dbf1aa5e4e5a568"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_iir_lattice_init_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_iir_lattice_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">numStages</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pkCoeffs</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pvCoeffs</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pState</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426riscv_iir_lattice_init_f32P30riscv_iir_lattice_instance_f328uint16_tP9float32_tP9float32_tP9float32_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv426riscv_iir_lattice_init_q15P30riscv_iir_lattice_instance_q158uint16_tP5q15_tP5q15_tP5q15_t8uint32_t">
-<span id="_CPPv326riscv_iir_lattice_init_q15P30riscv_iir_lattice_instance_q158uint16_tP5q15_tP5q15_tP5q15_t8uint32_t"></span><span id="_CPPv226riscv_iir_lattice_init_q15P30riscv_iir_lattice_instance_q158uint16_tP5q15_tP5q15_tP5q15_t8uint32_t"></span><span id="riscv_iir_lattice_init_q15__riscv_iir_lattice_instance_q15P.uint16_t.q15_tP.q15_tP.q15_tP.uint32_t"></span><span class="target" id="group__IIR__Lattice_1ga2597e0a4aaf0b8ff9a83b1bb1b8bd801"></span>void <code class="sig-name descname">riscv_iir_lattice_init_q15</code><span class="sig-paren">(</span>riscv_iir_lattice_instance_q15 *<em>S</em>, uint16_t <em>numStages</em>, q15_t *<em>pkCoeffs</em>, q15_t *<em>pvCoeffs</em>, q15_t *<em>pState</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426riscv_iir_lattice_init_q15P30riscv_iir_lattice_instance_q158uint16_tP5q15_tP5q15_tP5q15_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv426riscv_iir_lattice_init_q15P30riscv_iir_lattice_instance_q158uint16_tP5q15_tP5q15_tP5q15_t8uint32_t">
+<span id="_CPPv326riscv_iir_lattice_init_q15P30riscv_iir_lattice_instance_q158uint16_tP5q15_tP5q15_tP5q15_t8uint32_t"></span><span id="_CPPv226riscv_iir_lattice_init_q15P30riscv_iir_lattice_instance_q158uint16_tP5q15_tP5q15_tP5q15_t8uint32_t"></span><span id="riscv_iir_lattice_init_q15__riscv_iir_lattice_instance_q15P.uint16_t.q15_tP.q15_tP.q15_tP.uint32_t"></span><span class="target" id="group__IIR__Lattice_1ga2597e0a4aaf0b8ff9a83b1bb1b8bd801"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_iir_lattice_init_q15</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_iir_lattice_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">numStages</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pkCoeffs</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pvCoeffs</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pState</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426riscv_iir_lattice_init_q15P30riscv_iir_lattice_instance_q158uint16_tP5q15_tP5q15_tP5q15_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv426riscv_iir_lattice_init_q31P30riscv_iir_lattice_instance_q318uint16_tP5q31_tP5q31_tP5q31_t8uint32_t">
-<span id="_CPPv326riscv_iir_lattice_init_q31P30riscv_iir_lattice_instance_q318uint16_tP5q31_tP5q31_tP5q31_t8uint32_t"></span><span id="_CPPv226riscv_iir_lattice_init_q31P30riscv_iir_lattice_instance_q318uint16_tP5q31_tP5q31_tP5q31_t8uint32_t"></span><span id="riscv_iir_lattice_init_q31__riscv_iir_lattice_instance_q31P.uint16_t.q31_tP.q31_tP.q31_tP.uint32_t"></span><span class="target" id="group__IIR__Lattice_1ga2d089c8a0b6a3b543169569bc6f12f3c"></span>void <code class="sig-name descname">riscv_iir_lattice_init_q31</code><span class="sig-paren">(</span>riscv_iir_lattice_instance_q31 *<em>S</em>, uint16_t <em>numStages</em>, q31_t *<em>pkCoeffs</em>, q31_t *<em>pvCoeffs</em>, q31_t *<em>pState</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426riscv_iir_lattice_init_q31P30riscv_iir_lattice_instance_q318uint16_tP5q31_tP5q31_tP5q31_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv426riscv_iir_lattice_init_q31P30riscv_iir_lattice_instance_q318uint16_tP5q31_tP5q31_tP5q31_t8uint32_t">
+<span id="_CPPv326riscv_iir_lattice_init_q31P30riscv_iir_lattice_instance_q318uint16_tP5q31_tP5q31_tP5q31_t8uint32_t"></span><span id="_CPPv226riscv_iir_lattice_init_q31P30riscv_iir_lattice_instance_q318uint16_tP5q31_tP5q31_tP5q31_t8uint32_t"></span><span id="riscv_iir_lattice_init_q31__riscv_iir_lattice_instance_q31P.uint16_t.q31_tP.q31_tP.q31_tP.uint32_t"></span><span class="target" id="group__IIR__Lattice_1ga2d089c8a0b6a3b543169569bc6f12f3c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_iir_lattice_init_q31</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_iir_lattice_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">numStages</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pkCoeffs</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pvCoeffs</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pState</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426riscv_iir_lattice_init_q31P30riscv_iir_lattice_instance_q318uint16_tP5q31_tP5q31_tP5q31_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv421riscv_iir_lattice_q15PK30riscv_iir_lattice_instance_q15PK5q15_tP5q15_t8uint32_t">
-<span id="_CPPv321riscv_iir_lattice_q15PK30riscv_iir_lattice_instance_q15PK5q15_tP5q15_t8uint32_t"></span><span id="_CPPv221riscv_iir_lattice_q15PK30riscv_iir_lattice_instance_q15PK5q15_tP5q15_t8uint32_t"></span><span id="riscv_iir_lattice_q15__riscv_iir_lattice_instance_q15CP.q15_tCP.q15_tP.uint32_t"></span><span class="target" id="group__IIR__Lattice_1ga07f17a4cacfb0eaf8e41bc6e705c0a02"></span>void <code class="sig-name descname">riscv_iir_lattice_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_iir_lattice_instance_q15 *<em>S</em>, <em class="property">const</em> q15_t *<em>pSrc</em>, q15_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421riscv_iir_lattice_q15PK30riscv_iir_lattice_instance_q15PK5q15_tP5q15_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv421riscv_iir_lattice_q15PK30riscv_iir_lattice_instance_q15PK5q15_tP5q15_t8uint32_t">
+<span id="_CPPv321riscv_iir_lattice_q15PK30riscv_iir_lattice_instance_q15PK5q15_tP5q15_t8uint32_t"></span><span id="_CPPv221riscv_iir_lattice_q15PK30riscv_iir_lattice_instance_q15PK5q15_tP5q15_t8uint32_t"></span><span id="riscv_iir_lattice_q15__riscv_iir_lattice_instance_q15CP.q15_tCP.q15_tP.uint32_t"></span><span class="target" id="group__IIR__Lattice_1ga07f17a4cacfb0eaf8e41bc6e705c0a02"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_iir_lattice_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_iir_lattice_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421riscv_iir_lattice_q15PK30riscv_iir_lattice_instance_q15PK5q15_tP5q15_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv421riscv_iir_lattice_q31PK30riscv_iir_lattice_instance_q31PK5q31_tP5q31_t8uint32_t">
-<span id="_CPPv321riscv_iir_lattice_q31PK30riscv_iir_lattice_instance_q31PK5q31_tP5q31_t8uint32_t"></span><span id="_CPPv221riscv_iir_lattice_q31PK30riscv_iir_lattice_instance_q31PK5q31_tP5q31_t8uint32_t"></span><span id="riscv_iir_lattice_q31__riscv_iir_lattice_instance_q31CP.q31_tCP.q31_tP.uint32_t"></span><span class="target" id="group__IIR__Lattice_1ga05b9e1ecf4b9bd838ccab74d9c8d5265"></span>void <code class="sig-name descname">riscv_iir_lattice_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_iir_lattice_instance_q31 *<em>S</em>, <em class="property">const</em> q31_t *<em>pSrc</em>, q31_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421riscv_iir_lattice_q31PK30riscv_iir_lattice_instance_q31PK5q31_tP5q31_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv421riscv_iir_lattice_q31PK30riscv_iir_lattice_instance_q31PK5q31_tP5q31_t8uint32_t">
+<span id="_CPPv321riscv_iir_lattice_q31PK30riscv_iir_lattice_instance_q31PK5q31_tP5q31_t8uint32_t"></span><span id="_CPPv221riscv_iir_lattice_q31PK30riscv_iir_lattice_instance_q31PK5q31_tP5q31_t8uint32_t"></span><span id="riscv_iir_lattice_q31__riscv_iir_lattice_instance_q31CP.q31_tCP.q31_tP.uint32_t"></span><span class="target" id="group__IIR__Lattice_1ga05b9e1ecf4b9bd838ccab74d9c8d5265"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_iir_lattice_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_iir_lattice_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421riscv_iir_lattice_q31PK30riscv_iir_lattice_instance_q31PK5q31_tP5q31_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="group">
-<dt>
-<span class="target" id="group__IIR__Lattice"></span><em>group</em> <code class="sig-name descname">IIR_Lattice</code></dt>
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__IIR__Lattice"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">IIR_Lattice</span></span></dt>
 <dd><p>This set of functions implements lattice filters for Q15, Q31 and floating-point data types. Lattice filters are used in a variety of adaptive filter applications. The filter structure has feedforward and feedback components and the net impulse response is infinite length. The functions operate on blocks of input and output data and each call to the function processes <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> samples through the filter. <code class="docutils literal notranslate"><span class="pre">pSrc</span></code> and <code class="docutils literal notranslate"><span class="pre">pDst</span></code> point to input and output arrays containing <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> values.</p>
 <p><dl class="simple">
 <dt><strong>Algorithm</strong></dt><dd><p><img alt="../../../_images/IIRLattice.png" src="../../../_images/IIRLattice.png" /></p>
@@ -273,180 +186,173 @@
 </dl>
 </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Functions</p>
-<dl class="function">
-<dt id="_CPPv421riscv_iir_lattice_f32PK30riscv_iir_lattice_instance_f32PK9float32_tP9float32_t8uint32_t">
-<span id="_CPPv321riscv_iir_lattice_f32PK30riscv_iir_lattice_instance_f32PK9float32_tP9float32_t8uint32_t"></span><span id="_CPPv221riscv_iir_lattice_f32PK30riscv_iir_lattice_instance_f32PK9float32_tP9float32_t8uint32_t"></span><span class="target" id="group__IIR__Lattice_1ga21cbd80b4efa75ebedacf255f3ae9864"></span>void <code class="sig-name descname">riscv_iir_lattice_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_iir_lattice_instance_f32 *<em>S</em>, <em class="property">const</em> float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__IIR__Lattice_1ga21cbd80b4efa75ebedacf255f3ae9864"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_iir_lattice_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_iir_lattice_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the floating-point IIR lattice filter. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the floating-point IIR lattice structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the block of output data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the floating-point IIR lattice structure </p></li>
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv426riscv_iir_lattice_init_f32P30riscv_iir_lattice_instance_f328uint16_tP9float32_tP9float32_tP9float32_t8uint32_t">
-<span id="_CPPv326riscv_iir_lattice_init_f32P30riscv_iir_lattice_instance_f328uint16_tP9float32_tP9float32_tP9float32_t8uint32_t"></span><span id="_CPPv226riscv_iir_lattice_init_f32P30riscv_iir_lattice_instance_f328uint16_tP9float32_tP9float32_tP9float32_t8uint32_t"></span><span class="target" id="group__IIR__Lattice_1ga0086fda79e52d27e5dbf1aa5e4e5a568"></span>void <code class="sig-name descname">riscv_iir_lattice_init_f32</code><span class="sig-paren">(</span>riscv_iir_lattice_instance_f32 *<em>S</em>, uint16_t <em>numStages</em>, float32_t *<em>pkCoeffs</em>, float32_t *<em>pvCoeffs</em>, float32_t *<em>pState</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__IIR__Lattice_1ga0086fda79e52d27e5dbf1aa5e4e5a568"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_iir_lattice_init_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_iir_lattice_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">numStages</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pkCoeffs</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pvCoeffs</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pState</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the floating-point IIR lattice filter. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the floating-point IIR lattice structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numStages</span></code>: number of stages in the filter </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pkCoeffs</span></code>: points to reflection coefficient buffer. The array is of length numStages </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pvCoeffs</span></code>: points to ladder coefficient buffer. The array is of length numStages+1 </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pState</span></code>: points to state buffer. The array is of length numStages+blockSize </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the floating-point IIR lattice structure </p></li>
+<li><p><strong>numStages</strong> – <strong>[in]</strong> number of stages in the filter </p></li>
+<li><p><strong>pkCoeffs</strong> – <strong>[in]</strong> points to reflection coefficient buffer. The array is of length numStages </p></li>
+<li><p><strong>pvCoeffs</strong> – <strong>[in]</strong> points to ladder coefficient buffer. The array is of length numStages+1 </p></li>
+<li><p><strong>pState</strong> – <strong>[in]</strong> points to state buffer. The array is of length numStages+blockSize </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv426riscv_iir_lattice_init_q15P30riscv_iir_lattice_instance_q158uint16_tP5q15_tP5q15_tP5q15_t8uint32_t">
-<span id="_CPPv326riscv_iir_lattice_init_q15P30riscv_iir_lattice_instance_q158uint16_tP5q15_tP5q15_tP5q15_t8uint32_t"></span><span id="_CPPv226riscv_iir_lattice_init_q15P30riscv_iir_lattice_instance_q158uint16_tP5q15_tP5q15_tP5q15_t8uint32_t"></span><span class="target" id="group__IIR__Lattice_1ga2597e0a4aaf0b8ff9a83b1bb1b8bd801"></span>void <code class="sig-name descname">riscv_iir_lattice_init_q15</code><span class="sig-paren">(</span>riscv_iir_lattice_instance_q15 *<em>S</em>, uint16_t <em>numStages</em>, q15_t *<em>pkCoeffs</em>, q15_t *<em>pvCoeffs</em>, q15_t *<em>pState</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__IIR__Lattice_1ga2597e0a4aaf0b8ff9a83b1bb1b8bd801"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_iir_lattice_init_q15</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_iir_lattice_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">numStages</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pkCoeffs</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pvCoeffs</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pState</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the Q15 IIR lattice filter. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the Q15 IIR lattice structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numStages</span></code>: number of stages in the filter </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pkCoeffs</span></code>: points to reflection coefficient buffer. The array is of length numStages </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pvCoeffs</span></code>: points to ladder coefficient buffer. The array is of length numStages+1 </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pState</span></code>: points to state buffer. The array is of length numStages+blockSize </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q15 IIR lattice structure </p></li>
+<li><p><strong>numStages</strong> – <strong>[in]</strong> number of stages in the filter </p></li>
+<li><p><strong>pkCoeffs</strong> – <strong>[in]</strong> points to reflection coefficient buffer. The array is of length numStages </p></li>
+<li><p><strong>pvCoeffs</strong> – <strong>[in]</strong> points to ladder coefficient buffer. The array is of length numStages+1 </p></li>
+<li><p><strong>pState</strong> – <strong>[in]</strong> points to state buffer. The array is of length numStages+blockSize </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv426riscv_iir_lattice_init_q31P30riscv_iir_lattice_instance_q318uint16_tP5q31_tP5q31_tP5q31_t8uint32_t">
-<span id="_CPPv326riscv_iir_lattice_init_q31P30riscv_iir_lattice_instance_q318uint16_tP5q31_tP5q31_tP5q31_t8uint32_t"></span><span id="_CPPv226riscv_iir_lattice_init_q31P30riscv_iir_lattice_instance_q318uint16_tP5q31_tP5q31_tP5q31_t8uint32_t"></span><span class="target" id="group__IIR__Lattice_1ga2d089c8a0b6a3b543169569bc6f12f3c"></span>void <code class="sig-name descname">riscv_iir_lattice_init_q31</code><span class="sig-paren">(</span>riscv_iir_lattice_instance_q31 *<em>S</em>, uint16_t <em>numStages</em>, q31_t *<em>pkCoeffs</em>, q31_t *<em>pvCoeffs</em>, q31_t *<em>pState</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__IIR__Lattice_1ga2d089c8a0b6a3b543169569bc6f12f3c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_iir_lattice_init_q31</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_iir_lattice_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">numStages</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pkCoeffs</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pvCoeffs</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pState</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the Q31 IIR lattice filter. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the Q31 IIR lattice structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numStages</span></code>: number of stages in the filter </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pkCoeffs</span></code>: points to reflection coefficient buffer. The array is of length numStages </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pvCoeffs</span></code>: points to ladder coefficient buffer. The array is of length numStages+1 </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pState</span></code>: points to state buffer. The array is of length numStages+blockSize </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q31 IIR lattice structure </p></li>
+<li><p><strong>numStages</strong> – <strong>[in]</strong> number of stages in the filter </p></li>
+<li><p><strong>pkCoeffs</strong> – <strong>[in]</strong> points to reflection coefficient buffer. The array is of length numStages </p></li>
+<li><p><strong>pvCoeffs</strong> – <strong>[in]</strong> points to ladder coefficient buffer. The array is of length numStages+1 </p></li>
+<li><p><strong>pState</strong> – <strong>[in]</strong> points to state buffer. The array is of length numStages+blockSize </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv421riscv_iir_lattice_q15PK30riscv_iir_lattice_instance_q15PK5q15_tP5q15_t8uint32_t">
-<span id="_CPPv321riscv_iir_lattice_q15PK30riscv_iir_lattice_instance_q15PK5q15_tP5q15_t8uint32_t"></span><span id="_CPPv221riscv_iir_lattice_q15PK30riscv_iir_lattice_instance_q15PK5q15_tP5q15_t8uint32_t"></span><span class="target" id="group__IIR__Lattice_1ga07f17a4cacfb0eaf8e41bc6e705c0a02"></span>void <code class="sig-name descname">riscv_iir_lattice_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_iir_lattice_instance_q15 *<em>S</em>, <em class="property">const</em> q15_t *<em>pSrc</em>, q15_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__IIR__Lattice_1ga07f17a4cacfb0eaf8e41bc6e705c0a02"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_iir_lattice_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_iir_lattice_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the Q15 IIR lattice filter. </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none</p>
-</dd>
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The function is implemented using an internal 64-bit accumulator. Both coefficients and state variables are represented in 1.15 format and multiplications yield a 2.30 result. The 2.30 intermediate results are accumulated in a 64-bit accumulator in 34.30 format. There is no risk of internal overflow with this approach and the full precision of intermediate multiplications is preserved. After all additions have been performed, the accumulator is truncated to 34.15 format by discarding low 15 bits. Lastly, the accumulator is saturated to yield a result in 1.15 format. </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the Q15 IIR lattice structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the block of output data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process </p></li>
-</ul>
-</dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q15 IIR lattice structure </p></li>
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv421riscv_iir_lattice_q31PK30riscv_iir_lattice_instance_q31PK5q31_tP5q31_t8uint32_t">
-<span id="_CPPv321riscv_iir_lattice_q31PK30riscv_iir_lattice_instance_q31PK5q31_tP5q31_t8uint32_t"></span><span id="_CPPv221riscv_iir_lattice_q31PK30riscv_iir_lattice_instance_q31PK5q31_tP5q31_t8uint32_t"></span><span class="target" id="group__IIR__Lattice_1ga05b9e1ecf4b9bd838ccab74d9c8d5265"></span>void <code class="sig-name descname">riscv_iir_lattice_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_iir_lattice_instance_q31 *<em>S</em>, <em class="property">const</em> q31_t *<em>pSrc</em>, q31_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__IIR__Lattice_1ga05b9e1ecf4b9bd838ccab74d9c8d5265"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_iir_lattice_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_iir_lattice_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the Q31 IIR lattice filter. </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none</p>
-</dd>
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The function is implemented using an internal 64-bit accumulator. The accumulator has a 2.62 format and maintains full precision of the intermediate multiplication results but provides only a single guard bit. Thus, if the accumulator result overflows it wraps around rather than clip. In order to avoid overflows completely the input signal must be scaled down by 2*log2(numStages) bits. After all multiply-accumulates are performed, the 2.62 accumulator is saturated to 1.32 format and then truncated to 1.31 format. </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the Q31 IIR lattice structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the block of output data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process </p></li>
-</ul>
 </dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q31 IIR lattice structure </p></li>
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="api_ld.html" class="btn btn-neutral float-right" title="Levinson Durbin Algorithm" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="api_fir_sparse.html" class="btn btn-neutral float-left" title="Finite Impulse Response (FIR) Sparse Filters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api_fir_sparse.html" class="btn btn-neutral float-left" title="Finite Impulse Response (FIR) Sparse Filters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api_ld.html" class="btn btn-neutral float-right" title="Levinson Durbin Algorithm" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2019-Present, Nuclei
-      <span class="lastupdated">
-        Last updated on Mar 30, 2022.
-      </span>
-
-    </p>
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on Jan 05, 2023.
+      </span></p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

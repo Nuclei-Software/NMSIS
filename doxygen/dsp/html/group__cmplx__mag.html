@@ -30,7 +30,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.0.2</span>
+   &#160;<span id="projectnumber">Version 1.1.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -97,6 +97,12 @@ Functions</h2></td></tr>
 <tr class="memitem:gaced344ae0cd2f40f7afa5241b72c62a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cmplx__mag.html#gaced344ae0cd2f40f7afa5241b72c62a1">riscv_cmplx_mag_f32</a> (const float32_t *pSrc, float32_t *pDst, uint32_t numSamples)</td></tr>
 <tr class="memdesc:gaced344ae0cd2f40f7afa5241b72c62a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Floating-point complex magnitude.  <a href="#gaced344ae0cd2f40f7afa5241b72c62a1">More...</a><br /></td></tr>
 <tr class="separator:gaced344ae0cd2f40f7afa5241b72c62a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7073cb9eaba662b0ad0142e7d4916a37"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cmplx__mag.html#ga7073cb9eaba662b0ad0142e7d4916a37">riscv_cmplx_mag_f64</a> (const float64_t *pSrc, float64_t *pDst, uint32_t numSamples)</td></tr>
+<tr class="memdesc:ga7073cb9eaba662b0ad0142e7d4916a37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Floating-point complex magnitude.  <a href="#ga7073cb9eaba662b0ad0142e7d4916a37">More...</a><br /></td></tr>
+<tr class="separator:ga7073cb9eaba662b0ad0142e7d4916a37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacf7d5e4398a01ed18441b94032c4f521"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cmplx__mag.html#gacf7d5e4398a01ed18441b94032c4f521">riscv_cmplx_mag_fast_q15</a> (const q15_t *pSrc, q15_t *pDst, uint32_t numSamples)</td></tr>
+<tr class="memdesc:gacf7d5e4398a01ed18441b94032c4f521"><td class="mdescLeft">&#160;</td><td class="mdescRight">Q15 complex magnitude.  <a href="#gacf7d5e4398a01ed18441b94032c4f521">More...</a><br /></td></tr>
+<tr class="separator:gacf7d5e4398a01ed18441b94032c4f521"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga54917cbf3745cb1bc01ca593a7a79cb6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cmplx__mag.html#ga54917cbf3745cb1bc01ca593a7a79cb6">riscv_cmplx_mag_q15</a> (const q15_t *pSrc, q15_t *pDst, uint32_t numSamples)</td></tr>
 <tr class="memdesc:ga54917cbf3745cb1bc01ca593a7a79cb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Q15 complex magnitude.  <a href="#ga54917cbf3745cb1bc01ca593a7a79cb6">More...</a><br /></td></tr>
 <tr class="separator:ga54917cbf3745cb1bc01ca593a7a79cb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -204,6 +210,97 @@ for (n = 0; n &lt; numSamples; n++) {
 
 </div>
 </div>
+<a id="ga7073cb9eaba662b0ad0142e7d4916a37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7073cb9eaba662b0ad0142e7d4916a37">&#9670;&nbsp;</a></span>riscv_cmplx_mag_f64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void riscv_cmplx_mag_f64 </td>
+          <td>(</td>
+          <td class="paramtype">const float64_t *&#160;</td>
+          <td class="paramname"><em>pSrc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float64_t *&#160;</td>
+          <td class="paramname"><em>pDst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>numSamples</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Floating-point complex magnitude. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pSrc</td><td>points to input vector </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pDst</td><td>points to output vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">numSamples</td><td>number of samples in each vector </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
+
+</div>
+</div>
+<a id="gacf7d5e4398a01ed18441b94032c4f521"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacf7d5e4398a01ed18441b94032c4f521">&#9670;&nbsp;</a></span>riscv_cmplx_mag_fast_q15()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void riscv_cmplx_mag_fast_q15 </td>
+          <td>(</td>
+          <td class="paramtype">const q15_t *&#160;</td>
+          <td class="paramname"><em>pSrc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">q15_t *&#160;</td>
+          <td class="paramname"><em>pDst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>numSamples</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Q15 complex magnitude. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pSrc</td><td>points to input vector </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pDst</td><td>points to output vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">numSamples</td><td>number of samples in each vector </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>none</dd></dl>
+<dl class="section user"><dt>Scaling and Overflow Behavior</dt><dd>The function implements 1.15 by 1.15 multiplications and finally output is converted into 2.14 format. Fast functions are less accurate. This function will tend to clamp to 0 the too small values. So sqrt(x*x) = x will not always be true. </dd></dl>
+
+</div>
+</div>
 <a id="ga54917cbf3745cb1bc01ca593a7a79cb6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga54917cbf3745cb1bc01ca593a7a79cb6">&#9670;&nbsp;</a></span>riscv_cmplx_mag_q15()</h2>
 
@@ -301,7 +398,7 @@ for (n = 0; n &lt; numSamples; n++) {
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Mar 30 2022 07:45:01 for NMSIS-DSP by
+    <li class="footer">Generated on Thu Jan 5 2023 09:05:09 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

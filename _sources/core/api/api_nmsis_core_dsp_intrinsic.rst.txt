@@ -8,7 +8,7 @@ Click `Nuclei DSP Feature`_ to learn about Core DSP in Nuclei ISA Spec.
 .. toctree::
    :maxdepth: 3
 
-   
+
    nmsis_core_dsp_intrinsic/api_nmsis_core_dsp_intrinsic_simd_data_process.rst
    nmsis_core_dsp_intrinsic/api_nmsis_core_dsp_intrinsic_non_simd.rst
    nmsis_core_dsp_intrinsic/api_nmsis_core_dsp_intrinsic_part_simd_data_process.rst

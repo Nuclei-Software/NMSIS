@@ -2,7 +2,7 @@ var searchData=
 [
   ['version_20control',['Version Control',['../group__NMSIS__Core__VersionControl.html',1,'']]],
   ['v',['v',['../unionCSR__MISA__Type.html#a24a555a6f05561ed548f05b37ad48df9',1,'CSR_MISA_Type']]],
-  ['version',['version',['../unionCLICINFO__Type.html#a53f2d7abe7ade2b398085dba46d5a416',1,'CLICINFO_Type']]],
+  ['version',['version',['../unionCLICINFO__Type.html#a99b721d3a2424844819a679e4f1238f5',1,'CLICINFO_Type']]],
   ['vm_5fmbare',['VM_MBARE',['../group__NMSIS__Core__CSR__Encoding.html#ga136d72c1560058c881e418d809313c4d',1,'riscv_encoding.h']]],
   ['vm_5fmbb',['VM_MBB',['../group__NMSIS__Core__CSR__Encoding.html#gaa14ac20603beff5cf88970ba9df3336d',1,'riscv_encoding.h']]],
   ['vm_5fmbbid',['VM_MBBID',['../group__NMSIS__Core__CSR__Encoding.html#ga393d622a8cfcc7d8ea5343fdfcd32d07',1,'riscv_encoding.h']]],

@@ -30,7 +30,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.0.2</span>
+   &#160;<span id="projectnumber">Version 1.1.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -97,15 +97,15 @@ Functions</h2></td></tr>
 <tr class="memitem:gadd1996f7da2fd9f19a6e2f3e691b681f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MatrixInit.html#gadd1996f7da2fd9f19a6e2f3e691b681f">riscv_mat_init_f32</a> (<a class="el" href="structriscv__matrix__instance__f32.html">riscv_matrix_instance_f32</a> *S, uint16_t nRows, uint16_t nColumns, float32_t *pData)</td></tr>
 <tr class="memdesc:gadd1996f7da2fd9f19a6e2f3e691b681f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Floating-point matrix initialization.  <a href="#gadd1996f7da2fd9f19a6e2f3e691b681f">More...</a><br /></td></tr>
 <tr class="separator:gadd1996f7da2fd9f19a6e2f3e691b681f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaeba3319af662469e3883cb04e5a20f89"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MatrixInit.html#gaeba3319af662469e3883cb04e5a20f89">riscv_mat_init_f64</a> (<a class="el" href="structriscv__matrix__instance__f64.html">riscv_matrix_instance_f64</a> *S, uint16_t nRows, uint16_t nColumns, float32_t *pData)</td></tr>
-<tr class="memdesc:gaeba3319af662469e3883cb04e5a20f89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Floating-point matrix initialization.  <a href="#gaeba3319af662469e3883cb04e5a20f89">More...</a><br /></td></tr>
-<tr class="separator:gaeba3319af662469e3883cb04e5a20f89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga898e2982d889ba9c78de91066e72bd52"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MatrixInit.html#ga898e2982d889ba9c78de91066e72bd52">riscv_mat_init_q15</a> (<a class="el" href="structriscv__matrix__instance__q15.html">riscv_matrix_instance_q15</a> *S, uint16_t nRows, uint16_t nColumns, q15_t *pData)</td></tr>
 <tr class="memdesc:ga898e2982d889ba9c78de91066e72bd52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Q15 matrix initialization.  <a href="#ga898e2982d889ba9c78de91066e72bd52">More...</a><br /></td></tr>
 <tr class="separator:ga898e2982d889ba9c78de91066e72bd52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa331509280e01b0d5a291a3edc3445a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MatrixInit.html#gaa331509280e01b0d5a291a3edc3445a8">riscv_mat_init_q31</a> (<a class="el" href="structriscv__matrix__instance__q31.html">riscv_matrix_instance_q31</a> *S, uint16_t nRows, uint16_t nColumns, q31_t *pData)</td></tr>
 <tr class="memdesc:gaa331509280e01b0d5a291a3edc3445a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Q31 matrix initialization.  <a href="#gaa331509280e01b0d5a291a3edc3445a8">More...</a><br /></td></tr>
 <tr class="separator:gaa331509280e01b0d5a291a3edc3445a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga05d8a24f83857c6f7a1e217d8e2cc752"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MatrixInit.html#ga05d8a24f83857c6f7a1e217d8e2cc752">riscv_mat_init_q7</a> (<a class="el" href="structriscv__matrix__instance__q7.html">riscv_matrix_instance_q7</a> *S, uint16_t nRows, uint16_t nColumns, q7_t *pData)</td></tr>
+<tr class="memdesc:ga05d8a24f83857c6f7a1e217d8e2cc752"><td class="mdescLeft">&#160;</td><td class="mdescRight">Q7 matrix initialization.  <a href="#ga05d8a24f83857c6f7a1e217d8e2cc752">More...</a><br /></td></tr>
+<tr class="separator:ga05d8a24f83857c6f7a1e217d8e2cc752"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Initializes the underlying matrix data structure. The functions set the <code>numRows</code>, <code>numCols</code>, and <code>pData</code> fields of the matrix data structure. </p>
@@ -172,58 +172,6 @@ Functions</h2></td></tr>
           <td class="memname">void riscv_mat_init_f32 </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structriscv__matrix__instance__f32.html">riscv_matrix_instance_f32</a> *&#160;</td>
-          <td class="paramname"><em>S</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint16_t&#160;</td>
-          <td class="paramname"><em>nRows</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint16_t&#160;</td>
-          <td class="paramname"><em>nColumns</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float32_t *&#160;</td>
-          <td class="paramname"><em>pData</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Floating-point matrix initialization. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">S</td><td>points to an instance of the floating-point matrix structure </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nRows</td><td>number of rows in the matrix </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nColumns</td><td>number of columns in the matrix </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">pData</td><td>points to the matrix data array </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
-
-</div>
-</div>
-<a id="gaeba3319af662469e3883cb04e5a20f89"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaeba3319af662469e3883cb04e5a20f89">&#9670;&nbsp;</a></span>riscv_mat_init_f64()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void riscv_mat_init_f64 </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structriscv__matrix__instance__f64.html">riscv_matrix_instance_f64</a> *&#160;</td>
           <td class="paramname"><em>S</em>, </td>
         </tr>
         <tr>
@@ -370,12 +318,64 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ga05d8a24f83857c6f7a1e217d8e2cc752"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga05d8a24f83857c6f7a1e217d8e2cc752">&#9670;&nbsp;</a></span>riscv_mat_init_q7()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void riscv_mat_init_q7 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structriscv__matrix__instance__q7.html">riscv_matrix_instance_q7</a> *&#160;</td>
+          <td class="paramname"><em>S</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>nRows</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>nColumns</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">q7_t *&#160;</td>
+          <td class="paramname"><em>pData</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Q7 matrix initialization. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">S</td><td>points to an instance of the floating-point matrix structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nRows</td><td>number of rows in the matrix </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nColumns</td><td>number of columns in the matrix </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pData</td><td>points to the matrix data array </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Mar 30 2022 07:45:01 for NMSIS-DSP by
+    <li class="footer">Generated on Thu Jan 5 2023 09:05:09 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

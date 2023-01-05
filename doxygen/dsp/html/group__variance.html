@@ -30,7 +30,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.0.2</span>
+   &#160;<span id="projectnumber">Version 1.1.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -97,6 +97,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga452ec5639a24313dc7cbc515d1a8c680"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__variance.html#ga452ec5639a24313dc7cbc515d1a8c680">riscv_var_f32</a> (const float32_t *pSrc, uint32_t blockSize, float32_t *pResult)</td></tr>
 <tr class="memdesc:ga452ec5639a24313dc7cbc515d1a8c680"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variance of the elements of a floating-point vector.  <a href="#ga452ec5639a24313dc7cbc515d1a8c680">More...</a><br /></td></tr>
 <tr class="separator:ga452ec5639a24313dc7cbc515d1a8c680"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga313372b6f0f843e1daa2b0ccacd1976d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__variance.html#ga313372b6f0f843e1daa2b0ccacd1976d">riscv_var_f64</a> (const float64_t *pSrc, uint32_t blockSize, float64_t *pResult)</td></tr>
+<tr class="memdesc:ga313372b6f0f843e1daa2b0ccacd1976d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variance of the elements of a floating-point vector.  <a href="#ga313372b6f0f843e1daa2b0ccacd1976d">More...</a><br /></td></tr>
+<tr class="separator:ga313372b6f0f843e1daa2b0ccacd1976d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga63d8f72f30eed44563cd1a32c38803a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__variance.html#ga63d8f72f30eed44563cd1a32c38803a9">riscv_var_q15</a> (const q15_t *pSrc, uint32_t blockSize, q15_t *pResult)</td></tr>
 <tr class="memdesc:ga63d8f72f30eed44563cd1a32c38803a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variance of the elements of a Q15 vector.  <a href="#ga63d8f72f30eed44563cd1a32c38803a9">More...</a><br /></td></tr>
 <tr class="separator:ga63d8f72f30eed44563cd1a32c38803a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -177,6 +180,51 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float32_t *&#160;</td>
+          <td class="paramname"><em>pResult</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Variance of the elements of a floating-point vector. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pSrc</td><td>points to the input vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">blockSize</td><td>number of samples in input vector </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pResult</td><td>variance value returned here </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
+
+</div>
+</div>
+<a id="ga313372b6f0f843e1daa2b0ccacd1976d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga313372b6f0f843e1daa2b0ccacd1976d">&#9670;&nbsp;</a></span>riscv_var_f64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void riscv_var_f64 </td>
+          <td>(</td>
+          <td class="paramtype">const float64_t *&#160;</td>
+          <td class="paramname"><em>pSrc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>blockSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float64_t *&#160;</td>
           <td class="paramname"><em>pResult</em>&#160;</td>
         </tr>
         <tr>
@@ -297,7 +345,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Mar 30 2022 07:45:01 for NMSIS-DSP by
+    <li class="footer">Generated on Thu Jan 5 2023 09:05:09 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

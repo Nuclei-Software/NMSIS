@@ -30,7 +30,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.0.2</span>
+   &#160;<span id="projectnumber">Version 1.1.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -97,6 +97,9 @@ Functions</h2></td></tr>
 <tr class="memitem:gac2f36a69759e36fb8495e864bcbbf140"><td class="memItemLeft" align="right" valign="top">float32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CosineDist.html#gac2f36a69759e36fb8495e864bcbbf140">riscv_cosine_distance_f32</a> (const float32_t *pA, const float32_t *pB, uint32_t blockSize)</td></tr>
 <tr class="memdesc:gac2f36a69759e36fb8495e864bcbbf140"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cosine distance between two vectors.  <a href="#gac2f36a69759e36fb8495e864bcbbf140">More...</a><br /></td></tr>
 <tr class="separator:gac2f36a69759e36fb8495e864bcbbf140"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2d69fd9116b91cb33f44c2f64f00fb0f"><td class="memItemLeft" align="right" valign="top">float64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CosineDist.html#ga2d69fd9116b91cb33f44c2f64f00fb0f">riscv_cosine_distance_f64</a> (const float64_t *pA, const float64_t *pB, uint32_t blockSize)</td></tr>
+<tr class="memdesc:ga2d69fd9116b91cb33f44c2f64f00fb0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cosine distance between two vectors.  <a href="#ga2d69fd9116b91cb33f44c2f64f00fb0f">More...</a><br /></td></tr>
+<tr class="separator:ga2d69fd9116b91cb33f44c2f64f00fb0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Cosine distance </p>
@@ -142,7 +145,8 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>distance </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>distance</dd></dl>
+<dl class="section user"><dt>Description</dt><dd>cosine_distance(u,v) is 1 - u . v / (Norm(u) Norm(v)) </dd></dl>
 
 </div>
 </div>
@@ -187,6 +191,52 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>distance</dd></dl>
+<dl class="section user"><dt>Description</dt><dd>cosine_distance(u,v) is 1 - u . v / (Norm(u) Norm(v)) </dd></dl>
+
+</div>
+</div>
+<a id="ga2d69fd9116b91cb33f44c2f64f00fb0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2d69fd9116b91cb33f44c2f64f00fb0f">&#9670;&nbsp;</a></span>riscv_cosine_distance_f64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float64_t riscv_cosine_distance_f64 </td>
+          <td>(</td>
+          <td class="paramtype">const float64_t *&#160;</td>
+          <td class="paramname"><em>pA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float64_t *&#160;</td>
+          <td class="paramname"><em>pB</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>blockSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cosine distance between two vectors. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pA</td><td>First vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pB</td><td>Second vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">blockSize</td><td>vector length </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>distance </dd></dl>
 
 </div>
@@ -196,7 +246,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Mar 30 2022 07:45:01 for NMSIS-DSP by
+    <li class="footer">Generated on Thu Jan 5 2023 09:05:09 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

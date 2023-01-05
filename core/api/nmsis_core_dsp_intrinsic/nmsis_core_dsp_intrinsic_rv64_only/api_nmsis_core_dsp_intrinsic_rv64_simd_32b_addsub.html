@@ -1,75 +1,39 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>(RV64 Only) SIMD 32-bit Add/Subtract Instructions &mdash; NMSIS 1.0.4 documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>(RV64 Only) SIMD 32-bit Add/Subtract Instructions &mdash; NMSIS 1.1.0 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="(RV64 Only) SIMD 32-bit Shift Instructions" href="api_nmsis_core_dsp_intrinsic_rv64_simd_32b_shift.html" />
     <link rel="prev" title="RV64 Only Instructions" href="../api_nmsis_core_dsp_intrinsic_rv64_only.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../../../../index.html">
-          
-
-          
-            
             <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                1.0.4
+                1.1.0
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -77,18 +41,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">NMSIS Core</a><ul class="current">
@@ -120,7 +74,7 @@
 <li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_rv64_32b_pack.html">32-bit Packing Instructions</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_nuclei_custom.html">Nuclei Customized DSP Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_nuclei_custom.html">Nuclei Customized N1/N2/N3 DSP Instructions</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../core_periph_access.html">Peripheral Access</a></li>
@@ -128,6 +82,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../core_interrupt_exception.html">Interrupts and Exceptions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../core_fpu.html">FPU Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../core_pmp.html">PMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_spmp.html">SPMP Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../core_cache.html">Cache Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../core_system_device.html">System Device Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../core_arm_compatiable.html">ARM Compatiable Functions</a></li>
@@ -142,341 +97,312 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../appendix.html">Appendix</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../../index.html">NMSIS</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../../../index.html">NMSIS Core</a> &raquo;</li>
-        
           <li><a href="../../index.html">NMSIS Core API</a> &raquo;</li>
-        
           <li><a href="../../api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a> &raquo;</li>
-        
           <li><a href="../api_nmsis_core_dsp_intrinsic_rv64_only.html">RV64 Only Instructions</a> &raquo;</li>
-        
       <li>(RV64 Only) SIMD 32-bit Add/Subtract Instructions</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="../../../../_sources/core/api/nmsis_core_dsp_intrinsic/nmsis_core_dsp_intrinsic_rv64_only/api_nmsis_core_dsp_intrinsic_rv64_simd_32b_addsub.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="rv64-only-simd-32-bit-add-subtract-instructions">
-<span id="nmsis-core-api-rv64-only-simd-32-bit-add-subtract-instructions"></span><h1>(RV64 Only) SIMD 32-bit Add/Subtract Instructions<a class="headerlink" href="#rv64-only-simd-32-bit-add-subtract-instructions" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gac67bdd2881a8f2c648cf191c9279ffa2"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_ADD32(unsigned long a, unsigned long b)</code></dt>
+             
+  <section id="rv64-only-simd-32-bit-add-subtract-instructions">
+<span id="nmsis-core-api-rv64-only-simd-32-bit-add-subtract-instructions"></span><h1>(RV64 Only) SIMD 32-bit Add/Subtract Instructions<a class="headerlink" href="#rv64-only-simd-32-bit-add-subtract-instructions" title="Permalink to this headline"></a></h1>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gac67bdd2881a8f2c648cf191c9279ffa2"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_ADD32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga3b9b82077d31deb6b0f88d434d6d3e0a"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_CRAS32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga3b9b82077d31deb6b0f88d434d6d3e0a"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_CRAS32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga1d6af7d28c27dd44d2742cd873505a3c"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_CRSA32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga1d6af7d28c27dd44d2742cd873505a3c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_CRSA32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gaa25d2d07545bb75c2d64a81c4c5115a3"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KADD32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gaa25d2d07545bb75c2d64a81c4c5115a3"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KADD32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga5e004a2f68b21b6cd06a5506b3752a23"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KCRAS32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga5e004a2f68b21b6cd06a5506b3752a23"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KCRAS32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga4e558d37a01694248417454240fdd58c"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KCRSA32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga4e558d37a01694248417454240fdd58c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KCRSA32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gabfa35c8c4da10b658fc4f9f295945c40"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KSTAS32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gabfa35c8c4da10b658fc4f9f295945c40"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KSTAS32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gafcc677fb6b75c7ae82abbec436bf5ae1"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KSTSA32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gafcc677fb6b75c7ae82abbec436bf5ae1"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KSTSA32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga2c48127c84b6c0ec441cab1d048d2082"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KSUB32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga2c48127c84b6c0ec441cab1d048d2082"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KSUB32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gae5b48cbde9950674461afbfb0037943c"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_RADD32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gae5b48cbde9950674461afbfb0037943c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_RADD32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga2ec462dcdc30cdad71726efe43ee34b0"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_RCRAS32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga2ec462dcdc30cdad71726efe43ee34b0"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_RCRAS32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga33061b2476bd16965e249987b8ccf74b"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_RCRSA32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga33061b2476bd16965e249987b8ccf74b"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_RCRSA32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gaced91aec5bed74368de805e174999475"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_RSTAS32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gaced91aec5bed74368de805e174999475"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_RSTAS32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga93aba0996a17d19ad3cc1e67288b3270"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_RSTSA32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga93aba0996a17d19ad3cc1e67288b3270"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_RSTSA32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga816e85e762afdbbbf6073ccdd84dab9d"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_RSUB32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga816e85e762afdbbbf6073ccdd84dab9d"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_RSUB32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gadd4e3651aa97d430e2eed42cbcb61c3f"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_STAS32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gadd4e3651aa97d430e2eed42cbcb61c3f"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_STAS32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga8f25a6df3979e6e3ced2876ad7aee194"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_STSA32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga8f25a6df3979e6e3ced2876ad7aee194"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_STSA32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga6ce1575be07d2858f589016578743160"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SUB32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga6ce1575be07d2858f589016578743160"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_SUB32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga0ae6b98529fa5176cb906a4add123778"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UKADD32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga0ae6b98529fa5176cb906a4add123778"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_UKADD32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gadb9440a09e140829a1b0295b4171fa0b"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UKCRAS32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gadb9440a09e140829a1b0295b4171fa0b"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_UKCRAS32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga32c3976c47a200878be3bbaaf28de26c"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UKCRSA32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga32c3976c47a200878be3bbaaf28de26c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_UKCRSA32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga042afa2a6b552b4ef0c5258d8bf02461"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UKSTAS32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga042afa2a6b552b4ef0c5258d8bf02461"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_UKSTAS32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gaea266bb7b2d939d5cc49c50dca75be65"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UKSTSA32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gaea266bb7b2d939d5cc49c50dca75be65"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_UKSTSA32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga169028d26efc2ec4eb0914a2da5354a6"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UKSUB32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga169028d26efc2ec4eb0914a2da5354a6"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_UKSUB32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga70ed498e86037d80ebe470cfb6591a57"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_URADD32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga70ed498e86037d80ebe470cfb6591a57"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_URADD32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gadb3203c272e4d13e1f6b0df92f575da7"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_URCRAS32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gadb3203c272e4d13e1f6b0df92f575da7"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_URCRAS32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gab4e8e05c30ec9907dce962832329817e"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_URCRSA32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gab4e8e05c30ec9907dce962832329817e"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_URCRSA32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga651311ceca6fb06dcdecc5a67b15a683"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_URSTAS32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga651311ceca6fb06dcdecc5a67b15a683"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_URSTAS32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga97737cc391f6eafc760c002866dc7ead"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_URSTSA32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga97737cc391f6eafc760c002866dc7ead"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_URSTSA32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gaba8b5c1a6f91c0b19cdea558a76968d3"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_URSUB32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gaba8b5c1a6f91c0b19cdea558a76968d3"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_URSUB32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="group">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB"></span><em>group</em> <code class="sig-name descname">NMSIS_Core_DSP_Intrinsic_RV64_SIMD_32B_ADDSUB</code></dt>
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">NMSIS_Core_DSP_Intrinsic_RV64_SIMD_32B_ADDSUB</span></span></dt>
 <dd><p>(RV64 Only) SIMD 32-bit Add/Subtract Instructions </p>
 <p>The following tables list instructions that are only present in RV64. There are 30 SIMD 32-bit addition or subtraction instructions.there are 4 SIMD16-bit Packing Instructions. </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Functions</p>
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gac67bdd2881a8f2c648cf191c9279ffa2"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_ADD32(unsigned long a, unsigned long b)</code></dt>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gac67bdd2881a8f2c648cf191c9279ffa2"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_ADD32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>ADD32 (SIMD 32-bit Addition) </p>
 <p><strong>Type</strong>: SIMD (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ADD32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 32-bit integer element additions simultaneously.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 32-bit integer element additions simultaneously.</p>
 </p>
-<p><strong>Description</strong>:<p>This instruction adds the 32-bit integer elements in Rs1 with the 32-bit integer elements in Rs2, and then writes the 32-bit element results to Rd.</p>
+<p><strong>Description</strong><p>:</p>
+<p>This instruction adds the 32-bit integer elements in Rs1 with the 32-bit integer elements in Rs2, and then writes the 32-bit element results to Rd.</p>
 </p>
-<p><strong>Note</strong>:<p>This instruction can be used for either signed or unsigned addition.</p>
+<p><strong>Note</strong><p>:</p>
+<p>This instruction can be used for either signed or unsigned addition.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
 <span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">1.</span><span class="o">..</span><span class="mi">0</span>
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga3b9b82077d31deb6b0f88d434d6d3e0a"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_CRAS32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga3b9b82077d31deb6b0f88d434d6d3e0a"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_CRAS32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>CRAS32 (SIMD 32-bit Cross Addition &amp; Subtraction) </p>
 <p><strong>Type</strong>: SIMD (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CRAS32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 32-bit integer element addition and 32-bit integer element subtraction in a 64-bit chunk simultaneously. Operands are from crossed 32-bit elements.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 32-bit integer element addition and 32-bit integer element subtraction in a 64-bit chunk simultaneously. Operands are from crossed 32-bit elements.</p>
 </p>
-<p><strong>Description</strong>:<p>This instruction adds the 32-bit integer element in [63:32] of Rs1 with the 32-bit integer element in [31:0] of Rs2, and writes the result to [63:32] of Rd; at the same time, it subtracts the 32-bit integer element in [63:32] of Rs2 from the 32-bit integer element in [31:0] of Rs1, and writes the result to [31:0] of Rd.</p>
+<p><strong>Description</strong><p>:</p>
+<p>This instruction adds the 32-bit integer element in [63:32] of Rs1 with the 32-bit integer element in [31:0] of Rs2, and writes the result to [63:32] of Rd; at the same time, it subtracts the 32-bit integer element in [63:32] of Rs2 from the 32-bit integer element in [31:0] of Rs1, and writes the result to [31:0] of Rd.</p>
 </p>
-<p><strong>Note</strong>:<p>This instruction can be used for either signed or unsigned operations.</p>
+<p><strong>Note</strong><p>:</p>
+<p>This instruction can be used for either signed or unsigned operations.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 <span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga1d6af7d28c27dd44d2742cd873505a3c"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_CRSA32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga1d6af7d28c27dd44d2742cd873505a3c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_CRSA32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>CRSA32 (SIMD 32-bit Cross Subtraction &amp; Addition) </p>
 <p><strong>Type</strong>: SIMD (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CRSA32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 32-bit integer element subtraction and 32-bit integer element addition in a 64-bit chunk simultaneously. Operands are from crossed 32-bit elements. *Description: * This instruction subtracts the 32-bit integer element in [31:0] of Rs2 from the 32-bit integer element in [63:32] of Rs1, and writes the result to [63:32] of Rd; at the same time, it adds the 32-bit integer element in [31:0] of Rs1 with the 32-bit integer element in [63:32] of Rs2, and writes the result to [31:0] of Rd</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 32-bit integer element subtraction and 32-bit integer element addition in a 64-bit chunk simultaneously. Operands are from crossed 32-bit elements. *Description: * This instruction subtracts the 32-bit integer element in [31:0] of Rs2 from the 32-bit integer element in [63:32] of Rs1, and writes the result to [63:32] of Rd; at the same time, it adds the 32-bit integer element in [31:0] of Rs1 with the 32-bit integer element in [63:32] of Rs2, and writes the result to [31:0] of Rd</p>
 </p>
-<p><strong>Note</strong>:<p>This instruction can be used for either signed or unsigned operations.</p>
+<p><strong>Note</strong><p>:</p>
+<p>This instruction can be used for either signed or unsigned operations.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 <span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gaa25d2d07545bb75c2d64a81c4c5115a3"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KADD32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gaa25d2d07545bb75c2d64a81c4c5115a3"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KADD32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>KADD32 (SIMD 32-bit Signed Saturating Addition) </p>
 <p><strong>Type</strong>: SIMD (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KADD32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 32-bit signed integer element saturating additions simultaneously.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 32-bit signed integer element saturating additions simultaneously.</p>
 </p>
-<p><strong>Description</strong>:<p>This instruction adds the 32-bit signed integer elements in Rs1 with the 32-bit signed integer elements in Rs2. If any of the results are beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to Rd.</p>
+<p><strong>Description</strong><p>:</p>
+<p>This instruction adds the 32-bit signed integer elements in Rs1 with the 32-bit signed integer elements in Rs2. If any of the results are beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to Rd.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">31</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
@@ -491,30 +417,33 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga5e004a2f68b21b6cd06a5506b3752a23"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KCRAS32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga5e004a2f68b21b6cd06a5506b3752a23"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KCRAS32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>KCRAS32 (SIMD 32-bit Signed Saturating Cross Addition &amp; Subtraction) </p>
 <p><strong>Type</strong>: SIM (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KCRAS32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 32-bit signed integer element saturating addition and 32-bit signed integer element saturating subtraction in a 64-bit chunk simultaneously. Operands are from crossed 32-bit elements.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 32-bit signed integer element saturating addition and 32-bit signed integer element saturating subtraction in a 64-bit chunk simultaneously. Operands are from crossed 32-bit elements.</p>
 </p>
-<p><strong>Description</strong>:<p>This instruction adds the 32-bit integer element in [63:32] of Rs1 with the 32-bit integer element in [31:0] of Rs2; at the same time, it subtracts the 32-bit integer element in [63:32] of Rs2 from the 32-bit integer element in [31:0] of Rs1. If any of the results are beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to [63:32] of Rd for addition and [31:0] of Rd for subtraction.</p>
+<p><strong>Description</strong><p>:</p>
+<p>This instruction adds the 32-bit integer element in [63:32] of Rs1 with the 32-bit integer element in [31:0] of Rs2; at the same time, it subtracts the 32-bit integer element in [63:32] of Rs2 from the 32-bit integer element in [31:0] of Rs1. If any of the results are beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to [63:32] of Rd for addition and [31:0] of Rd for subtraction.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 <span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
@@ -531,28 +460,30 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga4e558d37a01694248417454240fdd58c"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KCRSA32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga4e558d37a01694248417454240fdd58c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KCRSA32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>KCRSA32 (SIMD 32-bit Signed Saturating Cross Subtraction &amp; Addition) </p>
 <p><strong>Type</strong>: SIMD (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KCRSA32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 32-bit signed integer element saturating subtraction and 32-bit signed integer element saturating addition in a 64-bit chunk simultaneously. Operands are from crossed 32-bit elements. *Description: * This instruction subtracts the 32-bit integer element in [31:0] of Rs2 from the 32-bit integer element in [63:32] of Rs1; at the same time, it adds the 32-bit integer element in [31:0] of Rs1 with the 32-bit integer element in [63:32] of Rs2. If any of the results are beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to [63:32] of Rd for subtraction and [31:0] of Rd for addition.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 32-bit signed integer element saturating subtraction and 32-bit signed integer element saturating addition in a 64-bit chunk simultaneously. Operands are from crossed 32-bit elements. *Description: * This instruction subtracts the 32-bit integer element in [31:0] of Rs2 from the 32-bit integer element in [63:32] of Rs1; at the same time, it adds the 32-bit integer element in [31:0] of Rs1 with the 32-bit integer element in [63:32] of Rs2. If any of the results are beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to [63:32] of Rd for subtraction and [31:0] of Rd for addition.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 <span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
@@ -569,30 +500,33 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gabfa35c8c4da10b658fc4f9f295945c40"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KSTAS32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gabfa35c8c4da10b658fc4f9f295945c40"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KSTAS32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>KSTAS32 (SIMD 32-bit Signed Saturating Straight Addition &amp; Subtraction) </p>
 <p><strong>Type</strong>: SIMD (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KSTAS32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 32-bit signed integer element saturating addition and 32-bit signed integer element saturating subtraction in a 64-bit chunk simultaneously. Operands are from corresponding 32-bit elements.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 32-bit signed integer element saturating addition and 32-bit signed integer element saturating subtraction in a 64-bit chunk simultaneously. Operands are from corresponding 32-bit elements.</p>
 </p>
-<p><strong>Description</strong>:<p>This instruction adds the 32-bit integer element in [63:32] of Rs1 with the 32-bit integer element in [63:32] of Rs2; at the same time, it subtracts the 32-bit integer element in [31:0] of Rs2 from the 32-bit integer element in [31:0] of Rs1. If any of the results are beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to [63:32] of Rd for addition and [31:0] of Rd for subtraction.</p>
+<p><strong>Description</strong><p>:</p>
+<p>This instruction adds the 32-bit integer element in [63:32] of Rs1 with the 32-bit integer element in [63:32] of Rs2; at the same time, it subtracts the 32-bit integer element in [31:0] of Rs2 from the 32-bit integer element in [31:0] of Rs1. If any of the results are beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to [63:32] of Rd for addition and [31:0] of Rd for subtraction.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
 <span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
@@ -609,28 +543,30 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gafcc677fb6b75c7ae82abbec436bf5ae1"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KSTSA32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gafcc677fb6b75c7ae82abbec436bf5ae1"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KSTSA32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>KSTSA32 (SIMD 32-bit Signed Saturating Straight Subtraction &amp; Addition) </p>
 <p><strong>Type</strong>: SIM (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KSTSA32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 32-bit signed integer element saturating subtraction and 32-bit signed integer element saturating addition in a 64-bit chunk simultaneously. Operands are from corresponding 32-bit elements. *Description: * This instruction subtracts the 32-bit integer element in [63:32] of Rs2 from the 32-bit integer element in [63:32] of Rs1; at the same time, it adds the 32-bit integer element in [31:0] of Rs1 with the 32-bit integer element in [31:0] of Rs2. If any of the results are beyond the Q31 number range (- 231 &lt;= Q31 &lt;= 2^31-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to [63:32] of Rd for subtraction and [31:0] of Rd for addition.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 32-bit signed integer element saturating subtraction and 32-bit signed integer element saturating addition in a 64-bit chunk simultaneously. Operands are from corresponding 32-bit elements. *Description: * This instruction subtracts the 32-bit integer element in [63:32] of Rs2 from the 32-bit integer element in [63:32] of Rs1; at the same time, it adds the 32-bit integer element in [31:0] of Rs1 with the 32-bit integer element in [31:0] of Rs2. If any of the results are beyond the Q31 number range (- 231 &lt;= Q31 &lt;= 2^31-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to [63:32] of Rd for subtraction and [31:0] of Rd for addition.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
 <span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
@@ -647,30 +583,33 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga2c48127c84b6c0ec441cab1d048d2082"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KSUB32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga2c48127c84b6c0ec441cab1d048d2082"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KSUB32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>KSUB32 (SIMD 32-bit Signed Saturating Subtraction) </p>
 <p><strong>Type</strong>: SIMD (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KSUB32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 32-bit signed integer elements saturating subtractions simultaneously.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 32-bit signed integer elements saturating subtractions simultaneously.</p>
 </p>
-<p><strong>Description</strong>:<p>This instruction subtracts the 32-bit signed integer elements in Rs2 from the 32-bit signed integer elements in Rs1. If any of the results are beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to Rd.</p>
+<p><strong>Description</strong><p>:</p>
+<p>This instruction subtracts the 32-bit signed integer elements in Rs2 from the 32-bit signed integer elements in Rs1. If any of the results are beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to Rd.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">-</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">31</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
@@ -685,30 +624,33 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gae5b48cbde9950674461afbfb0037943c"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_RADD32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gae5b48cbde9950674461afbfb0037943c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_RADD32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>RADD32 (SIMD 32-bit Signed Halving Addition) </p>
 <p><strong>Type</strong>: SIMD (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RADD32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 32-bit signed integer element additions simultaneously. The results are halved to avoid overflow or saturation.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 32-bit signed integer element additions simultaneously. The results are halved to avoid overflow or saturation.</p>
 </p>
-<p><strong>Description</strong>:<p>This instruction adds the 32-bit signed integer elements in Rs1 with the 32-bit signed integer elements in Rs2. The results are first arithmetically right-shifted by 1 bit and then written to Rd.</p>
+<p><strong>Description</strong><p>:</p>
+<p>This instruction adds the 32-bit signed integer elements in Rs1 with the 32-bit signed integer elements in Rs2. The results are first arithmetically right-shifted by 1 bit and then written to Rd.</p>
 </p>
 <p><strong>Examples</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Rs1</span> <span class="o">=</span> <span class="mh">0x7FFFFFFF</span><span class="p">,</span> <span class="n">Rs2</span> <span class="o">=</span> <span class="mh">0x7FFFFFFF</span> <span class="n">Rd</span> <span class="o">=</span> <span class="mh">0x7FFFFFFF</span>
 <span class="o">*</span> <span class="n">Rs1</span> <span class="o">=</span> <span class="mh">0x80000000</span><span class="p">,</span> <span class="n">Rs2</span> <span class="o">=</span> <span class="mh">0x80000000</span> <span class="n">Rd</span> <span class="o">=</span> <span class="mh">0x80000000</span>
@@ -721,30 +663,33 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga2ec462dcdc30cdad71726efe43ee34b0"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_RCRAS32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga2ec462dcdc30cdad71726efe43ee34b0"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_RCRAS32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>RCRAS32 (SIMD 32-bit Signed Halving Cross Addition &amp; Subtraction) </p>
 <p><strong>Type</strong>: SIMD (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RCRAS32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 32-bit signed integer element addition and 32-bit signed integer element subtraction in a 64-bit chunk simultaneously. Operands are from crossed 32-bit elements. The results are halved to avoid overflow or saturation.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 32-bit signed integer element addition and 32-bit signed integer element subtraction in a 64-bit chunk simultaneously. Operands are from crossed 32-bit elements. The results are halved to avoid overflow or saturation.</p>
 </p>
-<p><strong>Description</strong>:<p>This instruction adds the 32-bit signed integer element in [63:32] of Rs1 with the 32-bit signed integer element in [31:0] of Rs2, and subtracts the 32-bit signed integer element in [63:32] of Rs2 from the 32-bit signed integer element in [31:0] of Rs1. The element results are first arithmetically right-shifted by 1 bit and then written to [63:32] of Rd for addition and [31:0] of Rd for subtraction.</p>
+<p><strong>Description</strong><p>:</p>
+<p>This instruction adds the 32-bit signed integer element in [63:32] of Rs1 with the 32-bit signed integer element in [31:0] of Rs2, and subtracts the 32-bit signed integer element in [63:32] of Rs2 from the 32-bit signed integer element in [31:0] of Rs1. The element results are first arithmetically right-shifted by 1 bit and then written to [63:32] of Rd for addition and [31:0] of Rd for subtraction.</p>
 </p>
 <p><strong>Examples</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Please see `RADD32` and `RSUB32` instructions.
 </pre></div>
@@ -755,30 +700,33 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga33061b2476bd16965e249987b8ccf74b"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_RCRSA32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga33061b2476bd16965e249987b8ccf74b"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_RCRSA32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>RCRSA32 (SIMD 32-bit Signed Halving Cross Subtraction &amp; Addition) </p>
 <p><strong>Type</strong>: SIMD (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RCRSA32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 32-bit signed integer element subtraction and 32-bit signed integer element addition in a 64-bit chunk simultaneously. Operands are from crossed 32-bit elements. The results are halved to avoid overflow or saturation.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 32-bit signed integer element subtraction and 32-bit signed integer element addition in a 64-bit chunk simultaneously. Operands are from crossed 32-bit elements. The results are halved to avoid overflow or saturation.</p>
 </p>
-<p><strong>Description</strong>:<p>This instruction subtracts the 32-bit signed integer element in [31:0] of Rs2 from the 32-bit signed integer element in [63:32] of Rs1, and adds the 32-bit signed element integer in [31:0] of Rs1 with the 32-bit signed integer element in [63:32] of Rs2. The two results are first arithmetically right-shifted by 1 bit and then written to [63:32] of Rd for subtraction and [31:0] of Rd for addition.</p>
+<p><strong>Description</strong><p>:</p>
+<p>This instruction subtracts the 32-bit signed integer element in [31:0] of Rs2 from the 32-bit signed integer element in [63:32] of Rs1, and adds the 32-bit signed element integer in [31:0] of Rs1 with the 32-bit signed integer element in [63:32] of Rs2. The two results are first arithmetically right-shifted by 1 bit and then written to [63:32] of Rd for subtraction and [31:0] of Rd for addition.</p>
 </p>
 <p><strong>Examples</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Please see `RADD32` and `RSUB32` instructions.
 </pre></div>
@@ -789,30 +737,33 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gaced91aec5bed74368de805e174999475"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_RSTAS32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gaced91aec5bed74368de805e174999475"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_RSTAS32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>RSTAS32 (SIMD 32-bit Signed Halving Straight Addition &amp; Subtraction) </p>
 <p><strong>Type</strong>: SIMD (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RSTAS32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 32-bit signed integer element addition and 32-bit signed integer element subtraction in a 64-bit chunk simultaneously. Operands are from corresponding 32-bit elements. The results are halved to avoid overflow or saturation.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 32-bit signed integer element addition and 32-bit signed integer element subtraction in a 64-bit chunk simultaneously. Operands are from corresponding 32-bit elements. The results are halved to avoid overflow or saturation.</p>
 </p>
-<p><strong>Description</strong>:<p>This instruction adds the 32-bit signed integer element in [63:32] of Rs1 with the 32-bit signed integer element in [63:32] of Rs2, and subtracts the 32-bit signed integer element in [31:0] of Rs2 from the 32-bit signed integer element in [31:0] of Rs1. The element results are first arithmetically right-shifted by 1 bit and then written to [63:32] of Rd for addition and [31:0] of Rd for subtraction.</p>
+<p><strong>Description</strong><p>:</p>
+<p>This instruction adds the 32-bit signed integer element in [63:32] of Rs1 with the 32-bit signed integer element in [63:32] of Rs2, and subtracts the 32-bit signed integer element in [31:0] of Rs2 from the 32-bit signed integer element in [31:0] of Rs1. The element results are first arithmetically right-shifted by 1 bit and then written to [63:32] of Rd for addition and [31:0] of Rd for subtraction.</p>
 </p>
 <p><strong>Examples</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Please see `RADD32` and `RSUB32` instructions.
 </pre></div>
@@ -823,30 +774,33 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga93aba0996a17d19ad3cc1e67288b3270"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_RSTSA32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga93aba0996a17d19ad3cc1e67288b3270"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_RSTSA32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>RSTSA32 (SIMD 32-bit Signed Halving Straight Subtraction &amp; Addition) </p>
 <p><strong>Type</strong>: SIMD (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RSTSA32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 32-bit signed integer element subtraction and 32-bit signed integer element addition in a 64-bit chunk simultaneously. Operands are from corresponding 32-bit elements. The results are halved to avoid overflow or saturation.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 32-bit signed integer element subtraction and 32-bit signed integer element addition in a 64-bit chunk simultaneously. Operands are from corresponding 32-bit elements. The results are halved to avoid overflow or saturation.</p>
 </p>
-<p><strong>Description</strong>:<p>This instruction subtracts the 32-bit signed integer element in [63:32] of Rs2 from the 32-bit signed integer element in [63:32] of Rs1, and adds the 32-bit signed element integer in [31:0] of Rs1 with the 32-bit signed integer element in [31:0] of Rs2. The two results are first arithmetically right-shifted by 1 bit and then written to [63:32] of Rd for subtraction and [31:0] of Rd for addition.</p>
+<p><strong>Description</strong><p>:</p>
+<p>This instruction subtracts the 32-bit signed integer element in [63:32] of Rs2 from the 32-bit signed integer element in [63:32] of Rs1, and adds the 32-bit signed element integer in [31:0] of Rs1 with the 32-bit signed integer element in [31:0] of Rs2. The two results are first arithmetically right-shifted by 1 bit and then written to [63:32] of Rd for subtraction and [31:0] of Rd for addition.</p>
 </p>
 <p><strong>Examples</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Please see `RADD32` and `RSUB32` instructions.
 </pre></div>
@@ -857,30 +811,33 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga816e85e762afdbbbf6073ccdd84dab9d"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_RSUB32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga816e85e762afdbbbf6073ccdd84dab9d"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_RSUB32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>RSUB32 (SIMD 32-bit Signed Halving Subtraction) </p>
 <p><strong>Type</strong>: SIMD (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RSUB32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 32-bit signed integer element subtractions simultaneously. The results are halved to avoid overflow or saturation.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 32-bit signed integer element subtractions simultaneously. The results are halved to avoid overflow or saturation.</p>
 </p>
-<p><strong>Description</strong>:<p>This instruction subtracts the 32-bit signed integer elements in Rs2 from the 32-bit signed integer elements in Rs1. The results are first arithmetically right-shifted by 1 bit and then written to Rd.</p>
+<p><strong>Description</strong><p>:</p>
+<p>This instruction subtracts the 32-bit signed integer elements in Rs2 from the 32-bit signed integer elements in Rs1. The results are first arithmetically right-shifted by 1 bit and then written to Rd.</p>
 </p>
 <p><strong>Examples</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Ra</span> <span class="o">=</span> <span class="mh">0x7FFFFFFF</span><span class="p">,</span> <span class="n">Rb</span> <span class="o">=</span> <span class="mh">0x80000000</span> <span class="n">Rt</span> <span class="o">=</span> <span class="mh">0x7FFFFFFF</span>
 <span class="o">*</span> <span class="n">Ra</span> <span class="o">=</span> <span class="mh">0x80000000</span><span class="p">,</span> <span class="n">Rb</span> <span class="o">=</span> <span class="mh">0x7FFFFFFF</span> <span class="n">Rt</span> <span class="o">=</span> <span class="mh">0x80000000</span>
@@ -893,124 +850,138 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gadd4e3651aa97d430e2eed42cbcb61c3f"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_STAS32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gadd4e3651aa97d430e2eed42cbcb61c3f"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_STAS32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>STAS32 (SIMD 32-bit Straight Addition &amp; Subtraction) </p>
 <p><strong>Type</strong>: SIMD (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">STAS32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 32-bit integer element addition and 32-bit integer element subtraction in a 64-bit chunk simultaneously. Operands are from corresponding 32-bit elements.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 32-bit integer element addition and 32-bit integer element subtraction in a 64-bit chunk simultaneously. Operands are from corresponding 32-bit elements.</p>
 </p>
-<p><strong>Description</strong>:<p>This instruction adds the 32-bit integer element in [63:32] of Rs1 with the 32-bit integer element in [63:32] of Rs2, and writes the result to [63:32] of Rd; at the same time, it subtracts the 32-bit integer element in [31:0] of Rs2 from the 32-bit integer element in [31:0] of Rs1, and writes the result to [31:0] of Rd.</p>
+<p><strong>Description</strong><p>:</p>
+<p>This instruction adds the 32-bit integer element in [63:32] of Rs1 with the 32-bit integer element in [63:32] of Rs2, and writes the result to [63:32] of Rd; at the same time, it subtracts the 32-bit integer element in [31:0] of Rs2 from the 32-bit integer element in [31:0] of Rs1, and writes the result to [31:0] of Rd.</p>
 </p>
-<p><strong>Note</strong>:<p>This instruction can be used for either signed or unsigned operations.</p>
+<p><strong>Note</strong><p>:</p>
+<p>This instruction can be used for either signed or unsigned operations.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
 <span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga8f25a6df3979e6e3ced2876ad7aee194"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_STSA32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga8f25a6df3979e6e3ced2876ad7aee194"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_STSA32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>STSA32 (SIMD 32-bit Straight Subtraction &amp; Addition) </p>
 <p><strong>Type</strong>: SIMD (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">STSA32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 32-bit integer element subtraction and 32-bit integer element addition in a 64-bit chunk simultaneously. Operands are from corresponding 32-bit elements. *Description: * This instruction subtracts the 32-bit integer element in [63:32] of Rs2 from the 32-bit integer element in [63:32] of Rs1, and writes the result to [63:32] of Rd; at the same time, it adds the 32-bit integer element in [31:0] of Rs1 with the 32-bit integer element in [31:0] of Rs2, and writes the result to [31:0] of Rd</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 32-bit integer element subtraction and 32-bit integer element addition in a 64-bit chunk simultaneously. Operands are from corresponding 32-bit elements. *Description: * This instruction subtracts the 32-bit integer element in [63:32] of Rs2 from the 32-bit integer element in [63:32] of Rs1, and writes the result to [63:32] of Rd; at the same time, it adds the 32-bit integer element in [31:0] of Rs1 with the 32-bit integer element in [31:0] of Rs2, and writes the result to [31:0] of Rd</p>
 </p>
-<p><strong>Note</strong>:<p>This instruction can be used for either signed or unsigned operations.</p>
+<p><strong>Note</strong><p>:</p>
+<p>This instruction can be used for either signed or unsigned operations.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
 <span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga6ce1575be07d2858f589016578743160"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SUB32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga6ce1575be07d2858f589016578743160"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_SUB32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>SUB32 (SIMD 32-bit Subtraction) </p>
 <p><strong>Type</strong>: DSP (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SUB32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 32-bit integer element subtractions simultaneously.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 32-bit integer element subtractions simultaneously.</p>
 </p>
-<p><strong>Description</strong>:<p>This instruction subtracts the 32-bit integer elements in Rs2 from the 32-bit integer elements in Rs1, and then writes the results to Rd.</p>
+<p><strong>Description</strong><p>:</p>
+<p>This instruction subtracts the 32-bit integer elements in Rs2 from the 32-bit integer elements in Rs1, and then writes the results to Rd.</p>
 </p>
-<p><strong>Note</strong>:<p>This instruction can be used for either signed or unsigned subtraction.</p>
+<p><strong>Note</strong><p>:</p>
+<p>This instruction can be used for either signed or unsigned subtraction.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">-</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
 <span class="k">for</span> <span class="n">RV64</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mf">1.</span><span class="o">..</span><span class="mi">0</span>
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga0ae6b98529fa5176cb906a4add123778"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UKADD32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga0ae6b98529fa5176cb906a4add123778"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_UKADD32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>UKADD32 (SIMD 32-bit Unsigned Saturating Addition) </p>
 <p><strong>Type</strong>: SIMD (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UKADD32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 32-bit unsigned integer element saturating additions simultaneously.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 32-bit unsigned integer element saturating additions simultaneously.</p>
 </p>
-<p><strong>Description</strong>:<p>This instruction adds the 32-bit unsigned integer elements in Rs1 with the 32-bit unsigned integer elements in Rs2. If any of the results are beyond the 32-bit unsigned number range (0 &lt;= RES &lt;= 2^32-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to Rd.</p>
+<p><strong>Description</strong><p>:</p>
+<p>This instruction adds the 32-bit unsigned integer elements in Rs1 with the 32-bit unsigned integer elements in Rs2. If any of the results are beyond the 32-bit unsigned number range (0 &lt;= RES &lt;= 2^32-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to Rd.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">32</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
@@ -1022,30 +993,33 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gadb9440a09e140829a1b0295b4171fa0b"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UKCRAS32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gadb9440a09e140829a1b0295b4171fa0b"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_UKCRAS32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>UKCRAS32 (SIMD 32-bit Unsigned Saturating Cross Addition &amp; Subtraction) </p>
 <p><strong>Type</strong>: SIMD (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UKCRAS32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do one 32-bit unsigned integer element saturating addition and one 32-bit unsigned integer element saturating subtraction in a 64-bit chunk simultaneously. Operands are from crossed 32-bit elements.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do one 32-bit unsigned integer element saturating addition and one 32-bit unsigned integer element saturating subtraction in a 64-bit chunk simultaneously. Operands are from crossed 32-bit elements.</p>
 </p>
-<p><strong>Description</strong>:<p>This instruction adds the 32-bit unsigned integer element in [63:32] of Rs1 with the 32- bit unsigned integer element in [31:0] of Rs2; at the same time, it subtracts the 32-bit unsigned integer element in [63:32] of Rs2 from the 32-bit unsigned integer element in [31:0] Rs1. If any of the results are beyond the 32-bit unsigned number range (0 &lt;= RES &lt;= 2^32-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to [63:32] of Rd for addition and [31:0] of Rd for subtraction.</p>
+<p><strong>Description</strong><p>:</p>
+<p>This instruction adds the 32-bit unsigned integer element in [63:32] of Rs1 with the 32- bit unsigned integer element in [31:0] of Rs2; at the same time, it subtracts the 32-bit unsigned integer element in [63:32] of Rs2 from the 32-bit unsigned integer element in [31:0] Rs1. If any of the results are beyond the 32-bit unsigned number range (0 &lt;= RES &lt;= 2^32-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to [63:32] of Rd for addition and [31:0] of Rd for subtraction.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res1</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 <span class="n">res2</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
@@ -1062,30 +1036,33 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga32c3976c47a200878be3bbaaf28de26c"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UKCRSA32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga32c3976c47a200878be3bbaaf28de26c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_UKCRSA32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>UKCRSA32 (SIMD 32-bit Unsigned Saturating Cross Subtraction &amp; Addition) </p>
 <p><strong>Type</strong>: SIMD (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UKCRSA32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do one 32-bit unsigned integer element saturating subtraction and one 32-bit unsigned integer element saturating addition in a 64-bit chunk simultaneously. Operands are from crossed 32-bit elements.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do one 32-bit unsigned integer element saturating subtraction and one 32-bit unsigned integer element saturating addition in a 64-bit chunk simultaneously. Operands are from crossed 32-bit elements.</p>
 </p>
-<p><strong>Description</strong>:<p>This instruction subtracts the 32-bit unsigned integer element in [31:0] of Rs2 from the 32-bit unsigned integer element in [63:32] of Rs1; at the same time, it adds the 32-bit unsigned integer element in [63:32] of Rs2 with the 32-bit unsigned integer element in [31:0] Rs1. If any of the results are beyond the 32-bit unsigned number range (0 &lt;= RES &lt;= 2^32-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to [63:32] of Rd for subtraction and [31:0] of Rd for addition.</p>
+<p><strong>Description</strong><p>:</p>
+<p>This instruction subtracts the 32-bit unsigned integer element in [31:0] of Rs2 from the 32-bit unsigned integer element in [63:32] of Rs1; at the same time, it adds the 32-bit unsigned integer element in [63:32] of Rs2 with the 32-bit unsigned integer element in [31:0] Rs1. If any of the results are beyond the 32-bit unsigned number range (0 &lt;= RES &lt;= 2^32-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to [63:32] of Rd for subtraction and [31:0] of Rd for addition.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res1</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 <span class="n">res2</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
@@ -1101,30 +1078,33 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga042afa2a6b552b4ef0c5258d8bf02461"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UKSTAS32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga042afa2a6b552b4ef0c5258d8bf02461"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_UKSTAS32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>UKSTAS32 (SIMD 32-bit Unsigned Saturating Straight Addition &amp; Subtraction) </p>
 <p><strong>Type</strong>: SIMD (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UKSTAS32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do one 32-bit unsigned integer element saturating addition and one 32-bit unsigned integer element saturating subtraction in a 64-bit chunk simultaneously. Operands are from corresponding 32-bit elements.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do one 32-bit unsigned integer element saturating addition and one 32-bit unsigned integer element saturating subtraction in a 64-bit chunk simultaneously. Operands are from corresponding 32-bit elements.</p>
 </p>
-<p><strong>Description</strong>:<p>This instruction adds the 32-bit unsigned integer element in [63:32] of Rs1 with the 32- bit unsigned integer element in [63:32] of Rs2; at the same time, it subtracts the 32-bit unsigned integer element in [31:0] of Rs2 from the 32-bit unsigned integer element in [31:0] Rs1. If any of the results are beyond the 32-bit unsigned number range (0 &lt;= RES &lt;= 2^32-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to [63:32] of Rd for addition and [31:0] of Rd for subtraction.</p>
+<p><strong>Description</strong><p>:</p>
+<p>This instruction adds the 32-bit unsigned integer element in [63:32] of Rs1 with the 32- bit unsigned integer element in [63:32] of Rs2; at the same time, it subtracts the 32-bit unsigned integer element in [31:0] of Rs2 from the 32-bit unsigned integer element in [31:0] Rs1. If any of the results are beyond the 32-bit unsigned number range (0 &lt;= RES &lt;= 2^32-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to [63:32] of Rd for addition and [31:0] of Rd for subtraction.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res1</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
 <span class="n">res2</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
@@ -1141,30 +1121,33 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gaea266bb7b2d939d5cc49c50dca75be65"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UKSTSA32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gaea266bb7b2d939d5cc49c50dca75be65"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_UKSTSA32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>UKSTSA32 (SIMD 32-bit Unsigned Saturating Straight Subtraction &amp; Addition) </p>
 <p><strong>Type</strong>: SIMD (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UKSTSA32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do one 32-bit unsigned integer element saturating subtraction and one 32-bit unsigned integer element saturating addition in a 64-bit chunk simultaneously. Operands are from corresponding 32-bit elements.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do one 32-bit unsigned integer element saturating subtraction and one 32-bit unsigned integer element saturating addition in a 64-bit chunk simultaneously. Operands are from corresponding 32-bit elements.</p>
 </p>
-<p><strong>Description</strong>:<p>This instruction subtracts the 32-bit unsigned integer element in [63:32] of Rs2 from the 32-bit unsigned integer element in [63:32] of Rs1; at the same time, it adds the 32-bit unsigned integer element in [31:0] of Rs2 with the 32-bit unsigned integer element in [31:0] Rs1. If any of the results are beyond the 32-bit unsigned number range (0 &lt;= RES &lt;= 2^32-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to [63:32] of Rd for subtraction and [31:0] of Rd for addition.</p>
+<p><strong>Description</strong><p>:</p>
+<p>This instruction subtracts the 32-bit unsigned integer element in [63:32] of Rs2 from the 32-bit unsigned integer element in [63:32] of Rs1; at the same time, it adds the 32-bit unsigned integer element in [31:0] of Rs2 with the 32-bit unsigned integer element in [31:0] Rs1. If any of the results are beyond the 32-bit unsigned number range (0 &lt;= RES &lt;= 2^32-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to [63:32] of Rd for subtraction and [31:0] of Rd for addition.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res1</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
 <span class="n">res2</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
@@ -1180,30 +1163,33 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga169028d26efc2ec4eb0914a2da5354a6"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UKSUB32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga169028d26efc2ec4eb0914a2da5354a6"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_UKSUB32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>UKSUB32 (SIMD 32-bit Unsigned Saturating Subtraction) </p>
 <p><strong>Type</strong>: SIMD (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UKSUB32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 32-bit unsigned integer elements saturating subtractions simultaneously.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 32-bit unsigned integer elements saturating subtractions simultaneously.</p>
 </p>
-<p><strong>Description</strong>:<p>This instruction subtracts the 32-bit unsigned integer elements in Rs2 from the 32-bit unsigned integer elements in Rs1. If any of the results are beyond the 32-bit unsigned number range (0 &lt;= RES &lt;= 2^32-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to Rd.</p>
+<p><strong>Description</strong><p>:</p>
+<p>This instruction subtracts the 32-bit unsigned integer elements in Rs2 from the 32-bit unsigned integer elements in Rs1. If any of the results are beyond the 32-bit unsigned number range (0 &lt;= RES &lt;= 2^32-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to Rd.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">-</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
@@ -1215,30 +1201,33 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga70ed498e86037d80ebe470cfb6591a57"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_URADD32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga70ed498e86037d80ebe470cfb6591a57"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_URADD32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>URADD32 (SIMD 32-bit Unsigned Halving Addition) </p>
 <p><strong>Type</strong>: SIMD (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">URADD32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 32-bit unsigned integer element additions simultaneously. The results are halved to avoid overflow or saturation.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 32-bit unsigned integer element additions simultaneously. The results are halved to avoid overflow or saturation.</p>
 </p>
-<p><strong>Description</strong>:<p>This instruction adds the 32-bit unsigned integer elements in Rs1 with the 32-bit unsigned integer elements in Rs2. The results are first logically right-shifted by 1 bit and then written to Rd.</p>
+<p><strong>Description</strong><p>:</p>
+<p>This instruction adds the 32-bit unsigned integer elements in Rs1 with the 32-bit unsigned integer elements in Rs2. The results are first logically right-shifted by 1 bit and then written to Rd.</p>
 </p>
 <p><strong>Examples</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Ra</span> <span class="o">=</span> <span class="mh">0x7FFFFFFF</span><span class="p">,</span> <span class="n">Rb</span> <span class="o">=</span> <span class="mh">0x7FFFFFFF</span> <span class="n">Rt</span> <span class="o">=</span> <span class="mh">0x7FFFFFFF</span>
 <span class="o">*</span> <span class="n">Ra</span> <span class="o">=</span> <span class="mh">0x80000000</span><span class="p">,</span> <span class="n">Rb</span> <span class="o">=</span> <span class="mh">0x80000000</span> <span class="n">Rt</span> <span class="o">=</span> <span class="mh">0x80000000</span>
@@ -1251,30 +1240,33 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gadb3203c272e4d13e1f6b0df92f575da7"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_URCRAS32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gadb3203c272e4d13e1f6b0df92f575da7"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_URCRAS32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>URCRAS32 (SIMD 32-bit Unsigned Halving Cross Addition &amp; Subtraction) </p>
 <p><strong>Type</strong>: SIMD (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">URCRAS32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 32-bit unsigned integer element addition and 32-bit unsigned integer element subtraction in a 64-bit chunk simultaneously. Operands are from crossed 32-bit elements. The results are halved to avoid overflow or saturation.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 32-bit unsigned integer element addition and 32-bit unsigned integer element subtraction in a 64-bit chunk simultaneously. Operands are from crossed 32-bit elements. The results are halved to avoid overflow or saturation.</p>
 </p>
-<p><strong>Description</strong>:<p>This instruction adds the 32-bit unsigned integer element in [63:32] of Rs1 with the 32- bit unsigned integer element in [31:0] of Rs2, and subtracts the 32-bit unsigned integer element in [63:32] of Rs2 from the 32-bit unsigned integer element in [31:0] of Rs1. The element results are first logically right-shifted by 1 bit and then written to [63:32] of Rd for addition and [31:0] of Rd for subtraction.</p>
+<p><strong>Description</strong><p>:</p>
+<p>This instruction adds the 32-bit unsigned integer element in [63:32] of Rs1 with the 32- bit unsigned integer element in [31:0] of Rs2, and subtracts the 32-bit unsigned integer element in [63:32] of Rs2 from the 32-bit unsigned integer element in [31:0] of Rs1. The element results are first logically right-shifted by 1 bit and then written to [63:32] of Rd for addition and [31:0] of Rd for subtraction.</p>
 </p>
 <p><strong>Examples</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Please see `URADD32` and `URSUB32` instructions.
 </pre></div>
@@ -1285,30 +1277,33 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gab4e8e05c30ec9907dce962832329817e"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_URCRSA32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gab4e8e05c30ec9907dce962832329817e"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_URCRSA32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>URCRSA32 (SIMD 32-bit Unsigned Halving Cross Subtraction &amp; Addition) </p>
 <p><strong>Type</strong>: SIMD (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">URCRSA32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 32-bit unsigned integer element subtraction and 32-bit unsigned integer element addition in a 64-bit chunk simultaneously. Operands are from crossed 32-bit elements. The results are halved to avoid overflow or saturation.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 32-bit unsigned integer element subtraction and 32-bit unsigned integer element addition in a 64-bit chunk simultaneously. Operands are from crossed 32-bit elements. The results are halved to avoid overflow or saturation.</p>
 </p>
-<p><strong>Description</strong>:<p>This instruction subtracts the 32-bit unsigned integer element in [31:0] of Rs2 from the 32-bit unsigned integer element in [63:32] of Rs1, and adds the 32-bit unsigned element integer in [31:0] of Rs1 with the 32-bit unsigned integer element in [63:32] of Rs2. The two results are first logically right-shifted by 1 bit and then written to [63:32] of Rd for subtraction and [31:0] of Rd for addition.</p>
+<p><strong>Description</strong><p>:</p>
+<p>This instruction subtracts the 32-bit unsigned integer element in [31:0] of Rs2 from the 32-bit unsigned integer element in [63:32] of Rs1, and adds the 32-bit unsigned element integer in [31:0] of Rs1 with the 32-bit unsigned integer element in [63:32] of Rs2. The two results are first logically right-shifted by 1 bit and then written to [63:32] of Rd for subtraction and [31:0] of Rd for addition.</p>
 </p>
 <p><strong>Examples</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Please see `URADD32` and `URSUB32` instructions.
 </pre></div>
@@ -1319,30 +1314,33 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga651311ceca6fb06dcdecc5a67b15a683"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_URSTAS32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga651311ceca6fb06dcdecc5a67b15a683"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_URSTAS32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>URSTAS32 (SIMD 32-bit Unsigned Halving Straight Addition &amp; Subtraction) </p>
 <p><strong>Type</strong>: SIMD (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">URSTAS32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 32-bit unsigned integer element addition and 32-bit unsigned integer element subtraction in a 64-bit chunk simultaneously. Operands are from corresponding 32-bit elements. The results are halved to avoid overflow or saturation.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 32-bit unsigned integer element addition and 32-bit unsigned integer element subtraction in a 64-bit chunk simultaneously. Operands are from corresponding 32-bit elements. The results are halved to avoid overflow or saturation.</p>
 </p>
-<p><strong>Description</strong>:<p>This instruction adds the 32-bit unsigned integer element in [63:32] of Rs1 with the 32- bit unsigned integer element in [63:32] of Rs2, and subtracts the 32-bit unsigned integer element in [31:0] of Rs2 from the 32-bit unsigned integer element in [31:0] of Rs1. The element results are first logically right-shifted by 1 bit and then written to [63:32] of Rd for addition and [31:0] of Rd for subtraction.</p>
+<p><strong>Description</strong><p>:</p>
+<p>This instruction adds the 32-bit unsigned integer element in [63:32] of Rs1 with the 32- bit unsigned integer element in [63:32] of Rs2, and subtracts the 32-bit unsigned integer element in [31:0] of Rs2 from the 32-bit unsigned integer element in [31:0] of Rs1. The element results are first logically right-shifted by 1 bit and then written to [63:32] of Rd for addition and [31:0] of Rd for subtraction.</p>
 </p>
 <p><strong>Examples</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Please see `URADD32` and `URSUB32` instructions.
 </pre></div>
@@ -1353,30 +1351,33 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga97737cc391f6eafc760c002866dc7ead"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_URSTSA32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1ga97737cc391f6eafc760c002866dc7ead"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_URSTSA32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>URSTSA32 (SIMD 32-bit Unsigned Halving Straight Subtraction &amp; Addition) </p>
 <p><strong>Type</strong>: SIMD (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">URSTSA32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 32-bit unsigned integer element subtraction and 32-bit unsigned integer element addition in a 64-bit chunk simultaneously. Operands are from corresponding 32-bit elements. The results are halved to avoid overflow or saturation.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 32-bit unsigned integer element subtraction and 32-bit unsigned integer element addition in a 64-bit chunk simultaneously. Operands are from corresponding 32-bit elements. The results are halved to avoid overflow or saturation.</p>
 </p>
-<p><strong>Description</strong>:<p>This instruction subtracts the 32-bit unsigned integer element in [63:32] of Rs2 from the 32-bit unsigned integer element in [63:32] of Rs1, and adds the 32-bit unsigned element integer in [31:0] of Rs1 with the 32-bit unsigned integer element in [31:0] of Rs2. The two results are first logically right-shifted by 1 bit and then written to [63:32] of Rd for subtraction and [31:0] of Rd for addition.</p>
+<p><strong>Description</strong><p>:</p>
+<p>This instruction subtracts the 32-bit unsigned integer element in [63:32] of Rs2 from the 32-bit unsigned integer element in [63:32] of Rs1, and adds the 32-bit unsigned element integer in [31:0] of Rs1 with the 32-bit unsigned integer element in [31:0] of Rs2. The two results are first logically right-shifted by 1 bit and then written to [63:32] of Rd for subtraction and [31:0] of Rd for addition.</p>
 </p>
 <p><strong>Examples</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Please see `URADD32` and `URSUB32` instructions.
 </pre></div>
@@ -1387,30 +1388,33 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gaba8b5c1a6f91c0b19cdea558a76968d3"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_URSUB32(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB_1gaba8b5c1a6f91c0b19cdea558a76968d3"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_URSUB32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>URSUB32 (SIMD 32-bit Unsigned Halving Subtraction) </p>
 <p><strong>Type</strong>: SIMD (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">URSUB32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 32-bit unsigned integer element subtractions simultaneously. The results are halved to avoid overflow or saturation.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 32-bit unsigned integer element subtractions simultaneously. The results are halved to avoid overflow or saturation.</p>
 </p>
-<p><strong>Description</strong>:<p>This instruction subtracts the 32-bit unsigned integer elements in Rs2 from the 32-bit unsigned integer elements in Rs1. The results are first logically right-shifted by 1 bit and then written to Rd.</p>
+<p><strong>Description</strong><p>:</p>
+<p>This instruction subtracts the 32-bit unsigned integer elements in Rs2 from the 32-bit unsigned integer elements in Rs1. The results are first logically right-shifted by 1 bit and then written to Rd.</p>
 </p>
 <p><strong>Examples</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Ra</span> <span class="o">=</span> <span class="mh">0x7FFFFFFF</span><span class="p">,</span> <span class="n">Rb</span> <span class="o">=</span> <span class="mh">0x80000000</span><span class="p">,</span> <span class="n">Rt</span> <span class="o">=</span> <span class="mh">0xFFFFFFFF</span>
 <span class="o">*</span> <span class="n">Ra</span> <span class="o">=</span> <span class="mh">0x80000000</span><span class="p">,</span> <span class="n">Rb</span> <span class="o">=</span> <span class="mh">0x7FFFFFFF</span><span class="p">,</span> <span class="n">Rt</span> <span class="o">=</span> <span class="mh">0x00000000</span>
@@ -1423,73 +1427,55 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="api_nmsis_core_dsp_intrinsic_rv64_simd_32b_shift.html" class="btn btn-neutral float-right" title="(RV64 Only) SIMD 32-bit Shift Instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../api_nmsis_core_dsp_intrinsic_rv64_only.html" class="btn btn-neutral float-left" title="RV64 Only Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../api_nmsis_core_dsp_intrinsic_rv64_only.html" class="btn btn-neutral float-left" title="RV64 Only Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api_nmsis_core_dsp_intrinsic_rv64_simd_32b_shift.html" class="btn btn-neutral float-right" title="(RV64 Only) SIMD 32-bit Shift Instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2019-Present, Nuclei
-      <span class="lastupdated">
-        Last updated on Mar 30, 2022.
-      </span>
-
-    </p>
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on Jan 05, 2023.
+      </span></p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

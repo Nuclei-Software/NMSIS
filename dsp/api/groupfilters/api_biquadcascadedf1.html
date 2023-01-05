@@ -1,75 +1,39 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Biquad Cascade IIR Filters Using Direct Form I Structure &mdash; NMSIS 1.0.4 documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Biquad Cascade IIR Filters Using Direct Form I Structure &mdash; NMSIS 1.1.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Biquad Cascade IIR Filters Using a Direct Form II Transposed Structure" href="api_biquadcascadedf2t.html" />
     <link rel="prev" title="High Precision Q31 Biquad Cascade Filter" href="api_biquadcascadedf1_32x64.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../../../index.html">
-          
-
-          
-            
             <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                1.0.4
+                1.1.0
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -77,18 +41,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -139,136 +93,97 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">NMSIS</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../../index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
-        
           <li><a href="../index.html">NMSIS DSP API</a> &raquo;</li>
-        
           <li><a href="../api_groupfilters.html">Filtering Functions</a> &raquo;</li>
-        
       <li>Biquad Cascade IIR Filters Using Direct Form I Structure</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="../../../_sources/dsp/api/groupfilters/api_biquadcascadedf1.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="biquad-cascade-iir-filters-using-direct-form-i-structure">
-<span id="nmsis-dsp-api-biquad-cascade-iir-filters-using-direct-form-i-structure"></span><h1>Biquad Cascade IIR Filters Using Direct Form I Structure<a class="headerlink" href="#biquad-cascade-iir-filters-using-direct-form-i-structure" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="_CPPv428riscv_biquad_cascade_df1_f16PK30riscv_biquad_casd_df1_inst_f16PK9float16_tP9float16_t8uint32_t">
-<span id="_CPPv328riscv_biquad_cascade_df1_f16PK30riscv_biquad_casd_df1_inst_f16PK9float16_tP9float16_t8uint32_t"></span><span id="_CPPv228riscv_biquad_cascade_df1_f16PK30riscv_biquad_casd_df1_inst_f16PK9float16_tP9float16_t8uint32_t"></span><span id="riscv_biquad_cascade_df1_f16__riscv_biquad_casd_df1_inst_f16CP.float16_tCP.float16_tP.uint32_t"></span><span class="target" id="group__BiquadCascadeDF1_1gad0dc80e2472fb8b6f5edea5067812738"></span>void <code class="sig-name descname">riscv_biquad_cascade_df1_f16</code><span class="sig-paren">(</span><em class="property">const</em> riscv_biquad_casd_df1_inst_f16 *<em>S</em>, <em class="property">const</em> float16_t *<em>pSrc</em>, float16_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428riscv_biquad_cascade_df1_f16PK30riscv_biquad_casd_df1_inst_f16PK9float16_tP9float16_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+             
+  <section id="biquad-cascade-iir-filters-using-direct-form-i-structure">
+<span id="nmsis-dsp-api-biquad-cascade-iir-filters-using-direct-form-i-structure"></span><h1>Biquad Cascade IIR Filters Using Direct Form I Structure<a class="headerlink" href="#biquad-cascade-iir-filters-using-direct-form-i-structure" title="Permalink to this headline"></a></h1>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv428riscv_biquad_cascade_df1_f16PK30riscv_biquad_casd_df1_inst_f16PK9float16_tP9float16_t8uint32_t">
+<span id="_CPPv328riscv_biquad_cascade_df1_f16PK30riscv_biquad_casd_df1_inst_f16PK9float16_tP9float16_t8uint32_t"></span><span id="_CPPv228riscv_biquad_cascade_df1_f16PK30riscv_biquad_casd_df1_inst_f16PK9float16_tP9float16_t8uint32_t"></span><span id="riscv_biquad_cascade_df1_f16__riscv_biquad_casd_df1_inst_f16CP.float16_tCP.float16_tP.uint32_t"></span><span class="target" id="group__BiquadCascadeDF1_1gad0dc80e2472fb8b6f5edea5067812738"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_biquad_cascade_df1_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_biquad_casd_df1_inst_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428riscv_biquad_cascade_df1_f16PK30riscv_biquad_casd_df1_inst_f16PK9float16_tP9float16_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv428riscv_biquad_cascade_df1_f32PK30riscv_biquad_casd_df1_inst_f32PK9float32_tP9float32_t8uint32_t">
-<span id="_CPPv328riscv_biquad_cascade_df1_f32PK30riscv_biquad_casd_df1_inst_f32PK9float32_tP9float32_t8uint32_t"></span><span id="_CPPv228riscv_biquad_cascade_df1_f32PK30riscv_biquad_casd_df1_inst_f32PK9float32_tP9float32_t8uint32_t"></span><span id="riscv_biquad_cascade_df1_f32__riscv_biquad_casd_df1_inst_f32CP.float32_tCP.float32_tP.uint32_t"></span><span class="target" id="group__BiquadCascadeDF1_1gac9bd447ab6475b0bbe7aaf14b0a4c6ee"></span>void <code class="sig-name descname">riscv_biquad_cascade_df1_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_biquad_casd_df1_inst_f32 *<em>S</em>, <em class="property">const</em> float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428riscv_biquad_cascade_df1_f32PK30riscv_biquad_casd_df1_inst_f32PK9float32_tP9float32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv428riscv_biquad_cascade_df1_f32PK30riscv_biquad_casd_df1_inst_f32PK9float32_tP9float32_t8uint32_t">
+<span id="_CPPv328riscv_biquad_cascade_df1_f32PK30riscv_biquad_casd_df1_inst_f32PK9float32_tP9float32_t8uint32_t"></span><span id="_CPPv228riscv_biquad_cascade_df1_f32PK30riscv_biquad_casd_df1_inst_f32PK9float32_tP9float32_t8uint32_t"></span><span id="riscv_biquad_cascade_df1_f32__riscv_biquad_casd_df1_inst_f32CP.float32_tCP.float32_tP.uint32_t"></span><span class="target" id="group__BiquadCascadeDF1_1gac9bd447ab6475b0bbe7aaf14b0a4c6ee"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_biquad_cascade_df1_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_biquad_casd_df1_inst_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428riscv_biquad_cascade_df1_f32PK30riscv_biquad_casd_df1_inst_f32PK9float32_tP9float32_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv433riscv_biquad_cascade_df1_fast_q15PK30riscv_biquad_casd_df1_inst_q15PK5q15_tP5q15_t8uint32_t">
-<span id="_CPPv333riscv_biquad_cascade_df1_fast_q15PK30riscv_biquad_casd_df1_inst_q15PK5q15_tP5q15_t8uint32_t"></span><span id="_CPPv233riscv_biquad_cascade_df1_fast_q15PK30riscv_biquad_casd_df1_inst_q15PK5q15_tP5q15_t8uint32_t"></span><span id="riscv_biquad_cascade_df1_fast_q15__riscv_biquad_casd_df1_inst_q15CP.q15_tCP.q15_tP.uint32_t"></span><span class="target" id="group__BiquadCascadeDF1_1gaaaa59376091d7b8caf6116de4e68f28b"></span>void <code class="sig-name descname">riscv_biquad_cascade_df1_fast_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_biquad_casd_df1_inst_q15 *<em>S</em>, <em class="property">const</em> q15_t *<em>pSrc</em>, q15_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433riscv_biquad_cascade_df1_fast_q15PK30riscv_biquad_casd_df1_inst_q15PK5q15_tP5q15_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv433riscv_biquad_cascade_df1_fast_q15PK30riscv_biquad_casd_df1_inst_q15PK5q15_tP5q15_t8uint32_t">
+<span id="_CPPv333riscv_biquad_cascade_df1_fast_q15PK30riscv_biquad_casd_df1_inst_q15PK5q15_tP5q15_t8uint32_t"></span><span id="_CPPv233riscv_biquad_cascade_df1_fast_q15PK30riscv_biquad_casd_df1_inst_q15PK5q15_tP5q15_t8uint32_t"></span><span id="riscv_biquad_cascade_df1_fast_q15__riscv_biquad_casd_df1_inst_q15CP.q15_tCP.q15_tP.uint32_t"></span><span class="target" id="group__BiquadCascadeDF1_1gaaaa59376091d7b8caf6116de4e68f28b"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_biquad_cascade_df1_fast_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_biquad_casd_df1_inst_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433riscv_biquad_cascade_df1_fast_q15PK30riscv_biquad_casd_df1_inst_q15PK5q15_tP5q15_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv433riscv_biquad_cascade_df1_fast_q31PK30riscv_biquad_casd_df1_inst_q31PK5q31_tP5q31_t8uint32_t">
-<span id="_CPPv333riscv_biquad_cascade_df1_fast_q31PK30riscv_biquad_casd_df1_inst_q31PK5q31_tP5q31_t8uint32_t"></span><span id="_CPPv233riscv_biquad_cascade_df1_fast_q31PK30riscv_biquad_casd_df1_inst_q31PK5q31_tP5q31_t8uint32_t"></span><span id="riscv_biquad_cascade_df1_fast_q31__riscv_biquad_casd_df1_inst_q31CP.q31_tCP.q31_tP.uint32_t"></span><span class="target" id="group__BiquadCascadeDF1_1gaed838e1892c406620fbb0e131e273d8d"></span>void <code class="sig-name descname">riscv_biquad_cascade_df1_fast_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_biquad_casd_df1_inst_q31 *<em>S</em>, <em class="property">const</em> q31_t *<em>pSrc</em>, q31_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433riscv_biquad_cascade_df1_fast_q31PK30riscv_biquad_casd_df1_inst_q31PK5q31_tP5q31_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv433riscv_biquad_cascade_df1_fast_q31PK30riscv_biquad_casd_df1_inst_q31PK5q31_tP5q31_t8uint32_t">
+<span id="_CPPv333riscv_biquad_cascade_df1_fast_q31PK30riscv_biquad_casd_df1_inst_q31PK5q31_tP5q31_t8uint32_t"></span><span id="_CPPv233riscv_biquad_cascade_df1_fast_q31PK30riscv_biquad_casd_df1_inst_q31PK5q31_tP5q31_t8uint32_t"></span><span id="riscv_biquad_cascade_df1_fast_q31__riscv_biquad_casd_df1_inst_q31CP.q31_tCP.q31_tP.uint32_t"></span><span class="target" id="group__BiquadCascadeDF1_1gaed838e1892c406620fbb0e131e273d8d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_biquad_cascade_df1_fast_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_biquad_casd_df1_inst_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433riscv_biquad_cascade_df1_fast_q31PK30riscv_biquad_casd_df1_inst_q31PK5q31_tP5q31_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv433riscv_biquad_cascade_df1_init_f16P30riscv_biquad_casd_df1_inst_f167uint8_tPK9float16_tP9float16_t">
-<span id="_CPPv333riscv_biquad_cascade_df1_init_f16P30riscv_biquad_casd_df1_inst_f167uint8_tPK9float16_tP9float16_t"></span><span id="_CPPv233riscv_biquad_cascade_df1_init_f16P30riscv_biquad_casd_df1_inst_f167uint8_tPK9float16_tP9float16_t"></span><span id="riscv_biquad_cascade_df1_init_f16__riscv_biquad_casd_df1_inst_f16P.uint8_t.float16_tCP.float16_tP"></span><span class="target" id="group__BiquadCascadeDF1_1ga674a9426c17576dd9ed7ebd34132d443"></span>void <code class="sig-name descname">riscv_biquad_cascade_df1_init_f16</code><span class="sig-paren">(</span>riscv_biquad_casd_df1_inst_f16 *<em>S</em>, uint8_t <em>numStages</em>, <em class="property">const</em> float16_t *<em>pCoeffs</em>, float16_t *<em>pState</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433riscv_biquad_cascade_df1_init_f16P30riscv_biquad_casd_df1_inst_f167uint8_tPK9float16_tP9float16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv433riscv_biquad_cascade_df1_init_f16P30riscv_biquad_casd_df1_inst_f167uint8_tPK9float16_tP9float16_t">
+<span id="_CPPv333riscv_biquad_cascade_df1_init_f16P30riscv_biquad_casd_df1_inst_f167uint8_tPK9float16_tP9float16_t"></span><span id="_CPPv233riscv_biquad_cascade_df1_init_f16P30riscv_biquad_casd_df1_inst_f167uint8_tPK9float16_tP9float16_t"></span><span id="riscv_biquad_cascade_df1_init_f16__riscv_biquad_casd_df1_inst_f16P.uint8_t.float16_tCP.float16_tP"></span><span class="target" id="group__BiquadCascadeDF1_1ga674a9426c17576dd9ed7ebd34132d443"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_biquad_cascade_df1_init_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_biquad_casd_df1_inst_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">numStages</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pCoeffs</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pState</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433riscv_biquad_cascade_df1_init_f16P30riscv_biquad_casd_df1_inst_f167uint8_tPK9float16_tP9float16_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv433riscv_biquad_cascade_df1_init_f32P30riscv_biquad_casd_df1_inst_f327uint8_tPK9float32_tP9float32_t">
-<span id="_CPPv333riscv_biquad_cascade_df1_init_f32P30riscv_biquad_casd_df1_inst_f327uint8_tPK9float32_tP9float32_t"></span><span id="_CPPv233riscv_biquad_cascade_df1_init_f32P30riscv_biquad_casd_df1_inst_f327uint8_tPK9float32_tP9float32_t"></span><span id="riscv_biquad_cascade_df1_init_f32__riscv_biquad_casd_df1_inst_f32P.uint8_t.float32_tCP.float32_tP"></span><span class="target" id="group__BiquadCascadeDF1_1ga3cdfc93d24e61bf7c88d3d51f01cb73a"></span>void <code class="sig-name descname">riscv_biquad_cascade_df1_init_f32</code><span class="sig-paren">(</span>riscv_biquad_casd_df1_inst_f32 *<em>S</em>, uint8_t <em>numStages</em>, <em class="property">const</em> float32_t *<em>pCoeffs</em>, float32_t *<em>pState</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433riscv_biquad_cascade_df1_init_f32P30riscv_biquad_casd_df1_inst_f327uint8_tPK9float32_tP9float32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv433riscv_biquad_cascade_df1_init_f32P30riscv_biquad_casd_df1_inst_f327uint8_tPK9float32_tP9float32_t">
+<span id="_CPPv333riscv_biquad_cascade_df1_init_f32P30riscv_biquad_casd_df1_inst_f327uint8_tPK9float32_tP9float32_t"></span><span id="_CPPv233riscv_biquad_cascade_df1_init_f32P30riscv_biquad_casd_df1_inst_f327uint8_tPK9float32_tP9float32_t"></span><span id="riscv_biquad_cascade_df1_init_f32__riscv_biquad_casd_df1_inst_f32P.uint8_t.float32_tCP.float32_tP"></span><span class="target" id="group__BiquadCascadeDF1_1ga3cdfc93d24e61bf7c88d3d51f01cb73a"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_biquad_cascade_df1_init_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_biquad_casd_df1_inst_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">numStages</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pCoeffs</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pState</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433riscv_biquad_cascade_df1_init_f32P30riscv_biquad_casd_df1_inst_f327uint8_tPK9float32_tP9float32_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv433riscv_biquad_cascade_df1_init_q15P30riscv_biquad_casd_df1_inst_q157uint8_tPK5q15_tP5q15_t6int8_t">
-<span id="_CPPv333riscv_biquad_cascade_df1_init_q15P30riscv_biquad_casd_df1_inst_q157uint8_tPK5q15_tP5q15_t6int8_t"></span><span id="_CPPv233riscv_biquad_cascade_df1_init_q15P30riscv_biquad_casd_df1_inst_q157uint8_tPK5q15_tP5q15_t6int8_t"></span><span id="riscv_biquad_cascade_df1_init_q15__riscv_biquad_casd_df1_inst_q15P.uint8_t.q15_tCP.q15_tP.int8_t"></span><span class="target" id="group__BiquadCascadeDF1_1gad0f11309749f0135467c1b476d5a05b8"></span>void <code class="sig-name descname">riscv_biquad_cascade_df1_init_q15</code><span class="sig-paren">(</span>riscv_biquad_casd_df1_inst_q15 *<em>S</em>, uint8_t <em>numStages</em>, <em class="property">const</em> q15_t *<em>pCoeffs</em>, q15_t *<em>pState</em>, int8_t <em>postShift</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433riscv_biquad_cascade_df1_init_q15P30riscv_biquad_casd_df1_inst_q157uint8_tPK5q15_tP5q15_t6int8_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv433riscv_biquad_cascade_df1_init_q15P30riscv_biquad_casd_df1_inst_q157uint8_tPK5q15_tP5q15_t6int8_t">
+<span id="_CPPv333riscv_biquad_cascade_df1_init_q15P30riscv_biquad_casd_df1_inst_q157uint8_tPK5q15_tP5q15_t6int8_t"></span><span id="_CPPv233riscv_biquad_cascade_df1_init_q15P30riscv_biquad_casd_df1_inst_q157uint8_tPK5q15_tP5q15_t6int8_t"></span><span id="riscv_biquad_cascade_df1_init_q15__riscv_biquad_casd_df1_inst_q15P.uint8_t.q15_tCP.q15_tP.int8_t"></span><span class="target" id="group__BiquadCascadeDF1_1gad0f11309749f0135467c1b476d5a05b8"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_biquad_cascade_df1_init_q15</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_biquad_casd_df1_inst_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">numStages</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pCoeffs</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pState</span></span>, <span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">postShift</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433riscv_biquad_cascade_df1_init_q15P30riscv_biquad_casd_df1_inst_q157uint8_tPK5q15_tP5q15_t6int8_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv433riscv_biquad_cascade_df1_init_q31P30riscv_biquad_casd_df1_inst_q317uint8_tPK5q31_tP5q31_t6int8_t">
-<span id="_CPPv333riscv_biquad_cascade_df1_init_q31P30riscv_biquad_casd_df1_inst_q317uint8_tPK5q31_tP5q31_t6int8_t"></span><span id="_CPPv233riscv_biquad_cascade_df1_init_q31P30riscv_biquad_casd_df1_inst_q317uint8_tPK5q31_tP5q31_t6int8_t"></span><span id="riscv_biquad_cascade_df1_init_q31__riscv_biquad_casd_df1_inst_q31P.uint8_t.q31_tCP.q31_tP.int8_t"></span><span class="target" id="group__BiquadCascadeDF1_1gae8abff148e8233c48bdd9dda2caeaad5"></span>void <code class="sig-name descname">riscv_biquad_cascade_df1_init_q31</code><span class="sig-paren">(</span>riscv_biquad_casd_df1_inst_q31 *<em>S</em>, uint8_t <em>numStages</em>, <em class="property">const</em> q31_t *<em>pCoeffs</em>, q31_t *<em>pState</em>, int8_t <em>postShift</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433riscv_biquad_cascade_df1_init_q31P30riscv_biquad_casd_df1_inst_q317uint8_tPK5q31_tP5q31_t6int8_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv433riscv_biquad_cascade_df1_init_q31P30riscv_biquad_casd_df1_inst_q317uint8_tPK5q31_tP5q31_t6int8_t">
+<span id="_CPPv333riscv_biquad_cascade_df1_init_q31P30riscv_biquad_casd_df1_inst_q317uint8_tPK5q31_tP5q31_t6int8_t"></span><span id="_CPPv233riscv_biquad_cascade_df1_init_q31P30riscv_biquad_casd_df1_inst_q317uint8_tPK5q31_tP5q31_t6int8_t"></span><span id="riscv_biquad_cascade_df1_init_q31__riscv_biquad_casd_df1_inst_q31P.uint8_t.q31_tCP.q31_tP.int8_t"></span><span class="target" id="group__BiquadCascadeDF1_1gae8abff148e8233c48bdd9dda2caeaad5"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_biquad_cascade_df1_init_q31</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_biquad_casd_df1_inst_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">numStages</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pCoeffs</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pState</span></span>, <span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">postShift</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433riscv_biquad_cascade_df1_init_q31P30riscv_biquad_casd_df1_inst_q317uint8_tPK5q31_tP5q31_t6int8_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv428riscv_biquad_cascade_df1_q15PK30riscv_biquad_casd_df1_inst_q15PK5q15_tP5q15_t8uint32_t">
-<span id="_CPPv328riscv_biquad_cascade_df1_q15PK30riscv_biquad_casd_df1_inst_q15PK5q15_tP5q15_t8uint32_t"></span><span id="_CPPv228riscv_biquad_cascade_df1_q15PK30riscv_biquad_casd_df1_inst_q15PK5q15_tP5q15_t8uint32_t"></span><span id="riscv_biquad_cascade_df1_q15__riscv_biquad_casd_df1_inst_q15CP.q15_tCP.q15_tP.uint32_t"></span><span class="target" id="group__BiquadCascadeDF1_1ga51d1bc8c536ec95a274807dbf6b4c747"></span>void <code class="sig-name descname">riscv_biquad_cascade_df1_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_biquad_casd_df1_inst_q15 *<em>S</em>, <em class="property">const</em> q15_t *<em>pSrc</em>, q15_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428riscv_biquad_cascade_df1_q15PK30riscv_biquad_casd_df1_inst_q15PK5q15_tP5q15_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv428riscv_biquad_cascade_df1_q15PK30riscv_biquad_casd_df1_inst_q15PK5q15_tP5q15_t8uint32_t">
+<span id="_CPPv328riscv_biquad_cascade_df1_q15PK30riscv_biquad_casd_df1_inst_q15PK5q15_tP5q15_t8uint32_t"></span><span id="_CPPv228riscv_biquad_cascade_df1_q15PK30riscv_biquad_casd_df1_inst_q15PK5q15_tP5q15_t8uint32_t"></span><span id="riscv_biquad_cascade_df1_q15__riscv_biquad_casd_df1_inst_q15CP.q15_tCP.q15_tP.uint32_t"></span><span class="target" id="group__BiquadCascadeDF1_1ga51d1bc8c536ec95a274807dbf6b4c747"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_biquad_cascade_df1_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_biquad_casd_df1_inst_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428riscv_biquad_cascade_df1_q15PK30riscv_biquad_casd_df1_inst_q15PK5q15_tP5q15_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv428riscv_biquad_cascade_df1_q31PK30riscv_biquad_casd_df1_inst_q31PK5q31_tP5q31_t8uint32_t">
-<span id="_CPPv328riscv_biquad_cascade_df1_q31PK30riscv_biquad_casd_df1_inst_q31PK5q31_tP5q31_t8uint32_t"></span><span id="_CPPv228riscv_biquad_cascade_df1_q31PK30riscv_biquad_casd_df1_inst_q31PK5q31_tP5q31_t8uint32_t"></span><span id="riscv_biquad_cascade_df1_q31__riscv_biquad_casd_df1_inst_q31CP.q31_tCP.q31_tP.uint32_t"></span><span class="target" id="group__BiquadCascadeDF1_1ga9db8b6490e760bcbb86366385ffd7a5b"></span>void <code class="sig-name descname">riscv_biquad_cascade_df1_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_biquad_casd_df1_inst_q31 *<em>S</em>, <em class="property">const</em> q31_t *<em>pSrc</em>, q31_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428riscv_biquad_cascade_df1_q31PK30riscv_biquad_casd_df1_inst_q31PK5q31_tP5q31_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv428riscv_biquad_cascade_df1_q31PK30riscv_biquad_casd_df1_inst_q31PK5q31_tP5q31_t8uint32_t">
+<span id="_CPPv328riscv_biquad_cascade_df1_q31PK30riscv_biquad_casd_df1_inst_q31PK5q31_tP5q31_t8uint32_t"></span><span id="_CPPv228riscv_biquad_cascade_df1_q31PK30riscv_biquad_casd_df1_inst_q31PK5q31_tP5q31_t8uint32_t"></span><span id="riscv_biquad_cascade_df1_q31__riscv_biquad_casd_df1_inst_q31CP.q31_tCP.q31_tP.uint32_t"></span><span class="target" id="group__BiquadCascadeDF1_1ga9db8b6490e760bcbb86366385ffd7a5b"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_biquad_cascade_df1_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_biquad_casd_df1_inst_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428riscv_biquad_cascade_df1_q31PK30riscv_biquad_casd_df1_inst_q31PK5q31_tP5q31_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="group">
-<dt>
-<span class="target" id="group__BiquadCascadeDF1"></span><em>group</em> <code class="sig-name descname">BiquadCascadeDF1</code></dt>
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__BiquadCascadeDF1"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">BiquadCascadeDF1</span></span></dt>
 <dd><p>This set of functions implements arbitrary order recursive (IIR) filters. The filters are implemented as a cascade of second order Biquad sections. The functions support Q15, Q31 and floating-point data types. Fast version of Q15 and Q31 also available.</p>
 <p>The functions operate on blocks of input and output data and each call to the function processes <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> samples through the filter. <code class="docutils literal notranslate"><span class="pre">pSrc</span></code> points to the array of input data and <code class="docutils literal notranslate"><span class="pre">pDst</span></code> points to the array of output data. Both arrays contain <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> values.</p>
 <p><dl class="simple">
-<dt><strong>Algorithm</strong></dt><dd><p>Each Biquad stage implements a second order filter using the difference equation:  A Direct Form I algorithm is used with 5 coefficients and 4 state variables per stage. <p> Coefficients </p>
+<dt><strong>Algorithm</strong></dt><dd><p><p>Each Biquad stage implements a second order filter using the difference equation:  A Direct Form I algorithm is used with 5 coefficients and 4 state variables per stage.</p>
+<p>Coefficients</p>
 <code class="docutils literal notranslate"><span class="pre">b0,</span> <span class="pre">b1</span> <span class="pre">and</span> <span class="pre">b2</span> </code> multiply the input signal <code class="docutils literal notranslate"><span class="pre">x[n]</span></code> and are referred to as the feedforward coefficients. Coefficients <code class="docutils literal notranslate"><span class="pre">a1</span></code> and <code class="docutils literal notranslate"><span class="pre">a2</span></code> multiply the output signal <code class="docutils literal notranslate"><span class="pre">y[n]</span></code> and are referred to as the feedback coefficients. Pay careful attention to the sign of the feedback coefficients. Some design tools use the difference equation  In this case the feedback coefficients <code class="docutils literal notranslate"><span class="pre">a1</span></code> and <code class="docutils literal notranslate"><span class="pre">a2</span></code> must be negated when used with the NMSIS DSP Library.<img alt="../../../_images/Biquad.png" src="../../../_images/Biquad.png" /></p>
 </dd>
-<dt><strong></strong></dt><dd><p>Higher order filters are realized as a cascade of second order sections. <code class="docutils literal notranslate"><span class="pre">numStages</span></code> refers to the number of second order stages used. For example, an 8th order filter would be realized with <code class="docutils literal notranslate"><span class="pre">numStages=4</span></code> second order stages. <p> A 9th order filter would be realized with </p>
+<dt><strong></strong></dt><dd><p>Higher order filters are realized as a cascade of second order sections. <code class="docutils literal notranslate"><span class="pre">numStages</span></code> refers to the number of second order stages used. For example, an 8th order filter would be realized with <code class="docutils literal notranslate"><span class="pre">numStages=4</span></code><p>second order stages.</p>
+<p>A 9th order filter would be realized with</p>
 <code class="docutils literal notranslate"><span class="pre">numStages=5</span></code> second order stages with the coefficients for one of the stages configured as a first order filter (<code class="docutils literal notranslate"><span class="pre">b2=0</span></code> and <code class="docutils literal notranslate"><span class="pre">a2=0</span></code>).<img alt="../../../_images/BiquadCascade.png" src="../../../_images/BiquadCascade.png" /></p>
 </dd>
 <dt><strong></strong></dt><dd><p>The <code class="docutils literal notranslate"><span class="pre">pState</span></code> points to state variables array. Each Biquad stage has 4 state variables <code class="docutils literal notranslate"><span class="pre">x[n-1],</span> <span class="pre">x[n-2],</span> <span class="pre">y[n-1],</span></code> and <code class="docutils literal notranslate"><span class="pre">y[n-2]</span></code>. The state variables are arranged in the <code class="docutils literal notranslate"><span class="pre">pState</span></code> array as: </p>
@@ -292,7 +207,8 @@
 </ul>
 </p>
 </dd>
-<dt><strong>Scaling of coefficients</strong></dt><dd><p>Filter coefficients are represented as fractional values and coefficients are restricted to lie in the range <code class="docutils literal notranslate"><span class="pre">[-1</span> <span class="pre">+1)</span></code>. The fixed-point functions have an additional scaling parameter <code class="docutils literal notranslate"><span class="pre">postShift</span></code> which allow the filter coefficients to exceed the range <code class="docutils literal notranslate"><span class="pre">[+1</span> <span class="pre">-1)</span></code>. At the output of the filter’s accumulator is a shift register which shifts the result by <code class="docutils literal notranslate"><span class="pre">postShift</span></code> bits. <p> This essentially scales the filter coefficients by </p>
+<dt><strong>Scaling of coefficients</strong></dt><dd><p>Filter coefficients are represented as fractional values and coefficients are restricted to lie in the range <code class="docutils literal notranslate"><span class="pre">[-1</span> <span class="pre">+1)</span></code>. The fixed-point functions have an additional scaling parameter <code class="docutils literal notranslate"><span class="pre">postShift</span></code> which allow the filter coefficients to exceed the range <code class="docutils literal notranslate"><span class="pre">[+1</span> <span class="pre">-1)</span></code>. At the output of the filter’s accumulator is a shift register which shifts the result by <code class="docutils literal notranslate"><span class="pre">postShift</span></code><p>bits.</p>
+<p>This essentially scales the filter coefficients by</p>
 <code class="docutils literal notranslate"><span class="pre">2^postShift</span></code>. For example, to realize the coefficients  set the pCoeffs array to:  and set <code class="docutils literal notranslate"><span class="pre">postShift=1</span></code><img alt="../../../_images/BiquadPostshift.png" src="../../../_images/BiquadPostshift.png" /></p>
 </dd>
 <dt><strong>Filter gain</strong></dt><dd><p>The frequency response of a Biquad filter is a function of its coefficients. It is possible for the gain through the filter to exceed 1.0 meaning that the filter increases the amplitude of certain frequencies. This means that an input signal with amplitude &lt; 1.0 may result in an output &gt; 1.0 and these are saturated or overflowed based on the implementation of the filter. To avoid this behavior the filter needs to be scaled down such that its peak gain &lt; 1.0 or the input signal must be scaled down so that the combination of input and filter are never overflowed.</p>
@@ -302,97 +218,109 @@
 </dl>
 </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Functions</p>
-<dl class="function">
-<dt id="_CPPv428riscv_biquad_cascade_df1_f16PK30riscv_biquad_casd_df1_inst_f16PK9float16_tP9float16_t8uint32_t">
-<span id="_CPPv328riscv_biquad_cascade_df1_f16PK30riscv_biquad_casd_df1_inst_f16PK9float16_tP9float16_t8uint32_t"></span><span id="_CPPv228riscv_biquad_cascade_df1_f16PK30riscv_biquad_casd_df1_inst_f16PK9float16_tP9float16_t8uint32_t"></span><span class="target" id="group__BiquadCascadeDF1_1gad0dc80e2472fb8b6f5edea5067812738"></span>void <code class="sig-name descname">riscv_biquad_cascade_df1_f16</code><span class="sig-paren">(</span><em class="property">const</em> riscv_biquad_casd_df1_inst_f16 *<em>S</em>, <em class="property">const</em> float16_t *<em>pSrc</em>, float16_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__BiquadCascadeDF1_1gad0dc80e2472fb8b6f5edea5067812738"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_biquad_cascade_df1_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_biquad_casd_df1_inst_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the floating-point Biquad cascade filter. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the floating-point Biquad cascade structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the block of output data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the floating-point Biquad cascade structure </p></li>
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv428riscv_biquad_cascade_df1_f32PK30riscv_biquad_casd_df1_inst_f32PK9float32_tP9float32_t8uint32_t">
-<span id="_CPPv328riscv_biquad_cascade_df1_f32PK30riscv_biquad_casd_df1_inst_f32PK9float32_tP9float32_t8uint32_t"></span><span id="_CPPv228riscv_biquad_cascade_df1_f32PK30riscv_biquad_casd_df1_inst_f32PK9float32_tP9float32_t8uint32_t"></span><span class="target" id="group__BiquadCascadeDF1_1gac9bd447ab6475b0bbe7aaf14b0a4c6ee"></span>void <code class="sig-name descname">riscv_biquad_cascade_df1_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_biquad_casd_df1_inst_f32 *<em>S</em>, <em class="property">const</em> float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__BiquadCascadeDF1_1gac9bd447ab6475b0bbe7aaf14b0a4c6ee"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_biquad_cascade_df1_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_biquad_casd_df1_inst_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the floating-point Biquad cascade filter. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the floating-point Biquad cascade structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the block of output data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the floating-point Biquad cascade structure </p></li>
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv433riscv_biquad_cascade_df1_fast_q15PK30riscv_biquad_casd_df1_inst_q15PK5q15_tP5q15_t8uint32_t">
-<span id="_CPPv333riscv_biquad_cascade_df1_fast_q15PK30riscv_biquad_casd_df1_inst_q15PK5q15_tP5q15_t8uint32_t"></span><span id="_CPPv233riscv_biquad_cascade_df1_fast_q15PK30riscv_biquad_casd_df1_inst_q15PK5q15_tP5q15_t8uint32_t"></span><span class="target" id="group__BiquadCascadeDF1_1gaaaa59376091d7b8caf6116de4e68f28b"></span>void <code class="sig-name descname">riscv_biquad_cascade_df1_fast_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_biquad_casd_df1_inst_q15 *<em>S</em>, <em class="property">const</em> q15_t *<em>pSrc</em>, q15_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__BiquadCascadeDF1_1gaaaa59376091d7b8caf6116de4e68f28b"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_biquad_cascade_df1_fast_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_biquad_casd_df1_inst_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the Q15 Biquad cascade filter (fast variant). </p>
 <p>Fast but less precise processing function for the Q15 Biquad cascade filter for RISC-V Core with DSP enabled.</p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none</p>
-</dd>
+<p><div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Refer to riscv_biquad_cascade_df1_q15() for a slower implementation of this function which uses 64-bit accumulation to avoid wrap around distortion. Both the slow and the fast versions use the same instance structure. Use the function riscv_biquad_cascade_df1_init_q15() to initialize the filter structure. </p>
+</div>
+<dl class="simple">
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>This fast version uses a 32-bit accumulator with 2.30 format. The accumulator maintains full precision of the intermediate multiplication results but provides only a single guard bit. Thus, if the accumulator result overflows it wraps around and distorts the result. In order to avoid overflows completely the input signal must be scaled down by two bits and lie in the range [-0.25 +0.25). The 2.30 accumulator is then shifted by <code class="docutils literal notranslate"><span class="pre">postShift</span></code> bits and the result truncated to 1.15 format by discarding the low 16 bits. </p>
 </dd>
-<dt><strong>Remark</strong></dt><dd><p>Refer to riscv_biquad_cascade_df1_q15() for a slower implementation of this function which uses 64-bit accumulation to avoid wrap around distortion. Both the slow and the fast versions use the same instance structure. Use the function riscv_biquad_cascade_df1_init_q15() to initialize the filter structure. </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the Q15 Biquad cascade structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the block of output data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process per call </p></li>
-</ul>
-</dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q15 Biquad cascade structure </p></li>
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process per call </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv433riscv_biquad_cascade_df1_fast_q31PK30riscv_biquad_casd_df1_inst_q31PK5q31_tP5q31_t8uint32_t">
-<span id="_CPPv333riscv_biquad_cascade_df1_fast_q31PK30riscv_biquad_casd_df1_inst_q31PK5q31_tP5q31_t8uint32_t"></span><span id="_CPPv233riscv_biquad_cascade_df1_fast_q31PK30riscv_biquad_casd_df1_inst_q31PK5q31_tP5q31_t8uint32_t"></span><span class="target" id="group__BiquadCascadeDF1_1gaed838e1892c406620fbb0e131e273d8d"></span>void <code class="sig-name descname">riscv_biquad_cascade_df1_fast_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_biquad_casd_df1_inst_q31 *<em>S</em>, <em class="property">const</em> q31_t *<em>pSrc</em>, q31_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__BiquadCascadeDF1_1gaed838e1892c406620fbb0e131e273d8d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_biquad_cascade_df1_fast_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_biquad_casd_df1_inst_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the Q31 Biquad cascade filter (fast variant). </p>
 <p>Fast but less precise processing function for the Q31 Biquad cascade filter for RISC-V Core with DSP enabled.</p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none</p>
-</dd>
+<p><div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Refer to riscv_biquad_cascade_df1_q31() for a slower implementation of this function which uses 64-bit accumulation to provide higher precision. Both the slow and the fast versions use the same instance structure. Use the function riscv_biquad_cascade_df1_init_q31() to initialize the filter structure. </p>
+</div>
+<dl class="simple">
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>This function is optimized for speed at the expense of fixed-point precision and overflow protection. The result of each 1.31 x 1.31 multiplication is truncated to 2.30 format. These intermediate results are added to a 2.30 accumulator. Finally, the accumulator is saturated and converted to a 1.31 result. The fast version has the same overflow behavior as the standard version and provides less precision since it discards the low 32 bits of each multiplication result. In order to avoid overflows completely the input signal must be scaled down by two bits and lie in the range [-0.25 +0.25). Use the intialization function riscv_biquad_cascade_df1_init_q31() to initialize filter structure. </p>
-</dd>
-<dt><strong>Remark</strong></dt><dd><p>Refer to riscv_biquad_cascade_df1_q31() for a slower implementation of this function which uses 64-bit accumulation to provide higher precision. Both the slow and the fast versions use the same instance structure. Use the function riscv_biquad_cascade_df1_init_q31() to initialize the filter structure. </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the Q31 Biquad cascade structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the block of output data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process per call </p></li>
-</ul>
 </dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q31 Biquad cascade structure </p></li>
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process per call </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv433riscv_biquad_cascade_df1_init_f16P30riscv_biquad_casd_df1_inst_f167uint8_tPK9float16_tP9float16_t">
-<span id="_CPPv333riscv_biquad_cascade_df1_init_f16P30riscv_biquad_casd_df1_inst_f167uint8_tPK9float16_tP9float16_t"></span><span id="_CPPv233riscv_biquad_cascade_df1_init_f16P30riscv_biquad_casd_df1_inst_f167uint8_tPK9float16_tP9float16_t"></span><span class="target" id="group__BiquadCascadeDF1_1ga674a9426c17576dd9ed7ebd34132d443"></span>void <code class="sig-name descname">riscv_biquad_cascade_df1_init_f16</code><span class="sig-paren">(</span>riscv_biquad_casd_df1_inst_f16 *<em>S</em>, uint8_t <em>numStages</em>, <em class="property">const</em> float16_t *<em>pCoeffs</em>, float16_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__BiquadCascadeDF1_1ga674a9426c17576dd9ed7ebd34132d443"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_biquad_cascade_df1_init_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_biquad_casd_df1_inst_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">numStages</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pCoeffs</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pState</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the floating-point Biquad cascade filter. </p>
-<p><p>The initialization function which must be used is riscv_biquad_cascade_df1_mve_init_f16. </p>
-<dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none</p>
-</dd>
+<p>
+The initialization function which must be used is riscv_biquad_cascade_df1_mve_init_f16. <dl class="simple">
 <dt><strong>Coefficient and State Ordering</strong></dt><dd><p>The coefficients are stored in the array <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> in the following order: </p>
 </dd>
 <dt><strong></strong></dt><dd><p>where <code class="docutils literal notranslate"><span class="pre">b1x</span></code> and <code class="docutils literal notranslate"><span class="pre">a1x</span></code> are the coefficients for the first stage, <code class="docutils literal notranslate"><span class="pre">b2x</span></code> and <code class="docutils literal notranslate"><span class="pre">a2x</span></code> are the coefficients for the second stage, and so on. The <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> array contains a total of <code class="docutils literal notranslate"><span class="pre">5*numStages</span></code> values. </p>
@@ -401,25 +329,29 @@
 </dd>
 <dt><strong>For MVE code, an additional buffer of modified coefficients is required.</strong></dt><dd><p>Its size is numStages and each element of this buffer has type riscv_biquad_mod_coef_f16. So, its total size is 96*numStages float16_t elements.</p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an instance of the floating-point Biquad cascade structure. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numStages</span></code>: number of 2nd order stages in the filter. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pCoeffs</span></code>: points to the filter coefficients. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pState</span></code>: points to the state buffer. </p></li>
-</ul>
-</dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the floating-point Biquad cascade structure. </p></li>
+<li><p><strong>numStages</strong> – <strong>[in]</strong> number of 2nd order stages in the filter. </p></li>
+<li><p><strong>pCoeffs</strong> – <strong>[in]</strong> points to the filter coefficients. </p></li>
+<li><p><strong>pState</strong> – <strong>[in]</strong> points to the state buffer. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv433riscv_biquad_cascade_df1_init_f32P30riscv_biquad_casd_df1_inst_f327uint8_tPK9float32_tP9float32_t">
-<span id="_CPPv333riscv_biquad_cascade_df1_init_f32P30riscv_biquad_casd_df1_inst_f327uint8_tPK9float32_tP9float32_t"></span><span id="_CPPv233riscv_biquad_cascade_df1_init_f32P30riscv_biquad_casd_df1_inst_f327uint8_tPK9float32_tP9float32_t"></span><span class="target" id="group__BiquadCascadeDF1_1ga3cdfc93d24e61bf7c88d3d51f01cb73a"></span>void <code class="sig-name descname">riscv_biquad_cascade_df1_init_f32</code><span class="sig-paren">(</span>riscv_biquad_casd_df1_inst_f32 *<em>S</em>, uint8_t <em>numStages</em>, <em class="property">const</em> float32_t *<em>pCoeffs</em>, float32_t *<em>pState</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__BiquadCascadeDF1_1ga3cdfc93d24e61bf7c88d3d51f01cb73a"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_biquad_cascade_df1_init_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_biquad_casd_df1_inst_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">numStages</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pCoeffs</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pState</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the floating-point Biquad cascade filter. </p>
-<p><p>The initialization function which must be used is riscv_biquad_cascade_df1_mve_init_f32. </p>
-<dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none</p>
-</dd>
+<p>
+The initialization function which must be used is riscv_biquad_cascade_df1_mve_init_f32. <dl class="simple">
 <dt><strong>Coefficient and State Ordering</strong></dt><dd><p>The coefficients are stored in the array <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> in the following order: </p>
 </dd>
 <dt><strong></strong></dt><dd><p>where <code class="docutils literal notranslate"><span class="pre">b1x</span></code> and <code class="docutils literal notranslate"><span class="pre">a1x</span></code> are the coefficients for the first stage, <code class="docutils literal notranslate"><span class="pre">b2x</span></code> and <code class="docutils literal notranslate"><span class="pre">a2x</span></code> are the coefficients for the second stage, and so on. The <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> array contains a total of <code class="docutils literal notranslate"><span class="pre">5*numStages</span></code> values. </p>
@@ -428,166 +360,173 @@
 </dd>
 <dt><strong>For MVE code, an additional buffer of modified coefficients is required.</strong></dt><dd><p>Its size is numStages and each element of this buffer has type riscv_biquad_mod_coef_f32. So, its total size is 32*numStages float32_t elements.</p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an instance of the floating-point Biquad cascade structure. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numStages</span></code>: number of 2nd order stages in the filter. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pCoeffs</span></code>: points to the filter coefficients. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pState</span></code>: points to the state buffer. </p></li>
-</ul>
-</dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the floating-point Biquad cascade structure. </p></li>
+<li><p><strong>numStages</strong> – <strong>[in]</strong> number of 2nd order stages in the filter. </p></li>
+<li><p><strong>pCoeffs</strong> – <strong>[in]</strong> points to the filter coefficients. </p></li>
+<li><p><strong>pState</strong> – <strong>[in]</strong> points to the state buffer. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv433riscv_biquad_cascade_df1_init_q15P30riscv_biquad_casd_df1_inst_q157uint8_tPK5q15_tP5q15_t6int8_t">
-<span id="_CPPv333riscv_biquad_cascade_df1_init_q15P30riscv_biquad_casd_df1_inst_q157uint8_tPK5q15_tP5q15_t6int8_t"></span><span id="_CPPv233riscv_biquad_cascade_df1_init_q15P30riscv_biquad_casd_df1_inst_q157uint8_tPK5q15_tP5q15_t6int8_t"></span><span class="target" id="group__BiquadCascadeDF1_1gad0f11309749f0135467c1b476d5a05b8"></span>void <code class="sig-name descname">riscv_biquad_cascade_df1_init_q15</code><span class="sig-paren">(</span>riscv_biquad_casd_df1_inst_q15 *<em>S</em>, uint8_t <em>numStages</em>, <em class="property">const</em> q15_t *<em>pCoeffs</em>, q15_t *<em>pState</em>, int8_t <em>postShift</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__BiquadCascadeDF1_1gad0f11309749f0135467c1b476d5a05b8"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_biquad_cascade_df1_init_q15</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_biquad_casd_df1_inst_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">numStages</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pCoeffs</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pState</span></span>, <span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">postShift</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the Q15 Biquad cascade filter. </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none</p>
-</dd>
 <dt><strong>Coefficient and State Ordering</strong></dt><dd><p>The coefficients are stored in the array <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> in the following order:  </p>
 </dd>
 <dt><strong></strong></dt><dd><p>where <code class="docutils literal notranslate"><span class="pre">b1x</span></code> and <code class="docutils literal notranslate"><span class="pre">a1x</span></code> are the coefficients for the first stage, <code class="docutils literal notranslate"><span class="pre">b2x</span></code> and <code class="docutils literal notranslate"><span class="pre">a2x</span></code> are the coefficients for the second stage, and so on. The <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> array contains a total of <code class="docutils literal notranslate"><span class="pre">6*numStages</span></code> values. The zero coefficient between <code class="docutils literal notranslate"><span class="pre">b1</span></code> and <code class="docutils literal notranslate"><span class="pre">b2</span></code> facilities use of 16-bit SIMD instructions on the RISC-V Core with DSP. </p>
 </dd>
 <dt><strong></strong></dt><dd><p>The state variables are stored in the array <code class="docutils literal notranslate"><span class="pre">pState</span></code>. Each Biquad stage has 4 state variables <code class="docutils literal notranslate"><span class="pre">x[n-1],</span> <span class="pre">x[n-2],</span> <span class="pre">y[n-1],</span></code> and <code class="docutils literal notranslate"><span class="pre">y[n-2]</span></code>. The state variables are arranged in the <code class="docutils literal notranslate"><span class="pre">pState</span></code> array as:  The 4 state variables for stage 1 are first, then the 4 state variables for stage 2, and so on. The state array has a total length of <code class="docutils literal notranslate"><span class="pre">4*numStages</span></code> values. The state variables are updated after each block of data is processed; the coefficients are untouched. </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an instance of the Q15 Biquad cascade structure. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numStages</span></code>: number of 2nd order stages in the filter. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pCoeffs</span></code>: points to the filter coefficients. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pState</span></code>: points to the state buffer. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">postShift</span></code>: Shift to be applied to the accumulator result. Varies according to the coefficients format </p></li>
-</ul>
-</dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q15 Biquad cascade structure. </p></li>
+<li><p><strong>numStages</strong> – <strong>[in]</strong> number of 2nd order stages in the filter. </p></li>
+<li><p><strong>pCoeffs</strong> – <strong>[in]</strong> points to the filter coefficients. </p></li>
+<li><p><strong>pState</strong> – <strong>[in]</strong> points to the state buffer. </p></li>
+<li><p><strong>postShift</strong> – <strong>[in]</strong> Shift to be applied to the accumulator result. Varies according to the coefficients format </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv433riscv_biquad_cascade_df1_init_q31P30riscv_biquad_casd_df1_inst_q317uint8_tPK5q31_tP5q31_t6int8_t">
-<span id="_CPPv333riscv_biquad_cascade_df1_init_q31P30riscv_biquad_casd_df1_inst_q317uint8_tPK5q31_tP5q31_t6int8_t"></span><span id="_CPPv233riscv_biquad_cascade_df1_init_q31P30riscv_biquad_casd_df1_inst_q317uint8_tPK5q31_tP5q31_t6int8_t"></span><span class="target" id="group__BiquadCascadeDF1_1gae8abff148e8233c48bdd9dda2caeaad5"></span>void <code class="sig-name descname">riscv_biquad_cascade_df1_init_q31</code><span class="sig-paren">(</span>riscv_biquad_casd_df1_inst_q31 *<em>S</em>, uint8_t <em>numStages</em>, <em class="property">const</em> q31_t *<em>pCoeffs</em>, q31_t *<em>pState</em>, int8_t <em>postShift</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__BiquadCascadeDF1_1gae8abff148e8233c48bdd9dda2caeaad5"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_biquad_cascade_df1_init_q31</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_biquad_casd_df1_inst_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">numStages</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pCoeffs</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pState</span></span>, <span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">postShift</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the Q31 Biquad cascade filter. </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none</p>
-</dd>
 <dt><strong>Coefficient and State Ordering</strong></dt><dd><p>The coefficients are stored in the array <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> in the following order:  </p>
 </dd>
 <dt><strong></strong></dt><dd><p>where <code class="docutils literal notranslate"><span class="pre">b1x</span></code> and <code class="docutils literal notranslate"><span class="pre">a1x</span></code> are the coefficients for the first stage, <code class="docutils literal notranslate"><span class="pre">b2x</span></code> and <code class="docutils literal notranslate"><span class="pre">a2x</span></code> are the coefficients for the second stage, and so on. The <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> array contains a total of <code class="docutils literal notranslate"><span class="pre">5*numStages</span></code> values. </p>
 </dd>
 <dt><strong></strong></dt><dd><p>The <code class="docutils literal notranslate"><span class="pre">pState</span></code> points to state variables array. Each Biquad stage has 4 state variables <code class="docutils literal notranslate"><span class="pre">x[n-1],</span> <span class="pre">x[n-2],</span> <span class="pre">y[n-1],</span></code> and <code class="docutils literal notranslate"><span class="pre">y[n-2]</span></code>. The state variables are arranged in the <code class="docutils literal notranslate"><span class="pre">pState</span></code> array as:  The 4 state variables for stage 1 are first, then the 4 state variables for stage 2, and so on. The state array has a total length of <code class="docutils literal notranslate"><span class="pre">4*numStages</span></code> values. The state variables are updated after each block of data is processed; the coefficients are untouched. </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an instance of the Q31 Biquad cascade structure. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numStages</span></code>: number of 2nd order stages in the filter. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pCoeffs</span></code>: points to the filter coefficients. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pState</span></code>: points to the state buffer. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">postShift</span></code>: Shift to be applied after the accumulator. Varies according to the coefficients format </p></li>
-</ul>
-</dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q31 Biquad cascade structure. </p></li>
+<li><p><strong>numStages</strong> – <strong>[in]</strong> number of 2nd order stages in the filter. </p></li>
+<li><p><strong>pCoeffs</strong> – <strong>[in]</strong> points to the filter coefficients. </p></li>
+<li><p><strong>pState</strong> – <strong>[in]</strong> points to the state buffer. </p></li>
+<li><p><strong>postShift</strong> – <strong>[in]</strong> Shift to be applied after the accumulator. Varies according to the coefficients format </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv428riscv_biquad_cascade_df1_q15PK30riscv_biquad_casd_df1_inst_q15PK5q15_tP5q15_t8uint32_t">
-<span id="_CPPv328riscv_biquad_cascade_df1_q15PK30riscv_biquad_casd_df1_inst_q15PK5q15_tP5q15_t8uint32_t"></span><span id="_CPPv228riscv_biquad_cascade_df1_q15PK30riscv_biquad_casd_df1_inst_q15PK5q15_tP5q15_t8uint32_t"></span><span class="target" id="group__BiquadCascadeDF1_1ga51d1bc8c536ec95a274807dbf6b4c747"></span>void <code class="sig-name descname">riscv_biquad_cascade_df1_q15</code><span class="sig-paren">(</span><em class="property">const</em> riscv_biquad_casd_df1_inst_q15 *<em>S</em>, <em class="property">const</em> q15_t *<em>pSrc</em>, q15_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__BiquadCascadeDF1_1ga51d1bc8c536ec95a274807dbf6b4c747"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_biquad_cascade_df1_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_biquad_casd_df1_inst_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the Q15 Biquad cascade filter. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none</p>
-</dd>
+<p><div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Refer to riscv_biquad_cascade_df1_fast_q15() for a faster but less precise implementation of this filter. </p>
+</div>
+<dl class="simple">
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The function is implemented using a 64-bit internal accumulator. Both coefficients and state variables are represented in 1.15 format and multiplications yield a 2.30 result. The 2.30 intermediate results are accumulated in a 64-bit accumulator in 34.30 format. There is no risk of internal overflow with this approach and the full precision of intermediate multiplications is preserved. The accumulator is then shifted by <code class="docutils literal notranslate"><span class="pre">postShift</span></code> bits to truncate the result to 1.15 format by discarding the low 16 bits. Finally, the result is saturated to 1.15 format. </p>
 </dd>
-<dt><strong>Remark</strong></dt><dd><p>Refer to riscv_biquad_cascade_df1_fast_q15() for a faster but less precise implementation of this filter. </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the Q15 Biquad cascade structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the location where the output result is written </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process </p></li>
-</ul>
-</dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q15 Biquad cascade structure </p></li>
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the location where the output result is written </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv428riscv_biquad_cascade_df1_q31PK30riscv_biquad_casd_df1_inst_q31PK5q31_tP5q31_t8uint32_t">
-<span id="_CPPv328riscv_biquad_cascade_df1_q31PK30riscv_biquad_casd_df1_inst_q31PK5q31_tP5q31_t8uint32_t"></span><span id="_CPPv228riscv_biquad_cascade_df1_q31PK30riscv_biquad_casd_df1_inst_q31PK5q31_tP5q31_t8uint32_t"></span><span class="target" id="group__BiquadCascadeDF1_1ga9db8b6490e760bcbb86366385ffd7a5b"></span>void <code class="sig-name descname">riscv_biquad_cascade_df1_q31</code><span class="sig-paren">(</span><em class="property">const</em> riscv_biquad_casd_df1_inst_q31 *<em>S</em>, <em class="property">const</em> q31_t *<em>pSrc</em>, q31_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__BiquadCascadeDF1_1ga9db8b6490e760bcbb86366385ffd7a5b"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_biquad_cascade_df1_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_biquad_casd_df1_inst_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the Q31 Biquad cascade filter. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none</p>
-</dd>
+<p><div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Refer to riscv_biquad_cascade_df1_fast_q31() for a faster but less precise implementation of this filter. </p>
+</div>
+<dl class="simple">
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The function is implemented using an internal 64-bit accumulator. The accumulator has a 2.62 format and maintains full precision of the intermediate multiplication results but provides only a single guard bit. Thus, if the accumulator result overflows it wraps around rather than clip. In order to avoid overflows completely the input signal must be scaled down by 2 bits and lie in the range [-0.25 +0.25). After all 5 multiply-accumulates are performed, the 2.62 accumulator is shifted by <code class="docutils literal notranslate"><span class="pre">postShift</span></code> bits and the result truncated to 1.31 format by discarding the low 32 bits. </p>
 </dd>
-<dt><strong>Remark</strong></dt><dd><p>Refer to riscv_biquad_cascade_df1_fast_q31() for a faster but less precise implementation of this filter. </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the Q31 Biquad cascade structure </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the block of output data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process </p></li>
-</ul>
-</dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q31 Biquad cascade structure </p></li>
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="api_biquadcascadedf2t.html" class="btn btn-neutral float-right" title="Biquad Cascade IIR Filters Using a Direct Form II Transposed Structure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="api_biquadcascadedf1_32x64.html" class="btn btn-neutral float-left" title="High Precision Q31 Biquad Cascade Filter" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api_biquadcascadedf1_32x64.html" class="btn btn-neutral float-left" title="High Precision Q31 Biquad Cascade Filter" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api_biquadcascadedf2t.html" class="btn btn-neutral float-right" title="Biquad Cascade IIR Filters Using a Direct Form II Transposed Structure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2019-Present, Nuclei
-      <span class="lastupdated">
-        Last updated on Mar 30, 2022.
-      </span>
-
-    </p>
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on Jan 05, 2023.
+      </span></p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

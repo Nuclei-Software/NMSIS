@@ -30,7 +30,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-NN
-   &#160;<span id="projectnumber">Version 1.0.2</span>
+   &#160;<span id="projectnumber">Version 1.1.0</span>
    </div>
    <div id="projectbrief">NMSIS NN Software Library</div>
   </td>
@@ -91,12 +91,21 @@ $(document).ready(function(){initNavTree('group__Pooling.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:ga5e98a793729db8f4153968c1e3e2777b"><td class="memItemLeft" align="right" valign="top">riscv_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Pooling.html#ga5e98a793729db8f4153968c1e3e2777b">riscv_avgpool_s16</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__pool__params.html">nmsis_nn_pool_params</a> *pool_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const q15_t *src, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, q15_t *dst)</td></tr>
+<tr class="memdesc:ga5e98a793729db8f4153968c1e3e2777b"><td class="mdescLeft">&#160;</td><td class="mdescRight">s16 average pooling function.  <a href="#ga5e98a793729db8f4153968c1e3e2777b">More...</a><br /></td></tr>
+<tr class="separator:ga5e98a793729db8f4153968c1e3e2777b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga78f51f2113cb5d94c730f9faca34e9d5"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Pooling.html#ga78f51f2113cb5d94c730f9faca34e9d5">riscv_avgpool_s16_get_buffer_size</a> (const int output_x, const int ch_src)</td></tr>
+<tr class="memdesc:ga78f51f2113cb5d94c730f9faca34e9d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the required buffer size for S16 average pooling function.  <a href="#ga78f51f2113cb5d94c730f9faca34e9d5">More...</a><br /></td></tr>
+<tr class="separator:ga78f51f2113cb5d94c730f9faca34e9d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gafc4742a0e25482c38424da25628a873d"><td class="memItemLeft" align="right" valign="top">riscv_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Pooling.html#gafc4742a0e25482c38424da25628a873d">riscv_avgpool_s8</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__pool__params.html">nmsis_nn_pool_params</a> *pool_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const q7_t *src, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, q7_t *dst)</td></tr>
 <tr class="memdesc:gafc4742a0e25482c38424da25628a873d"><td class="mdescLeft">&#160;</td><td class="mdescRight">s8 average pooling function.  <a href="#gafc4742a0e25482c38424da25628a873d">More...</a><br /></td></tr>
 <tr class="separator:gafc4742a0e25482c38424da25628a873d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga632118d8940612a22eba8866bbe8b924"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Pooling.html#ga632118d8940612a22eba8866bbe8b924">riscv_avgpool_s8_get_buffer_size</a> (const int output_x, const int ch_src)</td></tr>
 <tr class="memdesc:ga632118d8940612a22eba8866bbe8b924"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the required buffer size for S8 average pooling function.  <a href="#ga632118d8940612a22eba8866bbe8b924">More...</a><br /></td></tr>
 <tr class="separator:ga632118d8940612a22eba8866bbe8b924"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6adf7a64922112bede4d64d94e9a4458"><td class="memItemLeft" align="right" valign="top">riscv_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Pooling.html#ga6adf7a64922112bede4d64d94e9a4458">riscv_max_pool_s16</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__pool__params.html">nmsis_nn_pool_params</a> *pool_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int16_t *src, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int16_t *dst)</td></tr>
+<tr class="memdesc:ga6adf7a64922112bede4d64d94e9a4458"><td class="mdescLeft">&#160;</td><td class="mdescRight">s16 max pooling function.  <a href="#ga6adf7a64922112bede4d64d94e9a4458">More...</a><br /></td></tr>
+<tr class="separator:ga6adf7a64922112bede4d64d94e9a4458"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1a1a793e01426883dd94efb50b0053e3"><td class="memItemLeft" align="right" valign="top">riscv_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Pooling.html#ga1a1a793e01426883dd94efb50b0053e3">riscv_max_pool_s8</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__pool__params.html">nmsis_nn_pool_params</a> *pool_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const q7_t *src, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, q7_t *dst)</td></tr>
 <tr class="memdesc:ga1a1a793e01426883dd94efb50b0053e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">s8 max pooling function.  <a href="#ga1a1a793e01426883dd94efb50b0053e3">More...</a><br /></td></tr>
 <tr class="separator:ga1a1a793e01426883dd94efb50b0053e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -197,6 +206,120 @@ Functions</h2></td></tr>
 <p>bufferA size: 2*dim_im_out*ch_im_in</p>
 <p>The pooling function is implemented as split x-pooling then y-pooling.</p>
 <p>This pooling function is input-destructive. Input data is undefined after calling this function. </p>
+
+</div>
+</div>
+<a id="ga5e98a793729db8f4153968c1e3e2777b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5e98a793729db8f4153968c1e3e2777b">&#9670;&nbsp;</a></span>riscv_avgpool_s16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">riscv_status riscv_avgpool_s16 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *&#160;</td>
+          <td class="paramname"><em>ctx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__pool__params.html">nmsis_nn_pool_params</a> *&#160;</td>
+          <td class="paramname"><em>pool_params</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
+          <td class="paramname"><em>input_dims</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int16_t *&#160;</td>
+          <td class="paramname"><em>input_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
+          <td class="paramname"><em>filter_dims</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
+          <td class="paramname"><em>output_dims</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int16_t *&#160;</td>
+          <td class="paramname"><em>output_data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>s16 average pooling function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">ctx</td><td>Function context (e.g. temporary buffer). Check the function definition file to see if an additional buffer is required. Optional function {API}_get_buffer_size() provides the buffer size if an additional buffer is required. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pool_params</td><td>Pooling parameters </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">input_dims</td><td>Input (activation) tensor dimensions. Format: [H, W, C_IN] Argument 'N' is not used. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">input_data</td><td>Input (activation) data pointer. Data type: int16 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">filter_dims</td><td>Filter tensor dimensions. Format: [H, W] Argument N and C are not used. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">output_dims</td><td>Output tensor dimensions. Format: [H, W, C_OUT] Argument N is not used. C_OUT equals C_IN. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">output_data</td><td>Output data pointer. Data type: int16 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The function returns <code>RISCV_MATH_SUCCESS</code> - Successful operation</dd></dl>
+<ul>
+<li>Supported Framework: TensorFlow Lite </li>
+</ul>
+
+</div>
+</div>
+<a id="ga78f51f2113cb5d94c730f9faca34e9d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga78f51f2113cb5d94c730f9faca34e9d5">&#9670;&nbsp;</a></span>riscv_avgpool_s16_get_buffer_size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t riscv_avgpool_s16_get_buffer_size </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>dim_dst_width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>ch_src</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the required buffer size for S16 average pooling function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dim_dst_width</td><td>output tensor dimension </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ch_src</td><td>number of input tensor channels </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The function returns required buffer size in bytes </dd></dl>
 
 </div>
 </div>
@@ -314,6 +437,82 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ga6adf7a64922112bede4d64d94e9a4458"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6adf7a64922112bede4d64d94e9a4458">&#9670;&nbsp;</a></span>riscv_max_pool_s16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">riscv_status riscv_max_pool_s16 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *&#160;</td>
+          <td class="paramname"><em>ctx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__pool__params.html">nmsis_nn_pool_params</a> *&#160;</td>
+          <td class="paramname"><em>pool_params</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
+          <td class="paramname"><em>input_dims</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int16_t *&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
+          <td class="paramname"><em>filter_dims</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
+          <td class="paramname"><em>output_dims</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int16_t *&#160;</td>
+          <td class="paramname"><em>dst</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>s16 max pooling function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">ctx</td><td>Function context (e.g. temporary buffer). Check the function definition file to see if an additional buffer is required. Optional function {API}_get_buffer_size() provides the buffer size if an additional buffer is required. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pool_params</td><td>Pooling parameters </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">input_dims</td><td>Input (activation) tensor dimensions. Format: [H, W, C_IN] Argument 'N' is not used. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">src</td><td>Input (activation) data pointer. The input tensor must not overlap with the output tensor. Data type: int16 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">filter_dims</td><td>Filter tensor dimensions. Format: [H, W] Argument N and C are not used. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">output_dims</td><td>Output tensor dimensions. Format: [H, W, C_OUT] Argument N is not used. C_OUT equals C_IN. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">dst</td><td>Output data pointer. Data type: int16 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The function returns <code>RISCV_MATH_SUCCESS</code> - Successful operation</dd></dl>
+<ul>
+<li>Supported Framework: TensorFlow Lite </li>
+</ul>
+
+</div>
+</div>
 <a id="ga1a1a793e01426883dd94efb50b0053e3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga1a1a793e01426883dd94efb50b0053e3">&#9670;&nbsp;</a></span>riscv_max_pool_s8()</h2>
 
@@ -376,7 +575,7 @@ Functions</h2></td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">ctx</td><td>Function context (e.g. temporary buffer). Check the function definition file to see if an additional buffer is required. Optional function {API}_get_buffer_size() provides the buffer size if an additional buffer is required. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">pool_params</td><td>Pooling parameters </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">input_dims</td><td>Input (activation) tensor dimensions. Format: [H, W, C_IN] Argument 'N' is not used. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">input_data</td><td>Input (activation) data pointer. Data type: int8 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">input_data</td><td>Input (activation) data pointer. The input tensor must not overlap with the output tensor. Data type: int8 </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">filter_dims</td><td>Filter tensor dimensions. Format: [H, W] Argument N and C are not used. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">output_dims</td><td>Output tensor dimensions. Format: [H, W, C_OUT] Argument N is not used. C_OUT equals C_IN. </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">output_data</td><td>Output data pointer. Data type: int8 </td></tr>
@@ -483,7 +682,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Mar 30 2022 07:47:27 for NMSIS-NN by
+    <li class="footer">Generated on Thu Jan 5 2023 09:07:31 for NMSIS-NN by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

@@ -30,7 +30,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-NN
-   &#160;<span id="projectnumber">Version 1.0.2</span>
+   &#160;<span id="projectnumber">Version 1.1.0</span>
    </div>
    <div id="projectbrief">NMSIS NN Software Library</div>
   </td>
@@ -91,20 +91,170 @@ $(document).ready(function(){initNavTree('group__SVDF.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga4949cc8e4bc818a300062e8f176a0163"><td class="memItemLeft" align="right" valign="top">riscv_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SVDF.html#ga4949cc8e4bc818a300062e8f176a0163">riscv_svdf_s8</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *input_ctx, const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *output_ctx, const <a class="el" href="structnmsis__nn__svdf__params.html">nmsis_nn_svdf_params</a> *svdf_params, const <a class="el" href="structnmsis__nn__per__tensor__quant__params.html">nmsis_nn_per_tensor_quant_params</a> *input_quant_params, const <a class="el" href="structnmsis__nn__per__tensor__quant__params.html">nmsis_nn_per_tensor_quant_params</a> *output_quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const q7_t *input_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *state_dims, q15_t *state_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *weights_feature_dims, const q7_t *weights_feature_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *weights_time_dims, const q15_t *weights_time_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const q31_t *bias_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, q7_t *output_data)</td></tr>
-<tr class="memdesc:ga4949cc8e4bc818a300062e8f176a0163"><td class="mdescLeft">&#160;</td><td class="mdescRight">s8 SVDF function  <a href="#ga4949cc8e4bc818a300062e8f176a0163">More...</a><br /></td></tr>
-<tr class="separator:ga4949cc8e4bc818a300062e8f176a0163"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacc604da8dd1a04abc111922a0be61df8"><td class="memItemLeft" align="right" valign="top">riscv_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SVDF.html#gacc604da8dd1a04abc111922a0be61df8">riscv_svdf_s8</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *input_ctx, const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *output_ctx, const <a class="el" href="structnmsis__nn__svdf__params.html">nmsis_nn_svdf_params</a> *svdf_params, const <a class="el" href="structnmsis__nn__per__tensor__quant__params.html">nmsis_nn_per_tensor_quant_params</a> *input_quant_params, const <a class="el" href="structnmsis__nn__per__tensor__quant__params.html">nmsis_nn_per_tensor_quant_params</a> *output_quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const q7_t *input_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *state_dims, q7_t *state_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *weights_feature_dims, const q7_t *weights_feature_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *weights_time_dims, const q7_t *weights_time_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const q31_t *bias_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, q7_t *output_data)</td></tr>
+<tr class="memdesc:gacc604da8dd1a04abc111922a0be61df8"><td class="mdescLeft">&#160;</td><td class="mdescRight">s8 SVDF function with 8 bit state tensor and 8 bit time weights  <a href="#gacc604da8dd1a04abc111922a0be61df8">More...</a><br /></td></tr>
+<tr class="separator:gacc604da8dd1a04abc111922a0be61df8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga99cd86735b9e2c840951d2d0d5de5251"><td class="memItemLeft" align="right" valign="top">riscv_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SVDF.html#ga99cd86735b9e2c840951d2d0d5de5251">riscv_svdf_state_s16_s8</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *input_ctx, const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *output_ctx, const <a class="el" href="structnmsis__nn__svdf__params.html">nmsis_nn_svdf_params</a> *svdf_params, const <a class="el" href="structnmsis__nn__per__tensor__quant__params.html">nmsis_nn_per_tensor_quant_params</a> *input_quant_params, const <a class="el" href="structnmsis__nn__per__tensor__quant__params.html">nmsis_nn_per_tensor_quant_params</a> *output_quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const q7_t *input_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *state_dims, q15_t *state_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *weights_feature_dims, const q7_t *weights_feature_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *weights_time_dims, const q15_t *weights_time_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const q31_t *bias_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, q7_t *output_data)</td></tr>
+<tr class="memdesc:ga99cd86735b9e2c840951d2d0d5de5251"><td class="mdescLeft">&#160;</td><td class="mdescRight">s8 SVDF function with 16 bit state tensor and 16 bit time weights  <a href="#ga99cd86735b9e2c840951d2d0d5de5251">More...</a><br /></td></tr>
+<tr class="separator:ga99cd86735b9e2c840951d2d0d5de5251"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ga4949cc8e4bc818a300062e8f176a0163"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga4949cc8e4bc818a300062e8f176a0163">&#9670;&nbsp;</a></span>riscv_svdf_s8()</h2>
+<a id="gacc604da8dd1a04abc111922a0be61df8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacc604da8dd1a04abc111922a0be61df8">&#9670;&nbsp;</a></span>riscv_svdf_s8()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">riscv_status riscv_svdf_s8 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *&#160;</td>
+          <td class="paramname"><em>input_ctx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *&#160;</td>
+          <td class="paramname"><em>output_ctx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__svdf__params.html">nmsis_nn_svdf_params</a> *&#160;</td>
+          <td class="paramname"><em>svdf_params</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__per__tensor__quant__params.html">nmsis_nn_per_tensor_quant_params</a> *&#160;</td>
+          <td class="paramname"><em>input_quant_params</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__per__tensor__quant__params.html">nmsis_nn_per_tensor_quant_params</a> *&#160;</td>
+          <td class="paramname"><em>output_quant_params</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
+          <td class="paramname"><em>input_dims</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const q7_t *&#160;</td>
+          <td class="paramname"><em>input_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
+          <td class="paramname"><em>state_dims</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">q7_t *&#160;</td>
+          <td class="paramname"><em>state_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
+          <td class="paramname"><em>weights_feature_dims</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const q7_t *&#160;</td>
+          <td class="paramname"><em>weights_feature_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
+          <td class="paramname"><em>weights_time_dims</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const q7_t *&#160;</td>
+          <td class="paramname"><em>weights_time_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
+          <td class="paramname"><em>bias_dims</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const q31_t *&#160;</td>
+          <td class="paramname"><em>bias_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
+          <td class="paramname"><em>output_dims</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">q7_t *&#160;</td>
+          <td class="paramname"><em>output_data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>s8 SVDF function with 8 bit state tensor and 8 bit time weights </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">input_ctx</td><td>Temporary scratch buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">output_ctx</td><td>Temporary output scratch buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">svdf_params</td><td>SVDF Parameters Range of svdf_params-&gt;input_offset : [-128, 127] Range of svdf_params-&gt;output_offset : [-128, 127] </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">input_quant_params</td><td>Input quantization parameters </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">output_quant_params</td><td>Output quantization parameters </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">input_dims</td><td>Input tensor dimensions </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">input_data</td><td>Pointer to input tensor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">state_dims</td><td>State tensor dimensions </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">state_data</td><td>Pointer to state tensor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">weights_feature_dims</td><td>Weights (feature) tensor dimensions </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">weights_feature_data</td><td>Pointer to the weights (feature) tensor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">weights_time_dims</td><td>Weights (time) tensor dimensions </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">weights_time_data</td><td>Pointer to the weights (time) tensor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bias_dims</td><td>Bias tensor dimensions </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bias_data</td><td>Pointer to bias tensor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">output_dims</td><td>Output tensor dimensions </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">output_data</td><td>Pointer to the output tensor</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The function returns <code>RISCV_MATH_SUCCESS</code></dd></dl>
+<ol type="1">
+<li>Supported framework: TensorFlow Lite micro</li>
+<li>q7 is used as data type eventhough it is s8 data. It is done so to be consistent with existing APIs. </li>
+</ol>
+
+</div>
+</div>
+<a id="ga99cd86735b9e2c840951d2d0d5de5251"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga99cd86735b9e2c840951d2d0d5de5251">&#9670;&nbsp;</a></span>riscv_svdf_state_s16_s8()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">riscv_status riscv_svdf_state_s16_s8 </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *&#160;</td>
           <td class="paramname"><em>input_ctx</em>, </td>
@@ -213,7 +363,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>s8 SVDF function </p>
+<p>s8 SVDF function with 16 bit state tensor and 16 bit time weights </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">input_ctx</td><td>Temporary scratch buffer </td></tr>
@@ -249,7 +399,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Mar 30 2022 07:47:27 for NMSIS-NN by
+    <li class="footer">Generated on Thu Jan 5 2023 09:07:31 for NMSIS-NN by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

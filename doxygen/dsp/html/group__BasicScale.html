@@ -30,7 +30,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.0.2</span>
+   &#160;<span id="projectnumber">Version 1.1.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -97,6 +97,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga7ca2deeac250c6fb6c6bb2796bc15ba6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BasicScale.html#ga7ca2deeac250c6fb6c6bb2796bc15ba6">riscv_scale_f32</a> (const float32_t *pSrc, float32_t scale, float32_t *pDst, uint32_t blockSize)</td></tr>
 <tr class="memdesc:ga7ca2deeac250c6fb6c6bb2796bc15ba6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiplies a floating-point vector by a scalar.  <a href="#ga7ca2deeac250c6fb6c6bb2796bc15ba6">More...</a><br /></td></tr>
 <tr class="separator:ga7ca2deeac250c6fb6c6bb2796bc15ba6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1b3fb028f9373701cd9fd4109b7ad6f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BasicScale.html#ga1b3fb028f9373701cd9fd4109b7ad6f8">riscv_scale_f64</a> (const float64_t *pSrc, float64_t scale, float64_t *pDst, uint32_t blockSize)</td></tr>
+<tr class="memdesc:ga1b3fb028f9373701cd9fd4109b7ad6f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiplies a floating-point vector by a scalar.  <a href="#ga1b3fb028f9373701cd9fd4109b7ad6f8">More...</a><br /></td></tr>
+<tr class="separator:ga1b3fb028f9373701cd9fd4109b7ad6f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf690da22beaf9f35c55e057bcbd46ab2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BasicScale.html#gaf690da22beaf9f35c55e057bcbd46ab2">riscv_scale_q15</a> (const q15_t *pSrc, q15_t scaleFract, int8_t shift, q15_t *pDst, uint32_t blockSize)</td></tr>
 <tr class="memdesc:gaf690da22beaf9f35c55e057bcbd46ab2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiplies a Q15 vector by a scalar.  <a href="#gaf690da22beaf9f35c55e057bcbd46ab2">More...</a><br /></td></tr>
 <tr class="separator:gaf690da22beaf9f35c55e057bcbd46ab2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -192,6 +195,58 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float32_t *&#160;</td>
+          <td class="paramname"><em>pDst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>blockSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Multiplies a floating-point vector by a scalar. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pSrc</td><td>points to the input vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">scale</td><td>scale factor to be applied </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pDst</td><td>points to the output vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">blockSize</td><td>number of samples in each vector </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
+
+</div>
+</div>
+<a id="ga1b3fb028f9373701cd9fd4109b7ad6f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1b3fb028f9373701cd9fd4109b7ad6f8">&#9670;&nbsp;</a></span>riscv_scale_f64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void riscv_scale_f64 </td>
+          <td>(</td>
+          <td class="paramtype">const float64_t *&#160;</td>
+          <td class="paramname"><em>pSrc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float64_t&#160;</td>
+          <td class="paramname"><em>scale</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float64_t *&#160;</td>
           <td class="paramname"><em>pDst</em>, </td>
         </tr>
         <tr>
@@ -407,7 +462,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Mar 30 2022 07:45:01 for NMSIS-DSP by
+    <li class="footer">Generated on Thu Jan 5 2023 09:05:09 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

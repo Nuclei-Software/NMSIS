@@ -2,6 +2,7 @@ var searchData=
 [
   ['dct_20type_20iv_20functions',['DCT Type IV Functions',['../group__DCT4__IDCT4.html',1,'']]],
   ['dct_20type_20iv_20tables',['DCT Type IV Tables',['../group__DCT4__IDCT4__Table.html',1,'']]],
+  ['dctcoefs',['dctCoefs',['../structriscv__mfcc__instance__f32.html#a80d5670ac2fdec9903a8ecf988d9e590',1,'riscv_mfcc_instance_f32::dctCoefs()'],['../structriscv__mfcc__instance__q31.html#a5c9b26029422397f68714a0ffa49cc34',1,'riscv_mfcc_instance_q31::dctCoefs()'],['../structriscv__mfcc__instance__q15.html#a8f58a5761427cf6fb02b9636a3f12b73',1,'riscv_mfcc_instance_q15::dctCoefs()'],['../structriscv__mfcc__instance__f16.html#adb2ff67693ca2c4e5cb45abbb4457cc2',1,'riscv_mfcc_instance_f16::dctCoefs()']]],
   ['degree',['degree',['../structriscv__svm__polynomial__instance__f32.html#aa2ff7793762db6915af883b1a198ff4c',1,'riscv_svm_polynomial_instance_f32::degree()'],['../structriscv__svm__polynomial__instance__f16.html#a4691957c177832726cefbc32ed73b219',1,'riscv_svm_polynomial_instance_f16::degree()']]],
   ['deprecated_20list',['Deprecated List',['../deprecated.html',1,'']]],
   ['dir',['dir',['../structriscv__sort__instance__f32.html#a4a392b5bbac0bbdf17a1b95fe04bb572',1,'riscv_sort_instance_f32::dir()'],['../structriscv__merge__sort__instance__f32.html#adcee11a935332cf305091d17cd6c3178',1,'riscv_merge_sort_instance_f32::dir()']]],

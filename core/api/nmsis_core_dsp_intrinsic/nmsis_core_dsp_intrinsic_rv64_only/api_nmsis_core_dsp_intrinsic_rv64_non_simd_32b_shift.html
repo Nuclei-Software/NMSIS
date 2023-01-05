@@ -1,75 +1,39 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>(RV64 Only) Non-SIMD 32-bit Shift Instructions &mdash; NMSIS 1.0.4 documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>(RV64 Only) Non-SIMD 32-bit Shift Instructions &mdash; NMSIS 1.1.0 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="32-bit Packing Instructions" href="api_nmsis_core_dsp_intrinsic_rv64_32b_pack.html" />
     <link rel="prev" title="(RV64 Only) 32-bit Parallel Multiply &amp; Add Instructions" href="api_nmsis_core_dsp_intrinsic_rv64_32b_parallel_mac.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../../../../index.html">
-          
-
-          
-            
             <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                1.0.4
+                1.1.0
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -77,18 +41,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">NMSIS Core</a><ul class="current">
@@ -120,7 +74,7 @@
 <li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_rv64_32b_pack.html">32-bit Packing Instructions</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_nuclei_custom.html">Nuclei Customized DSP Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_nuclei_custom.html">Nuclei Customized N1/N2/N3 DSP Instructions</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../core_periph_access.html">Peripheral Access</a></li>
@@ -128,6 +82,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../core_interrupt_exception.html">Interrupts and Exceptions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../core_fpu.html">FPU Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../core_pmp.html">PMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_spmp.html">SPMP Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../core_cache.html">Cache Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../core_system_device.html">System Device Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../core_arm_compatiable.html">ARM Compatiable Functions</a></li>
@@ -142,102 +97,62 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../appendix.html">Appendix</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../../index.html">NMSIS</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../../../index.html">NMSIS Core</a> &raquo;</li>
-        
           <li><a href="../../index.html">NMSIS Core API</a> &raquo;</li>
-        
           <li><a href="../../api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a> &raquo;</li>
-        
           <li><a href="../api_nmsis_core_dsp_intrinsic_rv64_only.html">RV64 Only Instructions</a> &raquo;</li>
-        
       <li>(RV64 Only) Non-SIMD 32-bit Shift Instructions</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="../../../../_sources/core/api/nmsis_core_dsp_intrinsic/nmsis_core_dsp_intrinsic_rv64_only/api_nmsis_core_dsp_intrinsic_rv64_non_simd_32b_shift.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="rv64-only-non-simd-32-bit-shift-instructions">
-<span id="nmsis-core-api-rv64-only-non-simd-32-bit-shift-instructions"></span><h1>(RV64 Only) Non-SIMD 32-bit Shift Instructions<a class="headerlink" href="#rv64-only-non-simd-32-bit-shift-instructions" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__NON__SIMD__32B__SHIFT_1ga1aceb08da08096a9affa783aa9f54dcf"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_SRAIW_U(int a, unsigned int b)</code></dt>
+             
+  <section id="rv64-only-non-simd-32-bit-shift-instructions">
+<span id="nmsis-core-api-rv64-only-non-simd-32-bit-shift-instructions"></span><h1>(RV64 Only) Non-SIMD 32-bit Shift Instructions<a class="headerlink" href="#rv64-only-non-simd-32-bit-shift-instructions" title="Permalink to this headline"></a></h1>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__RV_SRAIW_U">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__NON__SIMD__32B__SHIFT_1gae87f003cb925b2a0c0f8b862cad6c2f7"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_SRAIW_U</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">a</span></span>, <span class="n"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_SRAIW_U" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="group">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__NON__SIMD__32B__SHIFT"></span><em>group</em> <code class="sig-name descname">NMSIS_Core_DSP_Intrinsic_RV64_NON_SIMD_32B_SHIFT</code></dt>
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__NON__SIMD__32B__SHIFT"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">NMSIS_Core_DSP_Intrinsic_RV64_NON_SIMD_32B_SHIFT</span></span></dt>
 <dd><p>(RV64 Only) Non-SIMD 32-bit Shift Instructions </p>
 <p>there are 1 (RV64 Only) Non-SIMD 32-bit Shift Instructions </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Functions</p>
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__NON__SIMD__32B__SHIFT_1ga1aceb08da08096a9affa783aa9f54dcf"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_SRAIW_U(int a, unsigned int b)</code></dt>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__NON__SIMD__32B__SHIFT_1gae87f003cb925b2a0c0f8b862cad6c2f7"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_SRAIW_U</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">a</span></span>, <span class="n"><span class="pre">b</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>SRAIW.u (Rounding Shift Right Arithmetic Immediate Word) </p>
 <p><strong>Type</strong>: DSP (RV64 only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SRAIW</span><span class="o">.</span><span class="n">u</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm5u</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Perform a 32-bit arithmetic right shift operation with rounding. The shift amount is an immediate value.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Perform a 32-bit arithmetic right shift operation with rounding. The shift amount is an immediate value.</p>
 </p>
-<p><strong>Description</strong>:<p>This instruction right-shifts the lower 32-bit content of Rs1 arithmetically. The shifted out bits are filled with the sign-bit Rs1(31) and the shift amount is specified by the imm5u constant. For the rounding operation, a value of 1 is added to the most significant discarded bit of the data to calculate the final result. And the result is sign-extended and written to Rd.</p>
+<p><strong>Description</strong><p>:</p>
+<p>This instruction right-shifts the lower 32-bit content of Rs1 arithmetically. The shifted out bits are filled with the sign-bit Rs1(31) and the shift amount is specified by the imm5u constant. For the rounding operation, a value of 1 is added to the most significant discarded bit of the data to calculate the final result. And the result is sign-extended and written to Rd.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sa</span> <span class="o">=</span> <span class="n">imm5u</span><span class="p">;</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">sa</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
@@ -249,73 +164,55 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: int type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> int type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="api_nmsis_core_dsp_intrinsic_rv64_32b_pack.html" class="btn btn-neutral float-right" title="32-bit Packing Instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="api_nmsis_core_dsp_intrinsic_rv64_32b_parallel_mac.html" class="btn btn-neutral float-left" title="(RV64 Only) 32-bit Parallel Multiply &amp; Add Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api_nmsis_core_dsp_intrinsic_rv64_32b_parallel_mac.html" class="btn btn-neutral float-left" title="(RV64 Only) 32-bit Parallel Multiply &amp; Add Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api_nmsis_core_dsp_intrinsic_rv64_32b_pack.html" class="btn btn-neutral float-right" title="32-bit Packing Instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2019-Present, Nuclei
-      <span class="lastupdated">
-        Last updated on Mar 30, 2022.
-      </span>
-
-    </p>
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on Jan 05, 2023.
+      </span></p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

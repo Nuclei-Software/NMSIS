@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['wfi_5fdeep_5fsleep',['WFI_DEEP_SLEEP',['../group__NMSIS__Core__CPU__Intrinsic.html#gga5d9cca8c88cb703c619aff084e4e7648a26cef3a380cffa72dea68b994a3acc3f',1,'core_feature_base.h']]],
-  ['wfi_5fshallow_5fsleep',['WFI_SHALLOW_SLEEP',['../group__NMSIS__Core__CPU__Intrinsic.html#gga5d9cca8c88cb703c619aff084e4e7648a791734cb0f58f266b18223e28e2feea2',1,'core_feature_base.h']]]
+  ['soc_5fint_5fmax',['SOC_INT_MAX',['../group__NMSIS__Core__IntExc.html#gga7e1129cd8a196f4284d41db3e82ad5c8adddd70a514a83716a447d622adf17c78',1,'core_feature_eclic.h']]],
+  ['systimer_5firqn',['SysTimer_IRQn',['../group__NMSIS__Core__IntExc.html#gga7e1129cd8a196f4284d41db3e82ad5c8a1c65f7884cf42cfc70b0016245780dc9',1,'core_feature_eclic.h']]],
+  ['systimersw_5firqn',['SysTimerSW_IRQn',['../group__NMSIS__Core__IntExc.html#gga7e1129cd8a196f4284d41db3e82ad5c8a02546766328e3c4539ca22a21284955a',1,'core_feature_eclic.h']]]
 ];

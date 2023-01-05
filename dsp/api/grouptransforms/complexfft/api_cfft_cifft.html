@@ -1,75 +1,39 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Complex FFT Tables &mdash; NMSIS 1.0.4 documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Complex FFT Tables &mdash; NMSIS 1.1.0 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="DCT Type IV Functions" href="../api_dct4_idct4.html" />
     <link rel="prev" title="Complex FFT Functions" href="../api_complexfft.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../../../../index.html">
-          
-
-          
-            
             <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                1.0.4
+                1.1.0
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -77,18 +41,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../core/index.html">NMSIS Core</a></li>
@@ -130,356 +84,314 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../appendix.html">Appendix</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../../index.html">NMSIS</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../../../index.html">NMSIS DSP</a> &raquo;</li>
-        
           <li><a href="../../index.html">NMSIS DSP API</a> &raquo;</li>
-        
           <li><a href="../../api_grouptransforms.html">Transform Functions</a> &raquo;</li>
-        
           <li><a href="../api_complexfft.html">Complex FFT Functions</a> &raquo;</li>
-        
       <li>Complex FFT Tables</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="../../../../_sources/dsp/api/grouptransforms/complexfft/api_cfft_cifft.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="complex-fft-tables">
-<span id="nmsis-dsp-api-complex-fft-tables"></span><h1>Complex FFT Tables<a class="headerlink" href="#complex-fft-tables" title="Permalink to this headline">¶</a></h1>
-<dl class="member">
-<dt id="_CPPv416riscvBitRevTable">
-<span id="_CPPv316riscvBitRevTable"></span><span id="_CPPv216riscvBitRevTable"></span><span id="riscvBitRevTable__uint16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga642762d611cf45f7fd6d172019558122"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevTable</code>[1024]<a class="headerlink" href="#_CPPv416riscvBitRevTable" title="Permalink to this definition">¶</a><br /></dt>
+             
+  <section id="complex-fft-tables">
+<span id="nmsis-dsp-api-complex-fft-tables"></span><h1>Complex FFT Tables<a class="headerlink" href="#complex-fft-tables" title="Permalink to this headline"></a></h1>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv416riscvBitRevTable">
+<span id="_CPPv316riscvBitRevTable"></span><span id="_CPPv216riscvBitRevTable"></span><span id="riscvBitRevTable__uint16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga642762d611cf45f7fd6d172019558122"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscvBitRevTable</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">1024</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv416riscvBitRevTable" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv417twiddleCoefF64_16">
-<span id="_CPPv317twiddleCoefF64_16"></span><span id="_CPPv217twiddleCoefF64_16"></span><span id="twiddleCoefF64_16__uint64_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gabeb418730eacdce077316477b7f1e960"></span><em class="property">const</em> uint64_t <code class="sig-name descname">twiddleCoefF64_16</code>[32]<a class="headerlink" href="#_CPPv417twiddleCoefF64_16" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv417twiddleCoefF64_16">
+<span id="_CPPv317twiddleCoefF64_16"></span><span id="_CPPv217twiddleCoefF64_16"></span><span id="twiddleCoefF64_16__uint64_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gabeb418730eacdce077316477b7f1e960"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF64_16</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">32</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv417twiddleCoefF64_16" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv417twiddleCoefF64_32">
-<span id="_CPPv317twiddleCoefF64_32"></span><span id="_CPPv217twiddleCoefF64_32"></span><span id="twiddleCoefF64_32__uint64_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga3f7d1eaff3c6910ee7d85ae1c9015fe5"></span><em class="property">const</em> uint64_t <code class="sig-name descname">twiddleCoefF64_32</code>[64]<a class="headerlink" href="#_CPPv417twiddleCoefF64_32" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv417twiddleCoefF64_32">
+<span id="_CPPv317twiddleCoefF64_32"></span><span id="_CPPv217twiddleCoefF64_32"></span><span id="twiddleCoefF64_32__uint64_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga3f7d1eaff3c6910ee7d85ae1c9015fe5"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF64_32</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">64</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv417twiddleCoefF64_32" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv417twiddleCoefF64_64">
-<span id="_CPPv317twiddleCoefF64_64"></span><span id="_CPPv217twiddleCoefF64_64"></span><span id="twiddleCoefF64_64__uint64_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga6fe9e2b9200445a2313d7542c586639b"></span><em class="property">const</em> uint64_t <code class="sig-name descname">twiddleCoefF64_64</code>[128]<a class="headerlink" href="#_CPPv417twiddleCoefF64_64" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv417twiddleCoefF64_64">
+<span id="_CPPv317twiddleCoefF64_64"></span><span id="_CPPv217twiddleCoefF64_64"></span><span id="twiddleCoefF64_64__uint64_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga6fe9e2b9200445a2313d7542c586639b"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF64_64</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">128</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv417twiddleCoefF64_64" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv418twiddleCoefF64_128">
-<span id="_CPPv318twiddleCoefF64_128"></span><span id="_CPPv218twiddleCoefF64_128"></span><span id="twiddleCoefF64_128__uint64_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga252036ff16d9125ae72f547f4565f36f"></span><em class="property">const</em> uint64_t <code class="sig-name descname">twiddleCoefF64_128</code>[256]<a class="headerlink" href="#_CPPv418twiddleCoefF64_128" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv418twiddleCoefF64_128">
+<span id="_CPPv318twiddleCoefF64_128"></span><span id="_CPPv218twiddleCoefF64_128"></span><span id="twiddleCoefF64_128__uint64_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga252036ff16d9125ae72f547f4565f36f"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF64_128</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">256</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv418twiddleCoefF64_128" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv418twiddleCoefF64_256">
-<span id="_CPPv318twiddleCoefF64_256"></span><span id="_CPPv218twiddleCoefF64_256"></span><span id="twiddleCoefF64_256__uint64_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga10e83806d2c02cc4f5f07ce46851a673"></span><em class="property">const</em> uint64_t <code class="sig-name descname">twiddleCoefF64_256</code>[512]<a class="headerlink" href="#_CPPv418twiddleCoefF64_256" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv418twiddleCoefF64_256">
+<span id="_CPPv318twiddleCoefF64_256"></span><span id="_CPPv218twiddleCoefF64_256"></span><span id="twiddleCoefF64_256__uint64_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga10e83806d2c02cc4f5f07ce46851a673"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF64_256</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">512</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv418twiddleCoefF64_256" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv418twiddleCoefF64_512">
-<span id="_CPPv318twiddleCoefF64_512"></span><span id="_CPPv218twiddleCoefF64_512"></span><span id="twiddleCoefF64_512__uint64_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gadf57a6c3f49246e356cc72615c5dc8ba"></span><em class="property">const</em> uint64_t <code class="sig-name descname">twiddleCoefF64_512</code>[1024]<a class="headerlink" href="#_CPPv418twiddleCoefF64_512" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv418twiddleCoefF64_512">
+<span id="_CPPv318twiddleCoefF64_512"></span><span id="_CPPv218twiddleCoefF64_512"></span><span id="twiddleCoefF64_512__uint64_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gadf57a6c3f49246e356cc72615c5dc8ba"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF64_512</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">1024</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv418twiddleCoefF64_512" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv419twiddleCoefF64_1024">
-<span id="_CPPv319twiddleCoefF64_1024"></span><span id="_CPPv219twiddleCoefF64_1024"></span><span id="twiddleCoefF64_1024__uint64_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga6626143034266d76fafe4195cd59e9ef"></span><em class="property">const</em> uint64_t <code class="sig-name descname">twiddleCoefF64_1024</code>[2048]<a class="headerlink" href="#_CPPv419twiddleCoefF64_1024" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv419twiddleCoefF64_1024">
+<span id="_CPPv319twiddleCoefF64_1024"></span><span id="_CPPv219twiddleCoefF64_1024"></span><span id="twiddleCoefF64_1024__uint64_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga6626143034266d76fafe4195cd59e9ef"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF64_1024</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">2048</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv419twiddleCoefF64_1024" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv419twiddleCoefF64_2048">
-<span id="_CPPv319twiddleCoefF64_2048"></span><span id="_CPPv219twiddleCoefF64_2048"></span><span id="twiddleCoefF64_2048__uint64_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga0d6a794c1315cceaa884e3bdc736e576"></span><em class="property">const</em> uint64_t <code class="sig-name descname">twiddleCoefF64_2048</code>[4096]<a class="headerlink" href="#_CPPv419twiddleCoefF64_2048" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv419twiddleCoefF64_2048">
+<span id="_CPPv319twiddleCoefF64_2048"></span><span id="_CPPv219twiddleCoefF64_2048"></span><span id="twiddleCoefF64_2048__uint64_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga0d6a794c1315cceaa884e3bdc736e576"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF64_2048</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">4096</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv419twiddleCoefF64_2048" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv419twiddleCoefF64_4096">
-<span id="_CPPv319twiddleCoefF64_4096"></span><span id="_CPPv219twiddleCoefF64_4096"></span><span id="twiddleCoefF64_4096__uint64_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gac0f43575fce0ab5e30d8731924dbc6d3"></span><em class="property">const</em> uint64_t <code class="sig-name descname">twiddleCoefF64_4096</code>[8192]<a class="headerlink" href="#_CPPv419twiddleCoefF64_4096" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv419twiddleCoefF64_4096">
+<span id="_CPPv319twiddleCoefF64_4096"></span><span id="_CPPv219twiddleCoefF64_4096"></span><span id="twiddleCoefF64_4096__uint64_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gac0f43575fce0ab5e30d8731924dbc6d3"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF64_4096</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">8192</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv419twiddleCoefF64_4096" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv414twiddleCoef_16">
-<span id="_CPPv314twiddleCoef_16"></span><span id="_CPPv214twiddleCoef_16"></span><span id="twiddleCoef_16__float32_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gae75e243ec61706427314270f222e0c8e"></span><em class="property">const</em> float32_t <code class="sig-name descname">twiddleCoef_16</code>[32]<a class="headerlink" href="#_CPPv414twiddleCoef_16" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv414twiddleCoef_16">
+<span id="_CPPv314twiddleCoef_16"></span><span id="_CPPv214twiddleCoef_16"></span><span id="twiddleCoef_16__float32_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gae75e243ec61706427314270f222e0c8e"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_16</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">32</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv414twiddleCoef_16" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv414twiddleCoef_32">
-<span id="_CPPv314twiddleCoef_32"></span><span id="_CPPv214twiddleCoef_32"></span><span id="twiddleCoef_32__float32_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga78a72c85d88185de98050c930cfc76e3"></span><em class="property">const</em> float32_t <code class="sig-name descname">twiddleCoef_32</code>[64]<a class="headerlink" href="#_CPPv414twiddleCoef_32" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv414twiddleCoef_32">
+<span id="_CPPv314twiddleCoef_32"></span><span id="_CPPv214twiddleCoef_32"></span><span id="twiddleCoef_32__float32_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga78a72c85d88185de98050c930cfc76e3"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_32</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">64</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv414twiddleCoef_32" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv414twiddleCoef_64">
-<span id="_CPPv314twiddleCoef_64"></span><span id="_CPPv214twiddleCoef_64"></span><span id="twiddleCoef_64__float32_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga4f3c6d98c7e66393b4ef3ac63746e43d"></span><em class="property">const</em> float32_t <code class="sig-name descname">twiddleCoef_64</code>[128]<a class="headerlink" href="#_CPPv414twiddleCoef_64" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv414twiddleCoef_64">
+<span id="_CPPv314twiddleCoef_64"></span><span id="_CPPv214twiddleCoef_64"></span><span id="twiddleCoef_64__float32_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga4f3c6d98c7e66393b4ef3ac63746e43d"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_64</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">128</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv414twiddleCoef_64" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv415twiddleCoef_128">
-<span id="_CPPv315twiddleCoef_128"></span><span id="_CPPv215twiddleCoef_128"></span><span id="twiddleCoef_128__float32_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga948433536dafaac1381decfccf4e2d9c"></span><em class="property">const</em> float32_t <code class="sig-name descname">twiddleCoef_128</code>[256]<a class="headerlink" href="#_CPPv415twiddleCoef_128" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv415twiddleCoef_128">
+<span id="_CPPv315twiddleCoef_128"></span><span id="_CPPv215twiddleCoef_128"></span><span id="twiddleCoef_128__float32_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga948433536dafaac1381decfccf4e2d9c"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_128</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">256</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv415twiddleCoef_128" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv415twiddleCoef_256">
-<span id="_CPPv315twiddleCoef_256"></span><span id="_CPPv215twiddleCoef_256"></span><span id="twiddleCoef_256__float32_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gafe813758a03a798e972359a092315be4"></span><em class="property">const</em> float32_t <code class="sig-name descname">twiddleCoef_256</code>[512]<a class="headerlink" href="#_CPPv415twiddleCoef_256" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv415twiddleCoef_256">
+<span id="_CPPv315twiddleCoef_256"></span><span id="_CPPv215twiddleCoef_256"></span><span id="twiddleCoef_256__float32_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gafe813758a03a798e972359a092315be4"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_256</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">512</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv415twiddleCoef_256" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv415twiddleCoef_512">
-<span id="_CPPv315twiddleCoef_512"></span><span id="_CPPv215twiddleCoef_512"></span><span id="twiddleCoef_512__float32_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gad8830f0c068ab2cc19f2f87d220fa148"></span><em class="property">const</em> float32_t <code class="sig-name descname">twiddleCoef_512</code>[1024]<a class="headerlink" href="#_CPPv415twiddleCoef_512" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv415twiddleCoef_512">
+<span id="_CPPv315twiddleCoef_512"></span><span id="_CPPv215twiddleCoef_512"></span><span id="twiddleCoef_512__float32_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gad8830f0c068ab2cc19f2f87d220fa148"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_512</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">1024</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv415twiddleCoef_512" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv416twiddleCoef_1024">
-<span id="_CPPv316twiddleCoef_1024"></span><span id="_CPPv216twiddleCoef_1024"></span><span id="twiddleCoef_1024__float32_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga27c056eb130a4333d1cc5dd43ec738b1"></span><em class="property">const</em> float32_t <code class="sig-name descname">twiddleCoef_1024</code>[2048]<a class="headerlink" href="#_CPPv416twiddleCoef_1024" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv416twiddleCoef_1024">
+<span id="_CPPv316twiddleCoef_1024"></span><span id="_CPPv216twiddleCoef_1024"></span><span id="twiddleCoef_1024__float32_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga27c056eb130a4333d1cc5dd43ec738b1"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_1024</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">2048</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv416twiddleCoef_1024" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv416twiddleCoef_2048">
-<span id="_CPPv316twiddleCoef_2048"></span><span id="_CPPv216twiddleCoef_2048"></span><span id="twiddleCoef_2048__float32_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga23e7f30421a7905b21c2015429779633"></span><em class="property">const</em> float32_t <code class="sig-name descname">twiddleCoef_2048</code>[4096]<a class="headerlink" href="#_CPPv416twiddleCoef_2048" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv416twiddleCoef_2048">
+<span id="_CPPv316twiddleCoef_2048"></span><span id="_CPPv216twiddleCoef_2048"></span><span id="twiddleCoef_2048__float32_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga23e7f30421a7905b21c2015429779633"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_2048</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">4096</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv416twiddleCoef_2048" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv416twiddleCoef_4096">
-<span id="_CPPv316twiddleCoef_4096"></span><span id="_CPPv216twiddleCoef_4096"></span><span id="twiddleCoef_4096__float32_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gae0182d1dd3b2f21aad4e38a815a0bd40"></span><em class="property">const</em> float32_t <code class="sig-name descname">twiddleCoef_4096</code>[8192]<a class="headerlink" href="#_CPPv416twiddleCoef_4096" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv416twiddleCoef_4096">
+<span id="_CPPv316twiddleCoef_4096"></span><span id="_CPPv216twiddleCoef_4096"></span><span id="twiddleCoef_4096__float32_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gae0182d1dd3b2f21aad4e38a815a0bd40"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_4096</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">8192</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv416twiddleCoef_4096" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv418twiddleCoef_16_q31">
-<span id="_CPPv318twiddleCoef_16_q31"></span><span id="_CPPv218twiddleCoef_16_q31"></span><span id="twiddleCoef_16_q31__q31_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gaef4697e1ba348c4ac9358f2b9e279e93"></span><em class="property">const</em> q31_t <code class="sig-name descname">twiddleCoef_16_q31</code>[24]<a class="headerlink" href="#_CPPv418twiddleCoef_16_q31" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv418twiddleCoef_16_q31">
+<span id="_CPPv318twiddleCoef_16_q31"></span><span id="_CPPv218twiddleCoef_16_q31"></span><span id="twiddleCoef_16_q31__q31_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gaef4697e1ba348c4ac9358f2b9e279e93"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_16_q31</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">24</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv418twiddleCoef_16_q31" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv418twiddleCoef_32_q31">
-<span id="_CPPv318twiddleCoef_32_q31"></span><span id="_CPPv218twiddleCoef_32_q31"></span><span id="twiddleCoef_32_q31__q31_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga8ba78d5e6ef4bdc58e8f0044e0664a0a"></span><em class="property">const</em> q31_t <code class="sig-name descname">twiddleCoef_32_q31</code>[48]<a class="headerlink" href="#_CPPv418twiddleCoef_32_q31" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv418twiddleCoef_32_q31">
+<span id="_CPPv318twiddleCoef_32_q31"></span><span id="_CPPv218twiddleCoef_32_q31"></span><span id="twiddleCoef_32_q31__q31_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga8ba78d5e6ef4bdc58e8f0044e0664a0a"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_32_q31</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">48</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv418twiddleCoef_32_q31" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv418twiddleCoef_64_q31">
-<span id="_CPPv318twiddleCoef_64_q31"></span><span id="_CPPv218twiddleCoef_64_q31"></span><span id="twiddleCoef_64_q31__q31_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga6e0a7e941a25a0d74b2e6590307de47e"></span><em class="property">const</em> q31_t <code class="sig-name descname">twiddleCoef_64_q31</code>[96]<a class="headerlink" href="#_CPPv418twiddleCoef_64_q31" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv418twiddleCoef_64_q31">
+<span id="_CPPv318twiddleCoef_64_q31"></span><span id="_CPPv218twiddleCoef_64_q31"></span><span id="twiddleCoef_64_q31__q31_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga6e0a7e941a25a0d74b2e6590307de47e"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_64_q31</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">96</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv418twiddleCoef_64_q31" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv419twiddleCoef_128_q31">
-<span id="_CPPv319twiddleCoef_128_q31"></span><span id="_CPPv219twiddleCoef_128_q31"></span><span id="twiddleCoef_128_q31__q31_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gafecf9ed9873415d9f5f17f37b30c7250"></span><em class="property">const</em> q31_t <code class="sig-name descname">twiddleCoef_128_q31</code>[192]<a class="headerlink" href="#_CPPv419twiddleCoef_128_q31" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv419twiddleCoef_128_q31">
+<span id="_CPPv319twiddleCoef_128_q31"></span><span id="_CPPv219twiddleCoef_128_q31"></span><span id="twiddleCoef_128_q31__q31_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gafecf9ed9873415d9f5f17f37b30c7250"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_128_q31</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">192</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv419twiddleCoef_128_q31" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv419twiddleCoef_256_q31">
-<span id="_CPPv319twiddleCoef_256_q31"></span><span id="_CPPv219twiddleCoef_256_q31"></span><span id="twiddleCoef_256_q31__q31_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gaef1ea005053b715b851cf5f908168ede"></span><em class="property">const</em> q31_t <code class="sig-name descname">twiddleCoef_256_q31</code>[384]<a class="headerlink" href="#_CPPv419twiddleCoef_256_q31" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv419twiddleCoef_256_q31">
+<span id="_CPPv319twiddleCoef_256_q31"></span><span id="_CPPv219twiddleCoef_256_q31"></span><span id="twiddleCoef_256_q31__q31_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gaef1ea005053b715b851cf5f908168ede"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_256_q31</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">384</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv419twiddleCoef_256_q31" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv419twiddleCoef_512_q31">
-<span id="_CPPv319twiddleCoef_512_q31"></span><span id="_CPPv219twiddleCoef_512_q31"></span><span id="twiddleCoef_512_q31__q31_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga416c61b2f08542a39111e06b0378bebe"></span><em class="property">const</em> q31_t <code class="sig-name descname">twiddleCoef_512_q31</code>[768]<a class="headerlink" href="#_CPPv419twiddleCoef_512_q31" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv419twiddleCoef_512_q31">
+<span id="_CPPv319twiddleCoef_512_q31"></span><span id="_CPPv219twiddleCoef_512_q31"></span><span id="twiddleCoef_512_q31__q31_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga416c61b2f08542a39111e06b0378bebe"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_512_q31</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">768</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv419twiddleCoef_512_q31" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv420twiddleCoef_1024_q31">
-<span id="_CPPv320twiddleCoef_1024_q31"></span><span id="_CPPv220twiddleCoef_1024_q31"></span><span id="twiddleCoef_1024_q31__q31_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga514443c44b62b8b3d240afefebcda310"></span><em class="property">const</em> q31_t <code class="sig-name descname">twiddleCoef_1024_q31</code>[1536]<a class="headerlink" href="#_CPPv420twiddleCoef_1024_q31" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv420twiddleCoef_1024_q31">
+<span id="_CPPv320twiddleCoef_1024_q31"></span><span id="_CPPv220twiddleCoef_1024_q31"></span><span id="twiddleCoef_1024_q31__q31_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga514443c44b62b8b3d240afefebcda310"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_1024_q31</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">1536</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv420twiddleCoef_1024_q31" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv420twiddleCoef_2048_q31">
-<span id="_CPPv320twiddleCoef_2048_q31"></span><span id="_CPPv220twiddleCoef_2048_q31"></span><span id="twiddleCoef_2048_q31__q31_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga9c5767de9f5a409fd0c2027e6ac67179"></span><em class="property">const</em> q31_t <code class="sig-name descname">twiddleCoef_2048_q31</code>[3072]<a class="headerlink" href="#_CPPv420twiddleCoef_2048_q31" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv420twiddleCoef_2048_q31">
+<span id="_CPPv320twiddleCoef_2048_q31"></span><span id="_CPPv220twiddleCoef_2048_q31"></span><span id="twiddleCoef_2048_q31__q31_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga9c5767de9f5a409fd0c2027e6ac67179"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_2048_q31</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">3072</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv420twiddleCoef_2048_q31" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv420twiddleCoef_4096_q31">
-<span id="_CPPv320twiddleCoef_4096_q31"></span><span id="_CPPv220twiddleCoef_4096_q31"></span><span id="twiddleCoef_4096_q31__q31_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga67c0890317deab3391e276f22c1fc400"></span><em class="property">const</em> q31_t <code class="sig-name descname">twiddleCoef_4096_q31</code>[6144]<a class="headerlink" href="#_CPPv420twiddleCoef_4096_q31" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv420twiddleCoef_4096_q31">
+<span id="_CPPv320twiddleCoef_4096_q31"></span><span id="_CPPv220twiddleCoef_4096_q31"></span><span id="twiddleCoef_4096_q31__q31_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga67c0890317deab3391e276f22c1fc400"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_4096_q31</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">6144</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv420twiddleCoef_4096_q31" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv418twiddleCoef_16_q15">
-<span id="_CPPv318twiddleCoef_16_q15"></span><span id="_CPPv218twiddleCoef_16_q15"></span><span id="twiddleCoef_16_q15__q15_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga8e4e2e05f4a3112184c96cb3308d6c39"></span><em class="property">const</em> q15_t <code class="sig-name descname">twiddleCoef_16_q15</code>[24]<a class="headerlink" href="#_CPPv418twiddleCoef_16_q15" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv418twiddleCoef_16_q15">
+<span id="_CPPv318twiddleCoef_16_q15"></span><span id="_CPPv218twiddleCoef_16_q15"></span><span id="twiddleCoef_16_q15__q15_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga8e4e2e05f4a3112184c96cb3308d6c39"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_16_q15</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">24</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv418twiddleCoef_16_q15" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv418twiddleCoef_32_q15">
-<span id="_CPPv318twiddleCoef_32_q15"></span><span id="_CPPv218twiddleCoef_32_q15"></span><span id="twiddleCoef_32_q15__q15_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gac194a4fe04a19051ae1811f69c6e5df2"></span><em class="property">const</em> q15_t <code class="sig-name descname">twiddleCoef_32_q15</code>[48]<a class="headerlink" href="#_CPPv418twiddleCoef_32_q15" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv418twiddleCoef_32_q15">
+<span id="_CPPv318twiddleCoef_32_q15"></span><span id="_CPPv218twiddleCoef_32_q15"></span><span id="twiddleCoef_32_q15__q15_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gac194a4fe04a19051ae1811f69c6e5df2"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_32_q15</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">48</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv418twiddleCoef_32_q15" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv418twiddleCoef_64_q15">
-<span id="_CPPv318twiddleCoef_64_q15"></span><span id="_CPPv218twiddleCoef_64_q15"></span><span id="twiddleCoef_64_q15__q15_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gaa0cc411e0b3c82078e85cfdf1b84290f"></span><em class="property">const</em> q15_t <code class="sig-name descname">twiddleCoef_64_q15</code>[96]<a class="headerlink" href="#_CPPv418twiddleCoef_64_q15" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv418twiddleCoef_64_q15">
+<span id="_CPPv318twiddleCoef_64_q15"></span><span id="_CPPv218twiddleCoef_64_q15"></span><span id="twiddleCoef_64_q15__q15_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gaa0cc411e0b3c82078e85cfdf1b84290f"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_64_q15</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">96</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv418twiddleCoef_64_q15" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv419twiddleCoef_128_q15">
-<span id="_CPPv319twiddleCoef_128_q15"></span><span id="_CPPv219twiddleCoef_128_q15"></span><span id="twiddleCoef_128_q15__q15_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gabfdd1c5cd2b3f96da5fe5f07c707a8e5"></span><em class="property">const</em> q15_t <code class="sig-name descname">twiddleCoef_128_q15</code>[192]<a class="headerlink" href="#_CPPv419twiddleCoef_128_q15" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv419twiddleCoef_128_q15">
+<span id="_CPPv319twiddleCoef_128_q15"></span><span id="_CPPv219twiddleCoef_128_q15"></span><span id="twiddleCoef_128_q15__q15_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gabfdd1c5cd2b3f96da5fe5f07c707a8e5"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_128_q15</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">192</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv419twiddleCoef_128_q15" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv419twiddleCoef_256_q15">
-<span id="_CPPv319twiddleCoef_256_q15"></span><span id="_CPPv219twiddleCoef_256_q15"></span><span id="twiddleCoef_256_q15__q15_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga6099ae5262a0a3a8d9ce1e6da02f0c2e"></span><em class="property">const</em> q15_t <code class="sig-name descname">twiddleCoef_256_q15</code>[384]<a class="headerlink" href="#_CPPv419twiddleCoef_256_q15" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv419twiddleCoef_256_q15">
+<span id="_CPPv319twiddleCoef_256_q15"></span><span id="_CPPv219twiddleCoef_256_q15"></span><span id="twiddleCoef_256_q15__q15_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga6099ae5262a0a3a8d9ce1e6da02f0c2e"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_256_q15</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">384</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv419twiddleCoef_256_q15" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv419twiddleCoef_512_q15">
-<span id="_CPPv319twiddleCoef_512_q15"></span><span id="_CPPv219twiddleCoef_512_q15"></span><span id="twiddleCoef_512_q15__q15_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga6152621af210f847128c6f38958fa385"></span><em class="property">const</em> q15_t <code class="sig-name descname">twiddleCoef_512_q15</code>[768]<a class="headerlink" href="#_CPPv419twiddleCoef_512_q15" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv419twiddleCoef_512_q15">
+<span id="_CPPv319twiddleCoef_512_q15"></span><span id="_CPPv219twiddleCoef_512_q15"></span><span id="twiddleCoef_512_q15__q15_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga6152621af210f847128c6f38958fa385"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_512_q15</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">768</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv419twiddleCoef_512_q15" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv420twiddleCoef_1024_q15">
-<span id="_CPPv320twiddleCoef_1024_q15"></span><span id="_CPPv220twiddleCoef_1024_q15"></span><span id="twiddleCoef_1024_q15__q15_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga8a0ec95d866fe96b740e77d6e1356b59"></span><em class="property">const</em> q15_t <code class="sig-name descname">twiddleCoef_1024_q15</code>[1536]<a class="headerlink" href="#_CPPv420twiddleCoef_1024_q15" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv420twiddleCoef_1024_q15">
+<span id="_CPPv320twiddleCoef_1024_q15"></span><span id="_CPPv220twiddleCoef_1024_q15"></span><span id="twiddleCoef_1024_q15__q15_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga8a0ec95d866fe96b740e77d6e1356b59"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_1024_q15</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">1536</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv420twiddleCoef_1024_q15" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv420twiddleCoef_2048_q15">
-<span id="_CPPv320twiddleCoef_2048_q15"></span><span id="_CPPv220twiddleCoef_2048_q15"></span><span id="twiddleCoef_2048_q15__q15_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gadd16ce08ffd1048c385e0534a3b19cbb"></span><em class="property">const</em> q15_t <code class="sig-name descname">twiddleCoef_2048_q15</code>[3072]<a class="headerlink" href="#_CPPv420twiddleCoef_2048_q15" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv420twiddleCoef_2048_q15">
+<span id="_CPPv320twiddleCoef_2048_q15"></span><span id="_CPPv220twiddleCoef_2048_q15"></span><span id="twiddleCoef_2048_q15__q15_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gadd16ce08ffd1048c385e0534a3b19cbb"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_2048_q15</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">3072</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv420twiddleCoef_2048_q15" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv420twiddleCoef_4096_q15">
-<span id="_CPPv320twiddleCoef_4096_q15"></span><span id="_CPPv220twiddleCoef_4096_q15"></span><span id="twiddleCoef_4096_q15__q15_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga9b409d6995eab17805b1d1881d4bc652"></span><em class="property">const</em> q15_t <code class="sig-name descname">twiddleCoef_4096_q15</code>[6144]<a class="headerlink" href="#_CPPv420twiddleCoef_4096_q15" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv420twiddleCoef_4096_q15">
+<span id="_CPPv320twiddleCoef_4096_q15"></span><span id="_CPPv220twiddleCoef_4096_q15"></span><span id="twiddleCoef_4096_q15__q15_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga9b409d6995eab17805b1d1881d4bc652"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_4096_q15</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">6144</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv420twiddleCoef_4096_q15" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv417twiddleCoefF16_16">
-<span id="_CPPv317twiddleCoefF16_16"></span><span id="_CPPv217twiddleCoefF16_16"></span><span id="twiddleCoefF16_16__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga0712fc409d87a8db34051712b747663f"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_16</code>[32]<a class="headerlink" href="#_CPPv417twiddleCoefF16_16" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv417twiddleCoefF16_16">
+<span id="_CPPv317twiddleCoefF16_16"></span><span id="_CPPv217twiddleCoefF16_16"></span><span id="twiddleCoefF16_16__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga0712fc409d87a8db34051712b747663f"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_16</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">32</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv417twiddleCoefF16_16" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv417twiddleCoefF16_32">
-<span id="_CPPv317twiddleCoefF16_32"></span><span id="_CPPv217twiddleCoefF16_32"></span><span id="twiddleCoefF16_32__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga9f659df35a21f12f471dfae20b73d9f2"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_32</code>[64]<a class="headerlink" href="#_CPPv417twiddleCoefF16_32" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv417twiddleCoefF16_32">
+<span id="_CPPv317twiddleCoefF16_32"></span><span id="_CPPv217twiddleCoefF16_32"></span><span id="twiddleCoefF16_32__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga9f659df35a21f12f471dfae20b73d9f2"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_32</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">64</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv417twiddleCoefF16_32" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv417twiddleCoefF16_64">
-<span id="_CPPv317twiddleCoefF16_64"></span><span id="_CPPv217twiddleCoefF16_64"></span><span id="twiddleCoefF16_64__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga44e6449538e49e951b118d29d1712efa"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_64</code>[128]<a class="headerlink" href="#_CPPv417twiddleCoefF16_64" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv417twiddleCoefF16_64">
+<span id="_CPPv317twiddleCoefF16_64"></span><span id="_CPPv217twiddleCoefF16_64"></span><span id="twiddleCoefF16_64__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga44e6449538e49e951b118d29d1712efa"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_64</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">128</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv417twiddleCoefF16_64" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv418twiddleCoefF16_128">
-<span id="_CPPv318twiddleCoefF16_128"></span><span id="_CPPv218twiddleCoefF16_128"></span><span id="twiddleCoefF16_128__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga520dcb1deb9759e637a4d15712b5e54d"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_128</code>[256]<a class="headerlink" href="#_CPPv418twiddleCoefF16_128" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv418twiddleCoefF16_128">
+<span id="_CPPv318twiddleCoefF16_128"></span><span id="_CPPv218twiddleCoefF16_128"></span><span id="twiddleCoefF16_128__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga520dcb1deb9759e637a4d15712b5e54d"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_128</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">256</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv418twiddleCoefF16_128" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv418twiddleCoefF16_256">
-<span id="_CPPv318twiddleCoefF16_256"></span><span id="_CPPv218twiddleCoefF16_256"></span><span id="twiddleCoefF16_256__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga8c13337c591ad6d26896d1457624dd32"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_256</code>[512]<a class="headerlink" href="#_CPPv418twiddleCoefF16_256" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv418twiddleCoefF16_256">
+<span id="_CPPv318twiddleCoefF16_256"></span><span id="_CPPv218twiddleCoefF16_256"></span><span id="twiddleCoefF16_256__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga8c13337c591ad6d26896d1457624dd32"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_256</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">512</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv418twiddleCoefF16_256" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv418twiddleCoefF16_512">
-<span id="_CPPv318twiddleCoefF16_512"></span><span id="_CPPv218twiddleCoefF16_512"></span><span id="twiddleCoefF16_512__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gae0926a83b411af580f91a9ee172b01d8"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_512</code>[1024]<a class="headerlink" href="#_CPPv418twiddleCoefF16_512" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv418twiddleCoefF16_512">
+<span id="_CPPv318twiddleCoefF16_512"></span><span id="_CPPv218twiddleCoefF16_512"></span><span id="twiddleCoefF16_512__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gae0926a83b411af580f91a9ee172b01d8"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_512</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">1024</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv418twiddleCoefF16_512" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv419twiddleCoefF16_1024">
-<span id="_CPPv319twiddleCoefF16_1024"></span><span id="_CPPv219twiddleCoefF16_1024"></span><span id="twiddleCoefF16_1024__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gacb45d1f03e14f9b268eef10034fbcbdb"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_1024</code>[2048]<a class="headerlink" href="#_CPPv419twiddleCoefF16_1024" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv419twiddleCoefF16_1024">
+<span id="_CPPv319twiddleCoefF16_1024"></span><span id="_CPPv219twiddleCoefF16_1024"></span><span id="twiddleCoefF16_1024__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gacb45d1f03e14f9b268eef10034fbcbdb"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_1024</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">2048</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv419twiddleCoefF16_1024" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv419twiddleCoefF16_2048">
-<span id="_CPPv319twiddleCoefF16_2048"></span><span id="_CPPv219twiddleCoefF16_2048"></span><span id="twiddleCoefF16_2048__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga0a92c3c0905fd7afc2443d643583ee8b"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_2048</code>[4096]<a class="headerlink" href="#_CPPv419twiddleCoefF16_2048" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv419twiddleCoefF16_2048">
+<span id="_CPPv319twiddleCoefF16_2048"></span><span id="_CPPv219twiddleCoefF16_2048"></span><span id="twiddleCoefF16_2048__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga0a92c3c0905fd7afc2443d643583ee8b"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_2048</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">4096</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv419twiddleCoefF16_2048" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv419twiddleCoefF16_4096">
-<span id="_CPPv319twiddleCoefF16_4096"></span><span id="_CPPv219twiddleCoefF16_4096"></span><span id="twiddleCoefF16_4096__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga94b170b59527155e38ee219d3ac06ba7"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_4096</code>[8192]<a class="headerlink" href="#_CPPv419twiddleCoefF16_4096" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv419twiddleCoefF16_4096">
+<span id="_CPPv319twiddleCoefF16_4096"></span><span id="_CPPv219twiddleCoefF16_4096"></span><span id="twiddleCoefF16_4096__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga94b170b59527155e38ee219d3ac06ba7"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_4096</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">8192</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv419twiddleCoefF16_4096" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv422twiddleCoefF16_rfft_32">
-<span id="_CPPv322twiddleCoefF16_rfft_32"></span><span id="_CPPv222twiddleCoefF16_rfft_32"></span><span id="twiddleCoefF16_rfft_32__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga5db2c2615b07d2954f2539f364205aa5"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_rfft_32</code>[32]<a class="headerlink" href="#_CPPv422twiddleCoefF16_rfft_32" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv422twiddleCoefF16_rfft_32">
+<span id="_CPPv322twiddleCoefF16_rfft_32"></span><span id="_CPPv222twiddleCoefF16_rfft_32"></span><span id="twiddleCoefF16_rfft_32__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga5db2c2615b07d2954f2539f364205aa5"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_rfft_32</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">32</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv422twiddleCoefF16_rfft_32" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv422twiddleCoefF16_rfft_64">
-<span id="_CPPv322twiddleCoefF16_rfft_64"></span><span id="_CPPv222twiddleCoefF16_rfft_64"></span><span id="twiddleCoefF16_rfft_64__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga33aa532c5c6e33fff9c677a4684a6cff"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_rfft_64</code>[64]<a class="headerlink" href="#_CPPv422twiddleCoefF16_rfft_64" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv422twiddleCoefF16_rfft_64">
+<span id="_CPPv322twiddleCoefF16_rfft_64"></span><span id="_CPPv222twiddleCoefF16_rfft_64"></span><span id="twiddleCoefF16_rfft_64__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga33aa532c5c6e33fff9c677a4684a6cff"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_rfft_64</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">64</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv422twiddleCoefF16_rfft_64" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv423twiddleCoefF16_rfft_128">
-<span id="_CPPv323twiddleCoefF16_rfft_128"></span><span id="_CPPv223twiddleCoefF16_rfft_128"></span><span id="twiddleCoefF16_rfft_128__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gaed6eea756947ae87cc744c284d507ce1"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_rfft_128</code>[128]<a class="headerlink" href="#_CPPv423twiddleCoefF16_rfft_128" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv423twiddleCoefF16_rfft_128">
+<span id="_CPPv323twiddleCoefF16_rfft_128"></span><span id="_CPPv223twiddleCoefF16_rfft_128"></span><span id="twiddleCoefF16_rfft_128__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1gaed6eea756947ae87cc744c284d507ce1"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_rfft_128</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">128</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv423twiddleCoefF16_rfft_128" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv423twiddleCoefF16_rfft_256">
-<span id="_CPPv323twiddleCoefF16_rfft_256"></span><span id="_CPPv223twiddleCoefF16_rfft_256"></span><span id="twiddleCoefF16_rfft_256__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga02d891a91bb6a105dca581ba7e2226a2"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_rfft_256</code>[256]<a class="headerlink" href="#_CPPv423twiddleCoefF16_rfft_256" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv423twiddleCoefF16_rfft_256">
+<span id="_CPPv323twiddleCoefF16_rfft_256"></span><span id="_CPPv223twiddleCoefF16_rfft_256"></span><span id="twiddleCoefF16_rfft_256__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga02d891a91bb6a105dca581ba7e2226a2"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_rfft_256</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">256</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv423twiddleCoefF16_rfft_256" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv423twiddleCoefF16_rfft_512">
-<span id="_CPPv323twiddleCoefF16_rfft_512"></span><span id="_CPPv223twiddleCoefF16_rfft_512"></span><span id="twiddleCoefF16_rfft_512__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga53ec40ffb2cb25c6b8fbcfc507de1bc9"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_rfft_512</code>[512]<a class="headerlink" href="#_CPPv423twiddleCoefF16_rfft_512" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv423twiddleCoefF16_rfft_512">
+<span id="_CPPv323twiddleCoefF16_rfft_512"></span><span id="_CPPv223twiddleCoefF16_rfft_512"></span><span id="twiddleCoefF16_rfft_512__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga53ec40ffb2cb25c6b8fbcfc507de1bc9"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_rfft_512</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">512</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv423twiddleCoefF16_rfft_512" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv424twiddleCoefF16_rfft_1024">
-<span id="_CPPv324twiddleCoefF16_rfft_1024"></span><span id="_CPPv224twiddleCoefF16_rfft_1024"></span><span id="twiddleCoefF16_rfft_1024__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga57c0abf28b7dcead6d7254a4968afaf7"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_rfft_1024</code>[1024]<a class="headerlink" href="#_CPPv424twiddleCoefF16_rfft_1024" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv424twiddleCoefF16_rfft_1024">
+<span id="_CPPv324twiddleCoefF16_rfft_1024"></span><span id="_CPPv224twiddleCoefF16_rfft_1024"></span><span id="twiddleCoefF16_rfft_1024__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga57c0abf28b7dcead6d7254a4968afaf7"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_rfft_1024</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">1024</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv424twiddleCoefF16_rfft_1024" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv424twiddleCoefF16_rfft_2048">
-<span id="_CPPv324twiddleCoefF16_rfft_2048"></span><span id="_CPPv224twiddleCoefF16_rfft_2048"></span><span id="twiddleCoefF16_rfft_2048__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga0e45fe586abf8be703ed209eaf18b0fe"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_rfft_2048</code>[2048]<a class="headerlink" href="#_CPPv424twiddleCoefF16_rfft_2048" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv424twiddleCoefF16_rfft_2048">
+<span id="_CPPv324twiddleCoefF16_rfft_2048"></span><span id="_CPPv224twiddleCoefF16_rfft_2048"></span><span id="twiddleCoefF16_rfft_2048__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga0e45fe586abf8be703ed209eaf18b0fe"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_rfft_2048</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">2048</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv424twiddleCoefF16_rfft_2048" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv424twiddleCoefF16_rfft_4096">
-<span id="_CPPv324twiddleCoefF16_rfft_4096"></span><span id="_CPPv224twiddleCoefF16_rfft_4096"></span><span id="twiddleCoefF16_rfft_4096__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga190d7fce6e881c88942f5afdded987af"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_rfft_4096</code>[4096]<a class="headerlink" href="#_CPPv424twiddleCoefF16_rfft_4096" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv424twiddleCoefF16_rfft_4096">
+<span id="_CPPv324twiddleCoefF16_rfft_4096"></span><span id="_CPPv224twiddleCoefF16_rfft_4096"></span><span id="twiddleCoefF16_rfft_4096__float16_tCA"></span><span class="target" id="group__CFFT__CIFFT_1ga190d7fce6e881c88942f5afdded987af"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_rfft_4096</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">4096</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv424twiddleCoefF16_rfft_4096" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="group">
-<dt>
-<span class="target" id="group__CFFT__CIFFT"></span><em>group</em> <code class="sig-name descname">CFFT_CIFFT</code></dt>
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">CFFT_CIFFT</span></span></dt>
 <dd><div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Variables</p>
-<dl class="member">
-<dt id="_CPPv416riscvBitRevTable">
-<span id="_CPPv316riscvBitRevTable"></span><span id="_CPPv216riscvBitRevTable"></span><span class="target" id="group__CFFT__CIFFT_1ga642762d611cf45f7fd6d172019558122"></span><em class="property">const</em> uint16_t <code class="sig-name descname">riscvBitRevTable</code>[1024]<br /></dt>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-variables">Variables</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga642762d611cf45f7fd6d172019558122"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscvBitRevTable</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">1024</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p>Table for bit reversal process. </p>
 <p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Pseudo code for Generation of Bit reversal Table is </p>
@@ -494,9 +406,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv417twiddleCoefF64_16">
-<span id="_CPPv317twiddleCoefF64_16"></span><span id="_CPPv217twiddleCoefF64_16"></span><span class="target" id="group__CFFT__CIFFT_1gabeb418730eacdce077316477b7f1e960"></span><em class="property">const</em> uint64_t <code class="sig-name descname">twiddleCoefF64_16</code>[32]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1gabeb418730eacdce077316477b7f1e960"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF64_16</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">32</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p>Double Precision Floating-point Twiddle factors Table Generation. </p>
 <p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Double Precision Floating-point Twiddle factors Generation: </p>
@@ -511,9 +423,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv417twiddleCoefF64_32">
-<span id="_CPPv317twiddleCoefF64_32"></span><span id="_CPPv217twiddleCoefF64_32"></span><span class="target" id="group__CFFT__CIFFT_1ga3f7d1eaff3c6910ee7d85ae1c9015fe5"></span><em class="property">const</em> uint64_t <code class="sig-name descname">twiddleCoefF64_32</code>[64]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga3f7d1eaff3c6910ee7d85ae1c9015fe5"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF64_32</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">64</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Double Precision Floating-point Twiddle factors Generation: </p>
 </dd>
@@ -527,9 +439,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv417twiddleCoefF64_64">
-<span id="_CPPv317twiddleCoefF64_64"></span><span id="_CPPv217twiddleCoefF64_64"></span><span class="target" id="group__CFFT__CIFFT_1ga6fe9e2b9200445a2313d7542c586639b"></span><em class="property">const</em> uint64_t <code class="sig-name descname">twiddleCoefF64_64</code>[128]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga6fe9e2b9200445a2313d7542c586639b"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF64_64</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">128</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Double Precision Floating-point Twiddle factors Generation: </p>
 </dd>
@@ -543,9 +455,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv418twiddleCoefF64_128">
-<span id="_CPPv318twiddleCoefF64_128"></span><span id="_CPPv218twiddleCoefF64_128"></span><span class="target" id="group__CFFT__CIFFT_1ga252036ff16d9125ae72f547f4565f36f"></span><em class="property">const</em> uint64_t <code class="sig-name descname">twiddleCoefF64_128</code>[256]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga252036ff16d9125ae72f547f4565f36f"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF64_128</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">256</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Double Precision Floating-point Twiddle factors Generation: </p>
 </dd>
@@ -559,9 +471,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv418twiddleCoefF64_256">
-<span id="_CPPv318twiddleCoefF64_256"></span><span id="_CPPv218twiddleCoefF64_256"></span><span class="target" id="group__CFFT__CIFFT_1ga10e83806d2c02cc4f5f07ce46851a673"></span><em class="property">const</em> uint64_t <code class="sig-name descname">twiddleCoefF64_256</code>[512]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga10e83806d2c02cc4f5f07ce46851a673"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF64_256</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">512</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Double Precision Floating-point Twiddle factors Generation: </p>
 </dd>
@@ -575,9 +487,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv418twiddleCoefF64_512">
-<span id="_CPPv318twiddleCoefF64_512"></span><span id="_CPPv218twiddleCoefF64_512"></span><span class="target" id="group__CFFT__CIFFT_1gadf57a6c3f49246e356cc72615c5dc8ba"></span><em class="property">const</em> uint64_t <code class="sig-name descname">twiddleCoefF64_512</code>[1024]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1gadf57a6c3f49246e356cc72615c5dc8ba"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF64_512</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">1024</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Double Precision Floating-point Twiddle factors Generation: </p>
 </dd>
@@ -591,9 +503,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv419twiddleCoefF64_1024">
-<span id="_CPPv319twiddleCoefF64_1024"></span><span id="_CPPv219twiddleCoefF64_1024"></span><span class="target" id="group__CFFT__CIFFT_1ga6626143034266d76fafe4195cd59e9ef"></span><em class="property">const</em> uint64_t <code class="sig-name descname">twiddleCoefF64_1024</code>[2048]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga6626143034266d76fafe4195cd59e9ef"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF64_1024</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">2048</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Double Precision Floating-point Twiddle factors Generation: </p>
 </dd>
@@ -607,9 +519,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv419twiddleCoefF64_2048">
-<span id="_CPPv319twiddleCoefF64_2048"></span><span id="_CPPv219twiddleCoefF64_2048"></span><span class="target" id="group__CFFT__CIFFT_1ga0d6a794c1315cceaa884e3bdc736e576"></span><em class="property">const</em> uint64_t <code class="sig-name descname">twiddleCoefF64_2048</code>[4096]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga0d6a794c1315cceaa884e3bdc736e576"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF64_2048</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">4096</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Double Precision Floating-point Twiddle factors Generation: </p>
 </dd>
@@ -623,9 +535,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv419twiddleCoefF64_4096">
-<span id="_CPPv319twiddleCoefF64_4096"></span><span id="_CPPv219twiddleCoefF64_4096"></span><span class="target" id="group__CFFT__CIFFT_1gac0f43575fce0ab5e30d8731924dbc6d3"></span><em class="property">const</em> uint64_t <code class="sig-name descname">twiddleCoefF64_4096</code>[8192]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1gac0f43575fce0ab5e30d8731924dbc6d3"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF64_4096</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">8192</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Double Precision Floating-point Twiddle factors Generation: </p>
 </dd>
@@ -639,9 +551,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv414twiddleCoef_16">
-<span id="_CPPv314twiddleCoef_16"></span><span id="_CPPv214twiddleCoef_16"></span><span class="target" id="group__CFFT__CIFFT_1gae75e243ec61706427314270f222e0c8e"></span><em class="property">const</em> float32_t <code class="sig-name descname">twiddleCoef_16</code>[32]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1gae75e243ec61706427314270f222e0c8e"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_16</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">32</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Floating-point Twiddle factors Generation: </p>
 </dd>
@@ -655,9 +567,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv414twiddleCoef_32">
-<span id="_CPPv314twiddleCoef_32"></span><span id="_CPPv214twiddleCoef_32"></span><span class="target" id="group__CFFT__CIFFT_1ga78a72c85d88185de98050c930cfc76e3"></span><em class="property">const</em> float32_t <code class="sig-name descname">twiddleCoef_32</code>[64]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga78a72c85d88185de98050c930cfc76e3"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_32</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">64</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Floating-point Twiddle factors Generation: </p>
 </dd>
@@ -671,9 +583,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv414twiddleCoef_64">
-<span id="_CPPv314twiddleCoef_64"></span><span id="_CPPv214twiddleCoef_64"></span><span class="target" id="group__CFFT__CIFFT_1ga4f3c6d98c7e66393b4ef3ac63746e43d"></span><em class="property">const</em> float32_t <code class="sig-name descname">twiddleCoef_64</code>[128]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga4f3c6d98c7e66393b4ef3ac63746e43d"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_64</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">128</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Floating-point Twiddle factors Generation: </p>
 </dd>
@@ -687,9 +599,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv415twiddleCoef_128">
-<span id="_CPPv315twiddleCoef_128"></span><span id="_CPPv215twiddleCoef_128"></span><span class="target" id="group__CFFT__CIFFT_1ga948433536dafaac1381decfccf4e2d9c"></span><em class="property">const</em> float32_t <code class="sig-name descname">twiddleCoef_128</code>[256]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga948433536dafaac1381decfccf4e2d9c"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_128</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">256</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Floating-point Twiddle factors Generation: </p>
 </dd>
@@ -703,9 +615,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv415twiddleCoef_256">
-<span id="_CPPv315twiddleCoef_256"></span><span id="_CPPv215twiddleCoef_256"></span><span class="target" id="group__CFFT__CIFFT_1gafe813758a03a798e972359a092315be4"></span><em class="property">const</em> float32_t <code class="sig-name descname">twiddleCoef_256</code>[512]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1gafe813758a03a798e972359a092315be4"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_256</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">512</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Floating-point Twiddle factors Generation: </p>
 </dd>
@@ -719,9 +631,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv415twiddleCoef_512">
-<span id="_CPPv315twiddleCoef_512"></span><span id="_CPPv215twiddleCoef_512"></span><span class="target" id="group__CFFT__CIFFT_1gad8830f0c068ab2cc19f2f87d220fa148"></span><em class="property">const</em> float32_t <code class="sig-name descname">twiddleCoef_512</code>[1024]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1gad8830f0c068ab2cc19f2f87d220fa148"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_512</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">1024</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Floating-point Twiddle factors Generation: </p>
 </dd>
@@ -735,9 +647,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv416twiddleCoef_1024">
-<span id="_CPPv316twiddleCoef_1024"></span><span id="_CPPv216twiddleCoef_1024"></span><span class="target" id="group__CFFT__CIFFT_1ga27c056eb130a4333d1cc5dd43ec738b1"></span><em class="property">const</em> float32_t <code class="sig-name descname">twiddleCoef_1024</code>[2048]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga27c056eb130a4333d1cc5dd43ec738b1"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_1024</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">2048</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Floating-point Twiddle factors Generation: </p>
 </dd>
@@ -751,9 +663,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv416twiddleCoef_2048">
-<span id="_CPPv316twiddleCoef_2048"></span><span id="_CPPv216twiddleCoef_2048"></span><span class="target" id="group__CFFT__CIFFT_1ga23e7f30421a7905b21c2015429779633"></span><em class="property">const</em> float32_t <code class="sig-name descname">twiddleCoef_2048</code>[4096]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga23e7f30421a7905b21c2015429779633"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_2048</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">4096</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Floating-point Twiddle factors Generation: </p>
 </dd>
@@ -767,9 +679,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv416twiddleCoef_4096">
-<span id="_CPPv316twiddleCoef_4096"></span><span id="_CPPv216twiddleCoef_4096"></span><span class="target" id="group__CFFT__CIFFT_1gae0182d1dd3b2f21aad4e38a815a0bd40"></span><em class="property">const</em> float32_t <code class="sig-name descname">twiddleCoef_4096</code>[8192]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1gae0182d1dd3b2f21aad4e38a815a0bd40"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_4096</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">8192</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Floating-point Twiddle factors Generation: </p>
 </dd>
@@ -783,9 +695,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv418twiddleCoef_16_q31">
-<span id="_CPPv318twiddleCoef_16_q31"></span><span id="_CPPv218twiddleCoef_16_q31"></span><span class="target" id="group__CFFT__CIFFT_1gaef4697e1ba348c4ac9358f2b9e279e93"></span><em class="property">const</em> q31_t <code class="sig-name descname">twiddleCoef_16_q31</code>[24]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1gaef4697e1ba348c4ac9358f2b9e279e93"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_16_q31</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">24</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p>Q31 Twiddle factors Table. </p>
 <p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Q31 Twiddle factors Generation:: </p>
@@ -802,9 +714,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv418twiddleCoef_32_q31">
-<span id="_CPPv318twiddleCoef_32_q31"></span><span id="_CPPv218twiddleCoef_32_q31"></span><span class="target" id="group__CFFT__CIFFT_1ga8ba78d5e6ef4bdc58e8f0044e0664a0a"></span><em class="property">const</em> q31_t <code class="sig-name descname">twiddleCoef_32_q31</code>[48]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga8ba78d5e6ef4bdc58e8f0044e0664a0a"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_32_q31</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">48</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Q31 Twiddle factors Generation:: </p>
 </dd>
@@ -820,9 +732,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv418twiddleCoef_64_q31">
-<span id="_CPPv318twiddleCoef_64_q31"></span><span id="_CPPv218twiddleCoef_64_q31"></span><span class="target" id="group__CFFT__CIFFT_1ga6e0a7e941a25a0d74b2e6590307de47e"></span><em class="property">const</em> q31_t <code class="sig-name descname">twiddleCoef_64_q31</code>[96]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga6e0a7e941a25a0d74b2e6590307de47e"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_64_q31</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">96</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Q31 Twiddle factors Generation:: </p>
 </dd>
@@ -838,9 +750,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv419twiddleCoef_128_q31">
-<span id="_CPPv319twiddleCoef_128_q31"></span><span id="_CPPv219twiddleCoef_128_q31"></span><span class="target" id="group__CFFT__CIFFT_1gafecf9ed9873415d9f5f17f37b30c7250"></span><em class="property">const</em> q31_t <code class="sig-name descname">twiddleCoef_128_q31</code>[192]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1gafecf9ed9873415d9f5f17f37b30c7250"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_128_q31</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">192</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Q31 Twiddle factors Generation:: </p>
 </dd>
@@ -856,9 +768,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv419twiddleCoef_256_q31">
-<span id="_CPPv319twiddleCoef_256_q31"></span><span id="_CPPv219twiddleCoef_256_q31"></span><span class="target" id="group__CFFT__CIFFT_1gaef1ea005053b715b851cf5f908168ede"></span><em class="property">const</em> q31_t <code class="sig-name descname">twiddleCoef_256_q31</code>[384]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1gaef1ea005053b715b851cf5f908168ede"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_256_q31</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">384</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Q31 Twiddle factors Generation:: </p>
 </dd>
@@ -874,9 +786,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv419twiddleCoef_512_q31">
-<span id="_CPPv319twiddleCoef_512_q31"></span><span id="_CPPv219twiddleCoef_512_q31"></span><span class="target" id="group__CFFT__CIFFT_1ga416c61b2f08542a39111e06b0378bebe"></span><em class="property">const</em> q31_t <code class="sig-name descname">twiddleCoef_512_q31</code>[768]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga416c61b2f08542a39111e06b0378bebe"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_512_q31</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">768</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Q31 Twiddle factors Generation:: </p>
 </dd>
@@ -892,9 +804,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv420twiddleCoef_1024_q31">
-<span id="_CPPv320twiddleCoef_1024_q31"></span><span id="_CPPv220twiddleCoef_1024_q31"></span><span class="target" id="group__CFFT__CIFFT_1ga514443c44b62b8b3d240afefebcda310"></span><em class="property">const</em> q31_t <code class="sig-name descname">twiddleCoef_1024_q31</code>[1536]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga514443c44b62b8b3d240afefebcda310"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_1024_q31</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">1536</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Q31 Twiddle factors Generation:: </p>
 </dd>
@@ -910,9 +822,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv420twiddleCoef_2048_q31">
-<span id="_CPPv320twiddleCoef_2048_q31"></span><span id="_CPPv220twiddleCoef_2048_q31"></span><span class="target" id="group__CFFT__CIFFT_1ga9c5767de9f5a409fd0c2027e6ac67179"></span><em class="property">const</em> q31_t <code class="sig-name descname">twiddleCoef_2048_q31</code>[3072]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga9c5767de9f5a409fd0c2027e6ac67179"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_2048_q31</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">3072</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Q31 Twiddle factors Generation:: </p>
 </dd>
@@ -928,9 +840,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv420twiddleCoef_4096_q31">
-<span id="_CPPv320twiddleCoef_4096_q31"></span><span id="_CPPv220twiddleCoef_4096_q31"></span><span class="target" id="group__CFFT__CIFFT_1ga67c0890317deab3391e276f22c1fc400"></span><em class="property">const</em> q31_t <code class="sig-name descname">twiddleCoef_4096_q31</code>[6144]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga67c0890317deab3391e276f22c1fc400"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_4096_q31</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">6144</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Q31 Twiddle factors Generation:: </p>
 </dd>
@@ -946,9 +858,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv418twiddleCoef_16_q15">
-<span id="_CPPv318twiddleCoef_16_q15"></span><span id="_CPPv218twiddleCoef_16_q15"></span><span class="target" id="group__CFFT__CIFFT_1ga8e4e2e05f4a3112184c96cb3308d6c39"></span><em class="property">const</em> q15_t <code class="sig-name descname">twiddleCoef_16_q15</code>[24]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga8e4e2e05f4a3112184c96cb3308d6c39"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_16_q15</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">24</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p>q15 Twiddle factors Table </p>
 <p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for q15 Twiddle factors Generation:: </p>
@@ -965,9 +877,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv418twiddleCoef_32_q15">
-<span id="_CPPv318twiddleCoef_32_q15"></span><span id="_CPPv218twiddleCoef_32_q15"></span><span class="target" id="group__CFFT__CIFFT_1gac194a4fe04a19051ae1811f69c6e5df2"></span><em class="property">const</em> q15_t <code class="sig-name descname">twiddleCoef_32_q15</code>[48]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1gac194a4fe04a19051ae1811f69c6e5df2"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_32_q15</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">48</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for q15 Twiddle factors Generation:: </p>
 </dd>
@@ -983,9 +895,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv418twiddleCoef_64_q15">
-<span id="_CPPv318twiddleCoef_64_q15"></span><span id="_CPPv218twiddleCoef_64_q15"></span><span class="target" id="group__CFFT__CIFFT_1gaa0cc411e0b3c82078e85cfdf1b84290f"></span><em class="property">const</em> q15_t <code class="sig-name descname">twiddleCoef_64_q15</code>[96]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1gaa0cc411e0b3c82078e85cfdf1b84290f"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_64_q15</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">96</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for q15 Twiddle factors Generation:: </p>
 </dd>
@@ -1001,9 +913,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv419twiddleCoef_128_q15">
-<span id="_CPPv319twiddleCoef_128_q15"></span><span id="_CPPv219twiddleCoef_128_q15"></span><span class="target" id="group__CFFT__CIFFT_1gabfdd1c5cd2b3f96da5fe5f07c707a8e5"></span><em class="property">const</em> q15_t <code class="sig-name descname">twiddleCoef_128_q15</code>[192]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1gabfdd1c5cd2b3f96da5fe5f07c707a8e5"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_128_q15</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">192</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for q15 Twiddle factors Generation:: </p>
 </dd>
@@ -1019,9 +931,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv419twiddleCoef_256_q15">
-<span id="_CPPv319twiddleCoef_256_q15"></span><span id="_CPPv219twiddleCoef_256_q15"></span><span class="target" id="group__CFFT__CIFFT_1ga6099ae5262a0a3a8d9ce1e6da02f0c2e"></span><em class="property">const</em> q15_t <code class="sig-name descname">twiddleCoef_256_q15</code>[384]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga6099ae5262a0a3a8d9ce1e6da02f0c2e"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_256_q15</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">384</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for q15 Twiddle factors Generation:: </p>
 </dd>
@@ -1037,9 +949,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv419twiddleCoef_512_q15">
-<span id="_CPPv319twiddleCoef_512_q15"></span><span id="_CPPv219twiddleCoef_512_q15"></span><span class="target" id="group__CFFT__CIFFT_1ga6152621af210f847128c6f38958fa385"></span><em class="property">const</em> q15_t <code class="sig-name descname">twiddleCoef_512_q15</code>[768]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga6152621af210f847128c6f38958fa385"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_512_q15</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">768</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for q15 Twiddle factors Generation:: </p>
 </dd>
@@ -1055,9 +967,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv420twiddleCoef_1024_q15">
-<span id="_CPPv320twiddleCoef_1024_q15"></span><span id="_CPPv220twiddleCoef_1024_q15"></span><span class="target" id="group__CFFT__CIFFT_1ga8a0ec95d866fe96b740e77d6e1356b59"></span><em class="property">const</em> q15_t <code class="sig-name descname">twiddleCoef_1024_q15</code>[1536]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga8a0ec95d866fe96b740e77d6e1356b59"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_1024_q15</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">1536</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for q15 Twiddle factors Generation:: </p>
 </dd>
@@ -1073,9 +985,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv420twiddleCoef_2048_q15">
-<span id="_CPPv320twiddleCoef_2048_q15"></span><span id="_CPPv220twiddleCoef_2048_q15"></span><span class="target" id="group__CFFT__CIFFT_1gadd16ce08ffd1048c385e0534a3b19cbb"></span><em class="property">const</em> q15_t <code class="sig-name descname">twiddleCoef_2048_q15</code>[3072]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1gadd16ce08ffd1048c385e0534a3b19cbb"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_2048_q15</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">3072</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for q15 Twiddle factors Generation:: </p>
 </dd>
@@ -1091,9 +1003,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv420twiddleCoef_4096_q15">
-<span id="_CPPv320twiddleCoef_4096_q15"></span><span id="_CPPv220twiddleCoef_4096_q15"></span><span class="target" id="group__CFFT__CIFFT_1ga9b409d6995eab17805b1d1881d4bc652"></span><em class="property">const</em> q15_t <code class="sig-name descname">twiddleCoef_4096_q15</code>[6144]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga9b409d6995eab17805b1d1881d4bc652"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoef_4096_q15</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">6144</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for q15 Twiddle factors Generation:: </p>
 </dd>
@@ -1109,9 +1021,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv417twiddleCoefF16_16">
-<span id="_CPPv317twiddleCoefF16_16"></span><span id="_CPPv217twiddleCoefF16_16"></span><span class="target" id="group__CFFT__CIFFT_1ga0712fc409d87a8db34051712b747663f"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_16</code>[32]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga0712fc409d87a8db34051712b747663f"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_16</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">32</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p>Floating-point Twiddle factors Table Generation. </p>
 <p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Floating-point Twiddle factors Generation: </p>
@@ -1126,9 +1038,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv417twiddleCoefF16_32">
-<span id="_CPPv317twiddleCoefF16_32"></span><span id="_CPPv217twiddleCoefF16_32"></span><span class="target" id="group__CFFT__CIFFT_1ga9f659df35a21f12f471dfae20b73d9f2"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_32</code>[64]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga9f659df35a21f12f471dfae20b73d9f2"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_32</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">64</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Floating-point Twiddle factors Generation: </p>
 </dd>
@@ -1142,9 +1054,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv417twiddleCoefF16_64">
-<span id="_CPPv317twiddleCoefF16_64"></span><span id="_CPPv217twiddleCoefF16_64"></span><span class="target" id="group__CFFT__CIFFT_1ga44e6449538e49e951b118d29d1712efa"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_64</code>[128]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga44e6449538e49e951b118d29d1712efa"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_64</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">128</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Floating-point Twiddle factors Generation: </p>
 </dd>
@@ -1158,9 +1070,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv418twiddleCoefF16_128">
-<span id="_CPPv318twiddleCoefF16_128"></span><span id="_CPPv218twiddleCoefF16_128"></span><span class="target" id="group__CFFT__CIFFT_1ga520dcb1deb9759e637a4d15712b5e54d"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_128</code>[256]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga520dcb1deb9759e637a4d15712b5e54d"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_128</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">256</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Floating-point Twiddle factors Generation: </p>
 </dd>
@@ -1174,9 +1086,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv418twiddleCoefF16_256">
-<span id="_CPPv318twiddleCoefF16_256"></span><span id="_CPPv218twiddleCoefF16_256"></span><span class="target" id="group__CFFT__CIFFT_1ga8c13337c591ad6d26896d1457624dd32"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_256</code>[512]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga8c13337c591ad6d26896d1457624dd32"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_256</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">512</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Floating-point Twiddle factors Generation: </p>
 </dd>
@@ -1190,9 +1102,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv418twiddleCoefF16_512">
-<span id="_CPPv318twiddleCoefF16_512"></span><span id="_CPPv218twiddleCoefF16_512"></span><span class="target" id="group__CFFT__CIFFT_1gae0926a83b411af580f91a9ee172b01d8"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_512</code>[1024]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1gae0926a83b411af580f91a9ee172b01d8"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_512</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">1024</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Floating-point Twiddle factors Generation: </p>
 </dd>
@@ -1206,9 +1118,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv419twiddleCoefF16_1024">
-<span id="_CPPv319twiddleCoefF16_1024"></span><span id="_CPPv219twiddleCoefF16_1024"></span><span class="target" id="group__CFFT__CIFFT_1gacb45d1f03e14f9b268eef10034fbcbdb"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_1024</code>[2048]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1gacb45d1f03e14f9b268eef10034fbcbdb"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_1024</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">2048</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Floating-point Twiddle factors Generation: </p>
 </dd>
@@ -1222,9 +1134,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv419twiddleCoefF16_2048">
-<span id="_CPPv319twiddleCoefF16_2048"></span><span id="_CPPv219twiddleCoefF16_2048"></span><span class="target" id="group__CFFT__CIFFT_1ga0a92c3c0905fd7afc2443d643583ee8b"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_2048</code>[4096]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga0a92c3c0905fd7afc2443d643583ee8b"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_2048</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">4096</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Floating-point Twiddle factors Generation: </p>
 </dd>
@@ -1238,9 +1150,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv419twiddleCoefF16_4096">
-<span id="_CPPv319twiddleCoefF16_4096"></span><span id="_CPPv219twiddleCoefF16_4096"></span><span class="target" id="group__CFFT__CIFFT_1ga94b170b59527155e38ee219d3ac06ba7"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_4096</code>[8192]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga94b170b59527155e38ee219d3ac06ba7"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_4096</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">8192</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Floating-point Twiddle factors Generation: </p>
 </dd>
@@ -1254,9 +1166,9 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv422twiddleCoefF16_rfft_32">
-<span id="_CPPv322twiddleCoefF16_rfft_32"></span><span id="_CPPv222twiddleCoefF16_rfft_32"></span><span class="target" id="group__CFFT__CIFFT_1ga5db2c2615b07d2954f2539f364205aa5"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_rfft_32</code>[32]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga5db2c2615b07d2954f2539f364205aa5"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_rfft_32</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">32</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Example code for Floating-point RFFT Twiddle factors Generation: </p>
 </dd>
@@ -1268,96 +1180,77 @@
 </p>
 </dd></dl>
 
-<dl class="member">
-<dt id="_CPPv422twiddleCoefF16_rfft_64">
-<span id="_CPPv322twiddleCoefF16_rfft_64"></span><span id="_CPPv222twiddleCoefF16_rfft_64"></span><span class="target" id="group__CFFT__CIFFT_1ga33aa532c5c6e33fff9c677a4684a6cff"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_rfft_64</code>[64]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga33aa532c5c6e33fff9c677a4684a6cff"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_rfft_64</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">64</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv423twiddleCoefF16_rfft_128">
-<span id="_CPPv323twiddleCoefF16_rfft_128"></span><span id="_CPPv223twiddleCoefF16_rfft_128"></span><span class="target" id="group__CFFT__CIFFT_1gaed6eea756947ae87cc744c284d507ce1"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_rfft_128</code>[128]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1gaed6eea756947ae87cc744c284d507ce1"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_rfft_128</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">128</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv423twiddleCoefF16_rfft_256">
-<span id="_CPPv323twiddleCoefF16_rfft_256"></span><span id="_CPPv223twiddleCoefF16_rfft_256"></span><span class="target" id="group__CFFT__CIFFT_1ga02d891a91bb6a105dca581ba7e2226a2"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_rfft_256</code>[256]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga02d891a91bb6a105dca581ba7e2226a2"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_rfft_256</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">256</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv423twiddleCoefF16_rfft_512">
-<span id="_CPPv323twiddleCoefF16_rfft_512"></span><span id="_CPPv223twiddleCoefF16_rfft_512"></span><span class="target" id="group__CFFT__CIFFT_1ga53ec40ffb2cb25c6b8fbcfc507de1bc9"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_rfft_512</code>[512]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga53ec40ffb2cb25c6b8fbcfc507de1bc9"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_rfft_512</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">512</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv424twiddleCoefF16_rfft_1024">
-<span id="_CPPv324twiddleCoefF16_rfft_1024"></span><span id="_CPPv224twiddleCoefF16_rfft_1024"></span><span class="target" id="group__CFFT__CIFFT_1ga57c0abf28b7dcead6d7254a4968afaf7"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_rfft_1024</code>[1024]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga57c0abf28b7dcead6d7254a4968afaf7"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_rfft_1024</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">1024</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv424twiddleCoefF16_rfft_2048">
-<span id="_CPPv324twiddleCoefF16_rfft_2048"></span><span id="_CPPv224twiddleCoefF16_rfft_2048"></span><span class="target" id="group__CFFT__CIFFT_1ga0e45fe586abf8be703ed209eaf18b0fe"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_rfft_2048</code>[2048]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga0e45fe586abf8be703ed209eaf18b0fe"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_rfft_2048</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">2048</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd></dd></dl>
 
-<dl class="member">
-<dt id="_CPPv424twiddleCoefF16_rfft_4096">
-<span id="_CPPv324twiddleCoefF16_rfft_4096"></span><span id="_CPPv224twiddleCoefF16_rfft_4096"></span><span class="target" id="group__CFFT__CIFFT_1ga190d7fce6e881c88942f5afdded987af"></span><em class="property">const</em> float16_t <code class="sig-name descname">twiddleCoefF16_rfft_4096</code>[4096]<br /></dt>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__CFFT__CIFFT_1ga190d7fce6e881c88942f5afdded987af"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twiddleCoefF16_rfft_4096</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">4096</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd></dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../api_dct4_idct4.html" class="btn btn-neutral float-right" title="DCT Type IV Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../api_complexfft.html" class="btn btn-neutral float-left" title="Complex FFT Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../api_complexfft.html" class="btn btn-neutral float-left" title="Complex FFT Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../api_dct4_idct4.html" class="btn btn-neutral float-right" title="DCT Type IV Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2019-Present, Nuclei
-      <span class="lastupdated">
-        Last updated on Mar 30, 2022.
-      </span>
-
-    </p>
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on Jan 05, 2023.
+      </span></p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

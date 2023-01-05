@@ -8,11 +8,14 @@ Here we will describe how to run the nmsis nn examples in Nuclei QEMU.
 Preparation
 -----------
 
-* Nuclei SDK, ``master`` branch(>= 0.3.7 release)
-* Nuclei RISCV GNU Toolchain 2022.04
-* Nuclei QEMU 2022.04
+* Nuclei SDK, ``master`` branch(>= 0.4.0 release)
+* Nuclei RISCV GNU Toolchain 2022.12
+* Nuclei QEMU 2022.12
 * CMake >= 3.14
-* Python 3
+* Python 3 and pip package requirements located in
+
+  * <nuclei-sdk>/tools/scripts/requirements.txt
+  * <NMSIS>/NMSIS/Scripts/requirements.txt
 
 Tool Setup
 ----------
@@ -28,31 +31,61 @@ Build NMSIS NN Library
 
 1. Download or clone NMSIS source code into **NMSIS** directory.
 2. cd to `NMSIS/NMSIS/` directory
-3. Build NMSIS NN library and strip debug information using ``make gen_nn_lib``
+3. Build NMSIS NN library optimized with Nuclei DSP N1 extension and strip debug information using ``make NUCLEI_DSP=N1 gen_nn_lib``
+
+   - Possible values of **NUCLEI_DSP** are ``NO, N1, N2, N3``.
+   - ``NUCLEI_DSP=NO`` means will not enable Nuclei N1/N2/N3 DSP extension to optimize library.
+   - ``NUCLEI_DSP=N1`` means will enable extra Nuclei N1 DSP extension to optimize library.
+   - ``NUCLEI_DSP=N2`` means will enable extra Nuclei N1/N2 DSP extension to optimize library.
+   - ``NUCLEI_DSP=N3`` means will enable extra Nuclei N1/N2/N3 DSP extension to optimize library.
+
 4. The nn library will be generated into ``./Library/NN/GCC`` folder
 5. The nn libraries will be look like this:
 
 .. code-block::
 
     $ ls -lh Library/NN/GCC/
-    total 13M
-    -rw-rw-r-- 1 hqfang nucleisys 425K Aug  6 16:10 libnmsis_nn_rv32imac.a
-    -rw-rw-r-- 1 hqfang nucleisys 743K Aug  6 16:10 libnmsis_nn_rv32imacp.a
-    -rw-rw-r-- 1 hqfang nucleisys 425K Aug  6 16:10 libnmsis_nn_rv32imafc.a
-    -rw-rw-r-- 1 hqfang nucleisys 743K Aug  6 16:10 libnmsis_nn_rv32imafcp.a
-    -rw-rw-r-- 1 hqfang nucleisys 425K Aug  6 16:10 libnmsis_nn_rv32imafdc.a
-    -rw-rw-r-- 1 hqfang nucleisys 743K Aug  6 16:10 libnmsis_nn_rv32imafdcp.a
-    -rw-rw-r-- 1 hqfang nucleisys 605K Aug  6 16:10 libnmsis_nn_rv64imac.a
-    -rw-rw-r-- 1 hqfang nucleisys 1.1M Aug  6 16:10 libnmsis_nn_rv64imacp.a
-    -rw-rw-r-- 1 hqfang nucleisys 606K Aug  6 16:10 libnmsis_nn_rv64imafc.a
-    -rw-rw-r-- 1 hqfang nucleisys 1.1M Aug  6 16:10 libnmsis_nn_rv64imafcp.a
-    -rw-rw-r-- 1 hqfang nucleisys 1.1M Aug  6 16:10 libnmsis_nn_rv64imafcpv.a
-    -rw-rw-r-- 1 hqfang nucleisys 931K Aug  6 16:10 libnmsis_nn_rv64imafcv.a
-    -rw-rw-r-- 1 hqfang nucleisys 606K Aug  6 16:10 libnmsis_nn_rv64imafdc.a
-    -rw-rw-r-- 1 hqfang nucleisys 1.1M Aug  6 16:10 libnmsis_nn_rv64imafdcp.a
-    -rw-rw-r-- 1 hqfang nucleisys 1.1M Aug  6 16:10 libnmsis_nn_rv64imafdcpv.a
-    -rw-rw-r-- 1 hqfang nucleisys 932K Aug  6 16:10 libnmsis_nn_rv64imafdcv.a
-
+    total 36M
+    -rw-r--r-- 1 hqfang hqfang 513K Dec 30 12:45 libnmsis_nn_rv32imac.a
+    -rw-r--r-- 1 hqfang hqfang 500K Dec 30 12:45 libnmsis_nn_rv32imacb.a
+    -rw-r--r-- 1 hqfang hqfang 829K Dec 30 12:45 libnmsis_nn_rv32imacbp.a
+    -rw-r--r-- 1 hqfang hqfang 842K Dec 30 12:45 libnmsis_nn_rv32imacp.a
+    -rw-r--r-- 1 hqfang hqfang 514K Dec 30 12:45 libnmsis_nn_rv32imafc.a
+    -rw-r--r-- 1 hqfang hqfang 507K Dec 30 12:45 libnmsis_nn_rv32imafcb.a
+    -rw-r--r-- 1 hqfang hqfang 841K Dec 30 12:45 libnmsis_nn_rv32imafcbp.a
+    -rw-r--r-- 1 hqfang hqfang 880K Dec 30 12:45 libnmsis_nn_rv32imafcbpv.a
+    -rw-r--r-- 1 hqfang hqfang 778K Dec 30 12:45 libnmsis_nn_rv32imafcbv.a
+    -rw-r--r-- 1 hqfang hqfang 853K Dec 30 12:45 libnmsis_nn_rv32imafcp.a
+    -rw-r--r-- 1 hqfang hqfang 890K Dec 30 12:45 libnmsis_nn_rv32imafcpv.a
+    -rw-r--r-- 1 hqfang hqfang 795K Dec 30 12:45 libnmsis_nn_rv32imafcv.a
+    -rw-r--r-- 1 hqfang hqfang 514K Dec 30 12:45 libnmsis_nn_rv32imafdc.a
+    -rw-r--r-- 1 hqfang hqfang 507K Dec 30 12:45 libnmsis_nn_rv32imafdcb.a
+    -rw-r--r-- 1 hqfang hqfang 842K Dec 30 12:45 libnmsis_nn_rv32imafdcbp.a
+    -rw-r--r-- 1 hqfang hqfang 880K Dec 30 12:45 libnmsis_nn_rv32imafdcbpv.a
+    -rw-r--r-- 1 hqfang hqfang 781K Dec 30 12:45 libnmsis_nn_rv32imafdcbv.a
+    -rw-r--r-- 1 hqfang hqfang 854K Dec 30 12:45 libnmsis_nn_rv32imafdcp.a
+    -rw-r--r-- 1 hqfang hqfang 890K Dec 30 12:45 libnmsis_nn_rv32imafdcpv.a
+    -rw-r--r-- 1 hqfang hqfang 798K Dec 30 12:45 libnmsis_nn_rv32imafdcv.a
+    -rw-r--r-- 1 hqfang hqfang 734K Dec 30 12:45 libnmsis_nn_rv64imac.a
+    -rw-r--r-- 1 hqfang hqfang 712K Dec 30 12:45 libnmsis_nn_rv64imacb.a
+    -rw-r--r-- 1 hqfang hqfang 1.2M Dec 30 12:45 libnmsis_nn_rv64imacbp.a
+    -rw-r--r-- 1 hqfang hqfang 1.3M Dec 30 12:45 libnmsis_nn_rv64imacp.a
+    -rw-r--r-- 1 hqfang hqfang 741K Dec 30 12:45 libnmsis_nn_rv64imafc.a
+    -rw-r--r-- 1 hqfang hqfang 719K Dec 30 12:45 libnmsis_nn_rv64imafcb.a
+    -rw-r--r-- 1 hqfang hqfang 1.3M Dec 30 12:45 libnmsis_nn_rv64imafcbp.a
+    -rw-r--r-- 1 hqfang hqfang 1.3M Dec 30 12:45 libnmsis_nn_rv64imafcbpv.a
+    -rw-r--r-- 1 hqfang hqfang 1.1M Dec 30 12:45 libnmsis_nn_rv64imafcbv.a
+    -rw-r--r-- 1 hqfang hqfang 1.3M Dec 30 12:45 libnmsis_nn_rv64imafcp.a
+    -rw-r--r-- 1 hqfang hqfang 1.3M Dec 30 12:45 libnmsis_nn_rv64imafcpv.a
+    -rw-r--r-- 1 hqfang hqfang 1.2M Dec 30 12:45 libnmsis_nn_rv64imafcv.a
+    -rw-r--r-- 1 hqfang hqfang 741K Dec 30 12:45 libnmsis_nn_rv64imafdc.a
+    -rw-r--r-- 1 hqfang hqfang 718K Dec 30 12:45 libnmsis_nn_rv64imafdcb.a
+    -rw-r--r-- 1 hqfang hqfang 1.3M Dec 30 12:45 libnmsis_nn_rv64imafdcbp.a
+    -rw-r--r-- 1 hqfang hqfang 1.3M Dec 30 12:45 libnmsis_nn_rv64imafdcbpv.a
+    -rw-r--r-- 1 hqfang hqfang 1.1M Dec 30 12:45 libnmsis_nn_rv64imafdcbv.a
+    -rw-r--r-- 1 hqfang hqfang 1.3M Dec 30 12:45 libnmsis_nn_rv64imafdcp.a
+    -rw-r--r-- 1 hqfang hqfang 1.3M Dec 30 12:45 libnmsis_nn_rv64imafdcpv.a
+    -rw-r--r-- 1 hqfang hqfang 1.2M Dec 30 12:45 libnmsis_nn_rv64imafdcv.a
 
 7. library name with extra ``p`` is build with RISCV DSP enabled.
 
@@ -69,7 +102,8 @@ Build NMSIS NN Library
     * You can also directly build both DSP and NN library using ``make gen``
     * You can strip the generated DSP and NN library using ``make strip``
     * DSP and Vector extension can be combined, such as ``p``, ``v`` and ``pv``
-    * Vector extension currently is only available with RISC-V 64 bit processor
+    * Vector extension currently enabled for RISC-V 32/64 bit processor
+    * RV32 Vector support are experimental, not stable, take care
 
 How to run
 ----------

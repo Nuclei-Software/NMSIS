@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['basic_20math_20functions',['Basic math functions',['../group__BasicMath.html',1,'']]],
-  ['buf',['buf',['../structnmsis__nn__context.html#af6e072db02d746a4dcd41c7af0bc9654',1,'nmsis_nn_context']]],
-  ['bytes',['bytes',['../unionriscv__nnword.html#a7d27a031fb02506228b668e145be3f69',1,'riscv_nnword']]],
-  ['basic_20math_20functions_20for_20neural_20network_20computation',['Basic Math Functions for Neural Network Computation',['../group__NNBasicMath.html',1,'']]]
+  ['activation_20functions',['Activation Functions',['../group__Acti.html',1,'']]],
+  ['activation',['activation',['../structnmsis__nn__conv__params.html#ab69c82a9c309672ae56624e7641c17df',1,'nmsis_nn_conv_params::activation()'],['../structnmsis__nn__dw__conv__params.html#a6f7006e262d7d710bc78d69adcde484e',1,'nmsis_nn_dw_conv_params::activation()'],['../structnmsis__nn__pool__params.html#a023eb47065accf2770132f704c49e125',1,'nmsis_nn_pool_params::activation()'],['../structnmsis__nn__fc__params.html#a6e7f75a5d79722f7d9b1c48f4e2d4f19',1,'nmsis_nn_fc_params::activation()']]]
 ];

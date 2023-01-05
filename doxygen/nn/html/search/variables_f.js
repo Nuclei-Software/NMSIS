@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['vec_5fdim',['vec_dim',['../namespacepara__gen.html#ad97bcbf0472c82d537ee41c0196e3b2a',1,'para_gen']]]
+  ['update_5fbias',['update_bias',['../namespacepara__gen.html#a6a760de2d5d35ba12aa7ed6ac274a7a2',1,'para_gen']]],
+  ['update_5fweight',['update_weight',['../namespacepara__gen.html#af930c2c37b3d6cc8f272f4425247d627',1,'para_gen']]]
 ];

@@ -30,7 +30,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-Core
-   &#160;<span id="projectnumber">Version 1.0.2</span>
+   &#160;<span id="projectnumber">Version 1.1.0</span>
    </div>
    <div id="projectbrief">NMSIS-Core support for Nuclei processor-based devices</div>
   </td>
@@ -88,31 +88,56 @@ $(document).ready(function(){initNavTree('structCLIC__Type.html','');});
 <div class="title">CLIC_Type Struct Reference<div class="ingroups"><a class="el" href="group__NMSIS__Core__Registers.html">Register Define and Type Definitions</a> &raquo; <a class="el" href="group__NMSIS__Core__ECLIC__Registers.html">Register Define and Type Definitions Of ECLIC</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Access to the structure of ECLIC Memory Map, which is compatible with TEE.  
+ <a href="structCLIC__Type.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
 <tr class="memitem:a9fd72fa34c705b1555a830e3563d29c4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__PeriphAccess.html#gab6caba5853a60a17e8e04499b52bf691">__IOM</a> uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLIC__Type.html#a9fd72fa34c705b1555a830e3563d29c4">CFG</a></td></tr>
 <tr class="memdesc:a9fd72fa34c705b1555a830e3563d29c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset: 0x000 (R/W) CLIC configuration register.  <a href="#a9fd72fa34c705b1555a830e3563d29c4">More...</a><br /></td></tr>
 <tr class="separator:a9fd72fa34c705b1555a830e3563d29c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9325067f5bd573505c648f30af8f4610"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLIC__Type.html#a9325067f5bd573505c648f30af8f4610">RESERVED0</a> [3]</td></tr>
-<tr class="separator:a9325067f5bd573505c648f30af8f4610"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60cac733dbb7d6bcf57e5a7ad5756dcd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__PeriphAccess.html#ga4cc1649793116d7c2d8afce7a4ffce43">__IM</a> uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLIC__Type.html#a60cac733dbb7d6bcf57e5a7ad5756dcd">RESERVED0</a> [3]</td></tr>
+<tr class="separator:a60cac733dbb7d6bcf57e5a7ad5756dcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72d9ef18be12cf79121c196e454bc4e7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__PeriphAccess.html#ga4cc1649793116d7c2d8afce7a4ffce43">__IM</a> uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLIC__Type.html#a72d9ef18be12cf79121c196e454bc4e7">INFO</a></td></tr>
 <tr class="memdesc:a72d9ef18be12cf79121c196e454bc4e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset: 0x004 (R/ ) CLIC information register.  <a href="#a72d9ef18be12cf79121c196e454bc4e7">More...</a><br /></td></tr>
 <tr class="separator:a72d9ef18be12cf79121c196e454bc4e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8de7f2c8f28c0bd9935739a1f4dea8d"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLIC__Type.html#ad8de7f2c8f28c0bd9935739a1f4dea8d">RESERVED1</a> [3]</td></tr>
-<tr class="separator:ad8de7f2c8f28c0bd9935739a1f4dea8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8148a5d321c024c3c8e8c733f3e42a5e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__PeriphAccess.html#ga4cc1649793116d7c2d8afce7a4ffce43">__IM</a> uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLIC__Type.html#a8148a5d321c024c3c8e8c733f3e42a5e">RESERVED1</a></td></tr>
+<tr class="separator:a8148a5d321c024c3c8e8c733f3e42a5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa723c3b11e73638d4752bf512a279286"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__PeriphAccess.html#gab6caba5853a60a17e8e04499b52bf691">__IOM</a> uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLIC__Type.html#aa723c3b11e73638d4752bf512a279286">STH</a></td></tr>
+<tr class="memdesc:aa723c3b11e73638d4752bf512a279286"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset: 0x009 (R/W ) CLIC supervisor mode interrupt-level threshold.  <a href="#aa723c3b11e73638d4752bf512a279286">More...</a><br /></td></tr>
+<tr class="separator:aa723c3b11e73638d4752bf512a279286"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a544bf5d8c304f1d874fd70e986e1522b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__PeriphAccess.html#ga4cc1649793116d7c2d8afce7a4ffce43">__IM</a> uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLIC__Type.html#a544bf5d8c304f1d874fd70e986e1522b">RESERVED3</a></td></tr>
+<tr class="separator:a544bf5d8c304f1d874fd70e986e1522b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb6fd4c418a7d2394ee740231685698c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__PeriphAccess.html#gab6caba5853a60a17e8e04499b52bf691">__IOM</a> uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLIC__Type.html#afb6fd4c418a7d2394ee740231685698c">MTH</a></td></tr>
-<tr class="memdesc:afb6fd4c418a7d2394ee740231685698c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset: 0x00B (R/W) CLIC machine mode threshold register.  <a href="#afb6fd4c418a7d2394ee740231685698c">More...</a><br /></td></tr>
+<tr class="memdesc:afb6fd4c418a7d2394ee740231685698c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset: 0x00B(R/W) CLIC machine mode interrupt-level threshold.  <a href="#afb6fd4c418a7d2394ee740231685698c">More...</a><br /></td></tr>
 <tr class="separator:afb6fd4c418a7d2394ee740231685698c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70fbd70805cfd06ecaecd11edffe2229"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLIC__Type.html#a70fbd70805cfd06ecaecd11edffe2229">RESERVED2</a> [0x3FD]</td></tr>
-<tr class="separator:a70fbd70805cfd06ecaecd11edffe2229"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc9d9a3708d1b18a12fc02eac2c75104"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCLIC__CTRL__Type.html">CLIC_CTRL_Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLIC__Type.html#adc9d9a3708d1b18a12fc02eac2c75104">CTRL</a> [4096]</td></tr>
-<tr class="memdesc:adc9d9a3708d1b18a12fc02eac2c75104"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset: 0x1000 (R/W) CLIC register structure for INTIP, INTIE, INTATTR, INTCTL.  <a href="#adc9d9a3708d1b18a12fc02eac2c75104">More...</a><br /></td></tr>
-<tr class="separator:adc9d9a3708d1b18a12fc02eac2c75104"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae155f9b30ba3b6dfef937344ec1316d"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLIC__Type.html#aae155f9b30ba3b6dfef937344ec1316d">RESERVED4</a> [1021]</td></tr>
+<tr class="separator:aae155f9b30ba3b6dfef937344ec1316d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6e0c94489a1a942a97f49c7eb39ebc4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCLIC__CTRL__Type.html">CLIC_CTRL_Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLIC__Type.html#ad6e0c94489a1a942a97f49c7eb39ebc4">CTRL</a> [1024]</td></tr>
+<tr class="memdesc:ad6e0c94489a1a942a97f49c7eb39ebc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset: 0x1000 (R/W) CLIC machine mode register structure for INTIP, INTIE, INTATTR, INTCTL.  <a href="#ad6e0c94489a1a942a97f49c7eb39ebc4">More...</a><br /></td></tr>
+<tr class="separator:ad6e0c94489a1a942a97f49c7eb39ebc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a614ad6ed76963fa6cd25c8959e757771"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__PeriphAccess.html#ga4cc1649793116d7c2d8afce7a4ffce43">__IM</a> uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLIC__Type.html#a614ad6ed76963fa6cd25c8959e757771">RESERVED5</a> [2]</td></tr>
+<tr class="separator:a614ad6ed76963fa6cd25c8959e757771"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3f46282f0d6ad9e61baa37520a4b21b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__PeriphAccess.html#ga4cc1649793116d7c2d8afce7a4ffce43">__IM</a> uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLIC__Type.html#af3f46282f0d6ad9e61baa37520a4b21b">RESERVED6</a></td></tr>
+<tr class="separator:af3f46282f0d6ad9e61baa37520a4b21b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c4496ec9a640cd25069f32098e81e78"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__PeriphAccess.html#gab6caba5853a60a17e8e04499b52bf691">__IOM</a> uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLIC__Type.html#a5c4496ec9a640cd25069f32098e81e78">SSTH</a></td></tr>
+<tr class="memdesc:a5c4496ec9a640cd25069f32098e81e78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset: 0x2009 (R) CLIC supervisor mode threshold register, which is a mirror to mintthresh.sth.  <a href="#a5c4496ec9a640cd25069f32098e81e78">More...</a><br /></td></tr>
+<tr class="separator:a5c4496ec9a640cd25069f32098e81e78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a3c4a6adbf38b09ff2818e999229737"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__PeriphAccess.html#ga4cc1649793116d7c2d8afce7a4ffce43">__IM</a> uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLIC__Type.html#a4a3c4a6adbf38b09ff2818e999229737">RESERVED7</a></td></tr>
+<tr class="separator:a4a3c4a6adbf38b09ff2818e999229737"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96e5b575f5ab7eae12df625050fd42c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__PeriphAccess.html#ga4cc1649793116d7c2d8afce7a4ffce43">__IM</a> uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLIC__Type.html#a96e5b575f5ab7eae12df625050fd42c2">RESERVED8</a></td></tr>
+<tr class="separator:a96e5b575f5ab7eae12df625050fd42c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5f62e27311276cfd134ed9bf36d39e4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__PeriphAccess.html#ga4cc1649793116d7c2d8afce7a4ffce43">__IM</a> uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLIC__Type.html#ac5f62e27311276cfd134ed9bf36d39e4">RESERVED9</a> [1021]</td></tr>
+<tr class="separator:ac5f62e27311276cfd134ed9bf36d39e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87d4cec6a709fb149ad00feec8ebb326"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCLIC__CTRL__Type.html">CLIC_CTRL_Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCLIC__Type.html#a87d4cec6a709fb149ad00feec8ebb326">SCTRL</a> [1024]</td></tr>
+<tr class="memdesc:a87d4cec6a709fb149ad00feec8ebb326"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset: 0x3000 (R/W) CLIC supervisor mode register structure for INTIP, INTIE, INTATTR, INTCTL.  <a href="#a87d4cec6a709fb149ad00feec8ebb326">More...</a><br /></td></tr>
+<tr class="separator:a87d4cec6a709fb149ad00feec8ebb326"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="core__feature__eclic_8h_source.html#l00087">87</a> of file <a class="el" href="core__feature__eclic_8h_source.html">core_feature_eclic.h</a>.</p>
+<div class="textblock"><p>Access to the structure of ECLIC Memory Map, which is compatible with TEE. </p>
+
+<p class="definition">Definition at line <a class="el" href="core__feature__eclic_8h_source.html#l00090">90</a> of file <a class="el" href="core__feature__eclic_8h_source.html">core_feature_eclic.h</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
 <a id="a9fd72fa34c705b1555a830e3563d29c4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9fd72fa34c705b1555a830e3563d29c4">&#9670;&nbsp;</a></span>CFG</h2>
@@ -128,25 +153,25 @@ Data Fields</h2></td></tr>
 
 <p>Offset: 0x000 (R/W) CLIC configuration register. </p>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__eclic_8h_source.html#l00088">88</a> of file <a class="el" href="core__feature__eclic_8h_source.html">core_feature_eclic.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__eclic_8h_source.html#l00091">91</a> of file <a class="el" href="core__feature__eclic_8h_source.html">core_feature_eclic.h</a>.</p>
 
 </div>
 </div>
-<a id="adc9d9a3708d1b18a12fc02eac2c75104"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adc9d9a3708d1b18a12fc02eac2c75104">&#9670;&nbsp;</a></span>CTRL</h2>
+<a id="ad6e0c94489a1a942a97f49c7eb39ebc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6e0c94489a1a942a97f49c7eb39ebc4">&#9670;&nbsp;</a></span>CTRL</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structCLIC__CTRL__Type.html">CLIC_CTRL_Type</a> CLIC_Type::CTRL[4096]</td>
+          <td class="memname"><a class="el" href="structCLIC__CTRL__Type.html">CLIC_CTRL_Type</a> CLIC_Type::CTRL[1024]</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Offset: 0x1000 (R/W) CLIC register structure for INTIP, INTIE, INTATTR, INTCTL. </p>
+<p>Offset: 0x1000 (R/W) CLIC machine mode register structure for INTIP, INTIE, INTATTR, INTCTL. </p>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__eclic_8h_source.html#l00094">94</a> of file <a class="el" href="core__feature__eclic_8h_source.html">core_feature_eclic.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__eclic_8h_source.html#l00104">104</a> of file <a class="el" href="core__feature__eclic_8h_source.html">core_feature_eclic.h</a>.</p>
 
 </div>
 </div>
@@ -164,7 +189,7 @@ Data Fields</h2></td></tr>
 
 <p>Offset: 0x004 (R/ ) CLIC information register. </p>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__eclic_8h_source.html#l00090">90</a> of file <a class="el" href="core__feature__eclic_8h_source.html">core_feature_eclic.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__eclic_8h_source.html#l00093">93</a> of file <a class="el" href="core__feature__eclic_8h_source.html">core_feature_eclic.h</a>.</p>
 
 </div>
 </div>
@@ -180,57 +205,207 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Offset: 0x00B (R/W) CLIC machine mode threshold register. </p>
+<p>Offset: 0x00B(R/W) CLIC machine mode interrupt-level threshold. </p>
+
+<p class="definition">Definition at line <a class="el" href="core__feature__eclic_8h_source.html#l00101">101</a> of file <a class="el" href="core__feature__eclic_8h_source.html">core_feature_eclic.h</a>.</p>
+
+</div>
+</div>
+<a id="a60cac733dbb7d6bcf57e5a7ad5756dcd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60cac733dbb7d6bcf57e5a7ad5756dcd">&#9670;&nbsp;</a></span>RESERVED0</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__PeriphAccess.html#ga4cc1649793116d7c2d8afce7a4ffce43">__IM</a> uint8_t CLIC_Type::RESERVED0[3]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="core__feature__eclic_8h_source.html#l00092">92</a> of file <a class="el" href="core__feature__eclic_8h_source.html">core_feature_eclic.h</a>.</p>
 
 </div>
 </div>
-<a id="a9325067f5bd573505c648f30af8f4610"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9325067f5bd573505c648f30af8f4610">&#9670;&nbsp;</a></span>RESERVED0</h2>
+<a id="a8148a5d321c024c3c8e8c733f3e42a5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8148a5d321c024c3c8e8c733f3e42a5e">&#9670;&nbsp;</a></span>RESERVED1</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t CLIC_Type::RESERVED0[3]</td>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__PeriphAccess.html#ga4cc1649793116d7c2d8afce7a4ffce43">__IM</a> uint8_t CLIC_Type::RESERVED1</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="core__feature__eclic_8h_source.html#l00089">89</a> of file <a class="el" href="core__feature__eclic_8h_source.html">core_feature_eclic.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__eclic_8h_source.html#l00094">94</a> of file <a class="el" href="core__feature__eclic_8h_source.html">core_feature_eclic.h</a>.</p>
 
 </div>
 </div>
-<a id="ad8de7f2c8f28c0bd9935739a1f4dea8d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad8de7f2c8f28c0bd9935739a1f4dea8d">&#9670;&nbsp;</a></span>RESERVED1</h2>
+<a id="a544bf5d8c304f1d874fd70e986e1522b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a544bf5d8c304f1d874fd70e986e1522b">&#9670;&nbsp;</a></span>RESERVED3</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t CLIC_Type::RESERVED1[3]</td>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__PeriphAccess.html#ga4cc1649793116d7c2d8afce7a4ffce43">__IM</a> uint8_t CLIC_Type::RESERVED3</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="core__feature__eclic_8h_source.html#l00091">91</a> of file <a class="el" href="core__feature__eclic_8h_source.html">core_feature_eclic.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__eclic_8h_source.html#l00100">100</a> of file <a class="el" href="core__feature__eclic_8h_source.html">core_feature_eclic.h</a>.</p>
 
 </div>
 </div>
-<a id="a70fbd70805cfd06ecaecd11edffe2229"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a70fbd70805cfd06ecaecd11edffe2229">&#9670;&nbsp;</a></span>RESERVED2</h2>
+<a id="aae155f9b30ba3b6dfef937344ec1316d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae155f9b30ba3b6dfef937344ec1316d">&#9670;&nbsp;</a></span>RESERVED4</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint32_t CLIC_Type::RESERVED2[0x3FD]</td>
+          <td class="memname">uint32_t CLIC_Type::RESERVED4[1021]</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="core__feature__eclic_8h_source.html#l00093">93</a> of file <a class="el" href="core__feature__eclic_8h_source.html">core_feature_eclic.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__eclic_8h_source.html#l00102">102</a> of file <a class="el" href="core__feature__eclic_8h_source.html">core_feature_eclic.h</a>.</p>
+
+</div>
+</div>
+<a id="a614ad6ed76963fa6cd25c8959e757771"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a614ad6ed76963fa6cd25c8959e757771">&#9670;&nbsp;</a></span>RESERVED5</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__PeriphAccess.html#ga4cc1649793116d7c2d8afce7a4ffce43">__IM</a> uint32_t CLIC_Type::RESERVED5[2]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="core__feature__eclic_8h_source.html#l00105">105</a> of file <a class="el" href="core__feature__eclic_8h_source.html">core_feature_eclic.h</a>.</p>
+
+</div>
+</div>
+<a id="af3f46282f0d6ad9e61baa37520a4b21b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3f46282f0d6ad9e61baa37520a4b21b">&#9670;&nbsp;</a></span>RESERVED6</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__PeriphAccess.html#ga4cc1649793116d7c2d8afce7a4ffce43">__IM</a> uint8_t CLIC_Type::RESERVED6</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="core__feature__eclic_8h_source.html#l00106">106</a> of file <a class="el" href="core__feature__eclic_8h_source.html">core_feature_eclic.h</a>.</p>
+
+</div>
+</div>
+<a id="a4a3c4a6adbf38b09ff2818e999229737"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a3c4a6adbf38b09ff2818e999229737">&#9670;&nbsp;</a></span>RESERVED7</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__PeriphAccess.html#ga4cc1649793116d7c2d8afce7a4ffce43">__IM</a> uint8_t CLIC_Type::RESERVED7</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="core__feature__eclic_8h_source.html#l00108">108</a> of file <a class="el" href="core__feature__eclic_8h_source.html">core_feature_eclic.h</a>.</p>
+
+</div>
+</div>
+<a id="a96e5b575f5ab7eae12df625050fd42c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96e5b575f5ab7eae12df625050fd42c2">&#9670;&nbsp;</a></span>RESERVED8</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__PeriphAccess.html#ga4cc1649793116d7c2d8afce7a4ffce43">__IM</a> uint8_t CLIC_Type::RESERVED8</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="core__feature__eclic_8h_source.html#l00109">109</a> of file <a class="el" href="core__feature__eclic_8h_source.html">core_feature_eclic.h</a>.</p>
+
+</div>
+</div>
+<a id="ac5f62e27311276cfd134ed9bf36d39e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5f62e27311276cfd134ed9bf36d39e4">&#9670;&nbsp;</a></span>RESERVED9</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__PeriphAccess.html#ga4cc1649793116d7c2d8afce7a4ffce43">__IM</a> uint32_t CLIC_Type::RESERVED9[1021]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="core__feature__eclic_8h_source.html#l00110">110</a> of file <a class="el" href="core__feature__eclic_8h_source.html">core_feature_eclic.h</a>.</p>
+
+</div>
+</div>
+<a id="a87d4cec6a709fb149ad00feec8ebb326"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87d4cec6a709fb149ad00feec8ebb326">&#9670;&nbsp;</a></span>SCTRL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structCLIC__CTRL__Type.html">CLIC_CTRL_Type</a> CLIC_Type::SCTRL[1024]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Offset: 0x3000 (R/W) CLIC supervisor mode register structure for INTIP, INTIE, INTATTR, INTCTL. </p>
+
+<p class="definition">Definition at line <a class="el" href="core__feature__eclic_8h_source.html#l00111">111</a> of file <a class="el" href="core__feature__eclic_8h_source.html">core_feature_eclic.h</a>.</p>
+
+</div>
+</div>
+<a id="a5c4496ec9a640cd25069f32098e81e78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c4496ec9a640cd25069f32098e81e78">&#9670;&nbsp;</a></span>SSTH</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__PeriphAccess.html#gab6caba5853a60a17e8e04499b52bf691">__IOM</a> uint8_t CLIC_Type::SSTH</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Offset: 0x2009 (R) CLIC supervisor mode threshold register, which is a mirror to mintthresh.sth. </p>
+
+<p class="definition">Definition at line <a class="el" href="core__feature__eclic_8h_source.html#l00107">107</a> of file <a class="el" href="core__feature__eclic_8h_source.html">core_feature_eclic.h</a>.</p>
+
+</div>
+</div>
+<a id="aa723c3b11e73638d4752bf512a279286"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa723c3b11e73638d4752bf512a279286">&#9670;&nbsp;</a></span>STH</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__PeriphAccess.html#gab6caba5853a60a17e8e04499b52bf691">__IOM</a> uint8_t CLIC_Type::STH</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Offset: 0x009 (R/W ) CLIC supervisor mode interrupt-level threshold. </p>
+
+<p class="definition">Definition at line <a class="el" href="core__feature__eclic_8h_source.html#l00096">96</a> of file <a class="el" href="core__feature__eclic_8h_source.html">core_feature_eclic.h</a>.</p>
 
 </div>
 </div>
@@ -240,7 +415,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="structCLIC__Type.html">CLIC_Type</a></li>
-    <li class="footer">Generated on Wed Mar 30 2022 07:44:59 for NMSIS-Core by
+    <li class="footer">Generated on Thu Jan 5 2023 09:05:07 for NMSIS-Core by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

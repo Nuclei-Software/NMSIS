@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['outfile',['outfile',['../namespacepara__gen.html#a55b26deee84c92c2927fd8565bd94eb4',1,'para_gen']]],
-  ['output_5factivation',['output_activation',['../structnmsis__nn__svdf__params.html#afbbb06c17f32db86fec3a979cc1cbda7',1,'nmsis_nn_svdf_params']]],
-  ['output_5foffset',['output_offset',['../structnmsis__nn__conv__params.html#ad217486a0f383011c6f3b8429fbfc80e',1,'nmsis_nn_conv_params::output_offset()'],['../structnmsis__nn__dw__conv__params.html#aba8ac5e66ded34508c6b4afa9d3fb2d4',1,'nmsis_nn_dw_conv_params::output_offset()'],['../structnmsis__nn__fc__params.html#a81d0dd4c414d1feed031db7aaccb7e41',1,'nmsis_nn_fc_params::output_offset()'],['../structnmsis__nn__svdf__params.html#ab4c5b6a99f247cd1a5f56fd8b7618dbf',1,'nmsis_nn_svdf_params::output_offset()']]]
+  ['max',['max',['../structnmsis__nn__activation.html#a5b16a906b065373a562b9124ea582390',1,'nmsis_nn_activation']]],
+  ['min',['min',['../structnmsis__nn__activation.html#a48362c23f271b9118bf8337b288c7917',1,'nmsis_nn_activation']]],
+  ['multiplier',['multiplier',['../structnmsis__nn__per__channel__quant__params.html#a7c5cfd043d06c78d422dcb2cf645337e',1,'nmsis_nn_per_channel_quant_params::multiplier()'],['../structnmsis__nn__per__tensor__quant__params.html#aa882d192b84006c68f172902704f7a8a',1,'nmsis_nn_per_tensor_quant_params::multiplier()']]]
 ];

@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['sep',['sep',['../namespacepara__gen.html#a5efaadf5b7405970389e76e8893caa49',1,'para_gen']]],
-  ['shift',['shift',['../structnmsis__nn__per__channel__quant__params.html#a8ac7fca431438156a06945ef54c7e125',1,'nmsis_nn_per_channel_quant_params::shift()'],['../structnmsis__nn__per__tensor__quant__params.html#a7277c0982c47d02ae4cfd2f135ea7ebe',1,'nmsis_nn_per_tensor_quant_params::shift()']]],
-  ['size',['size',['../structnmsis__nn__context.html#ac1de8a271e699d3dd20b5ec77bd423cd',1,'nmsis_nn_context']]],
-  ['stride',['stride',['../structnmsis__nn__conv__params.html#a521f35f3383a1eb27ab042967f0419c2',1,'nmsis_nn_conv_params::stride()'],['../structnmsis__nn__dw__conv__params.html#a5a889c2d278c93133c8984d33eabd05e',1,'nmsis_nn_dw_conv_params::stride()'],['../structnmsis__nn__pool__params.html#a7eadfa2ab9475d08ca419f2720b9f778',1,'nmsis_nn_pool_params::stride()']]]
+  ['rank',['rank',['../structnmsis__nn__svdf__params.html#a257ac48e9f0550777943cdd4d2c073ef',1,'nmsis_nn_svdf_params']]],
+  ['reset_5fbias',['reset_bias',['../namespacepara__gen.html#a2c6d0d2efdbea88b6090a1a4c3c13a52',1,'para_gen']]],
+  ['reset_5fweight',['reset_weight',['../namespacepara__gen.html#a9d940eaccbc2ec8d1da7d57dfabe7a6a',1,'para_gen']]],
+  ['row_5fdim',['row_dim',['../namespacepara__gen.html#a26cc0a96186b2e6b238d783d9364f14d',1,'para_gen']]]
 ];

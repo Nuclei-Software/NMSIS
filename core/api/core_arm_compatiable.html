@@ -1,75 +1,39 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>ARM Compatiable Functions &mdash; NMSIS 1.0.4 documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ARM Compatiable Functions &mdash; NMSIS 1.1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="NMSIS DSP" href="../../dsp/index.html" />
     <link rel="prev" title="System Device Configuration" href="core_system_device.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../../index.html">
-          
-
-          
-            
             <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                1.0.4
+                1.1.0
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -77,18 +41,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">NMSIS Core</a><ul class="current">
@@ -109,6 +63,7 @@
 <li class="toctree-l3"><a class="reference internal" href="core_interrupt_exception.html">Interrupts and Exceptions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_fpu.html">FPU Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_pmp.html">PMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_spmp.html">SPMP Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_cache.html">Cache Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_system_device.html">System Device Configuration</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">ARM Compatiable Functions</a></li>
@@ -123,316 +78,282 @@
 <li class="toctree-l1"><a class="reference internal" href="../../appendix.html">Appendix</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">NMSIS</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../index.html">NMSIS Core</a> &raquo;</li>
-        
           <li><a href="index.html">NMSIS Core API</a> &raquo;</li>
-        
       <li>ARM Compatiable Functions</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="../../_sources/core/api/core_arm_compatiable.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="arm-compatiable-functions">
-<span id="core-api-arm-compatiable-functions"></span><h1>ARM Compatiable Functions<a class="headerlink" href="#arm-compatiable-functions" title="Permalink to this headline">¶</a></h1>
-<dl class="group">
-<dt>
-<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions"></span><em>group</em> <code class="sig-name descname">NMSIS_Core_ARMCompatiable_Functions</code></dt>
+             
+  <section id="arm-compatiable-functions">
+<span id="core-api-arm-compatiable-functions"></span><h1>ARM Compatiable Functions<a class="headerlink" href="#arm-compatiable-functions" title="Permalink to this headline"></a></h1>
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">NMSIS_Core_ARMCompatiable_Functions</span></span></dt>
 <dd><p>A few functions that compatiable with ARM CMSIS-Core. </p>
 <p>Here we provided a few functions that compatiable with ARM CMSIS-Core, mostly used in the DSP and NN library. </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Defines</p>
-<dl class="macro">
-<dt id="c.__ISB">
-<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1gaad233022e850a009fc6f7602be1182f6"></span><code class="sig-name descname">__ISB</code><span class="sig-paren">(</span><span class="sig-paren">)</span> __RWMB()<a class="headerlink" href="#c.__ISB" title="Permalink to this definition">¶</a></dt>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__ISB">
+<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1gaad233022e850a009fc6f7602be1182f6"></span><span class="sig-name descname"><span class="n"><span class="pre">__ISB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">__RWMB</span><span class="pre">()</span><a class="headerlink" href="#c.__ISB" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Instruction Synchronization Barrier, compatiable with ARM. </p>
 </dd></dl>
 
-<dl class="macro">
-<dt id="c.__DSB">
-<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga067d257a2b34565410acefb5afef2203"></span><code class="sig-name descname">__DSB</code><span class="sig-paren">(</span><span class="sig-paren">)</span> __RWMB()<a class="headerlink" href="#c.__DSB" title="Permalink to this definition">¶</a></dt>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__DSB">
+<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga067d257a2b34565410acefb5afef2203"></span><span class="sig-name descname"><span class="n"><span class="pre">__DSB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">__RWMB</span><span class="pre">()</span><a class="headerlink" href="#c.__DSB" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Data Synchronization Barrier, compatiable with ARM. </p>
 </dd></dl>
 
-<dl class="macro">
-<dt id="c.__DMB">
-<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga671101179b5943990785f36f8c1e2269"></span><code class="sig-name descname">__DMB</code><span class="sig-paren">(</span><span class="sig-paren">)</span> __RWMB()<a class="headerlink" href="#c.__DMB" title="Permalink to this definition">¶</a></dt>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__DMB">
+<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga671101179b5943990785f36f8c1e2269"></span><span class="sig-name descname"><span class="n"><span class="pre">__DMB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">__RWMB</span><span class="pre">()</span><a class="headerlink" href="#c.__DMB" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Data Memory Barrier, compatiable with ARM. </p>
 </dd></dl>
 
-<dl class="macro">
-<dt id="c.__LDRBT">
-<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1gacf0a70f77355b4e92cbcf33294a2b834"></span><code class="sig-name descname">__LDRBT</code><span class="sig-paren">(</span>ptr<span class="sig-paren">)</span> __LB((ptr))<a class="headerlink" href="#c.__LDRBT" title="Permalink to this definition">¶</a></dt>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__LDRBT">
+<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1gacf0a70f77355b4e92cbcf33294a2b834"></span><span class="sig-name descname"><span class="n"><span class="pre">__LDRBT</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">ptr</span></span><span class="sig-paren">)</span> <span class="pre">__LB</span><span class="pre">((ptr))</span><a class="headerlink" href="#c.__LDRBT" title="Permalink to this definition"></a><br /></dt>
 <dd><p>LDRT Unprivileged (8 bit), ARM Compatiable. </p>
 </dd></dl>
 
-<dl class="macro">
-<dt id="c.__LDRHT">
-<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1gaa16005628f00d6fadfc10a51b47df494"></span><code class="sig-name descname">__LDRHT</code><span class="sig-paren">(</span>ptr<span class="sig-paren">)</span> __LH((ptr))<a class="headerlink" href="#c.__LDRHT" title="Permalink to this definition">¶</a></dt>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__LDRHT">
+<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1gaa16005628f00d6fadfc10a51b47df494"></span><span class="sig-name descname"><span class="n"><span class="pre">__LDRHT</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">ptr</span></span><span class="sig-paren">)</span> <span class="pre">__LH</span><span class="pre">((ptr))</span><a class="headerlink" href="#c.__LDRHT" title="Permalink to this definition"></a><br /></dt>
 <dd><p>LDRT Unprivileged (16 bit), ARM Compatiable. </p>
 </dd></dl>
 
-<dl class="macro">
-<dt id="c.__LDRT">
-<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga40e9941f772bbbe5b0d7aa39dbdbd256"></span><code class="sig-name descname">__LDRT</code><span class="sig-paren">(</span>ptr<span class="sig-paren">)</span> __LW((ptr))<a class="headerlink" href="#c.__LDRT" title="Permalink to this definition">¶</a></dt>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__LDRT">
+<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga40e9941f772bbbe5b0d7aa39dbdbd256"></span><span class="sig-name descname"><span class="n"><span class="pre">__LDRT</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">ptr</span></span><span class="sig-paren">)</span> <span class="pre">__LW</span><span class="pre">((ptr))</span><a class="headerlink" href="#c.__LDRT" title="Permalink to this definition"></a><br /></dt>
 <dd><p>LDRT Unprivileged (32 bit), ARM Compatiable. </p>
 </dd></dl>
 
-<dl class="macro">
-<dt id="c.__STRBT">
-<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga264313e3689fafe2a3f580c338e96c19"></span><code class="sig-name descname">__STRBT</code><span class="sig-paren">(</span>val, ptr<span class="sig-paren">)</span> __SB((ptr), (val))<a class="headerlink" href="#c.__STRBT" title="Permalink to this definition">¶</a></dt>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__STRBT">
+<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga264313e3689fafe2a3f580c338e96c19"></span><span class="sig-name descname"><span class="n"><span class="pre">__STRBT</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">val</span></span>, <span class="n"><span class="pre">ptr</span></span><span class="sig-paren">)</span> <span class="pre">__SB</span><span class="pre">((ptr),</span> <span class="pre">(val))</span><a class="headerlink" href="#c.__STRBT" title="Permalink to this definition"></a><br /></dt>
 <dd><p>STRT Unprivileged (8 bit), ARM Compatiable. </p>
 </dd></dl>
 
-<dl class="macro">
-<dt id="c.__STRHT">
-<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga2558a8bb23c4df33bdd206f36c46a911"></span><code class="sig-name descname">__STRHT</code><span class="sig-paren">(</span>val, ptr<span class="sig-paren">)</span> __SH((ptr), (val))<a class="headerlink" href="#c.__STRHT" title="Permalink to this definition">¶</a></dt>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__STRHT">
+<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga2558a8bb23c4df33bdd206f36c46a911"></span><span class="sig-name descname"><span class="n"><span class="pre">__STRHT</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">val</span></span>, <span class="n"><span class="pre">ptr</span></span><span class="sig-paren">)</span> <span class="pre">__SH</span><span class="pre">((ptr),</span> <span class="pre">(val))</span><a class="headerlink" href="#c.__STRHT" title="Permalink to this definition"></a><br /></dt>
 <dd><p>STRT Unprivileged (16 bit), ARM Compatiable. </p>
 </dd></dl>
 
-<dl class="macro">
-<dt id="c.__STRT">
-<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga643d41aafbfc031d31e1eac1d3b8f6fe"></span><code class="sig-name descname">__STRT</code><span class="sig-paren">(</span>val, ptr<span class="sig-paren">)</span> __SW((ptr), (val))<a class="headerlink" href="#c.__STRT" title="Permalink to this definition">¶</a></dt>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__STRT">
+<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga643d41aafbfc031d31e1eac1d3b8f6fe"></span><span class="sig-name descname"><span class="n"><span class="pre">__STRT</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">val</span></span>, <span class="n"><span class="pre">ptr</span></span><span class="sig-paren">)</span> <span class="pre">__SW</span><span class="pre">((ptr),</span> <span class="pre">(val))</span><a class="headerlink" href="#c.__STRT" title="Permalink to this definition"></a><br /></dt>
 <dd><p>STRT Unprivileged (32 bit), ARM Compatiable. </p>
 </dd></dl>
 
-<dl class="macro">
-<dt id="c.__SSAT">
-<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga2ca2b1eeec054ee2b02a5e8cb3c88cbf"></span><code class="sig-name descname">__SSAT</code><span class="sig-paren">(</span>val, sat<span class="sig-paren">)</span> __RV_SCLIP32((val), (sat-1))<a class="headerlink" href="#c.__SSAT" title="Permalink to this definition">¶</a></dt>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__SSAT">
+<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga2ca2b1eeec054ee2b02a5e8cb3c88cbf"></span><span class="sig-name descname"><span class="n"><span class="pre">__SSAT</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">val</span></span>, <span class="n"><span class="pre">sat</span></span><span class="sig-paren">)</span> <span class="pre">__RV_SCLIP32</span><span class="pre">((val),</span> <span class="pre">(sat-1))</span><a class="headerlink" href="#c.__SSAT" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Signed Saturate. </p>
-<p>Saturates a signed value. <dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>Saturated value </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">value</span></code>: Value to be saturated </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">sat</span></code>: Bit position to saturate to (1..32) </p></li>
+<p>Saturates a signed value. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> – <strong>[in]</strong> Value to be saturated </p></li>
+<li><p><strong>sat</strong> – <strong>[in]</strong> Bit position to saturate to (1..32) </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Saturated value </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="macro">
-<dt id="c.__USAT">
-<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga80269b6402db8ba034a5a1b04d88fdd6"></span><code class="sig-name descname">__USAT</code><span class="sig-paren">(</span>val, sat<span class="sig-paren">)</span> __RV_UCLIP32((val), (sat))<a class="headerlink" href="#c.__USAT" title="Permalink to this definition">¶</a></dt>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__USAT">
+<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga80269b6402db8ba034a5a1b04d88fdd6"></span><span class="sig-name descname"><span class="n"><span class="pre">__USAT</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">val</span></span>, <span class="n"><span class="pre">sat</span></span><span class="sig-paren">)</span> <span class="pre">__RV_UCLIP32</span><span class="pre">((val),</span> <span class="pre">(sat))</span><a class="headerlink" href="#c.__USAT" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Unsigned Saturate. </p>
-<p>Saturates an unsigned value. <dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>Saturated value </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">value</span></code>: Value to be saturated </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">sat</span></code>: Bit position to saturate to (0..31) </p></li>
+<p>Saturates an unsigned value. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> – <strong>[in]</strong> Value to be saturated </p></li>
+<li><p><strong>sat</strong> – <strong>[in]</strong> Bit position to saturate to (0..31) </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Saturated value </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="macro">
-<dt id="c.__RBIT">
-<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga0ffdc7f8b90076408f400768a7f5e372"></span><code class="sig-name descname">__RBIT</code><span class="sig-paren">(</span>value<span class="sig-paren">)</span> __RV_BITREVI((value), 31)<a class="headerlink" href="#c.__RBIT" title="Permalink to this definition">¶</a></dt>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__RBIT">
+<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga0ffdc7f8b90076408f400768a7f5e372"></span><span class="sig-name descname"><span class="n"><span class="pre">__RBIT</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">value</span></span><span class="sig-paren">)</span> <span class="pre">__RV_BITREVI</span><span class="pre">((value),</span> <span class="pre">31)</span><a class="headerlink" href="#c.__RBIT" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Reverse bit order of value. </p>
-<p>Reverses the bit order of the given value. <dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>Reversed value </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">value</span></code>: Value to reverse </p></li>
+<p>Reverses the bit order of the given value. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> – <strong>[in]</strong> Value to reverse </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Reversed value </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="macro">
-<dt id="c.__CLZ">
-<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1gacac866989a2f4d87628d02fd33fdc61d"></span><code class="sig-name descname">__CLZ</code><span class="sig-paren">(</span>data<span class="sig-paren">)</span> __RV_CLZ32(data)<a class="headerlink" href="#c.__CLZ" title="Permalink to this definition">¶</a></dt>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__CLZ">
+<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1gacac866989a2f4d87628d02fd33fdc61d"></span><span class="sig-name descname"><span class="n"><span class="pre">__CLZ</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">data</span></span><span class="sig-paren">)</span> <span class="pre">__RV_CLZ32</span><span class="pre">(data)</span><a class="headerlink" href="#c.__CLZ" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Count leading zeros. </p>
-<p>Counts the number of leading zeros of a data value. <dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>number of leading zeros in value </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">data</span></code>: Value to count the leading zeros </p></li>
+<p>Counts the number of leading zeros of a data value. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – <strong>[in]</strong> Value to count the leading zeros </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>number of leading zeros in value </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Functions</p>
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1gadb92679719950635fba8b1b954072695"></span><code class="sig-name descname">__STATIC_FORCEINLINE uint32_t __REV(uint32_t value)</code></dt>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1gadb92679719950635fba8b1b954072695"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">__REV</span> <span class="pre">(uint32_t</span> <span class="pre">value)</span></span></dt>
 <dd><p>Reverse byte order (32 bit) </p>
-<p>Reverses the byte order in unsigned integer value. For example, 0x12345678 becomes 0x78563412. <dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>Reversed value </p>
+<p>Reverses the byte order in unsigned integer value. For example, 0x12345678 becomes 0x78563412. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> – <strong>[in]</strong> Value to reverse </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">value</span></code>: Value to reverse </p></li>
-</ul>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Reversed value </p>
 </dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1gaa12aedd096506c9639c1581acd5c6a78"></span><code class="sig-name descname">__STATIC_FORCEINLINE uint32_t __REV16(uint32_t value)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1gaa12aedd096506c9639c1581acd5c6a78"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">__REV16</span> <span class="pre">(uint32_t</span> <span class="pre">value)</span></span></dt>
 <dd><p>Reverse byte order (16 bit) </p>
-<p>Reverses the byte order within each halfword of a word. For example, 0x12345678 becomes 0x34127856. <dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>Reversed value </p>
+<p>Reverses the byte order within each halfword of a word. For example, 0x12345678 becomes 0x34127856. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> – <strong>[in]</strong> Value to reverse </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">value</span></code>: Value to reverse </p></li>
-</ul>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Reversed value </p>
 </dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1gacb695341318226a5f69ed508166622ac"></span><code class="sig-name descname">__STATIC_FORCEINLINE int16_t __REVSH(int16_t value)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1gacb695341318226a5f69ed508166622ac"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int16_t</span> <span class="pre">__REVSH</span> <span class="pre">(int16_t</span> <span class="pre">value)</span></span></dt>
 <dd><p>Reverse byte order (16 bit) </p>
-<p>Reverses the byte order in a 16-bit value and returns the signed 16-bit result. For example, 0x0080 becomes 0x8000. <dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>Reversed value </p>
+<p>Reverses the byte order in a 16-bit value and returns the signed 16-bit result. For example, 0x0080 becomes 0x8000. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> – <strong>[in]</strong> Value to reverse </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">value</span></code>: Value to reverse </p></li>
-</ul>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Reversed value </p>
 </dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1gab16acb6456176f1e87a4f2724c2b6028"></span><code class="sig-name descname">__STATIC_FORCEINLINE uint32_t __ROR(uint32_t op1, uint32_t op2)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1gab16acb6456176f1e87a4f2724c2b6028"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">__ROR</span> <span class="pre">(uint32_t</span> <span class="pre">op1,</span> <span class="pre">uint32_t</span> <span class="pre">op2)</span></span></dt>
 <dd><p>Rotate Right in unsigned value (32 bit) </p>
-<p>Rotate Right (immediate) provides the value of the contents of a register rotated by a variable number of bits. <dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>Rotated value </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">op1</span></code>: Value to rotate </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">op2</span></code>: Number of Bits to rotate(0-31) </p></li>
+<p>Rotate Right (immediate) provides the value of the contents of a register rotated by a variable number of bits. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>op1</strong> – <strong>[in]</strong> Value to rotate </p></li>
+<li><p><strong>op2</strong> – <strong>[in]</strong> Number of Bits to rotate(0-31) </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Rotated value </p>
+</dd>
 </dl>
-</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga211738702768401adf8308c35e854ef3"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__CTZ</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">data)</span></span></dt>
+<dd><p>Count tailing zero. </p>
+<p>Return the count of least-significant bit zero.for example, return 3 if x=0bxxx1000 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> – <strong>[in]</strong> Value to count the tailing zeros </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>number of tailing zeros in value </p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../../dsp/index.html" class="btn btn-neutral float-right" title="NMSIS DSP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="core_system_device.html" class="btn btn-neutral float-left" title="System Device Configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="core_system_device.html" class="btn btn-neutral float-left" title="System Device Configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../dsp/index.html" class="btn btn-neutral float-right" title="NMSIS DSP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2019-Present, Nuclei
-      <span class="lastupdated">
-        Last updated on Mar 30, 2022.
-      </span>
-
-    </p>
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on Jan 05, 2023.
+      </span></p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

@@ -5,5 +5,6 @@ var searchData=
   ['a2',['A2',['../structriscv__pid__instance__q15.html#a558fbaa19a753ab0f2b749b1eadf8075',1,'riscv_pid_instance_q15::A2()'],['../structriscv__pid__instance__q31.html#a5cc1750fa28a44dd80014c4cdfa64035',1,'riscv_pid_instance_q31::A2()'],['../structriscv__pid__instance__f32.html#af9bf6c71851f6ded4b89350940eb3390',1,'riscv_pid_instance_f32::A2()']]],
   ['absolute_20maximum',['Absolute Maximum',['../group__AbsMax.html',1,'']]],
   ['absolute_20minimum',['Absolute Minimum',['../group__AbsMin.html',1,'']]],
-  ['alg',['alg',['../structriscv__sort__instance__f32.html#a218a5e08a94c46b8177f2c5de0adbf1e',1,'riscv_sort_instance_f32']]]
+  ['alg',['alg',['../structriscv__sort__instance__f32.html#a218a5e08a94c46b8177f2c5de0adbf1e',1,'riscv_sort_instance_f32']]],
+  ['arctan2',['ArcTan2',['../group__atan2.html',1,'']]]
 ];

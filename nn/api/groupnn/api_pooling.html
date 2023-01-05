@@ -1,75 +1,39 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Pooling Functions &mdash; NMSIS 1.0.4 documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pooling Functions &mdash; NMSIS 1.1.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Reshape Functions" href="api_reshape.html" />
     <link rel="prev" title="Fully-connected Layer Functions" href="api_fc.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../../../index.html">
-          
-
-          
-            
             <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                1.0.4
+                1.1.0
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -77,18 +41,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -123,273 +77,304 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">NMSIS</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../../index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../../index.html">NMSIS NN</a> &raquo;</li>
-        
           <li><a href="../index.html">NMSIS NN API</a> &raquo;</li>
-        
           <li><a href="../api_groupnn.html">Neural Network Functions</a> &raquo;</li>
-        
       <li>Pooling Functions</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="../../../_sources/nn/api/groupnn/api_pooling.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="pooling-functions">
-<span id="nmsis-nn-api-pooling-functions"></span><h1>Pooling Functions<a class="headerlink" href="#pooling-functions" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="_CPPv416riscv_avgpool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP4q7_t">
-<span id="_CPPv316riscv_avgpool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP4q7_t"></span><span id="_CPPv216riscv_avgpool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP4q7_t"></span><span id="riscv_avgpool_s8__nmsis_nn_contextCP.nmsis_nn_pool_paramsCP.nmsis_nn_dimsCP.q7_tCP.nmsis_nn_dimsCP.nmsis_nn_dimsCP.q7_tP"></span><span class="target" id="group__Pooling_1gafc4742a0e25482c38424da25628a873d"></span>riscv_status <code class="sig-name descname">riscv_avgpool_s8</code><span class="sig-paren">(</span><em class="property">const</em> nmsis_nn_context *<em>ctx</em>, <em class="property">const</em> nmsis_nn_pool_params *<em>pool_params</em>, <em class="property">const</em> nmsis_nn_dims *<em>input_dims</em>, <em class="property">const</em> q7_t *<em>input_data</em>, <em class="property">const</em> nmsis_nn_dims *<em>filter_dims</em>, <em class="property">const</em> nmsis_nn_dims *<em>output_dims</em>, q7_t *<em>output_data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416riscv_avgpool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP4q7_t" title="Permalink to this definition">¶</a><br /></dt>
+             
+  <section id="pooling-functions">
+<span id="nmsis-nn-api-pooling-functions"></span><h1>Pooling Functions<a class="headerlink" href="#pooling-functions" title="Permalink to this headline"></a></h1>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv417riscv_avgpool_s16PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK5q15_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP5q15_t">
+<span id="_CPPv317riscv_avgpool_s16PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK5q15_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP5q15_t"></span><span id="_CPPv217riscv_avgpool_s16PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK5q15_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP5q15_t"></span><span id="riscv_avgpool_s16__nmsis_nn_contextCP.nmsis_nn_pool_paramsCP.nmsis_nn_dimsCP.q15_tCP.nmsis_nn_dimsCP.nmsis_nn_dimsCP.q15_tP"></span><span class="target" id="group__Pooling_1ga5e98a793729db8f4153968c1e3e2777b"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_avgpool_s16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_context</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">ctx</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_pool_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pool_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">src</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417riscv_avgpool_s16PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK5q15_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP5q15_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv432riscv_avgpool_s8_get_buffer_sizeKiKi">
-<span id="_CPPv332riscv_avgpool_s8_get_buffer_sizeKiKi"></span><span id="_CPPv232riscv_avgpool_s8_get_buffer_sizeKiKi"></span><span id="riscv_avgpool_s8_get_buffer_size__iC.iC"></span><span class="target" id="group__Pooling_1ga632118d8940612a22eba8866bbe8b924"></span>int32_t <code class="sig-name descname">riscv_avgpool_s8_get_buffer_size</code><span class="sig-paren">(</span><em class="property">const</em> int <em>dim_dst_width</em>, <em class="property">const</em> int <em>ch_src</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv432riscv_avgpool_s8_get_buffer_sizeKiKi" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv433riscv_avgpool_s16_get_buffer_sizeKiKi">
+<span id="_CPPv333riscv_avgpool_s16_get_buffer_sizeKiKi"></span><span id="_CPPv233riscv_avgpool_s16_get_buffer_sizeKiKi"></span><span id="riscv_avgpool_s16_get_buffer_size__iC.iC"></span><span class="target" id="group__Pooling_1ga78f51f2113cb5d94c730f9faca34e9d5"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_avgpool_s16_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">output_x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ch_src</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433riscv_avgpool_s16_get_buffer_sizeKiKi" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv417riscv_max_pool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP4q7_t">
-<span id="_CPPv317riscv_max_pool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP4q7_t"></span><span id="_CPPv217riscv_max_pool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP4q7_t"></span><span id="riscv_max_pool_s8__nmsis_nn_contextCP.nmsis_nn_pool_paramsCP.nmsis_nn_dimsCP.q7_tCP.nmsis_nn_dimsCP.nmsis_nn_dimsCP.q7_tP"></span><span class="target" id="group__Pooling_1ga1a1a793e01426883dd94efb50b0053e3"></span>riscv_status <code class="sig-name descname">riscv_max_pool_s8</code><span class="sig-paren">(</span><em class="property">const</em> nmsis_nn_context *<em>ctx</em>, <em class="property">const</em> nmsis_nn_pool_params *<em>pool_params</em>, <em class="property">const</em> nmsis_nn_dims *<em>input_dims</em>, <em class="property">const</em> q7_t *<em>input_data</em>, <em class="property">const</em> nmsis_nn_dims *<em>filter_dims</em>, <em class="property">const</em> nmsis_nn_dims *<em>output_dims</em>, q7_t *<em>output_data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417riscv_max_pool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP4q7_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv416riscv_avgpool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP4q7_t">
+<span id="_CPPv316riscv_avgpool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP4q7_t"></span><span id="_CPPv216riscv_avgpool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP4q7_t"></span><span id="riscv_avgpool_s8__nmsis_nn_contextCP.nmsis_nn_pool_paramsCP.nmsis_nn_dimsCP.q7_tCP.nmsis_nn_dimsCP.nmsis_nn_dimsCP.q7_tP"></span><span class="target" id="group__Pooling_1gafc4742a0e25482c38424da25628a873d"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_avgpool_s8</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_context</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">ctx</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_pool_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pool_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">src</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416riscv_avgpool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP4q7_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv420riscv_maxpool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t">
-<span id="_CPPv320riscv_maxpool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t"></span><span id="_CPPv220riscv_maxpool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t"></span><span id="riscv_maxpool_q7_HWC__q7_tP.uint16_tC.uint16_tC.uint16_tC.uint16_tC.uint16_tC.uint16_tC.q7_tP.q7_tP"></span><span class="target" id="group__Pooling_1gad7cc16cadfeb14ccfe21a43f0a0a98ee"></span>void <code class="sig-name descname">riscv_maxpool_q7_HWC</code><span class="sig-paren">(</span>q7_t *<em>Im_in</em>, <em class="property">const</em> uint16_t <em>dim_im_in</em>, <em class="property">const</em> uint16_t <em>ch_im_in</em>, <em class="property">const</em> uint16_t <em>dim_kernel</em>, <em class="property">const</em> uint16_t <em>padding</em>, <em class="property">const</em> uint16_t <em>stride</em>, <em class="property">const</em> uint16_t <em>dim_im_out</em>, q7_t *<em>bufferA</em>, q7_t *<em>Im_out</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420riscv_maxpool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv432riscv_avgpool_s8_get_buffer_sizeKiKi">
+<span id="_CPPv332riscv_avgpool_s8_get_buffer_sizeKiKi"></span><span id="_CPPv232riscv_avgpool_s8_get_buffer_sizeKiKi"></span><span id="riscv_avgpool_s8_get_buffer_size__iC.iC"></span><span class="target" id="group__Pooling_1ga632118d8940612a22eba8866bbe8b924"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_avgpool_s8_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">output_x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ch_src</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv432riscv_avgpool_s8_get_buffer_sizeKiKi" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv420riscv_avepool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t">
-<span id="_CPPv320riscv_avepool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t"></span><span id="_CPPv220riscv_avepool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t"></span><span id="riscv_avepool_q7_HWC__q7_tP.uint16_tC.uint16_tC.uint16_tC.uint16_tC.uint16_tC.uint16_tC.q7_tP.q7_tP"></span><span class="target" id="group__Pooling_1ga667c1b6d57466cb5ce7e4c41cb79f7d7"></span>void <code class="sig-name descname">riscv_avepool_q7_HWC</code><span class="sig-paren">(</span>q7_t *<em>Im_in</em>, <em class="property">const</em> uint16_t <em>dim_im_in</em>, <em class="property">const</em> uint16_t <em>ch_im_in</em>, <em class="property">const</em> uint16_t <em>dim_kernel</em>, <em class="property">const</em> uint16_t <em>padding</em>, <em class="property">const</em> uint16_t <em>stride</em>, <em class="property">const</em> uint16_t <em>dim_im_out</em>, q7_t *<em>bufferA</em>, q7_t *<em>Im_out</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420riscv_avepool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv418riscv_max_pool_s16PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK7int16_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP7int16_t">
+<span id="_CPPv318riscv_max_pool_s16PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK7int16_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP7int16_t"></span><span id="_CPPv218riscv_max_pool_s16PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK7int16_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP7int16_t"></span><span id="riscv_max_pool_s16__nmsis_nn_contextCP.nmsis_nn_pool_paramsCP.nmsis_nn_dimsCP.int16_tCP.nmsis_nn_dimsCP.nmsis_nn_dimsCP.int16_tP"></span><span class="target" id="group__Pooling_1ga6adf7a64922112bede4d64d94e9a4458"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_max_pool_s16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_context</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">ctx</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_pool_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pool_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">src</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span>, <span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418riscv_max_pool_s16PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK7int16_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP7int16_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="group">
-<dt>
-<span class="target" id="group__Pooling"></span><em>group</em> <code class="sig-name descname">Pooling</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv417riscv_max_pool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP4q7_t">
+<span id="_CPPv317riscv_max_pool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP4q7_t"></span><span id="_CPPv217riscv_max_pool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP4q7_t"></span><span id="riscv_max_pool_s8__nmsis_nn_contextCP.nmsis_nn_pool_paramsCP.nmsis_nn_dimsCP.q7_tCP.nmsis_nn_dimsCP.nmsis_nn_dimsCP.q7_tP"></span><span class="target" id="group__Pooling_1ga1a1a793e01426883dd94efb50b0053e3"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_max_pool_s8</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_context</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">ctx</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_pool_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pool_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">src</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417riscv_max_pool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP4q7_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv420riscv_maxpool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t">
+<span id="_CPPv320riscv_maxpool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t"></span><span id="_CPPv220riscv_maxpool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t"></span><span id="riscv_maxpool_q7_HWC__q7_tP.uint16_tC.uint16_tC.uint16_tC.uint16_tC.uint16_tC.uint16_tC.q7_tP.q7_tP"></span><span class="target" id="group__Pooling_1gad7cc16cadfeb14ccfe21a43f0a0a98ee"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_maxpool_q7_HWC</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">Im_in</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">dim_im_in</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ch_im_in</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">dim_kernel</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">padding</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">stride</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">dim_im_out</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">bufferA</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">Im_out</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420riscv_maxpool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv420riscv_avepool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t">
+<span id="_CPPv320riscv_avepool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t"></span><span id="_CPPv220riscv_avepool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t"></span><span id="riscv_avepool_q7_HWC__q7_tP.uint16_tC.uint16_tC.uint16_tC.uint16_tC.uint16_tC.uint16_tC.q7_tP.q7_tP"></span><span class="target" id="group__Pooling_1ga667c1b6d57466cb5ce7e4c41cb79f7d7"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_avepool_q7_HWC</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">Im_in</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">dim_im_in</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ch_im_in</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">dim_kernel</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">padding</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">stride</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">dim_im_out</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">bufferA</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">Im_out</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420riscv_avepool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Pooling"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Pooling</span></span></dt>
 <dd><p>Perform pooling functions, including max pooling and average pooling </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Functions</p>
-<dl class="function">
-<dt id="_CPPv416riscv_avgpool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP4q7_t">
-<span id="_CPPv316riscv_avgpool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP4q7_t"></span><span id="_CPPv216riscv_avgpool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP4q7_t"></span><span class="target" id="group__Pooling_1gafc4742a0e25482c38424da25628a873d"></span>riscv_status <code class="sig-name descname">riscv_avgpool_s8</code><span class="sig-paren">(</span><em class="property">const</em> nmsis_nn_context *<em>ctx</em>, <em class="property">const</em> nmsis_nn_pool_params *<em>pool_params</em>, <em class="property">const</em> nmsis_nn_dims *<em>input_dims</em>, <em class="property">const</em> q7_t *<em>input_data</em>, <em class="property">const</em> nmsis_nn_dims *<em>filter_dims</em>, <em class="property">const</em> nmsis_nn_dims *<em>output_dims</em>, q7_t *<em>output_data</em><span class="sig-paren">)</span><br /></dt>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Pooling_1ga5e98a793729db8f4153968c1e3e2777b"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_avgpool_s16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_context</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">ctx</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_pool_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pool_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">src</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>s16 average pooling function. </p>
+<p><ul class="simple">
+<li><p>Supported Framework: TensorFlow Lite </p></li>
+</ul>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> – <strong>[inout]</strong> Function context (e.g. temporary buffer). Check the function definition file to see if an additional buffer is required. Optional function {API}_get_buffer_size() provides the buffer size if an additional buffer is required. </p></li>
+<li><p><strong>pool_params</strong> – <strong>[in]</strong> Pooling parameters </p></li>
+<li><p><strong>input_dims</strong> – <strong>[in]</strong> Input (activation) tensor dimensions. Format: [H, W, C_IN] Argument ‘N’ is not used. </p></li>
+<li><p><strong>input_data</strong> – <strong>[in]</strong> Input (activation) data pointer. Data type: int16 </p></li>
+<li><p><strong>filter_dims</strong> – <strong>[in]</strong> Filter tensor dimensions. Format: [H, W] Argument N and C are not used. </p></li>
+<li><p><strong>output_dims</strong> – <strong>[in]</strong> Output tensor dimensions. Format: [H, W, C_OUT] Argument N is not used. C_OUT equals C_IN. </p></li>
+<li><p><strong>output_data</strong> – <strong>[inout]</strong> Output data pointer. Data type: int16 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code> - Successful operation</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Pooling_1ga78f51f2113cb5d94c730f9faca34e9d5"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_avgpool_s16_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">output_x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ch_src</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Get the required buffer size for S16 average pooling function. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dim_dst_width</strong> – <strong>[in]</strong> output tensor dimension </p></li>
+<li><p><strong>ch_src</strong> – <strong>[in]</strong> number of input tensor channels </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The function returns required buffer size in bytes </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Pooling_1gafc4742a0e25482c38424da25628a873d"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_avgpool_s8</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_context</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">ctx</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_pool_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pool_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">src</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>s8 average pooling function. </p>
 <p><ul class="simple">
 <li><p>Supported Framework: TensorFlow Lite </p></li>
 </ul>
-<dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code> - Successful operation</p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">ctx</span></code>: Function context (e.g. temporary buffer). Check the function definition file to see if an additional buffer is required. Optional function {API}_get_buffer_size() provides the buffer size if an additional buffer is required. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pool_params</span></code>: Pooling parameters </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">input_dims</span></code>: Input (activation) tensor dimensions. Format: [H, W, C_IN] Argument ‘N’ is not used. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">input_data</span></code>: Input (activation) data pointer. Data type: int8 </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">filter_dims</span></code>: Filter tensor dimensions. Format: [H, W] Argument N and C are not used. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">output_dims</span></code>: Output tensor dimensions. Format: [H, W, C_OUT] Argument N is not used. C_OUT equals C_IN. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">output_data</span></code>: Output data pointer. Data type: int8 </p></li>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> – <strong>[inout]</strong> Function context (e.g. temporary buffer). Check the function definition file to see if an additional buffer is required. Optional function {API}_get_buffer_size() provides the buffer size if an additional buffer is required. </p></li>
+<li><p><strong>pool_params</strong> – <strong>[in]</strong> Pooling parameters </p></li>
+<li><p><strong>input_dims</strong> – <strong>[in]</strong> Input (activation) tensor dimensions. Format: [H, W, C_IN] Argument ‘N’ is not used. </p></li>
+<li><p><strong>input_data</strong> – <strong>[in]</strong> Input (activation) data pointer. Data type: int8 </p></li>
+<li><p><strong>filter_dims</strong> – <strong>[in]</strong> Filter tensor dimensions. Format: [H, W] Argument N and C are not used. </p></li>
+<li><p><strong>output_dims</strong> – <strong>[in]</strong> Output tensor dimensions. Format: [H, W, C_OUT] Argument N is not used. C_OUT equals C_IN. </p></li>
+<li><p><strong>output_data</strong> – <strong>[inout]</strong> Output data pointer. Data type: int8 </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code> - Successful operation</p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv432riscv_avgpool_s8_get_buffer_sizeKiKi">
-<span id="_CPPv332riscv_avgpool_s8_get_buffer_sizeKiKi"></span><span id="_CPPv232riscv_avgpool_s8_get_buffer_sizeKiKi"></span><span class="target" id="group__Pooling_1ga632118d8940612a22eba8866bbe8b924"></span>int32_t <code class="sig-name descname">riscv_avgpool_s8_get_buffer_size</code><span class="sig-paren">(</span><em class="property">const</em> int <em>dim_dst_width</em>, <em class="property">const</em> int <em>ch_src</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Pooling_1ga632118d8940612a22eba8866bbe8b924"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_avgpool_s8_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">output_x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ch_src</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Get the required buffer size for S8 average pooling function. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>The function returns required buffer size in bytes </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_dst_width</span></code>: output tensor dimension </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ch_src</span></code>: number of input tensor channels </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dim_dst_width</strong> – <strong>[in]</strong> output tensor dimension </p></li>
+<li><p><strong>ch_src</strong> – <strong>[in]</strong> number of input tensor channels </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The function returns required buffer size in bytes </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv417riscv_max_pool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP4q7_t">
-<span id="_CPPv317riscv_max_pool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP4q7_t"></span><span id="_CPPv217riscv_max_pool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK4q7_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP4q7_t"></span><span class="target" id="group__Pooling_1ga1a1a793e01426883dd94efb50b0053e3"></span>riscv_status <code class="sig-name descname">riscv_max_pool_s8</code><span class="sig-paren">(</span><em class="property">const</em> nmsis_nn_context *<em>ctx</em>, <em class="property">const</em> nmsis_nn_pool_params *<em>pool_params</em>, <em class="property">const</em> nmsis_nn_dims *<em>input_dims</em>, <em class="property">const</em> q7_t *<em>input_data</em>, <em class="property">const</em> nmsis_nn_dims *<em>filter_dims</em>, <em class="property">const</em> nmsis_nn_dims *<em>output_dims</em>, q7_t *<em>output_data</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Pooling_1ga6adf7a64922112bede4d64d94e9a4458"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_max_pool_s16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_context</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">ctx</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_pool_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pool_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">src</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span>, <span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>s16 max pooling function. </p>
+<p><ul class="simple">
+<li><p>Supported Framework: TensorFlow Lite </p></li>
+</ul>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> – <strong>[inout]</strong> Function context (e.g. temporary buffer). Check the function definition file to see if an additional buffer is required. Optional function {API}_get_buffer_size() provides the buffer size if an additional buffer is required. </p></li>
+<li><p><strong>pool_params</strong> – <strong>[in]</strong> Pooling parameters </p></li>
+<li><p><strong>input_dims</strong> – <strong>[in]</strong> Input (activation) tensor dimensions. Format: [H, W, C_IN] Argument ‘N’ is not used. </p></li>
+<li><p><strong>src</strong> – <strong>[in]</strong> Input (activation) data pointer. The input tensor must not overlap with the output tensor. Data type: int16 </p></li>
+<li><p><strong>filter_dims</strong> – <strong>[in]</strong> Filter tensor dimensions. Format: [H, W] Argument N and C are not used. </p></li>
+<li><p><strong>output_dims</strong> – <strong>[in]</strong> Output tensor dimensions. Format: [H, W, C_OUT] Argument N is not used. C_OUT equals C_IN. </p></li>
+<li><p><strong>dst</strong> – <strong>[inout]</strong> Output data pointer. Data type: int16 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code> - Successful operation</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Pooling_1ga1a1a793e01426883dd94efb50b0053e3"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_max_pool_s8</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_context</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">ctx</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_pool_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pool_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">src</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>s8 max pooling function. </p>
 <p><ul class="simple">
 <li><p>Supported Framework: TensorFlow Lite </p></li>
 </ul>
-<dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code> - Successful operation</p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">ctx</span></code>: Function context (e.g. temporary buffer). Check the function definition file to see if an additional buffer is required. Optional function {API}_get_buffer_size() provides the buffer size if an additional buffer is required. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pool_params</span></code>: Pooling parameters </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">input_dims</span></code>: Input (activation) tensor dimensions. Format: [H, W, C_IN] Argument ‘N’ is not used. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">input_data</span></code>: Input (activation) data pointer. Data type: int8 </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">filter_dims</span></code>: Filter tensor dimensions. Format: [H, W] Argument N and C are not used. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">output_dims</span></code>: Output tensor dimensions. Format: [H, W, C_OUT] Argument N is not used. C_OUT equals C_IN. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">output_data</span></code>: Output data pointer. Data type: int8 </p></li>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> – <strong>[inout]</strong> Function context (e.g. temporary buffer). Check the function definition file to see if an additional buffer is required. Optional function {API}_get_buffer_size() provides the buffer size if an additional buffer is required. </p></li>
+<li><p><strong>pool_params</strong> – <strong>[in]</strong> Pooling parameters </p></li>
+<li><p><strong>input_dims</strong> – <strong>[in]</strong> Input (activation) tensor dimensions. Format: [H, W, C_IN] Argument ‘N’ is not used. </p></li>
+<li><p><strong>input_data</strong> – <strong>[in]</strong> Input (activation) data pointer. The input tensor must not overlap with the output tensor. Data type: int8 </p></li>
+<li><p><strong>filter_dims</strong> – <strong>[in]</strong> Filter tensor dimensions. Format: [H, W] Argument N and C are not used. </p></li>
+<li><p><strong>output_dims</strong> – <strong>[in]</strong> Output tensor dimensions. Format: [H, W, C_OUT] Argument N is not used. C_OUT equals C_IN. </p></li>
+<li><p><strong>output_data</strong> – <strong>[inout]</strong> Output data pointer. Data type: int8 </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code> - Successful operation</p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv420riscv_maxpool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t">
-<span id="_CPPv320riscv_maxpool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t"></span><span id="_CPPv220riscv_maxpool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t"></span><span class="target" id="group__Pooling_1gad7cc16cadfeb14ccfe21a43f0a0a98ee"></span>void <code class="sig-name descname">riscv_maxpool_q7_HWC</code><span class="sig-paren">(</span>q7_t *<em>Im_in</em>, <em class="property">const</em> uint16_t <em>dim_im_in</em>, <em class="property">const</em> uint16_t <em>ch_im_in</em>, <em class="property">const</em> uint16_t <em>dim_kernel</em>, <em class="property">const</em> uint16_t <em>padding</em>, <em class="property">const</em> uint16_t <em>stride</em>, <em class="property">const</em> uint16_t <em>dim_im_out</em>, q7_t *<em>bufferA</em>, q7_t *<em>Im_out</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Pooling_1gad7cc16cadfeb14ccfe21a43f0a0a98ee"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_maxpool_q7_HWC</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">Im_in</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">dim_im_in</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ch_im_in</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">dim_kernel</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">padding</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">stride</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">dim_im_out</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">bufferA</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">Im_out</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q7 max pooling function. </p>
-<p><p>The pooling function is implemented as split x-pooling then y-pooling.</p>
-<dl class="simple">
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">Im_in</span></code>: pointer to input tensor </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_in</span></code>: input tensor dimention </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ch_im_in</span></code>: number of input tensor channels </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_kernel</span></code>: filter kernel size </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">padding</span></code>: padding sizes </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">stride</span></code>: convolution stride </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_out</span></code>: output tensor dimension </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">bufferA</span></code>: Not used </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">Im_out</span></code>: pointer to output tensor</p></li>
+<p>
+The pooling function is implemented as split x-pooling then y-pooling.</p>
+<p>This pooling function is input-destructive. Input data is undefined after calling this function. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Im_in</strong> – <strong>[inout]</strong> pointer to input tensor </p></li>
+<li><p><strong>dim_im_in</strong> – <strong>[in]</strong> input tensor dimention </p></li>
+<li><p><strong>ch_im_in</strong> – <strong>[in]</strong> number of input tensor channels </p></li>
+<li><p><strong>dim_kernel</strong> – <strong>[in]</strong> filter kernel size </p></li>
+<li><p><strong>padding</strong> – <strong>[in]</strong> padding sizes </p></li>
+<li><p><strong>stride</strong> – <strong>[in]</strong> convolution stride </p></li>
+<li><p><strong>dim_im_out</strong> – <strong>[in]</strong> output tensor dimension </p></li>
+<li><p><strong>bufferA</strong> – <strong>[inout]</strong> Not used </p></li>
+<li><p><strong>Im_out</strong> – <strong>[inout]</strong> pointer to output tensor</p></li>
 </ul>
 </dd>
 </dl>
-</p>
-<p>This pooling function is input-destructive. Input data is undefined after calling this function. </p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv420riscv_avepool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t">
-<span id="_CPPv320riscv_avepool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t"></span><span id="_CPPv220riscv_avepool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t"></span><span class="target" id="group__Pooling_1ga667c1b6d57466cb5ce7e4c41cb79f7d7"></span>void <code class="sig-name descname">riscv_avepool_q7_HWC</code><span class="sig-paren">(</span>q7_t *<em>Im_in</em>, <em class="property">const</em> uint16_t <em>dim_im_in</em>, <em class="property">const</em> uint16_t <em>ch_im_in</em>, <em class="property">const</em> uint16_t <em>dim_kernel</em>, <em class="property">const</em> uint16_t <em>padding</em>, <em class="property">const</em> uint16_t <em>stride</em>, <em class="property">const</em> uint16_t <em>dim_im_out</em>, q7_t *<em>bufferA</em>, q7_t *<em>Im_out</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Pooling_1ga667c1b6d57466cb5ce7e4c41cb79f7d7"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_avepool_q7_HWC</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">Im_in</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">dim_im_in</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ch_im_in</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">dim_kernel</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">padding</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">stride</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">dim_im_out</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">bufferA</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">Im_out</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q7 average pooling function. </p>
-<p><strong>Buffer size:</strong><dl class="simple">
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">Im_in</span></code>: pointer to input tensor </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_in</span></code>: input tensor dimention </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">ch_im_in</span></code>: number of input tensor channels </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_kernel</span></code>: filter kernel size </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">padding</span></code>: padding sizes </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">stride</span></code>: convolution stride </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dim_im_out</span></code>: output tensor dimension </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">bufferA</span></code>: pointer to buffer space for input </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">Im_out</span></code>: pointer to output tensor</p></li>
-</ul>
-</dd>
-</dl>
-</p>
+<p><strong>Buffer size:</strong></p>
 <p>bufferA size: 2*dim_im_out*ch_im_in</p>
 <p>The pooling function is implemented as split x-pooling then y-pooling.</p>
 <p>This pooling function is input-destructive. Input data is undefined after calling this function. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Im_in</strong> – <strong>[inout]</strong> pointer to input tensor </p></li>
+<li><p><strong>dim_im_in</strong> – <strong>[in]</strong> input tensor dimention </p></li>
+<li><p><strong>ch_im_in</strong> – <strong>[in]</strong> number of input tensor channels </p></li>
+<li><p><strong>dim_kernel</strong> – <strong>[in]</strong> filter kernel size </p></li>
+<li><p><strong>padding</strong> – <strong>[in]</strong> padding sizes </p></li>
+<li><p><strong>stride</strong> – <strong>[in]</strong> convolution stride </p></li>
+<li><p><strong>dim_im_out</strong> – <strong>[in]</strong> output tensor dimension </p></li>
+<li><p><strong>bufferA</strong> – <strong>[inout]</strong> pointer to buffer space for input </p></li>
+<li><p><strong>Im_out</strong> – <strong>[inout]</strong> pointer to output tensor</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="api_reshape.html" class="btn btn-neutral float-right" title="Reshape Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="api_fc.html" class="btn btn-neutral float-left" title="Fully-connected Layer Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api_fc.html" class="btn btn-neutral float-left" title="Fully-connected Layer Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api_reshape.html" class="btn btn-neutral float-right" title="Reshape Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2019-Present, Nuclei
-      <span class="lastupdated">
-        Last updated on Mar 30, 2022.
-      </span>
-
-    </p>
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on Jan 05, 2023.
+      </span></p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

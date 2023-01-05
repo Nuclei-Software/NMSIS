@@ -1,23 +1,4 @@
 var searchData=
 [
-  ['system_5fdefault_5fexception_5fhandler',['system_default_exception_handler',['../group__NMSIS__Core__IntExcNMI__Handling.html#ga97971400b10d2cdd33f0d1fb59f9d0c8',1,'system_Device.c']]],
-  ['systemcoreclockupdate',['SystemCoreClockUpdate',['../group__NMSIS__Core__SystemConfig.html#gae0c36a9591fe6e9c45ecb21a794f0f0f',1,'system_Device.c']]],
-  ['systeminit',['SystemInit',['../group__NMSIS__Core__SystemConfig.html#ga93f514700ccf00d08dbdcff7f1224eb2',1,'system_Device.c']]],
-  ['systick_5fconfig',['SysTick_Config',['../group__NMSIS__Core__SysTimer.html#ga349805c25d9aa753c6fd69b3c0151126',1,'core_feature_timer.h']]],
-  ['systick_5freload',['SysTick_Reload',['../group__NMSIS__Core__SysTimer.html#ga9906dae1937eac222354df5a9069945a',1,'core_feature_timer.h']]],
-  ['systimer_5fclearipi',['SysTimer_ClearIPI',['../group__NMSIS__Core__SysTimer.html#ga75378560287340bb6630fe31062a0dc9',1,'core_feature_timer.h']]],
-  ['systimer_5fclearswirq',['SysTimer_ClearSWIRQ',['../group__NMSIS__Core__SysTimer.html#ga57b4f64ed87262daf831573e704b12c8',1,'core_feature_timer.h']]],
-  ['systimer_5fgetcomparevalue',['SysTimer_GetCompareValue',['../group__NMSIS__Core__SysTimer.html#ga515d63f4e4581430fb0bf6e864e5bca9',1,'core_feature_timer.h']]],
-  ['systimer_5fgetcontrolvalue',['SysTimer_GetControlValue',['../group__NMSIS__Core__SysTimer.html#gafc922423699826bc5d833ab5d08219d2',1,'core_feature_timer.h']]],
-  ['systimer_5fgetloadvalue',['SysTimer_GetLoadValue',['../group__NMSIS__Core__SysTimer.html#ga5b454e48769abd7a88c2cc65fe53ac7a',1,'core_feature_timer.h']]],
-  ['systimer_5fgetmsipvalue',['SysTimer_GetMsipValue',['../group__NMSIS__Core__SysTimer.html#ga0431e3f4a44ca2265884c19096912729',1,'core_feature_timer.h']]],
-  ['systimer_5fsendipi',['SysTimer_SendIPI',['../group__NMSIS__Core__SysTimer.html#ga6006f9ce9bd7e86b5ab503ffa85d2126',1,'core_feature_timer.h']]],
-  ['systimer_5fsetcomparevalue',['SysTimer_SetCompareValue',['../group__NMSIS__Core__SysTimer.html#ga52e85918789aa95fc4cd0d7238ca9b6c',1,'core_feature_timer.h']]],
-  ['systimer_5fsetcontrolvalue',['SysTimer_SetControlValue',['../group__NMSIS__Core__SysTimer.html#gaf0e25c3ad2965ce6cd523cd101cee16f',1,'core_feature_timer.h']]],
-  ['systimer_5fsetloadvalue',['SysTimer_SetLoadValue',['../group__NMSIS__Core__SysTimer.html#ga08c74ffae27d46218ae11321ff5e1673',1,'core_feature_timer.h']]],
-  ['systimer_5fsetmsipvalue',['SysTimer_SetMsipValue',['../group__NMSIS__Core__SysTimer.html#gaa7f8e6c1423f582f958e151ce692395c',1,'core_feature_timer.h']]],
-  ['systimer_5fsetswirq',['SysTimer_SetSWIRQ',['../group__NMSIS__Core__SysTimer.html#gaa4d13cddf35ef77fd3b3b59e82eb1d47',1,'core_feature_timer.h']]],
-  ['systimer_5fsoftwarereset',['SysTimer_SoftwareReset',['../group__NMSIS__Core__SysTimer.html#gac41101f6eb4776148a05d1b02b643f8e',1,'core_feature_timer.h']]],
-  ['systimer_5fstart',['SysTimer_Start',['../group__NMSIS__Core__SysTimer.html#ga95360ac7f66badad67c57d540a1ae4e1',1,'core_feature_timer.h']]],
-  ['systimer_5fstop',['SysTimer_Stop',['../group__NMSIS__Core__SysTimer.html#gaf74222f6d8c603f61571884732726e91',1,'core_feature_timer.h']]]
+  ['flushpipeccm',['FlushPipeCCM',['../group__NMSIS__Core__Cache.html#ga5fb9682e1f64a554b42c5fe7cf6f5aca',1,'core_feature_cache.h']]]
 ];

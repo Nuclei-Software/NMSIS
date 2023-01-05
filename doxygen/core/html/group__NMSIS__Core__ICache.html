@@ -30,7 +30,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-Core
-   &#160;<span id="projectnumber">Version 1.0.2</span>
+   &#160;<span id="projectnumber">Version 1.1.0</span>
    </div>
    <div id="projectbrief">NMSIS-Core support for Nuclei processor-based devices</div>
   </td>
@@ -85,7 +85,7 @@ $(document).ready(function(){initNavTree('group__NMSIS__Core__ICache.html','');}
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">I-Cache Functions</div>  </div>
+<div class="title">I-Cache Functions<div class="ingroups"><a class="el" href="group__NMSIS__Core__Cache.html">Cache Functions</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -94,12 +94,81 @@ $(document).ready(function(){initNavTree('group__NMSIS__Core__ICache.html','');}
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:ga33f538692ce5743e5c23004d03cba712"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__ICache.html#ga33f538692ce5743e5c23004d03cba712">ICachePresent</a> (void)</td></tr>
+<tr class="memdesc:ga33f538692ce5743e5c23004d03cba712"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check ICache Unit Present or Not.  <a href="#ga33f538692ce5743e5c23004d03cba712">More...</a><br /></td></tr>
+<tr class="separator:ga33f538692ce5743e5c23004d03cba712"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga76dfd7aff65a6a7fa91b53dbe44f9ce5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__ICache.html#ga76dfd7aff65a6a7fa91b53dbe44f9ce5">EnableICache</a> (void)</td></tr>
 <tr class="memdesc:ga76dfd7aff65a6a7fa91b53dbe44f9ce5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable ICache.  <a href="#ga76dfd7aff65a6a7fa91b53dbe44f9ce5">More...</a><br /></td></tr>
 <tr class="separator:ga76dfd7aff65a6a7fa91b53dbe44f9ce5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4a855b01222d0c42d413f168651616e5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__ICache.html#ga4a855b01222d0c42d413f168651616e5">DisableICache</a> (void)</td></tr>
 <tr class="memdesc:ga4a855b01222d0c42d413f168651616e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable ICache.  <a href="#ga4a855b01222d0c42d413f168651616e5">More...</a><br /></td></tr>
 <tr class="separator:ga4a855b01222d0c42d413f168651616e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga69a3a0ce8c5e4494161991074387162e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__ICache.html#ga69a3a0ce8c5e4494161991074387162e">GetICacheInfo</a> (<a class="el" href="structCacheInfo__Type.html">CacheInfo_Type</a> *info)</td></tr>
+<tr class="memdesc:ga69a3a0ce8c5e4494161991074387162e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get I-Cache Information.  <a href="#ga69a3a0ce8c5e4494161991074387162e">More...</a><br /></td></tr>
+<tr class="separator:ga69a3a0ce8c5e4494161991074387162e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac9500d4f13d04b2acbfd3538984514c8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__ICache.html#gac9500d4f13d04b2acbfd3538984514c8">MInvalICacheLine</a> (unsigned long addr)</td></tr>
+<tr class="memdesc:gac9500d4f13d04b2acbfd3538984514c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invalidate one I-Cache line specified by address in M-Mode.  <a href="#gac9500d4f13d04b2acbfd3538984514c8">More...</a><br /></td></tr>
+<tr class="separator:gac9500d4f13d04b2acbfd3538984514c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafe47347cfa3f8c4a8829c88fa5fdec9b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__ICache.html#gafe47347cfa3f8c4a8829c88fa5fdec9b">MInvalICacheLines</a> (unsigned long addr, unsigned long cnt)</td></tr>
+<tr class="memdesc:gafe47347cfa3f8c4a8829c88fa5fdec9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invalidate several I-Cache lines specified by address in M-Mode.  <a href="#gafe47347cfa3f8c4a8829c88fa5fdec9b">More...</a><br /></td></tr>
+<tr class="separator:gafe47347cfa3f8c4a8829c88fa5fdec9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9cfe1f7476be3aa984c926287eceecdf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__ICache.html#ga9cfe1f7476be3aa984c926287eceecdf">SInvalICacheLine</a> (unsigned long addr)</td></tr>
+<tr class="memdesc:ga9cfe1f7476be3aa984c926287eceecdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invalidate one I-Cache line specified by address in S-Mode.  <a href="#ga9cfe1f7476be3aa984c926287eceecdf">More...</a><br /></td></tr>
+<tr class="separator:ga9cfe1f7476be3aa984c926287eceecdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga020ff82b548a567037dd0c916b4429d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__ICache.html#ga020ff82b548a567037dd0c916b4429d2">SInvalICacheLines</a> (unsigned long addr, unsigned long cnt)</td></tr>
+<tr class="memdesc:ga020ff82b548a567037dd0c916b4429d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invalidate several I-Cache lines specified by address in S-Mode.  <a href="#ga020ff82b548a567037dd0c916b4429d2">More...</a><br /></td></tr>
+<tr class="separator:ga020ff82b548a567037dd0c916b4429d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4c202208f9f90802445600e637563f3d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__ICache.html#ga4c202208f9f90802445600e637563f3d">UInvalICacheLine</a> (unsigned long addr)</td></tr>
+<tr class="memdesc:ga4c202208f9f90802445600e637563f3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invalidate one I-Cache line specified by address in U-Mode.  <a href="#ga4c202208f9f90802445600e637563f3d">More...</a><br /></td></tr>
+<tr class="separator:ga4c202208f9f90802445600e637563f3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3f36015dbfc23a155d1ae0fa458388a2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__ICache.html#ga3f36015dbfc23a155d1ae0fa458388a2">UInvalICacheLines</a> (unsigned long addr, unsigned long cnt)</td></tr>
+<tr class="memdesc:ga3f36015dbfc23a155d1ae0fa458388a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invalidate several I-Cache lines specified by address in U-Mode.  <a href="#ga3f36015dbfc23a155d1ae0fa458388a2">More...</a><br /></td></tr>
+<tr class="separator:ga3f36015dbfc23a155d1ae0fa458388a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa0ebecb33755adc5adbc597889194605"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__ICache.html#gaa0ebecb33755adc5adbc597889194605">MLockICacheLine</a> (unsigned long addr)</td></tr>
+<tr class="memdesc:gaa0ebecb33755adc5adbc597889194605"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lock one I-Cache line specified by address in M-Mode.  <a href="#gaa0ebecb33755adc5adbc597889194605">More...</a><br /></td></tr>
+<tr class="separator:gaa0ebecb33755adc5adbc597889194605"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5d12990670c5b36de576bab8d1812d16"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__ICache.html#ga5d12990670c5b36de576bab8d1812d16">MLockICacheLines</a> (unsigned long addr, unsigned long cnt)</td></tr>
+<tr class="memdesc:ga5d12990670c5b36de576bab8d1812d16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lock several I-Cache lines specified by address in M-Mode.  <a href="#ga5d12990670c5b36de576bab8d1812d16">More...</a><br /></td></tr>
+<tr class="separator:ga5d12990670c5b36de576bab8d1812d16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8ac672c482d15a997db8f4acfa6c51f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__ICache.html#ga8ac672c482d15a997db8f4acfa6c51f5">SLockICacheLine</a> (unsigned long addr)</td></tr>
+<tr class="memdesc:ga8ac672c482d15a997db8f4acfa6c51f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lock one I-Cache line specified by address in S-Mode.  <a href="#ga8ac672c482d15a997db8f4acfa6c51f5">More...</a><br /></td></tr>
+<tr class="separator:ga8ac672c482d15a997db8f4acfa6c51f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab179486d73e9a1ce8543d310aa8d1594"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__ICache.html#gab179486d73e9a1ce8543d310aa8d1594">SLockICacheLines</a> (unsigned long addr, unsigned long cnt)</td></tr>
+<tr class="memdesc:gab179486d73e9a1ce8543d310aa8d1594"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lock several I-Cache lines specified by address in S-Mode.  <a href="#gab179486d73e9a1ce8543d310aa8d1594">More...</a><br /></td></tr>
+<tr class="separator:gab179486d73e9a1ce8543d310aa8d1594"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga84eb3cf641c1e87655219fec34e49b20"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__ICache.html#ga84eb3cf641c1e87655219fec34e49b20">ULockICacheLine</a> (unsigned long addr)</td></tr>
+<tr class="memdesc:ga84eb3cf641c1e87655219fec34e49b20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lock one I-Cache line specified by address in U-Mode.  <a href="#ga84eb3cf641c1e87655219fec34e49b20">More...</a><br /></td></tr>
+<tr class="separator:ga84eb3cf641c1e87655219fec34e49b20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf4b8c625829c4c772b65e5f95f61e659"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__ICache.html#gaf4b8c625829c4c772b65e5f95f61e659">ULockICacheLines</a> (unsigned long addr, unsigned long cnt)</td></tr>
+<tr class="memdesc:gaf4b8c625829c4c772b65e5f95f61e659"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lock several I-Cache lines specified by address in U-Mode.  <a href="#gaf4b8c625829c4c772b65e5f95f61e659">More...</a><br /></td></tr>
+<tr class="separator:gaf4b8c625829c4c772b65e5f95f61e659"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac423a03eaa4afb1c8641c1c9e3097168"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__ICache.html#gac423a03eaa4afb1c8641c1c9e3097168">MUnlockICacheLine</a> (unsigned long addr)</td></tr>
+<tr class="memdesc:gac423a03eaa4afb1c8641c1c9e3097168"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlock one I-Cache line specified by address in M-Mode.  <a href="#gac423a03eaa4afb1c8641c1c9e3097168">More...</a><br /></td></tr>
+<tr class="separator:gac423a03eaa4afb1c8641c1c9e3097168"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7035e12e1a3c7c7730f3211241a8fe90"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__ICache.html#ga7035e12e1a3c7c7730f3211241a8fe90">MUnlockICacheLines</a> (unsigned long addr, unsigned long cnt)</td></tr>
+<tr class="memdesc:ga7035e12e1a3c7c7730f3211241a8fe90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlock several I-Cache lines specified by address in M-Mode.  <a href="#ga7035e12e1a3c7c7730f3211241a8fe90">More...</a><br /></td></tr>
+<tr class="separator:ga7035e12e1a3c7c7730f3211241a8fe90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf43b829e002df8fb7563c5eccb4dd9eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__ICache.html#gaf43b829e002df8fb7563c5eccb4dd9eb">SUnlockICacheLine</a> (unsigned long addr)</td></tr>
+<tr class="memdesc:gaf43b829e002df8fb7563c5eccb4dd9eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlock one I-Cache line specified by address in S-Mode.  <a href="#gaf43b829e002df8fb7563c5eccb4dd9eb">More...</a><br /></td></tr>
+<tr class="separator:gaf43b829e002df8fb7563c5eccb4dd9eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga74e29621ab0c803fe474c648d078fe18"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__ICache.html#ga74e29621ab0c803fe474c648d078fe18">SUnlockICacheLines</a> (unsigned long addr, unsigned long cnt)</td></tr>
+<tr class="memdesc:ga74e29621ab0c803fe474c648d078fe18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlock several I-Cache lines specified by address in S-Mode.  <a href="#ga74e29621ab0c803fe474c648d078fe18">More...</a><br /></td></tr>
+<tr class="separator:ga74e29621ab0c803fe474c648d078fe18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1221f6556c800e2172c0cab109a4a31f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__ICache.html#ga1221f6556c800e2172c0cab109a4a31f">UUnlockICacheLine</a> (unsigned long addr)</td></tr>
+<tr class="memdesc:ga1221f6556c800e2172c0cab109a4a31f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlock one I-Cache line specified by address in U-Mode.  <a href="#ga1221f6556c800e2172c0cab109a4a31f">More...</a><br /></td></tr>
+<tr class="separator:ga1221f6556c800e2172c0cab109a4a31f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga48a1fc27f21f185f1e2bf52bf09a83a4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__ICache.html#ga48a1fc27f21f185f1e2bf52bf09a83a4">UUnlockICacheLines</a> (unsigned long addr, unsigned long cnt)</td></tr>
+<tr class="memdesc:ga48a1fc27f21f185f1e2bf52bf09a83a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlock several I-Cache lines specified by address in U-Mode.  <a href="#ga48a1fc27f21f185f1e2bf52bf09a83a4">More...</a><br /></td></tr>
+<tr class="separator:ga48a1fc27f21f185f1e2bf52bf09a83a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab0d916e064876aea3bf9135283814db1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__ICache.html#gab0d916e064876aea3bf9135283814db1">MInvalICache</a> (void)</td></tr>
+<tr class="memdesc:gab0d916e064876aea3bf9135283814db1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invalidate all I-Cache lines in M-Mode.  <a href="#gab0d916e064876aea3bf9135283814db1">More...</a><br /></td></tr>
+<tr class="separator:gab0d916e064876aea3bf9135283814db1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga25824c725ce4cfd0319c182a8a44c7e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__ICache.html#ga25824c725ce4cfd0319c182a8a44c7e3">SInvalICache</a> (void)</td></tr>
+<tr class="memdesc:ga25824c725ce4cfd0319c182a8a44c7e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invalidate all I-Cache lines in S-Mode.  <a href="#ga25824c725ce4cfd0319c182a8a44c7e3">More...</a><br /></td></tr>
+<tr class="separator:ga25824c725ce4cfd0319c182a8a44c7e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga60a04e2fd2a444e04703dcd4a8d38e04"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__ICache.html#ga60a04e2fd2a444e04703dcd4a8d38e04">UInvalICache</a> (void)</td></tr>
+<tr class="memdesc:ga60a04e2fd2a444e04703dcd4a8d38e04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invalidate all I-Cache lines in U-Mode.  <a href="#ga60a04e2fd2a444e04703dcd4a8d38e04">More...</a><br /></td></tr>
+<tr class="separator:ga60a04e2fd2a444e04703dcd4a8d38e04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Functions that configure Instruction Cache. </p>
@@ -131,12 +200,12 @@ Functions</h2></td></tr>
 </ul>
 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00191">191</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00208">208</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
 
-<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00570">__RV_CSR_CLEAR</a>, <a class="el" href="core__feature__base_8h_source.html#l00478">__RV_CSR_READ</a>, <a class="el" href="core__feature__base_8h_source.html#l00496">__RV_CSR_WRITE</a>, <a class="el" href="nmsis__gcc_8h_source.html#l00070">__STATIC_FORCEINLINE</a>, <a class="el" href="unionCSR__MICFGINFO__Type.html#a36296b0abf3d9b0a17f7dfd8ce883796">CSR_MICFGINFO_Type::b</a>, <a class="el" href="riscv__encoding_8h_source.html#l00651">CSR_CCM_MBEGINADDR</a>, <a class="el" href="riscv__encoding_8h_source.html#l00652">CSR_CCM_MCOMMAND</a>, <a class="el" href="riscv__encoding_8h_source.html#l00653">CSR_CCM_MDATA</a>, <a class="el" href="riscv__encoding_8h_source.html#l00655">CSR_CCM_SBEGINADDR</a>, <a class="el" href="riscv__encoding_8h_source.html#l00656">CSR_CCM_SCOMMAND</a>, <a class="el" href="riscv__encoding_8h_source.html#l00657">CSR_CCM_SDATA</a>, <a class="el" href="riscv__encoding_8h_source.html#l00658">CSR_CCM_UBEGINADDR</a>, <a class="el" href="riscv__encoding_8h_source.html#l00659">CSR_CCM_UCOMMAND</a>, <a class="el" href="riscv__encoding_8h_source.html#l00660">CSR_CCM_UDATA</a>, <a class="el" href="riscv__encoding_8h_source.html#l00612">CSR_MCACHE_CTL</a>, <a class="el" href="riscv__encoding_8h_source.html#l00071">CSR_MCACHE_CTL_IE</a>, <a class="el" href="riscv__encoding_8h_source.html#l00645">CSR_MICFG_INFO</a>, <a class="el" href="core__feature__base_8h_source.html#l00351">CSR_MICFGINFO_Type::lsize</a>, <a class="el" href="core__feature__base_8h_source.html#l00349">CSR_MICFGINFO_Type::set</a>, and <a class="el" href="core__feature__base_8h_source.html#l00350">CSR_MICFGINFO_Type::way</a>.</p>
-<div class="fragment"><div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;{</div><div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#ga14cf0513f6b576fcd1ff700b08f65543">__RV_CSR_CLEAR</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga6e79ed96b3346ea75923126b7c4d9d67">CSR_MCACHE_CTL</a>, <a class="code" href="group__NMSIS__Core__CSR__Encoding.html#ga838be4fb6cc0796dfdab1d492c992e91">CSR_MCACHE_CTL_IE</a>);</div><div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CSR__Encoding_html_ga838be4fb6cc0796dfdab1d492c992e91"><div class="ttname"><a href="group__NMSIS__Core__CSR__Encoding.html#ga838be4fb6cc0796dfdab1d492c992e91">CSR_MCACHE_CTL_IE</a></div><div class="ttdeci">#define CSR_MCACHE_CTL_IE</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00071">riscv_encoding.h:71</a></div></div>
+<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00570">__RV_CSR_CLEAR</a>, <a class="el" href="riscv__encoding_8h_source.html#l00876">CSR_MCACHE_CTL</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00181">CSR_MCACHE_CTL_IE</a>.</p>
+<div class="fragment"><div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;{</div><div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#ga14cf0513f6b576fcd1ff700b08f65543">__RV_CSR_CLEAR</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga6e79ed96b3346ea75923126b7c4d9d67">CSR_MCACHE_CTL</a>, <a class="code" href="group__NMSIS__Core__CSR__Encoding.html#ga838be4fb6cc0796dfdab1d492c992e91">CSR_MCACHE_CTL_IE</a>);</div><div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CSR__Encoding_html_ga838be4fb6cc0796dfdab1d492c992e91"><div class="ttname"><a href="group__NMSIS__Core__CSR__Encoding.html#ga838be4fb6cc0796dfdab1d492c992e91">CSR_MCACHE_CTL_IE</a></div><div class="ttdeci">#define CSR_MCACHE_CTL_IE</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00181">riscv_encoding.h:181</a></div></div>
 <div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_ga14cf0513f6b576fcd1ff700b08f65543"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#ga14cf0513f6b576fcd1ff700b08f65543">__RV_CSR_CLEAR</a></div><div class="ttdeci">#define __RV_CSR_CLEAR(csr, val)</div><div class="ttdoc">CSR operation Macro for csrc instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00570">core_feature_base.h:570</a></div></div>
-<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga6e79ed96b3346ea75923126b7c4d9d67"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga6e79ed96b3346ea75923126b7c4d9d67">CSR_MCACHE_CTL</a></div><div class="ttdeci">#define CSR_MCACHE_CTL</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00612">riscv_encoding.h:612</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga6e79ed96b3346ea75923126b7c4d9d67"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga6e79ed96b3346ea75923126b7c4d9d67">CSR_MCACHE_CTL</a></div><div class="ttdeci">#define CSR_MCACHE_CTL</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00876">riscv_encoding.h:876</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -167,12 +236,942 @@ Functions</h2></td></tr>
 </ul>
 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00176">176</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00193">193</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
 
-<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00533">__RV_CSR_SET</a>, <a class="el" href="riscv__encoding_8h_source.html#l00612">CSR_MCACHE_CTL</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00071">CSR_MCACHE_CTL_IE</a>.</p>
-<div class="fragment"><div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;{</div><div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gafdbd9b5a14b44913675d0fa73ca6716f">__RV_CSR_SET</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga6e79ed96b3346ea75923126b7c4d9d67">CSR_MCACHE_CTL</a>, <a class="code" href="group__NMSIS__Core__CSR__Encoding.html#ga838be4fb6cc0796dfdab1d492c992e91">CSR_MCACHE_CTL_IE</a>);</div><div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CSR__Encoding_html_ga838be4fb6cc0796dfdab1d492c992e91"><div class="ttname"><a href="group__NMSIS__Core__CSR__Encoding.html#ga838be4fb6cc0796dfdab1d492c992e91">CSR_MCACHE_CTL_IE</a></div><div class="ttdeci">#define CSR_MCACHE_CTL_IE</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00071">riscv_encoding.h:71</a></div></div>
-<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga6e79ed96b3346ea75923126b7c4d9d67"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga6e79ed96b3346ea75923126b7c4d9d67">CSR_MCACHE_CTL</a></div><div class="ttdeci">#define CSR_MCACHE_CTL</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00612">riscv_encoding.h:612</a></div></div>
+<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00533">__RV_CSR_SET</a>, <a class="el" href="riscv__encoding_8h_source.html#l00876">CSR_MCACHE_CTL</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00181">CSR_MCACHE_CTL_IE</a>.</p>
+<div class="fragment"><div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;{</div><div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gafdbd9b5a14b44913675d0fa73ca6716f">__RV_CSR_SET</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga6e79ed96b3346ea75923126b7c4d9d67">CSR_MCACHE_CTL</a>, <a class="code" href="group__NMSIS__Core__CSR__Encoding.html#ga838be4fb6cc0796dfdab1d492c992e91">CSR_MCACHE_CTL_IE</a>);</div><div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CSR__Encoding_html_ga838be4fb6cc0796dfdab1d492c992e91"><div class="ttname"><a href="group__NMSIS__Core__CSR__Encoding.html#ga838be4fb6cc0796dfdab1d492c992e91">CSR_MCACHE_CTL_IE</a></div><div class="ttdeci">#define CSR_MCACHE_CTL_IE</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00181">riscv_encoding.h:181</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga6e79ed96b3346ea75923126b7c4d9d67"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga6e79ed96b3346ea75923126b7c4d9d67">CSR_MCACHE_CTL</a></div><div class="ttdeci">#define CSR_MCACHE_CTL</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00876">riscv_encoding.h:876</a></div></div>
 <div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_gafdbd9b5a14b44913675d0fa73ca6716f"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#gafdbd9b5a14b44913675d0fa73ca6716f">__RV_CSR_SET</a></div><div class="ttdeci">#define __RV_CSR_SET(csr, val)</div><div class="ttdoc">CSR operation Macro for csrs instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00533">core_feature_base.h:533</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga69a3a0ce8c5e4494161991074387162e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga69a3a0ce8c5e4494161991074387162e">&#9670;&nbsp;</a></span>GetICacheInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> int32_t GetICacheInfo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCacheInfo__Type.html">CacheInfo_Type</a> *&#160;</td>
+          <td class="paramname"><em>info</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get I-Cache Information. </p>
+<p>This function get I-Cache Information </p><dl class="section remark"><dt>Remarks</dt><dd><ul>
+<li>This function can be called in M-Mode only.</li>
+<li>You can use this function in combination with cache lines operations </li>
+</ul>
+</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><ul>
+<li><a class="el" href="group__NMSIS__Core__DCache.html#gacc2be57be2e95f62a5381ba1f87977b3">GetDCacheInfo</a> </li>
+</ul>
+</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00224">224</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
+
+<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00478">__RV_CSR_READ</a>, <a class="el" href="unionCSR__MICFGINFO__Type.html#a36296b0abf3d9b0a17f7dfd8ce883796">CSR_MICFGINFO_Type::b</a>, <a class="el" href="riscv__encoding_8h_source.html#l00910">CSR_MICFG_INFO</a>, <a class="el" href="core__feature__cache_8h_source.html#l00097">CacheInfo_Type::linesize</a>, <a class="el" href="core__feature__base_8h_source.html#l00351">CSR_MICFGINFO_Type::lsize</a>, <a class="el" href="core__feature__base_8h_source.html#l00349">CSR_MICFGINFO_Type::set</a>, <a class="el" href="core__feature__cache_8h_source.html#l00099">CacheInfo_Type::setperway</a>, <a class="el" href="core__feature__cache_8h_source.html#l00100">CacheInfo_Type::size</a>, <a class="el" href="core__feature__base_8h_source.html#l00350">CSR_MICFGINFO_Type::way</a>, and <a class="el" href="core__feature__cache_8h_source.html#l00098">CacheInfo_Type::ways</a>.</p>
+<div class="fragment"><div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;{</div><div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <span class="keywordflow">if</span> (info == NULL) {</div><div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        <span class="keywordflow">return</span> -1;</div><div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    }</div><div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    <a class="code" href="unionCSR__MICFGINFO__Type.html">CSR_MICFGINFO_Type</a> csr_ccfg = (<a class="code" href="unionCSR__MICFGINFO__Type.html">CSR_MICFGINFO_Type</a>)<a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#ga355c96e5bd1ab3df0203e23a887c00c0">__RV_CSR_READ</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga3401036463f597de22658714115bed5b">CSR_MICFG_INFO</a>);</div><div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    info-&gt;<a class="code" href="structCacheInfo__Type.html#a4921aea5a2a5e4527c06cd00e63e4ed5">setperway</a> = (1 &lt;&lt; csr_ccfg.<a class="code" href="unionCSR__MICFGINFO__Type.html#a36296b0abf3d9b0a17f7dfd8ce883796">b</a>.<a class="code" href="unionCSR__MICFGINFO__Type.html#a2071a4d9337c8db3b55419e531c0f095">set</a>) &lt;&lt; 3;</div><div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    info-&gt;<a class="code" href="structCacheInfo__Type.html#a963618b4e0fa8b89df750f8170a2a8ed">ways</a> = (1 + csr_ccfg.<a class="code" href="unionCSR__MICFGINFO__Type.html#a36296b0abf3d9b0a17f7dfd8ce883796">b</a>.<a class="code" href="unionCSR__MICFGINFO__Type.html#aff94588787995de0fdbf41a2cee027a7">way</a>);</div><div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    <span class="keywordflow">if</span> (csr_ccfg.<a class="code" href="unionCSR__MICFGINFO__Type.html#a36296b0abf3d9b0a17f7dfd8ce883796">b</a>.<a class="code" href="unionCSR__MICFGINFO__Type.html#aa4534ca8d572c6ad46ab5d36fcf4ef8b">lsize</a> == 0) {</div><div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;        info-&gt;<a class="code" href="structCacheInfo__Type.html#aca857f59d80919532a355a0508a0e236">linesize</a> = 0;</div><div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    } <span class="keywordflow">else</span> {</div><div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;        info-&gt;<a class="code" href="structCacheInfo__Type.html#aca857f59d80919532a355a0508a0e236">linesize</a> = (1 &lt;&lt; (csr_ccfg.<a class="code" href="unionCSR__MICFGINFO__Type.html#a36296b0abf3d9b0a17f7dfd8ce883796">b</a>.<a class="code" href="unionCSR__MICFGINFO__Type.html#aa4534ca8d572c6ad46ab5d36fcf4ef8b">lsize</a> - 1)) &lt;&lt; 3;</div><div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    }</div><div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    info-&gt;<a class="code" href="structCacheInfo__Type.html#aead3d43e2bd952914a9b81aacb86b94e">size</a> = info-&gt;<a class="code" href="structCacheInfo__Type.html#a4921aea5a2a5e4527c06cd00e63e4ed5">setperway</a> * info-&gt;<a class="code" href="structCacheInfo__Type.html#a963618b4e0fa8b89df750f8170a2a8ed">ways</a> * info-&gt;<a class="code" href="structCacheInfo__Type.html#aca857f59d80919532a355a0508a0e236">linesize</a>;</div><div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    <span class="keywordflow">return</span> 0;</div><div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga3401036463f597de22658714115bed5b"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga3401036463f597de22658714115bed5b">CSR_MICFG_INFO</a></div><div class="ttdeci">#define CSR_MICFG_INFO</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00910">riscv_encoding.h:910</a></div></div>
+<div class="ttc" id="structCacheInfo__Type_html_aca857f59d80919532a355a0508a0e236"><div class="ttname"><a href="structCacheInfo__Type.html#aca857f59d80919532a355a0508a0e236">CacheInfo_Type::linesize</a></div><div class="ttdeci">uint32_t linesize</div><div class="ttdoc">Cache Line size in bytes. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__cache_8h_source.html#l00097">core_feature_cache.h:97</a></div></div>
+<div class="ttc" id="structCacheInfo__Type_html_a4921aea5a2a5e4527c06cd00e63e4ed5"><div class="ttname"><a href="structCacheInfo__Type.html#a4921aea5a2a5e4527c06cd00e63e4ed5">CacheInfo_Type::setperway</a></div><div class="ttdeci">uint32_t setperway</div><div class="ttdoc">Cache set per way. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__cache_8h_source.html#l00099">core_feature_cache.h:99</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_ga355c96e5bd1ab3df0203e23a887c00c0"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#ga355c96e5bd1ab3df0203e23a887c00c0">__RV_CSR_READ</a></div><div class="ttdeci">#define __RV_CSR_READ(csr)</div><div class="ttdoc">CSR operation Macro for csrr instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00478">core_feature_base.h:478</a></div></div>
+<div class="ttc" id="unionCSR__MICFGINFO__Type_html_aa4534ca8d572c6ad46ab5d36fcf4ef8b"><div class="ttname"><a href="unionCSR__MICFGINFO__Type.html#aa4534ca8d572c6ad46ab5d36fcf4ef8b">CSR_MICFGINFO_Type::lsize</a></div><div class="ttdeci">rv_csr_t lsize</div><div class="ttdoc">I-Cache line size. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00351">core_feature_base.h:351</a></div></div>
+<div class="ttc" id="structCacheInfo__Type_html_a963618b4e0fa8b89df750f8170a2a8ed"><div class="ttname"><a href="structCacheInfo__Type.html#a963618b4e0fa8b89df750f8170a2a8ed">CacheInfo_Type::ways</a></div><div class="ttdeci">uint32_t ways</div><div class="ttdoc">Cache ways. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__cache_8h_source.html#l00098">core_feature_cache.h:98</a></div></div>
+<div class="ttc" id="unionCSR__MICFGINFO__Type_html_a36296b0abf3d9b0a17f7dfd8ce883796"><div class="ttname"><a href="unionCSR__MICFGINFO__Type.html#a36296b0abf3d9b0a17f7dfd8ce883796">CSR_MICFGINFO_Type::b</a></div><div class="ttdeci">struct CSR_MICFGINFO_Type::@13 b</div><div class="ttdoc">Structure used for bit access. </div></div>
+<div class="ttc" id="structCacheInfo__Type_html_aead3d43e2bd952914a9b81aacb86b94e"><div class="ttname"><a href="structCacheInfo__Type.html#aead3d43e2bd952914a9b81aacb86b94e">CacheInfo_Type::size</a></div><div class="ttdeci">uint32_t size</div><div class="ttdoc">Cache total size in bytes. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__cache_8h_source.html#l00100">core_feature_cache.h:100</a></div></div>
+<div class="ttc" id="unionCSR__MICFGINFO__Type_html"><div class="ttname"><a href="unionCSR__MICFGINFO__Type.html">CSR_MICFGINFO_Type</a></div><div class="ttdoc">Union type to access MICFG_INFO CSR register. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00347">core_feature_base.h:347</a></div></div>
+<div class="ttc" id="unionCSR__MICFGINFO__Type_html_a2071a4d9337c8db3b55419e531c0f095"><div class="ttname"><a href="unionCSR__MICFGINFO__Type.html#a2071a4d9337c8db3b55419e531c0f095">CSR_MICFGINFO_Type::set</a></div><div class="ttdeci">rv_csr_t set</div><div class="ttdoc">I-Cache sets per way. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00349">core_feature_base.h:349</a></div></div>
+<div class="ttc" id="unionCSR__MICFGINFO__Type_html_aff94588787995de0fdbf41a2cee027a7"><div class="ttname"><a href="unionCSR__MICFGINFO__Type.html#aff94588787995de0fdbf41a2cee027a7">CSR_MICFGINFO_Type::way</a></div><div class="ttdeci">rv_csr_t way</div><div class="ttdoc">I-Cache way. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00350">core_feature_base.h:350</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga33f538692ce5743e5c23004d03cba712"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga33f538692ce5743e5c23004d03cba712">&#9670;&nbsp;</a></span>ICachePresent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> int32_t ICachePresent </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check ICache Unit Present or Not. </p>
+<p>This function check icache unit present or not via mcfg_info csr </p><dl class="section remark"><dt>Remarks</dt><dd><ul>
+<li>This function might not work for some old nuclei processors</li>
+<li>Please make sure the version of your nuclei processor contain ICACHE bit in mcfg_info </li>
+</ul>
+</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>1 if present otherwise 0 </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00175">175</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
+
+<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00478">__RV_CSR_READ</a>, <a class="el" href="riscv__encoding_8h_source.html#l00912">CSR_MCFG_INFO</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00242">MCFG_INFO_ICACHE</a>.</p>
+<div class="fragment"><div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;{</div><div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#ga355c96e5bd1ab3df0203e23a887c00c0">__RV_CSR_READ</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga7fd083b254f2438fe5cbf9d667468324">CSR_MCFG_INFO</a>) &amp; <a class="code" href="group__NMSIS__Core__CSR__Encoding.html#gade204165b105fd3fdcc50965cb23b83d">MCFG_INFO_ICACHE</a>) {</div><div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        <span class="keywordflow">return</span> 1;</div><div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    }</div><div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    <span class="keywordflow">return</span> 0;</div><div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CSR__Encoding_html_gade204165b105fd3fdcc50965cb23b83d"><div class="ttname"><a href="group__NMSIS__Core__CSR__Encoding.html#gade204165b105fd3fdcc50965cb23b83d">MCFG_INFO_ICACHE</a></div><div class="ttdeci">#define MCFG_INFO_ICACHE</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00242">riscv_encoding.h:242</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga7fd083b254f2438fe5cbf9d667468324"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga7fd083b254f2438fe5cbf9d667468324">CSR_MCFG_INFO</a></div><div class="ttdeci">#define CSR_MCFG_INFO</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00912">riscv_encoding.h:912</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_ga355c96e5bd1ab3df0203e23a887c00c0"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#ga355c96e5bd1ab3df0203e23a887c00c0">__RV_CSR_READ</a></div><div class="ttdeci">#define __RV_CSR_READ(csr)</div><div class="ttdoc">CSR operation Macro for csrr instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00478">core_feature_base.h:478</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="gab0d916e064876aea3bf9135283814db1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab0d916e064876aea3bf9135283814db1">&#9670;&nbsp;</a></span>MInvalICache()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void MInvalICache </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Invalidate all I-Cache lines in M-Mode. </p>
+<p>This function invalidate all I-Cache lines. Command <a class="el" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9abf7eec30759aff4902c875cffef31484">CCM_IC_INVAL_ALL</a> is written to CSR <a class="el" href="group__NMSIS__Core__CSR__Registers.html#ga09b6c06fdc71424566c30bad5470c0c1">CSR_CCM_MCOMMAND</a>. </p><dl class="section remark"><dt>Remarks</dt><dd>This function must be executed in M-Mode only. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>start address to be invalidated </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00604">604</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
+
+<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00496">__RV_CSR_WRITE</a>, <a class="el" href="core__feature__cache_8h_source.html#l00090">CCM_IC_INVAL_ALL</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00917">CSR_CCM_MCOMMAND</a>.</p>
+<div class="fragment"><div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;{</div><div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga09b6c06fdc71424566c30bad5470c0c1">CSR_CCM_MCOMMAND</a>, <a class="code" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9abf7eec30759aff4902c875cffef31484">CCM_IC_INVAL_ALL</a>);</div><div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_gaa2d43f43f3f333cfd8e5a326a2aed413"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a></div><div class="ttdeci">#define __RV_CSR_WRITE(csr, val)</div><div class="ttdoc">CSR operation Macro for csrw instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00496">core_feature_base.h:496</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga09b6c06fdc71424566c30bad5470c0c1"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga09b6c06fdc71424566c30bad5470c0c1">CSR_CCM_MCOMMAND</a></div><div class="ttdeci">#define CSR_CCM_MCOMMAND</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00917">riscv_encoding.h:917</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__Cache_html_gga700ee5ca80d2777b38c6d8c963e4e5a9abf7eec30759aff4902c875cffef31484"><div class="ttname"><a href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9abf7eec30759aff4902c875cffef31484">CCM_IC_INVAL_ALL</a></div><div class="ttdoc">Unlock and invalidate all the I-Cache lines. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__cache_8h_source.html#l00090">core_feature_cache.h:90</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="gac9500d4f13d04b2acbfd3538984514c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac9500d4f13d04b2acbfd3538984514c8">&#9670;&nbsp;</a></span>MInvalICacheLine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void MInvalICacheLine </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>addr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Invalidate one I-Cache line specified by address in M-Mode. </p>
+<p>This function unlock and invalidate one I-Cache line specified by the address. Command <a class="el" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a5fd653735ffce788a11243394e32e316">CCM_IC_INVAL</a> is written to CSR <a class="el" href="group__NMSIS__Core__CSR__Registers.html#ga09b6c06fdc71424566c30bad5470c0c1">CSR_CCM_MCOMMAND</a>. </p><dl class="section remark"><dt>Remarks</dt><dd>This function must be executed in M-Mode only. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>start address to be invalidated </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00251">251</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
+
+<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00496">__RV_CSR_WRITE</a>, <a class="el" href="core__feature__cache_8h_source.html#l00087">CCM_IC_INVAL</a>, <a class="el" href="riscv__encoding_8h_source.html#l00916">CSR_CCM_MBEGINADDR</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00917">CSR_CCM_MCOMMAND</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="core__feature__eclic_8h_source.html#l00760">__ECLIC_SetVector()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;{</div><div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga4faa0c15728837765ec9aaf28f14c09b">CSR_CCM_MBEGINADDR</a>, addr);</div><div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga09b6c06fdc71424566c30bad5470c0c1">CSR_CCM_MCOMMAND</a>, <a class="code" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a5fd653735ffce788a11243394e32e316">CCM_IC_INVAL</a>);</div><div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_gaa2d43f43f3f333cfd8e5a326a2aed413"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a></div><div class="ttdeci">#define __RV_CSR_WRITE(csr, val)</div><div class="ttdoc">CSR operation Macro for csrw instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00496">core_feature_base.h:496</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga09b6c06fdc71424566c30bad5470c0c1"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga09b6c06fdc71424566c30bad5470c0c1">CSR_CCM_MCOMMAND</a></div><div class="ttdeci">#define CSR_CCM_MCOMMAND</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00917">riscv_encoding.h:917</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__Cache_html_gga700ee5ca80d2777b38c6d8c963e4e5a9a5fd653735ffce788a11243394e32e316"><div class="ttname"><a href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a5fd653735ffce788a11243394e32e316">CCM_IC_INVAL</a></div><div class="ttdoc">Unlock and invalidate I-Cache line specified by CSR CCM_XBEGINADDR. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__cache_8h_source.html#l00087">core_feature_cache.h:87</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga4faa0c15728837765ec9aaf28f14c09b"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga4faa0c15728837765ec9aaf28f14c09b">CSR_CCM_MBEGINADDR</a></div><div class="ttdeci">#define CSR_CCM_MBEGINADDR</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00916">riscv_encoding.h:916</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="gafe47347cfa3f8c4a8829c88fa5fdec9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafe47347cfa3f8c4a8829c88fa5fdec9b">&#9670;&nbsp;</a></span>MInvalICacheLines()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void MInvalICacheLines </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>cnt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Invalidate several I-Cache lines specified by address in M-Mode. </p>
+<p>This function unlock and invalidate several I-Cache lines specified by the address and line count. Command <a class="el" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a5fd653735ffce788a11243394e32e316">CCM_IC_INVAL</a> is written to CSR <a class="el" href="group__NMSIS__Core__CSR__Registers.html#ga09b6c06fdc71424566c30bad5470c0c1">CSR_CCM_MCOMMAND</a>. </p><dl class="section remark"><dt>Remarks</dt><dd>This function must be executed in M-Mode only. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>start address to be invalidated </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cnt</td><td>count of cache lines to be invalidated </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00268">268</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
+
+<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00496">__RV_CSR_WRITE</a>, <a class="el" href="core__feature__cache_8h_source.html#l00087">CCM_IC_INVAL</a>, <a class="el" href="riscv__encoding_8h_source.html#l00916">CSR_CCM_MBEGINADDR</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00917">CSR_CCM_MCOMMAND</a>.</p>
+<div class="fragment"><div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;{</div><div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    <span class="keywordflow">if</span> (cnt &gt; 0) {</div><div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> i;</div><div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga4faa0c15728837765ec9aaf28f14c09b">CSR_CCM_MBEGINADDR</a>, addr);</div><div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;        <span class="keywordflow">for</span> (i = 0; i &lt; cnt; i++) {</div><div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;            <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga09b6c06fdc71424566c30bad5470c0c1">CSR_CCM_MCOMMAND</a>, <a class="code" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a5fd653735ffce788a11243394e32e316">CCM_IC_INVAL</a>);</div><div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;        }</div><div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    }</div><div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_gaa2d43f43f3f333cfd8e5a326a2aed413"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a></div><div class="ttdeci">#define __RV_CSR_WRITE(csr, val)</div><div class="ttdoc">CSR operation Macro for csrw instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00496">core_feature_base.h:496</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga09b6c06fdc71424566c30bad5470c0c1"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga09b6c06fdc71424566c30bad5470c0c1">CSR_CCM_MCOMMAND</a></div><div class="ttdeci">#define CSR_CCM_MCOMMAND</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00917">riscv_encoding.h:917</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__Cache_html_gga700ee5ca80d2777b38c6d8c963e4e5a9a5fd653735ffce788a11243394e32e316"><div class="ttname"><a href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a5fd653735ffce788a11243394e32e316">CCM_IC_INVAL</a></div><div class="ttdoc">Unlock and invalidate I-Cache line specified by CSR CCM_XBEGINADDR. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__cache_8h_source.html#l00087">core_feature_cache.h:87</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga4faa0c15728837765ec9aaf28f14c09b"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga4faa0c15728837765ec9aaf28f14c09b">CSR_CCM_MBEGINADDR</a></div><div class="ttdeci">#define CSR_CCM_MBEGINADDR</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00916">riscv_encoding.h:916</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="gaa0ebecb33755adc5adbc597889194605"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa0ebecb33755adc5adbc597889194605">&#9670;&nbsp;</a></span>MLockICacheLine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> unsigned long MLockICacheLine </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>addr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Lock one I-Cache line specified by address in M-Mode. </p>
+<p>This function lock one I-Cache line specified by the address. Command <a class="el" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a6db5a7fe3ab43a382df111a8c5556ec0">CCM_IC_LOCK</a> is written to CSR <a class="el" href="group__NMSIS__Core__CSR__Registers.html#ga09b6c06fdc71424566c30bad5470c0c1">CSR_CCM_MCOMMAND</a>. </p><dl class="section remark"><dt>Remarks</dt><dd>This function must be executed in M-Mode only. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>start address to be locked </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>result of CCM lock operation, see enum CCM_OP_FINFO </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00365">365</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
+
+<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00478">__RV_CSR_READ</a>, <a class="el" href="core__feature__base_8h_source.html#l00496">__RV_CSR_WRITE</a>, <a class="el" href="core__feature__cache_8h_source.html#l00088">CCM_IC_LOCK</a>, <a class="el" href="riscv__encoding_8h_source.html#l00916">CSR_CCM_MBEGINADDR</a>, <a class="el" href="riscv__encoding_8h_source.html#l00917">CSR_CCM_MCOMMAND</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00918">CSR_CCM_MDATA</a>.</p>
+<div class="fragment"><div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;{</div><div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga4faa0c15728837765ec9aaf28f14c09b">CSR_CCM_MBEGINADDR</a>, addr);</div><div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga09b6c06fdc71424566c30bad5470c0c1">CSR_CCM_MCOMMAND</a>, <a class="code" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a6db5a7fe3ab43a382df111a8c5556ec0">CCM_IC_LOCK</a>);</div><div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#ga355c96e5bd1ab3df0203e23a887c00c0">__RV_CSR_READ</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga68f7537cd8e79434b1a191053d09d5f7">CSR_CCM_MDATA</a>);</div><div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_gaa2d43f43f3f333cfd8e5a326a2aed413"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a></div><div class="ttdeci">#define __RV_CSR_WRITE(csr, val)</div><div class="ttdoc">CSR operation Macro for csrw instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00496">core_feature_base.h:496</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga09b6c06fdc71424566c30bad5470c0c1"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga09b6c06fdc71424566c30bad5470c0c1">CSR_CCM_MCOMMAND</a></div><div class="ttdeci">#define CSR_CCM_MCOMMAND</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00917">riscv_encoding.h:917</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_ga355c96e5bd1ab3df0203e23a887c00c0"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#ga355c96e5bd1ab3df0203e23a887c00c0">__RV_CSR_READ</a></div><div class="ttdeci">#define __RV_CSR_READ(csr)</div><div class="ttdoc">CSR operation Macro for csrr instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00478">core_feature_base.h:478</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga68f7537cd8e79434b1a191053d09d5f7"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga68f7537cd8e79434b1a191053d09d5f7">CSR_CCM_MDATA</a></div><div class="ttdeci">#define CSR_CCM_MDATA</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00918">riscv_encoding.h:918</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__Cache_html_gga700ee5ca80d2777b38c6d8c963e4e5a9a6db5a7fe3ab43a382df111a8c5556ec0"><div class="ttname"><a href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a6db5a7fe3ab43a382df111a8c5556ec0">CCM_IC_LOCK</a></div><div class="ttdoc">Lock the specific I-Cache line specified by CSR CCM_XBEGINADDR. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__cache_8h_source.html#l00088">core_feature_cache.h:88</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga4faa0c15728837765ec9aaf28f14c09b"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga4faa0c15728837765ec9aaf28f14c09b">CSR_CCM_MBEGINADDR</a></div><div class="ttdeci">#define CSR_CCM_MBEGINADDR</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00916">riscv_encoding.h:916</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga5d12990670c5b36de576bab8d1812d16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5d12990670c5b36de576bab8d1812d16">&#9670;&nbsp;</a></span>MLockICacheLines()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> unsigned long MLockICacheLines </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>cnt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Lock several I-Cache lines specified by address in M-Mode. </p>
+<p>This function lock several I-Cache lines specified by the address and line count. Command <a class="el" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a6db5a7fe3ab43a382df111a8c5556ec0">CCM_IC_LOCK</a> is written to CSR <a class="el" href="group__NMSIS__Core__CSR__Registers.html#ga09b6c06fdc71424566c30bad5470c0c1">CSR_CCM_MCOMMAND</a>. </p><dl class="section remark"><dt>Remarks</dt><dd>This function must be executed in M-Mode only. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>start address to be locked </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cnt</td><td>count of cache lines to be locked </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>result of CCM lock operation, see enum CCM_OP_FINFO </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00384">384</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
+
+<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00478">__RV_CSR_READ</a>, <a class="el" href="core__feature__base_8h_source.html#l00496">__RV_CSR_WRITE</a>, <a class="el" href="core__feature__cache_8h_source.html#l00088">CCM_IC_LOCK</a>, <a class="el" href="riscv__encoding_8h_source.html#l00916">CSR_CCM_MBEGINADDR</a>, <a class="el" href="riscv__encoding_8h_source.html#l00917">CSR_CCM_MCOMMAND</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00918">CSR_CCM_MDATA</a>.</p>
+<div class="fragment"><div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;{</div><div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    <span class="keywordflow">if</span> (cnt &gt; 0) {</div><div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> i;</div><div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;        <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga4faa0c15728837765ec9aaf28f14c09b">CSR_CCM_MBEGINADDR</a>, addr);</div><div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;        <span class="keywordflow">for</span> (i = 0; i &lt; cnt; i++) {</div><div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;            <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga09b6c06fdc71424566c30bad5470c0c1">CSR_CCM_MCOMMAND</a>, <a class="code" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a6db5a7fe3ab43a382df111a8c5556ec0">CCM_IC_LOCK</a>);</div><div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;        }</div><div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#ga355c96e5bd1ab3df0203e23a887c00c0">__RV_CSR_READ</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga68f7537cd8e79434b1a191053d09d5f7">CSR_CCM_MDATA</a>);</div><div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;    } <span class="keywordflow">else</span> {</div><div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;        <span class="keywordflow">return</span> 0;</div><div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;    }</div><div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_gaa2d43f43f3f333cfd8e5a326a2aed413"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a></div><div class="ttdeci">#define __RV_CSR_WRITE(csr, val)</div><div class="ttdoc">CSR operation Macro for csrw instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00496">core_feature_base.h:496</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga09b6c06fdc71424566c30bad5470c0c1"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga09b6c06fdc71424566c30bad5470c0c1">CSR_CCM_MCOMMAND</a></div><div class="ttdeci">#define CSR_CCM_MCOMMAND</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00917">riscv_encoding.h:917</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_ga355c96e5bd1ab3df0203e23a887c00c0"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#ga355c96e5bd1ab3df0203e23a887c00c0">__RV_CSR_READ</a></div><div class="ttdeci">#define __RV_CSR_READ(csr)</div><div class="ttdoc">CSR operation Macro for csrr instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00478">core_feature_base.h:478</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga68f7537cd8e79434b1a191053d09d5f7"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga68f7537cd8e79434b1a191053d09d5f7">CSR_CCM_MDATA</a></div><div class="ttdeci">#define CSR_CCM_MDATA</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00918">riscv_encoding.h:918</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__Cache_html_gga700ee5ca80d2777b38c6d8c963e4e5a9a6db5a7fe3ab43a382df111a8c5556ec0"><div class="ttname"><a href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a6db5a7fe3ab43a382df111a8c5556ec0">CCM_IC_LOCK</a></div><div class="ttdoc">Lock the specific I-Cache line specified by CSR CCM_XBEGINADDR. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__cache_8h_source.html#l00088">core_feature_cache.h:88</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga4faa0c15728837765ec9aaf28f14c09b"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga4faa0c15728837765ec9aaf28f14c09b">CSR_CCM_MBEGINADDR</a></div><div class="ttdeci">#define CSR_CCM_MBEGINADDR</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00916">riscv_encoding.h:916</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="gac423a03eaa4afb1c8641c1c9e3097168"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac423a03eaa4afb1c8641c1c9e3097168">&#9670;&nbsp;</a></span>MUnlockICacheLine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void MUnlockICacheLine </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>addr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Unlock one I-Cache line specified by address in M-Mode. </p>
+<p>This function unlock one I-Cache line specified by the address. Command <a class="el" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9ae7956f03b5ca54a55faee30269cf9b53">CCM_IC_UNLOCK</a> is written to CSR <a class="el" href="group__NMSIS__Core__CSR__Registers.html#ga09b6c06fdc71424566c30bad5470c0c1">CSR_CCM_MCOMMAND</a>. </p><dl class="section remark"><dt>Remarks</dt><dd>This function must be executed in M-Mode only. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>start address to be unlocked </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00493">493</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
+
+<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00496">__RV_CSR_WRITE</a>, <a class="el" href="core__feature__cache_8h_source.html#l00089">CCM_IC_UNLOCK</a>, <a class="el" href="riscv__encoding_8h_source.html#l00916">CSR_CCM_MBEGINADDR</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00917">CSR_CCM_MCOMMAND</a>.</p>
+<div class="fragment"><div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;{</div><div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga4faa0c15728837765ec9aaf28f14c09b">CSR_CCM_MBEGINADDR</a>, addr);</div><div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga09b6c06fdc71424566c30bad5470c0c1">CSR_CCM_MCOMMAND</a>, <a class="code" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9ae7956f03b5ca54a55faee30269cf9b53">CCM_IC_UNLOCK</a>);</div><div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_gaa2d43f43f3f333cfd8e5a326a2aed413"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a></div><div class="ttdeci">#define __RV_CSR_WRITE(csr, val)</div><div class="ttdoc">CSR operation Macro for csrw instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00496">core_feature_base.h:496</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga09b6c06fdc71424566c30bad5470c0c1"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga09b6c06fdc71424566c30bad5470c0c1">CSR_CCM_MCOMMAND</a></div><div class="ttdeci">#define CSR_CCM_MCOMMAND</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00917">riscv_encoding.h:917</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__Cache_html_gga700ee5ca80d2777b38c6d8c963e4e5a9ae7956f03b5ca54a55faee30269cf9b53"><div class="ttname"><a href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9ae7956f03b5ca54a55faee30269cf9b53">CCM_IC_UNLOCK</a></div><div class="ttdoc">Unlock the specific I-Cache line specified by CSR CCM_XBEGINADDR. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__cache_8h_source.html#l00089">core_feature_cache.h:89</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga4faa0c15728837765ec9aaf28f14c09b"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga4faa0c15728837765ec9aaf28f14c09b">CSR_CCM_MBEGINADDR</a></div><div class="ttdeci">#define CSR_CCM_MBEGINADDR</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00916">riscv_encoding.h:916</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga7035e12e1a3c7c7730f3211241a8fe90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7035e12e1a3c7c7730f3211241a8fe90">&#9670;&nbsp;</a></span>MUnlockICacheLines()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void MUnlockICacheLines </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>cnt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Unlock several I-Cache lines specified by address in M-Mode. </p>
+<p>This function unlock several I-Cache lines specified by the address and line count. Command <a class="el" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9ae7956f03b5ca54a55faee30269cf9b53">CCM_IC_UNLOCK</a> is written to CSR <a class="el" href="group__NMSIS__Core__CSR__Registers.html#ga09b6c06fdc71424566c30bad5470c0c1">CSR_CCM_MCOMMAND</a>. </p><dl class="section remark"><dt>Remarks</dt><dd>This function must be executed in M-Mode only. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>start address to be unlocked </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cnt</td><td>count of cache lines to be unlocked </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00510">510</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
+
+<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00496">__RV_CSR_WRITE</a>, <a class="el" href="core__feature__cache_8h_source.html#l00089">CCM_IC_UNLOCK</a>, <a class="el" href="riscv__encoding_8h_source.html#l00916">CSR_CCM_MBEGINADDR</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00917">CSR_CCM_MCOMMAND</a>.</p>
+<div class="fragment"><div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;{</div><div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;    <span class="keywordflow">if</span> (cnt &gt; 0) {</div><div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> i;</div><div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;        <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga4faa0c15728837765ec9aaf28f14c09b">CSR_CCM_MBEGINADDR</a>, addr);</div><div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;        <span class="keywordflow">for</span> (i = 0; i &lt; cnt; i++) {</div><div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;            <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga09b6c06fdc71424566c30bad5470c0c1">CSR_CCM_MCOMMAND</a>, <a class="code" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9ae7956f03b5ca54a55faee30269cf9b53">CCM_IC_UNLOCK</a>);</div><div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;        }</div><div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;    }</div><div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_gaa2d43f43f3f333cfd8e5a326a2aed413"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a></div><div class="ttdeci">#define __RV_CSR_WRITE(csr, val)</div><div class="ttdoc">CSR operation Macro for csrw instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00496">core_feature_base.h:496</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga09b6c06fdc71424566c30bad5470c0c1"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga09b6c06fdc71424566c30bad5470c0c1">CSR_CCM_MCOMMAND</a></div><div class="ttdeci">#define CSR_CCM_MCOMMAND</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00917">riscv_encoding.h:917</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__Cache_html_gga700ee5ca80d2777b38c6d8c963e4e5a9ae7956f03b5ca54a55faee30269cf9b53"><div class="ttname"><a href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9ae7956f03b5ca54a55faee30269cf9b53">CCM_IC_UNLOCK</a></div><div class="ttdoc">Unlock the specific I-Cache line specified by CSR CCM_XBEGINADDR. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__cache_8h_source.html#l00089">core_feature_cache.h:89</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga4faa0c15728837765ec9aaf28f14c09b"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga4faa0c15728837765ec9aaf28f14c09b">CSR_CCM_MBEGINADDR</a></div><div class="ttdeci">#define CSR_CCM_MBEGINADDR</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00916">riscv_encoding.h:916</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga25824c725ce4cfd0319c182a8a44c7e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga25824c725ce4cfd0319c182a8a44c7e3">&#9670;&nbsp;</a></span>SInvalICache()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void SInvalICache </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Invalidate all I-Cache lines in S-Mode. </p>
+<p>This function invalidate all I-Cache lines. Command <a class="el" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9abf7eec30759aff4902c875cffef31484">CCM_IC_INVAL_ALL</a> is written to CSR <a class="el" href="group__NMSIS__Core__CSR__Registers.html#ga19b9cf123424b131c5ba30946c54c2fd">CSR_CCM_SCOMMAND</a>. </p><dl class="section remark"><dt>Remarks</dt><dd>This function must be executed in M/S-Mode only. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>start address to be invalidated </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00618">618</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
+
+<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00496">__RV_CSR_WRITE</a>, <a class="el" href="core__feature__cache_8h_source.html#l00090">CCM_IC_INVAL_ALL</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00921">CSR_CCM_SCOMMAND</a>.</p>
+<div class="fragment"><div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;{</div><div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga19b9cf123424b131c5ba30946c54c2fd">CSR_CCM_SCOMMAND</a>, <a class="code" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9abf7eec30759aff4902c875cffef31484">CCM_IC_INVAL_ALL</a>);</div><div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga19b9cf123424b131c5ba30946c54c2fd"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga19b9cf123424b131c5ba30946c54c2fd">CSR_CCM_SCOMMAND</a></div><div class="ttdeci">#define CSR_CCM_SCOMMAND</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00921">riscv_encoding.h:921</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_gaa2d43f43f3f333cfd8e5a326a2aed413"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a></div><div class="ttdeci">#define __RV_CSR_WRITE(csr, val)</div><div class="ttdoc">CSR operation Macro for csrw instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00496">core_feature_base.h:496</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__Cache_html_gga700ee5ca80d2777b38c6d8c963e4e5a9abf7eec30759aff4902c875cffef31484"><div class="ttname"><a href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9abf7eec30759aff4902c875cffef31484">CCM_IC_INVAL_ALL</a></div><div class="ttdoc">Unlock and invalidate all the I-Cache lines. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__cache_8h_source.html#l00090">core_feature_cache.h:90</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga9cfe1f7476be3aa984c926287eceecdf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9cfe1f7476be3aa984c926287eceecdf">&#9670;&nbsp;</a></span>SInvalICacheLine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void SInvalICacheLine </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>addr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Invalidate one I-Cache line specified by address in S-Mode. </p>
+<p>This function unlock and invalidate one I-Cache line specified by the address. Command <a class="el" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a5fd653735ffce788a11243394e32e316">CCM_IC_INVAL</a> is written to CSR <a class="el" href="group__NMSIS__Core__CSR__Registers.html#ga19b9cf123424b131c5ba30946c54c2fd">CSR_CCM_SCOMMAND</a>. </p><dl class="section remark"><dt>Remarks</dt><dd>This function must be executed in M/S-Mode only. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>start address to be invalidated </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00289">289</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
+
+<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00496">__RV_CSR_WRITE</a>, <a class="el" href="core__feature__cache_8h_source.html#l00087">CCM_IC_INVAL</a>, <a class="el" href="riscv__encoding_8h_source.html#l00920">CSR_CCM_SBEGINADDR</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00921">CSR_CCM_SCOMMAND</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="core__feature__eclic_8h_source.html#l01163">__ECLIC_SetVector_S()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;{</div><div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#gab508f4dfbd649a25f7eaa8ac5b88a8c0">CSR_CCM_SBEGINADDR</a>, addr);</div><div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga19b9cf123424b131c5ba30946c54c2fd">CSR_CCM_SCOMMAND</a>, <a class="code" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a5fd653735ffce788a11243394e32e316">CCM_IC_INVAL</a>);</div><div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga19b9cf123424b131c5ba30946c54c2fd"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga19b9cf123424b131c5ba30946c54c2fd">CSR_CCM_SCOMMAND</a></div><div class="ttdeci">#define CSR_CCM_SCOMMAND</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00921">riscv_encoding.h:921</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_gab508f4dfbd649a25f7eaa8ac5b88a8c0"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#gab508f4dfbd649a25f7eaa8ac5b88a8c0">CSR_CCM_SBEGINADDR</a></div><div class="ttdeci">#define CSR_CCM_SBEGINADDR</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00920">riscv_encoding.h:920</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_gaa2d43f43f3f333cfd8e5a326a2aed413"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a></div><div class="ttdeci">#define __RV_CSR_WRITE(csr, val)</div><div class="ttdoc">CSR operation Macro for csrw instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00496">core_feature_base.h:496</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__Cache_html_gga700ee5ca80d2777b38c6d8c963e4e5a9a5fd653735ffce788a11243394e32e316"><div class="ttname"><a href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a5fd653735ffce788a11243394e32e316">CCM_IC_INVAL</a></div><div class="ttdoc">Unlock and invalidate I-Cache line specified by CSR CCM_XBEGINADDR. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__cache_8h_source.html#l00087">core_feature_cache.h:87</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga020ff82b548a567037dd0c916b4429d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga020ff82b548a567037dd0c916b4429d2">&#9670;&nbsp;</a></span>SInvalICacheLines()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void SInvalICacheLines </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>cnt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Invalidate several I-Cache lines specified by address in S-Mode. </p>
+<p>This function unlock and invalidate several I-Cache lines specified by the address and line count. Command <a class="el" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a5fd653735ffce788a11243394e32e316">CCM_IC_INVAL</a> is written to CSR <a class="el" href="group__NMSIS__Core__CSR__Registers.html#ga19b9cf123424b131c5ba30946c54c2fd">CSR_CCM_SCOMMAND</a>. </p><dl class="section remark"><dt>Remarks</dt><dd>This function must be executed in M/S-Mode only. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>start address to be invalidated </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cnt</td><td>count of cache lines to be invalidated </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00306">306</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
+
+<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00496">__RV_CSR_WRITE</a>, <a class="el" href="core__feature__cache_8h_source.html#l00087">CCM_IC_INVAL</a>, <a class="el" href="riscv__encoding_8h_source.html#l00920">CSR_CCM_SBEGINADDR</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00921">CSR_CCM_SCOMMAND</a>.</p>
+<div class="fragment"><div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;{</div><div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    <span class="keywordflow">if</span> (cnt &gt; 0) {</div><div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> i;</div><div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;        <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#gab508f4dfbd649a25f7eaa8ac5b88a8c0">CSR_CCM_SBEGINADDR</a>, addr);</div><div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;        <span class="keywordflow">for</span> (i = 0; i &lt; cnt; i++) {</div><div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;            <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga19b9cf123424b131c5ba30946c54c2fd">CSR_CCM_SCOMMAND</a>, <a class="code" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a5fd653735ffce788a11243394e32e316">CCM_IC_INVAL</a>);</div><div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;        }</div><div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    }</div><div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga19b9cf123424b131c5ba30946c54c2fd"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga19b9cf123424b131c5ba30946c54c2fd">CSR_CCM_SCOMMAND</a></div><div class="ttdeci">#define CSR_CCM_SCOMMAND</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00921">riscv_encoding.h:921</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_gab508f4dfbd649a25f7eaa8ac5b88a8c0"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#gab508f4dfbd649a25f7eaa8ac5b88a8c0">CSR_CCM_SBEGINADDR</a></div><div class="ttdeci">#define CSR_CCM_SBEGINADDR</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00920">riscv_encoding.h:920</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_gaa2d43f43f3f333cfd8e5a326a2aed413"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a></div><div class="ttdeci">#define __RV_CSR_WRITE(csr, val)</div><div class="ttdoc">CSR operation Macro for csrw instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00496">core_feature_base.h:496</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__Cache_html_gga700ee5ca80d2777b38c6d8c963e4e5a9a5fd653735ffce788a11243394e32e316"><div class="ttname"><a href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a5fd653735ffce788a11243394e32e316">CCM_IC_INVAL</a></div><div class="ttdoc">Unlock and invalidate I-Cache line specified by CSR CCM_XBEGINADDR. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__cache_8h_source.html#l00087">core_feature_cache.h:87</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga8ac672c482d15a997db8f4acfa6c51f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8ac672c482d15a997db8f4acfa6c51f5">&#9670;&nbsp;</a></span>SLockICacheLine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> unsigned long SLockICacheLine </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>addr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Lock one I-Cache line specified by address in S-Mode. </p>
+<p>This function lock one I-Cache line specified by the address. Command <a class="el" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a6db5a7fe3ab43a382df111a8c5556ec0">CCM_IC_LOCK</a> is written to CSR <a class="el" href="group__NMSIS__Core__CSR__Registers.html#ga19b9cf123424b131c5ba30946c54c2fd">CSR_CCM_SCOMMAND</a>. </p><dl class="section remark"><dt>Remarks</dt><dd>This function must be executed in M/S-Mode only. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>start address to be locked </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>result of CCM lock operation, see enum CCM_OP_FINFO </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00408">408</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
+
+<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00478">__RV_CSR_READ</a>, <a class="el" href="core__feature__base_8h_source.html#l00496">__RV_CSR_WRITE</a>, <a class="el" href="core__feature__cache_8h_source.html#l00088">CCM_IC_LOCK</a>, <a class="el" href="riscv__encoding_8h_source.html#l00920">CSR_CCM_SBEGINADDR</a>, <a class="el" href="riscv__encoding_8h_source.html#l00921">CSR_CCM_SCOMMAND</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00922">CSR_CCM_SDATA</a>.</p>
+<div class="fragment"><div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;{</div><div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#gab508f4dfbd649a25f7eaa8ac5b88a8c0">CSR_CCM_SBEGINADDR</a>, addr);</div><div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga19b9cf123424b131c5ba30946c54c2fd">CSR_CCM_SCOMMAND</a>, <a class="code" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a6db5a7fe3ab43a382df111a8c5556ec0">CCM_IC_LOCK</a>);</div><div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#ga355c96e5bd1ab3df0203e23a887c00c0">__RV_CSR_READ</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga58c7d8ca64fe96544d85e57f4b6a3bca">CSR_CCM_SDATA</a>);</div><div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga19b9cf123424b131c5ba30946c54c2fd"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga19b9cf123424b131c5ba30946c54c2fd">CSR_CCM_SCOMMAND</a></div><div class="ttdeci">#define CSR_CCM_SCOMMAND</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00921">riscv_encoding.h:921</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_gab508f4dfbd649a25f7eaa8ac5b88a8c0"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#gab508f4dfbd649a25f7eaa8ac5b88a8c0">CSR_CCM_SBEGINADDR</a></div><div class="ttdeci">#define CSR_CCM_SBEGINADDR</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00920">riscv_encoding.h:920</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_gaa2d43f43f3f333cfd8e5a326a2aed413"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a></div><div class="ttdeci">#define __RV_CSR_WRITE(csr, val)</div><div class="ttdoc">CSR operation Macro for csrw instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00496">core_feature_base.h:496</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_ga355c96e5bd1ab3df0203e23a887c00c0"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#ga355c96e5bd1ab3df0203e23a887c00c0">__RV_CSR_READ</a></div><div class="ttdeci">#define __RV_CSR_READ(csr)</div><div class="ttdoc">CSR operation Macro for csrr instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00478">core_feature_base.h:478</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__Cache_html_gga700ee5ca80d2777b38c6d8c963e4e5a9a6db5a7fe3ab43a382df111a8c5556ec0"><div class="ttname"><a href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a6db5a7fe3ab43a382df111a8c5556ec0">CCM_IC_LOCK</a></div><div class="ttdoc">Lock the specific I-Cache line specified by CSR CCM_XBEGINADDR. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__cache_8h_source.html#l00088">core_feature_cache.h:88</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga58c7d8ca64fe96544d85e57f4b6a3bca"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga58c7d8ca64fe96544d85e57f4b6a3bca">CSR_CCM_SDATA</a></div><div class="ttdeci">#define CSR_CCM_SDATA</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00922">riscv_encoding.h:922</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="gab179486d73e9a1ce8543d310aa8d1594"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab179486d73e9a1ce8543d310aa8d1594">&#9670;&nbsp;</a></span>SLockICacheLines()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> unsigned long SLockICacheLines </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>cnt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Lock several I-Cache lines specified by address in S-Mode. </p>
+<p>This function lock several I-Cache lines specified by the address and line count. Command <a class="el" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a6db5a7fe3ab43a382df111a8c5556ec0">CCM_IC_LOCK</a> is written to CSR <a class="el" href="group__NMSIS__Core__CSR__Registers.html#ga19b9cf123424b131c5ba30946c54c2fd">CSR_CCM_SCOMMAND</a>. </p><dl class="section remark"><dt>Remarks</dt><dd>This function must be executed in M/S-Mode only. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>start address to be locked </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cnt</td><td>count of cache lines to be locked </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>result of CCM lock operation, see enum CCM_OP_FINFO </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00427">427</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
+
+<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00478">__RV_CSR_READ</a>, <a class="el" href="core__feature__base_8h_source.html#l00496">__RV_CSR_WRITE</a>, <a class="el" href="core__feature__cache_8h_source.html#l00088">CCM_IC_LOCK</a>, <a class="el" href="riscv__encoding_8h_source.html#l00920">CSR_CCM_SBEGINADDR</a>, <a class="el" href="riscv__encoding_8h_source.html#l00921">CSR_CCM_SCOMMAND</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00922">CSR_CCM_SDATA</a>.</p>
+<div class="fragment"><div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;{</div><div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;    <span class="keywordflow">if</span> (cnt &gt; 0) {</div><div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> i;</div><div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;        <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#gab508f4dfbd649a25f7eaa8ac5b88a8c0">CSR_CCM_SBEGINADDR</a>, addr);</div><div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;        <span class="keywordflow">for</span> (i = 0; i &lt; cnt; i++) {</div><div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;            <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga19b9cf123424b131c5ba30946c54c2fd">CSR_CCM_SCOMMAND</a>, <a class="code" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a6db5a7fe3ab43a382df111a8c5556ec0">CCM_IC_LOCK</a>);</div><div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;        }</div><div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#ga355c96e5bd1ab3df0203e23a887c00c0">__RV_CSR_READ</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga58c7d8ca64fe96544d85e57f4b6a3bca">CSR_CCM_SDATA</a>);</div><div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;    } <span class="keywordflow">else</span> {</div><div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;        <span class="keywordflow">return</span> 0;</div><div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;    }</div><div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga19b9cf123424b131c5ba30946c54c2fd"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga19b9cf123424b131c5ba30946c54c2fd">CSR_CCM_SCOMMAND</a></div><div class="ttdeci">#define CSR_CCM_SCOMMAND</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00921">riscv_encoding.h:921</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_gab508f4dfbd649a25f7eaa8ac5b88a8c0"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#gab508f4dfbd649a25f7eaa8ac5b88a8c0">CSR_CCM_SBEGINADDR</a></div><div class="ttdeci">#define CSR_CCM_SBEGINADDR</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00920">riscv_encoding.h:920</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_gaa2d43f43f3f333cfd8e5a326a2aed413"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a></div><div class="ttdeci">#define __RV_CSR_WRITE(csr, val)</div><div class="ttdoc">CSR operation Macro for csrw instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00496">core_feature_base.h:496</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_ga355c96e5bd1ab3df0203e23a887c00c0"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#ga355c96e5bd1ab3df0203e23a887c00c0">__RV_CSR_READ</a></div><div class="ttdeci">#define __RV_CSR_READ(csr)</div><div class="ttdoc">CSR operation Macro for csrr instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00478">core_feature_base.h:478</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__Cache_html_gga700ee5ca80d2777b38c6d8c963e4e5a9a6db5a7fe3ab43a382df111a8c5556ec0"><div class="ttname"><a href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a6db5a7fe3ab43a382df111a8c5556ec0">CCM_IC_LOCK</a></div><div class="ttdoc">Lock the specific I-Cache line specified by CSR CCM_XBEGINADDR. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__cache_8h_source.html#l00088">core_feature_cache.h:88</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga58c7d8ca64fe96544d85e57f4b6a3bca"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga58c7d8ca64fe96544d85e57f4b6a3bca">CSR_CCM_SDATA</a></div><div class="ttdeci">#define CSR_CCM_SDATA</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00922">riscv_encoding.h:922</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="gaf43b829e002df8fb7563c5eccb4dd9eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf43b829e002df8fb7563c5eccb4dd9eb">&#9670;&nbsp;</a></span>SUnlockICacheLine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void SUnlockICacheLine </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>addr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Unlock one I-Cache line specified by address in S-Mode. </p>
+<p>This function unlock one I-Cache line specified by the address. Command <a class="el" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9ae7956f03b5ca54a55faee30269cf9b53">CCM_IC_UNLOCK</a> is written to CSR <a class="el" href="group__NMSIS__Core__CSR__Registers.html#ga19b9cf123424b131c5ba30946c54c2fd">CSR_CCM_SCOMMAND</a>. </p><dl class="section remark"><dt>Remarks</dt><dd>This function must be executed in M/S-Mode only. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>start address to be unlocked </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00530">530</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
+
+<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00496">__RV_CSR_WRITE</a>, <a class="el" href="core__feature__cache_8h_source.html#l00089">CCM_IC_UNLOCK</a>, <a class="el" href="riscv__encoding_8h_source.html#l00920">CSR_CCM_SBEGINADDR</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00921">CSR_CCM_SCOMMAND</a>.</p>
+<div class="fragment"><div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;{</div><div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#gab508f4dfbd649a25f7eaa8ac5b88a8c0">CSR_CCM_SBEGINADDR</a>, addr);</div><div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga19b9cf123424b131c5ba30946c54c2fd">CSR_CCM_SCOMMAND</a>, <a class="code" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9ae7956f03b5ca54a55faee30269cf9b53">CCM_IC_UNLOCK</a>);</div><div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga19b9cf123424b131c5ba30946c54c2fd"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga19b9cf123424b131c5ba30946c54c2fd">CSR_CCM_SCOMMAND</a></div><div class="ttdeci">#define CSR_CCM_SCOMMAND</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00921">riscv_encoding.h:921</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_gab508f4dfbd649a25f7eaa8ac5b88a8c0"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#gab508f4dfbd649a25f7eaa8ac5b88a8c0">CSR_CCM_SBEGINADDR</a></div><div class="ttdeci">#define CSR_CCM_SBEGINADDR</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00920">riscv_encoding.h:920</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_gaa2d43f43f3f333cfd8e5a326a2aed413"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a></div><div class="ttdeci">#define __RV_CSR_WRITE(csr, val)</div><div class="ttdoc">CSR operation Macro for csrw instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00496">core_feature_base.h:496</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__Cache_html_gga700ee5ca80d2777b38c6d8c963e4e5a9ae7956f03b5ca54a55faee30269cf9b53"><div class="ttname"><a href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9ae7956f03b5ca54a55faee30269cf9b53">CCM_IC_UNLOCK</a></div><div class="ttdoc">Unlock the specific I-Cache line specified by CSR CCM_XBEGINADDR. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__cache_8h_source.html#l00089">core_feature_cache.h:89</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga74e29621ab0c803fe474c648d078fe18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga74e29621ab0c803fe474c648d078fe18">&#9670;&nbsp;</a></span>SUnlockICacheLines()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void SUnlockICacheLines </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>cnt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Unlock several I-Cache lines specified by address in S-Mode. </p>
+<p>This function unlock several I-Cache lines specified by the address and line count. Command <a class="el" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9ae7956f03b5ca54a55faee30269cf9b53">CCM_IC_UNLOCK</a> is written to CSR <a class="el" href="group__NMSIS__Core__CSR__Registers.html#ga19b9cf123424b131c5ba30946c54c2fd">CSR_CCM_SCOMMAND</a>. </p><dl class="section remark"><dt>Remarks</dt><dd>This function must be executed in M/S-Mode only. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>start address to be unlocked </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cnt</td><td>count of cache lines to be unlocked </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00547">547</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
+
+<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00496">__RV_CSR_WRITE</a>, <a class="el" href="core__feature__cache_8h_source.html#l00089">CCM_IC_UNLOCK</a>, <a class="el" href="riscv__encoding_8h_source.html#l00920">CSR_CCM_SBEGINADDR</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00921">CSR_CCM_SCOMMAND</a>.</p>
+<div class="fragment"><div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;{</div><div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;    <span class="keywordflow">if</span> (cnt &gt; 0) {</div><div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> i;</div><div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;        <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#gab508f4dfbd649a25f7eaa8ac5b88a8c0">CSR_CCM_SBEGINADDR</a>, addr);</div><div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;        <span class="keywordflow">for</span> (i = 0; i &lt; cnt; i++) {</div><div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;            <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga19b9cf123424b131c5ba30946c54c2fd">CSR_CCM_SCOMMAND</a>, <a class="code" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9ae7956f03b5ca54a55faee30269cf9b53">CCM_IC_UNLOCK</a>);</div><div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;        }</div><div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;    }</div><div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga19b9cf123424b131c5ba30946c54c2fd"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga19b9cf123424b131c5ba30946c54c2fd">CSR_CCM_SCOMMAND</a></div><div class="ttdeci">#define CSR_CCM_SCOMMAND</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00921">riscv_encoding.h:921</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_gab508f4dfbd649a25f7eaa8ac5b88a8c0"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#gab508f4dfbd649a25f7eaa8ac5b88a8c0">CSR_CCM_SBEGINADDR</a></div><div class="ttdeci">#define CSR_CCM_SBEGINADDR</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00920">riscv_encoding.h:920</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_gaa2d43f43f3f333cfd8e5a326a2aed413"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a></div><div class="ttdeci">#define __RV_CSR_WRITE(csr, val)</div><div class="ttdoc">CSR operation Macro for csrw instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00496">core_feature_base.h:496</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__Cache_html_gga700ee5ca80d2777b38c6d8c963e4e5a9ae7956f03b5ca54a55faee30269cf9b53"><div class="ttname"><a href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9ae7956f03b5ca54a55faee30269cf9b53">CCM_IC_UNLOCK</a></div><div class="ttdoc">Unlock the specific I-Cache line specified by CSR CCM_XBEGINADDR. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__cache_8h_source.html#l00089">core_feature_cache.h:89</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga60a04e2fd2a444e04703dcd4a8d38e04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga60a04e2fd2a444e04703dcd4a8d38e04">&#9670;&nbsp;</a></span>UInvalICache()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void UInvalICache </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Invalidate all I-Cache lines in U-Mode. </p>
+<p>This function invalidate all I-Cache lines. Command <a class="el" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9abf7eec30759aff4902c875cffef31484">CCM_IC_INVAL_ALL</a> is written to CSR <a class="el" href="group__NMSIS__Core__CSR__Registers.html#ga53c64245d173eed1d1622cfac509ff60">CSR_CCM_UCOMMAND</a>. </p><dl class="section remark"><dt>Remarks</dt><dd>This function must be executed in M/S/U-Mode only. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>start address to be invalidated </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00632">632</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
+
+<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00496">__RV_CSR_WRITE</a>, <a class="el" href="core__feature__cache_8h_source.html#l00090">CCM_IC_INVAL_ALL</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00924">CSR_CCM_UCOMMAND</a>.</p>
+<div class="fragment"><div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160;{</div><div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga53c64245d173eed1d1622cfac509ff60">CSR_CCM_UCOMMAND</a>, <a class="code" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9abf7eec30759aff4902c875cffef31484">CCM_IC_INVAL_ALL</a>);</div><div class="line"><a name="l00635"></a><span class="lineno">  635</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_gaa2d43f43f3f333cfd8e5a326a2aed413"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a></div><div class="ttdeci">#define __RV_CSR_WRITE(csr, val)</div><div class="ttdoc">CSR operation Macro for csrw instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00496">core_feature_base.h:496</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga53c64245d173eed1d1622cfac509ff60"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga53c64245d173eed1d1622cfac509ff60">CSR_CCM_UCOMMAND</a></div><div class="ttdeci">#define CSR_CCM_UCOMMAND</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00924">riscv_encoding.h:924</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__Cache_html_gga700ee5ca80d2777b38c6d8c963e4e5a9abf7eec30759aff4902c875cffef31484"><div class="ttname"><a href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9abf7eec30759aff4902c875cffef31484">CCM_IC_INVAL_ALL</a></div><div class="ttdoc">Unlock and invalidate all the I-Cache lines. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__cache_8h_source.html#l00090">core_feature_cache.h:90</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga4c202208f9f90802445600e637563f3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4c202208f9f90802445600e637563f3d">&#9670;&nbsp;</a></span>UInvalICacheLine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void UInvalICacheLine </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>addr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Invalidate one I-Cache line specified by address in U-Mode. </p>
+<p>This function unlock and invalidate one I-Cache line specified by the address. Command <a class="el" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a5fd653735ffce788a11243394e32e316">CCM_IC_INVAL</a> is written to CSR <a class="el" href="group__NMSIS__Core__CSR__Registers.html#ga53c64245d173eed1d1622cfac509ff60">CSR_CCM_UCOMMAND</a>. </p><dl class="section remark"><dt>Remarks</dt><dd>This function must be executed in M/S/U-Mode only. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>start address to be invalidated </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00327">327</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
+
+<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00496">__RV_CSR_WRITE</a>, <a class="el" href="core__feature__cache_8h_source.html#l00087">CCM_IC_INVAL</a>, <a class="el" href="riscv__encoding_8h_source.html#l00923">CSR_CCM_UBEGINADDR</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00924">CSR_CCM_UCOMMAND</a>.</p>
+<div class="fragment"><div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;{</div><div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#gaca251c4a3f81dd257831ac6407088e52">CSR_CCM_UBEGINADDR</a>, addr);</div><div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga53c64245d173eed1d1622cfac509ff60">CSR_CCM_UCOMMAND</a>, <a class="code" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a5fd653735ffce788a11243394e32e316">CCM_IC_INVAL</a>);</div><div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_gaca251c4a3f81dd257831ac6407088e52"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#gaca251c4a3f81dd257831ac6407088e52">CSR_CCM_UBEGINADDR</a></div><div class="ttdeci">#define CSR_CCM_UBEGINADDR</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00923">riscv_encoding.h:923</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_gaa2d43f43f3f333cfd8e5a326a2aed413"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a></div><div class="ttdeci">#define __RV_CSR_WRITE(csr, val)</div><div class="ttdoc">CSR operation Macro for csrw instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00496">core_feature_base.h:496</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga53c64245d173eed1d1622cfac509ff60"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga53c64245d173eed1d1622cfac509ff60">CSR_CCM_UCOMMAND</a></div><div class="ttdeci">#define CSR_CCM_UCOMMAND</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00924">riscv_encoding.h:924</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__Cache_html_gga700ee5ca80d2777b38c6d8c963e4e5a9a5fd653735ffce788a11243394e32e316"><div class="ttname"><a href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a5fd653735ffce788a11243394e32e316">CCM_IC_INVAL</a></div><div class="ttdoc">Unlock and invalidate I-Cache line specified by CSR CCM_XBEGINADDR. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__cache_8h_source.html#l00087">core_feature_cache.h:87</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga3f36015dbfc23a155d1ae0fa458388a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3f36015dbfc23a155d1ae0fa458388a2">&#9670;&nbsp;</a></span>UInvalICacheLines()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void UInvalICacheLines </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>cnt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Invalidate several I-Cache lines specified by address in U-Mode. </p>
+<p>This function unlock and invalidate several I-Cache lines specified by the address and line count. Command <a class="el" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a5fd653735ffce788a11243394e32e316">CCM_IC_INVAL</a> is written to CSR <a class="el" href="group__NMSIS__Core__CSR__Registers.html#ga53c64245d173eed1d1622cfac509ff60">CSR_CCM_UCOMMAND</a>. </p><dl class="section remark"><dt>Remarks</dt><dd>This function must be executed in M/S/U-Mode only. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>start address to be invalidated </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cnt</td><td>count of cache lines to be invalidated </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00344">344</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
+
+<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00496">__RV_CSR_WRITE</a>, <a class="el" href="core__feature__cache_8h_source.html#l00087">CCM_IC_INVAL</a>, <a class="el" href="riscv__encoding_8h_source.html#l00923">CSR_CCM_UBEGINADDR</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00924">CSR_CCM_UCOMMAND</a>.</p>
+<div class="fragment"><div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;{</div><div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;    <span class="keywordflow">if</span> (cnt &gt; 0) {</div><div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> i;</div><div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;        <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#gaca251c4a3f81dd257831ac6407088e52">CSR_CCM_UBEGINADDR</a>, addr);</div><div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;        <span class="keywordflow">for</span> (i = 0; i &lt; cnt; i++) {</div><div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;            <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga53c64245d173eed1d1622cfac509ff60">CSR_CCM_UCOMMAND</a>, <a class="code" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a5fd653735ffce788a11243394e32e316">CCM_IC_INVAL</a>);</div><div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;        }</div><div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;    }</div><div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_gaca251c4a3f81dd257831ac6407088e52"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#gaca251c4a3f81dd257831ac6407088e52">CSR_CCM_UBEGINADDR</a></div><div class="ttdeci">#define CSR_CCM_UBEGINADDR</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00923">riscv_encoding.h:923</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_gaa2d43f43f3f333cfd8e5a326a2aed413"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a></div><div class="ttdeci">#define __RV_CSR_WRITE(csr, val)</div><div class="ttdoc">CSR operation Macro for csrw instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00496">core_feature_base.h:496</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga53c64245d173eed1d1622cfac509ff60"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga53c64245d173eed1d1622cfac509ff60">CSR_CCM_UCOMMAND</a></div><div class="ttdeci">#define CSR_CCM_UCOMMAND</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00924">riscv_encoding.h:924</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__Cache_html_gga700ee5ca80d2777b38c6d8c963e4e5a9a5fd653735ffce788a11243394e32e316"><div class="ttname"><a href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a5fd653735ffce788a11243394e32e316">CCM_IC_INVAL</a></div><div class="ttdoc">Unlock and invalidate I-Cache line specified by CSR CCM_XBEGINADDR. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__cache_8h_source.html#l00087">core_feature_cache.h:87</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga84eb3cf641c1e87655219fec34e49b20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga84eb3cf641c1e87655219fec34e49b20">&#9670;&nbsp;</a></span>ULockICacheLine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> unsigned long ULockICacheLine </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>addr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Lock one I-Cache line specified by address in U-Mode. </p>
+<p>This function lock one I-Cache line specified by the address. Command <a class="el" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a6db5a7fe3ab43a382df111a8c5556ec0">CCM_IC_LOCK</a> is written to CSR <a class="el" href="group__NMSIS__Core__CSR__Registers.html#ga53c64245d173eed1d1622cfac509ff60">CSR_CCM_UCOMMAND</a>. </p><dl class="section remark"><dt>Remarks</dt><dd>This function must be executed in M/S/U-Mode only. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>start address to be locked </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>result of CCM lock operation, see enum CCM_OP_FINFO </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00451">451</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
+
+<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00478">__RV_CSR_READ</a>, <a class="el" href="core__feature__base_8h_source.html#l00496">__RV_CSR_WRITE</a>, <a class="el" href="core__feature__cache_8h_source.html#l00088">CCM_IC_LOCK</a>, <a class="el" href="riscv__encoding_8h_source.html#l00923">CSR_CCM_UBEGINADDR</a>, <a class="el" href="riscv__encoding_8h_source.html#l00924">CSR_CCM_UCOMMAND</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00925">CSR_CCM_UDATA</a>.</p>
+<div class="fragment"><div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;{</div><div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#gaca251c4a3f81dd257831ac6407088e52">CSR_CCM_UBEGINADDR</a>, addr);</div><div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga53c64245d173eed1d1622cfac509ff60">CSR_CCM_UCOMMAND</a>, <a class="code" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a6db5a7fe3ab43a382df111a8c5556ec0">CCM_IC_LOCK</a>);</div><div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#ga355c96e5bd1ab3df0203e23a887c00c0">__RV_CSR_READ</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#gad18936febc391b50b6ba078eb605758e">CSR_CCM_UDATA</a>);</div><div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_gaca251c4a3f81dd257831ac6407088e52"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#gaca251c4a3f81dd257831ac6407088e52">CSR_CCM_UBEGINADDR</a></div><div class="ttdeci">#define CSR_CCM_UBEGINADDR</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00923">riscv_encoding.h:923</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_gaa2d43f43f3f333cfd8e5a326a2aed413"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a></div><div class="ttdeci">#define __RV_CSR_WRITE(csr, val)</div><div class="ttdoc">CSR operation Macro for csrw instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00496">core_feature_base.h:496</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga53c64245d173eed1d1622cfac509ff60"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga53c64245d173eed1d1622cfac509ff60">CSR_CCM_UCOMMAND</a></div><div class="ttdeci">#define CSR_CCM_UCOMMAND</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00924">riscv_encoding.h:924</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_ga355c96e5bd1ab3df0203e23a887c00c0"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#ga355c96e5bd1ab3df0203e23a887c00c0">__RV_CSR_READ</a></div><div class="ttdeci">#define __RV_CSR_READ(csr)</div><div class="ttdoc">CSR operation Macro for csrr instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00478">core_feature_base.h:478</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_gad18936febc391b50b6ba078eb605758e"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#gad18936febc391b50b6ba078eb605758e">CSR_CCM_UDATA</a></div><div class="ttdeci">#define CSR_CCM_UDATA</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00925">riscv_encoding.h:925</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__Cache_html_gga700ee5ca80d2777b38c6d8c963e4e5a9a6db5a7fe3ab43a382df111a8c5556ec0"><div class="ttname"><a href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a6db5a7fe3ab43a382df111a8c5556ec0">CCM_IC_LOCK</a></div><div class="ttdoc">Lock the specific I-Cache line specified by CSR CCM_XBEGINADDR. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__cache_8h_source.html#l00088">core_feature_cache.h:88</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="gaf4b8c625829c4c772b65e5f95f61e659"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf4b8c625829c4c772b65e5f95f61e659">&#9670;&nbsp;</a></span>ULockICacheLines()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> unsigned long ULockICacheLines </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>cnt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Lock several I-Cache lines specified by address in U-Mode. </p>
+<p>This function lock several I-Cache lines specified by the address and line count. Command <a class="el" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a6db5a7fe3ab43a382df111a8c5556ec0">CCM_IC_LOCK</a> is written to CSR <a class="el" href="group__NMSIS__Core__CSR__Registers.html#ga53c64245d173eed1d1622cfac509ff60">CSR_CCM_UCOMMAND</a>. </p><dl class="section remark"><dt>Remarks</dt><dd>This function must be executed in M/S/U-Mode only. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>start address to be locked </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cnt</td><td>count of cache lines to be locked </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>result of CCM lock operation, see enum CCM_OP_FINFO </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00470">470</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
+
+<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00478">__RV_CSR_READ</a>, <a class="el" href="core__feature__base_8h_source.html#l00496">__RV_CSR_WRITE</a>, <a class="el" href="core__feature__cache_8h_source.html#l00088">CCM_IC_LOCK</a>, <a class="el" href="riscv__encoding_8h_source.html#l00923">CSR_CCM_UBEGINADDR</a>, <a class="el" href="riscv__encoding_8h_source.html#l00924">CSR_CCM_UCOMMAND</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00925">CSR_CCM_UDATA</a>.</p>
+<div class="fragment"><div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;{</div><div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;    <span class="keywordflow">if</span> (cnt &gt; 0) {</div><div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> i;</div><div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;        <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#gaca251c4a3f81dd257831ac6407088e52">CSR_CCM_UBEGINADDR</a>, addr);</div><div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;        <span class="keywordflow">for</span> (i = 0; i &lt; cnt; i++) {</div><div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;            <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga53c64245d173eed1d1622cfac509ff60">CSR_CCM_UCOMMAND</a>, <a class="code" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a6db5a7fe3ab43a382df111a8c5556ec0">CCM_IC_LOCK</a>);</div><div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;        }</div><div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#ga355c96e5bd1ab3df0203e23a887c00c0">__RV_CSR_READ</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#gad18936febc391b50b6ba078eb605758e">CSR_CCM_UDATA</a>);</div><div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;    } <span class="keywordflow">else</span> {</div><div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;        <span class="keywordflow">return</span> 0;</div><div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;    }</div><div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_gaca251c4a3f81dd257831ac6407088e52"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#gaca251c4a3f81dd257831ac6407088e52">CSR_CCM_UBEGINADDR</a></div><div class="ttdeci">#define CSR_CCM_UBEGINADDR</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00923">riscv_encoding.h:923</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_gaa2d43f43f3f333cfd8e5a326a2aed413"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a></div><div class="ttdeci">#define __RV_CSR_WRITE(csr, val)</div><div class="ttdoc">CSR operation Macro for csrw instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00496">core_feature_base.h:496</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga53c64245d173eed1d1622cfac509ff60"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga53c64245d173eed1d1622cfac509ff60">CSR_CCM_UCOMMAND</a></div><div class="ttdeci">#define CSR_CCM_UCOMMAND</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00924">riscv_encoding.h:924</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_ga355c96e5bd1ab3df0203e23a887c00c0"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#ga355c96e5bd1ab3df0203e23a887c00c0">__RV_CSR_READ</a></div><div class="ttdeci">#define __RV_CSR_READ(csr)</div><div class="ttdoc">CSR operation Macro for csrr instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00478">core_feature_base.h:478</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_gad18936febc391b50b6ba078eb605758e"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#gad18936febc391b50b6ba078eb605758e">CSR_CCM_UDATA</a></div><div class="ttdeci">#define CSR_CCM_UDATA</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00925">riscv_encoding.h:925</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__Cache_html_gga700ee5ca80d2777b38c6d8c963e4e5a9a6db5a7fe3ab43a382df111a8c5556ec0"><div class="ttname"><a href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a6db5a7fe3ab43a382df111a8c5556ec0">CCM_IC_LOCK</a></div><div class="ttdoc">Lock the specific I-Cache line specified by CSR CCM_XBEGINADDR. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__cache_8h_source.html#l00088">core_feature_cache.h:88</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga1221f6556c800e2172c0cab109a4a31f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1221f6556c800e2172c0cab109a4a31f">&#9670;&nbsp;</a></span>UUnlockICacheLine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void UUnlockICacheLine </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>addr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Unlock one I-Cache line specified by address in U-Mode. </p>
+<p>This function unlock one I-Cache line specified by the address. Command <a class="el" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9ae7956f03b5ca54a55faee30269cf9b53">CCM_IC_UNLOCK</a> is written to CSR <a class="el" href="group__NMSIS__Core__CSR__Registers.html#ga53c64245d173eed1d1622cfac509ff60">CSR_CCM_UCOMMAND</a>. </p><dl class="section remark"><dt>Remarks</dt><dd>This function must be executed in M/S/U-Mode only. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>start address to be unlocked </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00567">567</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
+
+<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00496">__RV_CSR_WRITE</a>, <a class="el" href="core__feature__cache_8h_source.html#l00089">CCM_IC_UNLOCK</a>, <a class="el" href="riscv__encoding_8h_source.html#l00923">CSR_CCM_UBEGINADDR</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00924">CSR_CCM_UCOMMAND</a>.</p>
+<div class="fragment"><div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;{</div><div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#gaca251c4a3f81dd257831ac6407088e52">CSR_CCM_UBEGINADDR</a>, addr);</div><div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga53c64245d173eed1d1622cfac509ff60">CSR_CCM_UCOMMAND</a>, <a class="code" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9ae7956f03b5ca54a55faee30269cf9b53">CCM_IC_UNLOCK</a>);</div><div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_gaca251c4a3f81dd257831ac6407088e52"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#gaca251c4a3f81dd257831ac6407088e52">CSR_CCM_UBEGINADDR</a></div><div class="ttdeci">#define CSR_CCM_UBEGINADDR</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00923">riscv_encoding.h:923</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_gaa2d43f43f3f333cfd8e5a326a2aed413"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a></div><div class="ttdeci">#define __RV_CSR_WRITE(csr, val)</div><div class="ttdoc">CSR operation Macro for csrw instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00496">core_feature_base.h:496</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga53c64245d173eed1d1622cfac509ff60"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga53c64245d173eed1d1622cfac509ff60">CSR_CCM_UCOMMAND</a></div><div class="ttdeci">#define CSR_CCM_UCOMMAND</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00924">riscv_encoding.h:924</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__Cache_html_gga700ee5ca80d2777b38c6d8c963e4e5a9ae7956f03b5ca54a55faee30269cf9b53"><div class="ttname"><a href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9ae7956f03b5ca54a55faee30269cf9b53">CCM_IC_UNLOCK</a></div><div class="ttdoc">Unlock the specific I-Cache line specified by CSR CCM_XBEGINADDR. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__cache_8h_source.html#l00089">core_feature_cache.h:89</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga48a1fc27f21f185f1e2bf52bf09a83a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga48a1fc27f21f185f1e2bf52bf09a83a4">&#9670;&nbsp;</a></span>UUnlockICacheLines()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void UUnlockICacheLines </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>cnt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Unlock several I-Cache lines specified by address in U-Mode. </p>
+<p>This function unlock several I-Cache lines specified by the address and line count. Command <a class="el" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9ae7956f03b5ca54a55faee30269cf9b53">CCM_IC_UNLOCK</a> is written to CSR <a class="el" href="group__NMSIS__Core__CSR__Registers.html#ga53c64245d173eed1d1622cfac509ff60">CSR_CCM_UCOMMAND</a>. </p><dl class="section remark"><dt>Remarks</dt><dd>This function must be executed in M/S/U-Mode only. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>start address to be unlocked </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cnt</td><td>count of cache lines to be unlocked </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="core__feature__cache_8h_source.html#l00584">584</a> of file <a class="el" href="core__feature__cache_8h_source.html">core_feature_cache.h</a>.</p>
+
+<p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00496">__RV_CSR_WRITE</a>, <a class="el" href="core__feature__cache_8h_source.html#l00089">CCM_IC_UNLOCK</a>, <a class="el" href="riscv__encoding_8h_source.html#l00923">CSR_CCM_UBEGINADDR</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00924">CSR_CCM_UCOMMAND</a>.</p>
+<div class="fragment"><div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;{</div><div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;    <span class="keywordflow">if</span> (cnt &gt; 0) {</div><div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> i;</div><div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;        <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#gaca251c4a3f81dd257831ac6407088e52">CSR_CCM_UBEGINADDR</a>, addr);</div><div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;        <span class="keywordflow">for</span> (i = 0; i &lt; cnt; i++) {</div><div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;            <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga53c64245d173eed1d1622cfac509ff60">CSR_CCM_UCOMMAND</a>, <a class="code" href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9ae7956f03b5ca54a55faee30269cf9b53">CCM_IC_UNLOCK</a>);</div><div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;        }</div><div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;    }</div><div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_gaca251c4a3f81dd257831ac6407088e52"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#gaca251c4a3f81dd257831ac6407088e52">CSR_CCM_UBEGINADDR</a></div><div class="ttdeci">#define CSR_CCM_UBEGINADDR</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00923">riscv_encoding.h:923</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Register__Access_html_gaa2d43f43f3f333cfd8e5a326a2aed413"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#gaa2d43f43f3f333cfd8e5a326a2aed413">__RV_CSR_WRITE</a></div><div class="ttdeci">#define __RV_CSR_WRITE(csr, val)</div><div class="ttdoc">CSR operation Macro for csrw instruction. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00496">core_feature_base.h:496</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__CSR__Registers_html_ga53c64245d173eed1d1622cfac509ff60"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga53c64245d173eed1d1622cfac509ff60">CSR_CCM_UCOMMAND</a></div><div class="ttdeci">#define CSR_CCM_UCOMMAND</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00924">riscv_encoding.h:924</a></div></div>
+<div class="ttc" id="group__NMSIS__Core__Cache_html_gga700ee5ca80d2777b38c6d8c963e4e5a9ae7956f03b5ca54a55faee30269cf9b53"><div class="ttname"><a href="group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9ae7956f03b5ca54a55faee30269cf9b53">CCM_IC_UNLOCK</a></div><div class="ttdoc">Unlock the specific I-Cache line specified by CSR CCM_XBEGINADDR. </div><div class="ttdef"><b>Definition:</b> <a href="core__feature__cache_8h_source.html#l00089">core_feature_cache.h:89</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -181,7 +1180,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Mar 30 2022 07:44:59 for NMSIS-Core by
+    <li class="footer">Generated on Thu Jan 5 2023 09:05:07 for NMSIS-Core by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

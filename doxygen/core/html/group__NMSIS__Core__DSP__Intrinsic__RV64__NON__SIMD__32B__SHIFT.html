@@ -30,7 +30,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-Core
-   &#160;<span id="projectnumber">Version 1.0.2</span>
+   &#160;<span id="projectnumber">Version 1.1.0</span>
    </div>
    <div id="projectbrief">NMSIS-Core support for Nuclei processor-based devices</div>
   </td>
@@ -83,7 +83,7 @@ $(document).ready(function(){initNavTree('group__NMSIS__Core__DSP__Intrinsic__RV
 
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#define-members">Macros</a>  </div>
   <div class="headertitle">
 <div class="title">(RV64 Only) Non-SIMD 32-bit Shift Instructions<div class="ingroups"><a class="el" href="group__NMSIS__Core__DSP__Intrinsic.html">Intrinsic Functions for SIMD Instructions</a> &raquo; <a class="el" href="group__NMSIS__Core__DSP__Intrinsic__RV64__ONLY.html">RV64 Only Instructions</a></div></div>  </div>
 </div><!--header-->
@@ -92,33 +92,33 @@ $(document).ready(function(){initNavTree('group__NMSIS__Core__DSP__Intrinsic__RV
 <p>(RV64 Only) Non-SIMD 32-bit Shift Instructions  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:ga1aceb08da08096a9affa783aa9f54dcf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__DSP__Intrinsic__RV64__NON__SIMD__32B__SHIFT.html#ga1aceb08da08096a9affa783aa9f54dcf">__RV_SRAIW_U</a> (int a, unsigned int b)</td></tr>
-<tr class="memdesc:ga1aceb08da08096a9affa783aa9f54dcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">SRAIW.u (Rounding Shift Right Arithmetic Immediate Word)  <a href="#ga1aceb08da08096a9affa783aa9f54dcf">More...</a><br /></td></tr>
-<tr class="separator:ga1aceb08da08096a9affa783aa9f54dcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:gae87f003cb925b2a0c0f8b862cad6c2f7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__DSP__Intrinsic__RV64__NON__SIMD__32B__SHIFT.html#gae87f003cb925b2a0c0f8b862cad6c2f7">__RV_SRAIW_U</a>(a,  b)</td></tr>
+<tr class="memdesc:gae87f003cb925b2a0c0f8b862cad6c2f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">SRAIW.u (Rounding Shift Right Arithmetic Immediate Word)  <a href="#gae87f003cb925b2a0c0f8b862cad6c2f7">More...</a><br /></td></tr>
+<tr class="separator:gae87f003cb925b2a0c0f8b862cad6c2f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>(RV64 Only) Non-SIMD 32-bit Shift Instructions </p>
 <p>there are 1 (RV64 Only) Non-SIMD 32-bit Shift Instructions </p>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="ga1aceb08da08096a9affa783aa9f54dcf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga1aceb08da08096a9affa783aa9f54dcf">&#9670;&nbsp;</a></span>__RV_SRAIW_U()</h2>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="gae87f003cb925b2a0c0f8b862cad6c2f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae87f003cb925b2a0c0f8b862cad6c2f7">&#9670;&nbsp;</a></span>__RV_SRAIW_U</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> long __RV_SRAIW_U </td>
+          <td class="memname">#define __RV_SRAIW_U</td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>a</em>, </td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">a, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>b</em>&#160;</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">b&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -145,11 +145,8 @@ This instruction right-shifts the lower 32-bit content of Rs1 arithmetically. Th
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>value stored in long type </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l16887">16887</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l16890">16890</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
 
-<p class="reference">References <a class="el" href="nmsis__gcc_8h_source.html#l00055">__ASM</a>.</p>
-<div class="fragment"><div class="line"><a name="l16888"></a><span class="lineno">16888</span>&#160;{</div><div class="line"><a name="l16889"></a><span class="lineno">16889</span>&#160;    <span class="keyword">register</span> <span class="keywordtype">long</span> result;</div><div class="line"><a name="l16890"></a><span class="lineno">16890</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;sraiw.u %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div><div class="line"><a name="l16891"></a><span class="lineno">16891</span>&#160;    <span class="keywordflow">return</span> result;</div><div class="line"><a name="l16892"></a><span class="lineno">16892</span>&#160;}</div><div class="ttc" id="group__NMSIS__Core__CompilerControl_html_ga1378040bcf22428955c6e3ce9c2053cd"><div class="ttname"><a href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a></div><div class="ttdeci">#define __ASM</div><div class="ttdoc">Pass information from the compiler to the assembler. </div><div class="ttdef"><b>Definition:</b> <a href="nmsis__gcc_8h_source.html#l00055">nmsis_gcc.h:55</a></div></div>
-</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
@@ -157,7 +154,7 @@ This instruction right-shifts the lower 32-bit content of Rs1 arithmetically. Th
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Mar 30 2022 07:44:59 for NMSIS-Core by
+    <li class="footer">Generated on Thu Jan 5 2023 09:05:07 for NMSIS-Core by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

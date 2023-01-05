@@ -30,7 +30,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-Core
-   &#160;<span id="projectnumber">Version 1.0.2</span>
+   &#160;<span id="projectnumber">Version 1.1.0</span>
    </div>
    <div id="projectbrief">NMSIS-Core support for Nuclei processor-based devices</div>
   </td>
@@ -95,18 +95,16 @@ $(document).ready(function(){initNavTree('unionCLICCFG__Type.html','');});
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
 <tr class="memitem:afaee41d71b13d8eaaca91b86e72e9afe"><td class="memItemLeft" >struct {</td></tr>
-<tr class="memitem:a33f45ec164be4bee101d9069b9dcc4e2"><td class="memItemLeft" >&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="unionCLICCFG__Type.html#a468085eceb1103be6a356f4201fb7c30">_reserved0</a>:1</td></tr>
-<tr class="memdesc:a33f45ec164be4bee101d9069b9dcc4e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 0 Overflow condition code flag  <a href="#a33f45ec164be4bee101d9069b9dcc4e2">More...</a><br /></td></tr>
-<tr class="separator:a33f45ec164be4bee101d9069b9dcc4e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9cc95b30b9dade86f8f75db599eafdfc"><td class="memItemLeft" >&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="unionCLICCFG__Type.html#ace553cff35563c1f44a257c6a1187b0c">nlbits</a>:4</td></tr>
-<tr class="memdesc:a9cc95b30b9dade86f8f75db599eafdfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 29 Carry condition code flag  <a href="#a9cc95b30b9dade86f8f75db599eafdfc">More...</a><br /></td></tr>
-<tr class="separator:a9cc95b30b9dade86f8f75db599eafdfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca1cd2c033b82f90316b6abb2d48c858"><td class="memItemLeft" >&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="unionCLICCFG__Type.html#ab1e5af2ea073a59770d6475ecddafc95">_reserved1</a>:2</td></tr>
-<tr class="memdesc:aca1cd2c033b82f90316b6abb2d48c858"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 30 Zero condition code flag  <a href="#aca1cd2c033b82f90316b6abb2d48c858">More...</a><br /></td></tr>
-<tr class="separator:aca1cd2c033b82f90316b6abb2d48c858"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51cdda8da5770e0e40473d315ef8e6b6"><td class="memItemLeft" >&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="unionCLICCFG__Type.html#af6f5ecf3e79b5bf8acfb452865ad4149">_reserved2</a>:1</td></tr>
-<tr class="memdesc:a51cdda8da5770e0e40473d315ef8e6b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 31 Negative condition code flag  <a href="#a51cdda8da5770e0e40473d315ef8e6b6">More...</a><br /></td></tr>
-<tr class="separator:a51cdda8da5770e0e40473d315ef8e6b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af87f2d07da7ab4dbbce1a56dbf7eba0b"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__PeriphAccess.html#ga4cc1649793116d7c2d8afce7a4ffce43">__IM</a> uint8_t&#160;&#160;&#160;<a class="el" href="unionCLICCFG__Type.html#abfefd8d2f3d6c6285dc6093a307e8414">_reserved0</a>:1</td></tr>
+<tr class="separator:af87f2d07da7ab4dbbce1a56dbf7eba0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae35d4f0fc8b838ade0a4641bb0cb1a26"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__PeriphAccess.html#gab6caba5853a60a17e8e04499b52bf691">__IOM</a> uint8_t&#160;&#160;&#160;<a class="el" href="unionCLICCFG__Type.html#af1f002d800e3df7a10a5b5edb386b8ca">nlbits</a>:4</td></tr>
+<tr class="memdesc:ae35d4f0fc8b838ade0a4641bb0cb1a26"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 1..4 specified the bit-width of level and priority in the register clicintctl[i]  <a href="#ae35d4f0fc8b838ade0a4641bb0cb1a26">More...</a><br /></td></tr>
+<tr class="separator:ae35d4f0fc8b838ade0a4641bb0cb1a26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02bb7d02523ef4580b01ebf4acf0220f"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__PeriphAccess.html#ga4cc1649793116d7c2d8afce7a4ffce43">__IM</a> uint8_t&#160;&#160;&#160;<a class="el" href="unionCLICCFG__Type.html#a306023bce6e2993fb79bddca2fe59775">nmbits</a>:2</td></tr>
+<tr class="memdesc:a02bb7d02523ef4580b01ebf4acf0220f"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 5..6 ties to 1 if supervisor-level interrupt supported, or else it's reserved  <a href="#a02bb7d02523ef4580b01ebf4acf0220f">More...</a><br /></td></tr>
+<tr class="separator:a02bb7d02523ef4580b01ebf4acf0220f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafcdadd4208e094e2ec4b6ac6088d979"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__PeriphAccess.html#ga4cc1649793116d7c2d8afce7a4ffce43">__IM</a> uint8_t&#160;&#160;&#160;<a class="el" href="unionCLICCFG__Type.html#ac07d94abc0180afa954f67af68f742b4">_reserved1</a>:1</td></tr>
+<tr class="separator:aafcdadd4208e094e2ec4b6ac6088d979"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afaee41d71b13d8eaaca91b86e72e9afe"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionCLICCFG__Type.html#afaee41d71b13d8eaaca91b86e72e9afe">b</a></td></tr>
 <tr class="memdesc:afaee41d71b13d8eaaca91b86e72e9afe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure used for bit access.  <a href="#afaee41d71b13d8eaaca91b86e72e9afe">More...</a><br /></td></tr>
 <tr class="separator:afaee41d71b13d8eaaca91b86e72e9afe"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -119,55 +117,33 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="core__feature__eclic_8h_source.html#l00053">53</a> of file <a class="el" href="core__feature__eclic_8h_source.html">core_feature_eclic.h</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
-<a id="a468085eceb1103be6a356f4201fb7c30"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a468085eceb1103be6a356f4201fb7c30">&#9670;&nbsp;</a></span>_reserved0</h2>
+<a id="abfefd8d2f3d6c6285dc6093a307e8414"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfefd8d2f3d6c6285dc6093a307e8414">&#9670;&nbsp;</a></span>_reserved0</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t CLICCFG_Type::_reserved0</td>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__PeriphAccess.html#ga4cc1649793116d7c2d8afce7a4ffce43">__IM</a> uint8_t CLICCFG_Type::_reserved0</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>bit: 0 Overflow condition code flag </p>
 
 <p class="definition">Definition at line <a class="el" href="core__feature__eclic_8h_source.html#l00056">56</a> of file <a class="el" href="core__feature__eclic_8h_source.html">core_feature_eclic.h</a>.</p>
 
 </div>
 </div>
-<a id="ab1e5af2ea073a59770d6475ecddafc95"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab1e5af2ea073a59770d6475ecddafc95">&#9670;&nbsp;</a></span>_reserved1</h2>
+<a id="ac07d94abc0180afa954f67af68f742b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac07d94abc0180afa954f67af68f742b4">&#9670;&nbsp;</a></span>_reserved1</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t CLICCFG_Type::_reserved1</td>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__PeriphAccess.html#ga4cc1649793116d7c2d8afce7a4ffce43">__IM</a> uint8_t CLICCFG_Type::_reserved1</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>bit: 30 Zero condition code flag </p>
-
-<p class="definition">Definition at line <a class="el" href="core__feature__eclic_8h_source.html#l00058">58</a> of file <a class="el" href="core__feature__eclic_8h_source.html">core_feature_eclic.h</a>.</p>
-
-</div>
-</div>
-<a id="af6f5ecf3e79b5bf8acfb452865ad4149"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af6f5ecf3e79b5bf8acfb452865ad4149">&#9670;&nbsp;</a></span>_reserved2</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint8_t CLICCFG_Type::_reserved2</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>bit: 31 Negative condition code flag </p>
 
 <p class="definition">Definition at line <a class="el" href="core__feature__eclic_8h_source.html#l00059">59</a> of file <a class="el" href="core__feature__eclic_8h_source.html">core_feature_eclic.h</a>.</p>
 
@@ -189,21 +165,39 @@ Data Fields</h2></td></tr>
 
 </div>
 </div>
-<a id="ace553cff35563c1f44a257c6a1187b0c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ace553cff35563c1f44a257c6a1187b0c">&#9670;&nbsp;</a></span>nlbits</h2>
+<a id="af1f002d800e3df7a10a5b5edb386b8ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1f002d800e3df7a10a5b5edb386b8ca">&#9670;&nbsp;</a></span>nlbits</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t CLICCFG_Type::nlbits</td>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__PeriphAccess.html#gab6caba5853a60a17e8e04499b52bf691">__IOM</a> uint8_t CLICCFG_Type::nlbits</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>bit: 29 Carry condition code flag </p>
+<p>bit: 1..4 specified the bit-width of level and priority in the register clicintctl[i] </p>
 
 <p class="definition">Definition at line <a class="el" href="core__feature__eclic_8h_source.html#l00057">57</a> of file <a class="el" href="core__feature__eclic_8h_source.html">core_feature_eclic.h</a>.</p>
+
+</div>
+</div>
+<a id="a306023bce6e2993fb79bddca2fe59775"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a306023bce6e2993fb79bddca2fe59775">&#9670;&nbsp;</a></span>nmbits</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__PeriphAccess.html#ga4cc1649793116d7c2d8afce7a4ffce43">__IM</a> uint8_t CLICCFG_Type::nmbits</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>bit: 5..6 ties to 1 if supervisor-level interrupt supported, or else it's reserved </p>
+
+<p class="definition">Definition at line <a class="el" href="core__feature__eclic_8h_source.html#l00058">58</a> of file <a class="el" href="core__feature__eclic_8h_source.html">core_feature_eclic.h</a>.</p>
 
 </div>
 </div>
@@ -231,7 +225,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="unionCLICCFG__Type.html">CLICCFG_Type</a></li>
-    <li class="footer">Generated on Wed Mar 30 2022 07:44:59 for NMSIS-Core by
+    <li class="footer">Generated on Thu Jan 5 2023 09:05:07 for NMSIS-Core by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

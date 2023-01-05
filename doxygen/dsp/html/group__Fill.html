@@ -30,7 +30,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.0.2</span>
+   &#160;<span id="projectnumber">Version 1.1.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -97,6 +97,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga30d123e67c9f6d27f74dae20a4630241"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Fill.html#ga30d123e67c9f6d27f74dae20a4630241">riscv_fill_f32</a> (float32_t value, float32_t *pDst, uint32_t blockSize)</td></tr>
 <tr class="memdesc:ga30d123e67c9f6d27f74dae20a4630241"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fills a constant value into a floating-point vector.  <a href="#ga30d123e67c9f6d27f74dae20a4630241">More...</a><br /></td></tr>
 <tr class="separator:ga30d123e67c9f6d27f74dae20a4630241"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1f7f52df5270412c20fb20c5445766eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Fill.html#ga1f7f52df5270412c20fb20c5445766eb">riscv_fill_f64</a> (float64_t value, float64_t *pDst, uint32_t blockSize)</td></tr>
+<tr class="memdesc:ga1f7f52df5270412c20fb20c5445766eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fills a constant value into a floating-point vector.  <a href="#ga1f7f52df5270412c20fb20c5445766eb">More...</a><br /></td></tr>
+<tr class="separator:ga1f7f52df5270412c20fb20c5445766eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad52d58e9ceff23247782b07e03bee9cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Fill.html#gad52d58e9ceff23247782b07e03bee9cb">riscv_fill_q15</a> (q15_t value, q15_t *pDst, uint32_t blockSize)</td></tr>
 <tr class="memdesc:gad52d58e9ceff23247782b07e03bee9cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fills a constant value into a Q15 vector.  <a href="#gad52d58e9ceff23247782b07e03bee9cb">More...</a><br /></td></tr>
 <tr class="separator:gad52d58e9ceff23247782b07e03bee9cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -175,6 +178,51 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float32_t *&#160;</td>
+          <td class="paramname"><em>pDst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>blockSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fills a constant value into a floating-point vector. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>input value to be filled </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pDst</td><td>points to output vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">blockSize</td><td>number of samples in each vector </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
+
+</div>
+</div>
+<a id="ga1f7f52df5270412c20fb20c5445766eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1f7f52df5270412c20fb20c5445766eb">&#9670;&nbsp;</a></span>riscv_fill_f64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void riscv_fill_f64 </td>
+          <td>(</td>
+          <td class="paramtype">float64_t&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float64_t *&#160;</td>
           <td class="paramname"><em>pDst</em>, </td>
         </tr>
         <tr>
@@ -344,7 +392,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Mar 30 2022 07:45:01 for NMSIS-DSP by
+    <li class="footer">Generated on Thu Jan 5 2023 09:05:09 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

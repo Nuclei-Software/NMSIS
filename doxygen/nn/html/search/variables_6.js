@@ -1,12 +1,9 @@
 var searchData=
 [
-  ['im',['im',['../namespacesave__img.html#aefdb9f39ca23c889f45dca10a51c856c',1,'save_img']]],
-  ['im_5fname',['im_name',['../namespacesave__img.html#a3fe36a719a3e6887ef5700e03e35f28c',1,'save_img']]],
-  ['im_5ftxt',['im_txt',['../namespacesave__img.html#ad69a026f2dc8f20c5344dcad7f64902b',1,'save_img']]],
-  ['img',['img',['../namespaceshow__img.html#abd29f67d6d44238922b1433715523b12',1,'show_img']]],
-  ['img_5fdata',['img_data',['../namespaceshow__img.html#ab8a66e528d1ad2b884bb703767138199',1,'show_img']]],
-  ['input_5factivation',['input_activation',['../structnmsis__nn__svdf__params.html#a9ab72612a7132630788ecc8e128be16f',1,'nmsis_nn_svdf_params']]],
-  ['input_5fdata1',['input_data1',['../namespacepara__gen.html#aa4f65fee8013b8745ffb7b32f1baeb04',1,'para_gen']]],
-  ['input_5fdata2',['input_data2',['../namespacepara__gen.html#a5404511b55beedc9e6aed0bb1b2eb150',1,'para_gen']]],
-  ['input_5foffset',['input_offset',['../structnmsis__nn__conv__params.html#a69222ddf54d0b81ab958544243fa69a4',1,'nmsis_nn_conv_params::input_offset()'],['../structnmsis__nn__dw__conv__params.html#a104c378b0473ec338f66ddbdca082d5d',1,'nmsis_nn_dw_conv_params::input_offset()'],['../structnmsis__nn__fc__params.html#a026c1d1f427be5b789fca26a579a0802',1,'nmsis_nn_fc_params::input_offset()'],['../structnmsis__nn__svdf__params.html#a2b17b0d43b179eda5b76cd59ca290ce0',1,'nmsis_nn_svdf_params::input_offset()']]]
+  ['h',['h',['../structnmsis__nn__tile.html#adeebf9c51de7da41c46f9c9ea0c7d35a',1,'nmsis_nn_tile::h()'],['../structnmsis__nn__dims.html#a0f3681fa48b5952418a3e30f01d44354',1,'nmsis_nn_dims::h()']]],
+  ['half_5fwords',['half_words',['../unionriscv__nnword.html#aaf153566cb85335577d30a685c64bd88',1,'riscv_nnword']]],
+  ['hidden_5fbias',['hidden_bias',['../namespacepara__gen.html#a6c3df4809966df5892a62f2d45b7296e',1,'para_gen']]],
+  ['hidden_5fweight',['hidden_weight',['../namespacepara__gen.html#a7207adeae39eafb274cdc7bbeeab342b',1,'para_gen']]],
+  ['high',['high',['../structriscv__nn__double.html#aba59bb4f5d8e8c3a58453b56117c2b88',1,'riscv_nn_double']]],
+  ['history_5fdata',['history_data',['../namespacepara__gen.html#a60d92bbdf1559b05d5d14e52146cec51',1,'para_gen']]]
 ];

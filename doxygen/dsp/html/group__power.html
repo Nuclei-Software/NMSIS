@@ -30,7 +30,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.0.2</span>
+   &#160;<span id="projectnumber">Version 1.1.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -97,6 +97,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga0e618c3ca31699a1ed84d7573c055cdf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__power.html#ga0e618c3ca31699a1ed84d7573c055cdf">riscv_power_f32</a> (const float32_t *pSrc, uint32_t blockSize, float32_t *pResult)</td></tr>
 <tr class="memdesc:ga0e618c3ca31699a1ed84d7573c055cdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sum of the squares of the elements of a floating-point vector.  <a href="#ga0e618c3ca31699a1ed84d7573c055cdf">More...</a><br /></td></tr>
 <tr class="separator:ga0e618c3ca31699a1ed84d7573c055cdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaba4ee9ad387347227a86af3a1b1b2bbd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__power.html#gaba4ee9ad387347227a86af3a1b1b2bbd">riscv_power_f64</a> (const float64_t *pSrc, uint32_t blockSize, float64_t *pResult)</td></tr>
+<tr class="memdesc:gaba4ee9ad387347227a86af3a1b1b2bbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sum of the squares of the elements of a floating-point vector.  <a href="#gaba4ee9ad387347227a86af3a1b1b2bbd">More...</a><br /></td></tr>
+<tr class="separator:gaba4ee9ad387347227a86af3a1b1b2bbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga77949ce3a581ede7c56fa2f7f05fe681"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__power.html#ga77949ce3a581ede7c56fa2f7f05fe681">riscv_power_q15</a> (const q15_t *pSrc, uint32_t blockSize, q63_t *pResult)</td></tr>
 <tr class="memdesc:ga77949ce3a581ede7c56fa2f7f05fe681"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sum of the squares of the elements of a Q15 vector.  <a href="#ga77949ce3a581ede7c56fa2f7f05fe681">More...</a><br /></td></tr>
 <tr class="separator:ga77949ce3a581ede7c56fa2f7f05fe681"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -181,6 +184,51 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float32_t *&#160;</td>
+          <td class="paramname"><em>pResult</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sum of the squares of the elements of a floating-point vector. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pSrc</td><td>points to the input vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">blockSize</td><td>number of samples in input vector </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pResult</td><td>sum of the squares value returned here </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
+
+</div>
+</div>
+<a id="gaba4ee9ad387347227a86af3a1b1b2bbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaba4ee9ad387347227a86af3a1b1b2bbd">&#9670;&nbsp;</a></span>riscv_power_f64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void riscv_power_f64 </td>
+          <td>(</td>
+          <td class="paramtype">const float64_t *&#160;</td>
+          <td class="paramname"><em>pSrc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>blockSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float64_t *&#160;</td>
           <td class="paramname"><em>pResult</em>&#160;</td>
         </tr>
         <tr>
@@ -347,7 +395,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Mar 30 2022 07:45:01 for NMSIS-DSP by
+    <li class="footer">Generated on Thu Jan 5 2023 09:05:09 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

@@ -1,75 +1,39 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>(RV64 Only) SIMD Q15 Saturating Multiply Instructions &mdash; NMSIS 1.0.4 documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>(RV64 Only) SIMD Q15 Saturating Multiply Instructions &mdash; NMSIS 1.1.0 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="(RV64 Only) 32-bit Multiply Instructions" href="api_nmsis_core_dsp_intrinsic_rv64_32b_mult.html" />
     <link rel="prev" title="(RV64 Only) SIMD 32-bit Miscellaneous Instructions" href="api_nmsis_core_dsp_intrinsic_rv64_simd_32b_misc.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../../../../index.html">
-          
-
-          
-            
             <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                1.0.4
+                1.1.0
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -77,18 +41,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">NMSIS Core</a><ul class="current">
@@ -120,7 +74,7 @@
 <li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_rv64_32b_pack.html">32-bit Packing Instructions</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_nuclei_custom.html">Nuclei Customized DSP Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_nuclei_custom.html">Nuclei Customized N1/N2/N3 DSP Instructions</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../core_periph_access.html">Peripheral Access</a></li>
@@ -128,6 +82,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../core_interrupt_exception.html">Interrupts and Exceptions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../core_fpu.html">FPU Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../core_pmp.html">PMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_spmp.html">SPMP Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../core_cache.html">Cache Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../core_system_device.html">System Device Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../core_arm_compatiable.html">ARM Compatiable Functions</a></li>
@@ -142,142 +97,102 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../appendix.html">Appendix</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../../index.html">NMSIS</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../../../index.html">NMSIS Core</a> &raquo;</li>
-        
           <li><a href="../../index.html">NMSIS Core API</a> &raquo;</li>
-        
           <li><a href="../../api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a> &raquo;</li>
-        
           <li><a href="../api_nmsis_core_dsp_intrinsic_rv64_only.html">RV64 Only Instructions</a> &raquo;</li>
-        
       <li>(RV64 Only) SIMD Q15 Saturating Multiply Instructions</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="../../../../_sources/core/api/nmsis_core_dsp_intrinsic/nmsis_core_dsp_intrinsic_rv64_only/api_nmsis_core_dsp_intrinsic_rv64_simd_q15_sat_mult.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="rv64-only-simd-q15-saturating-multiply-instructions">
-<span id="nmsis-core-api-rv64-only-simd-q15-saturating-multiply-instructions"></span><h1>(RV64 Only) SIMD Q15 Saturating Multiply Instructions<a class="headerlink" href="#rv64-only-simd-q15-saturating-multiply-instructions" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga2ef54e3c36ac953d6b0c5505bcb82fa7"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KDMBB16(unsigned long a, unsigned long b)</code></dt>
+             
+  <section id="rv64-only-simd-q15-saturating-multiply-instructions">
+<span id="nmsis-core-api-rv64-only-simd-q15-saturating-multiply-instructions"></span><h1>(RV64 Only) SIMD Q15 Saturating Multiply Instructions<a class="headerlink" href="#rv64-only-simd-q15-saturating-multiply-instructions" title="Permalink to this headline"></a></h1>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga2ef54e3c36ac953d6b0c5505bcb82fa7"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KDMBB16</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1gaabd178e790fb3e2f172efe367869982e"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KDMBT16(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1gaabd178e790fb3e2f172efe367869982e"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KDMBT16</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga05495c1787257dcc91b826929f7185c7"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KDMTT16(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga05495c1787257dcc91b826929f7185c7"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KDMTT16</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga2ac7979002270bfa658be6a6e041c5f9"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KDMABB16(unsigned long t, unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga2ac7979002270bfa658be6a6e041c5f9"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KDMABB16</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">t,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga180a49b034ce67949bc0db6bfbdce058"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KDMABT16(unsigned long t, unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga180a49b034ce67949bc0db6bfbdce058"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KDMABT16</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">t,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga952ad06fdf63f05d19c3bc4a2a8cc9b8"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KDMATT16(unsigned long t, unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga952ad06fdf63f05d19c3bc4a2a8cc9b8"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KDMATT16</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">t,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga58ec69e4c58f7cb34556ef4f4a153615"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KHMBB16(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga58ec69e4c58f7cb34556ef4f4a153615"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KHMBB16</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga30da509f228f12e85fccc10646cebc28"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KHMBT16(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga30da509f228f12e85fccc10646cebc28"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KHMBT16</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga93e865bc3f39a52053267fdce080a7a1"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KHMTT16(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga93e865bc3f39a52053267fdce080a7a1"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KHMTT16</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="group">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT"></span><em>group</em> <code class="sig-name descname">NMSIS_Core_DSP_Intrinsic_RV64_SIMD_Q15_SAT_MULT</code></dt>
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">NMSIS_Core_DSP_Intrinsic_RV64_SIMD_Q15_SAT_MULT</span></span></dt>
 <dd><p>(RV64 Only) SIMD Q15 Saturating Multiply Instructions </p>
 <p>there are 9 (RV64 Only) SIMD Q15 saturating Multiply Instructions </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Functions</p>
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga2ef54e3c36ac953d6b0c5505bcb82fa7"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KDMBB16(unsigned long a, unsigned long b)</code></dt>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga2ef54e3c36ac953d6b0c5505bcb82fa7"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KDMBB16</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>KDMBB16 (SIMD Signed Saturating Double Multiply B16 x B16) </p>
 <p><strong>Type</strong>: SIMD (RV64 only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KDMxy16</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span> <span class="p">(</span><span class="n">xy</span> <span class="o">=</span> <span class="n">BB</span><span class="p">,</span> <span class="n">BT</span><span class="p">,</span> <span class="n">TT</span><span class="p">)</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the 32-bit chunks in registers and then double and saturate the Q31 results into the 32-bit chunks in the destination register. If saturation happens, an overflow flag OV will be set.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the 32-bit chunks in registers and then double and saturate the Q31 results into the 32-bit chunks in the destination register. If saturation happens, an overflow flag OV will be set.</p>
 </p>
-<p><strong>Description</strong>:<p>Multiply the top or bottom 16-bit Q15 content of the 32-bit portions in Rs1 with the top or bottom 16-bit Q15 content of the 32-bit portions in Rs2. The Q30 results are then doubled and saturated into Q31 values. The Q31 values are then written into the 32-bit chunks in Rd. When both the two Q15 inputs are 0x8000, saturation will happen. The result will be saturated to 0x7FFFFFFF and the overflow flag OV will be set.</p>
+<p><strong>Description</strong><p>:</p>
+<p>Multiply the top or bottom 16-bit Q15 content of the 32-bit portions in Rs1 with the top or bottom 16-bit Q15 content of the 32-bit portions in Rs2. The Q30 results are then doubled and saturated into Q31 values. The Q31 values are then written into the 32-bit chunks in Rd. When both the two Q15 inputs are 0x8000, saturation will happen. The result will be saturated to 0x7FFFFFFF and the overflow flag OV will be set.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">KDMBB16</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="o">//</span> <span class="n">KDMBT16</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
@@ -294,30 +209,33 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1gaabd178e790fb3e2f172efe367869982e"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KDMBT16(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1gaabd178e790fb3e2f172efe367869982e"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KDMBT16</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>KDMBT16 (SIMD Signed Saturating Double Multiply B16 x T16) </p>
 <p><strong>Type</strong>: SIMD (RV64 only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KDMxy16</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span> <span class="p">(</span><span class="n">xy</span> <span class="o">=</span> <span class="n">BB</span><span class="p">,</span> <span class="n">BT</span><span class="p">,</span> <span class="n">TT</span><span class="p">)</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the 32-bit chunks in registers and then double and saturate the Q31 results into the 32-bit chunks in the destination register. If saturation happens, an overflow flag OV will be set.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the 32-bit chunks in registers and then double and saturate the Q31 results into the 32-bit chunks in the destination register. If saturation happens, an overflow flag OV will be set.</p>
 </p>
-<p><strong>Description</strong>:<p>Multiply the top or bottom 16-bit Q15 content of the 32-bit portions in Rs1 with the top or bottom 16-bit Q15 content of the 32-bit portions in Rs2. The Q30 results are then doubled and saturated into Q31 values. The Q31 values are then written into the 32-bit chunks in Rd. When both the two Q15 inputs are 0x8000, saturation will happen. The result will be saturated to 0x7FFFFFFF and the overflow flag OV will be set.</p>
+<p><strong>Description</strong><p>:</p>
+<p>Multiply the top or bottom 16-bit Q15 content of the 32-bit portions in Rs1 with the top or bottom 16-bit Q15 content of the 32-bit portions in Rs2. The Q30 results are then doubled and saturated into Q31 values. The Q31 values are then written into the 32-bit chunks in Rd. When both the two Q15 inputs are 0x8000, saturation will happen. The result will be saturated to 0x7FFFFFFF and the overflow flag OV will be set.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">KDMBB16</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="o">//</span> <span class="n">KDMBT16</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
@@ -334,30 +252,33 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga05495c1787257dcc91b826929f7185c7"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KDMTT16(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga05495c1787257dcc91b826929f7185c7"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KDMTT16</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>KDMTT16 (SIMD Signed Saturating Double Multiply T16 x T16) </p>
 <p><strong>Type</strong>: SIMD (RV64 only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KDMxy16</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span> <span class="p">(</span><span class="n">xy</span> <span class="o">=</span> <span class="n">BB</span><span class="p">,</span> <span class="n">BT</span><span class="p">,</span> <span class="n">TT</span><span class="p">)</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the 32-bit chunks in registers and then double and saturate the Q31 results into the 32-bit chunks in the destination register. If saturation happens, an overflow flag OV will be set.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the 32-bit chunks in registers and then double and saturate the Q31 results into the 32-bit chunks in the destination register. If saturation happens, an overflow flag OV will be set.</p>
 </p>
-<p><strong>Description</strong>:<p>Multiply the top or bottom 16-bit Q15 content of the 32-bit portions in Rs1 with the top or bottom 16-bit Q15 content of the 32-bit portions in Rs2. The Q30 results are then doubled and saturated into Q31 values. The Q31 values are then written into the 32-bit chunks in Rd. When both the two Q15 inputs are 0x8000, saturation will happen. The result will be saturated to 0x7FFFFFFF and the overflow flag OV will be set.</p>
+<p><strong>Description</strong><p>:</p>
+<p>Multiply the top or bottom 16-bit Q15 content of the 32-bit portions in Rs1 with the top or bottom 16-bit Q15 content of the 32-bit portions in Rs2. The Q30 results are then doubled and saturated into Q31 values. The Q31 values are then written into the 32-bit chunks in Rd. When both the two Q15 inputs are 0x8000, saturation will happen. The result will be saturated to 0x7FFFFFFF and the overflow flag OV will be set.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">KDMBB16</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="o">//</span> <span class="n">KDMBT16</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
@@ -374,30 +295,33 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga2ac7979002270bfa658be6a6e041c5f9"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KDMABB16(unsigned long t, unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga2ac7979002270bfa658be6a6e041c5f9"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KDMABB16</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">t,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>KDMABB16 (SIMD Signed Saturating Double Multiply Addition B16 x B16) </p>
 <p><strong>Type</strong>: SIMD (RV64 only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KDMAxy16</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span> <span class="p">(</span><span class="n">xy</span> <span class="o">=</span> <span class="n">BB</span><span class="p">,</span> <span class="n">BT</span><span class="p">,</span> <span class="n">TT</span><span class="p">)</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the 32-bit chunks in registers and then double and saturate the Q31 results, add the results with the values of the corresponding 32-bit chunks from the destination register and write the saturated addition results back into the corresponding 32-bit chunks of the destination register. If saturation happens, an overflow flag OV will be set.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the 32-bit chunks in registers and then double and saturate the Q31 results, add the results with the values of the corresponding 32-bit chunks from the destination register and write the saturated addition results back into the corresponding 32-bit chunks of the destination register. If saturation happens, an overflow flag OV will be set.</p>
 </p>
-<p><strong>Description</strong>:<p>Multiply the top or bottom 16-bit Q15 content of the 32-bit portions in Rs1 with the top or bottom 16-bit Q15 content of the corresponding 32-bit portions in Rs2. The Q30 results are then doubled and saturated into Q31 values. The Q31 values are then added with the content of the corresponding 32-bit portions of Rd. If the addition results are beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), they are saturated to the range and the OV flag is set to 1. The results after saturation are written back to Rd. When both the two Q15 inputs are 0x8000, saturation will happen and the overflow flag OV will be set.</p>
+<p><strong>Description</strong><p>:</p>
+<p>Multiply the top or bottom 16-bit Q15 content of the 32-bit portions in Rs1 with the top or bottom 16-bit Q15 content of the corresponding 32-bit portions in Rs2. The Q30 results are then doubled and saturated into Q31 values. The Q31 values are then added with the content of the corresponding 32-bit portions of Rd. If the addition results are beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), they are saturated to the range and the OV flag is set to 1. The results after saturation are written back to Rd. When both the two Q15 inputs are 0x8000, saturation will happen and the overflow flag OV will be set.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">KDMABB16</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="o">//</span> <span class="n">KDMABT16</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
@@ -422,31 +346,34 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">t</span></code>: unsigned long type of value stored in t </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> – <strong>[in]</strong> unsigned long type of value stored in t </p></li>
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga180a49b034ce67949bc0db6bfbdce058"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KDMABT16(unsigned long t, unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga180a49b034ce67949bc0db6bfbdce058"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KDMABT16</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">t,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>KDMABT16 (SIMD Signed Saturating Double Multiply Addition B16 x T16) </p>
 <p><strong>Type</strong>: SIMD (RV64 only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KDMAxy16</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span> <span class="p">(</span><span class="n">xy</span> <span class="o">=</span> <span class="n">BB</span><span class="p">,</span> <span class="n">BT</span><span class="p">,</span> <span class="n">TT</span><span class="p">)</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the 32-bit chunks in registers and then double and saturate the Q31 results, add the results with the values of the corresponding 32-bit chunks from the destination register and write the saturated addition results back into the corresponding 32-bit chunks of the destination register. If saturation happens, an overflow flag OV will be set.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the 32-bit chunks in registers and then double and saturate the Q31 results, add the results with the values of the corresponding 32-bit chunks from the destination register and write the saturated addition results back into the corresponding 32-bit chunks of the destination register. If saturation happens, an overflow flag OV will be set.</p>
 </p>
-<p><strong>Description</strong>:<p>Multiply the top or bottom 16-bit Q15 content of the 32-bit portions in Rs1 with the top or bottom 16-bit Q15 content of the corresponding 32-bit portions in Rs2. The Q30 results are then doubled and saturated into Q31 values. The Q31 values are then added with the content of the corresponding 32-bit portions of Rd. If the addition results are beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), they are saturated to the range and the OV flag is set to 1. The results after saturation are written back to Rd. When both the two Q15 inputs are 0x8000, saturation will happen and the overflow flag OV will be set.</p>
+<p><strong>Description</strong><p>:</p>
+<p>Multiply the top or bottom 16-bit Q15 content of the 32-bit portions in Rs1 with the top or bottom 16-bit Q15 content of the corresponding 32-bit portions in Rs2. The Q30 results are then doubled and saturated into Q31 values. The Q31 values are then added with the content of the corresponding 32-bit portions of Rd. If the addition results are beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), they are saturated to the range and the OV flag is set to 1. The results after saturation are written back to Rd. When both the two Q15 inputs are 0x8000, saturation will happen and the overflow flag OV will be set.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">KDMABB16</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="o">//</span> <span class="n">KDMABT16</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
@@ -471,31 +398,34 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">t</span></code>: unsigned long type of value stored in t </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> – <strong>[in]</strong> unsigned long type of value stored in t </p></li>
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga952ad06fdf63f05d19c3bc4a2a8cc9b8"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KDMATT16(unsigned long t, unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga952ad06fdf63f05d19c3bc4a2a8cc9b8"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KDMATT16</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">t,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>KDMATT16 (SIMD Signed Saturating Double Multiply Addition T16 x T16) </p>
 <p><strong>Type</strong>: SIMD (RV64 only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KDMAxy16</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span> <span class="p">(</span><span class="n">xy</span> <span class="o">=</span> <span class="n">BB</span><span class="p">,</span> <span class="n">BT</span><span class="p">,</span> <span class="n">TT</span><span class="p">)</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the 32-bit chunks in registers and then double and saturate the Q31 results, add the results with the values of the corresponding 32-bit chunks from the destination register and write the saturated addition results back into the corresponding 32-bit chunks of the destination register. If saturation happens, an overflow flag OV will be set.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the 32-bit chunks in registers and then double and saturate the Q31 results, add the results with the values of the corresponding 32-bit chunks from the destination register and write the saturated addition results back into the corresponding 32-bit chunks of the destination register. If saturation happens, an overflow flag OV will be set.</p>
 </p>
-<p><strong>Description</strong>:<p>Multiply the top or bottom 16-bit Q15 content of the 32-bit portions in Rs1 with the top or bottom 16-bit Q15 content of the corresponding 32-bit portions in Rs2. The Q30 results are then doubled and saturated into Q31 values. The Q31 values are then added with the content of the corresponding 32-bit portions of Rd. If the addition results are beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), they are saturated to the range and the OV flag is set to 1. The results after saturation are written back to Rd. When both the two Q15 inputs are 0x8000, saturation will happen and the overflow flag OV will be set.</p>
+<p><strong>Description</strong><p>:</p>
+<p>Multiply the top or bottom 16-bit Q15 content of the 32-bit portions in Rs1 with the top or bottom 16-bit Q15 content of the corresponding 32-bit portions in Rs2. The Q30 results are then doubled and saturated into Q31 values. The Q31 values are then added with the content of the corresponding 32-bit portions of Rd. If the addition results are beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), they are saturated to the range and the OV flag is set to 1. The results after saturation are written back to Rd. When both the two Q15 inputs are 0x8000, saturation will happen and the overflow flag OV will be set.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">KDMABB16</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="o">//</span> <span class="n">KDMABT16</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
@@ -520,31 +450,34 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">t</span></code>: unsigned long type of value stored in t </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> – <strong>[in]</strong> unsigned long type of value stored in t </p></li>
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga58ec69e4c58f7cb34556ef4f4a153615"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KHMBB16(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga58ec69e4c58f7cb34556ef4f4a153615"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KHMBB16</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>KHMBB16 (SIMD Signed Saturating Half Multiply B16 x B16) </p>
 <p><strong>Type</strong>: SIMD (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KHMxy16</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span> <span class="p">(</span><span class="n">xy</span> <span class="o">=</span> <span class="n">BB</span><span class="p">,</span> <span class="n">BT</span><span class="p">,</span> <span class="n">TT</span><span class="p">)</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the 32-bit chunks in registers and then right-shift 15 bits to turn the Q30 results into Q15 numbers again and saturate the Q15 results into the destination register. If saturation happens, an overflow flag OV will be set.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the 32-bit chunks in registers and then right-shift 15 bits to turn the Q30 results into Q15 numbers again and saturate the Q15 results into the destination register. If saturation happens, an overflow flag OV will be set.</p>
 </p>
-<p><strong>Description</strong>:<p>Multiply the top or bottom 16-bit Q15 content of the 32-bit portions in Rs1 with the top or bottom 16-bit Q15 content of the 32-bit portion in Rs2. The Q30 results are then right-shifted 15- bits and saturated into Q15 values. The 32-bit Q15 values are then written into the 32-bit chunks in Rd. When both the two Q15 inputs are 0x8000, saturation will happen. The result will be saturated to 0x7FFF and the overflow flag OV will be set.</p>
+<p><strong>Description</strong><p>:</p>
+<p>Multiply the top or bottom 16-bit Q15 content of the 32-bit portions in Rs1 with the top or bottom 16-bit Q15 content of the 32-bit portion in Rs2. The Q30 results are then right-shifted 15- bits and saturated into Q15 values. The 32-bit Q15 values are then written into the 32-bit chunks in Rd. When both the two Q15 inputs are 0x8000, saturation will happen. The result will be saturated to 0x7FFF and the overflow flag OV will be set.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">KHMBB16</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="o">//</span> <span class="n">KHMBT16</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
@@ -561,30 +494,33 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga30da509f228f12e85fccc10646cebc28"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KHMBT16(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga30da509f228f12e85fccc10646cebc28"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KHMBT16</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>KHMBT16 (SIMD Signed Saturating Half Multiply B16 x T16) </p>
 <p><strong>Type</strong>: SIMD (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KHMxy16</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span> <span class="p">(</span><span class="n">xy</span> <span class="o">=</span> <span class="n">BB</span><span class="p">,</span> <span class="n">BT</span><span class="p">,</span> <span class="n">TT</span><span class="p">)</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the 32-bit chunks in registers and then right-shift 15 bits to turn the Q30 results into Q15 numbers again and saturate the Q15 results into the destination register. If saturation happens, an overflow flag OV will be set.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the 32-bit chunks in registers and then right-shift 15 bits to turn the Q30 results into Q15 numbers again and saturate the Q15 results into the destination register. If saturation happens, an overflow flag OV will be set.</p>
 </p>
-<p><strong>Description</strong>:<p>Multiply the top or bottom 16-bit Q15 content of the 32-bit portions in Rs1 with the top or bottom 16-bit Q15 content of the 32-bit portion in Rs2. The Q30 results are then right-shifted 15- bits and saturated into Q15 values. The 32-bit Q15 values are then written into the 32-bit chunks in Rd. When both the two Q15 inputs are 0x8000, saturation will happen. The result will be saturated to 0x7FFF and the overflow flag OV will be set.</p>
+<p><strong>Description</strong><p>:</p>
+<p>Multiply the top or bottom 16-bit Q15 content of the 32-bit portions in Rs1 with the top or bottom 16-bit Q15 content of the 32-bit portion in Rs2. The Q30 results are then right-shifted 15- bits and saturated into Q15 values. The 32-bit Q15 values are then written into the 32-bit chunks in Rd. When both the two Q15 inputs are 0x8000, saturation will happen. The result will be saturated to 0x7FFF and the overflow flag OV will be set.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">KHMBB16</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="o">//</span> <span class="n">KHMBT16</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
@@ -601,30 +537,33 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga93e865bc3f39a52053267fdce080a7a1"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KHMTT16(unsigned long a, unsigned long b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT_1ga93e865bc3f39a52053267fdce080a7a1"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KHMTT16</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
 <dd><p>KHMTT16 (SIMD Signed Saturating Half Multiply T16 x T16) </p>
 <p><strong>Type</strong>: SIMD (RV64 Only)</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KHMxy16</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span> <span class="p">(</span><span class="n">xy</span> <span class="o">=</span> <span class="n">BB</span><span class="p">,</span> <span class="n">BT</span><span class="p">,</span> <span class="n">TT</span><span class="p">)</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the 32-bit chunks in registers and then right-shift 15 bits to turn the Q30 results into Q15 numbers again and saturate the Q15 results into the destination register. If saturation happens, an overflow flag OV will be set.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the 32-bit chunks in registers and then right-shift 15 bits to turn the Q30 results into Q15 numbers again and saturate the Q15 results into the destination register. If saturation happens, an overflow flag OV will be set.</p>
 </p>
-<p><strong>Description</strong>:<p>Multiply the top or bottom 16-bit Q15 content of the 32-bit portions in Rs1 with the top or bottom 16-bit Q15 content of the 32-bit portion in Rs2. The Q30 results are then right-shifted 15- bits and saturated into Q15 values. The 32-bit Q15 values are then written into the 32-bit chunks in Rd. When both the two Q15 inputs are 0x8000, saturation will happen. The result will be saturated to 0x7FFF and the overflow flag OV will be set.</p>
+<p><strong>Description</strong><p>:</p>
+<p>Multiply the top or bottom 16-bit Q15 content of the 32-bit portions in Rs1 with the top or bottom 16-bit Q15 content of the 32-bit portion in Rs2. The Q30 results are then right-shifted 15- bits and saturated into Q15 values. The 32-bit Q15 values are then written into the 32-bit chunks in Rd. When both the two Q15 inputs are 0x8000, saturation will happen. The result will be saturated to 0x7FFF and the overflow flag OV will be set.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">KHMBB16</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="o">//</span> <span class="n">KHMBT16</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
@@ -641,73 +580,55 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned long type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned long type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="api_nmsis_core_dsp_intrinsic_rv64_32b_mult.html" class="btn btn-neutral float-right" title="(RV64 Only) 32-bit Multiply Instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="api_nmsis_core_dsp_intrinsic_rv64_simd_32b_misc.html" class="btn btn-neutral float-left" title="(RV64 Only) SIMD 32-bit Miscellaneous Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api_nmsis_core_dsp_intrinsic_rv64_simd_32b_misc.html" class="btn btn-neutral float-left" title="(RV64 Only) SIMD 32-bit Miscellaneous Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api_nmsis_core_dsp_intrinsic_rv64_32b_mult.html" class="btn btn-neutral float-right" title="(RV64 Only) 32-bit Multiply Instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2019-Present, Nuclei
-      <span class="lastupdated">
-        Last updated on Mar 30, 2022.
-      </span>
-
-    </p>
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on Jan 05, 2023.
+      </span></p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

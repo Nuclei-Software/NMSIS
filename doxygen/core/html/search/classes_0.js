@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['cacheinfo_5ftype',['CacheInfo_Type',['../structCacheInfo__Type.html',1,'']]],
   ['clic_5fctrl_5ftype',['CLIC_CTRL_Type',['../structCLIC__CTRL__Type.html',1,'']]],
   ['clic_5ftype',['CLIC_Type',['../structCLIC__Type.html',1,'']]],
   ['cliccfg_5ftype',['CLICCFG_Type',['../unionCLICCFG__Type.html',1,'']]],

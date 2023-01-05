@@ -30,7 +30,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-NN
-   &#160;<span id="projectnumber">Version 1.0.2</span>
+   &#160;<span id="projectnumber">Version 1.1.0</span>
    </div>
    <div id="projectbrief">NMSIS NN Software Library</div>
   </td>
@@ -91,15 +91,24 @@ $(document).ready(function(){initNavTree('group__Softmax.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:gaa5362186d789a3944fa282915f2292c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Softmax.html#gaa5362186d789a3944fa282915f2292c7">riscv_nn_softmax_common_s8</a> (const int8_t *input, const int32_t num_rows, const int32_t row_size, const int32_t mult, const int32_t shift, const int32_t diff_min, const int16_t int16_output, void *output)</td></tr>
+<tr class="memdesc:gaa5362186d789a3944fa282915f2292c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Common softmax function for s8 input and s8 or s16 output.  <a href="#gaa5362186d789a3944fa282915f2292c7">More...</a><br /></td></tr>
+<tr class="separator:gaa5362186d789a3944fa282915f2292c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa9d0de605290176e23463cbaeb84a9ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Softmax.html#gaa9d0de605290176e23463cbaeb84a9ce">riscv_softmax_q15</a> (const q15_t *vec_in, const uint16_t dim_vec, q15_t *p_out)</td></tr>
 <tr class="memdesc:gaa9d0de605290176e23463cbaeb84a9ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Q15 softmax function.  <a href="#gaa9d0de605290176e23463cbaeb84a9ce">More...</a><br /></td></tr>
 <tr class="separator:gaa9d0de605290176e23463cbaeb84a9ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4c7867bb7ac62d4581deda5730dce99b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Softmax.html#ga4c7867bb7ac62d4581deda5730dce99b">riscv_softmax_q7</a> (const q7_t *vec_in, const uint16_t dim_vec, q7_t *p_out)</td></tr>
 <tr class="memdesc:ga4c7867bb7ac62d4581deda5730dce99b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Q7 softmax function.  <a href="#ga4c7867bb7ac62d4581deda5730dce99b">More...</a><br /></td></tr>
 <tr class="separator:ga4c7867bb7ac62d4581deda5730dce99b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8669f22315993fcfc455207a81ea4d8c"><td class="memItemLeft" align="right" valign="top">riscv_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Softmax.html#ga8669f22315993fcfc455207a81ea4d8c">riscv_softmax_s16</a> (const int16_t *input, const int32_t num_rows, const int32_t row_size, const int32_t mult, const int32_t shift, const <a class="el" href="structnmsis__nn__softmax__lut__s16.html">nmsis_nn_softmax_lut_s16</a> *softmax_params, int16_t *output)</td></tr>
+<tr class="memdesc:ga8669f22315993fcfc455207a81ea4d8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">S16 softmax function.  <a href="#ga8669f22315993fcfc455207a81ea4d8c">More...</a><br /></td></tr>
+<tr class="separator:ga8669f22315993fcfc455207a81ea4d8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac9dd5c3c22158eec0237b03d50a54465"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Softmax.html#gac9dd5c3c22158eec0237b03d50a54465">riscv_softmax_s8</a> (const int8_t *input, const int32_t num_rows, const int32_t row_size, const int32_t mult, const int32_t shift, const int32_t diff_min, int8_t *output)</td></tr>
 <tr class="memdesc:gac9dd5c3c22158eec0237b03d50a54465"><td class="mdescLeft">&#160;</td><td class="mdescRight">S8 softmax function.  <a href="#gac9dd5c3c22158eec0237b03d50a54465">More...</a><br /></td></tr>
 <tr class="separator:gac9dd5c3c22158eec0237b03d50a54465"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga905ee1f12d8b77f94d20e53189843b8f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Softmax.html#ga905ee1f12d8b77f94d20e53189843b8f">riscv_softmax_s8_s16</a> (const int8_t *input, const int32_t num_rows, const int32_t row_size, const int32_t mult, const int32_t shift, const int32_t diff_min, int16_t *output)</td></tr>
+<tr class="memdesc:ga905ee1f12d8b77f94d20e53189843b8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">S8 to s16 softmax function.  <a href="#ga905ee1f12d8b77f94d20e53189843b8f">More...</a><br /></td></tr>
+<tr class="separator:ga905ee1f12d8b77f94d20e53189843b8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga11a1ba75201c791d528d559432c484e3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Softmax.html#ga11a1ba75201c791d528d559432c484e3">riscv_softmax_u8</a> (const uint8_t *input, const int32_t num_rows, const int32_t row_size, const int32_t mult, const int32_t shift, const int32_t diff_min, uint8_t *output)</td></tr>
 <tr class="memdesc:ga11a1ba75201c791d528d559432c484e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">U8 softmax function.  <a href="#ga11a1ba75201c791d528d559432c484e3">More...</a><br /></td></tr>
 <tr class="separator:ga11a1ba75201c791d528d559432c484e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -110,6 +119,86 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>EXP(2) based softmax functions. </p>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="gaa5362186d789a3944fa282915f2292c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa5362186d789a3944fa282915f2292c7">&#9670;&nbsp;</a></span>riscv_nn_softmax_common_s8()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void riscv_nn_softmax_common_s8 </td>
+          <td>(</td>
+          <td class="paramtype">const int8_t *&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>num_rows</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>row_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>mult</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>shift</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>diff_min</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int16_t&#160;</td>
+          <td class="paramname"><em>int16_output</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>output</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Common softmax function for s8 input and s8 or s16 output. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">input</td><td>Pointer to the input tensor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">num_rows</td><td>Number of rows in the input tensor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">row_size</td><td>Number of elements in each input row </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mult</td><td>Input quantization multiplier </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">shift</td><td>Input quantization shift within the range [0, 31] </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">diff_min</td><td>Minimum difference with max in row. Used to check if the quantized exponential operation can be performed </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">int16_output</td><td>Indicating s8 output if 0 else s16 output </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">output</td><td>Pointer to the output tensor</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Supported framework: TensorFlow Lite micro (bit-accurate) </dd></dl>
+
+</div>
+</div>
 <a id="gaa9d0de605290176e23463cbaeb84a9ce"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gaa9d0de605290176e23463cbaeb84a9ce">&#9670;&nbsp;</a></span>riscv_softmax_q15()</h2>
 
@@ -204,6 +293,84 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ga8669f22315993fcfc455207a81ea4d8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8669f22315993fcfc455207a81ea4d8c">&#9670;&nbsp;</a></span>riscv_softmax_s16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">riscv_status riscv_softmax_s16 </td>
+          <td>(</td>
+          <td class="paramtype">const int16_t *&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>num_rows</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>row_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>mult</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>shift</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__softmax__lut__s16.html">nmsis_nn_softmax_lut_s16</a> *&#160;</td>
+          <td class="paramname"><em>softmax_params</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int16_t *&#160;</td>
+          <td class="paramname"><em>output</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>S16 softmax function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">input</td><td>Pointer to the input tensor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">num_rows</td><td>Number of rows in the input tensor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">row_size</td><td>Number of elements in each input row </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mult</td><td>Input quantization multiplier </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">shift</td><td>Input quantization shift within the range [0, 31] </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">softmax_params</td><td>Softmax s16 layer parameters with two pointers to LUTs speficied below. For indexing the high 9 bits are used and 7 remaining for interpolation. That means 512 entries for the 9-bit indexing and 1 extra for interpolation, i.e. 513 values for each LUT.<ul>
+<li>Lookup table for exp(x), where x uniform distributed between [-10.0 , 0.0]</li>
+<li>Lookup table for 1 / (1 + x), where x uniform distributed between [0.0 , 1.0] </li>
+</ul>
+</td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">output</td><td>Pointer to the output tensor </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The function returns <code>RISCV_MATH_ARGUMENT_ERROR</code> if LUTs are NULL <code>RISCV_MATH_SUCCESS</code> - Successful operation</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Supported framework: TensorFlow Lite micro (bit-accurate) </dd></dl>
+
+</div>
+</div>
 <a id="gac9dd5c3c22158eec0237b03d50a54465"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gac9dd5c3c22158eec0237b03d50a54465">&#9670;&nbsp;</a></span>riscv_softmax_s8()</h2>
 
@@ -261,6 +428,79 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>S8 softmax function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">input</td><td>Pointer to the input tensor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">num_rows</td><td>Number of rows in the input tensor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">row_size</td><td>Number of elements in each input row </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mult</td><td>Input quantization multiplier </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">shift</td><td>Input quantization shift within the range [0, 31] </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">diff_min</td><td>Minimum difference with max in row. Used to check if the quantized exponential operation can be performed </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">output</td><td>Pointer to the output tensor</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Supported framework: TensorFlow Lite micro (bit-accurate) </dd></dl>
+
+</div>
+</div>
+<a id="ga905ee1f12d8b77f94d20e53189843b8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga905ee1f12d8b77f94d20e53189843b8f">&#9670;&nbsp;</a></span>riscv_softmax_s8_s16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void riscv_softmax_s8_s16 </td>
+          <td>(</td>
+          <td class="paramtype">const int8_t *&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>num_rows</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>row_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>mult</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>shift</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>diff_min</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int16_t *&#160;</td>
+          <td class="paramname"><em>output</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>S8 to s16 softmax function. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">input</td><td>Pointer to the input tensor </td></tr>
@@ -409,7 +649,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Mar 30 2022 07:47:27 for NMSIS-NN by
+    <li class="footer">Generated on Thu Jan 5 2023 09:07:31 for NMSIS-NN by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

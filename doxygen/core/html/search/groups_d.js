@@ -17,6 +17,7 @@ var searchData=
   ['simd_208_2dbit_20shift_20instructions',['SIMD 8-bit Shift Instructions',['../group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT.html',1,'']]],
   ['simd_208_2dbit_20unpacking_20instructions',['SIMD 8-bit Unpacking Instructions',['../group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__UNPACK.html',1,'']]],
   ['simd_20data_20processing_20instructions',['SIMD Data Processing Instructions',['../group__NMSIS__Core__DSP__Intrinsic__SIMD__DATA__PROCESS.html',1,'']]],
+  ['spmp_20functions',['sPMP Functions',['../group__NMSIS__Core__SPMP__Functions.html',1,'']]],
   ['system_20device_20configuration',['System Device Configuration',['../group__NMSIS__Core__SystemConfig.html',1,'']]],
   ['systimer_20functions',['SysTimer Functions',['../group__NMSIS__Core__SysTimer.html',1,'']]]
 ];

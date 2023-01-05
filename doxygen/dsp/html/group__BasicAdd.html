@@ -30,7 +30,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.0.2</span>
+   &#160;<span id="projectnumber">Version 1.1.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -97,6 +97,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga11b757065b1c8aa1cef4a59594e4ecf0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BasicAdd.html#ga11b757065b1c8aa1cef4a59594e4ecf0">riscv_add_f32</a> (const float32_t *pSrcA, const float32_t *pSrcB, float32_t *pDst, uint32_t blockSize)</td></tr>
 <tr class="memdesc:ga11b757065b1c8aa1cef4a59594e4ecf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Floating-point vector addition.  <a href="#ga11b757065b1c8aa1cef4a59594e4ecf0">More...</a><br /></td></tr>
 <tr class="separator:ga11b757065b1c8aa1cef4a59594e4ecf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf2f7b7a87ce71520e5e90834d9d16e8b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BasicAdd.html#gaf2f7b7a87ce71520e5e90834d9d16e8b">riscv_add_f64</a> (const float64_t *pSrcA, const float64_t *pSrcB, float64_t *pDst, uint32_t blockSize)</td></tr>
+<tr class="memdesc:gaf2f7b7a87ce71520e5e90834d9d16e8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Floating-point vector addition.  <a href="#gaf2f7b7a87ce71520e5e90834d9d16e8b">More...</a><br /></td></tr>
+<tr class="separator:gaf2f7b7a87ce71520e5e90834d9d16e8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac3bc9d2b997e9b8cd6a0ed84e7bcc530"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BasicAdd.html#gac3bc9d2b997e9b8cd6a0ed84e7bcc530">riscv_add_q15</a> (const q15_t *pSrcA, const q15_t *pSrcB, q15_t *pDst, uint32_t blockSize)</td></tr>
 <tr class="memdesc:gac3bc9d2b997e9b8cd6a0ed84e7bcc530"><td class="mdescLeft">&#160;</td><td class="mdescRight">Q15 vector addition.  <a href="#gac3bc9d2b997e9b8cd6a0ed84e7bcc530">More...</a><br /></td></tr>
 <tr class="separator:gac3bc9d2b997e9b8cd6a0ed84e7bcc530"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -187,6 +190,58 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float32_t *&#160;</td>
+          <td class="paramname"><em>pDst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>blockSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Floating-point vector addition. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pSrcA</td><td>points to first input vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pSrcB</td><td>points to second input vector </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pDst</td><td>points to output vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">blockSize</td><td>number of samples in each vector </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
+
+</div>
+</div>
+<a id="gaf2f7b7a87ce71520e5e90834d9d16e8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf2f7b7a87ce71520e5e90834d9d16e8b">&#9670;&nbsp;</a></span>riscv_add_f64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void riscv_add_f64 </td>
+          <td>(</td>
+          <td class="paramtype">const float64_t *&#160;</td>
+          <td class="paramname"><em>pSrcA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float64_t *&#160;</td>
+          <td class="paramname"><em>pSrcB</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float64_t *&#160;</td>
           <td class="paramname"><em>pDst</em>, </td>
         </tr>
         <tr>
@@ -381,7 +436,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Mar 30 2022 07:45:01 for NMSIS-DSP by
+    <li class="footer">Generated on Thu Jan 5 2023 09:05:09 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

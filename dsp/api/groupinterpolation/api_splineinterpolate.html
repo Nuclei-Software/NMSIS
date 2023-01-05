@@ -1,75 +1,39 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Cubic Spline Interpolation &mdash; NMSIS 1.0.4 documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cubic Spline Interpolation &mdash; NMSIS 1.1.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Matrix Functions" href="../api_groupmatrix.html" />
     <link rel="prev" title="Linear Interpolation" href="api_linearinterpolate.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../../../index.html">
-          
-
-          
-            
             <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                1.0.4
+                1.1.0
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -77,18 +41,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -127,242 +81,172 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">NMSIS</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../../index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
-        
           <li><a href="../index.html">NMSIS DSP API</a> &raquo;</li>
-        
           <li><a href="../api_groupinterpolation.html">Interpolation Functions</a> &raquo;</li>
-        
       <li>Cubic Spline Interpolation</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="../../../_sources/dsp/api/groupinterpolation/api_splineinterpolate.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="cubic-spline-interpolation">
-<span id="nmsis-dsp-api-cubic-spline-interpolation"></span><h1>Cubic Spline Interpolation<a class="headerlink" href="#cubic-spline-interpolation" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="_CPPv416riscv_spline_f32P25riscv_spline_instance_f32PK9float32_tP9float32_t8uint32_t">
-<span id="_CPPv316riscv_spline_f32P25riscv_spline_instance_f32PK9float32_tP9float32_t8uint32_t"></span><span id="_CPPv216riscv_spline_f32P25riscv_spline_instance_f32PK9float32_tP9float32_t8uint32_t"></span><span id="riscv_spline_f32__riscv_spline_instance_f32P.float32_tCP.float32_tP.uint32_t"></span><span class="target" id="group__SplineInterpolate_1ga6405d52f2a594c77fbe7439661c9375d"></span>void <code class="sig-name descname">riscv_spline_f32</code><span class="sig-paren">(</span>riscv_spline_instance_f32 *<em>S</em>, <em class="property">const</em> float32_t *<em>xq</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416riscv_spline_f32P25riscv_spline_instance_f32PK9float32_tP9float32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+             
+  <section id="cubic-spline-interpolation">
+<span id="nmsis-dsp-api-cubic-spline-interpolation"></span><h1>Cubic Spline Interpolation<a class="headerlink" href="#cubic-spline-interpolation" title="Permalink to this headline"></a></h1>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv416riscv_spline_f32P25riscv_spline_instance_f32PK9float32_tP9float32_t8uint32_t">
+<span id="_CPPv316riscv_spline_f32P25riscv_spline_instance_f32PK9float32_tP9float32_t8uint32_t"></span><span id="_CPPv216riscv_spline_f32P25riscv_spline_instance_f32PK9float32_tP9float32_t8uint32_t"></span><span id="riscv_spline_f32__riscv_spline_instance_f32P.float32_tCP.float32_tP.uint32_t"></span><span class="target" id="group__SplineInterpolate_1ga6405d52f2a594c77fbe7439661c9375d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_spline_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_spline_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">xq</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416riscv_spline_f32P25riscv_spline_instance_f32PK9float32_tP9float32_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv421riscv_spline_init_f32P25riscv_spline_instance_f3217riscv_spline_typePK9float32_tPK9float32_t8uint32_tP9float32_tP9float32_t">
-<span id="_CPPv321riscv_spline_init_f32P25riscv_spline_instance_f3217riscv_spline_typePK9float32_tPK9float32_t8uint32_tP9float32_tP9float32_t"></span><span id="_CPPv221riscv_spline_init_f32P25riscv_spline_instance_f3217riscv_spline_typePK9float32_tPK9float32_t8uint32_tP9float32_tP9float32_t"></span><span id="riscv_spline_init_f32__riscv_spline_instance_f32P.riscv_spline_type.float32_tCP.float32_tCP.uint32_t.float32_tP.float32_tP"></span><span class="target" id="group__SplineInterpolate_1gafcac55cbc1a4f87f6a86ee81d73965b1"></span>void <code class="sig-name descname">riscv_spline_init_f32</code><span class="sig-paren">(</span>riscv_spline_instance_f32 *<em>S</em>, riscv_spline_type <em>type</em>, <em class="property">const</em> float32_t *<em>x</em>, <em class="property">const</em> float32_t *<em>y</em>, uint32_t <em>n</em>, float32_t *<em>coeffs</em>, float32_t *<em>tempBuffer</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421riscv_spline_init_f32P25riscv_spline_instance_f3217riscv_spline_typePK9float32_tPK9float32_t8uint32_tP9float32_tP9float32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv421riscv_spline_init_f32P25riscv_spline_instance_f3217riscv_spline_typePK9float32_tPK9float32_t8uint32_tP9float32_tP9float32_t">
+<span id="_CPPv321riscv_spline_init_f32P25riscv_spline_instance_f3217riscv_spline_typePK9float32_tPK9float32_t8uint32_tP9float32_tP9float32_t"></span><span id="_CPPv221riscv_spline_init_f32P25riscv_spline_instance_f3217riscv_spline_typePK9float32_tPK9float32_t8uint32_tP9float32_tP9float32_t"></span><span id="riscv_spline_init_f32__riscv_spline_instance_f32P.riscv_spline_type.float32_tCP.float32_tCP.uint32_t.float32_tP.float32_tP"></span><span class="target" id="group__SplineInterpolate_1gafcac55cbc1a4f87f6a86ee81d73965b1"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_spline_init_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_spline_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">riscv_spline_type</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">type</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">y</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">coeffs</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">tempBuffer</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421riscv_spline_init_f32P25riscv_spline_instance_f3217riscv_spline_typePK9float32_tPK9float32_t8uint32_tP9float32_tP9float32_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="group">
-<dt>
-<span class="target" id="group__SplineInterpolate"></span><em>group</em> <code class="sig-name descname">SplineInterpolate</code></dt>
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__SplineInterpolate"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">SplineInterpolate</span></span></dt>
 <dd><p>Spline interpolation is a method of interpolation where the interpolant is a piecewise-defined polynomial called “spline”.</p>
-<p><p>Given a function f defined on the interval [a,b], a set of n nodes x(i) where a=x(1)&lt;x(2)&lt;…&lt;x(n)=b and a set of n values y(i) = f(x(i)), a cubic spline interpolant S(x) is defined as:</p>
-<dl class="simple">
+<p>
+Given a function f defined on the interval [a,b], a set of n nodes x(i) where a=x(1)&lt;x(2)&lt;…&lt;x(n)=b and a set of n values y(i) = f(x(i)), a cubic spline interpolant S(x) is defined as:<dl class="simple">
 <dt><strong>Introduction</strong></dt><dd><p></p>
 </dd>
 </dl>
 </p>
-<p></p>
 <p>where</p>
-<p></p>
-<p><p>Having defined h(i) = x(i+1) - x(i)</p>
-<dl class="simple">
+<p>
+Having defined h(i) = x(i+1) - x(i)<dl class="simple">
 <dt><strong>Algorithm</strong></dt><dd><p></p>
 </dd>
 </dl>
 </p>
-<p></p>
 <p>It is possible to write the previous conditions in matrix form (Ax=B). In order to solve the system two boundary conidtions are needed.<ul class="simple">
 <li><p>Natural spline: S1’’(x1)=2*c(1)=0 ; Sn’’(xn)=2*c(n)=0 In matrix form:</p></li>
 </ul>
 </p>
-<p></p>
 <p><ul class="simple">
 <li><p>Parabolic runout spline: S1’’(x1)=2*c(1)=S2’’(x2)=2*c(2) ; Sn-1’’(xn-1)=2*c(n-1)=Sn’’(xn)=2*c(n) In matrix form:</p></li>
 </ul>
 </p>
-<p></p>
 <p>A is a tridiagonal matrix (a band matrix of bandwidth 3) of size N=n+1. The factorization algorithms (A=LU) can be simplified considerably because a large number of zeros appear in regular patterns. The Crout method has been used: 1) Solve LZ=B</p>
-<p></p>
-<p></p>
-<p></p>
 <p>2) Solve UX=Z</p>
-<p></p>
-<p></p>
 <p>c(i) for i=1, …, n-1 are needed to compute the n-1 polynomials. b(i) and d(i) are computed as:<ul class="simple">
 <li><p>b(i) = [y(i+1)-y(i)]/h(i)-h(i)*[c(i+1)+2*c(i)]/3</p></li>
 <li><p>d(i) = [c(i+1)-c(i)]/[3*h(i)] Moreover, a(i)=y(i).</p></li>
 </ul>
 </p>
-<p><p>It is possible to compute the interpolated vector for x values outside the input range (xq&lt;x(1); xq&gt;x(n)). The coefficients used to compute the y values for xq&lt;x(1) are going to be the ones used for the first interval, while for xq&gt;x(n) the coefficients used for the last interval.</p>
-<dl class="simple">
+<p>
+It is possible to compute the interpolated vector for x values outside the input range (xq&lt;x(1); xq&gt;x(n)). The coefficients used to compute the y values for xq&lt;x(1) are going to be the ones used for the first interval, while for xq&gt;x(n) the coefficients used for the last interval.<dl class="simple">
 <dt><strong>Behaviour outside the given intervals</strong></dt><dd><p></p>
 </dd>
 </dl>
 </p>
-<p><p>The initialization function takes as input two arrays that the user has to allocate: </p>
-<code class="docutils literal notranslate"><span class="pre">coeffs</span></code> will contain the b, c, and d coefficients for the (n-1) intervals (n is the number of known points), hence its size must be 3*(n-1); <code class="docutils literal notranslate"><span class="pre">tempBuffer</span></code> is temporally used for internal computations and its size is n+n-1.<dl class="simple">
+<p>
+The initialization function takes as input two arrays that the user has to allocate: <code class="docutils literal notranslate"><span class="pre">coeffs</span></code> will contain the b, c, and d coefficients for the (n-1) intervals (n is the number of known points), hence its size must be 3*(n-1); <code class="docutils literal notranslate"><span class="pre">tempBuffer</span></code> is temporally used for internal computations and its size is n+n-1.<dl class="simple">
 <dt><strong>Initialization function</strong></dt><dd><p></p>
 </dd>
 </dl>
 </p>
-<p><p>The x input array must be strictly sorted in ascending order and it must not contain twice the same value (x(i)&lt;x(i+1)). </p>
-<dl class="simple">
+<p>
+The x input array must be strictly sorted in ascending order and it must not contain twice the same value (x(i)&lt;x(i+1)). <dl class="simple">
 <dt><strong></strong></dt><dd><p></p>
 </dd>
 </dl>
 </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Functions</p>
-<dl class="function">
-<dt id="_CPPv416riscv_spline_f32P25riscv_spline_instance_f32PK9float32_tP9float32_t8uint32_t">
-<span id="_CPPv316riscv_spline_f32P25riscv_spline_instance_f32PK9float32_tP9float32_t8uint32_t"></span><span id="_CPPv216riscv_spline_f32P25riscv_spline_instance_f32PK9float32_tP9float32_t8uint32_t"></span><span class="target" id="group__SplineInterpolate_1ga6405d52f2a594c77fbe7439661c9375d"></span>void <code class="sig-name descname">riscv_spline_f32</code><span class="sig-paren">(</span>riscv_spline_instance_f32 *<em>S</em>, <em class="property">const</em> float32_t *<em>xq</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__SplineInterpolate_1ga6405d52f2a594c77fbe7439661c9375d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_spline_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_spline_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">xq</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Processing function for the floating-point cubic spline interpolation. </p>
-<p><dl class="simple">
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the floating-point spline structure. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">xq</span></code>: points to the x values ot the interpolated data points. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the block of output data. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples of output data.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the floating-point spline structure. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">xq</span></code>: points to the x values of the interpolated data points. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the block of output data. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples of output data. </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the floating-point spline structure. </p></li>
+<li><p><strong>xq</strong> – <strong>[in]</strong> points to the x values ot the interpolated data points. </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data. </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples of output data.</p></li>
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the floating-point spline structure. </p></li>
+<li><p><strong>xq</strong> – <strong>[in]</strong> points to the x values of the interpolated data points. </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data. </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples of output data. </p></li>
 </ul>
 </dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv421riscv_spline_init_f32P25riscv_spline_instance_f3217riscv_spline_typePK9float32_tPK9float32_t8uint32_tP9float32_tP9float32_t">
-<span id="_CPPv321riscv_spline_init_f32P25riscv_spline_instance_f3217riscv_spline_typePK9float32_tPK9float32_t8uint32_tP9float32_tP9float32_t"></span><span id="_CPPv221riscv_spline_init_f32P25riscv_spline_instance_f3217riscv_spline_typePK9float32_tPK9float32_t8uint32_tP9float32_tP9float32_t"></span><span class="target" id="group__SplineInterpolate_1gafcac55cbc1a4f87f6a86ee81d73965b1"></span>void <code class="sig-name descname">riscv_spline_init_f32</code><span class="sig-paren">(</span>riscv_spline_instance_f32 *<em>S</em>, riscv_spline_type <em>type</em>, <em class="property">const</em> float32_t *<em>x</em>, <em class="property">const</em> float32_t *<em>y</em>, uint32_t <em>n</em>, float32_t *<em>coeffs</em>, float32_t *<em>tempBuffer</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__SplineInterpolate_1gafcac55cbc1a4f87f6a86ee81d73965b1"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_spline_init_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_spline_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">riscv_spline_type</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">type</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">y</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">coeffs</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">tempBuffer</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the floating-point cubic spline interpolation. </p>
-<p><dl class="simple">
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an instance of the floating-point spline structure. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">type</span></code>: type of cubic spline interpolation (boundary conditions) </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">x</span></code>: points to the x values of the known data points. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">y</span></code>: points to the y values of the known data points. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">n</span></code>: number of known data points. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">coeffs</span></code>: coefficients array for b, c, and d </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">tempBuffer</span></code>: buffer array for internal computations </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the floating-point spline structure. </p></li>
+<li><p><strong>type</strong> – <strong>[in]</strong> type of cubic spline interpolation (boundary conditions) </p></li>
+<li><p><strong>x</strong> – <strong>[in]</strong> points to the x values of the known data points. </p></li>
+<li><p><strong>y</strong> – <strong>[in]</strong> points to the y values of the known data points. </p></li>
+<li><p><strong>n</strong> – <strong>[in]</strong> number of known data points. </p></li>
+<li><p><strong>coeffs</strong> – <strong>[in]</strong> coefficients array for b, c, and d </p></li>
+<li><p><strong>tempBuffer</strong> – <strong>[in]</strong> buffer array for internal computations </p></li>
 </ul>
 </dd>
 </dl>
-</p>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../api_groupmatrix.html" class="btn btn-neutral float-right" title="Matrix Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="api_linearinterpolate.html" class="btn btn-neutral float-left" title="Linear Interpolation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api_linearinterpolate.html" class="btn btn-neutral float-left" title="Linear Interpolation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../api_groupmatrix.html" class="btn btn-neutral float-right" title="Matrix Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2019-Present, Nuclei
-      <span class="lastupdated">
-        Last updated on Mar 30, 2022.
-      </span>
-
-    </p>
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on Jan 05, 2023.
+      </span></p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

@@ -9,6 +9,7 @@ var annotated_dup =
     [ "nmsis_nn_per_channel_quant_params", "structnmsis__nn__per__channel__quant__params.html", "structnmsis__nn__per__channel__quant__params" ],
     [ "nmsis_nn_per_tensor_quant_params", "structnmsis__nn__per__tensor__quant__params.html", "structnmsis__nn__per__tensor__quant__params" ],
     [ "nmsis_nn_pool_params", "structnmsis__nn__pool__params.html", "structnmsis__nn__pool__params" ],
+    [ "nmsis_nn_softmax_lut_s16", "structnmsis__nn__softmax__lut__s16.html", "structnmsis__nn__softmax__lut__s16" ],
     [ "nmsis_nn_svdf_params", "structnmsis__nn__svdf__params.html", "structnmsis__nn__svdf__params" ],
     [ "nmsis_nn_tile", "structnmsis__nn__tile.html", "structnmsis__nn__tile" ],
     [ "riscv_nn_double", "structriscv__nn__double.html", "structriscv__nn__double" ],

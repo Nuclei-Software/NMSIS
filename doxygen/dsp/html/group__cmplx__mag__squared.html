@@ -30,7 +30,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.0.2</span>
+   &#160;<span id="projectnumber">Version 1.1.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -97,6 +97,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga1cc0b3a955a49094b5a630e15e270f7c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cmplx__mag__squared.html#ga1cc0b3a955a49094b5a630e15e270f7c">riscv_cmplx_mag_squared_f32</a> (const float32_t *pSrc, float32_t *pDst, uint32_t numSamples)</td></tr>
 <tr class="memdesc:ga1cc0b3a955a49094b5a630e15e270f7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Floating-point complex magnitude squared.  <a href="#ga1cc0b3a955a49094b5a630e15e270f7c">More...</a><br /></td></tr>
 <tr class="separator:ga1cc0b3a955a49094b5a630e15e270f7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga56f6dce132f73616ab001493e7668a76"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cmplx__mag__squared.html#ga56f6dce132f73616ab001493e7668a76">riscv_cmplx_mag_squared_f64</a> (const float64_t *pSrc, float64_t *pDst, uint32_t numSamples)</td></tr>
+<tr class="memdesc:ga56f6dce132f73616ab001493e7668a76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Floating-point complex magnitude squared.  <a href="#ga56f6dce132f73616ab001493e7668a76">More...</a><br /></td></tr>
+<tr class="separator:ga56f6dce132f73616ab001493e7668a76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga63ecc92e721532fd727e35d6a67452ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cmplx__mag__squared.html#ga63ecc92e721532fd727e35d6a67452ed">riscv_cmplx_mag_squared_q15</a> (const q15_t *pSrc, q15_t *pDst, uint32_t numSamples)</td></tr>
 <tr class="memdesc:ga63ecc92e721532fd727e35d6a67452ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Q15 complex magnitude squared.  <a href="#ga63ecc92e721532fd727e35d6a67452ed">More...</a><br /></td></tr>
 <tr class="separator:ga63ecc92e721532fd727e35d6a67452ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -175,6 +178,51 @@ for (n = 0; n &lt; numSamples; n++) {
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float32_t *&#160;</td>
+          <td class="paramname"><em>pDst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>numSamples</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Floating-point complex magnitude squared. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pSrc</td><td>points to input vector </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pDst</td><td>points to output vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">numSamples</td><td>number of samples in each vector </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
+
+</div>
+</div>
+<a id="ga56f6dce132f73616ab001493e7668a76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga56f6dce132f73616ab001493e7668a76">&#9670;&nbsp;</a></span>riscv_cmplx_mag_squared_f64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void riscv_cmplx_mag_squared_f64 </td>
+          <td>(</td>
+          <td class="paramtype">const float64_t *&#160;</td>
+          <td class="paramname"><em>pSrc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float64_t *&#160;</td>
           <td class="paramname"><em>pDst</em>, </td>
         </tr>
         <tr>
@@ -301,7 +349,7 @@ for (n = 0; n &lt; numSamples; n++) {
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Mar 30 2022 07:45:01 for NMSIS-DSP by
+    <li class="footer">Generated on Thu Jan 5 2023 09:05:09 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

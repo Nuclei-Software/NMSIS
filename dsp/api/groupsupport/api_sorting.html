@@ -1,75 +1,39 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Vector sorting algorithms &mdash; NMSIS 1.0.4 documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vector sorting algorithms &mdash; NMSIS 1.1.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Vector Copy" href="api_copy.html" />
     <link rel="prev" title="Barycenter" href="api_barycenter.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../../../index.html">
-          
-
-          
-            
             <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                1.0.4
+                1.1.0
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -77,18 +41,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -134,178 +88,146 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">NMSIS</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../../index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
-        
           <li><a href="../index.html">NMSIS DSP API</a> &raquo;</li>
-        
           <li><a href="../api_groupsupport.html">Support Functions</a> &raquo;</li>
-        
       <li>Vector sorting algorithms</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="../../../_sources/dsp/api/groupsupport/api_sorting.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="vector-sorting-algorithms">
-<span id="nmsis-dsp-api-vector-sorting-algorithms"></span><h1>Vector sorting algorithms<a class="headerlink" href="#vector-sorting-algorithms" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="_CPPv420riscv_merge_sort_f32PK29riscv_merge_sort_instance_f32P9float32_tP9float32_t8uint32_t">
-<span id="_CPPv320riscv_merge_sort_f32PK29riscv_merge_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="_CPPv220riscv_merge_sort_f32PK29riscv_merge_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="riscv_merge_sort_f32__riscv_merge_sort_instance_f32CP.float32_tP.float32_tP.uint32_t"></span><span class="target" id="group__Sorting_1gaac3b45bc72df45d36ebc1fa526353231"></span>void <code class="sig-name descname">riscv_merge_sort_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_merge_sort_instance_f32 *<em>S</em>, float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420riscv_merge_sort_f32PK29riscv_merge_sort_instance_f32P9float32_tP9float32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+             
+  <section id="vector-sorting-algorithms">
+<span id="nmsis-dsp-api-vector-sorting-algorithms"></span><h1>Vector sorting algorithms<a class="headerlink" href="#vector-sorting-algorithms" title="Permalink to this headline"></a></h1>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv420riscv_merge_sort_f32PK29riscv_merge_sort_instance_f32P9float32_tP9float32_t8uint32_t">
+<span id="_CPPv320riscv_merge_sort_f32PK29riscv_merge_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="_CPPv220riscv_merge_sort_f32PK29riscv_merge_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="riscv_merge_sort_f32__riscv_merge_sort_instance_f32CP.float32_tP.float32_tP.uint32_t"></span><span class="target" id="group__Sorting_1gaac3b45bc72df45d36ebc1fa526353231"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_merge_sort_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_merge_sort_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420riscv_merge_sort_f32PK29riscv_merge_sort_instance_f32P9float32_tP9float32_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv425riscv_merge_sort_init_f32P29riscv_merge_sort_instance_f3214riscv_sort_dirP9float32_t">
-<span id="_CPPv325riscv_merge_sort_init_f32P29riscv_merge_sort_instance_f3214riscv_sort_dirP9float32_t"></span><span id="_CPPv225riscv_merge_sort_init_f32P29riscv_merge_sort_instance_f3214riscv_sort_dirP9float32_t"></span><span id="riscv_merge_sort_init_f32__riscv_merge_sort_instance_f32P.riscv_sort_dir.float32_tP"></span><span class="target" id="group__Sorting_1ga7b8d6cb90cabde057c400031fda73b39"></span>void <code class="sig-name descname">riscv_merge_sort_init_f32</code><span class="sig-paren">(</span>riscv_merge_sort_instance_f32 *<em>S</em>, riscv_sort_dir <em>dir</em>, float32_t *<em>buffer</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425riscv_merge_sort_init_f32P29riscv_merge_sort_instance_f3214riscv_sort_dirP9float32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv425riscv_merge_sort_init_f32P29riscv_merge_sort_instance_f3214riscv_sort_dirP9float32_t">
+<span id="_CPPv325riscv_merge_sort_init_f32P29riscv_merge_sort_instance_f3214riscv_sort_dirP9float32_t"></span><span id="_CPPv225riscv_merge_sort_init_f32P29riscv_merge_sort_instance_f3214riscv_sort_dirP9float32_t"></span><span id="riscv_merge_sort_init_f32__riscv_merge_sort_instance_f32P.riscv_sort_dir.float32_tP"></span><span class="target" id="group__Sorting_1ga7b8d6cb90cabde057c400031fda73b39"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_merge_sort_init_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_merge_sort_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">riscv_sort_dir</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">dir</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">buffer</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425riscv_merge_sort_init_f32P29riscv_merge_sort_instance_f3214riscv_sort_dirP9float32_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv414riscv_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t">
-<span id="_CPPv314riscv_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="_CPPv214riscv_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="riscv_sort_f32__riscv_sort_instance_f32CP.float32_tP.float32_tP.uint32_t"></span><span class="target" id="group__Sorting_1gad65d573af02ff8b20ac5c78fc5e65bdd"></span>void <code class="sig-name descname">riscv_sort_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_sort_instance_f32 *<em>S</em>, float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414riscv_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv414riscv_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t">
+<span id="_CPPv314riscv_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="_CPPv214riscv_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="riscv_sort_f32__riscv_sort_instance_f32CP.float32_tP.float32_tP.uint32_t"></span><span class="target" id="group__Sorting_1gad65d573af02ff8b20ac5c78fc5e65bdd"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_sort_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_sort_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414riscv_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv419riscv_sort_init_f32P23riscv_sort_instance_f3214riscv_sort_alg14riscv_sort_dir">
-<span id="_CPPv319riscv_sort_init_f32P23riscv_sort_instance_f3214riscv_sort_alg14riscv_sort_dir"></span><span id="_CPPv219riscv_sort_init_f32P23riscv_sort_instance_f3214riscv_sort_alg14riscv_sort_dir"></span><span id="riscv_sort_init_f32__riscv_sort_instance_f32P.riscv_sort_alg.riscv_sort_dir"></span><span class="target" id="group__Sorting_1ga9ebea621c470fed41856a446dc14cf6a"></span>void <code class="sig-name descname">riscv_sort_init_f32</code><span class="sig-paren">(</span>riscv_sort_instance_f32 *<em>S</em>, riscv_sort_alg <em>alg</em>, riscv_sort_dir <em>dir</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_sort_init_f32P23riscv_sort_instance_f3214riscv_sort_alg14riscv_sort_dir" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv419riscv_sort_init_f32P23riscv_sort_instance_f3214riscv_sort_alg14riscv_sort_dir">
+<span id="_CPPv319riscv_sort_init_f32P23riscv_sort_instance_f3214riscv_sort_alg14riscv_sort_dir"></span><span id="_CPPv219riscv_sort_init_f32P23riscv_sort_instance_f3214riscv_sort_alg14riscv_sort_dir"></span><span id="riscv_sort_init_f32__riscv_sort_instance_f32P.riscv_sort_alg.riscv_sort_dir"></span><span class="target" id="group__Sorting_1ga9ebea621c470fed41856a446dc14cf6a"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_sort_init_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_sort_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">riscv_sort_alg</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">alg</span></span>, <span class="n"><span class="pre">riscv_sort_dir</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">dir</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_sort_init_f32P23riscv_sort_instance_f3214riscv_sort_alg14riscv_sort_dir" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="group">
-<dt>
-<span class="target" id="group__Sorting"></span><em>group</em> <code class="sig-name descname">Sorting</code></dt>
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Sorting"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Sorting</span></span></dt>
 <dd><p>Sort the elements of a vector</p>
 <p>There are separate functions for floating-point, Q31, Q15, and Q7 data types. </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Functions</p>
-<dl class="function">
-<dt id="_CPPv422riscv_bitonic_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t">
-<span id="_CPPv322riscv_bitonic_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="_CPPv222riscv_bitonic_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="riscv_bitonic_sort_f32__riscv_sort_instance_f32CP.float32_tP.float32_tP.uint32_t"></span><span class="target" id="group__Sorting_1gad93804cf62afe4f6e33d5306de76fd34"></span>void <code class="sig-name descname">riscv_bitonic_sort_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_sort_instance_f32 *<em>S</em>, float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422riscv_bitonic_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p><dl class="simple">
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the sorting structure. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the block of output data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process. </p></li>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv422riscv_bitonic_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t">
+<span id="_CPPv322riscv_bitonic_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="_CPPv222riscv_bitonic_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="riscv_bitonic_sort_f32__riscv_sort_instance_f32CP.float32_tP.float32_tP.uint32_t"></span><span class="target" id="group__Sorting_1gad93804cf62afe4f6e33d5306de76fd34"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_bitonic_sort_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_sort_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422riscv_bitonic_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the sorting structure. </p></li>
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data. </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process. </p></li>
 </ul>
 </dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv421riscv_bubble_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t">
-<span id="_CPPv321riscv_bubble_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="_CPPv221riscv_bubble_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="riscv_bubble_sort_f32__riscv_sort_instance_f32CP.float32_tP.float32_tP.uint32_t"></span><span class="target" id="group__Sorting_1gaa94533a805f9bc00177e1f021732f0b8"></span>void <code class="sig-name descname">riscv_bubble_sort_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_sort_instance_f32 *<em>S</em>, float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421riscv_bubble_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv421riscv_bubble_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t">
+<span id="_CPPv321riscv_bubble_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="_CPPv221riscv_bubble_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="riscv_bubble_sort_f32__riscv_sort_instance_f32CP.float32_tP.float32_tP.uint32_t"></span><span class="target" id="group__Sorting_1gaa94533a805f9bc00177e1f021732f0b8"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_bubble_sort_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_sort_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421riscv_bubble_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong>Algorithm</strong></dt><dd><p>The bubble sort algorithm is a simple comparison algorithm that reads the elements of a vector from the beginning to the end, compares the adjacent ones and swaps them if they are in the wrong order. The procedure is repeated until there is nothing left to swap. Bubble sort is fast for input vectors that are nearly sorted.</p>
 </dd>
 <dt><strong>It’s an in-place algorithm. In order to obtain an out-of-place</strong></dt><dd><p>function, a memcpy of the source vector is performed </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the sorting structure. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the block of output data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process.</p></li>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the sorting structure. </p></li>
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data. </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process.</p></li>
 </ul>
 </dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv419riscv_heap_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t">
-<span id="_CPPv319riscv_heap_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="_CPPv219riscv_heap_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="riscv_heap_sort_f32__riscv_sort_instance_f32CP.float32_tP.float32_tP.uint32_t"></span><span class="target" id="group__Sorting_1gabba29af26f6c13be383a7049a56c29fd"></span>void <code class="sig-name descname">riscv_heap_sort_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_sort_instance_f32 *<em>S</em>, float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_heap_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv419riscv_heap_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t">
+<span id="_CPPv319riscv_heap_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="_CPPv219riscv_heap_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="riscv_heap_sort_f32__riscv_sort_instance_f32CP.float32_tP.float32_tP.uint32_t"></span><span class="target" id="group__Sorting_1gabba29af26f6c13be383a7049a56c29fd"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_heap_sort_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_sort_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_heap_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong>Algorithm</strong></dt><dd><p>The heap sort algorithm is a comparison algorithm that divides the input array into a sorted and an unsorted region, and shrinks the unsorted region by extracting the largest element and moving it to the sorted region. A heap data structure is used to find the maximum.</p>
 </dd>
 <dt><strong>It’s an in-place algorithm. In order to obtain an out-of-place</strong></dt><dd><p>function, a memcpy of the source vector is performed. </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the sorting structure. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the block of output data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process.</p></li>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the sorting structure. </p></li>
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data. </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process.</p></li>
 </ul>
 </dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv424riscv_insertion_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t">
-<span id="_CPPv324riscv_insertion_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="_CPPv224riscv_insertion_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="riscv_insertion_sort_f32__riscv_sort_instance_f32CP.float32_tP.float32_tP.uint32_t"></span><span class="target" id="group__Sorting_1ga1103604a8aa9f59ed4989f5c1674a620"></span>void <code class="sig-name descname">riscv_insertion_sort_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_sort_instance_f32 *<em>S</em>, float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424riscv_insertion_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv424riscv_insertion_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t">
+<span id="_CPPv324riscv_insertion_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="_CPPv224riscv_insertion_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="riscv_insertion_sort_f32__riscv_sort_instance_f32CP.float32_tP.float32_tP.uint32_t"></span><span class="target" id="group__Sorting_1ga1103604a8aa9f59ed4989f5c1674a620"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_insertion_sort_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_sort_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424riscv_insertion_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong>Algorithm</strong></dt><dd><p>The insertion sort is a simple sorting algorithm that reads all the element of the input array and removes one element at a time, finds the location it belongs in the final sorted list, and inserts it there.</p>
 </dd>
 <dt><strong>It’s an in-place algorithm. In order to obtain an out-of-place</strong></dt><dd><p>function, a memcpy of the source vector is performed. </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the sorting structure. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the block of output data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process.</p></li>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the sorting structure. </p></li>
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data. </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process.</p></li>
 </ul>
 </dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv420riscv_merge_sort_f32PK29riscv_merge_sort_instance_f32P9float32_tP9float32_t8uint32_t">
-<span id="_CPPv320riscv_merge_sort_f32PK29riscv_merge_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="_CPPv220riscv_merge_sort_f32PK29riscv_merge_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span class="target" id="group__Sorting_1gaac3b45bc72df45d36ebc1fa526353231"></span>void <code class="sig-name descname">riscv_merge_sort_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_merge_sort_instance_f32 *<em>S</em>, float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Sorting_1gaac3b45bc72df45d36ebc1fa526353231"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_merge_sort_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_merge_sort_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong>Algorithm</strong></dt><dd><p>The merge sort algorithm is a comparison algorithm that divide the input array in sublists and merge them to produce longer sorted sublists until there is only one list remaining.</p>
 </dd>
@@ -313,34 +235,37 @@
 </dd>
 <dt><strong>It’s an in-place algorithm. In order to obtain an out-of-place</strong></dt><dd><p>function, a memcpy of the source vector is performed </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the sorting structure. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the block of output data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process.</p></li>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the sorting structure. </p></li>
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data. </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process.</p></li>
 </ul>
 </dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv425riscv_merge_sort_init_f32P29riscv_merge_sort_instance_f3214riscv_sort_dirP9float32_t">
-<span id="_CPPv325riscv_merge_sort_init_f32P29riscv_merge_sort_instance_f3214riscv_sort_dirP9float32_t"></span><span id="_CPPv225riscv_merge_sort_init_f32P29riscv_merge_sort_instance_f3214riscv_sort_dirP9float32_t"></span><span class="target" id="group__Sorting_1ga7b8d6cb90cabde057c400031fda73b39"></span>void <code class="sig-name descname">riscv_merge_sort_init_f32</code><span class="sig-paren">(</span>riscv_merge_sort_instance_f32 *<em>S</em>, riscv_sort_dir <em>dir</em>, float32_t *<em>buffer</em><span class="sig-paren">)</span><br /></dt>
-<dd><p><dl class="simple">
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an instance of the sorting structure. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dir</span></code>: Sorting order. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">buffer</span></code>: Working buffer. </p></li>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Sorting_1ga7b8d6cb90cabde057c400031fda73b39"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_merge_sort_init_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_merge_sort_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">riscv_sort_dir</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">dir</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">buffer</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the sorting structure. </p></li>
+<li><p><strong>dir</strong> – <strong>[in]</strong> Sorting order. </p></li>
+<li><p><strong>buffer</strong> – <strong>[in]</strong> Working buffer. </p></li>
 </ul>
 </dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv420riscv_quick_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t">
-<span id="_CPPv320riscv_quick_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="_CPPv220riscv_quick_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="riscv_quick_sort_f32__riscv_sort_instance_f32CP.float32_tP.float32_tP.uint32_t"></span><span class="target" id="group__Sorting_1ga3f6538f46e96becf2be6d5bff42e548f"></span>void <code class="sig-name descname">riscv_quick_sort_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_sort_instance_f32 *<em>S</em>, float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420riscv_quick_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv420riscv_quick_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t">
+<span id="_CPPv320riscv_quick_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="_CPPv220riscv_quick_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="riscv_quick_sort_f32__riscv_sort_instance_f32CP.float32_tP.float32_tP.uint32_t"></span><span class="target" id="group__Sorting_1ga3f6538f46e96becf2be6d5bff42e548f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_quick_sort_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_sort_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420riscv_quick_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong>Algorithm</strong></dt><dd><p>The quick sort algorithm is a comparison algorithm that divides the input array into two smaller sub-arrays and recursively sort them. An element of the array (the pivot) is chosen, all the elements with values smaller than the pivot are moved before the pivot, while all elements with values greater than the pivot are moved after it (partition).</p>
 </dd>
@@ -348,121 +273,108 @@
 </dd>
 <dt><strong></strong></dt><dd><p>It’s an in-place algorithm. In order to obtain an out-of-place function, a memcpy of the source vector is performed. </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the sorting structure. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">pSrc</span></code>: points to the block of input data. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the block of output data. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process.</p></li>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the sorting structure. </p></li>
+<li><p><strong>pSrc</strong> – <strong>[inout]</strong> points to the block of input data. </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data. </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process.</p></li>
 </ul>
 </dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv424riscv_selection_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t">
-<span id="_CPPv324riscv_selection_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="_CPPv224riscv_selection_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="riscv_selection_sort_f32__riscv_sort_instance_f32CP.float32_tP.float32_tP.uint32_t"></span><span class="target" id="group__Sorting_1ga703e436e603403d10b6f08bfbeef53e9"></span>void <code class="sig-name descname">riscv_selection_sort_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_sort_instance_f32 *<em>S</em>, float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424riscv_selection_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv424riscv_selection_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t">
+<span id="_CPPv324riscv_selection_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="_CPPv224riscv_selection_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="riscv_selection_sort_f32__riscv_sort_instance_f32CP.float32_tP.float32_tP.uint32_t"></span><span class="target" id="group__Sorting_1ga703e436e603403d10b6f08bfbeef53e9"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_selection_sort_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_sort_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424riscv_selection_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong>Algorithm</strong></dt><dd><p>The Selection sort algorithm is a comparison algorithm that divides the input array into a sorted and an unsorted sublist (initially the sorted sublist is empty and the unsorted sublist is the input array), looks for the smallest (or biggest) element in the unsorted sublist, swapping it with the leftmost one, and moving the sublists boundary one element to the right.</p>
 </dd>
 <dt><strong>It’s an in-place algorithm. In order to obtain an out-of-place</strong></dt><dd><p>function, a memcpy of the source vector is performed. </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the sorting structure. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the block of output data </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process.</p></li>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the sorting structure. </p></li>
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data. </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process.</p></li>
 </ul>
 </dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv414riscv_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t">
-<span id="_CPPv314riscv_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span id="_CPPv214riscv_sort_f32PK23riscv_sort_instance_f32P9float32_tP9float32_t8uint32_t"></span><span class="target" id="group__Sorting_1gad65d573af02ff8b20ac5c78fc5e65bdd"></span>void <code class="sig-name descname">riscv_sort_f32</code><span class="sig-paren">(</span><em class="property">const</em> riscv_sort_instance_f32 *<em>S</em>, float32_t *<em>pSrc</em>, float32_t *<em>pDst</em>, uint32_t <em>blockSize</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Sorting_1gad65d573af02ff8b20ac5c78fc5e65bdd"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_sort_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_sort_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Generic sorting function. </p>
-<p><dl class="simple">
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">S</span></code>: points to an instance of the sorting structure. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the block of input data. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the block of output data. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples to process. </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the sorting structure. </p></li>
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data. </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data. </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process. </p></li>
 </ul>
 </dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv419riscv_sort_init_f32P23riscv_sort_instance_f3214riscv_sort_alg14riscv_sort_dir">
-<span id="_CPPv319riscv_sort_init_f32P23riscv_sort_instance_f3214riscv_sort_alg14riscv_sort_dir"></span><span id="_CPPv219riscv_sort_init_f32P23riscv_sort_instance_f3214riscv_sort_alg14riscv_sort_dir"></span><span class="target" id="group__Sorting_1ga9ebea621c470fed41856a446dc14cf6a"></span>void <code class="sig-name descname">riscv_sort_init_f32</code><span class="sig-paren">(</span>riscv_sort_instance_f32 *<em>S</em>, riscv_sort_alg <em>alg</em>, riscv_sort_dir <em>dir</em><span class="sig-paren">)</span><br /></dt>
-<dd><p><dl class="simple">
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">S</span></code>: points to an instance of the sorting structure. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">alg</span></code>: Selected algorithm. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">dir</span></code>: Sorting order. </p></li>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Sorting_1ga9ebea621c470fed41856a446dc14cf6a"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_sort_init_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_sort_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">riscv_sort_alg</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">alg</span></span>, <span class="n"><span class="pre">riscv_sort_dir</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">dir</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the sorting structure. </p></li>
+<li><p><strong>alg</strong> – <strong>[in]</strong> Selected algorithm. </p></li>
+<li><p><strong>dir</strong> – <strong>[in]</strong> Sorting order. </p></li>
 </ul>
 </dd>
 </dl>
-</p>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="api_copy.html" class="btn btn-neutral float-right" title="Vector Copy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="api_barycenter.html" class="btn btn-neutral float-left" title="Barycenter" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api_barycenter.html" class="btn btn-neutral float-left" title="Barycenter" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api_copy.html" class="btn btn-neutral float-right" title="Vector Copy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2019-Present, Nuclei
-      <span class="lastupdated">
-        Last updated on Mar 30, 2022.
-      </span>
-
-    </p>
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on Jan 05, 2023.
+      </span></p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

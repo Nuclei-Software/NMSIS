@@ -1,75 +1,39 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Non-SIMD Q31 saturation ALU Instructions &mdash; NMSIS 1.0.4 documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Non-SIMD Q31 saturation ALU Instructions &mdash; NMSIS 1.1.0 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="32-bit Computation Instructions" href="api_nmsis_core_dsp_intrinsic_32b_computation.html" />
     <link rel="prev" title="Non-SIMD Q15 saturation ALU Instructions" href="api_nmsis_core_dsp_intrinsic_non_simd_q15_sat_alu.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../../../../index.html">
-          
-
-          
-            
             <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                1.0.4
+                1.1.0
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -77,18 +41,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">NMSIS Core</a><ul class="current">
@@ -116,7 +70,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_part_simd_data_process.html">Partial-SIMD Data Processing Instructions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_64b_profile.html">64-bit Profile Instructions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_rv64_only.html">RV64 Only Instructions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_nuclei_custom.html">Nuclei Customized DSP Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_nuclei_custom.html">Nuclei Customized N1/N2/N3 DSP Instructions</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../core_periph_access.html">Peripheral Access</a></li>
@@ -124,6 +78,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../core_interrupt_exception.html">Interrupts and Exceptions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../core_fpu.html">FPU Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../core_pmp.html">PMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_spmp.html">SPMP Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../core_cache.html">Cache Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../core_system_device.html">System Device Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../core_arm_compatiable.html">ARM Compatiable Functions</a></li>
@@ -138,172 +93,132 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../appendix.html">Appendix</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../../index.html">NMSIS</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../../../index.html">NMSIS Core</a> &raquo;</li>
-        
           <li><a href="../../index.html">NMSIS Core API</a> &raquo;</li>
-        
           <li><a href="../../api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a> &raquo;</li>
-        
           <li><a href="../api_nmsis_core_dsp_intrinsic_non_simd.html">Non-SIMD Instructions</a> &raquo;</li>
-        
       <li>Non-SIMD Q31 saturation ALU Instructions</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="../../../../_sources/core/api/nmsis_core_dsp_intrinsic/nmsis_core_dsp_intrinsic_non_simd/api_nmsis_core_dsp_intrinsic_non_simd_q31_sat_alu.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="non-simd-q31-saturation-alu-instructions">
-<span id="nmsis-core-api-non-simd-q31-saturation-alu-instructions"></span><h1>Non-SIMD Q31 saturation ALU Instructions<a class="headerlink" href="#non-simd-q31-saturation-alu-instructions" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga1bdcf3e62c9328169f9052c3e01a0fd1"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KABSW(signed long a)</code></dt>
+             
+  <section id="non-simd-q31-saturation-alu-instructions">
+<span id="nmsis-core-api-non-simd-q31-saturation-alu-instructions"></span><h1>Non-SIMD Q31 saturation ALU Instructions<a class="headerlink" href="#non-simd-q31-saturation-alu-instructions" title="Permalink to this headline"></a></h1>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga1bdcf3e62c9328169f9052c3e01a0fd1"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KABSW</span> <span class="pre">(signed</span> <span class="pre">long</span> <span class="pre">a)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga9faead3db3c1ffb6a8566719b1f46ffa"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KADDW(int a, int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga9faead3db3c1ffb6a8566719b1f46ffa"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">__RV_KADDW</span> <span class="pre">(int</span> <span class="pre">a,</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga7e18b0f1cd5e9110bbb38a058eb01d97"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KDMBB(unsigned int a, unsigned int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga7e18b0f1cd5e9110bbb38a058eb01d97"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">__RV_KDMBB</span> <span class="pre">(unsigned</span> <span class="pre">int</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga067179bedfe1e3e48bbd8df87bed48dc"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KDMBT(unsigned int a, unsigned int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga067179bedfe1e3e48bbd8df87bed48dc"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">__RV_KDMBT</span> <span class="pre">(unsigned</span> <span class="pre">int</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1gaeac5ef72f33c8014a3f045587046c5de"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KDMTT(unsigned int a, unsigned int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1gaeac5ef72f33c8014a3f045587046c5de"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">__RV_KDMTT</span> <span class="pre">(unsigned</span> <span class="pre">int</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga1dfb3b7d81e19adc86e14e98971f3e42"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KDMABB(long t, unsigned int a, unsigned int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga1dfb3b7d81e19adc86e14e98971f3e42"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">__RV_KDMABB</span> <span class="pre">(long</span> <span class="pre">t,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga15d10fbf27043451ffe312f61a7356d0"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KDMABT(long t, unsigned int a, unsigned int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga15d10fbf27043451ffe312f61a7356d0"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">__RV_KDMABT</span> <span class="pre">(long</span> <span class="pre">t,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga64a75e6b0aecedf02afd2df4458a6ee1"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KDMATT(long t, unsigned int a, unsigned int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga64a75e6b0aecedf02afd2df4458a6ee1"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">__RV_KDMATT</span> <span class="pre">(long</span> <span class="pre">t,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1gab5dc82aa8b7514f882979a71d88fb154"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KSLLW(long a, unsigned int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1gab5dc82aa8b7514f882979a71d88fb154"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">__RV_KSLLW</span> <span class="pre">(long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga3a01ea385d7d505ab86f7db697567e5b"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KSLRAW(int a, int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga3a01ea385d7d505ab86f7db697567e5b"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">__RV_KSLRAW</span> <span class="pre">(int</span> <span class="pre">a,</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga9f23cd90864721f831fefd87acd4182e"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KSLRAW_U(int a, int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga9f23cd90864721f831fefd87acd4182e"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">__RV_KSLRAW_U</span> <span class="pre">(int</span> <span class="pre">a,</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga2a28907bd6cda3a2caa1e2200eafaec3"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KSUBW(int a, int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga2a28907bd6cda3a2caa1e2200eafaec3"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">__RV_KSUBW</span> <span class="pre">(int</span> <span class="pre">a,</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga836b1f78407443c88b5958a7cfb3361f"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UKADDW(unsigned int a, unsigned int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga836b1f78407443c88b5958a7cfb3361f"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_UKADDW</span> <span class="pre">(unsigned</span> <span class="pre">int</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1gae102902e2e1e3a606807064ab3ea763f"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UKSUBW(unsigned int a, unsigned int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1gae102902e2e1e3a606807064ab3ea763f"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_UKSUBW</span> <span class="pre">(unsigned</span> <span class="pre">int</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="macro">
-<dt id="c.__RV_KSLLIW">
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1gabe1e56e815426d757f416698bcae2529"></span><code class="sig-name descname">__RV_KSLLIW</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_KSLLIW" title="Permalink to this definition">¶</a></dt>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__RV_KSLLIW">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1gabe1e56e815426d757f416698bcae2529"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_KSLLIW</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">a</span></span>, <span class="n"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_KSLLIW" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="group">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU"></span><em>group</em> <code class="sig-name descname">NMSIS_Core_DSP_Intrinsic_NON_SIMD_Q31_SAT_ALU</code></dt>
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">NMSIS_Core_DSP_Intrinsic_NON_SIMD_Q31_SAT_ALU</span></span></dt>
 <dd><p>Non-SIMD Q31 saturation ALU Instructions. </p>
 <p>there are Non-SIMD Q31 saturation ALU Instructions </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Defines</p>
-<dl class="macro">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1gabe1e56e815426d757f416698bcae2529"></span><code class="sig-name descname">__RV_KSLLIW</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span></dt>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1gabe1e56e815426d757f416698bcae2529"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_KSLLIW</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">a</span></span>, <span class="n"><span class="pre">b</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>KSLLIW (Saturating Shift Left Logical Immediate for Word) </p>
 <p><strong>Type</strong>: DSP</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KSLLIW</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm5u</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do logical left shift operation with saturation on a 32-bit word. The shift amount is an immediate value.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do logical left shift operation with saturation on a 32-bit word. The shift amount is an immediate value.</p>
 </p>
-<p><strong>Description</strong>:<p>The first word data in Rs1 is left-shifted logically. The shifted out bits are filled with zero and the shift amount is specified by the imm5u constant. Any shifted value greater than 2^31-1 is saturated to 2^31-1. Any shifted value smaller than -2^31 is saturated to -2^31. And the saturated result is sign-extended and written to Rd. If any saturation is performed, set OV bit to 1.</p>
+<p><strong>Description</strong><p>:</p>
+<p>The first word data in Rs1 is left-shifted logically. The shifted out bits are filled with zero and the shift amount is specified by the imm5u constant. Any shifted value greater than 2^31-1 is saturated to 2^31-1. Any shifted value smaller than -2^31 is saturated to -2^31. And the saturated result is sign-extended and written to Rd. If any saturation is performed, set OV bit to 1.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sa</span> <span class="o">=</span> <span class="n">imm5u</span><span class="p">;</span>
 <span class="n">res</span><span class="p">[(</span><span class="mi">31</span><span class="o">+</span><span class="n">sa</span><span class="p">):</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">sa</span><span class="p">;</span>
@@ -317,33 +232,36 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Functions</p>
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga1bdcf3e62c9328169f9052c3e01a0fd1"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KABSW(signed long a)</code></dt>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga1bdcf3e62c9328169f9052c3e01a0fd1"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KABSW</span> <span class="pre">(signed</span> <span class="pre">long</span> <span class="pre">a)</span></span></dt>
 <dd><p>KABSW (Scalar 32-bit Absolute Value with Saturation) </p>
 <p><strong>Type</strong>: DSP</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KABSW</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Get the absolute value of a signed 32-bit integer in a general register.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Get the absolute value of a signed 32-bit integer in a general register.</p>
 </p>
-<p><strong>Description</strong>:<p>This instruction calculates the absolute value of a signed 32-bit integer stored in Rs1. The result is sign-extended (for RV64) and written to Rd. This instruction with the minimum negative integer input of 0x80000000 will produce a saturated output of maximum positive integer of 0x7fffffff and the OV flag will be set to 1.</p>
+<p><strong>Description</strong><p>:</p>
+<p>This instruction calculates the absolute value of a signed 32-bit integer stored in Rs1. The result is sign-extended (for RV64) and written to Rd. This instruction with the minimum negative integer input of 0x80000000 will produce a saturated output of maximum positive integer of 0x7fffffff and the OV flag will be set to 1.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">res</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
@@ -359,29 +277,30 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>a</strong> – <strong>[in]</strong> signed long type of value stored in a </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: signed long type of value stored in a </p></li>
-</ul>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
 </dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga9faead3db3c1ffb6a8566719b1f46ffa"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KADDW(int a, int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga9faead3db3c1ffb6a8566719b1f46ffa"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">__RV_KADDW</span> <span class="pre">(int</span> <span class="pre">a,</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd><p>KADDW (Signed Addition with Q31 Saturation) </p>
 <p><strong>Type</strong>: DSP</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KADDW</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Add the lower 32-bit signed content of two registers with Q31 saturation.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Add the lower 32-bit signed content of two registers with Q31 saturation.</p>
 </p>
-<p><strong>Description</strong>:<p>The lower 32-bit signed content of Rs1 is added with the lower 32-bit signed content of Rs2. And the result is saturated to the 32-bit signed integer range of [-2^31, 2^31-1] and then sign- extended and written to Rd. If saturation happens, this instruction sets the OV flag.</p>
+<p><strong>Description</strong><p>:</p>
+<p>The lower 32-bit signed content of Rs1 is added with the lower 32-bit signed content of Rs2. And the result is saturated to the 32-bit signed integer range of [-2^31, 2^31-1] and then sign- extended and written to Rd. If saturation happens, this instruction sets the OV flag.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">tmp</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">31</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
@@ -398,30 +317,33 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: int type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: int type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> int type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> int type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga7e18b0f1cd5e9110bbb38a058eb01d97"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KDMBB(unsigned int a, unsigned int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga7e18b0f1cd5e9110bbb38a058eb01d97"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">__RV_KDMBB</span> <span class="pre">(unsigned</span> <span class="pre">int</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd><p>KDMBB (Signed Saturating Double Multiply B16 x B16) </p>
 <p><strong>Type</strong>: DSP</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KDMxy</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span> <span class="p">(</span><span class="n">xy</span> <span class="o">=</span> <span class="n">BB</span><span class="p">,</span> <span class="n">BT</span><span class="p">,</span> <span class="n">TT</span><span class="p">)</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the lower 32-bit chunk in registers and then double and saturate the Q31 result. The result is written into the destination register for RV32 or sign-extended to 64-bits and written into the destination register for RV64. If saturation happens, an overflow flag OV will be set.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the lower 32-bit chunk in registers and then double and saturate the Q31 result. The result is written into the destination register for RV32 or sign-extended to 64-bits and written into the destination register for RV64. If saturation happens, an overflow flag OV will be set.</p>
 </p>
-<p><strong>Description</strong>:<p>Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1 with the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs2. The Q30 result is then doubled and saturated into a Q31 value. The Q31 value is then written into Rd (sign-extended in RV64). When both the two Q15 inputs are 0x8000, saturation will happen. The result will be saturated to 0x7FFFFFFF and the overflow flag OV will be set.</p>
+<p><strong>Description</strong><p>:</p>
+<p>Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1 with the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs2. The Q30 result is then doubled and saturated into a Q31 value. The Q31 value is then written into Rd (sign-extended in RV64). When both the two Q15 inputs are 0x8000, saturation will happen. The result will be saturated to 0x7FFFFFFF and the overflow flag OV will be set.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aop</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="n">bop</span> <span class="o">=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="o">//</span> <span class="n">KDMBB</span>
 <span class="n">aop</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="n">bop</span> <span class="o">=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="o">//</span> <span class="n">KDMBT</span>
@@ -440,30 +362,33 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned int type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned int type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga067179bedfe1e3e48bbd8df87bed48dc"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KDMBT(unsigned int a, unsigned int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga067179bedfe1e3e48bbd8df87bed48dc"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">__RV_KDMBT</span> <span class="pre">(unsigned</span> <span class="pre">int</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd><p>KDMBT (Signed Saturating Double Multiply B16 x T16) </p>
 <p><strong>Type</strong>: DSP</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KDMxy</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span> <span class="p">(</span><span class="n">xy</span> <span class="o">=</span> <span class="n">BB</span><span class="p">,</span> <span class="n">BT</span><span class="p">,</span> <span class="n">TT</span><span class="p">)</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the lower 32-bit chunk in registers and then double and saturate the Q31 result. The result is written into the destination register for RV32 or sign-extended to 64-bits and written into the destination register for RV64. If saturation happens, an overflow flag OV will be set.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the lower 32-bit chunk in registers and then double and saturate the Q31 result. The result is written into the destination register for RV32 or sign-extended to 64-bits and written into the destination register for RV64. If saturation happens, an overflow flag OV will be set.</p>
 </p>
-<p><strong>Description</strong>:<p>Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1 with the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs2. The Q30 result is then doubled and saturated into a Q31 value. The Q31 value is then written into Rd (sign-extended in RV64). When both the two Q15 inputs are 0x8000, saturation will happen. The result will be saturated to 0x7FFFFFFF and the overflow flag OV will be set.</p>
+<p><strong>Description</strong><p>:</p>
+<p>Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1 with the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs2. The Q30 result is then doubled and saturated into a Q31 value. The Q31 value is then written into Rd (sign-extended in RV64). When both the two Q15 inputs are 0x8000, saturation will happen. The result will be saturated to 0x7FFFFFFF and the overflow flag OV will be set.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aop</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="n">bop</span> <span class="o">=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="o">//</span> <span class="n">KDMBB</span>
 <span class="n">aop</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="n">bop</span> <span class="o">=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="o">//</span> <span class="n">KDMBT</span>
@@ -482,30 +407,33 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned int type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned int type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1gaeac5ef72f33c8014a3f045587046c5de"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KDMTT(unsigned int a, unsigned int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1gaeac5ef72f33c8014a3f045587046c5de"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">__RV_KDMTT</span> <span class="pre">(unsigned</span> <span class="pre">int</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd><p>KDMTT (Signed Saturating Double Multiply T16 x T16) </p>
 <p><strong>Type</strong>: DSP</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KDMxy</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span> <span class="p">(</span><span class="n">xy</span> <span class="o">=</span> <span class="n">BB</span><span class="p">,</span> <span class="n">BT</span><span class="p">,</span> <span class="n">TT</span><span class="p">)</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the lower 32-bit chunk in registers and then double and saturate the Q31 result. The result is written into the destination register for RV32 or sign-extended to 64-bits and written into the destination register for RV64. If saturation happens, an overflow flag OV will be set.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the lower 32-bit chunk in registers and then double and saturate the Q31 result. The result is written into the destination register for RV32 or sign-extended to 64-bits and written into the destination register for RV64. If saturation happens, an overflow flag OV will be set.</p>
 </p>
-<p><strong>Description</strong>:<p>Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1 with the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs2. The Q30 result is then doubled and saturated into a Q31 value. The Q31 value is then written into Rd (sign-extended in RV64). When both the two Q15 inputs are 0x8000, saturation will happen. The result will be saturated to 0x7FFFFFFF and the overflow flag OV will be set.</p>
+<p><strong>Description</strong><p>:</p>
+<p>Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1 with the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs2. The Q30 result is then doubled and saturated into a Q31 value. The Q31 value is then written into Rd (sign-extended in RV64). When both the two Q15 inputs are 0x8000, saturation will happen. The result will be saturated to 0x7FFFFFFF and the overflow flag OV will be set.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aop</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="n">bop</span> <span class="o">=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="o">//</span> <span class="n">KDMBB</span>
 <span class="n">aop</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="n">bop</span> <span class="o">=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="o">//</span> <span class="n">KDMBT</span>
@@ -524,30 +452,33 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned int type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned int type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga1dfb3b7d81e19adc86e14e98971f3e42"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KDMABB(long t, unsigned int a, unsigned int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga1dfb3b7d81e19adc86e14e98971f3e42"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">__RV_KDMABB</span> <span class="pre">(long</span> <span class="pre">t,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd><p>KDMABB (Signed Saturating Double Multiply Addition B16 x B16) </p>
 <p><strong>Type</strong>: DSP</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KDMAxy</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span> <span class="p">(</span><span class="n">xy</span> <span class="o">=</span> <span class="n">BB</span><span class="p">,</span> <span class="n">BT</span><span class="p">,</span> <span class="n">TT</span><span class="p">)</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the lower 32-bit chunk in registers and then double and saturate the Q31 result, add the result with the sign-extended lower 32-bit chunk destination register and write the saturated addition result into the destination register. If saturation happens, an overflow flag OV will be set.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the lower 32-bit chunk in registers and then double and saturate the Q31 result, add the result with the sign-extended lower 32-bit chunk destination register and write the saturated addition result into the destination register. If saturation happens, an overflow flag OV will be set.</p>
 </p>
-<p><strong>Description</strong>:<p>Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1 with the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs2. The Q30 result is then doubled and saturated into a Q31 value. The Q31 value is then added with the content of Rd. If the addition result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV flag is set to 1. The result after saturation is written to Rd. When both the two Q15 inputs are 0x8000, saturation will happen and the overflow flag OV will be set.</p>
+<p><strong>Description</strong><p>:</p>
+<p>Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1 with the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs2. The Q30 result is then doubled and saturated into a Q31 value. The Q31 value is then added with the content of Rd. If the addition result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV flag is set to 1. The result after saturation is written to Rd. When both the two Q15 inputs are 0x8000, saturation will happen and the overflow flag OV will be set.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aop</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="n">bop</span> <span class="o">=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="o">//</span> <span class="n">KDMABB</span>
 <span class="n">aop</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="n">bop</span> <span class="o">=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="o">//</span> <span class="n">KDMABT</span>
@@ -573,31 +504,34 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">t</span></code>: long type of value stored in t </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned int type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> – <strong>[in]</strong> long type of value stored in t </p></li>
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned int type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga15d10fbf27043451ffe312f61a7356d0"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KDMABT(long t, unsigned int a, unsigned int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga15d10fbf27043451ffe312f61a7356d0"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">__RV_KDMABT</span> <span class="pre">(long</span> <span class="pre">t,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd><p>KDMABT (Signed Saturating Double Multiply Addition B16 x T16) </p>
 <p><strong>Type</strong>: DSP</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KDMAxy</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span> <span class="p">(</span><span class="n">xy</span> <span class="o">=</span> <span class="n">BB</span><span class="p">,</span> <span class="n">BT</span><span class="p">,</span> <span class="n">TT</span><span class="p">)</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the lower 32-bit chunk in registers and then double and saturate the Q31 result, add the result with the sign-extended lower 32-bit chunk destination register and write the saturated addition result into the destination register. If saturation happens, an overflow flag OV will be set.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the lower 32-bit chunk in registers and then double and saturate the Q31 result, add the result with the sign-extended lower 32-bit chunk destination register and write the saturated addition result into the destination register. If saturation happens, an overflow flag OV will be set.</p>
 </p>
-<p><strong>Description</strong>:<p>Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1 with the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs2. The Q30 result is then doubled and saturated into a Q31 value. The Q31 value is then added with the content of Rd. If the addition result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV flag is set to 1. The result after saturation is written to Rd. When both the two Q15 inputs are 0x8000, saturation will happen and the overflow flag OV will be set.</p>
+<p><strong>Description</strong><p>:</p>
+<p>Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1 with the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs2. The Q30 result is then doubled and saturated into a Q31 value. The Q31 value is then added with the content of Rd. If the addition result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV flag is set to 1. The result after saturation is written to Rd. When both the two Q15 inputs are 0x8000, saturation will happen and the overflow flag OV will be set.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aop</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="n">bop</span> <span class="o">=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="o">//</span> <span class="n">KDMABB</span>
 <span class="n">aop</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="n">bop</span> <span class="o">=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="o">//</span> <span class="n">KDMABT</span>
@@ -623,31 +557,34 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">t</span></code>: long type of value stored in t </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned int type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> – <strong>[in]</strong> long type of value stored in t </p></li>
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned int type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga64a75e6b0aecedf02afd2df4458a6ee1"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KDMATT(long t, unsigned int a, unsigned int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga64a75e6b0aecedf02afd2df4458a6ee1"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">__RV_KDMATT</span> <span class="pre">(long</span> <span class="pre">t,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd><p>KDMATT (Signed Saturating Double Multiply Addition T16 x T16) </p>
 <p><strong>Type</strong>: DSP</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KDMAxy</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span> <span class="p">(</span><span class="n">xy</span> <span class="o">=</span> <span class="n">BB</span><span class="p">,</span> <span class="n">BT</span><span class="p">,</span> <span class="n">TT</span><span class="p">)</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the lower 32-bit chunk in registers and then double and saturate the Q31 result, add the result with the sign-extended lower 32-bit chunk destination register and write the saturated addition result into the destination register. If saturation happens, an overflow flag OV will be set.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Multiply the signed Q15 integer contents of two 16-bit data in the corresponding portion of the lower 32-bit chunk in registers and then double and saturate the Q31 result, add the result with the sign-extended lower 32-bit chunk destination register and write the saturated addition result into the destination register. If saturation happens, an overflow flag OV will be set.</p>
 </p>
-<p><strong>Description</strong>:<p>Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1 with the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs2. The Q30 result is then doubled and saturated into a Q31 value. The Q31 value is then added with the content of Rd. If the addition result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV flag is set to 1. The result after saturation is written to Rd. When both the two Q15 inputs are 0x8000, saturation will happen and the overflow flag OV will be set.</p>
+<p><strong>Description</strong><p>:</p>
+<p>Multiply the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs1 with the top or bottom 16-bit Q15 content of the lower 32-bit portion in Rs2. The Q30 result is then doubled and saturated into a Q31 value. The Q31 value is then added with the content of Rd. If the addition result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV flag is set to 1. The result after saturation is written to Rd. When both the two Q15 inputs are 0x8000, saturation will happen and the overflow flag OV will be set.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aop</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="n">bop</span> <span class="o">=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="o">//</span> <span class="n">KDMABB</span>
 <span class="n">aop</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="n">bop</span> <span class="o">=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="o">//</span> <span class="n">KDMABT</span>
@@ -673,31 +610,34 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">t</span></code>: long type of value stored in t </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned int type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> – <strong>[in]</strong> long type of value stored in t </p></li>
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned int type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1gab5dc82aa8b7514f882979a71d88fb154"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KSLLW(long a, unsigned int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1gab5dc82aa8b7514f882979a71d88fb154"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">__RV_KSLLW</span> <span class="pre">(long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd><p>KSLLW (Saturating Shift Left Logical for Word) </p>
 <p><strong>Type</strong>: DSP</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KSLLW</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do logical left shift operation with saturation on a 32-bit word. The shift amount is a variable from a GPR.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do logical left shift operation with saturation on a 32-bit word. The shift amount is a variable from a GPR.</p>
 </p>
-<p><strong>Description</strong>:<p>The first word data in Rs1 is left-shifted logically. The shifted out bits are filled with zero and the shift amount is specified by the low-order 5-bits of the value in the Rs2 register. Any shifted value greater than 2^31-1 is saturated to 2^31-1. Any shifted value smaller than -2^31 is saturated to -2^31. And the saturated result is sign-extended and written to Rd. If any saturation is performed, set OV bit to 1.</p>
+<p><strong>Description</strong><p>:</p>
+<p>The first word data in Rs1 is left-shifted logically. The shifted out bits are filled with zero and the shift amount is specified by the low-order 5-bits of the value in the Rs2 register. Any shifted value greater than 2^31-1 is saturated to 2^31-1. Any shifted value smaller than -2^31 is saturated to -2^31. And the saturated result is sign-extended and written to Rd. If any saturation is performed, set OV bit to 1.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sa</span> <span class="o">=</span> <span class="n">Rs2</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
 <span class="n">res</span><span class="p">[(</span><span class="mi">31</span><span class="o">+</span><span class="n">sa</span><span class="p">):</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">sa</span><span class="p">;</span>
@@ -711,30 +651,33 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga3a01ea385d7d505ab86f7db697567e5b"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KSLRAW(int a, int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga3a01ea385d7d505ab86f7db697567e5b"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">__RV_KSLRAW</span> <span class="pre">(int</span> <span class="pre">a,</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd><p>KSLRAW (Shift Left Logical with Q31 Saturation or Shift Right Arithmetic) </p>
 <p><strong>Type</strong>: DSP</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KSLRAW</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Perform a logical left (positive) or arithmetic right (negative) shift operation with Q31 saturation for the left shift on a 32-bit data.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Perform a logical left (positive) or arithmetic right (negative) shift operation with Q31 saturation for the left shift on a 32-bit data.</p>
 </p>
-<p><strong>Description</strong>:<p>The lower 32-bit content of Rs1 is left-shifted logically or right-shifted arithmetically based on the value of Rs2[5:0]. Rs2[5:0] is in the signed range of [-25, 25-1]. A positive Rs2[5:0] means logical left shift and a negative Rs2[5:0] means arithmetic right shift. The shift amount is the absolute value of Rs2[5:0] clamped to the actual shift range of [0, 31]. The left-shifted result is saturated to the 32-bit signed integer range of [-2^31, 2^31-1]. After the shift operation, the final result is bit-31 sign-extended and written to Rd. If any saturation happens, this instruction sets the OV flag. The value of Rs2[31:6] will not affected the operation of this instruction.</p>
+<p><strong>Description</strong><p>:</p>
+<p>The lower 32-bit content of Rs1 is left-shifted logically or right-shifted arithmetically based on the value of Rs2[5:0]. Rs2[5:0] is in the signed range of [-25, 25-1]. A positive Rs2[5:0] means logical left shift and a negative Rs2[5:0] means arithmetic right shift. The shift amount is the absolute value of Rs2[5:0] clamped to the actual shift range of [0, 31]. The left-shifted result is saturated to the 32-bit signed integer range of [-2^31, 2^31-1]. After the shift operation, the final result is bit-31 sign-extended and written to Rd. If any saturation happens, this instruction sets the OV flag. The value of Rs2[31:6] will not affected the operation of this instruction.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>if (Rs2[5:0] &lt; 0) {
   sa = -Rs2[5:0];
@@ -758,30 +701,33 @@ Rd = SE64(res[31:0]); // RV64
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: int type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: int type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> int type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> int type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga9f23cd90864721f831fefd87acd4182e"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KSLRAW_U(int a, int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga9f23cd90864721f831fefd87acd4182e"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">__RV_KSLRAW_U</span> <span class="pre">(int</span> <span class="pre">a,</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd><p>KSLRAW.u (Shift Left Logical with Q31 Saturation or Rounding Shift Right Arithmetic) </p>
 <p><strong>Type</strong>: DSP</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KSLRAW</span><span class="o">.</span><span class="n">u</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Perform a logical left (positive) or arithmetic right (negative) shift operation with Q31 saturation for the left shift and a rounding up operation for the right shift on a 32-bit data.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Perform a logical left (positive) or arithmetic right (negative) shift operation with Q31 saturation for the left shift and a rounding up operation for the right shift on a 32-bit data.</p>
 </p>
-<p><strong>Description</strong>:<p>The lower 32-bit content of Rs1 is left-shifted logically or right-shifted arithmetically based on the value of Rs2[5:0]. Rs2[5:0] is in the signed range of [-25, 25-1]. A positive Rs2[5:0] means logical left shift and a negative Rs2[5:0] means arithmetic right shift. The shift amount is the absolute value of Rs2[5:0] clamped to the actual shift range of [0, 31]. The left-shifted result is saturated to the 32-bit signed integer range of [-2^31, 2^31-1]. The right-shifted result is added a 1 to the most significant discarded bit position for rounding effect. After the shift, saturation, or rounding, the final result is bit-31 sign-extended and written to Rd. If any saturation happens, this instruction sets the OV flag. The value of Rs2[31:6] will not affect the operation of this instruction.</p>
+<p><strong>Description</strong><p>:</p>
+<p>The lower 32-bit content of Rs1 is left-shifted logically or right-shifted arithmetically based on the value of Rs2[5:0]. Rs2[5:0] is in the signed range of [-25, 25-1]. A positive Rs2[5:0] means logical left shift and a negative Rs2[5:0] means arithmetic right shift. The shift amount is the absolute value of Rs2[5:0] clamped to the actual shift range of [0, 31]. The left-shifted result is saturated to the 32-bit signed integer range of [-2^31, 2^31-1]. The right-shifted result is added a 1 to the most significant discarded bit position for rounding effect. After the shift, saturation, or rounding, the final result is bit-31 sign-extended and written to Rd. If any saturation happens, this instruction sets the OV flag. The value of Rs2[31:6] will not affect the operation of this instruction.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>if (Rs2[5:0] &lt; 0) {
   sa = -Rs2[5:0];
@@ -806,30 +752,33 @@ Rd = SE64(rst[31:0]); // RV64
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: int type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: int type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> int type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> int type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga2a28907bd6cda3a2caa1e2200eafaec3"></span><code class="sig-name descname">__STATIC_FORCEINLINE long __RV_KSUBW(int a, int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga2a28907bd6cda3a2caa1e2200eafaec3"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">__RV_KSUBW</span> <span class="pre">(int</span> <span class="pre">a,</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd><p>KSUBW (Signed Subtraction with Q31 Saturation) </p>
 <p><strong>Type</strong>: DSP</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KSUBW</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Subtract the signed lower 32-bit content of two registers with Q31 saturation.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Subtract the signed lower 32-bit content of two registers with Q31 saturation.</p>
 </p>
-<p><strong>Description</strong>:<p>The signed lower 32-bit content of Rs2 is subtracted from the signed lower 32-bit content of Rs1. And the result is saturated to the 32-bit signed integer range of [-2^31, 2^31-1] and then sign-extened and written to Rd. If saturation happens, this instruction sets the OV flag.</p>
+<p><strong>Description</strong><p>:</p>
+<p>The signed lower 32-bit content of Rs2 is subtracted from the signed lower 32-bit content of Rs1. And the result is saturated to the 32-bit signed integer range of [-2^31, 2^31-1] and then sign-extened and written to Rd. If saturation happens, this instruction sets the OV flag.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">tmp</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">31</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
@@ -846,30 +795,33 @@ Rd = SE64(rst[31:0]); // RV64
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: int type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: int type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> int type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> int type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga836b1f78407443c88b5958a7cfb3361f"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UKADDW(unsigned int a, unsigned int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1ga836b1f78407443c88b5958a7cfb3361f"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_UKADDW</span> <span class="pre">(unsigned</span> <span class="pre">int</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd><p>UKADDW (Unsigned Addition with U32 Saturation) </p>
 <p><strong>Type</strong>: DSP</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UKADDW</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Add the unsigned lower 32-bit content of two registers with U32 saturation.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Add the unsigned lower 32-bit content of two registers with U32 saturation.</p>
 </p>
-<p><strong>Description</strong>:<p>The unsigned lower 32-bit content of Rs1 is added with the unsigned lower 32-bit content of Rs2. And the result is saturated to the 32-bit unsigned integer range of [0, 2^32-1] and then sign-extended and written to Rd. If saturation happens, this instruction sets the OV flag.</p>
+<p><strong>Description</strong><p>:</p>
+<p>The unsigned lower 32-bit content of Rs1 is added with the unsigned lower 32-bit content of Rs2. And the result is saturated to the 32-bit unsigned integer range of [0, 2^32-1] and then sign-extended and written to Rd. If saturation happens, this instruction sets the OV flag.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">tmp</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">32</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
@@ -881,30 +833,33 @@ Rd = SE64(rst[31:0]); // RV64
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned int type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned int type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1gae102902e2e1e3a606807064ab3ea763f"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_UKSUBW(unsigned int a, unsigned int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU_1gae102902e2e1e3a606807064ab3ea763f"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_UKSUBW</span> <span class="pre">(unsigned</span> <span class="pre">int</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd><p>UKSUBW (Unsigned Subtraction with U32 Saturation) </p>
 <p><strong>Type</strong>: DSP</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UKSUBW</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Subtract the unsigned lower 32-bit content of two registers with unsigned 32-bit saturation.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Subtract the unsigned lower 32-bit content of two registers with unsigned 32-bit saturation.</p>
 </p>
-<p><strong>Description</strong>:<p>The unsigned lower 32-bit content of Rs2 is subtracted from the unsigned lower 32-bit content of Rs1. And the result is saturated to the 32-bit unsigned integer range of [0, 2^32-1] and then sign-extended and written to Rd. If saturation happens, this instruction sets the OV flag.</p>
+<p><strong>Description</strong><p>:</p>
+<p>The unsigned lower 32-bit content of Rs2 is subtracted from the unsigned lower 32-bit content of Rs1. And the result is saturated to the 32-bit unsigned integer range of [0, 2^32-1] and then sign-extended and written to Rd. If saturation happens, this instruction sets the OV flag.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">tmp</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
@@ -916,73 +871,55 @@ Rd = SE64(rst[31:0]); // RV64
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned int type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned int type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="api_nmsis_core_dsp_intrinsic_32b_computation.html" class="btn btn-neutral float-right" title="32-bit Computation Instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="api_nmsis_core_dsp_intrinsic_non_simd_q15_sat_alu.html" class="btn btn-neutral float-left" title="Non-SIMD Q15 saturation ALU Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api_nmsis_core_dsp_intrinsic_non_simd_q15_sat_alu.html" class="btn btn-neutral float-left" title="Non-SIMD Q15 saturation ALU Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api_nmsis_core_dsp_intrinsic_32b_computation.html" class="btn btn-neutral float-right" title="32-bit Computation Instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2019-Present, Nuclei
-      <span class="lastupdated">
-        Last updated on Mar 30, 2022.
-      </span>
-
-    </p>
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on Jan 05, 2023.
+      </span></p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

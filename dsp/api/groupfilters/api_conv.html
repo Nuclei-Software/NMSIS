@@ -1,75 +1,39 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Convolution &mdash; NMSIS 1.0.4 documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Convolution &mdash; NMSIS 1.1.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Partial Convolution" href="api_partialconv.html" />
     <link rel="prev" title="Biquad Cascade IIR Filters Using a Direct Form II Transposed Structure" href="api_biquadcascadedf2t.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../../../index.html">
-          
-
-          
-            
             <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                1.0.4
+                1.1.0
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -77,18 +41,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -139,124 +93,83 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">NMSIS</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../../index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
-        
           <li><a href="../index.html">NMSIS DSP API</a> &raquo;</li>
-        
           <li><a href="../api_groupfilters.html">Filtering Functions</a> &raquo;</li>
-        
       <li>Convolution</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="../../../_sources/dsp/api/groupfilters/api_conv.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="convolution">
-<span id="nmsis-dsp-api-convolution"></span><h1>Convolution<a class="headerlink" href="#convolution" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="_CPPv414riscv_conv_f32PK9float32_t8uint32_tPK9float32_t8uint32_tP9float32_t">
-<span id="_CPPv314riscv_conv_f32PK9float32_t8uint32_tPK9float32_t8uint32_tP9float32_t"></span><span id="_CPPv214riscv_conv_f32PK9float32_t8uint32_tPK9float32_t8uint32_tP9float32_t"></span><span id="riscv_conv_f32__float32_tCP.uint32_t.float32_tCP.uint32_t.float32_tP"></span><span class="target" id="group__Conv_1ga255e63f21abd45fd7c662ddf3b88749d"></span>void <code class="sig-name descname">riscv_conv_f32</code><span class="sig-paren">(</span><em class="property">const</em> float32_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> float32_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, float32_t *<em>pDst</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414riscv_conv_f32PK9float32_t8uint32_tPK9float32_t8uint32_tP9float32_t" title="Permalink to this definition">¶</a><br /></dt>
+             
+  <section id="convolution">
+<span id="nmsis-dsp-api-convolution"></span><h1>Convolution<a class="headerlink" href="#convolution" title="Permalink to this headline"></a></h1>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv414riscv_conv_f32PK9float32_t8uint32_tPK9float32_t8uint32_tP9float32_t">
+<span id="_CPPv314riscv_conv_f32PK9float32_t8uint32_tPK9float32_t8uint32_tP9float32_t"></span><span id="_CPPv214riscv_conv_f32PK9float32_t8uint32_tPK9float32_t8uint32_tP9float32_t"></span><span id="riscv_conv_f32__float32_tCP.uint32_t.float32_tCP.uint32_t.float32_tP"></span><span class="target" id="group__Conv_1ga255e63f21abd45fd7c662ddf3b88749d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_conv_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcA</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcALen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcB</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcBLen</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414riscv_conv_f32PK9float32_t8uint32_tPK9float32_t8uint32_tP9float32_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv423riscv_conv_fast_opt_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_tP5q15_tP5q15_t">
-<span id="_CPPv323riscv_conv_fast_opt_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_tP5q15_tP5q15_t"></span><span id="_CPPv223riscv_conv_fast_opt_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_tP5q15_tP5q15_t"></span><span id="riscv_conv_fast_opt_q15__q15_tCP.uint32_t.q15_tCP.uint32_t.q15_tP.q15_tP.q15_tP"></span><span class="target" id="group__Conv_1ga0f3521c46571eed092375bbd6a2d4a16"></span>void <code class="sig-name descname">riscv_conv_fast_opt_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q15_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q15_t *<em>pDst</em>, q15_t *<em>pScratch1</em>, q15_t *<em>pScratch2</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423riscv_conv_fast_opt_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_tP5q15_tP5q15_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv423riscv_conv_fast_opt_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_tP5q15_tP5q15_t">
+<span id="_CPPv323riscv_conv_fast_opt_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_tP5q15_tP5q15_t"></span><span id="_CPPv223riscv_conv_fast_opt_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_tP5q15_tP5q15_t"></span><span id="riscv_conv_fast_opt_q15__q15_tCP.uint32_t.q15_tCP.uint32_t.q15_tP.q15_tP.q15_tP"></span><span class="target" id="group__Conv_1ga0f3521c46571eed092375bbd6a2d4a16"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_conv_fast_opt_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcA</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcALen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcB</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcBLen</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pScratch1</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pScratch2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423riscv_conv_fast_opt_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_tP5q15_tP5q15_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv419riscv_conv_fast_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t">
-<span id="_CPPv319riscv_conv_fast_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t"></span><span id="_CPPv219riscv_conv_fast_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t"></span><span id="riscv_conv_fast_q15__q15_tCP.uint32_t.q15_tCP.uint32_t.q15_tP"></span><span class="target" id="group__Conv_1ga13e44a44eeaffe2ad3b87e8553b3cf40"></span>void <code class="sig-name descname">riscv_conv_fast_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q15_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q15_t *<em>pDst</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_conv_fast_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv419riscv_conv_fast_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t">
+<span id="_CPPv319riscv_conv_fast_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t"></span><span id="_CPPv219riscv_conv_fast_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t"></span><span id="riscv_conv_fast_q15__q15_tCP.uint32_t.q15_tCP.uint32_t.q15_tP"></span><span class="target" id="group__Conv_1ga13e44a44eeaffe2ad3b87e8553b3cf40"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_conv_fast_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcA</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcALen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcB</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcBLen</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_conv_fast_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv419riscv_conv_fast_q31PK5q31_t8uint32_tPK5q31_t8uint32_tP5q31_t">
-<span id="_CPPv319riscv_conv_fast_q31PK5q31_t8uint32_tPK5q31_t8uint32_tP5q31_t"></span><span id="_CPPv219riscv_conv_fast_q31PK5q31_t8uint32_tPK5q31_t8uint32_tP5q31_t"></span><span id="riscv_conv_fast_q31__q31_tCP.uint32_t.q31_tCP.uint32_t.q31_tP"></span><span class="target" id="group__Conv_1gaa7de045f7b07e33ce0b5d9dc00371644"></span>void <code class="sig-name descname">riscv_conv_fast_q31</code><span class="sig-paren">(</span><em class="property">const</em> q31_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q31_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q31_t *<em>pDst</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_conv_fast_q31PK5q31_t8uint32_tPK5q31_t8uint32_tP5q31_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv419riscv_conv_fast_q31PK5q31_t8uint32_tPK5q31_t8uint32_tP5q31_t">
+<span id="_CPPv319riscv_conv_fast_q31PK5q31_t8uint32_tPK5q31_t8uint32_tP5q31_t"></span><span id="_CPPv219riscv_conv_fast_q31PK5q31_t8uint32_tPK5q31_t8uint32_tP5q31_t"></span><span id="riscv_conv_fast_q31__q31_tCP.uint32_t.q31_tCP.uint32_t.q31_tP"></span><span class="target" id="group__Conv_1gaa7de045f7b07e33ce0b5d9dc00371644"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_conv_fast_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcA</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcALen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcB</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcBLen</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_conv_fast_q31PK5q31_t8uint32_tPK5q31_t8uint32_tP5q31_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv418riscv_conv_opt_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_tP5q15_tP5q15_t">
-<span id="_CPPv318riscv_conv_opt_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_tP5q15_tP5q15_t"></span><span id="_CPPv218riscv_conv_opt_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_tP5q15_tP5q15_t"></span><span id="riscv_conv_opt_q15__q15_tCP.uint32_t.q15_tCP.uint32_t.q15_tP.q15_tP.q15_tP"></span><span class="target" id="group__Conv_1ga01914598d6bd01a7861ce6dade56f4f0"></span>void <code class="sig-name descname">riscv_conv_opt_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q15_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q15_t *<em>pDst</em>, q15_t *<em>pScratch1</em>, q15_t *<em>pScratch2</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418riscv_conv_opt_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_tP5q15_tP5q15_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv418riscv_conv_opt_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_tP5q15_tP5q15_t">
+<span id="_CPPv318riscv_conv_opt_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_tP5q15_tP5q15_t"></span><span id="_CPPv218riscv_conv_opt_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_tP5q15_tP5q15_t"></span><span id="riscv_conv_opt_q15__q15_tCP.uint32_t.q15_tCP.uint32_t.q15_tP.q15_tP.q15_tP"></span><span class="target" id="group__Conv_1ga01914598d6bd01a7861ce6dade56f4f0"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_conv_opt_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcA</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcALen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcB</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcBLen</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pScratch1</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pScratch2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418riscv_conv_opt_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_tP5q15_tP5q15_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv417riscv_conv_opt_q7PK4q7_t8uint32_tPK4q7_t8uint32_tP4q7_tP5q15_tP5q15_t">
-<span id="_CPPv317riscv_conv_opt_q7PK4q7_t8uint32_tPK4q7_t8uint32_tP4q7_tP5q15_tP5q15_t"></span><span id="_CPPv217riscv_conv_opt_q7PK4q7_t8uint32_tPK4q7_t8uint32_tP4q7_tP5q15_tP5q15_t"></span><span id="riscv_conv_opt_q7__q7_tCP.uint32_t.q7_tCP.uint32_t.q7_tP.q15_tP.q15_tP"></span><span class="target" id="group__Conv_1ga1c5777851e3f6ea412fc04487548265e"></span>void <code class="sig-name descname">riscv_conv_opt_q7</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q7_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q7_t *<em>pDst</em>, q15_t *<em>pScratch1</em>, q15_t *<em>pScratch2</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417riscv_conv_opt_q7PK4q7_t8uint32_tPK4q7_t8uint32_tP4q7_tP5q15_tP5q15_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv417riscv_conv_opt_q7PK4q7_t8uint32_tPK4q7_t8uint32_tP4q7_tP5q15_tP5q15_t">
+<span id="_CPPv317riscv_conv_opt_q7PK4q7_t8uint32_tPK4q7_t8uint32_tP4q7_tP5q15_tP5q15_t"></span><span id="_CPPv217riscv_conv_opt_q7PK4q7_t8uint32_tPK4q7_t8uint32_tP4q7_tP5q15_tP5q15_t"></span><span id="riscv_conv_opt_q7__q7_tCP.uint32_t.q7_tCP.uint32_t.q7_tP.q15_tP.q15_tP"></span><span class="target" id="group__Conv_1ga1c5777851e3f6ea412fc04487548265e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_conv_opt_q7</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcA</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcALen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcB</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcBLen</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pScratch1</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pScratch2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417riscv_conv_opt_q7PK4q7_t8uint32_tPK4q7_t8uint32_tP4q7_tP5q15_tP5q15_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv414riscv_conv_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t">
-<span id="_CPPv314riscv_conv_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t"></span><span id="_CPPv214riscv_conv_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t"></span><span id="riscv_conv_q15__q15_tCP.uint32_t.q15_tCP.uint32_t.q15_tP"></span><span class="target" id="group__Conv_1gaf2a77c8c94352f24489f454742be5a76"></span>void <code class="sig-name descname">riscv_conv_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q15_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q15_t *<em>pDst</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414riscv_conv_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv414riscv_conv_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t">
+<span id="_CPPv314riscv_conv_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t"></span><span id="_CPPv214riscv_conv_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t"></span><span id="riscv_conv_q15__q15_tCP.uint32_t.q15_tCP.uint32_t.q15_tP"></span><span class="target" id="group__Conv_1gaf2a77c8c94352f24489f454742be5a76"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_conv_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcA</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcALen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcB</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcBLen</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414riscv_conv_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv414riscv_conv_q31PK5q31_t8uint32_tPK5q31_t8uint32_tP5q31_t">
-<span id="_CPPv314riscv_conv_q31PK5q31_t8uint32_tPK5q31_t8uint32_tP5q31_t"></span><span id="_CPPv214riscv_conv_q31PK5q31_t8uint32_tPK5q31_t8uint32_tP5q31_t"></span><span id="riscv_conv_q31__q31_tCP.uint32_t.q31_tCP.uint32_t.q31_tP"></span><span class="target" id="group__Conv_1ga296cde9c216b5a64dab8158540efc8fb"></span>void <code class="sig-name descname">riscv_conv_q31</code><span class="sig-paren">(</span><em class="property">const</em> q31_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q31_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q31_t *<em>pDst</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414riscv_conv_q31PK5q31_t8uint32_tPK5q31_t8uint32_tP5q31_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv414riscv_conv_q31PK5q31_t8uint32_tPK5q31_t8uint32_tP5q31_t">
+<span id="_CPPv314riscv_conv_q31PK5q31_t8uint32_tPK5q31_t8uint32_tP5q31_t"></span><span id="_CPPv214riscv_conv_q31PK5q31_t8uint32_tPK5q31_t8uint32_tP5q31_t"></span><span id="riscv_conv_q31__q31_tCP.uint32_t.q31_tCP.uint32_t.q31_tP"></span><span class="target" id="group__Conv_1ga296cde9c216b5a64dab8158540efc8fb"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_conv_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcA</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcALen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcB</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcBLen</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414riscv_conv_q31PK5q31_t8uint32_tPK5q31_t8uint32_tP5q31_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv413riscv_conv_q7PK4q7_t8uint32_tPK4q7_t8uint32_tP4q7_t">
-<span id="_CPPv313riscv_conv_q7PK4q7_t8uint32_tPK4q7_t8uint32_tP4q7_t"></span><span id="_CPPv213riscv_conv_q7PK4q7_t8uint32_tPK4q7_t8uint32_tP4q7_t"></span><span id="riscv_conv_q7__q7_tCP.uint32_t.q7_tCP.uint32_t.q7_tP"></span><span class="target" id="group__Conv_1ga9eee8380e22313ef53f54ca713bee4e6"></span>void <code class="sig-name descname">riscv_conv_q7</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q7_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q7_t *<em>pDst</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413riscv_conv_q7PK4q7_t8uint32_tPK4q7_t8uint32_tP4q7_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv413riscv_conv_q7PK4q7_t8uint32_tPK4q7_t8uint32_tP4q7_t">
+<span id="_CPPv313riscv_conv_q7PK4q7_t8uint32_tPK4q7_t8uint32_tP4q7_t"></span><span id="_CPPv213riscv_conv_q7PK4q7_t8uint32_tPK4q7_t8uint32_tP4q7_t"></span><span id="riscv_conv_q7__q7_tCP.uint32_t.q7_tCP.uint32_t.q7_tP"></span><span class="target" id="group__Conv_1ga9eee8380e22313ef53f54ca713bee4e6"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_conv_q7</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcA</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcALen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcB</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcBLen</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413riscv_conv_q7PK4q7_t8uint32_tPK4q7_t8uint32_tP4q7_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="group">
-<dt>
-<span class="target" id="group__Conv"></span><em>group</em> <code class="sig-name descname">Conv</code></dt>
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Conv"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Conv</span></span></dt>
 <dd><p>Convolution is a mathematical operation that operates on two finite length vectors to generate a finite length output vector. Convolution is similar to correlation and is frequently used in filtering and data analysis. The NMSIS DSP library contains functions for convolving Q7, Q15, Q31, and floating-point data types. The library also provides fast versions of the Q15 and Q31 functions.</p>
 <p><dl class="simple">
 <dt><strong>Algorithm</strong></dt><dd><p>Let <code class="docutils literal notranslate"><span class="pre">a[n]</span></code> and <code class="docutils literal notranslate"><span class="pre">b[n]</span></code> be sequences of length <code class="docutils literal notranslate"><span class="pre">srcALen</span></code> and <code class="docutils literal notranslate"><span class="pre">srcBLen</span></code> samples respectively. Then the convolution  </p>
@@ -280,276 +193,306 @@
 </dl>
 </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Functions</p>
-<dl class="function">
-<dt id="_CPPv414riscv_conv_f32PK9float32_t8uint32_tPK9float32_t8uint32_tP9float32_t">
-<span id="_CPPv314riscv_conv_f32PK9float32_t8uint32_tPK9float32_t8uint32_tP9float32_t"></span><span id="_CPPv214riscv_conv_f32PK9float32_t8uint32_tPK9float32_t8uint32_tP9float32_t"></span><span class="target" id="group__Conv_1ga255e63f21abd45fd7c662ddf3b88749d"></span>void <code class="sig-name descname">riscv_conv_f32</code><span class="sig-paren">(</span><em class="property">const</em> float32_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> float32_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, float32_t *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Conv_1ga255e63f21abd45fd7c662ddf3b88749d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_conv_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcA</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcALen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcB</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcBLen</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Convolution of floating-point sequences. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcA</span></code>: points to the first input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">srcALen</span></code>: length of the first input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcB</span></code>: points to the second input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">srcBLen</span></code>: length of the second input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the location where the output result is written. Length srcALen+srcBLen-1. </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pSrcA</strong> – <strong>[in]</strong> points to the first input sequence </p></li>
+<li><p><strong>srcALen</strong> – <strong>[in]</strong> length of the first input sequence </p></li>
+<li><p><strong>pSrcB</strong> – <strong>[in]</strong> points to the second input sequence </p></li>
+<li><p><strong>srcBLen</strong> – <strong>[in]</strong> length of the second input sequence </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the location where the output result is written. Length srcALen+srcBLen-1. </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv423riscv_conv_fast_opt_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_tP5q15_tP5q15_t">
-<span id="_CPPv323riscv_conv_fast_opt_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_tP5q15_tP5q15_t"></span><span id="_CPPv223riscv_conv_fast_opt_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_tP5q15_tP5q15_t"></span><span class="target" id="group__Conv_1ga0f3521c46571eed092375bbd6a2d4a16"></span>void <code class="sig-name descname">riscv_conv_fast_opt_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q15_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q15_t *<em>pDst</em>, q15_t *<em>pScratch1</em>, q15_t *<em>pScratch2</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Conv_1ga0f3521c46571eed092375bbd6a2d4a16"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_conv_fast_opt_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcA</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcALen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcB</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcBLen</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pScratch1</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pScratch2</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Convolution of Q15 sequences (fast version). </p>
 <p>Convolution of Q15 sequences (fast version) for RISC-V Core with DSP enabled.</p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none</p>
-</dd>
+<p><div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Refer to riscv_conv_q15() for a slower implementation of this function which uses 64-bit accumulation to avoid wrap around distortion. </p>
+</div>
+<dl class="simple">
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>This fast version uses a 32-bit accumulator with 2.30 format. The accumulator maintains full precision of the intermediate multiplication results but provides only a single guard bit. There is no saturation on intermediate additions. Thus, if the accumulator overflows it wraps around and distorts the result. The input signals should be scaled down to avoid intermediate overflows. Scale down the inputs by log2(min(srcALen, srcBLen)) (log2 is read as log to the base 2) times to avoid overflows, as maximum of min(srcALen, srcBLen) number of additions are carried internally. The 2.30 accumulator is right shifted by 15 bits and then saturated to 1.15 format to yield the final result.</p>
-</dd>
-<dt><strong>Remark</strong></dt><dd><p>Refer to riscv_conv_q15() for a slower implementation of this function which uses 64-bit accumulation to avoid wrap around distortion. </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcA</span></code>: points to the first input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">srcALen</span></code>: length of the first input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcB</span></code>: points to the second input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">srcBLen</span></code>: length of the second input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the location where the output result is written. Length srcALen+srcBLen-1 </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pScratch1</span></code>: points to scratch buffer of size max(srcALen, srcBLen) + 2*min(srcALen, srcBLen) - 2 </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pScratch2</span></code>: points to scratch buffer of size min(srcALen, srcBLen </p></li>
-</ul>
 </dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pSrcA</strong> – <strong>[in]</strong> points to the first input sequence </p></li>
+<li><p><strong>srcALen</strong> – <strong>[in]</strong> length of the first input sequence </p></li>
+<li><p><strong>pSrcB</strong> – <strong>[in]</strong> points to the second input sequence </p></li>
+<li><p><strong>srcBLen</strong> – <strong>[in]</strong> length of the second input sequence </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the location where the output result is written. Length srcALen+srcBLen-1 </p></li>
+<li><p><strong>pScratch1</strong> – <strong>[in]</strong> points to scratch buffer of size max(srcALen, srcBLen) + 2*min(srcALen, srcBLen) - 2 </p></li>
+<li><p><strong>pScratch2</strong> – <strong>[in]</strong> points to scratch buffer of size min(srcALen, srcBLen </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv419riscv_conv_fast_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t">
-<span id="_CPPv319riscv_conv_fast_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t"></span><span id="_CPPv219riscv_conv_fast_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t"></span><span class="target" id="group__Conv_1ga13e44a44eeaffe2ad3b87e8553b3cf40"></span>void <code class="sig-name descname">riscv_conv_fast_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q15_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q15_t *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Conv_1ga13e44a44eeaffe2ad3b87e8553b3cf40"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_conv_fast_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcA</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcALen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcB</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcBLen</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Convolution of Q15 sequences (fast version). </p>
 <p>Convolution of Q15 sequences (fast version) for RISC-V Core with DSP enabled.</p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none</p>
-</dd>
+<p><div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Refer to riscv_conv_q15() for a slower implementation of this function which uses 64-bit accumulation to avoid wrap around distortion. </p>
+</div>
+<dl class="simple">
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>This fast version uses a 32-bit accumulator with 2.30 format. The accumulator maintains full precision of the intermediate multiplication results but provides only a single guard bit. There is no saturation on intermediate additions. Thus, if the accumulator overflows it wraps around and distorts the result. The input signals should be scaled down to avoid intermediate overflows. Scale down the inputs by log2(min(srcALen, srcBLen)) (log2 is read as log to the base 2) times to avoid overflows, as maximum of min(srcALen, srcBLen) number of additions are carried internally. The 2.30 accumulator is right shifted by 15 bits and then saturated to 1.15 format to yield the final result.</p>
-</dd>
-<dt><strong>Remark</strong></dt><dd><p>Refer to riscv_conv_q15() for a slower implementation of this function which uses 64-bit accumulation to avoid wrap around distortion. </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcA</span></code>: points to the first input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">srcALen</span></code>: length of the first input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcB</span></code>: points to the second input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">srcBLen</span></code>: length of the second input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the location where the output result is written. Length srcALen+srcBLen-1 </p></li>
-</ul>
 </dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pSrcA</strong> – <strong>[in]</strong> points to the first input sequence </p></li>
+<li><p><strong>srcALen</strong> – <strong>[in]</strong> length of the first input sequence </p></li>
+<li><p><strong>pSrcB</strong> – <strong>[in]</strong> points to the second input sequence </p></li>
+<li><p><strong>srcBLen</strong> – <strong>[in]</strong> length of the second input sequence </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the location where the output result is written. Length srcALen+srcBLen-1 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv419riscv_conv_fast_q31PK5q31_t8uint32_tPK5q31_t8uint32_tP5q31_t">
-<span id="_CPPv319riscv_conv_fast_q31PK5q31_t8uint32_tPK5q31_t8uint32_tP5q31_t"></span><span id="_CPPv219riscv_conv_fast_q31PK5q31_t8uint32_tPK5q31_t8uint32_tP5q31_t"></span><span class="target" id="group__Conv_1gaa7de045f7b07e33ce0b5d9dc00371644"></span>void <code class="sig-name descname">riscv_conv_fast_q31</code><span class="sig-paren">(</span><em class="property">const</em> q31_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q31_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q31_t *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Conv_1gaa7de045f7b07e33ce0b5d9dc00371644"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_conv_fast_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcA</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcALen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcB</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcBLen</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Convolution of Q31 sequences (fast version). </p>
 <p>Convolution of Q31 sequences (fast version) for RISC-V Core with DSP enabled.</p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none</p>
-</dd>
+<p><div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Refer to riscv_conv_q31() for a slower implementation of this function which uses 64-bit accumulation to provide higher precision. </p>
+</div>
+<dl class="simple">
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>This function is optimized for speed at the expense of fixed-point precision and overflow protection. The result of each 1.31 x 1.31 multiplication is truncated to 2.30 format. These intermediate results are accumulated in a 32-bit register in 2.30 format. Finally, the accumulator is saturated and converted to a 1.31 result. </p>
 </dd>
 <dt><strong></strong></dt><dd><p>The fast version has the same overflow behavior as the standard version but provides less precision since it discards the low 32 bits of each multiplication result. In order to avoid overflows completely the input signals must be scaled down. Scale down the inputs by log2(min(srcALen, srcBLen)) (log2 is read as log to the base 2) times to avoid overflows, as maximum of min(srcALen, srcBLen) number of additions are carried internally. </p>
 </dd>
-<dt><strong>Remark</strong></dt><dd><p>Refer to riscv_conv_q31() for a slower implementation of this function which uses 64-bit accumulation to provide higher precision. </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcA</span></code>: points to the first input sequence. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">srcALen</span></code>: length of the first input sequence. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcB</span></code>: points to the second input sequence. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">srcBLen</span></code>: length of the second input sequence. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the location where the output result is written. Length srcALen+srcBLen-1. </p></li>
-</ul>
-</dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pSrcA</strong> – <strong>[in]</strong> points to the first input sequence. </p></li>
+<li><p><strong>srcALen</strong> – <strong>[in]</strong> length of the first input sequence. </p></li>
+<li><p><strong>pSrcB</strong> – <strong>[in]</strong> points to the second input sequence. </p></li>
+<li><p><strong>srcBLen</strong> – <strong>[in]</strong> length of the second input sequence. </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the location where the output result is written. Length srcALen+srcBLen-1. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv418riscv_conv_opt_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_tP5q15_tP5q15_t">
-<span id="_CPPv318riscv_conv_opt_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_tP5q15_tP5q15_t"></span><span id="_CPPv218riscv_conv_opt_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_tP5q15_tP5q15_t"></span><span class="target" id="group__Conv_1ga01914598d6bd01a7861ce6dade56f4f0"></span>void <code class="sig-name descname">riscv_conv_opt_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q15_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q15_t *<em>pDst</em>, q15_t *<em>pScratch1</em>, q15_t *<em>pScratch2</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Conv_1ga01914598d6bd01a7861ce6dade56f4f0"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_conv_opt_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcA</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcALen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcB</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcBLen</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pScratch1</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pScratch2</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Convolution of Q15 sequences. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none</p>
-</dd>
+<p><div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Refer to riscv_conv_fast_q15() for a faster but less precise version of this function. </p>
+</div>
+<dl class="simple">
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The function is implemented using a 64-bit internal accumulator. Both inputs are in 1.15 format and multiplications yield a 2.30 result. The 2.30 intermediate results are accumulated in a 64-bit accumulator in 34.30 format. This approach provides 33 guard bits and there is no risk of overflow. The 34.30 result is then truncated to 34.15 format by discarding the low 15 bits and then saturated to 1.15 format. </p>
 </dd>
-<dt><strong>Remark</strong></dt><dd><p>Refer to riscv_conv_fast_q15() for a faster but less precise version of this function. </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcA</span></code>: points to the first input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">srcALen</span></code>: length of the first input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcB</span></code>: points to the second input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">srcBLen</span></code>: length of the second input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the location where the output result is written. Length srcALen+srcBLen-1. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pScratch1</span></code>: points to scratch buffer of size max(srcALen, srcBLen) + 2*min(srcALen, srcBLen) - 2. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pScratch2</span></code>: points to scratch buffer of size min(srcALen, srcBLen). </p></li>
-</ul>
-</dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pSrcA</strong> – <strong>[in]</strong> points to the first input sequence </p></li>
+<li><p><strong>srcALen</strong> – <strong>[in]</strong> length of the first input sequence </p></li>
+<li><p><strong>pSrcB</strong> – <strong>[in]</strong> points to the second input sequence </p></li>
+<li><p><strong>srcBLen</strong> – <strong>[in]</strong> length of the second input sequence </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the location where the output result is written. Length srcALen+srcBLen-1. </p></li>
+<li><p><strong>pScratch1</strong> – <strong>[in]</strong> points to scratch buffer of size max(srcALen, srcBLen) + 2*min(srcALen, srcBLen) - 2. </p></li>
+<li><p><strong>pScratch2</strong> – <strong>[in]</strong> points to scratch buffer of size min(srcALen, srcBLen). </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv417riscv_conv_opt_q7PK4q7_t8uint32_tPK4q7_t8uint32_tP4q7_tP5q15_tP5q15_t">
-<span id="_CPPv317riscv_conv_opt_q7PK4q7_t8uint32_tPK4q7_t8uint32_tP4q7_tP5q15_tP5q15_t"></span><span id="_CPPv217riscv_conv_opt_q7PK4q7_t8uint32_tPK4q7_t8uint32_tP4q7_tP5q15_tP5q15_t"></span><span class="target" id="group__Conv_1ga1c5777851e3f6ea412fc04487548265e"></span>void <code class="sig-name descname">riscv_conv_opt_q7</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q7_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q7_t *<em>pDst</em>, q15_t *<em>pScratch1</em>, q15_t *<em>pScratch2</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Conv_1ga1c5777851e3f6ea412fc04487548265e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_conv_opt_q7</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcA</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcALen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcB</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcBLen</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pScratch1</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pScratch2</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Convolution of Q7 sequences. </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none</p>
-</dd>
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The function is implemented using a 32-bit internal accumulator. Both the inputs are represented in 1.7 format and multiplications yield a 2.14 result. The 2.14 intermediate results are accumulated in a 32-bit accumulator in 18.14 format. This approach provides 17 guard bits and there is no risk of overflow as long as <code class="docutils literal notranslate"><span class="pre">max(srcALen,</span> <span class="pre">srcBLen)&lt;131072</span></code>. The 18.14 result is then truncated to 18.7 format by discarding the low 7 bits and then saturated to 1.7 format. </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcA</span></code>: points to the first input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">srcALen</span></code>: length of the first input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcB</span></code>: points to the second input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">srcBLen</span></code>: length of the second input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the location where the output result is written. Length srcALen+srcBLen-1. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pScratch1</span></code>: points to scratch buffer(of type q15_t) of size max(srcALen, srcBLen) + 2*min(srcALen, srcBLen) - 2. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pScratch2</span></code>: points to scratch buffer (of type q15_t) of size min(srcALen, srcBLen). </p></li>
-</ul>
 </dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pSrcA</strong> – <strong>[in]</strong> points to the first input sequence </p></li>
+<li><p><strong>srcALen</strong> – <strong>[in]</strong> length of the first input sequence </p></li>
+<li><p><strong>pSrcB</strong> – <strong>[in]</strong> points to the second input sequence </p></li>
+<li><p><strong>srcBLen</strong> – <strong>[in]</strong> length of the second input sequence </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the location where the output result is written. Length srcALen+srcBLen-1. </p></li>
+<li><p><strong>pScratch1</strong> – <strong>[in]</strong> points to scratch buffer(of type q15_t) of size max(srcALen, srcBLen) + 2*min(srcALen, srcBLen) - 2. </p></li>
+<li><p><strong>pScratch2</strong> – <strong>[in]</strong> points to scratch buffer (of type q15_t) of size min(srcALen, srcBLen). </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv414riscv_conv_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t">
-<span id="_CPPv314riscv_conv_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t"></span><span id="_CPPv214riscv_conv_q15PK5q15_t8uint32_tPK5q15_t8uint32_tP5q15_t"></span><span class="target" id="group__Conv_1gaf2a77c8c94352f24489f454742be5a76"></span>void <code class="sig-name descname">riscv_conv_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q15_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q15_t *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Conv_1gaf2a77c8c94352f24489f454742be5a76"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_conv_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcA</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcALen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcB</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcBLen</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Convolution of Q15 sequences. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none</p>
-</dd>
+<p><div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Refer to riscv_conv_fast_q15() for a faster but less precise version of this function. </p>
+</div>
+<div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Refer to riscv_conv_opt_q15() for a faster implementation of this function using scratch buffers. </p>
+</div>
+<dl class="simple">
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The function is implemented using a 64-bit internal accumulator. Both inputs are in 1.15 format and multiplications yield a 2.30 result. The 2.30 intermediate results are accumulated in a 64-bit accumulator in 34.30 format. This approach provides 33 guard bits and there is no risk of overflow. The 34.30 result is then truncated to 34.15 format by discarding the low 15 bits and then saturated to 1.15 format.</p>
 </dd>
-<dt><strong>Remark</strong></dt><dd><p>Refer to riscv_conv_fast_q15() for a faster but less precise version of this function. </p>
-</dd>
-<dt><strong>Remark</strong></dt><dd><p>Refer to riscv_conv_opt_q15() for a faster implementation of this function using scratch buffers. </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcA</span></code>: points to the first input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">srcALen</span></code>: length of the first input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcB</span></code>: points to the second input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">srcBLen</span></code>: length of the second input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the location where the output result is written. Length srcALen+srcBLen-1. </p></li>
-</ul>
-</dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pSrcA</strong> – <strong>[in]</strong> points to the first input sequence </p></li>
+<li><p><strong>srcALen</strong> – <strong>[in]</strong> length of the first input sequence </p></li>
+<li><p><strong>pSrcB</strong> – <strong>[in]</strong> points to the second input sequence </p></li>
+<li><p><strong>srcBLen</strong> – <strong>[in]</strong> length of the second input sequence </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the location where the output result is written. Length srcALen+srcBLen-1. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv414riscv_conv_q31PK5q31_t8uint32_tPK5q31_t8uint32_tP5q31_t">
-<span id="_CPPv314riscv_conv_q31PK5q31_t8uint32_tPK5q31_t8uint32_tP5q31_t"></span><span id="_CPPv214riscv_conv_q31PK5q31_t8uint32_tPK5q31_t8uint32_tP5q31_t"></span><span class="target" id="group__Conv_1ga296cde9c216b5a64dab8158540efc8fb"></span>void <code class="sig-name descname">riscv_conv_q31</code><span class="sig-paren">(</span><em class="property">const</em> q31_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q31_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q31_t *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Conv_1ga296cde9c216b5a64dab8158540efc8fb"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_conv_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcA</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcALen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcB</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcBLen</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Convolution of Q31 sequences. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none</p>
-</dd>
+<p><div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Refer to riscv_conv_fast_q31() for a faster but less precise implementation of this function. </p>
+</div>
+<dl class="simple">
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The function is implemented using an internal 64-bit accumulator. The accumulator has a 2.62 format and maintains full precision of the intermediate multiplication results but provides only a single guard bit. There is no saturation on intermediate additions. Thus, if the accumulator overflows it wraps around and distorts the result. The input signals should be scaled down to avoid intermediate overflows. Scale down the inputs by log2(min(srcALen, srcBLen)) (log2 is read as log to the base 2) times to avoid overflows, as maximum of min(srcALen, srcBLen) number of additions are carried internally. The 2.62 accumulator is right shifted by 31 bits and saturated to 1.31 format to yield the final result.</p>
 </dd>
-<dt><strong>Remark</strong></dt><dd><p>Refer to riscv_conv_fast_q31() for a faster but less precise implementation of this function. </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcA</span></code>: points to the first input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">srcALen</span></code>: length of the first input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcB</span></code>: points to the second input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">srcBLen</span></code>: length of the second input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the location where the output result is written. Length srcALen+srcBLen-1. </p></li>
-</ul>
-</dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pSrcA</strong> – <strong>[in]</strong> points to the first input sequence </p></li>
+<li><p><strong>srcALen</strong> – <strong>[in]</strong> length of the first input sequence </p></li>
+<li><p><strong>pSrcB</strong> – <strong>[in]</strong> points to the second input sequence </p></li>
+<li><p><strong>srcBLen</strong> – <strong>[in]</strong> length of the second input sequence </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the location where the output result is written. Length srcALen+srcBLen-1. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv413riscv_conv_q7PK4q7_t8uint32_tPK4q7_t8uint32_tP4q7_t">
-<span id="_CPPv313riscv_conv_q7PK4q7_t8uint32_tPK4q7_t8uint32_tP4q7_t"></span><span id="_CPPv213riscv_conv_q7PK4q7_t8uint32_tPK4q7_t8uint32_tP4q7_t"></span><span class="target" id="group__Conv_1ga9eee8380e22313ef53f54ca713bee4e6"></span>void <code class="sig-name descname">riscv_conv_q7</code><span class="sig-paren">(</span><em class="property">const</em> q7_t *<em>pSrcA</em>, uint32_t <em>srcALen</em>, <em class="property">const</em> q7_t *<em>pSrcB</em>, uint32_t <em>srcBLen</em>, q7_t *<em>pDst</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Conv_1ga9eee8380e22313ef53f54ca713bee4e6"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_conv_q7</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcA</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcALen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcB</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">srcBLen</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Convolution of Q7 sequences. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none</p>
-</dd>
+<p><div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Refer to riscv_conv_opt_q7() for a faster implementation of this function. </p>
+</div>
+<dl class="simple">
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The function is implemented using a 32-bit internal accumulator. Both the inputs are represented in 1.7 format and multiplications yield a 2.14 result. The 2.14 intermediate results are accumulated in a 32-bit accumulator in 18.14 format. This approach provides 17 guard bits and there is no risk of overflow as long as <code class="docutils literal notranslate"><span class="pre">max(srcALen,</span> <span class="pre">srcBLen)&lt;131072</span></code>. The 18.14 result is then truncated to 18.7 format by discarding the low 7 bits and then saturated to 1.7 format. </p>
 </dd>
-<dt><strong>Remark</strong></dt><dd><p>Refer to riscv_conv_opt_q7() for a faster implementation of this function. </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcA</span></code>: points to the first input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">srcALen</span></code>: length of the first input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrcB</span></code>: points to the second input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">srcBLen</span></code>: length of the second input sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pDst</span></code>: points to the location where the output result is written. Length srcALen+srcBLen-1. </p></li>
-</ul>
-</dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pSrcA</strong> – <strong>[in]</strong> points to the first input sequence </p></li>
+<li><p><strong>srcALen</strong> – <strong>[in]</strong> length of the first input sequence </p></li>
+<li><p><strong>pSrcB</strong> – <strong>[in]</strong> points to the second input sequence </p></li>
+<li><p><strong>srcBLen</strong> – <strong>[in]</strong> length of the second input sequence </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the location where the output result is written. Length srcALen+srcBLen-1. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="api_partialconv.html" class="btn btn-neutral float-right" title="Partial Convolution" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="api_biquadcascadedf2t.html" class="btn btn-neutral float-left" title="Biquad Cascade IIR Filters Using a Direct Form II Transposed Structure" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api_biquadcascadedf2t.html" class="btn btn-neutral float-left" title="Biquad Cascade IIR Filters Using a Direct Form II Transposed Structure" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api_partialconv.html" class="btn btn-neutral float-right" title="Partial Convolution" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2019-Present, Nuclei
-      <span class="lastupdated">
-        Last updated on Mar 30, 2022.
-      </span>
-
-    </p>
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on Jan 05, 2023.
+      </span></p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

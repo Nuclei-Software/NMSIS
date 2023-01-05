@@ -3,6 +3,15 @@
 Changelog
 =========
 
+V1.1.0
+------
+
+This is release ``1.1.0`` version of NMSIS-NN library.
+
+* Sync changes from CMSIS 5.9.0 release
+* Optimized more for RVP/RVV
+* Add experimental support for RV32 Vector
+
 V1.0.3
 ------
 

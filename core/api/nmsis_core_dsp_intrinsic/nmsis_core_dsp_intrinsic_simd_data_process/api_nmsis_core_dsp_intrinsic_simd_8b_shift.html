@@ -1,75 +1,39 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>SIMD 8-bit Shift Instructions &mdash; NMSIS 1.0.4 documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SIMD 8-bit Shift Instructions &mdash; NMSIS 1.1.0 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="SIMD 16-bit Compare Instructions" href="api_nmsis_core_dsp_intrinsic_simd_16b_cmp.html" />
     <link rel="prev" title="SIMD 16-bit Shift Instructions" href="api_nmsis_core_dsp_intrinsic_simd_16b_shift.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../../../../index.html">
-          
-
-          
-            
             <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                1.0.4
+                1.1.0
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -77,18 +41,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">NMSIS Core</a><ul class="current">
@@ -122,7 +76,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_part_simd_data_process.html">Partial-SIMD Data Processing Instructions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_64b_profile.html">64-bit Profile Instructions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_rv64_only.html">RV64 Only Instructions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_nuclei_custom.html">Nuclei Customized DSP Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_nuclei_custom.html">Nuclei Customized N1/N2/N3 DSP Instructions</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../core_periph_access.html">Peripheral Access</a></li>
@@ -130,6 +84,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../core_interrupt_exception.html">Interrupts and Exceptions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../core_fpu.html">FPU Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../core_pmp.html">PMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../core_spmp.html">SPMP Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../core_cache.html">Cache Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../core_system_device.html">System Device Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../core_arm_compatiable.html">ARM Compatiable Functions</a></li>
@@ -144,167 +99,127 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../appendix.html">Appendix</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../../index.html">NMSIS</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../../../index.html">NMSIS Core</a> &raquo;</li>
-        
           <li><a href="../../index.html">NMSIS Core API</a> &raquo;</li>
-        
           <li><a href="../../api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a> &raquo;</li>
-        
           <li><a href="../api_nmsis_core_dsp_intrinsic_simd_data_process.html">SIMD Data Processing Instructions</a> &raquo;</li>
-        
       <li>SIMD 8-bit Shift Instructions</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="../../../../_sources/core/api/nmsis_core_dsp_intrinsic/nmsis_core_dsp_intrinsic_simd_data_process/api_nmsis_core_dsp_intrinsic_simd_8b_shift.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="simd-8-bit-shift-instructions">
-<span id="nmsis-core-api-simd-8-bit-shift-instructions"></span><h1>SIMD 8-bit Shift Instructions<a class="headerlink" href="#simd-8-bit-shift-instructions" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1gafed94424b7e8431a31632ac1f9097e35"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KSLL8(unsigned long a, unsigned int b)</code></dt>
+             
+  <section id="simd-8-bit-shift-instructions">
+<span id="nmsis-core-api-simd-8-bit-shift-instructions"></span><h1>SIMD 8-bit Shift Instructions<a class="headerlink" href="#simd-8-bit-shift-instructions" title="Permalink to this headline"></a></h1>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1gafed94424b7e8431a31632ac1f9097e35"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KSLL8</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga748809588c9a563b78102b3a4e7ae0f5"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KSLRA8(unsigned long a, int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga748809588c9a563b78102b3a4e7ae0f5"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KSLRA8</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga5e46b6bd44f57528f3dd1a4f509fdb12"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KSLRA8_U(unsigned long a, int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga5e46b6bd44f57528f3dd1a4f509fdb12"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KSLRA8_U</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga99febdacba921c09aff588332a658fba"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SLL8(unsigned long a, unsigned int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga99febdacba921c09aff588332a658fba"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_SLL8</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga60b24db284bacbf2ab9de45e0881b011"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRA8(unsigned long a, unsigned int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga60b24db284bacbf2ab9de45e0881b011"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_SRA8</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1gad6421547bda7f5c8b4ab42d0e771daf3"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRA8_U(unsigned long a, unsigned int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1gad6421547bda7f5c8b4ab42d0e771daf3"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_SRA8_U</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga2aae7328ef4464ec4ee58147b4c3be26"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRL8(unsigned long a, unsigned int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga2aae7328ef4464ec4ee58147b4c3be26"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_SRL8</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga60905852cd03af20f29f226cfe99b87c"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRL8_U(unsigned long a, unsigned int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga60905852cd03af20f29f226cfe99b87c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_SRL8_U</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="macro">
-<dt id="c.__RV_KSLLI8">
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga125ad99cdcdbccde3d925ddd16cc5e26"></span><code class="sig-name descname">__RV_KSLLI8</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_KSLLI8" title="Permalink to this definition">¶</a></dt>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__RV_KSLLI8">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga125ad99cdcdbccde3d925ddd16cc5e26"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_KSLLI8</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">a</span></span>, <span class="n"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_KSLLI8" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="macro">
-<dt id="c.__RV_SLLI8">
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1gac4bafa8253fac342466573fccee06cb3"></span><code class="sig-name descname">__RV_SLLI8</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_SLLI8" title="Permalink to this definition">¶</a></dt>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__RV_SLLI8">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1gac4bafa8253fac342466573fccee06cb3"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_SLLI8</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">a</span></span>, <span class="n"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_SLLI8" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="macro">
-<dt id="c.__RV_SRAI8">
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1gafa0713c67f97b5e98f9c86c48b8d2ba6"></span><code class="sig-name descname">__RV_SRAI8</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_SRAI8" title="Permalink to this definition">¶</a></dt>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__RV_SRAI8">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1gafa0713c67f97b5e98f9c86c48b8d2ba6"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_SRAI8</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">a</span></span>, <span class="n"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_SRAI8" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="macro">
-<dt id="c.__RV_SRAI8_U">
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1gae6dc67a0e44c3f32100d532b1a2a4386"></span><code class="sig-name descname">__RV_SRAI8_U</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_SRAI8_U" title="Permalink to this definition">¶</a></dt>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__RV_SRAI8_U">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1gae6dc67a0e44c3f32100d532b1a2a4386"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_SRAI8_U</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">a</span></span>, <span class="n"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_SRAI8_U" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="macro">
-<dt id="c.__RV_SRLI8">
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga6e200926c9e92a70d3bae266450715cd"></span><code class="sig-name descname">__RV_SRLI8</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_SRLI8" title="Permalink to this definition">¶</a></dt>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__RV_SRLI8">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga6e200926c9e92a70d3bae266450715cd"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_SRLI8</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">a</span></span>, <span class="n"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_SRLI8" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="macro">
-<dt id="c.__RV_SRLI8_U">
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga168480b888035c553e85ba0934c5e50d"></span><code class="sig-name descname">__RV_SRLI8_U</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_SRLI8_U" title="Permalink to this definition">¶</a></dt>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__RV_SRLI8_U">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga168480b888035c553e85ba0934c5e50d"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_SRLI8_U</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">a</span></span>, <span class="n"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_SRLI8_U" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="group">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT"></span><em>group</em> <code class="sig-name descname">NMSIS_Core_DSP_Intrinsic_SIMD_8B_SHIFT</code></dt>
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">NMSIS_Core_DSP_Intrinsic_SIMD_8B_SHIFT</span></span></dt>
 <dd><p>SIMD 8-bit Shift Instructions. </p>
 <p>there are 14 SIMD 8-bit shift instructions. </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Defines</p>
-<dl class="macro">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga125ad99cdcdbccde3d925ddd16cc5e26"></span><code class="sig-name descname">__RV_KSLLI8</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span></dt>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga125ad99cdcdbccde3d925ddd16cc5e26"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_KSLLI8</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">a</span></span>, <span class="n"><span class="pre">b</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>KSLLI8 (SIMD 8-bit Saturating Shift Left Logical Immediate) </p>
 <p><strong>Type</strong>: SIMD</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KSLLI8</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm3u</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 8-bit elements logical left shift operations with saturation simultaneously. The shift amount is an immediate value.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 8-bit elements logical left shift operations with saturation simultaneously. The shift amount is an immediate value.</p>
 </p>
-<p><strong>Description</strong>:<p>The 8-bit data elements in Rs1 are left-shifted logically. The shifted out bits are filled with zero and the shift amount is specified by the imm3u constant. Any shifted value greater than 2^7-1 is saturated to 2^7-1. Any shifted value smaller than -2^7 is saturated to -2^7. And the saturated results are written to Rd. If any saturation is performed, set OV bit to 1.</p>
+<p><strong>Description</strong><p>:</p>
+<p>The 8-bit data elements in Rs1 are left-shifted logically. The shifted out bits are filled with zero and the shift amount is specified by the imm3u constant. Any shifted value greater than 2^7-1 is saturated to 2^7-1. Any shifted value smaller than -2^7 is saturated to -2^7. And the saturated results are written to Rd. If any saturation is performed, set OV bit to 1.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sa</span> <span class="o">=</span> <span class="n">imm3u</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">sa</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
@@ -323,30 +238,33 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="macro">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1gac4bafa8253fac342466573fccee06cb3"></span><code class="sig-name descname">__RV_SLLI8</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span></dt>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1gac4bafa8253fac342466573fccee06cb3"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_SLLI8</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">a</span></span>, <span class="n"><span class="pre">b</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>SLLI8 (SIMD 8-bit Shift Left Logical Immediate) </p>
 <p><strong>Type</strong>: SIMD</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SLLI8</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm3u</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 8-bit elements logical left shift operations simultaneously. The shift amount is an immediate value.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 8-bit elements logical left shift operations simultaneously. The shift amount is an immediate value.</p>
 </p>
-<p><strong>Description</strong>:<p>The 8-bit elements in Rs1 are left-shifted logically. And the results are written to Rd. The shifted out bits are filled with zero and the shift amount is specified by the imm3u constant.</p>
+<p><strong>Description</strong><p>:</p>
+<p>The 8-bit elements in Rs1 are left-shifted logically. And the results are written to Rd. The shifted out bits are filled with zero and the shift amount is specified by the imm3u constant.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sa</span> <span class="o">=</span> <span class="n">imm3u</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
 <span class="n">Rd</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">sa</span><span class="p">;</span>
@@ -355,21 +273,22 @@
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="macro">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1gafa0713c67f97b5e98f9c86c48b8d2ba6"></span><code class="sig-name descname">__RV_SRAI8</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span></dt>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1gafa0713c67f97b5e98f9c86c48b8d2ba6"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_SRAI8</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">a</span></span>, <span class="n"><span class="pre">b</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>SRAI8 (SIMD 8-bit Shift Right Arithmetic Immediate) </p>
 <p><strong>Type</strong>: SIMD</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SRAI8</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm3u</span>
@@ -377,9 +296,11 @@
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 8-bit element arithmetic right shift operations simultaneously. The shift amount is an immediate value. The </p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 8-bit element arithmetic right shift operations simultaneously. The shift amount is an immediate value. The</p>
 <code class="docutils literal notranslate"><span class="pre">.u</span></code> form performs additional rounding up operations on the shifted results.</p>
-<p><strong>Description</strong>:<p>The 8-bit data elements in Rs1 are right-shifted arithmetically, that is, the shifted out bits are filled with the sign-bit of the data elements. The shift amount is specified by the imm3u constant. For the rounding operation of the </p>
+<p><strong>Description</strong><p>:</p>
+<p>The 8-bit data elements in Rs1 are right-shifted arithmetically, that is, the shifted out bits are filled with the sign-bit of the data elements. The shift amount is specified by the imm3u constant. For the rounding operation of the</p>
 <code class="docutils literal notranslate"><span class="pre">.u</span></code> form, a value of 1 is added to the most significant discarded bit of each 8-bit data element to calculate the final results. And the results are written to Rd.</p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sa = imm3u[2:0];
 if (sa &gt; 0) {
@@ -397,21 +318,22 @@ for RV64: x=7...0
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="macro">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1gae6dc67a0e44c3f32100d532b1a2a4386"></span><code class="sig-name descname">__RV_SRAI8_U</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span></dt>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1gae6dc67a0e44c3f32100d532b1a2a4386"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_SRAI8_U</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">a</span></span>, <span class="n"><span class="pre">b</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>SRAI8.u (SIMD 8-bit Rounding Shift Right Arithmetic Immediate) </p>
 <p><strong>Type</strong>: SIMD</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SRAI8</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">imm3u</span>
@@ -419,9 +341,11 @@ for RV64: x=7...0
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 8-bit element arithmetic right shift operations simultaneously. The shift amount is an immediate value. The </p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 8-bit element arithmetic right shift operations simultaneously. The shift amount is an immediate value. The</p>
 <code class="docutils literal notranslate"><span class="pre">.u</span></code> form performs additional rounding up operations on the shifted results.</p>
-<p><strong>Description</strong>:<p>The 8-bit data elements in Rs1 are right-shifted arithmetically, that is, the shifted out bits are filled with the sign-bit of the data elements. The shift amount is specified by the imm3u constant. For the rounding operation of the </p>
+<p><strong>Description</strong><p>:</p>
+<p>The 8-bit data elements in Rs1 are right-shifted arithmetically, that is, the shifted out bits are filled with the sign-bit of the data elements. The shift amount is specified by the imm3u constant. For the rounding operation of the</p>
 <code class="docutils literal notranslate"><span class="pre">.u</span></code> form, a value of 1 is added to the most significant discarded bit of each 8-bit data element to calculate the final results. And the results are written to Rd.</p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sa = imm3u[2:0];
 if (sa &gt; 0) {
@@ -439,21 +363,22 @@ for RV64: x=7...0
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="macro">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga6e200926c9e92a70d3bae266450715cd"></span><code class="sig-name descname">__RV_SRLI8</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span></dt>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga6e200926c9e92a70d3bae266450715cd"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_SRLI8</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">a</span></span>, <span class="n"><span class="pre">b</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>SRLI8 (SIMD 8-bit Shift Right Logical Immediate) </p>
 <p><strong>Type</strong>: SIMD</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SRLI8</span> <span class="n">Rt</span><span class="p">,</span> <span class="n">Ra</span><span class="p">,</span> <span class="n">imm3u</span>
@@ -461,9 +386,11 @@ for RV64: x=7...0
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 8-bit elements logical right shift operations simultaneously. The shift amount is an immediate value. The </p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 8-bit elements logical right shift operations simultaneously. The shift amount is an immediate value. The</p>
 <code class="docutils literal notranslate"><span class="pre">.u</span></code> form performs additional rounding up operations on the shifted results.</p>
-<p><strong>Description</strong>:<p>The 8-bit data elements in Rs1 are right-shifted logically, that is, the shifted out bits are filled with zero. The shift amount is specified by the imm3u constant. For the rounding operation of the </p>
+<p><strong>Description</strong><p>:</p>
+<p>The 8-bit data elements in Rs1 are right-shifted logically, that is, the shifted out bits are filled with zero. The shift amount is specified by the imm3u constant. For the rounding operation of the</p>
 <code class="docutils literal notranslate"><span class="pre">.u</span></code> form, a value of 1 is added to the most significant discarded bit of each 8-bit data element to calculate the final results. And the results are written to Rd.</p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sa = imm3u[2:0];
 if (sa &gt; 0) {
@@ -481,21 +408,22 @@ for RV64: x=7...0
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="macro">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga168480b888035c553e85ba0934c5e50d"></span><code class="sig-name descname">__RV_SRLI8_U</code><span class="sig-paren">(</span>a, b<span class="sig-paren">)</span></dt>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga168480b888035c553e85ba0934c5e50d"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_SRLI8_U</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">a</span></span>, <span class="n"><span class="pre">b</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>SRLI8.u (SIMD 8-bit Rounding Shift Right Logical Immediate) </p>
 <p><strong>Type</strong>: SIMD</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SRLI8</span> <span class="n">Rt</span><span class="p">,</span> <span class="n">Ra</span><span class="p">,</span> <span class="n">imm3u</span>
@@ -503,9 +431,11 @@ for RV64: x=7...0
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 8-bit elements logical right shift operations simultaneously. The shift amount is an immediate value. The </p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 8-bit elements logical right shift operations simultaneously. The shift amount is an immediate value. The</p>
 <code class="docutils literal notranslate"><span class="pre">.u</span></code> form performs additional rounding up operations on the shifted results.</p>
-<p><strong>Description</strong>:<p>The 8-bit data elements in Rs1 are right-shifted logically, that is, the shifted out bits are filled with zero. The shift amount is specified by the imm3u constant. For the rounding operation of the </p>
+<p><strong>Description</strong><p>:</p>
+<p>The 8-bit data elements in Rs1 are right-shifted logically, that is, the shifted out bits are filled with zero. The shift amount is specified by the imm3u constant. For the rounding operation of the</p>
 <code class="docutils literal notranslate"><span class="pre">.u</span></code> form, a value of 1 is added to the most significant discarded bit of each 8-bit data element to calculate the final results. And the results are written to Rd.</p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sa = imm3u[2:0];
 if (sa &gt; 0) {
@@ -523,33 +453,36 @@ for RV64: x=7...0
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Functions</p>
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1gafed94424b7e8431a31632ac1f9097e35"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KSLL8(unsigned long a, unsigned int b)</code></dt>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1gafed94424b7e8431a31632ac1f9097e35"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KSLL8</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd><p>KSLL8 (SIMD 8-bit Saturating Shift Left Logical) </p>
 <p><strong>Type</strong>: SIMD</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KSLL8</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 8-bit elements logical left shift operations with saturation simultaneously. The shift amount is a variable from a GPR.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 8-bit elements logical left shift operations with saturation simultaneously. The shift amount is a variable from a GPR.</p>
 </p>
-<p><strong>Description</strong>:<p>The 8-bit data elements in Rs1 are left-shifted logically. The shifted out bits are filled with zero and the shift amount is specified by the low-order 3-bits of the value in the Rs2 register. Any shifted value greater than 2^7-1 is saturated to 2^7-1. Any shifted value smaller than -2^7 is saturated to -2^7. And the saturated results are written to Rd. If any saturation is performed, set OV bit to 1.</p>
+<p><strong>Description</strong><p>:</p>
+<p>The 8-bit data elements in Rs1 are left-shifted logically. The shifted out bits are filled with zero and the shift amount is specified by the low-order 3-bits of the value in the Rs2 register. Any shifted value greater than 2^7-1 is saturated to 2^7-1. Any shifted value smaller than -2^7 is saturated to -2^7. And the saturated results are written to Rd. If any saturation is performed, set OV bit to 1.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sa</span> <span class="o">=</span> <span class="n">Rs2</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">sa</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
@@ -568,21 +501,22 @@ for RV64: x=7...0
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga748809588c9a563b78102b3a4e7ae0f5"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KSLRA8(unsigned long a, int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga748809588c9a563b78102b3a4e7ae0f5"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KSLRA8</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd><p>KSLRA8 (SIMD 8-bit Shift Left Logical with Saturation or Shift Right Arithmetic) </p>
 <p><strong>Type</strong>: SIMD</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KSLRA8</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
@@ -590,9 +524,11 @@ for RV64: x=7...0
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 8-bit elements logical left (positive) or arithmetic right (negative) shift operation with Q7 saturation for the left shift. The </p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 8-bit elements logical left (positive) or arithmetic right (negative) shift operation with Q7 saturation for the left shift. The</p>
 <code class="docutils literal notranslate"><span class="pre">.u</span></code> form performs additional rounding up operations for the right shift.</p>
-<p><strong>Description</strong>:<p>The 8-bit data elements of Rs1 are left-shifted logically or right-shifted arithmetically based on the value of Rs2[3:0]. Rs2[3:0] is in the signed range of [-2^3, 2^3-1]. A positive Rs2[3:0] means logical left shift and a negative Rs2[3:0] means arithmetic right shift. The shift amount is the absolute value of Rs2[3:0]. However, the behavior of </p>
+<p><strong>Description</strong><p>:</p>
+<p>The 8-bit data elements of Rs1 are left-shifted logically or right-shifted arithmetically based on the value of Rs2[3:0]. Rs2[3:0] is in the signed range of [-2^3, 2^3-1]. A positive Rs2[3:0] means logical left shift and a negative Rs2[3:0] means arithmetic right shift. The shift amount is the absolute value of Rs2[3:0]. However, the behavior of</p>
 <code class="docutils literal notranslate"><span class="pre">Rs2[3:0]==-2^3</span> <span class="pre">(0x8)</span></code> is defined to be equivalent to the behavior of <code class="docutils literal notranslate"><span class="pre">Rs2[3:0]==-(2^3-1)</span> <span class="pre">(0x9)</span></code>. The left-shifted results are saturated to the 8-bit signed integer range of [-2^7, 2^7-1]. For the <code class="docutils literal notranslate"><span class="pre">.u</span></code> form of the instruction, the right-shifted results are added a 1 to the most significant discarded bit position for rounding effect. After the shift, saturation, or rounding, the final results are written to Rd. If any saturation happens, this instruction sets the OV flag. The value of Rs2[31:4] will not affect this instruction.</p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>if (Rs2[3:0] &lt; 0) {
   sa = -Rs2[3:0];
@@ -618,21 +554,22 @@ for RV64: x=7...0
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: int type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> int type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga5e46b6bd44f57528f3dd1a4f509fdb12"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_KSLRA8_U(unsigned long a, int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga5e46b6bd44f57528f3dd1a4f509fdb12"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_KSLRA8_U</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd><p>KSLRA8.u (SIMD 8-bit Shift Left Logical with Saturation or Rounding Shift Right Arithmetic) </p>
 <p><strong>Type</strong>: SIMD</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KSLRA8</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
@@ -640,9 +577,11 @@ for RV64: x=7...0
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 8-bit elements logical left (positive) or arithmetic right (negative) shift operation with Q7 saturation for the left shift. The </p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 8-bit elements logical left (positive) or arithmetic right (negative) shift operation with Q7 saturation for the left shift. The</p>
 <code class="docutils literal notranslate"><span class="pre">.u</span></code> form performs additional rounding up operations for the right shift.</p>
-<p><strong>Description</strong>:<p>The 8-bit data elements of Rs1 are left-shifted logically or right-shifted arithmetically based on the value of Rs2[3:0]. Rs2[3:0] is in the signed range of [-2^3, 2^3-1]. A positive Rs2[3:0] means logical left shift and a negative Rs2[3:0] means arithmetic right shift. The shift amount is the absolute value of Rs2[3:0]. However, the behavior of </p>
+<p><strong>Description</strong><p>:</p>
+<p>The 8-bit data elements of Rs1 are left-shifted logically or right-shifted arithmetically based on the value of Rs2[3:0]. Rs2[3:0] is in the signed range of [-2^3, 2^3-1]. A positive Rs2[3:0] means logical left shift and a negative Rs2[3:0] means arithmetic right shift. The shift amount is the absolute value of Rs2[3:0]. However, the behavior of</p>
 <code class="docutils literal notranslate"><span class="pre">Rs2[3:0]==-2^3</span> <span class="pre">(0x8)</span></code> is defined to be equivalent to the behavior of <code class="docutils literal notranslate"><span class="pre">Rs2[3:0]==-(2^3-1)</span> <span class="pre">(0x9)</span></code>. The left-shifted results are saturated to the 8-bit signed integer range of [-2^7, 2^7-1]. For the <code class="docutils literal notranslate"><span class="pre">.u</span></code> form of the instruction, the right-shifted results are added a 1 to the most significant discarded bit position for rounding effect. After the shift, saturation, or rounding, the final results are written to Rd. If any saturation happens, this instruction sets the OV flag. The value of Rs2[31:4] will not affect this instruction.</p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>if (Rs2[3:0] &lt; 0) {
   sa = -Rs2[3:0];
@@ -668,30 +607,33 @@ for RV64: x=7...0
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: int type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> int type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga99febdacba921c09aff588332a658fba"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SLL8(unsigned long a, unsigned int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga99febdacba921c09aff588332a658fba"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_SLL8</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd><p>SLL8 (SIMD 8-bit Shift Left Logical) </p>
 <p><strong>Type</strong>: SIMD</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SLL8</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 8-bit elements logical left shift operations simultaneously. The shift amount is a variable from a GPR.</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 8-bit elements logical left shift operations simultaneously. The shift amount is a variable from a GPR.</p>
 </p>
-<p><strong>Description</strong>:<p>The 8-bit elements in Rs1 are left-shifted logically. And the results are written to Rd. The shifted out bits are filled with zero and the shift amount is specified by the low-order 3-bits of the value in the Rs2 register.</p>
+<p><strong>Description</strong><p>:</p>
+<p>The 8-bit elements in Rs1 are left-shifted logically. And the results are written to Rd. The shifted out bits are filled with zero and the shift amount is specified by the low-order 3-bits of the value in the Rs2 register.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sa</span> <span class="o">=</span> <span class="n">Rs2</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
 <span class="n">Rd</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">sa</span><span class="p">;</span>
@@ -700,21 +642,22 @@ for RV64: x=7...0
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga60b24db284bacbf2ab9de45e0881b011"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRA8(unsigned long a, unsigned int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga60b24db284bacbf2ab9de45e0881b011"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_SRA8</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd><p>SRA8 (SIMD 8-bit Shift Right Arithmetic) </p>
 <p><strong>Type</strong>: SIMD</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SRA8</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
@@ -722,9 +665,11 @@ for RV64: x=7...0
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 8-bit element arithmetic right shift operations simultaneously. The shift amount is a variable from a GPR. The </p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 8-bit element arithmetic right shift operations simultaneously. The shift amount is a variable from a GPR. The</p>
 <code class="docutils literal notranslate"><span class="pre">.u</span></code> form performs additional rounding up operations on the shifted results.</p>
-<p><strong>Description</strong>:<p>The 8-bit data elements in Rs1 are right-shifted arithmetically, that is, the shifted out bits are filled with the sign-bit of the data elements. The shift amount is specified by the low-order 3-bits of the value in the Rs2 register. For the rounding operation of the </p>
+<p><strong>Description</strong><p>:</p>
+<p>The 8-bit data elements in Rs1 are right-shifted arithmetically, that is, the shifted out bits are filled with the sign-bit of the data elements. The shift amount is specified by the low-order 3-bits of the value in the Rs2 register. For the rounding operation of the</p>
 <code class="docutils literal notranslate"><span class="pre">.u</span></code> form, a value of 1 is added to the most significant discarded bit of each 8-bit data element to calculate the final results. And the results are written to Rd.</p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sa = Rs2[2:0];
 if (sa &gt; 0) {
@@ -742,21 +687,22 @@ for RV64: x=7...0
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1gad6421547bda7f5c8b4ab42d0e771daf3"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRA8_U(unsigned long a, unsigned int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1gad6421547bda7f5c8b4ab42d0e771daf3"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_SRA8_U</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd><p>SRA8.u (SIMD 8-bit Rounding Shift Right Arithmetic) </p>
 <p><strong>Type</strong>: SIMD</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SRA8</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
@@ -764,9 +710,11 @@ for RV64: x=7...0
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 8-bit element arithmetic right shift operations simultaneously. The shift amount is a variable from a GPR. The </p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 8-bit element arithmetic right shift operations simultaneously. The shift amount is a variable from a GPR. The</p>
 <code class="docutils literal notranslate"><span class="pre">.u</span></code> form performs additional rounding up operations on the shifted results.</p>
-<p><strong>Description</strong>:<p>The 8-bit data elements in Rs1 are right-shifted arithmetically, that is, the shifted out bits are filled with the sign-bit of the data elements. The shift amount is specified by the low-order 3-bits of the value in the Rs2 register. For the rounding operation of the </p>
+<p><strong>Description</strong><p>:</p>
+<p>The 8-bit data elements in Rs1 are right-shifted arithmetically, that is, the shifted out bits are filled with the sign-bit of the data elements. The shift amount is specified by the low-order 3-bits of the value in the Rs2 register. For the rounding operation of the</p>
 <code class="docutils literal notranslate"><span class="pre">.u</span></code> form, a value of 1 is added to the most significant discarded bit of each 8-bit data element to calculate the final results. And the results are written to Rd.</p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sa = Rs2[2:0];
 if (sa &gt; 0) {
@@ -784,21 +732,22 @@ for RV64: x=7...0
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga2aae7328ef4464ec4ee58147b4c3be26"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRL8(unsigned long a, unsigned int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga2aae7328ef4464ec4ee58147b4c3be26"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_SRL8</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd><p>SRL8 (SIMD 8-bit Shift Right Logical) </p>
 <p><strong>Type</strong>: SIMD</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SRL8</span> <span class="n">Rt</span><span class="p">,</span> <span class="n">Ra</span><span class="p">,</span> <span class="n">Rb</span>
@@ -806,9 +755,11 @@ for RV64: x=7...0
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 8-bit elements logical right shift operations simultaneously. The shift amount is a variable from a GPR. The </p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 8-bit elements logical right shift operations simultaneously. The shift amount is a variable from a GPR. The</p>
 <code class="docutils literal notranslate"><span class="pre">.u</span></code> form performs additional rounding up operations on the shifted results.</p>
-<p><strong>Description</strong>:<p>The 8-bit data elements in Rs1 are right-shifted logically, that is, the shifted out bits are filled with zero. The shift amount is specified by the low-order 3-bits of the value in the Rs2 register. For the rounding operation of the </p>
+<p><strong>Description</strong><p>:</p>
+<p>The 8-bit data elements in Rs1 are right-shifted logically, that is, the shifted out bits are filled with zero. The shift amount is specified by the low-order 3-bits of the value in the Rs2 register. For the rounding operation of the</p>
 <code class="docutils literal notranslate"><span class="pre">.u</span></code> form, a value of 1 is added to the most significant discarded bit of each 8-bit data element to calculate the final results. And the results are written to Rd.</p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sa = Rs2[2:0];
 if (sa &gt; 0) {
@@ -826,21 +777,22 @@ for RV64: x=7...0
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt>
-<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga60905852cd03af20f29f226cfe99b87c"></span><code class="sig-name descname">__STATIC_FORCEINLINE unsigned long __RV_SRL8_U(unsigned long a, unsigned int b)</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__SHIFT_1ga60905852cd03af20f29f226cfe99b87c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_SRL8_U</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">b)</span></span></dt>
 <dd><p>SRL8.u (SIMD 8-bit Rounding Shift Right Logical) </p>
 <p><strong>Type</strong>: SIMD</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SRL8</span> <span class="n">Rt</span><span class="p">,</span> <span class="n">Ra</span><span class="p">,</span> <span class="n">Rb</span>
@@ -848,9 +800,11 @@ for RV64: x=7...0
 </pre></div>
 </div>
 </p>
-<p><strong>Purpose</strong>:<p>Do 8-bit elements logical right shift operations simultaneously. The shift amount is a variable from a GPR. The </p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Do 8-bit elements logical right shift operations simultaneously. The shift amount is a variable from a GPR. The</p>
 <code class="docutils literal notranslate"><span class="pre">.u</span></code> form performs additional rounding up operations on the shifted results.</p>
-<p><strong>Description</strong>:<p>The 8-bit data elements in Rs1 are right-shifted logically, that is, the shifted out bits are filled with zero. The shift amount is specified by the low-order 3-bits of the value in the Rs2 register. For the rounding operation of the </p>
+<p><strong>Description</strong><p>:</p>
+<p>The 8-bit data elements in Rs1 are right-shifted logically, that is, the shifted out bits are filled with zero. The shift amount is specified by the low-order 3-bits of the value in the Rs2 register. For the rounding operation of the</p>
 <code class="docutils literal notranslate"><span class="pre">.u</span></code> form, a value of 1 is added to the most significant discarded bit of each 8-bit data element to calculate the final results. And the results are written to Rd.</p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sa = Rs2[2:0];
 if (sa &gt; 0) {
@@ -868,73 +822,55 @@ for RV64: x=7...0
 </pre></div>
 </div>
 </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>value stored in unsigned long type </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">a</span></code>: unsigned long type of value stored in a </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">b</span></code>: unsigned int type of value stored in b </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p></li>
+<li><p><strong>b</strong> – <strong>[in]</strong> unsigned int type of value stored in b </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="api_nmsis_core_dsp_intrinsic_simd_16b_cmp.html" class="btn btn-neutral float-right" title="SIMD 16-bit Compare Instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="api_nmsis_core_dsp_intrinsic_simd_16b_shift.html" class="btn btn-neutral float-left" title="SIMD 16-bit Shift Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api_nmsis_core_dsp_intrinsic_simd_16b_shift.html" class="btn btn-neutral float-left" title="SIMD 16-bit Shift Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api_nmsis_core_dsp_intrinsic_simd_16b_cmp.html" class="btn btn-neutral float-right" title="SIMD 16-bit Compare Instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2019-Present, Nuclei
-      <span class="lastupdated">
-        Last updated on Mar 30, 2022.
-      </span>
-
-    </p>
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on Jan 05, 2023.
+      </span></p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

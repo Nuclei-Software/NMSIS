@@ -1,75 +1,39 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Standard deviation &mdash; NMSIS 1.0.4 documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Standard deviation &mdash; NMSIS 1.1.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Variance" href="api_variance.html" />
     <link rel="prev" title="Root mean square (RMS)" href="api_rms.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../../../index.html">
-          
-
-          
-            
             <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                1.0.4
+                1.1.0
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -77,18 +41,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
@@ -136,235 +90,206 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">NMSIS</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../../index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
-        
           <li><a href="../index.html">NMSIS DSP API</a> &raquo;</li>
-        
           <li><a href="../api_groupstats.html">Statistics Functions</a> &raquo;</li>
-        
       <li>Standard deviation</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="../../../_sources/dsp/api/groupstats/api_std.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="standard-deviation">
-<span id="nmsis-dsp-api-standard-deviation"></span><h1>Standard deviation<a class="headerlink" href="#standard-deviation" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="_CPPv413riscv_std_f16PK9float16_t8uint32_tP9float16_t">
-<span id="_CPPv313riscv_std_f16PK9float16_t8uint32_tP9float16_t"></span><span id="_CPPv213riscv_std_f16PK9float16_t8uint32_tP9float16_t"></span><span id="riscv_std_f16__float16_tCP.uint32_t.float16_tP"></span><span class="target" id="group__STD_1ga3c7fa282ca67bd5a557dd53e387a8426"></span>void <code class="sig-name descname">riscv_std_f16</code><span class="sig-paren">(</span><em class="property">const</em> float16_t *<em>pSrc</em>, uint32_t <em>blockSize</em>, float16_t *<em>pResult</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413riscv_std_f16PK9float16_t8uint32_tP9float16_t" title="Permalink to this definition">¶</a><br /></dt>
+             
+  <section id="standard-deviation">
+<span id="nmsis-dsp-api-standard-deviation"></span><h1>Standard deviation<a class="headerlink" href="#standard-deviation" title="Permalink to this headline"></a></h1>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv413riscv_std_f16PK9float16_t8uint32_tP9float16_t">
+<span id="_CPPv313riscv_std_f16PK9float16_t8uint32_tP9float16_t"></span><span id="_CPPv213riscv_std_f16PK9float16_t8uint32_tP9float16_t"></span><span id="riscv_std_f16__float16_tCP.uint32_t.float16_tP"></span><span class="target" id="group__STD_1ga3c7fa282ca67bd5a557dd53e387a8426"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_std_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413riscv_std_f16PK9float16_t8uint32_tP9float16_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv413riscv_std_f32PK9float32_t8uint32_tP9float32_t">
-<span id="_CPPv313riscv_std_f32PK9float32_t8uint32_tP9float32_t"></span><span id="_CPPv213riscv_std_f32PK9float32_t8uint32_tP9float32_t"></span><span id="riscv_std_f32__float32_tCP.uint32_t.float32_tP"></span><span class="target" id="group__STD_1ga47a56c2d3f01f76d19069431d4d4c498"></span>void <code class="sig-name descname">riscv_std_f32</code><span class="sig-paren">(</span><em class="property">const</em> float32_t *<em>pSrc</em>, uint32_t <em>blockSize</em>, float32_t *<em>pResult</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413riscv_std_f32PK9float32_t8uint32_tP9float32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv413riscv_std_f32PK9float32_t8uint32_tP9float32_t">
+<span id="_CPPv313riscv_std_f32PK9float32_t8uint32_tP9float32_t"></span><span id="_CPPv213riscv_std_f32PK9float32_t8uint32_tP9float32_t"></span><span id="riscv_std_f32__float32_tCP.uint32_t.float32_tP"></span><span class="target" id="group__STD_1ga47a56c2d3f01f76d19069431d4d4c498"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_std_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413riscv_std_f32PK9float32_t8uint32_tP9float32_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv413riscv_std_q15PK5q15_t8uint32_tP5q15_t">
-<span id="_CPPv313riscv_std_q15PK5q15_t8uint32_tP5q15_t"></span><span id="_CPPv213riscv_std_q15PK5q15_t8uint32_tP5q15_t"></span><span id="riscv_std_q15__q15_tCP.uint32_t.q15_tP"></span><span class="target" id="group__STD_1ga67e4591f618116fe749fddacf5a00cf9"></span>void <code class="sig-name descname">riscv_std_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pSrc</em>, uint32_t <em>blockSize</em>, q15_t *<em>pResult</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413riscv_std_q15PK5q15_t8uint32_tP5q15_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv413riscv_std_f64PK9float64_t8uint32_tP9float64_t">
+<span id="_CPPv313riscv_std_f64PK9float64_t8uint32_tP9float64_t"></span><span id="_CPPv213riscv_std_f64PK9float64_t8uint32_tP9float64_t"></span><span id="riscv_std_f64__float64_tCP.uint32_t.float64_tP"></span><span class="target" id="group__STD_1gabfe38cc25f339bd85a3d200fc48610fd"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_std_f64</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float64_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">float64_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413riscv_std_f64PK9float64_t8uint32_tP9float64_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="_CPPv413riscv_std_q31PK5q31_t8uint32_tP5q31_t">
-<span id="_CPPv313riscv_std_q31PK5q31_t8uint32_tP5q31_t"></span><span id="_CPPv213riscv_std_q31PK5q31_t8uint32_tP5q31_t"></span><span id="riscv_std_q31__q31_tCP.uint32_t.q31_tP"></span><span class="target" id="group__STD_1ga5e3d814cf34b26ed49a26b7044487105"></span>void <code class="sig-name descname">riscv_std_q31</code><span class="sig-paren">(</span><em class="property">const</em> q31_t *<em>pSrc</em>, uint32_t <em>blockSize</em>, q31_t *<em>pResult</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413riscv_std_q31PK5q31_t8uint32_tP5q31_t" title="Permalink to this definition">¶</a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv413riscv_std_q15PK5q15_t8uint32_tP5q15_t">
+<span id="_CPPv313riscv_std_q15PK5q15_t8uint32_tP5q15_t"></span><span id="_CPPv213riscv_std_q15PK5q15_t8uint32_tP5q15_t"></span><span id="riscv_std_q15__q15_tCP.uint32_t.q15_tP"></span><span class="target" id="group__STD_1ga67e4591f618116fe749fddacf5a00cf9"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_std_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413riscv_std_q15PK5q15_t8uint32_tP5q15_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
-<dl class="group">
-<dt>
-<span class="target" id="group__STD"></span><em>group</em> <code class="sig-name descname">STD</code></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv413riscv_std_q31PK5q31_t8uint32_tP5q31_t">
+<span id="_CPPv313riscv_std_q31PK5q31_t8uint32_tP5q31_t"></span><span id="_CPPv213riscv_std_q31PK5q31_t8uint32_tP5q31_t"></span><span id="riscv_std_q31__q31_tCP.uint32_t.q31_tP"></span><span class="target" id="group__STD_1ga5e3d814cf34b26ed49a26b7044487105"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_std_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413riscv_std_q31PK5q31_t8uint32_tP5q31_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__STD"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">STD</span></span></dt>
 <dd><p>Calculates the standard deviation of the elements in the input vector.</p>
 <p>The float implementation is relying on riscv_var_f32 which is using a two-pass algorithm to avoid problem of numerical instabilities and cancellation errors.</p>
 <p>Fixed point versions are using the standard textbook algorithm since the fixed point numerical behavior is different from the float one.</p>
 <p>Algorithm for fixed point versions is summarized below:</p>
-<p></p>
-<p></p>
 <p>There are separate functions for floating point, Q31, and Q15 data types. </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Functions</p>
-<dl class="function">
-<dt id="_CPPv413riscv_std_f16PK9float16_t8uint32_tP9float16_t">
-<span id="_CPPv313riscv_std_f16PK9float16_t8uint32_tP9float16_t"></span><span id="_CPPv213riscv_std_f16PK9float16_t8uint32_tP9float16_t"></span><span class="target" id="group__STD_1ga3c7fa282ca67bd5a557dd53e387a8426"></span>void <code class="sig-name descname">riscv_std_f16</code><span class="sig-paren">(</span><em class="property">const</em> float16_t *<em>pSrc</em>, uint32_t <em>blockSize</em>, float16_t *<em>pResult</em><span class="sig-paren">)</span><br /></dt>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__STD_1ga3c7fa282ca67bd5a557dd53e387a8426"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_std_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Standard deviation of the elements of a floating-point vector. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the input vector </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples in input vector </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pResult</span></code>: standard deviation value returned here </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the input vector </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in input vector </p></li>
+<li><p><strong>pResult</strong> – <strong>[out]</strong> standard deviation value returned here </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv413riscv_std_f32PK9float32_t8uint32_tP9float32_t">
-<span id="_CPPv313riscv_std_f32PK9float32_t8uint32_tP9float32_t"></span><span id="_CPPv213riscv_std_f32PK9float32_t8uint32_tP9float32_t"></span><span class="target" id="group__STD_1ga47a56c2d3f01f76d19069431d4d4c498"></span>void <code class="sig-name descname">riscv_std_f32</code><span class="sig-paren">(</span><em class="property">const</em> float32_t *<em>pSrc</em>, uint32_t <em>blockSize</em>, float32_t *<em>pResult</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__STD_1ga47a56c2d3f01f76d19069431d4d4c498"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_std_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Standard deviation of the elements of a floating-point vector. </p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the input vector </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples in input vector </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pResult</span></code>: standard deviation value returned here </p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the input vector </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in input vector </p></li>
+<li><p><strong>pResult</strong> – <strong>[out]</strong> standard deviation value returned here </p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none </p>
+</dd>
 </dl>
-</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv413riscv_std_q15PK5q15_t8uint32_tP5q15_t">
-<span id="_CPPv313riscv_std_q15PK5q15_t8uint32_tP5q15_t"></span><span id="_CPPv213riscv_std_q15PK5q15_t8uint32_tP5q15_t"></span><span class="target" id="group__STD_1ga67e4591f618116fe749fddacf5a00cf9"></span>void <code class="sig-name descname">riscv_std_q15</code><span class="sig-paren">(</span><em class="property">const</em> q15_t *<em>pSrc</em>, uint32_t <em>blockSize</em>, q15_t *<em>pResult</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__STD_1gabfe38cc25f339bd85a3d200fc48610fd"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_std_f64</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float64_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">float64_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Standard deviation of the elements of a floating-point vector. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the input vector </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in input vector </p></li>
+<li><p><strong>pResult</strong> – <strong>[out]</strong> standard deviation value returned here </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__STD_1ga67e4591f618116fe749fddacf5a00cf9"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_std_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Standard deviation of the elements of a Q15 vector. </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none</p>
-</dd>
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The function is implemented using a 64-bit internal accumulator. The input is represented in 1.15 format. Intermediate multiplication yields a 2.30 format, and this result is added without saturation to a 64-bit accumulator in 34.30 format. With 33 guard bits in the accumulator, there is no risk of overflow, and the full precision of the intermediate multiplication is preserved. Finally, the 34.30 result is truncated to 34.15 format by discarding the lower 15 bits, and then saturated to yield a result in 1.15 format. </p>
 </dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the input vector </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples in input vector </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pResult</span></code>: standard deviation value returned here </p></li>
-</ul>
-</dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the input vector </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in input vector </p></li>
+<li><p><strong>pResult</strong> – <strong>[out]</strong> standard deviation value returned here </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="_CPPv413riscv_std_q31PK5q31_t8uint32_tP5q31_t">
-<span id="_CPPv313riscv_std_q31PK5q31_t8uint32_tP5q31_t"></span><span id="_CPPv213riscv_std_q31PK5q31_t8uint32_tP5q31_t"></span><span class="target" id="group__STD_1ga5e3d814cf34b26ed49a26b7044487105"></span>void <code class="sig-name descname">riscv_std_q31</code><span class="sig-paren">(</span><em class="property">const</em> q31_t *<em>pSrc</em>, uint32_t <em>blockSize</em>, q31_t *<em>pResult</em><span class="sig-paren">)</span><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__STD_1ga5e3d814cf34b26ed49a26b7044487105"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_std_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Standard deviation of the elements of a Q31 vector. </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none</p>
-</dd>
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The function is implemented using an internal 64-bit accumulator. The input is represented in 1.31 format, which is then downshifted by 8 bits which yields 1.23, and intermediate multiplication yields a 2.46 format. The accumulator maintains full precision of the intermediate multiplication results, but provides only a 16 guard bits. There is no saturation on intermediate additions. If the accumulator overflows it wraps around and distorts the result. In order to avoid overflows completely the input signal must be scaled down by log2(blockSize)-8 bits, as a total of blockSize additions are performed internally. After division, internal variables should be Q18.46 Finally, the 18.46 accumulator is right shifted by 15 bits to yield a 1.31 format value. </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pSrc</span></code>: points to the input vector. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">blockSize</span></code>: number of samples in input vector. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pResult</span></code>: standard deviation value returned here. </p></li>
-</ul>
 </dd>
 </dl>
 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the input vector. </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in input vector. </p></li>
+<li><p><strong>pResult</strong> – <strong>[out]</strong> standard deviation value returned here. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="api_variance.html" class="btn btn-neutral float-right" title="Variance" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="api_rms.html" class="btn btn-neutral float-left" title="Root mean square (RMS)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api_rms.html" class="btn btn-neutral float-left" title="Root mean square (RMS)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api_variance.html" class="btn btn-neutral float-right" title="Variance" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2019-Present, Nuclei
-      <span class="lastupdated">
-        Last updated on Mar 30, 2022.
-      </span>
-
-    </p>
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on Jan 05, 2023.
+      </span></p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

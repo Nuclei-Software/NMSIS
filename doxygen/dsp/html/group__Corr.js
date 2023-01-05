@@ -2,6 +2,7 @@ var group__Corr =
 [
     [ "riscv_correlate_f16", "group__Corr.html#ga4ec7aabcf3841a78cc59914a16c07322", null ],
     [ "riscv_correlate_f32", "group__Corr.html#ga7b6d1e9597930342fc81f65b7d9efe81", null ],
+    [ "riscv_correlate_f64", "group__Corr.html#gadd4b0c58a0d659893e3608ff5bf46985", null ],
     [ "riscv_correlate_fast_opt_q15", "group__Corr.html#ga40c8805aeeab37a95f266f69d3e033e4", null ],
     [ "riscv_correlate_fast_q15", "group__Corr.html#ga9990fa4b09c6557e7bba6e27146cda34", null ],
     [ "riscv_correlate_fast_q31", "group__Corr.html#gacb282922c8c03f6816b1094bf0177937", null ],

@@ -30,7 +30,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.0.2</span>
+   &#160;<span id="projectnumber">Version 1.1.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -106,6 +106,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga84068b1bbb318d532690735db534edf6"><td class="memItemLeft" align="right" valign="top">riscv_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MatrixMult.html#ga84068b1bbb318d532690735db534edf6">riscv_mat_mult_fast_q31</a> (const <a class="el" href="structriscv__matrix__instance__q31.html">riscv_matrix_instance_q31</a> *pSrcA, const <a class="el" href="structriscv__matrix__instance__q31.html">riscv_matrix_instance_q31</a> *pSrcB, <a class="el" href="structriscv__matrix__instance__q31.html">riscv_matrix_instance_q31</a> *pDst)</td></tr>
 <tr class="memdesc:ga84068b1bbb318d532690735db534edf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Q31 matrix multiplication (fast variant).  <a href="#ga84068b1bbb318d532690735db534edf6">More...</a><br /></td></tr>
 <tr class="separator:ga84068b1bbb318d532690735db534edf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaaa8763e142329ff357aaf3601ef92887"><td class="memItemLeft" align="right" valign="top">riscv_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MatrixMult.html#gaaa8763e142329ff357aaf3601ef92887">riscv_mat_mult_opt_q31</a> (const <a class="el" href="structriscv__matrix__instance__q31.html">riscv_matrix_instance_q31</a> *pSrcA, const <a class="el" href="structriscv__matrix__instance__q31.html">riscv_matrix_instance_q31</a> *pSrcB, <a class="el" href="structriscv__matrix__instance__q31.html">riscv_matrix_instance_q31</a> *pDst, q31_t *pState)</td></tr>
+<tr class="memdesc:gaaa8763e142329ff357aaf3601ef92887"><td class="mdescLeft">&#160;</td><td class="mdescRight">Q31 matrix multiplication.  <a href="#gaaa8763e142329ff357aaf3601ef92887">More...</a><br /></td></tr>
+<tr class="separator:gaaa8763e142329ff357aaf3601ef92887"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaccc2ce7b1bdbffa4332ae95d1151a5f7"><td class="memItemLeft" align="right" valign="top">riscv_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MatrixMult.html#gaccc2ce7b1bdbffa4332ae95d1151a5f7">riscv_mat_mult_q15</a> (const <a class="el" href="structriscv__matrix__instance__q15.html">riscv_matrix_instance_q15</a> *pSrcA, const <a class="el" href="structriscv__matrix__instance__q15.html">riscv_matrix_instance_q15</a> *pSrcB, <a class="el" href="structriscv__matrix__instance__q15.html">riscv_matrix_instance_q15</a> *pDst, q15_t *pState)</td></tr>
 <tr class="memdesc:gaccc2ce7b1bdbffa4332ae95d1151a5f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Q15 matrix multiplication.  <a href="#gaccc2ce7b1bdbffa4332ae95d1151a5f7">More...</a><br /></td></tr>
 <tr class="separator:gaccc2ce7b1bdbffa4332ae95d1151a5f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -372,6 +375,66 @@ Multiplication of two 3 x 3 matrices</div></div>
 
 </div>
 </div>
+<a id="gaaa8763e142329ff357aaf3601ef92887"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaaa8763e142329ff357aaf3601ef92887">&#9670;&nbsp;</a></span>riscv_mat_mult_opt_q31()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">riscv_status riscv_mat_mult_opt_q31 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structriscv__matrix__instance__q31.html">riscv_matrix_instance_q31</a> *&#160;</td>
+          <td class="paramname"><em>pSrcA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structriscv__matrix__instance__q31.html">riscv_matrix_instance_q31</a> *&#160;</td>
+          <td class="paramname"><em>pSrcB</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structriscv__matrix__instance__q31.html">riscv_matrix_instance_q31</a> *&#160;</td>
+          <td class="paramname"><em>pDst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">q31_t *&#160;</td>
+          <td class="paramname"><em>pState</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Q31 matrix multiplication. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pSrcA</td><td>points to the first input matrix structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pSrcB</td><td>points to the second input matrix structure </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pDst</td><td>points to output matrix structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pState</td><td>points to the array for storing intermediate results </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>execution status<ul>
+<li>RISCV_MATH_SUCCESS : Operation successful</li>
+<li>RISCV_MATH_SIZE_MISMATCH : Matrix size check failed</li>
+</ul>
+</dd></dl>
+<dl class="section user"><dt>Scaling and Overflow Behavior</dt><dd>The function is implemented using an internal 64-bit accumulator. The accumulator has a 2.62 format and maintains full precision of the intermediate multiplication results but provides only a single guard bit. There is no saturation on intermediate additions. Thus, if the accumulator overflows it wraps around and distorts the result. The input signals should be scaled down to avoid intermediate overflows. The input is thus scaled down by log2(numColsA) bits to avoid overflows, as a total of numColsA additions are performed internally. The 2.62 accumulator is right shifted by 31 bits and saturated to 1.31 format to yield the final result. </dd></dl>
+<dl class="section remark"><dt>Remarks</dt><dd>Refer to <a class="el" href="group__MatrixMult.html#ga84068b1bbb318d532690735db534edf6">riscv_mat_mult_fast_q31()</a> for a faster but less precise implementation of this function. </dd>
+<dd>
+This function is a faster implementation of riscv_mat_mult_q31 for MVE but it is requiring additional storage for intermediate results. </dd></dl>
+
+</div>
+</div>
 <a id="gaccc2ce7b1bdbffa4332ae95d1151a5f7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gaccc2ce7b1bdbffa4332ae95d1151a5f7">&#9670;&nbsp;</a></span>riscv_mat_mult_q15()</h2>
 
@@ -416,7 +479,7 @@ Multiplication of two 3 x 3 matrices</div></div>
     <tr><td class="paramdir">[in]</td><td class="paramname">pSrcA</td><td>points to the first input matrix structure </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">pSrcB</td><td>points to the second input matrix structure </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pDst</td><td>points to output matrix structure </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">pState</td><td>points to the array for storing intermediate results (Unused) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pState</td><td>points to the array for storing intermediate results </td></tr>
   </table>
   </dd>
 </dl>
@@ -540,7 +603,7 @@ Multiplication of two 3 x 3 matrices</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Mar 30 2022 07:45:01 for NMSIS-DSP by
+    <li class="footer">Generated on Thu Jan 5 2023 09:05:09 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>
