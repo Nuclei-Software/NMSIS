@@ -6,7 +6,7 @@ Changelog
 V1.1.0
 ------
 
-This is the version ``V1.1.0`` release of Nuclei MCU Software Interface Standard(NMSIS), which is still in development.
+This is the version ``V1.1.0`` release of Nuclei MCU Software Interface Standard(NMSIS).
 
 * **NMSIS-Core**
 
@@ -46,6 +46,7 @@ This is the version ``V1.1.0`` release of Nuclei MCU Software Interface Standard
 * **CI**
 
   - Misc changes for github and gitlab ci, see commit history
+  - gitlab ci will now test ``NUCLEI_DSP=NO/N1/N2/N3`` cases and also check rv32 with VPU for DSP/NN test cases
 
 * **Documentation**
 
