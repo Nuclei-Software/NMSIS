@@ -79,25 +79,25 @@ void riscv_cmplx_mult_cmplx_f32(
   uint32_t blkCnt = numSamples;                               /* Loop counter */
   size_t l;
   ptrdiff_t bstride = 8;
-  vfloat32m8_t v_R1, v_R2, v_I1, v_I2;
-  vfloat32m8_t v_RR, v_II, v_RI, v_IR;
+  vfloat32m4_t v_R1, v_R2, v_I1, v_I2;
+  vfloat32m4_t v_RR, v_II, v_RI, v_IR;
 
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+  for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)
   {
-    v_R1 = vlse32_v_f32m8(pSrcA, bstride, l);
-    v_R2 = vlse32_v_f32m8(pSrcB, bstride, l);
-
-    v_I1 = vlse32_v_f32m8(pSrcA + 1, bstride, l);
-    v_I2 = vlse32_v_f32m8(pSrcB + 1, bstride, l);
+    vlsseg2e32_v_f32m4(&v_R1, &v_I1, pSrcA, bstride, l);
+    vlsseg2e32_v_f32m4(&v_R2, &v_I2, pSrcB, bstride, l);
     pSrcA += l * 2;
     pSrcB += l * 2;
 
-    v_RR = vfmul_vv_f32m8(v_R1, v_R2, l);
-    v_II = vfmul_vv_f32m8(v_I1, v_I2, l);
-    v_RI = vfmul_vv_f32m8(v_R1, v_I2, l);
-    v_IR = vfmul_vv_f32m8(v_I1, v_R2, l);
-    vsse32_v_f32m8(pDst, bstride, vfsub_vv_f32m8(v_RR, v_II, l), l);
-    vsse32_v_f32m8(pDst + 1, bstride, vfadd_vv_f32m8(v_RI, v_IR, l), l);
+    v_RR = vfmul_vv_f32m4(v_R1, v_R2, l);
+    v_II = vfmul_vv_f32m4(v_I1, v_I2, l);
+    v_RI = vfmul_vv_f32m4(v_R1, v_I2, l);
+    v_IR = vfmul_vv_f32m4(v_I1, v_R2, l);
+
+    v_RR = vfsub_vv_f32m4(v_RR, v_II, l);
+    v_RI = vfadd_vv_f32m4(v_RI, v_IR, l);
+    vssseg2e32_v_f32m4(pDst, bstride, v_RR, v_RI, l);
+
     pDst += l * 2;
   }
 #else

@@ -222,15 +222,15 @@ void riscv_lms_q15(
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
 #if defined (RISCV_MATH_VECTOR)
     uint32_t vblkCnt1;
-    size_t ll;
+    size_t vl;
     vint16m4_t vx1, vy1;
     vblkCnt1 = numTaps;
-    for (; (ll = vsetvl_e16m4(vblkCnt1)) > 0; vblkCnt1 -= ll) {
-      vx1 = vle16_v_i16m4(px, ll);
-      px += ll;
-      vy1 = vle16_v_i16m4(pb, ll);
-      vse16_v_i16m4(pb, vnclip_wx_i16m4(vwadd_wv_i32m8(vsra_vx_i32m8(vwmul_vx_i32m8(vx1, alpha, ll), 15, ll), vy1, ll), 0, ll), ll);
-      pb += ll;
+    for (; (vl = vsetvl_e16m4(vblkCnt1)) > 0; vblkCnt1 -= vl) {
+      vx1 = vle16_v_i16m4(px, vl);
+      px += vl;
+      vy1 = vle16_v_i16m4(pb, vl);
+      vse16_v_i16m4(pb, vnclip_wx_i16m4(vwadd_wv_i32m8(vsra_vx_i32m8(vwmul_vx_i32m8(vx1, alpha, vl), 15, vl), vy1, vl), 0, vl), vl);
+      pb += vl;
     }
 #else
     while (tapCnt > 0U)

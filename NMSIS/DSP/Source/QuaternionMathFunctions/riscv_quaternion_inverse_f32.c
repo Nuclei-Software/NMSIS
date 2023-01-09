@@ -62,33 +62,35 @@ void riscv_quaternion_inverse_f32(const float32_t *pInputQuaternions,
 #if defined(RISCV_MATH_VECTOR)
     uint32_t blkCnt = nbQuaternions;                               /* Loop counter */
     size_t l;
-    vfloat32m8_t v_x0, v_x1, v_x2, v_x3;
-    vfloat32m8_t v_temp;
+    vfloat32m2_t v_x0, v_x1, v_x2, v_x3;
+    vfloat32m2_t v_temp;
     const float32_t *pIN = pInputQuaternions;
     float32_t *pOUT = pInverseQuaternions;
     ptrdiff_t bstride = 16;
-    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-        v_x0 = vlse32_v_f32m8(pIN, bstride, l);
-        v_x1 = vlse32_v_f32m8(pIN + 1, bstride, l);
-        v_x2 = vlse32_v_f32m8(pIN + 2, bstride, l);
-        v_x3 = vlse32_v_f32m8(pIN + 3, bstride, l);
+    for (; (l = vsetvl_e32m2(blkCnt)) > 0; blkCnt -= l) {
+        //v_x0 = vlse32_v_f32m2(pIN, bstride, l);
+        //v_x1 = vlse32_v_f32m2(pIN + 1, bstride, l);
+        //v_x2 = vlse32_v_f32m2(pIN + 2, bstride, l);
+        //v_x3 = vlse32_v_f32m2(pIN + 3, bstride, l);
+        vlsseg4e32_v_f32m2(&v_x0, &v_x1, &v_x2, &v_x3, pIN, bstride, l);
 
-        v_temp = vfmul_vv_f32m8(v_x0, v_x0, l);
-        v_temp = vfmacc_vv_f32m8(v_temp, v_x1, v_x1, l);
-        v_temp = vfmacc_vv_f32m8(v_temp, v_x2, v_x2, l);
-        v_temp = vfmacc_vv_f32m8(v_temp, v_x3, v_x3, l);
+        v_temp = vfmul_vv_f32m2(v_x0, v_x0, l);
+        v_temp = vfmacc_vv_f32m2(v_temp, v_x1, v_x1, l);
+        v_temp = vfmacc_vv_f32m2(v_temp, v_x2, v_x2, l);
+        v_temp = vfmacc_vv_f32m2(v_temp, v_x3, v_x3, l);
 
-        vsse32_v_f32m8(pOUT, bstride, vfdiv_vv_f32m8(v_x0, v_temp, l), l);
-        v_x1 = vfsgnjn_vv_f32m8(v_x1, v_x1, l);
-        v_x1 = vfdiv_vv_f32m8(v_x1, v_temp, l);
-        vsse32_v_f32m8(pOUT + 1, bstride, v_x1, l);
-        v_x2 = vfsgnjn_vv_f32m8(v_x2, v_x2, l);
-        v_x2 = vfdiv_vv_f32m8(v_x2, v_temp, l);
-        vsse32_v_f32m8(pOUT + 2, bstride, v_x2, l);
-        v_x3 = vfsgnjn_vv_f32m8(v_x3, v_x3, l);
-        v_x3 = vfdiv_vv_f32m8(v_x3, v_temp, l);
-        vsse32_v_f32m8(pOUT + 3, bstride, v_x3, l);
-
+        v_x0 = vfdiv_vv_f32m2(v_x0, v_temp, l);
+        //vsse32_v_f32m2(pOUT, bstride, v_x0, l);
+        v_x1 = vfsgnjn_vv_f32m2(v_x1, v_x1, l);
+        v_x1 = vfdiv_vv_f32m2(v_x1, v_temp, l);
+        //vsse32_v_f32m2(pOUT + 1, bstride, v_x1, l);
+        v_x2 = vfsgnjn_vv_f32m2(v_x2, v_x2, l);
+        v_x2 = vfdiv_vv_f32m2(v_x2, v_temp, l);
+        //vsse32_v_f32m2(pOUT + 2, bstride, v_x2, l);
+        v_x3 = vfsgnjn_vv_f32m2(v_x3, v_x3, l);
+        v_x3 = vfdiv_vv_f32m2(v_x3, v_temp, l);
+        //vsse32_v_f32m2(pOUT + 3, bstride, v_x3, l);
+        vssseg4e32_v_f32m2 (pOUT, bstride, v_x0, v_x1, v_x2, v_x3, l);
         pIN += l * 4;
         pOUT += l * 4;
     }

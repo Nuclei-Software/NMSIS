@@ -178,7 +178,7 @@ void riscv_absmax_q7(
   size_t l;
   vint8m8_t v_x, v_zero;
   vint8m1_t v_temp;
-  unsigned long temp_index = 0;
+  unsigned long last_suf = 0, temp_index = 0;
   l = vsetvlmax_e8m8();
   v_zero = vmv_v_x_i8m8(0, l);
   const q7_t *pData = pSrc;
@@ -193,20 +193,12 @@ void riscv_absmax_q7(
     v_x = vssub_vv_i8m8_m(mask, v_x, v_zero, v_x, l);
     maxVal = vmv_x_s_i8m1_i8(vredmax_vs_i8m8_i8m1(v_temp, v_x, v_temp, l));
     if (maxVal > out) {
-        out = maxVal;
-        outIndex = temp_index;
+      out = maxVal;
+      mask = vmseq_vx_i8m8_b1(v_x, maxVal, l);
+      temp_index = vfirst_m_b1(mask, l);
+      outIndex = last_suf + temp_index;
     }
-    temp_index += l;
-  }
-
-  pData = pSrc + outIndex;
-  while (1) {
-    if ((out == *pData) || (out == -(*pData))) {
-      break;
-    } else {
-      pData++;
-      outIndex++;
-    }
+    last_suf += l;
   }
 #else
 

@@ -143,7 +143,7 @@ void riscv_absmin_q31(
   size_t l;
   vint32m8_t v_x, v_zero;
   vint32m1_t v_temp;
-  unsigned long temp_index = 0;
+  unsigned long last_suf = 0, temp_index = 0;
   const q31_t *pData = pSrc;
   out = 0x7fffffff;
   outIndex = 0;
@@ -162,23 +162,11 @@ void riscv_absmin_q31(
     if (minVal < out)
     {
       out = minVal;
-      outIndex = temp_index;
+      mask = vmseq_vx_i32m8_b4(v_x, minVal, l);
+      temp_index = vfirst_m_b4(mask, l);
+      outIndex = last_suf + temp_index;
     }
-    temp_index += l;
-  }
-  
-  pData = pSrc + outIndex;
-  while (1)
-  {
-    if ((out == *pData) || (out == -(*pData)))
-    {
-      break;
-    }
-    else
-    {
-      pData++;
-      outIndex++;
-    }
+    last_suf += l;
   }
 #else
 

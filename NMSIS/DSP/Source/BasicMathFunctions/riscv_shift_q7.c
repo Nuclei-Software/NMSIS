@@ -66,6 +66,7 @@ void riscv_shift_q7(
   blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vint8m4_t vx;
+  vint8m8_t vy;
 
   if (sign == 0U)
   {
@@ -79,11 +80,11 @@ void riscv_shift_q7(
   }
   else
   {
-    for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l)
+    for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l)
     {
-      vx = vle8_v_i8m4(pSrc, l);
+      vy = vle8_v_i8m8(pSrc, l);
       pSrc += l;
-      vse8_v_i8m4(pDst, vsra_vx_i8m4(vx, -shiftBits, l), l);
+      vse8_v_i8m8(pDst, vsra_vx_i8m8(vy, -shiftBits, l), l);
       pDst += l;
     }
   }

@@ -80,9 +80,9 @@ riscv_status riscv_elementwise_add_s8(const int8_t *input_1_vect,
     vint32m8_t sum0m8;
 
     for (; (l = vsetvl_e8m2(blkCnt)) > 0; blkCnt -= l) {
-        input_1_m8 = vsll_vx_i32m8(vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vle8_v_i8m2(input_1_vect, l), 0, l), 0, l), input_1_offset, l), left_shift, l);
+        input_1_m8 = vsll_vx_i32m8(vadd_vx_i32m8(vsext_vf4_i32m8(vle8_v_i8m2(input_1_vect, l), l), input_1_offset, l), left_shift, l);
         input_1_vect += l;
-        input_2_m8 = vsll_vx_i32m8(vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vle8_v_i8m2(input_2_vect, l), 0, l), 0, l), input_2_offset, l), left_shift, l);
+        input_2_m8 = vsll_vx_i32m8(vadd_vx_i32m8(vsext_vf4_i32m8(vle8_v_i8m2(input_2_vect, l), l), input_2_offset, l), left_shift, l);
         input_2_vect += l;
         if (input_1_shift < 0) {
             input_1_m8 = vsra_vx_i32m8(vsmul_vx_i32m8(input_1_m8, input_1_mult, l), -input_1_shift, l);

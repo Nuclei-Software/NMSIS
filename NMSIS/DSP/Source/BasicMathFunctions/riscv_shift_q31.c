@@ -81,6 +81,7 @@ void riscv_shift_q31(
   blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vint32m4_t vx;
+  vint32m8_t vy;
   if (sign == 0U)
   {
     for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)
@@ -93,11 +94,11 @@ void riscv_shift_q31(
   }
   else
   {
-    for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)
+    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
     {
-      vx = vle32_v_i32m4(pSrc, l);
+      vy = vle32_v_i32m8(pSrc, l);
       pSrc += l;
-      vse32_v_i32m4(pDst, vsra_vx_i32m4(vx, -shiftBits, l), l);
+      vse32_v_i32m8(pDst, vsra_vx_i32m8(vy, -shiftBits, l), l);
       pDst += l;
     }
   }

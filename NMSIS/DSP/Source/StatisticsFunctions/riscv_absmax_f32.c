@@ -156,6 +156,8 @@ void riscv_absmax_f32(
     blkCnt = blockSize;
     uint32_t temp_index = 0;
     float32_t temp_max;
+    vbool4_t mask;
+    unsigned long last_suf = 0, temp_index = 0;
     size_t l;
     vfloat32m8_t v_x;
     const float32_t *pIN = pSrc;
@@ -170,18 +172,11 @@ void riscv_absmax_f32(
         temp_max = vfmv_f_s_f32m1_f32(vfredmax_vs_f32m8_f32m1(v_zero, v_x, v_zero, l));
         if (temp_max > out) {
             out = temp_max;
-            outIndex = temp_index;
+            mask = vmfeq_vf_f32m8_b4(v_x, temp_max, l);
+            temp_index = vfirst_m_b1(mask, l);
+            outIndex = last_suf + temp_index;
         }
-        temp_index += l;
-    }
-    pIN = pSrc + outIndex;
-    while (1) {
-        if (out == *pIN) {
-            break;
-        } else {
-            pIN++;
-            outIndex++;
-        }
+        last_suf += l;
     }
 #else
   /* Initialise index value to zero. */

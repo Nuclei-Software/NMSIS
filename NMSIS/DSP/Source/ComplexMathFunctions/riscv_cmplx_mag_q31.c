@@ -59,6 +59,33 @@ void riscv_cmplx_mag_q31(
         q31_t real, imag;                              /* Temporary input variables */
         q31_t acc0, acc1;                              /* Accumulators */
 
+#if defined(RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
+  blkCnt = numSamples;                               /* Loop counter */
+  size_t l;
+  ptrdiff_t bstride = 8;
+  vint32m4_t v_R, v_I;
+  vint32m4_t v_sum, v_res;
+  vfloat32m4_t tmp00m4;
+
+  for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)
+  {
+    //v_R = vlse32_v_i32m4(pSrc, bstride, l);
+    //v_I = vlse32_v_i32m4(pSrc + 1, bstride, l);
+    vlseg2e32_v_i32m4(&v_R, &v_I, pSrc, l);
+    pSrc += l * 2;
+    v_R = vnsra_wx_i32m4(vwmul_vv_i64m8(v_R, v_R, l), 33, l);
+    v_I = vnsra_wx_i32m4(vwmul_vv_i64m8(v_I, v_I, l), 33, l);
+    v_sum = vadd_vv_i32m4(v_R, v_I, l);
+    tmp00m4 = vfcvt_f_x_v_f32m4(v_sum, l);
+    tmp00m4 = vfdiv_vf_f32m4(tmp00m4, 0x80000000, l);
+    tmp00m4 = vfsqrt_v_f32m4(tmp00m4, l);
+    tmp00m4 = vfmul_vf_f32m4(tmp00m4, 0x80000000, l);
+    v_res = vfcvt_x_f_v_i32m4(tmp00m4, l);
+    vse32_v_i32m4(pDst, v_res, l);
+    pDst += l;
+  }
+#else
+
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -148,6 +175,7 @@ void riscv_cmplx_mag_q31(
     blkCnt--;
   }
 
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

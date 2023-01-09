@@ -82,51 +82,55 @@ void riscv_quaternion2rotation_f32(const float32_t *pInputQuaternions,
 #if defined(RISCV_MATH_VECTOR)
     uint32_t blkCnt = nbQuaternions;                               /* Loop counter */
     size_t l;
-    vfloat32m8_t v_QA0, v_QA1, v_QA2, v_QA3;
-    vfloat32m8_t v_q00, v_q11, v_q22, v_q33, v_q01, v_q02, v_q03, v_q12, v_q13, v_q23;
-    vfloat32m8_t v_xx, v_yy, v_zz, v_xy, v_xz, v_yx, v_yz, v_zx, v_zy;
-    vfloat32m8_t v_temp;
+    vfloat32m2_t v_QA0, v_QA1, v_QA2, v_QA3;
+    vfloat32m2_t v_q00, v_q11, v_q22, v_q33, v_q01, v_q02, v_q03, v_q12, v_q13, v_q23;
+    vfloat32m2_t v_xx, v_yy, v_zz, v_xy, v_xz, v_yx, v_yz, v_zx, v_zy;
+    vfloat32m2_t v_temp;
     const float32_t *pQA = pInputQuaternions;
     float32_t *pOUT = pOutputRotations;
     ptrdiff_t bstride = 16;
     ptrdiff_t bstride_out = 36;
-    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-        v_QA0 = vlse32_v_f32m8(pQA, bstride, l);
-        v_QA1 = vlse32_v_f32m8(pQA + 1, bstride, l);
-        v_QA2 = vlse32_v_f32m8(pQA + 2, bstride, l);
-        v_QA3 = vlse32_v_f32m8(pQA + 3, bstride, l);
+    for (; (l = vsetvl_e32m2(blkCnt)) > 0; blkCnt -= l) {
+        //v_QA0 = vlse32_v_f32m2(pQA, bstride, l);
+        //v_QA1 = vlse32_v_f32m2(pQA + 1, bstride, l);
+        //v_QA2 = vlse32_v_f32m2(pQA + 2, bstride, l);
+        //v_QA3 = vlse32_v_f32m2(pQA + 3, bstride, l);
+        vlsseg4e32_v_f32m2(&v_QA0, &v_QA1, &v_QA2, &v_QA3, pQA, bstride, l);
 
-        v_q00 = vfmul_vv_f32m8(v_QA0, v_QA0, l);
-        v_q11 = vfmul_vv_f32m8(v_QA1, v_QA1, l);
-        v_q22 = vfmul_vv_f32m8(v_QA2, v_QA2, l);
-        v_q33 = vfmul_vv_f32m8(v_QA3, v_QA3, l);
-        v_q01 = vfmul_vv_f32m8(v_QA0, v_QA1, l);
-        v_q02 = vfmul_vv_f32m8(v_QA0, v_QA2, l);
-        v_q03 = vfmul_vv_f32m8(v_QA0, v_QA3, l);
-        v_q12 = vfmul_vv_f32m8(v_QA1, v_QA2, l);
-        v_q13 = vfmul_vv_f32m8(v_QA1, v_QA3, l);
-        v_q23 = vfmul_vv_f32m8(v_QA2, v_QA3, l);
+        v_q00 = vfmul_vv_f32m2(v_QA0, v_QA0, l);
+        v_q11 = vfmul_vv_f32m2(v_QA1, v_QA1, l);
+        v_q22 = vfmul_vv_f32m2(v_QA2, v_QA2, l);
+        v_q33 = vfmul_vv_f32m2(v_QA3, v_QA3, l);
+        v_q01 = vfmul_vv_f32m2(v_QA0, v_QA1, l);
+        v_q02 = vfmul_vv_f32m2(v_QA0, v_QA2, l);
+        v_q03 = vfmul_vv_f32m2(v_QA0, v_QA3, l);
+        v_q12 = vfmul_vv_f32m2(v_QA1, v_QA2, l);
+        v_q13 = vfmul_vv_f32m2(v_QA1, v_QA3, l);
+        v_q23 = vfmul_vv_f32m2(v_QA2, v_QA3, l);
 
-        v_xx = vfsub_vv_f32m8(vfadd_vv_f32m8(v_q00, v_q11, l), vfadd_vv_f32m8(v_q22,v_q33, l), l);
-        v_yy = vfadd_vv_f32m8(vfsub_vv_f32m8(v_q00, v_q11, l), vfsub_vv_f32m8(v_q22,v_q33, l), l);
-        v_zz = vfsub_vv_f32m8(vfsub_vv_f32m8(v_q00, v_q11, l), vfsub_vv_f32m8(v_q22,v_q33, l), l);
-        v_xy = vfmul_vf_f32m8(vfsub_vv_f32m8(v_q12, v_q03, l), 2, l);
-        v_xz = vfmul_vf_f32m8(vfadd_vv_f32m8(v_q13, v_q02, l), 2, l);
-        v_yx = vfmul_vf_f32m8(vfadd_vv_f32m8(v_q12, v_q03, l), 2, l);
-        v_yz = vfmul_vf_f32m8(vfsub_vv_f32m8(v_q23, v_q01, l), 2, l);
-        v_zx = vfmul_vf_f32m8(vfsub_vv_f32m8(v_q13, v_q02, l), 2, l);
-        v_zy = vfmul_vf_f32m8(vfadd_vv_f32m8(v_q23, v_q01, l), 2, l);
-
-        vsse32_v_f32m8(pOUT, bstride_out, v_xx, l);
-        vsse32_v_f32m8(pOUT + 1, bstride_out, v_xy, l);
-        vsse32_v_f32m8(pOUT + 2, bstride_out, v_xz, l);
-        vsse32_v_f32m8(pOUT + 3, bstride_out, v_yx, l);
-        vsse32_v_f32m8(pOUT + 4, bstride_out, v_yy, l);
-        vsse32_v_f32m8(pOUT + 5, bstride_out, v_yz, l);
-        vsse32_v_f32m8(pOUT + 6, bstride_out, v_zx, l);
-        vsse32_v_f32m8(pOUT + 7, bstride_out, v_zy, l);
-        vsse32_v_f32m8(pOUT + 8, bstride_out, v_zz, l);
-
+        v_xx = vfsub_vv_f32m2(vfadd_vv_f32m2(v_q00, v_q11, l), vfadd_vv_f32m2(v_q22, v_q33, l), l);
+        v_yy = vfadd_vv_f32m2(vfsub_vv_f32m2(v_q00, v_q11, l), vfsub_vv_f32m2(v_q22, v_q33, l), l);
+        v_zz = vfsub_vv_f32m2(vfsub_vv_f32m2(v_q00, v_q11, l), vfsub_vv_f32m2(v_q22, v_q33, l), l);
+        v_xy = vfmul_vf_f32m2(vfsub_vv_f32m2(v_q12, v_q03, l), 2, l);
+        v_xz = vfmul_vf_f32m2(vfadd_vv_f32m2(v_q13, v_q02, l), 2, l);
+        v_yx = vfmul_vf_f32m2(vfadd_vv_f32m2(v_q12, v_q03, l), 2, l);
+        v_yz = vfmul_vf_f32m2(vfsub_vv_f32m2(v_q23, v_q01, l), 2, l);
+        v_zx = vfmul_vf_f32m2(vfsub_vv_f32m2(v_q13, v_q02, l), 2, l);
+        v_zy = vfmul_vf_f32m2(vfadd_vv_f32m2(v_q23, v_q01, l), 2, l);
+#if 0
+        vsse32_v_f32m2(pOUT, bstride_out, v_xx, l);
+        vsse32_v_f32m2(pOUT + 1, bstride_out, v_xy, l);
+        vsse32_v_f32m2(pOUT + 2, bstride_out, v_xz, l);
+        vsse32_v_f32m2(pOUT + 3, bstride_out, v_yx, l);
+        vsse32_v_f32m2(pOUT + 4, bstride_out, v_yy, l);
+        vsse32_v_f32m2(pOUT + 5, bstride_out, v_yz, l);
+        vsse32_v_f32m2(pOUT + 6, bstride_out, v_zx, l);
+        vsse32_v_f32m2(pOUT + 7, bstride_out, v_zy, l);
+        vsse32_v_f32m2(pOUT + 8, bstride_out, v_zz, l);
+#endif
+        vssseg4e32_v_f32m2(pOUT, bstride_out, v_xx, v_xy, v_xz, v_yx, l);
+        vssseg4e32_v_f32m2(pOUT + 4, bstride_out, v_yy, v_yz, v_zx, v_zy, l);
+        vsse32_v_f32m2(pOUT + 8, bstride_out, v_zz, l);
         pQA += l * 4;
         pOUT += l * 9;
     }

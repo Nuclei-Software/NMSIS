@@ -67,8 +67,8 @@ void riscv_softmax_u8(const uint8_t *input,
         vuint8m1_t v_temp;
         l = vsetvl_e8m1(1);
         v_temp = vsub_vv_u8m1(v_temp, v_temp, l);
-        blkCnt_v = (row_size - 1) & (~RVV_OPT_THRESHOLD);
-        col = 1;
+        blkCnt_v = row_size & (~RVV_OPT_THRESHOLD);
+        col = 0;
         for (; (l = vsetvl_e8m8(blkCnt_v)) > 0; blkCnt_v -= l) {
             v_x = vle8_v_u8m8(input + col, l);
             v_temp = vredmaxu_vs_u8m8_u8m1(v_temp, v_x, v_temp, l);

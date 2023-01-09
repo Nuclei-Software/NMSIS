@@ -32,7 +32,7 @@
 #include "riscv_nnfunctions.h"
 #include "riscv_nnsupportfunctions.h"
 
-#if defined(RISCV_MATH_DSP)
+#if defined(RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
 
 static void scale_q31_to_q7_and_clamp(const q31_t *buffer,
                                       q7_t *target,
@@ -48,7 +48,23 @@ static void scale_q31_to_q7_and_clamp(const q31_t *buffer,
     {
         return;
     }
-
+#if defined (RISCV_MATH_VECTOR)
+    size_t l;
+    vint32m8_t vx, vy;
+    uint32_t blkCnt = length;
+    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+        vx = vle32_v_i32m8(buffer, l);
+        buffer += l;
+        vbool4_t mask = vmsgt_vx_i32m8_b4(vx, 0, l);
+        vy = vadd_vx_i32m8(vx, half_count, l);
+        vx = vsub_vx_i32m8(vx, half_count, l);
+        vx = vmerge_vvm_i32m8 (mask, vy, vx, l);
+        vx = vdiv_vx_i32m8(vx, count, l);
+        vx = vmin_vx_i32m8(vmax_vx_i32m8(vx, act_min, l), act_max, l);
+        vse8_v_i8m2(target, vnsra_wx_i8m2(vnsra_wx_i16m4(vx, 0, l), 0, l), l);
+        target += l;
+    }
+#else
     for (int i = 0; i < length; i++)
     {
         int32_t sum = buffer[i] > 0 ? (buffer[i] + half_count) : (buffer[i] - half_count);
@@ -58,6 +74,7 @@ static void scale_q31_to_q7_and_clamp(const q31_t *buffer,
 
         target[i] = (q7_t)sum;
     }
+#endif /* defined (RISCV_MATH_VECTOR) */
 }
 #endif
 
@@ -105,7 +122,7 @@ riscv_status riscv_avgpool_s8(const nmsis_nn_context *ctx,
     }
     q31_t *buffer = (q31_t *)ctx->buf;
 
-#if defined(RISCV_MATH_DSP)
+#if defined(RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
 
     /* Run the following code for CPU's with DSP extension
      */
@@ -202,7 +219,7 @@ riscv_status riscv_avgpool_s8(const nmsis_nn_context *ctx,
         }
     }
 
-#endif
+#endif /* defined(RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR) */
     return RISCV_MATH_SUCCESS;
 }
 

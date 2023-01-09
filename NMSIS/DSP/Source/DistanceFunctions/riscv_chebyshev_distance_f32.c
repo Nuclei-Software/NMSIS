@@ -67,7 +67,7 @@ float32_t riscv_chebyshev_distance_f32(const float32_t *pA,const float32_t *pB, 
       v_y = vle32_v_f32m8(pB, l);
       pB += l;
       v_at = vfsub_vv_f32m8(v_x, v_y, l);
-      v_at = vfsgnjx_vv_f32m8(v_at, v_at, l);
+      v_at = vfabs_v_f32m8(v_at, l);
       v_temp = vfredmax_vs_f32m8_f32m1(v_temp, v_at, v_temp, l);
    }
    maxVal = vfmv_f_s_f32m1_f32(v_temp);

@@ -66,12 +66,13 @@ void riscv_max_f32(
 
 #if defined(RISCV_MATH_VECTOR)
     float32_t max_temp;
-    uint32_t index_temp = 0;
 
     size_t l;
     const float32_t *inputx = pSrc;
     vfloat32m8_t v_x;
     vfloat32m1_t v_tempa;
+    vbool4_t mask;
+    unsigned long last_suf = 0, temp_index = 0;
     out = pSrc[0];
     outIndex = 0;
 
@@ -85,18 +86,11 @@ void riscv_max_f32(
         max_temp = vfmv_f_s_f32m1_f32(vfredmax_vs_f32m8_f32m1(v_tempa, v_x, v_tempa, l));
         if (max_temp > out) {
           out = max_temp;
-          outIndex = index_temp;
+          mask = vmfeq_vf_f32m8_b4(v_x, max_temp, l);
+          temp_index = vfirst_m_b4(mask, l);
+          outIndex = last_suf + temp_index;
         }
-        index_temp += l;
-    }
-
-    while (1)
-    {
-        if (pSrc[outIndex] == out) {
-          break;
-        } else {
-          outIndex++;
-        }
+        last_suf += l;
     }
 #else
 

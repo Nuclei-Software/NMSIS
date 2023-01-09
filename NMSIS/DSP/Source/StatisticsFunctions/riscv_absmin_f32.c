@@ -156,11 +156,12 @@ void riscv_absmin_f32(
 
 #if defined(RISCV_MATH_VECTOR)
     blkCnt = blockSize;
-    uint32_t temp_index = 0;
     float32_t temp_min;
     size_t l;
     vfloat32m8_t v_x;
+    vbool4_t mask;
     vfloat32m1_t v_temp;
+    unsigned long last_suf = 0, temp_index = 0;
     const float32_t *pIN = pSrc;
     out = fabsf(*pIN);
     outIndex = 0;
@@ -173,18 +174,11 @@ void riscv_absmin_f32(
         temp_min = vfmv_f_s_f32m1_f32(vfredmin_vs_f32m8_f32m1(v_temp, v_x, v_temp, l));
         if (temp_min < out) {
             out = temp_min;
-            outIndex = temp_index;
+            mask = vmfeq_vf_f32m8_b4(v_x, temp_min, l);
+            temp_index = vfirst_m_b1(mask, l);
+            outIndex = last_suf + temp_index;
         }
-        temp_index += l;
-    }
-    pIN = pSrc + outIndex;
-    while (1) {
-        if (out == *pIN) {
-            break;
-        } else {
-            pIN++;
-            outIndex++;
-        }
+        last_suf += l;
     }
 #else
   /* Initialise index value to zero. */

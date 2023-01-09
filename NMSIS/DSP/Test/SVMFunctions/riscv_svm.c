@@ -79,7 +79,6 @@ void linearSVM(void)
         printf("expect: %d, actual: %d\n", 0, result);
         test_flag_error = 1;
     }
-    BENCH_STATUS(riscv_svm_linear_predict_f32);
 
     /*
         Input data.
@@ -168,7 +167,6 @@ void polynomialSVM(void)
         printf("expect: %d, actual: %d\n", 0, result);
         test_flag_error = 1;
     }
-    BENCH_STATUS(riscv_svm_polynomial_predict_f32);
 
     /*
         This input vector is corresponding to a point inside the second class.
@@ -254,7 +252,6 @@ void rbfSVM(void)
         printf("expect: %d, actual: %d\n", 0, result);
         test_flag_error = 1;
     }
-    BENCH_STATUS(riscv_svm_rbf_predict_f32);
 
     /*
         This input vector is corresponding to a point inside the second class.

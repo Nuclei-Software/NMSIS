@@ -57,12 +57,12 @@ void riscv_max_q15(
 
 #if defined(RISCV_MATH_VECTOR)
   q15_t max_temp;
-  uint32_t index_temp = 0;
   size_t l;
   const q15_t *inputx = pSrc;
   vint16m8_t v_x;
   vint16m1_t v_tempa;
-
+  unsigned long last_suf = 0, temp_index = 0;
+  vbool2_t mask;
   out = pSrc[0];
   outIndex = 0;
   l = vsetvl_e16m1(1);
@@ -76,22 +76,11 @@ void riscv_max_q15(
     if (max_temp > out)
     {
       out = max_temp;
-      outIndex = index_temp;
+      mask = vmseq_vx_i16m8_b2(v_x, max_temp, l);
+      temp_index = vfirst_m_b2(mask, l);
+      outIndex = last_suf + temp_index;
     }
-    index_temp += l;
-
-  }
-
-  while (1)
-  {
-    if (pSrc[outIndex] == out)
-    {
-      break;
-    }
-    else
-    {
-      outIndex++;
-    }
+    last_suf += l;
   }
 #else
 

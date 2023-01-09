@@ -179,7 +179,7 @@ void riscv_absmin_q7(
   size_t l;
   vint8m8_t v_x, v_zero;
   vint8m1_t v_temp;
-  unsigned long temp_index = 0;
+  unsigned long last_suf = 0, temp_index = 0;
   const q7_t *pData = pSrc;
   out = 0x7f;
   outIndex = 0;
@@ -198,23 +198,11 @@ void riscv_absmin_q7(
     if (minVal < out)
     {
       out = minVal;
-      outIndex = temp_index;
+      mask = vmseq_vx_i8m8_b1(v_x, minVal, l);
+      temp_index = vfirst_m_b1(mask, l);
+      outIndex = last_suf + temp_index;
     }
-    temp_index += l;
-  }
-
-  pData = pSrc + outIndex;
-  while (1)
-  {
-    if ((out == *pData) || (out == -(*pData)))
-    {
-      break;
-    }
-    else
-    {
-      pData++;
-      outIndex++;
-    }
+    last_suf += l;
   }
 #else
 

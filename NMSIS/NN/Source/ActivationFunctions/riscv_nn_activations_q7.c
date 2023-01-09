@@ -76,6 +76,21 @@ void riscv_nn_activations_direct_q7(q7_t *data, uint16_t size, uint16_t int_widt
         lookup_table = tanhTable_q7;
         break;
     }
+#if defined(RISCV_MATH_VECTOR)
+    uint16_t blkCnt = i;                               /* Loop counter */
+    size_t l;
+    vint8m8_t vx;
+    vuint8m8_t bindex;
+    for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
+        vx = vle8_v_i8m8(pIn, l);
+        vx = vsra_vx_i8m8(vx, shift_size, l);
+        bindex = vreinterpret_v_i8m8_u8m8(vx);
+        pIn += l;
+        vx = vloxei8_v_i8m8(lookup_table, bindex, l);
+        vse8_v_i8m8(pOut, vx, l);
+        pOut += l;
+    }
+#else
     while (i)
     {
         in = *pIn++;
@@ -83,6 +98,7 @@ void riscv_nn_activations_direct_q7(q7_t *data, uint16_t size, uint16_t int_widt
         *pOut++ = out;
         i--;
     }
+#endif /* #if defined(RISCV_MATH_VECTOR) */
 }
 
 /**

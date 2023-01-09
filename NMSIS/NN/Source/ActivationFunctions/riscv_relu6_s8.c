@@ -50,7 +50,7 @@
 
 void riscv_relu6_s8(q7_t *data, uint16_t size)
 {
-	uint16_t i;
+    uint16_t i;
 
 #if defined(RISCV_MATH_VECTOR)
     uint16_t blkCnt = size & (~RVV_OPT_THRESHOLD);                               /* Loop counter */

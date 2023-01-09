@@ -74,25 +74,26 @@ void riscv_cmplx_dot_prod_q31(
   vint64m4_t v_RR, v_II, v_RI, v_IR;
 
   l = vsetvl_e64m1(1);
-  vint64m1_t v_temp = vmv_s_x_i64m1(v_temp, 0, l);
+  vint64m1_t v_temp, v_temp1;
+  v_temp = vmv_s_x_i64m1(v_temp, 0, l);
+  v_temp1 = vmv_v_v_i64m1(v_temp, l);
   /* Note the total number of V registers to avoid saturation */
   for (; (l = vsetvl_e32m2(blkCnt)) > 0; blkCnt -= l)
   {
-    v_R1 = vlse32_v_i32m2(pSrcA, bstride, l);
-    v_R2 = vlse32_v_i32m2(pSrcB, bstride, l);
-
-    v_I1 = vlse32_v_i32m2(pSrcA + 1, bstride, l);
-    v_I2 = vlse32_v_i32m2(pSrcB + 1, bstride, l);
+    vlsseg2e32_v_i32m2(&v_R1, &v_I1, pSrcA, bstride, l);
+    vlsseg2e32_v_i32m2(&v_R2, &v_I2, pSrcB, bstride, l);
     v_RR = vsra_vx_i64m4(vwmul_vv_i64m4(v_R1, v_R2, l), 14, l);
     v_II = vsra_vx_i64m4(vwmul_vv_i64m4(v_I1, v_I2, l), 14, l);
-    real_sum += vmv_x_s_i64m1_i64(vredsum_vs_i64m4_i64m1(v_temp, vsub_vv_i64m4(v_RR, v_II, l), v_temp, l));
+    v_temp = vredsum_vs_i64m4_i64m1(v_temp, vsub_vv_i64m4(v_RR, v_II, l), v_temp, l);
     v_RI = vsra_vx_i64m4(vwmul_vv_i64m4(v_R1, v_I2, l), 14, l);
     v_IR = vsra_vx_i64m4(vwmul_vv_i64m4(v_I1, v_R2, l), 14, l);
-    imag_sum += vmv_x_s_i64m1_i64(vredsum_vs_i64m4_i64m1(v_temp, vadd_vv_i64m4(v_RI, v_IR, l), v_temp, l));
+    v_temp1 = vredsum_vs_i64m4_i64m1(v_temp1, vadd_vv_i64m4(v_RI, v_IR, l), v_temp1, l);
 
     pSrcA += l * 2;
     pSrcB += l * 2;
   }
+  real_sum += vmv_x_s_i64m1_i64(v_temp);
+  imag_sum += vmv_x_s_i64m1_i64(v_temp1);
 #else
   q31_t a0, b0, c0, d0;
 

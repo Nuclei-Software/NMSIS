@@ -58,13 +58,13 @@ void riscv_min_q31(
 
 #if defined(RISCV_MATH_VECTOR)
     q31_t min_temp;
-    uint32_t index_temp = 0;
 
     size_t l;
     const int32_t *inputx = pSrc;
     vint32m8_t v_x;
     vint32m1_t v_tempa;
-
+    unsigned long last_suf = 0, temp_index = 0;
+    vbool4_t mask;
     out = pSrc[0];
     outIndex = 0;
     blkCnt = blockSize;
@@ -77,18 +77,11 @@ void riscv_min_q31(
         min_temp = vmv_x_s_i32m1_i32(vredmin_vs_i32m8_i32m1(v_tempa, v_x, v_tempa, l));
         if (min_temp < out){
           out = min_temp;
-          outIndex = index_temp;
+          mask = vmseq_vx_i32m8_b4(v_x, min_temp, l);
+          temp_index = vfirst_m_b4(mask, l);
+          outIndex = last_suf + temp_index;
         }
-        index_temp += l;
-    }
-
-    while (1)
-    {
-        if (pSrc[outIndex] == out) {
-          break;
-        } else {
-          outIndex++;
-        }
+        last_suf += l;
     }
 #else
 

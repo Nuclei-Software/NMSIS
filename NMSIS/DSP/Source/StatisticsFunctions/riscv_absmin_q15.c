@@ -152,7 +152,7 @@ void riscv_absmin_q15(
   size_t l;
   vint16m8_t v_x, v_zero;
   vint16m1_t v_temp;
-  unsigned long temp_index = 0;
+  unsigned long last_suf = 0, temp_index = 0;
   const q15_t *pData = pSrc;
   out = 0x7fff;
   outIndex = 0;
@@ -172,23 +172,11 @@ void riscv_absmin_q15(
     if (minVal < out)
     {
       out = minVal;
-      outIndex = temp_index;
+      mask = vmseq_vx_i16m8_b2(v_x, minVal, l);
+      temp_index = vfirst_m_b2(mask, l);
+      outIndex = last_suf + temp_index;
     }
-    temp_index += l;
-  }
-
-  pData = pSrc + outIndex;
-  while (1)
-  {
-    if ((out == *pData) || (out == -(*pData)))
-    {
-      break;
-    }
-    else
-    {
-      pData++;
-      outIndex++;
-    }
+    last_suf += l;
   }
 #else
 

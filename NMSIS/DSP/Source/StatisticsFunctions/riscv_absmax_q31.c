@@ -143,7 +143,7 @@ void riscv_absmax_q31(
   size_t l;
   vint32m8_t v_x, v_zero;
   vint32m1_t v_temp;
-  unsigned long temp_index = 0;
+  unsigned long last_suf = 0, temp_index = 0;
   l = vsetvlmax_e32m8();
   v_zero = vmv_v_x_i32m8(0, l);
   const q31_t *pData = pSrc;
@@ -160,19 +160,11 @@ void riscv_absmax_q31(
     maxVal = vmv_x_s_i32m1_i32(vredmax_vs_i32m8_i32m1(v_temp, v_x, v_temp, l));
     if (maxVal > out) {
       out = maxVal;
-      outIndex = temp_index;
+      mask = vmseq_vx_i32m8_b4(v_x, maxVal, l);
+      temp_index = vfirst_m_b4(mask, l);
+      outIndex = last_suf + temp_index;
     }
-    temp_index += l;
-  }
-  pData = pSrc + outIndex;
-
-  while (1) {
-    if ((out == *pData) || (out == -(*pData))) {
-      break;
-    } else {
-      pData++;
-      outIndex++;
-    }
+    last_suf += l;
   }
 #else
 

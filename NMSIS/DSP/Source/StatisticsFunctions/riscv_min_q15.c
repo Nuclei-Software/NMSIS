@@ -58,13 +58,12 @@ void riscv_min_q15(
 
 #if defined(RISCV_MATH_VECTOR)
   q15_t min_temp;
-  uint32_t index_temp = 0;
-
   size_t l;
   const int16_t * inputx = pSrc;
   vint16m8_t v_x;
   vint16m1_t v_tempa;
-
+  unsigned long last_suf = 0, temp_index = 0;
+  vbool2_t mask;
   out = pSrc[0];
   outIndex = 0;
   blkCnt = blockSize;
@@ -77,18 +76,11 @@ void riscv_min_q15(
       min_temp = vmv_x_s_i16m1_i16(vredmin_vs_i16m8_i16m1(v_tempa, v_x, v_tempa, l));
       if (min_temp < out) {
         out = min_temp;
-        outIndex = index_temp;
+        mask = vmseq_vx_i16m8_b2(v_x, min_temp, l);
+        temp_index = vfirst_m_b2(mask, l);
+        outIndex = last_suf + temp_index;
       }
-      index_temp += l;
-  }
-
-  while(1)
-  {
-      if (pSrc[outIndex] == out) {
-        break;
-      } else {
-        outIndex++;
-      }
+      last_suf += l;
   }
 #else
 #if defined (RISCV_MATH_LOOPUNROLL)

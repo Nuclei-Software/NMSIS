@@ -57,6 +57,25 @@ void riscv_quaternion_conjugate_f32(const float32_t *pInputQuaternions,
     float32_t *pConjugateQuaternions,
     uint32_t nbQuaternions)
 {
+#if defined(RISCV_MATH_VECTOR)
+    uint32_t blkCnt = nbQuaternions;                               /* Loop counter */
+    size_t l;
+    const float32_t *pSrc = pInputQuaternions;
+    float32_t *pDes = pConjugateQuaternions;
+    vfloat32m8_t vx;
+    vfloat32m8_t temp00;
+    l = vsetvlmax_e32m8();
+    float32_t mul[32] = {1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1,
+                         1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1};
+    temp00 = vle32_v_f32m8(mul, l);                   /* vector 0 */
+    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+    {
+      vx = vle32_v_f32m8(pSrc, l);
+      pSrc += l;
+      vse32_v_f32m8(pDes, vfmul_vv_f32m8(vx, temp00, l), l);
+      pDes += l;
+    }
+#else
     for(uint32_t i=0; i < nbQuaternions; i++)
     {
 
@@ -65,6 +84,7 @@ void riscv_quaternion_conjugate_f32(const float32_t *pInputQuaternions,
         pConjugateQuaternions[4 * i + 2] = -pInputQuaternions[4 * i + 2];
         pConjugateQuaternions[4 * i + 3] = -pInputQuaternions[4 * i + 3];
     }
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

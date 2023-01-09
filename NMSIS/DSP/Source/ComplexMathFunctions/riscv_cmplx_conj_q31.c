@@ -59,21 +59,18 @@ void riscv_cmplx_conj_q31(
 #if defined(RISCV_MATH_VECTOR)
   uint32_t blkCnt = numSamples;                               /* Loop counter */
   size_t l;
-  ptrdiff_t bstride = 8;
-  vint32m8_t v_R, v_I;
+  vint32m8_t vx;
   vint32m8_t temp00;
   l = vsetvlmax_e32m8();
-  temp00 = vxor_vv_i32m8(temp00, temp00, l);                   /* vector 0 */
+  int32_t mul[32] = {1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1,
+                     1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1};
+  temp00 = vle32_v_i32m8(mul, l);                   /* vector 0 */
   for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
   {
-    v_R = vlse32_v_i32m8(pSrc, bstride, l);
-    vsse32_v_i32m8(pDst, bstride, v_R, l);
-
-    v_I = vsub_vv_i32m8(temp00, vlse32_v_i32m8(pSrc + 1, bstride, l), l);
-    vsse32_v_i32m8(pDst + 1, bstride, v_I, l);
-
-    pSrc += l * 2;
-    pDst += l * 2;
+    vx = vle32_v_i32m8(pSrc, l);
+    vse32_v_i32m8(pDst, vmul_vv_i32m8(vx, temp00, l), l);
+    pSrc += l;
+    pDst += l;
   }
 
 #else

@@ -64,6 +64,7 @@ void riscv_shift_q15(
   blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vint16m4_t vx;
+  vint16m8_t vy;
   /* If the shift value is positive then do right shift else left shift */
   if (sign == 0U)
   {
@@ -78,11 +79,11 @@ void riscv_shift_q15(
   }
   else
   {
-    for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
+    for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
     {
-      vx = vle16_v_i16m4(pSrc, l);
+      vy = vle16_v_i16m8(pSrc, l);
       pSrc += l;
-      vse16_v_i16m4(pDst, vsra_vx_i16m4(vx, -shiftBits, l), l);
+      vse16_v_i16m8(pDst, vsra_vx_i16m8(vy, -shiftBits, l), l);
       pDst += l;
 
     }

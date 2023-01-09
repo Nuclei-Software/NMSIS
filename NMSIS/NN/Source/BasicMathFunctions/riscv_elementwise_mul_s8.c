@@ -74,9 +74,9 @@ riscv_status riscv_elementwise_mul_s8(const int8_t *input_1_vect,
     vint32m8_t sum0m8;
 
     for (; (l = vsetvl_e8m2(blkCnt)) > 0; blkCnt -= l) {
-        input_1_m8 = vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vle8_v_i8m2(input_1_vect, l), 0, l), 0, l), input_1_offset, l);
+        input_1_m8 = vadd_vx_i32m8(vsext_vf4_i32m8(vle8_v_i8m2(input_1_vect, l), l), input_1_offset, l);
         input_1_vect += l;
-        input_2_m8 = vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vle8_v_i8m2(input_2_vect, l), 0, l), 0, l), input_2_offset, l);
+        input_2_m8 = vadd_vx_i32m8(vsext_vf4_i32m8(vle8_v_i8m2(input_2_vect, l), l), input_2_offset, l);
         input_2_vect += l;
         sum0m8 = vmul_vv_i32m8(input_1_m8, input_2_m8, l);
         if (out_shift < 0) {

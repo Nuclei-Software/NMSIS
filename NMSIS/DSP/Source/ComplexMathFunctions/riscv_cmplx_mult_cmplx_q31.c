@@ -65,11 +65,8 @@ void riscv_cmplx_mult_cmplx_q31(
   vint64m8_t v_RR, v_II, v_RI, v_IR;
   for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)
   {
-    v_R1 = vlse32_v_i32m4(pSrcA, bstride, l);
-    v_R2 = vlse32_v_i32m4(pSrcB, bstride, l);
-
-    v_I1 = vlse32_v_i32m4(pSrcA + 1, bstride, l);
-    v_I2 = vlse32_v_i32m4(pSrcB + 1, bstride, l);
+    vlsseg2e32_v_i32m4(&v_R1, &v_I1, pSrcA, bstride, l);
+    vlsseg2e32_v_i32m4(&v_R2, &v_I2, pSrcB, bstride, l);
     pSrcA += l * 2;
     pSrcB += l * 2;
 
@@ -77,8 +74,10 @@ void riscv_cmplx_mult_cmplx_q31(
     v_II = vsra_vx_i64m8(vwmul_vv_i64m8(v_I1, v_I2, l), 33, l);
     v_RI = vsra_vx_i64m8(vwmul_vv_i64m8(v_R1, v_I2, l), 33, l);
     v_IR = vsra_vx_i64m8(vwmul_vv_i64m8(v_I1, v_R2, l), 33, l);
-    vsse32_v_i32m4(pDst, bstride, vnclip_wx_i32m4(vssub_vv_i64m8(v_RR, v_II, l), 0, l), l);
-    vsse32_v_i32m4(pDst + 1, bstride, vnclip_wx_i32m4(vsadd_vv_i64m8(v_RI, v_IR, l), 0, l), l);
+
+    v_R1 = vnclip_wx_i32m4(vssub_vv_i64m8(v_RR, v_II, l), 0, l);
+    v_R2 = vnclip_wx_i32m4(vsadd_vv_i64m8(v_RI, v_IR, l), 0, l);
+    vssseg2e32_v_i32m4(pDst, bstride, v_R1, v_R2, l);
     pDst += l * 2;
   }
 #else

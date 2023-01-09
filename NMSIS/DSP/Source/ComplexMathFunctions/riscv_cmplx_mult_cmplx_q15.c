@@ -65,11 +65,8 @@ void riscv_cmplx_mult_cmplx_q15(
 
   for(; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
   {
-    v_R1 = vlse16_v_i16m4(pSrcA, bstride, l);
-    v_R2 = vlse16_v_i16m4(pSrcB, bstride, l);
-
-    v_I1 = vlse16_v_i16m4(pSrcA + 1, bstride, l);
-    v_I2 = vlse16_v_i16m4(pSrcB + 1, bstride, l);
+    vlsseg2e16_v_i16m4(&v_R1, &v_I1, pSrcA, bstride, l);
+    vlsseg2e16_v_i16m4(&v_R2, &v_I2, pSrcB, bstride, l);
     pSrcA += l * 2;
     pSrcB += l * 2;
 
@@ -78,8 +75,10 @@ void riscv_cmplx_mult_cmplx_q15(
     v_RI = vsra_vx_i32m8(vwmul_vv_i32m8(v_R1, v_I2, l), 17, l);
     v_IR = vsra_vx_i32m8(vwmul_vv_i32m8(v_I1, v_R2, l), 17, l);
 
-    vsse16_v_i16m4(pDst, bstride, vnclip_wx_i16m4(vssub_vv_i32m8(v_RR, v_II, l), 0, l), l);
-    vsse16_v_i16m4(pDst + 1, bstride, vnclip_wx_i16m4(vsadd_vv_i32m8(v_RI, v_IR, l), 0, l), l);
+    v_R1 = vnclip_wx_i16m4(vssub_vv_i32m8(v_RR, v_II, l), 0, l);
+    v_R2 = vnclip_wx_i16m4(vsadd_vv_i32m8(v_RI, v_IR, l), 0, l);
+    vssseg2e16_v_i16m4(pDst, bstride, v_R1, v_R2, l);
+
     pDst += l * 2;
   }
 #else

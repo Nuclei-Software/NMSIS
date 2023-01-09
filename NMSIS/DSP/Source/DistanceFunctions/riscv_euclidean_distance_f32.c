@@ -68,7 +68,7 @@ float32_t riscv_euclidean_distance_f32(const float32_t *pA,const float32_t *pB, 
       v_at = vfsub_vv_f32m8(v_x, v_y, l);
       v_sum = vfredusum_vs_f32m8_f32m1(v_sum, vfmul_vv_f32m8(v_at, v_at, l), v_sum, l);
    }
-   accum = vfmv_f_s_f32m1_f32(v_sum);
+   accum += vfmv_f_s_f32m1_f32(v_sum);
 #else
    while(blockSize > 0)
    {
