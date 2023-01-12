@@ -1142,8 +1142,7 @@ void ref_std_q15(q15_t *pSrc, uint32_t blockSize, q15_t *pResult)
     }
     sumsq /= (q63_t)(blockSize - 1);
     sum = (q31_t)((q63_t)sum * sum / (q63_t)(blockSize * (blockSize - 1)));
-    *pResult = (q15_t)(
-        sqrtf((float)ref_sat_q15((sumsq - sum) >> 15) / 32768.0f) * 32768.0f);
+    riscv_sqrt_q15(ref_sat_q15((sumsq - sum) >> 15), pResult);
 }
 
 void ref_var_f32(float32_t *pSrc, uint32_t blockSize, float32_t *pResult)
