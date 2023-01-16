@@ -253,11 +253,12 @@ int DSP_matrix_f32(void)
     float32_t f32_g_array[M * M];
     riscv_mat_init_f32(&f32_B, M, M, (float32_t *)f32_g_array);
     memcpy(f32_g_array, f32_e_array, sizeof(f32_e_array));
+    memcpy(f32_output_ref_2, f32_output_2, sizeof(f32_output_2));
     BENCH_START(riscv_mat_inverse_f32);
     riscv_mat_inverse_f32(&f32_A, &f32_des);
     BENCH_END(riscv_mat_inverse_f32);
     ref_mat_inverse_f32(&f32_B, &f32_ref);
-    s = verify_results_f32_low_precision(f32_output_ref_2, f32_output_2, M * M);
+    s = verify_results_f32(f32_output_ref_2, f32_output_2, M * M);
     if (s != 0) {
         BENCH_ERROR(riscv_mat_inverse_f32);
         test_flag_error = 1;
