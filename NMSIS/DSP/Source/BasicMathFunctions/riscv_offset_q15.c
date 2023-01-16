@@ -99,7 +99,7 @@ void riscv_offset_q15(
 
 #if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
-	  write_q15x4_ia (&pDst, __RV_KADD32(read_q15x4_ia ((q15_t **) &pSrc), offset_all));
+	  write_q15x4_ia (&pDst, __RV_KADD16(read_q15x4_ia ((q15_t **) &pSrc), offset_all));
 #else
 #ifdef NUCLEI_DSP_N1
 	  write_q15x4_ia (&pDst, __DKADD16(read_q15x4_ia ((q15_t **) &pSrc), offset_all));

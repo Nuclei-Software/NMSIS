@@ -78,12 +78,16 @@ void riscv_max_no_idx_q15(
 
 #ifdef RISCV_MATH_DSP
 #if __RISCV_XLEN == 64
-  q63_t in, max = 0;
+  q63_t in;
+  q63_t max = read_q15x4((q15_t*)pSrc);
   q15_t max_q15[4];
+
   blkCnt = blockSize >> 2U;
 #else
-  q31_t in, max = 0;
+  q31_t in;
+  q31_t max = read_q15x2((q15_t*)pSrc);
   q15_t max_q15[2];
+
   blkCnt = blockSize >> 1U;
 #endif /* __RISCV_XLEN == 64 */
 

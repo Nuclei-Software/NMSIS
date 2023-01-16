@@ -79,11 +79,13 @@ void riscv_max_no_idx_q7(
 
 #ifdef RISCV_MATH_DSP
 #if __RISCV_XLEN == 64
-  q63_t in, max = 0;
+  q63_t in;
+  q63_t max = read_q7x8((q7_t*)pSrc);
   q7_t max_q7[8];
   blkCnt = blockSize >> 3U;
 #else
-  q31_t in, max = 0;
+  q31_t in;
+  q31_t max = read_q7x4((q7_t*)pSrc);
   q7_t max_q7[4];
   blkCnt = blockSize >> 2U;
 #endif /* __RISCV_XLEN == 64 */

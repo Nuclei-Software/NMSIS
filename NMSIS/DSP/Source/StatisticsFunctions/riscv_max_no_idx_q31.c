@@ -75,7 +75,8 @@ void riscv_max_no_idx_q31(
   out = *pSrc;
 
 #if defined(RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
-  q63_t in64, max64 = 0;
+  q63_t in64;
+  q63_t max64 = read_q31x2((q31_t*)pSrc);
   q31_t max_q31[2];
 
   blkCnt = blockSize >> 1U;
