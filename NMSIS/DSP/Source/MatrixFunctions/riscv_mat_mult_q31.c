@@ -93,51 +93,101 @@ riscv_status riscv_mat_mult_q31(
   else
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
-
-#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
-  uint16_t blkCnt = numColsA;  //number of matrix columns  numColsA = numrowB
-  size_t l;              // max_l is the maximum column elements at a time
-  ptrdiff_t bstride = 4;       //  32bit/8bit = 4
-  ptrdiff_t col_diff = bstride * numColsB;  //Control the column width of the span
-  uint16_t colnum, rownum;      //  How many rowumns and rownum are controlled
-  vint32m4_t v_inA, v_inB;
-  vint64m1_t vsum;
-
-  px = pOut;
-  for (rownum = 0; rownum < numRowsA; rownum++)
   {
-    pIn1 = pInA;       //backup pointer position
-    for(colnum = 0; colnum < numColsB; colnum++)
-    {
-      blkCnt = numColsA;
-      pIn2 = pInB;     //backup pointer position
-      l = vsetvl_e64m1(1);
-      vsum = vmv_s_x_i64m1(vsum, 0, l);
-      for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)   //Multiply a row by a column
-      {
-        v_inA = vle32_v_i32m4(pInA, l);
-        pInA = pInA + l;    //Pointer to the first element of the next line
-        v_inB = vlse32_v_i32m4(pInB, col_diff, l);
-        /* c(m,n) = a(1,1) * b(1,1) + a(1,2) * b(2,1) + .... + a(m,p) * b(p,n) */
-        /* Perform multiply-accumulates */
-        vsum = vredsum_vs_i64m8_i64m1(vsum, vwmul_vv_i64m8(v_inA, v_inB, l), vsum, l);
-        pInB = pInB + l * numColsB;
-      }
-      sum = vmv_x_s_i64m1_i64(vsum);
-      *px++ = (q31_t) (sum >> 31);
-      pInA = pIn1;
-      pInB = pIn2;
-      pInB = pInB+1;    //Pointer to the first element of the next column for matrix BS
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
+    uint16_t blkCnt = numColsA;  //number of matrix columns  numColsA = numrowB
+    size_t l;              // max_l is the maximum column elements at a time
+    ptrdiff_t bstride = 4;       //  32bit/8bit = 4
+    uint16_t colnum, rownum;      //  How many rowumns and rownum are controlled
 
+    px = pOut;
+
+    uint32_t ii, jj, kk;
+    vint32m2_t va0m2, va1m2, va2m2, va3m2;
+    vint32m4_t va0m4, va1m4;
+    vint64m4_t vres0m4, vres1m4, vres2m4, vres3m4;
+    vint64m8_t vres0m8, vres1m8;
+    colCnt = numColsB;
+    /* ch = 4, mul = 4 */
+    for (jj = colCnt / 4; jj > 0; jj--) {
+      px = pOut;
+      pInA = pIn1;
+      for (ii = numRowsA; ii > 0; ii -= l) {
+        l = vsetvl_e64m4(ii);
+        pInB = pIn2;
+        vres0m4 = vmv_v_x_i64m4(0, l);
+        vres1m4 = vmv_v_v_i64m4(vres0m4, l);
+        vres2m4 = vmv_v_v_i64m4(vres0m4, l);
+        vres3m4 = vmv_v_v_i64m4(vres0m4, l);
+        for (kk = 0; kk < numColsA; kk++) {
+          va0m2 = vlse32_v_i32m2(pInA + kk, numColsA * bstride, l);
+          vres0m4 = vwmacc_vx_i64m4 (vres0m4, (int32_t)(*(pInB + 0)), va0m2, l);
+          vres1m4 = vwmacc_vx_i64m4 (vres1m4, (int32_t)(*(pInB + 1)), va0m2, l);
+          vres2m4 = vwmacc_vx_i64m4 (vres2m4, (int32_t)(*(pInB + 2)), va0m2, l);
+          vres3m4 = vwmacc_vx_i64m4 (vres3m4, (int32_t)(*(pInB + 3)), va0m2, l);
+          pInB += numColsB;
+        }
+        va0m2 = vnsra_wx_i32m2(vres0m4, 31, l);
+        va1m2 = vnsra_wx_i32m2(vres1m4, 31, l);
+        va2m2 = vnsra_wx_i32m2(vres2m4, 31, l);
+        va3m2 = vnsra_wx_i32m2(vres3m4, 31, l);
+        vssseg4e32_v_i32m2(px, numColsB * bstride, va0m2, va1m2, va2m2, va3m2, l);
+        px += l * numColsB;
+        pInA += l * numColsA;
+      }
+      pIn2 += 4;
+      pOut += 4;
     }
-    pInB = pSrcB->pData;
-    pInA = pIn1;
-    pInA = pInA + numColsA;    //Pointer to the first element of the next row for matrix A
-  }
+    /* ch = 2, mul = 8 */
+    colCnt = colCnt & 0x3;
+    for (jj = colCnt / 2; jj > 0; jj--) {
+      px = pOut;
+      pInA = pIn1;
+      for (ii = numRowsA; ii > 0; ii -= l) {
+        l = vsetvl_e64m8(ii);
+        pInB = pIn2;
+        vres0m8 = vmv_v_x_i64m8(0, l);
+        vres1m8 = vmv_v_v_i64m8(vres0m8, l);
+        for (kk = 0; kk < numColsA; kk++) {
+          va0m4 = vlse32_v_i32m4(pInA + kk, numColsA * bstride, l);
+          vres0m8 = vwmacc_vx_i64m8(vres0m8, (int32_t)(*(pInB + 0)), va0m4, l);
+          vres1m8 = vwmacc_vx_i64m8(vres1m8, (int32_t)(*(pInB + 1)), va0m4, l);
+          pInB += numColsB;
+        }
+        va0m4 = vnsra_wx_i32m4(vres0m8, 31, l);
+        va1m4 = vnsra_wx_i32m4(vres1m8, 31, l);
+        vssseg2e32_v_i32m4(px, numColsB * bstride, va0m4, va1m4, l);
+        px += l * numColsB;
+        pInA += l * numColsA;
+      }
+      pIn2 += 2;
+      pOut += 2;
+    }
+    /* ch = 1, mul = 8 */
+    colCnt = colCnt & 0x1;
+    for (jj = colCnt; jj > 0; jj--) {
+      px = pOut;
+      pInA = pIn1;
+      for (ii = numRowsA; ii > 0; ii -= l) {
+        l = vsetvl_e64m8(ii);
+        pInB = pIn2;
+        vres0m8 = vmv_v_x_i64m8(0, l);
+        for (kk = 0; kk < numColsA; kk++) {
+          va0m4 = vlse32_v_i32m4(pInA + kk, numColsA * bstride, l);
+          vres0m8 = vwmacc_vx_i64m8 (vres0m8, (int32_t)(*(pInB + 0)), va0m4, l);
+          pInB += numColsB;
+        }
+        va0m4 = vnsra_wx_i32m4(vres0m8, 31, l);
+        vsse32_v_i32m4(px, numColsB * bstride, va0m4, l);
+        px += l * numColsB;
+        pInA += l * numColsA;
+      }
+      pIn2 += 1;
+      pOut += 1;
+    }
   /* Set status as RISCV_MATH_SUCCESS */
   status = RISCV_MATH_SUCCESS;
 #else
-  {
     /* The following loop performs the dot-product of each row in pSrcA with each column in pSrcB */
     /* row loop */
     do
@@ -249,8 +299,8 @@ riscv_status riscv_mat_mult_q31(
 
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
+#endif /*defined(RISCV_MATH_VECTOR)*/
   }
-#endif /*defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
   /* Return to application */
   return (status);
 }

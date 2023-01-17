@@ -62,6 +62,7 @@ riscv_status riscv_mat_mult_q7(const riscv_matrix_instance_q7 *pSrcA, const risc
     q7_t *pIn1 = pSrcA->pData;                    /* input data matrix pointer A */
     q7_t *pIn2 = pSrcB->pData;                    /* input data matrix pointer B */
     q7_t *pInA = pSrcA->pData;                    /* input data matrix pointer A of Q7 type */
+    q7_t *pInB = pSrcB->pData;                    /* input data matrix pointer B of Q7 type */
     q7_t *pOut = pDst->pData;                     /* output data matrix pointer */
     q7_t *pSrcBT = pState;                        /* Input data matrix pointer for transpose */
     q7_t *px = NULL;                              /* Temporary output data matrix pointer */
@@ -92,18 +93,108 @@ riscv_status riscv_mat_mult_q7(const riscv_matrix_instance_q7 *pSrcA, const risc
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
 
     {
+#if defined(RISCV_MATH_VECTOR)
+      uint16_t ii, jj, kk;
+      size_t l;
+      vint8m1_t va0m1, va1m1, va2m1, va3m1;
+      vint8m2_t va0m2, va1m2;
+      vint32m4_t vres0m4, vres1m4, vres2m4, vres3m4;
+      vint32m8_t vres0m8, vres1m8;
+      colCnt = numColsB;
+
+      /* ch = 4, mul = 4 */
+      for (jj = colCnt / 4; jj > 0; jj--) {
+        px = pOut;
+        pInA = pIn1;
+        for (ii = numRowsA; ii > 0; ii -= l) {
+          l = vsetvl_e32m4(ii);
+          pInB = pIn2;
+          vres0m4 = vmv_v_x_i32m4(0, l);
+          vres1m4 = vmv_v_v_i32m4(vres0m4, l);
+          vres2m4 = vmv_v_v_i32m4(vres0m4, l);
+          vres3m4 = vmv_v_v_i32m4(vres0m4, l);
+          for (kk = 0; kk < numColsA; kk++) {
+            va0m1 = vlse8_v_i8m1(pInA + kk, numColsA, l);
+            vres0m4 = vwmacc_vx_i32m4(vres0m4, *(pInB + 0), vwadd_vx_i16m2(va0m1, 0, l), l);
+            vres1m4 = vwmacc_vx_i32m4(vres1m4, *(pInB + 1), vwadd_vx_i16m2(va0m1, 0, l), l);
+            vres2m4 = vwmacc_vx_i32m4(vres2m4, *(pInB + 2), vwadd_vx_i16m2(va0m1, 0, l), l);
+            vres3m4 = vwmacc_vx_i32m4(vres3m4, *(pInB + 3), vwadd_vx_i16m2(va0m1, 0, l), l);
+            pInB += numColsB;
+          }
+          va0m1 = vnclip_wx_i8m1(vnsra_wx_i16m2(vres0m4, 7, l), 0, l);
+          va1m1 = vnclip_wx_i8m1(vnsra_wx_i16m2(vres1m4, 7, l), 0, l);
+          va2m1 = vnclip_wx_i8m1(vnsra_wx_i16m2(vres2m4, 7, l), 0, l);
+          va3m1 = vnclip_wx_i8m1(vnsra_wx_i16m2(vres3m4, 7, l), 0, l);
+          vssseg4e8_v_i8m1(px, numColsB, va0m1, va1m1, va2m1, va3m1, l);
+          px += l * numColsB;
+          pInA += l * numColsA;
+        }
+        pIn2 += 4;
+        pOut += 4;
+      }
+
+      /* ch = 2, mul = 8 */
+      colCnt = colCnt & 0x3;
+      for (jj = colCnt / 2; jj > 0; jj--) {
+        px = pOut;
+        pInA = pIn1;
+        for (ii = numRowsA; ii > 0; ii -= l) {
+          l = vsetvl_e32m8(ii);
+          pInB = pIn2;
+          vres0m8 = vmv_v_x_i32m8(0, l);
+          vres1m8 = vmv_v_v_i32m8(vres0m8, l);
+          for (kk = 0; kk < numColsA; kk++) {
+            va0m2 = vlse8_v_i8m2(pInA + kk, numColsA, l);
+            vres0m8 = vwmacc_vx_i32m8(vres0m8, *(pInB + 0), vwadd_vx_i16m4(va0m2, 0, l), l);
+            vres1m8 = vwmacc_vx_i32m8(vres1m8, *(pInB + 1), vwadd_vx_i16m4(va0m2, 0, l), l);
+            pInB += numColsB;
+          }
+          va0m2 = vnclip_wx_i8m2(vnsra_wx_i16m4(vres0m8, 7, l), 0, l);
+          va1m2 = vnclip_wx_i8m2(vnsra_wx_i16m4(vres1m8, 7, l), 0, l);
+          vssseg2e8_v_i8m2(px, numColsB, va0m2, va1m2, l);
+          px += l * numColsB;
+          pInA += l * numColsA;
+        }
+        pIn2 += 2;
+        pOut += 2;
+      }
+      /* ch = 1, mul = 8 */
+      colCnt = colCnt & 0x1;
+      for (jj = colCnt; jj > 0; jj--) {
+        px = pOut;
+        pInA = pIn1;
+        for (ii = numRowsA; ii > 0; ii -= l) {
+          l = vsetvl_e32m8(ii);
+          pInB = pIn2;
+          vres0m8 = vmv_v_x_i32m8(0, l);
+          for (kk = 0; kk < numColsA; kk++) {
+            va0m2 = vlse8_v_i8m2(pInA + kk, numColsA, l);
+            vres0m8 = vwmacc_vx_i32m8(vres0m8, *(pInB + 0), vwadd_vx_i16m4(va0m2, 0, l), l);
+            pInB += numColsB;
+          }
+          va0m2 = vnclip_wx_i8m2(vnsra_wx_i16m4(vres0m8, 7, l), 0, l);
+          vsse8_v_i8m2(px, numColsB, va0m2, l);
+          pInA += l * numColsA;
+        }
+        pIn2 += 1;
+        pOut += 1;
+      }
+
+      /* Set status as RISCV_MATH_SUCCESS */
+      status = RISCV_MATH_SUCCESS;
+#else
         BT.numRows = numColsB;
         BT.numCols = numRowsB;
         BT.pData = pSrcBT;
 
         /* Matrix transpose by exchanging the rows with columns */
-	status = riscv_mat_trans_q7(pSrcB, &BT);
-	if (status != RISCV_MATH_SUCCESS)
-	{
-	    return status;
-	}
+        status = riscv_mat_trans_q7(pSrcB, &BT);
+        if (status != RISCV_MATH_SUCCESS)
+        {
+            return status;
+        }
 
-	px = pDst->pData;
+        px = pDst->pData;
 
         /* The following loop performs the dot-product of each row in pSrcA with each column in pSrcB */
         /* row loop */
@@ -183,6 +274,7 @@ riscv_status riscv_mat_mult_q7(const riscv_matrix_instance_q7 *pSrcA, const risc
 
         /* set status as RISCV_MATH_SUCCESS */
         status = RISCV_MATH_SUCCESS;
+#endif /* #if defined(RISCV_MATH_VECTOR) */
     }
 
     /* Return to application */

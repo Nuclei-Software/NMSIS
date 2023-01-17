@@ -161,6 +161,7 @@ void riscv_correlate_opt_q15(
   /* Temporary pointer for scratch2 */
   py = pIn2;
 #if defined (RISCV_MATH_VECTOR)
+  blkCnt = (srcALen + srcBLen - 1U);
   while (blkCnt > 0)
   {
     /* Initialze temporary scratch pointer as scratch1 */

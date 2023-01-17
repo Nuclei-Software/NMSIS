@@ -85,23 +85,37 @@ riscv_status riscv_mat_trans_q15(
     ptrdiff_t bstride = 2;  //  16bit/8bit = 2
     ptrdiff_t col_diff = bstride * nCols;  //Control the column width of the span
     uint16_t colnum;     //  How many rowumns are controlled
-    vint16m8_t v_in;
+    vint16m4_t v_in, v_in2;
+    vint16m8_t v_in3;
     q15_t *pIn1;
-
-    for (colnum = 0; colnum < nCols; colnum++)
+    col = nCols / 2;
+    for (colnum = 0; colnum < col; colnum++)
     {
       blkCnt = nRows;
       pIn1 = pIn;
-      for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+      for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
       {
-        v_in = vlse16_v_i16m8(pIn, col_diff, l);
+        vlsseg2e16_v_i16m4(&v_in, &v_in2, pIn, col_diff, l);
         pIn += l * nCols;
-        vse16_v_i16m8(pOut, v_in, l);
+        vse16_v_i16m4(pOut, v_in, l);
+        vse16_v_i16m4(pOut + nRows, v_in2, l);
         pOut += l;
       }
-      pIn = pIn1;
-      pIn = pIn+1;
+      pOut += nRows;
+      pIn = pIn1 + 2;
     }
+    /* The remain */
+    if (nCols & 1) {
+      blkCnt = nRows;
+      for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+      {
+          v_in3 = vlse16_v_i16m8(pIn, col_diff, l);
+          pIn += l * nCols;
+          vse16_v_i16m8(pOut, v_in3, l);
+          pOut += l;
+      }
+    }
+
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
 

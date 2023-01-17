@@ -63,32 +63,43 @@ void riscv_mat_vec_mult_q7(const riscv_matrix_instance_q7 *pSrcMat, const q7_t *
     q31_t matData, matData2, vecData, vecData2;
 
 #if defined(RISCV_MATH_VECTOR)
-    const q7_t *pInA = NULL;
-    const q7_t *pInB = NULL;
-    uint16_t blkCnt = pSrcMat->numCols;
-    size_t l;        // max_l is the maximum column elements at a time
-    uint16_t rownum; //  How many rowumns and rownum are controlled
-    vint8m4_t v_inA, v_inB;
-    q31_t sum = 0;
-    vint32m1_t vsum;
-
+    uint32_t ii, jj;
+    size_t l;
+    ptrdiff_t bstride = 1;       //  8bit/8bit = 4
+    vint32m8_t vres0m8;
+    vint8m2_t va0m2, va1m2, va2m2, va3m2;
     px = pDst;
-    for (rownum = 0; rownum < numRows; rownum++) {
-        l = vsetvl_e32m1(1);
-        vsum = vmv_s_x_i32m1(vsum, 0, l);
-        blkCnt = numCols;
-        pInB = pVec;
-        pInA = pSrcMat->pData + rownum * pSrcMat->numCols; // Pointer to the first element of the
+    for (jj = numRows; jj > 0; jj -= l) {
+      l = vsetvl_e32m8(jj);
+      vres0m8 = vmv_v_x_i32m8(0.0, l);
+      pInVec = pVec;
+      pInA1 = pSrcA;
+      colCnt = numCols;
+      for (ii = 0; ii < colCnt / 4; ii++) {
+        vlsseg4e8_v_i8m2 (&va0m2, &va1m2, &va2m2, &va3m2, pInA1, numCols, l);
+        vres0m8 = vwmacc_vx_i32m8(vres0m8, *(pInVec++), vwadd_vx_i16m4(va0m2, 0, l), l);
+        vres0m8 = vwmacc_vx_i32m8(vres0m8, *(pInVec++), vwadd_vx_i16m4(va1m2, 0, l), l);
+        vres0m8 = vwmacc_vx_i32m8(vres0m8, *(pInVec++), vwadd_vx_i16m4(va2m2, 0, l), l);
+        vres0m8 = vwmacc_vx_i32m8(vres0m8, *(pInVec++), vwadd_vx_i16m4(va3m2, 0, l), l);
+        pInA1 += 4;
+      }
+      colCnt = numCols & 0x3;
 
-        for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
-            v_inA = vle8_v_i8m4(pInA, l);
-            pInA += l;
-            v_inB = vle8_v_i8m4(pInB, l);
-            pInB += l;
-            vsum = vwredsum_vs_i16m8_i32m1(vsum,  vwmul_vv_i16m8(v_inA, v_inB, l), vsum, l);
-        }
-        sum = vmv_x_s_i32m1_i32(vsum);
-        *px++ = (q7_t)(__SSAT((sum >> 7), 8));
+      for (ii = 0; ii < colCnt / 2; ii++) {
+        vlsseg2e8_v_i8m2(&va0m2, &va1m2, pInA1, numCols, l);
+        vres0m8 = vwmacc_vx_i32m8(vres0m8, *(pInVec++), vwadd_vx_i16m4(va0m2, 0, l), l);
+        vres0m8 = vwmacc_vx_i32m8(vres0m8, *(pInVec++), vwadd_vx_i16m4(va1m2, 0, l), l);
+        pInA1 += 2;
+      }
+
+      if (numCols & 0x1) {
+          va0m2 = vlse8_v_i8m2(pInA1, numCols, l);
+          vres0m8 = vwmacc_vx_i32m8(vres0m8, *(pInVec++), vwadd_vx_i16m4(va0m2, 0, l), l);
+      }
+      va0m2 = vnclip_wx_i8m2(vnsra_wx_i16m4(vres0m8, 7, l), 0, l);
+      vse8_v_i8m2(px, va0m2, l);
+      px += l;
+      pSrcA += l * numCols;
     }
 #else
 

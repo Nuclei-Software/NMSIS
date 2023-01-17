@@ -87,7 +87,7 @@ riscv_status riscv_mat_sub_f32(
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
   {
     /* Total number of samples in input matrix */
-    numSamples = (uint32_t) pSrcA->numRows * pSrcA->numCols;
+      numSamples = (uint32_t) pSrcA->numRows * pSrcA->numCols;
 #if defined(RISCV_MATH_VECTOR)
       blkCnt = numSamples;
       size_t l;

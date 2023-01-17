@@ -80,7 +80,7 @@ riscv_status riscv_mat_trans_q31(
     vint32m8_t v_in;
     q31_t *pIn1;
 
-    for(colnum = 0; colnum < nCols; colnum++)
+    for (colnum = 0; colnum < nCols; colnum++)
     {
       blkCnt = nRows;
       pIn1 = pIn;
@@ -91,8 +91,7 @@ riscv_status riscv_mat_trans_q31(
         vse32_v_i32m8(pOut, v_in, l);
         pOut += l;
       }
-      pIn = pIn1;
-      pIn += 1;
+      pIn = pIn1 + 1;
     }
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;

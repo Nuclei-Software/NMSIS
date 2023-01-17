@@ -65,13 +65,11 @@ riscv_status riscv_mat_mult_q15(
         q15_t                   * pState)
 {
         q63_t sum;                                     /* Accumulator */
-
-#if defined (RISCV_MATH_DSP) && !defined (RISCV_MATH_VECTOR)
-
         q15_t *pSrcBT = pState;                        /* Input data matrix pointer for transpose */
         q15_t *pInA = pSrcA->pData;                    /* Input data matrix pointer A of Q15 type */
         q15_t *pInB = pSrcB->pData;                    /* Input data matrix pointer B of Q15 type */
         q15_t *px;                                     /* Temporary output data matrix pointer */
+        q15_t *pOut = pDst->pData;                     /* Output data matrix pointer */
         uint16_t numRowsA = pSrcA->numRows;            /* Number of rows of input matrix A */
         uint16_t numColsB = pSrcB->numCols;            /* Number of columns of input matrix B */
         uint16_t numColsA = pSrcA->numCols;            /* Number of columns of input matrix A */
@@ -99,6 +97,109 @@ riscv_status riscv_mat_mult_q15(
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
   {
+
+#if defined(RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
+     q15_t *pIn1 = pSrcA->pData;                    /* Input data matrix pointer A */
+     q15_t *pIn2 = pSrcB->pData;                    /* Input data matrix pointer B */
+    (void)pState;
+    uint16_t blkCnt = numColsA;  //number of matrix columns  numColsA = numrowB
+    size_t l;
+    ptrdiff_t bstride = 2;       //  16bit/8bit = 2
+    px = pOut;
+    uint32_t ii, jj, kk;
+    vint16m1_t va0m1, va1m1, va2m1, va3m1;
+    vint16m2_t va0m2, va1m2;
+    vint64m4_t vres0m4, vres1m4, vres2m4, vres3m4;
+    vint64m8_t vres0m8, vres1m8;
+    colCnt = numColsB;
+    /* ch = 4, mul = 4 */
+    for (jj = colCnt / 4; jj > 0; jj--) {
+      px = pOut;
+      pInA = pIn1;
+      for (ii = numRowsA; ii > 0; ii -= l) {
+        l = vsetvl_e64m4(ii);
+        pInB = pIn2;
+        vres0m4 = vmv_v_x_i64m4(0, l);
+        vres1m4 = vmv_v_v_i64m4(vres0m4, l);
+        vres2m4 = vmv_v_v_i64m4(vres0m4, l);
+        vres3m4 = vmv_v_v_i64m4(vres0m4, l);
+        for (kk = 0; kk < numColsA; kk++) {
+          va0m1 = vlse16_v_i16m1(pInA + kk, numColsA * bstride, l);
+          vres0m4 = vwmacc_vx_i64m4 (vres0m4, (int32_t)(*(pInB + 0)), vwadd_vx_i32m2 (va0m1, 0, l), l);
+          vres1m4 = vwmacc_vx_i64m4 (vres1m4, (int32_t)(*(pInB + 1)), vwadd_vx_i32m2 (va0m1, 0, l), l);
+          vres2m4 = vwmacc_vx_i64m4 (vres2m4, (int32_t)(*(pInB + 2)), vwadd_vx_i32m2 (va0m1, 0, l), l);
+          vres3m4 = vwmacc_vx_i64m4 (vres3m4, (int32_t)(*(pInB + 3)), vwadd_vx_i32m2 (va0m1, 0, l), l);
+          pInB += numColsB;
+        }
+        va0m1 = vnclip_wx_i16m1(vnsra_wx_i32m2(vres0m4, 15, l), 0, l);
+        va1m1 = vnclip_wx_i16m1(vnsra_wx_i32m2(vres1m4, 15, l), 0, l);
+        va2m1 = vnclip_wx_i16m1(vnsra_wx_i32m2(vres2m4, 15, l), 0, l);
+        va3m1 = vnclip_wx_i16m1(vnsra_wx_i32m2(vres3m4, 15, l), 0, l);
+        vssseg4e16_v_i16m1(px, numColsB * bstride, va0m1, va1m1, va2m1, va3m1, l);
+        px += l * numColsB;
+        pInA += l * numColsA;
+      }
+      pIn2 += 4;
+      pOut += 4;
+    }
+    /* ch = 2, mul = 8 */
+    colCnt = colCnt & 0x3;
+    for (jj = colCnt / 2; jj > 0; jj--) {
+      px = pOut;
+      pInA = pIn1;
+      for (ii = numRowsA; ii > 0; ii -= l) {
+        l = vsetvl_e64m8(ii);
+        pInB = pIn2;
+        vres0m8 = vmv_v_x_i64m8(0, l);
+        vres1m8 = vmv_v_v_i64m8(vres0m8, l);
+        for (kk = 0; kk < numColsA; kk++) {
+          va0m2 = vlse16_v_i16m2(pInA + kk, numColsA * bstride, l);
+          vres0m8 = vwmacc_vx_i64m8 (vres0m8, (int32_t)(*(pInB + 0)), vwadd_vx_i32m4 (va0m2, 0, l), l);
+          vres1m8 = vwmacc_vx_i64m8 (vres1m8, (int32_t)(*(pInB + 1)), vwadd_vx_i32m4 (va0m2, 0, l), l);
+          pInB += numColsB;
+        }
+        va0m2 = vnclip_wx_i16m2(vnsra_wx_i32m4(vres0m8, 15, l), 0, l);
+        va1m2 = vnclip_wx_i16m2(vnsra_wx_i32m4(vres1m8, 15, l), 0, l);
+        vssseg2e16_v_i16m2(px, numColsB * bstride, va0m2, va1m2, l);
+        px += l * numColsB;
+        pInA += l * numColsA;
+      }
+      pIn2 += 2;
+      pOut += 2;
+    }
+    /* ch = 1, mul = 8 */
+    colCnt = colCnt & 0x1;
+    for (jj = colCnt; jj > 0; jj--) {
+      px = pOut;
+      pInA = pIn1;
+      for (ii = numRowsA; ii > 0; ii -= l) {
+        l = vsetvl_e64m8(ii);
+        pInB = pIn2;
+        vres0m8 = vmv_v_x_i64m8(0, l);
+        for (kk = 0; kk < numColsA; kk++) {
+          va0m2 = vlse16_v_i16m2(pInA + kk, numColsA * bstride, l);
+          vres0m8 = vwmacc_vx_i64m8 (vres0m8, (int32_t)(*(pInB + 0)), vwadd_vx_i32m4 (va0m2, 0, l), l);
+          pInB += numColsB;
+        }
+        va0m2 = vnclip_wx_i16m2(vnsra_wx_i32m4(vres0m8, 15, l), 0, l);
+        vsse16_v_i16m2(px, numColsB * bstride, va0m2, l);
+        px += l * numColsB;
+        pInA += l * numColsA;
+      }
+      pIn2 += 1;
+      pOut += 1;
+    }
+    /* Set status as RISCV_MATH_SUCCESS */
+    status = RISCV_MATH_SUCCESS;
+#else
+
+#if defined (RISCV_MATH_DSP)
+        q15_t *pSrcBT = pState;                        /* Input data matrix pointer for transpose */
+        q31_t inA1, inB1, inA2, inB2;
+        riscv_matrix_instance_q15 BT;
+#if defined (RISCV_MATH_DSP) && (defined NUCLEI_DSP_N3 || __RISCV_XLEN == 64)
+        q63_t inA164, inB164;
+#endif /* defined (RISCV_MATH_DSP) && (defined NUCLEI_DSP_N3 || __RISCV_XLEN == 64) */
 
     BT.numRows = numColsB;
     BT.numCols = numRowsB;
@@ -195,78 +296,11 @@ riscv_status riscv_mat_mult_q15(
     } while (row > 0U);
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
-  }
 #else /* #if defined (RISCV_MATH_DSP) */
 
         q15_t *pIn1 = pSrcA->pData;                    /* Input data matrix pointer A */
         q15_t *pIn2 = pSrcB->pData;                    /* Input data matrix pointer B */
-        q15_t *pInA = pSrcA->pData;                    /* Input data matrix pointer A of Q15 type */
-        q15_t *pInB = pSrcB->pData;                    /* Input data matrix pointer B of Q15 type */
-        q15_t *pOut = pDst->pData;                     /* Output data matrix pointer */
-        q15_t *px;                                     /* Temporary output data matrix pointer */
-        uint16_t numColsB = pSrcB->numCols;            /* Number of columns of input matrix B */
-        uint16_t numColsA = pSrcA->numCols;            /* Number of columns of input matrix A */
-        uint16_t numRowsA = pSrcA->numRows;            /* Number of rows of input matrix A    */
-        uint32_t col, i = 0U, row = numRowsA, colCnt;  /* Loop counters */
-        riscv_status status;                             /* Status of matrix multiplication */
         (void)pState;
-
-#ifdef RISCV_MATH_MATRIX_CHECK
-
-  /* Check for matrix mismatch condition */
-  if ((pSrcA->numCols != pSrcB->numRows) ||
-      (pSrcA->numRows != pDst->numRows)  ||
-      (pSrcB->numCols != pDst->numCols)    )
-  {
-    /* Set status as RISCV_MATH_SIZE_MISMATCH */
-    status = RISCV_MATH_SIZE_MISMATCH;
-  }
-  else
-
-#endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
-#if defined(RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
-  uint16_t blkCnt = numColsA;  //number of matrix columns  numColsA = numrowB
-  size_t l;
-  ptrdiff_t bstride = 2;       //  16bit/8bit = 2
-  ptrdiff_t col_diff = bstride * numColsB;  //Control the column width of the span
-  uint16_t colnum, rownum;      //  How many rowumns and rownum are controlled
-  vint16m4_t v_inA, v_inB;
-  vint64m1_t vsum;
-  px = pOut;
-  for (rownum = 0; rownum < numRowsA; rownum++)
-  {
-    pIn1 = pInA;       //backup pointer position
-    for(colnum = 0; colnum < numColsB; colnum++)
-    {
-      blkCnt = numColsA;
-      pIn2 = pInB;     //backup pointer position
-
-      l = vsetvl_e64m1(1);
-      vsum = vmv_s_x_i64m1(vsum, 0, l);
-      for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)   //Multiply a row by a column
-      {
-        v_inA = vle16_v_i16m4(pInA, l);
-        pInA += l;    //Pointer to the first element of the next line
-        v_inB = vlse16_v_i16m4(pInB, col_diff, l);
-        pInB += l * numColsB;
-        /* c(m,n) = a(1,1) * b(1,1) + a(1,2) * b(2,1) + .... + a(m,p) * b(p,n) */
-        /* Perform multiply-accumulates */
-        vsum = vwredsum_vs_i32m8_i64m1(vsum, vwmul_vv_i32m8(v_inA, v_inB, l), vsum, l);
-      }
-      sum = vmv_x_s_i64m1_i64(vsum);
-      *px++ = (q15_t) __SSAT((sum >> 15), 16);
-      pInA = pIn1;
-      pInB = pIn2;
-      pInB += 1;    //Pointer to the first element of the next column for matrix BS
-    }
-    pInB = pSrcB->pData;
-    pInA = pIn1;
-    pInA = pInA + numColsA;    //Pointer to the first element of the next row for matrix A
-  }
-  /* Set status as RISCV_MATH_SUCCESS */
-  status = RISCV_MATH_SUCCESS;
-#else
-  {
     /* The following loop performs the dot-product of each row in pSrcA with each column in pSrcB */
     /* row loop */
     do
@@ -326,12 +360,11 @@ riscv_status riscv_mat_mult_q15(
       row--;
 
     } while (row > 0U);
-
+#endif /* #if defined (RISCV_MATH_DSP) */
+#endif /* defined(RISCV_MATH_VECTOR) */
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
   }
-#endif /* #if defined (RISCV_MATH_DSP) */
-#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
   /* Return to application */
   return (status);
 }

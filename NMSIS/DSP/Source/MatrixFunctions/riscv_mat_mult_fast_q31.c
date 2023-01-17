@@ -152,19 +152,18 @@ riscv_status riscv_mat_mult_fast_q31(
             v_inA2 = vle32_v_i32m4(pInA2, l);
             pInA += l;
             pInA2 += l;
-            v_inB1 = vlse32_v_i32m4(pInB, bstride, l);
-            v_inB2 = vlse32_v_i32m4(pInB + 1, bstride, l);
+            vlsseg2e32_v_i32m4(&v_inB1, &v_inB2, pInB, bstride, l);
             pInB += l * numColsB;
 
-            v_sum1 = vredsum_vs_i32m4_i32m1(v_sum1, vsmul_vv_i32m4(v_inA1, v_inB1, l), v_sum1, l);
-            v_sum2 = vredsum_vs_i32m4_i32m1(v_sum2, vsmul_vv_i32m4(v_inA1, v_inB2, l), v_sum2, l);
-            v_sum3 = vredsum_vs_i32m4_i32m1(v_sum3, vsmul_vv_i32m4(v_inA2, v_inB1, l), v_sum3, l);
-            v_sum4 = vredsum_vs_i32m4_i32m1(v_sum4, vsmul_vv_i32m4(v_inA2, v_inB2, l), v_sum4, l);
+            v_sum1 = vredsum_vs_i32m4_i32m1(v_sum1, vmulh_vv_i32m4(v_inA1, v_inB1, l), v_sum1, l);
+            v_sum2 = vredsum_vs_i32m4_i32m1(v_sum2, vmulh_vv_i32m4(v_inA1, v_inB2, l), v_sum2, l);
+            v_sum3 = vredsum_vs_i32m4_i32m1(v_sum3, vmulh_vv_i32m4(v_inA2, v_inB1, l), v_sum3, l);
+            v_sum4 = vredsum_vs_i32m4_i32m1(v_sum4, vmulh_vv_i32m4(v_inA2, v_inB2, l), v_sum4, l);
         }
-        sum1 = vmv_x_s_i32m1_i32(v_sum1);
-        sum2 = vmv_x_s_i32m1_i32(v_sum2);
-        sum3 = vmv_x_s_i32m1_i32(v_sum3);
-        sum4 = vmv_x_s_i32m1_i32(v_sum4);
+        sum1 = vmv_x_s_i32m1_i32(vsll_vx_i32m1(v_sum1, 1, 1));
+        sum2 = vmv_x_s_i32m1_i32(vsll_vx_i32m1(v_sum2, 1, 1));
+        sum3 = vmv_x_s_i32m1_i32(vsll_vx_i32m1(v_sum3, 1, 1));
+        sum4 = vmv_x_s_i32m1_i32(vsll_vx_i32m1(v_sum4, 1, 1));
         *px++  = sum1;
         *px++  = sum2;
         *px2++ = sum3;
@@ -256,9 +255,9 @@ riscv_status riscv_mat_mult_fast_q31(
             v_inB1 = vlse32_v_i32m8(pInB, bstride, l);
             pInB += l * numColsB;
 
-            v_sum1 = vredsum_vs_i32m8_i32m1(v_sum1, vsmul_vv_i32m8(v_inA1, v_inB1, l), v_sum1, l);
+            v_sum1 = vredsum_vs_i32m8_i32m1(v_sum1, vmulh_vv_i32m8(v_inA1, v_inB1, l), v_sum1, l);
         }
-        sum1 = vmv_x_s_i32m1_i32(v_sum1);
+        sum1 = vmv_x_s_i32m1_i32(vsll_vx_i32m1(v_sum1, 1, 1));
         *px = sum1;
 #else
 
@@ -370,9 +369,9 @@ riscv_status riscv_mat_mult_fast_q31(
             v_inB1 = vlse32_v_i32m8(pInB, bstride, l);
             pInB += l * numColsB;
 
-            v_sum1 = vredsum_vs_i32m8_i32m1(v_sum1, vsmul_vv_i32m8(v_inA1, v_inB1, l), v_sum1, l);
+            v_sum1 = vredsum_vs_i32m8_i32m1(v_sum1, vmulh_vv_i32m8(v_inA1, v_inB1, l), v_sum1, l);
         }
-        sum1 += vmv_x_s_i32m1_i32(v_sum1);
+        sum1 += vmv_x_s_i32m1_i32(vsll_vx_i32m1(v_sum1, 1, 1));
         *px++ = sum1;
 #else
 #if defined (RISCV_MATH_LOOPUNROLL)

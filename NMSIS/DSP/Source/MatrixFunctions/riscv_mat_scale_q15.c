@@ -99,7 +99,6 @@ riscv_status riscv_mat_scale_q15(
     for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
       vx = vle16_v_i16m4(pIn, l);
       pIn += l;
-      //vse16_v_i16m4 (pOut, vnsra_wx_i16m4(vmin_vx_i32m8(vmax_vx_i32m8(vwmul_vx_i32m8(vx, scaleFract), 0xffff8000), 0x7fff), kShift));
       vse16_v_i16m4(pOut, vnclip_wx_i16m4(vwmul_vx_i32m8(vx, scaleFract, l), kShift, l), l);
       pOut += l;
     }

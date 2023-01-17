@@ -98,52 +98,91 @@ riscv_status riscv_mat_mult_f32(
   else
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
+  {
 #if defined(RISCV_MATH_VECTOR)
-  uint16_t blkCnt = numColsA;  //number of matrix columns  numColsA = numrowB
-  size_t l;
-  ptrdiff_t bstride = 4;       //  32bit/8bit = 4
-  ptrdiff_t col_diff = bstride * numColsB;  //Control the column width of the span
-  uint16_t colnum, rownum;      //  How many rowumns and rownum are controlled
-  vfloat32m8_t v_inA, v_inB;
-  vfloat32m8_t vmul;
-  vfloat32m1_t vsum;
-  px = pOut;
-  for (rownum = 0; rownum < numRowsA; rownum++)
-  {
-    pIn1 = pInA;       //backup pointer position
-    for (colnum = 0; colnum < numColsB; colnum++)
-    {
-      blkCnt = numColsA;
-      pIn2 = pInB;     //backup pointer position
+    uint32_t ii, jj, kk;
+    size_t l;
+    ptrdiff_t bstride = 4;       //  32bit/8bit = 4
+    vfloat32m4_t va0m4, vres0m4, vres1m4, vres2m4, vres3m4;
+    vfloat32m8_t va0m8, vres0m8, vres1m8;
+    colCnt = numColsB;
 
-      l = vsetvl_e32m1(1);
-      vsum = vfmv_s_f_f32m1(vsum, 0.0f, l);
-      for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)   //Multiply a row by a column
-      {
-        v_inA = vle32_v_f32m8(pInA, l);
-        v_inB = vlse32_v_f32m8(pInB, col_diff, l);
-        /* c(m,n) = a(1,1) * b(1,1) + a(1,2) * b(2,1) + .... + a(m,p) * b(p,n) */
-        /* Perform multiply-accumulates */
-        vmul = vfmul_vv_f32m8(v_inA, v_inB, l);
-        vsum = vfredusum_vs_f32m8_f32m1(vsum, vmul, vsum, l);
-
-        pInA += l;    //Pointer to the first element of the next line
-        pInB += l * numColsB;
-      }
-      sum = vfmv_f_s_f32m1_f32(vsum);
-      *px++ = sum;
+    /* ch = 4, mul = 4 */
+    for (jj = colCnt / 4; jj > 0; jj--) {
+      px = pOut;
       pInA = pIn1;
-      pInB = pIn2;
-      pInB = pInB + 1;    //Pointer to the first element of the next column for matrix BS
+      for (ii = numRowsA; ii > 0; ii -= l) {
+        l = vsetvl_e32m4(ii);
+        pInB = pIn2;
+        vres0m4 = vfmv_v_f_f32m4(0.0, l);
+        vres1m4 = vmv_v_v_f32m4(vres0m4, l);
+        vres2m4 = vmv_v_v_f32m4(vres0m4, l);
+        vres3m4 = vmv_v_v_f32m4(vres0m4, l);
+        for (kk = 0; kk < numColsA; kk++) {
+          va0m4 = vlse32_v_f32m4(pInA + kk, numColsA * bstride, l);
+          vres0m4 = vfmacc_vf_f32m4(vres0m4, *(pInB + 0), va0m4, l);
+          vres1m4 = vfmacc_vf_f32m4(vres1m4, *(pInB + 1), va0m4, l);
+          vres2m4 = vfmacc_vf_f32m4(vres2m4, *(pInB + 2), va0m4, l);
+          vres3m4 = vfmacc_vf_f32m4(vres3m4, *(pInB + 3), va0m4, l);
+          pInB += numColsB;
+        }
+        vssseg2e32_v_f32m4(px, numColsB * bstride, vres0m4, vres1m4, l);
+        vssseg2e32_v_f32m4(px + 2, numColsB * bstride, vres2m4, vres3m4, l);
+        px += l * numColsB;
+        pInA += l * numColsA;
+      }
+      pIn2 += 4;
+      pOut += 4;
     }
-    pInB = pSrcB->pData;
-    pInA = pIn1;
-    pInA += numColsA;    //Pointer to the first element of the next row for matrix A
-  }
-  /* Set status as RISCV_MATH_SUCCESS */
-  status = RISCV_MATH_SUCCESS;
+    /* ch = 2, mul = 8 */
+    colCnt = colCnt & 0x3;
+    for (jj = colCnt / 2; jj > 0; jj--) {
+      px = pOut;
+      pInA = pIn1;
+      for (ii = numRowsA; ii > 0; ii -= l) {
+        l = vsetvl_e32m8(ii);
+        pInB = pIn2;
+        vres0m8 = vfmv_v_f_f32m8(0.0, l);
+        vres1m8 = vmv_v_v_f32m8(vres0m8, l);
+        for (kk = 0; kk < numColsA; kk++) {
+          va0m8 = vlse32_v_f32m8(pInA + kk, numColsA * bstride, l);
+          vres0m8 = vfmacc_vf_f32m8(vres0m8, *(pInB + 0), va0m8, l);
+          vres1m8 = vfmacc_vf_f32m8(vres1m8, *(pInB + 1), va0m8, l);
+          pInB += numColsB;
+        }
+        vsse32_v_f32m8(px, numColsB * bstride, vres0m8, l);
+        vsse32_v_f32m8(px + 1, numColsB * bstride, vres1m8, l);
+        px += l * numColsB;
+        pInA += l * numColsA;
+      }
+      pIn2 += 2;
+      pOut += 2;
+    }
+    /* ch = 1, mul = 8 */
+    colCnt = colCnt & 0x1;
+    for (jj = colCnt; jj > 0; jj--) {
+      px = pOut;
+      pInA = pIn1;
+      for (ii = numRowsA; ii > 0; ii -= l) {
+        l = vsetvl_e32m8(ii);
+        pInB = pIn2;
+        vres0m8 = vfmv_v_f_f32m8(0.0, l);
+        for (kk = 0; kk < numColsA; kk++) {
+          va0m8 = vlse32_v_f32m8(pInA + kk, numColsA * bstride, l);
+          vres0m8 = vfmacc_vf_f32m8(vres0m8, *(pInB + 0), va0m8, l);
+          pInB += numColsB;
+        }
+        vsse32_v_f32m8(px, numColsB * bstride, vres0m8, l);
+        px += l * numColsB;
+        pInA += l * numColsA;
+      }
+      pIn2 += 1;
+      pOut += 1;
+    }
+
+    /* Set status as RISCV_MATH_SUCCESS */
+    status = RISCV_MATH_SUCCESS;
 #else
-  {
     /* The following loop performs the dot-product of each row in pSrcA with each column in pSrcB */
     /* row loop */
     do
@@ -237,9 +276,8 @@ riscv_status riscv_mat_mult_f32(
 
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
-  }
-
 #endif /* defined(RISCV_MATH_VECTOR) */
+  }
   /* Return to application */
   return (status);
 }

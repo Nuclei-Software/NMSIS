@@ -69,32 +69,23 @@ void riscv_mat_vec_mult_f32(const riscv_matrix_instance_f32 *pSrcMat, const floa
     float32_t matData, matData2, vecData, vecData2;
 
 #if defined(RISCV_MATH_VECTOR)
-    const float32_t *pInA = NULL;
-    const float32_t *pInB = NULL;
-    uint16_t blkCnt; // number of matrix columns  numColsA = numrowB
-    size_t l;        // max_l is the maximum column elements at a time
-    uint16_t rownum; //  How many rowumns and rownum are controlled
-    vfloat32m8_t v_inA, v_inB;
-    float32_t sum;
-    vfloat32m1_t vsum;
+    uint32_t ii, jj;
+    size_t l;
+    ptrdiff_t bstride = 4;       //  32bit/8bit = 4
+    vfloat32m8_t va0m8, vres0m8;
     px = pDst;
-
-    for (rownum = 0; rownum < numRows; rownum++) {
-        blkCnt = numCols;
-        l = vsetvl_e32m1(1);
-        vsum = vfmv_s_f_f32m1(vsum, 0.0f, l);
-        pInB = pVec;
-        pInA = pSrcMat->pData + rownum * numCols;
-
-        for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-            v_inA = vle32_v_f32m8(pInA, l);
-            pInA += l;
-            v_inB = vle32_v_f32m8(pInB, l);
-            pInB += l;
-            vsum = vfredusum_vs_f32m8_f32m1(vsum, vfmul_vv_f32m8(v_inA, v_inB, l), vsum, l);
-        }
-        sum = vfmv_f_s_f32m1_f32(vsum);
-        *px++ = sum;
+    for (jj = numRows; jj > 0; jj -= l) {
+      l = vsetvl_e32m8(jj);
+      vres0m8 = vfmv_v_f_f32m8(0.0, l);
+      pInVec = pVec;
+      pInA1 = pSrcA;
+      for (ii = 0; ii < numCols; ii++) {
+        va0m8 = vlse32_v_f32m8(pInA1 + ii, numCols * bstride, l);
+        vres0m8 = vfmacc_vf_f32m8(vres0m8, *(pInVec + ii), va0m8, l);
+      }
+      vse32_v_f32m8(px, vres0m8, l);
+      px += l;
+      pSrcA += l * numCols;
     }
 #else
 

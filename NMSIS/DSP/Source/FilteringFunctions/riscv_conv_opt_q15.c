@@ -312,21 +312,21 @@ void riscv_conv_opt_q15(
 
     /* Clear Accumlators */
     acc0 = 0;
-#if defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
     uint32_t vblkCnt = srcBLen;                               /* Loop counter */
     size_t l;
     vint16m4_t vx, vy;
-    vint32m1_t temp00m1;
-    l = vsetvl_e32m1(1);
-    temp00m1 = vmv_v_x_i32m1(0, l);
+    vint64m1_t temp00m1;
+    l = vsetvl_e64m1(1);
+    temp00m1 = vmv_v_x_i64m1(0, l);
     for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
       vx = vle16_v_i16m4(pScr1, l);
       pScr1 += l;
       vy = vle16_v_i16m4(pIn2, l);
       pIn2 += l;
-      temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
+      temp00m1 = vwredsum_vs_i32m8_i64m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
     }
-    acc0 += vmv_x_s_i32m1_i32(temp00m1);
+    acc0 += vmv_x_s_i64m1_i64(temp00m1);
 #else
     tapCnt = (srcBLen) >> 1U;
 

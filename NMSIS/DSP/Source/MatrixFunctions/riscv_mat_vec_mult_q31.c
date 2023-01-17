@@ -67,33 +67,32 @@ void riscv_mat_vec_mult_q31(const riscv_matrix_instance_q31 *pSrcMat, const q31_
 #endif/* #if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
 #if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
-    const q31_t *pInA = NULL;
-    const q31_t *pInB = NULL;
-    // number of matrix columns  numColsA = numrowB
-    uint16_t blkCnt = pSrcMat->numCols;
-    size_t l;        // max_l is the maximum column elements at a time
-    uint16_t rownum; //  How many rowumns and rownum are controlled
-    vint32m4_t v_inA, v_inB;
-    q63_t sum = 0;
-    vint64m1_t vsum;
+    uint32_t ii, jj;
+    size_t l;
+    ptrdiff_t bstride = 4;       //  32bit/8bit = 4
+    vint64m8_t vres0m8;
+    vint32m4_t va0m4, va1m4;
     px = pDst;
-    for (rownum = 0; rownum < numRows; rownum++) {
-        l = vsetvl_e64m1(1);
-        vsum = vmv_s_x_i64m1(vsum, 0, l);
-        blkCnt = numCols;
-        pInB = pVec;
-        // Pointer to the first element of the next row for matrix A
-        pInA = pSrcMat->pData + rownum * pSrcMat->numCols;
-
-        for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l) {
-            v_inA = vle32_v_i32m4(pInA, l);
-            pInA += l;
-            v_inB = vle32_v_i32m4(pInB, l);
-            pInB += l;
-            vsum = vredsum_vs_i64m8_i64m1(vsum, vwmul_vv_i64m8(v_inA, v_inB, l), vsum, l);
-        }
-        sum = vmv_x_s_i64m1_i64(vsum);
-        *px++ = (q31_t)(sum >> 31);
+    for (jj = numRows; jj > 0; jj -= l) {
+      l = vsetvl_e64m8(jj);
+      vres0m8 = vmv_v_x_i64m8(0.0, l);
+      pInVec = pVec;
+      pInA1 = pSrcA;
+      colCnt = numCols;
+      for (ii = 0; ii < colCnt / 2; ii ++) {
+        vlsseg2e32_v_i32m4(&va0m4, &va1m4, pInA1, numCols * bstride, l);
+        vres0m8 = vwmacc_vx_i64m8(vres0m8, *(pInVec++), va0m4, l);
+        vres0m8 = vwmacc_vx_i64m8(vres0m8, *(pInVec++), va1m4, l);
+        pInA1 += 2;
+      }
+      if (numCols & 0x1) {
+          va0m4 = vlse32_v_i32m4(pInA1, numCols * bstride, l);
+          vres0m8 = vwmacc_vx_i64m8(vres0m8, *(pInVec++), va0m4, l);
+      }
+      va0m4 = vnsra_wx_i32m4(vres0m8, 31, l);
+      vse32_v_i32m4(px, va0m4, l);
+      px += l;
+      pSrcA += l * numCols;
     }
 #else
 

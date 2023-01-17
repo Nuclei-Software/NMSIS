@@ -102,7 +102,8 @@ riscv_status riscv_mat_scale_q31(
     }
       /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
-#elif defined (RISCV_MATH_LOOPUNROLL)
+#else
+#if defined (RISCV_MATH_LOOPUNROLL)
 
     q63_t Double_scaleFract = ((q63_t)scaleFract << 32) | (((q63_t)scaleFract) & 0xffffffff);
 
@@ -217,6 +218,7 @@ riscv_status riscv_mat_scale_q31(
 
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
+#endif /* defined(RISCV_MATH_VECTOR) */
   }
 
   /* Return to application */

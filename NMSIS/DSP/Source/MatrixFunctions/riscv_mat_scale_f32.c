@@ -103,7 +103,7 @@ riscv_status riscv_mat_scale_f32(
       pIn += l;
       vse32_v_f32m8(pOut, vfmul_vf_f32m8(vx, scale, l), l);
       pOut += l;
-  }
+    }
       /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
 

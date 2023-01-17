@@ -62,31 +62,42 @@ void riscv_mat_vec_mult_q15(const riscv_matrix_instance_q15 *pSrcMat, const q15_
     q31_t matData, matData2, vecData, vecData2;
 
 #if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
-    const q15_t *pInA = NULL;
-    const q15_t *pInB = NULL;
-    uint16_t blkCnt = pSrcMat->numCols;
+    uint32_t ii, jj;
     size_t l;
-    uint16_t rownum; //  How many rowumns and rownum are controlled
-    vint16m4_t v_inA, v_inB;
-    q63_t sum = 0;
-    vint64m1_t vsum;
+    ptrdiff_t bstride = 2;       //  16bit/8bit = 4
+    vint64m8_t vres0m8;
+    vint16m2_t va0m2, va1m2, va2m2, va3m2;
     px = pDst;
-    for (rownum = 0; rownum < numRows; rownum++) {
-        l = vsetvl_e64m1(1);
-        vsum = vmv_s_x_i64m1(vsum, 0, l);
-        blkCnt = numCols;
-        pInB = pVec;
-        pInA = pSrcMat->pData + rownum * pSrcMat->numCols;
+    for (jj = numRows; jj > 0; jj -= l) {
+      l = vsetvl_e64m8(jj);
+      vres0m8 = vmv_v_x_i64m8(0.0, l);
+      pInVec = pVec;
+      pInA1 = pSrcA;
+      colCnt = numCols;
+      for (ii = 0; ii < colCnt / 4; ii++) {
+        vlsseg4e16_v_i16m2 (&va0m2, &va1m2, &va2m2, &va3m2, pInA1, numCols * bstride, l);
+        vres0m8 = vwmacc_vx_i64m8(vres0m8, *(pInVec++), vwadd_vx_i32m4(va0m2, 0, l), l);
+        vres0m8 = vwmacc_vx_i64m8(vres0m8, *(pInVec++), vwadd_vx_i32m4(va1m2, 0, l), l);
+        vres0m8 = vwmacc_vx_i64m8(vres0m8, *(pInVec++), vwadd_vx_i32m4(va2m2, 0, l), l);
+        vres0m8 = vwmacc_vx_i64m8(vres0m8, *(pInVec++), vwadd_vx_i32m4(va3m2, 0, l), l);
+        pInA1 += 4;
+      }
+      colCnt = numCols & 0x3;
+      for (ii = 0; ii < colCnt / 2; ii++) {
+        vlsseg2e16_v_i16m2(&va0m2, &va1m2, pInA1, numCols * bstride, l);
+        vres0m8 = vwmacc_vx_i64m8(vres0m8, *(pInVec++), vwadd_vx_i32m4(va0m2, 0, l), l);
+        vres0m8 = vwmacc_vx_i64m8(vres0m8, *(pInVec++), vwadd_vx_i32m4(va1m2, 0, l), l);
+        pInA1 += 2;
+      }
 
-        for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
-            v_inA = vle16_v_i16m4(pInA, l);
-            pInA += l;
-            v_inB = vle16_v_i16m4(pInB, l);
-            pInB += l;
-            vsum = vwredsum_vs_i32m8_i64m1(vsum, vwmul_vv_i32m8(v_inA, v_inB, l), vsum, l);
-        }
-        sum = vmv_x_s_i64m1_i64(vsum);
-	    *px++ = (q15_t)(__SSAT((sum >> 15), 16));
+      if (numCols & 0x1) {
+          va0m2 = vlse16_v_i16m2(pInA1, numCols * bstride, l);
+          vres0m8 = vwmacc_vx_i64m8(vres0m8, *(pInVec++), vwadd_vx_i32m4(va0m2, 0, l), l);
+      }
+      va0m2 = vnclip_wx_i16m2(vnsra_wx_i32m4(vres0m8, 15, l), 0, l);
+      vse16_v_i16m2(px, va0m2, l);
+      px += l;
+      pSrcA += l * numCols;
     }
     /* Set status as RISCV_MATH_SUCCESS */
 #else

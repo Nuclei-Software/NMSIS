@@ -116,6 +116,61 @@ riscv_status riscv_mat_mult_opt_q31(
     }
 
     px = pDst->pData;
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
+    /* The following loop performs the dot-product of each row in pSrcA with each column in pSrcB */
+    /* row loop */
+    do
+    {
+      /* For every row wise process, column loop counter is to be initiated */
+      col = numColsB;
+
+      /* For every row wise process, pIn2 pointer is set to starting address of pSrcB data */
+      pIn2 = pSrcBT;
+
+      /* column loop */
+      do
+      {
+        /* Set the variable sum, that acts as accumulator, to zero */
+        sum = 0;
+
+        /* Initiate the pointer pIn1 to point to the starting address of pSrcA */
+        pIn1 = pInA + i;
+
+        /* Initialize cntCnt with number of columns */
+        colCnt = numColsA;
+
+        uint16_t blkCnt = colCnt;
+        size_t l;
+        vint64m1_t vsum;
+        vint32m4_t v_inA, v_inB;
+        l = vsetvl_e64m1(1);
+        vsum = vmv_v_x_i64m1(0, l);
+        for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l) {
+          v_inA = vle32_v_i32m4(pIn1, l);
+          v_inB = vle32_v_i32m4(pIn2, l);
+          pIn1 += l;
+          pIn2 += l;
+          vsum = vredsum_vs_i64m8_i64m1(vsum, vwmul_vv_i64m8(v_inA, v_inB, l), vsum, l);
+        }
+        sum += vmv_x_s_i64m1_i64(vsum);
+
+        /* Convert result from 2.62 to 1.31 format and store in destination buffer */
+        *px++ = (q31_t) (sum >> 31);
+
+        /* Decrement column loop counter */
+        col--;
+
+      } while (col > 0U);
+
+      /* Update the pointer pSrcA to point to the  starting address of the next row */
+      i = i + numColsA;
+
+      /* Decrement row loop counter */
+      row--;
+
+    } while (row > 0U);
+
+#else
 
     /* The following loop performs the dot-product of each row in pSrcA with each column in pSrcB */
     /* row loop */
@@ -204,7 +259,7 @@ riscv_status riscv_mat_mult_opt_q31(
       row--;
 
     } while (row > 0U);
-
+#endif /*defined(RISCV_MATH_VECTOR)*/
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
   }

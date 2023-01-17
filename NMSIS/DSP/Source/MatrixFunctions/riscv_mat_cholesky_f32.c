@@ -99,33 +99,10 @@ riscv_status riscv_mat_cholesky_f32(
        for (j = i ; j < n; j++)
        {
           pG[j * n + i] = pA[j * n + i];
-#if defined(RISCV_MATH_VECTOR)
-          uint32_t blkCnt;                               /* Loop counter */
-          size_t l;
-          vfloat32m8_t v_x, v_y;
-          float32_t *pGX;
-          float32_t *pGY;
-          blkCnt = i;
-          pGX = pG + i * n;
-          pGY = pG + j * n;
-          l = vsetvlmax_e32m1();
-          vfloat32m1_t v_a = vfmv_v_f_f32m1(0.0f, l);
-          for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-              v_x = vle32_v_f32m8(pGX, l);
-              pGX += l;
-              v_y = vle32_v_f32m8(pGY, l);
-              pGY += l;
-              v_a = vfredusum_vs_f32m8_f32m1(v_a, vfmul_vv_f32m8(v_x, v_y, l), v_a, l);
-          }
-
-          pG[j * n + i] -= vfmv_f_s_f32m1_f32(v_a);
-#else
-
           for(k=0; k < i ; k++)
           {
              pG[j * n + i] = pG[j * n + i] - pG[i * n + k] * pG[j * n + k];
           }
-#endif /* defined(RISCV_MATH_VECTOR) */
        }
 
        if (pG[i * n + i] <= 0.0f)

@@ -104,38 +104,10 @@
             float32_t tmp=a_col[i * cols];
 
             lt_row = &pLT[n*i];
-
-#if defined(RISCV_MATH_VECTOR)
-            uint32_t blkCnt;                               /* Loop counter */
-            size_t l;
-            vfloat32m8_t v_x, v_y;
-            vfloat32m1_t v_a;
-            float32_t *pVlt_row;
-            float32_t *pX_row;
-            ptrdiff_t bstride;
-
-            blkCnt = i;
-            pVlt_row = lt_row;
-            pX_row = pX + j;
-            l = vsetvlmax_e32m1();
-            v_a = vfsub_vv_f32m1(v_a, v_a, l);
-            bstride = 4 * cols;
-            for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-                v_x = vle32_v_f32m8(pVlt_row, l);
-                v_y = vlse32_v_f32m8(pX_row, bstride, l);
-		// the vfredusum may introduce errors
-                v_a = vfredusum_vs_f32m8_f32m1(v_a, vfmul_vv_f32m8(v_x, v_y, l), v_a, l);
-                pVlt_row += l;
-                pX_row += l * cols;
-            }
-
-            tmp -= vfmv_f_s_f32m1_f32(v_a);
-#else
             for(k=0; k < i; k++)
             {
                 tmp -= lt_row[k] * pX[cols*k+j];
             }
-#endif /* defined(RISCV_MATH_VECTOR) */
             if (lt_row[i]==0.0f)
             {
               return(RISCV_MATH_SINGULAR);

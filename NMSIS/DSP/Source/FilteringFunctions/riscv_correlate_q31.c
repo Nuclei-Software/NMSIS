@@ -69,6 +69,138 @@ void riscv_correlate_q31(
 {
 
 
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
+  const q31_t *pIn1;                                   /* InputA pointer */
+  const q31_t *pIn2;                                   /* InputB pointer */
+        q31_t *pOut = pDst;                            /* Output pointer */
+        uint32_t blockSize1, blockSize2, blockSize3;   /* Loop counters */
+        uint32_t outBlockSize;                         /* Loop counter */
+        uint32_t j, ii, jj, kk;
+
+  /* The algorithm implementation is based on the lengths of the inputs. */
+  /* srcB is always made to slide across srcA. */
+  /* So srcBLen is always considered as shorter or equal to srcALen */
+  if (srcALen >= srcBLen)
+  {
+    /* Initialization of inputA pointer */
+    pIn1 = pSrcA;
+
+    /* Initialization of inputB pointer */
+    pIn2 = pSrcB;
+
+    /* Number of output samples is calculated */
+    outBlockSize = (2U * srcALen) - 1U;
+
+    /* When srcALen > srcBLen, zero padding is done to srcB
+     * to make their lengths equal.
+     * Instead, (outBlockSize - (srcALen + srcBLen - 1))
+     * number of output samples are made zero */
+    j = outBlockSize - (srcALen + (srcBLen - 1U));
+
+    /* Updating the pointer position to non zero value */
+    pOut += j;
+  }
+  else
+  {
+    /* Initialization of inputA pointer */
+    pIn1 = pSrcB;
+
+    /* Initialization of inputB pointer */
+    pIn2 = pSrcA;
+
+    /* srcBLen is always considered as shorter or equal to srcALen */
+    j = srcBLen;
+    srcBLen = srcALen;
+    srcALen = j;
+
+    /* CORR(x, y) = Reverse order(CORR(y, x)) */
+    /* Hence set the destination pointer to point to the last output sample */
+    pOut = pDst + ((srcALen + srcBLen) - 2U);
+
+  }
+  pSrcA = pIn1;
+  pSrcB = pIn2;
+
+  size_t l;
+  vint64m8_t vres0m8;
+  vint32m4_t vx;
+  q31_t value = 0;
+  uint32_t flag = 0;
+
+  blockSize1 = srcBLen - 1U;
+  blockSize2 = srcALen - (srcBLen - 1U);
+  blockSize3 = blockSize1;
+  pIn2 = pSrcB + srcBLen - 1;
+  for (ii = blockSize1; ii > 0; ii -= l)
+  {
+    l = vsetvl_e32m4(ii);
+    vx = vle32_v_i32m4(pIn1, l);
+    vres0m8 = vmv_v_x_i64m8(0.0, l);
+    flag = 0;
+    for (jj = 0; jj < blockSize1; jj++)
+    {
+      if (flag >= l)
+        break;
+      vres0m8 = vwmacc_vx_i64m8 (vres0m8, *(pIn2 - jj), vx, l);
+      if (pIn1 - jj <= pSrcA) {
+        value = 0;
+        flag++;
+      } else {
+        value = *(pIn1 - jj - 1);
+        flag = 0;
+      }
+      vx = vslide1up_vx_i32m4(vx, value, l);
+    }
+    vx = vnsra_wx_i32m4(vres0m8, 31, l);
+    vse32_v_i32m4(pOut, vx, l);
+    pOut += l;
+    pIn1 += l;
+  }
+
+  pIn2 = pSrcB;
+  pIn1 = pSrcA;
+  for (ii = blockSize2; ii > 0; ii -= l)
+  {
+    l = vsetvl_e32m4(ii);
+    vres0m8 = vmv_v_x_i64m8(0, l);
+    for (jj = 0; jj < srcBLen; jj++)
+    {
+      vx = vle32_v_i32m4(pIn1 + jj, l);
+      vres0m8 = vwmacc_vx_i64m8(vres0m8, *(pIn2 + jj), vx, l);
+    }
+    vx = vnsra_wx_i32m4(vres0m8, 31, l);
+    vse32_v_i32m4(pOut, vx, l);
+    pOut += l;
+    pIn1 += l;
+  }
+  pIn1 = pSrcA + blockSize2;
+  flag = 0;
+  for (ii = blockSize3; ii > 0; ii -= l)
+  {
+    l = vsetvl_e32m4(ii);
+    vx = vle32_v_i32m4(pIn1, l);
+    pIn1 += l;
+    vres0m8 = vmv_v_x_i64m8(0, l);
+    flag = 0;
+    for (jj = 0; jj < blockSize3; jj++)
+    {
+      if (flag >= l)
+        break;
+      vres0m8 = vwmacc_vx_i64m8(vres0m8, *(pIn2 + jj), vx, l);
+      if (pIn1 + jj >= pSrcA + srcALen) {
+        value = 0;
+        flag++;
+      } else {
+        value = *(pIn1 + jj);
+        flag = 0;
+      }
+      vx = vslide1down_vx_i32m4(vx, value, l);
+    }
+    vx = vnsra_wx_i32m4(vres0m8, 31, l);
+    vse32_v_i32m4(pOut, vx, l);
+    pOut += l;
+  }
+#else
 
   const q31_t *pIn1;                                   /* InputA pointer */
   const q31_t *pIn2;                                   /* InputB pointer */
@@ -186,22 +318,6 @@ void riscv_correlate_q31(
   {
     /* Accumulator is made zero for every iteration */
     sum = 0;
-#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
-    uint32_t vblkCnt = count;                               /* Loop counter */
-    size_t l;
-    vint32m4_t vx, vy;
-    vint64m1_t temp00m1;
-    l = vsetvl_e64m1(1);
-    temp00m1 = vmv_v_x_i64m1(0, l);
-    for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle32_v_i32m4(px, l);
-      px += l;
-      vy = vle32_v_i32m4(py, l);
-      py += l;
-      temp00m1 = vredsum_vs_i64m8_i64m1(temp00m1, vwmul_vv_i64m8(vx, vy, l), temp00m1, l);
-    }
-    sum += vmv_x_s_i64m1_i64(temp00m1);
-#else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
     /* Loop unrolling: Compute 4 outputs at a time */
@@ -248,7 +364,6 @@ void riscv_correlate_q31(
       /* Decrement loop counter */
       k--;
     }
-#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
     /* Store the result in the accumulator in the destination buffer. */
     *pOut = (q31_t) (sum >> 31);
     /* Destination pointer is updated according to the address modifier, inc */
@@ -287,43 +402,6 @@ void riscv_correlate_q31(
   /* -------------------
    * Stage2 process
    * ------------------*/
-#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
-    blkCnt = blockSize2;
-
-    while (blkCnt > 0U)
-    {
-      /* Accumulator is made zero for every iteration */
-      sum = 0;
-      uint32_t vblkCnt = srcBLen;                               /* Loop counter */
-      size_t l;
-      vint32m4_t vx, vy;
-      vint64m1_t temp00m1;
-      l = vsetvl_e64m1(1);
-      temp00m1 = vmv_v_x_i64m1(0, l);
-      for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
-        vx = vle32_v_i32m4(px, l);
-        px += l;
-        vy = vle32_v_i32m4(py, l);
-        py += l;
-        temp00m1 = vredsum_vs_i64m8_i64m1(temp00m1, vwmul_vv_i64m8(vx, vy, l), temp00m1, l);
-      }
-      sum += vmv_x_s_i64m1_i64(temp00m1);
-      /* Store the result in the accumulator in the destination buffer. */
-      *pOut = (q31_t) (sum >> 31);
-      /* Destination pointer is updated according to the address modifier, inc */
-      pOut += inc;
-
-      /* Increment MAC count */
-      count++;
-
-      /* Update the inputA and inputB pointers for next MAC calculation */
-      px = pIn1 + count;
-      py = pIn2;
-
-      /* Decrement loop counter */
-      blkCnt--;
-    }
-#else
   /* Stage2 depends on srcBLen as in this stage srcBLen number of MACS are performed.
    * So, to loop unroll over blockSize2,
    * srcBLen should be greater than or equal to 4 */
@@ -553,7 +631,6 @@ void riscv_correlate_q31(
       blkCnt--;
     }
   }
-#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
 
   /* --------------------------
    * Initializations of stage3
@@ -585,22 +662,6 @@ void riscv_correlate_q31(
   {
     /* Accumulator is made zero for every iteration */
     sum = 0;
-#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
-    uint32_t vblkCnt = count;                               /* Loop counter */
-    size_t l;
-    vint32m4_t vx, vy;
-    vint64m1_t temp00m1;
-    l = vsetvl_e64m1(1);
-    temp00m1 = vmv_v_x_i64m1(0, l);
-    for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle32_v_i32m4(px, l);
-      px += l;
-      vy = vle32_v_i32m4(py, l);
-      py += l;
-      temp00m1 = vredsum_vs_i64m8_i64m1(temp00m1, vwmul_vv_i64m8(vx, vy, l), temp00m1, l);
-    }
-    sum += vmv_x_s_i64m1_i64(temp00m1);
-#else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
     /* Loop unrolling: Compute 4 outputs at a time */
@@ -642,7 +703,6 @@ void riscv_correlate_q31(
       /* Decrement loop counter */
       k--;
     }
-#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
     /* Store the result in the accumulator in the destination buffer. */
     *pOut = (q31_t) (sum >> 31);
     /* Destination pointer is updated according to the address modifier, inc */
@@ -658,8 +718,7 @@ void riscv_correlate_q31(
     /* Decrement loop counter */
     blockSize3--;
   }
-
-
+#endif /* defined (RISCV_MATH_VECTOR) */
 }
 
 /**
