@@ -89,14 +89,32 @@ __STATIC_FORCEINLINE q63_t read_q31x2 (
   @param[in]     pQ31      points to input value
   @return        Q63 value
  */
-#define read_q31x2_ia(pQ31) read_q31x2((*(pQ31) += 2) - 2)
+__STATIC_FORCEINLINE q63_t read_q31x2_ia (
+  q31_t ** pQ31)
+{
+  q63_t val;
+
+  val = read_q31x2(*pQ31);
+  *pQ31 += 2;
+
+  return (val);
+}
 
 /**
   @brief         Read 2 Q31 from Q31 pointer and decrement pointer afterwards.
   @param[in]     pQ31      points to input value
   @return        Q63 value
  */
-#define read_q31x2_da(pQ31) read_q31x2((*(pQ31) -= 2) + 2)
+__STATIC_FORCEINLINE q63_t read_q31x2_da (
+  q31_t ** pQ31)
+{
+  q63_t val;
+
+  val = read_q31x2(*pQ31);
+  *pQ31 -= 2;
+
+  return (val);
+}
 
 /**
   @brief         Write 2 Q31 to Q31 pointer.
@@ -125,7 +143,13 @@ __STATIC_FORCEINLINE void write_q31x2 (
   @param[in]     value     Q63 value
   @return        none
  */
-#define write_q31x2_ia(pQ31, value) write_q31x2(((*(pQ31) += 2) - 2), value)
+__STATIC_FORCEINLINE void write_q31x2_ia (
+  q31_t ** pQ31,
+  q63_t    value)
+{
+  write_q31x2(*pQ31, value);
+  *pQ31 += 2;
+}
 
 /**
   @brief         Read 2 Q15 from Q15 pointer.
@@ -151,14 +175,32 @@ __STATIC_FORCEINLINE q31_t read_q15x2 (
   @param[in]     pQ15      points to input value
   @return        Q31 value
  */
-#define read_q15x2_ia(pQ15) read_q15x2((*(pQ15) += 2) - 2)
+__STATIC_FORCEINLINE q31_t read_q15x2_ia (
+  q15_t ** pQ15)
+{
+  q31_t val;
+
+  val = read_q15x2(*pQ15);
+  *pQ15 += 2;
+
+  return (val);
+}
 
 /**
   @brief         Read 2 Q15 from Q15 pointer and decrement pointer afterwards.
   @param[in]     pQ15      points to input value
   @return        Q31 value
  */
-#define read_q15x2_da(pQ15) read_q15x2((*(pQ15) -= 2) + 2)
+__STATIC_FORCEINLINE q31_t read_q15x2_da (
+  q15_t ** pQ15)
+{
+  q31_t val;
+
+  val = read_q15x2(*pQ15);
+  *pQ15 -= 2;
+
+  return (val);
+}
 
 /**
   @brief         Write 2 Q15 to Q15 pointer.
@@ -183,7 +225,13 @@ __STATIC_FORCEINLINE void write_q15x2 (
   @param[in]     value     Q31 value
   @return        none
  */
-#define write_q15x2_ia(pQ15, value) write_q15x2(((*(pQ15) += 2) - 2), value)
+__STATIC_FORCEINLINE void write_q15x2_ia (
+  q15_t ** pQ15,
+  q31_t    value)
+{
+  write_q15x2(*pQ15, value);
+  *pQ15 += 2;
+}
 
 /**
   @brief         Write 4 Q15 to Q15 pointer.
@@ -212,7 +260,13 @@ __STATIC_FORCEINLINE void write_q15x4 (
   @param[in]     value     Q31 value
   @return        none
  */
-#define write_q15x4_ia(pQ15, value) write_q15x4(((*(pQ15) += 4) - 4), value)
+__STATIC_FORCEINLINE void write_q15x4_ia (
+  q15_t ** pQ15,
+  q63_t    value)
+{
+  write_q15x4(*pQ15, value);
+  *pQ15 += 4;
+}
 
 /**
   @brief         Write 4 Q15 to Q15 pointer and decrement pointer afterwards.
@@ -220,7 +274,13 @@ __STATIC_FORCEINLINE void write_q15x4 (
   @param[in]     value     Q31 value
   @return        none
  */
-#define write_q15x4_da(pQ15, value) write_q15x4(((*(pQ15) -= 4) + 4), value)
+__STATIC_FORCEINLINE void write_q15x4_da (
+  q15_t ** pQ15,
+  q63_t    value)
+{
+  write_q15x4(*pQ15, value);
+  *pQ15 -= 4;
+}
 
 /**
   @brief         Read 4 Q15 from Q15 pointer.
@@ -248,14 +308,32 @@ __STATIC_FORCEINLINE q63_t read_q15x4 (
   @param[in]     pQ15      points to input value
   @return        Q63 value
  */
-#define read_q15x4_ia(pQ15) read_q15x4((*(pQ15) += 4) - 4)
+__STATIC_FORCEINLINE q63_t read_q15x4_ia (
+  q15_t ** pQ15)
+{
+  q63_t val;
+
+  val = read_q15x4(*pQ15);
+  *pQ15 += 4;
+
+  return (val);
+}
 
 /**
   @brief         Read 4 Q15 from Q15 pointer and decrement pointer afterwards.
   @param[in]     pQ15      points to input value
   @return        Q31 value
  */
-#define read_q15x4_da(pQ15) read_q15x4((*(pQ15) -= 4) + 4)
+__STATIC_FORCEINLINE q63_t read_q15x4_da (
+  q15_t ** pQ15)
+{
+  q63_t val;
+
+  val = read_q15x4(*pQ15);
+  *pQ15 -= 4;
+
+  return (val);
+}
 
 /**
   @brief         Read 4 Q7 from Q7 pointer
@@ -281,14 +359,32 @@ __STATIC_FORCEINLINE q31_t read_q7x4 (
   @param[in]     pQ7       points to input value
   @return        Q31 value
  */
-#define read_q7x4_ia(pQ7) read_q7x4((*(pQ7) += 4) - 4)
+__STATIC_FORCEINLINE q31_t read_q7x4_ia (
+  q7_t ** pQ7)
+{
+  q31_t val;
+
+  val = read_q7x4(*pQ7);
+  *pQ7 += 4;
+
+  return (val);
+}
 
 /**
   @brief         Read 4 Q7 from Q7 pointer and decrement pointer afterwards.
   @param[in]     pQ7       points to input value
   @return        Q31 value
  */
-#define read_q7x4_da(pQ7) read_q7x4((*(pQ7) -= 4) + 4)
+__STATIC_FORCEINLINE q31_t read_q7x4_da (
+  q7_t ** pQ7)
+{
+  q31_t val;
+
+  val = read_q7x4(*pQ7);
+  *pQ7 -= 4;
+
+  return (val);
+}
 
 /**
   @brief         Read 8 Q7 from Q7 pointer.
@@ -317,14 +413,32 @@ __STATIC_FORCEINLINE q63_t read_q7x8 (
   @param[in]     pQ7       points to input value
   @return        Q63 value
  */
-#define read_q7x8_ia(pQ7) read_q7x8((*(pQ7) += 8) - 8)
+__STATIC_FORCEINLINE q63_t read_q7x8_ia (
+  q7_t ** pQ7)
+{
+  q63_t val;
+
+  val = read_q7x8(*pQ7);
+  *pQ7 += 8;
+
+  return val;
+}
 
 /**
   @brief         Read 8 Q7 from Q7 pointer and decrement pointer afterwards.
   @param[in]     pQ7       points to input value
   @return        Q63 value
  */
-#define read_q7x8_da(pQ7) read_q7x8((*(pQ7) -= 8) + 8)
+__STATIC_FORCEINLINE q63_t read_q7x8_da (
+  q7_t ** pQ7)
+{
+  q63_t val;
+
+  val = read_q7x8(*pQ7);
+  *pQ7 -= 8;
+
+  return val;
+}
 
 /**
   @brief         Write 4 Q7 to Q7 pointer.
@@ -350,7 +464,13 @@ __STATIC_FORCEINLINE void write_q7x4 (
   @param[in]     value     Q31 value
   @return        none
  */
-#define write_q7x4_ia(pQ7, value) write_q7x4(((*(pQ7) += 4) - 4), value)
+__STATIC_FORCEINLINE void write_q7x4_ia (
+  q7_t ** pQ7,
+  q31_t   value)
+{
+  write_q7x4(*pQ7, value);
+  *pQ7 += 4;
+}
 
 /**
   @brief         Write 8 Q7 to Q7 pointer and increment pointer afterwards.
