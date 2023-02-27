@@ -58,7 +58,7 @@ static void scale_q31_to_q7_and_clamp(const q31_t *buffer,
         vbool4_t mask = vmsgt_vx_i32m8_b4(vx, 0, l);
         vy = vadd_vx_i32m8(vx, half_count, l);
         vx = vsub_vx_i32m8(vx, half_count, l);
-        vx = vmerge_vvm_i32m8 (mask, vy, vx, l);
+        vx = vmerge_vvm_i32m8(mask, vx, vy, l);
         vx = vdiv_vx_i32m8(vx, count, l);
         vx = vmin_vx_i32m8(vmax_vx_i32m8(vx, act_min, l), act_max, l);
         vse8_v_i8m2(target, vnsra_wx_i8m2(vnsra_wx_i16m4(vx, 0, l), 0, l), l);
@@ -228,7 +228,7 @@ int32_t riscv_avgpool_s8_get_buffer_size(const int output_x, const int ch_src)
 {
     (void)output_x;
 
-#if defined(RISCV_MATH_DSP)
+#if defined(RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
     return (ch_src * sizeof(int32_t));
 #else
     (void)ch_src;

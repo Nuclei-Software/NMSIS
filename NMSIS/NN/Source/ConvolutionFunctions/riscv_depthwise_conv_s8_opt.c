@@ -363,7 +363,7 @@ riscv_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
 
 int32_t riscv_depthwise_conv_s8_opt_get_buffer_size(const nmsis_nn_dims *input_dims, const nmsis_nn_dims *filter_dims)
 {
-#if   defined(RISCV_MATH_DSP)
+#if defined(RISCV_MATH_DSP) || defined(RISCV_MATH_VECTOR)
     return (input_dims->c * filter_dims->w * filter_dims->h) * sizeof(int16_t);
 #else
     (void)input_dims;

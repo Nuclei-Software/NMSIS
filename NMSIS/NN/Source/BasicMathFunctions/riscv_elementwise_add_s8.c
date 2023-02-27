@@ -72,42 +72,7 @@ riscv_status riscv_elementwise_add_s8(const int8_t *input_1_vect,
     int32_t input_2;
     int32_t sum;
 
-#if defined(RISCV_MATH_VECTOR)
-    int32_t blkCnt = block_size & (~RVV_OPT_THRESHOLD);                               /* Loop counter */
-    size_t l;
-    vint32m8_t input_1_m8;
-    vint32m8_t input_2_m8;
-    vint32m8_t sum0m8;
-
-    for (; (l = vsetvl_e8m2(blkCnt)) > 0; blkCnt -= l) {
-        input_1_m8 = vsll_vx_i32m8(vadd_vx_i32m8(vsext_vf4_i32m8(vle8_v_i8m2(input_1_vect, l), l), input_1_offset, l), left_shift, l);
-        input_1_vect += l;
-        input_2_m8 = vsll_vx_i32m8(vadd_vx_i32m8(vsext_vf4_i32m8(vle8_v_i8m2(input_2_vect, l), l), input_2_offset, l), left_shift, l);
-        input_2_vect += l;
-        if (input_1_shift < 0) {
-            input_1_m8 = vsra_vx_i32m8(vsmul_vx_i32m8(input_1_m8, input_1_mult, l), -input_1_shift, l);
-        } else {
-            input_1_m8 = vsll_vx_i32m8(vsmul_vx_i32m8(input_1_m8, input_1_mult, l), input_1_shift, l);
-        }
-        if (input_2_shift < 0) {
-            input_2_m8 = vsra_vx_i32m8(vsmul_vx_i32m8(input_2_m8, input_2_mult, l), -input_2_shift, l);
-        } else {
-            input_2_m8 = vsll_vx_i32m8(vsmul_vx_i32m8(input_2_m8, input_2_mult, l), input_2_shift, l);
-        }
-        sum0m8 = vadd_vv_i32m8(input_1_m8, input_2_m8, l);
-        if (out_shift < 0) {
-            sum0m8 = vadd_vx_i32m8(vsra_vx_i32m8(vsmul_vx_i32m8(sum0m8, out_mult, l), -out_shift, l), out_offset, l);
-        } else {
-            sum0m8 = vadd_vx_i32m8(vsll_vx_i32m8(vsmul_vx_i32m8(sum0m8, out_mult, l), out_shift, l), out_offset, l);
-        }
-
-        sum0m8 = vmax_vx_i32m8(sum0m8, out_activation_min, l);
-        sum0m8 = vmin_vx_i32m8(sum0m8, out_activation_max, l);
-        vse8_v_i8m2(output, vnsra_wx_i8m2(vnsra_wx_i16m4(sum0m8, 0, l), 0, l), l);
-        output += l;
-    }
-    loop_count = block_size & RVV_OPT_THRESHOLD;
-#elif defined(RISCV_MATH_DSP)
+#if defined(RISCV_MATH_DSP)
     int32_t a_1, b_1, a_2, b_2;
 
     int32_t offset_1_packed, offset_2_packed;
@@ -197,7 +162,7 @@ riscv_status riscv_elementwise_add_s8(const int8_t *input_1_vect,
     loop_count = block_size & 0x3;
 #else
     loop_count = block_size;
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_DSP) */
 
     while (loop_count > 0)
     {

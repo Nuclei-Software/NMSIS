@@ -66,35 +66,8 @@ riscv_status riscv_elementwise_mul_s16(const int16_t *input_1_vect,
     int32_t input_1;
     int32_t input_2;
     int32_t mul_res;
-#if defined(RISCV_MATH_VECTOR)
-    int32_t blkCnt = block_size & (~RVV_OPT_THRESHOLD);                               /* Loop counter */
-    size_t l;
-    vint32m8_t in1m8;
-    vint32m8_t in2m8;
-    vint32m8_t sum;
 
-    for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
-        in1m8 = vwadd_vx_i32m8(vle16_v_i16m4(input_1_vect, l), 0, l);
-        input_1_vect += l;
-        in2m8 = vwadd_vx_i32m8(vle16_v_i16m4(input_2_vect, l), 0, l);
-        input_2_vect += l;
-
-        sum = vmul_vv_i32m8(in1m8, in2m8, l);
-        if (out_shift < 0) {
-            sum = vsra_vx_i32m8(vsmul_vx_i32m8(sum, out_mult, l), -out_shift, l);
-        } else {
-            sum = vsll_vx_i32m8(vsmul_vx_i32m8(sum, out_mult, l), out_shift, l);
-        }
-
-        sum = vmax_vx_i32m8(sum, out_activation_min, l);
-        sum = vmin_vx_i32m8(sum, out_activation_max, l);
-        vse16_v_i16m4(output, vnsra_wx_i16m4(sum, 0, l), l);
-        output += l;
-    }
-    loop_count = block_size & RVV_OPT_THRESHOLD;
-#else
     loop_count = block_size;
-#endif /* defined(RISCV_MATH_VECTOR) */
 
     while (loop_count > 0)
     {

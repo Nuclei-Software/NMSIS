@@ -99,20 +99,6 @@ riscv_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
         return RISCV_MATH_ARGUMENT_ERROR;
     }
     q31_t *buffer_b = (q31_t *)output_ctx->buf;
-
-#if defined(RISCV_MATH_VECTOR)
-    uint32_t blkCnt;                               /* Loop counter */
-    size_t l;
-    vint8m4_t a8m4, b8m4;
-    vint32m4_t a32m4, b32m4;
-    vint32m8_t a32m8, b32m8;
-    vint32m1_t v_temp;
-    const q31_t *pA;
-    const q31_t *pB;
-    q31_t *pOUT;
-    l = vsetvl_e32m1(1);
-    v_temp = vsub_vv_i32m1(v_temp, v_temp, l);
-#endif /* defined(RISCV_MATH_VECTOR) */
     // Left shift state
     memmove((int8_t *)state_data,
             (int8_t *)state_data + 1,
@@ -160,8 +146,14 @@ riscv_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
                 int32_t sum = 0;
                 int j;
 #if defined(RISCV_MATH_VECTOR)
+                uint32_t blkCnt;                               /* Loop counter */
+                size_t l;
+                vint32m1_t v_temp;
+                vint8m4_t a8m4, b8m4;
                 blkCnt = time_batches & (~RVV_OPT_THRESHOLD);
                 int tmp_j = blkCnt;
+                l = vsetvl_e32m1(1);
+                v_temp = vmv_v_x_i32m1(0, l);
                 for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
                     a8m4 = vle8_v_i8m4(v1, l);
                     v1 += l;
@@ -210,11 +202,14 @@ riscv_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
                 const int32_t *bi = bias_data;
                 int j;
 #if defined(RISCV_MATH_VECTOR)
+                uint32_t blkCnt;                               /* Loop counter */
+                size_t l;
+                vint32m8_t a32m8, b32m8;
                 blkCnt = feature_batches & (~RVV_OPT_THRESHOLD);
                 int tmp_j = blkCnt;
-                pA = ptr_a;
-                pB = bi;
-                pOUT = output_temp;
+                const q31_t *pA = ptr_a;
+                const q31_t *pB = bi;
+                q31_t *pOUT = output_temp;
                 for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
                     a32m8 = vle32_v_i32m8(pA, l);
                     pA += l;
@@ -246,8 +241,12 @@ riscv_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
                     int32_t sum = bias_data[i];
                     int j;
 #if defined(RISCV_MATH_VECTOR)
+                    uint32_t blkCnt;                               /* Loop counter */
+                    size_t l;
+                    vint32m1_t v_temp;
+                    vint32m8_t a32m8;
                     l = vsetvl_e32m1(1);
-                    v_temp = vsub_vv_i32m1(v_temp, v_temp, l);
+                    v_temp = vmv_v_x_i32m1(0, l);
                     blkCnt = rank & (~RVV_OPT_THRESHOLD);
                     int tmp_j = blkCnt;
                     for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
@@ -283,8 +282,12 @@ riscv_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
                 int32_t sum = 0;
                 int j;
 #if defined(RISCV_MATH_VECTOR)
+                uint32_t blkCnt;                               /* Loop counter */
+                size_t l;
+                vint32m1_t v_temp;
+                vint32m8_t a32m8;
                 l = vsetvl_e32m1(1);
-                v_temp = vsub_vv_i32m1(v_temp, v_temp, l);
+                v_temp = vmv_v_x_i32m1(0, l);
                 blkCnt = rank & (~RVV_OPT_THRESHOLD);
                 int tmp_j = blkCnt;
                 for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
@@ -308,30 +311,7 @@ riscv_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
         }
     }
 
-    int32_t num_elements = input_batches * unit_count;
-    int i;
-#if defined(RISCV_MATH_VECTOR)
-    blkCnt = num_elements & (~RVV_OPT_THRESHOLD);
-    int tmp_i = blkCnt;
-    pA = buffer_b;
-    q7_t *pOutput = output_data;
-    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-        a32m8 = vle32_v_i32m8(pA, l);
-        pA += l;
-        if (shift_2 < 0) {
-            a32m8 = vadd_vx_i32m8(vsra_vx_i32m8(vsmul_vx_i32m8(a32m8, multiplier_out, l), -shift_2, l), zp_out, l);
-        } else {
-            a32m8 = vadd_vx_i32m8(vsll_vx_i32m8(vsmul_vx_i32m8(a32m8, multiplier_out, l), shift_2, l), zp_out, l);
-        }
-        b32m8 = vmin_vx_i32m8(vmax_vx_i32m8(a32m8, out_activation_min, l), out_activation_max, l);
-        vse8_v_i8m2(pOutput, vnclip_wx_i8m2(vnclip_wx_i16m4(b32m8, 0, l), 0, l), l);
-        pOutput += l;
-    }
-    i = tmp_i;
-#else
-    i = 0;
-#endif
-    for (; i < num_elements; i++)
+    for (int i = 0; i < input_batches * unit_count; i++)
     {
         output_data[i] = (q7_t)CLAMP(
             riscv_nn_requantize(buffer_b[i], multiplier_out, shift_2) + zp_out, out_activation_max, out_activation_min);
