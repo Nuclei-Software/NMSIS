@@ -168,7 +168,7 @@ static void clamp_output(q7_t *source, int32_t length, const int32_t act_min, co
  *
  */
 
-riscv_status riscv_max_pool_s8(const nmsis_nn_context *ctx,
+riscv_nmsis_nn_status riscv_max_pool_s8(const nmsis_nn_context *ctx,
                            const nmsis_nn_pool_params *pool_params,
                            const nmsis_nn_dims *input_dims,
                            const q7_t *src,
@@ -230,7 +230,7 @@ riscv_status riscv_max_pool_s8(const nmsis_nn_context *ctx,
 
     clamp_output(dst_base, output_x * output_y * channel_in, act_min, act_max);
 
-    return RISCV_MATH_SUCCESS;
+    return RISCV_NMSIS_NN_SUCCESS;
 }
 
 /**

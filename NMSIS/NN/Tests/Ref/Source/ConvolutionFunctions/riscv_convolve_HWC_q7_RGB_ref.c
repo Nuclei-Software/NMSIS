@@ -58,7 +58,7 @@
    * @param[in,out]   bufferA     pointer to buffer space for input
    * @param[in,out]   bufferB     pointer to buffer space for output
    * @return     The function returns either
-   * <code>RISCV_MATH_SIZE_MISMATCH</code> or <code>RISCV_MATH_SUCCESS</code> based on the outcome of size checking.
+   * <code>RISCV_NMSIS_NN_SIZE_MISMATCH</code> or <code>RISCV_NMSIS_NN_SUCCESS</code> based on the outcome of size checking.
    *
    * @details
    *
@@ -77,7 +77,7 @@
    * image with RGB format.
    */
 
-riscv_status
+riscv_nmsis_nn_status
 riscv_convolve_HWC_q7_RGB_ref(const q7_t * Im_in,
                             const uint16_t dim_im_in,
                             const uint16_t ch_im_in,
@@ -101,7 +101,7 @@ riscv_convolve_HWC_q7_RGB_ref(const q7_t * Im_in,
     // check if number of input channels is 3
     if (ch_im_in != 3)
     {
-        return RISCV_MATH_SIZE_MISMATCH;
+        return RISCV_NMSIS_NN_SIZE_MISMATCH;
     }
 
     for (i = 0; i < ch_im_out; i++)
@@ -135,7 +135,7 @@ riscv_convolve_HWC_q7_RGB_ref(const q7_t * Im_in,
         }
     }
     /* Return to application */
-    return (RISCV_MATH_SUCCESS);
+    return (RISCV_NMSIS_NN_SUCCESS);
 }
 
 /**

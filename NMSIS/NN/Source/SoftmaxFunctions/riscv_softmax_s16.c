@@ -36,7 +36,7 @@
  * @{
  */
 
-riscv_status riscv_softmax_s16(const int16_t *input,
+riscv_nmsis_nn_status riscv_softmax_s16(const int16_t *input,
                            const int32_t num_rows,
                            const int32_t row_size,
                            const int32_t mult,
@@ -49,7 +49,7 @@ riscv_status riscv_softmax_s16(const int16_t *input,
 
     if (softmax_params->exp_lut == NULL || softmax_params->one_by_one_lut == NULL)
     {
-        return RISCV_MATH_ARGUMENT_ERROR;
+        return RISCV_NMSIS_NN_ARG_ERROR;
     }
 
     for (row_idx = 0; row_idx < num_rows; ++row_idx)
@@ -114,7 +114,7 @@ riscv_status riscv_softmax_s16(const int16_t *input,
         input += row_size;
     }
 
-    return RISCV_MATH_SUCCESS;
+    return RISCV_NMSIS_NN_SUCCESS;
 }
 
 /**

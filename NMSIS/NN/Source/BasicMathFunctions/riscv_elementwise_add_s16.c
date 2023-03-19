@@ -50,7 +50,7 @@
 
 /* Note: __SHIFT is expected to be <=0 */
 
-riscv_status riscv_elementwise_add_s16(const int16_t *input_1_vect,
+riscv_nmsis_nn_status riscv_elementwise_add_s16(const int16_t *input_1_vect,
                                    const int16_t *input_2_vect,
                                    const int32_t input_1_offset,
                                    const int32_t input_1_mult,
@@ -98,7 +98,7 @@ riscv_status riscv_elementwise_add_s16(const int16_t *input_1_vect,
         loop_count--;
     }
 
-    return (RISCV_MATH_SUCCESS);
+    return (RISCV_NMSIS_NN_SUCCESS);
 }
 
 /**

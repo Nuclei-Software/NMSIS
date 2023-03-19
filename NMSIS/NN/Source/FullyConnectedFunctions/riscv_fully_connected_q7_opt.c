@@ -52,7 +52,7 @@
  * @param[in]       bias        pointer to bias
  * @param[in,out]   pOut        pointer to output vector
  * @param[in,out]   vec_buffer  pointer to buffer space for input
- * @return     The function returns <code>RISCV_MATH_SUCCESS</code>
+ * @return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
  *
  * @details
  *
@@ -126,7 +126,7 @@
  *
  */
 
-riscv_status riscv_fully_connected_q7_opt(const q7_t *pV,
+riscv_nmsis_nn_status riscv_fully_connected_q7_opt(const q7_t *pV,
                                       const q7_t *pM,
                                       const uint16_t dim_vec,
                                       const uint16_t num_of_rows,
@@ -506,8 +506,8 @@ riscv_status riscv_fully_connected_q7_opt(const q7_t *pV,
 
 #endif /* RISCV_MATH_DSP */
 
-    /* Return to RISCV_MATH_SUCCESS */
-    return (RISCV_MATH_SUCCESS);
+    /* Return to RISCV_NMSIS_NN_SUCCESS */
+    return (RISCV_NMSIS_NN_SUCCESS);
 }
 
 /**

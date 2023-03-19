@@ -59,7 +59,7 @@
  * @param[in,out]   bufferA     pointer to buffer space for input
  * @param[in,out]   bufferB     pointer to buffer space for output
  * @return     The function returns either
- * <code>RISCV_MATH_SIZE_MISMATCH</code> or <code>RISCV_MATH_SUCCESS</code> based on the outcome of size checking.
+ * <code>RISCV_NMSIS_NN_SIZE_MISMATCH</code> or <code>RISCV_NMSIS_NN_SUCCESS</code> based on the outcome of size checking.
  *
  * @details
  *
@@ -79,7 +79,7 @@
  *
  */
 
-riscv_status riscv_convolve_HWC_q15_fast(const q15_t *Im_in,
+riscv_nmsis_nn_status riscv_convolve_HWC_q15_fast(const q15_t *Im_in,
                                      const uint16_t dim_im_in,
                                      const uint16_t ch_im_in,
                                      const q15_t *wt,
@@ -106,7 +106,7 @@ riscv_status riscv_convolve_HWC_q15_fast(const q15_t *Im_in,
     if (ch_im_in % 2 != 0 || ch_im_out % 2 != 0 || dim_im_out & 0x1)
     {
         /* check if the input dimension meets the constraints */
-        return RISCV_MATH_SIZE_MISMATCH;
+        return RISCV_NMSIS_NN_SIZE_MISMATCH;
     }
 
     /* Run the following code for RISC-V Core with DSP enabled */
@@ -122,11 +122,11 @@ riscv_status riscv_convolve_HWC_q15_fast(const q15_t *Im_in,
                 {
                     if (i_ker_y < 0 || i_ker_y >= dim_im_in || i_ker_x < 0 || i_ker_x >= dim_im_in)
                     {
-                        riscv_fill_q15(0, pBuffer, ch_im_in);
+                        riscv_nn_fill_q15(0, pBuffer, ch_im_in);
                         /* memset(pBuffer, 0, sizeof(q15_t)*ch_im_in); */
                     } else
                     {
-                        riscv_copy_q15((q15_t *) Im_in + (i_ker_y * dim_im_in + i_ker_x) * ch_im_in, pBuffer, ch_im_in);
+                        riscv_nn_copy_q15((q15_t *) Im_in + (i_ker_y * dim_im_in + i_ker_x) * ch_im_in, pBuffer, ch_im_in);
                         /* memcpy(pBuffer, (q15_t *) Im_in + (i_ker_y * dim_im_in + i_ker_x) * ch_im_in, sizeof(q15_t)*ch_im_in); */
                     }
                     pBuffer += ch_im_in;
@@ -234,7 +234,7 @@ riscv_status riscv_convolve_HWC_q15_fast(const q15_t *Im_in,
     if (ch_im_in % 2 != 0 || ch_im_out % 2 != 0)
     {
         /* check if the input dimension meets the constraints */
-        return RISCV_MATH_SIZE_MISMATCH;
+        return RISCV_NMSIS_NN_SIZE_MISMATCH;
     }
 
     for (i = 0; i < ch_im_out; i++)
@@ -268,7 +268,7 @@ riscv_status riscv_convolve_HWC_q15_fast(const q15_t *Im_in,
 #endif /* RISCV_MATH_DSP */
 
     /* Return to application */
-    return RISCV_MATH_SUCCESS;
+    return RISCV_NMSIS_NN_SUCCESS;
 }
 
 /**

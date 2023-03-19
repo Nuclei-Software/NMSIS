@@ -47,7 +47,7 @@
  * Refer header file for details.
  *
  */
-riscv_status ref_nn_vec_mat_mult_t_svdf_s8(const q7_t *lhs,
+riscv_nmsis_nn_status ref_nn_vec_mat_mult_t_svdf_s8(const q7_t *lhs,
                                          const q7_t *rhs,
                                          q15_t *dst,
                                          const int32_t lhs_offset,
@@ -63,7 +63,7 @@ riscv_status ref_nn_vec_mat_mult_t_svdf_s8(const q7_t *lhs,
     (void)rhs_offset;
     if (rhs_cols < 0 || (NN_Q31_MAX - rhs_cols) < 16 || dst_offset < 0)
     {
-        return RISCV_MATH_ARGUMENT_ERROR;
+        return RISCV_NMSIS_NN_ARG_ERROR;
     }
 
     (void)rhs_offset;
@@ -73,8 +73,8 @@ riscv_status ref_nn_vec_mat_mult_t_svdf_s8(const q7_t *lhs,
     const int16_t lhs_offset_s16 = lhs_offset;
     const int16_t rhs_offset_s16 = rhs_offset;
 
-    const uint32_t lhs_offset_s16x2 = __PKHBT(lhs_offset_s16, lhs_offset_s16, 16);
-    const uint32_t rhs_offset_s16x2 = __PKHBT(rhs_offset_s16, rhs_offset_s16, 16);
+    const uint32_t lhs_offset_s16x2 = __NN_PKHBT(lhs_offset_s16, lhs_offset_s16, 16);
+    const uint32_t rhs_offset_s16x2 = __NN_PKHBT(rhs_offset_s16, rhs_offset_s16, 16);
     for (int32_t i = 0; i < row_loop_cnt; i++)
     {
         int32_t acc_0 = 0;
@@ -238,7 +238,7 @@ riscv_status ref_nn_vec_mat_mult_t_svdf_s8(const q7_t *lhs,
     }
 #endif
 
-    return RISCV_MATH_SUCCESS;
+    return RISCV_NMSIS_NN_SUCCESS;
 }
 
 /**

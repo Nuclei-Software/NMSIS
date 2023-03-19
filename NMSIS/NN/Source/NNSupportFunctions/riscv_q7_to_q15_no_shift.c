@@ -90,8 +90,8 @@ void riscv_q7_to_q15_no_shift(const q7_t *pSrc, q15_t *pDst, uint32_t blockSize)
         /* extend remaining two q7_t values to q15_t values */
         in2 = __SXTB16(in);
 
-        out2 = (int32_t)__PKHTB(in1, in2, 16);
-        out1 = (int32_t)__PKHBT(in2, in1, 16);
+        out2 = (int32_t)__NN_PKHTB(in1, in2, 16);
+        out1 = (int32_t)__NN_PKHBT(in2, in1, 16);
         riscv_nn_write_q15x2_ia(&pDst, out1);
         riscv_nn_write_q15x2_ia(&pDst, out2);
 

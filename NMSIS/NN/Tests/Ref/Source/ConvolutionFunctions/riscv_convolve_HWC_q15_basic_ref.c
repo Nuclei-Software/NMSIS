@@ -58,7 +58,7 @@
    * @param[in]       dim_im_out  output tensor dimension
    * @param[in,out]   bufferA     pointer to buffer space for input
    * @param[in,out]   bufferB     pointer to buffer space for output
-   * @return     The function returns <code>RISCV_MATH_SUCCESS</code>
+   * @return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
    *
    * @details
    *
@@ -72,7 +72,7 @@
    * dimension.
    */
 
-riscv_status
+riscv_nmsis_nn_status
 riscv_convolve_HWC_q15_basic_ref(const q15_t * Im_in,
                                const uint16_t dim_im_in,
                                const uint16_t ch_im_in,
@@ -125,7 +125,7 @@ riscv_convolve_HWC_q15_basic_ref(const q15_t * Im_in,
         }
     }
     /* Return to application */
-    return RISCV_MATH_SUCCESS;
+    return RISCV_NMSIS_NN_SUCCESS;
 }
 
 /**

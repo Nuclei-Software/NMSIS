@@ -90,7 +90,6 @@
 
 #include "riscv_nn_math_types.h"
 #include "riscv_nn_types.h"
-#include "dsp/support_functions.h"
 #define USE_INTRINSIC
 
 //#define RISCV_NN_TRUNCATE /* This config the rounding model to floor or round to the nearest int */
@@ -151,11 +150,11 @@ typedef enum
  * @param[out]     output_data    Output data pointer. Data type: int8
  *
  * @return     The function returns either
- *                  <code>RISCV_MATH_SIZE_MISMATCH</code> if argument constraints fail. or,
- *                  <code>RISCV_MATH_SUCCESS</code> on successful completion.
+ *                  <code>RISCV_NMSIS_NN_SIZE_MISMATCH</code> if argument constraints fail. or,
+ *                  <code>RISCV_NMSIS_NN_SUCCESS</code> on successful completion.
  *
  */
-riscv_status riscv_convolve_wrapper_s8(const nmsis_nn_context *ctx,
+riscv_nmsis_nn_status riscv_convolve_wrapper_s8(const nmsis_nn_context *ctx,
                                    const nmsis_nn_conv_params *conv_params,
                                    const nmsis_nn_per_channel_quant_params *quant_params,
                                    const nmsis_nn_dims *input_dims,
@@ -209,11 +208,11 @@ int32_t riscv_convolve_wrapper_s8_get_buffer_size(const nmsis_nn_conv_params *co
  * @param[out]     output_data    Output data pointer. Data type: int16
  *
  * @return     The function returns either
- *                  <code>RISCV_MATH_SIZE_MISMATCH</code> if argument constraints fail. or,
- *                  <code>RISCV_MATH_SUCCESS</code> on successful completion.
+ *                  <code>RISCV_NMSIS_NN_SIZE_MISMATCH</code> if argument constraints fail. or,
+ *                  <code>RISCV_NMSIS_NN_SUCCESS</code> on successful completion.
  *
  */
-riscv_status riscv_convolve_wrapper_s16(const nmsis_nn_context *ctx,
+riscv_nmsis_nn_status riscv_convolve_wrapper_s16(const nmsis_nn_context *ctx,
                                     const nmsis_nn_conv_params *conv_params,
                                     const nmsis_nn_per_channel_quant_params *quant_params,
                                     const nmsis_nn_dims *input_dims,
@@ -263,7 +262,7 @@ int32_t riscv_convolve_wrapper_s16_get_buffer_size(const nmsis_nn_conv_params *c
  * @param[in]      output_dims    Output tensor dimensions. Format: [N, H, W, C_OUT]
  * @param[out]     output_data    Output data pointer. Data type: int8
 
- * @return     The function returns <code>RISCV_MATH_SUCCESS</code>
+ * @return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
  *
  * @details
  *    1. Supported framework: TensorFlow Lite micro
@@ -271,7 +270,7 @@ int32_t riscv_convolve_wrapper_s16_get_buffer_size(const nmsis_nn_conv_params *c
  *    3. Additional memory is required for optimization. Refer to argument 'ctx' for details.
  *
  */
-riscv_status riscv_convolve_s8(const nmsis_nn_context *ctx,
+riscv_nmsis_nn_status riscv_convolve_s8(const nmsis_nn_context *ctx,
                            const nmsis_nn_conv_params *conv_params,
                            const nmsis_nn_per_channel_quant_params *quant_params,
                            const nmsis_nn_dims *input_dims,
@@ -313,7 +312,7 @@ int32_t riscv_convolve_s8_get_buffer_size(const nmsis_nn_dims *input_dims, const
  * @param[in]      output_dims    Output tensor dimensions. Format: [N, H, W, C_OUT]
  * @param[out]     output_data    Output data pointer. Data type: int16
 
- * @return     The function returns <code>RISCV_MATH_SUCCESS</code>
+ * @return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
  *
  * @details
  *    1. Supported framework: TensorFlow Lite micro
@@ -321,7 +320,7 @@ int32_t riscv_convolve_s8_get_buffer_size(const nmsis_nn_dims *input_dims, const
  *    3. Additional memory is required for optimization. Refer to argument 'ctx' for details.
  *
  */
-riscv_status riscv_convolve_s16(const nmsis_nn_context *ctx,
+riscv_nmsis_nn_status riscv_convolve_s16(const nmsis_nn_context *ctx,
                             const nmsis_nn_conv_params *conv_params,
                             const nmsis_nn_per_channel_quant_params *quant_params,
                             const nmsis_nn_dims *input_dims,
@@ -352,7 +351,7 @@ riscv_status riscv_convolve_s16(const nmsis_nn_context *ctx,
  * @param[in]      output_dims    Output tensor dimensions. Format: [N, H, W, C_OUT]
  * @param[out]     output_data    Output data pointer. Data type: int16
 
- * @return     The function returns <code>RISCV_MATH_SUCCESS</code>
+ * @return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
  *
  * @details
  *    1. Supported framework: TensorFlow Lite micro
@@ -362,7 +361,7 @@ riscv_status riscv_convolve_s16(const nmsis_nn_context *ctx,
  *
  */
 
-riscv_status riscv_convolve_fast_s16(const nmsis_nn_context *ctx,
+riscv_nmsis_nn_status riscv_convolve_fast_s16(const nmsis_nn_context *ctx,
                                  const nmsis_nn_conv_params *conv_params,
                                  const nmsis_nn_per_channel_quant_params *quant_params,
                                  const nmsis_nn_dims *input_dims,
@@ -413,10 +412,10 @@ int32_t riscv_convolve_fast_s16_get_buffer_size(const nmsis_nn_dims *input_dims,
  * @param[in]       dim_im_out  output tensor dimension
  * @param[in,out]   bufferA     pointer to buffer space for input
  * @param[in,out]   bufferB     pointer to buffer space for output
- * @return     The function returns <code>RISCV_MATH_SUCCESS</code>
+ * @return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
  *
  */
-riscv_status riscv_convolve_HWC_q7_basic(const q7_t *Im_in,
+riscv_nmsis_nn_status riscv_convolve_HWC_q7_basic(const q7_t *Im_in,
                                      const uint16_t dim_im_in,
                                      const uint16_t ch_im_in,
                                      const q7_t *wt,
@@ -454,9 +453,9 @@ riscv_status riscv_convolve_HWC_q7_basic(const q7_t *Im_in,
  * @param[in]       dim_im_out_y output tensor dimension y
  * @param[in,out]   bufferA      pointer to buffer space for input
  * @param[in,out]   bufferB      pointer to buffer space for output
- * @return     The function returns <code>RISCV_MATH_SUCCESS</code>
+ * @return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
  */
-riscv_status riscv_convolve_HWC_q7_basic_nonsquare(const q7_t *Im_in,
+riscv_nmsis_nn_status riscv_convolve_HWC_q7_basic_nonsquare(const q7_t *Im_in,
                                                const uint16_t dim_im_in_x,
                                                const uint16_t dim_im_in_y,
                                                const uint16_t ch_im_in,
@@ -494,10 +493,10 @@ riscv_status riscv_convolve_HWC_q7_basic_nonsquare(const q7_t *Im_in,
  * @param[in]       dim_im_out  output tensor dimension
  * @param[in,out]   bufferA     pointer to buffer space for input
  * @param[in,out]   bufferB     pointer to buffer space for output
- * @return     The function returns <code>RISCV_MATH_SUCCESS</code>
+ * @return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
  *
  */
-riscv_status riscv_convolve_HWC_q15_basic(const q15_t *Im_in,
+riscv_nmsis_nn_status riscv_convolve_HWC_q15_basic(const q15_t *Im_in,
                                       const uint16_t dim_im_in,
                                       const uint16_t ch_im_in,
                                       const q15_t *wt,
@@ -531,14 +530,14 @@ riscv_status riscv_convolve_HWC_q15_basic(const q15_t *Im_in,
  * @param[in,out]   bufferA     pointer to buffer space for input
  * @param[in,out]   bufferB     pointer to buffer space for output
  * @return     The function returns either
- * <code>RISCV_MATH_SIZE_MISMATCH</code> or <code>RISCV_MATH_SUCCESS</code> based on the outcome of size checking.
+ * <code>RISCV_NMSIS_NN_SIZE_MISMATCH</code> or <code>RISCV_NMSIS_NN_SUCCESS</code> based on the outcome of size checking.
  *
  * This function is the version with full list of optimization tricks, but with
  * some contraints:
  *   ch_im_in is multiple of 4
  *   ch_im_out is multiple of 2
  */
-riscv_status riscv_convolve_HWC_q7_fast(const q7_t *Im_in,
+riscv_nmsis_nn_status riscv_convolve_HWC_q7_fast(const q7_t *Im_in,
                                     const uint16_t dim_im_in,
                                     const uint16_t ch_im_in,
                                     const q7_t *wt,
@@ -577,7 +576,7 @@ riscv_status riscv_convolve_HWC_q7_fast(const q7_t *Im_in,
  * @param[in,out]   bufferA      pointer to buffer space for input
  * @param[in,out]   bufferB      pointer to buffer space for output
  * @return     The function returns either
- * <code>RISCV_MATH_SIZE_MISMATCH</code> or <code>RISCV_MATH_SUCCESS</code> based on the outcome of size checking.
+ * <code>RISCV_NMSIS_NN_SIZE_MISMATCH</code> or <code>RISCV_NMSIS_NN_SUCCESS</code> based on the outcome of size checking.
  *
  * This function is the version with full list of optimization tricks, but with
  * some contraints:
@@ -585,7 +584,7 @@ riscv_status riscv_convolve_HWC_q7_fast(const q7_t *Im_in,
  *   ch_im_out is multiple of 2
  */
 
-riscv_status riscv_convolve_HWC_q7_fast_nonsquare(const q7_t *Im_in,
+riscv_nmsis_nn_status riscv_convolve_HWC_q7_fast_nonsquare(const q7_t *Im_in,
                                               const uint16_t dim_im_in_x,
                                               const uint16_t dim_im_in_y,
                                               const uint16_t ch_im_in,
@@ -629,8 +628,8 @@ riscv_status riscv_convolve_HWC_q7_fast_nonsquare(const q7_t *Im_in,
  * @param[in,out]   bufferA      pointer to buffer space for input
  * @param[in,out]   bufferB      pointer to buffer space for output
  * @return     The function returns either
- *                          <code>RISCV_MATH_SIZE_MISMATCH</code> if argument constraints fail. or,
- *                          <code>RISCV_MATH_SUCCESS</code> on successful completion.
+ *                          <code>RISCV_NMSIS_NN_SIZE_MISMATCH</code> if argument constraints fail. or,
+ *                          <code>RISCV_NMSIS_NN_SUCCESS</code> on successful completion.
  *
  * This function implement convolution with 1x1 kernel size (i.e., dim_kernel_x=1
  * and dim_kernel_y=1). It can be used for
@@ -641,7 +640,7 @@ riscv_status riscv_convolve_HWC_q7_fast_nonsquare(const q7_t *Im_in,
  *   ch_im_in is multiple of 4
  *   ch_im_out is multiple of 2
  */
-riscv_status riscv_convolve_1x1_HWC_q7_fast_nonsquare(const q7_t *Im_in,
+riscv_nmsis_nn_status riscv_convolve_1x1_HWC_q7_fast_nonsquare(const q7_t *Im_in,
                                                   const uint16_t dim_im_in_x,
                                                   const uint16_t dim_im_in_y,
                                                   const uint16_t ch_im_in,
@@ -682,8 +681,8 @@ riscv_status riscv_convolve_1x1_HWC_q7_fast_nonsquare(const q7_t *Im_in,
  * @param[out]     output_data    Output data pointer. Data type: int8
  *
  * @return     The function returns either
- *                  <code>RISCV_MATH_SIZE_MISMATCH</code> if argument constraints fail. or,
- *                  <code>RISCV_MATH_SUCCESS</code> on successful completion.
+ *                  <code>RISCV_NMSIS_NN_SIZE_MISMATCH</code> if argument constraints fail. or,
+ *                  <code>RISCV_NMSIS_NN_SUCCESS</code> on successful completion.
  *
  * @details
  *   - Supported framework : TensorFlow Lite Micro
@@ -693,7 +692,7 @@ riscv_status riscv_convolve_1x1_HWC_q7_fast_nonsquare(const q7_t *Im_in,
  *      -# conv_params->stride.w = conv_params->stride.h = 1
  *
  */
-riscv_status riscv_convolve_1x1_s8_fast(const nmsis_nn_context *ctx,
+riscv_nmsis_nn_status riscv_convolve_1x1_s8_fast(const nmsis_nn_context *ctx,
                                     const nmsis_nn_conv_params *conv_params,
                                     const nmsis_nn_per_channel_quant_params *quant_params,
                                     const nmsis_nn_dims *input_dims,
@@ -735,8 +734,8 @@ int32_t riscv_convolve_1x1_s8_fast_get_buffer_size(const nmsis_nn_dims *input_di
  * @param[out]     output_data    Output data pointer. Data type: int8
  *
  * @return     The function returns either
- *                  <code>RISCV_MATH_SIZE_MISMATCH</code> if argument constraints fail. or,
- *                  <code>RISCV_MATH_SUCCESS</code> on successful completion.
+ *                  <code>RISCV_NMSIS_NN_SIZE_MISMATCH</code> if argument constraints fail. or,
+ *                  <code>RISCV_NMSIS_NN_SUCCESS</code> on successful completion.
  *
  * @details
  *   - Supported framework : TensorFlow Lite Micro
@@ -750,7 +749,7 @@ int32_t riscv_convolve_1x1_s8_fast_get_buffer_size(const nmsis_nn_dims *input_di
  *@todo  Remove constraint on output_dims->w to make the function generic.
  *
  */
-riscv_status riscv_convolve_1_x_n_s8(const nmsis_nn_context *ctx,
+riscv_nmsis_nn_status riscv_convolve_1_x_n_s8(const nmsis_nn_context *ctx,
                                  const nmsis_nn_conv_params *conv_params,
                                  const nmsis_nn_per_channel_quant_params *quant_params,
                                  const nmsis_nn_dims *input_dims,
@@ -791,14 +790,14 @@ int32_t riscv_convolve_1_x_n_s8_get_buffer_size(const nmsis_nn_dims *input_dims,
  * @param[in,out]   bufferA     pointer to buffer space for input
  * @param[in,out]   bufferB     pointer to buffer space for output
  * @return     The function returns either
- * <code>RISCV_MATH_SIZE_MISMATCH</code> or <code>RISCV_MATH_SUCCESS</code> based on the outcome of size checking.
+ * <code>RISCV_NMSIS_NN_SIZE_MISMATCH</code> or <code>RISCV_NMSIS_NN_SUCCESS</code> based on the outcome of size checking.
  *
  * This kernel is written exclusively for convolution with ch_im_in
  * equals 3. This applies on the first layer of CNNs which has input
  * image with RGB format.
  */
 
-riscv_status riscv_convolve_HWC_q7_RGB(const q7_t *Im_in,
+riscv_nmsis_nn_status riscv_convolve_HWC_q7_RGB(const q7_t *Im_in,
                                    const uint16_t dim_im_in,
                                    const uint16_t ch_im_in,
                                    const q7_t *wt,
@@ -832,7 +831,7 @@ riscv_status riscv_convolve_HWC_q7_RGB(const q7_t *Im_in,
  * @param[in,out]   bufferA     pointer to buffer space for input
  * @param[in,out]   bufferB     pointer to buffer space for output
  * @return     The function returns either
- * <code>RISCV_MATH_SIZE_MISMATCH</code> or <code>RISCV_MATH_SUCCESS</code> based on the outcome of size checking.
+ * <code>RISCV_NMSIS_NN_SIZE_MISMATCH</code> or <code>RISCV_NMSIS_NN_SUCCESS</code> based on the outcome of size checking.
  *
  * This function is the version with full list of optimization tricks, but with
  * some contraints:
@@ -841,7 +840,7 @@ riscv_status riscv_convolve_HWC_q7_RGB(const q7_t *Im_in,
  *   dim_im_out is a multiple of 2
  */
 
-riscv_status riscv_convolve_HWC_q15_fast(const q15_t *Im_in,
+riscv_nmsis_nn_status riscv_convolve_HWC_q15_fast(const q15_t *Im_in,
                                      const uint16_t dim_im_in,
                                      const uint16_t ch_im_in,
                                      const q15_t *wt,
@@ -880,7 +879,7 @@ riscv_status riscv_convolve_HWC_q15_fast(const q15_t *Im_in,
  * @param[in,out]   bufferA      pointer to buffer space for input
  * @param[in,out]   bufferB      pointer to buffer space for output
  * @return     The function returns either
- * <code>RISCV_MATH_SIZE_MISMATCH</code> or <code>RISCV_MATH_SUCCESS</code> based on the outcome of size checking.
+ * <code>RISCV_NMSIS_NN_SIZE_MISMATCH</code> or <code>RISCV_NMSIS_NN_SUCCESS</code> based on the outcome of size checking.
  *
  * @details
  *
@@ -898,7 +897,7 @@ riscv_status riscv_convolve_HWC_q15_fast(const q15_t *Im_in,
  *
  */
 
-riscv_status riscv_convolve_HWC_q15_fast_nonsquare(const q15_t *Im_in,
+riscv_nmsis_nn_status riscv_convolve_HWC_q15_fast_nonsquare(const q15_t *Im_in,
                                                const uint16_t dim_im_in_x,
                                                const uint16_t dim_im_in_y,
                                                const uint16_t ch_im_in,
@@ -937,7 +936,7 @@ riscv_status riscv_convolve_HWC_q15_fast_nonsquare(const q15_t *Im_in,
  * @param[in,out]   bufferA     pointer to buffer space for input
  * @param[in,out]   bufferB     pointer to buffer space for output
  * @return     The function returns either
- * <code>RISCV_MATH_SIZE_MISMATCH</code> or <code>RISCV_MATH_SUCCESS</code> based on the outcome of size checking.
+ * <code>RISCV_NMSIS_NN_SIZE_MISMATCH</code> or <code>RISCV_NMSIS_NN_SUCCESS</code> based on the outcome of size checking.
  *
  * This function is the version with full list of optimization tricks, but with
  * some contraints:
@@ -945,7 +944,7 @@ riscv_status riscv_convolve_HWC_q15_fast_nonsquare(const q15_t *Im_in,
  *   ch_im_out is multiple of 2
  */
 
-riscv_status riscv_depthwise_separable_conv_HWC_q7(const q7_t *Im_in,
+riscv_nmsis_nn_status riscv_depthwise_separable_conv_HWC_q7(const q7_t *Im_in,
                                                const uint16_t dim_im_in,
                                                const uint16_t ch_im_in,
                                                const q7_t *wt,
@@ -984,14 +983,14 @@ riscv_status riscv_depthwise_separable_conv_HWC_q7(const q7_t *Im_in,
  * @param[in,out]   bufferA       pointer to buffer space for input
  * @param[in,out]   bufferB       pointer to buffer space for output
  * @return     The function returns either
- * <code>RISCV_MATH_SIZE_MISMATCH</code> or <code>RISCV_MATH_SUCCESS</code> based on the outcome of size checking.
+ * <code>RISCV_NMSIS_NN_SIZE_MISMATCH</code> or <code>RISCV_NMSIS_NN_SUCCESS</code> based on the outcome of size checking.
  *
  * This function is the version with full list of optimization tricks, but with
  * some contraints:
  *   ch_im_in is multiple of 2
  *   ch_im_out is multiple of 2
  */
-riscv_status riscv_depthwise_separable_conv_HWC_q7_nonsquare(const q7_t *Im_in,
+riscv_nmsis_nn_status riscv_depthwise_separable_conv_HWC_q7_nonsquare(const q7_t *Im_in,
                                                          const uint16_t dim_im_in_x,
                                                          const uint16_t dim_im_in_y,
                                                          const uint16_t ch_im_in,
@@ -1036,7 +1035,7 @@ riscv_status riscv_depthwise_separable_conv_HWC_q7_nonsquare(const q7_t *Im_in,
  * @param[in]      output_dims    Output tensor dimensions. Format: [1, H, W, C_OUT]
  * @param[in, out] output_data    Output data pointer. Data type: int8
  * @return     The function returns
- *                <code>RISCV_MATH_SUCCESS</code>   -  Successful completion.
+ *                <code>RISCV_NMSIS_NN_SUCCESS</code>   -  Successful completion.
  *
  * @details
  *    - Supported framework: TensorFlow Lite
@@ -1048,7 +1047,7 @@ riscv_status riscv_depthwise_separable_conv_HWC_q7_nonsquare(const q7_t *Im_in,
  *    - Check details of riscv_depthwise_conv_s8_opt() for potential data that can be accessed outside of the
  * boundary.
  */
-riscv_status riscv_depthwise_conv_wrapper_s8(const nmsis_nn_context *ctx,
+riscv_nmsis_nn_status riscv_depthwise_conv_wrapper_s8(const nmsis_nn_context *ctx,
                                          const nmsis_nn_dw_conv_params *dw_conv_params,
                                          const nmsis_nn_per_channel_quant_params *quant_params,
                                          const nmsis_nn_dims *input_dims,
@@ -1103,13 +1102,13 @@ int32_t riscv_depthwise_conv_wrapper_s8_get_buffer_size(const nmsis_nn_dw_conv_p
  * @param[in]      bias_data      Bias data pointer. Data type: int32
  * @param[in]      output_dims    Output tensor dimensions. Format: [N, H, W, C_OUT]
  * @param[in, out] output_data    Output data pointer. Data type: int8
- * @return     The function returns <code>RISCV_MATH_SUCCESS</code>
+ * @return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
  *
  * @details
  *    - Supported framework: TensorFlow Lite
  *    - q7 is used as data type eventhough it is s8 data. It is done so to be consistent with existing APIs.
  */
-riscv_status riscv_depthwise_conv_s8(const nmsis_nn_context *ctx,
+riscv_nmsis_nn_status riscv_depthwise_conv_s8(const nmsis_nn_context *ctx,
                                  const nmsis_nn_dw_conv_params *dw_conv_params,
                                  const nmsis_nn_per_channel_quant_params *quant_params,
                                  const nmsis_nn_dims *input_dims,
@@ -1144,13 +1143,13 @@ riscv_status riscv_depthwise_conv_s8(const nmsis_nn_context *ctx,
  * @param[in]      bias_data      Bias data pointer. Data type: int64
  * @param[in]      output_dims    Output tensor dimensions. Format: [N, H, W, C_OUT]
  * @param[in, out] output_data    Output data pointer. Data type: int16
- * @return     The function returns <code>RISCV_MATH_SUCCESS</code>
+ * @return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
  *
  * @details
  *    - Supported framework: TensorFlow Lite
  *    - q15 is used as data type eventhough it is s16 data. It is done so to be consistent with existing APIs.
  */
-riscv_status riscv_depthwise_conv_s16(const nmsis_nn_context *ctx,
+riscv_nmsis_nn_status riscv_depthwise_conv_s16(const nmsis_nn_context *ctx,
                                   const nmsis_nn_dw_conv_params *dw_conv_params,
                                   const nmsis_nn_per_channel_quant_params *quant_params,
                                   const nmsis_nn_dims *input_dims,
@@ -1168,9 +1167,9 @@ riscv_status riscv_depthwise_conv_s16(const nmsis_nn_context *ctx,
  *        argument details.
  *
  * @return     The function returns one of the following
- *                <code>RISCV_MATH_SIZE_MISMATCH</code> - Unsupported dimension of tensors
- *                <code>RISCV_MATH_ARGUMENT_ERROR</code> - Unsupported pad size along the x axis
- *                <code>RISCV_MATH_SUCCESS</code> - Successful operation
+ *                <code>RISCV_NMSIS_NN_SIZE_MISMATCH</code> - Unsupported dimension of tensors
+ *                <code>RISCV_NMSIS_NN_ARG_ERROR</code> - Unsupported pad size along the x axis
+ *                <code>RISCV_NMSIS_NN_SUCCESS</code> - Successful operation
  *
  * @details
  *   - Supported framework : TensorFlow Lite Micro
@@ -1180,7 +1179,7 @@ riscv_status riscv_depthwise_conv_s16(const nmsis_nn_context *ctx,
  *      -# Padding along x is either 0 or 1.
  *
  */
-riscv_status riscv_depthwise_conv_3x3_s8(const nmsis_nn_context *ctx,
+riscv_nmsis_nn_status riscv_depthwise_conv_3x3_s8(const nmsis_nn_context *ctx,
                                      const nmsis_nn_dw_conv_params *dw_conv_params,
                                      const nmsis_nn_per_channel_quant_params *quant_params,
                                      const nmsis_nn_dims *input_dims,
@@ -1197,9 +1196,9 @@ riscv_status riscv_depthwise_conv_3x3_s8(const nmsis_nn_context *ctx,
  *        Refer riscv_depthwise_conv_s8() for function argument details.
  *
  * @return     The function returns one of the following
- *                <code>RISCV_MATH_SIZE_MISMATCH</code> - input channel != output channel or
+ *                <code>RISCV_NMSIS_NN_SIZE_MISMATCH</code> - input channel != output channel or
  *                                                      ch_mult != 1
- *                <code>RISCV_MATH_SUCCESS</code> - Successful operation
+ *                <code>RISCV_NMSIS_NN_SUCCESS</code> - Successful operation
  *
  * @note       If number of channels is not a multiple of 4, upto 3 elements outside the boundary will be read out
  *             for the following if MVE optimizations(Arm Helium Technology) are used.
@@ -1215,7 +1214,7 @@ riscv_status riscv_depthwise_conv_3x3_s8(const nmsis_nn_context *ctx,
  *    - Reccomended when number of channels is 4 or greater.
  *
  */
-riscv_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
+riscv_nmsis_nn_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
                                      const nmsis_nn_dw_conv_params *dw_conv_params,
                                      const nmsis_nn_per_channel_quant_params *quant_params,
                                      const nmsis_nn_dims *input_dims,
@@ -1265,11 +1264,11 @@ int32_t riscv_depthwise_conv_s8_opt_get_buffer_size(const nmsis_nn_dims *input_d
  *@param[in]       bias        pointer to bias
  *@param[in,out]   pOut        pointer to output vector
  *@param[in,out]   vec_buffer  pointer to buffer space for input
- *@return     The function returns <code>RISCV_MATH_SUCCESS</code>
+ *@return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
  *
  */
 
-riscv_status riscv_fully_connected_q7(const q7_t *pV,
+riscv_nmsis_nn_status riscv_fully_connected_q7(const q7_t *pV,
                                   const q7_t *pM,
                                   const uint16_t dim_vec,
                                   const uint16_t num_of_rows,
@@ -1308,13 +1307,13 @@ riscv_status riscv_fully_connected_q7(const q7_t *pV,
  *                                C_OUT : Output depth
  *                                H & W : Not used.
  * @param[in, out] output_data    Output data pointer. Data type: int8
- * @return     The function returns <code>RISCV_MATH_SUCCESS</code>
+ * @return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
  *
  * @details
  *    - Supported framework: TensorFlow Lite
  *    - q7 is used as data type eventhough it is s8 data. It is done so to be consistent with existing APIs.
  */
-riscv_status riscv_fully_connected_s8(const nmsis_nn_context *ctx,
+riscv_nmsis_nn_status riscv_fully_connected_s8(const nmsis_nn_context *ctx,
                                   const nmsis_nn_fc_params *fc_params,
                                   const nmsis_nn_per_tensor_quant_params *quant_params,
                                   const nmsis_nn_dims *input_dims,
@@ -1364,13 +1363,13 @@ int32_t riscv_fully_connected_s8_get_buffer_size(const nmsis_nn_dims *filter_dim
  *                                C_OUT : Output depth
  *                                H & W : Not used.
  * @param[in, out] output_data    Output data pointer. Data type: int16
- * @return     The function returns <code>RISCV_MATH_SUCCESS</code>
+ * @return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
  *
  * @details
  *    - Supported framework: TensorFlow Lite
  *    - q15 is used as data type eventhough it is s16 data. It is done so to be consistent with existing APIs.
  */
-riscv_status riscv_fully_connected_s16(const nmsis_nn_context *ctx,
+riscv_nmsis_nn_status riscv_fully_connected_s16(const nmsis_nn_context *ctx,
                                    const nmsis_nn_fc_params *fc_params,
                                    const nmsis_nn_per_tensor_quant_params *quant_params,
                                    const nmsis_nn_dims *input_dims,
@@ -1402,11 +1401,11 @@ int32_t riscv_fully_connected_s16_get_buffer_size(const nmsis_nn_dims *filter_di
  * @param[in]       bias        pointer to bias
  * @param[in,out]   pOut        pointer to output vector
  * @param[in,out]   vec_buffer  pointer to buffer space for input
- * @return     The function returns <code>RISCV_MATH_SUCCESS</code>
+ * @return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
  *
  */
 
-riscv_status riscv_fully_connected_q7_opt(const q7_t *pV,
+riscv_nmsis_nn_status riscv_fully_connected_q7_opt(const q7_t *pV,
                                       const q7_t *pM,
                                       const uint16_t dim_vec,
                                       const uint16_t num_of_rows,
@@ -1427,11 +1426,11 @@ riscv_status riscv_fully_connected_q7_opt(const q7_t *pV,
  * @param[in]       bias        pointer to bias
  * @param[in,out]   pOut        pointer to output vector
  * @param[in,out]   vec_buffer  pointer to buffer space for input
- * @return     The function returns <code>RISCV_MATH_SUCCESS</code>
+ * @return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
  *
  */
 
-riscv_status riscv_fully_connected_q15(const q15_t *pV,
+riscv_nmsis_nn_status riscv_fully_connected_q15(const q15_t *pV,
                                    const q15_t *pM,
                                    const uint16_t dim_vec,
                                    const uint16_t num_of_rows,
@@ -1452,11 +1451,11 @@ riscv_status riscv_fully_connected_q15(const q15_t *pV,
  * @param[in]       bias        pointer to bias
  * @param[in,out]   pOut        pointer to output vector
  * @param[in,out]   vec_buffer  pointer to buffer space for input
- * @return     The function returns <code>RISCV_MATH_SUCCESS</code>
+ * @return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
  *
  */
 
-riscv_status riscv_fully_connected_q15_opt(const q15_t *pV,
+riscv_nmsis_nn_status riscv_fully_connected_q15_opt(const q15_t *pV,
                                        const q15_t *pM,
                                        const uint16_t dim_vec,
                                        const uint16_t num_of_rows,
@@ -1477,11 +1476,11 @@ riscv_status riscv_fully_connected_q15_opt(const q15_t *pV,
  * @param[in]       bias        pointer to bias
  * @param[in,out]   pOut        pointer to output vector
  * @param[in,out]   vec_buffer  pointer to buffer space for input
- * @return     The function returns <code>RISCV_MATH_SUCCESS</code>
+ * @return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
  *
  */
 
-riscv_status riscv_fully_connected_mat_q7_vec_q15(const q15_t *pV,
+riscv_nmsis_nn_status riscv_fully_connected_mat_q7_vec_q15(const q15_t *pV,
                                               const q7_t *pM,
                                               const uint16_t dim_vec,
                                               const uint16_t num_of_rows,
@@ -1502,11 +1501,11 @@ riscv_status riscv_fully_connected_mat_q7_vec_q15(const q15_t *pV,
  * @param[in]       bias        pointer to bias
  * @param[in,out]   pOut        pointer to output vector
  * @param[in,out]   vec_buffer  pointer to buffer space for input
- * @return     The function returns <code>RISCV_MATH_SUCCESS</code>
+ * @return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
  *
  */
 
-riscv_status riscv_fully_connected_mat_q7_vec_q15_opt(const q15_t *pV,
+riscv_nmsis_nn_status riscv_fully_connected_mat_q7_vec_q15_opt(const q15_t *pV,
                                                   const q7_t *pM,
                                                   const uint16_t dim_vec,
                                                   const uint16_t num_of_rows,
@@ -1609,9 +1608,9 @@ extern "C" {
  * @param[in]       out_activation_min      minimum value to clamp output to. Min: -128
  * @param[in]       out_activation_max      maximum value to clamp output to. Max: 127
  * @param[in]       block_size              number of samples
- * @return          The function returns    RISCV_MATH_SUCCESS
+ * @return          The function returns    RISCV_NMSIS_NN_SUCCESS
  */
-riscv_status riscv_elementwise_add_s8(const int8_t *input_1_vect,
+riscv_nmsis_nn_status riscv_elementwise_add_s8(const int8_t *input_1_vect,
                                   const int8_t *input_2_vect,
                                   const int32_t input_1_offset,
                                   const int32_t input_1_mult,
@@ -1646,9 +1645,9 @@ riscv_status riscv_elementwise_add_s8(const int8_t *input_1_vect,
  * @param[in]       out_activation_min      minimum value to clamp output to. Min: -32768
  * @param[in]       out_activation_max      maximum value to clamp output to. Max: 32767
  * @param[in]       block_size              number of samples
- * @return          The function returns    RISCV_MATH_SUCCESS
+ * @return          The function returns    RISCV_NMSIS_NN_SUCCESS
  */
-riscv_status riscv_elementwise_add_s16(const int16_t *input_1_vect,
+riscv_nmsis_nn_status riscv_elementwise_add_s16(const int16_t *input_1_vect,
                                    const int16_t *input_2_vect,
                                    const int32_t input_1_offset,
                                    const int32_t input_1_mult,
@@ -1678,11 +1677,11 @@ riscv_status riscv_elementwise_add_s16(const int16_t *input_1_vect,
  * @param[in]       out_activation_min      minimum value to clamp output to. Min: -128
  * @param[in]       out_activation_max      maximum value to clamp output to. Max: 127
  * @param[in]       block_size              number of samples
- * @return          The function returns    RISCV_MATH_SUCCESS
+ * @return          The function returns    RISCV_NMSIS_NN_SUCCESS
  *
  * @details   Supported framework: TensorFlow Lite micro
  */
-riscv_status riscv_elementwise_mul_s8(const int8_t *input_1_vect,
+riscv_nmsis_nn_status riscv_elementwise_mul_s8(const int8_t *input_1_vect,
                                   const int8_t *input_2_vect,
                                   const int32_t input_1_offset,
                                   const int32_t input_2_offset,
@@ -1707,11 +1706,11 @@ riscv_status riscv_elementwise_mul_s8(const int8_t *input_1_vect,
  * @param[in]       out_activation_min      minimum value to clamp output to. Min: -32768
  * @param[in]       out_activation_max      maximum value to clamp output to. Max: 32767
  * @param[in]       block_size              number of samples
- * @return          The function returns    RISCV_MATH_SUCCESS
+ * @return          The function returns    RISCV_NMSIS_NN_SUCCESS
  *
  * @details   Supported framework: TensorFlow Lite micro
  */
-riscv_status riscv_elementwise_mul_s16(const int16_t *input_1_vect,
+riscv_nmsis_nn_status riscv_elementwise_mul_s16(const int16_t *input_1_vect,
                                    const int16_t *input_2_vect,
                                    const int32_t input_1_offset,
                                    const int32_t input_2_offset,
@@ -1862,13 +1861,13 @@ void riscv_avepool_q7_HWC(q7_t *Im_in,
  *                                C_OUT equals C_IN.
  * @param[in, out] output_data    Output data pointer. Data type: int8
  * @return                        The function returns
- *                                    <code>RISCV_MATH_SUCCESS</code> - Successful operation
+ *                                    <code>RISCV_NMSIS_NN_SUCCESS</code> - Successful operation
  *
  * @details
  *    - Supported Framework: TensorFlow Lite
  *
  */
-riscv_status riscv_avgpool_s8(const nmsis_nn_context *ctx,
+riscv_nmsis_nn_status riscv_avgpool_s8(const nmsis_nn_context *ctx,
                           const nmsis_nn_pool_params *pool_params,
                           const nmsis_nn_dims *input_dims,
                           const q7_t *input_data,
@@ -1903,13 +1902,13 @@ int32_t riscv_avgpool_s8_get_buffer_size(const int dim_dst_width, const int ch_s
  *                                C_OUT equals C_IN.
  * @param[in, out] output_data    Output data pointer. Data type: int16
  * @return                        The function returns
- *                                    <code>RISCV_MATH_SUCCESS</code> - Successful operation
+ *                                    <code>RISCV_NMSIS_NN_SUCCESS</code> - Successful operation
  *
  * @details
  *    - Supported Framework: TensorFlow Lite
  *
  */
-riscv_status riscv_avgpool_s16(const nmsis_nn_context *ctx,
+riscv_nmsis_nn_status riscv_avgpool_s16(const nmsis_nn_context *ctx,
                            const nmsis_nn_pool_params *pool_params,
                            const nmsis_nn_dims *input_dims,
                            const int16_t *input_data,
@@ -1945,13 +1944,13 @@ int32_t riscv_avgpool_s16_get_buffer_size(const int dim_dst_width, const int ch_
  *                                C_OUT equals C_IN.
  * @param[in, out] output_data    Output data pointer. Data type: int8
  * @return                        The function returns
- *                                    <code>RISCV_MATH_SUCCESS</code> - Successful operation
+ *                                    <code>RISCV_NMSIS_NN_SUCCESS</code> - Successful operation
  *
  * @details
  *    - Supported Framework: TensorFlow Lite
  *
  */
-riscv_status riscv_max_pool_s8(const nmsis_nn_context *ctx,
+riscv_nmsis_nn_status riscv_max_pool_s8(const nmsis_nn_context *ctx,
                            const nmsis_nn_pool_params *pool_params,
                            const nmsis_nn_dims *input_dims,
                            const q7_t *input_data,
@@ -1978,13 +1977,13 @@ riscv_status riscv_max_pool_s8(const nmsis_nn_context *ctx,
  *                                C_OUT equals C_IN.
  * @param[in, out] dst            Output data pointer. Data type: int16
  * @return                        The function returns
- *                                    <code>RISCV_MATH_SUCCESS</code> - Successful operation
+ *                                    <code>RISCV_NMSIS_NN_SUCCESS</code> - Successful operation
  *
  * @details
  *    - Supported Framework: TensorFlow Lite
  *
  */
-riscv_status riscv_max_pool_s16(const nmsis_nn_context *ctx,
+riscv_nmsis_nn_status riscv_max_pool_s16(const nmsis_nn_context *ctx,
                             const nmsis_nn_pool_params *pool_params,
                             const nmsis_nn_dims *input_dims,
                             const int16_t *src,
@@ -2099,13 +2098,13 @@ void riscv_softmax_s8_s16(const int8_t *input,
  *                             - Lookup table for 1 / (1 + x), where x uniform distributed between [0.0 , 1.0]
  * @param[out] output          Pointer to the output tensor
  * @return                        The function returns
- *                                    <code>RISCV_MATH_ARGUMENT_ERROR</code> if LUTs are NULL
- *                                    <code>RISCV_MATH_SUCCESS</code> - Successful operation
+ *                                    <code>RISCV_NMSIS_NN_ARG_ERROR</code> if LUTs are NULL
+ *                                    <code>RISCV_NMSIS_NN_SUCCESS</code> - Successful operation
  *
  * @note Supported framework: TensorFlow Lite micro (bit-accurate)
  *
  */
-riscv_status riscv_softmax_s16(const int16_t *input,
+riscv_nmsis_nn_status riscv_softmax_s16(const int16_t *input,
                            const int32_t num_rows,
                            const int32_t row_size,
                            const int32_t mult,
@@ -2167,10 +2166,10 @@ void riscv_softmax_u8(const uint8_t *input,
  * @param[in]     out_shift  Amount of right-shift for output
  * @param[in]     out_mult   Output multiplier for requantization
  * @return        The function returns the following
- *                <code>RISCV_MATH_SUCCESS</code> - Successful operation
+ *                <code>RISCV_NMSIS_NN_SUCCESS</code> - Successful operation
  *
  */
-riscv_status riscv_depthwise_conv_u8_basic_ver1(const uint8_t *input,
+riscv_nmsis_nn_status riscv_depthwise_conv_u8_basic_ver1(const uint8_t *input,
                                             const uint16_t input_x,
                                             const uint16_t input_y,
                                             const uint16_t input_ch,
@@ -2427,14 +2426,14 @@ void riscv_concatenation_s8_w(const int8_t *input,
  * @param[in]   output_dims Output tensor dimensions
  * @param[out]  output_data Pointer to the output tensor
  *
- * @return     The function returns <code>RISCV_MATH_SUCCESS</code>
+ * @return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
  *
  * @details
  *    1. Supported framework: TensorFlow Lite micro
  *    2. q7 is used as data type eventhough it is s8 data. It is done so to be consistent with existing APIs.
  *
  */
-riscv_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
+riscv_nmsis_nn_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
                        const nmsis_nn_context *output_ctx,
                        const nmsis_nn_svdf_params *svdf_params,
                        const nmsis_nn_per_tensor_quant_params *input_quant_params,
@@ -2475,14 +2474,14 @@ riscv_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
  * @param[in]   output_dims Output tensor dimensions
  * @param[out]  output_data Pointer to the output tensor
  *
- * @return     The function returns <code>RISCV_MATH_SUCCESS</code>
+ * @return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
  *
  * @details
  *    1. Supported framework: TensorFlow Lite micro
  *    2. q7 is used as data type eventhough it is s8 data. It is done so to be consistent with existing APIs.
  *
  */
-riscv_status riscv_svdf_state_s16_s8(const nmsis_nn_context *input_ctx,
+riscv_nmsis_nn_status riscv_svdf_state_s16_s8(const nmsis_nn_context *input_ctx,
                                  const nmsis_nn_context *output_ctx,
                                  const nmsis_nn_svdf_params *svdf_params,
                                  const nmsis_nn_per_tensor_quant_params *input_quant_params,

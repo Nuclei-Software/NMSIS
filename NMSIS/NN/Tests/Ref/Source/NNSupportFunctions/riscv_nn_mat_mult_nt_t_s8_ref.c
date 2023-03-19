@@ -47,7 +47,7 @@
    * Refer header file for details.
    *
    */
-riscv_status riscv_nn_mat_mult_nt_t_s8_ref(const q7_t *lhs,
+riscv_nmsis_nn_status riscv_nn_mat_mult_nt_t_s8_ref(const q7_t *lhs,
                                        const q7_t *rhs,
                                        const q31_t *bias,
                                        q7_t *dst,
@@ -227,7 +227,7 @@ riscv_status riscv_nn_mat_mult_nt_t_s8_ref(const q7_t *lhs,
             dst_ptr += rhs_rows;
         }
     }
-    return RISCV_MATH_SUCCESS;
+    return RISCV_NMSIS_NN_SUCCESS;
 }
 
 /**

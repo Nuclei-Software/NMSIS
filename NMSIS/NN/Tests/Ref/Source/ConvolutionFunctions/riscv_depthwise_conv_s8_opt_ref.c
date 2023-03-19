@@ -49,7 +49,7 @@
    *
    */
 
-riscv_status riscv_depthwise_conv_s8_opt_ref(const nmsis_nn_context *ctx,
+riscv_nmsis_nn_status riscv_depthwise_conv_s8_opt_ref(const nmsis_nn_context *ctx,
                                          const nmsis_nn_dw_conv_params *dw_conv_params,
                                          const nmsis_nn_per_channel_quant_params *quant_params,
                                          const nmsis_nn_dims *input_dims,
@@ -84,7 +84,7 @@ riscv_status riscv_depthwise_conv_s8_opt_ref(const nmsis_nn_context *ctx,
     /* Check input constraints input_ch == output_ch */
     if (input_ch != output_ch)
     {
-        return RISCV_MATH_SIZE_MISMATCH;
+        return RISCV_NMSIS_NN_SIZE_MISMATCH;
     }
     /* Run the following code as reference implementation for RISC-V Core without DSP */
     return riscv_depthwise_conv_s8_ref(ctx,
@@ -100,7 +100,7 @@ riscv_status riscv_depthwise_conv_s8_opt_ref(const nmsis_nn_context *ctx,
                                      output);
 
     /* Return to application */
-    return RISCV_MATH_SUCCESS;
+    return RISCV_NMSIS_NN_SUCCESS;
 }
 
 int32_t riscv_depthwise_conv_s8_opt_get_buffer_size_ref(const nmsis_nn_dims *input_dims,

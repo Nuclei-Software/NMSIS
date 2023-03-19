@@ -71,14 +71,14 @@ void riscv_nn_accumulate_q7_to_q15(q15_t *pDst, const q7_t *pSrc, uint32_t lengt
         q31_t value = riscv_nn_read_q7x4_ia(&pV);
         v1 = __SXTB16(__ROR((uint32_t)value, 8));
         v2 = __SXTB16(value);
-        vo2 = (q31_t)__PKHTB(v1, v2, 16);
-        vo1 = (q31_t)__PKHBT(v2, v1, 16);
+        vo2 = (q31_t)__NN_PKHTB(v1, v2, 16);
+        vo1 = (q31_t)__NN_PKHBT(v2, v1, 16);
 
         in = riscv_nn_read_q15x2(pCnt);
-        riscv_nn_write_q15x2_ia(&pCnt, __QADD16(vo1, in));
+        riscv_nn_write_q15x2_ia(&pCnt, __NN_QADD16(vo1, in));
 
         in = riscv_nn_read_q15x2(pCnt);
-        riscv_nn_write_q15x2_ia(&pCnt, __QADD16(vo2, in));
+        riscv_nn_write_q15x2_ia(&pCnt, __NN_QADD16(vo2, in));
 
         count--;
     }

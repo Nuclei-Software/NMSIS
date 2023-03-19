@@ -14,7 +14,7 @@ BENCH_UNIT ?=
 RISCV_ALIGN ?= OFF
 COMMON_FLAGS ?= -O2
 STDCLIB ?= newlib_full
-NMSIS_LIB := nmsis_nn nmsis_dsp
+NMSIS_LIB := nmsis_nn
 
 ifeq ($(BENCH_UNIT),instret)
 $(warning "Benchmark by reading cpu instret")

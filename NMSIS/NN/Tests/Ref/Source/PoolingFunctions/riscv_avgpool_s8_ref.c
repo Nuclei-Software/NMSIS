@@ -49,7 +49,7 @@
  *
  */
 
-riscv_status riscv_avgpool_s8_ref(const nmsis_nn_context *ctx,
+riscv_nmsis_nn_status riscv_avgpool_s8_ref(const nmsis_nn_context *ctx,
                           const nmsis_nn_pool_params *pool_params,
                           const nmsis_nn_dims *input_dims,
                           const q7_t *src,
@@ -106,7 +106,7 @@ riscv_status riscv_avgpool_s8_ref(const nmsis_nn_context *ctx,
     }
   }
 
-  return RISCV_MATH_SUCCESS;
+  return RISCV_NMSIS_NN_SUCCESS;
 }
 
 

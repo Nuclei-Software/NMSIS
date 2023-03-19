@@ -89,6 +89,79 @@ union riscv_nn_long_long
     struct riscv_nn_double word;
 };
 
+#ifndef RISCV_MATH_DSP
+  /**
+   * @brief definition to pack two 16 bit values.
+   */
+  #define __NN_PKHBT(ARG1, ARG2, ARG3) ( (((int32_t)(ARG1) <<    0) & (int32_t)0x0000FFFF) | \
+                                      (((int32_t)(ARG2) << ARG3) & (int32_t)0xFFFF0000)  )
+  #define __NN_PKHTB(ARG1, ARG2, ARG3) ( (((int32_t)(ARG1) <<    0) & (int32_t)0xFFFF0000) | \
+                                      (((int32_t)(ARG2) >> ARG3) & (int32_t)0x0000FFFF)  )
+
+  /**
+   * @brief Clips Q63 to Q31 values.
+   */
+  __STATIC_FORCEINLINE q31_t nn_clip_q63_to_q31(
+  q63_t x)
+  {
+    return ((q31_t) (x >> 32) != ((q31_t) x >> 31)) ?
+      ((0x7FFFFFFF ^ ((q31_t) (x >> 63)))) : (q31_t) x;
+  }
+
+  /*
+   * @brief C custom defined QADD
+   */
+  __STATIC_FORCEINLINE int32_t __NN_QADD(
+  int32_t x,
+  int32_t y)
+  {
+    return ((int32_t)(nn_clip_q63_to_q31((q63_t)x + (q31_t)y)));
+  }
+
+  /*
+   * @brief C custom defined QADD16
+   */
+  __STATIC_FORCEINLINE uint32_t __NN_QADD16(
+  uint32_t x,
+  uint32_t y)
+  {
+/*  q31_t r,     s;  without initialisation 'riscv_offset_q15 test' fails  but 'intrinsic' tests pass! for armCC */
+    q31_t r = 0, s = 0;
+
+    r = __SSAT(((((q31_t)x << 16) >> 16) + (((q31_t)y << 16) >> 16)), 16) & (int32_t)0x0000FFFF;
+    s = __SSAT(((((q31_t)x      ) >> 16) + (((q31_t)y      ) >> 16)), 16) & (int32_t)0x0000FFFF;
+
+    return ((uint32_t)((s << 16) | (r      )));
+  }
+
+  /*
+   * @brief C custom defined SXTB16
+   */
+  __STATIC_FORCEINLINE uint32_t __NN_SXTB16(
+  uint32_t x)
+  {
+    return ((uint32_t)(((((q31_t)x << 24) >> 24) & (q31_t)0x0000FFFF) |
+                       ((((q31_t)x <<  8) >>  8) & (q31_t)0xFFFF0000)  ));
+  }
+
+#else
+
+#define __NN_PKHBT __PKHBT
+#define __NN_PKHTB __PKHTB
+#define __NN_QADD __QADD
+#define __NN_QADD16 __QADD16
+#define __NN_SXTB16 __SXTB16
+
+#endif
+
+   /**
+   * @brief definition to pack four 8 bit values.
+   */
+  #define __NN_PACKq7(v0,v1,v2,v3) ( (((int32_t)(v0) <<  0) & (int32_t)0x000000FF) | \
+                                  (((int32_t)(v1) <<  8) & (int32_t)0x0000FF00) | \
+                                  (((int32_t)(v2) << 16) & (int32_t)0x00FF0000) | \
+                                  (((int32_t)(v3) << 24) & (int32_t)0xFF000000)  )
+
 /**
  * @defgroup nndata_convert Neural Network Data Conversion Functions
  *
@@ -302,7 +375,7 @@ q15_t *riscv_nn_mat_mult_kernel_s16(const q7_t *input_a,
  *          sum_col += col_base[i]
  *
  */
-riscv_status riscv_nn_mat_mul_core_1x_s8(int32_t row_elements,
+riscv_nmsis_nn_status riscv_nn_mat_mul_core_1x_s8(int32_t row_elements,
                                      const int8_t *row_base,
                                      const int8_t *col_base,
                                      int32_t *const sum_col,
@@ -361,10 +434,10 @@ int8_t *riscv_nn_mat_mul_core_4x_s8(const int32_t row_elements,
  * @param[in]  activation_min     Minimum value to clamp down the output. Range : int8
  * @param[in]  activation_max     Maximum value to clamp up the output. Range : int8
  *
- * @return     The function returns <code>RISCV_MATH_SUCCESS</code>
+ * @return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
  *
  */
-riscv_status riscv_nn_mat_mult_nt_t_s8(const q7_t *lhs,
+riscv_nmsis_nn_status riscv_nn_mat_mult_nt_t_s8(const q7_t *lhs,
                                    const q7_t *rhs,
                                    const q31_t *bias,
                                    q7_t *dst,
@@ -398,10 +471,10 @@ riscv_status riscv_nn_mat_mult_nt_t_s8(const q7_t *lhs,
  * @param[in]      address_offset  Memory position offset for dst. First output is stored at 'dst', the
  *                                 second at 'dst + address_offset' and so on. Default value is typically 1.
  *
- * @return         The function returns <code>RISCV_MATH_SUCCESS</code>
+ * @return         The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
  *
  */
-riscv_status riscv_nn_vec_mat_mult_t_s8(const q7_t *lhs,
+riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const q7_t *lhs,
                                     const q7_t *rhs,
                                     const q31_t *bias,
                                     q7_t *dst,
@@ -430,10 +503,10 @@ riscv_status riscv_nn_vec_mat_mult_t_s8(const q7_t *lhs,
  * @param[in]      activation_min  Minimum value to clamp the output to. Range: int16
  * @param[in]      activation_max  Maximum value to clamp the output to. Range: int16
  *
- * @return         The function returns <code>RISCV_MATH_SUCCESS</code>
+ * @return         The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
  *
  */
-riscv_status riscv_nn_vec_mat_mult_t_s16(const q15_t *lhs,
+riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s16(const q15_t *lhs,
                                      const q7_t *rhs,
                                      const q63_t *bias,
                                      q15_t *dst,
@@ -462,10 +535,10 @@ riscv_status riscv_nn_vec_mat_mult_t_s16(const q15_t *lhs,
  * @param[in]      activation_min  Minimum value to clamp the output to. Range: int16
  * @param[in]      activation_max  Maximum value to clamp the output to. Range: int16
  *
- * @return         The function returns <code>RISCV_MATH_SUCCESS</code>
+ * @return         The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
  *
  */
-riscv_status riscv_nn_vec_mat_mult_t_svdf_s8(const q7_t *lhs,
+riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_svdf_s8(const q7_t *lhs,
                                          const q7_t *rhs,
                                          q15_t *dst,
                                          const int32_t lhs_offset,
@@ -592,6 +665,14 @@ q7_t *riscv_nn_mat_mult_kernel_q7_reordered(const q7_t * pA,
                                               const q7_t * bias,
                                               q7_t * pOut);
 
+
+#define __SIMD32_TYPE int32_t
+
+#define __SIMD32(addr)        (*(__SIMD32_TYPE **) & (addr))
+#define __SIMD32_CONST(addr)  ( (__SIMD32_TYPE * )   (addr))
+#define _SIMD32_OFFSET(addr)  (*(__SIMD32_TYPE * )   (addr))
+#define __SIMD64(addr)        (*(      int64_t **) & (addr))
+
 /**
   @brief         Read 2 q15 elements and post increment pointer.
   @param[in]     in_q15   Pointer to pointer that holds address of input.
@@ -609,6 +690,78 @@ __STATIC_FORCEINLINE q31_t riscv_nn_read_q15x2_ia(const q15_t **in_q15)
     *in_q15 += 2;
 
     return (val);
+}
+
+/**
+  @brief         Read 4 Q15 from Q15 pointer.
+  @param[in]     pQ15      points to input value
+  @return        Q63 value
+ */
+__STATIC_FORCEINLINE q63_t riscv_nn_read_q15x4 (
+		q15_t const * pQ15)
+{
+  q63_t val;
+#ifndef __RISCV_FEATURE_UNALIGNED
+#if __RISCV_XLEN == 64
+  val = __LD((q15_t *)pQ15);
+#else
+  val = *((q63_t *)pQ15);
+#endif /* __RISCV_XLEN == 64 */
+#else
+  memcpy((void *)(&val), (void *)(pQ15), 8);
+#endif
+  return (val);
+}
+
+/**
+  @brief         Read 4 Q15 from Q15 pointer and increment pointer afterwards.
+  @param[in]     pQ15      points to input value
+  @return        Q63 value
+ */
+__STATIC_FORCEINLINE q63_t riscv_nn_read_q15x4_ia (
+  q15_t ** pQ15)
+{
+  q63_t val;
+
+  val = riscv_nn_read_q15x4(*pQ15);
+  *pQ15 += 4;
+
+  return (val);
+}
+
+/**
+  @brief         Write 4 Q15 to Q15 pointer.
+  @param[in]     pQ15      points to input value
+  @param[in]     value     Q31 value
+  @return        none
+ */
+__STATIC_FORCEINLINE void riscv_nn_write_q15x4 (
+		q15_t * pQ15,
+		q63_t   value)
+{
+#ifndef __RISCV_FEATURE_UNALIGNED
+#if __RISCV_XLEN == 64
+  __SD(pQ15, value);
+#else
+  *((q63_t *)pQ15) = value;
+#endif
+#else
+  memcpy((void *)(pQ15), (void *)(&value), 8);
+#endif
+}
+
+/**
+  @brief         Write 4 Q15 to Q15 pointer and increment pointer afterwards.
+  @param[in]     pQ15      points to input value
+  @param[in]     value     Q31 value
+  @return        none
+ */
+__STATIC_FORCEINLINE void riscv_nn_write_q15x4_ia (
+  q15_t ** pQ15,
+  q63_t    value)
+{
+  riscv_nn_write_q15x4(*pQ15, value);
+  *pQ15 += 4;
 }
 
 /**
@@ -665,6 +818,44 @@ __STATIC_FORCEINLINE q31_t riscv_nn_read_q7x4(const q7_t *in_q7)
 }
 
 /**
+  @brief         Read 8 Q7 from Q7 pointer.
+  @param[in]     pQ7       points to input value
+  @return        Q63 value
+ */
+__STATIC_FORCEINLINE q63_t riscv_nn_read_q7x8 (
+		q7_t const * pQ7)
+{
+	q63_t val;
+#ifndef __RISCV_FEATURE_UNALIGNED
+#if __RISCV_XLEN == 64
+  val = __LD((q7_t *)pQ7);
+#else
+  val = *((q63_t *)pQ7);
+#endif
+#else
+  memcpy((void *)(&val), (void *)pQ7, 8);
+#endif
+
+  return val;
+}
+
+/**
+  @brief         Read 8 Q7 from Q7 pointer and increment pointer afterwards.
+  @param[in]     pQ7       points to input value
+  @return        Q63 value
+ */
+__STATIC_FORCEINLINE q63_t riscv_nn_read_q7x8_ia (
+  q7_t ** pQ7)
+{
+  q63_t val;
+
+  val = riscv_nn_read_q7x8(*pQ7);
+  *pQ7 += 8;
+
+  return val;
+}
+
+/**
   @brief         Write four q7 to q7 pointer and increment pointer afterwards.
   @param[in]     in       Double pointer to input value
   @param[in]     value    Four bytes to copy
@@ -673,6 +864,29 @@ __STATIC_FORCEINLINE void riscv_nn_write_q7x4_ia(q7_t **in, q31_t value)
 {
     memcpy(*in, &value, 4);
     *in += 4;
+}
+
+
+/**
+  @brief         Write 8 Q7 to Q7 pointer and increment pointer afterwards.
+  @param[in]     pQ7       points to input value
+  @param[in]     value     Q63 value
+  @return        none
+ */
+__STATIC_FORCEINLINE void riscv_nn_write_q7x8_ia (
+		q7_t ** pQ7,
+		q63_t   value)
+{
+#ifndef __RISCV_FEATURE_UNALIGNED
+#if __RISCV_XLEN == 64
+  __SD(*pQ7,value);
+#else
+  *((q63_t *)*pQ7) = value;
+#endif
+#else
+  memcpy((void *)(*pQ7), (void *)(&value), 8);
+#endif
+  *pQ7 += 8;
 }
 
 /**
@@ -699,8 +913,8 @@ __STATIC_FORCEINLINE const q7_t *read_and_pad(const q7_t *source, q31_t *out1, q
     q31_t inAbuf1 = __SXTB16_RORn((uint32_t)inA, 8);
     q31_t inAbuf2 = __SXTB16(inA);
 
-    *out2 = (int32_t)(__PKHTB(inAbuf1, inAbuf2, 16));
-    *out1 = (int32_t)(__PKHBT(inAbuf2, inAbuf1, 16));
+    *out2 = (int32_t)(__NN_PKHTB(inAbuf1, inAbuf2, 16));
+    *out1 = (int32_t)(__NN_PKHBT(inAbuf2, inAbuf1, 16));
 
     return source;
 }
@@ -728,8 +942,8 @@ read_and_pad_reordered_with_offset(const q7_t *source, q31_t *out1, q31_t *out2,
 
     *out2 = __SXTB16(__ROR((uint32_t)inA, 8));
     *out1 = __SXTB16(inA);
-    *out1 = __QADD16(*out1, offset);
-    *out2 = __QADD16(*out2, offset);
+    *out1 = __NN_QADD16(*out1, offset);
+    *out2 = __NN_QADD16(*out2, offset);
 
     return source;
 }
@@ -1068,8 +1282,55 @@ __STATIC_FORCEINLINE void riscv_nn_write_q15x2_ia(q15_t **dest_q15, q31_t src_q3
     *dest_q15 += 2;
 }
 
+  /**
+   * @brief  Copies the elements of a Q7 vector.
+   * @param[in]  pSrc       input pointer
+   * @param[out] pDst       output pointer
+   * @param[in]  blockSize  number of samples to process
+   */
+void riscv_nn_copy_q7(
+  const q7_t * pSrc,
+        q7_t * pDst,
+        uint32_t blockSize);
+
+
+  /**
+   * @brief  Copies the elements of a Q15 vector.
+   * @param[in]  pSrc       input pointer
+   * @param[out] pDst       output pointer
+   * @param[in]  blockSize  number of samples to process
+   */
+void riscv_nn_copy_q15(
+  const q15_t * pSrc,
+        q15_t * pDst,
+        uint32_t blockSize);
+
+  /**
+   * @brief  Fills a constant value into a Q7 vector.
+   * @param[in]  value      input value to be filled
+   * @param[out] pDst       output pointer
+   * @param[in]  blockSize  number of samples to process
+   */
+void riscv_nn_fill_q7(
+        q7_t value,
+        q7_t * pDst,
+        uint32_t blockSize);
+
+
+  /**
+   * @brief  Fills a constant value into a Q15 vector.
+   * @param[in]  value      input value to be filled
+   * @param[out] pDst       output pointer
+   * @param[in]  blockSize  number of samples to process
+   */
+void riscv_nn_fill_q15(
+        q15_t value,
+        q15_t * pDst,
+        uint32_t blockSize);
+
 #ifdef __cplusplus
 }
+
 #endif
 
 #endif

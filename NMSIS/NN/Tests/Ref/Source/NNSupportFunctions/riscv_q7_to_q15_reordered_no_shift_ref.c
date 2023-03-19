@@ -98,10 +98,10 @@ void riscv_q7_to_q15_reordered_no_shift_ref(const q7_t * pSrc, q15_t * pDst, uin
         in = riscv_nn_read_q7x4_ia(&pIn);
 
         /* rotatate in by 8 and extend two q7_t values to q15_t values */
-        in1 = __SXTB16(__ROR((uint32_t)in, 8));
+        in1 = __NN_SXTB16(__ROR((uint32_t)in, 8));
 
         /* extend remainig two q7_t values to q15_t values */
-        in2 = __SXTB16(in);
+        in2 = __NN_SXTB16(in);
 
         riscv_nn_write_q7x4_ia((q7_t **)&pDst, in2);
         riscv_nn_write_q7x4_ia((q7_t **)&pDst, in1);

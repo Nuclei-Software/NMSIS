@@ -59,7 +59,7 @@
  * @param[in,out]   bufferA     pointer to buffer space for input
  * @param[in,out]   bufferB     pointer to buffer space for output
  * @return     The function returns either
- * <code>RISCV_MATH_SIZE_MISMATCH</code> or <code>RISCV_MATH_SUCCESS</code> based on the outcome of size checking.
+ * <code>RISCV_NMSIS_NN_SIZE_MISMATCH</code> or <code>RISCV_NMSIS_NN_SUCCESS</code> based on the outcome of size checking.
  *
  * @details
  *
@@ -78,7 +78,7 @@
  * image with RGB format.
  */
 
-riscv_status riscv_convolve_HWC_q7_RGB(const q7_t *Im_in,
+riscv_nmsis_nn_status riscv_convolve_HWC_q7_RGB(const q7_t *Im_in,
                                    const uint16_t dim_im_in,
                                    const uint16_t ch_im_in,
                                    const q7_t *wt,
@@ -109,7 +109,7 @@ riscv_status riscv_convolve_HWC_q7_RGB(const q7_t *Im_in,
     // check if number of input channels is 3
     if (ch_im_in != 3)
     {
-        return RISCV_MATH_SIZE_MISMATCH;
+        return RISCV_NMSIS_NN_SIZE_MISMATCH;
     }
     // This part implements the im2col function
     for (i_out_y = 0; i_out_y < dim_im_out; i_out_y++)
@@ -124,7 +124,7 @@ riscv_status riscv_convolve_HWC_q7_RGB(const q7_t *Im_in,
                     {
                         /* Filling 0 for out-of-bound paddings */
 
-                        riscv_fill_q7(0, pBuffer, ch_im_in);
+                        riscv_nn_fill_q7(0, pBuffer, ch_im_in);
                         /* memset(pBuffer, 0, sizeof(q15_t)*ch_im_in); */
                     } else
                     {
@@ -236,7 +236,7 @@ riscv_status riscv_convolve_HWC_q7_RGB(const q7_t *Im_in,
     // check if number of input channels is 3
     if (ch_im_in != 3)
     {
-        return RISCV_MATH_SIZE_MISMATCH;
+        return RISCV_NMSIS_NN_SIZE_MISMATCH;
     }
 
     for (i = 0; i < ch_im_out; i++)
@@ -271,7 +271,7 @@ riscv_status riscv_convolve_HWC_q7_RGB(const q7_t *Im_in,
 #endif /* defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR) */
 
     /* Return to application */
-    return (RISCV_MATH_SUCCESS);
+    return (RISCV_NMSIS_NN_SUCCESS);
 }
 
 /**

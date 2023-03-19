@@ -47,7 +47,7 @@
  * @note   Refer header file for details.
  *
  */
-riscv_status riscv_elementwise_mul_s16(const int16_t *input_1_vect,
+riscv_nmsis_nn_status riscv_elementwise_mul_s16(const int16_t *input_1_vect,
                                    const int16_t *input_2_vect,
                                    const int32_t input_1_offset,
                                    const int32_t input_2_offset,
@@ -88,7 +88,7 @@ riscv_status riscv_elementwise_mul_s16(const int16_t *input_1_vect,
         loop_count--;
     }
 
-    return RISCV_MATH_SUCCESS;
+    return RISCV_NMSIS_NN_SUCCESS;
 }
 
 /**

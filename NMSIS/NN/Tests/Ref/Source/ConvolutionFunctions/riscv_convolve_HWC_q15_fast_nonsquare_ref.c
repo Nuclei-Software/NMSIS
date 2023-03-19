@@ -64,7 +64,7 @@
    * @param[in,out]   bufferA      pointer to buffer space for input
    * @param[in,out]   bufferB      pointer to buffer space for output
    * @return     The function returns either
-   * <code>RISCV_MATH_SIZE_MISMATCH</code> or <code>RISCV_MATH_SUCCESS</code> based on the outcome of size checking.
+   * <code>RISCV_NMSIS_NN_SIZE_MISMATCH</code> or <code>RISCV_NMSIS_NN_SUCCESS</code> based on the outcome of size checking.
    *
    * @details
    *
@@ -82,7 +82,7 @@
    *
    */
 
-riscv_status
+riscv_nmsis_nn_status
 riscv_convolve_HWC_q15_fast_nonsquare_ref(const q15_t * Im_in,
                                         const uint16_t dim_im_in_x,
                                         const uint16_t dim_im_in_y,
@@ -113,7 +113,7 @@ riscv_convolve_HWC_q15_fast_nonsquare_ref(const q15_t * Im_in,
     if (ch_im_in % 2 != 0 || ch_im_out % 2 != 0)
     {
         /* check if the input dimension meets the constraints */
-        return RISCV_MATH_SIZE_MISMATCH;
+        return RISCV_NMSIS_NN_SIZE_MISMATCH;
     }
 
     for (i = 0; i < ch_im_out; i++)
@@ -146,7 +146,7 @@ riscv_convolve_HWC_q15_fast_nonsquare_ref(const q15_t * Im_in,
         }
     }
     /* Return to application */
-    return RISCV_MATH_SUCCESS;
+    return RISCV_NMSIS_NN_SUCCESS;
 }
 
 /**

@@ -64,7 +64,7 @@
  * @param[in,out]   bufferA      pointer to buffer space for input
  * @param[in,out]   bufferB      pointer to buffer space for output
  * @return     The function returns either
- * <code>RISCV_MATH_SIZE_MISMATCH</code> or <code>RISCV_MATH_SUCCESS</code> based on the outcome of size checking.
+ * <code>RISCV_NMSIS_NN_SIZE_MISMATCH</code> or <code>RISCV_NMSIS_NN_SUCCESS</code> based on the outcome of size checking.
  *
  * This function is the version with full list of optimization tricks, but with
  * some constraints:
@@ -72,7 +72,7 @@
  *   ch_im_out is multiple of 2
  */
 
-riscv_status riscv_convolve_HWC_q7_fast_nonsquare(const q7_t *Im_in,
+riscv_nmsis_nn_status riscv_convolve_HWC_q7_fast_nonsquare(const q7_t *Im_in,
                                               const uint16_t dim_im_in_x,
                                               const uint16_t dim_im_in_y,
                                               const uint16_t ch_im_in,
@@ -110,7 +110,7 @@ riscv_status riscv_convolve_HWC_q7_fast_nonsquare(const q7_t *Im_in,
     if (ch_im_in % 4 != 0 || ch_im_out % 2 != 0)
     {
         /* check if the input dimension meets the constraints */
-        return RISCV_MATH_SIZE_MISMATCH;
+        return RISCV_NMSIS_NN_SIZE_MISMATCH;
     }
 
     /*
@@ -134,7 +134,7 @@ riscv_status riscv_convolve_HWC_q7_fast_nonsquare(const q7_t *Im_in,
                 {
                     if (i_ker_y < 0 || i_ker_y >= dim_im_in_y || i_ker_x < 0 || i_ker_x >= dim_im_in_x)
                     {
-                        riscv_fill_q7(0, pBuffer, ch_im_in);
+                        riscv_nn_fill_q7(0, pBuffer, ch_im_in);
                         /* memset(pBuffer, 0, sizeof(q15_t)*ch_im_in); */
                     } else
                     {
@@ -171,7 +171,7 @@ riscv_status riscv_convolve_HWC_q7_fast_nonsquare(const q7_t *Im_in,
                 {
                     if (i_ker_x < 0 || i_ker_x >= dim_im_in_x)
                     {
-                        riscv_fill_q7(0, pBuffer, ch_im_in);
+                        riscv_nn_fill_q7(0, pBuffer, ch_im_in);
                         /* memset(pBuffer, 0, sizeof(q15_t)*ch_im_in); */
                     }
                     else
@@ -227,7 +227,7 @@ riscv_status riscv_convolve_HWC_q7_fast_nonsquare(const q7_t *Im_in,
                 {
                     if (i_ker_x < 0 || i_ker_x >= dim_im_in_x)
                     {
-                        riscv_fill_q7(0, pBuffer, ch_im_in);
+                        riscv_nn_fill_q7(0, pBuffer, ch_im_in);
                         /* memset(pBuffer, 0, sizeof(q15_t)*ch_im_in); */
                     } else
                     {
@@ -261,7 +261,7 @@ riscv_status riscv_convolve_HWC_q7_fast_nonsquare(const q7_t *Im_in,
                 {
                     if (i_ker_y < 0 || i_ker_y >= dim_im_in_y || i_ker_x < 0 || i_ker_x >= dim_im_in_x)
                     {
-                        riscv_fill_q7(0, pBuffer, ch_im_in);
+                        riscv_nn_fill_q7(0, pBuffer, ch_im_in);
                         /* memset(pBuffer, 0, sizeof(q15_t)*ch_im_in); */
                     } else
                     {
@@ -364,7 +364,7 @@ riscv_status riscv_convolve_HWC_q7_fast_nonsquare(const q7_t *Im_in,
     if (ch_im_in % 4 != 0 || ch_im_out % 2 != 0)
     {
         /* check if the input dimension meets the constraints */
-        return RISCV_MATH_SIZE_MISMATCH;
+        return RISCV_NMSIS_NN_SIZE_MISMATCH;
     }
 
     for (i = 0; i < ch_im_out; i++)
@@ -400,7 +400,7 @@ riscv_status riscv_convolve_HWC_q7_fast_nonsquare(const q7_t *Im_in,
 #endif /* RISCV_MATH_DSP */
 
     /* Return to application */
-    return RISCV_MATH_SUCCESS;
+    return RISCV_NMSIS_NN_SUCCESS;
 }
 
 /**

@@ -94,7 +94,7 @@ static void scale_q31_to_q7_and_clamp(const q31_t *buffer,
  *
  */
 
-riscv_status riscv_avgpool_s8(const nmsis_nn_context *ctx,
+riscv_nmsis_nn_status riscv_avgpool_s8(const nmsis_nn_context *ctx,
                           const nmsis_nn_pool_params *pool_params,
                           const nmsis_nn_dims *input_dims,
                           const q7_t *src,
@@ -118,7 +118,7 @@ riscv_status riscv_avgpool_s8(const nmsis_nn_context *ctx,
 
     if (ctx->buf == NULL && riscv_avgpool_s8_get_buffer_size(output_dims->w, input_dims->c))
     {
-        return RISCV_MATH_ARGUMENT_ERROR;
+        return RISCV_NMSIS_NN_ARG_ERROR;
     }
     q31_t *buffer = (q31_t *)ctx->buf;
 
@@ -159,7 +159,7 @@ riscv_status riscv_avgpool_s8(const nmsis_nn_context *ctx,
                     {
                         for (int i = 0; i < ch_src; i++)
                         {
-                            buffer[i] = __QADD(start[i], buffer[i]);
+                            buffer[i] = __NN_QADD(start[i], buffer[i]);
                         }
                     }
                     count++;
@@ -169,7 +169,7 @@ riscv_status riscv_avgpool_s8(const nmsis_nn_context *ctx,
             // Prevent static code issue DIVIDE_BY_ZERO.
             if (count == 0)
             {
-                return RISCV_MATH_ARGUMENT_ERROR;
+                return RISCV_NMSIS_NN_ARG_ERROR;
             }
 
             scale_q31_to_q7_and_clamp(buffer, dst, ch_src, count, act_min, act_max);
@@ -207,7 +207,7 @@ riscv_status riscv_avgpool_s8(const nmsis_nn_context *ctx,
                 // Prevent static code issue DIVIDE_BY_ZERO.
                 if (count == 0)
                 {
-                    return RISCV_MATH_ARGUMENT_ERROR;
+                    return RISCV_NMSIS_NN_ARG_ERROR;
                 }
 
                 sum = sum > 0 ? (sum + count / 2) / count : (sum - count / 2) / count;
@@ -220,7 +220,7 @@ riscv_status riscv_avgpool_s8(const nmsis_nn_context *ctx,
     }
 
 #endif /* defined(RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR) */
-    return RISCV_MATH_SUCCESS;
+    return RISCV_NMSIS_NN_SUCCESS;
 }
 
 

@@ -58,7 +58,7 @@
  * @param[in]       dim_im_out  output tensor dimension
  * @param[in,out]   bufferA     pointer to buffer space for input
  * @param[in,out]   bufferB     pointer to buffer space for output
- * @return     The function returns <code>RISCV_MATH_SUCCESS</code>
+ * @return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
  *
  * @details
  *
@@ -72,7 +72,7 @@
  * dimension.
  */
 
-riscv_status riscv_convolve_HWC_q7_basic(const q7_t *Im_in,
+riscv_nmsis_nn_status riscv_convolve_HWC_q7_basic(const q7_t *Im_in,
                                      const uint16_t dim_im_in,
                                      const uint16_t ch_im_in,
                                      const q7_t *wt,
@@ -114,7 +114,7 @@ riscv_status riscv_convolve_HWC_q7_basic(const q7_t *Im_in,
                     {
                         /* Filling 0 for out-of-bound paddings */
 
-                        riscv_fill_q7(0, pBuffer, ch_im_in);
+                        riscv_nn_fill_q7(0, pBuffer, ch_im_in);
                         /* memset(pBuffer, 0, sizeof(q15_t)*ch_im_in); */
                     } else
                     {
@@ -251,7 +251,7 @@ riscv_status riscv_convolve_HWC_q7_basic(const q7_t *Im_in,
 #endif /* defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR) */
 
     /* Return to application */
-    return RISCV_MATH_SUCCESS;
+    return RISCV_NMSIS_NN_SUCCESS;
 }
 
 /**

@@ -197,7 +197,7 @@ static void depthwise_conv_s8_generic_ref(const q7_t *input,
    *  Optimization using DSP extension is not available for the generic case where channel multiplier is > 1.
    *
    */
-riscv_status riscv_depthwise_conv_s8_ref(const nmsis_nn_context *ctx,
+riscv_nmsis_nn_status riscv_depthwise_conv_s8_ref(const nmsis_nn_context *ctx,
                                  const nmsis_nn_dw_conv_params *dw_conv_params,
                                  const nmsis_nn_per_channel_quant_params *quant_params,
                                  const nmsis_nn_dims *input_dims,
@@ -228,7 +228,7 @@ riscv_status riscv_depthwise_conv_s8_ref(const nmsis_nn_context *ctx,
     }
 
     /* Return to application */
-    return RISCV_MATH_SUCCESS;
+    return RISCV_NMSIS_NN_SUCCESS;
 }
 
 /**

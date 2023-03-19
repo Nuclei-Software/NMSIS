@@ -44,7 +44,7 @@
  * Refer header file for details.
  *
  */
-riscv_status riscv_nn_vec_mat_mult_t_s16(const q15_t *lhs,
+riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s16(const q15_t *lhs,
                                      const q7_t *rhs,
                                      const q63_t *bias,
                                      q15_t *dst,
@@ -203,7 +203,7 @@ riscv_status riscv_nn_vec_mat_mult_t_s16(const q15_t *lhs,
     }
 #endif
 
-    return RISCV_MATH_SUCCESS;
+    return RISCV_NMSIS_NN_SUCCESS;
 }
 
 /**

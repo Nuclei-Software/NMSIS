@@ -28,9 +28,6 @@
 
 #define _RISCV_NN_MATH_TYPES_H_
 
-/* DSP inlcude for enum riscv_status. */
-#include "riscv_math_types.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -195,6 +192,7 @@ typedef enum
     RISCV_NMSIS_NN_SUCCESS = 0,        /**< No error */
     RISCV_NMSIS_NN_ARG_ERROR = -1,     /**< One or more arguments are incorrect */
     RISCV_NMSIS_NN_NO_IMPL_ERROR = -2, /**<  No implementation available */
+    RISCV_NMSIS_NN_SIZE_MISMATCH = -3,        /**< Size of matrices is not compatible with the operation */
 } riscv_nmsis_nn_status;
 
 #ifdef __cplusplus

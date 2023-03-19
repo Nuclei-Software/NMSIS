@@ -47,7 +47,7 @@
  * Refer header file for details.
  *
  */
-riscv_status riscv_fully_connected_s16(const nmsis_nn_context *ctx,
+riscv_nmsis_nn_status riscv_fully_connected_s16(const nmsis_nn_context *ctx,
                                    const nmsis_nn_fc_params *fc_params,
                                    const nmsis_nn_per_tensor_quant_params *quant_params,
                                    const nmsis_nn_dims *input_dims,
@@ -84,7 +84,7 @@ riscv_status riscv_fully_connected_s16(const nmsis_nn_context *ctx,
         batch_cnt--;
     }
 
-    return (RISCV_MATH_SUCCESS);
+    return (RISCV_NMSIS_NN_SUCCESS);
 }
 
 int32_t riscv_fully_connected_s16_get_buffer_size(const nmsis_nn_dims *filter_dims)

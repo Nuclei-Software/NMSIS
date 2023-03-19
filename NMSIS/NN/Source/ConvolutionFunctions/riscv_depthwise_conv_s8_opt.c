@@ -49,7 +49,7 @@
  *
  */
 
-riscv_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
+riscv_nmsis_nn_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
                                      const nmsis_nn_dw_conv_params *dw_conv_params,
                                      const nmsis_nn_per_channel_quant_params *quant_params,
                                      const nmsis_nn_dims *input_dims,
@@ -68,12 +68,12 @@ riscv_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
     /* Check input constraints input_ch == output_ch */
     if (input_ch != output_ch)
     {
-        return RISCV_MATH_SIZE_MISMATCH;
+        return RISCV_NMSIS_NN_SIZE_MISMATCH;
     }
 
     if (ctx->buf == NULL && riscv_depthwise_conv_s8_opt_get_buffer_size(input_dims, filter_dims) > 0)
     {
-        return RISCV_MATH_ARGUMENT_ERROR;
+        return RISCV_NMSIS_NN_ARG_ERROR;
     }
 #if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
     const int32_t input_x = input_dims->w;
@@ -252,23 +252,23 @@ riscv_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
                     // ip_b2 = __SXTB16(ip_a1);
                     // ip_a1 = __SXTB16(__ROR(ip_a1, 8));
 
-                    // op_c = __PKHBT(op_b, op_a, 16);
-                    // op_a = __PKHTB(op_b, op_a, 16);
-                    // op_b = __PKHBT(ip_b2, ip_a2, 16);
+                    // op_c = __NN_PKHBT(op_b, op_a, 16);
+                    // op_a = __NN_PKHTB(op_b, op_a, 16);
+                    // op_b = __NN_PKHBT(ip_b2, ip_a2, 16);
                     // sum = __SMLAD(op_c, op_b, sum);
 
-                    // op_b = __PKHBT(ip_b1, ip_a1, 16);
+                    // op_b = __NN_PKHBT(ip_b1, ip_a1, 16);
                     // sum_2 = __SMLAD(op_a, op_b, sum_2);
 
                     // op_a = riscv_nn_read_q15x2(col_pos + 2);
                     // op_b = riscv_nn_read_q15x2(col_pos + input_ch + 2);
 
-                    // op_c = __PKHBT(op_b, op_a, 16);
-                    // op_a = __PKHTB(op_b, op_a, 16);
-                    // op_b = __PKHTB(ip_a2, ip_b2, 16);
+                    // op_c = __NN_PKHBT(op_b, op_a, 16);
+                    // op_a = __NN_PKHTB(op_b, op_a, 16);
+                    // op_b = __NN_PKHTB(ip_a2, ip_b2, 16);
                     // sum_3 = __SMLAD(op_c, op_b, sum_3);
 
-                    // op_b = __PKHTB(ip_a1, ip_b1, 16);
+                    // op_b = __NN_PKHTB(ip_a1, ip_b1, 16);
                     // sum_4 = __SMLAD(op_a, op_b, sum_4);
 
                     row_pos += input_ch << 1;
@@ -358,7 +358,7 @@ riscv_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
 #endif /*  defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR) */
 
     /* Return to application */
-    return RISCV_MATH_SUCCESS;
+    return RISCV_NMSIS_NN_SUCCESS;
 }
 
 int32_t riscv_depthwise_conv_s8_opt_get_buffer_size(const nmsis_nn_dims *input_dims, const nmsis_nn_dims *filter_dims)

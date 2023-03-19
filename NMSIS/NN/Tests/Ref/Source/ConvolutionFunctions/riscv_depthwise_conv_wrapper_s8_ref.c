@@ -46,7 +46,7 @@
    *  Refer header file for details.
    *
    */
-riscv_status riscv_depthwise_conv_wrapper_s8_ref(const nmsis_nn_context *ctx,
+riscv_nmsis_nn_status riscv_depthwise_conv_wrapper_s8_ref(const nmsis_nn_context *ctx,
                                              const nmsis_nn_dw_conv_params *dw_conv_params,
                                              const nmsis_nn_per_channel_quant_params *quant_params,
                                              const nmsis_nn_dims *input_dims,
@@ -58,7 +58,7 @@ riscv_status riscv_depthwise_conv_wrapper_s8_ref(const nmsis_nn_context *ctx,
                                              const nmsis_nn_dims *output_dims,
                                              q7_t *output)
 {
-    riscv_status status = RISCV_MATH_SUCCESS;
+    riscv_nmsis_nn_status status = RISCV_NMSIS_NN_SUCCESS;
     if (1 == dw_conv_params->ch_mult)
     {
         if ((filter_dims->w == 3) && (filter_dims->h == 3) && (dw_conv_params->padding.h <= 1))

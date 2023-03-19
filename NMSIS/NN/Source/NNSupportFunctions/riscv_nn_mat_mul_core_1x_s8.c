@@ -46,7 +46,7 @@
  *
  */
 
-riscv_status riscv_nn_mat_mul_core_1x_s8(int32_t row_elements,
+riscv_nmsis_nn_status riscv_nn_mat_mul_core_1x_s8(int32_t row_elements,
                                      const int8_t *row_base,
                                      const int8_t *col_base,
                                      int32_t *const sum_col,
@@ -89,7 +89,7 @@ riscv_status riscv_nn_mat_mul_core_1x_s8(int32_t row_elements,
 
     *sum_col = sum_tmp;
     *output = acc_n0;
-    return RISCV_MATH_SUCCESS;
+    return RISCV_NMSIS_NN_SUCCESS;
 }
 
 /**

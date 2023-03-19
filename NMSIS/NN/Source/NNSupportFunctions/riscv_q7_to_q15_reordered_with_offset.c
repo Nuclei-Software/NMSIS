@@ -62,7 +62,7 @@ void riscv_q7_to_q15_reordered_with_offset(const q7_t *src, q15_t *dst, uint32_t
     block_cnt = block_size >> 2u;
 
     /* First part of the processing with loop unrolling. Compute 4 outputs at a time. */
-    const q31_t offset_q15x2 = (q31_t)__PKHBT(offset, offset, 16);
+    const q31_t offset_q15x2 = (q31_t)__NN_PKHBT(offset, offset, 16);
     while (block_cnt > 0u)
     {
         /* convert from q7 to q15 and then store the results in the destination buffer */

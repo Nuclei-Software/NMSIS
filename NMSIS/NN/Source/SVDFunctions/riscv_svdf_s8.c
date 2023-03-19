@@ -48,7 +48,7 @@
  *
  */
 
-riscv_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
+riscv_nmsis_nn_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
                        const nmsis_nn_context *output_ctx,
                        const nmsis_nn_svdf_params *svdf_params,
                        const nmsis_nn_per_tensor_quant_params *input_quant_params,
@@ -90,13 +90,13 @@ riscv_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
 
     if (input_ctx->buf == NULL)
     {
-        return RISCV_MATH_ARGUMENT_ERROR;
+        return RISCV_NMSIS_NN_ARG_ERROR;
     }
     q31_t *buffer_a = (q31_t *)input_ctx->buf;
 
     if (output_ctx->buf == NULL)
     {
-        return RISCV_MATH_ARGUMENT_ERROR;
+        return RISCV_NMSIS_NN_ARG_ERROR;
     }
     q31_t *buffer_b = (q31_t *)output_ctx->buf;
     // Left shift state
@@ -111,7 +111,7 @@ riscv_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
         const q7_t *weight = weights_feature_data;
         const q7_t *input = input_data + i_batch * input_height;
 
-        riscv_status res = riscv_nn_vec_mat_mult_t_s8(input,
+        riscv_nmsis_nn_status res = riscv_nn_vec_mat_mult_t_s8(input,
                                                   weight,
                                                   NULL,
                                                   res_ptr,
@@ -126,7 +126,7 @@ riscv_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
                                                   in_activation_max,
                                                   time_batches);
 
-        if (res != RISCV_MATH_SUCCESS)
+        if (res != RISCV_NMSIS_NN_SUCCESS)
         {
             return res;
         }
@@ -317,7 +317,7 @@ riscv_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
             riscv_nn_requantize(buffer_b[i], multiplier_out, shift_2) + zp_out, out_activation_max, out_activation_min);
     }
 
-    return (RISCV_MATH_SUCCESS);
+    return (RISCV_NMSIS_NN_SUCCESS);
 }
 
 /**

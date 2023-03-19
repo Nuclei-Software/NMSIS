@@ -235,14 +235,14 @@ static void depthwise_conv_u8_generic_ref(const uint8_t *input,
  * @param[in]     output_shift  Amount of right-shift for output
  * @param[in]     output_mult   Output multiplier for requantization
  * @return        The function returns one of the following
- *                <code>RISCV_MATH_SIZE_MISMATCH</code> - Not supported dimension of tensors
- *                <code>RISCV_MATH_SUCCESS</code> - Successful operation
- *                <code>RISCV_MATH_ARGUMENT_ERROR</code> - Implementation not available
+ *                <code>RISCV_NMSIS_NN_SIZE_MISMATCH</code> - Not supported dimension of tensors
+ *                <code>RISCV_NMSIS_NN_SUCCESS</code> - Successful operation
+ *                <code>RISCV_NMSIS_NN_ARG_ERROR</code> - Implementation not available
  *
  *
  */
 
-riscv_status riscv_depthwise_conv_u8_basic_ver1_ref(const uint8_t *input,
+riscv_nmsis_nn_status riscv_depthwise_conv_u8_basic_ver1_ref(const uint8_t *input,
                                                 const uint16_t input_x,
                                                 const uint16_t input_y,
                                                 const uint16_t input_ch,
@@ -287,7 +287,7 @@ riscv_status riscv_depthwise_conv_u8_basic_ver1_ref(const uint8_t *input,
     }
 
     /* Return to application */
-    return RISCV_MATH_SUCCESS;
+    return RISCV_NMSIS_NN_SUCCESS;
 }
 
 /**

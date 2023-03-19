@@ -47,7 +47,7 @@
    *
    */
 
-riscv_status riscv_convolve_1_x_n_s8_ref(const nmsis_nn_context* ctx,
+riscv_nmsis_nn_status riscv_convolve_1_x_n_s8_ref(const nmsis_nn_context* ctx,
                                      const nmsis_nn_conv_params* conv_params,
                                      const nmsis_nn_per_channel_quant_params* quant_params,
                                      const nmsis_nn_dims* input_dims,
@@ -60,10 +60,10 @@ riscv_status riscv_convolve_1_x_n_s8_ref(const nmsis_nn_context* ctx,
                                      q7_t *output_data)
 {
     (void)bias_dims;
-    riscv_status status = RISCV_MATH_SUCCESS;
+    riscv_nmsis_nn_status status = RISCV_NMSIS_NN_SUCCESS;
     if (output_dims->w % 4 != 0)
     {
-        status = RISCV_MATH_SIZE_MISMATCH;
+        status = RISCV_NMSIS_NN_SIZE_MISMATCH;
         goto out;
     }
 

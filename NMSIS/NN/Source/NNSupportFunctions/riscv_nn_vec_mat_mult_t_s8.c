@@ -46,7 +46,7 @@
  * Refer header file for details.
  *
  */
-riscv_status riscv_nn_vec_mat_mult_t_s8(const q7_t *lhs,
+riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const q7_t *lhs,
                                     const q7_t *rhs,
                                     const q31_t *bias,
                                     q7_t *dst,
@@ -170,7 +170,7 @@ riscv_status riscv_nn_vec_mat_mult_t_s8(const q7_t *lhs,
 #elif defined(RISCV_MATH_DSP)
     const int32_t row_loop_cnt = rhs_rows / 2;
     const int16_t lhs_offset_s16 = (int16_t)lhs_offset;
-    const uint32_t lhs_offset_s16x2 = __PKHBT(lhs_offset_s16, lhs_offset_s16, 16);
+    const uint32_t lhs_offset_s16x2 = __NN_PKHBT(lhs_offset_s16, lhs_offset_s16, 16);
 
     for (int32_t i = 0; i < row_loop_cnt; i++)
     {
@@ -383,7 +383,7 @@ riscv_status riscv_nn_vec_mat_mult_t_s8(const q7_t *lhs,
         rhs += rhs_cols;
     }
 #endif
-    return RISCV_MATH_SUCCESS;
+    return RISCV_NMSIS_NN_SUCCESS;
 }
 
 /**

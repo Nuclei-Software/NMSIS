@@ -49,7 +49,7 @@
  *
  */
 
-riscv_status riscv_convolve_s8(const nmsis_nn_context *ctx,
+riscv_nmsis_nn_status riscv_convolve_s8(const nmsis_nn_context *ctx,
                            const nmsis_nn_conv_params *conv_params,
                            const nmsis_nn_per_channel_quant_params *quant_params,
                            const nmsis_nn_dims *input_dims,
@@ -65,7 +65,7 @@ riscv_status riscv_convolve_s8(const nmsis_nn_context *ctx,
 
     if (ctx->buf == NULL && riscv_convolve_s8_get_buffer_size(input_dims, filter_dims) > 0)
     {
-        return RISCV_MATH_ARGUMENT_ERROR;
+        return RISCV_NMSIS_NN_ARG_ERROR;
     }
     q15_t *buffer_a = (q15_t *)ctx->buf;
 
@@ -239,7 +239,7 @@ riscv_status riscv_convolve_s8(const nmsis_nn_context *ctx,
     }
 
     /* Return to application */
-    return RISCV_MATH_SUCCESS;
+    return RISCV_NMSIS_NN_SUCCESS;
 }
 
 int32_t riscv_convolve_s8_get_buffer_size(const nmsis_nn_dims *input_dims, const nmsis_nn_dims *filter_dims)

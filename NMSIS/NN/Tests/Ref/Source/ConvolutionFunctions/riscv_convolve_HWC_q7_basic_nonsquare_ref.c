@@ -62,10 +62,10 @@
    * @param[in]       dim_im_out_y output tensor dimension y
    * @param[in,out]   bufferA      pointer to buffer space for input
    * @param[in,out]   bufferB      pointer to buffer space for output
-   * @return     The function returns <code>RISCV_MATH_SUCCESS</code>
+   * @return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
    */
 
-riscv_status riscv_convolve_HWC_q7_basic_nonsquare_ref(const q7_t * Im_in,
+riscv_nmsis_nn_status riscv_convolve_HWC_q7_basic_nonsquare_ref(const q7_t * Im_in,
                                                    const uint16_t dim_im_in_x,
                                                    const uint16_t dim_im_in_y,
                                                    const uint16_t ch_im_in,
@@ -125,7 +125,7 @@ riscv_status riscv_convolve_HWC_q7_basic_nonsquare_ref(const q7_t * Im_in,
     }
 
     /* Return to application */
-    return RISCV_MATH_SUCCESS;
+    return RISCV_NMSIS_NN_SUCCESS;
 }
 
 /**

@@ -59,7 +59,7 @@
  * @param[in,out]   bufferA     pointer to buffer space for input
  * @param[in,out]   bufferB     pointer to buffer space for output
  * @return     The function returns either
- * <code>RISCV_MATH_SIZE_MISMATCH</code> or <code>RISCV_MATH_SUCCESS</code> based on the outcome of size checking.
+ * <code>RISCV_NMSIS_NN_SIZE_MISMATCH</code> or <code>RISCV_NMSIS_NN_SUCCESS</code> based on the outcome of size checking.
  *
  * @details
  *
@@ -80,7 +80,7 @@
  * Outer loop: loop over different output (x, y)
  */
 
-riscv_status riscv_depthwise_separable_conv_HWC_q7(const q7_t *Im_in,
+riscv_nmsis_nn_status riscv_depthwise_separable_conv_HWC_q7(const q7_t *Im_in,
                                                const uint16_t dim_im_in,
                                                const uint16_t ch_im_in,
                                                const q7_t *wt,
@@ -112,7 +112,7 @@ riscv_status riscv_depthwise_separable_conv_HWC_q7(const q7_t *Im_in,
     /* do some checking here, basically ch_im_in == ch_im_out */
     if (ch_im_in != ch_im_out)
     {
-        return RISCV_MATH_SIZE_MISMATCH;
+        return RISCV_NMSIS_NN_SIZE_MISMATCH;
     }
 
     for (i_out_y = 0; i_out_y < dim_im_out; i_out_y++)
@@ -126,11 +126,11 @@ riscv_status riscv_depthwise_separable_conv_HWC_q7(const q7_t *Im_in,
                 {
                     if (i_ker_y < 0 || i_ker_y >= dim_im_in || i_ker_x < 0 || i_ker_x >= dim_im_in)
                     {
-                        riscv_fill_q7(0, pBuffer, ch_im_in);
+                        riscv_nn_fill_q7(0, pBuffer, ch_im_in);
                         /* memset(pBuffer, 0, ch_im_in); */
                     } else
                     {
-                        riscv_copy_q7((q7_t *) Im_in + (i_ker_y * dim_im_in + i_ker_x) * ch_im_in, pBuffer, ch_im_in);
+                        riscv_nn_copy_q7((q7_t *) Im_in + (i_ker_y * dim_im_in + i_ker_x) * ch_im_in, pBuffer, ch_im_in);
                         /* memcpy(pBuffer, (q7_t *) Im_in + (i_ker_y * dim_im_in + i_ker_x) * ch_im_in, ch_im_in); */
                     }
                     pBuffer += ch_im_in;
@@ -287,7 +287,7 @@ riscv_status riscv_depthwise_separable_conv_HWC_q7(const q7_t *Im_in,
     /* do some checking here, basically ch_im_in == ch_im_out */
     if (ch_im_in != ch_im_out)
     {
-        return RISCV_MATH_SIZE_MISMATCH;
+        return RISCV_NMSIS_NN_SIZE_MISMATCH;
     }
 
     for (i_out_y = 0; i_out_y < dim_im_out; i_out_y++)
@@ -320,7 +320,7 @@ riscv_status riscv_depthwise_separable_conv_HWC_q7(const q7_t *Im_in,
 #endif /* RISCV_MATH_DSP */
 
     /* Return to application */
-    return RISCV_MATH_SUCCESS;
+    return RISCV_NMSIS_NN_SUCCESS;
 }
 
 /**

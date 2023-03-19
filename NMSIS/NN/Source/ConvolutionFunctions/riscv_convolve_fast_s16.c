@@ -48,7 +48,7 @@
  *
  */
 
-riscv_status riscv_convolve_fast_s16(const nmsis_nn_context *ctx,
+riscv_nmsis_nn_status riscv_convolve_fast_s16(const nmsis_nn_context *ctx,
                                  const nmsis_nn_conv_params *conv_params,
                                  const nmsis_nn_per_channel_quant_params *quant_params,
                                  const nmsis_nn_dims *input_dims,
@@ -63,12 +63,12 @@ riscv_status riscv_convolve_fast_s16(const nmsis_nn_context *ctx,
     (void)bias_dims;
     if (filter_dims->w * filter_dims->h * input_dims->c >= 512)
     {
-        return RISCV_MATH_SIZE_MISMATCH;
+        return RISCV_NMSIS_NN_SIZE_MISMATCH;
     }
 
     if (ctx->buf == NULL && riscv_convolve_s8_get_buffer_size(input_dims, filter_dims) > 0)
     {
-        return RISCV_MATH_ARGUMENT_ERROR;
+        return RISCV_NMSIS_NN_ARG_ERROR;
     }
     q15_t *buffer_a = (q15_t *)ctx->buf;
 
@@ -214,7 +214,7 @@ riscv_status riscv_convolve_fast_s16(const nmsis_nn_context *ctx,
         (void)out_activation_max;
         (void)output_mult;
         (void)output_shift;
-        return RISCV_MATH_ARGUMENT_ERROR;
+        return RISCV_NMSIS_NN_ARG_ERROR;
 #endif
         /* Advance to the next batch */
         input_data += (input_x * input_y * input_ch);
@@ -222,7 +222,7 @@ riscv_status riscv_convolve_fast_s16(const nmsis_nn_context *ctx,
     }
 
     /* Return to application */
-    return RISCV_MATH_SUCCESS;
+    return RISCV_NMSIS_NN_SUCCESS;
 }
 
 int32_t riscv_convolve_fast_s16_get_buffer_size(const nmsis_nn_dims *input_dims, const nmsis_nn_dims *filter_dims)

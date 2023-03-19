@@ -47,7 +47,7 @@
  * Refer to header file for details.
  *
  */
-riscv_status riscv_avgpool_s16(const nmsis_nn_context *ctx,
+riscv_nmsis_nn_status riscv_avgpool_s16(const nmsis_nn_context *ctx,
                            const nmsis_nn_pool_params *pool_params,
                            const nmsis_nn_dims *input_dims,
                            const q15_t *src,
@@ -102,7 +102,7 @@ riscv_status riscv_avgpool_s16(const nmsis_nn_context *ctx,
                 // Prevent static code issue DIVIDE_BY_ZERO.
                 if (count == 0)
                 {
-                    return RISCV_MATH_ARGUMENT_ERROR;
+                    return RISCV_NMSIS_NN_ARG_ERROR;
                 }
 
                 sum = sum > 0 ? (sum + count / 2) / count : (sum - count / 2) / count;
@@ -114,7 +114,7 @@ riscv_status riscv_avgpool_s16(const nmsis_nn_context *ctx,
         }
     }
 
-    return RISCV_MATH_SUCCESS;
+    return RISCV_NMSIS_NN_SUCCESS;
 }
 
 int32_t riscv_avgpool_s16_get_buffer_size(const int output_x, const int ch_src)

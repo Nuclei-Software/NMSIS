@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-#include "riscv_math.h"
+#include "riscv_nn_math_types.h"
 
 #include "riscv_nnfunctions.h"
 #include "ref_functions.h"
@@ -15,14 +15,14 @@ extern q7_t test_flags[100];
 
 void initialize_results_q7(q7_t * ref, q7_t * opt, int length)
 {
-    riscv_fill_q7(0, ref, length);
-    riscv_fill_q7(37, opt, length);
+    riscv_nn_fill_q7(0, ref, length);
+    riscv_nn_fill_q7(37, opt, length);
 }
 
 void initialize_results_q15(q15_t * ref, q15_t * opt, int length)
 {
-    riscv_fill_q15(0, ref, length);
-    riscv_fill_q15(0x5F5, opt, length);
+    riscv_nn_fill_q15(0, ref, length);
+    riscv_nn_fill_q15(0x5F5, opt, length);
 }
 
 void verify_results_q7(q7_t * ref, q7_t * opt, int length)

@@ -161,10 +161,10 @@ static void accumulate_q7_to_q15(q15_t *base, q7_t *target, const uint16_t lengt
 
 
         in = *__SIMD32(pCnt);
-        *__SIMD32(pCnt)++ = __QADD16(vo1, in);
+        *__SIMD32(pCnt)++ = __NN_QADD16(vo1, in);
 
         in = *__SIMD32(pCnt);
-        *__SIMD32(pCnt)++ = __QADD16(vo2, in);
+        *__SIMD32(pCnt)++ = __NN_QADD16(vo2, in);
 
         cnt--;
     }
@@ -257,7 +257,7 @@ void riscv_maxpool_q7_HWC(q7_t *Im_in,
             }
 
             /* first step is to copy over initial data */
-            riscv_copy_q7(win_start, target, ch_im_in);
+            riscv_nn_copy_q7(win_start, target, ch_im_in);
             /* memmove(target, win_start, ch_im_in); */
 
             /* start the max operation from the second part */
@@ -297,7 +297,7 @@ void riscv_maxpool_q7_HWC(q7_t *Im_in,
         }
 
         /* copy over the first row */
-        riscv_copy_q7(row_start, target, dim_im_out * ch_im_in);
+        riscv_nn_copy_q7(row_start, target, dim_im_out * ch_im_in);
         /* memmove(target, row_start, dim_im_out * ch_im_in); */
 
         /* move over to next row */

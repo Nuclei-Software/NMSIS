@@ -47,7 +47,7 @@
    *
    */
 
-riscv_status riscv_convolve_wrapper_s8_ref(const nmsis_nn_context* ctx,
+riscv_nmsis_nn_status riscv_convolve_wrapper_s8_ref(const nmsis_nn_context* ctx,
                                        const nmsis_nn_conv_params* conv_params,
                                        const nmsis_nn_per_channel_quant_params* quant_params,
                                        const nmsis_nn_dims* input_dims,

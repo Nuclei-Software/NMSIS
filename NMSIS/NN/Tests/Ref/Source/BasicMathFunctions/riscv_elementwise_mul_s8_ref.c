@@ -48,7 +48,7 @@
    *
    */
 
-riscv_status
+riscv_nmsis_nn_status
 riscv_elementwise_mul_s8_ref(const int8_t *input_1_vect,
                            const int8_t *input_2_vect,
                            const int32_t input_1_offset,
@@ -90,7 +90,7 @@ riscv_elementwise_mul_s8_ref(const int8_t *input_1_vect,
     /* Decrement loop counter */
     loop_count--;
   }
-  return RISCV_MATH_SUCCESS;
+  return RISCV_NMSIS_NN_SUCCESS;
 }
 
 /**

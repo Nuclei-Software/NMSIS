@@ -48,7 +48,7 @@
    *
    */
 
-riscv_status riscv_convolve_s8_ref(const nmsis_nn_context* ctx,
+riscv_nmsis_nn_status riscv_convolve_s8_ref(const nmsis_nn_context* ctx,
                                const nmsis_nn_conv_params* conv_params,
                                const nmsis_nn_per_channel_quant_params* quant_params,
                                const nmsis_nn_dims* input_dims,
@@ -142,7 +142,7 @@ riscv_status riscv_convolve_s8_ref(const nmsis_nn_context* ctx,
     }
 
     /* Return to application */
-    return RISCV_MATH_SUCCESS;
+    return RISCV_NMSIS_NN_SUCCESS;
 }
 
 int32_t riscv_convolve_s8_get_buffer_size_ref(const nmsis_nn_dims* input_dims,

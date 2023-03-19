@@ -64,7 +64,7 @@
  * @param[in,out]   bufferA       pointer to buffer space for input
  * @param[in,out]   bufferB       pointer to buffer space for output
  * @return     The function returns either
- * <code>RISCV_MATH_SIZE_MISMATCH</code> or <code>RISCV_MATH_SUCCESS</code> based on the outcome of size checking.
+ * <code>RISCV_NMSIS_NN_SIZE_MISMATCH</code> or <code>RISCV_NMSIS_NN_SUCCESS</code> based on the outcome of size checking.
  *
  * This function is the version with full list of optimization tricks, but with
  * some contraints:
@@ -72,7 +72,7 @@
  *
  */
 
-riscv_status riscv_depthwise_separable_conv_HWC_q7_nonsquare_ref(const q7_t * Im_in,
+riscv_nmsis_nn_status riscv_depthwise_separable_conv_HWC_q7_nonsquare_ref(const q7_t * Im_in,
                                                              const uint16_t dim_im_in_x,
                                                              const uint16_t dim_im_in_y,
                                                              const uint16_t ch_im_in,
@@ -103,7 +103,7 @@ riscv_status riscv_depthwise_separable_conv_HWC_q7_nonsquare_ref(const q7_t * Im
     /* do some checking here, basically ch_im_in == ch_im_out */
     if (ch_im_in != ch_im_out)
     {
-        return RISCV_MATH_SIZE_MISMATCH;
+        return RISCV_NMSIS_NN_SIZE_MISMATCH;
     }
 
     for (i_out_y = 0; i_out_y < dim_im_out_y; i_out_y++)
@@ -133,7 +133,7 @@ riscv_status riscv_depthwise_separable_conv_HWC_q7_nonsquare_ref(const q7_t * Im
         }
     }
     /* Return to application */
-    return RISCV_MATH_SUCCESS;
+    return RISCV_NMSIS_NN_SUCCESS;
 
 }
 
