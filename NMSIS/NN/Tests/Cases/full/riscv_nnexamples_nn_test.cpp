@@ -103,72 +103,40 @@ int main()
         test2_ref[i] = test2[i];
         test2_opt[i] = test2[i];
     }
-    printf("Start ref activations_direct q7 implementation\n");
-    BENCH_START(riscv_nn_activations_direct_q7_ref);
+    printf("\r\nStart ActivationFunctions tests\r\n");
     riscv_nn_activations_direct_q7_ref(test1_ref, Activation_SIZE, int_width, RISCV_SIGMOID);
-    BENCH_END(riscv_nn_activations_direct_q7_ref);
-
-    printf("Start opt activations_direct q7 implementation\n");
     BENCH_START(riscv_nn_activations_direct_q7);
     riscv_nn_activations_direct_q7(test1_opt, Activation_SIZE, int_width, RISCV_SIGMOID);
     BENCH_END(riscv_nn_activations_direct_q7);
-    verify_results_q7(test1_opt, test1_ref, Activation_SIZE);
+    verify_results_q7(test1_ref, test1_opt, Activation_SIZE);
 
-    printf("Start ref activations_direct q15 implementation\n");
-    BENCH_START(riscv_nn_activations_direct_q15_ref);
     riscv_nn_activations_direct_q15_ref(test2_ref, Activation_SIZE, int_width, RISCV_SIGMOID);
-    BENCH_END(riscv_nn_activations_direct_q15_ref);
-
-    printf("Start opt activations_direct q15 implementation\n");
     BENCH_START(riscv_nn_activations_direct_q15);
     riscv_nn_activations_direct_q15(test2_opt, Activation_SIZE, int_width, RISCV_SIGMOID);
     BENCH_END(riscv_nn_activations_direct_q15);
-    verify_results_q15(test2_opt, test2_ref, Activation_SIZE);
+    verify_results_q15(test2_ref, test2_opt, Activation_SIZE);
 
     q7_t *relu_ref_data_q7 = test1_ref;
     q7_t *relu_opt_data_q7 = test1_opt;
     q15_t *relu_ref_data_q15 = test2_ref;
     q15_t *relu_opt_data_q15 = test2_opt;
 
-    printf("Start ref relu q7 implementation\n");
-    BENCH_START(riscv_relu_q7_ref);
     riscv_relu_q7_ref(relu_ref_data_q7, Activation_SIZE);
-    BENCH_END(riscv_relu_q7_ref);
-
-    printf("Start opt relu q7 implementation\n");
-
     BENCH_START(riscv_relu_q7);
     riscv_relu_q7(relu_opt_data_q7, Activation_SIZE);
     BENCH_END(riscv_relu_q7);
-
     verify_results_q7(relu_ref_data_q7, relu_opt_data_q7, Activation_SIZE);
 
-    printf("Start ref relu q15 implementation\n");
-
-    BENCH_START(riscv_relu_q15_ref);
     riscv_relu_q15_ref(relu_ref_data_q15, Activation_SIZE);
-    BENCH_END(riscv_relu_q15_ref);
-
-    printf("Start opt relu q15 implementation\n");
-
     BENCH_START(riscv_relu_q15);
     riscv_relu_q15(relu_opt_data_q15, Activation_SIZE);
     BENCH_END(riscv_relu_q15);
-
     verify_results_q15(relu_ref_data_q15, relu_opt_data_q15, Activation_SIZE);
 
-    printf("Start ref relu s8 implementation\n");
-
-    BENCH_START(riscv_relu6_s8_ref);
     riscv_relu6_s8_ref(relu_ref_data_q7, Activation_SIZE);
-    BENCH_END(riscv_relu6_s8_ref);
-
-    printf("Start opt relu s8 implementation\n");
-
     BENCH_START(riscv_relu6_s8);
     riscv_relu6_s8(relu_opt_data_q7, Activation_SIZE);
     BENCH_END(riscv_relu6_s8);
-
     verify_results_q7(relu_ref_data_q7, relu_opt_data_q7, Activation_SIZE);
 
     delete[]test1_ref;
@@ -194,16 +162,12 @@ int main()
     #define ADD_INPUT1_MULT 1073741824
     #define ADD_INPUT2_MULT 1073741824
 
-    printf("Start ref elementwise_add s8 implementation\n");
-    BENCH_START(riscv_elementwise_add_s8_ref);
+    printf("\r\nStart BasicMathFunctions tests\r\n");
     riscv_elementwise_add_s8_ref(test1, test1 + BasicMath_SIZE, ADD_INPUT1_OFFSET, ADD_INPUT1_MULT, ADD_INPUT1_SHIFT,
                                                                 ADD_INPUT2_OFFSET, ADD_INPUT2_MULT, ADD_INPUT2_SHIFT, ADD_LEFT_SHIFT,
                                                                 output_q7,
                                                                 ADD_OUTPUT_OFFSET, ADD_OUTPUT_MULT,ADD_OUTPUT_SHIFT,
                                                                 ADD_OUT_ACTIVATION_MIN, ADD_OUT_ACTIVATION_MAX, BasicMath_SIZE);
-    BENCH_END(riscv_elementwise_add_s8_ref);
-
-    printf("Start opt elementwise_add s8 implementation\n");
 
     BENCH_START(riscv_elementwise_add_s8);
     riscv_elementwise_add_s8(test1, test1 + BasicMath_SIZE, ADD_INPUT1_OFFSET, ADD_INPUT1_MULT, ADD_INPUT1_SHIFT,
@@ -223,22 +187,15 @@ int main()
     #define MUL_OUTPUT_SHIFT -7
     #define MUL_OUTPUT_OFFSET -128
 
-    printf("Start ref elementwise_mul s8 implementation\n");
-
-    BENCH_START(riscv_elementwise_mul_s8_ref);
     riscv_elementwise_mul_s8_ref(test1, test1 + BasicMath_SIZE, MUL_INPUT1_OFFSET, MUL_INPUT2_OFFSET, output_q7,
                                                                 MUL_OUTPUT_OFFSET, MUL_OUTPUT_MULT, MUL_OUTPUT_SHIFT,
                                                                 MUL_OUT_ACTIVATION_MIN, MUL_OUT_ACTIVATION_MAX, BasicMath_SIZE);
-    BENCH_END(riscv_elementwise_mul_s8_ref);
-
-    printf("Start opt elementwise_mul s8 implementation\n");
 
     BENCH_START(riscv_elementwise_mul_s8);
     riscv_elementwise_mul_s8(test1, test1 + BasicMath_SIZE, MUL_INPUT1_OFFSET, MUL_INPUT2_OFFSET, output_q7 + BasicMath_SIZE,
                                                                 MUL_OUTPUT_OFFSET, MUL_OUTPUT_MULT, MUL_OUTPUT_SHIFT,
                                                                 MUL_OUT_ACTIVATION_MIN, MUL_OUT_ACTIVATION_MAX, BasicMath_SIZE);
     BENCH_END(riscv_elementwise_mul_s8);
-
     verify_results_q7(output_q7, output_q7 + BasicMath_SIZE, BasicMath_SIZE);
 
 #endif
@@ -246,62 +203,35 @@ int main()
 #ifdef TEST_Concatenation
     #define Concatenation_SIZE 80
 
-    printf("Start ref concatenation s8 w implementation\n");
-    BENCH_START(riscv_concatenation_s8_w_ref);
-    riscv_concatenation_s8_w_ref(test1, 10, 2, 2, 2, output_q7, 0);
-    BENCH_END(riscv_concatenation_s8_w_ref);
+    printf("\r\nStart ConcatenationFunctions tests\r\n");
 
-    printf("Start opt concatenation s8 w implementation\n");
+    riscv_concatenation_s8_w_ref(test1, 10, 2, 2, 2, output_q7, 0);
     BENCH_START(riscv_concatenation_s8_w);
     riscv_concatenation_s8_w(test1, 10, 2, 2, 2, output_q7 + Concatenation_SIZE, 0);
     BENCH_END(riscv_concatenation_s8_w);
-
     verify_results_q7(output_q7, output_q7 + Concatenation_SIZE, Concatenation_SIZE);
 
-    printf("Start ref concatenation s8 x implementation\n");
-
-    BENCH_START(riscv_concatenation_s8_x_ref);
     riscv_concatenation_s8_x_ref(test1, 10, 2, 2, 2, output_q7, 10, 0);
-    BENCH_END(riscv_concatenation_s8_x_ref);
-
-    printf("Start opt concatenation s8 x implementation\n");
-
     BENCH_START(riscv_concatenation_s8_x);
     riscv_concatenation_s8_x(test1, 10, 2, 2, 2, output_q7 + Concatenation_SIZE, 10, 0);
     BENCH_END(riscv_concatenation_s8_x);
-
     verify_results_q7(output_q7, output_q7 + Concatenation_SIZE, Concatenation_SIZE);
 
-    printf("Start ref concatenation s8 y implementation\n");
-
-    BENCH_START(riscv_concatenation_s8_y_ref);
     riscv_concatenation_s8_y_ref(test1, 10, 2, 2, 2, output_q7, 2, 0);
-    BENCH_END(riscv_concatenation_s8_y_ref);
-
-    printf("Start opt concatenation s8 y implementation\n");
-
     BENCH_START(riscv_concatenation_s8_y);
     riscv_concatenation_s8_y(test1, 10, 2, 2, 2, output_q7 + Concatenation_SIZE, 2, 0);
     BENCH_END(riscv_concatenation_s8_y);
-
     verify_results_q7(output_q7, output_q7 + Concatenation_SIZE, Concatenation_SIZE);
 
-    printf("Start ref concatenation s8 z implementation\n");
-
-    BENCH_START(riscv_concatenation_s8_z_ref);
     riscv_concatenation_s8_z_ref(test1, 10, 2, 2, 2, output_q7, 2, 0);
-    BENCH_END(riscv_concatenation_s8_z_ref);
-
-    printf("Start opt concatenation s8 z implementation\n");
-
     BENCH_START(riscv_concatenation_s8_z);
     riscv_concatenation_s8_z(test1, 10, 2, 2, 2, output_q7 + Concatenation_SIZE, 2, 0);
     BENCH_END(riscv_concatenation_s8_z);
-
     verify_results_q7(output_q7, output_q7 + Concatenation_SIZE, Concatenation_SIZE);
 #endif
 
 #ifdef TEST_Convolution_part1
+    printf("\r\nStart ConvolutionFunctions part1 tests\r\n");
     #define Convolution_SIZE 2048
     q15_t *temp_buffer = new q15_t[Convolution_SIZE];
     int32_t multiplier[4] = {187431000, 141317000, 117516000, 151730000};
@@ -323,48 +253,29 @@ int main()
     nmsis_nn_dims output_dims = {1, 8, 8, 4};
     nmsis_nn_dw_conv_params dw_conv_params = {0, 0, 1, stride, padding, dilation, activation};
 
-    printf("Start ref convolve_1_x_n s8 implementation\n");
-    BENCH_START(riscv_convolve_1_x_n_s8_ref);
     riscv_convolve_1_x_n_s8_ref(&ctx, &conv_params, &quant_params, &input_dims, test1, &filter_dims, test1 + Convolution_SIZE,
                                 &bias_dims, bias_data, &output_dims, output_q7);
-    BENCH_END(riscv_convolve_1_x_n_s8_ref);
-
-    printf("Start opt convolve_1_x_n s8 implementation\n");
 
     BENCH_START(riscv_convolve_1_x_n_s8);
     riscv_convolve_1_x_n_s8(&ctx, &conv_params, &quant_params, &input_dims, test1, &filter_dims, test1 + Convolution_SIZE,
                                 &bias_dims, bias_data, &output_dims, output_q7 + Convolution_SIZE);
     BENCH_END(riscv_convolve_1_x_n_s8);
-
-   verify_results_q7(output_q7, output_q7 + Convolution_SIZE, 4 * 8 * 8);
-
+    verify_results_q7(output_q7, output_q7 + Convolution_SIZE, 4 * 8 * 8);
 
     q15_t * bufferA = new q15_t[Convolution_SIZE];
     q7_t * bufferB = new q7_t[Convolution_SIZE];
 
-    printf("Start ref convolve_1x1_HWC_fast_nonsquare q7 implementation\n");
-
-    BENCH_START(riscv_convolve_1x1_HWC_q7_fast_nonsquare_ref);
     riscv_convolve_1x1_HWC_q7_fast_nonsquare_ref(test1, 1, 1, 40, test1 + Convolution_SIZE, 40, 1, 1, 0, 0, 1, 1,
                                                  test1 + Convolution_SIZE * 2, 0, 8, output_q7, 2, 2, bufferA, bufferB);
-    BENCH_END(riscv_convolve_1x1_HWC_q7_fast_nonsquare_ref);
 
-    printf("Start opt convolve_1x1_HWC_fast_nonsquare q7 implementation\n");
     BENCH_START(riscv_convolve_1x1_HWC_q7_fast_nonsquare);
     riscv_convolve_1x1_HWC_q7_fast_nonsquare(test1, 1, 1, 40, test1 + Convolution_SIZE, 40, 1, 1, 0, 0, 1, 1,
-                                                 test1 + Convolution_SIZE * 2, 0, 8, output_q7 + Convolution_SIZE, 2, 2, bufferA, bufferB);
+                                             test1 + Convolution_SIZE * 2, 0, 8, output_q7 + Convolution_SIZE, 2, 2, bufferA, bufferB);
     BENCH_END(riscv_convolve_1x1_HWC_q7_fast_nonsquare);
-
     verify_results_q7(output_q7, output_q7 + Convolution_SIZE, 40);
 
-    printf("Start ref convolve s8 implementation\n");
-
-    BENCH_START(riscv_convolve_s8_ref);
     riscv_convolve_s8_ref(&ctx, &conv_params, &quant_params, &input_dims, test1,
                           &filter_dims, test1 + Convolution_SIZE, &bias_dims, bias_data, &output_dims, output_q7);
-    BENCH_END(riscv_convolve_s8_ref);
-
-    printf("Start opt convolve s8 implementation\n");
 
     BENCH_START(riscv_convolve_s8);
     riscv_convolve_s8(&ctx, &conv_params, &quant_params, &input_dims, test1,
@@ -377,13 +288,8 @@ int main()
     dw_conv_params.padding.w = 0;
     input_dims.c = 4;
 
-    printf("Start ref depthwise_conv_3x3 s8 implementation\n");
-    BENCH_START(riscv_depthwise_conv_3x3_s8_ref);
     riscv_depthwise_conv_3x3_s8_ref(&ctx, &dw_conv_params, &quant_params, &input_dims, test1, &filter_dims,
                                     test1 + Convolution_SIZE, &bias_dims, bias_data, &output_dims, output_q7);
-    BENCH_END(riscv_depthwise_conv_3x3_s8_ref);
-
-    printf("Start opt depthwise_conv_3x3 s8 implementation\n");
 
     BENCH_START(riscv_depthwise_conv_3x3_s8);
     riscv_depthwise_conv_3x3_s8(&ctx, &dw_conv_params, &quant_params, &input_dims, test1, &filter_dims,
@@ -393,14 +299,9 @@ int main()
     verify_results_q7(output_q7, output_q7 + Convolution_SIZE, 4 * 8 * 8);
 
     dw_conv_params.ch_mult = 3;
-    printf("Start ref depthwise_conv_s8 s8 implementation\n");
 
-    BENCH_START(riscv_depthwise_conv_s8_ref);
     riscv_depthwise_conv_s8_ref(&ctx, &dw_conv_params, &quant_params, &input_dims, test1, &filter_dims,
                                 test1 + Convolution_SIZE, &bias_dims, bias_data, &output_dims, output_q7);
-    BENCH_END(riscv_depthwise_conv_s8_ref);
-
-    printf("Start opt depthwise_conv_s8 s8 implementation\n");
 
     BENCH_START(riscv_depthwise_conv_s8);
     riscv_depthwise_conv_s8(&ctx, &dw_conv_params, &quant_params, &input_dims, test1, &filter_dims,
@@ -408,8 +309,6 @@ int main()
     BENCH_END(riscv_depthwise_conv_s8);
 
     verify_results_q7(output_q7, output_q7 + Convolution_SIZE, 4 * 8 * 8);
-
-    printf("Start ref depthwise_conv_s8_opt s8 implementation\n");
 
     dw_conv_params.ch_mult = 1;
     input_dims.n = 1;
@@ -422,12 +321,8 @@ int main()
     output_dims.h = 5;
     output_dims.c = 6;
 
-    BENCH_START(riscv_depthwise_conv_s8_opt_ref);
     riscv_depthwise_conv_s8_opt_ref(&ctx, &dw_conv_params, &quant_params, &input_dims, test1, &filter_dims,
                                     test1 + Convolution_SIZE, &bias_dims, bias_data, &output_dims, output_q7);
-    BENCH_END(riscv_depthwise_conv_s8_opt_ref);
-
-    printf("Start opt depthwise_conv_s8_opt s8 implementation\n");
 
     BENCH_START(riscv_depthwise_conv_s8_opt);
     riscv_depthwise_conv_s8_opt(&ctx, &dw_conv_params, &quant_params, &input_dims, test1, &filter_dims,
@@ -443,15 +338,10 @@ int main()
     }
     q7_t *Convolution_output = new q7_t[Convolution_SIZE * 2];
 
-    printf("Start ref depthwise_conv_u8_basic_ver1 s8 implementation\n");
     initialize_results_q7(output_q7, output_q7 + Convolution_SIZE, Convolution_SIZE);
-    BENCH_START(riscv_depthwise_conv_u8_basic_ver1_ref);
     riscv_depthwise_conv_u8_basic_ver1_ref(test10, 4, 4, 4, test10 + 64, 4, 4, 4, 4, 4, 4, 4, 4, 4,
                                            bias_data, 0, 0, 0, (uint8_t *)output_q7,
                                            4, 4, -10000, 10000, 0, 0x40000000);
-    BENCH_END(riscv_depthwise_conv_u8_basic_ver1_ref);
-
-    printf("Start opt depthwise_conv_u8_basic_ver1 s8 implementation\n");
 
     BENCH_START(riscv_depthwise_conv_u8_basic_ver1);
     riscv_depthwise_conv_u8_basic_ver1(test10, 4, 4, 4, test10 + 64, 4, 4, 4, 4, 4, 4, 4, 4, 4,
@@ -480,13 +370,7 @@ int main()
     quant_params.multiplier = (int32_t *)kernel1x1_output_mult;
     quant_params.shift = (int32_t *)kernel1x1_output_shift;
 
-    printf("Start ref convolve_1x1_HWC_fast_nonsquare q7 implementation\n");
-
-    BENCH_START(riscv_convolve_1x1_s8_fast_ref);
     riscv_convolve_1x1_s8_fast_ref(&ctx, &conv_params, &quant_params, &input_dims, test1, &filter_dims, test1 + Convolution_SIZE, &bias_dims, bias_data, &output_dims, output_q7);
-    BENCH_END(riscv_convolve_1x1_s8_fast_ref);
-
-    printf("Start opt convolve_1x1_HWC_fast_nonsquare q7 implementation\n");
     BENCH_START(riscv_convolve_1x1_s8_fast);
     riscv_convolve_1x1_s8_fast(&ctx, &conv_params, &quant_params, &input_dims, test1, &filter_dims, test1 + Convolution_SIZE, &bias_dims, bias_data, &output_dims, output_q7 + Convolution_SIZE);
     BENCH_END(riscv_convolve_1x1_s8_fast);
@@ -522,50 +406,35 @@ int main()
 
     initialize_results_q7(conv_im_out_ref_q7, conv_im_out_opt_q7, CONV_OUT_DIM * CONV_OUT_DIM * CONV_OUT_CH);
 
-    printf("start q7 ref implementation\n");
+    printf("\r\nStart ConvolutionFunctions part2 tests\r\n");
 
-    BENCH_START(riscv_convolve_HWC_q7_ref);
     riscv_convolve_HWC_q7_ref(conv_im_in_q7, CONV_IM_DIM, CONV_IM_CH, conv_weight_q7,
                             CONV_OUT_CH, CONV_KER_DIM, 2, 1, conv_bias_q7, 1, 9, conv_im_out_ref_q7,
                             CONV_OUT_DIM, conv_buf, NULL);
-    BENCH_END(riscv_convolve_HWC_q7_ref);
-
-    printf("start q7 basic implementation\n");
 
     BENCH_START(riscv_convolve_HWC_q7_basic);
     riscv_convolve_HWC_q7_basic(conv_im_in_q7, CONV_IM_DIM, CONV_IM_CH, conv_weight_q7,
                               CONV_OUT_CH, CONV_KER_DIM, 2, 1, conv_bias_q7, 1, 9, conv_im_out_opt_q7,
                               CONV_OUT_DIM, conv_buf, NULL);
     BENCH_END(riscv_convolve_HWC_q7_basic);
-
     verify_results_q7(conv_im_out_ref_q7, conv_im_out_opt_q7, CONV_OUT_DIM * CONV_OUT_DIM * CONV_OUT_CH);
-
-    printf("start q7 fast implementation\n");
 
     BENCH_START(riscv_convolve_HWC_q7_fast);
     riscv_convolve_HWC_q7_fast(conv_im_in_q7, CONV_IM_DIM, CONV_IM_CH, conv_weight_q7,
                              CONV_OUT_CH, CONV_KER_DIM, 2, 1, conv_bias_q7, 1, 9, conv_im_out_opt_q7,
                              CONV_OUT_DIM, conv_buf, NULL);
     BENCH_END(riscv_convolve_HWC_q7_fast);
-
     verify_results_q7(conv_im_out_ref_q7, conv_im_out_opt_q7, CONV_OUT_DIM * CONV_OUT_DIM * CONV_OUT_CH);
 
-    printf("start q7 ref implementation for RGB\n");
 
-    BENCH_START(riscv_convolve_HWC_q7_ref);
     riscv_convolve_HWC_q7_ref(conv_im_in_q7, CONV_IM_DIM, 3, conv_weight_q7,
                             CONV_OUT_CH, CONV_KER_DIM, 2, 1, conv_bias_q7, 1, 9, conv_im_out_ref_q7,
                             CONV_OUT_DIM, conv_buf, NULL);
-    BENCH_END(riscv_convolve_HWC_q7_ref);
-
-    printf("start q7 RGB implementation for RGB\n");
-
     BENCH_START(riscv_convolve_HWC_q7_RGB);
     riscv_convolve_HWC_q7_RGB(conv_im_in_q7, CONV_IM_DIM, 3, conv_weight_q7,
                             CONV_OUT_CH, CONV_KER_DIM, 2, 1, conv_bias_q7, 1, 9, conv_im_out_opt_q7,
                             CONV_OUT_DIM, conv_buf, NULL);
     BENCH_END(riscv_convolve_HWC_q7_RGB);
-
     verify_results_q7(conv_im_out_ref_q7, conv_im_out_opt_q7, CONV_OUT_DIM * CONV_OUT_DIM * CONV_OUT_CH);
 
 #endif
@@ -599,32 +468,26 @@ int main()
 
     initialize_results_q7(rconv_im_out_ref_q7, rconv_im_out_opt_q7, RCONV_OUT_DIM_Y * RCONV_OUT_DIM_X * RCONV_OUT_CH);
 
-    printf("start conv q7 nonsquare ref implementation\n");
-    BENCH_START(riscv_convolve_HWC_q7_ref_nonsquare);
+    printf("\r\nStart ConvolutionFunctions part3 tests\r\n");
     riscv_convolve_HWC_q7_ref_nonsquare(rconv_im_in_q7, RCONV_IM_DIM_X, RCONV_IM_DIM_Y, RCONV_IM_CH, rconv_weight_q7,
                                       RCONV_OUT_CH, RCONV_KER_DIM_X, RCONV_KER_DIM_Y, RCONV_PADDING_X, RCONV_PADDING_Y,
                                       RCONV_STRIDE_X, RCONV_STRIDE_Y, rconv_bias_q7, CONV_BIAS_SHIFT, CONV_OUT_SHIFT, rconv_im_out_ref_q7,
                                       RCONV_OUT_DIM_X, RCONV_OUT_DIM_Y, rconv_buf, NULL);
-    BENCH_END(riscv_convolve_HWC_q7_ref_nonsquare);
 
-    printf("start conv q7 nonsquare opt implementation\n");
     BENCH_START(riscv_convolve_HWC_q7_fast_nonsquare);
     riscv_convolve_HWC_q7_fast_nonsquare(rconv_im_in_q7, RCONV_IM_DIM_X, RCONV_IM_DIM_Y, RCONV_IM_CH, rconv_weight_q7,
                                        RCONV_OUT_CH, RCONV_KER_DIM_X, RCONV_KER_DIM_Y, RCONV_PADDING_X, RCONV_PADDING_Y,
                                        RCONV_STRIDE_X, RCONV_STRIDE_Y, rconv_bias_q7, CONV_BIAS_SHIFT, CONV_OUT_SHIFT, rconv_im_out_opt_q7,
                                        RCONV_OUT_DIM_X, RCONV_OUT_DIM_Y, rconv_buf, NULL);
     BENCH_END(riscv_convolve_HWC_q7_fast_nonsquare);
-
     verify_results_q7(rconv_im_out_ref_q7, rconv_im_out_opt_q7, RCONV_OUT_DIM_Y * RCONV_OUT_DIM_X * RCONV_OUT_CH);
 
-    printf("start conv q7 nonsquare basic implementation\n");
     BENCH_START(riscv_convolve_HWC_q7_basic_nonsquare);
     riscv_convolve_HWC_q7_basic_nonsquare(rconv_im_in_q7, RCONV_IM_DIM_X, RCONV_IM_DIM_Y, RCONV_IM_CH, rconv_weight_q7,
                                        RCONV_OUT_CH, RCONV_KER_DIM_X, RCONV_KER_DIM_Y, RCONV_PADDING_X, RCONV_PADDING_Y,
                                        RCONV_STRIDE_X, RCONV_STRIDE_Y, rconv_bias_q7, CONV_BIAS_SHIFT, CONV_OUT_SHIFT, rconv_im_out_opt_q7,
                                        RCONV_OUT_DIM_X, RCONV_OUT_DIM_Y, rconv_buf, NULL);
     BENCH_END(riscv_convolve_HWC_q7_basic_nonsquare);
-
     verify_results_q7(rconv_im_out_ref_q7, rconv_im_out_opt_q7, RCONV_OUT_DIM_Y * RCONV_OUT_DIM_X * RCONV_OUT_CH);
 
     initialize_results_q7(rconv_im_out_ref_q7, rconv_im_out_opt_q7, RCONV_OUT_DIM_Y * RCONV_OUT_DIM_X * RCONV_OUT_CH);
@@ -646,16 +509,12 @@ int main()
 
     verify_results_q7(rconv_im_out_ref_q7, rconv_im_out_opt_q7, RCONV_OUT_DIM_Y * RCONV_OUT_DIM_X * RCONV_OUT_CH);
 
-    printf("start depthwise separable conv q7 nonsquare ref implementation\n");
-    BENCH_START(riscv_depthwise_separable_conv_HWC_q7_ref_nonsquare);
     riscv_depthwise_separable_conv_HWC_q7_ref_nonsquare(rconv_im_in_q7, RCONV_IM_DIM_X, RCONV_IM_DIM_Y, RCONV_IM_CH,
                                                       rconv_weight_q7, RCONV_OUT_CH, RCONV_KER_DIM_X, RCONV_KER_DIM_Y,
                                                       RCONV_PADDING_X, RCONV_PADDING_Y, RCONV_STRIDE_X, RCONV_STRIDE_Y,
                                                       rconv_bias_q7, CONV_BIAS_SHIFT, CONV_OUT_SHIFT, rconv_im_out_ref_q7, RCONV_OUT_DIM_X,
                                                       RCONV_OUT_DIM_Y, rconv_buf, NULL);
-    BENCH_END(riscv_depthwise_separable_conv_HWC_q7_ref_nonsquare);
 
-    printf("start depthwise separable conv q7 nonsquare opt implementation\n");
     BENCH_START(riscv_depthwise_separable_conv_HWC_q7_nonsquare);
     riscv_depthwise_separable_conv_HWC_q7_nonsquare(rconv_im_in_q7, RCONV_IM_DIM_X, RCONV_IM_DIM_Y, RCONV_IM_CH,
                                                   rconv_weight_q7, RCONV_OUT_CH, RCONV_KER_DIM_X, RCONV_KER_DIM_Y,
@@ -663,7 +522,6 @@ int main()
                                                   rconv_bias_q7, CONV_BIAS_SHIFT, CONV_OUT_SHIFT, rconv_im_out_opt_q7, RCONV_OUT_DIM_X,
                                                   RCONV_OUT_DIM_Y, rconv_buf, NULL);
     BENCH_END(riscv_depthwise_separable_conv_HWC_q7_nonsquare);
-
     verify_results_q7(rconv_im_out_ref_q7, rconv_im_out_opt_q7, RCONV_OUT_DIM_Y * RCONV_OUT_DIM_X * RCONV_OUT_CH);
 
     q15_t *rconv_weight_q15 = test2;
@@ -675,15 +533,10 @@ int main()
 
     initialize_results_q15(rconv_im_out_ref_q15, rconv_im_out_opt_q15, RCONV_OUT_DIM_Y * RCONV_OUT_DIM_X * RCONV_OUT_CH);
 
-    printf("start conv q15 nonsquare ref implementation\n");
-    BENCH_START(riscv_convolve_HWC_q15_nonsquare_ref);
     riscv_convolve_HWC_q15_nonsquare_ref(rconv_im_in_q15, RCONV_IM_DIM_X, RCONV_IM_DIM_Y, RCONV_IM_CH, rconv_weight_q15,
                                       RCONV_OUT_CH, RCONV_KER_DIM_X, RCONV_KER_DIM_Y, RCONV_PADDING_X, RCONV_PADDING_Y,
                                       RCONV_STRIDE_X, RCONV_STRIDE_Y, rconv_bias_q15, CONV_BIAS_SHIFT, 22, rconv_im_out_ref_q15,
                                       RCONV_OUT_DIM_X, RCONV_OUT_DIM_Y, rconv_buf, NULL);
-    BENCH_END(riscv_convolve_HWC_q15_nonsquare_ref);
-
-    printf("start conv q5 nonsquare opt implementation\n");
     BENCH_START(riscv_convolve_HWC_q15_fast_nonsquare);
     riscv_convolve_HWC_q15_fast_nonsquare(rconv_im_in_q15, RCONV_IM_DIM_X, RCONV_IM_DIM_Y, RCONV_IM_CH, rconv_weight_q15,
                                        RCONV_OUT_CH, RCONV_KER_DIM_X, RCONV_KER_DIM_Y, RCONV_PADDING_X, RCONV_PADDING_Y,
@@ -717,103 +570,58 @@ int main()
     #define CON_BIAS_SHIFT_Q7 1
     #define CON_OUT_SHIFT_Q7 9
 
-    printf("Start ref q7 implementation\n");
+    printf("\r\nStart FullyConnectedFunctions tests\r\n");
 
-    BENCH_START(riscv_fully_connected_q7_ref);
     riscv_fully_connected_q7_ref(test1, ip_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q7, CON_OUT_SHIFT_Q7, ip_bias_q7, ip_out_q7_ref, vec_buffer);
-    BENCH_END(riscv_fully_connected_q7_ref);
-
-    printf("Start q7 implementation\n");
     BENCH_START(riscv_fully_connected_q7);
     riscv_fully_connected_q7(test1, ip_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q7, CON_OUT_SHIFT_Q7, ip_bias_q7, ip_out_q7_opt, vec_buffer);
     BENCH_END(riscv_fully_connected_q7);
-
     verify_results_q7(ip_out_q7_ref, ip_out_q7_opt, IP_ROW_DIM);
 
-    printf("Start q7 ref opt implementation\n");
-
-    BENCH_START(riscv_fully_connected_q7_opt_ref);
     riscv_fully_connected_q7_opt_ref(test1, ip_q7_opt_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q7, CON_OUT_SHIFT_Q7, ip_bias_q7,
-                                   ip_out_q7_opt_fast, vec_buffer);
-    BENCH_END(riscv_fully_connected_q7_opt_ref);
-
-    verify_results_q7(ip_out_q7_ref, ip_out_q7_opt_fast, IP_ROW_DIM);
-
-    printf("Start q7 opt implementation\n");
+                                   ip_out_q7_ref, vec_buffer);
 
     BENCH_START(riscv_fully_connected_q7_opt);
     riscv_fully_connected_q7_opt(test1, ip_q7_opt_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q7, CON_OUT_SHIFT_Q7, ip_bias_q7, ip_out_q7_opt_fast,
                                vec_buffer);
     BENCH_END(riscv_fully_connected_q7_opt);
-
     verify_results_q7(ip_out_q7_ref, ip_out_q7_opt_fast, IP_ROW_DIM);
 
     initialize_results_q15(ip_out_q15_ref, ip_out_q15_opt, IP_ROW_DIM);
     #define CON_BIAS_SHIFT_Q15 1
     #define CON_OUT_SHIFT_Q15 13
 
-    printf("Start ref q15 implementation\n");
-
-    BENCH_START(riscv_fully_connected_q15_ref);
     riscv_fully_connected_q15_ref(test2, ip_q15_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, test2 + IP_ROW_DIM * IP_COL_DIM, ip_out_q15_ref, vec_buffer);
-    BENCH_END(riscv_fully_connected_q15_ref);
-    printf("Start q15 implementation\n");
     BENCH_START(riscv_fully_connected_q15);
     riscv_fully_connected_q15(test2, ip_q15_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, test2 + IP_ROW_DIM * IP_COL_DIM, ip_out_q15_opt, vec_buffer);
     BENCH_END(riscv_fully_connected_q15);
-
     verify_results_q15(ip_out_q15_ref, ip_out_q15_opt, IP_ROW_DIM);
 
-    printf("Start ref opt q15 implementation\n");
-
-    BENCH_START(riscv_fully_connected_q15_opt_ref);
-    riscv_fully_connected_q15_opt_ref(test2, ip_q15_opt_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, test2 + IP_ROW_DIM * IP_COL_DIM, ip_out_q15_opt,
+    riscv_fully_connected_q15_opt_ref(test2, ip_q15_opt_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, test2 + IP_ROW_DIM * IP_COL_DIM, ip_out_q15_ref,
                                     NULL);
-    BENCH_END(riscv_fully_connected_q15_opt_ref);
-
-    verify_results_q15(ip_out_q15_ref, ip_out_q15_opt, IP_ROW_DIM);
-
-
-    printf("Start opt q15 implementation\n");
-
     BENCH_START(riscv_fully_connected_q15_opt);
     riscv_fully_connected_q15_opt(test2, ip_q15_opt_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, test2 + IP_ROW_DIM * IP_COL_DIM, ip_out_q15_opt, NULL);
     BENCH_END(riscv_fully_connected_q15_opt);
-
     verify_results_q15(ip_out_q15_ref, ip_out_q15_opt, IP_ROW_DIM);
 
     initialize_results_q15(ip_out_q15_ref, ip_out_q15_opt, IP_ROW_DIM);
 
-    printf("Start ref q7_q15 implementation\n");
 
-    BENCH_START(riscv_fully_connected_mat_q7_vec_q15_ref);
     riscv_fully_connected_mat_q7_vec_q15_ref(test2, ip_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, ip_bias_q7, ip_out_q15_ref,
                                            vec_buffer);
-    BENCH_END(riscv_fully_connected_mat_q7_vec_q15_ref);
-    printf("Start q7_q15 implementation\n");
-
     BENCH_START(riscv_fully_connected_mat_q7_vec_q15);
     riscv_fully_connected_mat_q7_vec_q15(test2, ip_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, ip_bias_q7, ip_out_q15_opt,
                                        vec_buffer);
     BENCH_END(riscv_fully_connected_mat_q7_vec_q15);
-
     verify_results_q15(ip_out_q15_ref, ip_out_q15_opt, IP_ROW_DIM);
 
-    printf("Start ref opt q7_q15 implementation\n");
-
-    BENCH_START(riscv_fully_connected_mat_q7_vec_q15_opt_ref);
     riscv_fully_connected_mat_q7_vec_q15_opt_ref(test2, ip_q7_q15_opt_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, ip_bias_q7,
-                                               ip_out_q15_opt, vec_buffer);
-    BENCH_END(riscv_fully_connected_mat_q7_vec_q15_opt_ref);
+                                               ip_out_q15_ref, vec_buffer);
 
-    verify_results_q15(ip_out_q15_ref, ip_out_q15_opt, IP_ROW_DIM);
-
-    printf("Start opt q7_q15 implementation\n");
     BENCH_START(riscv_fully_connected_mat_q7_vec_q15_opt);
     riscv_fully_connected_mat_q7_vec_q15_opt(test2, ip_q7_q15_opt_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, ip_bias_q7,
                                            ip_out_q15_opt, vec_buffer);
     BENCH_END(riscv_fully_connected_mat_q7_vec_q15_opt);
-
     verify_results_q15(ip_out_q15_ref, ip_out_q15_opt, IP_ROW_DIM);
 
     int32_t fc_multiplier = 0x800000;
@@ -827,8 +635,8 @@ int main()
 
     nmsis_nn_context fc_ctx = {fc_temp_buffer, 320};
     nmsis_nn_tile fc_stride = {2, 2};
-	nmsis_nn_tile fc_padding = {2, 2};
-	nmsis_nn_tile fc_dilation = {2, 2};
+    nmsis_nn_tile fc_padding = {2, 2};
+    nmsis_nn_tile fc_dilation = {2, 2};
     nmsis_nn_activation fc_activation = {-1280, 1270};
     nmsis_nn_conv_params fc_conv_params = {1, 1, fc_stride, fc_padding, fc_dilation, fc_activation};
     nmsis_nn_per_tensor_quant_params  fc_quant_params = {fc_multiplier, fc_shift};
@@ -838,18 +646,10 @@ int main()
     nmsis_nn_dims fc_output_dims = {3, 1, 2, 32};
     nmsis_nn_fc_params fc_fc_params = {0, 0, 0, fc_activation};
 
-    printf("Start ref opt s8 implementation\n");
-
-    BENCH_START(riscv_fully_connected_s8_ref);
     riscv_fully_connected_s8_ref(&fc_ctx, &fc_fc_params, &fc_quant_params, &fc_input_dims, test1, &fc_filter_dims, test1 + 320, &fc_bias_dims, fc_bias_data, &fc_output_dims, output_q7);
-    BENCH_END(riscv_fully_connected_s8_ref);
-
-    printf("Start opt s8 implementation\n");
-
     BENCH_START(riscv_fully_connected_s8);
     riscv_fully_connected_s8(&fc_ctx, &fc_fc_params, &fc_quant_params, &fc_input_dims, test1, &fc_filter_dims, test1 + 320, &fc_bias_dims, fc_bias_data, &fc_output_dims, output_q7 + 320);
     BENCH_END(riscv_fully_connected_s8);
-
     verify_results_q7(output_q7, output_q7 + 320, 96);
 
     delete[] fc_temp_buffer;
@@ -866,8 +666,8 @@ int main()
 
     nmsis_nn_context pool_ctx = {pool_temp_buffer, 10};
     nmsis_nn_tile pool_stride = {1, 1};
-	nmsis_nn_tile pool_padding = {0, 0};
-	nmsis_nn_tile pool_dilation = {2, 2};
+    nmsis_nn_tile pool_padding = {0, 0};
+    nmsis_nn_tile pool_dilation = {2, 2};
     nmsis_nn_activation pool_activation = {-128, 127};
     nmsis_nn_conv_params pool_conv_params = {1, 1, pool_stride, pool_padding, pool_dilation, pool_activation};
     nmsis_nn_per_channel_quant_params pool_quant_params = {&pool_multiplier, &pool_shift};
@@ -878,32 +678,18 @@ int main()
     nmsis_nn_dw_conv_params pool_dw_conv_params = {0, 0, 1, pool_stride, pool_padding, pool_dilation, pool_activation};
     nmsis_nn_pool_params pool_pool_params = {pool_stride, pool_padding, pool_activation};
 
-    printf("Start ref max_pool s8 implementation\n");
+    printf("\r\nStart PoolingFunctions tests\r\n");
 
-    BENCH_START(riscv_max_pool_s8_ref);
     riscv_max_pool_s8_ref(&pool_ctx, &pool_pool_params, &pool_input_dims, test1, &pool_filter_dims, &pool_output_dims, output_q7);
-    BENCH_END(riscv_max_pool_s8_ref);
-
-    printf("Start opt max_pool s8 implementation\n");
-
     BENCH_START(riscv_max_pool_s8);
     riscv_max_pool_s8(&pool_ctx, &pool_pool_params, &pool_input_dims, test1, &pool_filter_dims, &pool_output_dims, output_q7 + Pooling_SIZE);
     BENCH_END(riscv_max_pool_s8);
-
     verify_results_q7(output_q7, output_q7 + Pooling_SIZE, 288);
 
-    printf("Start ref avgpool s8 implementation\n");
-
-    BENCH_START(riscv_avgpool_s8_ref);
     riscv_avgpool_s8_ref(&pool_ctx, &pool_pool_params, &pool_input_dims, test1, &pool_filter_dims, &pool_output_dims, output_q7);
-    BENCH_END(riscv_avgpool_s8_ref);
-
-    printf("Start opt avgpool s8 implementation\n");
-
     BENCH_START(riscv_avgpool_s8);
     riscv_avgpool_s8(&pool_ctx,&pool_pool_params, &pool_input_dims, test1, &pool_filter_dims, &pool_output_dims, output_q7 + Pooling_SIZE);
     BENCH_END(riscv_avgpool_s8);
-
     verify_results_q7(output_q7, output_q7 + Pooling_SIZE, 288);
 
     #define POOL_IM_DIM 32
@@ -913,31 +699,17 @@ int main()
     q7_t *pool_out_ref = output_q7;
     q7_t *pool_out_opt = output_q7 + DIM_IM_OUT * DIM_IM_OUT * POOL_IM_CH;
 
-    printf("Start maxpool reference implementation\n");
-    BENCH_START(riscv_maxpool_q7_HWC_ref);
     riscv_maxpool_q7_HWC_ref(test1, POOL_IM_DIM, POOL_IM_CH, 3, 0, 2, DIM_IM_OUT, (q7_t *) pool_temp_buffer, pool_out_ref);
-    BENCH_END(riscv_maxpool_q7_HWC_ref);
-
-
-    printf("Start maxpool opt implementation\n");
     BENCH_START(riscv_maxpool_q7_HWC);
     riscv_maxpool_q7_HWC(test1, POOL_IM_DIM, POOL_IM_CH, 3, 0, 2, DIM_IM_OUT, (q7_t *) pool_temp_buffer, pool_out_opt);
     BENCH_END(riscv_maxpool_q7_HWC);
-    verify_results_q7(output_q7, pool_out_opt, DIM_IM_OUT * DIM_IM_OUT * POOL_IM_CH);
+    verify_results_q7(pool_out_ref, pool_out_opt, DIM_IM_OUT * DIM_IM_OUT * POOL_IM_CH);
 
-    printf("Start avepool ref implementation\n");
-
-    BENCH_START(riscv_avepool_q7_HWC_ref);
     riscv_avepool_q7_HWC_ref(test1, POOL_IM_DIM, POOL_IM_CH, 3, 0, 2, DIM_IM_OUT, (q7_t *) pool_temp_buffer, pool_out_ref);
-    BENCH_END(riscv_avepool_q7_HWC_ref);
-
-    printf("Start avepool opt implementation\n");
-
     BENCH_START(riscv_avepool_q7_HWC);
     riscv_avepool_q7_HWC(test1, POOL_IM_DIM, POOL_IM_CH, 3, 0, 2, DIM_IM_OUT, (q7_t *) pool_temp_buffer, pool_out_opt);
     BENCH_END(riscv_avepool_q7_HWC);
-
-    verify_results_q7(output_q7, pool_out_opt, DIM_IM_OUT * DIM_IM_OUT * POOL_IM_CH);
+    verify_results_q7(pool_out_ref, pool_out_opt, DIM_IM_OUT * DIM_IM_OUT * POOL_IM_CH);
 
     delete[] pool_temp_buffer;
 
@@ -952,73 +724,36 @@ int main()
         test5[i] = (rand() % 256);
     }
 
-    printf("Start ref softmax q15 implementation\n");
+    printf("\r\nStart SoftmaxFunctions tests\r\n");
 
-    BENCH_START(riscv_softmax_q15_ref);
     riscv_softmax_q15_ref(test2, Softmax_SIZE, output_q15);
-    BENCH_END(riscv_softmax_q15_ref);
-
-    printf("Start opt softmax q15 implementation\n");
-
     BENCH_START(riscv_softmax_q15);
     riscv_softmax_q15(test2, Softmax_SIZE, output_q15 + Softmax_SIZE);
     BENCH_END(riscv_softmax_q15);
-
     verify_results_q15(output_q15, output_q15 + Softmax_SIZE, Softmax_SIZE);
 
-    printf("Start ref softmax q7 implementation\n");
-
-    BENCH_START(riscv_softmax_q7_ref);
     riscv_softmax_q7_ref(test1, Softmax_SIZE, output_q7);
-    BENCH_END(riscv_softmax_q7_ref);
-
-    printf("Start opt softmax q7 implementation\n");
-
     BENCH_START(riscv_softmax_q7);
     riscv_softmax_q7(test1, Softmax_SIZE, output_q7 + Softmax_SIZE);
     BENCH_END(riscv_softmax_q7);
-
     verify_results_q7(output_q7, output_q7 + Softmax_SIZE, Softmax_SIZE);
 
-    printf("Start ref softmax s8 implementation\n");
-
-    BENCH_START(riscv_softmax_s8_ref);
     riscv_softmax_s8_ref(test1, 3, 30, 1077952640, 19, -3968, (int8_t *)output_q7);
-    BENCH_END(riscv_softmax_s8_ref);
-
-    printf("Start opt softmax s8 implementation\n");
-
     BENCH_START(riscv_softmax_s8);
     riscv_softmax_s8(test1, 3, 30, 1077952640, 19, -3968, (int8_t *)output_q7 + Softmax_SIZE);
     BENCH_END(riscv_softmax_s8);
-
     verify_results_q7(output_q7, output_q7 + Softmax_SIZE, Softmax_SIZE);
 
-    printf("Start ref softmax u8 implementation\n");
-
-    BENCH_START(riscv_softmax_u8_ref);
     riscv_softmax_u8_ref(test5, 3, 30, 1077952640, 19, -3968, test6);
-    BENCH_END(riscv_softmax_u8_ref);
-
-    printf("Start opt softmax u8 implementation\n");
     BENCH_START(riscv_softmax_u8);
     riscv_softmax_u8(test5, 3, 30, 1077952640, 19, -3968, test6 + Softmax_SIZE);
     BENCH_END(riscv_softmax_u8);
-
     verify_results_q7((q7_t *)test6, (q7_t *)(test6 + Softmax_SIZE), 3 * 30);
 
-    printf("Start ref softmax_with_batch q7 implementation\n");
-
-    BENCH_START(riscv_softmax_with_batch_q7_ref);
     riscv_softmax_with_batch_q7_ref(test1, 2, 20, output_q7);
-    BENCH_END(riscv_softmax_with_batch_q7_ref);
-
-    printf("Start opt softmax_with_batch q7 implementation\n");
-
     BENCH_START(riscv_softmax_with_batch_q7);
     riscv_softmax_with_batch_q7(test1, 2, 20, output_q7 + Softmax_SIZE);
     BENCH_END(riscv_softmax_with_batch_q7);
-
     verify_results_q7(output_q7, output_q7 + Softmax_SIZE, 40);
 
     delete[] test5;
@@ -1076,18 +811,11 @@ int main()
     svdf_params.output_offset = 0;
     svdf_params.rank = 1;
 
-    printf("Start ref SVD implementation\n");
-
-    BENCH_START(ref_svdf_s8);
-
+    printf("\r\nStart SVDFunctions tests\r\n");
     ref_svdf_s8(&input_ctx, &output_ctx, &svdf_params, &input_quant_params, &output_quant_params,
                         &svdf_input_dims, test1, &state_dims,
                        svdf_state_ref, &weights_feature_dims, test1 + SVD_SIZE, &weights_time_dims,
                        test1 + 2 * SVD_SIZE, &svdf_bias_dims, NULL, &svdf_output_dims, output_q7);
-    BENCH_END(ref_svdf_s8);
-
-    printf("Start opt SVD implementation\n");
-
     BENCH_START(riscv_svdf_s8);
     riscv_svdf_s8(&input_ctx, &output_ctx, &svdf_params, &input_quant_params, &output_quant_params,
                         &svdf_input_dims, test1, &state_dims,
@@ -1103,42 +831,23 @@ int main()
 #ifdef TEST_NNDataConversion
     #define NNDataConversion_SIZE 100
 
-    printf("Start ref q7 to q15 no shift implementation\n");
-    BENCH_START(riscv_q7_to_q15_no_shift_ref);
-    riscv_q7_to_q15_no_shift_ref(test1, output_q15, NNDataConversion_SIZE);
-    BENCH_END(riscv_q7_to_q15_no_shift_ref);
+    printf("\r\nStart TEST_NNDataConversion tests\r\n");
 
-    printf("Start opt q7 to q15 no shift implementation\n");
+    riscv_q7_to_q15_no_shift_ref(test1, output_q15, NNDataConversion_SIZE);
     BENCH_START(riscv_q7_to_q15_no_shift);
     riscv_q7_to_q15_no_shift(test1, output_q15 + NNDataConversion_SIZE, NNDataConversion_SIZE);
     BENCH_END(riscv_q7_to_q15_no_shift);
-
     verify_results_q15(output_q15, output_q15 + NNDataConversion_SIZE, NNDataConversion_SIZE);
 
-//Only available for DSP_ON
+// Only available for DSP_ON
 #if defined(RISCV_MATH_DSP)
-    printf("Start ref q7 to q15 reordered no shift implementation\n");
-
-    BENCH_START(riscv_q7_to_q15_reordered_no_shift_ref);
     riscv_q7_to_q15_reordered_no_shift_ref(test1, output_q15, NNDataConversion_SIZE);
-    BENCH_END(riscv_q7_to_q15_reordered_no_shift_ref);
-
-    printf("Start opt q7 to q15 reordered no shift implementation\n");
-
     BENCH_START(riscv_q7_to_q15_reordered_no_shift);
     riscv_q7_to_q15_reordered_no_shift(test1, output_q15 + NNDataConversion_SIZE, NNDataConversion_SIZE);
     BENCH_END(riscv_q7_to_q15_reordered_no_shift);
-
     verify_results_q15(output_q15, output_q15 + NNDataConversion_SIZE, NNDataConversion_SIZE);
 
-    printf("Start ref q7 to q15 reordered with offset implementation\n");
-
-    BENCH_START(riscv_q7_to_q15_reordered_with_offset_ref);
     riscv_q7_to_q15_reordered_with_offset_ref(test1, output_q15, NNDataConversion_SIZE,0);
-    BENCH_END(riscv_q7_to_q15_reordered_with_offset_ref);
-
-    printf("Start opt q7 to q15 reordered with offset implementation\n");
-
     BENCH_START(riscv_q7_to_q15_reordered_with_offset);
     riscv_q7_to_q15_reordered_with_offset(test1, output_q15 + NNDataConversion_SIZE, NNDataConversion_SIZE,0);
     BENCH_END(riscv_q7_to_q15_reordered_with_offset);
@@ -1146,76 +855,45 @@ int main()
     //verify_results_q15(output_q15, output_q15 + NNDataConversion_SIZE, NNDataConversion_SIZE);
 #endif
     q15_t offset_q15 = (rand() % 65536 - 32768);
-    printf("Start ref q7 to q15 offset implementation\n");
-    BENCH_START(riscv_q7_to_q15_with_offset_ref);
+
     riscv_q7_to_q15_with_offset_ref(test1, output_q15, NNDataConversion_SIZE, offset_q15);
-    BENCH_END(riscv_q7_to_q15_with_offset_ref);
-
-    printf("Start opt q7 to q15 offset implementation\n");
-
     BENCH_START(riscv_q7_to_q15_with_offset);
     riscv_q7_to_q15_with_offset(test1, output_q15 + NNDataConversion_SIZE, NNDataConversion_SIZE, offset_q15);
     BENCH_END(riscv_q7_to_q15_with_offset);
-
     verify_results_q15(output_q15, output_q15 + NNDataConversion_SIZE, NNDataConversion_SIZE);
 #endif
 
 #ifdef TEST_BasicMathforNN
     #define BasicMathforNN_SIZE 1000
-    printf("start testing q7_t riscv_nn_mult_q7 case\n\n");
+    printf("\r\nStart BasicMath tests\r\n");
     // Test q7
+    riscv_nn_mult_q7_ref(test1, test1 + BasicMathforNN_SIZE, output_q7, 5, BasicMathforNN_SIZE);
     BENCH_START(riscv_nn_mult_q7);
-    riscv_nn_mult_q7(test1, test1 + BasicMathforNN_SIZE, output_q7, 5, BasicMathforNN_SIZE);
+    riscv_nn_mult_q7(test1, test1 + BasicMathforNN_SIZE, output_q7 + BasicMathforNN_SIZE, 5, BasicMathforNN_SIZE);
     BENCH_END(riscv_nn_mult_q7);
-
-    BENCH_START(riscv_nn_mult_q7_ref);
-    riscv_nn_mult_q7_ref(test1, test1 + BasicMathforNN_SIZE, output_q7 + BasicMathforNN_SIZE, 5, BasicMathforNN_SIZE);
-    BENCH_END(riscv_nn_mult_q7_ref);
-
     verify_results_q7(output_q7, output_q7 + BasicMathforNN_SIZE, BasicMathforNN_SIZE);
 
     // Test q15
-    printf("start testing q7_t riscv_nn_mult_q15 case\n\n");
+    riscv_nn_mult_q15_ref(test2, test2 + BasicMathforNN_SIZE, output_q15 + BasicMathforNN_SIZE, 13, BasicMathforNN_SIZE);
     BENCH_START(riscv_nn_mult_q15);
     riscv_nn_mult_q15(test2, test2 + BasicMathforNN_SIZE, output_q15, 13, BasicMathforNN_SIZE);
     BENCH_END(riscv_nn_mult_q15);
-
-    BENCH_START(riscv_nn_mult_q15_ref);
-    riscv_nn_mult_q15_ref(test2, test2 + BasicMathforNN_SIZE, output_q15 + BasicMathforNN_SIZE, 13, BasicMathforNN_SIZE);
-    BENCH_END(riscv_nn_mult_q15_ref);
-
     verify_results_q15(output_q15, output_q15 + BasicMathforNN_SIZE, BasicMathforNN_SIZE);
 
-
-    printf("Start ref q7 to q15 accumulate implementation\n");
 #if defined(RISCV_MATH_DSP) || defined(RISCV_MATH_VECTOR)
-    BENCH_START(riscv_nn_accumulate_q7_to_q15_ref);
+
     riscv_nn_accumulate_q7_to_q15_ref(output_q15, test1, BasicMathforNN_SIZE);
-    BENCH_END(riscv_nn_accumulate_q7_to_q15_ref);
-
-    printf("Start opt q7 to q15 accumulate implementation\n");
-
     BENCH_START(riscv_nn_accumulate_q7_to_q15);
     riscv_nn_accumulate_q7_to_q15(output_q15 + BasicMathforNN_SIZE, test1, BasicMathforNN_SIZE);
     BENCH_END(riscv_nn_accumulate_q7_to_q15);
-
     verify_results_q15(output_q15, output_q15 + BasicMathforNN_SIZE, BasicMathforNN_SIZE);
 #endif
 
     q31_t output_opt = 0, output_ref = 0;
-
-    printf("Start ref q7 add implementation\n");
-
-    BENCH_START(riscv_nn_add_q7_ref);
     riscv_nn_add_q7_ref(test1, &output_ref, BasicMathforNN_SIZE);
-    BENCH_END(riscv_nn_add_q7_ref);
-
-    printf("Start opt q7 add implementation\n");
-
     BENCH_START(riscv_nn_add_q7);
     riscv_nn_add_q7(test1, &output_opt, BasicMathforNN_SIZE);
     BENCH_END(riscv_nn_add_q7);
-
     verify_results_int32(&output_ref, &output_opt, 1);
 
 //Only available for RISCV_MATH_MVEI
@@ -1251,21 +929,12 @@ int main()
     int32_t sum_col_opt = 0, output_opt_s8[4] = {0};
     int32_t sum_col_ref = 0, output_ref_s8[4] = {0};
 
-    printf("Start ref q7 add implementation\n");
-
-    BENCH_START(riscv_nn_mat_mul_core_1x_s8_ref);
     riscv_nn_mat_mul_core_1x_s8_ref(BasicMathforNN_SIZE, test1, test1 + BasicMathforNN_SIZE, &sum_col_ref, &output_ref_s8[0]);
-    BENCH_END(riscv_nn_mat_mul_core_1x_s8_ref);
-
-    printf("Start opt q7 add implementation\n");
-
     BENCH_START(riscv_nn_mat_mul_core_1x_s8);
     riscv_nn_mat_mul_core_1x_s8(BasicMathforNN_SIZE, test1, test1 + BasicMathforNN_SIZE, &sum_col_opt, &output_opt_s8[0]);
     BENCH_END(riscv_nn_mat_mul_core_1x_s8);
-
-
-    verify_results_int32(&sum_col_opt, &sum_col_ref, 1);
-    verify_results_int32(output_opt_s8, output_ref_s8, 1);
+    verify_results_int32(&sum_col_ref, &sum_col_opt, 1);
+    verify_results_int32(output_ref_s8, output_opt_s8, 1);
 
 //Only available for RISCV_MATH_MVEI
     // printf("Start ref q7 add implementation\n");
@@ -1302,30 +971,20 @@ int main()
         dst_shifts[i] = (rand() % 1);
     }
 
-    printf("Start ref mat_mult implementation\n");
-    BENCH_START(riscv_nn_mat_mult_nt_t_s8_ref);
     riscv_nn_mat_mult_nt_t_s8_ref(test1, test1 + BasicMathforNN_SIZE, bias_q31, output_q7, dst_multipliers, dst_shifts,
                                   LHS_ROWS, RHS_ROWS, RHS_COLS, LHS_OFFSET, DST_OFFSET, ACTIVATION_MIN, ACTIVATION_MAX);
-    BENCH_END(riscv_nn_mat_mult_nt_t_s8_ref);
 
-    printf("Start opt mat_mult implementation\n");
     BENCH_START(riscv_nn_mat_mult_nt_t_s8);
     riscv_nn_mat_mult_nt_t_s8(test1, test1 + BasicMathforNN_SIZE, bias_q31, output_q7 + LHS_ROWS * RHS_ROWS, dst_multipliers, dst_shifts,
                               LHS_ROWS, RHS_ROWS, RHS_COLS, LHS_OFFSET, DST_OFFSET, ACTIVATION_MIN, ACTIVATION_MAX);
     BENCH_END(riscv_nn_mat_mult_nt_t_s8);
-
     verify_results_q7(output_q7, output_q7 + LHS_ROWS * RHS_ROWS, LHS_ROWS * RHS_ROWS);
 
     initialize_results_q7(output_q7, output_q7 + BasicMathforNN_SIZE, BasicMathforNN_SIZE);
-    printf("Start ref s8 mat_mult_nt_t implementation\n");
 
     #define ADDRESS_OFFSET 1
-    BENCH_START(riscv_nn_vec_mat_mult_t_s8_ref);
     riscv_nn_vec_mat_mult_t_s8_ref(test1, test1 + BasicMathforNN_SIZE, bias_q31, output_q7, 0, 0, 0,
                                    dst_multipliers[0], dst_shifts[0], RHS_COLS, RHS_ROWS, ACTIVATION_MIN, ACTIVATION_MAX, ADDRESS_OFFSET);
-    BENCH_END(riscv_nn_vec_mat_mult_t_s8_ref);
-
-    printf("Start opt s8 mat_mult_nt_t implementation\n");
 
     BENCH_START(riscv_nn_vec_mat_mult_t_s8);
     riscv_nn_vec_mat_mult_t_s8(test1, test1 + BasicMathforNN_SIZE, bias_q31, output_q7 + RHS_ROWS * ADDRESS_OFFSET, 0, 0, 0,
@@ -1333,7 +992,6 @@ int main()
     BENCH_END(riscv_nn_vec_mat_mult_t_s8);
 
     verify_results_q7(output_q7, output_q7 + RHS_ROWS * ADDRESS_OFFSET, RHS_ROWS * ADDRESS_OFFSET);
-
 
     delete[] bias_q31;
     delete[] dst_multipliers;
