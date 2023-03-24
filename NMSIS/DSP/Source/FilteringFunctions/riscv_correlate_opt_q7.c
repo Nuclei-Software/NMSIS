@@ -66,6 +66,9 @@ void riscv_correlate_opt_q7(
         q15_t * pScratch1,
         q15_t * pScratch2)
 {
+#if defined (RISCV_MATH_VECTOR)
+  riscv_correlate_q7(pSrcA, srcALen, pSrcB, srcBLen, pDst);
+#else
         q15_t *pScr1 = pScratch1;                      /* Temporary pointer for scratch */
         q15_t *pScr2 = pScratch2;                      /* Temporary pointer for scratch */
         q15_t x4;                                      /* Temporary input variable */
@@ -132,17 +135,6 @@ void riscv_correlate_opt_q7(
     inc = -1;
   }
 
-#if defined (RISCV_MATH_VECTOR)
-  uint32_t vblkCnt = srcBLen;                               /* Loop counter */
-  size_t l;
-  vint16m8_t vx;
-  for (; (l = vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
-    vx = vwadd_vx_i16m8(vle8_v_i8m4(pIn2, l), 0, l);
-    pIn2 += l;
-    vse16_v_i16m8(pScr2, vx, l);
-    pScr2 += l;
-  }
-#else
   /* Copy (srcBLen) samples in scratch buffer */
   k = srcBLen >> 2U;
 
@@ -180,21 +172,11 @@ void riscv_correlate_opt_q7(
     /* Decrement loop counter */
     k--;
   }
-#endif /*defined (RISCV_MATH_VECTOR)*/
   /* Fill (srcBLen - 1U) zeros in scratch buffer */
   riscv_fill_q15(0, pScr1, (srcBLen - 1U));
 
   /* Update temporary scratch pointer */
   pScr1 += (srcBLen - 1U);
-#if defined (RISCV_MATH_VECTOR)
-  vblkCnt = srcALen;                               /* Loop counter */
-  for (; (l = vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
-    vx = vwadd_vx_i16m8(vle8_v_i8m4(pIn1, l), 0, l);
-    pIn1 += l;
-    vse16_v_i16m8(pScr1, vx, l);
-    pScr1 += l;
-  }
-#else
   /* Copy (srcALen) samples in scratch buffer */
   /* Apply loop unrolling and do 4 Copies simultaneously. */
   k = srcALen >> 2U;
@@ -230,7 +212,7 @@ void riscv_correlate_opt_q7(
     /* Decrement the loop counter */
     k--;
   }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+
   /* Fill (srcBLen - 1U) zeros at end of scratch buffer */
   riscv_fill_q15(0, pScr1, (srcBLen - 1U));
 
@@ -242,42 +224,6 @@ void riscv_correlate_opt_q7(
 
   /* Initialization of pScr2 pointer */
   pScr2 = pScratch2;
-#if defined (RISCV_MATH_VECTOR)
-  blkCnt = (srcALen + srcBLen - 1U);
-  while (blkCnt > 0)
-  {
-    /* Initialze temporary scratch pointer as scratch1 */
-    pScr1 = pScratch1;
-
-    /* Clear Accumlators */
-    acc0 = 0;
-
-    uint32_t vblkCnt = srcBLen;                               /* Loop counter */
-    size_t l;
-    vint16m4_t vx, vy;
-    vint32m1_t temp00m1;
-    l = vsetvl_e32m1(1);
-    temp00m1 = vmv_v_x_i32m1(0, l);
-    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle16_v_i16m4(pScr1, l);
-      pScr1 += l;
-      vy = vle16_v_i16m4(pScr2, l);
-      pScr2 += l;
-      temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
-    }
-    acc0 += vmv_x_s_i32m1_i32(temp00m1);
-    blkCnt--;
-
-    /* Store the result in the accumulator in the destination buffer. */
-    *pOut = (q7_t) (__SSAT(acc0 >> 7U, 8));
-    pOut += inc;
-
-    /* Initialization of inputB pointer */
-    pScr2 = py;
-
-    pScratch1 += 1U;
-  }
-#else
   /* Actual correlation process starts here */
   blkCnt = (srcALen + srcBLen - 1U) >> 2;
 

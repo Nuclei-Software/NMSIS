@@ -117,7 +117,7 @@ void riscv_correlate_fast_q15(
     /* Hence set the destination pointer to point to the last output sample */
     pOut = pDst + ((srcALen + srcBLen) - 2U);
   }
-   pSrcA = pIn1;
+  pSrcA = pIn1;
   pSrcB = pIn2;
 
   size_t l;
@@ -130,6 +130,7 @@ void riscv_correlate_fast_q15(
   blockSize2 = srcALen - (srcBLen - 1U);
   blockSize3 = blockSize1;
   pIn2 = pSrcB + srcBLen - 1;
+
   for (ii = blockSize1; ii > 0; ii -= l)
   {
     l = vsetvl_e16m4(ii);
@@ -146,7 +147,6 @@ void riscv_correlate_fast_q15(
         flag++;
       } else {
         value = *(pIn1 - jj - 1);
-        flag = 0;
       }
       vx = vslide1up_vx_i16m4(vx, value, l);
     }
@@ -160,19 +160,20 @@ void riscv_correlate_fast_q15(
   for (ii = blockSize2; ii > 0; ii -= l)
   {
     l = vsetvl_e16m4(ii);
+    vx = vle16_v_i16m4(pIn1, l);
+    pIn1 += l;
     vres0m8 = vmv_v_x_i32m8(0, l);
     for (jj = 0; jj < srcBLen; jj++)
     {
-      vx = vle16_v_i16m4(pIn1 + jj, l);
       vres0m8 = vwmacc_vx_i32m8(vres0m8, *(pIn2 + jj), vx, l);
+      vx = vslide1down_vx_i16m4(vx, *(pIn1 + jj), l);
     }
     vx = vnsra_wx_i16m4(vres0m8, 15, l);
     vse16_v_i16m4(pOut, vx, l);
     pOut += l;
-    pIn1 += l;
   }
+
   pIn1 = pSrcA + blockSize2;
-  flag = 0;
   for (ii = blockSize3; ii > 0; ii -= l)
   {
     l = vsetvl_e16m4(ii);
@@ -190,7 +191,6 @@ void riscv_correlate_fast_q15(
         flag++;
       } else {
         value = *(pIn1 + jj);
-        flag = 0;
       }
       vx = vslide1down_vx_i16m4(vx, value, l);
     }

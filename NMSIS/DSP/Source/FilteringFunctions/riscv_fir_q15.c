@@ -81,7 +81,39 @@ void riscv_fir_q15(
   /* pStateCurnt points to the location where the new input data should be written */
   pStateCurnt = &(S->pState[(numTaps - 1U)]);
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
+    uint32_t i, j;
+    size_t l;
+    vint16m2_t vx;
+    vint64m8_t vres0m8;
+    q15_t *pOut = pDst;
+    /* Copy samples into state buffer */
+    riscv_copy_q15(pSrc, pStateCurnt, blockSize);
+    for (i = blockSize; i > 0; i -= l)
+    {
+      l = vsetvl_e16m2(i);
+      vx = vle16_v_i16m2(pState, l);
+      pState += l;
+      vres0m8 = vmv_v_x_i64m8(0, l);
+      for (j = 0; j < numTaps; j++) {
+        vres0m8 = vwmacc_vx_i64m8(vres0m8, *(pb + j), vwadd_vx_i32m4(pCoeffs, 0 ,l), l);
+        vx = vslide1down_vx_i16m2(vx, *(pState + j), l);
+      }
+      vse16_v_i16m2(pOut, vnclip_wx_i16m2(vnsra_wx_i32m4(vres0m8, 15, l), 0, l), l);
+      pOut += l;
+    }
+    /* Processing is complete.
+       Now copy the last numTaps - 1 samples to the start of the state buffer.
+       This prepares the state buffer for the next function call. */
+
+    /* Points to the start of the state buffer */
+    pStateCurnt = S->pState;
+
+    /* Copy data */
+    riscv_copy_q15(pState, pStateCurnt, numTaps - 1);
+#else
+
+#if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 output values simultaneously.
    * The variables acc0 ... acc3 hold output values that are being computed:
@@ -238,23 +270,6 @@ void riscv_fir_q15(
     /* Use SIMD to hold states and coefficients */
     px = pState;
     pb = pCoeffs;
-#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
-    uint32_t vblkCnt = numTaps;                               /* Loop counter */
-    size_t l;
-    vint16m4_t vx, vy;
-    vint64m1_t temp00m1;
-    l = vsetvl_e64m1(1);
-    temp00m1 = vmv_v_x_i64m1(0, l);
-
-    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle16_v_i16m4(px, l);
-      px += l;
-      vy = vle16_v_i16m4(pb, l);
-      pb += l;
-      temp00m1 = vwredsum_vs_i32m8_i64m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
-    }
-    acc0 +=vmv_x_s_i64m1_i64(temp00m1);
-#else
     tapCnt = numTaps >> 1U;
 
     while (tapCnt > 0U)
@@ -264,7 +279,6 @@ void riscv_fir_q15(
 
       tapCnt--;
     }
-#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
 
     /* The result is in 2.30 format. Convert to 1.15 with saturation.
        Then store the output in the destination buffer. */
@@ -319,7 +333,7 @@ void riscv_fir_q15(
     /* Decrement loop counter */
     tapCnt--;
   }
-
+#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
 }
 
 /**

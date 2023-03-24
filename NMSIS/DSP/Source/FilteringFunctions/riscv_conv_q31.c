@@ -71,9 +71,6 @@ void riscv_conv_q31(
   const q31_t *pIn1;                               /* InputA pointer */
   const q31_t *pIn2;                               /* InputB pointer */
         q31_t *pOut = pDst;                        /* Output pointer */
-  const q31_t *px;                                 /* Intermediate inputA pointer */
-  const q31_t *py;                                 /* Intermediate inputB pointer */
-        q31_t sum;                                 /* Accumulators */
         uint32_t blockSize1, blockSize2, blockSize3;   /* Loop counters */
         uint32_t j, ii, jj, kk;
 
@@ -114,6 +111,7 @@ void riscv_conv_q31(
   blockSize1 = srcBLen - 1U;
   blockSize2 = srcALen - (srcBLen - 1U);
   blockSize3 = blockSize1;
+
   for (ii = blockSize1; ii > 0; ii -= l)
   {
     l = vsetvl_e32m4(ii);
@@ -130,7 +128,6 @@ void riscv_conv_q31(
         flag++;
       } else {
         value = *(pIn1 - jj - 1);
-        flag = 0;
       }
       vx = vslide1up_vx_i32m4(vx, value, l);
     }
@@ -145,19 +142,20 @@ void riscv_conv_q31(
   for (ii = blockSize2; ii > 0; ii -= l)
   {
     l = vsetvl_e32m4(ii);
+    vx = vle32_v_i32m4(pIn1, l);
+    pIn1 += l;
     vres0m8 = vmv_v_x_i64m8(0, l);
     for (jj = 0; jj < srcBLen; jj++)
     {
-      vx = vle32_v_i32m4(pIn1 + jj, l);
       vres0m8 = vwmacc_vx_i64m8(vres0m8, *(pIn2 - jj), vx, l);
+      vx = vslide1down_vx_i32m4(vx, *(pIn1 + jj), l);
     }
     vx = vnsra_wx_i32m4(vres0m8, 31, l);
     vse32_v_i32m4(pOut, vx, l);
     pOut += l;
-    pIn1 += l;
   }
+
   pIn1 = pSrcA + blockSize2;
-  flag = 0;
   for (ii = blockSize3; ii > 0; ii -= l)
   {
     l = vsetvl_e32m4(ii);
@@ -175,7 +173,6 @@ void riscv_conv_q31(
         flag++;
       } else {
         value = *(pIn1 + jj);
-        flag = 0;
       }
       vx = vslide1down_vx_i32m4(vx, value, l);
     }

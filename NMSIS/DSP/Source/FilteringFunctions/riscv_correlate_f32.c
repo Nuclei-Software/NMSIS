@@ -155,13 +155,14 @@ void riscv_correlate_f32(
 
   size_t l;
   vfloat32m8_t vx, vres0m8;
-  float32_t value = 0.0f, tmp[32] = {0};
+  float32_t value = 0.0f;
   uint32_t flag = 0;
 
   blockSize1 = srcBLen - 1U;
   blockSize2 = srcALen - (srcBLen - 1U);
   blockSize3 = blockSize1;
   pIn2 = pSrcB + srcBLen - 1;
+
   for (ii = blockSize1; ii > 0; ii -= l)
   {
     l = vsetvl_e32m8(ii);
@@ -174,11 +175,10 @@ void riscv_correlate_f32(
         break;
       vres0m8 = vfmacc_vf_f32m8(vres0m8, *(pIn2 - jj), vx, l);
       if (pIn1 - jj <= pSrcA) {
-        value = 0;
+        value = 0.0;
         flag++;
       } else {
         value = *(pIn1 - jj - 1);
-        flag = 0;
       }
       vx = vfslide1up_vf_f32m8(vx, value, l);
     }
@@ -192,18 +192,19 @@ void riscv_correlate_f32(
   for (ii = blockSize2; ii > 0; ii -= l)
   {
     l = vsetvl_e32m8(ii);
+    vx = vle32_v_f32m8(pIn1, l);
+    pIn1 += l;
     vres0m8 = vfmv_v_f_f32m8(0.0, l);
     for (jj = 0; jj < srcBLen; jj++)
     {
-      vx = vle32_v_f32m8(pIn1 + jj, l);
       vres0m8 = vfmacc_vf_f32m8(vres0m8, *(pIn2 + jj), vx, l);
+      vx = vfslide1down_vf_f32m8(vx, *(pIn1 + jj), l);
     }
     vse32_v_f32m8(pOut, vres0m8, l);
     pOut += l;
-    pIn1 += l;
   }
+
   pIn1 = pSrcA + blockSize2;
-  flag = 0;
   for (ii = blockSize3; ii > 0; ii -= l)
   {
     l = vsetvl_e32m8(ii);
@@ -221,7 +222,6 @@ void riscv_correlate_f32(
         flag++;
       } else {
         value = *(pIn1 + jj);
-        flag = 0;
       }
       vx = vfslide1down_vf_f32m8(vx, value, l);
     }

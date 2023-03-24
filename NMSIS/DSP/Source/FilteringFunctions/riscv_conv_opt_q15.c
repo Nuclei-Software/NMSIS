@@ -68,6 +68,9 @@ void riscv_conv_opt_q15(
         q15_t * pScratch1,
         q15_t * pScratch2)
 {
+#if defined (RISCV_MATH_VECTOR)
+    riscv_conv_q15(pSrcA, srcALen, pSrcB, srcBLen, pDst);
+#else
         q63_t acc0;                                    /* Accumulators */
   const q15_t *pIn1;                                   /* InputA pointer */
   const q15_t *pIn2;                                   /* InputB pointer */
@@ -116,19 +119,6 @@ void riscv_conv_opt_q15(
 
   /* points to smaller length sequence */
   px = pIn2;
-
-#if defined (RISCV_MATH_VECTOR)
-  uint32_t vblkCnt = srcBLen;                               /* Loop counter */
-  size_t l;
-  vint16m8_t vx;
-  ptrdiff_t bstride = -2;
-  for (; (l = vsetvl_e16m8(vblkCnt)) > 0; vblkCnt -= l) {
-    vx = vle16_v_i16m8(px, l);
-    px += l;
-    vsse16_v_i16m8(pScr2, bstride, vx, l);
-    pScr2 -= l;
-  }
-#else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -165,7 +155,6 @@ void riscv_conv_opt_q15(
     /* Decrement loop counter */
     k--;
   }
-#endif /* defined (RISCV_MATH_VECTOR) */
   /* Initialze temporary scratch pointer */
   pScr1 = pScratch1;
 
@@ -312,22 +301,6 @@ void riscv_conv_opt_q15(
 
     /* Clear Accumlators */
     acc0 = 0;
-#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
-    uint32_t vblkCnt = srcBLen;                               /* Loop counter */
-    size_t l;
-    vint16m4_t vx, vy;
-    vint64m1_t temp00m1;
-    l = vsetvl_e64m1(1);
-    temp00m1 = vmv_v_x_i64m1(0, l);
-    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle16_v_i16m4(pScr1, l);
-      pScr1 += l;
-      vy = vle16_v_i16m4(pIn2, l);
-      pIn2 += l;
-      temp00m1 = vwredsum_vs_i32m8_i64m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
-    }
-    acc0 += vmv_x_s_i64m1_i64(temp00m1);
-#else
     tapCnt = (srcBLen) >> 1U;
 
     while (tapCnt > 0U)
@@ -353,7 +326,6 @@ void riscv_conv_opt_q15(
       /* Decrement loop counter */
       tapCnt--;
     }
-#endif /*defined (RISCV_MATH_VECTOR)*/
     blkCnt--;
 
     /* The result is in 2.30 format.  Convert to 1.15 with saturation.
@@ -365,7 +337,7 @@ void riscv_conv_opt_q15(
 
     pScratch1 += 1U;
   }
-
+#endif /* defined (RISCV_MATH_VECTOR) */
 }
 
 /**

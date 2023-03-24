@@ -174,7 +174,36 @@ void riscv_fir_f32(
   /* pStateCurnt points to the location where the new input data should be written */
   pStateCurnt = &(S->pState[(numTaps - 1U)]);
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
+    uint32_t j;
+    size_t l;
+    vfloat32m8_t vx, vres0m8;
+    float32_t *pOut = pDst;
+    /* Copy samples into state buffer */
+    riscv_copy_f32(pSrc, pStateCurnt, blockSize);
+    for (i = blockSize; i > 0; i -= l)
+    {
+      l = vsetvl_e32m8(i);
+      vx = vle32_v_f32m8(pState, l);
+      pState += l;
+      vres0m8 = vfmv_v_f_f32m8(0.0, l);
+      for (j = 0; j < numTaps; j++) {
+        vres0m8 = vfmacc_vf_f32m8(vres0m8, *(pCoeffs + j), vx, l);
+        vx = vfslide1down_vf_f32m8(vx, *(pState + j), l);
+      }
+      vse32_v_f32m8(pOut, vres0m8, l);
+      pOut += l;
+    }
+    /* Processing is complete.
+       Now copy the last numTaps - 1 samples to the start of the state buffer.
+       This prepares the state buffer for the next function call. */
+
+    /* Points to the start of the state buffer */
+    pStateCurnt = S->pState;
+    /* Copy data */
+    riscv_copy_f32(pState, pStateCurnt, numTaps - 1);
+#else
+#if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 8 output values simultaneously.
    * The variables acc0 ... acc7 hold output values that are being computed:
@@ -455,22 +484,6 @@ void riscv_fir_f32(
     pb = pCoeffs;
 
     i = numTaps;
-#if defined (RISCV_MATH_VECTOR)
-    uint32_t vblkCnt = numTaps;                               /* Loop counter */
-    size_t l;
-    vfloat32m8_t vx, vy;
-    vfloat32m1_t temp00m1;
-    l = vsetvl_e32m1(1);
-    temp00m1 = vfmv_v_f_f32m1(0, l);
-    for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle32_v_f32m8(px, l);
-      px += l;
-      vy = vle32_v_f32m8(pb, l);
-      pb += l;
-      temp00m1 = vfredusum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vy, vx, l), temp00m1, l);
-    }
-    acc0 += vfmv_f_s_f32m1_f32(temp00m1);
-#else
     /* Perform the multiply-accumulates */
     while (i > 0U)
     {
@@ -479,7 +492,7 @@ void riscv_fir_f32(
 
       i--;
     }
-#endif /* defined (RISCV_MATH_VECTOR) */
+
     /* Store result in destination buffer. */
     *pDst++ = acc0;
 
@@ -497,7 +510,7 @@ void riscv_fir_f32(
   /* Points to the start of the state buffer */
   pStateCurnt = S->pState;
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 taps at a time */
   tapCnt = (numTaps - 1U) >> 2U;
@@ -523,17 +536,6 @@ void riscv_fir_f32(
   tapCnt = (numTaps - 1U);
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_MATH_VECTOR)
-  uint32_t vblkCnt = (numTaps - 1U);                               /* Loop counter */
-  size_t l;
-  vfloat32m8_t vx;
-  for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
-    vx = vle32_v_f32m8(pState, l);
-    pState += l;
-    vse32_v_f32m8(pStateCurnt, vx, l);
-    pStateCurnt += l;
-  }
-#else
   /* Copy remaining data */
   while (tapCnt > 0U)
   {

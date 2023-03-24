@@ -83,6 +83,118 @@ void riscv_conv_fast_opt_q15(
         uint32_t j, k, blkCnt;                         /* Loop counter */
         uint32_t tapCnt;                               /* Loop count */
 
+#if defined (RISCV_MATH_VECTOR)
+        uint32_t blockSize1, blockSize2, blockSize3;   /* Loop counters */
+        uint32_t ii, jj, kk;
+
+  /* The algorithm implementation is based on the lengths of the inputs. */
+  /* srcB is always made to slide across srcA. */
+  /* So srcBLen is always considered as shorter or equal to srcALen */
+  if (srcALen >= srcBLen)
+  {
+    /* Initialization of inputA pointer */
+    pIn1 = pSrcA;
+
+    /* Initialization of inputB pointer */
+    pIn2 = pSrcB;
+  }
+  else
+  {
+    /* Initialization of inputA pointer */
+    pIn1 = pSrcB;
+
+    /* Initialization of inputB pointer */
+    pIn2 = pSrcA;
+
+    /* srcBLen is always considered as shorter or equal to srcALen */
+    j = srcBLen;
+    srcBLen = srcALen;
+    srcALen = j;
+  }
+  pSrcA = pIn1;
+  pSrcB = pIn2;
+
+  size_t l;
+  vint32m8_t vres0m8;
+  vint16m4_t vx;
+  q15_t value = 0;
+  uint32_t flag = 0;
+
+  blockSize1 = srcBLen - 1U;
+  blockSize2 = srcALen - (srcBLen - 1U);
+  blockSize3 = blockSize1;
+
+  for (ii = blockSize1; ii > 0; ii -= l)
+  {
+    l = vsetvl_e16m4(ii);
+    vx = vle16_v_i16m4(pIn1, l);
+    vres0m8 = vmv_v_x_i32m8(0.0, l);
+    flag = 0;
+    for (jj = 0; jj < blockSize1; jj++)
+    {
+      if (flag >= l)
+        break;
+      vres0m8 = vwmacc_vx_i32m8(vres0m8, *(pIn2 + jj), vx, l);
+      if (pIn1 - jj <= pSrcA) {
+        value = 0;
+        flag++;
+      } else {
+        value = *(pIn1 - jj - 1);
+      }
+      vx = vslide1up_vx_i16m4(vx, value, l);
+    }
+    vx = vnclip_wx_i16m4(vsra_vx_i32m8(vres0m8, 15, l), 0, l);
+    vse16_v_i16m4(pOut, vx, l);
+    pOut += l;
+    pIn1 += l;
+  }
+
+  pIn2 += srcBLen - 1;
+  pIn1 = pSrcA;
+  for (ii = blockSize2; ii > 0; ii -= l)
+  {
+    l = vsetvl_e16m4(ii);
+    vx = vle16_v_i16m4(pIn1, l);
+    pIn1 += l;
+    vres0m8 = vmv_v_x_i32m8(0, l);
+    for (jj = 0; jj < srcBLen; jj++)
+    {
+      vres0m8 = vwmacc_vx_i32m8(vres0m8, *(pIn2 - jj), vx, l);
+      vx = vslide1down_vx_i16m4(vx, *(pIn1 + jj), l);
+    }
+    vx = vnclip_wx_i16m4(vsra_vx_i32m8(vres0m8, 15, l), 0, l);
+    vse16_v_i16m4(pOut, vx, l);
+    pOut += l;
+  }
+
+  pIn1 = pSrcA + blockSize2;
+  for (ii = blockSize3; ii > 0; ii -= l)
+  {
+    l = vsetvl_e16m4(ii);
+    vx = vle16_v_i16m4(pIn1, l);
+    pIn1 += l;
+    vres0m8 = vmv_v_x_i32m8(0, l);
+    flag = 0;
+    for (jj = 0; jj < blockSize3; jj++)
+    {
+      if (flag >= l)
+        break;
+      vres0m8 = vwmacc_vx_i32m8(vres0m8, *(pIn2 - jj), vx, l);
+      if (pIn1 + jj >= pSrcA + srcALen) {
+        value = 0;
+        flag++;
+      } else {
+        value = *(pIn1 + jj);
+      }
+      vx = vslide1down_vx_i16m4(vx, value, l);
+    }
+    vx = vnclip_wx_i16m4(vsra_vx_i32m8(vres0m8, 15, l), 0, l);
+    vse16_v_i16m4(pOut, vx, l);
+    pOut += l;
+  }
+
+#else
+
 #if defined (RISCV_MATH_LOOPUNROLL)
         q31_t acc1, acc2, acc3;                        /* Accumulators */
         q31_t x1, x2, x3;                              /* Temporary variables to hold state and coefficient values */
@@ -121,19 +233,6 @@ void riscv_conv_fast_opt_q15(
   /* points to smaller length sequence */
   px = pIn2;
 
-#if defined (RISCV_MATH_VECTOR)
-  k = srcBLen;
-  uint32_t vblkCnt = k;
-  size_t l;
-  vint16m8_t vx;
-  ptrdiff_t bstride = -2;
-  for (; (l = vsetvl_e16m8(vblkCnt)) > 0; vblkCnt -= l) {
-    vx = vle16_v_i16m8(px, l);
-    px += l;
-    vsse16_v_i16m8(pScr2, bstride, vx, l);
-    pScr2 -= l;
-  }
-#else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -170,7 +269,6 @@ void riscv_conv_fast_opt_q15(
     /* Decrement loop counter */
     k--;
   }
-#endif /* defined (RISCV_MATH_VECTOR) */
   /* Initialze temporary scratch pointer */
   pScr1 = pScratch1;
 
@@ -203,48 +301,6 @@ void riscv_conv_fast_opt_q15(
   /* Initialization of pIn2 pointer */
   pIn2 = py;
 
-#if defined (RISCV_MATH_VECTOR)
-  /* Initialize blkCnt with number of samples */
-  blkCnt = (srcALen + srcBLen - 1U);
-
-  /* Calculate convolution for remaining samples of Bigger length sequence */
-  while (blkCnt > 0)
-  {
-    /* Initialze temporary scratch pointer as scratch1 */
-    pScr1 = pScratch1;
-
-    /* Clear Accumlators */
-    acc0 = 0;
-
-    tapCnt = srcBLen;
-    uint32_t vblkCnt = tapCnt;                               /* Loop counter */
-    size_t l;
-    vint16m4_t vx, vy;
-    vint32m1_t temp00m1;
-    l = vsetvl_e32m1(1);
-    temp00m1 = vmv_v_x_i32m1(0, l);
-    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle16_v_i16m4(pScr1, l);
-      pScr1 += l;
-      vy = vle16_v_i16m4(pIn2, l);
-      pIn2 += l;
-      temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
-    }
-    acc0 += vmv_x_s_i32m1_i32(temp00m1);
-
-    blkCnt--;
-
-    /* The result is in 2.30 format.  Convert to 1.15 with saturation.
-       Then store the output in the destination buffer. */
-    *pOut++ = (q15_t) (__SSAT((acc0 >> 15), 16));
-
-    /* Initialization of inputB pointer */
-    pIn2 = py;
-
-    pScratch1 += 1U;
-  }
-
-#else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */

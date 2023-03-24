@@ -107,12 +107,8 @@ void riscv_conv_f32(
   const float32_t *pIn1;                               /* InputA pointer */
   const float32_t *pIn2;                               /* InputB pointer */
         float32_t *pOut = pDst;                        /* Output pointer */
-  const float32_t *px;                                 /* Intermediate inputA pointer */
-  const float32_t *py;                                 /* Intermediate inputB pointer */
-        float32_t sum;                                 /* Accumulators */
         uint32_t blockSize1, blockSize2, blockSize3;   /* Loop counters */
         uint32_t j, ii, jj, kk;
-
 
   /* The algorithm implementation is based on the lengths of the inputs. */
   /* srcB is always made to slide across srcA. */
@@ -149,6 +145,7 @@ void riscv_conv_f32(
   blockSize1 = srcBLen - 1U;
   blockSize2 = srcALen - (srcBLen - 1U);
   blockSize3 = blockSize1;
+
   for (ii = blockSize1; ii > 0; ii -= l)
   {
     l = vsetvl_e32m8(ii);
@@ -161,11 +158,10 @@ void riscv_conv_f32(
         break;
       vres0m8 = vfmacc_vf_f32m8(vres0m8, *(pIn2 + jj), vx, l);
       if (pIn1 - jj <= pSrcA) {
-        value = 0;
+        value = 0.0;
         flag++;
       } else {
         value = *(pIn1 - jj - 1);
-        flag = 0;
       }
       vx = vfslide1up_vf_f32m8(vx, value, l);
     }
@@ -179,18 +175,19 @@ void riscv_conv_f32(
   for (ii = blockSize2; ii > 0; ii -= l)
   {
     l = vsetvl_e32m8(ii);
+    vx = vle32_v_f32m8(pIn1, l);
+    pIn1 += l;
     vres0m8 = vfmv_v_f_f32m8(0.0, l);
     for (jj = 0; jj < srcBLen; jj++)
     {
-      vx = vle32_v_f32m8(pIn1 + jj, l);
       vres0m8 = vfmacc_vf_f32m8(vres0m8, *(pIn2 - jj), vx, l);
+      vx = vfslide1down_vf_f32m8(vx, *(pIn1 + jj), l);
     }
     vse32_v_f32m8(pOut, vres0m8, l);
     pOut += l;
-    pIn1 += l;
   }
+
   pIn1 = pSrcA + blockSize2;
-  flag = 0;
   for (ii = blockSize3; ii > 0; ii -= l)
   {
     l = vsetvl_e32m8(ii);
@@ -208,7 +205,6 @@ void riscv_conv_f32(
         flag++;
       } else {
         value = *(pIn1 + jj);
-        flag = 0;
       }
       vx = vfslide1down_vf_f32m8(vx, value, l);
     }

@@ -79,7 +79,39 @@ void riscv_fir_q7(
   /* pStateCurnt points to the location where the new input data should be written */
   pStateCurnt = &(S->pState[(numTaps - 1U)]);
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_VECTOR)
+    uint32_t j;
+    size_t l;
+    vint8m2_t vx;
+    vint32m8_t vres0m8;
+    q7_t *pOut = pDst;
+    /* Copy samples into state buffer */
+    riscv_copy_q7(pSrc, pStateCurnt, blockSize);
+    for (i = blockSize; i > 0; i -= l)
+    {
+      l = vsetvl_e8m2(i);
+      vx = vle8_v_i8m2(pState, l);
+      pState += l;
+      vres0m8 = vmv_v_x_i32m8(0, l);
+      for (j = 0; j < numTaps; j++) {
+        vres0m8 = vwmacc_vx_i32m8(vres0m8, *(pCoeffs + j), vwadd_vx_i16m4(vx, 0 ,l), l);
+        vx = vslide1down_vx_i8m2(vx, *(pState + j), l);
+      }
+      vse8_v_i8m2(pOut, vnclip_wx_i8m2(vnsra_wx_i16m4(vres0m8, 7, l), 0, l), l);
+      pOut += l;
+    }
+    /* Processing is complete.
+       Now copy the last numTaps - 1 samples to the start of the state buffer.
+       This prepares the state buffer for the next function call. */
+
+    /* Points to the start of the state buffer */
+    pStateCurnt = S->pState;
+
+    /* Copy data */
+    riscv_copy_q7(pState, pStateCurnt, numTaps - 1);
+#else
+
+#if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 output values simultaneously.
    * The variables acc0 ... acc3 hold output values that are being computed:
@@ -255,29 +287,12 @@ void riscv_fir_q7(
     pb = pCoeffs;
 
     i = numTaps;
-#if defined (RISCV_MATH_VECTOR)
-    uint32_t vblkCnt = numTaps;                               /* Loop counter */
-    size_t l;
-    vint16m8_t vx, vy;
-    vint32m1_t temp00m1;
-    l = vsetvl_e32m1(1);
-    temp00m1 = vmv_v_x_i32m1(0, l);
-    for (; (l = vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vwadd_vx_i16m8(vle8_v_i8m4(px, l), 0, l);
-      px += l;
-      vy = vwadd_vx_i16m8(vle8_v_i8m4(pb, l), 0, l);
-      pb += l;
-      temp00m1 = vwredsum_vs_i16m8_i32m1(temp00m1, vmul_vv_i16m8(vx, vy, l), temp00m1, l);
-    }
-    acc0 +=vmv_x_s_i32m1_i32(temp00m1);
-#else
     /* Perform the multiply-accumulates */
     while (i > 0U)
     {
       acc0 += (q15_t) * (px++) * (*(pb++));
       i--;
     }
-#endif /* defined (RISCV_MATH_VECTOR) */
 
     /* The result is in 2.14 format. Convert to 1.7
        Then store the output in the destination buffer. */
@@ -332,7 +347,7 @@ void riscv_fir_q7(
     /* Decrement the loop counter */
     tapCnt--;
   }
-
+#endif /* defined (RISCV_MATH_VECTOR) */
 }
 
 /**
