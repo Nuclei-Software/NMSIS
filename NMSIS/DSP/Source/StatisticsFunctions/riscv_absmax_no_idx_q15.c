@@ -45,7 +45,7 @@
   @param[out]    pResult    maximum value returned here
   @return        none
  */
-#if defined(RISCV_MATH_DSP)
+#if defined(RISCV_MATH_DSP) && !defined(RISCV_MATH_VECTOR)
 void riscv_absmax_no_idx_q15(
   const q15_t * pSrc,
         uint32_t blockSize,

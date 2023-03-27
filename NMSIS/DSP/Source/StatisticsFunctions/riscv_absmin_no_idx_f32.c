@@ -49,7 +49,7 @@
   @return        none
  */
 
-#if defined(RISCV_MATH_LOOPUNROLL)
+#if defined(RISCV_MATH_LOOPUNROLL) && !defined(RISCV_MATH_VECTOR)
 void riscv_absmin_no_idx_f32(
   const float32_t * pSrc,
         uint32_t blockSize,

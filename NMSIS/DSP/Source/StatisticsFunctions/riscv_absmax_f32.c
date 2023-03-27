@@ -54,7 +54,7 @@
   @param[out]    pIndex     index of maximum value returned here
   @return        none
  */
-#if defined(RISCV_MATH_LOOPUNROLL)
+#if defined(RISCV_MATH_LOOPUNROLL) && !defined(RISCV_MATH_VECTOR)
 void riscv_absmax_f32(
   const float32_t * pSrc,
         uint32_t blockSize,
@@ -154,7 +154,6 @@ void riscv_absmax_f32(
 
 #if defined(RISCV_MATH_VECTOR)
     blkCnt = blockSize;
-    uint32_t temp_index = 0;
     float32_t temp_max;
     vbool4_t mask;
     unsigned long last_suf = 0, temp_index = 0;
@@ -173,7 +172,7 @@ void riscv_absmax_f32(
         if (temp_max > out) {
             out = temp_max;
             mask = vmfeq_vf_f32m8_b4(v_x, temp_max, l);
-            temp_index = vfirst_m_b1(mask, l);
+            temp_index = vfirst_m_b4(mask, l);
             outIndex = last_suf + temp_index;
         }
         last_suf += l;

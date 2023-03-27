@@ -57,7 +57,7 @@
   @return        none
  */
 
-#if defined(RISCV_MATH_LOOPUNROLL)
+#if defined(RISCV_MATH_LOOPUNROLL) && !defined(RISCV_MATH_VECTOR)
 void riscv_absmin_f32(
   const float32_t * pSrc,
         uint32_t blockSize,
@@ -175,7 +175,7 @@ void riscv_absmin_f32(
         if (temp_min < out) {
             out = temp_min;
             mask = vmfeq_vf_f32m8_b4(v_x, temp_min, l);
-            temp_index = vfirst_m_b1(mask, l);
+            temp_index = vfirst_m_b4(mask, l);
             outIndex = last_suf + temp_index;
         }
         last_suf += l;

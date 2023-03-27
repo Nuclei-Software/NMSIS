@@ -46,7 +46,7 @@
   @return        none
  */
 
-#if defined(RISCV_MATH_DSP)
+#if defined(RISCV_MATH_DSP) && !defined(RISCV_MATH_VECTOR)
 void riscv_absmax_no_idx_q7(
   const q7_t * pSrc,
         uint32_t blockSize,

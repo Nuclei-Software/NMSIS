@@ -47,7 +47,7 @@
   @param[out]    pIndex     index of minimum value returned here
   @return        none
  */
-#if defined(RISCV_MATH_DSP)
+#if defined(RISCV_MATH_DSP) && !defined(RISCV_MATH_VECTOR)
 void riscv_absmin_q7(
   const q7_t * pSrc,
         uint32_t blockSize,

@@ -55,8 +55,6 @@ void riscv_absmax_f64(
         float64_t maxVal, out;                         /* Temporary variables to store the output value. */
         uint32_t blkCnt, outIndex;                     /* Loop counter */
 
-
-
   /* Initialise index value to zero. */
   outIndex = 0U;
 

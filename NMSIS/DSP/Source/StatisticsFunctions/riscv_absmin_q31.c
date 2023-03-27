@@ -48,7 +48,7 @@
   @return        none
  */
 
-#if defined(RISCV_MATH_DSP)
+#if defined(RISCV_MATH_DSP) && !defined(RISCV_MATH_VECTOR)
 void riscv_absmin_q31(
   const q31_t * pSrc,
         uint32_t blockSize,
