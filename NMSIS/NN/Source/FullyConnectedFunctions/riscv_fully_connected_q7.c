@@ -77,88 +77,52 @@ riscv_nmsis_nn_status riscv_fully_connected_q7(const q7_t *pV,
 {
 #if defined (RISCV_MATH_VECTOR)
     (void)vec_buffer;
-    int i, j;
-    uint16_t rowCnt = num_of_rows / 0x3;
-    q7_t *pO = pOut;
-
-    q31_t sum, sum2, sum3;
-    const q7_t *pA, *pB, *pB2, *pB3;
-    int32_t blkCnt;
-    vint8m4_t a8m4, b8m4, c8m4, d8m4;
-    vint32m1_t v_sum, v_sum2, v_sum3;
+    const q7_t *pM1 = pM;
+    const q7_t *pInVec = pV;
+    const q7_t *qbias = bias;
+    q7_t *px = pOut;
+    uint16_t ii, jj;
+    uint16_t numRows = num_of_rows;
+    uint16_t numCols = dim_vec;
+    uint16_t colCnt;
     size_t l;
+    ptrdiff_t bstride = 1;       //  8bit/8bit = 1
+    vint32m8_t vres0m8;
+    vint8m2_t va0m2, va1m2, va2m2, va3m2;
 
-    pA = pV;
-    pB = pM;
-    pB3 = pB;
-    for (i = 0; i < rowCnt; i++)
-    {
-        sum = ((q31_t)(*bias++) << bias_shift) + NN_ROUND(out_shift);
-        sum2 = ((q31_t)(*bias++) << bias_shift) + NN_ROUND(out_shift);
-        sum3 = ((q31_t)(*bias++) << bias_shift) + NN_ROUND(out_shift);
-        pA = pV;
-        pB = pB3;
-        pB2 = pB + dim_vec;
-        pB3 = pB2 + dim_vec;
-        blkCnt = dim_vec & (~RVV_OPT_THRESHOLD);                             /* Loop counter */
-        l = vsetvl_e32m1(1);
-        v_sum = vmv_v_x_i32m1(0, l);
-        v_sum2 = vmv_v_x_i32m1(0, l);
-        v_sum3 = vmv_v_x_i32m1(0, l);
-        for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l)
-        {
-            a8m4 = vle8_v_i8m4(pA, l);
-            pA += l;
-            b8m4 = vle8_v_i8m4(pB, l);
-            pB += l;
-            c8m4 = vle8_v_i8m4(pB2, l);
-            pB2 += l;
-            d8m4 = vle8_v_i8m4(pB3, l);
-            pB3 += l;
-            v_sum = vwredsum_vs_i16m8_i32m1(v_sum, vwmul_vv_i16m8(a8m4, b8m4, l), v_sum, l);
-            v_sum2 = vwredsum_vs_i16m8_i32m1(v_sum2, vwmul_vv_i16m8(a8m4, c8m4, l), v_sum2, l);
-            v_sum3 = vwredsum_vs_i16m8_i32m1(v_sum3, vwmul_vv_i16m8(a8m4, d8m4, l), v_sum3, l);
-        }
-        sum += vmv_x_s_i32m1_i32(v_sum);
-        sum2 += vmv_x_s_i32m1_i32(v_sum2);
-        sum3 += vmv_x_s_i32m1_i32(v_sum3);
-        j = dim_vec & RVV_OPT_THRESHOLD;
-        while (j--)
-        {
-            sum += *pA * *(pB++);
-            sum2 += *pA * *(pB2++);
-            sum3 += *pA * *(pB3++);
-            pA++;
-        }
-        *pO++ = (q7_t)__SSAT((sum >> out_shift), 8);
-        *pO++ = (q7_t)__SSAT((sum2 >> out_shift), 8);
-        *pO++ = (q7_t)__SSAT((sum3 >> out_shift), 8);
-    }
+    for (jj = numRows; jj > 0; jj -= l) {
+      l = vsetvl_e32m8(jj);
+      vres0m8 = vsll_vx_i32m8(vsext_vf4_i32m8(vle8_v_i8m2(qbias, l), l), bias_shift, l);
+      vres0m8 = vadd_vx_i32m8(vres0m8, NN_ROUND(out_shift), l);
+      qbias += l;
+      pInVec = pV;
+      pM1 = pM;
+      colCnt = numCols;
+      for (ii = 0; ii < colCnt / 4; ii++) {
+        vlsseg4e8_v_i8m2 (&va0m2, &va1m2, &va2m2, &va3m2, pM1, numCols, l);
+        vres0m8 = vwmacc_vx_i32m8(vres0m8, *(pInVec++), vwadd_vx_i16m4(va0m2, 0, l), l);
+        vres0m8 = vwmacc_vx_i32m8(vres0m8, *(pInVec++), vwadd_vx_i16m4(va1m2, 0, l), l);
+        vres0m8 = vwmacc_vx_i32m8(vres0m8, *(pInVec++), vwadd_vx_i16m4(va2m2, 0, l), l);
+        vres0m8 = vwmacc_vx_i32m8(vres0m8, *(pInVec++), vwadd_vx_i16m4(va3m2, 0, l), l);
+        pM1 += 4;
+      }
+      colCnt = numCols & 0x3;
 
-    rowCnt = num_of_rows % 0x3;
-    while (rowCnt) {
-        sum = ((q31_t)(*bias++) << bias_shift) + NN_ROUND(out_shift);
-        pA = pV;
-        blkCnt = dim_vec & (~RVV_OPT_THRESHOLD);                               /* Loop counter */
-        l = vsetvl_e32m1(1);
-        v_sum = vmv_v_x_i32m1(0, l);
-        for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l)
-        {
-            a8m4 = vle8_v_i8m4(pA, l);
-            pA += l;
-            b8m4 = vle8_v_i8m4(pB3, l);
-            pB3 += l;
-            v_sum = vwredsum_vs_i16m8_i32m1(v_sum, vwmul_vv_i16m8(a8m4, b8m4, l), v_sum, l);
-        }
-        sum += vmv_x_s_i32m1_i32(v_sum);
-        j = dim_vec & RVV_OPT_THRESHOLD;
-        while (j--)
-        {
-            sum += *(pA++) * *(pB3++);
-        }
-        *pO++ = (q7_t)__SSAT((sum >> out_shift), 8);
+      for (ii = 0; ii < colCnt / 2; ii++) {
+        vlsseg2e8_v_i8m2(&va0m2, &va1m2, pM1, numCols, l);
+        vres0m8 = vwmacc_vx_i32m8(vres0m8, *(pInVec++), vwadd_vx_i16m4(va0m2, 0, l), l);
+        vres0m8 = vwmacc_vx_i32m8(vres0m8, *(pInVec++), vwadd_vx_i16m4(va1m2, 0, l), l);
+        pM1 += 2;
+      }
 
-        rowCnt--;
+      if (numCols & 0x1) {
+          va0m2 = vlse8_v_i8m2(pM1, numCols, l);
+          vres0m8 = vwmacc_vx_i32m8(vres0m8, *(pInVec++), vwadd_vx_i16m4(va0m2, 0, l), l);
+      }
+      va0m2 = vnclip_wx_i8m2(vnsra_wx_i16m4(vres0m8, out_shift, l), 0, l);
+      vse8_v_i8m2(px, va0m2, l);
+      px += l;
+      pM += l * numCols;
     }
 #elif defined (RISCV_MATH_DSP)
     /* Run the following code for RISC-V Core with DSP enabled */
