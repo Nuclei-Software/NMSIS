@@ -80,17 +80,14 @@ void riscv_nn_activations_direct_q15(q15_t *data, uint16_t size, uint16_t int_wi
     for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
         vx = vle16_v_i16m4(pIn, l);
         pIn += l;
-        frac = vand_vx_i32m8(vwadd_vx_i32m8(vx, 0, l), (int32_t)bit_mask, l);
         vxshit = vnsra_wx_i8m2(vx, shift_size, l);
-        mask = vmseq_vx_i8m2_b4(vxshit, 0x7f, l);
         bindex = vreinterpret_v_i8m2_u8m2(vxshit);
-        val = vloxei16_v_i16m4(lookup_table, vwmulu_vx_u16m4(bindex, 2, l), l);
+        vloxseg2ei16_v_i16m4 (&val, &val2, lookup_table, vwmulu_vx_u16m4(bindex, 2, l), l);
+        frac = vand_vx_i32m8(vwadd_vx_i32m8(vx, 0, l), (int32_t)bit_mask, l);
         valm8 = vmul_vv_i32m8(vwadd_vx_i32m8(val, 0, l), vrsub_vx_i32m8(frac, (int32_t)full_frac, l), l);
-        bindex = vadd_vx_u8m2(bindex, 1, l);
-        val2 = vloxei16_v_i16m4(lookup_table, vwmulu_vx_u16m4(bindex, 2, l), l);
-        val2m8 = vwadd_vx_i32m8(val2, 0, l);
-        val2m8 = vmul_vv_i32m8(val2m8, frac, l);
+        val2m8 = vmul_vv_i32m8(vwadd_vx_i32m8(val2, 0, l), frac, l);
         val2 = vnsra_wx_i16m4(vadd_vv_i32m8(valm8, val2m8, l), shift_size, l);
+        mask = vmseq_vx_i8m2_b4(vxshit, 0x7f, l);
         vx = vmerge_vvm_i16m4 (mask, val2, val, l);
         vse16_v_i16m4(pOut, vx, l);
         pOut += l;

@@ -66,7 +66,31 @@ riscv_nmsis_nn_status riscv_elementwise_mul_s8(const int8_t *input_1_vect,
     int32_t input_2;
     int32_t mul_res;
 
-#if defined(RISCV_MATH_DSP)
+#if defined(RISCV_MATH_VECTOR)
+    int32_t blkCnt = block_size & (~RVV_OPT_THRESHOLD); /* Loop counter */
+    size_t l;
+    vint32m4_t input_1_m4;
+    vint32m4_t input_2_m4;
+    vint32m4_t sum0m4;
+
+    for (; (l = vsetvl_e8m1(blkCnt)) > 0; blkCnt -= l) {
+        input_1_m4 = vadd_vx_i32m4(vsext_vf4_i32m4(vle8_v_i8m1(input_1_vect, l), l), input_1_offset, l);
+        input_1_vect += l;
+        input_2_m4 = vadd_vx_i32m4(vsext_vf4_i32m4(vle8_v_i8m1(input_2_vect, l), l), input_2_offset, l);
+        input_2_vect += l;
+        sum0m4 = vmul_vv_i32m4(input_1_m4, input_2_m4, l);
+        /* mul_res = riscv_nn_requantize(mul_res, out_mult, out_shift); */
+        sum0m4 = riscv_nn_requantize_m4_rvv(sum0m4, l, out_mult, out_shift);
+
+        sum0m4 = vadd_vx_i32m4(sum0m4, out_offset, l);
+        sum0m4 = vmax_vx_i32m4(sum0m4, out_activation_min, l);
+        sum0m4 = vmin_vx_i32m4(sum0m4, out_activation_max, l);
+        vse8_v_i8m1(output, vnsra_wx_i8m1(vnsra_wx_i16m2(sum0m4, 0, l), 0, l), l);
+        output += l;
+    }
+    loop_count = block_size & RVV_OPT_THRESHOLD;
+
+#elif defined(RISCV_MATH_DSP)
     int32_t a_1, b_1, a_2, b_2;
 
     int32_t offset_1_packed, offset_2_packed;
@@ -140,7 +164,7 @@ riscv_nmsis_nn_status riscv_elementwise_mul_s8(const int8_t *input_1_vect,
     loop_count = block_size & 0x3;
 #else
     loop_count = block_size;
-#endif /* defined(RISCV_MATH_DSP) */
+#endif /* defined(RISCV_MATH_VECTOR) */
 
     while (loop_count > 0)
     {

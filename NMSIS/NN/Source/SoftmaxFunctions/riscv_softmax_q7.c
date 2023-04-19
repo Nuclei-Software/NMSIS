@@ -68,19 +68,18 @@ void riscv_softmax_q7(const q7_t *vec_in, const uint16_t dim_vec, q7_t *p_out)
     q15_t base;
     base = -128;
 #if defined(RISCV_MATH_VECTOR)
-    q7_t temp_max;
     uint16_t blkCnt = dim_vec & (~RVV_OPT_THRESHOLD);
     int16_t tmp_i = blkCnt;
     size_t l;
     const q7_t *px = vec_in;
-    vint8m8_t v_x;
+    vint8m8_t vx;
     vint8m1_t vtemp;
     l = vsetvl_e8m1(1);
     vtemp = vmv_v_x_i8m1(base, l);
     for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
-        v_x = vle8_v_i8m8(px, l);
+        vx = vle8_v_i8m8(px, l);
         px += l;
-        vtemp = vredmax_vs_i8m8_i8m1(vtemp, v_x, vtemp, l);
+        vtemp = vredmax_vs_i8m8_i8m1(vtemp, vx, vtemp, l);
     }
     base = vmv_x_s_i8m1_i8(vtemp);
     i = tmp_i;

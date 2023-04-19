@@ -1178,6 +1178,56 @@ __STATIC_FORCEINLINE q31_t riscv_nn_requantize(const q31_t val, const q31_t mult
     return riscv_nn_divide_by_power_of_two(riscv_nn_doubling_high_mult_no_sat(val * (1 << LEFT_SHIFT(shift)), multiplier),
                                          RIGHT_SHIFT(shift));
 }
+
+#if defined(RISCV_MATH_VECTOR)
+__STATIC_FORCEINLINE vint32m4_t riscv_nn_requantize_m4_rvv(vint32m4_t valm4, size_t l, const q31_t multiplier, const q31_t shift)
+{
+    if (shift >= 0) {
+        valm4 = vsmul_vx_i32m4(vsll_vx_i32m4(valm4, shift, l), multiplier, l);
+    } else {
+        q31_t exponent = -shift;
+        q31_t remainder_mask = (1 << exponent) - 1;
+        q31_t threshold = remainder_mask >> 1;
+        vint32m4_t b32m4, c32m4;
+        valm4 = vsmul_vx_i32m4(valm4, multiplier, l);
+        b32m4 = vsra_vx_i32m4(valm4, exponent, l);
+        valm4 = vand_vx_i32m4(valm4, remainder_mask, l);
+
+        c32m4 = vmv_v_x_i32m4(threshold, l);
+        vbool8_t mask = vmslt_vx_i32m4_b8(b32m4, 0, l);
+        c32m4 = vadd_vx_i32m4_m(mask, c32m4, c32m4, 1, l);
+
+        mask = vmsgt_vv_i32m4_b8(valm4, c32m4, l);
+        valm4 = vadd_vx_i32m4_m(mask, b32m4, b32m4, 1, l);
+    }
+    return valm4;
+}
+
+__STATIC_FORCEINLINE vint32m8_t riscv_nn_requantize_m8_rvv(vint32m8_t valm8, size_t l, const q31_t multiplier, const q31_t shift)
+{
+    if (shift >= 0) {
+        valm8 = vsmul_vx_i32m8(vsll_vx_i32m8(valm8, shift, l), multiplier, l);
+    } else {
+        q31_t exponent = -shift;
+        q31_t remainder_mask = (1 << exponent) - 1;
+        q31_t threshold = remainder_mask >> 1;
+        vint32m8_t b32m8, c32m8;
+        valm8 = vsmul_vx_i32m8(valm8, multiplier, l);
+        b32m8 = vsra_vx_i32m8(valm8, exponent, l);
+        valm8 = vand_vx_i32m8(valm8, remainder_mask, l);
+
+        c32m8 = vmv_v_x_i32m8(threshold, l);
+        vbool4_t mask = vmslt_vx_i32m8_b4(b32m8, 0, l);
+        c32m8 = vadd_vx_i32m8_m(mask, c32m8, c32m8, 1, l);
+
+        mask = vmsgt_vv_i32m8_b4(valm8, c32m8, l);
+        valm8 = vadd_vx_i32m8_m(mask, b32m8, b32m8, 1, l);
+    }
+    return valm8;
+}
+
+#endif
+
 /**
  * @brief           Requantize a given 64 bit value.
  * @param[in]       val                 Value to be requantized in the range {-(1<<47)} to {(1<<47) - 1}

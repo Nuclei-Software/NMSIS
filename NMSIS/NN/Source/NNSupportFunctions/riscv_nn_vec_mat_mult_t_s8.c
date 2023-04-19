@@ -63,110 +63,39 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const q7_t *lhs,
 {
     (void)rhs_offset;
 #if defined (RISCV_MATH_VECTOR)
-	for (int32_t rhs_rows_idx = 0; rhs_rows_idx < rhs_rows; rhs_rows_idx += 2)
-	{
-		const q7_t *lhs_ptr = lhs;
-		const q7_t *rhs_ptr = rhs;
+    uint32_t i, j;
+    size_t l;
+    const int loop_cnt = rhs_rows;
+    vint8m2_t resm2;
+    vint32m8_t rhs_value, lhs_value, vres0m8;
 
-		q31_t res00 = 0;
-		q31_t res01 = 0;
+    for (i = loop_cnt; i > 0; i -= l) {
+      const q7_t *lhs_ptr = &lhs[0];
+      const q7_t *rhs_ptr = &rhs[0];
+      l = vsetvl_e8m2(i);
+      if (bias) {
+          vres0m8 = vle32_v_i32m8(bias, l);
+          bias += l;
+      } else {
+          vres0m8 = vmv_v_x_i32m8(0, l);
+      }
+      for (j = 0; j < rhs_cols; j++) {
+        rhs_value = vadd_vx_i32m8(vsext_vf4_i32m8(vlse8_v_i8m2(rhs_ptr, rhs_cols, l), l), 0, l);
+        rhs_ptr += 1;
+        vres0m8 = vmacc_vx_i32m8(vres0m8, *(lhs_ptr + j) + lhs_offset, rhs_value, l);
+      }
 
-		if (bias)
-		{
-			res00 = *bias++;
-			res01 = *bias++;
-		}
+      /* res00 = riscv_nn_requantize(res00, dst_multiplier, dst_shift); */
+      vres0m8 = riscv_nn_requantize_m8_rvv(vres0m8, l, dst_multiplier, dst_shift);
+      vres0m8 = vadd_vx_i32m8(vres0m8, dst_offset, l);
+      vres0m8 = vmin_vx_i32m8(vmax_vx_i32m8(vres0m8, activation_min, l), activation_max, l);
 
-		int32_t vblkCnt = rhs_cols;    /* Loop counter */
-		size_t l;
-		vint8m2_t vx, vy, vz;
-		vint32m8_t rhs_value0, rhs_value1, lhs_value;
-		vint32m1_t temp00m1;
-		const q7_t *px = rhs_ptr;
-		const q7_t *py = rhs_ptr + rhs_cols;
-		const q7_t *pz = lhs_ptr;
-
-		l = vsetvl_e32m1(1);
-		temp00m1 = vmv_v_x_i32m1(0, l);
-		for (; (l = vsetvl_e8m2(vblkCnt)) > 0; vblkCnt -= l) {
-			vx = vle8_v_i8m2(px, l);
-			px += l;
-			vy = vle8_v_i8m2(py, l);
-			py += l;
-			vz = vle8_v_i8m2(pz, l);
-			pz += l;
-
-			rhs_value0 = vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vx, 0, l), 0, l), rhs_offset, l);
-			rhs_value1 = vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vy, 0, l), 0, l), rhs_offset, l);
-			lhs_value = vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vz, 0, l), 0, l), lhs_offset, l);
-
-			res00 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vmul_vv_i32m8(lhs_value, rhs_value0, l), temp00m1, l));
-			res01 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(temp00m1, vmul_vv_i32m8(lhs_value, rhs_value1, l), temp00m1, l));
-		}
-
-		// Quantize down
-		res00 = riscv_nn_requantize(res00, dst_multiplier, dst_shift);
-		res01 = riscv_nn_requantize(res01, dst_multiplier, dst_shift);
-		// Add offset
-		res00 += dst_offset;
-		res01 += dst_offset;
-
-		// Clamp the result
-		res00 = CLAMP(res00, activation_max, activation_min);
-		res01 = CLAMP(res01, activation_max, activation_min);
-		*dst = (int8_t)res00;
-		*(dst + address_offset) = (int8_t)res01;
-		dst += 2 * address_offset;
-		rhs += 2 * rhs_cols;
-	}
-
-	if (rhs_rows & 0x1)
-	{
-		const q7_t *lhs_ptr = lhs;
-		const q7_t *rhs_ptr = rhs;
-
-		q31_t res00 = 0;
-		if (bias)
-		{
-			res00 = *bias++;
-		}
-
-		uint32_t vblkCnt = rhs_cols;    /* Loop counter */
-		size_t l;
-		vint8m2_t vx, vz;
-		vint32m8_t rhs_value0, lhs_value;
-		vint32m1_t temp00m1;
-		const q7_t *px = rhs_ptr;
-		const q7_t *pz = lhs_ptr;
-
-		l = vsetvl_e32m1(1);
-		temp00m1 = vmv_v_x_i32m1(0, l);
-		for (; (l = vsetvl_e8m2(vblkCnt)) > 0; vblkCnt -= l) {
-			vx = vle8_v_i8m2(px, l);
-			px += l;
-			vz = vle8_v_i8m2(pz, l);
-			pz += l;
-
-			rhs_value0 = vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vx, 0, l), 0, l), rhs_offset, l);
-			lhs_value = vadd_vx_i32m8(vwadd_vx_i32m8(vwadd_vx_i16m4(vz, 0, l), 0, l), lhs_offset, l);
-
-			temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vmul_vv_i32m8(lhs_value, rhs_value0, l), temp00m1, l);
-		}
-		res00 += (q31_t)vmv_x_s_i32m1_i32(temp00m1);
-
-		// Quantize down
-		res00 = riscv_nn_requantize(res00, dst_multiplier, dst_shift);
-
-		// Add offset
-		res00 += dst_offset;
-
-		// Clamp the result
-		res00 = CLAMP(res00, activation_max, activation_min);
-
-		*dst = (int8_t)res00;
-		dst += address_offset;
-	}
-
+     // resm2 = vncvt_x_x_w_i8m2(vncvt_x_x_w_i16m4(vres0m8, l), l);
+      resm2 = vnsra_wx_i8m2(vnsra_wx_i16m4(vres0m8, 0, l), 0, l);
+      vsse8_v_i8m2(dst, address_offset, resm2, l);
+      dst += address_offset * l;
+      rhs += rhs_cols * l;
+  }
 #elif defined(RISCV_MATH_DSP)
     const int32_t row_loop_cnt = rhs_rows / 2;
     const int16_t lhs_offset_s16 = (int16_t)lhs_offset;
