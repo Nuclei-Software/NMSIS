@@ -60,7 +60,7 @@
  * @param[in]       *pSrcA points to the first input matrix structure
  * @param[in]       *pSrcB points to the second input matrix structure
  * @param[out]      *pDst points to output matrix structure
- * @return		The function returns either
+ * @return     		The function returns either
  * <code>RISCV_MATH_SIZE_MISMATCH</code> or <code>RISCV_MATH_SUCCESS</code> based on the outcome of size checking.
  */
 

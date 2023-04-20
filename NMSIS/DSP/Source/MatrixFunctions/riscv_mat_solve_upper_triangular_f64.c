@@ -129,7 +129,7 @@ riscv_status status;                             /* status of matrix inverse */
             }
 #endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) && (defined (__riscv_flen) && (__riscv_flen == 64)) */
 
-            if (ut_row[i]==0.0)
+            if (ut_row[i]==0.0L)
             {
               return(RISCV_MATH_SINGULAR);
             }

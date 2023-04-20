@@ -3,8 +3,8 @@
  * Title:        riscv_mse_f64.c
  * Description:  Double floating point mean square error
  *
- * $Date:        05 April 2022
- * $Revision:    V1.10.0
+ * $Date:        10 August 2022
+ * $Revision:    V1.10.1
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
@@ -54,8 +54,8 @@
 void riscv_mse_f64(
     const float64_t * pSrcA,
     const float64_t * pSrcB,
-    uint32_t    blockSize,
-    float64_t * result)
+    uint32_t blockSize,
+    float64_t * pResult)
 
 {
   uint32_t blkCnt;                               /* Loop counter */
@@ -102,8 +102,9 @@ void riscv_mse_f64(
   }
 
   /* Store result in destination buffer */
-  *result = sum / blockSize;
+    *pResult = sum / blockSize;
 }
+
 
 
 /**

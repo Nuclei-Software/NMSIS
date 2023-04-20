@@ -3,8 +3,8 @@
  * Title:        riscv_mat_cholesky_f64.c
  * Description:  Floating-point Cholesky decomposition
  *
- * $Date:        23 April 2021
- * $Revision:    V1.9.0
+ * $Date:        10 August 2022
+ * $Revision:    V1.9.1
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
@@ -28,6 +28,7 @@
  */
 
 #include "dsp/matrix_functions.h"
+#include "dsp/matrix_utils.h"
 
 /**
   @ingroup groupMatrix
@@ -49,7 +50,7 @@
                    - \ref RISCV_MATH_DECOMPOSITION_FAILURE      : Input matrix cannot be decomposed
    * @par
    * If the matrix is ill conditioned or only semi-definite, then it is better using the LDL^t decomposition.
-   * The decomposition of A is returning a lower triangular matrix U such that A = U U^t
+   * The decomposition of A is returning a lower triangular matrix L such that A = L L^t
    */
 
 
@@ -97,25 +98,23 @@ riscv_status riscv_mat_cholesky_f64(
           }
        }
 
-       if (pG[i * n + i] <= 0.0)
+       if (pG[i * n + i] <= 0.0L)
        {
          return(RISCV_MATH_DECOMPOSITION_FAILURE);
        }
 
-       invSqrtVj = 1.0/sqrt(pG[i * n + i]);
-       for(j=i ; j < n ; j++)
-       {
-         pG[j * n + i] = pG[j * n + i] * invSqrtVj ;
-       }
+            invSqrtVj = 1.0L/sqrt(pG[i * n + i]);
+            SCALE_COL_F64(pDst,i,invSqrtVj,i);
+
+        }
+
+        status = RISCV_MATH_SUCCESS;
+
     }
 
-    status = RISCV_MATH_SUCCESS;
 
-  }
-
-
-  /* Return to application */
-  return (status);
+    /* Return to application */
+    return (status);
 }
 
 /**

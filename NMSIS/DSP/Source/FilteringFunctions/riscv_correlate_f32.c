@@ -47,16 +47,20 @@
   @par           Algorithm
                    Let <code>a[n]</code> and <code>b[n]</code> be sequences of length <code>srcALen</code> and <code>srcBLen</code> samples respectively.
                    The convolution of the two signals is denoted by
-  <pre>
-      c[n] = a[n] * b[n]
-  </pre>
+                   \f[
+                   c[n] = a[n] * b[n]
+                   \f]
+
                    In correlation, one of the signals is flipped in time
-  <pre>
-       c[n] = a[n] * b[-n]
-  </pre>
+
+                   \f[
+                   c[n] = a[n] * b[-n]
+                   \f]
   @par
                    and this is mathematically defined as
-                   \image html CorrelateEquation.png
+                   \f[
+                   c[n] = \sum_{k=0}^{srcALen} a[k] b[k-n]
+                   \f]
   @par
                    The <code>pSrcA</code> points to the first input vector of length <code>srcALen</code> and <code>pSrcB</code> points to the second input vector of length <code>srcBLen</code>.
                    The result <code>c[n]</code> is of length <code>2 * max(srcALen, srcBLen) - 1</code> and is defined over the interval <code>n=0, 1, 2, ..., (2 * max(srcALen, srcBLen) - 2)</code>.
@@ -77,6 +81,11 @@
   @par           Opt Versions
                    Opt versions are supported for Q15 and Q7.  Design uses internal scratch buffer for getting good optimisation.
                    These versions are optimised in cycles and consumes more memory (Scratch memory) compared to Q15 and Q7 versions of correlate
+
+  @par           Long versions:
+                   For convolution of long vectors, those functions are
+                   no more adapted and will be very slow.
+                   An implementation based upon FFTs should be used.
  */
 
 /**

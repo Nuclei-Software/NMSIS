@@ -44,7 +44,8 @@ void riscv_bitreversal_64(
   const uint16_t bitRevLen,
   const uint16_t *pBitRevTab)
 {
-  uint64_t a, b, i, tmp;
+  uint64_t a, b, tmp;
+  uint32_t i;
 
   for (i = 0; i < bitRevLen; )
   {
@@ -113,7 +114,8 @@ void riscv_bitreversal_16(
   const uint16_t bitRevLen,
   const uint16_t *pBitRevTab)
 {
-  uint16_t a, b, i, tmp;
+  uint16_t a, b, tmp;
+  uint32_t i;
 
   for (i = 0; i < bitRevLen; )
   {

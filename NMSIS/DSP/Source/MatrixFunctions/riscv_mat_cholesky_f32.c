@@ -28,6 +28,7 @@
  */
 
 #include "dsp/matrix_functions.h"
+#include "dsp/matrix_utils.h"
 
 /**
   @ingroup groupMatrix
@@ -36,7 +37,7 @@
 /**
   @defgroup MatrixChol Cholesky and LDLT decompositions
 
-  Computes the Cholesky or LDL^t decomposition of a matrix.
+  Computes the Cholesky or LL^t decomposition of a matrix.
 
 
   If the input matrix does not have a decomposition, then the
@@ -59,7 +60,7 @@
                    - \ref RISCV_MATH_DECOMPOSITION_FAILURE      : Input matrix cannot be decomposed
    * @par
    * If the matrix is ill conditioned or only semi-definite, then it is better using the LDL^t decomposition.
-   * The decomposition of A is returning a lower triangular matrix U such that A = U U^t
+   * The decomposition of A is returning a lower triangular matrix L such that A = L L^t
    */
 
 riscv_status riscv_mat_cholesky_f32(
@@ -111,10 +112,8 @@ riscv_status riscv_mat_cholesky_f32(
        }
 
        invSqrtVj = 1.0f/sqrtf(pG[i * n + i]);
-       for (j = i ; j < n ; j++)
-       {
-         pG[j * n + i] = pG[j * n + i] * invSqrtVj ;
-       }
+       SCALE_COL_F32(pDst,i,invSqrtVj,i);
+
     }
 
     status = RISCV_MATH_SUCCESS;

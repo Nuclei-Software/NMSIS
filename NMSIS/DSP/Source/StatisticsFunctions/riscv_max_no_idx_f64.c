@@ -3,8 +3,8 @@
  * Title:        riscv_max_no_idx_f64.c
  * Description:  Maximum value of a floating-point vector without returning the index
  *
- * $Date:        13 September 2021
- * $Revision:    V1.10.0
+ * $Date:        10 August 2022
+ * $Revision:    V1.10.1
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */

@@ -28,31 +28,9 @@
  */
 
 #include "dsp/matrix_functions.h"
+#include "dsp/matrix_utils.h"
 
 
-
-
-
-
-/// @private
-#define SWAP_ROWS_F32(A,i,j)     \
-  for(int w=0; w < n; w++)    \
-  {                          \
-     float32_t tmp;          \
-     tmp = A[i*n + w];       \
-     A[i*n + w] = A[j*n + w];\
-     A[j*n + w] = tmp;       \
-  }
-
-/// @private
-#define SWAP_COLS_F32(A,i,j)     \
-  for(int w=0; w < n; w++)    \
-  {                          \
-     float32_t tmp;          \
-     tmp = A[w*n + i];       \
-     A[w*n + i] = A[w*n + j];\
-     A[w*n + j] = tmp;       \
-  }
 
 /**
   @ingroup groupMatrix
@@ -127,7 +105,6 @@ riscv_status riscv_mat_ldlt_f32(
 
 
         int r;
-        int w;
 
         for(r=k;r<n;r++)
         {
@@ -140,8 +117,8 @@ riscv_status riscv_mat_ldlt_f32(
 
         if(j != k)
         {
-          SWAP_ROWS_F32(pA,k,j);
-          SWAP_COLS_F32(pA,k,j);
+          SWAP_ROWS_F32(pl,0,k,j);
+          SWAP_COLS_F32(pl,0,k,j);
         }
 
 
@@ -156,7 +133,7 @@ riscv_status riscv_mat_ldlt_f32(
             break;
         }
 
-        for(w=k+1;w<n;w++)
+        for(int w=k+1;w<n;w++)
         {
           int x;
           for(x=k+1;x<n;x++)
@@ -165,7 +142,7 @@ riscv_status riscv_mat_ldlt_f32(
           }
         }
 
-        for(w=k+1;w<n;w++)
+        for(int w=k+1;w<n;w++)
         {
                pA[w*n+k] = pA[w*n+k] / a;
         }

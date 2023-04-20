@@ -3,8 +3,8 @@
  * Title:        riscv_logsumexp_f64.c
  * Description:  LogSumExp
  *
- * $Date:        23 April 2021
- * $Revision:    V1.9.0
+ * $Date:        10 August 2022
+ * $Revision:    V1.9.1
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
@@ -52,9 +52,10 @@ float64_t riscv_entropy_f64(const float64_t * pSrcA, uint32_t blockSize)
     float64_t accum, p;
  
     pIn = pSrcA;
-    blkCnt = blockSize;
 
     accum = 0.0;
+
+    blkCnt = blockSize;
 
     while(blkCnt > 0)
     {

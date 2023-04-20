@@ -3,8 +3,8 @@
  * Title:        riscv_logsumexp_f64.c
  * Description:  LogSumExp
  *
- * $Date:        23 April 2021
- * $Revision:    V1.9.0
+ * $Date:        10 August 2022
+ * $Revision:    V1.9.1
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
@@ -46,6 +46,7 @@
  *
  */
 
+
 float64_t riscv_kullback_leibler_f64(const float64_t * pSrcA, const float64_t * pSrcB, uint32_t blockSize)
 {
     const float64_t *pInA, *pInB;
@@ -70,7 +71,6 @@ float64_t riscv_kullback_leibler_f64(const float64_t * pSrcA, const float64_t * 
 
     return(-accum);
 }
-
 /**
  * @} end of Kullback-Leibler group
  */

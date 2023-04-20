@@ -50,3 +50,6 @@
 #include "riscv_sokalmichener_distance.c"
 #include "riscv_sokalsneath_distance.c"
 #include "riscv_yule_distance.c"
+#include "riscv_dtw_distance_f32.c"
+#include "riscv_dtw_path_f32.c"
+#include "riscv_dtw_init_window_q7.c"

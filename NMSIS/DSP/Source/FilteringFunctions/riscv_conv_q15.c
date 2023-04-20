@@ -69,9 +69,9 @@ void riscv_conv_q15(
 #if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
   const q15_t *pIn1;                               /* InputA pointer */
   const q15_t *pIn2;                               /* InputB pointer */
-        q15_t *pOut = pDst;                        /* Output pointer */
-        uint32_t blockSize1, blockSize2, blockSize3;   /* Loop counters */
-        uint32_t j, ii, jj, kk;
+  q15_t *pOut = pDst;                        /* Output pointer */
+  uint32_t blockSize1, blockSize2, blockSize3;   /* Loop counters */
+  uint32_t j, ii, jj, kk;
 
 
   /* The algorithm implementation is based on the lengths of the inputs. */
@@ -259,6 +259,7 @@ void riscv_conv_q15(
   /* For loop unrolling by 4, this stage is divided into two. */
   /* First part of this stage computes the MAC operations less than 4 */
   /* Second part of this stage computes the MAC operations greater than or equal to 4 */
+
   /* The first part of the stage starts here */
   while ((count < 4U) && (blockSize1 > 0U))
   {
@@ -350,6 +351,7 @@ void riscv_conv_q15(
     /* Decrement loop counter */
     blockSize1--;
   }
+
   /* --------------------------
    * Initializations of stage2
    * ------------------------*/
@@ -373,6 +375,7 @@ void riscv_conv_q15(
   /* -------------------
    * Stage2 process
    * ------------------*/
+
   /* Stage2 depends on srcBLen as in this stage srcBLen number of MACS are performed.
    * So, to loop unroll over blockSize2,
    * srcBLen should be greater than or equal to 4 */
@@ -527,8 +530,12 @@ void riscv_conv_q15(
       }
 
       /* Store the result in the accumulator in the destination buffer. */
-      write_q15x2_ia (&pOut, __PKHBT(__SSAT((acc0 >> 15), 16), __SSAT((acc1 >> 15), 16), 16));
-      write_q15x2_ia (&pOut, __PKHBT(__SSAT((acc2 >> 15), 16), __SSAT((acc3 >> 15), 16), 16));
+      int32_t sat0 = __SSAT((acc0 >> 15), 16);
+      int32_t sat1 = __SSAT((acc1 >> 15), 16);
+      int32_t sat2 = __SSAT((acc2 >> 15), 16);
+      int32_t sat3 = __SSAT((acc3 >> 15), 16);
+      write_q15x2_ia (&pOut, __PKHBT(sat0, sat1, 16));
+      write_q15x2_ia (&pOut, __PKHBT(sat2, sat3, 16));
 
       /* Increment the pointer pIn1 index, count by 4 */
       count += 4U;

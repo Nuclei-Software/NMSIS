@@ -40,3 +40,5 @@
 #include "riscv_mat_cholesky_f16.c"
 #include "riscv_mat_solve_upper_triangular_f16.c"
 #include "riscv_mat_solve_lower_triangular_f16.c"
+#include "riscv_mat_qr_f16.c"
+#include "riscv_householder_f16.c"

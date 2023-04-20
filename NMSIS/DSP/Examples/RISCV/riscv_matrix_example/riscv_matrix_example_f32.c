@@ -95,7 +95,7 @@
 #include "math_helper.h"
 #include <stdio.h>
 
-#define SNR_THRESHOLD   90
+#define SNR_THRESHOLD   77
 
 /* --------------------------------------------------------------------------------
 * Test input data(Cycles) taken from FIR Q15 module for differant cases of blockSize

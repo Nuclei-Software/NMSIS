@@ -3,8 +3,8 @@
  * Title:        StatisticsFunctions.c
  * Description:  Combination of all statistics function source files.
  *
- * $Date:        16. March 2020
- * $Revision:    V1.1.0
+ * $Date:        14 July 2022
+ * $Revision:    V1.1.1
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
@@ -45,3 +45,4 @@
 #include "riscv_absmax_no_idx_f16.c"
 #include "riscv_absmin_no_idx_f16.c"
 #include "riscv_mse_f16.c"
+#include "riscv_accumulate_f16.c"

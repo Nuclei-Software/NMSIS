@@ -38,11 +38,6 @@
   @ingroup groupSVM
  */
 
-/**
-  @defgroup sigmoidsvm Sigmoid SVM
-
-  Sigmoid SVM classifier
- */
 
 /**
  * @addtogroup sigmoidsvm

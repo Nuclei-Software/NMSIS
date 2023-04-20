@@ -1,4 +1,5 @@
 #include "ref.h"
+#include "dsp/matrix_utils.h"
 
 void ref_mat_vec_mult_f32(const riscv_matrix_instance_f32 *pSrcMat,
     const float32_t *pVec, float32_t *pDst) {
@@ -124,22 +125,23 @@ riscv_status ref_mat_scale_f32(const riscv_matrix_instance_f32 *pSrc,
     return RISCV_MATH_SUCCESS;
 }
 
-riscv_status ref_mat_inverse_f32(const riscv_matrix_instance_f32 *pSrc,
-                               riscv_matrix_instance_f32 *pDst)
+riscv_status ref_mat_inverse_f32(const riscv_matrix_instance_f32 * pSrc,
+                                riscv_matrix_instance_f32 * pDst)
 {
     float32_t *pIn = pSrc->pData;                  /* input data matrix pointer */
     float32_t *pOut = pDst->pData;                 /* output data matrix pointer */
-    float32_t *pInT1, *pInT2;                      /* Temporary input data matrix pointer */
-    float32_t *pOutT1, *pOutT2;                    /* Temporary output data matrix pointer */
-    float32_t *pPivotRowIn, *pPRT_in, *pPivotRowDst, *pPRT_pDst;  /* Temporary input and output data matrix pointer */
+
+    float32_t *pTmp;
     uint32_t numRows = pSrc->numRows;              /* Number of rows in the matrix  */
     uint32_t numCols = pSrc->numCols;              /* Number of Cols in the matrix  */
-    float32_t Xchg, in = 0.0f, in1;                /* Temporary input values  */
-    uint32_t i, rowCnt, flag = 0U, j, loopCnt, k,l;      /* loop counters */
-    riscv_status status;
+
+
+    float32_t pivot = 0.0f, newPivot=0.0f;                /* Temporary input values  */
+    uint32_t selectedRow,pivotRow,i, rowNb, rowCnt, flag = 0U, j,column;      /* loop counters */
+    riscv_status status;                             /* status of matrix inverse */
 
     /* Working pointer for destination matrix */
-    pOutT1 = pOut;
+    pTmp = pOut;
 
     /* Loop over the number of rows */
     rowCnt = numRows;
@@ -147,245 +149,128 @@ riscv_status ref_mat_inverse_f32(const riscv_matrix_instance_f32 *pSrc,
     /* Making the destination matrix as identity matrix */
     while (rowCnt > 0U)
     {
-      /* Writing all zeroes in lower triangle of the destination matrix */
-      j = numRows - rowCnt;
-      while (j > 0U)
-      {
-        *pOutT1++ = 0.0f;
-        j--;
-      }
+        /* Writing all zeroes in lower triangle of the destination matrix */
+        j = numRows - rowCnt;
+        while (j > 0U)
+        {
+          *pTmp++ = 0.0f;
+          j--;
+        }
 
-      /* Writing all ones in the diagonal of the destination matrix */
-      *pOutT1++ = 1.0f;
+        /* Writing all ones in the diagonal of the destination matrix */
+        *pTmp++ = 1.0f;
 
-      /* Writing all zeroes in upper triangle of the destination matrix */
-      j = rowCnt - 1U;
-      while (j > 0U)
-      {
-        *pOutT1++ = 0.0f;
-        j--;
-      }
+        /* Writing all zeroes in upper triangle of the destination matrix */
+        j = rowCnt - 1U;
+        while (j > 0U)
+        {
+          *pTmp++ = 0.0f;
+          j--;
+        }
 
-      /* Decrement loop counter */
-      rowCnt--;
+        /* Decrement loop counter */
+        rowCnt--;
     }
 
     /* Loop over the number of columns of the input matrix.
        All the elements in each column are processed by the row operations */
-    loopCnt = numCols;
 
     /* Index modifier to navigate through the columns */
-    l = 0U;
-
-    while (loopCnt > 0U)
+    for(column = 0U; column < numCols; column++)
     {
-      /* Check if the pivot element is zero..
-       * If it is zero then interchange the row with non zero row below.
-       * If there is no non zero element to replace in the rows below,
-       * then the matrix is Singular. */
+        /* Check if the pivot element is zero..
+         * If it is zero then interchange the row with non zero row below.
+         * If there is no non zero element to replace in the rows below,
+         * then the matrix is Singular. */
 
-      /* Working pointer for the input matrix that points
-       * to the pivot element of the particular row  */
-      pInT1 = pIn + (l * numCols);
+        pivotRow = column;
 
-      /* Working pointer for the destination matrix that points
-       * to the pivot element of the particular row  */
-      pOutT1 = pOut + (l * numCols);
+        /* Temporary variable to hold the pivot value */
+        pTmp = ELEM(pSrc,column,column) ;
+        pivot = *pTmp;
+        selectedRow = column;
 
-      /* Temporary variable to hold the pivot value */
-      in = *pInT1;
+        /* Find maximum pivot in column */
 
-
-
-      /* Check if the pivot element is zero */
-      if (*pInT1 == 0.0f)
-      {
         /* Loop over the number rows present below */
 
-        for (i = 1U; i < numRows - l; i++)
+        for (rowNb = column+1; rowNb < numRows; rowNb++)
         {
-          /* Update the input and destination pointers */
-          pInT2 = pInT1 + (numCols * i);
-          pOutT2 = pOutT1 + (numCols * i);
-
-          /* Check if there is a non zero pivot element to
-           * replace in the rows below */
-          if (*pInT2 != 0.0f)
-          {
-            /* Loop over number of columns
-             * to the right of the pilot element */
-            j = numCols - l;
-
-            while (j > 0U)
+            /* Update the input and destination pointers */
+            pTmp = ELEM(pSrc,rowNb,column);
+            newPivot = *pTmp;
+            if (fabsf(newPivot) > fabsf(pivot))
             {
-              /* Exchange the row elements of the input matrix */
-              Xchg = *pInT2;
-              *pInT2++ = *pInT1;
-              *pInT1++ = Xchg;
-
-              /* Decrement the loop counter */
-              j--;
+              selectedRow = rowNb;
+              pivot = newPivot;
             }
+        }
 
-            /* Loop over number of columns of the destination matrix */
-            j = numCols;
-
-            while (j > 0U)
-            {
-              /* Exchange the row elements of the destination matrix */
-              Xchg = *pOutT2;
-              *pOutT2++ = *pOutT1;
-              *pOutT1++ = Xchg;
-
-              /* Decrement loop counter */
-              j--;
-            }
+        /* Check if there is a non zero pivot element to
+         * replace in the rows below */
+        if ((pivot != 0.0f) && (selectedRow != column))
+        {
+            SWAP_ROWS_F32(pSrc,column, pivotRow,selectedRow);
+            SWAP_ROWS_F32(pDst,0, pivotRow,selectedRow);
 
             /* Flag to indicate whether exchange is done or not */
             flag = 1U;
-
-            /* Break after exchange is done */
-            break;
-          }
-
-
-          /* Decrement loop counter */
         }
-      }
 
-      /* Update the status if the matrix is singular */
-      if ((flag != 1U) && (in == 0.0f))
-      {
-        return RISCV_MATH_SINGULAR;
-      }
-
-      /* Points to the pivot row of input and destination matrices */
-      pPivotRowIn = pIn + (l * numCols);
-      pPivotRowDst = pOut + (l * numCols);
-
-      /* Temporary pointers to the pivot row pointers */
-      pInT1 = pPivotRowIn;
-      pInT2 = pPivotRowDst;
-
-      /* Pivot element of the row */
-      in = *pPivotRowIn;
-
-      /* Loop over number of columns
-       * to the right of the pilot element */
-      j = (numCols - l);
-
-      while (j > 0U)
-      {
-        /* Divide each element of the row of the input matrix
-         * by the pivot element */
-        in1 = *pInT1;
-        *pInT1++ = in1 / in;
-
-        /* Decrement the loop counter */
-        j--;
-      }
-
-      /* Loop over number of columns of the destination matrix */
-      j = numCols;
-
-      while (j > 0U)
-      {
-        /* Divide each element of the row of the destination matrix
-         * by the pivot element */
-        in1 = *pInT2;
-        *pInT2++ = in1 / in;
-
-        /* Decrement the loop counter */
-        j--;
-      }
-
-      /* Replace the rows with the sum of that row and a multiple of row i
-       * so that each new element in column i above row i is zero.*/
-
-      /* Temporary pointers for input and destination matrices */
-      pInT1 = pIn;
-      pInT2 = pOut;
-
-      /* index used to check for pivot element */
-      i = 0U;
-
-      /* Loop over number of rows */
-      /*  to be replaced by the sum of that row and a multiple of row i */
-      k = numRows;
-
-      while (k > 0U)
-      {
-        /* Check for the pivot element */
-        if (i == l)
+        /* Update the status if the matrix is singular */
+        if ((flag != 1U) && (pivot == 0.0f))
         {
-          /* If the processing element is the pivot element,
-             only the columns to the right are to be processed */
-          pInT1 += numCols - l;
-
-          pInT2 += numCols;
+            return RISCV_MATH_SINGULAR;
         }
-        else
+
+        /* Pivot element of the row */
+        pivot = 1.0f / pivot;
+
+        SCALE_ROW_F32(pSrc,column,pivot,pivotRow);
+        SCALE_ROW_F32(pDst,0,pivot,pivotRow);
+
+        /* Replace the rows with the sum of that row and a multiple of row i
+         * so that each new element in column i above row i is zero.*/
+
+        rowNb = 0;
+        for (;rowNb < pivotRow; rowNb++)
         {
-          /* Element of the reference row */
-          in = *pInT1;
+            pTmp = ELEM(pSrc,rowNb,column) ;
+            pivot = *pTmp;
 
-          /* Working pointers for input and destination pivot rows */
-          pPRT_in = pPivotRowIn;
-          pPRT_pDst = pPivotRowDst;
-
-          /* Loop over the number of columns to the right of the pivot element,
-             to replace the elements in the input matrix */
-          j = (numCols - l);
-
-          while (j > 0U)
-          {
-            /* Replace the element by the sum of that row
-               and a multiple of the reference row  */
-            in1 = *pInT1;
-            *pInT1++ = in1 - (in * *pPRT_in++);
-
-            /* Decrement the loop counter */
-            j--;
-          }
-
-          /* Loop over the number of columns to
-             replace the elements in the destination matrix */
-          j = numCols;
-
-          while (j > 0U)
-          {
-            /* Replace the element by the sum of that row
-               and a multiple of the reference row  */
-            in1 = *pInT2;
-            *pInT2++ = in1 - (in * *pPRT_pDst++);
-
-            /* Decrement loop counter */
-            j--;
-          }
-
+            MAS_ROW_F32(column,pSrc,rowNb,pivot,pSrc,pivotRow);
+            MAS_ROW_F32(0     ,pDst,rowNb,pivot,pDst,pivotRow);
         }
 
-        /* Increment temporary input pointer */
-        pInT1 = pInT1 + l;
+        for (rowNb = pivotRow + 1; rowNb < numRows; rowNb++)
+        {
+            pTmp = ELEM(pSrc,rowNb,column) ;
+            pivot = *pTmp;
 
-        /* Decrement loop counter */
-        k--;
+            MAS_ROW_F32(column,pSrc,rowNb,pivot,pSrc,pivotRow);
+            MAS_ROW_F32(0     ,pDst,rowNb,pivot,pDst,pivotRow);
+        }
 
-        /* Increment pivot index */
-        i++;
-      }
-
-      /* Increment the input pointer */
-      pIn++;
-
-      /* Decrement the loop counter */
-      loopCnt--;
-
-      /* Increment the index modifier */
-      l++;
     }
 
-    return RISCV_MATH_SUCCESS;
+    /* Set status as RISCV_MATH_SUCCESS */
+    status = RISCV_MATH_SUCCESS;
+
+    if ((flag != 1U) && (pivot == 0.0f))
+    {
+        pIn = pSrc->pData;
+        for (i = 0; i < numRows * numCols; i++)
+        {
+            if (pIn[i] != 0.0f)
+            break;
+        }
+
+        if (i == numRows * numCols)
+            status = RISCV_MATH_SINGULAR;
+    }
+
+    /* Return to application */
+    return (status);
 }
 
 riscv_status ref_mat_cmplx_mult_f32(const riscv_matrix_instance_f32 *pSrcA,
@@ -583,26 +468,6 @@ riscv_status ref_mat_solve_lower_triangular_f32(
   return (status);
 }
 
-/// @private
-#define SWAP_ROWS_F32(A,i,j)     \
-  for(int w=0;w < n; w++)    \
-  {                          \
-     float32_t tmp;          \
-     tmp = A[i*n + w];       \
-     A[i*n + w] = A[j*n + w];\
-     A[j*n + w] = tmp;       \
-  }
-
-/// @private
-#define SWAP_COLS_F32(A,i,j)     \
-  for(int w=0;w < n; w++)    \
-  {                          \
-     float32_t tmp;          \
-     tmp = A[w*n + i];       \
-     A[w*n + i] = A[w*n + j];\
-     A[w*n + j] = tmp;       \
-  }
-
 riscv_status ref_mat_ldlt_f32(
   const riscv_matrix_instance_f32 * pSrc,
   riscv_matrix_instance_f32 * pl,
@@ -610,108 +475,101 @@ riscv_status ref_mat_ldlt_f32(
   uint16_t * pp)
 {
 
-  riscv_status status;                             /* status of matrix inverse */
-  {
+    riscv_status status;                             /* status of matrix inverse */
 
     const int n=pSrc->numRows;
     int fullRank = 1, diag,k;
     float32_t *pA;
+    int row,d;
 
     memset(pd->pData,0,sizeof(float32_t)*n*n);
     memcpy(pl->pData,pSrc->pData,n*n*sizeof(float32_t));
     pA = pl->pData;
 
-    for(int k=0;k < n; k++)
+    for(k=0;k < n; k++)
     {
-      pp[k] = k;
+        pp[k] = k;
     }
-
 
     for(k=0;k < n; k++)
     {
         /* Find pivot */
         float32_t m=F32_MIN,a;
         int j=k;
+        int r;
 
-
-        for(int r=k;r<n;r++)
+        for(r=k;r<n;r++)
         {
-           if (pA[r*n+r] > m)
-           {
-             m = pA[r*n+r];
-             j = r;
-           }
+            if (pA[r*n+r] > m)
+            {
+                m = pA[r*n+r];
+                j = r;
+            }
         }
 
         if(j != k)
         {
-          SWAP_ROWS_F32(pA,k,j);
-          SWAP_COLS_F32(pA,k,j);
+            SWAP_ROWS_F32(pl,0,k,j);
+            SWAP_COLS_F32(pl,0,k,j);
         }
 
-
         pp[k] = j;
-
         a = pA[k*n+k];
 
-        if (fabs(a) < 1.0e-8)
+        if (fabsf(a) < 1.0e-8f)
         {
-
             fullRank = 0;
             break;
         }
 
         for(int w=k+1;w<n;w++)
         {
-          for(int x=k+1;x<n;x++)
-          {
-             pA[w*n+x] = pA[w*n+x] - pA[w*n+k] * pA[x*n+k] / a;
-          }
+            int x;
+            for(x=k+1;x<n;x++)
+            {
+                pA[w*n+x] = pA[w*n+x] - pA[w*n+k] * pA[x*n+k] / a;
+            }
         }
 
         for(int w=k+1;w<n;w++)
         {
-               pA[w*n+k] = pA[w*n+k] / a;
+            pA[w*n+k] = pA[w*n+k] / a;
         }
-
-
-
     }
 
     diag=k;
     if (!fullRank)
     {
-      diag--;
-      for(int row=0; row < n;row++)
-      {
-        for(int col=k; col < n;col++)
+        diag--;
+        for(row=0; row < n;row++)
         {
-           pl->pData[row*n+col]=0.0;
+            int col;
+            for(col=k; col < n;col++)
+            {
+                pl->pData[row*n+col]=0.0;
+            }
         }
-      }
     }
 
-    for(int row=0; row < n;row++)
+    for(row=0; row < n;row++)
     {
-       for(int col=row+1; col < n;col++)
-       {
-         pl->pData[row*n+col] = 0.0;
-       }
+        int col;
+        for(col=row+1; col < n;col++)
+        {
+            pl->pData[row*n+col] = 0.0;
+        }
     }
 
-    for(int d=0; d < diag;d++)
+    for(d=0; d < diag;d++)
     {
-      pd->pData[d*n+d] = pl->pData[d*n+d];
-      pl->pData[d*n+d] = 1.0;
+        pd->pData[d*n+d] = pl->pData[d*n+d];
+        pl->pData[d*n+d] = 1.0;
     }
 
     status = RISCV_MATH_SUCCESS;
 
-  }
-
-
-  /* Return to application */
-  return (status);
+    /* Return to application */
+    return (status);
 }
 
 riscv_status ref_mat_cholesky_f64(
@@ -878,24 +736,6 @@ riscv_status ref_mat_solve_lower_triangular_f64(
   return (status);
 }
 
-/// @private
-#define SWAP_ROWS_F64(A,i,j)     \
-  for(int w=0;w < n; w++)    \
-  {                          \
-     float64_t tmp;          \
-     tmp = A[i*n + w];       \
-     A[i*n + w] = A[j*n + w];\
-     A[j*n + w] = tmp;       \
-  }
-/// @private
-#define SWAP_COLS_F64(A,i,j)     \
-  for(int w=0;w < n; w++)    \
-  {                          \
-     float64_t tmp;          \
-     tmp = A[w*n + i];       \
-     A[w*n + i] = A[w*n + j];\
-     A[w*n + j] = tmp;       \
-  }
 riscv_status ref_mat_ldlt_f64(
   const riscv_matrix_instance_f64 * pSrc,
   riscv_matrix_instance_f64 * pl,
@@ -903,104 +743,101 @@ riscv_status ref_mat_ldlt_f64(
   uint16_t * pp)
 {
 
-  riscv_status status;                             /* status of matrix inverse */
-  {
-
+    riscv_status status;                             /* status of matrix inverse */
     const int n=pSrc->numRows;
     int fullRank = 1, diag,k;
     float64_t *pA;
 
     memset(pd->pData,0,sizeof(float64_t)*n*n);
-
     memcpy(pl->pData,pSrc->pData,n*n*sizeof(float64_t));
     pA = pl->pData;
 
-    for(int k=0;k < n; k++)
+    for(k=0;k < n; k++)
     {
-      pp[k] = k;
+        pp[k] = k;
     }
-
 
     for(k=0;k < n; k++)
     {
         /* Find pivot */
         float64_t m=F64_MIN,a;
-        int j=k;
+        int r,j=k;
 
-
-        for(int r=k;r<n;r++)
+        for(r=k;r<n;r++)
         {
-           if (pA[r*n+r] > m)
-           {
-             m = pA[r*n+r];
-             j = r;
-           }
+            if (pA[r*n+r] > m)
+            {
+                m = pA[r*n+r];
+                j = r;
+            }
         }
 
         if(j != k)
         {
-          SWAP_ROWS_F64(pA,k,j);
-          SWAP_COLS_F64(pA,k,j);
+            SWAP_ROWS_F64(pl,0,k,j);
+            SWAP_COLS_F64(pl,0,k,j);
         }
 
-
         pp[k] = j;
-
         a = pA[k*n+k];
 
-        if (fabs(a) < 1.0e-18)
+        if (fabs(a) < 1.0e-18L)
         {
-
             fullRank = 0;
             break;
         }
 
         for(int w=k+1;w<n;w++)
         {
-          for(int x=k+1;x<n;x++)
-          {
-             pA[w*n+x] = pA[w*n+x] - pA[w*n+k] * pA[x*n+k] / a;
-          }
+            int x;
+            for(x=k+1;x<n;x++)
+            {
+                pA[w*n+x] = pA[w*n+x] - pA[w*n+k] * pA[x*n+k] / a;
+            }
         }
 
         for(int w=k+1;w<n;w++)
         {
-               pA[w*n+k] = pA[w*n+k] / a;
+            pA[w*n+k] = pA[w*n+k] / a;
         }
     }
 
     diag=k;
     if (!fullRank)
     {
-      diag--;
-      for(int row=0; row < n;row++)
-      {
-        for(int col=k; col < n;col++)
+        diag--;
         {
-           pl->pData[row*n+col]=0.0;
+            int row;
+            for(row=0; row < n;row++)
+            {
+                int col;
+                for(col=k; col < n;col++)
+                {
+                    pl->pData[row*n+col]=0.0;
+                }
+            }
         }
-      }
     }
 
-    for(int row=0; row < n;row++)
+    int row;
+    for(row=0; row < n;row++)
     {
-       for(int col=row+1; col < n;col++)
-       {
-         pl->pData[row*n+col] = 0.0;
-       }
+        int col;
+        for(col=row+1; col < n;col++)
+        {
+            pl->pData[row*n+col] = 0.0;
+        }
     }
 
-    for(int d=0; d < diag;d++)
+    int d;
+    for(d=0; d < diag;d++)
     {
-      pd->pData[d*n+d] = pl->pData[d*n+d];
-      pl->pData[d*n+d] = 1.0;
+        pd->pData[d*n+d] = pl->pData[d*n+d];
+        pl->pData[d*n+d] = 1.0;
     }
 
     status = RISCV_MATH_SUCCESS;
 
-  }
-
-
-  /* Return to application */
-  return (status);
+    /* Return to application */
+    return (status);
 }

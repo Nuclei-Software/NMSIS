@@ -28,6 +28,7 @@
  */
 
 #include "dsp/matrix_functions_f16.h"
+#include "dsp/matrix_utils.h"
 
 #if defined(RISCV_FLOAT16_SUPPORTED)
 
@@ -51,21 +52,20 @@
                    - \ref RISCV_MATH_SIZE_MISMATCH : Matrix size check failed
                    - \ref RISCV_MATH_SINGULAR      : Input matrix is found to be singular (non-invertible)
  */
-
 riscv_status riscv_mat_inverse_f16(
   const riscv_matrix_instance_f16 * pSrc,
         riscv_matrix_instance_f16 * pDst)
 {
   float16_t *pIn = pSrc->pData;                  /* input data matrix pointer */
   float16_t *pOut = pDst->pData;                 /* output data matrix pointer */
-  float16_t *pInT1, *pInT2;                      /* Temporary input data matrix pointer */
-  float16_t *pOutT1, *pOutT2;                    /* Temporary output data matrix pointer */
-  float16_t *pPivotRowIn, *pPRT_in, *pPivotRowDst, *pPRT_pDst;  /* Temporary input and output data matrix pointer */
+
+  float16_t *pTmp;
   uint32_t numRows = pSrc->numRows;              /* Number of rows in the matrix  */
   uint32_t numCols = pSrc->numCols;              /* Number of Cols in the matrix  */
 
-  _Float16 Xchg, in = 0.0f16, in1;                /* Temporary input values  */
-  uint32_t i, rowCnt, flag = 0U, j, loopCnt, k,l;      /* loop counters */
+
+  float16_t pivot = 0.0f16, newPivot=0.0f16;                /* Temporary input values  */
+  uint32_t selectedRow,pivotRow,i, rowNb, rowCnt, flag = 0U, j,column;      /* loop counters */
   riscv_status status;                             /* status of matrix inverse */
 
 #ifdef RISCV_MATH_MATRIX_CHECK
@@ -83,7 +83,6 @@ riscv_status riscv_mat_inverse_f16(
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
 
   {
-
     /*--------------------------------------------------------------------------------------------------------------
      * Matrix Inverse can be solved using elementary row operations.
      *
@@ -120,7 +119,7 @@ riscv_status riscv_mat_inverse_f16(
      *----------------------------------------------------------------------------------------------------------------*/
 
     /* Working pointer for destination matrix */
-    pOutT1 = pOut;
+    pTmp = pOut;
 
     /* Loop over the number of rows */
     rowCnt = numRows;
@@ -132,18 +131,18 @@ riscv_status riscv_mat_inverse_f16(
       j = numRows - rowCnt;
       while (j > 0U)
       {
-        *pOutT1++ = 0.0f16;
+        *pTmp++ = 0.0f16;
         j--;
       }
 
       /* Writing all ones in the diagonal of the destination matrix */
-      *pOutT1++ = 1.0f16;
+      *pTmp++ = 1.0f16;
 
       /* Writing all zeroes in upper triangle of the destination matrix */
       j = rowCnt - 1U;
       while (j > 0U)
       {
-        *pOutT1++ = 0.0f16;
+        *pTmp++ = 0.0f16;
         j--;
       }
 
@@ -153,220 +152,98 @@ riscv_status riscv_mat_inverse_f16(
 
     /* Loop over the number of columns of the input matrix.
        All the elements in each column are processed by the row operations */
-    loopCnt = numCols;
 
     /* Index modifier to navigate through the columns */
-    l = 0U;
-
-    while (loopCnt > 0U)
+    for(column = 0U; column < numCols; column++)
     {
       /* Check if the pivot element is zero..
        * If it is zero then interchange the row with non zero row below.
        * If there is no non zero element to replace in the rows below,
        * then the matrix is Singular. */
 
-      /* Working pointer for the input matrix that points
-       * to the pivot element of the particular row  */
-      pInT1 = pIn + (l * numCols);
-
-      /* Working pointer for the destination matrix that points
-       * to the pivot element of the particular row  */
-      pOutT1 = pOut + (l * numCols);
+      pivotRow = column;
 
       /* Temporary variable to hold the pivot value */
-      in = *pInT1;
+      pTmp = ELEM(pSrc,column,column) ;
+      pivot = *pTmp;
+      selectedRow = column;
 
 
-      /* Check if the pivot element is zero */
-      if ((_Float16)*pInT1 == 0.0f16)
-      {
         /* Loop over the number rows present below */
 
-        for (i = 1U; i < numRows-l; i++)
-        {
+      for (rowNb = column+1; rowNb < numRows; rowNb++)
+      {
           /* Update the input and destination pointers */
-          pInT2 = pInT1 + (numCols * i);
-          pOutT2 = pOutT1 + (numCols * i);
+          pTmp = ELEM(pSrc,rowNb,column);
+          newPivot = *pTmp;
+          if (fabsf((float32_t)newPivot) > fabsf((float32_t)pivot))
+          {
+            selectedRow = rowNb;
+            pivot = newPivot;
+          }
+
+      }
 
           /* Check if there is a non zero pivot element to
            * replace in the rows below */
-          if ((_Float16)*pInT2 != 0.0f16)
-          {
+      if (((_Float16)pivot != 0.0f16) && (selectedRow != column))
+      {
             /* Loop over number of columns
              * to the right of the pilot element */
-            j = numCols - l;
 
-            while (j > 0U)
-            {
-              /* Exchange the row elements of the input matrix */
-              Xchg = *pInT2;
-              *pInT2++ = *pInT1;
-              *pInT1++ = Xchg;
+            SWAP_ROWS_F16(pSrc,column, pivotRow,selectedRow);
+            SWAP_ROWS_F16(pDst,0, pivotRow,selectedRow);
 
-              /* Decrement the loop counter */
-              j--;
-            }
-
-            /* Loop over number of columns of the destination matrix */
-            j = numCols;
-
-            while (j > 0U)
-            {
-              /* Exchange the row elements of the destination matrix */
-              Xchg = *pOutT2;
-              *pOutT2++ = *pOutT1;
-              *pOutT1++ = Xchg;
-
-              /* Decrement loop counter */
-              j--;
-            }
 
             /* Flag to indicate whether exchange is done or not */
             flag = 1U;
 
-            /* Break after exchange is done */
-            break;
-          }
-
-        }
       }
 
+
       /* Update the status if the matrix is singular */
-      if ((flag != 1U) && (in == 0.0f16))
+      if ((flag != 1U) && ((_Float16)pivot == 0.0f16))
       {
         return RISCV_MATH_SINGULAR;
       }
 
-      /* Points to the pivot row of input and destination matrices */
-      pPivotRowIn = pIn + (l * numCols);
-      pPivotRowDst = pOut + (l * numCols);
-
-      /* Temporary pointers to the pivot row pointers */
-      pInT1 = pPivotRowIn;
-      pInT2 = pPivotRowDst;
-
       /* Pivot element of the row */
-      in = *pPivotRowIn;
+      pivot = 1.0f16 / (_Float16)pivot;
 
-      /* Loop over number of columns
-       * to the right of the pilot element */
-      j = (numCols - l);
-
-      while (j > 0U)
-      {
-        /* Divide each element of the row of the input matrix
-         * by the pivot element */
-        in1 = *pInT1;
-        *pInT1++ = in1 / in;
-
-        /* Decrement the loop counter */
-        j--;
-      }
-
-      /* Loop over number of columns of the destination matrix */
-      j = numCols;
-
-      while (j > 0U)
-      {
-        /* Divide each element of the row of the destination matrix
-         * by the pivot element */
-        in1 = *pInT2;
-        *pInT2++ = in1 / in;
-
-        /* Decrement the loop counter */
-        j--;
-      }
+      SCALE_ROW_F16(pSrc,column,pivot,pivotRow);
+      SCALE_ROW_F16(pDst,0,pivot,pivotRow);
 
       /* Replace the rows with the sum of that row and a multiple of row i
        * so that each new element in column i above row i is zero.*/
 
-      /* Temporary pointers for input and destination matrices */
-      pInT1 = pIn;
-      pInT2 = pOut;
-
-      /* index used to check for pivot element */
-      i = 0U;
-
-      /* Loop over number of rows */
-      /*  to be replaced by the sum of that row and a multiple of row i */
-      k = numRows;
-
-      while (k > 0U)
+      rowNb = 0;
+      for (;rowNb < pivotRow; rowNb++)
       {
-        /* Check for the pivot element */
-        if (i == l)
-        {
-          /* If the processing element is the pivot element,
-             only the columns to the right are to be processed */
-          pInT1 += numCols - l;
+           pTmp = ELEM(pSrc,rowNb,column) ;
+           pivot = *pTmp;
 
-          pInT2 += numCols;
-        }
-        else
-        {
-          /* Element of the reference row */
-          in = *pInT1;
+           MAS_ROW_F16(column,pSrc,rowNb,pivot,pSrc,pivotRow);
+           MAS_ROW_F16(0     ,pDst,rowNb,pivot,pDst,pivotRow);
 
-          /* Working pointers for input and destination pivot rows */
-          pPRT_in = pPivotRowIn;
-          pPRT_pDst = pPivotRowDst;
 
-          /* Loop over the number of columns to the right of the pivot element,
-             to replace the elements in the input matrix */
-          j = (numCols - l);
-
-          while (j > 0U)
-          {
-            /* Replace the element by the sum of that row
-               and a multiple of the reference row  */
-            in1 = *pInT1;
-            *pInT1++ = (_Float16)in1 - ((_Float16)in * (_Float16)*pPRT_in++);
-
-            /* Decrement the loop counter */
-            j--;
-          }
-
-          /* Loop over the number of columns to
-             replace the elements in the destination matrix */
-          j = numCols;
-
-          while (j > 0U)
-          {
-            /* Replace the element by the sum of that row
-               and a multiple of the reference row  */
-            in1 = *pInT2;
-            *pInT2++ = (_Float16)in1 - ((_Float16)in * (_Float16)*pPRT_pDst++);
-
-            /* Decrement loop counter */
-            j--;
-          }
-
-        }
-
-        /* Increment temporary input pointer */
-        pInT1 = pInT1 + l;
-
-        /* Decrement loop counter */
-        k--;
-
-        /* Increment pivot index */
-        i++;
       }
 
-      /* Increment the input pointer */
-      pIn++;
+      for (rowNb = pivotRow + 1; rowNb < numRows; rowNb++)
+      {
+           pTmp = ELEM(pSrc,rowNb,column) ;
+           pivot = *pTmp;
 
-      /* Decrement the loop counter */
-      loopCnt--;
+           MAS_ROW_F16(column,pSrc,rowNb,pivot,pSrc,pivotRow);
+           MAS_ROW_F16(0     ,pDst,rowNb,pivot,pDst,pivotRow);
 
-      /* Increment the index modifier */
-      l++;
+      }
+
     }
 
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
 
-    if ((flag != 1U) && ((_Float16)in == 0.0f16))
+    if ((flag != 1U) && ((_Float16)pivot == 0.0f16))
     {
       pIn = pSrc->pData;
       for (i = 0; i < numRows * numCols; i++)
@@ -383,7 +260,6 @@ riscv_status riscv_mat_inverse_f16(
   /* Return to application */
   return (status);
 }
-
 /**
   @} end of MatrixInv group
  */

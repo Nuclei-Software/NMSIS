@@ -28,35 +28,10 @@
  */
 
 #include "dsp/matrix_functions.h"
+#include "dsp/matrix_utils.h"
+
 #include <math.h>
 
-
-
-/// @private
-#define SWAP_ROWS_F64(A,i,j) \
-{                            \
-  int w;                     \
-  for(w=0;w < n; w++)        \
-  {                          \
-     float64_t tmp;          \
-     tmp = A[i*n + w];       \
-     A[i*n + w] = A[j*n + w];\
-     A[j*n + w] = tmp;       \
-  }                          \
-}
-
-/// @private
-#define SWAP_COLS_F64(A,i,j) \
-{                            \
-  int w;                     \
-  for(w=0;w < n; w++)        \
-  {                          \
-     float64_t tmp;          \
-     tmp = A[w*n + i];       \
-     A[w*n + i] = A[w*n + j];\
-     A[w*n + j] = tmp;       \
-  }                          \
-}
 
 /**
   @ingroup groupMatrix
@@ -128,7 +103,7 @@ riscv_status riscv_mat_ldlt_f64(
     {
         /* Find pivot */
         float64_t m=F64_MIN,a;
-        int w,r,j=k;
+        int r,j=k;
 
 
         for(r=k;r<n;r++)
@@ -142,8 +117,8 @@ riscv_status riscv_mat_ldlt_f64(
 
         if(j != k)
         {
-          SWAP_ROWS_F64(pA,k,j);
-          SWAP_COLS_F64(pA,k,j);
+          SWAP_ROWS_F64(pl,0,k,j);
+          SWAP_COLS_F64(pl,0,k,j);
         }
 
 
@@ -151,14 +126,14 @@ riscv_status riscv_mat_ldlt_f64(
 
         a = pA[k*n+k];
 
-        if (fabs(a) < 1.0e-18)
+        if (fabs(a) < 1.0e-18L)
         {
 
             fullRank = 0;
             break;
         }
 
-        for(w=k+1;w<n;w++)
+        for(int w=k+1;w<n;w++)
         {
           int x;
           for(x=k+1;x<n;x++)
@@ -167,7 +142,7 @@ riscv_status riscv_mat_ldlt_f64(
           }
         }
 
-        for(w=k+1;w<n;w++)
+        for(int w=k+1;w<n;w++)
         {
                pA[w*n+k] = pA[w*n+k] / a;
         }

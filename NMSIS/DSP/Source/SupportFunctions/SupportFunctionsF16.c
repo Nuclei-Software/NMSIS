@@ -3,8 +3,8 @@
  * Title:        SupportFunctions.c
  * Description:  Combination of all support function source files.
  *
- * $Date:        16. March 2020
- * $Revision:    V1.1.0
+ * $Date:        18 August 2022
+ * $Revision:    V1.1.1
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
@@ -31,6 +31,8 @@
 #include "riscv_fill_f16.c"
 #include "riscv_f16_to_q15.c"
 #include "riscv_f16_to_float.c"
+#include "riscv_f16_to_f64.c"
+#include "riscv_f64_to_f16.c"
 #include "riscv_q15_to_f16.c"
 #include "riscv_float_to_f16.c"
 #include "riscv_weighted_sum_f16.c"

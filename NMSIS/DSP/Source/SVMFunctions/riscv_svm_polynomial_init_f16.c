@@ -38,11 +38,6 @@
   @ingroup groupSVM
  */
 
-/**
-  @defgroup polysvm Polynomial SVM
-
-  Polynomial SVM classifier
- */
 
 /**
  * @addtogroup polysvm

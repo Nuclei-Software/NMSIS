@@ -46,54 +46,37 @@
   @return        none
  */
 void riscv_var_f64(
-  const float64_t * pSrc,
-        uint32_t blockSize,
-        float64_t * pResult)
+    const float64_t * pSrc,
+    uint32_t blockSize,
+    float64_t * pResult)
 {
-        uint32_t blkCnt;                               /* Loop counter */
-        float64_t sum = 0.;                          /* Temporary result storage */
-        float64_t fSum = 0.;
-        float64_t fMean, fValue;
-  const float64_t * pInput = pSrc;
 
-  if (blockSize <= 1U)
-  {
-    *pResult = 0;
-    return;
-  }
+    uint32_t blkCnt;                               /* Loop counter */
+    float64_t fSum = 0.;
+    float64_t fMean, fValue;
+    const float64_t * pInput = pSrc;
 
-  /* Initialize blkCnt with number of samples */
-  blkCnt = blockSize;
+    if (blockSize <= 1U)
+    {
+        *pResult = 0;
+        return;
+    }
+    riscv_mean_f64(pInput, blockSize, &fMean);
 
-  while (blkCnt > 0U)
-  {
-    /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) */
+    /* Initialize blkCnt with number of samples */
+    blkCnt = blockSize;
 
-    sum += *pInput++;
+    while (blkCnt > 0U)
+    {
+        fValue = *pInput++ - fMean;
+        fSum += fValue * fValue;
 
-    /* Decrement loop counter */
-    blkCnt--;
-  }
+        /* Decrement loop counter */
+        blkCnt--;
+    }
 
-  /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) / blockSize  */
-  fMean = sum / (float64_t) blockSize;
-
-  pInput = pSrc;
-
-  /* Initialize blkCnt with number of samples */
-  blkCnt = blockSize;
-
-  while (blkCnt > 0U)
-  {
-    fValue = *pInput++ - fMean;
-    fSum += fValue * fValue;
-
-    /* Decrement loop counter */
-    blkCnt--;
-  }
-
-  /* Variance */
-  *pResult = fSum / (float64_t)(blockSize - 1.);
+    /* Variance */
+    *pResult = fSum / (float64_t)(blockSize - 1.);
 }
 
 /**

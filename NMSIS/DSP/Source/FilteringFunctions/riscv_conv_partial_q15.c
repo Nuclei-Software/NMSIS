@@ -516,8 +516,14 @@ riscv_status riscv_conv_partial_q15(
         }
 
         /* Store the results in the accumulators in the destination buffer. */
-        write_q15x2_ia (&pOut, __PKHBT(__SSAT((acc0 >> 15), 16), __SSAT((acc1 >> 15), 16), 16));
-        write_q15x2_ia (&pOut, __PKHBT(__SSAT((acc2 >> 15), 16), __SSAT((acc3 >> 15), 16), 16));
+        {
+          int32_t sat0 = __SSAT((acc0 >> 15), 16);
+          int32_t sat1 = __SSAT((acc1 >> 15), 16);
+          int32_t sat2 = __SSAT((acc2 >> 15), 16);
+          int32_t sat3 = __SSAT((acc3 >> 15), 16);
+          write_q15x2_ia (&pOut, __PKHBT(sat0, sat1, 16));
+          write_q15x2_ia (&pOut, __PKHBT(sat2, sat3, 16));
+        }
 
         /* Increment the pointer pIn1 index, count by 4 */
         count += 4U;

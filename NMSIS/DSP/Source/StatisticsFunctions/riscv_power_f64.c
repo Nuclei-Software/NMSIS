@@ -3,8 +3,8 @@
  * Title:        riscv_power_f64.c
  * Description:  Sum of the squares of the elements of a floating-point vector
  *
- * $Date:        13 September 2021
- * $Revision:    V1.10.0
+ * $Date:        10 August 2022
+ * $Revision:    V1.10.1
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */

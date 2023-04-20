@@ -68,7 +68,7 @@
                    Higher order filters are realized as a cascade of second order sections.
                    <code>numStages</code> refers to the number of second order stages used.
                    For example, an 8th order filter would be realized with <code>numStages=4</code> second order stages.
-                   \image html BiquadCascade.png "8th order filter using a cascade of Biquad stages"
+                   \image html BiquadCascade.png "8Th order filter using a cascade of Biquad stages"
                    A 9th order filter would be realized with <code>numStages=5</code> second order stages
                    with the coefficients for one of the stages configured as a first order filter
                    (<code>b2=0</code> and <code>a2=0</code>).

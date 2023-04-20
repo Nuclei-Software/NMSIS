@@ -36,9 +36,9 @@
 #include "riscv_cmplx_mag_f32.c"
 #include "riscv_cmplx_mag_f64.c"
 
-  #include "riscv_cmplx_mag_q15.c"
-  #include "riscv_cmplx_mag_fast_q15.c"
-  #include "riscv_cmplx_mag_q31.c"
+#include "riscv_cmplx_mag_q15.c"
+#include "riscv_cmplx_mag_fast_q15.c"
+#include "riscv_cmplx_mag_q31.c"
 
 #include "riscv_cmplx_mag_squared_f32.c"
 #include "riscv_cmplx_mag_squared_f64.c"

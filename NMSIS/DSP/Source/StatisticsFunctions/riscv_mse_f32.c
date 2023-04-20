@@ -43,7 +43,7 @@
   @param[in]     pSrcA       points to the first input vector
   @param[in]     pSrcB       points to the second input vector
   @param[in]     blockSize   number of samples in input vector
-  @param[out]    result      mean square error
+  @param[out]    pResult      mean square error
   @return        none
  */
 
@@ -59,7 +59,7 @@ void riscv_mse_f32(
     const float32_t * pSrcA,
     const float32_t * pSrcB,
     uint32_t    blockSize,
-    float32_t * result)
+    float32_t * pResult)
 
 {
   uint32_t blkCnt;                               /* Loop counter */
@@ -139,8 +139,8 @@ void riscv_mse_f32(
   }
 #endif /* defined(RISCV_MATH_VECTOR) */
 
-    /* Store result in destination buffer */
-    *result = sum / blockSize;
+  /* Store result in destination buffer */
+  *pResult = sum / blockSize;
 }
 
 /**

@@ -122,7 +122,7 @@
   @param[in]     S         points to an instance of the floating-point FIR decimator structure
   @param[in]     pSrc      points to the block of input data
   @param[out]    pDst      points to the block of output data
-  @param[in]     blockSize number of samples to process
+  @param[in]     blockSize number of input samples to process
   @return        none
  */
 void riscv_fir_decimate_f32(

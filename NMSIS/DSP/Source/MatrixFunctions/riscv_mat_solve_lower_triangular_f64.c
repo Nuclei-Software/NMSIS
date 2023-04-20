@@ -134,7 +134,7 @@
                 tmp -= lt_row[k] * pX[cols*k+j];
             }
 #endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) && (defined (__riscv_flen) && (__riscv_flen == 64)) */
-            if (lt_row[i]==0.0)
+            if (lt_row[i]==0.0L)
             {
               return(RISCV_MATH_SINGULAR);
             }

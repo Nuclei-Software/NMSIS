@@ -30,6 +30,8 @@
 #include "dsp/fast_math_functions.h"
 #include "riscv_common_tables.h"
 
+#define Q12QUARTER 0x2000
+
 /**
   @ingroup groupFastMath
  */
@@ -48,7 +50,6 @@
                    - \ref RISCV_MATH_ARGUMENT_ERROR : input value is negative; *pOut is set to 0
  */
 
-#define Q12QUARTER 0x2000
 riscv_status riscv_sqrt_q15(
   q15_t in,
   q15_t * pOut)

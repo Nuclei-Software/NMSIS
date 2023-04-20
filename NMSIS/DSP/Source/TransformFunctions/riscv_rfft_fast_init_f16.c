@@ -42,7 +42,7 @@
   @{
  */
 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_F16_16) && defined(RISCV_TABLE_BITREVIDX_FLT_16) && defined(RISCV_TABLE_TWIDDLECOEF_RFFT_F16_32))
+#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_F16_16) && (defined(RISCV_TABLE_BITREVIDX_FLT_16) || defined(RISCV_TABLE_BITREVIDX_FXT_16)) && defined(RISCV_TABLE_TWIDDLECOEF_RFFT_F16_32))
 
 /**
   @private
@@ -72,7 +72,7 @@ static riscv_status riscv_rfft_32_fast_init_f16( riscv_rfft_fast_instance_f16 * 
 }
 #endif 
 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_F16_32) && defined(RISCV_TABLE_BITREVIDX_FLT_32) && defined(RISCV_TABLE_TWIDDLECOEF_RFFT_F16_64))
+#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_F16_32) && (defined(RISCV_TABLE_BITREVIDX_FLT_32) || defined(RISCV_TABLE_BITREVIDX_FXT_32)) && defined(RISCV_TABLE_TWIDDLECOEF_RFFT_F16_64))
 
 /**
   @private
@@ -102,7 +102,7 @@ static riscv_status riscv_rfft_64_fast_init_f16( riscv_rfft_fast_instance_f16 * 
 }
 #endif 
 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_F16_64) && defined(RISCV_TABLE_BITREVIDX_FLT_64) && defined(RISCV_TABLE_TWIDDLECOEF_RFFT_F16_128))
+#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_F16_64) && (defined(RISCV_TABLE_BITREVIDX_FLT_64) || defined(RISCV_TABLE_BITREVIDX_FXT_64)) && defined(RISCV_TABLE_TWIDDLECOEF_RFFT_F16_128))
 
 /**
   @private
@@ -132,7 +132,7 @@ static riscv_status riscv_rfft_128_fast_init_f16( riscv_rfft_fast_instance_f16 *
 }
 #endif 
 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_F16_128) && defined(RISCV_TABLE_BITREVIDX_FLT_128) && defined(RISCV_TABLE_TWIDDLECOEF_RFFT_F16_256))
+#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_F16_128) && (defined(RISCV_TABLE_BITREVIDX_FLT_128) || defined(RISCV_TABLE_BITREVIDX_FXT_128)) && defined(RISCV_TABLE_TWIDDLECOEF_RFFT_F16_256))
 
 /**
   @private
@@ -162,7 +162,7 @@ static riscv_status riscv_rfft_256_fast_init_f16( riscv_rfft_fast_instance_f16 *
 }
 #endif 
 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_F16_256) && defined(RISCV_TABLE_BITREVIDX_FLT_256) && defined(RISCV_TABLE_TWIDDLECOEF_RFFT_F16_512))
+#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_F16_256) && (defined(RISCV_TABLE_BITREVIDX_FLT_256) || defined(RISCV_TABLE_BITREVIDX_FXT_256)) && defined(RISCV_TABLE_TWIDDLECOEF_RFFT_F16_512))
 
 /**
   @private
@@ -192,7 +192,7 @@ static riscv_status riscv_rfft_512_fast_init_f16( riscv_rfft_fast_instance_f16 *
 }
 #endif 
 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_F16_512) && defined(RISCV_TABLE_BITREVIDX_FLT_512) && defined(RISCV_TABLE_TWIDDLECOEF_RFFT_F16_1024))
+#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_F16_512) && (defined(RISCV_TABLE_BITREVIDX_FLT_512) || defined(RISCV_TABLE_BITREVIDX_FXT_512)) && defined(RISCV_TABLE_TWIDDLECOEF_RFFT_F16_1024))
 /**
   @private
   @brief         Initialization function for the 1024pt floating-point real FFT.
@@ -221,7 +221,7 @@ static riscv_status riscv_rfft_1024_fast_init_f16( riscv_rfft_fast_instance_f16 
 }
 #endif
 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_F16_1024) && defined(RISCV_TABLE_BITREVIDX_FLT_1024) && defined(RISCV_TABLE_TWIDDLECOEF_RFFT_F16_2048))
+#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_F16_1024) && (defined(RISCV_TABLE_BITREVIDX_FLT_1024) || defined(RISCV_TABLE_BITREVIDX_FXT_1024)) && defined(RISCV_TABLE_TWIDDLECOEF_RFFT_F16_2048))
 /**
   @private
   @brief         Initialization function for the 2048pt floating-point real FFT.
@@ -249,7 +249,7 @@ static riscv_status riscv_rfft_2048_fast_init_f16( riscv_rfft_fast_instance_f16 
 }
 #endif
 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_F16_2048) && defined(RISCV_TABLE_BITREVIDX_FLT_2048) && defined(RISCV_TABLE_TWIDDLECOEF_RFFT_F16_4096))
+#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_F16_2048) && (defined(RISCV_TABLE_BITREVIDX_FLT_2048) || defined(RISCV_TABLE_BITREVIDX_FXT_2048)) && defined(RISCV_TABLE_TWIDDLECOEF_RFFT_F16_4096))
 /**
   @private
 * @brief         Initialization function for the 4096pt floating-point real FFT.
@@ -307,37 +307,37 @@ riscv_status riscv_rfft_fast_init_f16(
     fptr = riscv_rfft_4096_fast_init_f16;
     break;
 #endif
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_F16_1024) && defined(RISCV_TABLE_BITREVIDX_FLT_1024) && defined(RISCV_TABLE_TWIDDLECOEF_RFFT_F16_2048))
+#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_F16_1024) && (defined(RISCV_TABLE_BITREVIDX_FLT_1024) || defined(RISCV_TABLE_BITREVIDX_FXT_1024)) && defined(RISCV_TABLE_TWIDDLECOEF_RFFT_F16_2048))
   case 2048U:
     fptr = riscv_rfft_2048_fast_init_f16;
     break;
 #endif
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_F16_512) && defined(RISCV_TABLE_BITREVIDX_FLT_512) && defined(RISCV_TABLE_TWIDDLECOEF_RFFT_F16_1024))
+#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_F16_512) && (defined(RISCV_TABLE_BITREVIDX_FLT_512) || defined(RISCV_TABLE_BITREVIDX_FXT_512)) && defined(RISCV_TABLE_TWIDDLECOEF_RFFT_F16_1024))
   case 1024U:
     fptr = riscv_rfft_1024_fast_init_f16;
     break;
 #endif
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_F16_256) && defined(RISCV_TABLE_BITREVIDX_FLT_256) && defined(RISCV_TABLE_TWIDDLECOEF_RFFT_F16_512))
+#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_F16_256) && (defined(RISCV_TABLE_BITREVIDX_FLT_256) || defined(RISCV_TABLE_BITREVIDX_FXT_256)) && defined(RISCV_TABLE_TWIDDLECOEF_RFFT_F16_512))
   case 512U:
     fptr = riscv_rfft_512_fast_init_f16;
     break;
 #endif
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_F16_128) && defined(RISCV_TABLE_BITREVIDX_FLT_128) && defined(RISCV_TABLE_TWIDDLECOEF_RFFT_F16_256))
+#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_F16_128) && (defined(RISCV_TABLE_BITREVIDX_FLT_128) || defined(RISCV_TABLE_BITREVIDX_FXT_128)) && defined(RISCV_TABLE_TWIDDLECOEF_RFFT_F16_256))
   case 256U:
     fptr = riscv_rfft_256_fast_init_f16;
     break;
 #endif
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_F16_64) && defined(RISCV_TABLE_BITREVIDX_FLT_64) && defined(RISCV_TABLE_TWIDDLECOEF_RFFT_F16_128))
+#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_F16_64) && (defined(RISCV_TABLE_BITREVIDX_FLT_64) || defined(RISCV_TABLE_BITREVIDX_FXT_64)) && defined(RISCV_TABLE_TWIDDLECOEF_RFFT_F16_128))
   case 128U:
     fptr = riscv_rfft_128_fast_init_f16;
     break;
 #endif
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_F16_32) && defined(RISCV_TABLE_BITREVIDX_FLT_32) && defined(RISCV_TABLE_TWIDDLECOEF_RFFT_F16_64))
+#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_F16_32) && (defined(RISCV_TABLE_BITREVIDX_FLT_32) || defined(RISCV_TABLE_BITREVIDX_FXT_32)) && defined(RISCV_TABLE_TWIDDLECOEF_RFFT_F16_64))
   case 64U:
     fptr = riscv_rfft_64_fast_init_f16;
     break;
 #endif
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_F16_16) && defined(RISCV_TABLE_BITREVIDX_FLT_16) && defined(RISCV_TABLE_TWIDDLECOEF_RFFT_F16_32))
+#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_F16_16) && (defined(RISCV_TABLE_BITREVIDX_FLT_16) || defined(RISCV_TABLE_BITREVIDX_FXT_16)) && defined(RISCV_TABLE_TWIDDLECOEF_RFFT_F16_32))
   case 32U:
     fptr = riscv_rfft_32_fast_init_f16;
     break;

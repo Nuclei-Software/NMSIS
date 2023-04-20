@@ -55,7 +55,13 @@
                    The normalizing factor is <code>sqrt(2/N)</code>, which depends on the size of transform <code>N</code>.
                    Floating-point normalizing factors are mentioned in the table below for different DCT sizes:
 
-                   \image html dct4NormalizingF32Table.png
+
+| DCT Size  | Normalizing factor value  |
+| --------: | ------------------------: |
+| 2048      | 0.03125                   |
+| 512       | 0.0625                    |
+| 128       | 0.125                     |
+
  */
 
 riscv_status riscv_dct4_init_f32(

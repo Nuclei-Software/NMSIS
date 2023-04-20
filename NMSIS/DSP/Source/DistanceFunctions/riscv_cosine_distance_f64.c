@@ -60,7 +60,7 @@ float64_t riscv_cosine_distance_f64(const float64_t *pA,const float64_t *pB, uin
     riscv_dot_prod_f64(pA, pB, blockSize, &dot);
 
     tmp = sqrt(pwra * pwrb);
-    return(1. - dot / tmp);
+    return(1.0L - dot / tmp);
 
 }
 
