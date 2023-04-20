@@ -3,6 +3,30 @@
 Changelog
 =========
 
+V1.1.1-dev
+----------
+
+This is the version ``V1.1.1`` release, which is still in development.
+
+* **NMSIS-Core**
+
+  - Add CIDU support via core_feature_cidu.h, and ``__CIDU_PRESENT`` macro is required in ``<Device>.h`` to represent CIDU present or not
+  - Add macros of HPM m/s/u event enable, events type, events idx
+  - Fix define error of HPM_INIT macro
+  - Update systimer/pmp/spmp/eclic API comment and implementation
+  - Add Cache ECC related APIs
+  - Due to mhartid csr update, two new API added called ``__get_hart_id`` and ``__get_cluster_id``
+
+    - mhartid in Nuclei RISC-V processor are now used to present cluster id and hart id
+    - bit 0-7 is used for hart id in current cluster
+    - bit 8-15 is used for cluster id of current cluster
+
+* **NMSIS-DSP**
+
+
+* **NMSIS-NN**
+
+
 V1.1.0
 ------
 
