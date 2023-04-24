@@ -60,15 +60,14 @@ void riscv_cmplx_conj_q31(
   uint32_t blkCnt = numSamples;                               /* Loop counter */
   size_t l;
   vint32m8_t vx;
-  vint32m8_t temp00;
   l = vsetvlmax_e32m8();
-  int32_t mul[32] = {1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1,
-                     1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1};
-  temp00 = vle32_v_i32m8(mul, l);                   /* vector 0 */
+  const uint32_t mask_v[4] = {0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA};
+  const uint8_t *mask_v8 = (const uint8_t *)mask_v;
+  vbool4_t mask = vlm_v_b4(mask_v8, l);
   for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
   {
     vx = vle32_v_i32m8(pSrc, l);
-    vse32_v_i32m8(pDst, vmul_vv_i32m8(vx, temp00, l), l);
+    vse32_v_i32m8(pDst, vmul_vx_i32m8_m(mask, vx, vx, -1, l), l);
     pSrc += l;
     pDst += l;
   }

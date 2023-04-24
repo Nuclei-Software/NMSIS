@@ -77,19 +77,18 @@ void riscv_cmplx_conj_f32(
         uint32_t blkCnt;                               /* Loop counter */
 
 #if defined(RISCV_MATH_VECTOR)
-  blkCnt = numSamples;                               /* Loop counter */
+  blkCnt = numSamples;
   size_t l;
   vfloat32m8_t vx;
-  vfloat32m8_t temp00;
   l = vsetvlmax_e32m8();
-  float32_t mul[32] = {1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1,
-                       1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1};
-  temp00 = vle32_v_f32m8(mul, l);                   /* vector 0 */
+  const uint32_t mask_v[4] = {0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA};
+  const uint8_t *mask_v8 = (const uint8_t *)mask_v;
+  vbool4_t mask = vlm_v_b4(mask_v8, l);
   for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
   {
     vx = vle32_v_f32m8(pSrc, l);
     pSrc += l;
-    vse32_v_f32m8(pDst, vfmul_vv_f32m8(vx, temp00, l), l);
+    vse32_v_f32m8(pDst, vfmul_vf_f32m8_m(mask, vx, vx, -1, l), l);
     pDst += l;
   }
 
