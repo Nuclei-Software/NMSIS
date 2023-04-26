@@ -69,8 +69,6 @@ void riscv_cmplx_mag_q31(
 
   for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)
   {
-    //v_R = vlse32_v_i32m4(pSrc, bstride, l);
-    //v_I = vlse32_v_i32m4(pSrc + 1, bstride, l);
     vlseg2e32_v_i32m4(&v_R, &v_I, pSrc, l);
     pSrc += l * 2;
     v_R = vnsra_wx_i32m4(vwmul_vv_i64m8(v_R, v_R, l), 33, l);

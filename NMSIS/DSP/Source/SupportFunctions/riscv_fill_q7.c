@@ -88,7 +88,7 @@ void riscv_fill_q7(
   blkCnt = blockSize >> 2U;
   while (blkCnt > 0U)
   {
-    /* fill 8 samples at a time */
+    /* fill 4 samples at a time */
     write_q7x4_ia(&pDst, packedValue);
     blkCnt--;
   }

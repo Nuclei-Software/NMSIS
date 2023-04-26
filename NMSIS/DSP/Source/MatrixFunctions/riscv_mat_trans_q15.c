@@ -83,8 +83,8 @@ riscv_status riscv_mat_trans_q15(
     uint32_t blkCnt = nRows;
     size_t l;
     ptrdiff_t bstride = 2;  //  16bit/8bit = 2
-    ptrdiff_t col_diff = bstride * nCols;  //Control the column width of the span
-    uint16_t colnum;     //  How many rowumns are controlled
+    ptrdiff_t col_diff = bstride * nCols;
+    uint16_t colnum;
     vint16m4_t v_in, v_in2;
     vint16m8_t v_in3;
     q15_t *pIn1;

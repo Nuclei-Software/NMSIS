@@ -77,7 +77,7 @@ void riscv_var_q15(
   size_t l;
   const q15_t *input = pSrc;
   q15_t * output = pResult;
-  vint16m4_t v_in;               /* Temporary variable to store input value */
+  vint16m4_t v_in;
   vint32m8_t v_in2;
   l = vsetvl_e64m1(1);
   vint64m1_t v_sumOfSquares = vmv_s_x_i64m1(v_sumOfSquares, 0, l);

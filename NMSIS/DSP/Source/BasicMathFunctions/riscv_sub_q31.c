@@ -83,12 +83,10 @@ void riscv_sub_q31(
   {
     /* C = A - B */
 #if defined (RISCV_MATH_DSP) && __RISCV_XLEN == 64
-    /* Subtract and store result in destination buffer (8 samples at a time). */
     write_q31x2_ia(&pDst, __RV_KSUB32(read_q31x2_ia((q31_t **)&pSrcA), read_q31x2_ia((q31_t **)&pSrcB)));
     write_q31x2_ia(&pDst, __RV_KSUB32(read_q31x2_ia((q31_t **)&pSrcA), read_q31x2_ia((q31_t **)&pSrcB)));
 #else
 #if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
-    /* Subtract and store result in destination buffer (8 samples at a time). */
     write_q31x2_ia(&pDst, __dksub32(read_q31x2_ia((q31_t **)&pSrcA), read_q31x2_ia((q31_t **)&pSrcB)));
     write_q31x2_ia(&pDst, __dksub32(read_q31x2_ia((q31_t **)&pSrcA), read_q31x2_ia((q31_t **)&pSrcB)));
 #else

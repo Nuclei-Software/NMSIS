@@ -94,7 +94,6 @@ riscv_status riscv_mat_scale_f32(
     numSamples = (uint32_t) pSrc->numRows * pSrc->numCols;
 
 #if defined(RISCV_MATH_VECTOR)
-    /* Total number of samples in input matrix */
     blkCnt = numSamples;
     size_t l;
     vfloat32m8_t vx;

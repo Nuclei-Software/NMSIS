@@ -70,7 +70,7 @@ void riscv_rms_q15(
   const q15_t * input = pSrc;
   vint16m4_t v_in;
   l = vsetvl_e64m1(1);
-  vint64m1_t v_sum = vmv_s_x_i64m1(v_sum, 0, l); /* init v_sum data= vmv_s_x_i64m1(v_sum, 0) */
+  vint64m1_t v_sum = vmv_s_x_i64m1(v_sum, 0, l);
   for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
   {
     v_in = vle16_v_i16m4(input, l);

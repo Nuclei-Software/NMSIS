@@ -116,7 +116,7 @@ void riscv_cmplx_mult_real_q15(
     temp = read_q15x2_ia((q15_t **)&pSrcReal);
     inB1 = (q63_t)(((q63_t)(((uint32_t)temp) & 0xffff0000) << 16) | ((q63_t)((uint32_t)temp)));
 
-    mul1 = __RV_SMBB16(inA1, inB1); //1,3
+    mul1 = __RV_SMBB16(inA1, inB1); // 1,3
     mul2 = __RV_SMBT16(inB1, inA1); // 2,4
 
     out1 = (q15_t)__SSAT(((q31_t)(mul1 & 0xffffffff) >> 15U), 16);
@@ -133,7 +133,7 @@ void riscv_cmplx_mult_real_q15(
     temp = read_q15x2_ia((q15_t **)&pSrcReal);
     inB1 = (q63_t)(((q63_t)(((uint32_t)temp) & 0xffff0000) << 16) | ((q63_t)((uint32_t)temp)));
 
-    mul1 = __RV_SMBB16(inA1, inB1); //1,3
+    mul1 = __RV_SMBB16(inA1, inB1); // 1,3
     mul2 = __RV_SMBT16(inB1, inA1); // 2,4
 
     out1 = (q15_t)__SSAT(((q31_t)(mul1 & 0xffffffff) >> 15U), 16);

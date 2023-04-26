@@ -61,7 +61,7 @@ void riscv_min_no_idx_f32(
     size_t l;
     vfloat32m8_t v_in;
     l = vsetvl_e32m1(1);
-    vfloat32m1_t v_min = vfmv_s_f_f32m1(v_min, minValue, l); /* vector0 */
+    vfloat32m1_t v_min = vfmv_s_f_f32m1(v_min, minValue, l);
     for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
         v_in = vle32_v_f32m8(pSrc, l);
         pSrc += l;

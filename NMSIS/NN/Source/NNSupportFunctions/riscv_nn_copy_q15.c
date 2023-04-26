@@ -77,8 +77,8 @@ void riscv_nn_copy_q15(
     riscv_nn_write_q15x4_ia (&pDst, riscv_nn_read_q15x4_ia ((q15_t **) &pSrc));
 #else
     /* read 2 times 2 samples at a time */
-    riscv_nn_write_q15x2_ia (&pDst, riscv_nn_read_q15x2_ia ((q15_t **) &pSrc));
-    riscv_nn_write_q15x2_ia (&pDst, riscv_nn_read_q15x2_ia ((q15_t **) &pSrc));
+    riscv_nn_write_q15x2_ia (&pDst, riscv_nn_read_q15x2_ia ((const q15_t **) &pSrc));
+    riscv_nn_write_q15x2_ia (&pDst, riscv_nn_read_q15x2_ia ((const q15_t **) &pSrc));
 #endif /* __RISCV_XLEN == 64 */
 
     /* Decrement loop counter */

@@ -79,7 +79,7 @@ void riscv_std_q31(
   blkCnt = blockSize;                   /* Loop counter */
   size_t l;
   const q31_t *input = pSrc;
-  vint32m4_t v_in;                               /* Temporary variable to store input value */
+  vint32m4_t v_in;
   vint64m8_t v_in2;
   l = vsetvl_e64m1(1);
   vint64m1_t v_sumOfSquares = vmv_s_x_i64m1(v_sumOfSquares, 0, l);

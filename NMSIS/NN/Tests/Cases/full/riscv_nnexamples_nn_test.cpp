@@ -63,7 +63,9 @@ int main()
 {
     printf("start tests\n");
 
-    srand(1);
+    unsigned long randvar = __RV_CSR_READ(mcycle);
+    srand(randvar);
+    printf("srandvar is %d\n", randvar);
 
     // common pointers for testing data
     q7_t *test1;
@@ -91,7 +93,7 @@ int main()
 
 #ifdef TEST_Activation
     #define Activation_SIZE 128
-    uint16_t int_width = rand() % 256;
+    uint16_t int_width = rand() % 3;
     q7_t *test1_ref = new q7_t[Activation_SIZE];
     q7_t *test1_opt = new q7_t[Activation_SIZE];
     q15_t *test2_ref = new q15_t[Activation_SIZE];
@@ -116,6 +118,7 @@ int main()
     BENCH_END(riscv_nn_activations_direct_q15);
     verify_results_q15(test2_ref, test2_opt, Activation_SIZE);
 
+    memcpy(test1_opt, test1_ref, Activation_SIZE);
     q7_t *relu_ref_data_q7 = test1_ref;
     q7_t *relu_opt_data_q7 = test1_opt;
     q15_t *relu_ref_data_q15 = test2_ref;
@@ -332,7 +335,7 @@ int main()
     verify_results_q7(output_q7, output_q7 + Convolution_SIZE, 4 * 8 * 8);
 
     uint8_t *test10 = new uint8_t[Convolution_SIZE];
-    srand(5);
+
     for (int i=0;i < Convolution_SIZE; i++) {
         test10[i] = (rand() % 256 - 128);
     }
@@ -767,8 +770,6 @@ int main()
     q7_t *svdf_state_ref = new q7_t[SVD_SIZE];
     q7_t *svdf_state_opt = new q7_t[SVD_SIZE];
 
-
-    srand(__RV_CSR_READ(mcycle));
     for (int i = 0; i < SVD_SIZE; i++) {
         svdf_state_ref[i] = (rand() % 256 - 128);
         svdf_state_opt[i] = svdf_state_ref[i];

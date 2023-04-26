@@ -102,7 +102,7 @@ riscv_status riscv_mat_mult_q15(
      q15_t *pIn1 = pSrcA->pData;                    /* Input data matrix pointer A */
      q15_t *pIn2 = pSrcB->pData;                    /* Input data matrix pointer B */
     (void)pState;
-    uint16_t blkCnt = numColsA;  //number of matrix columns  numColsA = numrowB
+    uint16_t blkCnt = numColsA;
     size_t l;
     ptrdiff_t bstride = 2;       //  16bit/8bit = 2
     px = pOut;

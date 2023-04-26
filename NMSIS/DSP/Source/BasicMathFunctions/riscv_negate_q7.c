@@ -127,11 +127,10 @@ void riscv_negate_q7(
     blkCnt--;
   }
 
-#if defined (RISCV_MATH_DSP)
   /* Loop unrolling: Compute remaining outputs */
+#if defined (RISCV_MATH_DSP)
   blkCnt = blockSize & 0x7U;
 #else
-  /* Loop unrolling: Compute remaining outputs */
   blkCnt = blockSize & 0x3U;
 #endif /* RISCV_MATH_DSP */
 

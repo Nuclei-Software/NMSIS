@@ -80,7 +80,7 @@ void riscv_var_f32(
 #if defined(RISCV_MATH_VECTOR)
   blkCnt = blockSize;                   /* Loop counter */
   size_t l;
-  vfloat32m8_t v_in;                               /* Temporary variable to store pInput value */
+  vfloat32m8_t v_in;
   vfloat32m8_t v_fValue;
   l = vsetvl_e32m1(1);
   vfloat32m1_t v_sum = vfmv_s_f_f32m1(v_sum, 0.0f, l);

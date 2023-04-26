@@ -91,10 +91,9 @@ void riscv_shift_q15(
 #else
 
 #if defined (RISCV_MATH_LOOPUNROLL)
-
+  /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
 #if defined (RISCV_MATH_DSP)
-  /* Loop unrolling: Compute 4 outputs at a time */
   while(blkCnt > 0U)
   {
 #if __RISCV_XLEN == 64

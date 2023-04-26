@@ -85,7 +85,7 @@ int8_t verify_results_q31(q31_t * ref, q31_t * opt, int length)
             break;
         }
 #ifdef LOG_DEBUG
-        printf("Q31 Output mismatch at %d, expected %d, actual %d\r\n", i, ref[i], opt[i]);
+        printf("Q31 Output at %d, expected %d, actual %d\r\n", i, ref[i], opt[i]);
 #endif
     }
 
@@ -195,7 +195,7 @@ int8_t verify_results_f32(float32_t * ref, float32_t * opt, int length)
             break;
         }
 #ifdef LOG_DEBUG
-        printf("f32 Output mismatch at %d, expected %f, actual %f\r\n", i, ref[i], opt[i]);
+        printf("f32 Output at %d, expected %f, actual %f\r\n", i, ref[i], opt[i]);
 #endif
     }
 
@@ -217,7 +217,7 @@ int8_t verify_results_f32_low_precision(float32_t * ref, float32_t * opt, int le
             break;
         }
 #ifdef LOG_DEBUG
-        printf("f32 Output mismatch at %d, expected %f, actual %f\r\n", i, ref[i], opt[i]);
+        printf("f32 Output at %d, expected %f, actual %f\r\n", i, ref[i], opt[i]);
 #endif
     }
 
@@ -260,7 +260,7 @@ int8_t verify_results_u8(uint8_t * ref, uint8_t * opt, int length)
             break;
         }
 #ifdef LOG_DEBUG
-        printf("U8 Output at %d, expected %2x, actual %2x\r\n", i, ref[i], opt[i]);
+        printf("U8 Output at %d, expected %u, actual %u\r\n", i, ref[i], opt[i]);
 #endif
     }
 
@@ -304,7 +304,7 @@ int8_t verify_results_u32(uint32_t * ref, uint32_t * opt, int length)
             break;
         }
 #ifdef LOG_DEBUG
-        printf("U32 Output mismatch at %d, expected %u, actual %u\r\n", i, ref[i], opt[i]);
+        printf("U32 Output at %d, expected %u, actual %u\r\n", i, ref[i], opt[i]);
 #endif
     }
 
@@ -315,7 +315,7 @@ void do_srand(void)
 {
     unsigned long randvar = __RV_CSR_READ(mcycle);
     srand(randvar);
-    //printf("srandvar is %d\n", randvar);
+    printf("srandvar is %d\n", randvar);
 }
 
 void generate_rand_q7(q7_t *src, int length)

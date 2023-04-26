@@ -78,7 +78,7 @@ riscv_status riscv_mat_mult_q31(
   riscv_status status;                             /* Status of matrix multiplication */
 #if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
   q31_t tmp131, tmp231;
-  q63_t temp164, temp264;                                     /* Accumulator */
+  q63_t temp164, temp264;
 #endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 #ifdef RISCV_MATH_MATRIX_CHECK
 
@@ -95,10 +95,10 @@ riscv_status riscv_mat_mult_q31(
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
   {
 #if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
-    uint16_t blkCnt = numColsA;  //number of matrix columns  numColsA = numrowB
-    size_t l;              // max_l is the maximum column elements at a time
+    uint16_t blkCnt = numColsA;
+    size_t l;
     ptrdiff_t bstride = 4;       //  32bit/8bit = 4
-    uint16_t colnum, rownum;      //  How many rowumns and rownum are controlled
+    uint16_t colnum, rownum;
 
     px = pOut;
 

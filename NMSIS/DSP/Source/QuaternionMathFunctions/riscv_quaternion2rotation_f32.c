@@ -117,17 +117,6 @@ void riscv_quaternion2rotation_f32(const float32_t *pInputQuaternions,
         v_yz = vfmul_vf_f32m2(vfsub_vv_f32m2(v_q23, v_q01, l), 2, l);
         v_zx = vfmul_vf_f32m2(vfsub_vv_f32m2(v_q13, v_q02, l), 2, l);
         v_zy = vfmul_vf_f32m2(vfadd_vv_f32m2(v_q23, v_q01, l), 2, l);
-#if 0
-        vsse32_v_f32m2(pOUT, bstride_out, v_xx, l);
-        vsse32_v_f32m2(pOUT + 1, bstride_out, v_xy, l);
-        vsse32_v_f32m2(pOUT + 2, bstride_out, v_xz, l);
-        vsse32_v_f32m2(pOUT + 3, bstride_out, v_yx, l);
-        vsse32_v_f32m2(pOUT + 4, bstride_out, v_yy, l);
-        vsse32_v_f32m2(pOUT + 5, bstride_out, v_yz, l);
-        vsse32_v_f32m2(pOUT + 6, bstride_out, v_zx, l);
-        vsse32_v_f32m2(pOUT + 7, bstride_out, v_zy, l);
-        vsse32_v_f32m2(pOUT + 8, bstride_out, v_zz, l);
-#endif
         vssseg4e32_v_f32m2(pOUT, bstride_out, v_xx, v_xy, v_xz, v_yx, l);
         vssseg4e32_v_f32m2(pOUT + 4, bstride_out, v_yy, v_yz, v_zx, v_zy, l);
         vsse32_v_f32m2(pOUT + 8, bstride_out, v_zz, l);

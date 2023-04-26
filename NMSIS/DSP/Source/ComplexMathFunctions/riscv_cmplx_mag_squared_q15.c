@@ -65,8 +65,6 @@ void riscv_cmplx_mag_squared_q15(
   vint16m2_t v_summ2;
   for (; (l = vsetvl_e16m2(blkCnt)) > 0; blkCnt -= l)
   {
-  //  v_R = vlse16_v_i16m2(pSrc, bstride, l);
-  //  v_I = vlse16_v_i16m2(pSrc + 1, bstride, l);
     vlseg2e16_v_i16m2(&v_R, &v_I, pSrc, l);
     pSrc += l * 2;
     vR2_m4 = vwmul_vv_i32m4(v_R, v_R, l);

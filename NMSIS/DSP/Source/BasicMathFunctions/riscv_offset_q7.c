@@ -101,11 +101,11 @@ void riscv_offset_q7(
     /* C = A + offset */
 
 #if defined (RISCV_MATH_DSP)
+    /* Add offset and store result in destination buffer (8 samples at a time). */
 #if __RISCV_XLEN == 64
     write_q7x8_ia (&pDst, __QADD8(read_q7x8_ia ((q7_t **) &pSrc), offset_packed));
 #else
 #ifdef NUCLEI_DSP_N1
-    /* Add offset and store result in destination buffer (8 samples at a time). */
     write_q7x8_ia (&pDst, __RV_DKADD8(read_q7x8_ia((q7_t **)&pSrc), offset_packed));
 #else
     write_q7x4_ia (&pDst, __QADD8(read_q7x4_ia((q7_t **)&pSrc), offset_packed));

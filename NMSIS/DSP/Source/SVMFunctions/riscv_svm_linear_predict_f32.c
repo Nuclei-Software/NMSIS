@@ -60,7 +60,7 @@ void riscv_svm_linear_predict_f32(
     uint32_t blkCnt;
     size_t l;
     vfloat32m8_t v_in, v_support;
-    vfloat32m1_t v_dot;             /* init v_dot data */
+    vfloat32m1_t v_dot;
     const float32_t *pIn;
     for (i = 0; i < S->nbOfSupportVectors; i++)
     {

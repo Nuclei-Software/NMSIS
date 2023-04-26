@@ -82,7 +82,7 @@ void riscv_nn_copy_q7(
     riscv_nn_write_q7x8_ia(&pDst, riscv_nn_read_q7x8_ia((q7_t **)&pSrc));
 #else
     /* read 4 samples at a time */
-    riscv_nn_write_q7x4_ia(&pDst, riscv_nn_read_q7x4_ia((q7_t **)&pSrc));
+    riscv_nn_write_q7x4_ia(&pDst, riscv_nn_read_q7x4_ia((const q7_t **)&pSrc));
 #endif /* __RISCV_XLEN == 64 */
 
     /* Decrement loop counter */

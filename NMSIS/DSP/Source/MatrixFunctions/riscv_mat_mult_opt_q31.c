@@ -124,7 +124,7 @@ riscv_status riscv_mat_mult_opt_q31(
       /* For every row wise process, column loop counter is to be initiated */
       col = numColsB;
 
-      /* For every row wise process, pIn2 pointer is set to starting address of pSrcB data */
+      /* For every row wise process, pIn2 pointer is set to starting address of pSrcBT data */
       pIn2 = pSrcBT;
 
       /* column loop */

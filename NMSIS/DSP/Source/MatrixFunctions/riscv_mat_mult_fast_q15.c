@@ -86,10 +86,10 @@ riscv_status riscv_mat_mult_fast_q15(
 #if defined(RISCV_MATH_VECTOR)
     q15_t in;                                      /* Temporary variable to hold the input value */
     q15_t inA1, inB1, inA2, inB2;
-    uint16_t blkCnt;  //number of matrix columns  numColsA = numrowB
+    uint16_t blkCnt;
     size_t l;
     ptrdiff_t bstride;
-    uint16_t colnum, rownum;      //  How many rowumns and rownum are controlled
+    uint16_t colnum, rownum;
     vint16m4_t v_inA, v_inB;
     vint32m8_t v_sum;
 
@@ -117,7 +117,7 @@ riscv_status riscv_mat_mult_fast_q15(
       col = numColsB;
       blkCnt = col;
       bstride = numRowsB * 2;
-      for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)   //Multiply a row by a column
+      for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
       {
         vsse16_v_i16m8(px, bstride, vle16_v_i16m8(pInB, l), l);
         px += l * numRowsB;
@@ -161,7 +161,7 @@ riscv_status riscv_mat_mult_fast_q15(
         blkCnt = colCnt;
         l = vsetvl_e16m4(blkCnt);
         vint32m1_t v_sum = vsub_vv_i32m1(v_sum, v_sum, l);
-        for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)   //Multiply a row by a column
+        for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)   // Multiply a row by a column
         {
           v_inA = vle16_v_i16m4(pInA, l);
           pInA += l;
@@ -171,7 +171,7 @@ riscv_status riscv_mat_mult_fast_q15(
         }
         sum = vmv_x_s_i32m1_i32(v_sum);
 
-        /* Saturate and store result in destination buffer */
+        /* Store result in destination buffer */
         *px++  = (q15_t) (sum >> 15);
 
         /* Decrement column loop counter */

@@ -71,7 +71,6 @@ void riscv_cmplx_dot_prod_q15(
   ptrdiff_t bstride = 4;
   vint16m2_t v_R1, v_R2, v_I1, v_I2;
   vint32m4_t v_RR, v_II, v_RI, v_IR;
-  // vint32m1_t v_dst;              /* I don't know what the effect is */
   l = vsetvl_e64m1(1);
   vint64m1_t v_temp, v_temp1;
   v_temp = vmv_s_x_i64m1(v_temp, 0, l);

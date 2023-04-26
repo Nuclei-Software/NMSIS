@@ -84,8 +84,8 @@ riscv_status riscv_mat_trans_f32(
     uint32_t blkCnt = nRows;
     size_t l;
     ptrdiff_t bstride = 4;  //  32bit/8bit = 4
-    ptrdiff_t col_diff = bstride * nCols;  //Control the column width of the span
-    uint16_t colnum;     //  How many rowumns are controlled
+    ptrdiff_t col_diff = bstride * nCols;
+    uint16_t colnum;
     vfloat32m8_t v_in;
     float32_t *pIn1;
 
