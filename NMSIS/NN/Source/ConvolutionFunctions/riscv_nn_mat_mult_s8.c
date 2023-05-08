@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2021 Arm Limited or its affiliates.
+ * SPDX-FileCopyrightText: Copyright 2010-2022 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_nn_mat_mult_s8.c
  * Description:  General Matrix-multiplication function
  *
- * $Date:        27. October 2021
- * $Revision:    V.2.0.6
+ * $Date:        26 October 2022
+ * $Revision:    V.2.0.8
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
@@ -37,20 +37,20 @@
  *
  */
 
-q7_t *riscv_nn_mat_mult_s8(const q7_t *input_row,
-                         const q7_t *input_col,
-                         const uint16_t output_ch,
-                         const uint16_t col_batches,
-                         const int32_t *output_shift,
-                         const int32_t *output_mult,
-                         const int32_t out_offset,
-                         const int32_t col_offset,
-                         const int32_t row_offset,
-                         const int16_t activation_min,
-                         const int16_t activation_max,
-                         const uint16_t row_len,
-                         const int32_t *const bias,
-                         q7_t *out)
+int8_t *riscv_nn_mat_mult_s8(const int8_t *input_row,
+                           const int8_t *input_col,
+                           const uint16_t output_ch,
+                           const uint16_t col_batches,
+                           const int32_t *output_shift,
+                           const int32_t *output_mult,
+                           const int32_t out_offset,
+                           const int32_t col_offset,
+                           const int32_t row_offset,
+                           const int16_t activation_min,
+                           const int16_t activation_max,
+                           const uint16_t row_len,
+                           const int32_t *const bias,
+                           int8_t *out)
 {
     (void)input_row;
     (void)input_col;

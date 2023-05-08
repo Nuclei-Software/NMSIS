@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2021 Arm Limited or its affiliates. All rights reserved.
+ * SPDX-FileCopyrightText: Copyright 2010-2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_relu_q7.c
  * Description:  Q7 version of ReLU
  *
- * $Date:        20. July 2021
- * $Revision:    V.1.1.3
+ * $Date:        31 January 2023
+ * $Revision:    V.1.2.1
  *
  * Target Processor: RISC-V Cores
  *
@@ -33,7 +33,7 @@
 #include "riscv_nnsupportfunctions.h"
 
 /**
- *  @ingroup groupNN
+ *  @ingroup Public
  */
 
 /**
@@ -41,18 +41,14 @@
  * @{
  */
 
-/**
- * @brief Q7 RELU function
- * @param[in,out]   data        pointer to input
- * @param[in]       size        number of elements
+/*
+ * Q7 ReLu function
  *
- * @details
- *
- * Optimized relu with QSUB instructions.
+ * Refer header file for details.
  *
  */
 
-void riscv_relu_q7(q7_t *data, uint16_t size)
+void riscv_relu_q7(int8_t *data, uint16_t size)
 {
     uint16_t i;
 
@@ -79,33 +75,29 @@ void riscv_relu_q7(q7_t *data, uint16_t size)
 #if defined(RISCV_MATH_DSP)
     /* Run the following code for M cores with DSP extension */
 
-    q7_t *input = data;
-    q7_t *output = data;
-
-#if __RISCV_XLEN == 64
-    q63_t in64, zero = 0;
-    i = size >> 3;
-    while (i)
-    {
-
-        in64 = *__SIMD64(input)++;
-        *__SIMD64(output)++ = __RV_SMAX8(in64, zero);
-        i--;
-    }
-
-    i = size & 0x7;
-#else
-    q31_t in, zero = 0;
     i = size >> 2;
+    int8_t *input = data;
+    int8_t *output = data;
+    int32_t in;
+    int32_t buf;
+    int32_t mask;
+
     while (i)
     {
-        in = *__SIMD32(input)++;
-        *__SIMD32(output)++ = __RV_SMAX8(in, zero);
+        in = riscv_nn_read_s8x4_ia((const int8_t **)&input);
+
+        /* extract the first bit */
+        buf = (int32_t)__ROR((uint32_t)in & 0x80808080, 7);
+
+        /* if MSB=1, mask will be 0xFF, 0x0 otherwise */
+        mask = __QSUB8(0x00000000, buf);
+
+        riscv_nn_write_s8x4_ia(&output, in & (~mask));
+
         i--;
     }
 
     i = size & 0x3;
-#endif /* __RISCV_XLEN == 64 */
     while (i)
     {
         if (*input < 0)
@@ -118,7 +110,6 @@ void riscv_relu_q7(q7_t *data, uint16_t size)
 
 #else
     /* Run the following code as reference implementation for cores without DSP extension */
-
 
     for (i = 0; i < size; i++)
     {

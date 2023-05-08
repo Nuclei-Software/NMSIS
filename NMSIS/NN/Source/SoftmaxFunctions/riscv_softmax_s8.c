@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2022 Arm Limited or its affiliates. All rights reserved.
+ * SPDX-FileCopyrightText: Copyright 2010-2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_softmax_s8.c
  * Description:  S8 softmax function
  *
- * $Date:        9 March 2022
- * $Revision:    V.2.1.0
+ * $Date:        5 January 2023
+ * $Revision:    V.2.2.0
  *
  * Target Processor: RISC-V Cores
  *
@@ -36,7 +36,7 @@
 
 
 /**
- *  @ingroup groupNN
+ *  @ingroup Public
  */
 
 /**
@@ -52,7 +52,7 @@ void riscv_softmax_s8(const int8_t *input,
                     const int32_t diff_min,
                     int8_t *output)
 {
-    riscv_nn_softmax_common_s8(input, num_rows, row_size, mult, shift, diff_min, 0, (void *)output);
+    riscv_nn_softmax_common_s8(input, num_rows, row_size, mult, shift, diff_min, false, (void *)output);
 }
 
 /**

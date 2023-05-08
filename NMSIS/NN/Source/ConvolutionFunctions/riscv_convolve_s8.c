@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2021 Arm Limited or its affiliates.
+ * SPDX-FileCopyrightText: Copyright 2010-2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_convolve_s8.c
  * Description:  s8 version of convolution using symmetric quantization.
  *
- * $Date:        December 14, 2021
- * $Revision:    V.2.1.0
+ * $Date:        21 Mars 2023
+ * $Revision:    V.3.4.0
  *
  * Target Processor: RISC-V Cores
  *
@@ -33,7 +33,7 @@
 #include "riscv_nnsupportfunctions.h"
 
 /**
- *  @ingroup groupNN
+ *  @ingroup Public
  */
 
 /**
@@ -48,26 +48,25 @@
  * are multiples of 4 or atleast greater than 4.
  *
  */
-
 riscv_nmsis_nn_status riscv_convolve_s8(const nmsis_nn_context *ctx,
-                           const nmsis_nn_conv_params *conv_params,
-                           const nmsis_nn_per_channel_quant_params *quant_params,
-                           const nmsis_nn_dims *input_dims,
-                           const q7_t *input_data,
-                           const nmsis_nn_dims *filter_dims,
-                           const q7_t *filter_data,
-                           const nmsis_nn_dims *bias_dims,
-                           const int32_t *bias_data,
-                           const nmsis_nn_dims *output_dims,
-                           q7_t *output_data)
+                                    const nmsis_nn_conv_params *conv_params,
+                                    const nmsis_nn_per_channel_quant_params *quant_params,
+                                    const nmsis_nn_dims *input_dims,
+                                    const int8_t *input_data,
+                                    const nmsis_nn_dims *filter_dims,
+                                    const int8_t *filter_data,
+                                    const nmsis_nn_dims *bias_dims,
+                                    const int32_t *bias_data,
+                                    const nmsis_nn_dims *output_dims,
+                                    int8_t *output_data)
 {
     (void)bias_dims;
 
-    if (ctx->buf == NULL && riscv_convolve_s8_get_buffer_size(input_dims, filter_dims) > 0)
+    if (ctx->buf == NULL)
     {
         return RISCV_NMSIS_NN_ARG_ERROR;
     }
-    q15_t *buffer_a = (q15_t *)ctx->buf;
+    int16_t *buffer_a = (int16_t *)ctx->buf;
 
     const int32_t input_batches = input_dims->n;
     const uint16_t input_x = input_dims->w;
@@ -83,58 +82,65 @@ riscv_nmsis_nn_status riscv_convolve_s8(const nmsis_nn_context *ctx,
     const uint16_t pad_y = conv_params->padding.h;
     const uint16_t stride_x = conv_params->stride.w;
     const uint16_t stride_y = conv_params->stride.h;
-
-    const int32_t input_offset = conv_params->input_offset;
+    const int32_t dilation_x = conv_params->dilation.w;
+    const int32_t dilation_y = conv_params->dilation.h;
     const int32_t out_offset = conv_params->output_offset;
     const int32_t out_activation_min = conv_params->activation.min;
     const int32_t out_activation_max = conv_params->activation.max;
+    const int32_t rhs_cols = kernel_x * kernel_y * input_ch;
+    const int32_t input_offset = conv_params->input_offset;
+
     int32_t *output_mult = quant_params->multiplier;
     int32_t *output_shift = quant_params->shift;
 
     int i_batch;
     for (i_batch = 0; i_batch < input_batches; i_batch++)
     {
-        const uint16_t dilation_x = conv_params->dilation.w;
-        const uint16_t dilation_y = conv_params->dilation.h;
 
-        int32_t i_out_y, i_out_x, i_ker_y, i_ker_x;
-
-        /* Generate two columns from the input tensor a GEMM computation */
-        q15_t *two_column_buf = buffer_a;
-        q7_t *out = output_data;
-
+        /* Use as a ping-pong buffer for unordered elements */
+        int8_t *im2col_buf = (int8_t *)buffer_a + rhs_cols * 2;
+        int16_t *im2col_buf_start_s16 = buffer_a;
+        int8_t *out = output_data;
+        int32_t lhs_rows = 0;
         /* This part implements the im2col function */
-        for (i_out_y = 0; i_out_y < output_y; i_out_y++)
+        for (int i_out_y = 0; i_out_y < output_y; i_out_y++)
         {
-            for (i_out_x = 0; i_out_x < output_x; i_out_x++)
+            for (int i_out_x = 0; i_out_x < output_x; i_out_x++)
             {
-                const int32_t base_idx_y = stride_y * i_out_y - pad_y;
                 const int32_t base_idx_x = stride_x * i_out_x - pad_x;
+                const int32_t base_idx_y = stride_y * i_out_y - pad_y;
 
-                for (i_ker_y = 0; i_ker_y < kernel_y; i_ker_y++)
+                for (int32_t i_ker_y = 0; i_ker_y < kernel_y; i_ker_y++)
                 {
-                    for (i_ker_x = 0; i_ker_x < kernel_x; i_ker_x++)
+                    for (int32_t i_ker_x = 0; i_ker_x < kernel_x; i_ker_x++)
                     {
                         const int32_t k_y = base_idx_y + dilation_y * i_ker_y;
                         const int32_t k_x = base_idx_x + dilation_x * i_ker_x;
 
                         if (k_y < 0 || k_y >= input_y || k_x < 0 || k_x >= input_x)
                         {
-                            /* Filling 0 for out-of-bound paddings */
-                            memset(two_column_buf, 0, sizeof(q15_t) * input_ch);
+                            riscv_memset_s8(im2col_buf, (int8_t)-input_offset, sizeof(int8_t) * input_ch);
                         }
                         else
                         {
-                            /* Copying the pixel data to column */
-                            riscv_q7_to_q15_with_offset(
-                                input_data + (k_y * input_x + k_x) * input_ch, two_column_buf, input_ch, input_offset);
+                            riscv_memcpy_s8(im2col_buf, input_data + (k_y * input_x + k_x) * input_ch, input_ch);
                         }
-                        two_column_buf += input_ch;
+                        im2col_buf += input_ch;
                     }
                 }
+                lhs_rows++;
 
                 /* Computation is filed for every 2 columns */
-                if (two_column_buf == buffer_a + 2 * input_ch * kernel_y * kernel_x)
+#if defined(RISCV_MATH_DSP) && !defined(RISCV_MATH_VECTOR)
+		/* Copy one column with input offset and no ordering */
+                riscv_s8_to_s16_unordered_with_offset(
+                    im2col_buf - rhs_cols, im2col_buf_start_s16, rhs_cols, (int16_t)input_offset);
+#else
+                riscv_q7_to_q15_with_offset(im2col_buf - rhs_cols, im2col_buf_start_s16, rhs_cols, (int16_t)input_offset);
+#endif
+                im2col_buf_start_s16 += rhs_cols;
+
+                if (lhs_rows == 2)
                 {
                     out = riscv_nn_mat_mult_kernel_s8_s16(filter_data,
                                                         buffer_a,
@@ -144,35 +150,42 @@ riscv_nmsis_nn_status riscv_convolve_s8(const nmsis_nn_context *ctx,
                                                         out_offset,
                                                         out_activation_min,
                                                         out_activation_max,
-                                                        input_ch * kernel_y * kernel_x,
+                                                        rhs_cols,
                                                         bias_data,
                                                         out);
 
                     /* counter reset */
-                    two_column_buf = buffer_a;
+                    im2col_buf_start_s16 = buffer_a;
+                    im2col_buf = (int8_t *)buffer_a + rhs_cols * 2;
+                    lhs_rows = 0;
                 }
+            }
+
+            if (out == NULL)
+            {
+                return RISCV_NMSIS_NN_NO_IMPL_ERROR;
             }
         }
 
-        /* left-over because odd number of output pixels */
-        if (two_column_buf != buffer_a)
+        /* Handle left over columns */
+        if (lhs_rows != 0)
         {
-            const q7_t *ker_a = filter_data;
+            const int8_t *ker_a = filter_data;
             int i;
 
             for (i = 0; i < output_ch; i++)
             {
                 /* Load the accumulator with bias first */
-                q31_t sum = 0;
+                int32_t sum = 0;
                 if (bias_data)
                 {
                     sum = bias_data[i];
                 }
 
                 /* Point to the beginning of the im2col buffer where the input is available as a rearranged column */
-                const q15_t *ip_as_col = buffer_a;
+                const int16_t *ip_as_col = buffer_a;
 #if defined(RISCV_MATH_VECTOR)
-                uint16_t col_count = input_ch * kernel_y * kernel_x;
+                uint16_t col_count = rhs_cols;
                 int32_t blkCnt;
                 vint16m4_t a16m4, b16m4;
 
@@ -194,17 +207,13 @@ riscv_nmsis_nn_status riscv_convolve_s8(const nmsis_nn_context *ctx,
                 col_count = col_count & RVV_OPT_THRESHOLD;
 #elif defined(RISCV_MATH_DSP)
                 /* 4 multiply and accumulates are done in one loop. */
-                uint16_t col_count = (input_ch * kernel_y * kernel_x) >> 2;
-
+                uint16_t col_count = rhs_cols / 4;
                 while (col_count)
                 {
-                    q31_t ker_a1, ker_a2;
-                    q31_t ip_b1, ip_b2;
+                    int32_t ker_a1, ker_a2;
+                    int32_t ip_b1, ip_b2;
 
-                    // ker_a = read_and_pad(ker_a, &ker_a1, &ker_a2);
-                    q31_t inA = riscv_nn_read_q7x4_ia(&ker_a);
-                    ker_a1 = __RV_SUNPKD810(inA);
-                    ker_a2 = __RV_SUNPKD832(inA);
+                    ker_a = read_and_pad_reordered(ker_a, &ker_a1, &ker_a2);
 
                     ip_b1 = riscv_nn_read_q15x2_ia(&ip_as_col);
                     sum = __SMLAD(ker_a1, ip_b1, sum);
@@ -214,14 +223,14 @@ riscv_nmsis_nn_status riscv_convolve_s8(const nmsis_nn_context *ctx,
                     col_count--;
                 }
                 /* Handle left over mac */
-                col_count = input_ch * kernel_y * kernel_x & 0x3;
+                col_count = rhs_cols & 0x3;
 #else
-                uint16_t col_count = input_ch * kernel_y * kernel_x;
+                uint16_t col_count = rhs_cols;
 #endif /* defined(RISCV_MATH_VECTOR) */
                 while (col_count)
                 {
-                    q7_t ker_a1 = *ker_a++;
-                    q15_t ip_b1 = *ip_as_col++;
+                    int8_t ker_a1 = *ker_a++;
+                    int16_t ip_b1 = *ip_as_col++;
                     sum += ker_a1 * ip_b1;
                     col_count--;
                 }
@@ -230,7 +239,7 @@ riscv_nmsis_nn_status riscv_convolve_s8(const nmsis_nn_context *ctx,
                 sum += out_offset;
                 sum = MAX(sum, out_activation_min);
                 sum = MIN(sum, out_activation_max);
-                *out++ = (q7_t)sum;
+                *out++ = (int8_t)sum;
             }
         }
         /* Advance to the next batch */
@@ -240,11 +249,6 @@ riscv_nmsis_nn_status riscv_convolve_s8(const nmsis_nn_context *ctx,
 
     /* Return to application */
     return RISCV_NMSIS_NN_SUCCESS;
-}
-
-int32_t riscv_convolve_s8_get_buffer_size(const nmsis_nn_dims *input_dims, const nmsis_nn_dims *filter_dims)
-{
-    return (2 * input_dims->c * filter_dims->w * filter_dims->h) * (int32_t)sizeof(int16_t);
 }
 
 /**

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020-2022 Arm Limited or its affiliates.
+ * SPDX-FileCopyrightText: Copyright 2020-2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_nn_vec_mat_mult_t_s8
  * Description:  s8 vector by matrix (transposed) multiplication
  *
- * $Date:        28 April 2022
- * $Revision:    V.3.0.1
+ * $Date:        27 March 2023
+ * $Revision:    V.5.4.0
  *
  * Target Processor: RISC-V Cores
  *
@@ -36,7 +36,14 @@
  */
 
 /**
- * @addtogroup NNBasicMath
+ * @defgroup supportFC Fully Connected
+ *
+ * Support functions for Fully Connected
+ *
+ */
+
+/**
+ * @addtogroup supportFC
  * @{
  */
 
@@ -46,22 +53,20 @@
  * Refer header file for details.
  *
  */
-riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const q7_t *lhs,
-                                    const q7_t *rhs,
-                                    const q31_t *bias,
-                                    q7_t *dst,
-                                    const int32_t lhs_offset,
-                                    const int32_t rhs_offset,
-                                    const int32_t dst_offset,
-                                    const int32_t dst_multiplier,
-                                    const int32_t dst_shift,
-                                    const int32_t rhs_cols,
-                                    const int32_t rhs_rows,
-                                    const int32_t activation_min,
-                                    const int32_t activation_max,
-                                    const int32_t address_offset)
+riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const int8_t *lhs,
+                                             const int8_t *rhs,
+                                             const int32_t *bias,
+                                             int8_t *dst,
+                                             const int32_t lhs_offset,
+                                             const int32_t dst_offset,
+                                             const int32_t dst_multiplier,
+                                             const int32_t dst_shift,
+                                             const int32_t rhs_cols,
+                                             const int32_t rhs_rows,
+                                             const int32_t activation_min,
+                                             const int32_t activation_max,
+                                             const int32_t address_offset)
 {
-    (void)rhs_offset;
 #if defined (RISCV_MATH_VECTOR)
     uint32_t i, j;
     size_t l;
@@ -120,19 +125,19 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const q7_t *lhs,
 
         for (int j = col_loop_cnt; j != 0; j--)
         {
-            int32_t vec_0 = riscv_nn_read_q7x4_ia(&lhs_vec);
+            int32_t vec_0 = riscv_nn_read_s8x4_ia(&lhs_vec);
             int32_t vec_1 = __SXTAB16_RORn(lhs_offset_s16x2, (uint32_t)vec_0, 8);
 
             vec_0 = __SXTAB16(lhs_offset_s16x2, vec_0);
 
-            int32_t ker_0 = riscv_nn_read_q7x4_ia(&rhs_0);
+            int32_t ker_0 = riscv_nn_read_s8x4_ia(&rhs_0);
             int32_t ker_1 = __SXTB16_RORn((uint32_t)ker_0, 8);
             ker_0 = __SXTB16(ker_0);
 
             acc_0 = __SMLAD(ker_1, vec_1, acc_0);
             acc_0 = __SMLAD(ker_0, vec_0, acc_0);
 
-            ker_0 = riscv_nn_read_q7x4_ia(&rhs_1);
+            ker_0 = riscv_nn_read_s8x4_ia(&rhs_1);
             ker_1 = __SXTB16_RORn((uint32_t)ker_0, 8);
             ker_0 = __SXTB16(ker_0);
 
@@ -180,11 +185,11 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const q7_t *lhs,
 
         for (int i = col_loop_cnt; i != 0; i--)
         {
-            int32_t vec_0 = riscv_nn_read_q7x4_ia(&lhs_vec);
+            int32_t vec_0 = riscv_nn_read_s8x4_ia(&lhs_vec);
             int32_t vec_1 = __SXTAB16_RORn(lhs_offset_s16x2, (uint32_t)vec_0, 8);
             vec_0 = __SXTAB16(lhs_offset_s16x2, vec_0);
 
-            int32_t ker_0 = riscv_nn_read_q7x4_ia(&rhs_0);
+            int32_t ker_0 = riscv_nn_read_s8x4_ia(&rhs_0);
             int32_t ker_1 = __SXTB16_RORn((uint32_t)ker_0, 8);
             ker_0 = __SXTB16(ker_0);
 
@@ -217,14 +222,14 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const q7_t *lhs,
 
     for (int i_row_loop_cnt = 0; i_row_loop_cnt < row_loop_cnt; i_row_loop_cnt++)
     {
-        const q7_t *lhs_ptr = lhs;
-        const q7_t *rhs_ptr_0 = &rhs[0];
-        const q7_t *rhs_ptr_1 = &rhs[rhs_cols];
-        const q7_t *rhs_ptr_2 = &rhs[rhs_cols * 2];
+        const int8_t *lhs_ptr = lhs;
+        const int8_t *rhs_ptr_0 = &rhs[0];
+        const int8_t *rhs_ptr_1 = &rhs[rhs_cols];
+        const int8_t *rhs_ptr_2 = &rhs[rhs_cols * 2];
 
-        q31_t res00 = 0;
-        q31_t res01 = 0;
-        q31_t res02 = 0;
+        int32_t res00 = 0;
+        int32_t res01 = 0;
+        int32_t res02 = 0;
         if (bias)
         {
             res00 = *bias++;
@@ -233,10 +238,10 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const q7_t *lhs,
         }
         for (int32_t rhs_cols_idx = 0; rhs_cols_idx < rhs_cols; ++rhs_cols_idx)
         {
-            const q31_t rhs_value0 = (int8_t)*rhs_ptr_0;
-            const q31_t rhs_value1 = (int8_t)*rhs_ptr_1;
-            const q31_t rhs_value2 = (int8_t)*rhs_ptr_2;
-            const q31_t lhs_value = (int8_t)*lhs_ptr + lhs_offset;
+            const int32_t rhs_value0 = (int8_t)*rhs_ptr_0;
+            const int32_t rhs_value1 = (int8_t)*rhs_ptr_1;
+            const int32_t rhs_value2 = (int8_t)*rhs_ptr_2;
+            const int32_t lhs_value = (int8_t)*lhs_ptr + lhs_offset;
 
             res00 += lhs_value * rhs_value0;
             res01 += lhs_value * rhs_value1;
@@ -265,9 +270,9 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const q7_t *lhs,
         res02 = MAX(res02, activation_min);
         res02 = MIN(res02, activation_max);
 
-        *dst = (q7_t)res00;
-        *(dst + address_offset) = (q7_t)res01;
-        *(dst + 2 * address_offset) = (q7_t)res02;
+        *dst = (int8_t)res00;
+        *(dst + address_offset) = (int8_t)res01;
+        *(dst + 2 * address_offset) = (int8_t)res02;
         dst += 3 * address_offset;
 
         rhs += 3 * rhs_cols;
@@ -277,10 +282,10 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const q7_t *lhs,
 
     for (int i_loop_cnt = 0; i_loop_cnt < loop_cnt; i_loop_cnt++)
     {
-        const q7_t *lhs_ptr = &lhs[0];
-        const q7_t *rhs_ptr = &rhs[0];
+        const int8_t *lhs_ptr = &lhs[0];
+        const int8_t *rhs_ptr = &rhs[0];
 
-        q31_t res00 = 0;
+        int32_t res00 = 0;
         if (bias)
         {
             res00 = *bias++;
@@ -288,8 +293,8 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const q7_t *lhs,
 
         for (int32_t rhs_cols_idx = 0; rhs_cols_idx < rhs_cols; ++rhs_cols_idx)
         {
-            q31_t rhs_value0 = (int8_t)rhs_ptr[0];
-            q31_t lhs_value = (int8_t)lhs_ptr[0] + lhs_offset;
+            int32_t rhs_value0 = (int8_t)rhs_ptr[0];
+            int32_t lhs_value = (int8_t)lhs_ptr[0] + lhs_offset;
 
             res00 += lhs_value * rhs_value0;
 
@@ -316,5 +321,5 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const q7_t *lhs,
 }
 
 /**
- * @} end of NNBasicMath group
+ * @} end of Doxygen group
  */

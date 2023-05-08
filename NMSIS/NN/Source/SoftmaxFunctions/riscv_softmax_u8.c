@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2020 Arm Limited or its affiliates. All rights reserved.
+ * SPDX-FileCopyrightText: Copyright 2010-2020, 2022-2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_softmax_u8.c
  * Description:  U8 softmax function
  *
- * $Date:        09. October 2020
- * $Revision:    V.1.0.2
+ * $Date:        5 January 2023
+ * $Revision:    V.1.1.0
  *
  * Target Processor: RISC-V Cores
  *
@@ -35,7 +35,7 @@
 #define ACCUM_BITS 12
 
 /**
- *  @ingroup groupNN
+ *  @ingroup Public
  */
 
 /**

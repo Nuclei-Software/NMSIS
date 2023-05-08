@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2020 Arm Limited or its affiliates. All rights reserved.
+ * SPDX-FileCopyrightText: Copyright 2010-2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,17 +22,18 @@
  * Title:        riscv_convolve_1_x_n_s8.c
  * Description:  s8 version of 1xN convolution using symmetric quantization.
  *
- * $Date:        July 27, 2020
- * $Revision:    V.2.0.1
+ * $Date:        8 March 2023
+ * $Revision:    V.3.4.0
  *
  * Target Processor: RISC-V Cores
  *
  * -------------------------------------------------------------------- */
+
 #include "ref_functions.h"
 #include "riscv_nnsupportfunctions.h"
 
 /**
- *  @ingroup groupNN
+ *  @ingroup Public
  */
 
 /**
@@ -47,49 +48,43 @@
    *
    */
 
-riscv_nmsis_nn_status riscv_convolve_1_x_n_s8_ref(const nmsis_nn_context* ctx,
-                                     const nmsis_nn_conv_params* conv_params,
-                                     const nmsis_nn_per_channel_quant_params* quant_params,
-                                     const nmsis_nn_dims* input_dims,
-                                     const q7_t *input_data,
-                                     const nmsis_nn_dims* filter_dims,
-                                     const q7_t *filter_data,
-                                     const nmsis_nn_dims* bias_dims,
-                                     const int32_t *bias_data,
-                                     const nmsis_nn_dims* output_dims,
-                                     q7_t *output_data)
+riscv_nmsis_nn_status riscv_convolve_1_x_n_s8_ref(const nmsis_nn_context *ctx,
+                                          const nmsis_nn_conv_params *conv_params,
+                                          const nmsis_nn_per_channel_quant_params *quant_params,
+                                          const nmsis_nn_dims *input_dims,
+                                          const int8_t *input_data,
+                                          const nmsis_nn_dims *filter_dims,
+                                          const int8_t *filter_data,
+                                          const nmsis_nn_dims *bias_dims,
+                                          const int32_t *bias_data,
+                                          const nmsis_nn_dims *output_dims,
+                                          int8_t *output_data)
 {
-    (void)bias_dims;
     riscv_nmsis_nn_status status = RISCV_NMSIS_NN_SUCCESS;
-    if (output_dims->w % 4 != 0)
+    int32_t buffer_size = riscv_convolve_1_x_n_s8_get_buffer_size_ref(input_dims, filter_dims);
+    /* The wrapper API is the ultimate reference for argument check */
+    if ((input_dims->h != 1) || conv_params->dilation.w != 1 || (buffer_size != 0 && ctx->buf == NULL) ||
+        conv_params->stride.w == 0 || (conv_params->stride.w * input_dims->c % 4 != 0))
     {
-        status = RISCV_NMSIS_NN_SIZE_MISMATCH;
+        status = RISCV_NMSIS_NN_ARG_ERROR;
         goto out;
     }
 
     status = riscv_convolve_s8_ref(ctx,
-                                 conv_params,
-                                 quant_params,
-                                 input_dims,
-                                 input_data,
-                                 filter_dims,
-                                 filter_data,
-                                 bias_dims,
-                                 bias_data,
-                                 output_dims,
-                                 output_data);
+                             conv_params,
+                             quant_params,
+                             input_dims,
+                             input_data,
+                             filter_dims,
+                             filter_data,
+                             bias_dims,
+                             bias_data,
+                             output_dims,
+                             output_data);
 
 out:
     /* Return to application */
     return status;
-}
-
-int32_t riscv_convolve_1_x_n_s8_get_buffer_size_ref(const nmsis_nn_dims* input_dims,
-                                                  const nmsis_nn_dims* filter_dims)
-{
-    (void)input_dims;
-    (void)filter_dims;
-    return 0;
 }
 
 /**

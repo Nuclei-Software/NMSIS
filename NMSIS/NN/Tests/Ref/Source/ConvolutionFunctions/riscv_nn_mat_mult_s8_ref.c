@@ -38,8 +38,8 @@
    *
    */
 
-q7_t *riscv_nn_mat_mult_s8_ref(const q7_t *input_row,
-                             const q7_t *input_col,
+int8_t *riscv_nn_mat_mult_s8_ref(const int8_t *input_row,
+                             const int8_t *input_col,
                              const uint16_t output_ch,
                              const uint16_t col_batches,
                              const int32_t *output_shift,
@@ -51,7 +51,7 @@ q7_t *riscv_nn_mat_mult_s8_ref(const q7_t *input_row,
                              const int16_t activation_max,
                              const uint16_t row_len,
                              const int32_t *const bias,
-                             q7_t *out)
+                             int8_t *out)
 {
     (void)input_row;
     (void)input_col;

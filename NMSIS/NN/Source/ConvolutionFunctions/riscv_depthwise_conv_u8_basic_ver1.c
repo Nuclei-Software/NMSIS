@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2020 Arm Limited or its affiliates. All rights reserved.
+ * SPDX-FileCopyrightText: Copyright 2022 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -25,7 +25,7 @@
  * $Date:        09. October 2020
  * $Revision:    V.1.1.1
  *
- * Target :  RISC-V CPUs
+ * Target :  RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 

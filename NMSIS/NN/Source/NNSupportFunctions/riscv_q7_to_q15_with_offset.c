@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2020 Arm Limited or its affiliates. All rights reserved.
+ * SPDX-FileCopyrightText: Copyright 2010-2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_q7_to_q15_with_offset.c
  * Description:  Converts the elements of the Q7 vector to Q15 vector with an added offset
  *
- * $Date:        March 3, 2020
- * $Revision:    V.2.0.2
+ * $Date:        22 March 2023
+ * $Revision:    V.2.2.0
  *
  * Target Processor: RISC-V Cores
  *
@@ -36,13 +36,13 @@
  */
 
 /**
- * @addtogroup nndata_convert
+ * @addtogroup supportConversion
  * @{
  */
 
-void riscv_q7_to_q15_with_offset(const q7_t *src, q15_t *dst, uint32_t block_size, q15_t offset)
+void riscv_q7_to_q15_with_offset(const int8_t *src, int16_t *dst, int32_t block_size, int16_t offset)
 {
-    int block_cnt;
+    int32_t block_cnt;
 #if defined(RISCV_MATH_VECTOR)
     block_cnt = block_size & (~RVV_OPT_THRESHOLD);                              /* Loop counter */
     size_t l;
@@ -55,24 +55,31 @@ void riscv_q7_to_q15_with_offset(const q7_t *src, q15_t *dst, uint32_t block_siz
     block_cnt = block_size & RVV_OPT_THRESHOLD;
 #elif defined(RISCV_MATH_DSP)
     /* Run the below code for cores that support SIMD instructions  */
-    q31_t in_q7x4;
-    q31_t in_q15x2_1;
-    q31_t in_q15x2_2;
+    int32_t in_q7x4;
+    int32_t in_q15x2_1;
+    int32_t in_q15x2_2;
+    int32_t out_q15x2_1;
+    int32_t out_q15x2_2;
 
     /*loop unrolling */
     block_cnt = block_size >> 2;
 
     /* First part of the processing with loop unrolling.  Compute 4 outputs at a time. */
-    const q31_t offset_q15x2 = __RV_PKBB16(offset, offset);
+    const int32_t offset_q15x2 = __NN_PKHBT(offset, offset, 16);
     while (block_cnt > 0)
     {
-        in_q7x4 = riscv_nn_read_q7x4_ia(&src);
+        /* convert from s8 to s16 and then store the results in the destination buffer */
+        in_q7x4 = riscv_nn_read_s8x4_ia(&src);
 
-        in_q15x2_1 = __RV_ADD16(offset_q15x2, __RV_SUNPKD810(in_q7x4));
-        in_q15x2_2 = __RV_ADD16(offset_q15x2, __RV_SUNPKD832(in_q7x4));
+        /* Extract and sign extend each of the four s8 values to s16 */
+        in_q15x2_1 = __SXTAB16(offset_q15x2, __ROR(in_q7x4, 8));
+        in_q15x2_2 = __SXTAB16(offset_q15x2, in_q7x4);
 
-        riscv_nn_write_q15x2_ia(&dst, in_q15x2_1);
-        riscv_nn_write_q15x2_ia(&dst, in_q15x2_2);
+        out_q15x2_2 = __NN_PKHTB(in_q15x2_1, in_q15x2_2, 16);
+        out_q15x2_1 = __NN_PKHBT(in_q15x2_2, in_q15x2_1, 16);
+
+        riscv_nn_write_q15x2_ia(&dst, out_q15x2_1);
+        riscv_nn_write_q15x2_ia(&dst, out_q15x2_2);
 
         block_cnt--;
     }
@@ -87,7 +94,7 @@ void riscv_q7_to_q15_with_offset(const q7_t *src, q15_t *dst, uint32_t block_siz
 
     while (block_cnt > 0)
     {
-        *dst++ = (q15_t)*src++ + offset;
+        *dst++ = (int16_t)*src++ + offset;
 
         /* Decrement the loop counter */
         block_cnt--;
@@ -95,5 +102,5 @@ void riscv_q7_to_q15_with_offset(const q7_t *src, q15_t *dst, uint32_t block_siz
 }
 
 /**
- * @} end of nndata_convert group
+ * @} end of Doxygen group
  */

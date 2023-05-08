@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2019 Arm Limited or its affiliates. All rights reserved.
+ * SPDX-FileCopyrightText: Copyright 2010-2019, 2022 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_relu6_s8.c
  * Description:  Basic s8 version of ReLU6
  *
- * $Date:        09. October 2020
- * $Revision:    V.1.0.1
+ * $Date:        26 October 2022
+ * $Revision:    V.1.0.2
  *
  * Target Processor: RISC-V Cores
  *
@@ -33,7 +33,7 @@
 #include "riscv_nnsupportfunctions.h"
 
 /**
- *  @ingroup groupNN
+ *  @ingroup Public
  */
 
 /**
@@ -48,9 +48,9 @@
  *
  */
 
-void riscv_relu6_s8(q7_t *data, uint16_t size)
+void riscv_relu6_s8(int8_t *data, uint16_t size)
 {
-    uint16_t i;
+    int32_t i;
 
 #if defined(RISCV_MATH_VECTOR)
     uint16_t blkCnt = size & (~RVV_OPT_THRESHOLD);                               /* Loop counter */
@@ -69,7 +69,7 @@ void riscv_relu6_s8(q7_t *data, uint16_t size)
     i = 0;
 #endif
 
-    for (; i < size; i++)
+    for (i = 0; i < size; i++)
     {
         int32_t ip = data[i];
 

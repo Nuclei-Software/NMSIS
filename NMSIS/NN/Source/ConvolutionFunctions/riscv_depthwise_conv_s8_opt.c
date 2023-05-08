@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2021 Arm Limited or its affiliates.
+ * SPDX-FileCopyrightText: Copyright 2010-2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -23,8 +23,8 @@
  * Description:  Optimized s8 depthwise separable convolution function for
  *               channel multiplier of 1.
  *
- * $Date:        January 26, 2021
- * $Revision:    V.2.0.3
+ * $Date:        22 March 2023
+ * $Revision:    V.3.5.0
  *
  * Target Processor: RISC-V Cores
  *
@@ -34,7 +34,7 @@
 #include "riscv_nnsupportfunctions.h"
 
 /**
- *  @ingroup groupNN
+ *  @ingroup Public
  */
 
 /**
@@ -50,25 +50,25 @@
  */
 
 riscv_nmsis_nn_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
-                                     const nmsis_nn_dw_conv_params *dw_conv_params,
-                                     const nmsis_nn_per_channel_quant_params *quant_params,
-                                     const nmsis_nn_dims *input_dims,
-                                     const q7_t *input,
-                                     const nmsis_nn_dims *filter_dims,
-                                     const q7_t *kernel,
-                                     const nmsis_nn_dims *bias_dims,
-                                     const int32_t *bias,
-                                     const nmsis_nn_dims *output_dims,
-                                     q7_t *output)
+                                              const nmsis_nn_dw_conv_params *dw_conv_params,
+                                              const nmsis_nn_per_channel_quant_params *quant_params,
+                                              const nmsis_nn_dims *input_dims,
+                                              const int8_t *input,
+                                              const nmsis_nn_dims *filter_dims,
+                                              const int8_t *kernel,
+                                              const nmsis_nn_dims *bias_dims,
+                                              const int32_t *bias,
+                                              const nmsis_nn_dims *output_dims,
+                                              int8_t *output)
 {
 
     const int32_t input_ch = input_dims->c;
     const int32_t output_ch = output_dims->c;
 
-    /* Check input constraints input_ch == output_ch */
+    /* Check depth multiplier is 1 */
     if (input_ch != output_ch)
     {
-        return RISCV_NMSIS_NN_SIZE_MISMATCH;
+        return RISCV_NMSIS_NN_ARG_ERROR;
     }
 
     if (ctx->buf == NULL && riscv_depthwise_conv_s8_opt_get_buffer_size(input_dims, filter_dims) > 0)
@@ -76,6 +76,7 @@ riscv_nmsis_nn_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
         return RISCV_NMSIS_NN_ARG_ERROR;
     }
 #if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
+    (void)bias_dims;
     const int32_t input_x = input_dims->w;
     const int32_t input_y = input_dims->h;
     const int32_t kernel_x = filter_dims->w;
@@ -92,15 +93,14 @@ riscv_nmsis_nn_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
     const int32_t input_offset = dw_conv_params->input_offset;
     const int32_t output_activation_min = dw_conv_params->activation.min;
     const int32_t output_activation_max = dw_conv_params->activation.max;
-    q15_t *buffer_a = (q15_t *)ctx->buf;
+    int16_t *buffer_a = (int16_t *)ctx->buf;
 
-    (void)bias_dims;
     /* Run the following code in cores using DSP extension */
-    q15_t *const col_buffer_start = buffer_a;
-    q15_t *col_buffer = col_buffer_start;
+    int16_t *const col_buffer_start = buffer_a;
+    int16_t *col_buffer = col_buffer_start;
     const int32_t *const bias_start_pos = bias;
-    const q31_t *const out_mult_start_pos = output_mult;
-    const q31_t *const out_shift_start_pos = output_shift;
+    const int32_t *const out_mult_start_pos = output_mult;
+    const int32_t *const out_shift_start_pos = output_shift;
     uint16_t row_count;
     uint16_t row_shift;
 
@@ -120,7 +120,7 @@ riscv_nmsis_nn_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
             int32_t index = 0;
             if (ker_y_start != 0)
             {
-                memset(&col_buffer[index], 0, (kernel_x * input_ch) * ker_y_start * sizeof(q15_t));
+                memset(&col_buffer[index], 0, (kernel_x * input_ch) * ker_y_start * sizeof(int16_t));
                 index += (kernel_x * input_ch) * ker_y_start;
             }
 
@@ -133,14 +133,14 @@ riscv_nmsis_nn_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
                     const int32_t idx_x = base_idx_x + i_ker_x;
                     if (idx_x < 0 || idx_x >= input_x)
                     {
-                        memset(&col_buffer[index], 0, input_ch * sizeof(q15_t));
+                        memset(&col_buffer[index], 0, input_ch * sizeof(int16_t));
                     }
                     else
                     {
-                        riscv_q7_to_q15_with_offset((q7_t *)input + (idx_y * input_x + idx_x) * input_ch,
+                        riscv_q7_to_q15_with_offset((int8_t *)input + (idx_y * input_x + idx_x) * input_ch,
                                                   &col_buffer[index],
                                                   input_ch,
-                                                  input_offset);
+                                                  (int16_t)input_offset);
                     }
                     index += input_ch;
                 }
@@ -149,7 +149,7 @@ riscv_nmsis_nn_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
             const int diff = kernel_y - ker_y_end;
             if (diff != 0)
             {
-                memset(&col_buffer[index], 0, (kernel_x * input_ch) * diff * sizeof(q15_t));
+                memset(&col_buffer[index], 0, (kernel_x * input_ch) * diff * sizeof(int16_t));
             }
 #if defined(RISCV_MATH_VECTOR)
             row_count = output_ch;
@@ -198,27 +198,34 @@ riscv_nmsis_nn_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
 
             while (row_count)
             {
-                q31_t sum = *bias++;
-                q31_t sum_2 = *bias++;
-                q31_t sum_3 = *bias++;
-                q31_t sum_4 = *bias++;
+                int32_t sum = 0;
+                int32_t sum_2 = 0;
+                int32_t sum_3 = 0;
+                int32_t sum_4 = 0;
+                if (bias)
+                {
+                    sum = *bias++;
+                    sum_2 = *bias++;
+                    sum_3 = *bias++;
+                    sum_4 = *bias++;
+                }
 
                 uint16_t col_count = (kernel_x * kernel_y) / 2;
-                q15_t *col_pos = col_buffer_start + row_shift;
-                const q7_t *row_pos = kernel + row_shift;
+                int16_t *col_pos = col_buffer_start + row_shift;
+                const int8_t *row_pos = kernel + row_shift;
                 row_shift += 4;
                 while (col_count)
                 {
                     /* General idea is to read 4 + 4 (input, kernel) pair and re-arrange them in the right order to
                     use in a SMLAD instruction . One run of this loop produces 4 partial outputs with 8 MACs. */
                     /* Note: variable names can be improved here to align with rows and columns. */
-                    q31_t ip_a1, ip_b1, op_a, op_b;
-                    q31_t ip_a01, ip_a23, ip_b01, ip_b23;
+                    int32_t ip_a1, ip_b1, op_a, op_b;
+                    int32_t ip_a01, ip_a23, ip_b01, ip_b23;
                     /* Read 4 weights */
-                    ip_a1 = riscv_nn_read_q7x4(row_pos);
-                    ip_b1 = riscv_nn_read_q7x4(row_pos + input_ch);
-                    op_a = riscv_nn_read_q15x2(col_pos);
-                    op_b = riscv_nn_read_q15x2(col_pos + input_ch);
+                    ip_a1 = riscv_nn_read_s8x4(row_pos);
+                    ip_b1 = riscv_nn_read_s8x4(row_pos + input_ch);
+                    op_a = riscv_nn_read_s16x2(col_pos);
+                    op_b = riscv_nn_read_s16x2(col_pos + input_ch);
 
                     ip_a01 = __RV_SUNPKD810(ip_a1);
                     ip_a23 = __RV_SUNPKD832(ip_a1);
@@ -235,8 +242,8 @@ riscv_nmsis_nn_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
                     // sum_4 = __RV_KMATT(sum_4,ip_a23,op_a);
                     // sum_4 = __RV_KMATT(sum_4,ip_b23,op_b);
 
-                    op_a = riscv_nn_read_q15x2(col_pos + 2);
-                    op_b = riscv_nn_read_q15x2(col_pos + input_ch + 2);
+                    op_a = riscv_nn_read_s16x2(col_pos + 2);
+                    op_b = riscv_nn_read_s16x2(col_pos + input_ch + 2);
 
                     // sum = __RV_KMABB(sum,ip_a01,op_a);
                     // sum = __RV_KMABB(sum,ip_b01,op_b);
@@ -252,23 +259,23 @@ riscv_nmsis_nn_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
                     // ip_b2 = __SXTB16(ip_a1);
                     // ip_a1 = __SXTB16(__ROR(ip_a1, 8));
 
-                    // op_c = __NN_PKHBT(op_b, op_a, 16);
-                    // op_a = __NN_PKHTB(op_b, op_a, 16);
-                    // op_b = __NN_PKHBT(ip_b2, ip_a2, 16);
+                    // op_c = __PKHBT(op_b, op_a, 16);
+                    // op_a = __PKHTB(op_b, op_a, 16);
+                    // op_b = __PKHBT(ip_b2, ip_a2, 16);
                     // sum = __SMLAD(op_c, op_b, sum);
 
-                    // op_b = __NN_PKHBT(ip_b1, ip_a1, 16);
+                    // op_b = __PKHBT(ip_b1, ip_a1, 16);
                     // sum_2 = __SMLAD(op_a, op_b, sum_2);
 
                     // op_a = riscv_nn_read_q15x2(col_pos + 2);
                     // op_b = riscv_nn_read_q15x2(col_pos + input_ch + 2);
 
-                    // op_c = __NN_PKHBT(op_b, op_a, 16);
-                    // op_a = __NN_PKHTB(op_b, op_a, 16);
-                    // op_b = __NN_PKHTB(ip_a2, ip_b2, 16);
+                    // op_c = __PKHBT(op_b, op_a, 16);
+                    // op_a = __PKHTB(op_b, op_a, 16);
+                    // op_b = __PKHTB(ip_a2, ip_b2, 16);
                     // sum_3 = __SMLAD(op_c, op_b, sum_3);
 
-                    // op_b = __NN_PKHTB(ip_a1, ip_b1, 16);
+                    // op_b = __PKHTB(ip_a1, ip_b1, 16);
                     // sum_4 = __SMLAD(op_a, op_b, sum_4);
 
                     row_pos += input_ch << 1;
@@ -293,24 +300,24 @@ riscv_nmsis_nn_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
                 sum += output_offset;
                 sum = MAX(sum, output_activation_min);
                 sum = MIN(sum, output_activation_max);
-                *output++ = (q7_t)sum;
+                *output++ = (int8_t)sum;
 
                 sum_2 = riscv_nn_requantize(sum_2, *output_mult++, *output_shift++);
                 sum_2 += output_offset;
                 sum_2 = MAX(sum_2, output_activation_min);
                 sum_2 = MIN(sum_2, output_activation_max);
-                *output++ = (q7_t)sum_2;
+                *output++ = (int8_t)sum_2;
                 sum_3 = riscv_nn_requantize(sum_3, *output_mult++, *output_shift++);
                 sum_3 += output_offset;
                 sum_3 = MAX(sum_3, output_activation_min);
                 sum_3 = MIN(sum_3, output_activation_max);
-                *output++ = (q7_t)sum_3;
+                *output++ = (int8_t)sum_3;
 
                 sum_4 = riscv_nn_requantize(sum_4, *output_mult++, *output_shift++);
                 sum_4 += output_offset;
                 sum_4 = MAX(sum_4, output_activation_min);
                 sum_4 = MIN(sum_4, output_activation_max);
-                *output++ = (q7_t)sum_4;
+                *output++ = (int8_t)sum_4;
 
                 row_count--;
             }
@@ -318,12 +325,16 @@ riscv_nmsis_nn_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
             row_count = output_ch & 0x3;
             while (row_count)
             {
-                q15_t *col_pos = col_buffer_start + row_shift;
-                const q7_t *row_pos = kernel + row_shift;
-                q31_t sum = *bias++;
+                int16_t *col_pos = col_buffer_start + row_shift;
+                const int8_t *row_pos = kernel + row_shift;
+                int32_t sum = 0;
+                if (bias)
+                {
+                    sum = *bias++;
+                }
                 const uint16_t col_count = (kernel_x * kernel_y);
                 row_shift += 1;
-                int i = 0;
+
                 for (int i = 0; i < col_count; i++)
                 {
                     sum += row_pos[i * input_ch] * col_pos[i * input_ch];
@@ -332,7 +343,7 @@ riscv_nmsis_nn_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
                 sum += output_offset;
                 sum = MAX(sum, output_activation_min);
                 sum = MIN(sum, output_activation_max);
-                *output++ = (q7_t)sum;
+                *output++ = (int8_t)sum;
 
                 row_count--;
             }
@@ -359,17 +370,6 @@ riscv_nmsis_nn_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
 
     /* Return to application */
     return RISCV_NMSIS_NN_SUCCESS;
-}
-
-int32_t riscv_depthwise_conv_s8_opt_get_buffer_size(const nmsis_nn_dims *input_dims, const nmsis_nn_dims *filter_dims)
-{
-#if defined(RISCV_MATH_DSP) || defined(RISCV_MATH_VECTOR)
-    return (input_dims->c * filter_dims->w * filter_dims->h) * sizeof(int16_t);
-#else
-    (void)input_dims;
-    (void)filter_dims;
-    return 0;
-#endif
 }
 
 /**

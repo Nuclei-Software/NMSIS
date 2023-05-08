@@ -1,5 +1,6 @@
 /*
- * Copyright (C) 2010-2022 Arm Limited or its affiliates.
+ * SPDX-FileCopyrightText: Copyright 2010-2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
+ * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -21,8 +22,8 @@
  * Title:        riscv_convolve_s16.c
  * Description:  s16 version of convolution using symmetric quantization.
  *
- * $Date:        January 13, 2022
- * $Revision:    V.1.1.0
+ * $Date:        30 January 2023
+ * $Revision:    V.2.1.0
  *
  * Target Processor: RISC-V Cores
  *
@@ -32,7 +33,7 @@
 #include "riscv_nnsupportfunctions.h"
 
 /**
- *  @ingroup groupNN
+ *  @ingroup Public
  */
 
 /**
@@ -49,16 +50,16 @@
  */
 
 riscv_nmsis_nn_status riscv_convolve_s16(const nmsis_nn_context *ctx,
-                            const nmsis_nn_conv_params *conv_params,
-                            const nmsis_nn_per_channel_quant_params *quant_params,
-                            const nmsis_nn_dims *input_dims,
-                            const q15_t *input_data,
-                            const nmsis_nn_dims *filter_dims,
-                            const q7_t *filter_data,
-                            const nmsis_nn_dims *bias_dims,
-                            const int64_t *bias_data,
-                            const nmsis_nn_dims *output_dims,
-                            q15_t *output_data)
+                                     const nmsis_nn_conv_params *conv_params,
+                                     const nmsis_nn_per_channel_quant_params *quant_params,
+                                     const nmsis_nn_dims *input_dims,
+                                     const int16_t *input_data,
+                                     const nmsis_nn_dims *filter_dims,
+                                     const int8_t *filter_data,
+                                     const nmsis_nn_dims *bias_dims,
+                                     const int64_t *bias_data,
+                                     const nmsis_nn_dims *output_dims,
+                                     int16_t *output_data)
 {
     (void)bias_dims;
     (void)ctx;
@@ -90,7 +91,7 @@ riscv_nmsis_nn_status riscv_convolve_s16(const nmsis_nn_context *ctx,
         /* Run the following code as reference implementation for RISC-V Core without DSP */
         for (int32_t i_out_ch = 0; i_out_ch < output_ch; i_out_ch++)
         {
-            const q31_t reduced_multiplier = REDUCE_MULTIPLIER(output_mult[i_out_ch]);
+            const int32_t reduced_multiplier = REDUCE_MULTIPLIER(output_mult[i_out_ch]);
 
             for (int32_t base_idx_y = -pad_y, i_out_y = 0; i_out_y < output_y; base_idx_y += stride_y, i_out_y++)
             {
@@ -142,13 +143,6 @@ riscv_nmsis_nn_status riscv_convolve_s16(const nmsis_nn_context *ctx,
 
     /* Return to application */
     return RISCV_NMSIS_NN_SUCCESS;
-}
-
-int32_t riscv_convolve_s16_get_buffer_size(const nmsis_nn_dims *input_dims, const nmsis_nn_dims *filter_dims)
-{
-    (void)input_dims;
-    (void)filter_dims;
-    return 0;
 }
 
 /**

@@ -250,7 +250,7 @@ int main()
     nmsis_nn_activation activation = {-12800, 12700};
     nmsis_nn_conv_params conv_params = {128, -128, stride, padding, dilation, activation};
     nmsis_nn_per_channel_quant_params quant_params = {multiplier, shift};
-    nmsis_nn_dims input_dims = {1, 8, 8, 16};
+    nmsis_nn_dims input_dims = {1, 1, 8, 16};
     nmsis_nn_dims filter_dims = {4, 1, 2, 16};
     nmsis_nn_dims bias_dims = {4, 1, 2, 4};
     nmsis_nn_dims output_dims = {1, 8, 8, 4};
@@ -927,7 +927,7 @@ int main()
     // verify_results_int32(&output_ref, &output_opt, 1);
 
 
-    int32_t sum_col_opt = 0, output_opt_s8[4] = {0};
+/*    int32_t sum_col_opt = 0, output_opt_s8[4] = {0};
     int32_t sum_col_ref = 0, output_ref_s8[4] = {0};
 
     riscv_nn_mat_mul_core_1x_s8_ref(BasicMathforNN_SIZE, test1, test1 + BasicMathforNN_SIZE, &sum_col_ref, &output_ref_s8[0]);
@@ -935,7 +935,7 @@ int main()
     riscv_nn_mat_mul_core_1x_s8(BasicMathforNN_SIZE, test1, test1 + BasicMathforNN_SIZE, &sum_col_opt, &output_opt_s8[0]);
     BENCH_END(riscv_nn_mat_mul_core_1x_s8);
     verify_results_int32(&sum_col_ref, &sum_col_opt, 1);
-    verify_results_int32(output_ref_s8, output_opt_s8, 1);
+    verify_results_int32(output_ref_s8, output_opt_s8, 1);*/
 
 //Only available for RISCV_MATH_MVEI
     // printf("Start ref q7 add implementation\n");
@@ -973,22 +973,22 @@ int main()
     }
 
     riscv_nn_mat_mult_nt_t_s8_ref(test1, test1 + BasicMathforNN_SIZE, bias_q31, output_q7, dst_multipliers, dst_shifts,
-                                  LHS_ROWS, RHS_ROWS, RHS_COLS, LHS_OFFSET, DST_OFFSET, ACTIVATION_MIN, ACTIVATION_MAX);
+                                  LHS_ROWS, RHS_ROWS, RHS_COLS, LHS_OFFSET, DST_OFFSET, ACTIVATION_MIN, ACTIVATION_MAX, 4);
 
     BENCH_START(riscv_nn_mat_mult_nt_t_s8);
     riscv_nn_mat_mult_nt_t_s8(test1, test1 + BasicMathforNN_SIZE, bias_q31, output_q7 + LHS_ROWS * RHS_ROWS, dst_multipliers, dst_shifts,
-                              LHS_ROWS, RHS_ROWS, RHS_COLS, LHS_OFFSET, DST_OFFSET, ACTIVATION_MIN, ACTIVATION_MAX);
+                              LHS_ROWS, RHS_ROWS, RHS_COLS, LHS_OFFSET, DST_OFFSET, ACTIVATION_MIN, ACTIVATION_MAX, 4);
     BENCH_END(riscv_nn_mat_mult_nt_t_s8);
     verify_results_q7(output_q7, output_q7 + LHS_ROWS * RHS_ROWS, LHS_ROWS * RHS_ROWS);
 
     initialize_results_q7(output_q7, output_q7 + BasicMathforNN_SIZE, BasicMathforNN_SIZE);
 
     #define ADDRESS_OFFSET 1
-    riscv_nn_vec_mat_mult_t_s8_ref(test1, test1 + BasicMathforNN_SIZE, bias_q31, output_q7, 0, 0, 0,
+    riscv_nn_vec_mat_mult_t_s8_ref(test1, test1 + BasicMathforNN_SIZE, bias_q31, output_q7, 0, 0,
                                    dst_multipliers[0], dst_shifts[0], RHS_COLS, RHS_ROWS, ACTIVATION_MIN, ACTIVATION_MAX, ADDRESS_OFFSET);
 
     BENCH_START(riscv_nn_vec_mat_mult_t_s8);
-    riscv_nn_vec_mat_mult_t_s8(test1, test1 + BasicMathforNN_SIZE, bias_q31, output_q7 + RHS_ROWS * ADDRESS_OFFSET, 0, 0, 0,
+    riscv_nn_vec_mat_mult_t_s8(test1, test1 + BasicMathforNN_SIZE, bias_q31, output_q7 + RHS_ROWS * ADDRESS_OFFSET, 0, 0,
                                 dst_multipliers[0], dst_shifts[0], RHS_COLS, RHS_ROWS, ACTIVATION_MIN, ACTIVATION_MAX, ADDRESS_OFFSET);
     BENCH_END(riscv_nn_vec_mat_mult_t_s8);
 

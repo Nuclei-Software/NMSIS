@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2020 Arm Limited or its affiliates. All rights reserved.
+ * SPDX-FileCopyrightText: Copyright 2010-2020, 2022 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_nn_depthwise_conv_nt_t_s8.c
  * Description:  Depthwise convolution on matrices with no padding.
  *
- * $Date:        09. October 2020
- * $Revision:    V.1.0.2
+ * $Date:        26 October 2022
+ * $Revision:    V.2.0.1
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
@@ -35,7 +35,7 @@
  */
 
 /**
- * @addtogroup NNBasicMath
+ * @addtogroup supportConvolution
  * @{
  */
 
@@ -45,24 +45,25 @@
  * Refer header file for details.
  *
  */
-
-q7_t *riscv_nn_depthwise_conv_nt_t_s8(const q7_t *lhs,
-                                    const q7_t *rhs,
-                                    const int32_t input_offset,
-                                    const uint16_t num_ch,
-                                    const int32_t *out_shift,
-                                    const int32_t *out_mult,
-                                    const int32_t out_offset,
-                                    const int32_t activation_min,
-                                    const int32_t activation_max,
-                                    const uint16_t row_x_col,
-                                    const int32_t *const output_bias,
-                                    q7_t *out)
+riscv_nmsis_nn_status riscv_nn_depthwise_conv_nt_t_s8(const int8_t *lhs,
+                                                  const int8_t *rhs,
+                                                  const int32_t input_offset,
+                                                  const int32_t active_ch,
+                                                  const int32_t total_ch,
+                                                  const int32_t *out_shift,
+                                                  const int32_t *out_mult,
+                                                  const int32_t out_offset,
+                                                  const int32_t activation_min,
+                                                  const int32_t activation_max,
+                                                  const uint16_t row_x_col,
+                                                  const int32_t *const output_bias,
+                                                  int8_t *out)
 {
     (void)lhs;
     (void)rhs;
     (void)input_offset;
-    (void)num_ch;
+    (void)active_ch;
+    (void)total_ch;
     (void)out_shift;
     (void)out_mult;
     (void)out_offset;
@@ -71,9 +72,9 @@ q7_t *riscv_nn_depthwise_conv_nt_t_s8(const q7_t *lhs,
     (void)row_x_col;
     (void)output_bias;
     (void)out;
-    return NULL;
+    return RISCV_NMSIS_NN_NO_IMPL_ERROR;
 }
 
 /**
- * @} end of NNBasicMath group
+ * @} end of Doxygen group
  */

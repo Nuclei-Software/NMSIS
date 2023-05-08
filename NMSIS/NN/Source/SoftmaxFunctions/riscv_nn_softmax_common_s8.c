@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Arm Limited or its affiliates.
+ * SPDX-FileCopyrightText: Copyright 2022-2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -21,8 +21,8 @@
  * Title:        riscv_nn_softmax_common_s8.c
  * Description:  Softmax with s8 input and output of s8 or s16.
  *
- * $Date:        17 March 2022
- * $Revision:    V.1.0.1
+ * $Date:        5 January 2023
+ * $Revision:    V.1.1.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
@@ -36,7 +36,14 @@
  */
 
 /**
- * @addtogroup Softmax
+ * @defgroup supportSoftmax Softmax
+ *
+ * Support functions for Softmax
+ *
+ */
+
+/**
+ * @addtogroup supportSoftmax
  * @{
  */
 
@@ -52,7 +59,7 @@ void riscv_nn_softmax_common_s8(const int8_t *input,
                               const int32_t mult,
                               const int32_t shift,
                               const int32_t diff_min,
-                              const int16_t int16_output,
+                              const bool int16_output,
                               void *output)
 {
     const int32_t mask = (1 << shift);
@@ -154,5 +161,5 @@ void riscv_nn_softmax_common_s8(const int8_t *input,
 }
 
 /**
- * @} end of NNBasicMath group
+ * @} end of Softmax group
  */

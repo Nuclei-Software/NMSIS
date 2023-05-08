@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2021 Arm Limited or its affiliates.
+ * SPDX-FileCopyrightText: Copyright 2010-2022 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_max_pool_s8.c
  * Description:  Pooling function implementations
  *
- * $Date:        20. July 2021
- * $Revision:    V.2.0.3
+ * $Date:        26 October 2022
+ * $Revision:    V.3.0.2
  *
  * Target Processor: RISC-V Cores
  *
@@ -32,9 +32,9 @@
 #include "riscv_nnfunctions.h"
 #include "riscv_nnsupportfunctions.h"
 
-static void compare_and_replace_if_larger_q7(q7_t *base, const q7_t *target, int32_t length)
+static void compare_and_replace_if_larger_q7(int8_t *base, const int8_t *target, int32_t length)
 {
-    q7_t *dst = base;
+    int8_t *dst = base;
     const q7_t *src = target;
     int32_t cnt;
 
@@ -50,15 +50,15 @@ static void compare_and_replace_if_larger_q7(q7_t *base, const q7_t *target, int
         dst += l;
     }
     cnt = length & RVV_OPT_THRESHOLD;
-#elif defined(RISCV_MATH_DSP)
+#else
     union riscv_nnword ref_max;
     union riscv_nnword comp_max;
     cnt = length >> 2;
 
     while (cnt > 0l)
     {
-        ref_max.word = riscv_nn_read_q7x4(dst);
-        comp_max.word = riscv_nn_read_q7x4_ia(&src);
+        ref_max.word = riscv_nn_read_s8x4(dst);
+        comp_max.word = riscv_nn_read_s8x4_ia(&src);
 
         if (comp_max.bytes[0] > ref_max.bytes[0])
         {
@@ -77,15 +77,12 @@ static void compare_and_replace_if_larger_q7(q7_t *base, const q7_t *target, int
             ref_max.bytes[3] = comp_max.bytes[3];
         }
 
-        riscv_nn_write_q7x4_ia(&dst, ref_max.word);
+        riscv_nn_write_s8x4_ia(&dst, ref_max.word);
 
         cnt--;
     }
 
     cnt = length & 0x3;
-#else
-    cnt = length;
-#endif /* defined (RISCV_MATH_VECTOR) */
     while (cnt > 0l)
     {
         if (*src > *dst)
@@ -96,10 +93,10 @@ static void compare_and_replace_if_larger_q7(q7_t *base, const q7_t *target, int
         src++;
         cnt--;
     }
-
+#endif
 }
 
-static void clamp_output(q7_t *source, int32_t length, const int32_t act_min, const int32_t act_max)
+static void clamp_output(int8_t *source, int32_t length, const int32_t act_min, const int32_t act_max)
 {
     int32_t cnt;
 
@@ -117,13 +114,13 @@ static void clamp_output(q7_t *source, int32_t length, const int32_t act_min, co
     }
     cnt = length & RVV_OPT_THRESHOLD;
 
-#elif defined(RISCV_MATH_DSP)
+#else
     union riscv_nnword in;
     cnt = length >> 2;
 
     while (cnt > 0l)
     {
-        in.word = riscv_nn_read_q7x4(source);
+        in.word = riscv_nn_read_s8x4(source);
 
         in.bytes[0] = MAX(in.bytes[0], act_min);
         in.bytes[0] = MIN(in.bytes[0], act_max);
@@ -134,14 +131,11 @@ static void clamp_output(q7_t *source, int32_t length, const int32_t act_min, co
         in.bytes[3] = MAX(in.bytes[3], act_min);
         in.bytes[3] = MIN(in.bytes[3], act_max);
 
-        riscv_nn_write_q7x4_ia(&source, in.word);
+        riscv_nn_write_s8x4_ia(&source, in.word);
         cnt--;
     }
 
     cnt = length & 0x3;
-#else
-    cnt = length;
-#endif /*defined (RISCV_MATH_VECTOR)*/
     while (cnt > 0l)
     {
         int32_t comp = *source;
@@ -150,10 +144,11 @@ static void clamp_output(q7_t *source, int32_t length, const int32_t act_min, co
         *source++ = (int8_t)comp;
         cnt--;
     }
+#endif
 }
 
 /**
- *  @ingroup groupNN
+ *  @ingroup Public
  */
 
 /**

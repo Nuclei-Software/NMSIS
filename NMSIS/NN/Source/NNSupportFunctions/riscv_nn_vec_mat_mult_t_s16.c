@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020-2022 Arm Limited or its affiliates.
+ * SPDX-FileCopyrightText: Copyright 2020-2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -21,20 +21,23 @@
  * Title:        riscv_nn_vec_mat_mult_t_s16
  * Description:  s16 vector by matrix (transposed) multiplication
  *
- * $Date:        04. January 2022
- * $Revision:    V.1.2.0
+ * $Date:        5 January 2023
+ * $Revision:    V.2.2.0
  *
  * Target Processor: RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 
 #include "riscv_nnsupportfunctions.h"
+
+#define MAX_COL_COUNT (512)
+
 /**
  * @ingroup groupSupport
  */
 
 /**
- * @addtogroup NNBasicMath
+ * @addtogroup supportFC
  * @{
  */
 
@@ -56,19 +59,21 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s16(const q15_t *lhs,
                                      const int32_t activation_max)
 {
 #if defined(RISCV_MATH_DSP)
-    const int32_t row_loop_cnt = rhs_rows / 2;
 
     int32_t rhs_cols_fast = rhs_cols;
 
-    if (rhs_cols > 512)
+    if (rhs_cols > MAX_COL_COUNT)
     {
-        rhs_cols_fast = 512;
+        rhs_cols_fast = MAX_COL_COUNT;
     }
+
+    const int32_t row_loop_cnt = rhs_rows / 2;
 
     for (int32_t i = 0; i < row_loop_cnt; i++)
     {
-        q63_t acc_64_0 = 0;
-        q63_t acc_64_1 = 0;
+
+        int64_t acc_64_0 = 0;
+        int64_t acc_64_1 = 0;
         int32_t acc_0 = 0;
         int32_t acc_1 = 0;
 
@@ -82,6 +87,7 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s16(const q15_t *lhs,
         for (int j = col_loop_cnt; j != 0; j--)
         {
             int32_t ker_0, ker_1, vec_part_0, vec_part_1;
+
             vec_part_0 = riscv_nn_read_q15x2_ia(&lhs_vec);
             vec_part_1 = riscv_nn_read_q15x2_ia(&lhs_vec);
 
@@ -114,21 +120,22 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s16(const q15_t *lhs,
             acc_64_0 += *bias++;
             acc_64_1 += *bias++;
         }
-        q31_t tmp;
+        int32_t tmp;
+
         tmp = riscv_nn_requantize_s64(acc_64_0, dst_multiplier, dst_shift);
         tmp = MAX(tmp, activation_min);
         tmp = MIN(tmp, activation_max);
-        *dst++ = (q15_t)tmp;
+        *dst++ = (int16_t)tmp;
 
         tmp = riscv_nn_requantize_s64(acc_64_1, dst_multiplier, dst_shift);
         tmp = MAX(tmp, activation_min);
         tmp = MIN(tmp, activation_max);
-        *dst++ = (q15_t)tmp;
+        *dst++ = (int16_t)tmp;
     }
 
     if (rhs_rows & 0x1)
     {
-        q63_t acc_64_0 = 0;
+        int64_t acc_64_0 = 0;
         int32_t acc_0 = 0;
         const int32_t col_loop_cnt = rhs_cols_fast / 4;
 
@@ -161,29 +168,25 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s16(const q15_t *lhs,
         {
             acc_64_0 += *bias++;
         }
-        q31_t tmp;
+        int32_t tmp;
         tmp = riscv_nn_requantize_s64(acc_64_0, dst_multiplier, dst_shift);
         tmp = MAX(tmp, activation_min);
         tmp = MIN(tmp, activation_max);
-        *dst++ = (q15_t)tmp;
+        *dst++ = (int16_t)tmp;
     }
 
 #else
     for (int i_row_loop_cnt = 0; i_row_loop_cnt < rhs_rows; i_row_loop_cnt++)
     {
-        const q15_t *lhs_ptr = lhs;
-        const q7_t *rhs_ptr_0 = &rhs[0];
+        const int16_t *lhs_ptr = lhs;
+        const int8_t *rhs_ptr_0 = &rhs[0];
 
-        q63_t result = 0;
+        int64_t result = 0;
 
-        if (bias)
-        {
-            result = *bias++;
-        }
         for (int32_t rhs_cols_idx = 0; rhs_cols_idx < rhs_cols; ++rhs_cols_idx)
         {
-            const q63_t rhs_value0 = (int8_t)*rhs_ptr_0;
-            const q63_t lhs_value = *lhs_ptr;
+            const int64_t rhs_value0 = (int8_t)*rhs_ptr_0;
+            const int64_t lhs_value = *lhs_ptr;
 
             result += lhs_value * rhs_value0;
 
@@ -191,6 +194,10 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s16(const q15_t *lhs,
             ++lhs_ptr;
         }
 
+        if (bias)
+        {
+            result += *bias++;
+        }
         // Quantize down
         result = riscv_nn_requantize_s64(result, dst_multiplier, dst_shift);
 
@@ -198,7 +205,7 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s16(const q15_t *lhs,
         result = ((result) > (activation_min) ? (result) : (activation_min));
         result = ((result) < (activation_max) ? (result) : (activation_max));
 
-        *dst++ = (q15_t)result;
+        *dst++ = (int16_t)result;
         rhs += rhs_cols;
     }
 #endif
@@ -207,5 +214,5 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s16(const q15_t *lhs,
 }
 
 /**
- * @} end of NNBasicMath group
+ * @} end of Doxygen group
  */

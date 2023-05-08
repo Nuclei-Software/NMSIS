@@ -39,8 +39,8 @@
    *
    */
 
-q7_t *riscv_nn_depthwise_conv_s8_core_ref(const q7_t *row,
-                                        const q15_t *col,
+int8_t *riscv_nn_depthwise_conv_s8_core_ref(const int8_t *row,
+                                        const int16_t *col,
                                         const uint16_t num_ch,
                                         const int32_t *out_shift,
                                         const int32_t *out_mult,
@@ -49,7 +49,7 @@ q7_t *riscv_nn_depthwise_conv_s8_core_ref(const q7_t *row,
                                         const int32_t activation_max,
                                         const uint16_t kernel_size,
                                         const int32_t *const output_bias,
-                                        q7_t *out)
+                                        int8_t *out)
 {
     (void)row;
     (void)col;

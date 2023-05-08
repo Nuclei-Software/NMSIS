@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2021 Arm Limited or its affiliates. All rights reserved.
+ * SPDX-FileCopyrightText: Copyright 2010-2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_fully_connected_s16
  * Description:  Fully connected function compatible with TF Lite.
  *
- * $Date:        3. August 2021
- * $Revision:    V.1.0.0
+ * $Date:        13 January 2023
+ * $Revision:    V.2.1.0
  *
  * Target Processor: RISC-V Cores
  *
@@ -33,7 +33,7 @@
 #include "riscv_nnsupportfunctions.h"
 
 /**
- *  @ingroup groupNN
+ *  @ingroup Public
  */
 
 /**
@@ -48,16 +48,16 @@
  *
  */
 riscv_nmsis_nn_status riscv_fully_connected_s16(const nmsis_nn_context *ctx,
-                                   const nmsis_nn_fc_params *fc_params,
-                                   const nmsis_nn_per_tensor_quant_params *quant_params,
-                                   const nmsis_nn_dims *input_dims,
-                                   const q15_t *input,
-                                   const nmsis_nn_dims *filter_dims,
-                                   const q7_t *kernel,
-                                   const nmsis_nn_dims *bias_dims,
-                                   const int64_t *bias,
-                                   const nmsis_nn_dims *output_dims,
-                                   q15_t *output)
+                                            const nmsis_nn_fc_params *fc_params,
+                                            const nmsis_nn_per_tensor_quant_params *quant_params,
+                                            const nmsis_nn_dims *input_dims,
+                                            const int16_t *input,
+                                            const nmsis_nn_dims *filter_dims,
+                                            const int8_t *kernel,
+                                            const nmsis_nn_dims *bias_dims,
+                                            const int64_t *bias,
+                                            const nmsis_nn_dims *output_dims,
+                                            int16_t *output)
 {
     (void)bias_dims;
     (void)ctx;
@@ -65,7 +65,7 @@ riscv_nmsis_nn_status riscv_fully_connected_s16(const nmsis_nn_context *ctx,
 
     int32_t batch_cnt = input_dims->n;
 
-    const q31_t reduced_multiplier = REDUCE_MULTIPLIER(quant_params->multiplier);
+    const int32_t reduced_multiplier = REDUCE_MULTIPLIER(quant_params->multiplier);
 
     while (batch_cnt)
     {
@@ -85,12 +85,6 @@ riscv_nmsis_nn_status riscv_fully_connected_s16(const nmsis_nn_context *ctx,
     }
 
     return (RISCV_NMSIS_NN_SUCCESS);
-}
-
-int32_t riscv_fully_connected_s16_get_buffer_size(const nmsis_nn_dims *filter_dims)
-{
-    (void)filter_dims;
-    return 0;
 }
 
 /**

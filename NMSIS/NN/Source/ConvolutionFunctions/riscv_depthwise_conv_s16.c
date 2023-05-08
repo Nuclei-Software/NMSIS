@@ -1,5 +1,6 @@
 /*
- * Copyright (C) 2022 Arm Limited or its affiliates.
+ * SPDX-FileCopyrightText: Copyright 2022 Arm Limited and/or its affiliates <open-source-office@arm.com>
+ * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -21,8 +22,8 @@
  * Title:        riscv_depthwise_conv_s16.c
  * Description:  s16 version of depthwise convolution.
  *
- * $Date:        26. Jan 2022
- * $Revision:    V.1.0.0
+ * $Date:        26 October 2022
+ * $Revision:    V.2.0.1
  *
  * Target Processor: RISC-V Cores
  *
@@ -32,7 +33,7 @@
 #include "riscv_nnsupportfunctions.h"
 
 /**
- *  @ingroup groupNN
+ *  @ingroup Public
  */
 
 /**
@@ -166,7 +167,7 @@ static void depthwise_conv_s16_generic_s16(const int16_t *input,
                     {
                         const int idx_out_ch = i_ch_mult + i_input_ch * ch_mult;
 
-                        const q31_t reduced_multiplier = REDUCE_MULTIPLIER(output_mult[idx_out_ch]);
+                        const int32_t reduced_multiplier = REDUCE_MULTIPLIER(output_mult[idx_out_ch]);
                         int64_t acc_0 = 0;
 
                         int ker_y_start;
@@ -239,16 +240,16 @@ static void depthwise_conv_s16_generic_s16(const int16_t *input,
  *
  */
 riscv_nmsis_nn_status riscv_depthwise_conv_s16(const nmsis_nn_context *ctx,
-                                  const nmsis_nn_dw_conv_params *dw_conv_params,
-                                  const nmsis_nn_per_channel_quant_params *quant_params,
-                                  const nmsis_nn_dims *input_dims,
-                                  const q15_t *input,
-                                  const nmsis_nn_dims *filter_dims,
-                                  const q7_t *kernel,
-                                  const nmsis_nn_dims *bias_dims,
-                                  const int64_t *bias,
-                                  const nmsis_nn_dims *output_dims,
-                                  q15_t *output)
+                                           const nmsis_nn_dw_conv_params *dw_conv_params,
+                                           const nmsis_nn_per_channel_quant_params *quant_params,
+                                           const nmsis_nn_dims *input_dims,
+                                           const int16_t *input,
+                                           const nmsis_nn_dims *filter_dims,
+                                           const int8_t *kernel,
+                                           const nmsis_nn_dims *bias_dims,
+                                           const int64_t *bias,
+                                           const nmsis_nn_dims *output_dims,
+                                           int16_t *output)
 {
     const uint16_t dilation_x = dw_conv_params->dilation.w;
     const uint16_t dilation_y = dw_conv_params->dilation.h;

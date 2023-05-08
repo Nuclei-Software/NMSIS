@@ -25,7 +25,7 @@
  * $Date:        May 29, 2020
  * $Revision:    V.1.0.1
  *
- * pSrc Processor:  RISC-V CPUs
+ * pSrc Processor:  RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 #include "riscv_math.h"

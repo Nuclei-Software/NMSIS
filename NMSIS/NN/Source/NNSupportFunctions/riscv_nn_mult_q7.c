@@ -109,7 +109,7 @@ void riscv_nn_mult_q7(q7_t *pSrcA, q7_t *pSrcB, q7_t *pDst, const uint16_t out_s
         out4 = (q7_t) __SSAT((q15_t) (((mul1 & 0xffff000000000000UL) >> 48) + NN_ROUND(out_shift)) >> out_shift, 8);
 
         /* Store the results of 4 inputs in the destination buffer in single cycle by packing */
-        *__SIMD32(pDst)++ = PACK_Q7x4_32x1(out1, out2, out3, out4);
+        *__SIMD32(pDst)++ = PACK_S8x4_32x1(out1, out2, out3, out4);
 
         /* Decrement the blockSize loop counter */
         blkCnt--;

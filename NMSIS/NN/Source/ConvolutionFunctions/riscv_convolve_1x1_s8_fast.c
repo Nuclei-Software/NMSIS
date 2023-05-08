@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2021 Arm Limited or its affiliates.
+ * SPDX-FileCopyrightText: Copyright 2010-2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -20,10 +20,10 @@
 /* ----------------------------------------------------------------------
  * Project:      NMSIS NN Library
  * Title:        riscv_convolve_1x1_s8_fast.c
- * Description:  Fast q7 version of 1x1 convolution (non-square shape)
+ * Description:  Fast s8 version of 1x1 convolution (non-square shape)
  *
- * $Date:        12. November 2021
- * $Revision:    V.2.0.4
+ * $Date:        30 January 2023
+ * $Revision:    V.3.1.0
  *
  * Target Processor: RISC-V Cores
  *
@@ -32,11 +32,8 @@
 #include "riscv_nnfunctions.h"
 #include "riscv_nnsupportfunctions.h"
 
-#define DIM_KER_X (1U)
-#define DIM_KER_Y (1U)
-
 /**
- *  @ingroup groupNN
+ *  @ingroup Public
  */
 
 /**
@@ -52,28 +49,26 @@
  */
 
 riscv_nmsis_nn_status riscv_convolve_1x1_s8_fast(const nmsis_nn_context *ctx,
-                                    const nmsis_nn_conv_params *conv_params,
-                                    const nmsis_nn_per_channel_quant_params *quant_params,
-                                    const nmsis_nn_dims *input_dims,
-                                    const q7_t *input_data,
-                                    const nmsis_nn_dims *filter_dims,
-                                    const q7_t *filter_data,
-                                    const nmsis_nn_dims *bias_dims,
-                                    const int32_t *bias_data,
-                                    const nmsis_nn_dims *output_dims,
-                                    q7_t *output_data)
+                                             const nmsis_nn_conv_params *conv_params,
+                                             const nmsis_nn_per_channel_quant_params *quant_params,
+                                             const nmsis_nn_dims *input_dims,
+                                             const int8_t *input_data,
+                                             const nmsis_nn_dims *filter_dims,
+                                             const int8_t *filter_data,
+                                             const nmsis_nn_dims *bias_dims,
+                                             const int32_t *bias_data,
+                                             const nmsis_nn_dims *output_dims,
+                                             int8_t *output_data)
 {
-    if (input_dims->c % 4 != 0 || conv_params->padding.w != 0 || conv_params->padding.h != 0 ||
-        conv_params->stride.w != 1 || conv_params->stride.h != 1)
+    if (conv_params->padding.w != 0 || conv_params->padding.h != 0 || conv_params->stride.w != 1 ||
+        conv_params->stride.h != 1)
     {
-        return RISCV_NMSIS_NN_SIZE_MISMATCH;
+        return RISCV_NMSIS_NN_ARG_ERROR;
     }
 
     (void)ctx;
     (void)filter_dims;
     (void)bias_dims;
-
-    /* Run the following code as reference implementation for RISC-V processors with or without DSP extension */
 
     const int32_t lhs_rows = input_dims->w * input_dims->h * input_dims->n;
     const int32_t rhs_rows = output_dims->c;
@@ -91,17 +86,11 @@ riscv_nmsis_nn_status riscv_convolve_1x1_s8_fast(const nmsis_nn_context *ctx,
                             conv_params->input_offset,
                             conv_params->output_offset,
                             conv_params->activation.min,
-                            conv_params->activation.max);
-
+                            conv_params->activation.max,
+                            rhs_cols);
 
     /* Return to application */
     return RISCV_NMSIS_NN_SUCCESS;
-}
-
-int32_t riscv_convolve_1x1_s8_fast_get_buffer_size(const nmsis_nn_dims *input_dims)
-{
-    (void)input_dims;
-    return 0;
 }
 
 /**

@@ -41,8 +41,8 @@
  *
  */
 
-q7_t *riscv_nn_mat_mult_kernel_s8_s16_reordered_ref(const q7_t *input_a,
-                                                  const q15_t *input_b,
+int8_t *riscv_nn_mat_mult_kernel_s8_s16_reordered_ref(const int8_t *input_a,
+                                                  const int16_t *input_b,
                                                   const uint16_t output_ch,
                                                   const int32_t *out_shift,
                                                   const int32_t *out_mult,
@@ -51,7 +51,7 @@ q7_t *riscv_nn_mat_mult_kernel_s8_s16_reordered_ref(const q7_t *input_a,
                                                   const int16_t activation_max,
                                                   const uint16_t num_col_a,
                                                   const int32_t *const output_bias,
-                                                  q7_t *out_0)
+                                                  int8_t *out_0)
 {
     (void)input_a;
     (void)input_b;

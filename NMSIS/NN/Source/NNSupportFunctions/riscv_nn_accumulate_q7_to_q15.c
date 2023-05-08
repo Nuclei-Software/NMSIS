@@ -25,7 +25,7 @@
  * $Date:        20 July 2021
  * $Revision:    V.1.1.2
  *
- * pSrc Processor:  RISC-V CPUs
+ * pSrc Processor:  RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 

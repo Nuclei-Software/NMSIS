@@ -1,5 +1,6 @@
 /*
- * Copyright (C) 2022 Arm Limited or its affiliates.
+ * SPDX-FileCopyrightText: Copyright 2022 Arm Limited and/or its affiliates <open-source-office@arm.com>
+ * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -21,8 +22,8 @@
  * Title:        riscv_max_pool_s16.c
  * Description:  Pooling function implementations
  *
- * $Date:        24. January 2022
- * $Revision:    V.1.0.0
+ * $Date:        26 October 2022
+ * $Revision:    V.2.1.2
  *
  * Target Processor: RISC-V Cores
  *
@@ -33,15 +34,15 @@
 
 static void compare_and_replace_if_larger(int16_t *base, const int16_t *target, int32_t length)
 {
-    q15_t *dst = base;
-    const q15_t *src = target;
+    int16_t *dst = base;
+    const int16_t *src = target;
     union riscv_nnword ref_max;
     union riscv_nnword comp_max;
     int32_t cnt = length >> 1;
 
     while (cnt > 0l)
     {
-        ref_max.word = riscv_nn_read_q15x2(dst);
+        ref_max.word = riscv_nn_read_s16x2(dst);
         comp_max.word = riscv_nn_read_q15x2_ia(&src);
 
         if (comp_max.half_words[0] > ref_max.half_words[0])
@@ -74,7 +75,7 @@ static void clamp_output(int16_t *source, int32_t length, const int16_t act_min,
 
     while (cnt > 0l)
     {
-        in.word = riscv_nn_read_q15x2(source);
+        in.word = riscv_nn_read_s16x2(source);
 
         in.half_words[0] = MAX(in.half_words[0], act_min);
         in.half_words[0] = MIN(in.half_words[0], act_max);
@@ -95,7 +96,7 @@ static void clamp_output(int16_t *source, int32_t length, const int16_t act_min,
 }
 
 /**
- *  @ingroup groupNN
+ *  @ingroup Public
  */
 
 /**

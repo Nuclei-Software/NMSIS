@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Arm Limited or its affiliates.
+ * SPDX-FileCopyrightText: Copyright 2022-2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_elementwise_mul_s16
  * Description:  Element wise multiplication
  *
- * $Date:        14 Februari 2022
- * $Revision:    V.1.0.0
+ * $Date:        20 January 2023
+ * $Revision:    V.2.4.0
  *
  * Target Processor: RISC-V Cores
  *
@@ -33,11 +33,11 @@
 #include "riscv_nnsupportfunctions.h"
 
 /**
- *  @ingroup groupNN
+ *  @ingroup Public
  */
 
 /**
- * @addtogroup BasicMath
+ * @addtogroup groupElementwise
  * @{
  */
 
@@ -48,16 +48,16 @@
  *
  */
 riscv_nmsis_nn_status riscv_elementwise_mul_s16(const int16_t *input_1_vect,
-                                   const int16_t *input_2_vect,
-                                   const int32_t input_1_offset,
-                                   const int32_t input_2_offset,
-                                   int16_t *output,
-                                   const int32_t out_offset,
-                                   const int32_t out_mult,
-                                   const int32_t out_shift,
-                                   const int32_t out_activation_min,
-                                   const int32_t out_activation_max,
-                                   const int32_t block_size)
+                                            const int16_t *input_2_vect,
+                                            const int32_t input_1_offset,
+                                            const int32_t input_2_offset,
+                                            int16_t *output,
+                                            const int32_t out_offset,
+                                            const int32_t out_mult,
+                                            const int32_t out_shift,
+                                            const int32_t out_activation_min,
+                                            const int32_t out_activation_max,
+                                            const int32_t block_size)
 {
     (void)input_1_offset;
     (void)input_2_offset;
@@ -116,5 +116,5 @@ riscv_nmsis_nn_status riscv_elementwise_mul_s16(const int16_t *input_1_vect,
 }
 
 /**
- * @} end of BasicMath group
+ * @} end of Elementwise group
  */

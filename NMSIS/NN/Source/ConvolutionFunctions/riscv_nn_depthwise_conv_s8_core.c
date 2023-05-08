@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2020 Arm Limited or its affiliates. All rights reserved.
+ * SPDX-FileCopyrightText: Copyright 2010-2022 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_nn_depthwise_conv_s8_core.c
  * Description:  Depthwise convolution on im2col buffers.
  *
- * $Date:        09. October 2020
- * $Revision:    V.1.0.4
+ * $Date:        26 October 2022
+ * $Revision:    V.1.0.5
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
@@ -38,17 +38,17 @@
  *
  */
 
-q7_t *riscv_nn_depthwise_conv_s8_core(const q7_t *row,
-                                    const q15_t *col,
-                                    const uint16_t num_ch,
-                                    const int32_t *out_shift,
-                                    const int32_t *out_mult,
-                                    const int32_t out_offset,
-                                    const int32_t activation_min,
-                                    const int32_t activation_max,
-                                    const uint16_t kernel_size,
-                                    const int32_t *const output_bias,
-                                    q7_t *out)
+int8_t *riscv_nn_depthwise_conv_s8_core(const int8_t *row,
+                                      const int16_t *col,
+                                      const uint16_t num_ch,
+                                      const int32_t *out_shift,
+                                      const int32_t *out_mult,
+                                      const int32_t out_offset,
+                                      const int32_t activation_min,
+                                      const int32_t activation_max,
+                                      const uint16_t kernel_size,
+                                      const int32_t *const output_bias,
+                                      int8_t *out)
 {
     (void)row;
     (void)col;

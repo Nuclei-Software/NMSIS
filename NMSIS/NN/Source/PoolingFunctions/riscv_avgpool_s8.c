@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2021 Arm Limited or its affiliates.
+ * SPDX-FileCopyrightText: Copyright 2010-2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_avgpool_s8.c
  * Description:  Pooling function implementations
  *
- * $Date:        01. March 2021
- * $Revision:    V.2.0.4
+ * $Date:        30 January 2023
+ * $Revision:    V.3.2.0
  *
  * Target Processor: RISC-V Cores
  *
@@ -34,8 +34,8 @@
 
 #if defined(RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
 
-static void scale_q31_to_q7_and_clamp(const q31_t *buffer,
-                                      q7_t *target,
+static void scale_q31_to_q7_and_clamp(const int32_t *buffer,
+                                      int8_t *target,
                                       int32_t length,
                                       const int32_t count,
                                       const int act_min,
@@ -72,14 +72,14 @@ static void scale_q31_to_q7_and_clamp(const q31_t *buffer,
         sum = MAX(sum, act_min);
         sum = MIN(sum, act_max);
 
-        target[i] = (q7_t)sum;
+        target[i] = (int8_t)sum;
     }
 #endif /* defined (RISCV_MATH_VECTOR) */
 }
 #endif
 
 /**
- *  @ingroup groupNN
+ *  @ingroup Public
  */
 
 /**
@@ -95,12 +95,13 @@ static void scale_q31_to_q7_and_clamp(const q31_t *buffer,
  */
 
 riscv_nmsis_nn_status riscv_avgpool_s8(const nmsis_nn_context *ctx,
-                          const nmsis_nn_pool_params *pool_params,
-                          const nmsis_nn_dims *input_dims,
-                          const q7_t *src,
-                          const nmsis_nn_dims *filter_dims,
-                          const nmsis_nn_dims *output_dims,
-                          q7_t *dst)
+                                   const nmsis_nn_pool_params *pool_params,
+                                   const nmsis_nn_dims *input_dims,
+                                   const int8_t *src,
+                                   const nmsis_nn_dims *filter_dims,
+                                   const nmsis_nn_dims *output_dims,
+								   int8_t *dst)
+
 {
     const int32_t input_y = input_dims->h;
     const int32_t input_x = input_dims->w;
@@ -120,7 +121,7 @@ riscv_nmsis_nn_status riscv_avgpool_s8(const nmsis_nn_context *ctx,
     {
         return RISCV_NMSIS_NN_ARG_ERROR;
     }
-    q31_t *buffer = (q31_t *)ctx->buf;
+    int32_t *buffer = (int32_t *)ctx->buf;
 
 #if defined(RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
 
@@ -146,7 +147,7 @@ riscv_nmsis_nn_status riscv_avgpool_s8(const nmsis_nn_context *ctx,
             {
                 for (int k_x = kernel_x_start; k_x < kernel_x_end; k_x++)
                 {
-                    const q7_t *start = src + ch_src * (k_x + idx_x + (k_y + idx_y) * input_x);
+                    const int8_t *start = src + ch_src * (k_x + idx_x + (k_y + idx_y) * input_x);
 
                     if (count == 0)
                     {
@@ -181,20 +182,18 @@ riscv_nmsis_nn_status riscv_avgpool_s8(const nmsis_nn_context *ctx,
     /* Reference C code adapted from NMSIS-NN riscv_avepool_q7_HWC.
      */
     (void)buffer;
-    int16_t i_ch_in, i_x, i_y;
-    int16_t k_x, k_y;
 
-    for (i_y = 0; i_y < output_y; i_y++)
+    for (int i_y = 0; i_y < output_y; i_y++)
     {
-        for (i_x = 0; i_x < output_x; i_x++)
+        for (int i_x = 0; i_x < output_x; i_x++)
         {
-            for (i_ch_in = 0; i_ch_in < ch_src; i_ch_in++)
+            for (int i_ch_in = 0; i_ch_in < ch_src; i_ch_in++)
             {
                 int sum = 0;
                 int count = 0;
-                for (k_y = i_y * stride_y - pad_y; k_y < i_y * stride_y - pad_y + kernel_y; k_y++)
+                for (int k_y = i_y * stride_y - pad_y; k_y < i_y * stride_y - pad_y + kernel_y; k_y++)
                 {
-                    for (k_x = i_x * stride_x - pad_x; k_x < i_x * stride_x - pad_x + kernel_x; k_x++)
+                    for (int k_x = i_x * stride_x - pad_x; k_x < i_x * stride_x - pad_x + kernel_x; k_x++)
                     {
                         if (k_y >= 0 && k_x >= 0 && k_y < input_y && k_x < input_x)
                         {
@@ -223,18 +222,6 @@ riscv_nmsis_nn_status riscv_avgpool_s8(const nmsis_nn_context *ctx,
     return RISCV_NMSIS_NN_SUCCESS;
 }
 
-
-int32_t riscv_avgpool_s8_get_buffer_size(const int output_x, const int ch_src)
-{
-    (void)output_x;
-
-#if defined(RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
-    return (ch_src * sizeof(int32_t));
-#else
-    (void)ch_src;
-    return 0;
-#endif
-}
 /**
  * @} end of Pooling group
  */

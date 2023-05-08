@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2022 Arm Limited or its affiliates.
+ * SPDX-FileCopyrightText: Copyright 2010-2022 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_nn_mat_mul_core_4x_s8.c
  * Description:  General matrix multiplication function for MVE extension
  *
- * $Date:        19. April 2022
- * $Revision:    V.3.0.1
+ * $Date:        13 December 2022
+ * $Revision:    V.3.1.1
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
@@ -34,7 +34,7 @@
  */
 
 /**
- * @addtogroup NNBasicMath
+ * @addtogroup supportConvolution
  * @{
  */
 
@@ -69,5 +69,5 @@ int8_t *riscv_nn_mat_mul_core_4x_s8(const int32_t row_elements,
 }
 
 /**
- * @} end of NNBasicMath group
+ * @} end of Doxygen group
  */

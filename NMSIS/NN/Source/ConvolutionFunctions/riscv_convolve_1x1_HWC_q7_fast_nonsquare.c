@@ -31,6 +31,7 @@
 
 #include "riscv_nnfunctions.h"
 #include "riscv_nnsupportfunctions.h"
+#include "riscv_nn_math_types.h"
 
 /**
  *  @ingroup groupNN

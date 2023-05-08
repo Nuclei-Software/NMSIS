@@ -1,5 +1,6 @@
 /*
- * Copyright (C) 2022 Arm Limited or its affiliates.
+ * SPDX-FileCopyrightText: Copyright 2022-2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
+ * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -21,8 +22,8 @@
  * Title:        riscv_softmax_s16.c
  * Description:  S16 softmax function
  *
- * $Date:        9 March 2022
- * $Revision:    V.1.0.0
+ * $Date:        5 January 2023
+ * $Revision:    V.2.1.0
  *
  * Target Processor: RISC-V Cores
  *
@@ -37,12 +38,12 @@
  */
 
 riscv_nmsis_nn_status riscv_softmax_s16(const int16_t *input,
-                           const int32_t num_rows,
-                           const int32_t row_size,
-                           const int32_t mult,
-                           const int32_t shift,
-                           const nmsis_nn_softmax_lut_s16 *softmax_params,
-                           int16_t *output)
+                                    const int32_t num_rows,
+                                    const int32_t row_size,
+                                    const int32_t mult,
+                                    const int32_t shift,
+                                    const nmsis_nn_softmax_lut_s16 *softmax_params,
+                                    int16_t *output)
 {
     int32_t col = 0;
     int32_t row_idx;

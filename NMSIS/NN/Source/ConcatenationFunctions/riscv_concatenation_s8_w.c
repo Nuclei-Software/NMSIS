@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2021 Arm Limited or its affiliates.
+ * SPDX-FileCopyrightText: Copyright 2010-2022 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_concatenation_s8_w.c
  * Description:  s8 version of concatenation along the W axis
  *
- * $Date:        October 2019
- * $Revision:    V.1.0.0
+ * $Date:        26 October 2022
+ * $Revision:    V.1.0.1
  *
  * Target Processor: RISC-V Cores
  *
@@ -33,7 +33,7 @@
 #include "riscv_nnsupportfunctions.h"
 
 /**
- *  @ingroup groupNN
+ *  @ingroup Public
  */
 
 /**
@@ -59,7 +59,7 @@ void riscv_concatenation_s8_w(const int8_t *input,
 
     output += offset_w * (input_x * input_y * input_z);
 
-    riscv_memcpy_q7(output, input, input_copy_size);
+    riscv_memcpy_s8(output, input, input_copy_size);
 }
 
 /**

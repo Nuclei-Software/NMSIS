@@ -117,13 +117,13 @@ riscv_nmsis_nn_status riscv_convolve_1_x_n_s8_ref(const nmsis_nn_context* ctx,
                                      const nmsis_nn_conv_params* conv_params,
                                      const nmsis_nn_per_channel_quant_params* quant_params,
                                      const nmsis_nn_dims* input_dims,
-                                     const q7_t *input_data,
+                                     const int8_t *input_data,
                                      const nmsis_nn_dims* filter_dims,
-                                     const q7_t *filter_data,
+                                     const int8_t *filter_data,
                                      const nmsis_nn_dims* bias_dims,
                                      const int32_t *bias_data,
                                      const nmsis_nn_dims* output_dims,
-                                     q7_t *output_data);
+                                     int8_t *output_data);
 
 int32_t riscv_convolve_1_x_n_s8_get_buffer_size_ref(const nmsis_nn_dims* input_dims,
                                                   const nmsis_nn_dims* filter_dims);
@@ -153,13 +153,13 @@ riscv_nmsis_nn_status riscv_convolve_1x1_s8_fast_ref(const nmsis_nn_context *ctx
                                         const nmsis_nn_conv_params *conv_params,
                                         const nmsis_nn_per_channel_quant_params *quant_params,
                                         const nmsis_nn_dims *input_dims,
-                                        const q7_t *input_data,
+                                        const int8_t *input_data,
                                         const nmsis_nn_dims *filter_dims,
-                                        const q7_t *filter_data,
+                                        const int8_t *filter_data,
                                         const nmsis_nn_dims *bias_dims,
                                         const int32_t *bias_data,
                                         const nmsis_nn_dims *output_dims,
-                                        q7_t *output_data);
+                                        int8_t *output_data);
 
 int32_t riscv_convolve_1x1_s8_fast_get_buffer_size_ref(const nmsis_nn_dims *input_dims);
 
@@ -313,13 +313,13 @@ riscv_nmsis_nn_status riscv_convolve_s8_ref(const nmsis_nn_context* ctx,
                                const nmsis_nn_conv_params* conv_params,
                                const nmsis_nn_per_channel_quant_params* quant_params,
                                const nmsis_nn_dims* input_dims,
-                               const q7_t *input_data,
+                               const int8_t *input_data,
                                const nmsis_nn_dims* filter_dims,
-                               const q7_t *filter_data,
+                               const int8_t *filter_data,
                                const nmsis_nn_dims* bias_dims,
                                const int32_t *bias_data,
                                const nmsis_nn_dims* output_dims,
-                               q7_t *output_data);
+                               int8_t *output_data);
 
 int32_t riscv_convolve_s8_get_buffer_size_ref(const nmsis_nn_dims* input_dims,
                                         const nmsis_nn_dims* filter_dims);
@@ -328,13 +328,13 @@ riscv_nmsis_nn_status riscv_convolve_wrapper_s8_ref(const nmsis_nn_context* ctx,
                                        const nmsis_nn_conv_params* conv_params,
                                        const nmsis_nn_per_channel_quant_params* quant_params,
                                        const nmsis_nn_dims* input_dims,
-                                       const q7_t *input_data,
+                                       const int8_t *input_data,
                                        const nmsis_nn_dims* filter_dims,
-                                       const q7_t *filter_data,
+                                       const int8_t *filter_data,
                                        const nmsis_nn_dims* bias_dims,
                                        const int32_t *bias_data,
                                        const nmsis_nn_dims* output_dims,
-                                       q7_t *output_data);
+                                       int8_t *output_data);
 
 int32_t riscv_convolve_wrapper_s8_get_buffer_size_ref(const nmsis_nn_conv_params* conv_params,
                                                     const nmsis_nn_dims* input_dims,
@@ -345,25 +345,25 @@ riscv_nmsis_nn_status riscv_depthwise_conv_3x3_s8_ref(const nmsis_nn_context *ct
                                          const nmsis_nn_dw_conv_params *dw_conv_params,
                                          const nmsis_nn_per_channel_quant_params *quant_params,
                                          const nmsis_nn_dims *input_dims,
-                                         const q7_t *input,
+                                         const int8_t *input,
                                          const nmsis_nn_dims *filter_dims,
-                                         const q7_t *kernel,
+                                         const int8_t *kernel,
                                          const nmsis_nn_dims *bias_dims,
                                          const int32_t *bias,
                                          const nmsis_nn_dims *output_dims,
-                                         q7_t *output);
+                                         int8_t *output);
 
 riscv_nmsis_nn_status riscv_depthwise_conv_s8_opt_ref(const nmsis_nn_context *ctx,
                                          const nmsis_nn_dw_conv_params *dw_conv_params,
                                          const nmsis_nn_per_channel_quant_params *quant_params,
                                          const nmsis_nn_dims *input_dims,
-                                         const q7_t *input,
+                                         const int8_t *input,
                                          const nmsis_nn_dims *filter_dims,
-                                         const q7_t *kernel,
+                                         const int8_t *kernel,
                                          const nmsis_nn_dims *bias_dims,
                                          const int32_t *bias,
                                          const nmsis_nn_dims *output_dims,
-                                         q7_t *output);
+                                         int8_t *output);
 
 int32_t riscv_depthwise_conv_s8_opt_get_buffer_size_ref(const nmsis_nn_dims *input_dims,
                                                       const nmsis_nn_dims *filter_dims);
@@ -392,11 +392,12 @@ static void depthwise_conv_s8_mult_4_ref(const int8_t *input,
                                          const int32_t output_activation_min,
                                          const int32_t output_activation_max);
 
-static void depthwise_conv_s8_generic_ref(const q7_t *input,
+static void depthwise_conv_s8_generic(const int8_t *input,
+                                      const uint16_t input_batches,
                                       const uint16_t input_x,
                                       const uint16_t input_y,
                                       const uint16_t input_ch,
-                                      const q7_t *kernel,
+                                      const int8_t *kernel,
                                       const uint16_t output_ch,
                                       const uint16_t ch_mult,
                                       const uint16_t kernel_x,
@@ -406,7 +407,7 @@ static void depthwise_conv_s8_generic_ref(const q7_t *input,
                                       const uint16_t stride_x,
                                       const uint16_t stride_y,
                                       const int32_t *bias,
-                                      q7_t *output,
+                                      int8_t *output,
                                       const int32_t *output_shift,
                                       const int32_t *output_mult,
                                       const uint16_t output_x,
@@ -414,19 +415,21 @@ static void depthwise_conv_s8_generic_ref(const q7_t *input,
                                       const int32_t output_offset,
                                       const int32_t input_offset,
                                       const int32_t output_activation_min,
-                                      const int32_t output_activation_max);
+                                      const int32_t output_activation_max,
+                                      const uint16_t dilation_x,
+                                      const uint16_t dilation_y);
 
 riscv_nmsis_nn_status riscv_depthwise_conv_s8_ref(const nmsis_nn_context *ctx,
                                  const nmsis_nn_dw_conv_params *dw_conv_params,
                                  const nmsis_nn_per_channel_quant_params *quant_params,
                                  const nmsis_nn_dims *input_dims,
-                                 const q7_t *input,
+                                 const int8_t *input,
                                  const nmsis_nn_dims *filter_dims,
-                                 const q7_t *kernel,
+                                 const int8_t *kernel,
                                  const nmsis_nn_dims *bias_dims,
                                  const int32_t *bias,
                                  const nmsis_nn_dims *output_dims,
-                                 q7_t *output);
+                                 int8_t *output);
 
 static void depthwise_conv_u8_mult_4_ref(const uint8_t *input,
                                          const int32_t input_x,
@@ -508,13 +511,13 @@ riscv_nmsis_nn_status riscv_depthwise_conv_wrapper_s8_ref(const nmsis_nn_context
                                              const nmsis_nn_dw_conv_params *dw_conv_params,
                                              const nmsis_nn_per_channel_quant_params *quant_params,
                                              const nmsis_nn_dims *input_dims,
-                                             const q7_t *input,
+                                             const int8_t *input,
                                              const nmsis_nn_dims *filter_dims,
-                                             const q7_t *filter,
+                                             const int8_t *filter,
                                              const nmsis_nn_dims *bias_dims,
                                              const int32_t *bias,
                                              const nmsis_nn_dims *output_dims,
-                                             q7_t *output);
+                                             int8_t *output);
 
 int32_t riscv_depthwise_conv_wrapper_s8_get_buffer_size_ref(const nmsis_nn_dw_conv_params *dw_conv_params,
                                                           const nmsis_nn_dims *input_dims,
@@ -544,8 +547,8 @@ riscv_nmsis_nn_status riscv_depthwise_separable_conv_HWC_q7_nonsquare_ref(const 
 
 
 
-q7_t *riscv_nn_depthwise_conv_s8_core_ref(const q7_t *row,
-                                        const q15_t *col,
+int8_t *riscv_nn_depthwise_conv_s8_core_ref(const int8_t *row,
+                                        const int16_t *col,
                                         const uint16_t num_ch,
                                         const int32_t *out_shift,
                                         const int32_t *out_mult,
@@ -554,7 +557,7 @@ q7_t *riscv_nn_depthwise_conv_s8_core_ref(const q7_t *row,
                                         const int32_t activation_max,
                                         const uint16_t kernel_size,
                                         const int32_t *const output_bias,
-                                        q7_t *out);
+                                        int8_t *out);
 
 q7_t     *riscv_nn_mat_mult_kernel_q7_q15_ref(const q7_t * pA,
                                         const q15_t * pInBuffer,
@@ -583,20 +586,20 @@ q7_t     *riscv_nn_mat_mult_kernel_q7_reordered_ref(const q7_t * pA,
                                                   const q7_t * bias, 
                                                   q7_t * pOut);
 
-q7_t *riscv_nn_mat_mult_kernel_s8_s16_ref(const q7_t *input_a,
-                                        const q15_t *input_b,
-                                        const uint16_t output_ch,
-                                        const int32_t *out_shift,
-                                        const int32_t *out_mult,
-                                        const int32_t out_offset,
-                                        const int16_t activation_min,
-                                        const int16_t activation_max,
-                                        const uint16_t num_col_a,
-                                        const int32_t *const output_bias,
-                                        q7_t *out_0);
+int8_t *riscv_nn_mat_mult_kernel_s8_s16_ref(const int8_t *input_a,
+                                      const int16_t *input_b,
+                                      const uint16_t output_ch,
+                                      const int32_t *out_shift,
+                                      const int32_t *out_mult,
+                                      const int32_t out_offset,
+                                      const int16_t activation_min,
+                                      const int16_t activation_max,
+                                      const int32_t num_col_a,
+                                      const int32_t *const output_bias,
+                                      int8_t *out_0);
 
-q7_t *riscv_nn_mat_mult_kernel_s8_s16_reordered_ref(const q7_t *input_a,
-                                                  const q15_t *input_b,
+int8_t *riscv_nn_mat_mult_kernel_s8_s16_reordered_ref(const int8_t *input_a,
+                                                  const int16_t *input_b,
                                                   const uint16_t output_ch,
                                                   const int32_t *out_shift,
                                                   const int32_t *out_mult,
@@ -605,10 +608,10 @@ q7_t *riscv_nn_mat_mult_kernel_s8_s16_reordered_ref(const q7_t *input_a,
                                                   const int16_t activation_max,
                                                   const uint16_t num_col_a,
                                                   const int32_t *const output_bias,
-                                                  q7_t *out_0);
+                                                  int8_t *out_0);
 
-q7_t *riscv_nn_mat_mult_s8_ref(const q7_t *input_row,
-                             const q7_t *input_col,
+int8_t *riscv_nn_mat_mult_s8_ref(const int8_t *input_row,
+                             const int8_t *input_col,
                              const uint16_t output_ch,
                              const uint16_t col_batches,
                              const int32_t *output_shift,
@@ -620,7 +623,7 @@ q7_t *riscv_nn_mat_mult_s8_ref(const q7_t *input_row,
                              const int16_t activation_max,
                              const uint16_t row_len,
                              const int32_t *const bias,
-                             q7_t *out);
+                             int8_t *out);
 
 /*
  *
@@ -632,13 +635,13 @@ riscv_fully_connected_s8_ref(const nmsis_nn_context *ctx,
                            const nmsis_nn_fc_params *fc_params,
                            const nmsis_nn_per_tensor_quant_params *quant_params,
                            const nmsis_nn_dims *input_dims,
-                           const q7_t *input,
+                           const int8_t *input,
                            const nmsis_nn_dims *filter_dims,
-                           const q7_t *kernel,
+                           const int8_t *kernel,
                            const nmsis_nn_dims *bias_dims,
                            const int32_t *bias,
                            const nmsis_nn_dims *output_dims,
-                           q7_t *output);
+                           int8_t *output);
 
 int32_t riscv_fully_connected_s8_get_buffer_size_ref(const nmsis_nn_dims *filter_dims);
 
@@ -650,10 +653,10 @@ int32_t riscv_fully_connected_s8_get_buffer_size_ref(const nmsis_nn_dims *filter
 riscv_nmsis_nn_status riscv_avgpool_s8_ref(const nmsis_nn_context *ctx,
                           const nmsis_nn_pool_params *pool_params,
                           const nmsis_nn_dims *input_dims,
-                          const q7_t *src,
+                          const int8_t *src,
                           const nmsis_nn_dims *filter_dims,
                           const nmsis_nn_dims *output_dims,
-                          q7_t *dst);
+                          int8_t *dst);
 int32_t riscv_avgpool_s8_get_buffer_size_ref(const int dim_dst_width,
                                        const int ch_src);
 static void compare_and_replace_if_larger_q7_ref(q7_t *base,
@@ -665,10 +668,10 @@ riscv_nmsis_nn_status
 riscv_max_pool_s8_ref(const nmsis_nn_context *ctx,
                 const nmsis_nn_pool_params *pool_params,
                 const nmsis_nn_dims *input_dims,
-                const q7_t *src,
+                const int8_t *src,
                 const nmsis_nn_dims *filter_dims,
                 const nmsis_nn_dims *output_dims,
-                q7_t *dst);
+                int8_t *dst);
 /*
  *
  * Reshape Functions
@@ -706,8 +709,8 @@ void riscv_softmax_with_batch_q7_ref(const q7_t * vec_in, const uint16_t nb_batc
  */
 void riscv_nn_accumulate_q7_to_q15_ref(q15_t *pDst, const q7_t *pSrc, uint32_t length);
 void riscv_nn_add_q7_ref(const q7_t *input, q31_t *output, uint32_t block_size);
-q7_t *riscv_nn_depthwise_conv_nt_t_padded_s8_ref(const q7_t *lhs,
-                                               const q7_t *rhs,
+int8_t *riscv_nn_depthwise_conv_nt_t_padded_s8_ref(const int8_t *lhs,
+                                               const int8_t *rhs,
                                                const int32_t input_offset,
                                                const uint16_t num_ch,
                                                const int32_t *out_shift,
@@ -717,9 +720,9 @@ q7_t *riscv_nn_depthwise_conv_nt_t_padded_s8_ref(const q7_t *lhs,
                                                const int32_t activation_max,
                                                const uint16_t row_x_col,
                                                const int32_t *const output_bias,
-                                               q7_t *out);
-q7_t *riscv_nn_depthwise_conv_nt_t_s8_ref(const q7_t *lhs,
-                                        const q7_t *rhs,
+                                               int8_t *out);
+int8_t *riscv_nn_depthwise_conv_nt_t_s8_ref(const int8_t *lhs,
+                                        const int8_t *rhs,
                                         const int32_t input_offset,
                                         const uint16_t num_ch,
                                         const int32_t *out_shift,
@@ -729,7 +732,7 @@ q7_t *riscv_nn_depthwise_conv_nt_t_s8_ref(const q7_t *lhs,
                                         const int32_t activation_max,
                                         const uint16_t row_x_col,
                                         const int32_t *const output_bias,
-                                        q7_t *out);
+                                        int8_t *out);
 riscv_nmsis_nn_status riscv_nn_mat_mul_core_1x_s8_ref(int32_t row_elements,
                                          const int8_t *row_base,
                                          const int8_t *col_base,
@@ -741,10 +744,10 @@ riscv_nmsis_nn_status riscv_nn_mat_mul_core_4x_s8_ref(const int32_t row_elements
                                          const int8_t *col_base,
                                          int32_t *const sum_col,
                                          int32_t *const output);
-riscv_nmsis_nn_status riscv_nn_mat_mult_nt_t_s8_ref(const q7_t *lhs,
-                                       const q7_t *rhs,
-                                       const q31_t *bias,
-                                       q7_t *dst,
+riscv_nmsis_nn_status riscv_nn_mat_mult_nt_t_s8_ref(const int8_t *lhs,
+                                       const int8_t *rhs,
+                                       const int32_t *bias,
+                                       int8_t *dst,
                                        const int32_t *dst_multipliers,
                                        const int32_t *dst_shifts,
                                        const int32_t lhs_rows,
@@ -753,7 +756,8 @@ riscv_nmsis_nn_status riscv_nn_mat_mult_nt_t_s8_ref(const q7_t *lhs,
                                        const int32_t lhs_offset,
                                        const int32_t dst_offset,
                                        const int32_t activation_min,
-                                       const int32_t activation_max);
+                                       const int32_t activation_max,
+				       const int32_t lhs_cols_offset);
 void riscv_nn_mult_q7_ref(
   q7_t * pSrcA,
   q7_t * pSrcB,
@@ -766,12 +770,11 @@ void riscv_nn_mult_q15_ref(
   q15_t * pDst,
   const uint16_t out_shift,
   uint32_t blockSize);
-riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8_ref(const q7_t *lhs,
-                                        const q7_t *rhs,
-                                        const q31_t *bias,
-                                        q7_t *dst,
+riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8_ref(const int8_t *lhs,
+                                        const int8_t *rhs,
+                                        const int32_t *bias,
+                                        int8_t *dst,
                                         const int32_t lhs_offset,
-                                        const int32_t rhs_offset,
                                         const int32_t dst_offset,
                                         const int32_t dst_multiplier,
                                         const int32_t dst_shift,
@@ -988,9 +991,9 @@ void riscv_q7_to_q15_with_offset_ref(const q7_t *src,
  * SVD reference implemenation
  *
  */
-riscv_nmsis_nn_status ref_nn_vec_mat_mult_t_svdf_s8(const q7_t *lhs,
-                                         const q7_t *rhs,
-                                         q15_t *dst,
+riscv_nmsis_nn_status ref_nn_vec_mat_mult_t_svdf_s8(const int8_t *lhs,
+                                         const int8_t *rhs,
+                                         int16_t *dst,
                                          const int32_t lhs_offset,
                                          const int32_t rhs_offset,
                                          const int32_t dst_offset,
@@ -1007,17 +1010,17 @@ riscv_nmsis_nn_status ref_svdf_s8(const nmsis_nn_context *input_ctx,
                        const nmsis_nn_per_tensor_quant_params *input_quant_params,
                        const nmsis_nn_per_tensor_quant_params *output_quant_params,
                        const nmsis_nn_dims *input_dims,
-                       const q7_t *input_data,
+                       const int8_t *input_data,
                        const nmsis_nn_dims *state_dims,
-                       q7_t *state_data,
+                       int8_t *state_data,
                        const nmsis_nn_dims *weights_feature_dims,
-                       const q7_t *weights_feature_data,
+                       const int8_t *weights_feature_data,
                        const nmsis_nn_dims *weights_time_dims,
-                       const q7_t *weights_time_data,
+                       const int8_t *weights_time_data,
                        const nmsis_nn_dims *bias_dims,
-                       const q31_t *bias_data,
+                       const int32_t *bias_data,
                        const nmsis_nn_dims *output_dims,
-                       q7_t *output_data);
+                       int8_t *output_data);
 
 /*
  *
@@ -1033,7 +1036,7 @@ riscv_nmsis_nn_status ref_svdf_s8(const nmsis_nn_context *input_ctx,
 
     void      riscv_nn_mult_q15_ref(q15_t * pSrcA, q15_t * pSrcB, q15_t * pDst, const uint16_t out_shift, uint32_t blockSize);
 
-    void        riscv_relu6_s8_ref(q7_t *data, uint16_t size);
+    void        riscv_relu6_s8_ref(int8_t *data, uint16_t size);
     
 
 #ifdef __cplusplus

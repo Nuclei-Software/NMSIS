@@ -1,5 +1,6 @@
 /*
- * Copyright (C) 2022 Arm Limited or its affiliates.
+ * SPDX-FileCopyrightText: Copyright 2010-2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
+ * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -21,8 +22,8 @@
  * Title:        riscv_svdf_s8.c
  * Description:  S8 basic SVDF layer function with s16 state tensor
  *
- * $Date:        28 April 2022
- * $Revision:    V.1.0.1
+ * $Date:        5 January 2023
+ * $Revision:    V.3.1.0
  *
  * Target Processor: RISC-V Cores
  *
@@ -32,7 +33,7 @@
 #include "riscv_nnsupportfunctions.h"
 
 /**
- * @ingroup groupNN
+ * @ingroup Public
  */
 
 /**
@@ -48,31 +49,31 @@
  */
 
 riscv_nmsis_nn_status riscv_svdf_state_s16_s8(const nmsis_nn_context *input_ctx,
-                                 const nmsis_nn_context *output_ctx,
-                                 const nmsis_nn_svdf_params *svdf_params,
-                                 const nmsis_nn_per_tensor_quant_params *input_quant_params,
-                                 const nmsis_nn_per_tensor_quant_params *output_quant_params,
-                                 const nmsis_nn_dims *input_dims,
-                                 const q7_t *input_data,
-                                 const nmsis_nn_dims *state_dims,
-                                 q15_t *state_data,
-                                 const nmsis_nn_dims *weights_feature_dims,
-                                 const q7_t *weights_feature_data,
-                                 const nmsis_nn_dims *weights_time_dims,
-                                 const q15_t *weights_time_data,
-                                 const nmsis_nn_dims *bias_dims,
-                                 const q31_t *bias_data,
-                                 const nmsis_nn_dims *output_dims,
-                                 q7_t *output_data)
+                                          const nmsis_nn_context *output_ctx,
+                                          const nmsis_nn_svdf_params *svdf_params,
+                                          const nmsis_nn_per_tensor_quant_params *input_quant_params,
+                                          const nmsis_nn_per_tensor_quant_params *output_quant_params,
+                                          const nmsis_nn_dims *input_dims,
+                                          const int8_t *input_data,
+                                          const nmsis_nn_dims *state_dims,
+                                          int16_t *state_data,
+                                          const nmsis_nn_dims *weights_feature_dims,
+                                          const int8_t *weights_feature_data,
+                                          const nmsis_nn_dims *weights_time_dims,
+                                          const int16_t *weights_time_data,
+                                          const nmsis_nn_dims *bias_dims,
+                                          const int32_t *bias_data,
+                                          const nmsis_nn_dims *output_dims,
+                                          int8_t *output_data)
 {
     (void)bias_dims;
     (void)state_dims;
     (void)output_dims;
 
-    const q31_t multiplier_in = input_quant_params->multiplier;
-    const q31_t shift_in = input_quant_params->shift;
-    const q31_t multiplier_out = output_quant_params->multiplier;
-    const q31_t shift_2 = output_quant_params->shift;
+    const int32_t multiplier_in = input_quant_params->multiplier;
+    const int32_t shift_in = input_quant_params->shift;
+    const int32_t multiplier_out = output_quant_params->multiplier;
+    const int32_t shift_2 = output_quant_params->shift;
     const int32_t zp_in = svdf_params->input_offset;
     const int32_t zp_out = svdf_params->output_offset;
     const int32_t in_activation_min = svdf_params->input_activation.min;
@@ -91,38 +92,37 @@ riscv_nmsis_nn_status riscv_svdf_state_s16_s8(const nmsis_nn_context *input_ctx,
     {
         return RISCV_NMSIS_NN_ARG_ERROR;
     }
-    q31_t *buffer_a = (q31_t *)input_ctx->buf;
+    int32_t *buffer_a = (int32_t *)input_ctx->buf;
 
     if (output_ctx->buf == NULL)
     {
         return RISCV_NMSIS_NN_ARG_ERROR;
     }
-    q31_t *buffer_b = (q31_t *)output_ctx->buf;
+    int32_t *buffer_b = (int32_t *)output_ctx->buf;
 
     // Left shift state
-    memmove((q15_t *)state_data,
-            (q15_t *)state_data + 1,
+    memmove((int16_t *)state_data,
+            (int16_t *)state_data + 1,
             (size_t)((input_batches * feature_batches * time_batches - 1) * (int32_t)sizeof(int16_t)));
 
     // Matrix multiplication input * feature weight
     for (int i_batch = 0; i_batch < input_batches; i_batch++)
     {
-        q15_t *res_ptr = state_data + (time_batches * i_batch * feature_batches) + (time_batches - 1);
-        const q7_t *weight = weights_feature_data;
-        const q7_t *input = input_data + i_batch * input_height;
+        int16_t *res_ptr = state_data + (time_batches * i_batch * feature_batches) + (time_batches - 1);
+        const int8_t *weight = weights_feature_data;
+        const int8_t *input = input_data + i_batch * input_height;
 
         riscv_nmsis_nn_status res = riscv_nn_vec_mat_mult_t_svdf_s8(input,
-                                                       weight,
-                                                       res_ptr,
-                                                       -zp_in,
-                                                       0,
-                                                       time_batches,
-                                                       multiplier_in,
-                                                       shift_in,
-                                                       input_height,
-                                                       feature_batches,
-                                                       in_activation_min,
-                                                       in_activation_max);
+                                                                weight,
+                                                                res_ptr,
+                                                                -zp_in,
+                                                                time_batches,
+                                                                multiplier_in,
+                                                                shift_in,
+                                                                input_height,
+                                                                feature_batches,
+                                                                in_activation_min,
+                                                                in_activation_max);
 
         if (res != RISCV_NMSIS_NN_SUCCESS)
         {
@@ -132,11 +132,11 @@ riscv_nmsis_nn_status riscv_svdf_state_s16_s8(const nmsis_nn_context *input_ctx,
 
     {
         // Matrix multiplication time weight * state tensors
-        q31_t *ptr_a = buffer_a;
-        const q15_t *v2 = state_data;
+        int32_t *ptr_a = buffer_a;
+        const int16_t *v2 = state_data;
         for (int i_batch = 0; i_batch < input_batches; i_batch++)
         {
-            const q15_t *v1 = weights_time_data;
+            const int16_t *v1 = weights_time_data;
 
             for (int i_feature_batch = 0; i_feature_batch < feature_batches; i_feature_batch++)
             {
@@ -149,8 +149,8 @@ riscv_nmsis_nn_status riscv_svdf_state_s16_s8(const nmsis_nn_context *input_ctx,
                 for (int i = 0; i < block_count; i++)
                 {
                     j += 2;
-                    q31_t r1 = riscv_nn_read_q15x2_ia(&v1);
-                    q31_t r2 = riscv_nn_read_q15x2_ia(&v2);
+                    int32_t r1 = riscv_nn_read_q15x2_ia(&v1);
+                    int32_t r2 = riscv_nn_read_q15x2_ia(&v2);
 
                     sum = __SMLAD(r1, r2, sum);
                 }
@@ -183,8 +183,8 @@ riscv_nmsis_nn_status riscv_svdf_state_s16_s8(const nmsis_nn_context *input_ctx,
         {
             for (int i = 0; i < input_batches; i++)
             {
-                q31_t *output_temp = buffer_b + i * feature_batches;
-                const q31_t *ptr_a = buffer_a + i * feature_batches;
+                int32_t *output_temp = buffer_b + i * feature_batches;
+                const int32_t *ptr_a = buffer_a + i * feature_batches;
 
                 const int32_t *bi = bias_data;
                 for (int j = 0; j < feature_batches; j++)
@@ -197,8 +197,8 @@ riscv_nmsis_nn_status riscv_svdf_state_s16_s8(const nmsis_nn_context *input_ctx,
         {
             for (int i_batch = 0; i_batch < input_batches; i_batch++)
             {
-                q31_t *output_data_temp = buffer_b + i_batch * unit_count;
-                q31_t *ptr_a = buffer_a + i_batch * feature_batches;
+                int32_t *output_data_temp = buffer_b + i_batch * unit_count;
+                int32_t *ptr_a = buffer_a + i_batch * feature_batches;
 
                 for (int i = 0; i < unit_count; i++)
                 {
@@ -217,8 +217,8 @@ riscv_nmsis_nn_status riscv_svdf_state_s16_s8(const nmsis_nn_context *input_ctx,
     {
         for (int i_batch = 0; i_batch < input_batches; i_batch++)
         {
-            q31_t *output_data_temp = buffer_b + i_batch * unit_count;
-            q31_t *ptr_a = buffer_a + i_batch * feature_batches;
+            int32_t *output_data_temp = buffer_b + i_batch * unit_count;
+            int32_t *ptr_a = buffer_a + i_batch * feature_batches;
 
             for (int i = 0; i < unit_count; i++)
             {
@@ -235,7 +235,7 @@ riscv_nmsis_nn_status riscv_svdf_state_s16_s8(const nmsis_nn_context *input_ctx,
 
     for (int i = 0; i < input_batches * unit_count; i++)
     {
-        output_data[i] = (q7_t)CLAMP(
+        output_data[i] = (int8_t)CLAMP(
             riscv_nn_requantize(buffer_b[i], multiplier_out, shift_2) + zp_out, out_activation_max, out_activation_min);
     }
 
